@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
-import { firebaseApp } from "./firebase";
+import { firebaseProjectLabel } from "./firebase";
 
 type Metric = {
   label: string;
@@ -84,7 +84,7 @@ function App() {
             <p className="eyebrow">Firebase project</p>
             <h1>Public launch operations</h1>
           </div>
-          <span className="project-pill">{firebaseApp.options.projectId || "dev project"}</span>
+          <span className="project-pill">{firebaseProjectLabel}</span>
         </header>
 
         <section className="metric-grid" aria-label="Launch metrics">

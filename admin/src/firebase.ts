@@ -13,7 +13,15 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-export const firebaseApp = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-export const auth = getAuth(firebaseApp);
-export const firestore = getFirestore(firebaseApp);
-export const realtimeDb = getDatabase(firebaseApp);
+const hasFirebaseConfig = Boolean(
+  firebaseConfig.apiKey &&
+    firebaseConfig.authDomain &&
+    firebaseConfig.projectId &&
+    firebaseConfig.appId,
+);
+
+export const firebaseApp = hasFirebaseConfig ? (getApps().length ? getApps()[0] : initializeApp(firebaseConfig)) : undefined;
+export const firebaseProjectLabel = firebaseApp?.options.projectId ?? "demo mode";
+export const auth = firebaseApp ? getAuth(firebaseApp) : undefined;
+export const firestore = firebaseApp ? getFirestore(firebaseApp) : undefined;
+export const realtimeDb = firebaseApp ? getDatabase(firebaseApp) : undefined;
