@@ -1,0 +1,16 @@
+{
+  "name": "sports-green-moove",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "functions",
+    "admin"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace functions && npm run build --workspace admin",
+    "test": "npm run test --workspace functions"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

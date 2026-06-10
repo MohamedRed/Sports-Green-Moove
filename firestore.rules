@@ -1,0 +1,117 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function hasRole(role) {
+      return signedIn() && request.auth.token.roles != null && request.auth.token.roles[role] == true;
+    }
+
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    function isSelf(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function isClubManager(clubId) {
+      return hasRole('clubManager') &&
+        exists(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId));
+    }
+
+    match /users/{userId} {
+      allow read: if isSelf(userId) || isAdmin();
+      allow create: if isSelf(userId);
+      allow update: if isSelf(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /children/{childId} {
+      allow read: if isAdmin() || resource.data.guardianUserIds.hasAny([request.auth.uid]);
+      allow create, update: if signedIn() && request.resource.data.guardianUserIds.hasAny([request.auth.uid]);
+      allow delete: if isAdmin();
+    }
+
+    match /clubs/{clubId} {
+      allow read: if true;
+      allow create, update: if isAdmin() || isClubManager(clubId);
+      allow delete: if isAdmin();
+    }
+
+    match /teams/{teamId} {
+      allow read: if true;
+      allow write: if isAdmin() || isClubManager(request.resource.data.clubId);
+    }
+
+    match /memberships/{membershipId} {
+      allow read: if signedIn();
+      allow create, update, delete: if isAdmin() || isClubManager(request.resource.data.clubId);
+    }
+
+    match /trips/{tripId} {
+      allow read: if signedIn();
+      allow create: if hasRole('driver') && request.resource.data.driverUserId == request.auth.uid;
+      allow update: if isAdmin() || resource.data.driverUserId == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    match /bookings/{bookingId} {
+      allow read: if isAdmin() ||
+        resource.data.parentUserId == request.auth.uid ||
+        resource.data.driverUserId == request.auth.uid;
+      allow create, update, delete: if false;
+    }
+
+    match /rideSessions/{rideSessionId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    match /messages/{messageId} {
+      allow read: if signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]);
+      allow create: if signedIn() && request.resource.data.senderUserId == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    match /notifications/{notificationId} {
+      allow read, update: if signedIn() && resource.data.userId == request.auth.uid;
+      allow create, delete: if false;
+    }
+
+    match /ratings/{ratingId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && request.resource.data.authorUserId == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    match /co2Ledger/{entryId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+
+    match /rewardLedger/{entryId} {
+      allow read: if isAdmin() || resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    match /stripeAccounts/{accountId} {
+      allow read: if isAdmin() || resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    match /reports/{reportId} {
+      allow read: if isAdmin();
+      allow create: if signedIn() && request.resource.data.reporterUserId == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    match /appConfig/{configId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}
+
