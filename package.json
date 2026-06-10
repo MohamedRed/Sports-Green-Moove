@@ -4,10 +4,12 @@
   "version": "0.1.0",
   "workspaces": [
     "functions",
-    "admin"
+    "admin",
+    "website"
   ],
   "scripts": {
-    "build": "npm run build --workspace functions && npm run build --workspace admin",
+    "build": "npm run build --workspace functions && npm run build --workspace admin && npm run build --workspace website",
+    "build:website": "npm run build --workspace website",
     "test": "npm run test --workspace functions"
   },
   "engines": {
