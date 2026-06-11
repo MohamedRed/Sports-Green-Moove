@@ -48,44 +48,6 @@ import be.sportgreenmoove.app.design.SgmColors
 import be.sportgreenmoove.app.design.SgmSpacing
 
 @Composable
-fun MessagesScreen() {
-    var selectedTab by remember { mutableStateOf("NOTIFS") }
-    val items = when (selectedTab) {
-        "CHATS" -> listOf(
-            MessagePreview("Nadège Toussaint", "Parfait, je récupère Léo à 16h35.", "16:08", "NT"),
-            MessagePreview("Groupe U8 Nationaux", "Le match est confirmé sur le terrain 2.", "15:42", "U8"),
-            MessagePreview("Thomas Driver", "J'ai encore une place disponible.", "Hier", "TD"),
-        )
-
-        "AVIS" -> listOf(
-            MessagePreview("Note reçue", "5,0 · conduite ponctuelle et rassurante.", "Lun", "5"),
-            MessagePreview("Avis demandé", "Évalue le trajet Royal Ottignies.", "Dim", "A"),
-        )
-
-        else -> listOf(
-            MessagePreview("Départ confirmé", "Le conducteur a démarré le suivi Radar.", "Maintenant", "S"),
-            MessagePreview("Kévin récupéré", "Statut pickup validé à 16h47.", "16:47", "K"),
-            MessagePreview("Paiement accepté", "2,50 EUR autorisés via Stripe.", "16:12", "€"),
-        )
-    }
-
-    ScreenFrame {
-        TopBrandBar(
-            title = "Messages",
-            subtitle = "Notifications, chats et avis",
-            trailing = { HeaderCircle("3") },
-        )
-        SegmentedTabs(
-            options = listOf("NOTIFS", "CHATS", "AVIS"),
-            selected = selectedTab,
-            onSelected = { selectedTab = it },
-        )
-
-        items.forEach { preview -> MessageCard(preview) }
-    }
-}
-
-@Composable
 fun GroupsScreen(onBack: () -> Unit) {
     ScreenFrame {
         BackHeader("Groupes", "Clubs, équipes, membres et permissions", onBack)
@@ -234,32 +196,3 @@ fun RideMonitorScreen(activeRide: LiveRideSnapshot?, onBack: () -> Unit) {
         )
     }
 }
-
-@Composable
-fun MessageCard(preview: MessagePreview) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(18.dp))
-            .background(SgmColors.Surface)
-            .border(BorderStroke(1.dp, SgmColors.Border), RoundedCornerShape(18.dp))
-            .padding(SgmSpacing.X4),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(SgmSpacing.X3),
-    ) {
-        Avatar(preview.avatar, SgmColors.Green)
-        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(SgmSpacing.X1)) {
-            Text(preview.title, color = SgmColors.TextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Black)
-            Text(preview.body, color = SgmColors.TextSecondary, fontSize = 12.sp, fontWeight = FontWeight.SemiBold, maxLines = 2, overflow = TextOverflow.Ellipsis)
-        }
-        Text(preview.time, color = SgmColors.TextMuted, fontSize = 11.sp, fontWeight = FontWeight.Black)
-    }
-}
-
-
-data class MessagePreview(
-    val title: String,
-    val body: String,
-    val time: String,
-    val avatar: String,
-)
