@@ -4,7 +4,7 @@ struct HomeScreen: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(spacing: 0) {
             HomeHeader()
             HomeHeroCard {
                 Task {
@@ -51,11 +51,13 @@ private struct HomeHeader: View {
                 VStack(alignment: .leading, spacing: 1) {
                     HStack(spacing: 0) {
                         Text("Bonjour, ")
-                            .font(.sgmBodyBase.weight(.bold))
+                            .font(.sgmBody(15, weight: .bold))
                             .foregroundStyle(SGM.textPrimary)
                         Text("Olivier")
-                            .font(.sgmBodyBase.weight(.bold))
+                            .font(.sgmBody(15, weight: .bold))
                             .foregroundStyle(SGM.green)
+                        Text(" 👋")
+                            .font(.sgmBody(15, weight: .bold))
                     }
                     Text("Mardi 07 Novembre 2022")
                         .font(.sgmBody(11, weight: .medium))
@@ -68,8 +70,8 @@ private struct HomeHeader: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.top, 10)
-        .padding(.bottom, 2)
+        .padding(.top, 36)
+        .padding(.bottom, 14)
     }
 }
 
@@ -79,7 +81,7 @@ private struct HomeHeroCard: View {
     var body: some View {
         Button(action: action) {
             ZStack {
-                SGM.heroGradient
+                SGM.homeHeroGradient
                 SGMGridTexture(spacing: 28)
 
                 VStack(alignment: .leading, spacing: 0) {
@@ -117,17 +119,19 @@ private struct HomeHeroCard: View {
         }
         .buttonStyle(.plain)
         .padding(.horizontal, SGMSpace.padScreen)
+        .padding(.bottom, 16)
     }
 }
 
 private struct HomeStatsRow: View {
     var body: some View {
         HStack(spacing: 8) {
-            SGMStatTile(value: "12,4", unit: "kg", label: "CO₂ économisé")
+            SGMStatTile(value: "12.4", unit: "kg", label: "CO₂ économisé")
             SGMStatTile(value: "24", unit: "trajets", label: "Partagés", accent: SGM.orange)
             SGMStatTile(value: "847", unit: "km", label: "Parcourus")
         }
         .padding(.horizontal, SGMSpace.padScreen)
+        .padding(.bottom, 16)
     }
 }
 

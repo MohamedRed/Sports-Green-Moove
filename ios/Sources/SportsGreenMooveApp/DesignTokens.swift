@@ -34,6 +34,12 @@ enum SGM {
         endPoint: .bottomTrailing
     )
 
+    static let homeHeroGradient = LinearGradient(
+        colors: [Color(hex: 0x092016), heroEnd, Color(hex: 0x092016)],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+
     static let rewardGradient = LinearGradient(
         colors: [Color(hex: 0x2A1505), Color(hex: 0x3D2410)],
         startPoint: .topLeading,
@@ -130,22 +136,22 @@ struct Wordmark: View {
     var compact = false
 
     var body: some View {
-        HStack(alignment: .lastTextBaseline, spacing: compact ? 1 : 2) {
-            wordmarkText("SPORTS ", size: compact ? 18 : 18, color: SGM.textMuted)
-            wordmarkText("GREEN-", size: compact ? 18 : 18, color: SGM.green)
-            wordmarkText("m", size: compact ? 24 : 24, color: SGM.textPrimary)
-            wordmarkText("OO", size: compact ? 36 : 38, color: SGM.green)
-            wordmarkText("Ve", size: compact ? 24 : 24, color: SGM.textPrimary)
+        HStack(alignment: .lastTextBaseline, spacing: 0) {
+            wordmarkText("SPORTS ", size: compact ? 14 : 18, color: SGM.textMuted, tracking: compact ? 1.4 : 1.8)
+            wordmarkText("GREEN-", size: compact ? 14 : 18, color: SGM.green, tracking: compact ? 1.1 : 1.4)
+            wordmarkText("m", size: compact ? 20 : 24, color: SGM.textPrimary, tracking: 0)
+            wordmarkText("OO", size: compact ? 28 : 36, color: SGM.green, tracking: compact ? -0.6 : -0.7)
+            wordmarkText("Ve", size: compact ? 20 : 24, color: SGM.textPrimary, tracking: 0)
         }
         .lineLimit(1)
         .minimumScaleFactor(0.72)
         .accessibilityLabel("Sports Green Moove")
     }
 
-    private func wordmarkText(_ text: String, size: CGFloat, color: Color) -> some View {
+    private func wordmarkText(_ text: String, size: CGFloat, color: Color, tracking: CGFloat) -> some View {
         Text(text)
             .font(.sgmDisplay(size))
-            .tracking(size * 0.06)
+            .tracking(tracking)
             .foregroundStyle(color)
     }
 }
