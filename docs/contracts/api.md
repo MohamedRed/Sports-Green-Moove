@@ -6,12 +6,14 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 
 | Function | Caller | Result |
 | --- | --- | --- |
+| `listTrips` | signed-in users | Client-ready published trip summaries for home/trips screens. |
 | `searchTrips` | signed-in users | Ranked explainable matches. |
 | `createTrip` | driver | Published ride offer. |
 | `requestBooking` | parent | Pending booking request. |
 | `approveBooking` | driver | Approved booking and notification. |
 | `cancelBooking` | parent/driver/admin | Cancelled booking and notification. |
 | `startRide` | driver | Active ride session. |
+| `getActiveRide` | driver | Current active ride snapshot, or `null`. |
 | `endRide` | driver/admin | Completed ride session, CO2/reward jobs queued. |
 | `markPickup` | driver | Child pickup status and parent notification. |
 | `markDropoff` | driver | Child dropoff status and parent notification. |
@@ -30,4 +32,3 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | --- | --- | --- |
 | Radar | `/radarWebhook` | Validates signature, updates live/audit state, emits arrival/pickup/dropoff notifications. |
 | Stripe | `/stripeWebhook` | Validates signature, reconciles PaymentIntent, transfer, account, and payout events. |
-

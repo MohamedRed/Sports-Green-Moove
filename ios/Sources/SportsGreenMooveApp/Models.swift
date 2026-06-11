@@ -10,6 +10,11 @@ enum AppRole: String, CaseIterable, Identifiable, Codable {
     var id: String { rawValue }
 }
 
+struct AuthSession: Hashable {
+    let uid: String
+    let email: String?
+}
+
 enum AppTab: String, CaseIterable, Identifiable {
     case home
     case trips
@@ -41,15 +46,62 @@ enum AppOverlay: String, Identifiable {
     var id: String { rawValue }
 }
 
+enum TripStatus: String, Hashable {
+    case upcoming
+    case past
+    case pending
+}
+
 struct TripSummary: Identifiable, Hashable {
     let id: String
     let title: String
     let club: String
     let category: String
+    let sport: String
     let departureLabel: String
+    let dateLabel: String
+    let timeLabel: String
+    let distanceLabel: String
     let seatsAvailable: Int
+    let seatsLabel: String
     let priceLabel: String
+    let passengerInitials: [String]
     let reasons: [String]
+    let status: TripStatus
+
+    init(
+        id: String,
+        title: String,
+        club: String,
+        category: String,
+        sport: String = "Football",
+        departureLabel: String,
+        dateLabel: String = "MAR 07 NOV",
+        timeLabel: String = "16h45",
+        distanceLabel: String = "5.2 km",
+        seatsAvailable: Int,
+        seatsLabel: String? = nil,
+        priceLabel: String,
+        passengerInitials: [String] = [],
+        reasons: [String],
+        status: TripStatus = .upcoming
+    ) {
+        self.id = id
+        self.title = title
+        self.club = club
+        self.category = category
+        self.sport = sport
+        self.departureLabel = departureLabel
+        self.dateLabel = dateLabel
+        self.timeLabel = timeLabel
+        self.distanceLabel = distanceLabel
+        self.seatsAvailable = seatsAvailable
+        self.seatsLabel = seatsLabel ?? "\(seatsAvailable) \(seatsAvailable > 1 ? "places" : "place")"
+        self.priceLabel = priceLabel
+        self.passengerInitials = passengerInitials
+        self.reasons = reasons
+        self.status = status
+    }
 }
 
 struct LiveRideSnapshot: Hashable {

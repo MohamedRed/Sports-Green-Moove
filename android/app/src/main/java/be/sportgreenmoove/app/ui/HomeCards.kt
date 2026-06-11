@@ -33,13 +33,19 @@ import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
-private val HomeTrips = listOf(
-    HomeTripUi("Football", "U8 NATIONAUX VS ROYAL OTTIGNIES SC", "MAR 07 NOV", "16h45", "5.2 km", "2 places", listOf("IB", "NT")),
-    HomeTripUi("Football", "ENTRAÎNEMENT U8 — GROUPE B", "JEU 10 NOV", "18h00", "4.8 km", "2 places", listOf("NC")),
-)
-
 @Composable
-fun rememberHomeTrips(trips: List<TripSummary>): List<HomeTripUi> = HomeTrips
+fun rememberHomeTrips(trips: List<TripSummary>): List<HomeTripUi> =
+    trips.take(2).map { trip ->
+        HomeTripUi(
+            sport = trip.sport,
+            title = trip.title,
+            date = trip.dateLabel,
+            time = trip.timeLabel,
+            distance = trip.distanceLabel,
+            seats = trip.seatsLabel,
+            passengers = trip.passengerInitials,
+        )
+    }
 
 @Composable
 fun HomeStatsRow() {
@@ -155,6 +161,20 @@ fun HomeImpactCard(onClick: () -> Unit) {
             )
         }
     }
+}
+
+@Composable
+fun HomeEmptyTrips() {
+    Text(
+        "Aucun trajet publié pour le moment.",
+        style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.SemiBold),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(SgmRadius.LG))
+            .background(Sgm.colors.bgCard)
+            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
+            .padding(16.dp),
+    )
 }
 
 @Composable

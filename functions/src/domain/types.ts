@@ -13,6 +13,10 @@ export type Trip = {
   id: string;
   driverUserId: string;
   status: TripStatus;
+  title?: string;
+  sport?: string;
+  clubName?: string;
+  teamName?: string;
   clubId: string;
   teamId: string;
   category: string;
@@ -31,7 +35,45 @@ export type Trip = {
   supportsVehicleTracking: boolean;
   supportsChildTracking: boolean;
   co2SavedKgEstimate: number;
+  distanceKm?: number;
+  passengerInitials?: string[];
+  regionGeohash?: string;
   blockedUserIds?: string[];
+};
+
+export type ClientTripStatus = "upcoming" | "past" | "pending";
+
+export type ClientTripSummary = {
+  id: string;
+  title: string;
+  club: string;
+  category: string;
+  sport: string;
+  departureLabel: string;
+  dateLabel: string;
+  timeLabel: string;
+  distanceLabel: string;
+  seatsAvailable: number;
+  seatsLabel: string;
+  priceLabel: string;
+  passengerInitials: string[];
+  reasons: string[];
+  status: ClientTripStatus;
+};
+
+export type ClientBookingSummary = {
+  bookingId: string;
+  tripId: string;
+  status: BookingStatus;
+};
+
+export type ClientRideSnapshot = {
+  rideSessionId: string;
+  status: string;
+  vehicleLastUpdateLabel: string;
+  childLastUpdateLabel: string | null;
+  etaLabel: string;
+  stale: boolean;
 };
 
 export type SearchRequest = {

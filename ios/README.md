@@ -8,16 +8,21 @@ SwiftUI source scaffold for the Sports Green-mOOVe iOS app.
 - SwiftUI + Observation
 - Core Location background capability required for active ride tracking
 
-## SDK Wiring Points
+## Firebase Slice
 
-The current source defines native service protocols and mock implementations:
+The app root now uses real Firebase providers when `GoogleService-Info.plist` is present in `Sources/SportsGreenMooveApp/Resources`:
 
-- `FirebaseGateway`
+- Firebase Auth: email/password login and signup.
+- Firestore: published trip reads.
+- Cloud Functions: booking request, ride start, active ride snapshot.
+
+Without the plist, the app shows a configuration-required screen instead of silently using mock data.
+
+## Remaining SDK Wiring Points
+
 - `RadarTrackingGateway`
 - `GoogleRoutesGateway`
 - `StripePaymentsGateway`
-
-Replace the mock gateways with real SDK implementations after Firebase, Radar, Google Maps, and Stripe environment keys are available.
 
 ## Required iOS Capabilities
 
@@ -28,5 +33,4 @@ Replace the mock gateways with real SDK implementations after Firebase, Radar, G
 
 ## Build Note
 
-This folder contains the app source and Swift package scaffold. For a production App Store build, create an Xcode app target that includes `Sources/SportsGreenMooveApp` and the provider SDK packages.
-
+This folder contains the app source, Swift package scaffold, and XcodeGen project spec used by CI/Appetize.

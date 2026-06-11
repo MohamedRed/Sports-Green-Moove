@@ -34,29 +34,28 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
-private val TripsList = listOf(
-    TripsTripUi("Football", "U8 NATIONAUX VS ROYAL OTTIGNIES SC", "MAR 07 NOV", "16h45", "5.2 km", "2 places", listOf("IB", "NT"), "upcoming"),
-    TripsTripUi("Football", "ENTRAÎNEMENT U8 — GROUPE B", "JEU 10 NOV", "18h00", "4.8 km", "2 places", listOf("NC"), "upcoming"),
-    TripsTripUi("Football", "U8 VS FOOTBALL CLUB DE BRUGES", "SAM 14 NOV", "10h00", "8.1 km", "3 places", listOf("IB", "NT", "JC"), "upcoming"),
-    TripsTripUi("Football", "ENTRAÎNEMENT U8 — GROUPE A", "LUN 24 OCT", "17h30", "4.8 km", "2 places", listOf("IB"), "past"),
-    TripsTripUi("Tennis", "MATCH SIMPLE — CATÉGORIE B", "SAM 22 OCT", "09h00", "3.2 km", "1 place", listOf("NT"), "past"),
-)
-
 @Composable
 fun TripsScreen(
     trips: List<TripSummary>,
     activeRide: LiveRideSnapshot?,
-    onStartRide: () -> Unit,
+    onTripAction: (TripSummary) -> Unit,
     onOpenSearch: () -> Unit,
 ) {
     var selectedTab by remember { mutableStateOf("upcoming") }
-    val visibleTrips = TripsList.filter { it.status == if (selectedTab == "pending") "upcoming" else selectedTab }
+    val visibleTrips = trips.filter { trip ->
+        when (selectedTab) {
+            "past" -> trip.status == TripStatus.Past
+            "pending" -> trip.status == TripStatus.Pending
+            else -> trip.status == TripStatus.Upcoming
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -72,7 +71,10 @@ fun TripsScreen(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            visibleTrips.forEach { trip -> TripsCard(trip = trip, onClick = onStartRide) }
+            visibleTrips.forEach { trip -> TripsCard(trip = trip, onClick = { onTripAction(trip) }) }
+            if (visibleTrips.isEmpty()) {
+                TripsEmptyCard()
+            }
             if (selectedTab == "pending") {
                 PendingRequestsCard()
             }
@@ -160,7 +162,7 @@ private fun TripsTab(id: String, label: String, selected: String, onSelected: (S
 }
 
 @Composable
-private fun TripsCard(trip: TripsTripUi, onClick: () -> Unit) {
+private fun TripsCard(trip: TripSummary, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -178,7 +180,7 @@ private fun TripsCard(trip: TripsTripUi, onClick: () -> Unit) {
         ) {
             Text(trip.sport.uppercase(), style = SgmType.Eyebrow.copy(color = SgmColor.GreenLight, fontSize = 11.sp, letterSpacing = 0.14.em))
             Spacer(Modifier.weight(1f))
-            Text("${trip.date} · ${trip.time}", style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.62f), fontWeight = FontWeight.Bold))
+            Text("${trip.dateLabel} · ${trip.timeLabel}", style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.62f), fontWeight = FontWeight.Bold))
         }
         Column(
             modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
@@ -191,16 +193,30 @@ private fun TripsCard(trip: TripsTripUi, onClick: () -> Unit) {
                 overflow = TextOverflow.Ellipsis,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
-                TripMeta(SgmIcon.Location, trip.distance)
+                TripMeta(SgmIcon.Location, trip.distanceLabel)
                 Spacer(Modifier.size(14.dp))
-                TripMeta(SgmIcon.Groups, trip.seats)
+                TripMeta(SgmIcon.Groups, trip.seatsLabel)
                 Spacer(Modifier.weight(1f))
                 Row(horizontalArrangement = Arrangement.spacedBy((-6).dp)) {
-                    trip.passengers.forEach { initials -> PassengerBubble(initials) }
+                    trip.passengerInitials.forEach { initials -> PassengerBubble(initials) }
                 }
             }
         }
     }
+}
+
+@Composable
+private fun TripsEmptyCard() {
+    Text(
+        "Aucun trajet dans cet onglet.",
+        style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.SemiBold),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(SgmRadius.LG))
+            .background(Sgm.colors.bgCard)
+            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
+            .padding(16.dp),
+    )
 }
 
 @Composable
@@ -272,14 +288,3 @@ private fun PendingRequestsCard() {
         Text("Kévin TOUSSAINT · U8 vs Ottignies", style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold))
     }
 }
-
-private data class TripsTripUi(
-    val sport: String,
-    val title: String,
-    val date: String,
-    val time: String,
-    val distance: String,
-    val seats: String,
-    val passengers: List<String>,
-    val status: String,
-)

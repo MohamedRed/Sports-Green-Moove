@@ -30,7 +30,7 @@ fun HomeScreen(
             .padding(bottom = 18.dp),
     ) {
         HomeHeader()
-        HomeHeroCard(onClick = onRide)
+        HomeHeroCard(trip = trips.firstOrNull(), onClick = onRide)
         HomeStatsRow()
         HomeSectionLabel(title = "SEMAINE À VENIR", action = "Tout voir", onAction = onTrips)
         Column(
@@ -38,6 +38,9 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             homeTrips.forEach { trip -> HomeTripCard(trip = trip, onClick = onTrips) }
+            if (homeTrips.isEmpty()) {
+                HomeEmptyTrips()
+            }
         }
         HomeSectionLabel(title = "IMPACT ÉCOLOGIQUE", action = null, onAction = null)
         HomeImpactCard(onClick = onImpact)

@@ -37,6 +37,11 @@ jobs:
       - name: Install Android SDK packages
         run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
+      - name: Install Firebase Android config
+        if: ${{ secrets.FIREBASE_ANDROID_CONFIG_BASE64 != '' }}
+        run: |
+          echo "${{ secrets.FIREBASE_ANDROID_CONFIG_BASE64 }}" | base64 --decode > android/app/google-services.json
+
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:

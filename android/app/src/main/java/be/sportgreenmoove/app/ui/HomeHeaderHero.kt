@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmGridTexture
@@ -56,7 +57,7 @@ fun HomeHeader() {
 }
 
 @Composable
-fun HomeHeroCard(onClick: () -> Unit) {
+fun HomeHeroCard(trip: TripSummary?, onClick: () -> Unit) {
     val gridSpacing = with(LocalDensity.current) { 28.dp.toPx() }
 
     Box(
@@ -77,15 +78,15 @@ fun HomeHeroCard(onClick: () -> Unit) {
             HomeHeroBadge()
             Spacer(Modifier.weight(1f))
             Text(
-                "U8 NATIONAUX VS ROYAL OTTIGNIES SC",
+                trip?.title ?: "AUCUN TRAJET PUBLIÉ",
                 style = SgmType.DisplayLG.copy(color = SgmColor.TextOnGreen, fontSize = 18.sp, lineHeight = 20.sp, letterSpacing = 0.03.em),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Spacer(Modifier.height(5.dp))
             Row(horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(10.dp)) {
-                Text("07 NOV · 16h45", style = SgmType.BodyXS.copy(color = SgmColor.GreenLight, fontWeight = FontWeight.Bold))
-                Text("5.2 km · 2 passagers", style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.62f), fontWeight = FontWeight.Medium))
+                Text(trip?.departureLabel ?: "DATE À CONFIRMER", style = SgmType.BodyXS.copy(color = SgmColor.GreenLight, fontWeight = FontWeight.Bold))
+                Text("${trip?.distanceLabel ?: "Distance à confirmer"} · ${trip?.seatsLabel ?: "0 place"}", style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.62f), fontWeight = FontWeight.Medium))
             }
         }
     }

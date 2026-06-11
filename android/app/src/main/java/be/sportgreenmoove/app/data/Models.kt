@@ -8,6 +8,17 @@ enum class AppRole {
     Admin,
 }
 
+data class AuthSession(
+    val uid: String,
+    val email: String?,
+)
+
+enum class TripStatus {
+    Upcoming,
+    Past,
+    Pending,
+}
+
 enum class AppTab(val label: String) {
     Home("Accueil"),
     GreenList("Green-List"),
@@ -24,10 +35,17 @@ data class TripSummary(
     val title: String,
     val club: String,
     val category: String,
+    val sport: String = "Football",
     val departureLabel: String,
+    val dateLabel: String = "MAR 07 NOV",
+    val timeLabel: String = "16h45",
+    val distanceLabel: String = "5.2 km",
     val seatsAvailable: Int,
+    val seatsLabel: String = if (seatsAvailable > 1) "$seatsAvailable places" else "$seatsAvailable place",
     val priceLabel: String,
+    val passengerInitials: List<String> = emptyList(),
     val reasons: List<String>,
+    val status: TripStatus = TripStatus.Upcoming,
 )
 
 data class LiveRideSnapshot(

@@ -50,7 +50,13 @@ npm install
 npm run build
 ```
 
-Native projects are scaffolded as implementation-ready source trees. Add real Firebase, Radar, Google Maps, and Stripe app credentials before device builds.
+Native projects now include the first real Firebase vertical slice: email/password Auth, Firestore trip reads, booking requests, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
+
+- iOS local/CI: `GoogleService-Info.plist`
+- Android local/CI: `android/app/google-services.json`
+- GitHub Actions: set `FIREBASE_IOS_CONFIG_BASE64` and/or `FIREBASE_ANDROID_CONFIG_BASE64`
+
+Radar, Google Maps native SDK screens, and Stripe PaymentSheet still require their provider keys before production release.
 
 ## Design System
 
@@ -59,4 +65,3 @@ The visual source of truth is the local Codex skill:
 `/Users/mrr/.codex/skills/sport-green-moove-design`
 
 Shared raster assets copied into this repo live in `shared/assets/`.
-

@@ -6,9 +6,11 @@ struct HomeScreen: View {
     var body: some View {
         SGMScreen(spacing: 0) {
             HomeHeader()
-            HomeHeroCard {
+            HomeHeroCard(trip: appState.trips.first) {
                 Task {
-                    await appState.startRide(tripId: appState.trips.first?.id ?? "trip-u8-royal")
+                    if let tripId = appState.trips.first?.id {
+                        await appState.handleTripAction(tripId: tripId)
+                    }
                 }
             }
             HomeStatsRow()
@@ -16,24 +18,22 @@ struct HomeScreen: View {
                 appState.selectTab(.trips)
             }
             VStack(spacing: 8) {
-                SGMTripCard(
-                    sport: "Football",
-                    title: "U8 NATIONAUX VS ROYAL OTTIGNIES SC",
-                    date: "Mar 07 Nov",
-                    time: "16h45",
-                    distance: "5.2 km",
-                    seats: "2 places",
-                    passengers: ["IB", "NT"]
-                )
-                SGMTripCard(
-                    sport: "Football",
-                    title: "ENTRAÎNEMENT U8 — GROUPE B",
-                    date: "Jeu 10 Nov",
-                    time: "18h00",
-                    distance: "4.8 km",
-                    seats: "2 places",
-                    passengers: ["NC"]
-                )
+                ForEach(appState.trips.prefix(2)) { trip in
+                    SGMTripCard(
+                        sport: trip.sport,
+                        title: trip.title,
+                        date: trip.dateLabel,
+                        time: trip.timeLabel,
+                        distance: trip.distanceLabel,
+                        seats: trip.seatsLabel,
+                        passengers: trip.passengerInitials
+                    ) {
+                        Task { await appState.handleTripAction(tripId: trip.id) }
+                    }
+                }
+                if appState.trips.isEmpty {
+                    HomeEmptyTrips()
+                }
             }
             .padding(.horizontal, SGMSpace.padScreen)
 
@@ -76,6 +76,7 @@ private struct HomeHeader: View {
 }
 
 private struct HomeHeroCard: View {
+    let trip: TripSummary?
     let action: () -> Void
 
     var body: some View {
@@ -95,7 +96,7 @@ private struct HomeHeroCard: View {
 
                     Spacer()
 
-                    Text("U8 NATIONAUX VS ROYAL OTTIGNIES SC")
+                    Text(trip?.title ?? "AUCUN TRAJET PUBLIÉ")
                         .font(.sgmDisplay(18))
                         .tracking(.sgmWide(for: 18))
                         .foregroundStyle(SGM.textOnGreen)
@@ -103,10 +104,10 @@ private struct HomeHeroCard: View {
                         .minimumScaleFactor(0.78)
 
                     HStack(spacing: 10) {
-                        Text("07 NOV · 16h45")
+                        Text(trip?.departureLabel ?? "DATE À CONFIRMER")
                             .font(.sgmBody(11, weight: .bold))
                             .foregroundStyle(SGM.greenLight)
-                        Text("5.2 km · 2 passagers")
+                        Text("\(trip?.distanceLabel ?? "Distance à confirmer") · \(trip?.seatsLabel ?? "0 place")")
                             .font(.sgmBody(11, weight: .medium))
                             .foregroundStyle(SGM.textOnGreen.opacity(0.62))
                     }
@@ -120,6 +121,18 @@ private struct HomeHeroCard: View {
         .buttonStyle(.plain)
         .padding(.horizontal, SGMSpace.padScreen)
         .padding(.bottom, 16)
+    }
+}
+
+private struct HomeEmptyTrips: View {
+    var body: some View {
+        Text("Aucun trajet publié pour le moment.")
+            .font(.sgmBody(13, weight: .semibold))
+            .foregroundStyle(SGM.textMuted)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(16)
+            .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
     }
 }
 

@@ -35,8 +35,13 @@ import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun OnboardingScreen(onDone: () -> Unit) {
-    var mode by remember { mutableStateOf("login") }
+fun OnboardingScreen(
+    loading: Boolean,
+    error: String?,
+    onSubmit: (OnboardingMode, String, String, String) -> Unit,
+    onUnsupportedSocial: () -> Unit,
+) {
+    var mode by remember { mutableStateOf(OnboardingMode.Login) }
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -51,18 +56,26 @@ fun OnboardingScreen(onDone: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                OnboardingModeTab("SE CONNECTER", selected = mode == "login", onClick = { mode = "login" }, modifier = Modifier.weight(1f))
-                OnboardingModeTab("S'INSCRIRE", selected = mode == "signup", onClick = { mode = "signup" }, modifier = Modifier.weight(1f))
+                OnboardingModeTab("SE CONNECTER", selected = mode == OnboardingMode.Login, onClick = { mode = OnboardingMode.Login }, modifier = Modifier.weight(1f))
+                OnboardingModeTab("S'INSCRIRE", selected = mode == OnboardingMode.SignUp, onClick = { mode = OnboardingMode.SignUp }, modifier = Modifier.weight(1f))
             }
-            if (mode == "signup") OnboardingInput("Nom et prénom", name, { name = it })
+            if (mode == OnboardingMode.SignUp) OnboardingInput("Nom et prénom", name, { name = it })
             OnboardingInput("votre@email.be", email, { email = it })
             OnboardingInput("Mot de passe", password, { password = it })
-            if (mode == "signup") OnboardingInput("Votre club (ex: Collège du Biéreau)", club, { club = it })
-            V2Button(if (mode == "login") "SE CONNECTER" else "CRÉER MON COMPTE", onClick = onDone, full = true, size = V2ButtonSize.Lg)
+            if (mode == OnboardingMode.SignUp) OnboardingInput("Votre club (ex: Collège du Biéreau)", club, { club = it })
+            if (error != null) {
+                Text(error, style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold))
+            }
+            V2Button(
+                if (loading) "CHARGEMENT" else if (mode == OnboardingMode.Login) "SE CONNECTER" else "CRÉER MON COMPTE",
+                onClick = { onSubmit(mode, name, email, password) },
+                full = true,
+                size = V2ButtonSize.Lg,
+            )
             OnboardingDivider()
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                OnboardingSocialButton("Facebook", onDone, Modifier.weight(1f))
-                OnboardingSocialButton("Google", onDone, Modifier.weight(1f))
+                OnboardingSocialButton("Facebook", onUnsupportedSocial, Modifier.weight(1f))
+                OnboardingSocialButton("Google", onUnsupportedSocial, Modifier.weight(1f))
             }
             Spacer(Modifier.weight(1f))
             Text(
@@ -70,6 +83,33 @@ fun OnboardingScreen(onDone: () -> Unit) {
                 style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium),
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
+            )
+        }
+    }
+}
+
+enum class OnboardingMode {
+    Login,
+    SignUp,
+}
+
+@Composable
+fun ConfigurationRequiredScreen() {
+    V2Screen {
+        V2TopBar("CONFIGURATION")
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 20.dp)
+                .clip(RoundedCornerShape(18.dp))
+                .background(Sgm.colors.bgCard)
+                .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(18.dp))
+                .padding(18.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            Text("FIREBASE REQUIS", style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 26.sp, letterSpacing = 0.08.em))
+            Text(
+                "Ajoutez google-services.json dans android/app pour activer Auth, Firestore et Cloud Functions.",
+                style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary, fontSize = 14.sp, fontWeight = FontWeight.Medium),
             )
         }
     }

@@ -9,14 +9,16 @@ Kotlin + Jetpack Compose source scaffold for the Sports Green-mOOVe Android app.
 - Compose UI
 - Foreground location service for active ride tracking
 
-## SDK Wiring Points
+## Firebase Slice
 
-The current source includes service boundaries for:
+The app root now uses real Firebase providers when `android/app/google-services.json` is present:
 
-- Firebase Auth, Firestore, Realtime Database, FCM
-- Radar trip tracking
-- Google Maps Platform and Routes API
-- Stripe PaymentSheet
+- Firebase Auth: email/password login and signup.
+- Firestore: published trip reads.
+- Cloud Functions: booking request, ride start, active ride snapshot.
 
-Add real `google-services.json`, Radar publishable key, Google Maps key, and Stripe publishable key before device builds.
+Without `google-services.json`, the app shows a configuration-required screen instead of silently using mock data.
 
+## Remaining SDK Wiring Points
+
+Add Radar publishable key, Google Maps key, and Stripe publishable key before production device builds that need tracking, route maps, or PaymentSheet.

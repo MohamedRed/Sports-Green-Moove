@@ -4,19 +4,50 @@ struct AppShell: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
+        Group {
+            if !appState.isConfigured {
+                ConfigurationRequiredScreen()
+            } else if appState.session == nil {
+                AuthScreen()
+            } else {
+                authenticatedShell
+            }
+        }
+        .background(SGM.bgApp.ignoresSafeArea())
+        .task {
+            await appState.bootstrap()
+        }
+        .alert("SPORTS GREEN-mOOVe", isPresented: alertBinding) {
+            Button("OK", role: .cancel) {
+                appState.errorMessage = nil
+                appState.noticeMessage = nil
+            }
+        } message: {
+            Text(appState.errorMessage ?? appState.noticeMessage ?? "")
+        }
+    }
+
+    private var authenticatedShell: some View {
         ZStack(alignment: .bottom) {
             activeContent
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-
             SGMTabBar(
                 selected: appState.selectedTab,
                 onSelect: { appState.selectTab($0) }
             )
         }
-        .background(SGM.bgApp.ignoresSafeArea())
-        .task {
-            await appState.loadTrips()
-        }
+    }
+
+    private var alertBinding: Binding<Bool> {
+        Binding(
+            get: { appState.errorMessage != nil || appState.noticeMessage != nil },
+            set: { visible in
+                if !visible {
+                    appState.errorMessage = nil
+                    appState.noticeMessage = nil
+                }
+            }
+        )
     }
 
     @ViewBuilder

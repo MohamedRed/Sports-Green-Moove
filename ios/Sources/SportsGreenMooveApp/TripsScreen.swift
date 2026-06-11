@@ -4,13 +4,6 @@ struct TripsScreen: View {
     @Environment(AppState.self) private var appState
     @State private var selectedTab = "upcoming"
 
-    private let trips = [
-        TripRow("Football", "U8 NATIONAUX VS ROYAL OTTIGNIES SC", "Mar 07 Nov", "16h45", "5.2 km", "2 places", ["IB", "NT"], "upcoming"),
-        TripRow("Football", "ENTRAÎNEMENT U8 — GROUPE B", "Jeu 10 Nov", "18h00", "4.8 km", "2 places", ["NC"], "upcoming"),
-        TripRow("Football", "U8 VS FOOTBALL CLUB DE BRUGES", "Sam 14 Nov", "10h00", "8.1 km", "3 places", ["IB", "NT", "JC"], "upcoming"),
-        TripRow("Football", "ENTRAÎNEMENT U8 — GROUPE A", "Lun 24 Oct", "17h30", "4.8 km", "2 places", ["IB"], "past")
-    ]
-
     var body: some View {
         SGMScreen(spacing: 0) {
             TripsHeader()
@@ -21,14 +14,14 @@ struct TripsScreen: View {
                     SGMTripCard(
                         sport: trip.sport,
                         title: trip.title,
-                        date: trip.date,
-                        time: trip.time,
-                        distance: trip.distance,
-                        seats: trip.seats,
-                        passengers: trip.passengers
+                        date: trip.dateLabel,
+                        time: trip.timeLabel,
+                        distance: trip.distanceLabel,
+                        seats: trip.seatsLabel,
+                        passengers: trip.passengerInitials
                     ) {
                         Task {
-                            await appState.startRide(tripId: appState.trips.first?.id ?? "trip-u8-royal")
+                            await appState.handleTripAction(tripId: trip.id)
                         }
                     }
                 }
@@ -41,8 +34,8 @@ struct TripsScreen: View {
         }
     }
 
-    private var visibleTrips: [TripRow] {
-        trips.filter { $0.status == (selectedTab == "pending" ? "upcoming" : selectedTab) }
+    private var visibleTrips: [TripSummary] {
+        appState.trips.filter { $0.status.rawValue == (selectedTab == "pending" ? "upcoming" : selectedTab) }
     }
 }
 
@@ -119,28 +112,5 @@ private struct PendingRequestsCard: View {
             RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous)
                 .stroke(SGM.border, lineWidth: 1)
         )
-    }
-}
-
-private struct TripRow: Identifiable {
-    let id = UUID()
-    let sport: String
-    let title: String
-    let date: String
-    let time: String
-    let distance: String
-    let seats: String
-    let passengers: [String]
-    let status: String
-
-    init(_ sport: String, _ title: String, _ date: String, _ time: String, _ distance: String, _ seats: String, _ passengers: [String], _ status: String) {
-        self.sport = sport
-        self.title = title
-        self.date = date
-        self.time = time
-        self.distance = distance
-        self.seats = seats
-        self.passengers = passengers
-        self.status = status
     }
 }

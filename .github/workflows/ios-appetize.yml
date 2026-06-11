@@ -27,6 +27,13 @@ jobs:
       - name: Install XcodeGen
         run: brew install xcodegen
 
+      - name: Install Firebase iOS config
+        if: ${{ secrets.FIREBASE_IOS_CONFIG_BASE64 != '' }}
+        working-directory: ios
+        run: |
+          mkdir -p Sources/SportsGreenMooveApp/Resources
+          echo "${{ secrets.FIREBASE_IOS_CONFIG_BASE64 }}" | base64 --decode > Sources/SportsGreenMooveApp/Resources/GoogleService-Info.plist
+
       - name: Generate Xcode project
         working-directory: ios
         run: xcodegen generate --spec project.yml

@@ -11,6 +11,11 @@ settings:
     SWIFT_VERSION: "6.0"
     IPHONEOS_DEPLOYMENT_TARGET: "17.0"
 
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    from: "12.11.0"
+
 targets:
   SportsGreenMoove:
     type: application
@@ -20,14 +25,15 @@ targets:
       - path: Sources/SportsGreenMooveApp
         excludes:
           - Resources/**
-      - path: Sources/SportsGreenMooveApp/Resources/Fonts/BebasNeue-Regular.ttf
+      - path: Sources/SportsGreenMooveApp/Resources
         buildPhase: resources
-      - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Regular.ttf
-        buildPhase: resources
-      - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Medium.ttf
-        buildPhase: resources
-      - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Bold.ttf
-        buildPhase: resources
+    dependencies:
+      - package: Firebase
+        product: FirebaseAuth
+      - package: Firebase
+        product: FirebaseFirestore
+      - package: Firebase
+        product: FirebaseFunctions
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app
