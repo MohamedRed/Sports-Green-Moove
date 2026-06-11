@@ -4,7 +4,7 @@ struct MessagesScreen: View {
     @State private var selectedTab = "chats"
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(spacing: 0) {
             SGMTopBar(title: "MESSAGES")
             MessageTabs(selected: selectedTab) { selectedTab = $0 }
             VStack(spacing: 10) {
@@ -17,10 +17,11 @@ struct MessagesScreen: View {
                 default:
                     ChatCard(initials: "IB", name: "Idriss BAMAKO", preview: "parfait on fait comme ça !", date: "29-10-2022", unread: 2)
                     ChatCard(initials: "NT", name: "Nadège TOUSSAINT", preview: "Il finit l'étude à 16h45, ça ira !", date: "02-11-2022", unread: 1)
-                    ChatCard(initials: "NC", name: "Nino CASTELUC CI", preview: "Merci Olivier, mon enfant est confirmé.", date: "05-11-2022", unread: 0)
+                    ChatCard(initials: "NC", name: "Nino CASTELUC CI", preview: "Merci Olivier, mon enfant est c...", date: "05-11-2022", unread: 0)
                 }
             }
             .padding(.horizontal, SGMSpace.padScreen)
+            .padding(.top, 14)
         }
     }
 }
@@ -36,7 +37,8 @@ private struct MessageTabs: View {
             SGMChip(text: "Avis", selected: selected == "avis", badge: "1") { onSelect("avis") }
         }
         .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.bottom, 2)
+        .padding(.top, 12)
+        .padding(.bottom, 0)
     }
 }
 
@@ -52,7 +54,7 @@ private struct ChatCard: View {
             SGMAvatar(initials: initials, size: 40)
             VStack(alignment: .leading, spacing: 2) {
                 Text(name)
-                    .font(.sgmBody(15, weight: .bold))
+                    .font(.sgmBody(15, weight: .semibold))
                     .foregroundStyle(SGM.textPrimary)
                     .lineLimit(1)
                 Text(preview)

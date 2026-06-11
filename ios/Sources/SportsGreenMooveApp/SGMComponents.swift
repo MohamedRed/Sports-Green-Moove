@@ -189,7 +189,7 @@ struct SGMChip: View {
                         .font(.sgmBody(9, weight: .bold))
                         .foregroundStyle(SGM.textOnGreen)
                         .frame(width: 16, height: 16)
-                        .background(SGM.orange, in: Circle())
+                        .background(selected ? SGM.greenLight.opacity(0.42) : SGM.orange, in: Circle())
                 }
             }
             .frame(maxWidth: .infinity)
