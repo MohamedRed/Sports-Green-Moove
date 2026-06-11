@@ -98,7 +98,7 @@ private fun MessagesHeader() {
             style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.08.em),
             modifier = Modifier.weight(1f),
         )
-        MessageCircleIconButton(icon = SgmIcon.Moon)
+        V2ThemeButton()
     }
 }
 
@@ -239,20 +239,6 @@ private fun ReviewCard(review: ReviewRequest) {
                 Text("★", style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 26.sp))
             }
         }
-    }
-}
-
-@Composable
-private fun MessageCircleIconButton(icon: SgmIcon) {
-    Box(
-        modifier = Modifier
-            .size(36.dp)
-            .clip(CircleShape)
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), CircleShape),
-        contentAlignment = Alignment.Center,
-    ) {
-        SgmLineIcon(icon = icon, tint = Sgm.colors.textSecondary, modifier = Modifier.size(16.dp))
     }
 }
 

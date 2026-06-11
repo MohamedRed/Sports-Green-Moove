@@ -19,6 +19,7 @@ enum class SgmIcon {
     Profile,
     Plus,
     Moon,
+    Sun,
     Search,
     ChevronLeft,
     ChevronRight,
@@ -90,8 +91,26 @@ fun SgmLineIcon(
             }
 
             SgmIcon.Moon -> {
-                drawCircle(tint, radius = size.minDimension * 0.28f, center = p(0.50f, 0.50f), style = stroke)
-                drawCircle(Color.Transparent, radius = size.minDimension * 0.24f, center = p(0.62f, 0.40f), style = Stroke(width = 5.dp.toPx()))
+                drawPath(Path().apply {
+                    moveTo(size.width * 0.66f, size.height * 0.20f)
+                    cubicTo(size.width * 0.54f, size.height * 0.26f, size.width * 0.46f, size.height * 0.39f, size.width * 0.46f, size.height * 0.54f)
+                    cubicTo(size.width * 0.46f, size.height * 0.72f, size.width * 0.61f, size.height * 0.86f, size.width * 0.80f, size.height * 0.80f)
+                    cubicTo(size.width * 0.70f, size.height * 0.91f, size.width * 0.55f, size.height * 0.96f, size.width * 0.38f, size.height * 0.90f)
+                    cubicTo(size.width * 0.18f, size.height * 0.83f, size.width * 0.08f, size.height * 0.62f, size.width * 0.15f, size.height * 0.42f)
+                    cubicTo(size.width * 0.22f, size.height * 0.22f, size.width * 0.46f, size.height * 0.10f, size.width * 0.66f, size.height * 0.20f)
+                }, tint, style = stroke)
+            }
+
+            SgmIcon.Sun -> {
+                drawCircle(tint, radius = size.minDimension * 0.18f, center = p(0.50f, 0.50f), style = stroke)
+                repeat(8) { index ->
+                    val angle = Math.toRadians((index * 45).toDouble())
+                    val cos = kotlin.math.cos(angle).toFloat()
+                    val sin = kotlin.math.sin(angle).toFloat()
+                    val inner = Offset(size.width * (0.50f + cos * 0.31f), size.height * (0.50f + sin * 0.31f))
+                    val outer = Offset(size.width * (0.50f + cos * 0.43f), size.height * (0.50f + sin * 0.43f))
+                    drawLine(tint, inner, outer, stroke.width, StrokeCap.Round)
+                }
             }
 
             SgmIcon.Search -> {

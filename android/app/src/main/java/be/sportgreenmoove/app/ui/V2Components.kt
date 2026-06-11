@@ -20,6 +20,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,6 +37,34 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+
+private data class V2ThemeToggleState(
+    val darkTheme: Boolean,
+    val onToggle: () -> Unit,
+)
+
+private val LocalV2ThemeToggle = staticCompositionLocalOf<V2ThemeToggleState> {
+    error("V2ThemeToggleProvider is missing from the app root.")
+}
+
+@Composable
+fun V2ThemeToggleProvider(darkTheme: Boolean, onToggle: () -> Unit, content: @Composable () -> Unit) {
+    CompositionLocalProvider(
+        LocalV2ThemeToggle provides V2ThemeToggleState(darkTheme = darkTheme, onToggle = onToggle),
+        content = content,
+    )
+}
+
+@Composable
+fun V2ThemeButton(size: Int = 36) {
+    val themeToggle = LocalV2ThemeToggle.current
+    V2CircleIconButton(
+        icon = if (themeToggle.darkTheme) SgmIcon.Sun else SgmIcon.Moon,
+        onClick = themeToggle.onToggle,
+        size = size,
+        selected = themeToggle.darkTheme,
+    )
+}
 
 @Composable
 fun V2Screen(content: @Composable ColumnScope.() -> Unit) {
@@ -65,7 +95,7 @@ fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable 
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
-        trailing?.invoke() ?: V2CircleIconButton(SgmIcon.Moon)
+        trailing?.invoke() ?: V2ThemeButton()
     }
 }
 

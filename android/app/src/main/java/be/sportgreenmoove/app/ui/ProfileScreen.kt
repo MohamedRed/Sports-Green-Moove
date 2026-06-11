@@ -235,7 +235,7 @@ private fun ProfileSettingRow(setting: ProfileSetting, showDivider: Boolean, onC
             if (setting.value.isNotEmpty()) {
                 Text(setting.value, style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.Medium))
             }
-            SgmLineIcon(icon = SgmIcon.ArrowRight, tint = Sgm.colors.textMuted, modifier = Modifier.size(16.dp))
+            SgmLineIcon(icon = SgmIcon.ChevronRight, tint = Sgm.colors.textMuted, modifier = Modifier.size(16.dp))
         }
         if (showDivider) Box(Modifier.padding(start = 46.dp).fillMaxWidth().height(1.dp).background(Sgm.colors.border))
     }

@@ -95,7 +95,7 @@ private fun TripsHeader(onSearch: () -> Unit) {
             modifier = Modifier.weight(1f),
         )
         CircleIconButton(icon = SgmIcon.Search, onClick = onSearch, size = 36)
-        CircleIconButton(icon = SgmIcon.Moon, onClick = {}, size = 36)
+        V2ThemeButton()
     }
 }
 
