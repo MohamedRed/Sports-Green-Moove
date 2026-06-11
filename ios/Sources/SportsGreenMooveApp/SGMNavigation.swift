@@ -46,12 +46,12 @@ struct SGMTabBar: View {
             VStack(spacing: 3) {
                 SGMIconView(
                     icon: tab.icon,
-                    size: 18,
+                    size: 20,
                     color: active ? SGM.green : SGM.textMuted
                 )
-                Text(tab.title.uppercased())
-                    .font(.sgmDisplay(9))
-                    .tracking(.sgmWide(for: 9))
+                Text(tab.title)
+                    .font(.sgmBody(9, weight: active ? .bold : .medium))
+                    .tracking(0.36)
                     .foregroundStyle(active ? SGM.green : SGM.textMuted)
                     .lineLimit(1)
                     .minimumScaleFactor(0.72)
@@ -59,7 +59,7 @@ struct SGMTabBar: View {
                     .fill(active ? SGM.green : .clear)
                     .frame(width: 4, height: 4)
             }
-            .frame(width: 58, height: 58)
+            .frame(width: 58, height: SGMSize.navBar)
         }
         .buttonStyle(.plain)
         .accessibilityLabel(tab.title)
