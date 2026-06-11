@@ -552,7 +552,7 @@ private fun HomeHeroCard(onPrimary: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(142.dp)
+            .height(172.dp)
             .clip(RoundedCornerShape(15.dp))
             .clickable(onClick = onPrimary)
             .background(Brush.linearGradient(listOf(SgmColors.HeroStart, SgmColors.HeroEnd))),
@@ -589,8 +589,8 @@ private fun HomeHeroCard(onPrimary: () -> Unit) {
             Text(
                 "U8 NATIONAUX VS\nROYAL OTTIGNIES SC",
                 color = SgmColors.Surface,
-                fontSize = 23.sp,
-                lineHeight = 22.sp,
+                fontSize = 27.sp,
+                lineHeight = 25.sp,
                 fontWeight = FontWeight.Black,
                 maxLines = 2,
             )
@@ -606,7 +606,7 @@ private fun HomeHeroCard(onPrimary: () -> Unit) {
 private fun HomeMetricCard(value: String, unit: String, label: String, accent: Color, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
-            .height(76.dp)
+            .height(88.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(SgmColors.Surface)
             .border(BorderStroke(1.dp, SgmColors.Border), RoundedCornerShape(12.dp))
