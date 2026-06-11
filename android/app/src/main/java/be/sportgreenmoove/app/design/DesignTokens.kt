@@ -7,6 +7,8 @@ object SgmColors {
     val Green = Color(0xFF3EBD6C)
     val GreenLight = Color(0xFF60E896)
     val GreenDark = Color(0xFF1A8A44)
+    val HeroStart = Color(0xFF173B22)
+    val HeroEnd = Color(0xFF0B2114)
     val Lime = Color(0xFFA8F038)
     val Orange = Color(0xFFF97316)
     val Red = Color(0xFFEF4444)

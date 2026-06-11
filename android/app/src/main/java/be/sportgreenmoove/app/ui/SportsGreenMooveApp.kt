@@ -35,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -87,7 +88,6 @@ fun SportsGreenMooveApp() {
                         role = role,
                         trips = displayTrips,
                         onTrips = { screen = DemoScreen.Trips },
-                        onPublish = { screen = DemoScreen.Publish },
                         onRide = { screen = DemoScreen.Ride },
                         onSearch = { screen = DemoScreen.Search },
                         onGroups = { screen = DemoScreen.Groups },
@@ -140,43 +140,25 @@ private fun HomeScreen(
     role: AppRole,
     trips: List<TripSummary>,
     onTrips: () -> Unit,
-    onPublish: () -> Unit,
     onRide: () -> Unit,
     onSearch: () -> Unit,
     onGroups: () -> Unit,
     onImpact: () -> Unit,
 ) {
     ScreenFrame {
-        TopBrandBar(
-            title = "Salut Mohamed",
-            subtitle = "Parent · Royal Ottignies · U8 Nationaux",
-            trailing = { Avatar("MR", SgmColors.Green) },
-        )
+        HomeHeader()
 
-        HeroCard(
-            kicker = "PROCHAINE COURSE",
-            title = "U8 NATIONAUX VS ROYAL OTTIGNIES SC",
-            detail = "07 NOV · 16h45 · 2 passagers · suivi actif",
-            primary = "Voir le trajet",
-            secondary = "Publier",
-            onPrimary = onRide,
-            onSecondary = onPublish,
-        )
+        HomeHeroCard(onPrimary = onRide)
 
-        Row(horizontalArrangement = Arrangement.spacedBy(SgmSpacing.X3)) {
-            MetricCard("12,4", "kg CO₂", SgmColors.Green, Modifier.weight(1f))
-            MetricCard("24", "trajets", SgmColors.Orange, Modifier.weight(1f))
-            MetricCard("45,40", "EUR", SgmColors.GreenDark, Modifier.weight(1f))
-        }
-
-        Row(horizontalArrangement = Arrangement.spacedBy(SgmSpacing.X3)) {
-            ActionTile("Recherche", "Trouver un trajet", "R", onSearch, Modifier.weight(1f))
-            ActionTile("Groupes", "Clubs & équipes", "G", onGroups, Modifier.weight(1f))
+        Row(horizontalArrangement = Arrangement.spacedBy(SgmSpacing.X2)) {
+            HomeMetricCard("12,4", "kg", "CO₂ économisé", SgmColors.Green, Modifier.weight(1f))
+            HomeMetricCard("24", "trajets", "partagés", SgmColors.Orange, Modifier.weight(1f))
+            HomeMetricCard("847", "km", "parcourus", SgmColors.Green, Modifier.weight(1f))
         }
 
         SectionHeader("Semaine à venir", action = "Tout voir", onAction = onTrips)
-        trips.take(3).forEach { trip ->
-            TripCard(trip = trip, highlight = trip.id == "trip-u8-royal", onClick = onTrips)
+        trips.take(2).forEach { trip ->
+            HomeTripCard(trip = trip, onClick = onTrips)
         }
 
         SgmCard(background = SgmColors.Surface) {
@@ -190,6 +172,11 @@ private fun HomeScreen(
         }
 
         ImpactStrip(onClick = onImpact)
+
+        Row(horizontalArrangement = Arrangement.spacedBy(SgmSpacing.X3)) {
+            ActionTile("Recherche", "Trouver un trajet", "R", onSearch, Modifier.weight(1f))
+            ActionTile("Groupes", "Clubs & équipes", "G", onGroups, Modifier.weight(1f))
+        }
     }
 }
 
@@ -525,11 +512,148 @@ private fun ScreenFrame(content: @Composable ColumnScope.() -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(horizontal = SgmSpacing.X5, vertical = SgmSpacing.X5)
+            .padding(horizontal = SgmSpacing.X4, vertical = SgmSpacing.X4)
             .padding(bottom = SgmSpacing.X6),
-        verticalArrangement = Arrangement.spacedBy(SgmSpacing.X4),
+        verticalArrangement = Arrangement.spacedBy(SgmSpacing.X3),
         content = content,
     )
+}
+
+@Composable
+private fun HomeHeader() {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(SgmSpacing.X2),
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.Top,
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Row(verticalAlignment = Alignment.Bottom) {
+                    Text("Bonjour, ", color = SgmColors.TextPrimary, fontSize = 15.sp, fontWeight = FontWeight.Black)
+                    Text("Olivier", color = SgmColors.Green, fontSize = 15.sp, fontWeight = FontWeight.Black)
+                }
+                Text(
+                    "Mardi 07 Novembre 2022",
+                    color = SgmColors.TextMuted,
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.SemiBold,
+                )
+            }
+            MiniHeaderCircle("C")
+        }
+        Wordmark(large = true)
+    }
+}
+
+@Composable
+private fun HomeHeroCard(onPrimary: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(142.dp)
+            .clip(RoundedCornerShape(15.dp))
+            .clickable(onClick = onPrimary)
+            .background(Brush.linearGradient(listOf(SgmColors.HeroStart, SgmColors.HeroEnd))),
+    ) {
+        GridAccent(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(top = SgmSpacing.X3, end = SgmSpacing.X3),
+            cellSize = 10,
+            alpha = 0.07f,
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = SgmSpacing.X4, vertical = SgmSpacing.X3),
+            verticalArrangement = Arrangement.spacedBy(SgmSpacing.X2),
+        ) {
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(999.dp))
+                    .background(SgmColors.Green)
+                    .padding(horizontal = SgmSpacing.X3, vertical = 3.dp),
+            ) {
+                Text(
+                    "PROCHAINE\nCOURSE",
+                    color = SgmColors.Surface,
+                    fontSize = 9.sp,
+                    lineHeight = 8.sp,
+                    fontWeight = FontWeight.Black,
+                    letterSpacing = 1.sp,
+                )
+            }
+            Spacer(Modifier.weight(1f))
+            Text(
+                "U8 NATIONAUX VS\nROYAL OTTIGNIES SC",
+                color = SgmColors.Surface,
+                fontSize = 23.sp,
+                lineHeight = 22.sp,
+                fontWeight = FontWeight.Black,
+                maxLines = 2,
+            )
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(SgmSpacing.X3)) {
+                Text("07 NOV ·\n16h45", color = SgmColors.Surface.copy(alpha = 0.82f), fontSize = 10.sp, lineHeight = 10.sp, fontWeight = FontWeight.Black)
+                Text("5.2 km · 2\npassagers", color = SgmColors.Surface.copy(alpha = 0.82f), fontSize = 10.sp, lineHeight = 10.sp, fontWeight = FontWeight.Black)
+            }
+        }
+    }
+}
+
+@Composable
+private fun HomeMetricCard(value: String, unit: String, label: String, accent: Color, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .height(76.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .background(SgmColors.Surface)
+            .border(BorderStroke(1.dp, SgmColors.Border), RoundedCornerShape(12.dp))
+            .padding(vertical = SgmSpacing.X2, horizontal = SgmSpacing.X1),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(value, color = accent, fontSize = 26.sp, lineHeight = 24.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.Center, maxLines = 1)
+        Text(unit, color = SgmColors.TextMuted, fontSize = 10.sp, lineHeight = 10.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.Center)
+        Text(label, color = SgmColors.TextMuted, fontSize = 9.sp, lineHeight = 9.sp, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
+    }
+}
+
+@Composable
+private fun HomeTripCard(trip: TripSummary, onClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(SgmColors.Surface)
+            .border(BorderStroke(1.dp, SgmColors.Border), RoundedCornerShape(12.dp))
+            .clickable(onClick = onClick),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(SgmColors.HeroStart)
+                .padding(horizontal = SgmSpacing.X3, vertical = SgmSpacing.X2),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(trip.category.replace("U8", "Football"), color = SgmColors.GreenLight, fontSize = 10.sp, fontWeight = FontWeight.Black)
+            Spacer(Modifier.weight(1f))
+            Text(trip.departureLabel.replace(" · ", " ·\n"), color = SgmColors.Surface, fontSize = 10.sp, lineHeight = 10.sp, fontWeight = FontWeight.Black, textAlign = TextAlign.End)
+        }
+        Column(
+            modifier = Modifier.padding(horizontal = SgmSpacing.X3, vertical = SgmSpacing.X2),
+            verticalArrangement = Arrangement.spacedBy(SgmSpacing.X2),
+        ) {
+            Text(trip.title, color = SgmColors.TextPrimary, fontSize = 15.sp, lineHeight = 16.sp, fontWeight = FontWeight.Black, maxLines = 2)
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(SgmSpacing.X2)) {
+                Text("5.2 km", color = SgmColors.TextMuted, fontSize = 10.sp, fontWeight = FontWeight.SemiBold)
+                Text("${trip.seatsAvailable} places", color = SgmColors.TextMuted, fontSize = 10.sp, fontWeight = FontWeight.SemiBold)
+                Spacer(Modifier.weight(1f))
+                SmallBadge("GO", SgmColors.Green)
+            }
+        }
+    }
 }
 
 @Composable
@@ -579,13 +703,16 @@ private fun BackHeader(title: String, subtitle: String, onBack: () -> Unit) {
 }
 
 @Composable
-private fun Wordmark() {
+private fun Wordmark(large: Boolean = false) {
+    val base = if (large) 17.sp else 13.sp
+    val mid = if (large) 21.sp else 18.sp
+    val oo = if (large) 32.sp else 27.sp
     Row(verticalAlignment = Alignment.Bottom) {
-        Text("SPORTS ", color = SgmColors.TextMuted, fontSize = 13.sp, fontWeight = FontWeight.Black)
-        Text("GREEN-", color = SgmColors.Green, fontSize = 13.sp, fontWeight = FontWeight.Black)
-        Text("m", color = SgmColors.TextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Black)
-        Text("OO", color = SgmColors.Green, fontSize = 27.sp, fontWeight = FontWeight.Black)
-        Text("Ve", color = SgmColors.TextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Black)
+        Text("SPORTS ", color = SgmColors.TextMuted, fontSize = base, fontWeight = FontWeight.Black)
+        Text("GREEN-", color = SgmColors.Green, fontSize = base, fontWeight = FontWeight.Black)
+        Text("m", color = SgmColors.TextPrimary, fontSize = mid, fontWeight = FontWeight.Black)
+        Text("OO", color = SgmColors.Green, fontSize = oo, fontWeight = FontWeight.Black)
+        Text("Ve", color = SgmColors.TextPrimary, fontSize = mid, fontWeight = FontWeight.Black)
     }
 }
 
@@ -626,16 +753,16 @@ private fun HeroCard(
 }
 
 @Composable
-private fun GridAccent(modifier: Modifier = Modifier) {
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(6.dp)) {
+private fun GridAccent(modifier: Modifier = Modifier, cellSize: Int = 14, alpha: Float = 0.08f) {
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy((cellSize / 2).dp)) {
         repeat(5) {
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy((cellSize / 2).dp)) {
                 repeat(4) {
                     Box(
                         modifier = Modifier
-                            .size(14.dp)
+                            .size(cellSize.dp)
                             .clip(RoundedCornerShape(3.dp))
-                            .background(SgmColors.Surface.copy(alpha = 0.08f)),
+                            .background(SgmColors.Surface.copy(alpha = alpha)),
                     )
                 }
             }
@@ -1159,6 +1286,20 @@ private fun HeaderCircle(text: String, color: Color = SgmColors.Green) {
         contentAlignment = Alignment.Center,
     ) {
         Text(text.take(2).uppercase(), color = color, fontSize = 13.sp, fontWeight = FontWeight.Black)
+    }
+}
+
+@Composable
+private fun MiniHeaderCircle(text: String) {
+    Box(
+        modifier = Modifier
+            .size(30.dp)
+            .clip(CircleShape)
+            .background(SgmColors.Surface)
+            .border(BorderStroke(1.dp, SgmColors.Border), CircleShape),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(text.take(1).uppercase(), color = SgmColors.TextMuted, fontSize = 11.sp, fontWeight = FontWeight.Black)
     }
 }
 
