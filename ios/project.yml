@@ -20,11 +20,14 @@ targets:
       - path: Sources/SportsGreenMooveApp
         excludes:
           - Resources/**
-    resources:
       - path: Sources/SportsGreenMooveApp/Resources/Fonts/BebasNeue-Regular.ttf
+        buildPhase: resources
       - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Regular.ttf
+        buildPhase: resources
       - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Medium.ttf
+        buildPhase: resources
       - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Bold.ttf
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app
