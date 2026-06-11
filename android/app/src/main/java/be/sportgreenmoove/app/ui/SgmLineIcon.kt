@@ -28,6 +28,9 @@ enum class SgmIcon {
     Bell,
     Settings,
     ArrowRight,
+    Check,
+    Flag,
+    Leaf,
 }
 
 @Composable
@@ -157,6 +160,31 @@ fun SgmLineIcon(
                 drawLine(tint, p(0.30f, 0.50f), p(0.70f, 0.50f), stroke.width, StrokeCap.Round)
                 drawLine(tint, p(0.54f, 0.34f), p(0.70f, 0.50f), stroke.width, StrokeCap.Round)
                 drawLine(tint, p(0.54f, 0.66f), p(0.70f, 0.50f), stroke.width, StrokeCap.Round)
+            }
+
+            SgmIcon.Check -> {
+                drawLine(tint, p(0.22f, 0.54f), p(0.42f, 0.72f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.42f, 0.72f), p(0.78f, 0.30f), stroke.width, StrokeCap.Round)
+            }
+
+            SgmIcon.Flag -> {
+                drawLine(tint, p(0.26f, 0.18f), p(0.26f, 0.86f), stroke.width, StrokeCap.Round)
+                drawPath(Path().apply {
+                    moveTo(size.width * 0.28f, size.height * 0.20f)
+                    lineTo(size.width * 0.74f, size.height * 0.28f)
+                    lineTo(size.width * 0.62f, size.height * 0.48f)
+                    lineTo(size.width * 0.28f, size.height * 0.42f)
+                }, tint, style = stroke)
+            }
+
+            SgmIcon.Leaf -> {
+                drawPath(Path().apply {
+                    moveTo(size.width * 0.20f, size.height * 0.70f)
+                    cubicTo(size.width * 0.36f, size.height * 0.18f, size.width * 0.72f, size.height * 0.18f, size.width * 0.84f, size.height * 0.26f)
+                    cubicTo(size.width * 0.78f, size.height * 0.66f, size.width * 0.48f, size.height * 0.82f, size.width * 0.20f, size.height * 0.70f)
+                    close()
+                }, tint, style = stroke)
+                drawLine(tint, p(0.22f, 0.70f), p(0.64f, 0.42f), stroke.width, StrokeCap.Round)
             }
         }
     }

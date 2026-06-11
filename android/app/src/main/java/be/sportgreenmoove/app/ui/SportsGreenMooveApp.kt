@@ -71,10 +71,12 @@ fun SportsGreenMooveApp() {
         Scaffold(
             containerColor = SgmColors.AppBackground,
             bottomBar = {
-                AppBottomBar(
-                    current = screen.toTopLevel(),
-                    onNavigate = { destination -> screen = destination },
-                )
+                if (screen != DemoScreen.Onboarding) {
+                    AppBottomBar(
+                        current = screen.toTopLevel(),
+                        onNavigate = { destination -> screen = destination },
+                    )
+                }
             },
         ) { padding ->
             Box(
@@ -115,8 +117,10 @@ fun SportsGreenMooveApp() {
                         onImpact = { screen = DemoScreen.Impact },
                         onRewards = { screen = DemoScreen.Rewards },
                         onOptions = { screen = DemoScreen.Options },
+                        onLogout = { screen = DemoScreen.Onboarding },
                     )
 
+                    DemoScreen.Onboarding -> OnboardingScreen(onDone = { screen = DemoScreen.Home })
                     DemoScreen.Search -> SearchScreen(trips = displayTrips, onBack = { screen = DemoScreen.Home })
                     DemoScreen.Groups -> GroupsScreen(onBack = { screen = DemoScreen.Profile })
                     DemoScreen.Impact -> ImpactScreen(onBack = { screen = DemoScreen.Profile })
@@ -137,6 +141,7 @@ fun DemoScreen.toTopLevel(): DemoScreen =
         DemoScreen.Search -> DemoScreen.Home
         DemoScreen.Groups, DemoScreen.Impact, DemoScreen.Rewards, DemoScreen.Options -> DemoScreen.Profile
         DemoScreen.Ride -> DemoScreen.Trips
+        DemoScreen.Onboarding -> DemoScreen.Home
         else -> this
     }
 
@@ -217,6 +222,7 @@ enum class DemoScreen {
     Publish,
     Messages,
     Profile,
+    Onboarding,
     Search,
     Groups,
     Impact,

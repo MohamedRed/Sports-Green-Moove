@@ -48,66 +48,6 @@ import be.sportgreenmoove.app.design.SgmColors
 import be.sportgreenmoove.app.design.SgmSpacing
 
 @Composable
-fun GroupsScreen(onBack: () -> Unit) {
-    ScreenFrame {
-        BackHeader("Groupes", "Clubs, équipes, membres et permissions", onBack)
-        GroupCard("Royal Ottignies SC", "U8 Nationaux", "38 membres", "Club vérifié", selected = true)
-        GroupCard("Collège du Biéreau", "U8 Groupe B", "24 membres", "École partenaire", selected = false)
-        GroupCard("Louvain Tennis Club", "Compétition junior", "16 membres", "Invitations ouvertes", selected = false)
-
-        SgmCard(background = SgmColors.Surface) {
-            SectionMiniTitle("Consentements")
-            FormRow("Kévin", "Parent validé")
-            FormRow("Léo", "Parent validé")
-            FormRow("Invitations club", "Sur approbation")
-        }
-    }
-}
-
-@Composable
-fun ImpactScreen(onBack: () -> Unit) {
-    ScreenFrame {
-        BackHeader("Impact CO₂", "Ledger et économies de mobilité", onBack)
-        SgmCard(background = SgmColors.GreenDark) {
-            Text("TOTAL ÉCONOMISÉ", color = SgmColors.GreenLight, fontSize = 11.sp, fontWeight = FontWeight.Black)
-            Text("12,4 kg CO₂", color = SgmColors.Surface, fontSize = 38.sp, fontWeight = FontWeight.Black)
-            Text("24 trajets partagés · estimation v1", color = SgmColors.Surface.copy(alpha = 0.72f), fontWeight = FontWeight.SemiBold)
-        }
-
-        Row(horizontalArrangement = Arrangement.spacedBy(SgmSpacing.X3)) {
-            MetricCard("37 356", "utilisateurs", SgmColors.Green, Modifier.weight(1f))
-            MetricCard("182", "km évités", SgmColors.Orange, Modifier.weight(1f))
-        }
-
-        SectionHeader("Ledger")
-        LedgerRow("Royal Ottignies", "Match U8", "+1,8 kg")
-        LedgerRow("Biéreau", "Entraînement", "+0,9 kg")
-        LedgerRow("Tennis Club", "Compétition", "+1,2 kg")
-    }
-}
-
-@Composable
-fun RewardsScreen(onBack: () -> Unit) {
-    ScreenFrame {
-        BackHeader("Récompenses", "Crédits, points et payouts Stripe", onBack)
-        SgmCard(background = SgmColors.GreenDark) {
-            Text("SOLDE DISPONIBLE", color = SgmColors.GreenLight, fontSize = 11.sp, fontWeight = FontWeight.Black)
-            Text("45,40 EUR", color = SgmColors.Surface, fontSize = 40.sp, fontWeight = FontWeight.Black)
-            Text("Payouts Stripe Connect · frais plateforme à 0 EUR", color = SgmColors.Surface.copy(alpha = 0.72f), fontWeight = FontWeight.SemiBold)
-        }
-
-        SgmCard(background = SgmColors.Surface) {
-            SectionMiniTitle("Derniers mouvements")
-            FormRow("Trajet Royal Ottignies", "+2,50 EUR")
-            FormRow("Bonus CO₂", "+120 points")
-            FormRow("Payout demandé", "En attente")
-        }
-
-        SgmButton("Configurer Stripe Connect", onClick = {}, fullWidth = true)
-    }
-}
-
-@Composable
 fun OptionsScreen(onBack: () -> Unit) {
     ScreenFrame {
         BackHeader("Options", "Sécurité, permissions et support", onBack)

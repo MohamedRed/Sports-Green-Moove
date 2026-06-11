@@ -51,6 +51,7 @@ fun ProfileScreen(
     onImpact: () -> Unit,
     onRewards: () -> Unit,
     onOptions: () -> Unit,
+    onLogout: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -59,35 +60,20 @@ fun ProfileScreen(
             .verticalScroll(rememberScrollState())
             .padding(bottom = 20.dp),
     ) {
-        ProfileTopBar()
+        V2TopBar("MON PROFIL")
         ProfileIdentity()
         ProfileImpactCard(onClick = onImpact)
         ProfileRewardsCard(onClick = onRewards)
-        ProfileSectionLabel("PARAMÈTRES")
+        V2SectionLabel("PARAMÈTRES")
         ProfileSettingsCard(
             onGroups = onGroups,
             onOptions = onOptions,
             modifier = Modifier.padding(horizontal = 20.dp),
         )
-        Spacer(Modifier.height(96.dp))
-    }
-}
-
-@Composable
-private fun ProfileTopBar() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, top = 34.dp, end = 20.dp, bottom = 6.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
-    ) {
-        Text(
-            "MON PROFIL",
-            style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.08.em),
-            modifier = Modifier.weight(1f),
-        )
-        ProfileCircleIconButton(SgmIcon.Moon)
+        Box(Modifier.padding(start = 20.dp, top = 20.dp, end = 20.dp)) {
+            V2Button("SE DÉCONNECTER", onClick = onLogout, variant = V2ButtonVariant.Ghost, full = true)
+        }
+        Spacer(Modifier.height(76.dp))
     }
 }
 
@@ -265,29 +251,6 @@ private fun ProfilePill(text: String, selected: Boolean) {
             .padding(horizontal = 12.dp, vertical = 3.dp),
     ) {
         Text(text, style = SgmType.Label.copy(color = if (selected) SgmColor.TextOnGreen else SgmColor.Green, fontSize = 11.sp, letterSpacing = 0.04.em))
-    }
-}
-
-@Composable
-private fun ProfileSectionLabel(text: String) {
-    Text(
-        text,
-        style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 18.sp, letterSpacing = 0.08.em),
-        modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 12.dp),
-    )
-}
-
-@Composable
-private fun ProfileCircleIconButton(icon: SgmIcon) {
-    Box(
-        modifier = Modifier
-            .size(36.dp)
-            .clip(CircleShape)
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), CircleShape),
-        contentAlignment = Alignment.Center,
-    ) {
-        SgmLineIcon(icon = icon, tint = Sgm.colors.textSecondary, modifier = Modifier.size(16.dp))
     }
 }
 
