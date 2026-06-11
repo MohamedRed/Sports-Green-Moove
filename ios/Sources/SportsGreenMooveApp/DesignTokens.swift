@@ -151,13 +151,28 @@ struct Wordmark: View {
 }
 
 enum SGMFontRegistrar {
+    #if SWIFT_PACKAGE
+    private static let resourceBundle = Bundle.module
+    #else
+    private static let resourceBundle = Bundle.main
+    #endif
+
     static func registerFonts() {
         ["BebasNeue-Regular", "DMSans-Regular", "DMSans-Medium", "DMSans-Bold"].forEach { name in
-            guard let url = Bundle.module.url(forResource: name, withExtension: "ttf", subdirectory: "Fonts") else {
+            guard let url = fontURL(named: name) else {
                 return
             }
             CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
         }
+    }
+
+    private static func fontURL(named name: String) -> URL? {
+        for subdirectory in ["Fonts", "Resources/Fonts"] {
+            if let url = resourceBundle.url(forResource: name, withExtension: "ttf", subdirectory: subdirectory) {
+                return url
+            }
+        }
+        return resourceBundle.url(forResource: name, withExtension: "ttf")
     }
 }
 

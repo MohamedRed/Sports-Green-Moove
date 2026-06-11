@@ -25,6 +25,9 @@ admin/tsconfig.tsbuildinfo
 # Swift Package Manager / Xcode
 ios/.build/
 ios/DerivedData/
+ios/build/
+ios/Generated/
+ios/SportsGreenMoove.xcodeproj/
 *.xcuserdata/
 *.xcuserstate
 
