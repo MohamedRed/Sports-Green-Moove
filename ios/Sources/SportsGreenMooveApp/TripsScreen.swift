@@ -62,7 +62,7 @@ private struct TripsHeader: View {
             SGMThemeButton()
         }
         .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.top, 34)
+        .padding(.top, 8)
         .padding(.bottom, 12)
     }
 }

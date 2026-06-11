@@ -70,7 +70,7 @@ private struct HomeHeader: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.top, 36)
+        .padding(.top, 10)
         .padding(.bottom, 14)
     }
 }

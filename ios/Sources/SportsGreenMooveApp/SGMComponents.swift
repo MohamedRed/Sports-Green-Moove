@@ -12,7 +12,6 @@ struct SGMScreen<Content: View>: View {
             }
             .padding(.bottom, bottomPadding)
         }
-        .ignoresSafeArea(.container, edges: .top)
         .background(SGM.bgApp.ignoresSafeArea())
     }
 }
@@ -45,7 +44,7 @@ struct SGMTopBar: View {
             SGMThemeButton()
         }
         .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.top, 34)
+        .padding(.top, 8)
         .padding(.bottom, 6)
     }
 }
