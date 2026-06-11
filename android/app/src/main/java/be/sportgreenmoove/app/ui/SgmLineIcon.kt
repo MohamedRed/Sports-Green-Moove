@@ -19,6 +19,9 @@ enum class SgmIcon {
     Profile,
     Plus,
     Moon,
+    Search,
+    ChevronLeft,
+    ChevronRight,
     Location,
     Groups,
 }
@@ -82,6 +85,21 @@ fun SgmLineIcon(
             SgmIcon.Moon -> {
                 drawCircle(tint, radius = size.minDimension * 0.28f, center = p(0.50f, 0.50f), style = stroke)
                 drawCircle(Color.Transparent, radius = size.minDimension * 0.24f, center = p(0.62f, 0.40f), style = Stroke(width = 5.dp.toPx()))
+            }
+
+            SgmIcon.Search -> {
+                drawCircle(tint, radius = size.minDimension * 0.22f, center = p(0.44f, 0.42f), style = stroke)
+                drawLine(tint, p(0.60f, 0.60f), p(0.80f, 0.80f), stroke.width, StrokeCap.Round)
+            }
+
+            SgmIcon.ChevronLeft -> {
+                drawLine(tint, p(0.62f, 0.24f), p(0.38f, 0.50f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.38f, 0.50f), p(0.62f, 0.76f), stroke.width, StrokeCap.Round)
+            }
+
+            SgmIcon.ChevronRight -> {
+                drawLine(tint, p(0.38f, 0.24f), p(0.62f, 0.50f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.62f, 0.50f), p(0.38f, 0.76f), stroke.width, StrokeCap.Round)
             }
 
             SgmIcon.Location -> {

@@ -48,50 +48,6 @@ import be.sportgreenmoove.app.design.SgmColors
 import be.sportgreenmoove.app.design.SgmSpacing
 
 @Composable
-fun TripsScreen(
-    trips: List<TripSummary>,
-    activeRide: LiveRideSnapshot?,
-    onStartRide: () -> Unit,
-    onOpenSearch: () -> Unit,
-) {
-    var selectedTab by remember { mutableStateOf("À VENIR") }
-
-    ScreenFrame {
-        TopBrandBar(
-            title = "Green-List",
-            subtitle = "Trajets proposés, réservés et suivis",
-            trailing = { HeaderCircle("GL") },
-        )
-        SegmentedTabs(
-            options = listOf("À VENIR", "PASSÉS", "EN ATTENTE"),
-            selected = selectedTab,
-            onSelected = { selectedTab = it },
-        )
-
-        if (activeRide == null) {
-            SgmCard(background = SgmColors.GreenDark) {
-                Text("SUIVI EN DIRECT", color = SgmColors.GreenLight, fontSize = 11.sp, fontWeight = FontWeight.Black)
-                Text("Aucune course active", color = SgmColors.Surface, fontSize = 24.sp, fontWeight = FontWeight.Black)
-                Text(
-                    "Démarre le suivi au départ pour partager véhicule, enfant, ETA et statuts avec le parent.",
-                    color = SgmColors.Surface.copy(alpha = 0.72f),
-                    fontSize = 13.sp,
-                    fontWeight = FontWeight.SemiBold,
-                )
-                SgmButton("Démarrer le suivi", onStartRide, fullWidth = true, light = true)
-            }
-        } else {
-            LiveRideCard(ride = activeRide, onClick = onStartRide)
-        }
-
-        SectionHeader("Trajets recommandés", action = "Filtrer", onAction = onOpenSearch)
-        trips.forEachIndexed { index, trip ->
-            TripCard(trip = trip, highlight = index == 0, onClick = onStartRide)
-        }
-    }
-}
-
-@Composable
 fun PublishScreen(role: AppRole) {
     var published by remember { mutableStateOf(false) }
 
@@ -184,4 +140,3 @@ fun SearchScreen(trips: List<TripSummary>, onBack: () -> Unit) {
         }
     }
 }
-
