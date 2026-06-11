@@ -52,7 +52,7 @@ struct SGMTripCard: View {
                         .foregroundStyle(SGM.greenLight)
                     Spacer()
                     Text("\(date.uppercased()) · \(time)")
-                        .font(.sgmBody(11, weight: .bold))
+                        .font(.sgmBody(11, weight: .semibold))
                         .foregroundStyle(SGM.textOnGreen.opacity(0.62))
                 }
                 .padding(.horizontal, 14)
@@ -62,7 +62,7 @@ struct SGMTripCard: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(title.uppercased())
                         .font(.sgmDisplay(18))
-                        .tracking(.sgmWide(for: 18))
+                        .tracking(0.55)
                         .foregroundStyle(SGM.textPrimary)
                         .lineLimit(1)
                         .minimumScaleFactor(0.78)
@@ -80,7 +80,7 @@ struct SGMTripCard: View {
                     }
                 }
                 .padding(.horizontal, 14)
-                .padding(.vertical, 12)
+                .padding(.vertical, 10)
             }
             .background(SGM.bgCard)
             .clipShape(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))

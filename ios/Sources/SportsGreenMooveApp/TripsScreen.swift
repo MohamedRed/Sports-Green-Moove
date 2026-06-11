@@ -12,7 +12,7 @@ struct TripsScreen: View {
     ]
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(spacing: 0) {
             TripsHeader()
             TripsMonthNav()
             TripsTabs(selected: selectedTab) { selectedTab = $0 }
@@ -37,6 +37,7 @@ struct TripsScreen: View {
                 }
             }
             .padding(.horizontal, SGMSpace.padScreen)
+            .padding(.top, 8)
         }
     }
 
@@ -62,7 +63,7 @@ private struct TripsHeader: View {
         }
         .padding(.horizontal, SGMSpace.padScreen)
         .padding(.top, 34)
-        .padding(.bottom, 16)
+        .padding(.bottom, 12)
     }
 }
 
@@ -93,7 +94,7 @@ private struct TripsTabs: View {
             SGMChip(text: "En attente", selected: selected == "pending", badge: "2") { onSelect("pending") }
         }
         .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.bottom, 2)
+        .padding(.bottom, 8)
     }
 }
 
