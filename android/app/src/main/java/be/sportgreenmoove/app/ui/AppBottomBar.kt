@@ -7,13 +7,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,27 +41,37 @@ fun AppBottomBar(current: DemoScreen, onNavigate: (DemoScreen) -> Unit) {
         NavItem(DemoScreen.Profile, SgmIcon.Profile, "Profil"),
     )
 
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(SgmSize.NavBar)
             .background(Sgm.colors.bgSurface)
-            .border(BorderStroke(1.dp, Sgm.colors.border))
-            .padding(horizontal = 10.dp),
-        verticalAlignment = Alignment.CenterVertically,
+            .border(BorderStroke(1.dp, Sgm.colors.border)),
     ) {
-        items.forEach { item ->
-            if (item.screen == DemoScreen.Publish) {
-                PublishNavButton(onClick = { onNavigate(DemoScreen.Publish) }, modifier = Modifier.weight(1f))
-            } else {
-                BottomNavButton(
-                    item = item,
-                    selected = current == item.screen,
-                    onClick = { onNavigate(item.screen) },
-                    modifier = Modifier.weight(1f),
-                )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(SgmSize.NavBar)
+                .padding(horizontal = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            items.forEach { item ->
+                if (item.screen == DemoScreen.Publish) {
+                    PublishNavButton(onClick = { onNavigate(DemoScreen.Publish) }, modifier = Modifier.weight(1f))
+                } else {
+                    BottomNavButton(
+                        item = item,
+                        selected = current == item.screen,
+                        onClick = { onNavigate(item.screen) },
+                        modifier = Modifier.weight(1f),
+                    )
+                }
             }
         }
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .windowInsetsBottomHeight(WindowInsets.navigationBars),
+        )
     }
 }
 
