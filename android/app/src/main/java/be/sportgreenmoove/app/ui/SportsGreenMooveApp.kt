@@ -22,7 +22,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,6 +46,7 @@ import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.SgmColors
 import be.sportgreenmoove.app.design.SgmSpacing
+import be.sportgreenmoove.app.design.SgmTheme
 import be.sportgreenmoove.app.services.MockFirebaseGateway
 import be.sportgreenmoove.app.services.MockRadarTrackingGateway
 import kotlinx.coroutines.launch
@@ -67,7 +67,7 @@ fun SportsGreenMooveApp() {
 
     val displayTrips = remember(trips) { enrichTrips(trips) }
 
-    MaterialTheme {
+    SgmTheme {
         Scaffold(
             containerColor = SgmColors.AppBackground,
             bottomBar = {
