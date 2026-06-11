@@ -93,7 +93,9 @@ struct MockStripePaymentsGateway: StripePaymentsGateway {
 @Observable
 final class AppState {
     var selectedTab: AppTab = .home
+    var overlay: AppOverlay?
     var selectedRole: AppRole = .parent
+    var darkTheme = false
     var trips: [TripSummary] = []
     var activeRide: LiveRideSnapshot?
     var loading = false
@@ -117,6 +119,27 @@ final class AppState {
     }
 
     @MainActor
+    func selectTab(_ tab: AppTab) {
+        selectedTab = tab
+        overlay = nil
+    }
+
+    @MainActor
+    func openOverlay(_ destination: AppOverlay) {
+        overlay = destination
+    }
+
+    @MainActor
+    func closeOverlay() {
+        overlay = nil
+    }
+
+    @MainActor
+    func toggleTheme() {
+        darkTheme.toggle()
+    }
+
+    @MainActor
     func loadTrips() async {
         loading = true
         defer { loading = false }
@@ -133,7 +156,8 @@ final class AppState {
             let ride = try await firebase.startRide(tripId: tripId)
             try await radar.startTripTracking(rideSessionId: ride.rideSessionId, role: selectedRole)
             activeRide = ride
-            selectedTab = .greenList
+            selectedTab = .trips
+            overlay = .ride
         } catch {
             errorMessage = "Impossible de démarrer le suivi."
         }

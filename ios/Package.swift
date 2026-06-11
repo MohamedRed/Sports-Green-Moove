@@ -12,6 +12,9 @@ let package = Package(
         .executable(name: "SportsGreenMooveApp", targets: ["SportsGreenMooveApp"])
     ],
     targets: [
-        .executableTarget(name: "SportsGreenMooveApp")
+        .executableTarget(
+            name: "SportsGreenMooveApp",
+            resources: [.process("Resources")]
+        )
     ]
 )

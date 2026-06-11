@@ -12,41 +12,33 @@ enum AppRole: String, CaseIterable, Identifiable, Codable {
 
 enum AppTab: String, CaseIterable, Identifiable {
     case home
-    case greenList
+    case trips
     case publish
-    case search
-    case notifications
-    case co2
-    case rewards
-    case options
+    case messages
+    case profile
 
     var id: String { rawValue }
 
     var title: String {
         switch self {
         case .home: "Accueil"
-        case .greenList: "Green-List"
+        case .trips: "Trajets"
         case .publish: "Publier"
-        case .search: "Recherche"
-        case .notifications: "Notifs"
-        case .co2: "CO2"
-        case .rewards: "Rewards"
-        case .options: "Options"
+        case .messages: "Messages"
+        case .profile: "Profil"
         }
     }
+}
 
-    var systemImage: String {
-        switch self {
-        case .home: "house"
-        case .greenList: "calendar"
-        case .publish: "plus.square"
-        case .search: "magnifyingglass"
-        case .notifications: "bell"
-        case .co2: "leaf"
-        case .rewards: "eurosign.circle"
-        case .options: "gearshape"
-        }
-    }
+enum AppOverlay: String, Identifiable {
+    case search
+    case groups
+    case impact
+    case rewards
+    case options
+    case ride
+
+    var id: String { rawValue }
 }
 
 struct TripSummary: Identifiable, Hashable {
