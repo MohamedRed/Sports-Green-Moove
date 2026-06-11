@@ -255,10 +255,21 @@ private fun TabBadge(text: String) {
 
 @Composable
 private fun PendingRequestsCard() {
-    SgmCard(background = Sgm.colors.bgCard) {
-        SectionMiniTitle("DEMANDES EN ATTENTE")
-        Text("Idriss BAMAKO · U8 vs Ottignies", color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold)
-        Text("Kévin TOUSSAINT · U8 vs Ottignies", color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(SgmRadius.LG))
+            .background(Sgm.colors.bgCard)
+            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        Text(
+            "DEMANDES EN ATTENTE",
+            style = SgmType.Eyebrow.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, letterSpacing = 0.12.em),
+        )
+        Text("Idriss BAMAKO · U8 vs Ottignies", style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold))
+        Text("Kévin TOUSSAINT · U8 vs Ottignies", style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold))
     }
 }
 
