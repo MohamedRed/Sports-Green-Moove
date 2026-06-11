@@ -1,16 +1,18 @@
 import SwiftUI
 
 struct SGMScreen<Content: View>: View {
+    var spacing: CGFloat = SGMSpace.s4
     var bottomPadding: CGFloat = 96
     @ViewBuilder var content: () -> Content
 
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: SGMSpace.s4) {
+            VStack(alignment: .leading, spacing: spacing) {
                 content()
             }
             .padding(.bottom, bottomPadding)
         }
+        .ignoresSafeArea(.container, edges: .top)
         .background(SGM.bgApp.ignoresSafeArea())
     }
 }

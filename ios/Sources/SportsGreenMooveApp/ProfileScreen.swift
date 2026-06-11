@@ -4,7 +4,7 @@ struct ProfileScreen: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(spacing: 0) {
             SGMTopBar(title: "MON PROFIL")
             ProfileIdentity()
             ProfileImpactCard {

@@ -45,6 +45,17 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             clean build
 
+      - name: Verify bundled fonts
+        working-directory: ios
+        run: |
+          set -euo pipefail
+          APP_PATH="$(find build/DerivedData/Build/Products/Debug-iphonesimulator -maxdepth 1 -name '*.app' -type d | head -n 1)"
+          test -n "$APP_PATH"
+          for font in BebasNeue-Regular.ttf DMSans-Regular.ttf DMSans-Medium.ttf DMSans-Bold.ttf; do
+            test -f "$APP_PATH/$font"
+          done
+          /usr/libexec/PlistBuddy -c "Print :UIAppFonts" "$APP_PATH/Info.plist"
+
       - name: Package simulator app
         working-directory: ios
         run: |

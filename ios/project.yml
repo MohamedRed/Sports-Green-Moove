@@ -21,7 +21,10 @@ targets:
         excludes:
           - Resources/**
     resources:
-      - path: Sources/SportsGreenMooveApp/Resources
+      - path: Sources/SportsGreenMooveApp/Resources/Fonts/BebasNeue-Regular.ttf
+      - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Regular.ttf
+      - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Medium.ttf
+      - path: Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Bold.ttf
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app
@@ -41,10 +44,10 @@ targets:
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         UIAppFonts:
-          - Fonts/BebasNeue-Regular.ttf
-          - Fonts/DMSans-Regular.ttf
-          - Fonts/DMSans-Medium.ttf
-          - Fonts/DMSans-Bold.ttf
+          - BebasNeue-Regular.ttf
+          - DMSans-Regular.ttf
+          - DMSans-Medium.ttf
+          - DMSans-Bold.ttf
 
 schemes:
   SportsGreenMoove:
