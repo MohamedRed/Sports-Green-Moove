@@ -108,40 +108,6 @@ fun RewardsScreen(onBack: () -> Unit) {
 }
 
 @Composable
-fun ProfileScreen(
-    role: AppRole,
-    onRoleChange: (AppRole) -> Unit,
-    onGroups: () -> Unit,
-    onImpact: () -> Unit,
-    onRewards: () -> Unit,
-    onOptions: () -> Unit,
-) {
-    ScreenFrame {
-        TopBrandBar(
-            title = "Profil",
-            subtitle = "Compte multi-rôle, enfants et préférences",
-            trailing = { Avatar("MR", SgmColors.GreenDark) },
-        )
-
-        SgmCard(background = SgmColors.Surface) {
-            SectionMiniTitle("Rôle actif")
-            RoleSelector(current = role, onSelected = onRoleChange)
-        }
-
-        SgmCard(background = SgmColors.Surface) {
-            SectionMiniTitle("Enfants")
-            ChildRow("Kévin", "U8 Nationaux", "Suivi appareil actif")
-            ChildRow("Léo", "U8 Groupe B", "Véhicule uniquement")
-        }
-
-        MenuRow("Groupes et clubs", "Royal Ottignies, Biéreau", onGroups)
-        MenuRow("Impact CO₂", "12,4 kg économisés", onImpact)
-        MenuRow("Récompenses", "45,40 EUR disponibles", onRewards)
-        MenuRow("Options", "Localisation, paiements, confidentialité", onOptions)
-    }
-}
-
-@Composable
 fun OptionsScreen(onBack: () -> Unit) {
     ScreenFrame {
         BackHeader("Options", "Sécurité, permissions et support", onBack)

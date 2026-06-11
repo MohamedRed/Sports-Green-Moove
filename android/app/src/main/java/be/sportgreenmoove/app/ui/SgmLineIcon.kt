@@ -24,6 +24,10 @@ enum class SgmIcon {
     ChevronRight,
     Location,
     Groups,
+    Award,
+    Bell,
+    Settings,
+    ArrowRight,
 }
 
 @Composable
@@ -119,6 +123,40 @@ fun SgmLineIcon(
                 drawCircle(tint, radius = size.minDimension * 0.10f, center = p(0.66f, 0.38f), style = stroke)
                 drawArc(tint, startAngle = 205f, sweepAngle = 130f, useCenter = false, topLeft = p(0.18f, 0.50f), size = Size(size.width * 0.44f, size.height * 0.32f), style = stroke)
                 drawArc(tint, startAngle = 210f, sweepAngle = 120f, useCenter = false, topLeft = p(0.50f, 0.54f), size = Size(size.width * 0.34f, size.height * 0.26f), style = stroke)
+            }
+
+            SgmIcon.Award -> {
+                drawCircle(tint, radius = size.minDimension * 0.22f, center = p(0.50f, 0.36f), style = stroke)
+                drawLine(tint, p(0.40f, 0.56f), p(0.32f, 0.84f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.60f, 0.56f), p(0.68f, 0.84f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.32f, 0.84f), p(0.48f, 0.74f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.68f, 0.84f), p(0.52f, 0.74f), stroke.width, StrokeCap.Round)
+            }
+
+            SgmIcon.Bell -> {
+                drawArc(tint, startAngle = 200f, sweepAngle = 140f, useCenter = false, topLeft = p(0.28f, 0.18f), size = Size(size.width * 0.44f, size.height * 0.50f), style = stroke)
+                drawLine(tint, p(0.30f, 0.46f), p(0.22f, 0.72f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.70f, 0.46f), p(0.78f, 0.72f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.22f, 0.72f), p(0.78f, 0.72f), stroke.width, StrokeCap.Round)
+                drawArc(tint, startAngle = 20f, sweepAngle = 140f, useCenter = false, topLeft = p(0.40f, 0.70f), size = Size(size.width * 0.20f, size.height * 0.14f), style = stroke)
+            }
+
+            SgmIcon.Settings -> {
+                drawCircle(tint, radius = size.minDimension * 0.18f, center = p(0.50f, 0.50f), style = stroke)
+                repeat(8) { index ->
+                    val angle = Math.toRadians((index * 45).toDouble())
+                    val cos = kotlin.math.cos(angle).toFloat()
+                    val sin = kotlin.math.sin(angle).toFloat()
+                    val inner = Offset(size.width * (0.50f + cos * 0.30f), size.height * (0.50f + sin * 0.30f))
+                    val outer = Offset(size.width * (0.50f + cos * 0.40f), size.height * (0.50f + sin * 0.40f))
+                    drawLine(tint, inner, outer, stroke.width, StrokeCap.Round)
+                }
+            }
+
+            SgmIcon.ArrowRight -> {
+                drawLine(tint, p(0.30f, 0.50f), p(0.70f, 0.50f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.54f, 0.34f), p(0.70f, 0.50f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.54f, 0.66f), p(0.70f, 0.50f), stroke.width, StrokeCap.Round)
             }
         }
     }
