@@ -13,18 +13,17 @@ struct NativeLocationFallbackUpdate: Sendable {
     let speedMps: Double?
     let headingDeg: Double?
 
-    func callablePayload() -> [String: Any] {
-        var data: [String: Any] = [
-            "rideSessionId": rideSessionId,
-            "role": role,
-            "lat": latitude,
-            "lng": longitude,
-            "accuracyM": accuracyM,
-            "capturedAt": capturedAtMs,
-        ]
+    func callablePayload() -> NSDictionary {
+        let data = NSMutableDictionary()
+        data["rideSessionId"] = rideSessionId
+        data["role"] = role
+        data["lat"] = latitude
+        data["lng"] = longitude
+        data["accuracyM"] = accuracyM
+        data["capturedAt"] = capturedAtMs
         if let speedMps { data["speedMps"] = speedMps }
         if let headingDeg { data["headingDeg"] = headingDeg }
-        return data
+        return NSDictionary(dictionary: data)
     }
 }
 
