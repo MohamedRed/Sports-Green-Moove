@@ -121,7 +121,8 @@ service cloud.firestore {
     match /rideSessions/{rideSessionId} {
       allow read: if isAdmin() ||
         (signedIn() && resource.data.driverUserId == request.auth.uid) ||
-        (signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]));
+        (signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid])) ||
+        (signedIn() && resource.data.childUserIds.hasAny([request.auth.uid]));
       allow write: if false;
     }
 

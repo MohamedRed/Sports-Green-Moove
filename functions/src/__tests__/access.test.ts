@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   bookingParticipantUserIds,
   canCancelBooking,
+  canReadRide,
   isCancellableBookingStatus,
   refundStatusForCancellation,
   rideParticipantUserIds,
@@ -18,7 +19,22 @@ describe("access helpers", () => {
     expect(rideParticipantUserIds({
       driverUserId: "driver-1",
       participantUserIds: ["parent-1", "parent-1", "driver-1"],
-    })).toEqual(["driver-1", "parent-1"]);
+      childUserIds: ["child-1"],
+    })).toEqual(["driver-1", "parent-1", "child-1"]);
+  });
+
+  it("allows ride reads for driver, participant parent, child device, and admin", () => {
+    const ride = {
+      driverUserId: "driver-1",
+      participantUserIds: ["parent-1"],
+      childUserIds: ["child-1"],
+    };
+
+    expect(canReadRide("driver-1", ["driver"], ride)).toBe(true);
+    expect(canReadRide("parent-1", ["parent"], ride)).toBe(true);
+    expect(canReadRide("child-1", ["child"], ride)).toBe(true);
+    expect(canReadRide("support", ["admin"], ride)).toBe(true);
+    expect(canReadRide("stranger", ["parent"], ride)).toBe(false);
   });
 
   it("allows only booking parties and admins to cancel", () => {

@@ -26,7 +26,7 @@ export const writeLocationBatch = onCall(async (request) => {
       throw new HttpsError("not-found", `Ride session ${update.rideSessionId} not found.`);
     }
     if (!canWriteLiveLocation(uid, update, ride)) {
-      throw new HttpsError("permission-denied", "Location updates are limited to active ride participants.");
+      throw new HttpsError("permission-denied", "Location updates are limited to the active ride driver or child device.");
     }
   }
 

@@ -128,11 +128,13 @@ describe("Firestore rules", () => {
     await seedFirestore("rideSessions/ride-1", {
       driverUserId: "driver-1",
       participantUserIds: ["parent-1"],
+      childUserIds: ["child-1"],
       status: "active",
     });
 
     await assertSucceeds(authed("driver-1", { driver: true }).firestore().doc("rideSessions/ride-1").get());
     await assertSucceeds(authed("parent-1", { parent: true }).firestore().doc("rideSessions/ride-1").get());
+    await assertSucceeds(authed("child-1", { child: true }).firestore().doc("rideSessions/ride-1").get());
     await assertSucceeds(authed("admin", { admin: true }).firestore().doc("rideSessions/ride-1").get());
     await assertFails(authed("parent-2", { parent: true }).firestore().doc("rideSessions/ride-1").get());
   });

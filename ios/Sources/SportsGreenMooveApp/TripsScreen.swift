@@ -13,6 +13,11 @@ struct TripsScreen: View {
                 pendingCount: appState.driverBookingRequests.filter { $0.status == "requested" }.count
             ) { selectedTab = $0 }
             VStack(spacing: 8) {
+                if let ride = appState.activeRide, selectedTab != "pending" {
+                    ActiveRideEntryCard(ride: ride) {
+                        appState.openOverlay(.ride)
+                    }
+                }
                 if selectedTab == "pending" {
                     BookingRequestsList(requests: appState.driverBookingRequests)
                 } else {
@@ -40,6 +45,37 @@ struct TripsScreen: View {
 
     private var visibleTrips: [TripSummary] {
         appState.trips.filter { $0.status.rawValue == selectedTab }
+    }
+}
+
+private struct ActiveRideEntryCard: View {
+    let ride: LiveRideSnapshot
+    var onOpen: () -> Void
+
+    var body: some View {
+        Button(action: onOpen) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("SUIVI EN DIRECT")
+                    .font(.sgmBody(11, weight: .bold))
+                    .tracking(.sgmWider(for: 11))
+                    .foregroundStyle(ride.stale ? SGM.orange : SGM.greenLight)
+                Text(ride.etaLabel)
+                    .font(.sgmDisplay(22))
+                    .tracking(.sgmWide(for: 22))
+                    .foregroundStyle(ride.stale ? SGM.textPrimary : SGM.textOnGreen)
+                Text("Véhicule · \(ride.vehicleLastUpdateLabel)")
+                    .font(.sgmBody(12, weight: .bold))
+                    .foregroundStyle(ride.stale ? SGM.orange : SGM.textOnGreen.opacity(0.72))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(16)
+            .background {
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(ride.stale ? AnyShapeStyle(SGM.orange.opacity(0.12)) : AnyShapeStyle(SGM.heroGradient))
+            }
+            .overlay(RoundedRectangle(cornerRadius: 20, style: .continuous).stroke(ride.stale ? SGM.orange.opacity(0.32) : SGM.border, lineWidth: 1))
+        }
+        .buttonStyle(.plain)
     }
 }
 

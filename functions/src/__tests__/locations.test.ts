@@ -67,6 +67,7 @@ describe("native location fallback", () => {
     expect(canWriteLiveLocation("driver-1", { role: "driver" }, ride)).toBe(true);
     expect(canWriteLiveLocation("driver-2", { role: "driver" }, ride)).toBe(false);
     expect(canWriteLiveLocation("child-1", { role: "child" }, ride)).toBe(true);
+    expect(canWriteLiveLocation("parent-1", { role: "child" }, ride)).toBe(false);
     expect(canWriteLiveLocation("child-2", { role: "child" }, ride)).toBe(false);
     expect(canWriteLiveLocation("driver-1", { role: "driver" }, { ...ride, status: "completed" })).toBe(false);
   });

@@ -79,6 +79,6 @@ iOS uses `RadarSDK` `3.34.0` when `SGM_RADAR_PUBLISHABLE_KEY` is present at buil
 
 Native Firebase fallback runs for every active ride, including rides where Radar starts successfully. Android writes the first fused-location batch and starts a foreground location service for continued fallback uploads. iOS writes the first Core Location batch and starts continuous background-capable Core Location uploads. If Radar webhooks are delayed, the app still has live `nativeFallback` points in `liveTrips/{rideSessionId}`.
 
-`getActiveRide` reads `liveTrips/{rideSessionId}` and returns source-aware labels for the native apps. Vehicle location is stale when no vehicle point exists or the latest vehicle point is older than 90 seconds.
+`getActiveRide` is available to the active ride driver, participant parents, listed child-device users, and admins. It reads `liveTrips/{rideSessionId}` and returns source-aware labels for the native apps. Vehicle location is stale when no vehicle point exists or the latest vehicle point is older than 90 seconds.
 
 Native end-ride actions call `endRide`, stop Firebase native fallback, and complete Radar trip tracking when Radar is configured. `endRide` completes the ride session and any attached bookings, then writes completed metadata to `liveTrips/{rideSessionId}/meta`.

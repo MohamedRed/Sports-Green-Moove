@@ -17,7 +17,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `approveBooking` | driver | Approved booking and notification. |
 | `cancelBooking` | parent/driver/admin | Cancelled booking and notification. |
 | `startRide` | driver | Active ride session with approved booking ids attached as passengers. |
-| `getActiveRide` | driver | Current active ride snapshot with live labels/passenger statuses, or `null`. |
+| `getActiveRide` | ride participants | Current active ride snapshot with live labels/passenger statuses, or `null`. |
 | `endRide` | driver/admin | Completed ride session, attached bookings, and CO2/reward summary. |
 | `markPickup` | driver | Child pickup status and parent notification. |
 | `markDropoff` | driver | Child dropoff status and parent notification. |

@@ -66,5 +66,5 @@
 }
 ```
 
-Realtime Database rules allow live trip reads only for the driver, listed parent participants, listed child-device users, and admins.
+Firestore and Realtime Database rules allow ride/live-trip reads only for the driver, listed parent participants, listed child-device users, and admins.
 Live state is mirrored into Firestore audit summaries by Cloud Functions. The UI must show stale-state warnings when `uploadedAt` is older than the configured threshold.

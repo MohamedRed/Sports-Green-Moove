@@ -49,6 +49,7 @@ fun TripsScreen(
     bookingRequests: List<BookingRequestSummary>,
     onTripAction: (TripSummary) -> Unit,
     onOpenSearch: () -> Unit,
+    onOpenRide: () -> Unit,
     onApproveBooking: (BookingRequestSummary) -> Unit,
 ) {
     var selectedTab by remember { mutableStateOf("upcoming") }
@@ -74,6 +75,9 @@ fun TripsScreen(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
+            if (activeRide != null && selectedTab != "pending") {
+                ActiveRideEntryCard(activeRide, onOpenRide)
+            }
             if (selectedTab == "pending") {
                 BookingRequestsList(bookingRequests, onApproveBooking)
             } else {

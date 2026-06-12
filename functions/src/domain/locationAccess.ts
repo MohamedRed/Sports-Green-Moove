@@ -2,7 +2,6 @@ import type { LocationUpdate } from "./types.js";
 
 export type LocationAccessRideSession = {
   driverUserId?: string;
-  participantUserIds?: string[];
   childUserIds?: string[];
   status?: string;
 };
@@ -18,5 +17,5 @@ export function canWriteLiveLocation(
     return ride.driverUserId === uid;
   }
 
-  return Boolean(ride.childUserIds?.includes(uid) || ride.participantUserIds?.includes(uid));
+  return Boolean(ride.childUserIds?.includes(uid));
 }

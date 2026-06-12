@@ -4,6 +4,7 @@ import { z } from "zod";
 import { estimateCo2SavedKg } from "../domain/co2.js";
 import { rewardForCo2Saved } from "../domain/rewards.js";
 import type { Trip } from "../domain/types.js";
+import { loadAccessibleActiveRide, type RidePassengerDocument, type RideSessionDocument } from "../lib/activeRideLookup.js";
 import { firestore, realtimeDb } from "../lib/firebase.js";
 import { hasRole, requireAuth, requireRole } from "../lib/https.js";
 import { notifyUsers } from "../lib/notifications.js";
@@ -16,27 +17,6 @@ type BookingDocument = {
   requesterUserId?: string;
   status?: string;
   tripId?: string;
-};
-
-type RidePassengerDocument = {
-  bookingId: string;
-  childId: string;
-  label: string;
-  parentUserId?: string;
-  pickupStatus: "pending" | "pickedUp";
-  dropoffStatus: "pending" | "droppedOff";
-};
-
-type RideSessionDocument = {
-  bookingIds?: string[];
-  driverUserId?: string;
-  participantUserIds?: string[];
-  passengers?: RidePassengerDocument[];
-  passengerStatuses?: Record<string, {
-    pickupStatus?: string;
-    dropoffStatus?: string;
-  }>;
-  status?: string;
 };
 
 export const startRide = onCall(async (request) => {
@@ -195,20 +175,12 @@ export const markDropoff = onCall((request) => markPassengerStatus(request, "dro
 
 export const getActiveRide = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
-  const snapshot = await firestore
-    .collection("rideSessions")
-    .where("driverUserId", "==", uid)
-    .where("status", "==", "active")
-    .orderBy("startedAt", "desc")
-    .limit(1)
-    .get();
-
-  if (snapshot.empty) return { ride: null };
-  const doc = snapshot.docs[0];
-  const ride = doc.data() as RideSessionDocument;
+  const activeRide = await loadAccessibleActiveRide(uid, request.auth?.token);
+  if (!activeRide) return { ride: null };
+  const { id, ride } = activeRide;
   const status = ride.status ?? "active";
-  const liveSnap = await realtimeDb.ref(`liveTrips/${doc.id}`).get();
-  return { ride: toClientRideSnapshot(doc.id, status, liveSnap.val(), ride) };
+  const liveSnap = await realtimeDb.ref(`liveTrips/${id}`).get();
+  return { ride: toClientRideSnapshot(id, status, liveSnap.val(), ride) };
 });
 
 export const endRide = onCall(async (request) => {

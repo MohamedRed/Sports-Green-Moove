@@ -11,6 +11,7 @@ type BookingAccessDocument = {
 type RideAccessDocument = {
   driverUserId?: string;
   participantUserIds?: string[];
+  childUserIds?: string[];
 };
 
 export function uniqueUserIds(userIds: readonly (string | undefined)[]): string[] {
@@ -22,7 +23,14 @@ export function bookingParticipantUserIds(booking: BookingAccessDocument): strin
 }
 
 export function rideParticipantUserIds(ride: RideAccessDocument): string[] {
-  return uniqueUserIds([ride.driverUserId, ...(ride.participantUserIds ?? [])]);
+  return uniqueUserIds([ride.driverUserId, ...(ride.participantUserIds ?? []), ...(ride.childUserIds ?? [])]);
+}
+
+export function canReadRide(uid: string, roleKeys: readonly UserRole[], ride: RideAccessDocument): boolean {
+  return roleKeys.includes("admin") ||
+    ride.driverUserId === uid ||
+    Boolean(ride.participantUserIds?.includes(uid)) ||
+    Boolean(ride.childUserIds?.includes(uid));
 }
 
 export function canCancelBooking(uid: string, roleKeys: readonly UserRole[], booking: BookingAccessDocument): boolean {
