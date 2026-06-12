@@ -127,12 +127,14 @@ private struct FirebaseBackendGateway: FirebaseGateway {
 
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
         #if os(iOS) && canImport(CoreLocation)
-        let update = try await NativeLocationFallbackProvider.shared.currentLocationPayload(
+        let locationRole = role == .child ? "child" : "driver"
+        let update = try await NativeLocationFallbackProvider.shared.currentLocationUpdate(
             rideSessionId: rideSessionId,
-            role: role
+            role: locationRole
         )
+        let payload = update.callablePayload()
         try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable("writeLocationBatch").call(["updates": [update]]) { result, error in
+            Functions.functions().httpsCallable("writeLocationBatch").call(["updates": [payload]]) { result, error in
                 if let error {
                     continuation.resume(throwing: error)
                 } else if let payload = result?.data as? [String: Any],

@@ -3,13 +3,56 @@ import Foundation
 #if os(iOS) && canImport(CoreLocation)
 import CoreLocation
 
+struct NativeLocationFallbackUpdate: Sendable {
+    let rideSessionId: String
+    let role: String
+    let latitude: Double
+    let longitude: Double
+    let accuracyM: Double
+    let capturedAtMs: Int
+    let speedMps: Double?
+    let headingDeg: Double?
+
+    func callablePayload() -> [String: Any] {
+        var data: [String: Any] = [
+            "rideSessionId": rideSessionId,
+            "role": role,
+            "lat": latitude,
+            "lng": longitude,
+            "accuracyM": accuracyM,
+            "capturedAt": capturedAtMs,
+        ]
+        if let speedMps { data["speedMps"] = speedMps }
+        if let headingDeg { data["headingDeg"] = headingDeg }
+        return data
+    }
+}
+
+private struct NativeLocationReading: Sendable {
+    let latitude: Double
+    let longitude: Double
+    let accuracyM: Double
+    let capturedAtMs: Int
+    let speedMps: Double?
+    let headingDeg: Double?
+
+    init(location: CLLocation) {
+        latitude = location.coordinate.latitude
+        longitude = location.coordinate.longitude
+        accuracyM = max(location.horizontalAccuracy, 0)
+        capturedAtMs = Int(location.timestamp.timeIntervalSince1970 * 1000)
+        speedMps = location.speed >= 0 ? location.speed : nil
+        headingDeg = location.course >= 0 ? location.course : nil
+    }
+}
+
 @MainActor
 final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate {
     static let shared = NativeLocationFallbackProvider()
 
     private let manager = CLLocationManager()
     private var authorizationContinuation: CheckedContinuation<Void, Error>?
-    private var locationContinuation: CheckedContinuation<CLLocation, Error>?
+    private var locationContinuation: CheckedContinuation<NativeLocationReading, Error>?
 
     private override init() {
         super.init()
@@ -19,10 +62,19 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         manager.pausesLocationUpdatesAutomatically = false
     }
 
-    func currentLocationPayload(rideSessionId: String, role: AppRole) async throws -> [String: Any] {
+    func currentLocationUpdate(rideSessionId: String, role: String) async throws -> NativeLocationFallbackUpdate {
         try await ensureAuthorization()
         let location = try await requestLocation()
-        return payload(rideSessionId: rideSessionId, role: role, location: location)
+        return NativeLocationFallbackUpdate(
+            rideSessionId: rideSessionId,
+            role: role,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            accuracyM: location.accuracyM,
+            capturedAtMs: location.capturedAtMs,
+            speedMps: location.speedMps,
+            headingDeg: location.headingDeg
+        )
     }
 
     private func ensureAuthorization() async throws {
@@ -41,7 +93,7 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         }
     }
 
-    private func requestLocation() async throws -> CLLocation {
+    private func requestLocation() async throws -> NativeLocationReading {
         try await withCheckedThrowingContinuation { continuation in
             if let existing = locationContinuation {
                 existing.resume(throwing: ProviderConfigurationError(message: "Capture GPS déjà en cours."))
@@ -51,10 +103,17 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         }
     }
 
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let rawStatus = manager.authorizationStatus.rawValue
+        Task { @MainActor in
+            self.handleAuthorizationChange(rawStatus: rawStatus)
+        }
+    }
+
+    private func handleAuthorizationChange(rawStatus: Int32) {
         guard let continuation = authorizationContinuation else { return }
         authorizationContinuation = nil
-        switch manager.authorizationStatus {
+        switch CLAuthorizationStatus(rawValue: rawStatus) {
         case .authorizedAlways, .authorizedWhenInUse:
             continuation.resume(returning: ())
         case .denied, .restricted:
@@ -66,30 +125,31 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last, let continuation = locationContinuation else { return }
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let reading = NativeLocationReading(location: location)
+        Task { @MainActor in
+            self.handleLocationUpdate(reading)
+        }
+    }
+
+    private func handleLocationUpdate(_ location: NativeLocationReading) {
+        guard let continuation = locationContinuation else { return }
         locationContinuation = nil
         continuation.resume(returning: location)
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        guard let continuation = locationContinuation else { return }
-        locationContinuation = nil
-        continuation.resume(throwing: error)
+    nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        let message = error.localizedDescription
+        Task { @MainActor in
+            self.handleLocationFailure(message: message)
+        }
     }
 
-    private func payload(rideSessionId: String, role: AppRole, location: CLLocation) -> [String: Any] {
-        var data: [String: Any] = [
-            "rideSessionId": rideSessionId,
-            "role": role == .child ? "child" : "driver",
-            "lat": location.coordinate.latitude,
-            "lng": location.coordinate.longitude,
-            "accuracyM": max(location.horizontalAccuracy, 0),
-            "capturedAt": Int(location.timestamp.timeIntervalSince1970 * 1000),
-        ]
-        if location.speed >= 0 { data["speedMps"] = location.speed }
-        if location.course >= 0 { data["headingDeg"] = location.course }
-        return data
+    private func handleLocationFailure(message: String) {
+        guard let continuation = locationContinuation else { return }
+        locationContinuation = nil
+        continuation.resume(throwing: ProviderConfigurationError(message: message))
     }
 }
 #endif
