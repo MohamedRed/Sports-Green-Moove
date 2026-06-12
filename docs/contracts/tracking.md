@@ -7,7 +7,7 @@
 - Child-device tracking is optional per child but supported in v1.
 - If no child device is available, the app uses vehicle tracking plus driver pickup/dropoff confirmations.
 - Parents always see last update time and stale-state warnings.
-- Live RTDB reads are limited to the ride driver, participant parents, and admins.
+- Live RTDB reads are limited to the ride driver, participant parents, listed child-device users, and admins.
 
 ## Location Sources
 
@@ -49,6 +49,7 @@ metadata.
 - Child device: roughly 30-60 seconds during active ride.
 - Upload batches should preserve original `capturedAt`.
 - Native clients omit `userId`; `writeLocationBatch` binds every update to the authenticated Firebase user and forces `source = nativeFallback`.
+- `writeLocationBatch` accepts updates only for active ride sessions where the caller is the ride driver for vehicle updates or a listed child-device user for child updates.
 - UI treats live location as stale after 90 seconds unless `appConfig` overrides it.
 
 ## Native Fallback Batch

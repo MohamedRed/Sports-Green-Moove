@@ -2,7 +2,7 @@
   "rules": {
     "liveTrips": {
       "$rideSessionId": {
-        ".read": "auth != null && (auth.token.roles.admin === true || data.child('meta/driverUserId').val() === auth.uid || data.child('meta/participantUserIds').child(auth.uid).val() === true)",
+        ".read": "auth != null && (auth.token.roles.admin === true || data.child('meta/driverUserId').val() === auth.uid || data.child('meta/participantUserIds').child(auth.uid).val() === true || data.child('meta/childUserIds').child(auth.uid).val() === true)",
         ".write": false
       }
     },

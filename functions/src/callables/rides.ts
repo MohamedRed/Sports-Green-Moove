@@ -10,6 +10,7 @@ import { notifyUsers } from "../lib/notifications.js";
 import { toClientRideSnapshot } from "../lib/clientTrips.js";
 
 type BookingDocument = {
+  childId?: string;
   driverUserId: string;
   parentUserId?: string;
   requesterUserId?: string;
@@ -56,6 +57,9 @@ export const startRide = onCall(async (request) => {
   const participantUserIds = bookings
     .map((booking) => booking.parentUserId ?? booking.requesterUserId)
     .filter((userId): userId is string => Boolean(userId));
+  const childUserIds = bookings
+    .map((booking) => booking.childId)
+    .filter((userId): userId is string => Boolean(userId));
 
   const ref = firestore.collection("rideSessions").doc();
   await ref.set({
@@ -63,6 +67,7 @@ export const startRide = onCall(async (request) => {
     bookingIds: data.bookingIds,
     driverUserId: uid,
     participantUserIds,
+    childUserIds,
     status: "active",
     startedAt: Timestamp.now(),
     createdAt: Timestamp.now(),
@@ -72,6 +77,7 @@ export const startRide = onCall(async (request) => {
     tripId: data.tripId,
     driverUserId: uid,
     participantUserIds: participantMap(participantUserIds),
+    childUserIds: participantMap(childUserIds),
     status: "active",
     startedAt: Date.now(),
   });

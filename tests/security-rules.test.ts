@@ -179,6 +179,9 @@ describe("Realtime Database rules", () => {
         participantUserIds: {
           "parent-1": true,
         },
+        childUserIds: {
+          "child-1": true,
+        },
         status: "active",
       },
       vehicle: {
@@ -190,11 +193,13 @@ describe("Realtime Database rules", () => {
 
     const driverDb = authed("driver-1", { driver: true }).database();
     const parentDb = authed("parent-1", { parent: true }).database();
+    const childDb = authed("child-1", { child: true }).database();
     const adminDb = authed("admin", { admin: true }).database();
     const strangerDb = authed("stranger", { parent: true }).database();
 
     await assertSucceeds(driverDb.ref("liveTrips/ride-1/vehicle").get());
     await assertSucceeds(parentDb.ref("liveTrips/ride-1/vehicle").get());
+    await assertSucceeds(childDb.ref("liveTrips/ride-1/vehicle").get());
     await assertSucceeds(adminDb.ref("liveTrips/ride-1/vehicle").get());
     await assertFails(strangerDb.ref("liveTrips/ride-1/vehicle").get());
     await assertFails(driverDb.ref("liveTrips/ride-1/vehicle").set({ userId: "driver-1", lat: 50.7, lng: 4.6 }));

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { canWriteLiveLocation } from "../domain/locationAccess.js";
 import { parseLocationBatchRequest } from "../domain/locationBatch.js";
 import { nativeFallbackUpdateForAuth } from "../domain/locations.js";
 
@@ -53,5 +54,20 @@ describe("native location fallback", () => {
 
   it("rejects invalid JSON-encoded location batches", () => {
     expect(() => parseLocationBatchRequest({ updatesJson: "not-json" })).toThrow();
+  });
+
+  it("allows only active ride drivers and child participants to write live locations", () => {
+    const ride = {
+      driverUserId: "driver-1",
+      participantUserIds: ["parent-1"],
+      childUserIds: ["child-1"],
+      status: "active",
+    };
+
+    expect(canWriteLiveLocation("driver-1", { role: "driver" }, ride)).toBe(true);
+    expect(canWriteLiveLocation("driver-2", { role: "driver" }, ride)).toBe(false);
+    expect(canWriteLiveLocation("child-1", { role: "child" }, ride)).toBe(true);
+    expect(canWriteLiveLocation("child-2", { role: "child" }, ride)).toBe(false);
+    expect(canWriteLiveLocation("driver-1", { role: "driver" }, { ...ride, status: "completed" })).toBe(false);
   });
 });
