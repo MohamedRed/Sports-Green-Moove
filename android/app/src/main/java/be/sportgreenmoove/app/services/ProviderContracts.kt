@@ -2,6 +2,7 @@ package be.sportgreenmoove.app.services
 
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
+import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PaymentSheetConfig
@@ -26,6 +27,8 @@ interface FirebaseGateway {
     suspend fun resolvePlace(placeId: String): ResolvedPlace
     suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary>
     suspend fun requestBooking(tripId: String): String
+    suspend fun getDriverBookingRequests(): List<BookingRequestSummary>
+    suspend fun approveBooking(bookingId: String): String
     suspend fun startRide(tripId: String): LiveRideSnapshot
     suspend fun getActiveRide(): LiveRideSnapshot?
     suspend fun getPayableBookings(): List<PayableBookingSummary>
@@ -89,6 +92,13 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     }
 
     override suspend fun requestBooking(tripId: String): String {
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
+
+    override suspend fun getDriverBookingRequests(): List<BookingRequestSummary> = emptyList()
+
+    override suspend fun approveBooking(bookingId: String): String {
+        check(bookingId.isNotBlank())
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 

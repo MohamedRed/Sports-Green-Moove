@@ -148,6 +148,23 @@ struct TripMatchSummary: Identifiable, Hashable, Sendable {
     var id: String { tripId }
 }
 
+struct BookingRequestSummary: Identifiable, Hashable, Sendable {
+    let bookingId: String
+    let tripId: String
+    let parentUserId: String
+    let childId: String?
+    let seats: Int
+    let note: String?
+    let status: String
+    let title: String
+    let club: String
+    let dateLabel: String
+    let timeLabel: String
+    let priceLabel: String
+
+    var id: String { bookingId }
+}
+
 enum SearchPlaceTarget: Sendable {
     case origin
     case destination

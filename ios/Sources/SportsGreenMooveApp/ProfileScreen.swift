@@ -7,6 +7,7 @@ struct ProfileScreen: View {
         SGMScreen(spacing: 0) {
             SGMTopBar(title: "MON PROFIL")
             ProfileIdentity()
+            ProfileRoleSelector()
             ProfileImpactCard {
                 appState.openOverlay(.impact)
             }
@@ -19,6 +20,43 @@ struct ProfileScreen: View {
             SGMButton(title: "SE DÉCONNECTER", variant: .ghost) {}
                 .padding(.horizontal, SGMSpace.padScreen)
                 .padding(.top, 4)
+        }
+    }
+}
+
+private struct ProfileRoleSelector: View {
+    @Environment(AppState.self) private var appState
+
+    var body: some View {
+        VStack(spacing: 6) {
+            HStack(spacing: 6) {
+                RoleChip("Parent", role: .parent)
+                RoleChip("Conducteur", role: .driver)
+            }
+            HStack(spacing: 6) {
+                RoleChip("Enfant", role: .child)
+                RoleChip("Club manager", role: .clubManager)
+            }
+        }
+        .padding(.horizontal, SGMSpace.padScreen)
+        .padding(.bottom, 14)
+    }
+}
+
+private struct RoleChip: View {
+    @Environment(AppState.self) private var appState
+    let title: String
+    let role: AppRole
+
+    init(_ title: String, role: AppRole) {
+        self.title = title
+        self.role = role
+    }
+
+    var body: some View {
+        SGMChip(text: title, selected: appState.selectedRole == role) {
+            appState.selectedRole = role
+            Task { await appState.refreshAppData() }
         }
     }
 }

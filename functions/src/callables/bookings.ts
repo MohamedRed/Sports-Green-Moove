@@ -13,8 +13,10 @@ import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
 import { notifyUsers } from "../lib/notifications.js";
 import { toClientTripSummary } from "../lib/clientTrips.js";
+import { toClientBookingRequestSummary } from "../lib/clientBookings.js";
 
 type BookingDocument = {
+  id?: string;
   tripId: string;
   parentUserId?: string;
   requesterUserId?: string;
@@ -22,7 +24,39 @@ type BookingDocument = {
   seats?: number;
   status?: string;
   paymentStatus?: string;
+  childId?: string;
+  note?: string;
 };
+
+const driverQueueStatuses = new Set(["requested", "approved"]);
+
+export const listDriverBookingRequests = onCall(async (request) => {
+  const uid = requireAuth(request.auth?.uid);
+  requireRole(request.auth?.token, "driver");
+
+  const snapshot = await firestore
+    .collection("bookings")
+    .where("driverUserId", "==", uid)
+    .limit(100)
+    .get();
+
+  const bookings = snapshot.docs
+    .map((doc) => ({ id: doc.id, ...doc.data() }) as BookingDocument & { id: string })
+    .filter((booking) => driverQueueStatuses.has(booking.status ?? "requested"));
+  const tripIds = [...new Set(bookings.map((booking) => booking.tripId).filter(Boolean))];
+  const tripSnaps = await Promise.all(tripIds.map((tripId) => firestore.collection("trips").doc(tripId).get()));
+  const trips = new Map<string, Trip>();
+  for (const snap of tripSnaps) {
+    if (snap.exists) trips.set(snap.id, { id: snap.id, ...snap.data() } as Trip);
+  }
+
+  return {
+    bookings: bookings.flatMap((booking) => {
+      const trip = trips.get(booking.tripId);
+      return trip ? [toClientBookingRequestSummary(booking, trip)] : [];
+    }),
+  };
+});
 
 export const requestBooking = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
@@ -74,10 +108,10 @@ export const approveBooking = onCall(async (request) => {
   const data = schema.parse(request.data);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
-  await firestore.runTransaction(async (transaction) => {
+  const approval = await firestore.runTransaction(async (transaction) => {
     const bookingSnap = await transaction.get(bookingRef);
     if (!bookingSnap.exists) throw new HttpsError("not-found", "Booking not found.");
-    const booking = bookingSnap.data() as { tripId: string; seats?: number; status?: string };
+    const booking = bookingSnap.data() as BookingDocument;
     if (booking.status !== "requested") throw new HttpsError("failed-precondition", "Booking is not pending.");
 
     const tripRef = firestore.collection("trips").doc(booking.tripId);
@@ -98,6 +132,18 @@ export const approveBooking = onCall(async (request) => {
       seatsAvailable: FieldValue.increment(-(booking.seats ?? 1)),
       updatedAt: Timestamp.now(),
     });
+
+    return {
+      parentUserId: booking.parentUserId ?? booking.requesterUserId,
+      tripTitle: trip.title ?? trip.category ?? "Trajet",
+    };
+  });
+
+  await notifyUsers(approval.parentUserId ? [approval.parentUserId] : [], {
+    type: "bookingApproved",
+    title: "Réservation approuvée",
+    body: `${approval.tripTitle} est approuvé par le conducteur.`,
+    sourceId: data.bookingId,
   });
 
   return { bookingId: data.bookingId, status: "approved" };

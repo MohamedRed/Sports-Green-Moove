@@ -79,6 +79,21 @@ export type ClientBookingSummary = {
   status: BookingStatus;
 };
 
+export type ClientBookingRequestSummary = {
+  bookingId: string;
+  tripId: string;
+  parentUserId: string;
+  childId?: string;
+  seats: number;
+  note?: string;
+  status: BookingStatus;
+  title: string;
+  club: string;
+  dateLabel: string;
+  timeLabel: string;
+  priceLabel: string;
+};
+
 export type ClientRideSnapshot = {
   rideSessionId: string;
   status: string;

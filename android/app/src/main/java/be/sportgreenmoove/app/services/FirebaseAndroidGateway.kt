@@ -5,6 +5,7 @@ import android.os.Build
 import be.sportgreenmoove.app.R
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
+import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
@@ -142,6 +143,27 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
         return payload["bookingId"] as? String ?: throw ProviderConfigurationException("Booking manquant.")
     }
 
+    override suspend fun getDriverBookingRequests(): List<BookingRequestSummary> {
+        val result = functions
+            .getHttpsCallable("listDriverBookingRequests")
+            .call(emptyMap<String, Any>())
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse demandes invalide.")
+        return (payload["bookings"] as? List<*>)
+            ?.mapNotNull { it as? Map<*, *> }
+            ?.mapNotNull(::mapBookingRequest)
+            .orEmpty()
+    }
+
+    override suspend fun approveBooking(bookingId: String): String {
+        val result = functions
+            .getHttpsCallable("approveBooking")
+            .call(mapOf("bookingId" to bookingId))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse approbation invalide.")
+        return payload["status"] as? String ?: throw ProviderConfigurationException("Statut approbation manquant.")
+    }
+
     override suspend fun startRide(tripId: String): LiveRideSnapshot {
         val result = functions
             .getHttpsCallable("startRide")
@@ -237,31 +259,6 @@ private fun mapRide(data: Map<*, *>): LiveRideSnapshot =
         stale = data["stale"] as? Boolean ?: true,
     )
 
-private fun mapPayableBooking(
-    id: String,
-    booking: Map<String, Any>,
-    trip: Map<String, Any>,
-): PayableBookingSummary? {
-    val seats = (booking["seats"] as? Number)?.toInt() ?: 1
-    val priceCents = (trip["priceCents"] as? Number)?.toInt() ?: return null
-    val amountCents = seats * priceCents
-    if (amountCents <= 0) return null
-    val departure = dateValue(trip["departureAt"])
-
-    return PayableBookingSummary(
-        bookingId = id,
-        tripId = booking["tripId"] as? String ?: return null,
-        title = trip["title"] as? String ?: "${trip["category"] as? String ?: "Trajet"} sportif",
-        club = trip["clubName"] as? String ?: trip["clubId"] as? String ?: "Club",
-        dateLabel = departure?.let(::formatDateLabel) ?: "DATE À CONFIRMER",
-        timeLabel = departure?.let(::formatTimeLabel) ?: "--h--",
-        seats = seats,
-        amountCents = amountCents,
-        amountLabel = priceLabel(amountCents),
-        paymentStatus = booking["paymentStatus"] as? String ?: "required",
-    )
-}
-
 private fun dateValue(value: Any?): Date? =
     when (value) {
         is Timestamp -> value.toDate()
@@ -271,17 +268,22 @@ private fun dateValue(value: Any?): Date? =
     }
 
 private fun formatDateLabel(date: Date): String =
-    SimpleDateFormat("EEE dd MMM", Locale("fr", "BE"))
+    SimpleDateFormat("EEE dd MMM", BelgianFrenchLocale)
         .format(date)
         .replace(".", "")
-        .uppercase(Locale("fr", "BE"))
+        .uppercase(BelgianFrenchLocale)
 
 private fun formatTimeLabel(date: Date): String =
-    SimpleDateFormat("HH'h'mm", Locale("fr", "BE")).format(date)
+    SimpleDateFormat("HH'h'mm", BelgianFrenchLocale).format(date)
 
 private fun priceLabel(cents: Int): String =
     if (cents == 0) {
         "Gratuit"
     } else {
-        "%.2f EUR".format(Locale("fr", "BE"), cents.toDouble() / 100.0)
+        "%.2f EUR".format(BelgianFrenchLocale, cents.toDouble() / 100.0)
     }
+
+private val BelgianFrenchLocale: Locale = Locale.Builder()
+    .setLanguage("fr")
+    .setRegion("BE")
+    .build()

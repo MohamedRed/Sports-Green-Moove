@@ -64,6 +64,7 @@ fun ProfileScreen(
     ) {
         V2TopBar("MON PROFIL")
         ProfileIdentity()
+        ProfileRoleSelector(role = role, onRoleChange = onRoleChange)
         ProfileImpactCard(onClick = onImpact)
         ProfileRewardsCard(onClick = onRewards)
         V2SectionLabel("PARAMÈTRES")

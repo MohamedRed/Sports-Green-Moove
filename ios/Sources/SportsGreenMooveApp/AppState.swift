@@ -12,6 +12,7 @@ final class AppState {
     var trips: [TripSummary] = []
     var activeRide: LiveRideSnapshot?
     var payableBookings: [PayableBookingSummary] = []
+    var driverBookingRequests: [BookingRequestSummary] = []
     var searchOrigin: ResolvedPlace?
     var searchDestination: ResolvedPlace?
     var originSuggestions: [PlaceSuggestion] = []
@@ -77,6 +78,7 @@ final class AppState {
             trips = []
             activeRide = nil
             payableBookings = []
+            driverBookingRequests = []
             selectedTab = .home
             overlay = nil
         } catch {
@@ -108,6 +110,9 @@ final class AppState {
             trips = try await firebase.searchTrips()
             activeRide = try await firebase.getActiveRide()
             payableBookings = try await firebase.getPayableBookings()
+            driverBookingRequests = selectedRole == .driver
+                ? try await firebase.getDriverBookingRequests()
+                : []
         } catch {
             errorMessage = "Impossible de charger les données Firebase."
         }
@@ -192,6 +197,18 @@ final class AppState {
 
     func requestSearchMatch(_ match: TripMatchSummary) async {
         await requestBooking(tripId: match.tripId)
+    }
+
+    func approveBooking(_ request: BookingRequestSummary) async {
+        loading = true
+        defer { loading = false }
+        do {
+            _ = try await firebase.approveBooking(bookingId: request.bookingId)
+            noticeMessage = "Demande approuvée."
+            await refreshAppData()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
     }
 
     private func startRide(tripId: String) async {

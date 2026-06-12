@@ -13,6 +13,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `searchTrips` | signed-in users | Ranked explainable matches. |
 | `createTrip` | driver | Published ride offer. |
 | `requestBooking` | parent | Pending booking request. |
+| `listDriverBookingRequests` | driver | Requested/approved booking queue for driver approval screens. |
 | `approveBooking` | driver | Approved booking and notification. |
 | `cancelBooking` | parent/driver/admin | Cancelled booking and notification. |
 | `startRide` | driver | Active ride session. |

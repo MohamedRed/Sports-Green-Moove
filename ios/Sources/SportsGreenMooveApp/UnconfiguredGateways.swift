@@ -45,6 +45,13 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
+    func getDriverBookingRequests() async throws -> [BookingRequestSummary] { [] }
+
+    func approveBooking(bookingId: String) async throws -> String {
+        _ = bookingId
+        throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
+    }
+
     func startRide(tripId: String) async throws -> LiveRideSnapshot {
         _ = tripId
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")

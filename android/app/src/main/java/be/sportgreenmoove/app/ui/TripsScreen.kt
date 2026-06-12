@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
@@ -45,8 +46,10 @@ import be.sportgreenmoove.app.design.SgmType
 fun TripsScreen(
     trips: List<TripSummary>,
     activeRide: LiveRideSnapshot?,
+    bookingRequests: List<BookingRequestSummary>,
     onTripAction: (TripSummary) -> Unit,
     onOpenSearch: () -> Unit,
+    onApproveBooking: (BookingRequestSummary) -> Unit,
 ) {
     var selectedTab by remember { mutableStateOf("upcoming") }
     val visibleTrips = trips.filter { trip ->
@@ -66,17 +69,16 @@ fun TripsScreen(
     ) {
         TripsHeader(onSearch = onOpenSearch)
         TripsMonthNav()
-        TripsTabs(selected = selectedTab, onSelected = { selectedTab = it })
+        TripsTabs(selected = selectedTab, pendingCount = bookingRequests.count { it.status == "requested" }, onSelected = { selectedTab = it })
         Column(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            visibleTrips.forEach { trip -> TripsCard(trip = trip, onClick = { onTripAction(trip) }) }
-            if (visibleTrips.isEmpty()) {
-                TripsEmptyCard()
-            }
             if (selectedTab == "pending") {
-                PendingRequestsCard()
+                BookingRequestsList(bookingRequests, onApproveBooking)
+            } else {
+                visibleTrips.forEach { trip -> TripsCard(trip = trip, onClick = { onTripAction(trip) }) }
+                if (visibleTrips.isEmpty()) TripsEmptyCard()
             }
         }
     }
@@ -121,14 +123,14 @@ private fun TripsMonthNav() {
 }
 
 @Composable
-private fun TripsTabs(selected: String, onSelected: (String) -> Unit) {
+private fun TripsTabs(selected: String, pendingCount: Int, onSelected: (String) -> Unit) {
     Row(
         modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 14.dp),
         horizontalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         TripsTab("upcoming", "À VENIR", selected, onSelected, Modifier.weight(1f))
         TripsTab("past", "PASSÉS", selected, onSelected, Modifier.weight(1f))
-        TripsTab("pending", "EN ATTENTE", selected, onSelected, Modifier.weight(1f), badge = "2")
+        TripsTab("pending", "EN ATTENTE", selected, onSelected, Modifier.weight(1f), badge = pendingCount.takeIf { it > 0 }?.toString())
     }
 }
 
@@ -266,25 +268,5 @@ private fun TabBadge(text: String) {
         contentAlignment = Alignment.Center,
     ) {
         Text(text, style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 8.sp, fontWeight = FontWeight.Bold))
-    }
-}
-
-@Composable
-private fun PendingRequestsCard() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(SgmRadius.LG))
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        Text(
-            "DEMANDES EN ATTENTE",
-            style = SgmType.Eyebrow.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, letterSpacing = 0.12.em),
-        )
-        Text("Idriss BAMAKO · U8 vs Ottignies", style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold))
-        Text("Kévin TOUSSAINT · U8 vs Ottignies", style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold))
     }
 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
+import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.TripSummary
@@ -38,6 +39,7 @@ fun SportsGreenMooveApp() {
     var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
     var activeRide by remember { mutableStateOf<LiveRideSnapshot?>(null) }
     var payableBookings by remember { mutableStateOf(emptyList<PayableBookingSummary>()) }
+    var driverBookingRequests by remember { mutableStateOf(emptyList<BookingRequestSummary>()) }
     var darkTheme by remember { mutableStateOf(false) }
     var loading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -57,6 +59,11 @@ fun SportsGreenMooveApp() {
         trips = providers.firebase.searchTrips()
         activeRide = providers.firebase.getActiveRide()
         payableBookings = providers.firebase.getPayableBookings()
+        driverBookingRequests = if (role == AppRole.Driver) {
+            providers.firebase.getDriverBookingRequests()
+        } else {
+            emptyList()
+        }
     }
 
     val paymentSheet = rememberStripePaymentSheetController { result ->
@@ -104,6 +111,19 @@ fun SportsGreenMooveApp() {
             }.onFailure {
                 errorMessage = it.message
             }
+            loading = false
+        }
+    }
+
+    fun approveBooking(request: BookingRequestSummary) {
+        scope.launch {
+            loading = true
+            errorMessage = null
+            runCatching {
+                providers.firebase.approveBooking(request.bookingId)
+                noticeMessage = "Demande approuvée."
+                refreshAppData()
+            }.onFailure { errorMessage = it.message }
             loading = false
         }
     }
@@ -196,17 +216,22 @@ fun SportsGreenMooveApp() {
                         DemoScreen.Trips -> TripsScreen(
                             trips = trips,
                             activeRide = activeRide,
+                            bookingRequests = driverBookingRequests,
                             onTripAction = { trip ->
                                 launchTripAction(trip)
                             },
                             onOpenSearch = { screen = DemoScreen.Search },
+                            onApproveBooking = ::approveBooking,
                         )
 
                         DemoScreen.Publish -> PublishScreen(role = role)
                         DemoScreen.Messages -> MessagesScreen()
                         DemoScreen.Profile -> ProfileScreen(
                             role = role,
-                            onRoleChange = { role = it },
+                            onRoleChange = {
+                                role = it
+                                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
+                            },
                             onGroups = { screen = DemoScreen.Groups },
                             onImpact = { screen = DemoScreen.Impact },
                             onRewards = { screen = DemoScreen.Rewards },
@@ -218,6 +243,7 @@ fun SportsGreenMooveApp() {
                                 trips = emptyList()
                                 activeRide = null
                                 payableBookings = emptyList()
+                                driverBookingRequests = emptyList()
                                 screen = DemoScreen.Home
                             },
                         )
