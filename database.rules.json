@@ -3,15 +3,7 @@
     "liveTrips": {
       "$rideSessionId": {
         ".read": "auth != null",
-        ".write": false,
-        "vehicle": {
-          ".write": "auth != null && newData.child('userId').val() === auth.uid"
-        },
-        "children": {
-          "$childUserId": {
-            ".write": "auth != null && $childUserId === auth.uid"
-          }
-        }
+        ".write": false
       }
     },
     "presence": {
@@ -19,7 +11,10 @@
         ".read": "auth != null",
         ".write": "auth != null && $userId === auth.uid"
       }
+    },
+    "$other": {
+      ".read": false,
+      ".write": false
     }
   }
 }
-

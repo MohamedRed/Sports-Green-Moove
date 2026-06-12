@@ -5,33 +5,79 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    function hasRole(role) {
-      return signedIn() && request.auth.token.roles != null && request.auth.token.roles[role] == true;
+    function isAdmin() {
+      return signedIn() &&
+        request.auth.token.roleKeys != null &&
+        request.auth.token.roleKeys.hasAny(['admin']);
     }
 
-    function isAdmin() {
-      return hasRole('admin');
+    function hasClubManagerRole() {
+      return signedIn() &&
+        request.auth.token.roleKeys != null &&
+        request.auth.token.roleKeys.hasAny(['clubManager']);
     }
 
     function isSelf(userId) {
       return signedIn() && request.auth.uid == userId;
     }
 
+    function hasAnyKey(fields) {
+      return request.resource.data.keys().hasAny(fields);
+    }
+
     function isClubManager(clubId) {
-      return hasRole('clubManager') &&
+      return hasClubManagerRole() &&
         exists(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId));
+    }
+
+    function userProtectedFields() {
+      return [
+        'roles',
+        'verified',
+        'driverVerified',
+        'stripeAccountId',
+        'stripeStatus',
+        'createdAt',
+        'updatedAt'
+      ];
+    }
+
+    function childProtectedFields() {
+      return [
+        'guardianUserIds',
+        'createdAt'
+      ];
+    }
+
+    function tripProtectedFields() {
+      return [
+        'driverUserId',
+        'driverVerified',
+        'driverRating',
+        'approvedPassengerUserIds',
+        'status',
+        'createdAt'
+      ];
     }
 
     match /users/{userId} {
       allow read: if isSelf(userId) || isAdmin();
-      allow create: if isSelf(userId);
-      allow update: if isSelf(userId) || isAdmin();
+      allow create: if isSelf(userId) && !hasAnyKey(userProtectedFields());
+      allow update: if isAdmin() || (
+        isSelf(userId) &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(userProtectedFields())
+      );
       allow delete: if isAdmin();
     }
 
     match /children/{childId} {
-      allow read: if isAdmin() || resource.data.guardianUserIds.hasAny([request.auth.uid]);
-      allow create, update: if signedIn() && request.resource.data.guardianUserIds.hasAny([request.auth.uid]);
+      allow read: if isAdmin() || (signedIn() && resource.data.guardianUserIds.hasAny([request.auth.uid]));
+      allow create: if signedIn() && request.resource.data.guardianUserIds.hasAny([request.auth.uid]);
+      allow update: if isAdmin() || (
+        signedIn() &&
+        resource.data.guardianUserIds.hasAny([request.auth.uid]) &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(childProtectedFields())
+      );
       allow delete: if isAdmin();
     }
 
@@ -43,19 +89,26 @@ service cloud.firestore {
 
     match /teams/{teamId} {
       allow read: if true;
-      allow write: if isAdmin() || isClubManager(request.resource.data.clubId);
+      allow create, update: if isAdmin() || isClubManager(request.resource.data.clubId);
+      allow delete: if isAdmin() || isClubManager(resource.data.clubId);
     }
 
     match /memberships/{membershipId} {
-      allow read: if signedIn();
-      allow create, update, delete: if isAdmin() || isClubManager(request.resource.data.clubId);
+      allow read: if isAdmin() || isSelf(resource.data.userId) || isClubManager(resource.data.clubId);
+      allow create: if isAdmin() || isClubManager(request.resource.data.clubId);
+      allow update: if isAdmin() || (
+        isClubManager(resource.data.clubId) &&
+        request.resource.data.clubId == resource.data.clubId
+      );
+      allow delete: if isAdmin() || isClubManager(resource.data.clubId);
     }
 
     match /trips/{tripId} {
       allow read: if signedIn();
-      allow create: if hasRole('driver') && request.resource.data.driverUserId == request.auth.uid;
-      allow update: if isAdmin() || resource.data.driverUserId == request.auth.uid;
-      allow delete: if isAdmin();
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin() || (signedIn() &&
+        resource.data.driverUserId == request.auth.uid &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(tripProtectedFields()));
     }
 
     match /bookings/{bookingId} {
@@ -66,18 +119,26 @@ service cloud.firestore {
     }
 
     match /rideSessions/{rideSessionId} {
-      allow read: if signedIn();
+      allow read: if isAdmin() ||
+        (signedIn() && resource.data.driverUserId == request.auth.uid) ||
+        (signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]));
       allow write: if false;
     }
 
     match /messages/{messageId} {
       allow read: if signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]);
-      allow create: if signedIn() && request.resource.data.senderUserId == request.auth.uid;
+      allow create: if signedIn() &&
+        request.resource.data.senderUserId == request.auth.uid &&
+        request.resource.data.participantUserIds.hasAny([request.auth.uid]);
       allow update, delete: if false;
     }
 
     match /notifications/{notificationId} {
-      allow read, update: if signedIn() && resource.data.userId == request.auth.uid;
+      allow read: if signedIn() && resource.data.userId == request.auth.uid;
+      allow update: if signedIn() &&
+        resource.data.userId == request.auth.uid &&
+        request.resource.data.userId == resource.data.userId &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'readAt']);
       allow create, delete: if false;
     }
 
@@ -88,17 +149,17 @@ service cloud.firestore {
     }
 
     match /co2Ledger/{entryId} {
-      allow read: if signedIn();
+      allow read: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
       allow write: if false;
     }
 
     match /rewardLedger/{entryId} {
-      allow read: if isAdmin() || resource.data.userId == request.auth.uid;
+      allow read: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
       allow write: if false;
     }
 
     match /stripeAccounts/{accountId} {
-      allow read: if isAdmin() || resource.data.userId == request.auth.uid;
+      allow read: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
       allow write: if false;
     }
 
@@ -112,6 +173,9 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isAdmin();
     }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
   }
 }
-
