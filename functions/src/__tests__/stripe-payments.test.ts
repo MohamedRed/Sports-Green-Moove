@@ -7,6 +7,10 @@ import {
   stripePublishableKey,
 } from "../services/stripeConnect.js";
 import { buildRidePaymentLedgerEntries } from "../services/stripeLedger.js";
+import {
+  shouldApplyIncompletePaymentStatus,
+  validateSucceededRidePaymentIntent,
+} from "../services/stripePaymentValidation.js";
 
 describe("Stripe ride payments", () => {
   it("builds a destination charge PaymentIntent from server-owned booking context", () => {
@@ -27,13 +31,14 @@ describe("Stripe ride payments", () => {
       bookingId: "booking-1",
       payerUserId: "parent-1",
       driverUserId: "driver-1",
+      platformFeeCents: "0",
       product: "sports-green-moove",
     });
   });
 
-  it("creates parent payment and driver earning ledger drafts from a succeeded PaymentIntent", () => {
+  it("creates parent payment and driver earning ledger drafts from frozen PaymentIntent fee metadata", () => {
     const previousFee = process.env.PLATFORM_FEE_BPS;
-    process.env.PLATFORM_FEE_BPS = "1000";
+    process.env.PLATFORM_FEE_BPS = "2500";
     try {
       const intent = {
         id: "pi_123",
@@ -44,6 +49,7 @@ describe("Stripe ride payments", () => {
           tripId: "trip-1",
           payerUserId: "parent-1",
           driverUserId: "driver-1",
+          platformFeeCents: "100",
           product: "sports-green-moove",
         },
       } as Stripe.PaymentIntent;
@@ -56,6 +62,83 @@ describe("Stripe ride payments", () => {
     } finally {
       process.env.PLATFORM_FEE_BPS = previousFee;
     }
+  });
+
+  it("rejects ledger drafts when platform fee metadata is missing", () => {
+    const intent = {
+      id: "pi_123",
+      amount: 1000,
+      currency: "eur",
+      metadata: {
+        bookingId: "booking-1",
+        tripId: "trip-1",
+        payerUserId: "parent-1",
+        driverUserId: "driver-1",
+        product: "sports-green-moove",
+      },
+    } as Stripe.PaymentIntent;
+
+    expect(buildRidePaymentLedgerEntries(intent)).toEqual([]);
+  });
+
+  it("validates succeeded PaymentIntent metadata against booking and trip state", () => {
+    const intent = {
+      id: "pi_123",
+      amount: 500,
+      currency: "eur",
+      metadata: {
+        bookingId: "booking-1",
+        tripId: "trip-1",
+        payerUserId: "parent-1",
+        driverUserId: "driver-1",
+        platformFeeCents: "0",
+        product: "sports-green-moove",
+      },
+    } as Stripe.PaymentIntent;
+
+    expect(validateSucceededRidePaymentIntent(
+      intent,
+      {
+        id: "booking-1",
+        tripId: "trip-1",
+        parentUserId: "parent-1",
+        driverUserId: "driver-1",
+        seats: 2,
+        paymentIntentId: "pi_123",
+      },
+      { id: "trip-1", priceCents: 250 },
+    )).toMatchObject({ ok: true, amountCents: 500, parentUserId: "parent-1" });
+
+    expect(validateSucceededRidePaymentIntent(
+      { ...intent, amount: 400 } as Stripe.PaymentIntent,
+      {
+        id: "booking-1",
+        tripId: "trip-1",
+        parentUserId: "parent-1",
+        driverUserId: "driver-1",
+        seats: 2,
+        paymentIntentId: "pi_123",
+      },
+      { id: "trip-1", priceCents: 250 },
+    )).toMatchObject({ ok: false, reconciliationStatus: "amountMismatch" });
+  });
+
+  it("does not downgrade paid bookings from incomplete PaymentIntent events", () => {
+    const intent = {
+      id: "pi_123",
+      amount: 500,
+      currency: "eur",
+      metadata: {
+        bookingId: "booking-1",
+        product: "sports-green-moove",
+      },
+    } as Stripe.PaymentIntent;
+
+    expect(shouldApplyIncompletePaymentStatus(intent, {
+      id: "booking-1",
+      paymentIntentId: "pi_123",
+      paymentStatus: "paid",
+    })).toMatchObject({ ok: false, reconciliationStatus: "paidBookingUnchanged" });
   });
 
   it("requires a Stripe publishable key before issuing native PaymentSheet config", () => {

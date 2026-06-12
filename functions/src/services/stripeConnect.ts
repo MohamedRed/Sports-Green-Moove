@@ -112,6 +112,7 @@ export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentCon
         tripId: context.tripId,
         payerUserId: context.payerUserId,
         driverUserId: context.driverUserId,
+        platformFeeCents: String(applicationFeeAmount),
         product: "sports-green-moove",
       },
     },

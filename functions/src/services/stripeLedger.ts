@@ -1,6 +1,5 @@
 import type Stripe from "stripe";
 import type { RewardLedgerEntry } from "../domain/types.js";
-import { platformFeeAmountCents } from "./stripeConnect.js";
 
 export type LedgerDraft = Omit<RewardLedgerEntry, "id" | "createdAt"> & {
   bookingId: string;
@@ -12,9 +11,11 @@ export function buildRidePaymentLedgerEntries(intent: Stripe.PaymentIntent): Led
   const tripId = intent.metadata.tripId;
   const payerUserId = intent.metadata.payerUserId;
   const driverUserId = intent.metadata.driverUserId;
-  if (!bookingId || !tripId || !payerUserId || !driverUserId || intent.currency !== "eur") return [];
+  const platformFeeCents = stripeMetadataAmount(intent.metadata.platformFeeCents);
+  if (!bookingId || !tripId || !payerUserId || !driverUserId || intent.currency !== "eur" || platformFeeCents == null) {
+    return [];
+  }
 
-  const feeCents = platformFeeAmountCents(intent.amount);
   return [
     {
       userId: payerUserId,
@@ -28,11 +29,16 @@ export function buildRidePaymentLedgerEntries(intent: Stripe.PaymentIntent): Led
     {
       userId: driverUserId,
       type: "driverEarning",
-      amountCents: intent.amount - feeCents,
+      amountCents: intent.amount - platformFeeCents,
       currency: "eur",
       sourceId: intent.id,
       bookingId,
       tripId,
     },
   ];
+}
+
+function stripeMetadataAmount(value: string | undefined): number | undefined {
+  if (value == null || !/^\d+$/.test(value)) return undefined;
+  return Number(value);
 }

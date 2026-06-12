@@ -2,6 +2,12 @@ import { Timestamp } from "firebase-admin/firestore";
 import type Stripe from "stripe";
 import { firestore } from "../lib/firebase.js";
 import { buildRidePaymentLedgerEntries } from "./stripeLedger.js";
+import {
+  shouldApplyIncompletePaymentStatus,
+  validateSucceededRidePaymentIntent,
+  type RidePaymentBookingSnapshot,
+  type RidePaymentTripSnapshot,
+} from "./stripePaymentValidation.js";
 
 type StripeAccountUpdate = {
   id?: string;
@@ -46,19 +52,59 @@ async function reconcilePaymentSucceeded(event: Stripe.Event, eventPath: string)
       transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "bookingMissing" });
       return;
     }
+    const booking = { id: bookingSnap.id, ...bookingSnap.data() } as RidePaymentBookingSnapshot;
+    if (!booking.tripId) {
+      transaction.set(firestore.doc(eventPath), {
+        ...stripeReport(event),
+        reconciliationStatus: "tripMissing",
+        reconciliationReason: "Booking has no tripId.",
+      });
+      return;
+    }
+
+    const tripRef = firestore.collection("trips").doc(booking.tripId);
+    const tripSnap = await transaction.get(tripRef);
+    if (!tripSnap.exists) {
+      transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "tripMissing" });
+      return;
+    }
+
+    const validation = validateSucceededRidePaymentIntent(
+      intent,
+      booking,
+      { id: tripSnap.id, ...tripSnap.data() } as RidePaymentTripSnapshot,
+    );
+    if (!validation.ok) {
+      transaction.set(firestore.doc(eventPath), {
+        ...stripeReport(event),
+        reconciliationStatus: validation.reconciliationStatus,
+        reconciliationReason: validation.reason,
+      });
+      return;
+    }
+    const ledgerEntries = buildRidePaymentLedgerEntries(intent);
+    if (ledgerEntries.length !== 2) {
+      transaction.set(firestore.doc(eventPath), {
+        ...stripeReport(event),
+        reconciliationStatus: "ledgerMetadataInvalid",
+        reconciliationReason: "PaymentIntent metadata cannot produce deterministic ledger entries.",
+      });
+      return;
+    }
 
     transaction.set(
       bookingRef,
       {
         paymentStatus: "paid",
-        amountPaidCents: intent.amount,
+        amountPaidCents: validation.amountCents,
+        paymentIntentId: intent.id,
         paidAt: Timestamp.now(),
         updatedAt: Timestamp.now(),
       },
       { merge: true },
     );
 
-    for (const entry of buildRidePaymentLedgerEntries(intent)) {
+    for (const entry of ledgerEntries) {
       const ledgerId = `${intent.id}_${entry.type}_${entry.userId}`;
       transaction.set(firestore.collection("rewardLedger").doc(ledgerId), {
         ...entry,
@@ -82,16 +128,31 @@ async function reconcilePaymentIncomplete(event: Stripe.Event, eventPath: string
   await firestore.runTransaction(async (transaction) => {
     const bookingRef = firestore.collection("bookings").doc(bookingId);
     const bookingSnap = await transaction.get(bookingRef);
-    if (bookingSnap.exists) {
-      transaction.set(
-        bookingRef,
-        {
-          paymentStatus: event.type === "payment_intent.canceled" ? "canceled" : "failed",
-          updatedAt: Timestamp.now(),
-        },
-        { merge: true },
-      );
+    if (!bookingSnap.exists) {
+      transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "bookingMissing" });
+      return;
     }
+
+    const validation = shouldApplyIncompletePaymentStatus(
+      intent,
+      { id: bookingSnap.id, ...bookingSnap.data() } as RidePaymentBookingSnapshot,
+    );
+    if (!validation.ok) {
+      transaction.set(firestore.doc(eventPath), {
+        ...stripeReport(event),
+        reconciliationStatus: validation.reconciliationStatus,
+        reconciliationReason: validation.reason,
+      });
+      return;
+    }
+    transaction.set(
+      bookingRef,
+      {
+        paymentStatus: event.type === "payment_intent.canceled" ? "canceled" : "failed",
+        updatedAt: Timestamp.now(),
+      },
+      { merge: true },
+    );
     transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "paymentIncomplete" });
   });
 }

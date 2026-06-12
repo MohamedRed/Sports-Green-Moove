@@ -58,7 +58,18 @@ On `payment_intent.succeeded`, the Stripe webhook marks the booking paid and wri
 - `ridePayment`: negative entry for the parent.
 - `driverEarning`: positive entry for the driver, net of platform fee.
 
+Before marking a booking paid, the webhook verifies the PaymentIntent against
+the booking and trip documents: booking id, trip id, parent user, driver user,
+PaymentIntent id, EUR currency, and server-priced amount must all match.
+Mismatches are written to `reports/stripe_{eventId}` and do not update booking
+or ledger state.
+
+The platform fee used for ledger math is frozen into PaymentIntent metadata as
+`platformFeeCents` when the PaymentIntent is created. Webhook reconciliation
+does not recalculate historical fees from current environment variables.
+
 On `payment_intent.payment_failed` or `payment_intent.canceled`, the booking payment status is updated without writing earning ledger entries.
+Paid bookings are never downgraded by later incomplete payment events.
 
 `issueRewardPayout` is admin-only. It requires:
 
