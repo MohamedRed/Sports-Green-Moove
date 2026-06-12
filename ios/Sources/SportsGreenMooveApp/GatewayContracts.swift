@@ -1,7 +1,6 @@
 import Foundation
 
-@MainActor
-protocol AuthGateway {
+protocol AuthGateway: Sendable {
     var isConfigured: Bool { get }
     func currentSession() async throws -> AuthSession?
     func signIn(email: String, password: String) async throws -> AuthSession
@@ -9,8 +8,7 @@ protocol AuthGateway {
     func signOut() throws
 }
 
-@MainActor
-protocol FirebaseGateway {
+protocol FirebaseGateway: Sendable {
     var isConfigured: Bool { get }
     func searchTrips() async throws -> [TripSummary]
     func requestBooking(tripId: String) async throws -> String
@@ -19,26 +17,23 @@ protocol FirebaseGateway {
     func writeNativeLocationFallback(rideSessionId: String) async throws
 }
 
-@MainActor
-protocol RadarTrackingGateway {
+protocol RadarTrackingGateway: Sendable {
     var isConfigured: Bool { get }
     func startTripTracking(rideSessionId: String, role: AppRole) async throws
     func stopTripTracking(rideSessionId: String) async throws
 }
 
-@MainActor
-protocol GoogleRoutesGateway {
+protocol GoogleRoutesGateway: Sendable {
     var isConfigured: Bool { get }
     func explainRoute(for tripId: String) async throws -> [String]
 }
 
-@MainActor
-protocol StripePaymentsGateway {
+protocol StripePaymentsGateway: Sendable {
     var isConfigured: Bool { get }
     func prepareRidePayment(amountCents: Int) async throws -> String
 }
 
-struct ProviderConfigurationError: LocalizedError {
+struct ProviderConfigurationError: LocalizedError, Sendable {
     let message: String
 
     var errorDescription: String? { message }

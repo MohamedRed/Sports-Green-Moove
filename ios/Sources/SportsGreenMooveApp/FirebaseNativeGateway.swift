@@ -30,31 +30,30 @@ private struct FirebaseAuthGateway: AuthGateway {
     }
 
     func signIn(email: String, password: String) async throws -> AuthSession {
-        let result = try await authResult { completion in
+        try await authSession { completion in
             Auth.auth().signIn(withEmail: email, password: password, completion: completion)
         }
-        return AuthSession(uid: result.user.uid, email: result.user.email)
     }
 
     func signUp(name: String, email: String, password: String) async throws -> AuthSession {
         _ = name
-        let result = try await authResult { completion in
+        try await authSession { completion in
             Auth.auth().createUser(withEmail: email, password: password, completion: completion)
         }
-        return AuthSession(uid: result.user.uid, email: result.user.email)
     }
 
     func signOut() throws {
         try Auth.auth().signOut()
     }
 
-    private func authResult(_ action: (@escaping (AuthDataResult?, Error?) -> Void) -> Void) async throws -> AuthDataResult {
+    private func authSession(_ action: (@escaping (AuthDataResult?, Error?) -> Void) -> Void) async throws -> AuthSession {
         try await withCheckedThrowingContinuation { continuation in
             action { result, error in
                 if let error {
                     continuation.resume(throwing: error)
                 } else if let result {
-                    continuation.resume(returning: result)
+                    let session = AuthSession(uid: result.user.uid, email: result.user.email)
+                    continuation.resume(returning: session)
                 } else {
                     continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Firebase Auth invalide."))
                 }
@@ -72,30 +71,54 @@ private struct FirebaseBackendGateway: FirebaseGateway {
             .whereField("status", isEqualTo: "published")
             .order(by: "departureAt")
             .limit(to: 30)
-        let snapshot = try await documents(for: query)
-        return snapshot.documents.map { mapTrip(id: $0.documentID, data: $0.data()) }
+        return try await trips(for: query)
     }
 
     func requestBooking(tripId: String) async throws -> String {
-        let result = try await callFunction("requestBooking", data: ["tripId": tripId, "seats": 1])
-        guard let bookingId = result["bookingId"] as? String else {
-            throw ProviderConfigurationError(message: "Réponse booking invalide.")
+        try await withCheckedThrowingContinuation { continuation in
+            let data: [String: Any] = ["tripId": tripId, "seats": 1]
+            Functions.functions().httpsCallable("requestBooking").call(data) { result, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else if let payload = result?.data as? [String: Any],
+                          let bookingId = payload["bookingId"] as? String {
+                    continuation.resume(returning: bookingId)
+                } else {
+                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse booking invalide."))
+                }
+            }
         }
-        return bookingId
     }
 
     func startRide(tripId: String) async throws -> LiveRideSnapshot {
-        let result = try await callFunction("startRide", data: ["tripId": tripId, "bookingIds": []])
-        guard let ride = result["ride"] as? [String: Any] else {
-            throw ProviderConfigurationError(message: "Réponse ride invalide.")
+        try await withCheckedThrowingContinuation { continuation in
+            let data: [String: Any] = ["tripId": tripId, "bookingIds": []]
+            Functions.functions().httpsCallable("startRide").call(data) { result, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else if let payload = result?.data as? [String: Any],
+                          let ride = payload["ride"] as? [String: Any] {
+                    continuation.resume(returning: mapRide(ride))
+                } else {
+                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse ride invalide."))
+                }
+            }
         }
-        return mapRide(ride)
     }
 
     func getActiveRide() async throws -> LiveRideSnapshot? {
-        let result = try await callFunction("getActiveRide", data: [:])
-        guard let ride = result["ride"] as? [String: Any] else { return nil }
-        return mapRide(ride)
+        try await withCheckedThrowingContinuation { continuation in
+            Functions.functions().httpsCallable("getActiveRide").call([:]) { result, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else if let payload = result?.data as? [String: Any],
+                          let ride = payload["ride"] as? [String: Any] {
+                    continuation.resume(returning: mapRide(ride))
+                } else {
+                    continuation.resume(returning: nil)
+                }
+            }
+        }
     }
 
     func writeNativeLocationFallback(rideSessionId: String) async throws {
@@ -103,29 +126,16 @@ private struct FirebaseBackendGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Capture GPS native requise avant l'envoi du batch.")
     }
 
-    private func documents(for query: Query) async throws -> QuerySnapshot {
+    private func trips(for query: Query) async throws -> [TripSummary] {
         try await withCheckedThrowingContinuation { continuation in
             query.getDocuments { snapshot, error in
                 if let error {
                     continuation.resume(throwing: error)
                 } else if let snapshot {
-                    continuation.resume(returning: snapshot)
+                    let trips = snapshot.documents.map { mapTrip(id: $0.documentID, data: $0.data()) }
+                    continuation.resume(returning: trips)
                 } else {
                     continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Firestore invalide."))
-                }
-            }
-        }
-    }
-
-    private func callFunction(_ name: String, data: [String: Any]) async throws -> [String: Any] {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable(name).call(data) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let payload = result?.data as? [String: Any] {
-                    continuation.resume(returning: payload)
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Cloud Functions invalide."))
                 }
             }
         }

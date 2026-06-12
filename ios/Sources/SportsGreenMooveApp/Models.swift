@@ -1,6 +1,6 @@
 import Foundation
 
-enum AppRole: String, CaseIterable, Identifiable, Codable {
+enum AppRole: String, CaseIterable, Identifiable, Codable, Sendable {
     case parent
     case driver
     case child
@@ -10,12 +10,12 @@ enum AppRole: String, CaseIterable, Identifiable, Codable {
     var id: String { rawValue }
 }
 
-struct AuthSession: Hashable {
+struct AuthSession: Hashable, Sendable {
     let uid: String
     let email: String?
 }
 
-enum AppTab: String, CaseIterable, Identifiable {
+enum AppTab: String, CaseIterable, Identifiable, Sendable {
     case home
     case trips
     case publish
@@ -35,7 +35,7 @@ enum AppTab: String, CaseIterable, Identifiable {
     }
 }
 
-enum AppOverlay: String, Identifiable {
+enum AppOverlay: String, Identifiable, Sendable {
     case search
     case groups
     case impact
@@ -46,13 +46,13 @@ enum AppOverlay: String, Identifiable {
     var id: String { rawValue }
 }
 
-enum TripStatus: String, Hashable {
+enum TripStatus: String, Hashable, Sendable {
     case upcoming
     case past
     case pending
 }
 
-struct TripSummary: Identifiable, Hashable {
+struct TripSummary: Identifiable, Hashable, Sendable {
     let id: String
     let title: String
     let club: String
@@ -104,7 +104,7 @@ struct TripSummary: Identifiable, Hashable {
     }
 }
 
-struct LiveRideSnapshot: Hashable {
+struct LiveRideSnapshot: Hashable, Sendable {
     let rideSessionId: String
     let status: String
     let vehicleLastUpdateLabel: String
