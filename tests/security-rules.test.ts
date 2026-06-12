@@ -137,11 +137,11 @@ describe("Firestore rules", () => {
     await assertFails(authed("parent-2", { parent: true }).firestore().doc("rideSessions/ride-1").get());
   });
 
-  it("requires message senders to be conversation participants", async () => {
+  it("requires messages to be written through Cloud Functions", async () => {
     const sender = authed("parent-1", { parent: true });
     const stranger = authed("stranger", { parent: true });
 
-    await assertSucceeds(sender.firestore().doc("messages/message-1").set({
+    await assertFails(sender.firestore().doc("messages/message-1").set({
       senderUserId: "parent-1",
       participantUserIds: ["parent-1", "driver-1"],
       body: "Bonjour",
@@ -150,6 +150,23 @@ describe("Firestore rules", () => {
       senderUserId: "stranger",
       participantUserIds: ["parent-1", "driver-1"],
       body: "No access",
+    }));
+  });
+
+  it("requires ratings and reports to be written through Cloud Functions", async () => {
+    const parent = authed("parent-1", { parent: true });
+
+    await assertFails(parent.firestore().doc("ratings/rating-1").set({
+      rideSessionId: "ride-1",
+      authorUserId: "parent-1",
+      ratedUserId: "driver-1",
+      score: 5,
+    }));
+    await assertFails(parent.firestore().doc("reports/report-1").set({
+      reporterUserId: "parent-1",
+      subjectType: "rideSession",
+      reason: "Safety",
+      description: "Support review requested.",
     }));
   });
 });

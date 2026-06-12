@@ -1,12 +1,28 @@
 import { Timestamp } from "firebase-admin/firestore";
-import { HttpsError, onCall } from "firebase-functions/v2/https";
+import { type CallableRequest, HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { estimateCo2SavedKg } from "../domain/co2.js";
 import { rewardForCo2Saved } from "../domain/rewards.js";
 import type { Trip } from "../domain/types.js";
 import { firestore, realtimeDb } from "../lib/firebase.js";
 import { hasRole, requireAuth, requireRole } from "../lib/https.js";
+import { notifyUsers } from "../lib/notifications.js";
 import { toClientRideSnapshot } from "../lib/clientTrips.js";
+
+type BookingDocument = {
+  driverUserId: string;
+  parentUserId?: string;
+  requesterUserId?: string;
+  status?: string;
+  tripId?: string;
+};
+
+type RideSessionDocument = {
+  bookingIds?: string[];
+  driverUserId?: string;
+  participantUserIds?: string[];
+  status?: string;
+};
 
 export const startRide = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
@@ -22,11 +38,31 @@ export const startRide = onCall(async (request) => {
   const trip = tripSnap.data() as Trip;
   if (trip.driverUserId !== uid) throw new HttpsError("permission-denied", "Only the driver can start this ride.");
 
+  const bookingSnaps = await Promise.all(
+    data.bookingIds.map((bookingId) => firestore.collection("bookings").doc(bookingId).get()),
+  );
+  const bookings = bookingSnaps.map((snap, index) => {
+    if (!snap.exists) throw new HttpsError("not-found", `Booking ${data.bookingIds[index]} not found.`);
+    return snap.data() as BookingDocument;
+  });
+  for (const booking of bookings) {
+    if (booking.driverUserId !== uid || booking.tripId !== data.tripId) {
+      throw new HttpsError("failed-precondition", "All bookings must belong to this driver and trip.");
+    }
+    if (booking.status !== "approved") {
+      throw new HttpsError("failed-precondition", "Only approved bookings can be attached to a ride.");
+    }
+  }
+  const participantUserIds = bookings
+    .map((booking) => booking.parentUserId ?? booking.requesterUserId)
+    .filter((userId): userId is string => Boolean(userId));
+
   const ref = firestore.collection("rideSessions").doc();
   await ref.set({
     tripId: data.tripId,
     bookingIds: data.bookingIds,
     driverUserId: uid,
+    participantUserIds,
     status: "active",
     startedAt: Timestamp.now(),
     createdAt: Timestamp.now(),
@@ -40,6 +76,84 @@ export const startRide = onCall(async (request) => {
 
   return { ride: toClientRideSnapshot(ref.id, "active") };
 });
+
+async function markPassengerStatus(
+  request: CallableRequest,
+  event: "pickup" | "dropoff",
+) {
+  const uid = requireAuth(request.auth?.uid);
+  requireRole(request.auth?.token, "driver");
+  const schema = z.object({
+    rideSessionId: z.string(),
+    bookingId: z.string(),
+    childId: z.string(),
+    note: z.string().max(300).optional(),
+  });
+  const data = schema.parse(request.data);
+  const rideRef = firestore.collection("rideSessions").doc(data.rideSessionId);
+  const bookingRef = firestore.collection("bookings").doc(data.bookingId);
+
+  const parentUserId = await firestore.runTransaction(async (transaction) => {
+    const [rideSnap, bookingSnap] = await Promise.all([
+      transaction.get(rideRef),
+      transaction.get(bookingRef),
+    ]);
+    if (!rideSnap.exists) throw new HttpsError("not-found", "Ride session not found.");
+    if (!bookingSnap.exists) throw new HttpsError("not-found", "Booking not found.");
+
+    const ride = rideSnap.data() as RideSessionDocument;
+    const booking = bookingSnap.data() as BookingDocument;
+    if (ride.driverUserId !== uid || booking.driverUserId !== uid) {
+      throw new HttpsError("permission-denied", "Only the ride driver can update passenger status.");
+    }
+    if (booking.status !== "approved") {
+      throw new HttpsError("failed-precondition", "Only approved bookings can receive passenger status updates.");
+    }
+    if (ride.status !== "active") {
+      throw new HttpsError("failed-precondition", "Passenger status can only be updated during an active ride.");
+    }
+    if (ride.bookingIds?.length && !ride.bookingIds.includes(data.bookingId)) {
+      throw new HttpsError("failed-precondition", "Booking is not attached to this ride session.");
+    }
+
+    const now = Timestamp.now();
+    const statusUpdate =
+      event === "pickup"
+        ? { pickupStatus: "pickedUp", pickedUpAt: now, pickupNote: data.note ?? null }
+        : { dropoffStatus: "droppedOff", droppedOffAt: now, dropoffNote: data.note ?? null };
+
+    transaction.set(rideRef, {
+      passengerStatuses: {
+        [data.childId]: {
+          ...statusUpdate,
+          bookingId: data.bookingId,
+          updatedByUserId: uid,
+          updatedAt: now,
+        },
+      },
+      updatedAt: now,
+    }, { merge: true });
+    transaction.set(bookingRef, {
+      ...statusUpdate,
+      updatedAt: now,
+    }, { merge: true });
+
+    return booking.parentUserId ?? booking.requesterUserId;
+  });
+
+  await notifyUsers(parentUserId ? [parentUserId] : [], {
+    type: event === "pickup" ? "passengerPickedUp" : "passengerDroppedOff",
+    title: event === "pickup" ? "Enfant récupéré" : "Enfant déposé",
+    body: event === "pickup" ? "Le conducteur a confirmé le pickup." : "Le conducteur a confirmé le dropoff.",
+    sourceId: data.rideSessionId,
+  });
+
+  return { rideSessionId: data.rideSessionId, bookingId: data.bookingId, childId: data.childId, status: event };
+}
+
+export const markPickup = onCall((request) => markPassengerStatus(request, "pickup"));
+
+export const markDropoff = onCall((request) => markPassengerStatus(request, "dropoff"));
 
 export const getActiveRide = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);

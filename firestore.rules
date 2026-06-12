@@ -127,10 +127,7 @@ service cloud.firestore {
 
     match /messages/{messageId} {
       allow read: if signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]);
-      allow create: if signedIn() &&
-        request.resource.data.senderUserId == request.auth.uid &&
-        request.resource.data.participantUserIds.hasAny([request.auth.uid]);
-      allow update, delete: if false;
+      allow create, update, delete: if false;
     }
 
     match /notifications/{notificationId} {
@@ -144,8 +141,7 @@ service cloud.firestore {
 
     match /ratings/{ratingId} {
       allow read: if signedIn();
-      allow create: if signedIn() && request.resource.data.authorUserId == request.auth.uid;
-      allow update, delete: if false;
+      allow create, update, delete: if false;
     }
 
     match /co2Ledger/{entryId} {
@@ -165,7 +161,7 @@ service cloud.firestore {
 
     match /reports/{reportId} {
       allow read: if isAdmin();
-      allow create: if signedIn() && request.resource.data.reporterUserId == request.auth.uid;
+      allow create: if false;
       allow update, delete: if isAdmin();
     }
 
