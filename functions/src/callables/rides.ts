@@ -70,6 +70,8 @@ export const startRide = onCall(async (request) => {
 
   await realtimeDb.ref(`liveTrips/${ref.id}/meta`).set({
     tripId: data.tripId,
+    driverUserId: uid,
+    participantUserIds: participantMap(participantUserIds),
     status: "active",
     startedAt: Date.now(),
   });
@@ -207,3 +209,7 @@ export const endRide = onCall(async (request) => {
 
   return { rideSessionId: data.rideSessionId, co2SavedKg, rewardCents };
 });
+
+function participantMap(userIds: readonly string[]): Record<string, true> {
+  return Object.fromEntries([...new Set(userIds)].map((userId) => [userId, true]));
+}

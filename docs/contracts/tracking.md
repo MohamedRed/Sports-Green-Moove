@@ -7,6 +7,7 @@
 - Child-device tracking is optional per child but supported in v1.
 - If no child device is available, the app uses vehicle tracking plus driver pickup/dropoff confirmations.
 - Parents always see last update time and stale-state warnings.
+- Live RTDB reads are limited to the ride driver, participant parents, and admins.
 
 ## Location Sources
 

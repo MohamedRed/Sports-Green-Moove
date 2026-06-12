@@ -172,16 +172,31 @@ describe("Firestore rules", () => {
 });
 
 describe("Realtime Database rules", () => {
-  it("blocks direct live trip writes but allows authenticated live reads", async () => {
-    await seedDatabase("liveTrips/ride-1/vehicle", {
-      userId: "driver-1",
-      lat: 50.715,
-      lng: 4.612,
+  it("limits live trip reads to admins, drivers, and participants", async () => {
+    await seedDatabase("liveTrips/ride-1", {
+      meta: {
+        driverUserId: "driver-1",
+        participantUserIds: {
+          "parent-1": true,
+        },
+        status: "active",
+      },
+      vehicle: {
+        userId: "driver-1",
+        lat: 50.715,
+        lng: 4.612,
+      },
     });
 
     const driverDb = authed("driver-1", { driver: true }).database();
+    const parentDb = authed("parent-1", { parent: true }).database();
+    const adminDb = authed("admin", { admin: true }).database();
+    const strangerDb = authed("stranger", { parent: true }).database();
 
     await assertSucceeds(driverDb.ref("liveTrips/ride-1/vehicle").get());
+    await assertSucceeds(parentDb.ref("liveTrips/ride-1/vehicle").get());
+    await assertSucceeds(adminDb.ref("liveTrips/ride-1/vehicle").get());
+    await assertFails(strangerDb.ref("liveTrips/ride-1/vehicle").get());
     await assertFails(driverDb.ref("liveTrips/ride-1/vehicle").set({ userId: "driver-1", lat: 50.7, lng: 4.6 }));
   });
 

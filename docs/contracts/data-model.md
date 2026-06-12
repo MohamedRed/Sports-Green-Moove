@@ -27,6 +27,15 @@
 
 ```json
 {
+  "meta": {
+    "tripId": "trip-id",
+    "driverUserId": "driver-user-id",
+    "participantUserIds": {
+      "parent-user-id": true
+    },
+    "status": "active",
+    "startedAt": 1731001100000
+  },
   "vehicle": {
     "userId": "driver-user-id",
     "lat": 50.669,
@@ -54,5 +63,5 @@
 }
 ```
 
+Realtime Database rules allow live trip reads only for the driver, listed participants, and admins.
 Live state is mirrored into Firestore audit summaries by Cloud Functions. The UI must show stale-state warnings when `uploadedAt` is older than the configured threshold.
-
