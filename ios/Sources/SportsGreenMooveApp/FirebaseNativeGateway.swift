@@ -4,7 +4,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
-import FirebaseFunctions
+@preconcurrency import FirebaseFunctions
 
 @MainActor
 enum AppRuntime {
