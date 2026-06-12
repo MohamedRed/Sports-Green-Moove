@@ -67,4 +67,8 @@ Each update includes:
 - optional `speedMps`, `headingDeg`, `batteryPct`
 - `capturedAt`
 
+## Native Radar SDK
+
+Android uses `io.radar:sdk:3.34.0` when `SGM_RADAR_PUBLISHABLE_KEY` is present at build time. Driver ride start initializes Radar from the generated Android string resource, sets the Firebase UID as the Radar user id when available, writes metadata `{ rideSessionId, role, source: "nativeSdk" }`, and calls `startTrip` with `externalId = rideSessionId` and `RadarTrackingOptions.CONTINUOUS`.
+
 iOS uses Core Location to write the first fallback batch immediately after ride start when Radar is not configured. Android writes the first fused-location batch and starts a foreground location service for continued fallback uploads. Continuous Radar-delay monitoring still belongs in the Radar SDK integration slice.

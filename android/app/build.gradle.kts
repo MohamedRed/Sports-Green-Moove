@@ -10,6 +10,11 @@ if (file("google-services.json").exists()) {
     apply(plugin = "com.google.gms.google-services")
 }
 
+val radarPublishableKey = providers
+    .gradleProperty("SGM_RADAR_PUBLISHABLE_KEY")
+    .orElse(providers.environmentVariable("SGM_RADAR_PUBLISHABLE_KEY"))
+    .getOrElse("")
+
 android {
     namespace = "be.sportgreenmoove.app"
     compileSdk = 36
@@ -20,6 +25,7 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
+        resValue("string", "sgm_radar_publishable_key", radarPublishableKey)
     }
 
     compileOptions {
@@ -55,6 +61,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-functions")
     implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("io.radar:sdk:3.34.0")
     implementation("com.stripe:stripe-android:23.10.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")

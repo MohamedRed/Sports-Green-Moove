@@ -2,6 +2,7 @@ package be.sportgreenmoove.app.services
 
 import android.content.Context
 import android.os.Build
+import be.sportgreenmoove.app.R
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.LiveRideSnapshot
@@ -40,6 +41,10 @@ object AndroidRuntime {
             AndroidProviderSet(
                 auth = FirebaseAndroidAuthGateway(),
                 firebase = FirebaseAndroidBackendGateway(context.applicationContext),
+                radar = FirebaseAndroidRadarTrackingGateway(
+                    context = context.applicationContext,
+                    publishableKey = context.getString(R.string.sgm_radar_publishable_key),
+                ),
                 stripe = FirebaseAndroidStripePaymentsGateway(),
             )
         }
