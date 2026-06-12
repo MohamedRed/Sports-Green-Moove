@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { toClientTripSummary } from "../lib/clientTrips.js";
+import { toClientRideSnapshot, toClientTripSummary } from "../lib/clientTrips.js";
 import type { Trip } from "../domain/types.js";
 
 const trip: Trip = {
@@ -43,5 +43,48 @@ describe("client trip summaries", () => {
     expect(summary.priceLabel).toBe("2,50 EUR");
     expect(summary.passengerInitials).toEqual(["IB", "NT"]);
     expect(summary.status).toBe("upcoming");
+  });
+
+  it("maps live trip state to source-aware ride snapshots", () => {
+    const now = 1_760_000_000_000;
+    const snapshot = toClientRideSnapshot("ride-1", "active", {
+      vehicle: {
+        source: "nativeFallback",
+        uploadedAt: now - 30_000,
+      },
+      children: {
+        "child-1": {
+          source: "radar",
+          uploadedAt: now - 45_000,
+        },
+      },
+      meta: {
+        radar: {
+          etaSeconds: 360,
+          updatedAt: now - 20_000,
+        },
+      },
+    }, now);
+
+    expect(snapshot).toMatchObject({
+      rideSessionId: "ride-1",
+      status: "Actif",
+      vehicleLastUpdateLabel: "Secours GPS · il y a 30 s",
+      childLastUpdateLabel: "Radar · il y a 45 s",
+      etaLabel: "ETA 6 min",
+      stale: false,
+    });
+  });
+
+  it("marks active rides stale until a fresh vehicle update exists", () => {
+    const now = 1_760_000_000_000;
+
+    expect(toClientRideSnapshot("ride-1", "active", null, now).stale).toBe(true);
+    expect(toClientRideSnapshot("ride-1", "active", {
+      vehicle: {
+        source: "radar",
+        uploadedAt: now - 91_000,
+      },
+    }, now).stale).toBe(true);
   });
 });

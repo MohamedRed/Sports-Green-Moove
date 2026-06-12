@@ -176,7 +176,8 @@ export const getActiveRide = onCall(async (request) => {
   if (snapshot.empty) return { ride: null };
   const doc = snapshot.docs[0];
   const status = (doc.data().status as string | undefined) ?? "active";
-  return { ride: toClientRideSnapshot(doc.id, status) };
+  const liveSnap = await realtimeDb.ref(`liveTrips/${doc.id}`).get();
+  return { ride: toClientRideSnapshot(doc.id, status, liveSnap.val()) };
 });
 
 export const endRide = onCall(async (request) => {

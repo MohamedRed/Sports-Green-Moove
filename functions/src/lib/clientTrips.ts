@@ -1,4 +1,22 @@
-import type { ClientRideSnapshot, ClientTripSummary, ClientTripStatus, Trip } from "../domain/types.js";
+import type { ClientRideSnapshot, ClientTripSummary, ClientTripStatus, LocationSource, Trip } from "../domain/types.js";
+
+type LiveTripLocation = {
+  uploadedAt?: number;
+  capturedAt?: number;
+  source?: LocationSource;
+};
+
+type LiveTripSnapshot = {
+  vehicle?: LiveTripLocation;
+  children?: Record<string, LiveTripLocation | undefined>;
+  meta?: {
+    radar?: {
+      etaSeconds?: number;
+      etaDistanceMeters?: number;
+      updatedAt?: number;
+    };
+  };
+};
 
 function formatDateParts(value: string): { dateLabel: string; timeLabel: string; departureLabel: string; status: ClientTripStatus } {
   const departure = new Date(value);
@@ -60,13 +78,74 @@ export function toClientTripSummary(trip: Trip): ClientTripSummary {
   };
 }
 
-export function toClientRideSnapshot(rideSessionId: string, status: string): ClientRideSnapshot {
+export function toClientRideSnapshot(
+  rideSessionId: string,
+  status: string,
+  live?: LiveTripSnapshot | null,
+  now = Date.now(),
+): ClientRideSnapshot {
+  const vehicle = live?.vehicle;
+  const child = latestChildLocation(live?.children);
+  const vehicleAgeMs = ageMs(vehicle, now);
+
   return {
     rideSessionId,
     status: status === "active" ? "Actif" : status,
-    vehicleLastUpdateLabel: "En attente du premier point GPS",
-    childLastUpdateLabel: null,
-    etaLabel: "ETA à calculer",
-    stale: true,
+    vehicleLastUpdateLabel: locationLabel(vehicle, now, "En attente du premier point GPS"),
+    childLastUpdateLabel: child ? locationLabel(child, now, "Enfant en attente") : null,
+    etaLabel: etaLabel(live?.meta?.radar?.etaSeconds),
+    stale: vehicleAgeMs == null || vehicleAgeMs > 90_000,
   };
+}
+
+function latestChildLocation(children: LiveTripSnapshot["children"]): LiveTripLocation | null {
+  if (!children) return null;
+  return Object.values(children).reduce<LiveTripLocation | null>((latest, item) => {
+    if (!item) return latest;
+    if (!latest) return item;
+    return locationTime(item) > locationTime(latest) ? item : latest;
+  }, null);
+}
+
+function locationLabel(location: LiveTripLocation | undefined, now: number, fallback: string): string {
+  if (!location) return fallback;
+  return `${sourceLabel(location.source)} · ${elapsedLabel(ageMs(location, now) ?? 0)}`;
+}
+
+function sourceLabel(source: LocationSource | undefined): string {
+  if (source === "radar") return "Radar";
+  if (source === "nativeFallback") return "Secours GPS";
+  if (source === "manual") return "Manuel";
+  return "GPS";
+}
+
+function etaLabel(etaSeconds: number | undefined): string {
+  if (typeof etaSeconds !== "number" || !Number.isFinite(etaSeconds) || etaSeconds <= 0) {
+    return "ETA à calculer";
+  }
+  const minutes = Math.max(1, Math.round(etaSeconds / 60));
+  return `ETA ${minutes} min`;
+}
+
+function ageMs(location: LiveTripLocation | undefined, now: number): number | null {
+  if (!location) return null;
+  const timestamp = location.uploadedAt ?? location.capturedAt;
+  if (typeof timestamp !== "number" || !Number.isFinite(timestamp)) return null;
+  return Math.max(0, now - timestamp);
+}
+
+function locationTime(location: LiveTripLocation): number {
+  return location.uploadedAt ?? location.capturedAt ?? 0;
+}
+
+function elapsedLabel(ms: number): string {
+  const seconds = Math.floor(ms / 1000);
+  if (seconds < 5) return "à l'instant";
+  if (seconds < 60) return `il y a ${seconds} s`;
+
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `il y a ${minutes} min`;
+
+  const hours = Math.floor(minutes / 60);
+  return `il y a ${hours} h`;
 }

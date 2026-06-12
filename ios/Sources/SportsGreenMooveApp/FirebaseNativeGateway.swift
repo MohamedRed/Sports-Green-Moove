@@ -160,10 +160,20 @@ struct FirebaseBackendGateway: FirebaseGateway {
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
         #if os(iOS) && canImport(CoreLocation)
         let locationRole = role == .child ? "child" : "driver"
-        let update = try await NativeLocationFallbackProvider.shared.currentLocationUpdate(
+        try await NativeLocationFallbackProvider.shared.startContinuousUpdates(
             rideSessionId: rideSessionId,
             role: locationRole
-        )
+        ) { update in
+            try await uploadNativeLocationUpdate(update)
+        }
+        #else
+        _ = (rideSessionId, role)
+        throw ProviderConfigurationError(message: "Core Location iOS n'est pas disponible.")
+        #endif
+    }
+
+    #if os(iOS) && canImport(CoreLocation)
+    private func uploadNativeLocationUpdate(_ update: NativeLocationFallbackUpdate) async throws {
         let updatesJson = try update.callableBatchJson()
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             Functions.functions().httpsCallable("writeLocationBatch").call(["updatesJson": updatesJson]) { result, error in
@@ -178,11 +188,8 @@ struct FirebaseBackendGateway: FirebaseGateway {
                 }
             }
         }
-        #else
-        _ = (rideSessionId, role)
-        throw ProviderConfigurationError(message: "Core Location iOS n'est pas disponible.")
-        #endif
     }
+    #endif
 
     private func trips(for query: Query) async throws -> [TripSummary] {
         let snapshot = try await documents(for: query)

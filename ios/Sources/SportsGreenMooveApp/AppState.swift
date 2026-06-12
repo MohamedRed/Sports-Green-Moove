@@ -213,16 +213,16 @@ final class AppState {
 
     private func startRide(tripId: String) async {
         do {
-            let ride = try await firebase.startRide(tripId: tripId)
-            activeRide = ride
+            let result = try await startTrackedRide(
+                firebase: firebase,
+                radar: radar,
+                tripId: tripId,
+                role: selectedRole
+            )
+            activeRide = result.ride
+            noticeMessage = result.notice
             selectedTab = .trips
             overlay = .ride
-            if radar.isConfigured {
-                try await radar.startTripTracking(rideSessionId: ride.rideSessionId, role: selectedRole)
-            } else {
-                try await firebase.writeNativeLocationFallback(rideSessionId: ride.rideSessionId, role: selectedRole)
-                noticeMessage = "Suivi GPS natif activé."
-            }
         } catch {
             errorMessage = error.localizedDescription
         }

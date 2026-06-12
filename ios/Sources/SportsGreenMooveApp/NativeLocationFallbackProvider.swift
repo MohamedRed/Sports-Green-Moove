@@ -51,6 +51,12 @@ private struct NativeLocationReading: Sendable {
     }
 }
 
+private struct ContinuousFallbackSession: Sendable {
+    let rideSessionId: String
+    let role: String
+    let upload: @Sendable (NativeLocationFallbackUpdate) async throws -> Void
+}
+
 @MainActor
 final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate {
     static let shared = NativeLocationFallbackProvider()
@@ -58,6 +64,7 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
     private let manager = CLLocationManager()
     private var authorizationContinuation: CheckedContinuation<Void, Error>?
     private var locationContinuation: CheckedContinuation<NativeLocationReading, Error>?
+    private var continuousSession: ContinuousFallbackSession?
 
     private override init() {
         super.init()
@@ -80,6 +87,27 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
             speedMps: location.speedMps,
             headingDeg: location.headingDeg
         )
+    }
+
+    func startContinuousUpdates(
+        rideSessionId: String,
+        role: String,
+        upload: @escaping @Sendable (NativeLocationFallbackUpdate) async throws -> Void
+    ) async throws {
+        let firstUpdate = try await currentLocationUpdate(rideSessionId: rideSessionId, role: role)
+        try await upload(firstUpdate)
+        continuousSession = ContinuousFallbackSession(
+            rideSessionId: rideSessionId,
+            role: role,
+            upload: upload
+        )
+        manager.startUpdatingLocation()
+    }
+
+    func stopContinuousUpdates(rideSessionId: String) {
+        guard continuousSession?.rideSessionId == rideSessionId else { return }
+        continuousSession = nil
+        manager.stopUpdatingLocation()
     }
 
     private func ensureAuthorization() async throws {
@@ -139,9 +167,24 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
     }
 
     private func handleLocationUpdate(_ location: NativeLocationReading) {
-        guard let continuation = locationContinuation else { return }
-        locationContinuation = nil
-        continuation.resume(returning: location)
+        if let continuation = locationContinuation {
+            locationContinuation = nil
+            continuation.resume(returning: location)
+        }
+        guard let session = continuousSession else { return }
+        let update = NativeLocationFallbackUpdate(
+            rideSessionId: session.rideSessionId,
+            role: session.role,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            accuracyM: location.accuracyM,
+            capturedAtMs: location.capturedAtMs,
+            speedMps: location.speedMps,
+            headingDeg: location.headingDeg
+        )
+        Task {
+            try? await session.upload(update)
+        }
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

@@ -25,6 +25,7 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmTheme
 import be.sportgreenmoove.app.services.AndroidRuntime
 import be.sportgreenmoove.app.services.rememberStripePaymentSheetController
+import be.sportgreenmoove.app.services.startTrackedRide
 import com.stripe.android.paymentsheet.PaymentSheetResult
 import kotlinx.coroutines.launch
 
@@ -83,14 +84,9 @@ fun SportsGreenMooveApp() {
 
     suspend fun handleTripAction(trip: TripSummary) {
         if (role == AppRole.Driver) {
-            val ride = providers.firebase.startRide(trip.id)
-            activeRide = ride
-            if (providers.radar.isConfigured) {
-                providers.radar.startTripTracking(ride.rideSessionId, role)
-            } else {
-                providers.firebase.writeNativeLocationFallback(ride.rideSessionId, role)
-                noticeMessage = "Suivi GPS natif activé."
-            }
+            val result = providers.startTrackedRide(trip.id, role)
+            activeRide = result.ride
+            noticeMessage = result.notice
             screen = DemoScreen.Ride
         } else {
             val bookingId = providers.firebase.requestBooking(trip.id)
