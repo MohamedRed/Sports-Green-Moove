@@ -30,14 +30,14 @@ private struct FirebaseAuthGateway: AuthGateway {
     }
 
     func signIn(email: String, password: String) async throws -> AuthSession {
-        try await authSession { completion in
+        return try await authSession { completion in
             Auth.auth().signIn(withEmail: email, password: password, completion: completion)
         }
     }
 
     func signUp(name: String, email: String, password: String) async throws -> AuthSession {
         _ = name
-        try await authSession { completion in
+        return try await authSession { completion in
             Auth.auth().createUser(withEmail: email, password: password, completion: completion)
         }
     }
