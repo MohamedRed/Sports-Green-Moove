@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { passesHardFilters, rankTrips, scoreCandidate } from "../domain/matching.js";
+import { RouteUnavailableError, passesHardFilters, rankTrips, scoreCandidate } from "../domain/matching.js";
 import type { RouteComparison, SearchRequest, Trip } from "../domain/types.js";
 
 const request: SearchRequest = {
@@ -80,5 +80,16 @@ describe("carpool matching", () => {
     expect(matches[0].reasons).toContain("+6 min détour");
     expect(matches[0].reasons).toContain("Même équipe U8");
   });
-});
 
+  it("skips candidates whose route cannot be calculated", async () => {
+    const matches = await rankTrips(request, [baseTrip, { ...baseTrip, id: "trip-2" }], {
+      async compareDetour(_request, trip) {
+        if (trip.id === "trip-1") throw new RouteUnavailableError("no route");
+        return goodRoute;
+      },
+    });
+
+    expect(matches).toHaveLength(1);
+    expect(matches[0].trip.id).toBe("trip-2");
+  });
+});

@@ -1,54 +1,225 @@
-import type { RouteComparisonProvider } from "../domain/matching.js";
+import { RouteUnavailableError, type RouteComparisonProvider } from "../domain/matching.js";
 import type { LatLng, RouteComparison, SearchRequest, Trip } from "../domain/types.js";
 
-function haversineMeters(a: LatLng, b: LatLng): number {
-  const radiusMeters = 6371000;
-  const toRad = (value: number) => (value * Math.PI) / 180;
-  const dLat = toRad(b.lat - a.lat);
-  const dLng = toRad(b.lng - a.lng);
-  const lat1 = toRad(a.lat);
-  const lat2 = toRad(b.lat);
+type FetchResponse = {
+  ok: boolean;
+  status: number;
+  statusText: string;
+  json(): Promise<unknown>;
+  text(): Promise<string>;
+};
 
-  const h =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+export type GoogleRoutesFetch = (url: string, init: RequestInit) => Promise<FetchResponse>;
 
-  return 2 * radiusMeters * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+type GoogleRoutesProviderOptions = {
+  apiKey?: string;
+  fetcher?: GoogleRoutesFetch;
+  baseUrl?: string;
+};
+
+type MatrixElement = {
+  originIndex?: number;
+  destinationIndex?: number;
+  status?: {
+    code?: number;
+    message?: string;
+  };
+  condition?: string;
+  distanceMeters?: number;
+  duration?: string;
+};
+
+type RouteMetric = {
+  distanceMeters: number;
+  durationSeconds: number;
+};
+
+type ComputeRoutesResponse = {
+  routes?: Array<{
+    duration?: string;
+    distanceMeters?: number;
+    polyline?: {
+      encodedPolyline?: string;
+    };
+  }>;
+};
+
+const routeMatrixFieldMask = "originIndex,destinationIndex,status,condition,distanceMeters,duration";
+const computeRoutesFieldMask = "routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline";
+
+export class GoogleRoutesConfigurationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "GoogleRoutesConfigurationError";
+  }
 }
 
 export class GoogleRoutesProvider implements RouteComparisonProvider {
-  constructor(private readonly apiKey = process.env.GOOGLE_MAPS_API_KEY) {}
+  private readonly apiKey?: string;
+  private readonly fetcher: GoogleRoutesFetch;
+  private readonly baseUrl: string;
+
+  constructor(options: GoogleRoutesProviderOptions = {}) {
+    this.apiKey = options.apiKey ?? process.env.GOOGLE_MAPS_API_KEY;
+    this.fetcher = options.fetcher ?? fetch;
+    this.baseUrl = options.baseUrl ?? "https://routes.googleapis.com";
+  }
 
   async compareDetour(request: SearchRequest, trip: Trip): Promise<RouteComparison> {
-    if (!this.apiKey) return this.localEstimate(request, trip);
-
-    // The production implementation should call Google Routes Compute Route Matrix
-    // for candidate comparison, then Compute Routes for the final shortlisted route.
-    return this.localEstimate(request, trip);
-  }
-
-  private localEstimate(request: SearchRequest, trip: Trip): RouteComparison {
-    const baselineDistanceMeters = haversineMeters(trip.origin, trip.destination) * 1.25;
-    const driverToPickup = haversineMeters(trip.origin, request.origin) * 1.25;
-    const pickupToDropoff = haversineMeters(request.origin, request.destination) * 1.25;
-    const dropoffToDestination = haversineMeters(request.destination, trip.destination) * 1.25;
-    const sharedDistance = driverToPickup + pickupToDropoff + dropoffToDestination;
-
-    const detourDistanceMeters = Math.max(0, sharedDistance - baselineDistanceMeters);
-    const averageMetersPerSecond = 9.8;
-    const baselineDurationSeconds = baselineDistanceMeters / averageMetersPerSecond;
-    const detourDurationSeconds = detourDistanceMeters / averageMetersPerSecond;
-    const scheduleDeltaMinutes = Math.round(
-      (new Date(trip.departureAt).getTime() - new Date(request.desiredDepartureAt).getTime()) / 60000,
-    );
+    const matrix = await this.computeRouteMatrix(request, trip);
+    const baseline = this.requireMatrixMetric(matrix, 0, 2);
+    const driverToPickup = this.requireMatrixMetric(matrix, 0, 0);
+    const pickupToDropoff = this.requireMatrixMetric(matrix, 1, 1);
+    const dropoffToDestination = this.requireMatrixMetric(matrix, 2, 2);
+    const finalRoute = await this.computeFinalRoute(request, trip);
+    const sharedDistanceMeters =
+      driverToPickup.distanceMeters + pickupToDropoff.distanceMeters + dropoffToDestination.distanceMeters;
+    const sharedDurationSeconds =
+      driverToPickup.durationSeconds + pickupToDropoff.durationSeconds + dropoffToDestination.durationSeconds;
 
     return {
-      baselineDistanceMeters: Math.round(baselineDistanceMeters),
-      baselineDurationSeconds: Math.round(baselineDurationSeconds),
-      detourDistanceMeters: Math.round(detourDistanceMeters),
-      detourDurationSeconds: Math.round(detourDurationSeconds),
-      pickupDistanceMeters: Math.round(driverToPickup),
-      scheduleDeltaMinutes,
+      baselineDistanceMeters: baseline.distanceMeters,
+      baselineDurationSeconds: baseline.durationSeconds,
+      detourDistanceMeters: Math.max(0, sharedDistanceMeters - baseline.distanceMeters),
+      detourDurationSeconds: Math.max(0, sharedDurationSeconds - baseline.durationSeconds),
+      pickupDistanceMeters: driverToPickup.distanceMeters,
+      scheduleDeltaMinutes: scheduleDeltaMinutes(request, trip),
+      finalDurationSeconds: finalRoute.durationSeconds,
+      finalDistanceMeters: finalRoute.distanceMeters,
+      finalEncodedPolyline: finalRoute.encodedPolyline,
+      driverToPickupDurationSeconds: driverToPickup.durationSeconds,
+      pickupToDropoffDurationSeconds: pickupToDropoff.durationSeconds,
+      dropoffToDestinationDurationSeconds: dropoffToDestination.durationSeconds,
     };
   }
+
+  private async computeRouteMatrix(request: SearchRequest, trip: Trip): Promise<MatrixElement[]> {
+    const departureTime = futureDepartureTime(request.desiredDepartureAt);
+    const body = {
+      origins: [matrixWaypoint(trip.origin), matrixWaypoint(request.origin), matrixWaypoint(request.destination)],
+      destinations: [matrixWaypoint(request.origin), matrixWaypoint(request.destination), matrixWaypoint(trip.destination)],
+      travelMode: "DRIVE",
+      routingPreference: "TRAFFIC_AWARE",
+      units: "METRIC",
+      ...(departureTime ? { departureTime } : {}),
+    };
+
+    const response = await this.requestJson<MatrixElement[]>(
+      "/distanceMatrix/v2:computeRouteMatrix",
+      body,
+      routeMatrixFieldMask,
+    );
+
+    if (!Array.isArray(response)) {
+      throw new RouteUnavailableError("Google Route Matrix response was not an array.");
+    }
+    return response;
+  }
+
+  private async computeFinalRoute(
+    request: SearchRequest,
+    trip: Trip,
+  ): Promise<RouteMetric & { encodedPolyline?: string }> {
+    const departureTime = futureDepartureTime(request.desiredDepartureAt);
+    const body = {
+      origin: routeWaypoint(trip.origin),
+      destination: routeWaypoint(trip.destination),
+      intermediates: [routeWaypoint(request.origin), routeWaypoint(request.destination)],
+      travelMode: "DRIVE",
+      routingPreference: "TRAFFIC_AWARE",
+      units: "METRIC",
+      ...(departureTime ? { departureTime } : {}),
+    };
+
+    const response = await this.requestJson<ComputeRoutesResponse>(
+      "/directions/v2:computeRoutes",
+      body,
+      computeRoutesFieldMask,
+    );
+    const route = response.routes?.[0];
+    if (route?.distanceMeters == null || !route.duration) {
+      throw new RouteUnavailableError("Google Compute Routes did not return a route.");
+    }
+
+    return {
+      distanceMeters: route.distanceMeters,
+      durationSeconds: durationSeconds(route.duration),
+      encodedPolyline: route.polyline?.encodedPolyline,
+    };
+  }
+
+  private requireMatrixMetric(elements: MatrixElement[], originIndex: number, destinationIndex: number): RouteMetric {
+    const element = elements.find((item) => item.originIndex === originIndex && item.destinationIndex === destinationIndex);
+    if (!element) {
+      throw new RouteUnavailableError(`Google Route Matrix missing element ${originIndex}:${destinationIndex}.`);
+    }
+    if (element.status?.code && element.status.code !== 0) {
+      throw new RouteUnavailableError(element.status.message ?? `Google route ${originIndex}:${destinationIndex} failed.`);
+    }
+    if (element.condition && element.condition !== "ROUTE_EXISTS") {
+      throw new RouteUnavailableError(`Google route ${originIndex}:${destinationIndex} condition ${element.condition}.`);
+    }
+    if (element.distanceMeters == null || !element.duration) {
+      throw new RouteUnavailableError(`Google route ${originIndex}:${destinationIndex} is incomplete.`);
+    }
+
+    return {
+      distanceMeters: element.distanceMeters,
+      durationSeconds: durationSeconds(element.duration),
+    };
+  }
+
+  private async requestJson<T>(path: string, body: unknown, fieldMask: string): Promise<T> {
+    if (!this.apiKey) {
+      throw new GoogleRoutesConfigurationError("GOOGLE_MAPS_API_KEY is required for Google Routes matching.");
+    }
+
+    const response = await this.fetcher(`${this.baseUrl}${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": this.apiKey,
+        "X-Goog-FieldMask": fieldMask,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const details = await response.text();
+      throw new Error(`Google Routes request failed (${response.status} ${response.statusText}): ${details}`);
+    }
+
+    return (await response.json()) as T;
+  }
+}
+
+function matrixWaypoint(point: LatLng) {
+  return { waypoint: routeWaypoint(point) };
+}
+
+function routeWaypoint(point: LatLng) {
+  return {
+    location: {
+      latLng: {
+        latitude: point.lat,
+        longitude: point.lng,
+      },
+    },
+  };
+}
+
+function durationSeconds(duration: string): number {
+  const match = duration.match(/^([0-9]+(?:\.[0-9]+)?)s$/);
+  if (!match) throw new RouteUnavailableError(`Unsupported Google duration: ${duration}`);
+  return Math.round(Number(match[1]));
+}
+
+function futureDepartureTime(value: string): string | undefined {
+  const parsed = Date.parse(value);
+  if (Number.isNaN(parsed) || parsed <= Date.now()) return undefined;
+  return new Date(parsed).toISOString();
+}
+
+function scheduleDeltaMinutes(request: SearchRequest, trip: Trip): number {
+  return Math.round((new Date(trip.departureAt).getTime() - new Date(request.desiredDepartureAt).getTime()) / 60000);
 }

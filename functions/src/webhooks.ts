@@ -1,10 +1,9 @@
-import { Timestamp } from "firebase-admin/firestore";
 import { logger } from "firebase-functions";
 import { onRequest } from "firebase-functions/v2/https";
-import { firestore } from "./lib/firebase.js";
 import { writeLiveLocation } from "./callables/locations.js";
 import { radarEventToLocationUpdate, verifyRadarSignature } from "./services/radar.js";
 import { createStripeClient } from "./services/stripeConnect.js";
+import { reconcileStripeEvent } from "./services/stripeReconciliation.js";
 
 export const radarWebhook = onRequest(async (req, res) => {
   const rawBody = (req as unknown as { rawBody?: Buffer }).rawBody ?? Buffer.from(JSON.stringify(req.body ?? {}));
@@ -35,13 +34,7 @@ export const stripeWebhook = onRequest(async (req, res) => {
   try {
     const stripe = createStripeClient();
     const event = stripe.webhooks.constructEvent(rawBody, signature, secret);
-
-    await firestore.collection("reports").add({
-      type: "stripeWebhook",
-      eventId: event.id,
-      eventType: event.type,
-      createdAt: Timestamp.now(),
-    });
+    await reconcileStripeEvent(event);
 
     res.status(204).send();
   } catch (error) {

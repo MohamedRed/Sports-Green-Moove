@@ -23,7 +23,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `createReport` | signed-in users | Safety/support report. |
 | `createStripeAccount` | driver | Connected account record. |
 | `createStripeAccountLink` | driver | Stripe onboarding link. |
-| `createRidePaymentIntent` | parent | PaymentSheet client secret. |
+| `createRidePaymentIntent` | booking parent | Server-priced PaymentSheet client secret for an approved booking. |
 | `issueRewardPayout` | admin | Payout request and ledger entry. |
 
 ## Webhooks
@@ -31,4 +31,4 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | Webhook | Path | Behavior |
 | --- | --- | --- |
 | Radar | `/radarWebhook` | Validates signature, updates live/audit state, emits arrival/pickup/dropoff notifications. |
-| Stripe | `/stripeWebhook` | Validates signature, reconciles PaymentIntent, transfer, account, and payout events. |
+| Stripe | `/stripeWebhook` | Validates signature, reconciles PaymentIntent booking status, account updates, and reward ledger entries. |

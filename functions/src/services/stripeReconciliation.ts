@@ -1,0 +1,134 @@
+import { Timestamp } from "firebase-admin/firestore";
+import type Stripe from "stripe";
+import { firestore } from "../lib/firebase.js";
+import { buildRidePaymentLedgerEntries } from "./stripeLedger.js";
+
+type StripeAccountUpdate = {
+  id?: string;
+  charges_enabled?: boolean;
+  payouts_enabled?: boolean;
+  details_submitted?: boolean;
+};
+
+export async function reconcileStripeEvent(event: Stripe.Event): Promise<void> {
+  const eventRef = firestore.collection("reports").doc(`stripe_${event.id}`);
+  const eventSnap = await eventRef.get();
+  if (eventSnap.exists) return;
+
+  if (event.type === "payment_intent.succeeded") {
+    await reconcilePaymentSucceeded(event, eventRef.path);
+  } else if (event.type === "payment_intent.payment_failed" || event.type === "payment_intent.canceled") {
+    await reconcilePaymentIncomplete(event, eventRef.path);
+  } else if (event.type === "account.updated") {
+    await reconcileAccountUpdated(event, eventRef.path);
+  } else {
+    await eventRef.set(stripeReport(event));
+  }
+}
+
+async function reconcilePaymentSucceeded(event: Stripe.Event, eventPath: string): Promise<void> {
+  const intent = event.data.object as Stripe.PaymentIntent;
+  if (intent.metadata.product !== "sports-green-moove") {
+    await firestore.doc(eventPath).set(stripeReport(event));
+    return;
+  }
+
+  const bookingId = intent.metadata.bookingId;
+  if (!bookingId) {
+    await firestore.doc(eventPath).set({ ...stripeReport(event), reconciliationStatus: "missingBookingId" });
+    return;
+  }
+
+  await firestore.runTransaction(async (transaction) => {
+    const bookingRef = firestore.collection("bookings").doc(bookingId);
+    const bookingSnap = await transaction.get(bookingRef);
+    if (!bookingSnap.exists) {
+      transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "bookingMissing" });
+      return;
+    }
+
+    transaction.set(
+      bookingRef,
+      {
+        paymentStatus: "paid",
+        amountPaidCents: intent.amount,
+        paidAt: Timestamp.now(),
+        updatedAt: Timestamp.now(),
+      },
+      { merge: true },
+    );
+
+    for (const entry of buildRidePaymentLedgerEntries(intent)) {
+      const ledgerId = `${intent.id}_${entry.type}_${entry.userId}`;
+      transaction.set(firestore.collection("rewardLedger").doc(ledgerId), {
+        ...entry,
+        id: ledgerId,
+        createdAt: new Date((event.created ?? Math.floor(Date.now() / 1000)) * 1000).toISOString(),
+      });
+    }
+
+    transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "paymentReconciled" });
+  });
+}
+
+async function reconcilePaymentIncomplete(event: Stripe.Event, eventPath: string): Promise<void> {
+  const intent = event.data.object as Stripe.PaymentIntent;
+  const bookingId = intent.metadata.bookingId;
+  if (intent.metadata.product !== "sports-green-moove" || !bookingId) {
+    await firestore.doc(eventPath).set(stripeReport(event));
+    return;
+  }
+
+  await firestore.runTransaction(async (transaction) => {
+    const bookingRef = firestore.collection("bookings").doc(bookingId);
+    const bookingSnap = await transaction.get(bookingRef);
+    if (bookingSnap.exists) {
+      transaction.set(
+        bookingRef,
+        {
+          paymentStatus: event.type === "payment_intent.canceled" ? "canceled" : "failed",
+          updatedAt: Timestamp.now(),
+        },
+        { merge: true },
+      );
+    }
+    transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "paymentIncomplete" });
+  });
+}
+
+async function reconcileAccountUpdated(event: Stripe.Event, eventPath: string): Promise<void> {
+  const account = event.data.object as StripeAccountUpdate;
+  if (!account.id) {
+    await firestore.doc(eventPath).set(stripeReport(event));
+    return;
+  }
+
+  const snapshot = await firestore.collection("stripeAccounts").where("stripeAccountId", "==", account.id).limit(10).get();
+  const batch = firestore.batch();
+  for (const doc of snapshot.docs) {
+    batch.set(
+      doc.ref,
+      {
+        chargesEnabled: account.charges_enabled ?? false,
+        payoutsEnabled: account.payouts_enabled ?? false,
+        detailsSubmitted: account.details_submitted ?? false,
+        updatedAt: Timestamp.now(),
+      },
+      { merge: true },
+    );
+  }
+  batch.set(firestore.doc(eventPath), {
+    ...stripeReport(event),
+    reconciliationStatus: snapshot.empty ? "accountMissing" : "accountUpdated",
+  });
+  await batch.commit();
+}
+
+function stripeReport(event: Stripe.Event) {
+  return {
+    type: "stripeWebhook",
+    eventId: event.id,
+    eventType: event.type,
+    createdAt: Timestamp.now(),
+  };
+}

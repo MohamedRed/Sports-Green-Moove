@@ -10,6 +10,13 @@ export type RouteComparisonProvider = {
   compareDetour(request: SearchRequest, trip: Trip): Promise<RouteComparison>;
 };
 
+export class RouteUnavailableError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "RouteUnavailableError";
+  }
+}
+
 export function passesHardFilters(request: SearchRequest, trip: Trip): boolean {
   if (trip.status !== "published") return false;
   if (!trip.driverVerified) return false;
@@ -77,7 +84,13 @@ export async function rankTrips(
 
   for (const trip of candidates) {
     if (!passesHardFilters(request, trip)) continue;
-    const route = await routeProvider.compareDetour(request, trip);
+    let route: RouteComparison;
+    try {
+      route = await routeProvider.compareDetour(request, trip);
+    } catch (error) {
+      if (error instanceof RouteUnavailableError) continue;
+      throw error;
+    }
     const score = scoreCandidate(request, trip, route);
     if (score <= 0) continue;
     ranked.push({

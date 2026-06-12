@@ -101,6 +101,12 @@ export type RouteComparison = {
   detourDistanceMeters: number;
   pickupDistanceMeters: number;
   scheduleDeltaMinutes: number;
+  finalDurationSeconds?: number;
+  finalDistanceMeters?: number;
+  finalEncodedPolyline?: string;
+  driverToPickupDurationSeconds?: number;
+  pickupToDropoffDurationSeconds?: number;
+  dropoffToDestinationDurationSeconds?: number;
 };
 
 export type RankedTrip = {

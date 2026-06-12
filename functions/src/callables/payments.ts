@@ -1,9 +1,24 @@
 import { Timestamp } from "firebase-admin/firestore";
-import { onCall } from "firebase-functions/v2/https";
+import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
-import { createConnectedAccount, createStripeClient, platformFeeAmountCents } from "../services/stripeConnect.js";
+import { createConnectedAccount, createRideDestinationPaymentIntent } from "../services/stripeConnect.js";
+import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth } from "../lib/https.js";
+
+type BookingDocument = {
+  tripId: string;
+  parentUserId?: string;
+  requesterUserId?: string;
+  driverUserId: string;
+  seats?: number;
+  status?: string;
+  paymentStatus?: string;
+};
+
+type StripeAccountDocument = {
+  stripeAccountId?: string;
+};
 
 export const createStripeAccount = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
@@ -30,27 +45,57 @@ export const createRidePaymentIntent = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   const schema = z.object({
     bookingId: z.string(),
-    amountCents: z.number().int().positive(),
     currency: z.literal("eur").default("eur"),
-    destinationStripeAccountId: z.string().optional(),
   });
   const data = schema.parse(request.data);
-  const stripe = createStripeClient();
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: data.amountCents,
+  const bookingSnap = await firestore.collection("bookings").doc(data.bookingId).get();
+  if (!bookingSnap.exists) throw new HttpsError("not-found", "Booking not found.");
+
+  const booking = bookingSnap.data() as BookingDocument;
+  const parentUserId = booking.parentUserId ?? booking.requesterUserId;
+  if (parentUserId !== uid) throw new HttpsError("permission-denied", "Only the booking parent can pay.");
+  if (booking.status !== "approved") throw new HttpsError("failed-precondition", "Booking must be approved before payment.");
+  if (booking.paymentStatus === "paid") throw new HttpsError("failed-precondition", "Booking is already paid.");
+
+  const tripSnap = await firestore.collection("trips").doc(booking.tripId).get();
+  if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
+  const trip = tripSnap.data() as Trip;
+  const amountCents = trip.priceCents * (booking.seats ?? 1);
+  if (amountCents <= 0) throw new HttpsError("failed-precondition", "This booking does not require payment.");
+
+  const accountSnap = await firestore.collection("stripeAccounts").doc(booking.driverUserId).get();
+  const stripeAccount = accountSnap.data() as StripeAccountDocument | undefined;
+  if (!stripeAccount?.stripeAccountId) {
+    throw new HttpsError("failed-precondition", "Driver Stripe account is required before paid rides.");
+  }
+
+  const paymentIntent = await createRideDestinationPaymentIntent({
+    bookingId: data.bookingId,
+    tripId: booking.tripId,
+    payerUserId: uid,
+    driverUserId: booking.driverUserId,
+    amountCents,
     currency: data.currency,
-    automatic_payment_methods: { enabled: true },
-    application_fee_amount: platformFeeAmountCents(data.amountCents),
-    transfer_data: data.destinationStripeAccountId ? { destination: data.destinationStripeAccountId } : undefined,
-    metadata: {
-      bookingId: data.bookingId,
-      payerUserId: uid,
-      product: "sports-green-moove",
-    },
+    destinationStripeAccountId: stripeAccount.stripeAccountId,
   });
 
+  await bookingSnap.ref.set(
+    {
+      amountCents,
+      currency: data.currency,
+      paymentIntentId: paymentIntent.id,
+      paymentStatus: paymentIntent.status,
+      stripeAccountId: stripeAccount.stripeAccountId,
+      updatedAt: Timestamp.now(),
+    },
+    { merge: true },
+  );
+
   return {
+    bookingId: data.bookingId,
     paymentIntentId: paymentIntent.id,
     clientSecret: paymentIntent.client_secret,
+    amountCents,
+    currency: data.currency,
   };
 });

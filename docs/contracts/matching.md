@@ -27,7 +27,15 @@ V1 uses deterministic scoring in Cloud Functions. It does not use ML or OR-Tools
 | Price cents | Lower is better. |
 | Tracking support | Required for child rides; ranked higher when present. |
 
-Cloud Functions use Google `Compute Route Matrix` for candidate comparison and `Compute Routes` for shortlisted final route details.
+Cloud Functions use Google `Compute Route Matrix` for candidate comparison and `Compute Routes` for final route details returned with each ranked match. Missing `GOOGLE_MAPS_API_KEY` is a configuration error; the backend does not silently fall back to a local distance estimate.
+
+For each candidate, the matrix request compares:
+
+- driver origin to driver destination for the baseline.
+- driver origin to passenger pickup.
+- passenger pickup to passenger dropoff.
+- passenger dropoff to driver destination.
+
+Candidates with no valid driving route are skipped. Provider/API/configuration failures are not hidden.
 
 The result must explain every match with human-readable Belgian French reasons such as `+6 min détour`, `2 places disponibles`, and `Même équipe U8`.
-
