@@ -125,6 +125,27 @@ private struct FirebaseBackendGateway: FirebaseGateway {
         }
     }
 
+    func getPayableBookings() async throws -> [PayableBookingSummary] {
+        guard let uid = Auth.auth().currentUser?.uid else { return [] }
+        let snapshot = try await documents(for: Firestore.firestore()
+            .collection("bookings")
+            .whereField("parentUserId", isEqualTo: uid)
+            .limit(to: 30))
+
+        var bookings: [PayableBookingSummary] = []
+        for document in snapshot {
+            let booking = document.data()
+            guard booking["status"] as? String == "approved",
+                  booking["paymentStatus"] as? String != "paid",
+                  let tripId = booking["tripId"] as? String,
+                  let trip = try await documentData(collection: "trips", id: tripId),
+                  let summary = mapPayableBooking(id: document.documentID, booking: booking, trip: trip)
+            else { continue }
+            bookings.append(summary)
+        }
+        return bookings
+    }
+
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
         #if os(iOS) && canImport(CoreLocation)
         let locationRole = role == .child ? "child" : "driver"
@@ -153,82 +174,37 @@ private struct FirebaseBackendGateway: FirebaseGateway {
     }
 
     private func trips(for query: Query) async throws -> [TripSummary] {
+        let snapshot = try await documents(for: query)
+        return snapshot.map { mapTrip(id: $0.documentID, data: $0.data()) }
+    }
+
+    private func documents(for query: Query) async throws -> [QueryDocumentSnapshot] {
         try await withCheckedThrowingContinuation { continuation in
             query.getDocuments { snapshot, error in
                 if let error {
                     continuation.resume(throwing: error)
                 } else if let snapshot {
-                    let trips = snapshot.documents.map { mapTrip(id: $0.documentID, data: $0.data()) }
-                    continuation.resume(returning: trips)
+                    continuation.resume(returning: snapshot.documents)
                 } else {
                     continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Firestore invalide."))
                 }
             }
         }
     }
+
+    private func documentData(collection: String, id: String) async throws -> [String: Any]? {
+        try await withCheckedThrowingContinuation { continuation in
+            Firestore.firestore().collection(collection).document(id).getDocument { snapshot, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: snapshot?.data())
+                }
+            }
+        }
+    }
 }
 
-private func mapTrip(id: String, data: [String: Any]) -> TripSummary {
-    let departure = dateValue(data["departureAt"])
-    let dateLabel = departure.map(formatDateLabel) ?? "DATE À CONFIRMER"
-    let timeLabel = departure.map(formatTimeLabel) ?? "--h--"
-    let seats = data["seatsAvailable"] as? Int ?? 0
-    let distance = data["distanceKm"] as? Double
-
-    return TripSummary(
-        id: id,
-        title: data["title"] as? String ?? "\(data["category"] as? String ?? "Trajet") sportif",
-        club: data["clubName"] as? String ?? data["clubId"] as? String ?? "Club",
-        category: data["category"] as? String ?? "",
-        sport: data["sport"] as? String ?? "Football",
-        departureLabel: "\(dateLabel.replacingOccurrences(of: #"^[A-ZÀ-ÿ]{3}\\s"#, with: "", options: .regularExpression)) · \(timeLabel)",
-        dateLabel: dateLabel,
-        timeLabel: timeLabel,
-        distanceLabel: distance.map { String(format: "%.1f km", $0) } ?? "Distance à confirmer",
-        seatsAvailable: seats,
-        priceLabel: priceLabel(data["priceCents"] as? Int ?? 0),
-        passengerInitials: data["passengerInitials"] as? [String] ?? [],
-        reasons: ["\(seats) \(seats > 1 ? "places" : "place")", "Suivi véhicule disponible"],
-        status: departure.map { $0 < Date() ? .past : .upcoming } ?? .upcoming
-    )
-}
-
-private func mapRide(_ data: [String: Any]) -> LiveRideSnapshot {
-    LiveRideSnapshot(
-        rideSessionId: data["rideSessionId"] as? String ?? "",
-        status: data["status"] as? String ?? "Actif",
-        vehicleLastUpdateLabel: data["vehicleLastUpdateLabel"] as? String ?? "En attente du premier point GPS",
-        childLastUpdateLabel: data["childLastUpdateLabel"] as? String,
-        etaLabel: data["etaLabel"] as? String ?? "ETA à calculer",
-        stale: data["stale"] as? Bool ?? true
-    )
-}
-
-private func dateValue(_ value: Any?) -> Date? {
-    if let timestamp = value as? Timestamp { return timestamp.dateValue() }
-    if let date = value as? Date { return date }
-    if let text = value as? String { return ISO8601DateFormatter().date(from: text) }
-    return nil
-}
-
-private func formatDateLabel(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "fr_BE")
-    formatter.dateFormat = "EEE dd MMM"
-    return formatter.string(from: date).replacingOccurrences(of: ".", with: "").uppercased()
-}
-
-private func formatTimeLabel(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "fr_BE")
-    formatter.dateFormat = "HH'h'mm"
-    return formatter.string(from: date)
-}
-
-private func priceLabel(_ cents: Int) -> String {
-    guard cents > 0 else { return "Gratuit" }
-    return String(format: "%.2f EUR", Double(cents) / 100).replacingOccurrences(of: ".", with: ",")
-}
 #else
 @MainActor
 enum AppRuntime {

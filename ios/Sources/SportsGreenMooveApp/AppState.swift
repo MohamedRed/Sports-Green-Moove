@@ -11,6 +11,7 @@ final class AppState {
     var session: AuthSession?
     var trips: [TripSummary] = []
     var activeRide: LiveRideSnapshot?
+    var payableBookings: [PayableBookingSummary] = []
     var loading = false
     var errorMessage: String?
     var noticeMessage: String?
@@ -69,6 +70,7 @@ final class AppState {
             session = nil
             trips = []
             activeRide = nil
+            payableBookings = []
             selectedTab = .home
             overlay = nil
         } catch {
@@ -99,6 +101,7 @@ final class AppState {
         do {
             trips = try await firebase.searchTrips()
             activeRide = try await firebase.getActiveRide()
+            payableBookings = try await firebase.getPayableBookings()
         } catch {
             errorMessage = "Impossible de charger les données Firebase."
         }

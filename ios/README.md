@@ -16,6 +16,7 @@ The app root now uses real Firebase providers when `GoogleService-Info.plist` is
 - Firestore: published trip reads.
 - Cloud Functions: booking request, ride start, active ride snapshot.
 - Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
+- Parent payments: approved unpaid bookings are listed in-app and launch Stripe PaymentSheet with server-priced intents.
 - Native location fallback: Core Location writes the first active-ride batch through `writeLocationBatch` when Radar is not configured.
 - `PrivacyInfo.xcprivacy`: bundled privacy manifest for linked account identity and precise active-ride location.
 

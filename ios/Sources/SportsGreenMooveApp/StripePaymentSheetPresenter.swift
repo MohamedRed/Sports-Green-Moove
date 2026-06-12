@@ -1,15 +1,15 @@
 import Foundation
 
-#if canImport(Stripe) && canImport(StripePaymentSheet) && canImport(UIKit)
-import Stripe
-import StripePaymentSheet
-import UIKit
-
 @MainActor
 enum StripePaymentOutcome: Sendable {
     case completed
     case canceled
 }
+
+#if canImport(Stripe) && canImport(StripePaymentSheet) && canImport(UIKit)
+import Stripe
+import StripePaymentSheet
+import UIKit
 
 @MainActor
 struct StripePaymentSheetPresenter {

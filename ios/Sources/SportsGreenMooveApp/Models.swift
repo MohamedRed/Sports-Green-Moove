@@ -41,6 +41,7 @@ enum AppOverlay: String, Identifiable, Sendable {
     case impact
     case rewards
     case options
+    case payments
     case ride
 
     var id: String { rawValue }
@@ -111,6 +112,19 @@ struct LiveRideSnapshot: Hashable, Sendable {
     let childLastUpdateLabel: String?
     let etaLabel: String
     let stale: Bool
+}
+
+struct PayableBookingSummary: Identifiable, Hashable, Sendable {
+    let id: String
+    let tripId: String
+    let title: String
+    let club: String
+    let dateLabel: String
+    let timeLabel: String
+    let seats: Int
+    let amountCents: Int
+    let amountLabel: String
+    let paymentStatus: String
 }
 
 struct PaymentSheetConfig: Hashable, Sendable {

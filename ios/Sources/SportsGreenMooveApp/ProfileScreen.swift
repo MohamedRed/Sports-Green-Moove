@@ -142,6 +142,7 @@ private struct ProfileSettingsCard: View {
 
     private let rows = [
         ProfileSetting(.groups, "Mon club", "Collège du Biéreau", AppOverlay.groups),
+        ProfileSetting(.award, "Paiements", "Stripe", AppOverlay.payments),
         ProfileSetting(.location, "Ma ville", "Wavre, Belgique", AppOverlay.options),
         ProfileSetting(.bell, "Notifications", "Activées", AppOverlay.options),
         ProfileSetting(.settings, "Paramètres", "", AppOverlay.options)

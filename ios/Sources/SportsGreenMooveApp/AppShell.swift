@@ -88,6 +88,8 @@ struct AppShell: View {
             RewardsScreen()
         case .options:
             OptionsScreen()
+        case .payments:
+            PaymentsScreen()
         case .ride:
             RideMonitorScreen()
         }
