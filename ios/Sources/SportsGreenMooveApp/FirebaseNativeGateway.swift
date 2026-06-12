@@ -4,7 +4,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
-@preconcurrency import FirebaseFunctions
+import FirebaseFunctions
 
 @MainActor
 enum AppRuntime {
@@ -132,11 +132,9 @@ private struct FirebaseBackendGateway: FirebaseGateway {
             rideSessionId: rideSessionId,
             role: locationRole
         )
-        let payload = update.callablePayload()
-        // Firebase Functions consumes Objective-C payloads through a Swift 6 `sending Any?` API.
-        nonisolated(unsafe) let requestPayload = NSDictionary(dictionary: ["updates": NSArray(object: payload)])
+        let updatesJson = try update.callableBatchJson()
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            Functions.functions().httpsCallable("writeLocationBatch").call(requestPayload) { result, error in
+            Functions.functions().httpsCallable("writeLocationBatch").call(["updatesJson": updatesJson]) { result, error in
                 if let error {
                     continuation.resume(throwing: error)
                 } else if let payload = result?.data as? [String: Any],

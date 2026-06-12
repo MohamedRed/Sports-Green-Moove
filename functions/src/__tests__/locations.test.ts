@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { parseLocationBatchRequest } from "../domain/locationBatch.js";
 import { nativeFallbackUpdateForAuth } from "../domain/locations.js";
 
 describe("native location fallback", () => {
@@ -25,5 +26,32 @@ describe("native location fallback", () => {
       source: "nativeFallback",
       uploadedAt: 1760000005000,
     });
+  });
+
+  it("accepts JSON-encoded location batches for Swift callable clients", () => {
+    const data = parseLocationBatchRequest({
+      updatesJson: JSON.stringify([
+        {
+          rideSessionId: "ride-1",
+          role: "child",
+          lat: 50.715,
+          lng: 4.612,
+          accuracyM: 8,
+          capturedAt: 1760000000000,
+        },
+      ]),
+    });
+
+    expect(data.updates).toHaveLength(1);
+    expect(data.updates[0]).toMatchObject({
+      rideSessionId: "ride-1",
+      role: "child",
+      lat: 50.715,
+      lng: 4.612,
+    });
+  });
+
+  it("rejects invalid JSON-encoded location batches", () => {
+    expect(() => parseLocationBatchRequest({ updatesJson: "not-json" })).toThrow();
   });
 });

@@ -26,7 +26,12 @@
 
 ## Native Fallback Batch
 
-`writeLocationBatch` accepts up to 100 native fallback updates. Each update includes:
+`writeLocationBatch` accepts up to 100 native fallback updates as either:
+
+- `updates`: an array of update objects.
+- `updatesJson`: a JSON string containing the same update-object array. iOS uses this shape because Firebase Functions' Swift 6 callable API treats arbitrary `Any` payload dictionaries as non-Sendable.
+
+Each update includes:
 
 - `rideSessionId`
 - `role`: `driver` or `child`

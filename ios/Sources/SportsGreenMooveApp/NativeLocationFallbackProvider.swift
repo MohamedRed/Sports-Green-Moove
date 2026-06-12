@@ -3,7 +3,7 @@ import Foundation
 #if os(iOS) && canImport(CoreLocation)
 import CoreLocation
 
-struct NativeLocationFallbackUpdate: Sendable {
+struct NativeLocationFallbackUpdate: Encodable, Sendable {
     let rideSessionId: String
     let role: String
     let latitude: Double
@@ -13,17 +13,23 @@ struct NativeLocationFallbackUpdate: Sendable {
     let speedMps: Double?
     let headingDeg: Double?
 
-    func callablePayload() -> NSDictionary {
-        let data = NSMutableDictionary()
-        data["rideSessionId"] = rideSessionId
-        data["role"] = role
-        data["lat"] = latitude
-        data["lng"] = longitude
-        data["accuracyM"] = accuracyM
-        data["capturedAt"] = capturedAtMs
-        if let speedMps { data["speedMps"] = speedMps }
-        if let headingDeg { data["headingDeg"] = headingDeg }
-        return NSDictionary(dictionary: data)
+    enum CodingKeys: String, CodingKey {
+        case rideSessionId
+        case role
+        case latitude = "lat"
+        case longitude = "lng"
+        case accuracyM
+        case capturedAtMs = "capturedAt"
+        case speedMps
+        case headingDeg
+    }
+
+    func callableBatchJson() throws -> String {
+        let data = try JSONEncoder().encode([self])
+        guard let json = String(data: data, encoding: .utf8) else {
+            throw ProviderConfigurationError(message: "Encodage JSON localisation invalide.")
+        }
+        return json
     }
 }
 
