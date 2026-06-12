@@ -9,6 +9,18 @@ export type LatLng = {
   lng: number;
 };
 
+export type PlaceSuggestion = {
+  placeId: string;
+  label: string;
+  mainText?: string;
+  secondaryText?: string;
+};
+
+export type ResolvedPlace = PlaceSuggestion & {
+  location: LatLng;
+  formattedAddress: string;
+};
+
 export type Trip = {
   id: string;
   driverUserId: string;
@@ -120,6 +132,14 @@ export type RankedTrip = {
   score: number;
   route: RouteComparison;
   reasons: string[];
+};
+
+export type ClientSearchMatch = {
+  tripId: string;
+  score: number;
+  route: RouteComparison;
+  reasons: string[];
+  summary: ClientTripSummary;
 };
 
 export type LocationSource = "radar" | "nativeFallback" | "manual";

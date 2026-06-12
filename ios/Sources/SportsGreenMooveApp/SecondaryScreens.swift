@@ -1,15 +1,5 @@
 import SwiftUI
 
-struct SearchScreen: View {
-    var body: some View {
-        OverlayListScreen(title: "RECHERCHE") {
-            OverlaySearchField()
-            OverlayCard(title: "U8 NATIONAUX VS ROYAL OTTIGNIES SC", subtitle: "Royal Ottignies", meta: "2 places · 2,50 EUR · +6 min détour")
-            OverlayCard(title: "ENTRAÎNEMENT U8 GROUPE B", subtitle: "Collège du Biéreau", meta: "1 place · Gratuit · Même club")
-        }
-    }
-}
-
 struct GroupsScreen: View {
     var body: some View {
         OverlayListScreen(title: "GROUPES") {
@@ -80,21 +70,6 @@ private struct OverlayListScreen<Content: View>: View {
             }
             .padding(.horizontal, SGMSpace.padScreen)
         }
-    }
-}
-
-private struct OverlaySearchField: View {
-    var body: some View {
-        HStack(spacing: 10) {
-            SGMIconView(icon: .search, size: 16, color: SGM.textMuted)
-            Text("Destination, club, événement")
-                .font(.sgmBody(14, weight: .semibold))
-                .foregroundStyle(SGM.textMuted)
-            Spacer()
-        }
-        .padding(16)
-        .background(SGM.bgSurface, in: RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous).stroke(SGM.border, lineWidth: 1))
     }
 }
 

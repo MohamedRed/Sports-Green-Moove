@@ -5,6 +5,10 @@ import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PaymentSheetConfig
+import be.sportgreenmoove.app.data.PlaceSuggestion
+import be.sportgreenmoove.app.data.ResolvedPlace
+import be.sportgreenmoove.app.data.TripMatchSummary
+import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
 
 interface AuthGateway {
@@ -18,6 +22,9 @@ interface AuthGateway {
 interface FirebaseGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
+    suspend fun suggestPlaces(input: String): List<PlaceSuggestion>
+    suspend fun resolvePlace(placeId: String): ResolvedPlace
+    suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary>
     suspend fun requestBooking(tripId: String): String
     suspend fun startRide(tripId: String): LiveRideSnapshot
     suspend fun getActiveRide(): LiveRideSnapshot?
@@ -64,6 +71,21 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
 
     override suspend fun searchTrips(): List<TripSummary> {
         throw ProviderConfigurationException("Firestore Android n'est pas configuré.")
+    }
+
+    override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
+        check(input.isNotBlank())
+        throw ProviderConfigurationException("Google Places Android n'est pas configuré.")
+    }
+
+    override suspend fun resolvePlace(placeId: String): ResolvedPlace {
+        check(placeId.isNotBlank())
+        throw ProviderConfigurationException("Google Places Android n'est pas configuré.")
+    }
+
+    override suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary> {
+        check(criteria.seatsNeeded > 0)
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 
     override suspend fun requestBooking(tripId: String): String {

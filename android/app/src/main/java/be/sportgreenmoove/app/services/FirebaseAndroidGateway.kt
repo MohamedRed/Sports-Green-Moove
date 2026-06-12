@@ -7,7 +7,11 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
+import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.TripStatus
+import be.sportgreenmoove.app.data.ResolvedPlace
+import be.sportgreenmoove.app.data.TripMatchSummary
+import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
@@ -93,6 +97,40 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
         return snapshot.documents.map { document ->
             mapTrip(id = document.id, data = document.data.orEmpty())
         }
+    }
+
+    override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
+        val result = functions
+            .getHttpsCallable("suggestPlaces")
+            .call(mapOf("input" to input))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse Places invalide.")
+        return (payload["suggestions"] as? List<*>)
+            ?.mapNotNull { it as? Map<*, *> }
+            ?.mapNotNull(::mapPlaceSuggestion)
+            .orEmpty()
+    }
+
+    override suspend fun resolvePlace(placeId: String): ResolvedPlace {
+        val result = functions
+            .getHttpsCallable("resolvePlace")
+            .call(mapOf("placeId" to placeId))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse Place Details invalide.")
+        val place = payload["place"] as? Map<*, *> ?: throw ProviderConfigurationException("Place manquante.")
+        return mapResolvedPlace(place)
+    }
+
+    override suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary> {
+        val result = functions
+            .getHttpsCallable("searchTrips")
+            .call(criteria.toCallablePayload())
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse matching invalide.")
+        return (payload["matches"] as? List<*>)
+            ?.mapNotNull { it as? Map<*, *> }
+            ?.mapNotNull(::mapTripMatch)
+            .orEmpty()
     }
 
     override suspend fun requestBooking(tripId: String): String {

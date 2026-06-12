@@ -13,6 +13,14 @@ V1 uses deterministic scoring in Cloud Functions. It does not use ML or OR-Tools
 - Driver is verified and not blocked by the requester.
 - Parent/child has guardian consent and compatible memberships.
 
+## Native Search Flow
+
+iOS and Android search screens call `suggestPlaces` for origin/destination text,
+then `resolvePlace` for the selected suggestion. The resolved coordinates are
+sent to `searchTrips`; clients do not hard-code pickup/dropoff coordinates or
+render static match cards. Search results use the stable `summary`, `reasons`,
+`score`, and `route` DTO returned by Cloud Functions.
+
 `searchTrips` always binds `requesterUserId` to the authenticated Firebase UID. A client-supplied requester id is ignored.
 When `childUserId` is supplied, Cloud Functions verifies that the authenticated user appears in
 `children/{childUserId}.guardianUserIds`, then builds the allowed club/team scope from active `memberships`

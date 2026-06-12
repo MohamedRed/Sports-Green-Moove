@@ -77,7 +77,7 @@ private struct FirebaseAuthGateway: AuthGateway {
     }
 }
 
-private struct FirebaseBackendGateway: FirebaseGateway {
+struct FirebaseBackendGateway: FirebaseGateway {
     let isConfigured = true
 
     func searchTrips() async throws -> [TripSummary] {

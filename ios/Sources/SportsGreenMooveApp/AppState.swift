@@ -12,6 +12,12 @@ final class AppState {
     var trips: [TripSummary] = []
     var activeRide: LiveRideSnapshot?
     var payableBookings: [PayableBookingSummary] = []
+    var searchOrigin: ResolvedPlace?
+    var searchDestination: ResolvedPlace?
+    var originSuggestions: [PlaceSuggestion] = []
+    var destinationSuggestions: [PlaceSuggestion] = []
+    var searchMatches: [TripMatchSummary] = []
+    var searchLoading = false
     var loading = false
     var errorMessage: String?
     var noticeMessage: String?
@@ -115,13 +121,77 @@ final class AppState {
         }
     }
 
-    private func requestBooking(tripId: String) async {
+    func requestBooking(tripId: String) async {
         do {
             let bookingId = try await firebase.requestBooking(tripId: tripId)
             noticeMessage = "Demande envoyée: \(bookingId)"
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+
+    func suggestPlaces(input: String, target: SearchPlaceTarget) async {
+        searchLoading = true
+        defer { searchLoading = false }
+        do {
+            let suggestions = try await firebase.suggestPlaces(input: input)
+            switch target {
+            case .origin:
+                originSuggestions = suggestions
+            case .destination:
+                destinationSuggestions = suggestions
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func selectPlace(_ suggestion: PlaceSuggestion, target: SearchPlaceTarget) async {
+        searchLoading = true
+        defer { searchLoading = false }
+        do {
+            let place = try await firebase.resolvePlace(placeId: suggestion.placeId)
+            switch target {
+            case .origin:
+                searchOrigin = place
+                originSuggestions = []
+            case .destination:
+                searchDestination = place
+                destinationSuggestions = []
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func runSearch(form: SearchFormState) async {
+        guard let origin = searchOrigin, let destination = searchDestination else {
+            errorMessage = "Choisissez un départ et une destination dans les suggestions."
+            return
+        }
+
+        searchLoading = true
+        defer { searchLoading = false }
+        do {
+            searchMatches = try await firebase.searchTripMatches(
+                criteria: TripSearchCriteria(
+                    origin: origin,
+                    destination: destination,
+                    desiredDepartureAtIso: form.desiredDepartureAtIso,
+                    seatsNeeded: form.seatsNeeded,
+                    baggage: form.baggage,
+                    returnTrip: form.returnTrip,
+                    requireChildTracking: form.requireChildTracking,
+                    guardianConsent: form.guardianConsent
+                )
+            )
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    func requestSearchMatch(_ match: TripMatchSummary) async {
+        await requestBooking(tripId: match.tripId)
     }
 
     private func startRide(tripId: String) async {

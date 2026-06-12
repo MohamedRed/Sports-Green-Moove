@@ -105,6 +105,63 @@ struct TripSummary: Identifiable, Hashable, Sendable {
     }
 }
 
+struct PlaceSuggestion: Identifiable, Hashable, Sendable {
+    let placeId: String
+    let label: String
+    let mainText: String?
+    let secondaryText: String?
+
+    var id: String { placeId }
+}
+
+struct ResolvedPlace: Hashable, Sendable {
+    let placeId: String
+    let label: String
+    let formattedAddress: String
+    let lat: Double
+    let lng: Double
+}
+
+struct TripSearchCriteria: Hashable, Sendable {
+    let origin: ResolvedPlace
+    let destination: ResolvedPlace
+    let desiredDepartureAtIso: String
+    let seatsNeeded: Int
+    let baggage: String
+    let returnTrip: Bool
+    let requireChildTracking: Bool
+    let guardianConsent: Bool
+    var childUserId: String?
+    var clubId: String?
+    var teamId: String?
+    var category: String?
+}
+
+struct TripMatchSummary: Identifiable, Hashable, Sendable {
+    let tripId: String
+    let score: Double
+    let summary: TripSummary
+    let reasons: [String]
+    let detourMinutes: Int?
+    let pickupDistanceMeters: Int?
+
+    var id: String { tripId }
+}
+
+enum SearchPlaceTarget: Sendable {
+    case origin
+    case destination
+}
+
+struct SearchFormState: Hashable, Sendable {
+    let desiredDepartureAtIso: String
+    let seatsNeeded: Int
+    let baggage: String
+    let returnTrip: Bool
+    let requireChildTracking: Bool
+    let guardianConsent: Bool
+}
+
 struct LiveRideSnapshot: Hashable, Sendable {
     let rideSessionId: String
     let status: String

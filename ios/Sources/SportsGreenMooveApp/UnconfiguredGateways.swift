@@ -25,6 +25,21 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Firestore iOS n'est pas configuré.")
     }
 
+    func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
+        _ = input
+        throw ProviderConfigurationError(message: "Google Places iOS n'est pas configuré.")
+    }
+
+    func resolvePlace(placeId: String) async throws -> ResolvedPlace {
+        _ = placeId
+        throw ProviderConfigurationError(message: "Google Places iOS n'est pas configuré.")
+    }
+
+    func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary] {
+        _ = criteria
+        throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
+    }
+
     func requestBooking(tripId: String) async throws -> String {
         _ = tripId
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")

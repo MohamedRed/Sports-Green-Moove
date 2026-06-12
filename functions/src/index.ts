@@ -9,6 +9,7 @@ export {
   createStripeAccountLink,
   issueRewardPayout,
 } from "./callables/payments.js";
+export { resolvePlace, suggestPlaces } from "./callables/places.js";
 export { endRide, getActiveRide, markDropoff, markPickup, startRide } from "./callables/rides.js";
 export { createTrip, listTrips, searchTrips } from "./callables/trips.js";
 export { radarWebhook, stripeWebhook } from "./webhooks.js";

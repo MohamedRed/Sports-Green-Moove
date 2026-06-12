@@ -9,7 +9,7 @@ import {
   requestedScopeIsAllowed,
   searchAccessScope,
 } from "../domain/searchAccess.js";
-import type { SearchRequest, Trip } from "../domain/types.js";
+import type { ClientSearchMatch, SearchRequest, Trip } from "../domain/types.js";
 import { GoogleRoutesProvider } from "../services/googleRoutes.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
@@ -150,12 +150,11 @@ export const searchTrips = onCall(async (request) => {
   const ranked = await rankTrips(searchRequest, candidates, new GoogleRoutesProvider(), { finalRouteLimit: 12 });
 
   return {
-    matches: ranked.slice(0, 12).map((match) => ({
+    matches: ranked.slice(0, 12).map((match): ClientSearchMatch => ({
       tripId: match.trip.id,
       score: match.score,
       route: match.route,
       reasons: match.reasons,
-      trip: match.trip,
       summary: toClientTripSummary(match.trip),
     })),
   };

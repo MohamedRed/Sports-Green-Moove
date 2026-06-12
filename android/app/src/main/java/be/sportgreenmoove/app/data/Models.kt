@@ -48,6 +48,45 @@ data class TripSummary(
     val status: TripStatus = TripStatus.Upcoming,
 )
 
+data class PlaceSuggestion(
+    val placeId: String,
+    val label: String,
+    val mainText: String?,
+    val secondaryText: String?,
+)
+
+data class ResolvedPlace(
+    val placeId: String,
+    val label: String,
+    val formattedAddress: String,
+    val lat: Double,
+    val lng: Double,
+)
+
+data class TripSearchCriteria(
+    val origin: ResolvedPlace,
+    val destination: ResolvedPlace,
+    val desiredDepartureAtIso: String,
+    val seatsNeeded: Int,
+    val baggage: String,
+    val returnTrip: Boolean,
+    val requireChildTracking: Boolean,
+    val guardianConsent: Boolean,
+    val childUserId: String? = null,
+    val clubId: String? = null,
+    val teamId: String? = null,
+    val category: String? = null,
+)
+
+data class TripMatchSummary(
+    val tripId: String,
+    val score: Double,
+    val summary: TripSummary,
+    val reasons: List<String>,
+    val detourMinutes: Int?,
+    val pickupDistanceMeters: Int?,
+)
+
 data class LiveRideSnapshot(
     val rideSessionId: String,
     val status: String,
