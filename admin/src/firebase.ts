@@ -2,6 +2,7 @@ import { getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
+import { getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -13,7 +14,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-const hasFirebaseConfig = Boolean(
+export const hasFirebaseConfig = Boolean(
   firebaseConfig.apiKey &&
     firebaseConfig.authDomain &&
     firebaseConfig.projectId &&
@@ -25,3 +26,4 @@ export const firebaseProjectLabel = firebaseApp?.options.projectId ?? "demo mode
 export const auth = firebaseApp ? getAuth(firebaseApp) : undefined;
 export const firestore = firebaseApp ? getFirestore(firebaseApp) : undefined;
 export const realtimeDb = firebaseApp ? getDatabase(firebaseApp) : undefined;
+export const functions = firebaseApp ? getFunctions(firebaseApp) : undefined;

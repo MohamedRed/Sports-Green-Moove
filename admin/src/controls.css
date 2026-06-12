@@ -1,0 +1,125 @@
+.badge,
+.project-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 9px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.badge.ok,
+.project-pill {
+  background: #ddf7e7;
+  color: #178147;
+}
+
+.badge.warning {
+  background: #fff2d8;
+  color: #b45309;
+}
+
+.badge.review {
+  background: #e7f3ec;
+  color: #36563f;
+}
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(110px, 1fr));
+  gap: 6px 10px;
+}
+
+.role-grid label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #395842;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.role-grid input {
+  width: auto;
+}
+
+.primary-button,
+.secondary-button,
+.small-button {
+  border: 0;
+  border-radius: 8px;
+  font-weight: 900;
+}
+
+.primary-button {
+  padding: 12px 14px;
+  background: #38bd69;
+  color: #ffffff;
+}
+
+.secondary-button,
+.small-button {
+  border: 1px solid #cfe5d7;
+  background: #ffffff;
+  color: #246537;
+}
+
+.secondary-button {
+  padding: 9px 12px;
+}
+
+.small-button {
+  margin: 0 6px 6px 0;
+  padding: 7px 9px;
+  font-size: 12px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.notice,
+.error-text {
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.notice {
+  background: #e7f3ec;
+  color: #36563f;
+}
+
+.error-text {
+  background: #fff2d8;
+  color: #9a3412;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid #cfe5d7;
+  }
+
+  nav,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .content,
+  .sidebar {
+    padding: 18px;
+  }
+
+  .topbar {
+    flex-direction: column;
+  }
+}
