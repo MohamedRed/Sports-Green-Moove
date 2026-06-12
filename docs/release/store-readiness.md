@@ -15,3 +15,4 @@
 - Guardian consent copy and audit events for child tracking.
 - Privacy policy URLs for Firebase, Radar, Google Maps Platform, and Stripe Connect.
 - Store screenshots showing active ride tracking, stale-location warning, emergency contact action, and permission education.
+- Public privacy/data-safety answers stay aligned with `docs/release/privacy-data-safety.md`.

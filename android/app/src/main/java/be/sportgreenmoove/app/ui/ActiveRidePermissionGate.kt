@@ -16,6 +16,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
+import be.sportgreenmoove.app.R
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmType
 
@@ -83,7 +85,7 @@ fun rememberActiveRidePermissionGate(onBlocked: (String) -> Unit): ActiveRidePer
             ActiveRidePermissionStage.Blocked -> {
                 pendingAction = null
                 stage = ActiveRidePermissionStage.Idle
-                onBlocked(activeRidePermissionBlockedMessage())
+                onBlocked(context.getString(R.string.active_ride_permission_blocked))
             }
         }
     }
@@ -93,14 +95,17 @@ fun rememberActiveRidePermissionGate(onBlocked: (String) -> Unit): ActiveRidePer
             onDismissRequest = {
                 showDisclosure = false
                 pendingAction = null
-                onBlocked("Suivi de course annulé avant l'autorisation de localisation.")
+                onBlocked(context.getString(R.string.active_ride_permission_cancelled))
             },
             title = {
-                Text("Suivi de course", style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary))
+                Text(
+                    stringResource(R.string.active_ride_permission_disclosure_title),
+                    style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary),
+                )
             },
             text = {
                 Text(
-                    "Pendant une course active, SPORTS GREEN-mOOVe partage votre position précise en arrière-plan pour afficher le véhicule, l'enfant, l'ETA et les alertes de position périmée aux parents.",
+                    stringResource(R.string.active_ride_permission_disclosure_body),
                     style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary),
                 )
             },
@@ -111,7 +116,7 @@ fun rememberActiveRidePermissionGate(onBlocked: (String) -> Unit): ActiveRidePer
                         stage = firstMissingActiveRidePermission(context)
                     },
                 ) {
-                    Text("Continuer")
+                    Text(stringResource(R.string.active_ride_permission_continue))
                 }
             },
             dismissButton = {
@@ -119,10 +124,10 @@ fun rememberActiveRidePermissionGate(onBlocked: (String) -> Unit): ActiveRidePer
                     onClick = {
                         showDisclosure = false
                         pendingAction = null
-                        onBlocked("Suivi de course annulé avant l'autorisation de localisation.")
+                        onBlocked(context.getString(R.string.active_ride_permission_cancelled))
                     },
                 ) {
-                    Text("Annuler")
+                    Text(stringResource(R.string.active_ride_permission_cancel))
                 }
             },
         )
@@ -205,6 +210,3 @@ private fun hasNotificationPermission(context: Context): Boolean =
 
 private fun Context.hasPermission(permission: String): Boolean =
     checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
-
-private fun activeRidePermissionBlockedMessage(): String =
-    "Le suivi de course nécessite la position précise, l'arrière-plan et les notifications pendant la course active."

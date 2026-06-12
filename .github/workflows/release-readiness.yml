@@ -1,0 +1,45 @@
+name: Release Readiness
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/release-readiness.yml"
+      - "android/app/src/main/AndroidManifest.xml"
+      - "android/app/src/main/res/values/strings.xml"
+      - "docs/release/**"
+      - "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"
+      - "ios/project.yml"
+      - "package.json"
+      - "tests/store-readiness.test.mjs"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/release-readiness.yml"
+      - "android/app/src/main/AndroidManifest.xml"
+      - "android/app/src/main/res/values/strings.xml"
+      - "docs/release/**"
+      - "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"
+      - "ios/project.yml"
+      - "package.json"
+      - "tests/store-readiness.test.mjs"
+
+jobs:
+  store-readiness:
+    name: Store readiness static checks
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+
+      - name: Validate release readiness
+        run: npm run test:store-readiness
