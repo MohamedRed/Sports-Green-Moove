@@ -16,6 +16,32 @@
 | `nativeFallback` | Direct app-to-Firebase batch writes when Radar is delayed or unavailable. |
 | `manual` | Driver pickup/dropoff confirmations and support/admin corrections. |
 
+## Radar Webhook
+
+Radar webhooks must include `X-Radar-Signing-Id` and `X-Radar-Signature`.
+The backend verifies `X-Radar-Signature` as HMAC-SHA1 of the signing id using
+`RADAR_WEBHOOK_SECRET`.
+
+The webhook accepts both single-event and batched payloads:
+
+- `{ "event": { ... }, "user": { ... } }`
+- `{ "events": [{ ... }], "user": { ... } }`
+
+For trip tracking, `trip.externalId` is the `rideSessionId`. Radar user metadata
+or event/trip metadata may set `role = "child"`; otherwise updates are treated
+as vehicle/driver tracking.
+
+Every Radar event with a ride session is written to
+`rideSessions/{rideSessionId}/auditEvents/{eventId}` and summarized onto the
+ride session document as `lastRadarEvent`, `lastRadarAction`, `radarStatus`, and
+`radarEventCount`. Live trip RTDB meta is updated at
+`liveTrips/{rideSessionId}/meta/radar`.
+
+Radar trip destination events emit parent/driver notifications for approaching
+and arrival. Geofence events can emit pickup/dropoff notifications by setting
+`sgmAction = "pickup"` or `sgmAction = "dropoff"` in Radar event or trip
+metadata.
+
 ## Native Update Cadence
 
 - Vehicle: roughly 10-30 seconds during active ride.

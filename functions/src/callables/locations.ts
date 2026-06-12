@@ -1,20 +1,8 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { parseLocationBatchRequest } from "../domain/locationBatch.js";
 import { nativeFallbackUpdateForAuth } from "../domain/locations.js";
-import type { LocationUpdate } from "../domain/types.js";
-import { realtimeDb } from "../lib/firebase.js";
 import { hasRole, requireAuth } from "../lib/https.js";
-
-export async function writeLiveLocation(update: LocationUpdate): Promise<void> {
-  const path =
-    update.role === "driver"
-      ? `liveTrips/${update.rideSessionId}/vehicle`
-      : `liveTrips/${update.rideSessionId}/children/${update.userId}`;
-  await realtimeDb.ref(path).set({
-    ...update,
-    uploadedAt: update.uploadedAt || Date.now(),
-  });
-}
+import { writeLiveLocation } from "../lib/liveTrips.js";
 
 export const writeLocationBatch = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
