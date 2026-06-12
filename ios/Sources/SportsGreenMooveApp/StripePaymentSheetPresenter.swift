@@ -14,9 +14,8 @@ enum StripePaymentOutcome: Sendable {
 @MainActor
 struct StripePaymentSheetPresenter {
     func present(config: PaymentSheetConfig, from viewController: UIViewController) async throws -> StripePaymentOutcome {
-        StripeAPI.defaultPublishableKey = config.publishableKey
-
         var configuration = PaymentSheet.Configuration()
+        configuration.apiClient = STPAPIClient(publishableKey: config.publishableKey)
         configuration.merchantDisplayName = "Sports Green-mOOVe"
 
         let paymentSheet = PaymentSheet(
