@@ -55,6 +55,23 @@ fun SportsGreenMooveApp() {
         activeRide = providers.firebase.getActiveRide()
     }
 
+    suspend fun handleTripAction(trip: TripSummary) {
+        if (role == AppRole.Driver) {
+            val ride = providers.firebase.startRide(trip.id)
+            activeRide = ride
+            if (providers.radar.isConfigured) {
+                providers.radar.startTripTracking(ride.rideSessionId, role)
+            } else {
+                providers.firebase.writeNativeLocationFallback(ride.rideSessionId, role)
+                noticeMessage = "Suivi GPS natif activé."
+            }
+            screen = DemoScreen.Ride
+        } else {
+            val bookingId = providers.firebase.requestBooking(trip.id)
+            noticeMessage = "Demande envoyée: $bookingId"
+        }
+    }
+
     LaunchedEffect(providers) {
         if (providers.isConfigured) {
             session = providers.auth.currentSession()
@@ -120,17 +137,7 @@ fun SportsGreenMooveApp() {
                                 trips.firstOrNull()?.let { trip ->
                                     scope.launch {
                                         runCatching {
-                                            if (role == AppRole.Driver) {
-                                                val ride = providers.firebase.startRide(trip.id)
-                                                activeRide = ride
-                                                if (providers.radar.isConfigured) {
-                                                    providers.radar.startTripTracking(ride.rideSessionId, role)
-                                                }
-                                                screen = DemoScreen.Ride
-                                            } else {
-                                                val bookingId = providers.firebase.requestBooking(trip.id)
-                                                noticeMessage = "Demande envoyée: $bookingId"
-                                            }
+                                            handleTripAction(trip)
                                         }.onFailure { errorMessage = it.message }
                                     }
                                 }
@@ -144,17 +151,7 @@ fun SportsGreenMooveApp() {
                             onTripAction = { trip ->
                                 scope.launch {
                                     runCatching {
-                                        if (role == AppRole.Driver) {
-                                            val ride = providers.firebase.startRide(trip.id)
-                                            activeRide = ride
-                                            if (providers.radar.isConfigured) {
-                                                providers.radar.startTripTracking(ride.rideSessionId, role)
-                                            }
-                                            screen = DemoScreen.Ride
-                                        } else {
-                                            val bookingId = providers.firebase.requestBooking(trip.id)
-                                            noticeMessage = "Demande envoyée: $bookingId"
-                                        }
+                                        handleTripAction(trip)
                                     }.onFailure { errorMessage = it.message }
                                 }
                             },

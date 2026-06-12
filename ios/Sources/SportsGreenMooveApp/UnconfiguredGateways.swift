@@ -37,8 +37,8 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
 
     func getActiveRide() async throws -> LiveRideSnapshot? { nil }
 
-    func writeNativeLocationFallback(rideSessionId: String) async throws {
-        _ = rideSessionId
+    func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
+        _ = (rideSessionId, role)
         throw ProviderConfigurationError(message: "Realtime Database iOS n'est pas configuré.")
     }
 }

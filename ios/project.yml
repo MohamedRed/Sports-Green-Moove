@@ -55,6 +55,10 @@ targets:
       properties:
         CFBundleDisplayName: Sports Green-mOOVe
         UILaunchScreen: {}
+        NSLocationWhenInUseUsageDescription: Sports Green-mOOVe partage votre position uniquement pendant une course active afin d'afficher le véhicule, l'enfant et l'ETA aux parents.
+        NSLocationAlwaysAndWhenInUseUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
+        UIBackgroundModes:
+          - location
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UIApplicationSceneManifest:

@@ -1,12 +1,13 @@
 import { onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
+import { nativeFallbackUpdateForAuth } from "../domain/locations.js";
 import type { LocationUpdate } from "../domain/types.js";
 import { realtimeDb } from "../lib/firebase.js";
 import { requireAuth } from "../lib/https.js";
 
 const locationUpdateSchema = z.object({
   rideSessionId: z.string(),
-  userId: z.string(),
+  userId: z.string().optional(),
   role: z.enum(["driver", "child"]),
   lat: z.number(),
   lng: z.number(),
@@ -16,7 +17,7 @@ const locationUpdateSchema = z.object({
   batteryPct: z.number().optional(),
   capturedAt: z.number(),
   uploadedAt: z.number().optional(),
-  source: z.enum(["radar", "nativeFallback", "manual"]),
+  source: z.enum(["radar", "nativeFallback", "manual"]).optional(),
 });
 
 export async function writeLiveLocation(update: LocationUpdate): Promise<void> {
@@ -38,12 +39,7 @@ export const writeLocationBatch = onCall(async (request) => {
   const data = schema.parse(request.data);
 
   for (const update of data.updates) {
-    await writeLiveLocation({
-      ...update,
-      userId: update.userId || uid,
-      uploadedAt: update.uploadedAt ?? Date.now(),
-      source: "nativeFallback",
-    });
+    await writeLiveLocation(nativeFallbackUpdateForAuth(update, uid));
   }
 
   return { written: data.updates.length };

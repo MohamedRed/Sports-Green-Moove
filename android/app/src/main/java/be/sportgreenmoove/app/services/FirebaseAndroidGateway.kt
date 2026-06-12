@@ -1,10 +1,14 @@
 package be.sportgreenmoove.app.services
 
 import android.content.Context
+import android.os.Build
+import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
 import com.google.firebase.FirebaseApp
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -34,7 +38,7 @@ object AndroidRuntime {
         } else {
             AndroidProviderSet(
                 auth = FirebaseAndroidAuthGateway(),
-                firebase = FirebaseAndroidBackendGateway(),
+                firebase = FirebaseAndroidBackendGateway(context.applicationContext),
                 stripe = FirebaseAndroidStripePaymentsGateway(),
             )
         }
@@ -65,9 +69,11 @@ private class FirebaseAndroidAuthGateway : AuthGateway {
     }
 }
 
-private class FirebaseAndroidBackendGateway : FirebaseGateway {
+private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway {
+    private val appContext = context.applicationContext
     private val firestore = FirebaseFirestore.getInstance()
     private val functions = FirebaseFunctions.getInstance()
+    private val locationClient = LocationServices.getFusedLocationProviderClient(appContext)
     override val isConfigured: Boolean = true
 
     override suspend fun searchTrips(): List<TripSummary> {
@@ -109,8 +115,26 @@ private class FirebaseAndroidBackendGateway : FirebaseGateway {
         return mapRide(ride)
     }
 
-    override suspend fun writeNativeLocationFallback(rideSessionId: String) {
-        throw ProviderConfigurationException("Capture GPS native requise avant l'envoi du batch.")
+    override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
+        val location = try {
+            locationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null).await()
+        } catch (error: SecurityException) {
+            throw ProviderConfigurationException("Autorisation localisation requise pour le suivi de course.")
+        } ?: throw ProviderConfigurationException("Position GPS indisponible pour le suivi de course.")
+
+        val result = functions
+            .getHttpsCallable("writeLocationBatch")
+            .call(mapOf("updates" to listOf(nativeLocationPayload(rideSessionId, role.locationRole(), location))))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse localisation invalide.")
+        val written = (payload["written"] as? Number)?.toInt() ?: 0
+        if (written <= 0) throw ProviderConfigurationException("Aucun point GPS écrit.")
+        val serviceIntent = ActiveRideLocationService.intent(appContext, rideSessionId, role.locationRole())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            appContext.startForegroundService(serviceIntent)
+        } else {
+            appContext.startService(serviceIntent)
+        }
     }
 }
 

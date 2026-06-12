@@ -17,7 +17,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `endRide` | driver/admin | Completed ride session, CO2/reward jobs queued. |
 | `markPickup` | driver | Child pickup status and parent notification. |
 | `markDropoff` | driver | Child dropoff status and parent notification. |
-| `writeLocationBatch` | driver/child | Native fallback location batch. |
+| `writeLocationBatch` | driver/child | Native fallback location batch bound to the authenticated user. |
 | `sendChatMessage` | participants | Message and push fanout. |
 | `submitRating` | ride participant | Immutable rating. |
 | `createReport` | signed-in users | Safety/support report. |

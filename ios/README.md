@@ -16,6 +16,7 @@ The app root now uses real Firebase providers when `GoogleService-Info.plist` is
 - Firestore: published trip reads.
 - Cloud Functions: booking request, ride start, active ride snapshot.
 - Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
+- Native location fallback: Core Location writes the first active-ride batch through `writeLocationBatch` when Radar is not configured.
 
 Without the plist, the app shows a configuration-required screen instead of silently using mock data.
 

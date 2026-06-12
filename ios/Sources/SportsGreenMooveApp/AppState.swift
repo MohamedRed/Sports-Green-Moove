@@ -129,6 +129,9 @@ final class AppState {
             overlay = .ride
             if radar.isConfigured {
                 try await radar.startTripTracking(rideSessionId: ride.rideSessionId, role: selectedRole)
+            } else {
+                try await firebase.writeNativeLocationFallback(rideSessionId: ride.rideSessionId, role: selectedRole)
+                noticeMessage = "Suivi GPS natif activé."
             }
         } catch {
             errorMessage = error.localizedDescription

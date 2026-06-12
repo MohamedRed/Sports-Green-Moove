@@ -20,7 +20,7 @@ interface FirebaseGateway {
     suspend fun requestBooking(tripId: String): String
     suspend fun startRide(tripId: String): LiveRideSnapshot
     suspend fun getActiveRide(): LiveRideSnapshot?
-    suspend fun writeNativeLocationFallback(rideSessionId: String)
+    suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole)
 }
 
 interface RadarTrackingGateway {
@@ -74,7 +74,8 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
 
     override suspend fun getActiveRide(): LiveRideSnapshot? = null
 
-    override suspend fun writeNativeLocationFallback(rideSessionId: String) {
+    override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
+        check(role.name.isNotBlank())
         throw ProviderConfigurationException("Realtime Database Android n'est pas configuré.")
     }
 }
