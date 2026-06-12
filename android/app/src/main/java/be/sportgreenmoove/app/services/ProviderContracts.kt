@@ -8,6 +8,7 @@ import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PaymentSheetConfig
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
+import be.sportgreenmoove.app.data.RideCompletionSummary
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
@@ -29,10 +30,14 @@ interface FirebaseGateway {
     suspend fun requestBooking(tripId: String): String
     suspend fun getDriverBookingRequests(): List<BookingRequestSummary>
     suspend fun approveBooking(bookingId: String): String
-    suspend fun startRide(tripId: String): LiveRideSnapshot
+    suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot
     suspend fun getActiveRide(): LiveRideSnapshot?
+    suspend fun markPickup(rideSessionId: String, bookingId: String, childId: String): String
+    suspend fun markDropoff(rideSessionId: String, bookingId: String, childId: String): String
+    suspend fun endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int): RideCompletionSummary
     suspend fun getPayableBookings(): List<PayableBookingSummary>
     suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole)
+    fun stopNativeLocationFallback(rideSessionId: String)
 }
 
 interface RadarTrackingGateway {
@@ -102,17 +107,41 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 
-    override suspend fun startRide(tripId: String): LiveRideSnapshot {
+    override suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot {
+        check(bookingIds.isNotEmpty() || tripId.isNotBlank())
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 
     override suspend fun getActiveRide(): LiveRideSnapshot? = null
+
+    override suspend fun markPickup(rideSessionId: String, bookingId: String, childId: String): String {
+        check(rideSessionId.isNotBlank() && bookingId.isNotBlank() && childId.isNotBlank())
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
+
+    override suspend fun markDropoff(rideSessionId: String, bookingId: String, childId: String): String {
+        check(rideSessionId.isNotBlank() && bookingId.isNotBlank() && childId.isNotBlank())
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
+
+    override suspend fun endRide(
+        rideSessionId: String,
+        distanceMeters: Int,
+        passengersSharing: Int,
+    ): RideCompletionSummary {
+        check(rideSessionId.isNotBlank() && distanceMeters >= 0 && passengersSharing >= 0)
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
 
     override suspend fun getPayableBookings(): List<PayableBookingSummary> = emptyList()
 
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
         check(role.name.isNotBlank())
         throw ProviderConfigurationException("Realtime Database Android n'est pas configuré.")
+    }
+
+    override fun stopNativeLocationFallback(rideSessionId: String) {
+        check(rideSessionId.isNotBlank())
     }
 }
 

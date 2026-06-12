@@ -1,4 +1,11 @@
-import type { ClientRideSnapshot, ClientTripSummary, ClientTripStatus, LocationSource, Trip } from "../domain/types.js";
+import type {
+  ClientRidePassengerStatus,
+  ClientRideSnapshot,
+  ClientTripSummary,
+  ClientTripStatus,
+  LocationSource,
+  Trip,
+} from "../domain/types.js";
 
 type LiveTripLocation = {
   uploadedAt?: number;
@@ -16,6 +23,22 @@ type LiveTripSnapshot = {
       updatedAt?: number;
     };
   };
+};
+
+type RidePassengerSnapshot = {
+  bookingId?: string;
+  childId?: string;
+  label?: string;
+  pickupStatus?: string;
+  dropoffStatus?: string;
+};
+
+type RideSessionSnapshot = {
+  passengers?: RidePassengerSnapshot[];
+  passengerStatuses?: Record<string, {
+    pickupStatus?: string;
+    dropoffStatus?: string;
+  } | undefined>;
 };
 
 function formatDateParts(value: string): { dateLabel: string; timeLabel: string; departureLabel: string; status: ClientTripStatus } {
@@ -82,6 +105,7 @@ export function toClientRideSnapshot(
   rideSessionId: string,
   status: string,
   live?: LiveTripSnapshot | null,
+  ride?: RideSessionSnapshot | null,
   now = Date.now(),
 ): ClientRideSnapshot {
   const vehicle = live?.vehicle;
@@ -95,7 +119,33 @@ export function toClientRideSnapshot(
     childLastUpdateLabel: child ? locationLabel(child, now, "Enfant en attente") : null,
     etaLabel: etaLabel(live?.meta?.radar?.etaSeconds),
     stale: vehicleAgeMs == null || vehicleAgeMs > 90_000,
+    passengers: ridePassengers(ride),
   };
+}
+
+function ridePassengers(ride: RideSessionSnapshot | null | undefined): ClientRidePassengerStatus[] {
+  return (ride?.passengers ?? []).flatMap((passenger) => {
+    const bookingId = passenger.bookingId;
+    const childId = passenger.childId;
+    if (!bookingId || !childId) return [];
+
+    const overrides = ride?.passengerStatuses?.[childId] ?? ride?.passengerStatuses?.[bookingId];
+    return [{
+      bookingId,
+      childId,
+      label: passenger.label ?? `Enfant ${childId.slice(-4).toUpperCase()}`,
+      pickupStatus: normalizePickupStatus(overrides?.pickupStatus ?? passenger.pickupStatus),
+      dropoffStatus: normalizeDropoffStatus(overrides?.dropoffStatus ?? passenger.dropoffStatus),
+    }];
+  });
+}
+
+function normalizePickupStatus(status: string | undefined): ClientRidePassengerStatus["pickupStatus"] {
+  return status === "pickedUp" ? "pickedUp" : "pending";
+}
+
+function normalizeDropoffStatus(status: string | undefined): ClientRidePassengerStatus["dropoffStatus"] {
+  return status === "droppedOff" ? "droppedOff" : "pending";
 }
 
 function latestChildLocation(children: LiveTripSnapshot["children"]): LiveTripLocation | null {

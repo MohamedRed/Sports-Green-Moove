@@ -101,6 +101,15 @@ export type ClientRideSnapshot = {
   childLastUpdateLabel: string | null;
   etaLabel: string;
   stale: boolean;
+  passengers: ClientRidePassengerStatus[];
+};
+
+export type ClientRidePassengerStatus = {
+  bookingId: string;
+  childId: string;
+  label: string;
+  pickupStatus: "pending" | "pickedUp";
+  dropoffStatus: "pending" | "droppedOff";
 };
 
 export type SearchRequest = {

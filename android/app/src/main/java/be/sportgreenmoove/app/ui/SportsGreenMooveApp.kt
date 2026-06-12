@@ -20,12 +20,12 @@ import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
+import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmTheme
 import be.sportgreenmoove.app.services.AndroidRuntime
 import be.sportgreenmoove.app.services.rememberStripePaymentSheetController
-import be.sportgreenmoove.app.services.startTrackedRide
 import com.stripe.android.paymentsheet.PaymentSheetResult
 import kotlinx.coroutines.launch
 
@@ -39,6 +39,7 @@ fun SportsGreenMooveApp() {
     var session by remember { mutableStateOf<AuthSession?>(null) }
     var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
     var activeRide by remember { mutableStateOf<LiveRideSnapshot?>(null) }
+    var activeRideTrip by remember { mutableStateOf<TripSummary?>(null) }
     var payableBookings by remember { mutableStateOf(emptyList<PayableBookingSummary>()) }
     var driverBookingRequests by remember { mutableStateOf(emptyList<BookingRequestSummary>()) }
     var darkTheme by remember { mutableStateOf(false) }
@@ -55,7 +56,6 @@ fun SportsGreenMooveApp() {
         onNotice = { noticeMessage = it },
         onAppLoading = { loading = it },
     )
-
     suspend fun refreshAppData() {
         trips = providers.firebase.searchTrips()
         activeRide = providers.firebase.getActiveRide()
@@ -66,7 +66,6 @@ fun SportsGreenMooveApp() {
             emptyList()
         }
     }
-
     val paymentSheet = rememberStripePaymentSheetController { result ->
         when (result) {
             is PaymentSheetResult.Completed -> {
@@ -81,63 +80,59 @@ fun SportsGreenMooveApp() {
             }
         }
     }
-
-    suspend fun handleTripAction(trip: TripSummary) {
-        if (role == AppRole.Driver) {
-            val result = providers.startTrackedRide(trip.id, role)
-            activeRide = result.ride
-            noticeMessage = result.notice
-            screen = DemoScreen.Ride
-        } else {
-            val bookingId = providers.firebase.requestBooking(trip.id)
-            noticeMessage = "Demande envoyée: $bookingId"
-        }
-    }
-
-    fun launchPayment(booking: PayableBookingSummary) {
-        scope.launch {
-            loading = true
-            errorMessage = null
-            runCatching {
-                if (!providers.stripe.isConfigured) {
-                    error("Stripe Android n'est pas configuré.")
-                }
-                val config = providers.stripe.prepareRidePayment(booking.bookingId)
-                paymentSheet.present(config)
-            }.onFailure {
-                errorMessage = it.message
-            }
-            loading = false
-        }
-    }
-
     fun approveBooking(request: BookingRequestSummary) {
-        scope.launch {
-            loading = true
-            errorMessage = null
-            runCatching {
-                providers.firebase.approveBooking(request.bookingId)
-                noticeMessage = "Demande approuvée."
-                refreshAppData()
-            }.onFailure { errorMessage = it.message }
-            loading = false
-        }
+        launchApproveBooking(
+            scope = scope,
+            providers = providers,
+            request = request,
+            setLoading = { loading = it },
+            setError = { errorMessage = it },
+            setNotice = { noticeMessage = it },
+            refreshAppData = { refreshAppData() },
+        )
     }
-
-    fun launchTripAction(trip: TripSummary) {
-        val action: () -> Unit = {
-            scope.launch {
-                runCatching {
-                    handleTripAction(trip)
-                }.onFailure { errorMessage = it.message }
-            }
-        }
-
-        if (role == AppRole.Driver) {
-            activeRidePermissionGate.runWhenReady(action)
-        } else {
-            action()
-        }
+    fun updatePassengerStatus(passenger: RidePassengerStatus, pickup: Boolean) {
+        launchPassengerStatusUpdate(
+            scope = scope,
+            providers = providers,
+            ride = activeRide,
+            passenger = passenger,
+            pickup = pickup,
+            setLoading = { loading = it },
+            setError = { errorMessage = it },
+            setNotice = { noticeMessage = it },
+            setActiveRide = { activeRide = it },
+        )
+    }
+    fun endActiveRide() {
+        launchEndActiveRide(
+            scope = scope,
+            providers = providers,
+            ride = activeRide,
+            activeRideTrip = activeRideTrip,
+            setLoading = { loading = it },
+            setError = { errorMessage = it },
+            setNotice = { noticeMessage = it },
+            setActiveRide = { activeRide = it },
+            setActiveRideTrip = { activeRideTrip = it },
+            setScreen = { screen = it },
+            refreshAppData = { refreshAppData() },
+        )
+    }
+    fun runTripAction(trip: TripSummary) {
+        launchTripAction(
+            scope = scope,
+            providers = providers,
+            trip = trip,
+            role = role,
+            driverBookingRequests = driverBookingRequests,
+            activeRidePermissionGate = activeRidePermissionGate,
+            setActiveRide = { activeRide = it },
+            setActiveRideTrip = { activeRideTrip = it },
+            setNotice = { noticeMessage = it },
+            setScreen = { screen = it },
+            setError = { errorMessage = it },
+        )
     }
 
     LaunchedEffect(providers) {
@@ -203,7 +198,7 @@ fun SportsGreenMooveApp() {
                             onTrips = { screen = DemoScreen.Trips },
                             onRide = {
                                 trips.firstOrNull()?.let { trip ->
-                                    launchTripAction(trip)
+                                    runTripAction(trip)
                                 }
                             },
                             onImpact = { screen = DemoScreen.Impact },
@@ -214,7 +209,7 @@ fun SportsGreenMooveApp() {
                             activeRide = activeRide,
                             bookingRequests = driverBookingRequests,
                             onTripAction = { trip ->
-                                launchTripAction(trip)
+                                runTripAction(trip)
                             },
                             onOpenSearch = { screen = DemoScreen.Search },
                             onApproveBooking = ::approveBooking,
@@ -238,6 +233,7 @@ fun SportsGreenMooveApp() {
                                 session = null
                                 trips = emptyList()
                                 activeRide = null
+                                activeRideTrip = null
                                 payableBookings = emptyList()
                                 driverBookingRequests = emptyList()
                                 screen = DemoScreen.Home
@@ -268,25 +264,34 @@ fun SportsGreenMooveApp() {
                             bookings = payableBookings,
                             loading = loading,
                             onBack = { screen = DemoScreen.Profile },
-                            onPay = { booking -> launchPayment(booking) },
+                            onPay = { booking ->
+                                launchPayment(
+                                    scope = scope,
+                                    providers = providers,
+                                    paymentSheet = paymentSheet,
+                                    booking = booking,
+                                    setLoading = { loading = it },
+                                    setError = { errorMessage = it },
+                                )
+                            },
                         )
                         DemoScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
                             onBack = { screen = DemoScreen.Trips },
+                            onPickup = { updatePassengerStatus(it, pickup = true) },
+                            onDropoff = { updatePassengerStatus(it, pickup = false) },
+                            onEndRide = ::endActiveRide,
                         )
                     }
-                    val runtimeMessage = noticeMessage ?: errorMessage
-                    runtimeMessage?.let {
-                        RuntimeNotice(
-                            message = it,
-                            warning = errorMessage != null,
-                            onDismiss = {
-                                noticeMessage = null
-                                errorMessage = null
-                            },
-                            modifier = Modifier.align(Alignment.TopCenter),
-                        )
-                    }
+                    RuntimeNoticeHost(
+                        notice = noticeMessage,
+                        error = errorMessage,
+                        onDismiss = {
+                            noticeMessage = null
+                            errorMessage = null
+                        },
+                        modifier = Modifier.align(Alignment.TopCenter),
+                    )
                 }
             }
         }

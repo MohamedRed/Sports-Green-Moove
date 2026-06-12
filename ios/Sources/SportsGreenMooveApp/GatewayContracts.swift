@@ -17,10 +17,14 @@ protocol FirebaseGateway: Sendable {
     func requestBooking(tripId: String) async throws -> String
     func getDriverBookingRequests() async throws -> [BookingRequestSummary]
     func approveBooking(bookingId: String) async throws -> String
-    func startRide(tripId: String) async throws -> LiveRideSnapshot
+    func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot
     func getActiveRide() async throws -> LiveRideSnapshot?
+    func markPickup(rideSessionId: String, bookingId: String, childId: String) async throws -> String
+    func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String
+    func endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int) async throws -> RideCompletionSummary
     func getPayableBookings() async throws -> [PayableBookingSummary]
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws
+    func stopNativeLocationFallback(rideSessionId: String)
 }
 
 protocol RadarTrackingGateway: Sendable {

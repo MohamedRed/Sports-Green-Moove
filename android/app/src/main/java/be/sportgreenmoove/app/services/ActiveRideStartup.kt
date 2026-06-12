@@ -2,6 +2,7 @@ package be.sportgreenmoove.app.services
 
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.RideCompletionSummary
 
 data class ActiveRideStartResult(
     val ride: LiveRideSnapshot,
@@ -11,8 +12,9 @@ data class ActiveRideStartResult(
 suspend fun AndroidProviderSet.startTrackedRide(
     tripId: String,
     role: AppRole,
+    bookingIds: List<String>,
 ): ActiveRideStartResult {
-    val ride = firebase.startRide(tripId)
+    val ride = firebase.startRide(tripId, bookingIds)
     val radarStarted = if (radar.isConfigured) {
         runCatching {
             radar.startTripTracking(ride.rideSessionId, role)
@@ -29,4 +31,21 @@ suspend fun AndroidProviderSet.startTrackedRide(
         "Secours GPS Firebase activé."
     }
     return ActiveRideStartResult(ride = ride, notice = notice)
+}
+
+suspend fun AndroidProviderSet.endTrackedRide(
+    rideSessionId: String,
+    distanceMeters: Int,
+    passengersSharing: Int,
+): RideCompletionSummary {
+    val completion = firebase.endRide(
+        rideSessionId = rideSessionId,
+        distanceMeters = distanceMeters,
+        passengersSharing = passengersSharing,
+    )
+    firebase.stopNativeLocationFallback(rideSessionId)
+    if (radar.isConfigured) {
+        runCatching { radar.stopTripTracking(rideSessionId) }
+    }
+    return completion
 }

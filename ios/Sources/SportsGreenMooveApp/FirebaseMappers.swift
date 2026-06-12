@@ -35,7 +35,18 @@ func mapRide(_ data: [String: Any]) -> LiveRideSnapshot {
         vehicleLastUpdateLabel: data["vehicleLastUpdateLabel"] as? String ?? "En attente du premier point GPS",
         childLastUpdateLabel: data["childLastUpdateLabel"] as? String,
         etaLabel: data["etaLabel"] as? String ?? "ETA à calculer",
-        stale: data["stale"] as? Bool ?? true
+        stale: data["stale"] as? Bool ?? true,
+        passengers: (data["passengers"] as? [[String: Any]] ?? []).map(mapRidePassenger)
+    )
+}
+
+func mapRidePassenger(_ data: [String: Any]) -> RidePassengerStatus {
+    RidePassengerStatus(
+        bookingId: data["bookingId"] as? String ?? "",
+        childId: data["childId"] as? String ?? "",
+        label: data["label"] as? String ?? "Enfant",
+        pickupStatus: data["pickupStatus"] as? String ?? "pending",
+        dropoffStatus: data["dropoffStatus"] as? String ?? "pending"
     )
 }
 

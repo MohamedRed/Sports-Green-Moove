@@ -186,6 +186,23 @@ struct LiveRideSnapshot: Hashable, Sendable {
     let childLastUpdateLabel: String?
     let etaLabel: String
     let stale: Bool
+    let passengers: [RidePassengerStatus]
+}
+
+struct RidePassengerStatus: Identifiable, Hashable, Sendable {
+    let bookingId: String
+    let childId: String
+    let label: String
+    let pickupStatus: String
+    let dropoffStatus: String
+
+    var id: String { bookingId }
+}
+
+struct RideCompletionSummary: Hashable, Sendable {
+    let rideSessionId: String
+    let co2SavedKg: Double
+    let rewardCents: Int
 }
 
 struct PayableBookingSummary: Identifiable, Hashable, Sendable {

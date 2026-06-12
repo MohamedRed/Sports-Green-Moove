@@ -16,9 +16,9 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `listDriverBookingRequests` | driver | Requested/approved booking queue for driver approval screens. |
 | `approveBooking` | driver | Approved booking and notification. |
 | `cancelBooking` | parent/driver/admin | Cancelled booking and notification. |
-| `startRide` | driver | Active ride session. |
-| `getActiveRide` | driver | Current active ride snapshot, or `null`. |
-| `endRide` | driver/admin | Completed ride session, CO2/reward jobs queued. |
+| `startRide` | driver | Active ride session with approved booking ids attached as passengers. |
+| `getActiveRide` | driver | Current active ride snapshot with live labels/passenger statuses, or `null`. |
+| `endRide` | driver/admin | Completed ride session, attached bookings, and CO2/reward summary. |
 | `markPickup` | driver | Child pickup status and parent notification. |
 | `markDropoff` | driver | Child dropoff status and parent notification. |
 | `writeLocationBatch` | driver/child | Native fallback location batch bound to the authenticated user. |

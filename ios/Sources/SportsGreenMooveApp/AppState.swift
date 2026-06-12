@@ -11,6 +11,7 @@ final class AppState {
     var session: AuthSession?
     var trips: [TripSummary] = []
     var activeRide: LiveRideSnapshot?
+    var activeRideTrip: TripSummary?
     var payableBookings: [PayableBookingSummary] = []
     var driverBookingRequests: [BookingRequestSummary] = []
     var searchOrigin: ResolvedPlace?
@@ -77,6 +78,7 @@ final class AppState {
             session = nil
             trips = []
             activeRide = nil
+            activeRideTrip = nil
             payableBookings = []
             driverBookingRequests = []
             selectedTab = .home
@@ -206,23 +208,6 @@ final class AppState {
             _ = try await firebase.approveBooking(bookingId: request.bookingId)
             noticeMessage = "Demande approuvée."
             await refreshAppData()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    private func startRide(tripId: String) async {
-        do {
-            let result = try await startTrackedRide(
-                firebase: firebase,
-                radar: radar,
-                tripId: tripId,
-                role: selectedRole
-            )
-            activeRide = result.ride
-            noticeMessage = result.notice
-            selectedTab = .trips
-            overlay = .ride
         } catch {
             errorMessage = error.localizedDescription
         }

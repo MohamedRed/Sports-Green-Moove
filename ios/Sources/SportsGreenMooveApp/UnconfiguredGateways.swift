@@ -52,18 +52,37 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
-    func startRide(tripId: String) async throws -> LiveRideSnapshot {
-        _ = tripId
+    func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {
+        _ = (tripId, bookingIds)
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
     func getActiveRide() async throws -> LiveRideSnapshot? { nil }
+
+    func markPickup(rideSessionId: String, bookingId: String, childId: String) async throws -> String {
+        _ = (rideSessionId, bookingId, childId)
+        throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
+    }
+
+    func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String {
+        _ = (rideSessionId, bookingId, childId)
+        throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
+    }
+
+    func endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int) async throws -> RideCompletionSummary {
+        _ = (rideSessionId, distanceMeters, passengersSharing)
+        throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
+    }
 
     func getPayableBookings() async throws -> [PayableBookingSummary] { [] }
 
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
         _ = (rideSessionId, role)
         throw ProviderConfigurationError(message: "Realtime Database iOS n'est pas configuré.")
+    }
+
+    func stopNativeLocationFallback(rideSessionId: String) {
+        _ = rideSessionId
     }
 }
 

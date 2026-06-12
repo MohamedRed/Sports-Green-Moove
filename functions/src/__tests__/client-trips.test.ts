@@ -47,24 +47,38 @@ describe("client trip summaries", () => {
 
   it("maps live trip state to source-aware ride snapshots", () => {
     const now = 1_760_000_000_000;
-    const snapshot = toClientRideSnapshot("ride-1", "active", {
-      vehicle: {
-        source: "nativeFallback",
-        uploadedAt: now - 30_000,
-      },
-      children: {
-        "child-1": {
-          source: "radar",
-          uploadedAt: now - 45_000,
+    const snapshot = toClientRideSnapshot(
+      "ride-1",
+      "active",
+      {
+        vehicle: {
+          source: "nativeFallback",
+          uploadedAt: now - 30_000,
+        },
+        children: {
+          "child-1": {
+            source: "radar",
+            uploadedAt: now - 45_000,
+          },
+        },
+        meta: {
+          radar: {
+            etaSeconds: 360,
+            updatedAt: now - 20_000,
+          },
         },
       },
-      meta: {
-        radar: {
-          etaSeconds: 360,
-          updatedAt: now - 20_000,
-        },
+      {
+        passengers: [{
+          bookingId: "booking-1",
+          childId: "child-1",
+          label: "Kévin",
+          pickupStatus: "pending",
+          dropoffStatus: "pending",
+        }],
       },
-    }, now);
+      now,
+    );
 
     expect(snapshot).toMatchObject({
       rideSessionId: "ride-1",
@@ -73,6 +87,13 @@ describe("client trip summaries", () => {
       childLastUpdateLabel: "Radar · il y a 45 s",
       etaLabel: "ETA 6 min",
       stale: false,
+      passengers: [{
+        bookingId: "booking-1",
+        childId: "child-1",
+        label: "Kévin",
+        pickupStatus: "pending",
+        dropoffStatus: "pending",
+      }],
     });
   });
 
@@ -85,6 +106,31 @@ describe("client trip summaries", () => {
         source: "radar",
         uploadedAt: now - 91_000,
       },
-    }, now).stale).toBe(true);
+    }, null, now).stale).toBe(true);
+  });
+
+  it("applies passenger status overrides from the ride session", () => {
+    const snapshot = toClientRideSnapshot("ride-1", "active", null, {
+      passengers: [{
+        bookingId: "booking-1",
+        childId: "child-1",
+        pickupStatus: "pending",
+        dropoffStatus: "pending",
+      }],
+      passengerStatuses: {
+        "child-1": {
+          pickupStatus: "pickedUp",
+          dropoffStatus: "droppedOff",
+        },
+      },
+    }, 1_760_000_000_000);
+
+    expect(snapshot.passengers).toEqual([{
+      bookingId: "booking-1",
+      childId: "child-1",
+      label: "Enfant LD-1",
+      pickupStatus: "pickedUp",
+      dropoffStatus: "droppedOff",
+    }]);
   });
 });

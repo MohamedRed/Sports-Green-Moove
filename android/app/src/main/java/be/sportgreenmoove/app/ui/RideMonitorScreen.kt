@@ -3,7 +3,6 @@ package be.sportgreenmoove.app.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,14 +24,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmGridTexture
-import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun RideMonitorScreen(activeRide: LiveRideSnapshot?, onBack: () -> Unit) {
+fun RideMonitorScreen(
+    activeRide: LiveRideSnapshot?,
+    onBack: () -> Unit,
+    onPickup: (RidePassengerStatus) -> Unit,
+    onDropoff: (RidePassengerStatus) -> Unit,
+    onEndRide: () -> Unit,
+) {
     V2Screen {
         V2TopBar("COURSE ACTIVE", onBack = onBack)
         if (activeRide == null) {
@@ -41,7 +46,12 @@ fun RideMonitorScreen(activeRide: LiveRideSnapshot?, onBack: () -> Unit) {
             RideMapCard(activeRide)
             RideLiveCard(activeRide)
             V2SectionLabel("STATUTS")
-            RideStatusCard(activeRide)
+            RidePassengerStatusCard(
+                ride = activeRide,
+                onPickup = onPickup,
+                onDropoff = onDropoff,
+            )
+            RideEndCard(onEndRide = onEndRide)
             RideEmergencyCard()
         }
     }
@@ -128,23 +138,6 @@ private fun RideLiveCard(ride: LiveRideSnapshot) {
 }
 
 @Composable
-private fun RideStatusCard(ride: LiveRideSnapshot) {
-    Column(
-        modifier = Modifier
-            .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(SgmRadius.LG))
-            .background(Sgm.colors.bgSurface)
-            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG)),
-    ) {
-        RideStatusRow(SgmIcon.Location, "Véhicule", ride.vehicleLastUpdateLabel, showDivider = true)
-        RideStatusRow(SgmIcon.Profile, "Enfant", ride.childLastUpdateLabel ?: "Non disponible", showDivider = true)
-        RideStatusRow(SgmIcon.Check, "Pickup", if (ride.childLastUpdateLabel == null) "Conducteur à confirmer" else "Validé", showDivider = true)
-        RideStatusRow(SgmIcon.Flag, "Dropoff", ride.etaLabel, showDivider = false)
-    }
-}
-
-@Composable
 private fun RideEmergencyCard() {
     Row(
         modifier = Modifier
@@ -171,23 +164,6 @@ private fun RideInfoLine(icon: SgmIcon, label: String, value: String) {
         SgmLineIcon(icon, tint = Sgm.colors.textMuted, modifier = Modifier.size(14.dp))
         Text(label, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.weight(1f))
         Text(value, style = SgmType.BodyXS.copy(color = Sgm.colors.textPrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold))
-    }
-}
-
-@Composable
-private fun RideStatusRow(icon: SgmIcon, label: String, value: String, showDivider: Boolean) {
-    Column {
-        RideInfoLine(icon, label, value, modifier = Modifier.padding(horizontal = 16.dp, vertical = 13.dp))
-        if (showDivider) Box(Modifier.padding(start = 46.dp).fillMaxWidth().height(1.dp).background(Sgm.colors.border))
-    }
-}
-
-@Composable
-private fun RideInfoLine(icon: SgmIcon, label: String, value: String, modifier: Modifier) {
-    Row(modifier = modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        SgmLineIcon(icon, tint = Sgm.colors.textMuted, modifier = Modifier.size(18.dp))
-        Text(label, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.weight(1f))
-        Text(value, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.Medium), textAlign = TextAlign.End)
     }
 }
 

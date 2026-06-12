@@ -105,9 +105,9 @@ struct FirebaseBackendGateway: FirebaseGateway {
         }
     }
 
-    func startRide(tripId: String) async throws -> LiveRideSnapshot {
+    func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {
         try await withCheckedThrowingContinuation { continuation in
-            let data: [String: Any] = ["tripId": tripId, "bookingIds": []]
+            let data: [String: Any] = ["tripId": tripId, "bookingIds": bookingIds]
             Functions.functions().httpsCallable("startRide").call(data) { result, error in
                 if let error {
                     continuation.resume(throwing: error)
@@ -116,6 +116,62 @@ struct FirebaseBackendGateway: FirebaseGateway {
                     continuation.resume(returning: mapRide(ride))
                 } else {
                     continuation.resume(throwing: ProviderConfigurationError(message: "Réponse ride invalide."))
+                }
+            }
+        }
+    }
+
+    func markPickup(rideSessionId: String, bookingId: String, childId: String) async throws -> String {
+        try await markPassengerStatus("markPickup", rideSessionId: rideSessionId, bookingId: bookingId, childId: childId)
+    }
+
+    func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String {
+        try await markPassengerStatus("markDropoff", rideSessionId: rideSessionId, bookingId: bookingId, childId: childId)
+    }
+
+    private func markPassengerStatus(
+        _ callable: String,
+        rideSessionId: String,
+        bookingId: String,
+        childId: String
+    ) async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in
+            let data: [String: Any] = [
+                "rideSessionId": rideSessionId,
+                "bookingId": bookingId,
+                "childId": childId,
+            ]
+            Functions.functions().httpsCallable(callable).call(data) { result, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else if let payload = result?.data as? [String: Any],
+                          let status = payload["status"] as? String {
+                    continuation.resume(returning: status)
+                } else {
+                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse statut passager invalide."))
+                }
+            }
+        }
+    }
+
+    func endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int) async throws -> RideCompletionSummary {
+        try await withCheckedThrowingContinuation { continuation in
+            let data: [String: Any] = [
+                "rideSessionId": rideSessionId,
+                "distanceMeters": distanceMeters,
+                "passengersSharing": passengersSharing,
+            ]
+            Functions.functions().httpsCallable("endRide").call(data) { result, error in
+                if let error {
+                    continuation.resume(throwing: error)
+                } else if let payload = result?.data as? [String: Any] {
+                    continuation.resume(returning: RideCompletionSummary(
+                        rideSessionId: payload["rideSessionId"] as? String ?? rideSessionId,
+                        co2SavedKg: (payload["co2SavedKg"] as? NSNumber)?.doubleValue ?? 0,
+                        rewardCents: (payload["rewardCents"] as? NSNumber)?.intValue ?? 0
+                    ))
+                } else {
+                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse fin de course invalide."))
                 }
             }
         }
@@ -169,6 +225,16 @@ struct FirebaseBackendGateway: FirebaseGateway {
         #else
         _ = (rideSessionId, role)
         throw ProviderConfigurationError(message: "Core Location iOS n'est pas disponible.")
+        #endif
+    }
+
+    func stopNativeLocationFallback(rideSessionId: String) {
+        #if os(iOS) && canImport(CoreLocation)
+        Task { @MainActor in
+            NativeLocationFallbackProvider.shared.stopContinuousUpdates(rideSessionId: rideSessionId)
+        }
+        #else
+        _ = rideSessionId
         #endif
     }
 

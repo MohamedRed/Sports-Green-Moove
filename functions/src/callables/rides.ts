@@ -18,10 +18,24 @@ type BookingDocument = {
   tripId?: string;
 };
 
+type RidePassengerDocument = {
+  bookingId: string;
+  childId: string;
+  label: string;
+  parentUserId?: string;
+  pickupStatus: "pending" | "pickedUp";
+  dropoffStatus: "pending" | "droppedOff";
+};
+
 type RideSessionDocument = {
   bookingIds?: string[];
   driverUserId?: string;
   participantUserIds?: string[];
+  passengers?: RidePassengerDocument[];
+  passengerStatuses?: Record<string, {
+    pickupStatus?: string;
+    dropoffStatus?: string;
+  }>;
   status?: string;
 };
 
@@ -60,18 +74,32 @@ export const startRide = onCall(async (request) => {
   const childUserIds = bookings
     .map((booking) => booking.childId)
     .filter((userId): userId is string => Boolean(userId));
+  const passengers = bookings.map((booking, index): RidePassengerDocument => {
+    const bookingId = data.bookingIds[index];
+    const childId = booking.childId ?? bookingId;
+    return {
+      bookingId,
+      childId,
+      label: `Enfant ${childId.slice(-4).toUpperCase()}`,
+      parentUserId: booking.parentUserId ?? booking.requesterUserId,
+      pickupStatus: "pending",
+      dropoffStatus: "pending",
+    };
+  });
 
   const ref = firestore.collection("rideSessions").doc();
-  await ref.set({
+  const rideSession = {
     tripId: data.tripId,
     bookingIds: data.bookingIds,
     driverUserId: uid,
     participantUserIds,
     childUserIds,
+    passengers,
     status: "active",
     startedAt: Timestamp.now(),
     createdAt: Timestamp.now(),
-  });
+  };
+  await ref.set(rideSession);
 
   await realtimeDb.ref(`liveTrips/${ref.id}/meta`).set({
     tripId: data.tripId,
@@ -82,7 +110,7 @@ export const startRide = onCall(async (request) => {
     startedAt: Date.now(),
   });
 
-  return { ride: toClientRideSnapshot(ref.id, "active") };
+  return { ride: toClientRideSnapshot(ref.id, "active", null, rideSession) };
 });
 
 async function markPassengerStatus(
@@ -125,12 +153,14 @@ async function markPassengerStatus(
     }
 
     const now = Timestamp.now();
+    const passengers = updateRidePassengers(ride.passengers ?? [], data.bookingId, data.childId, event);
     const statusUpdate =
       event === "pickup"
         ? { pickupStatus: "pickedUp", pickedUpAt: now, pickupNote: data.note ?? null }
         : { dropoffStatus: "droppedOff", droppedOffAt: now, dropoffNote: data.note ?? null };
 
     transaction.set(rideRef, {
+      passengers,
       passengerStatuses: {
         [data.childId]: {
           ...statusUpdate,
@@ -175,9 +205,10 @@ export const getActiveRide = onCall(async (request) => {
 
   if (snapshot.empty) return { ride: null };
   const doc = snapshot.docs[0];
-  const status = (doc.data().status as string | undefined) ?? "active";
+  const ride = doc.data() as RideSessionDocument;
+  const status = ride.status ?? "active";
   const liveSnap = await realtimeDb.ref(`liveTrips/${doc.id}`).get();
-  return { ride: toClientRideSnapshot(doc.id, status, liveSnap.val()) };
+  return { ride: toClientRideSnapshot(doc.id, status, liveSnap.val(), ride) };
 });
 
 export const endRide = onCall(async (request) => {
@@ -192,23 +223,37 @@ export const endRide = onCall(async (request) => {
   const rideSnap = await rideRef.get();
   if (!rideSnap.exists) throw new HttpsError("not-found", "Ride session not found.");
 
-  const ride = rideSnap.data() as { driverUserId?: string };
+  const ride = rideSnap.data() as RideSessionDocument;
   if (!hasRole(request.auth?.token, "admin") && ride.driverUserId !== uid) {
     throw new HttpsError("permission-denied", "Only the driver or an admin can end this ride.");
+  }
+  if (ride.status !== "active") {
+    throw new HttpsError("failed-precondition", "Only an active ride can be ended.");
   }
 
   const co2SavedKg = estimateCo2SavedKg(data.distanceMeters, data.passengersSharing);
   const rewardCents = rewardForCo2Saved(co2SavedKg);
 
-  await rideRef.set(
-    {
-      status: "completed",
-      completedAt: Timestamp.now(),
-      co2SavedKg,
-      rewardCents,
-    },
-    { merge: true },
-  );
+  const completedAt = Timestamp.now();
+  await firestore.runTransaction(async (transaction) => {
+    transaction.set(
+      rideRef,
+      {
+        status: "completed",
+        completedAt,
+        co2SavedKg,
+        rewardCents,
+      },
+      { merge: true },
+    );
+    for (const bookingId of ride.bookingIds ?? []) {
+      transaction.set(firestore.collection("bookings").doc(bookingId), {
+        status: "completed",
+        completedAt,
+        updatedAt: completedAt,
+      }, { merge: true });
+    }
+  });
   await realtimeDb.ref(`liveTrips/${data.rideSessionId}/meta`).update({
     status: "completed",
     completedAt: Date.now(),
@@ -219,4 +264,19 @@ export const endRide = onCall(async (request) => {
 
 function participantMap(userIds: readonly string[]): Record<string, true> {
   return Object.fromEntries([...new Set(userIds)].map((userId) => [userId, true]));
+}
+
+function updateRidePassengers(
+  passengers: RidePassengerDocument[],
+  bookingId: string,
+  childId: string,
+  event: "pickup" | "dropoff",
+): RidePassengerDocument[] {
+  if (!passengers.length) return passengers;
+  return passengers.map((passenger) => {
+    if (passenger.bookingId !== bookingId && passenger.childId !== childId) return passenger;
+    return event === "pickup"
+      ? { ...passenger, pickupStatus: "pickedUp" }
+      : { ...passenger, dropoffStatus: "droppedOff" };
+  });
 }

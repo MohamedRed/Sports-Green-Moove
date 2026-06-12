@@ -109,6 +109,21 @@ data class LiveRideSnapshot(
     val childLastUpdateLabel: String?,
     val etaLabel: String,
     val stale: Boolean,
+    val passengers: List<RidePassengerStatus> = emptyList(),
+)
+
+data class RidePassengerStatus(
+    val bookingId: String,
+    val childId: String,
+    val label: String,
+    val pickupStatus: String,
+    val dropoffStatus: String,
+)
+
+data class RideCompletionSummary(
+    val rideSessionId: String,
+    val co2SavedKg: Double,
+    val rewardCents: Int,
 )
 
 data class PayableBookingSummary(

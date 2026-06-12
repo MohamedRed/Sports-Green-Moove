@@ -10,6 +10,7 @@ import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.TripStatus
+import be.sportgreenmoove.app.data.RideCompletionSummary
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripSearchCriteria
@@ -17,15 +18,10 @@ import be.sportgreenmoove.app.data.TripSummary
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.firebase.FirebaseApp
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.util.Date
-import java.util.Locale
 
 data class AndroidProviderSet(
     val auth: AuthGateway,
@@ -164,10 +160,10 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
         return payload["status"] as? String ?: throw ProviderConfigurationException("Statut approbation manquant.")
     }
 
-    override suspend fun startRide(tripId: String): LiveRideSnapshot {
+    override suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot {
         val result = functions
             .getHttpsCallable("startRide")
-            .call(mapOf("tripId" to tripId, "bookingIds" to emptyList<String>()))
+            .call(mapOf("tripId" to tripId, "bookingIds" to bookingIds))
             .await()
         val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse ride invalide.")
         val ride = payload["ride"] as? Map<*, *> ?: throw ProviderConfigurationException("Ride manquante.")
@@ -179,6 +175,49 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
         val payload = result.data as? Map<*, *> ?: return null
         val ride = payload["ride"] as? Map<*, *> ?: return null
         return mapRide(ride)
+    }
+
+    override suspend fun markPickup(rideSessionId: String, bookingId: String, childId: String): String =
+        markPassengerStatus("markPickup", rideSessionId, bookingId, childId)
+
+    override suspend fun markDropoff(rideSessionId: String, bookingId: String, childId: String): String =
+        markPassengerStatus("markDropoff", rideSessionId, bookingId, childId)
+
+    private suspend fun markPassengerStatus(
+        callable: String,
+        rideSessionId: String,
+        bookingId: String,
+        childId: String,
+    ): String {
+        val result = functions
+            .getHttpsCallable(callable)
+            .call(mapOf("rideSessionId" to rideSessionId, "bookingId" to bookingId, "childId" to childId))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse statut passager invalide.")
+        return payload["status"] as? String ?: throw ProviderConfigurationException("Statut passager manquant.")
+    }
+
+    override suspend fun endRide(
+        rideSessionId: String,
+        distanceMeters: Int,
+        passengersSharing: Int,
+    ): RideCompletionSummary {
+        val result = functions
+            .getHttpsCallable("endRide")
+            .call(
+                mapOf(
+                    "rideSessionId" to rideSessionId,
+                    "distanceMeters" to distanceMeters,
+                    "passengersSharing" to passengersSharing,
+                ),
+            )
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse fin de course invalide.")
+        return RideCompletionSummary(
+            rideSessionId = payload["rideSessionId"] as? String ?: rideSessionId,
+            co2SavedKg = (payload["co2SavedKg"] as? Number)?.toDouble() ?: 0.0,
+            rewardCents = (payload["rewardCents"] as? Number)?.toInt() ?: 0,
+        )
     }
 
     override suspend fun getPayableBookings(): List<PayableBookingSummary> {
@@ -219,71 +258,8 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
             appContext.startService(serviceIntent)
         }
     }
-}
 
-private fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
-    val departure = dateValue(data["departureAt"])
-    val seats = (data["seatsAvailable"] as? Number)?.toInt() ?: 0
-    val dateLabel = departure?.let(::formatDateLabel) ?: "DATE À CONFIRMER"
-    val timeLabel = departure?.let(::formatTimeLabel) ?: "--h--"
-    val distanceKm = (data["distanceKm"] as? Number)?.toDouble()
-
-    return TripSummary(
-        id = id,
-        title = data["title"] as? String ?: "${data["category"] as? String ?: "Trajet"} sportif",
-        club = data["clubName"] as? String ?: data["clubId"] as? String ?: "Club",
-        category = data["category"] as? String ?: "",
-        sport = data["sport"] as? String ?: "Football",
-        departureLabel = "${dateLabel.replace(Regex("^[A-ZÀ-ÿ]{3}\\s"), "")} · $timeLabel",
-        dateLabel = dateLabel,
-        timeLabel = timeLabel,
-        distanceLabel = distanceKm?.let { "%.1f km".format(Locale.US, it) } ?: "Distance à confirmer",
-        seatsAvailable = seats,
-        priceLabel = priceLabel((data["priceCents"] as? Number)?.toInt() ?: 0),
-        passengerInitials = (data["passengerInitials"] as? List<*>)?.filterIsInstance<String>().orEmpty(),
-        reasons = listOf(
-            if (seats > 1) "$seats places" else "$seats place",
-            "Suivi véhicule disponible",
-        ),
-        status = if (departure != null && departure.before(Date())) TripStatus.Past else TripStatus.Upcoming,
-    )
-}
-
-private fun mapRide(data: Map<*, *>): LiveRideSnapshot =
-    LiveRideSnapshot(
-        rideSessionId = data["rideSessionId"] as? String ?: "",
-        status = data["status"] as? String ?: "Actif",
-        vehicleLastUpdateLabel = data["vehicleLastUpdateLabel"] as? String ?: "En attente du premier point GPS",
-        childLastUpdateLabel = data["childLastUpdateLabel"] as? String,
-        etaLabel = data["etaLabel"] as? String ?: "ETA à calculer",
-        stale = data["stale"] as? Boolean ?: true,
-    )
-
-private fun dateValue(value: Any?): Date? =
-    when (value) {
-        is Timestamp -> value.toDate()
-        is Date -> value
-        is String -> runCatching { Date.from(Instant.parse(value)) }.getOrNull()
-        else -> null
+    override fun stopNativeLocationFallback(rideSessionId: String) {
+        appContext.stopService(ActiveRideLocationService.intent(appContext, rideSessionId, AppRole.Driver.locationRole()))
     }
-
-private fun formatDateLabel(date: Date): String =
-    SimpleDateFormat("EEE dd MMM", BelgianFrenchLocale)
-        .format(date)
-        .replace(".", "")
-        .uppercase(BelgianFrenchLocale)
-
-private fun formatTimeLabel(date: Date): String =
-    SimpleDateFormat("HH'h'mm", BelgianFrenchLocale).format(date)
-
-private fun priceLabel(cents: Int): String =
-    if (cents == 0) {
-        "Gratuit"
-    } else {
-        "%.2f EUR".format(BelgianFrenchLocale, cents.toDouble() / 100.0)
-    }
-
-private val BelgianFrenchLocale: Locale = Locale.Builder()
-    .setLanguage("fr")
-    .setRegion("BE")
-    .build()
+}
