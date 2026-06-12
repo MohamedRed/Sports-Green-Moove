@@ -38,6 +38,7 @@ import be.sportgreenmoove.app.design.SgmType
 
 private val ProfileSettings = listOf(
     ProfileSetting(SgmIcon.Groups, "Mon club", "Collège du Biéreau", ProfileAction.Groups),
+    ProfileSetting(SgmIcon.Award, "Paiements", "Stripe", ProfileAction.Payments),
     ProfileSetting(SgmIcon.Location, "Ma ville", "Wavre, Belgique", ProfileAction.Options),
     ProfileSetting(SgmIcon.Bell, "Notifications", "Activées", ProfileAction.Options),
     ProfileSetting(SgmIcon.Settings, "Paramètres", "", ProfileAction.Options),
@@ -50,6 +51,7 @@ fun ProfileScreen(
     onGroups: () -> Unit,
     onImpact: () -> Unit,
     onRewards: () -> Unit,
+    onPayments: () -> Unit,
     onOptions: () -> Unit,
     onLogout: () -> Unit,
 ) {
@@ -67,6 +69,7 @@ fun ProfileScreen(
         V2SectionLabel("PARAMÈTRES")
         ProfileSettingsCard(
             onGroups = onGroups,
+            onPayments = onPayments,
             onOptions = onOptions,
             modifier = Modifier.padding(horizontal = 20.dp),
         )
@@ -202,7 +205,7 @@ private fun ProfileRewardsCard(onClick: () -> Unit) {
 }
 
 @Composable
-private fun ProfileSettingsCard(onGroups: () -> Unit, onOptions: () -> Unit, modifier: Modifier = Modifier) {
+private fun ProfileSettingsCard(onGroups: () -> Unit, onPayments: () -> Unit, onOptions: () -> Unit, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -214,7 +217,11 @@ private fun ProfileSettingsCard(onGroups: () -> Unit, onOptions: () -> Unit, mod
             ProfileSettingRow(
                 setting = setting,
                 showDivider = index < ProfileSettings.lastIndex,
-                onClick = if (setting.action == ProfileAction.Groups) onGroups else onOptions,
+                onClick = when (setting.action) {
+                    ProfileAction.Groups -> onGroups
+                    ProfileAction.Payments -> onPayments
+                    ProfileAction.Options -> onOptions
+                },
             )
         }
     }
@@ -256,4 +263,4 @@ private fun ProfilePill(text: String, selected: Boolean) {
 
 private fun ProfileImpactMetaStyle() = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.70f), fontSize = 12.sp)
 private data class ProfileSetting(val icon: SgmIcon, val label: String, val value: String, val action: ProfileAction)
-private enum class ProfileAction { Groups, Options }
+private enum class ProfileAction { Groups, Payments, Options }

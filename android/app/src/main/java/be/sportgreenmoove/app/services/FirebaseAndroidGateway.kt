@@ -5,6 +5,7 @@ import android.os.Build
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
 import com.google.android.gms.location.LocationServices
@@ -115,6 +116,23 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
         return mapRide(ride)
     }
 
+    override suspend fun getPayableBookings(): List<PayableBookingSummary> {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return emptyList()
+        val snapshot = firestore.collection("bookings")
+            .whereEqualTo("parentUserId", uid)
+            .limit(30)
+            .get()
+            .await()
+
+        return snapshot.documents.mapNotNull { document ->
+            val booking = document.data.orEmpty()
+            if (booking["status"] != "approved" || booking["paymentStatus"] == "paid") return@mapNotNull null
+            val tripId = booking["tripId"] as? String ?: return@mapNotNull null
+            val trip = firestore.collection("trips").document(tripId).get().await().data.orEmpty()
+            mapPayableBooking(id = document.id, booking = booking, trip = trip)
+        }
+    }
+
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
         val location = try {
             locationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null).await()
@@ -175,6 +193,31 @@ private fun mapRide(data: Map<*, *>): LiveRideSnapshot =
         etaLabel = data["etaLabel"] as? String ?: "ETA à calculer",
         stale = data["stale"] as? Boolean ?: true,
     )
+
+private fun mapPayableBooking(
+    id: String,
+    booking: Map<String, Any>,
+    trip: Map<String, Any>,
+): PayableBookingSummary? {
+    val seats = (booking["seats"] as? Number)?.toInt() ?: 1
+    val priceCents = (trip["priceCents"] as? Number)?.toInt() ?: return null
+    val amountCents = seats * priceCents
+    if (amountCents <= 0) return null
+    val departure = dateValue(trip["departureAt"])
+
+    return PayableBookingSummary(
+        bookingId = id,
+        tripId = booking["tripId"] as? String ?: return null,
+        title = trip["title"] as? String ?: "${trip["category"] as? String ?: "Trajet"} sportif",
+        club = trip["clubName"] as? String ?: trip["clubId"] as? String ?: "Club",
+        dateLabel = departure?.let(::formatDateLabel) ?: "DATE À CONFIRMER",
+        timeLabel = departure?.let(::formatTimeLabel) ?: "--h--",
+        seats = seats,
+        amountCents = amountCents,
+        amountLabel = priceLabel(amountCents),
+        paymentStatus = booking["paymentStatus"] as? String ?: "required",
+    )
+}
 
 private fun dateValue(value: Any?): Date? =
     when (value) {

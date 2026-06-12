@@ -28,6 +28,10 @@ The callable returns the native PaymentSheet setup data:
 
 iOS and Android request this config by `bookingId`, initialize the Stripe SDK with the returned publishable key, and present native PaymentSheet with the returned PaymentIntent client secret.
 
+Android lists approved, unpaid, non-free parent bookings from Firestore and opens
+PaymentSheet only for those bookings. Requested bookings remain non-payable until
+the driver approves them.
+
 `createStripeAccountLink` accepts `returnUrl` and `refreshUrl` for the signed-in
 driver. The backend loads `stripeAccounts/{uid}`, calls Accounts v2
 `/v2/core/account_links` for `account_onboarding`, and returns the Stripe-hosted

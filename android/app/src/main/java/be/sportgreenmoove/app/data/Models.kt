@@ -57,6 +57,19 @@ data class LiveRideSnapshot(
     val stale: Boolean,
 )
 
+data class PayableBookingSummary(
+    val bookingId: String,
+    val tripId: String,
+    val title: String,
+    val club: String,
+    val dateLabel: String,
+    val timeLabel: String,
+    val seats: Int,
+    val amountCents: Int,
+    val amountLabel: String,
+    val paymentStatus: String,
+)
+
 data class PaymentSheetConfig(
     val bookingId: String,
     val paymentIntentId: String,

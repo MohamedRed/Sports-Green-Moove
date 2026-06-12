@@ -1,15 +1,10 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -19,20 +14,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
-import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmTheme
-import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.services.AndroidRuntime
+import be.sportgreenmoove.app.services.rememberStripePaymentSheetController
+import com.stripe.android.paymentsheet.PaymentSheetResult
 import kotlinx.coroutines.launch
 
 @Composable
@@ -45,6 +37,7 @@ fun SportsGreenMooveApp() {
     var session by remember { mutableStateOf<AuthSession?>(null) }
     var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
     var activeRide by remember { mutableStateOf<LiveRideSnapshot?>(null) }
+    var payableBookings by remember { mutableStateOf(emptyList<PayableBookingSummary>()) }
     var darkTheme by remember { mutableStateOf(false) }
     var loading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -56,6 +49,22 @@ fun SportsGreenMooveApp() {
     suspend fun refreshAppData() {
         trips = providers.firebase.searchTrips()
         activeRide = providers.firebase.getActiveRide()
+        payableBookings = providers.firebase.getPayableBookings()
+    }
+
+    val paymentSheet = rememberStripePaymentSheetController { result ->
+        when (result) {
+            is PaymentSheetResult.Completed -> {
+                noticeMessage = "Paiement confirmé."
+                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
+            }
+            is PaymentSheetResult.Canceled -> {
+                noticeMessage = "Paiement annulé."
+            }
+            is PaymentSheetResult.Failed -> {
+                errorMessage = result.error.localizedMessage ?: "Paiement Stripe refusé."
+            }
+        }
     }
 
     suspend fun handleTripAction(trip: TripSummary) {
@@ -72,6 +81,23 @@ fun SportsGreenMooveApp() {
         } else {
             val bookingId = providers.firebase.requestBooking(trip.id)
             noticeMessage = "Demande envoyée: $bookingId"
+        }
+    }
+
+    fun launchPayment(booking: PayableBookingSummary) {
+        scope.launch {
+            loading = true
+            errorMessage = null
+            runCatching {
+                if (!providers.stripe.isConfigured) {
+                    error("Stripe Android n'est pas configuré.")
+                }
+                val config = providers.stripe.prepareRidePayment(booking.bookingId)
+                paymentSheet.present(config)
+            }.onFailure {
+                errorMessage = it.message
+            }
+            loading = false
         }
     }
 
@@ -177,12 +203,14 @@ fun SportsGreenMooveApp() {
                             onGroups = { screen = DemoScreen.Groups },
                             onImpact = { screen = DemoScreen.Impact },
                             onRewards = { screen = DemoScreen.Rewards },
+                            onPayments = { screen = DemoScreen.Payments },
                             onOptions = { screen = DemoScreen.Options },
                             onLogout = {
                                 providers.auth.signOut()
                                 session = null
                                 trips = emptyList()
                                 activeRide = null
+                                payableBookings = emptyList()
                                 screen = DemoScreen.Home
                             },
                         )
@@ -192,6 +220,12 @@ fun SportsGreenMooveApp() {
                         DemoScreen.Impact -> ImpactScreen(onBack = { screen = DemoScreen.Profile })
                         DemoScreen.Rewards -> RewardsScreen(onBack = { screen = DemoScreen.Profile })
                         DemoScreen.Options -> OptionsScreen(onBack = { screen = DemoScreen.Profile })
+                        DemoScreen.Payments -> PaymentsScreen(
+                            bookings = payableBookings,
+                            loading = loading,
+                            onBack = { screen = DemoScreen.Profile },
+                            onPay = { booking -> launchPayment(booking) },
+                        )
                         DemoScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
                             onBack = { screen = DemoScreen.Trips },
@@ -213,59 +247,4 @@ fun SportsGreenMooveApp() {
             }
         }
     }
-}
-
-fun DemoScreen.toTopLevel(): DemoScreen =
-    when (this) {
-        DemoScreen.Search -> DemoScreen.Home
-        DemoScreen.Groups, DemoScreen.Impact, DemoScreen.Rewards, DemoScreen.Options -> DemoScreen.Profile
-        DemoScreen.Ride -> DemoScreen.Trips
-        else -> this
-    }
-
-fun roleLabel(role: AppRole): String =
-    when (role) {
-        AppRole.Parent -> "Parent"
-        AppRole.Driver -> "Conducteur"
-        AppRole.Child -> "Enfant"
-        AppRole.ClubManager -> "Club manager"
-        AppRole.Admin -> "Admin"
-    }
-
-enum class DemoScreen {
-    Home,
-    Trips,
-    Publish,
-    Messages,
-    Profile,
-    Search,
-    Groups,
-    Impact,
-    Rewards,
-    Options,
-    Ride,
-}
-
-@Composable
-private fun RuntimeNotice(message: String, warning: Boolean, onDismiss: () -> Unit, modifier: Modifier = Modifier) {
-    Text(
-        text = message,
-        style = SgmType.BodyXS.copy(
-            color = if (warning) SgmColor.Orange else SgmColor.Green,
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Bold,
-        ),
-        modifier = modifier
-            .padding(horizontal = 20.dp, vertical = 10.dp)
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
-            .background(Sgm.colors.bgCard)
-            .border(
-                width = 1.dp,
-                color = if (warning) SgmColor.Orange.copy(alpha = 0.42f) else Sgm.colors.border,
-                shape = RoundedCornerShape(14.dp),
-            )
-            .clickable(onClick = onDismiss)
-            .padding(horizontal = 14.dp, vertical = 10.dp),
-    )
 }

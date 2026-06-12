@@ -3,6 +3,7 @@ package be.sportgreenmoove.app.services
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PaymentSheetConfig
 import be.sportgreenmoove.app.data.TripSummary
 
@@ -20,6 +21,7 @@ interface FirebaseGateway {
     suspend fun requestBooking(tripId: String): String
     suspend fun startRide(tripId: String): LiveRideSnapshot
     suspend fun getActiveRide(): LiveRideSnapshot?
+    suspend fun getPayableBookings(): List<PayableBookingSummary>
     suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole)
 }
 
@@ -73,6 +75,8 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     }
 
     override suspend fun getActiveRide(): LiveRideSnapshot? = null
+
+    override suspend fun getPayableBookings(): List<PayableBookingSummary> = emptyList()
 
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
         check(role.name.isNotBlank())
