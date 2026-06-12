@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import type Stripe from "stripe";
-import { buildRidePaymentIntentCreateParams, stripePublishableKey } from "../services/stripeConnect.js";
+import {
+  buildConnectedAccountLinkCreateBody,
+  buildRewardPayoutTransferCreateParams,
+  buildRidePaymentIntentCreateParams,
+  stripePublishableKey,
+} from "../services/stripeConnect.js";
 import { buildRidePaymentLedgerEntries } from "../services/stripeLedger.js";
 
 describe("Stripe ride payments", () => {
@@ -56,5 +61,45 @@ describe("Stripe ride payments", () => {
   it("requires a Stripe publishable key before issuing native PaymentSheet config", () => {
     expect(stripePublishableKey("pk_test_sgm")).toBe("pk_test_sgm");
     expect(() => stripePublishableKey("")).toThrow("STRIPE_PUBLISHABLE_KEY is required");
+  });
+
+  it("builds an Accounts v2 onboarding link request", () => {
+    expect(buildConnectedAccountLinkCreateBody({
+      accountId: "acct_driver",
+      refreshUrl: "https://app.sgm.test/refresh",
+      returnUrl: "https://app.sgm.test/return",
+    })).toEqual({
+      account: "acct_driver",
+      use_case: {
+        type: "account_onboarding",
+        account_onboarding: {
+          configurations: ["merchant"],
+          refresh_url: "https://app.sgm.test/refresh",
+          return_url: "https://app.sgm.test/return",
+        },
+      },
+    });
+  });
+
+  it("builds an idempotent reward payout transfer", () => {
+    const request = buildRewardPayoutTransferCreateParams({
+      userId: "driver-1",
+      amountCents: 750,
+      currency: "eur",
+      destinationStripeAccountId: "acct_driver",
+      sourceId: "reward-cycle-1",
+    });
+
+    expect(request.idempotencyKey).toBe("rewardPayout:driver-1:reward-cycle-1");
+    expect(request.params).toMatchObject({
+      amount: 750,
+      currency: "eur",
+      destination: "acct_driver",
+      metadata: {
+        userId: "driver-1",
+        sourceId: "reward-cycle-1",
+        product: "sports-green-moove",
+      },
+    });
   });
 });

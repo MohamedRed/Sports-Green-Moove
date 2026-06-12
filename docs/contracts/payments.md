@@ -28,6 +28,11 @@ The callable returns the native PaymentSheet setup data:
 
 iOS and Android request this config by `bookingId`, initialize the Stripe SDK with the returned publishable key, and present native PaymentSheet with the returned PaymentIntent client secret.
 
+`createStripeAccountLink` accepts `returnUrl` and `refreshUrl` for the signed-in
+driver. The backend loads `stripeAccounts/{uid}`, calls Accounts v2
+`/v2/core/account_links` for `account_onboarding`, and returns the Stripe-hosted
+onboarding URL.
+
 ## Ledgers
 
 `rewardLedger` is immutable. Balances are computed from ledger entries, not overwritten fields.
@@ -50,3 +55,14 @@ On `payment_intent.succeeded`, the Stripe webhook marks the booking paid and wri
 - `driverEarning`: positive entry for the driver, net of platform fee.
 
 On `payment_intent.payment_failed` or `payment_intent.canceled`, the booking payment status is updated without writing earning ledger entries.
+
+`issueRewardPayout` is admin-only. It requires:
+
+- a positive EUR amount.
+- a payout-ready `stripeAccounts/{userId}` record with `payoutsEnabled: true`.
+- enough immutable `rewardLedger` balance for the requested amount.
+- an optional caller-provided `sourceId` for idempotency.
+
+The backend creates a Stripe Transfer to the connected account and writes a
+negative `payout` ledger entry using `payout_{userId}_{sourceId}` as the
+deterministic document id.

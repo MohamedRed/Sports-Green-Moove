@@ -50,6 +50,35 @@ export async function createConnectedAccount(request: ConnectedAccountRequest): 
   return { id: account.id };
 }
 
+export type ConnectedAccountLinkRequest = {
+  accountId: string;
+  returnUrl: string;
+  refreshUrl: string;
+};
+
+export function buildConnectedAccountLinkCreateBody(request: ConnectedAccountLinkRequest) {
+  return {
+    account: request.accountId,
+    use_case: {
+      type: "account_onboarding",
+      account_onboarding: {
+        configurations: ["merchant"],
+        refresh_url: request.refreshUrl,
+        return_url: request.returnUrl,
+      },
+    },
+  };
+}
+
+export async function createConnectedAccountLink(
+  request: ConnectedAccountLinkRequest,
+): Promise<{ url: string; expiresAt?: string }> {
+  const stripe = createStripeClient();
+  const response = await stripe.rawRequest("POST", "/v2/core/account_links", buildConnectedAccountLinkCreateBody(request));
+  const link = response as unknown as { url: string; expires_at?: string };
+  return { url: link.url, expiresAt: link.expires_at };
+}
+
 export function platformFeeAmountCents(amountCents: number): number {
   const bps = Number(process.env.PLATFORM_FEE_BPS ?? "0");
   return Math.max(0, Math.round((amountCents * bps) / 10000));
@@ -93,4 +122,37 @@ export async function createRideDestinationPaymentIntent(context: RidePaymentInt
   const stripe = createStripeClient();
   const request = buildRidePaymentIntentCreateParams(context);
   return stripe.paymentIntents.create(request.params, { idempotencyKey: request.idempotencyKey });
+}
+
+export type RewardPayoutTransferContext = {
+  userId: string;
+  amountCents: number;
+  currency: "eur";
+  destinationStripeAccountId: string;
+  sourceId: string;
+};
+
+export function buildRewardPayoutTransferCreateParams(context: RewardPayoutTransferContext): {
+  params: Stripe.TransferCreateParams;
+  idempotencyKey: string;
+} {
+  return {
+    idempotencyKey: `rewardPayout:${context.userId}:${context.sourceId}`,
+    params: {
+      amount: context.amountCents,
+      currency: context.currency,
+      destination: context.destinationStripeAccountId,
+      metadata: {
+        userId: context.userId,
+        sourceId: context.sourceId,
+        product: "sports-green-moove",
+      },
+    },
+  };
+}
+
+export async function createRewardPayoutTransfer(context: RewardPayoutTransferContext): Promise<Stripe.Transfer> {
+  const stripe = createStripeClient();
+  const request = buildRewardPayoutTransferCreateParams(context);
+  return stripe.transfers.create(request.params, { idempotencyKey: request.idempotencyKey });
 }
