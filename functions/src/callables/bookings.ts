@@ -3,11 +3,12 @@ import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
-import { requireAuth } from "../lib/https.js";
+import { requireAuth, requireRole } from "../lib/https.js";
 import { toClientTripSummary } from "../lib/clientTrips.js";
 
 export const requestBooking = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
+  requireRole(request.auth?.token, "parent");
   const schema = z.object({
     tripId: z.string(),
     childId: z.string().optional(),
@@ -48,6 +49,7 @@ export const requestBooking = onCall(async (request) => {
 
 export const approveBooking = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
+  requireRole(request.auth?.token, "driver");
   const schema = z.object({
     bookingId: z.string(),
   });

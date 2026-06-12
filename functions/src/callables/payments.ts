@@ -4,7 +4,7 @@ import { z } from "zod";
 import { createConnectedAccount, createRideDestinationPaymentIntent, stripePublishableKey } from "../services/stripeConnect.js";
 import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
-import { requireAuth } from "../lib/https.js";
+import { requireAuth, requireRole } from "../lib/https.js";
 
 type BookingDocument = {
   tripId: string;
@@ -22,6 +22,7 @@ type StripeAccountDocument = {
 
 export const createStripeAccount = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
+  requireRole(request.auth?.token, "driver");
   const schema = z.object({
     email: z.string().email(),
   });
@@ -43,6 +44,7 @@ export const createStripeAccount = onCall(async (request) => {
 
 export const createRidePaymentIntent = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
+  requireRole(request.auth?.token, "parent");
   const schema = z.object({
     bookingId: z.string(),
     currency: z.literal("eur").default("eur"),

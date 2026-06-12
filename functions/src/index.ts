@@ -1,3 +1,4 @@
+export { setUserRoles } from "./callables/adminUsers.js";
 export { approveBooking, requestBooking } from "./callables/bookings.js";
 export { writeLocationBatch } from "./callables/locations.js";
 export { createRidePaymentIntent, createStripeAccount } from "./callables/payments.js";

@@ -5,11 +5,12 @@ import { estimateCo2SavedKg } from "../domain/co2.js";
 import { rewardForCo2Saved } from "../domain/rewards.js";
 import type { Trip } from "../domain/types.js";
 import { firestore, realtimeDb } from "../lib/firebase.js";
-import { requireAuth } from "../lib/https.js";
+import { hasRole, requireAuth, requireRole } from "../lib/https.js";
 import { toClientRideSnapshot } from "../lib/clientTrips.js";
 
 export const startRide = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
+  requireRole(request.auth?.token, "driver");
   const schema = z.object({
     tripId: z.string(),
     bookingIds: z.array(z.string()).default([]),
@@ -57,17 +58,26 @@ export const getActiveRide = onCall(async (request) => {
 });
 
 export const endRide = onCall(async (request) => {
-  requireAuth(request.auth?.uid);
+  const uid = requireAuth(request.auth?.uid);
   const schema = z.object({
     rideSessionId: z.string(),
     distanceMeters: z.number().nonnegative().default(0),
     passengersSharing: z.number().int().nonnegative().default(1),
   });
   const data = schema.parse(request.data);
+  const rideRef = firestore.collection("rideSessions").doc(data.rideSessionId);
+  const rideSnap = await rideRef.get();
+  if (!rideSnap.exists) throw new HttpsError("not-found", "Ride session not found.");
+
+  const ride = rideSnap.data() as { driverUserId?: string };
+  if (!hasRole(request.auth?.token, "admin") && ride.driverUserId !== uid) {
+    throw new HttpsError("permission-denied", "Only the driver or an admin can end this ride.");
+  }
+
   const co2SavedKg = estimateCo2SavedKg(data.distanceMeters, data.passengersSharing);
   const rewardCents = rewardForCo2Saved(co2SavedKg);
 
-  await firestore.collection("rideSessions").doc(data.rideSessionId).set(
+  await rideRef.set(
     {
       status: "completed",
       completedAt: Timestamp.now(),

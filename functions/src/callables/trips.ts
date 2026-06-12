@@ -5,7 +5,7 @@ import { rankTrips } from "../domain/matching.js";
 import type { SearchRequest, Trip } from "../domain/types.js";
 import { GoogleRoutesProvider } from "../services/googleRoutes.js";
 import { firestore } from "../lib/firebase.js";
-import { requireAuth } from "../lib/https.js";
+import { requireAuth, requireRole } from "../lib/https.js";
 import { toClientTripSummary } from "../lib/clientTrips.js";
 
 const latLngSchema = z.object({
@@ -109,6 +109,7 @@ export const searchTrips = onCall(async (request) => {
 
 export const createTrip = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
+  requireRole(request.auth?.token, "driver");
   const data = createTripSchema.parse(request.data ?? {});
   const ref = firestore.collection("trips").doc();
   const trip: Trip = {

@@ -6,6 +6,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 
 | Function | Caller | Result |
 | --- | --- | --- |
+| `setUserRoles` | admin | Updates Firebase Auth `roleKeys` and `users/{uid}.roles` together. |
 | `listTrips` | signed-in users | Client-ready published trip summaries for home/trips screens. |
 | `searchTrips` | signed-in users | Ranked explainable matches. |
 | `createTrip` | driver | Published ride offer. |
