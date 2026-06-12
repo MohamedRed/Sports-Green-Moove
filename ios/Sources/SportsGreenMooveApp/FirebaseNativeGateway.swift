@@ -133,7 +133,8 @@ private struct FirebaseBackendGateway: FirebaseGateway {
             role: locationRole
         )
         let payload = update.callablePayload()
-        let requestPayload = NSDictionary(dictionary: ["updates": NSArray(object: payload)])
+        // Firebase Functions consumes Objective-C payloads through a Swift 6 `sending Any?` API.
+        nonisolated(unsafe) let requestPayload = NSDictionary(dictionary: ["updates": NSArray(object: payload)])
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             Functions.functions().httpsCallable("writeLocationBatch").call(requestPayload) { result, error in
                 if let error {
