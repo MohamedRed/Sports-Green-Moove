@@ -17,6 +17,7 @@ The app root now uses real Firebase providers when `GoogleService-Info.plist` is
 - Cloud Functions: booking request, ride start, active ride snapshot.
 - Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
 - Native location fallback: Core Location writes the first active-ride batch through `writeLocationBatch` when Radar is not configured.
+- `PrivacyInfo.xcprivacy`: bundled privacy manifest for linked account identity and precise active-ride location.
 
 Without the plist, the app shows a configuration-required screen instead of silently using mock data.
 
@@ -39,3 +40,5 @@ Without the plist, the app shows a configuration-required screen instead of sile
 ## Build Note
 
 This folder contains the app source, Swift package scaffold, and XcodeGen project spec used by CI/Appetize.
+
+Store-review evidence is tracked in `../docs/release/store-readiness.md`.

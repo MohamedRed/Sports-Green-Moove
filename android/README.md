@@ -18,6 +18,7 @@ The app root now uses real Firebase providers when `android/app/google-services.
 - Cloud Functions: booking request, ride start, active ride snapshot.
 - Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
 - Native location fallback: fused location writes the first active-ride batch through `writeLocationBatch` and starts a foreground location service when Radar is not configured.
+- Active-ride start is gated on precise foreground location, background location, and notifications before the foreground service starts.
 
 Without `google-services.json`, the app shows a configuration-required screen instead of silently using mock data.
 
@@ -27,4 +28,4 @@ The app declares `com.stripe:stripe-android:23.10.0`. The backend returns the pu
 
 ## Remaining SDK Wiring Points
 
-Add Radar publishable key and Google Maps key before production device builds that need tracking or route maps.
+Add Radar publishable key and Google Maps key before production device builds that need tracking or route maps. Store-review evidence is tracked in `../docs/release/store-readiness.md`.

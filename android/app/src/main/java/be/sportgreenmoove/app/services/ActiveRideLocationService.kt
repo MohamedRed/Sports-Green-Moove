@@ -11,6 +11,7 @@ import android.location.Location
 import android.os.Build
 import android.os.IBinder
 import android.os.Looper
+import be.sportgreenmoove.app.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -77,7 +78,7 @@ class ActiveRideLocationService : Service() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         val channel = NotificationChannel(
             CHANNEL_ID,
-            "Active ride tracking",
+            getString(R.string.active_ride_channel_name),
             NotificationManager.IMPORTANCE_LOW,
         )
         getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
@@ -92,8 +93,8 @@ class ActiveRideLocationService : Service() {
         }
 
         return builder
-            .setContentTitle("SPORTS GREEN-mOOVe")
-            .setContentText("Active ride location sharing is running")
+            .setContentTitle(getString(R.string.active_ride_notification_title))
+            .setContentText(getString(R.string.active_ride_notification_body))
             .setSmallIcon(android.R.drawable.ic_menu_mylocation)
             .setOngoing(true)
             .build()

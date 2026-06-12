@@ -9,6 +9,7 @@ Pure-native public-launch foundation for the Belgian sports and cultural carpool
 - Firebase Cloud Functions and security rules in `functions/`
 - Basic admin console in `admin/`
 - Shared data/API contracts in `docs/contracts/`
+- Store review and privacy readiness notes in `docs/release/`
 
 ## Platform Roles
 
@@ -56,7 +57,7 @@ Native projects now include the first real Firebase vertical slice: email/passwo
 - Android local/CI: `android/app/google-services.json`
 - GitHub Actions: set `FIREBASE_IOS_CONFIG_BASE64` and/or `FIREBASE_ANDROID_CONFIG_BASE64`
 
-Radar, Google Maps native SDK screens, and Stripe PaymentSheet still require their provider keys before production release.
+Radar SDK, Google Maps native screens, and provider production keys remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`.
 
 ## Design System
 

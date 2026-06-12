@@ -49,6 +49,9 @@ fun SportsGreenMooveApp() {
     var loading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var noticeMessage by remember { mutableStateOf<String?>(null) }
+    val activeRidePermissionGate = rememberActiveRidePermissionGate { message ->
+        errorMessage = message
+    }
 
     suspend fun refreshAppData() {
         trips = providers.firebase.searchTrips()
@@ -69,6 +72,22 @@ fun SportsGreenMooveApp() {
         } else {
             val bookingId = providers.firebase.requestBooking(trip.id)
             noticeMessage = "Demande envoyée: $bookingId"
+        }
+    }
+
+    fun launchTripAction(trip: TripSummary) {
+        val action: () -> Unit = {
+            scope.launch {
+                runCatching {
+                    handleTripAction(trip)
+                }.onFailure { errorMessage = it.message }
+            }
+        }
+
+        if (role == AppRole.Driver) {
+            activeRidePermissionGate.runWhenReady(action)
+        } else {
+            action()
         }
     }
 
@@ -135,11 +154,7 @@ fun SportsGreenMooveApp() {
                             onTrips = { screen = DemoScreen.Trips },
                             onRide = {
                                 trips.firstOrNull()?.let { trip ->
-                                    scope.launch {
-                                        runCatching {
-                                            handleTripAction(trip)
-                                        }.onFailure { errorMessage = it.message }
-                                    }
+                                    launchTripAction(trip)
                                 }
                             },
                             onImpact = { screen = DemoScreen.Impact },
@@ -149,11 +164,7 @@ fun SportsGreenMooveApp() {
                             trips = trips,
                             activeRide = activeRide,
                             onTripAction = { trip ->
-                                scope.launch {
-                                    runCatching {
-                                        handleTripAction(trip)
-                                    }.onFailure { errorMessage = it.message }
-                                }
+                                launchTripAction(trip)
                             },
                             onOpenSearch = { screen = DemoScreen.Search },
                         )
