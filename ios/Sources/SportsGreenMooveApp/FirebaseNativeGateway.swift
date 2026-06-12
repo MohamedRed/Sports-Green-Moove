@@ -133,7 +133,7 @@ private struct FirebaseBackendGateway: FirebaseGateway {
             role: locationRole
         )
         let payload = update.callablePayload()
-        try await withCheckedThrowingContinuation { continuation in
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             Functions.functions().httpsCallable("writeLocationBatch").call(["updates": [payload]]) { result, error in
                 if let error {
                     continuation.resume(throwing: error)
