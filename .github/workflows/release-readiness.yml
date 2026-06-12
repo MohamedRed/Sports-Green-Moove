@@ -24,6 +24,9 @@ on:
       - "package.json"
       - "tests/store-readiness.test.mjs"
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   store-readiness:
     name: Store readiness static checks

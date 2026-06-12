@@ -28,6 +28,9 @@ on:
       - "storage.rules"
       - "tests/**"
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   functions-and-rules:
     name: Functions and Firebase rules
