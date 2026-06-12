@@ -235,3 +235,38 @@ struct PaymentSheetConfig: Hashable, Sendable {
     let amountCents: Int
     let currency: String
 }
+
+struct InboxSummary: Hashable, Sendable {
+    var notifications: [InboxNotificationSummary] = []
+    var chats: [InboxChatSummary] = []
+    var reviews: [InboxReviewPrompt] = []
+}
+
+struct InboxNotificationSummary: Identifiable, Hashable, Sendable {
+    let id: String
+    let title: String
+    let body: String
+    let dateLabel: String
+    let unread: Bool
+    let initials: String
+}
+
+struct InboxChatSummary: Identifiable, Hashable, Sendable {
+    let id: String
+    let sourceType: String
+    let sourceId: String
+    let title: String
+    let preview: String
+    let dateLabel: String
+    let unreadCount: Int
+    let initials: String
+}
+
+struct InboxReviewPrompt: Identifiable, Hashable, Sendable {
+    let id: String
+    let rideSessionId: String
+    let ratedUserId: String
+    let title: String
+    let prompt: String
+    let initials: String
+}

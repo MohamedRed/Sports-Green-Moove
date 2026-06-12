@@ -113,6 +113,8 @@ export type ClientRidePassengerStatus = {
   dropoffStatus: "pending" | "droppedOff";
 };
 
+export type { ClientInboxChat, ClientInboxNotification, ClientInboxReviewPrompt, ClientInboxSummary } from "./inbox.js";
+
 export type SearchRequest = {
   requesterUserId: string;
   childUserId?: string;

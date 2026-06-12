@@ -22,6 +22,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `markPickup` | driver | Child pickup status and parent notification. |
 | `markDropoff` | driver | Child dropoff status and parent notification. |
 | `writeLocationBatch` | driver/child | Native fallback location batch bound to the authenticated user. |
+| `getInbox` | signed-in users | Notifications, latest chat previews, and pending post-ride review prompts for the Messages screen. |
 | `sendChatMessage` | participants | Message and push fanout. |
 | `submitRating` | ride participant | Immutable rating. |
 | `createReport` | signed-in users | Safety/support report. |

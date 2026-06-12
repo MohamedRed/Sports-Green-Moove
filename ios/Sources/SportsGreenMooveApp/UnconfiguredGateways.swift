@@ -79,6 +79,10 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
 
     func getPayableBookings() async throws -> [PayableBookingSummary] { [] }
 
+    func getInbox() async throws -> InboxSummary {
+        throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
+    }
+
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
         _ = (rideSessionId, role)
         throw ProviderConfigurationError(message: "Realtime Database iOS n'est pas configuré.")

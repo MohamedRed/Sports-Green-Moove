@@ -51,7 +51,7 @@ npm install
 npm run build
 ```
 
-Native projects now include the first real Firebase vertical slice: email/password Auth, Firestore trip reads, booking requests, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
+Native projects now include the first real Firebase vertical slice: email/password Auth, Firestore trip reads, booking requests, inbox reads, payments, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
 
 - iOS local/CI: `GoogleService-Info.plist`
 - Android local/CI: `android/app/google-services.json`

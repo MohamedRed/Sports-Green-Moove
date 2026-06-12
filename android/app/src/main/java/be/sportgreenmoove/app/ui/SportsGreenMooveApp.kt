@@ -214,7 +214,7 @@ fun SportsGreenMooveApp() {
                         )
 
                         DemoScreen.Publish -> PublishScreen(role = role)
-                        DemoScreen.Messages -> MessagesScreen()
+                        DemoScreen.Messages -> MessagesScreen(firebase = providers.firebase)
                         DemoScreen.Profile -> ProfileScreen(
                             role = role,
                             onRoleChange = {

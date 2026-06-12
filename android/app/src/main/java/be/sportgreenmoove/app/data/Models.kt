@@ -155,3 +155,38 @@ data class PaymentSheetConfig(
     val amountCents: Int,
     val currency: String,
 )
+
+data class InboxSummary(
+    val notifications: List<InboxNotificationSummary> = emptyList(),
+    val chats: List<InboxChatSummary> = emptyList(),
+    val reviews: List<InboxReviewPrompt> = emptyList(),
+)
+
+data class InboxNotificationSummary(
+    val id: String,
+    val title: String,
+    val body: String,
+    val dateLabel: String,
+    val unread: Boolean,
+    val initials: String,
+)
+
+data class InboxChatSummary(
+    val id: String,
+    val sourceType: String,
+    val sourceId: String,
+    val title: String,
+    val preview: String,
+    val dateLabel: String,
+    val unreadCount: Int,
+    val initials: String,
+)
+
+data class InboxReviewPrompt(
+    val id: String,
+    val rideSessionId: String,
+    val ratedUserId: String,
+    val title: String,
+    val prompt: String,
+    val initials: String,
+)

@@ -4,6 +4,7 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.InboxSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PaymentSheetConfig
@@ -38,6 +39,7 @@ interface FirebaseGateway {
     suspend fun markDropoff(rideSessionId: String, bookingId: String, childId: String): String
     suspend fun endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int): RideCompletionSummary
     suspend fun getPayableBookings(): List<PayableBookingSummary>
+    suspend fun getInbox(): InboxSummary
     suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole)
     fun stopNativeLocationFallback(rideSessionId: String)
 }
@@ -139,6 +141,10 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     }
 
     override suspend fun getPayableBookings(): List<PayableBookingSummary> = emptyList()
+
+    override suspend fun getInbox(): InboxSummary {
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
 
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
         check(role.name.isNotBlank())

@@ -7,6 +7,7 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.InboxSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
@@ -251,6 +252,13 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
             val trip = firestore.collection("trips").document(tripId).get().await().data.orEmpty()
             mapPayableBooking(id = document.id, booking = booking, trip = trip)
         }
+    }
+
+    override suspend fun getInbox(): InboxSummary {
+        val result = functions.getHttpsCallable("getInbox").call(emptyMap<String, Any>()).await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse inbox invalide.")
+        val inbox = payload["inbox"] as? Map<*, *> ?: throw ProviderConfigurationException("Inbox manquante.")
+        return mapInbox(inbox)
     }
 
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
