@@ -11,10 +11,11 @@ protocol AuthGateway: Sendable {
 protocol FirebaseGateway: Sendable {
     var isConfigured: Bool { get }
     func searchTrips() async throws -> [TripSummary]
+    func listChildren() async throws -> [ChildSummary]
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion]
     func resolvePlace(placeId: String) async throws -> ResolvedPlace
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary]
-    func requestBooking(tripId: String) async throws -> String
+    func requestBooking(tripId: String, childId: String?) async throws -> String
     func getDriverBookingRequests() async throws -> [BookingRequestSummary]
     func approveBooking(bookingId: String) async throws -> String
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot

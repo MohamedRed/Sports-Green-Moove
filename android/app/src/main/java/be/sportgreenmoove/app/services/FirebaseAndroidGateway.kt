@@ -6,6 +6,7 @@ import be.sportgreenmoove.app.R
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
+import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
@@ -96,6 +97,19 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
         }
     }
 
+    override suspend fun listChildren(): List<ChildSummary> {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return emptyList()
+        val snapshot = firestore.collection("children")
+            .whereArrayContains("guardianUserIds", uid)
+            .limit(20)
+            .get()
+            .await()
+
+        return snapshot.documents.map { document ->
+            mapChild(id = document.id, data = document.data.orEmpty())
+        }
+    }
+
     override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
         val result = functions
             .getHttpsCallable("suggestPlaces")
@@ -130,13 +144,15 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
             .orEmpty()
     }
 
-    override suspend fun requestBooking(tripId: String): String {
+    override suspend fun requestBooking(tripId: String, childId: String?): String {
+        val requestPayload = mutableMapOf<String, Any>("tripId" to tripId, "seats" to 1)
+        childId?.takeIf(String::isNotBlank)?.let { requestPayload["childId"] = it }
         val result = functions
             .getHttpsCallable("requestBooking")
-            .call(mapOf("tripId" to tripId, "seats" to 1))
+            .call(requestPayload)
             .await()
-        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse booking invalide.")
-        return payload["bookingId"] as? String ?: throw ProviderConfigurationException("Booking manquant.")
+        val responsePayload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse booking invalide.")
+        return responsePayload["bookingId"] as? String ?: throw ProviderConfigurationException("Booking manquant.")
     }
 
     override suspend fun getDriverBookingRequests(): List<BookingRequestSummary> {

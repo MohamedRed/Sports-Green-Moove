@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
@@ -46,6 +47,7 @@ fun SearchScreen(
     destination: ResolvedPlace?,
     originSuggestions: List<PlaceSuggestion>,
     destinationSuggestions: List<PlaceSuggestion>,
+    children: List<ChildSummary>,
     matches: List<TripMatchSummary>,
     loading: Boolean,
     error: String?,
@@ -55,7 +57,7 @@ fun SearchScreen(
     onSelectOrigin: (PlaceSuggestion) -> Unit,
     onSelectDestination: (PlaceSuggestion) -> Unit,
     onSearch: (SearchFormState) -> Unit,
-    onRequest: (TripMatchSummary) -> Unit,
+    onRequest: (TripMatchSummary, String?) -> Unit,
 ) {
     var originInput by remember { mutableStateOf(origin?.label.orEmpty()) }
     var destinationInput by remember { mutableStateOf(destination?.label.orEmpty()) }
@@ -65,6 +67,7 @@ fun SearchScreen(
     var returnTrip by remember { mutableStateOf(false) }
     var childTracking by remember { mutableStateOf(true) }
     var guardianConsent by remember { mutableStateOf(true) }
+    var selectedChildId by remember(children) { mutableStateOf(children.firstOrNull()?.id) }
 
     V2Screen {
         V2TopBar("RECHERCHE", onBack = onBack)
@@ -72,6 +75,11 @@ fun SearchScreen(
             PlaceSearchField("Départ", originInput, origin, originSuggestions, { originInput = it }, onSuggestOrigin, onSelectOrigin)
             PlaceSearchField("Destination", destinationInput, destination, destinationSuggestions, { destinationInput = it }, onSuggestDestination, onSelectDestination)
             SearchInput("Date ISO", departureIso, { departureIso = it })
+            SearchChildSelector(
+                children = children,
+                selectedChildId = selectedChildId,
+                onSelectedChild = { selectedChildId = it },
+            )
             SearchOptions(
                 seatsNeeded = seatsNeeded,
                 onSeats = { seatsNeeded = it },
@@ -96,6 +104,7 @@ fun SearchScreen(
                             returnTrip = returnTrip,
                             requireChildTracking = childTracking,
                             guardianConsent = guardianConsent,
+                            childUserId = selectedChildId,
                         ),
                     )
                 },
@@ -106,7 +115,7 @@ fun SearchScreen(
 
         V2SectionLabel("${matches.size} MATCH${if (matches.size > 1) "S" else ""}")
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            matches.forEach { match -> MatchCard(match = match, onRequest = { onRequest(match) }) }
+            matches.forEach { match -> MatchCard(match = match, onRequest = { onRequest(match, selectedChildId) }) }
             if (!loading && matches.isEmpty()) {
                 EmptyMatchCard()
             }
@@ -121,6 +130,7 @@ data class SearchFormState(
     val returnTrip: Boolean,
     val requireChildTracking: Boolean,
     val guardianConsent: Boolean,
+    val childUserId: String?,
 )
 
 enum class SearchPlaceTarget {

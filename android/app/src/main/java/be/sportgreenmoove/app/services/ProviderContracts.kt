@@ -3,6 +3,7 @@ package be.sportgreenmoove.app.services
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
+import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PaymentSheetConfig
@@ -24,10 +25,11 @@ interface AuthGateway {
 interface FirebaseGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
+    suspend fun listChildren(): List<ChildSummary>
     suspend fun suggestPlaces(input: String): List<PlaceSuggestion>
     suspend fun resolvePlace(placeId: String): ResolvedPlace
     suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary>
-    suspend fun requestBooking(tripId: String): String
+    suspend fun requestBooking(tripId: String, childId: String? = null): String
     suspend fun getDriverBookingRequests(): List<BookingRequestSummary>
     suspend fun approveBooking(bookingId: String): String
     suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot
@@ -81,6 +83,8 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
         throw ProviderConfigurationException("Firestore Android n'est pas configuré.")
     }
 
+    override suspend fun listChildren(): List<ChildSummary> = emptyList()
+
     override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
         check(input.isNotBlank())
         throw ProviderConfigurationException("Google Places Android n'est pas configuré.")
@@ -96,7 +100,8 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 
-    override suspend fun requestBooking(tripId: String): String {
+    override suspend fun requestBooking(tripId: String, childId: String?): String {
+        check(childId == null || childId.isNotBlank())
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 

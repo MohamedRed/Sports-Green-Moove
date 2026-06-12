@@ -7,6 +7,7 @@ type BookingRequestDocument = {
   parentUserId?: string;
   requesterUserId?: string;
   childId?: string;
+  childLabel?: string;
   seats?: number;
   note?: string;
   status?: string;
@@ -22,6 +23,7 @@ export function toClientBookingRequestSummary(
     tripId: booking.tripId,
     parentUserId: booking.parentUserId ?? booking.requesterUserId ?? "",
     childId: booking.childId,
+    childLabel: booking.childLabel,
     seats: booking.seats ?? 1,
     note: booking.note,
     status: bookingStatus(booking.status),

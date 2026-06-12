@@ -10,6 +10,7 @@ struct SearchScreen: View {
     @State private var returnTrip = false
     @State private var childTracking = true
     @State private var guardianConsent = true
+    @State private var selectedChildId: String?
 
     var body: some View {
         SGMScreen(spacing: 10) {
@@ -32,6 +33,10 @@ struct SearchScreen: View {
                     onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .destination) } }
                 )
                 SearchTextField(title: "Date ISO", text: $departureIso)
+                SearchChildSelector(
+                    children: appState.children,
+                    selectedChildId: $selectedChildId
+                )
                 SearchOptions(
                     seatsNeeded: $seatsNeeded,
                     baggage: $baggage,
@@ -48,7 +53,8 @@ struct SearchScreen: View {
                                 baggage: baggage,
                                 returnTrip: returnTrip,
                                 requireChildTracking: childTracking,
-                                guardianConsent: guardianConsent
+                                guardianConsent: guardianConsent,
+                                childUserId: selectedChildId
                             )
                         )
                     }
@@ -60,7 +66,7 @@ struct SearchScreen: View {
             VStack(spacing: 8) {
                 ForEach(appState.searchMatches) { match in
                     MatchCard(match: match) {
-                        Task { await appState.requestSearchMatch(match) }
+                        Task { await appState.requestSearchMatch(match, childId: selectedChildId) }
                     }
                 }
                 if !appState.searchLoading && appState.searchMatches.isEmpty {
@@ -73,6 +79,17 @@ struct SearchScreen: View {
             }
             .padding(.horizontal, SGMSpace.padScreen)
         }
+        .onAppear {
+            reconcileSelectedChild(appState.children)
+        }
+        .onChange(of: appState.children) { _, children in
+            reconcileSelectedChild(children)
+        }
+    }
+
+    private func reconcileSelectedChild(_ children: [ChildSummary]) {
+        guard !children.contains(where: { $0.id == selectedChildId }) else { return }
+        selectedChildId = children.first?.id
     }
 }
 

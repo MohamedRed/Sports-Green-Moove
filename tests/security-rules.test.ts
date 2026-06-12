@@ -98,6 +98,7 @@ describe("Firestore rules", () => {
     const intruder = authed("intruder", { parent: true });
 
     await assertSucceeds(guardian.firestore().doc("children/child-1").get());
+    await assertSucceeds(guardian.firestore().collection("children").where("guardianUserIds", "array-contains", "guardian").get());
     await assertFails(intruder.firestore().doc("children/child-1").get());
     await assertSucceeds(guardian.firestore().doc("children/child-1").update({ name: "Leo B." }));
     await assertFails(guardian.firestore().doc("children/child-1").update({ guardianUserIds: ["guardian", "intruder"] }));

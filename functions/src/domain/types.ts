@@ -84,6 +84,7 @@ export type ClientBookingRequestSummary = {
   tripId: string;
   parentUserId: string;
   childId?: string;
+  childLabel?: string;
   seats: number;
   note?: string;
   status: BookingStatus;

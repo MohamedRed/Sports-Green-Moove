@@ -7,7 +7,9 @@ import {
   isCancellableBookingStatus,
   refundStatusForCancellation,
 } from "../domain/access.js";
+import { childDisplayLabel, type ChildProfileDocument } from "../domain/children.js";
 import { roleKeysFromToken } from "../domain/roles.js";
+import { isGuardianOfChild } from "../domain/searchAccess.js";
 import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
@@ -25,6 +27,7 @@ type BookingDocument = {
   status?: string;
   paymentStatus?: string;
   childId?: string;
+  childLabel?: string;
   note?: string;
 };
 
@@ -79,18 +82,24 @@ export const requestBooking = onCall(async (request) => {
   if (trip.driverUserId === uid) throw new HttpsError("failed-precondition", "Drivers cannot book their own trip.");
   if (trip.seatsAvailable < data.seats) throw new HttpsError("failed-precondition", "Not enough seats available.");
 
-  await bookingRef.set({
+  const child = data.childId ? await loadGuardianChild(uid, data.childId) : undefined;
+  const bookingData: Record<string, unknown> = {
     tripId: data.tripId,
     parentUserId: uid,
     requesterUserId: uid,
     driverUserId: trip.driverUserId,
-    childId: data.childId,
     seats: data.seats,
-    note: data.note,
     status: "requested",
     createdAt: Timestamp.now(),
     updatedAt: Timestamp.now(),
-  });
+  };
+  if (data.childId) {
+    bookingData.childId = data.childId;
+    bookingData.childLabel = childDisplayLabel(child, data.childId);
+  }
+  if (data.note) bookingData.note = data.note;
+
+  await bookingRef.set(bookingData);
 
   return {
     bookingId: bookingRef.id,
@@ -98,6 +107,15 @@ export const requestBooking = onCall(async (request) => {
     trip: toClientTripSummary(trip),
   };
 });
+
+async function loadGuardianChild(uid: string, childId: string): Promise<ChildProfileDocument> {
+  const childSnap = await firestore.collection("children").doc(childId).get();
+  const child = childSnap.data() as ChildProfileDocument | undefined;
+  if (!childSnap.exists || !isGuardianOfChild(child, uid)) {
+    throw new HttpsError("permission-denied", "Only a guardian can book a trip for this child.");
+  }
+  return child ?? {};
+}
 
 export const approveBooking = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);

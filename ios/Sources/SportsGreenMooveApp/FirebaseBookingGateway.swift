@@ -55,6 +55,7 @@ private func mapBookingRequest(_ data: [String: Any]) -> BookingRequestSummary? 
         tripId: tripId,
         parentUserId: data["parentUserId"] as? String ?? "",
         childId: data["childId"] as? String,
+        childLabel: data["childLabel"] as? String,
         seats: intValue(data["seats"]) ?? 1,
         note: data["note"] as? String,
         status: data["status"] as? String ?? "requested",

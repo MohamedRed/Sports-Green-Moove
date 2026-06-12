@@ -25,6 +25,8 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Firestore iOS n'est pas configuré.")
     }
 
+    func listChildren() async throws -> [ChildSummary] { [] }
+
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
         _ = input
         throw ProviderConfigurationError(message: "Google Places iOS n'est pas configuré.")
@@ -40,8 +42,9 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
-    func requestBooking(tripId: String) async throws -> String {
+    func requestBooking(tripId: String, childId: String?) async throws -> String {
         _ = tripId
+        _ = childId
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 

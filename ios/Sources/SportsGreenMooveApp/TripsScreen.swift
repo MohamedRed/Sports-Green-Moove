@@ -183,7 +183,7 @@ private struct BookingRequestCard: View {
                 .tracking(.sgmWide(for: 17))
                 .foregroundStyle(SGM.textPrimary)
                 .lineLimit(1)
-            Text("\(request.seats) place\(request.seats > 1 ? "s" : "") · \(request.priceLabel) · Parent \(request.parentUserId.suffix(6))")
+            Text(bookingMetaLabel)
                 .font(.sgmBody(12, weight: .semibold))
                 .foregroundStyle(SGM.textMuted)
                 .lineLimit(1)
@@ -206,5 +206,11 @@ private struct BookingRequestCard: View {
             RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous)
                 .stroke(SGM.border, lineWidth: 1)
         )
+    }
+
+    private var bookingMetaLabel: String {
+        let child = request.childLabel.map { "\($0) · " } ?? ""
+        let seats = "\(request.seats) place\(request.seats > 1 ? "s" : "")"
+        return "\(child)\(seats) · \(request.priceLabel) · Parent \(request.parentUserId.suffix(6))"
     }
 }

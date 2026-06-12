@@ -148,11 +148,19 @@ struct TripMatchSummary: Identifiable, Hashable, Sendable {
     var id: String { tripId }
 }
 
+struct ChildSummary: Identifiable, Hashable, Sendable {
+    let id: String
+    let label: String
+    let teamLabel: String
+    let trackingEnabled: Bool
+}
+
 struct BookingRequestSummary: Identifiable, Hashable, Sendable {
     let bookingId: String
     let tripId: String
     let parentUserId: String
     let childId: String?
+    let childLabel: String?
     let seats: Int
     let note: String?
     let status: String
@@ -177,6 +185,7 @@ struct SearchFormState: Hashable, Sendable {
     let returnTrip: Bool
     let requireChildTracking: Bool
     let guardianConsent: Bool
+    var childUserId: String?
 }
 
 struct LiveRideSnapshot: Hashable, Sendable {

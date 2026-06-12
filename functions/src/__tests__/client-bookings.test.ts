@@ -36,6 +36,7 @@ describe("client booking request summaries", () => {
       tripId: "trip-1",
       parentUserId: "parent-1",
       childId: "child-1",
+      childLabel: "Kévin",
       seats: 2,
       note: "Besoin du siège enfant",
       status: "requested",
@@ -44,6 +45,7 @@ describe("client booking request summaries", () => {
     expect(summary.bookingId).toBe("booking-1");
     expect(summary.parentUserId).toBe("parent-1");
     expect(summary.childId).toBe("child-1");
+    expect(summary.childLabel).toBe("Kévin");
     expect(summary.seats).toBe(2);
     expect(summary.note).toBe("Besoin du siège enfant");
     expect(summary.status).toBe("requested");

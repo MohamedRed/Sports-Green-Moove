@@ -12,6 +12,7 @@ import { toClientRideSnapshot } from "../lib/clientTrips.js";
 
 type BookingDocument = {
   childId?: string;
+  childLabel?: string;
   driverUserId: string;
   parentUserId?: string;
   requesterUserId?: string;
@@ -60,7 +61,7 @@ export const startRide = onCall(async (request) => {
     return {
       bookingId,
       childId,
-      label: `Enfant ${childId.slice(-4).toUpperCase()}`,
+      label: booking.childLabel ?? `Enfant ${childId.slice(-4).toUpperCase()}`,
       parentUserId: booking.parentUserId ?? booking.requesterUserId,
       pickupStatus: "pending",
       dropoffStatus: "pending",

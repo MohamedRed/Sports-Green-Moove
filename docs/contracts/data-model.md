@@ -5,7 +5,7 @@
 | Collection | Purpose |
 | --- | --- |
 | `users` | Profile, roles, verification, notification preferences, Stripe state summary. |
-| `children` | Child profile, guardian links, tracking consent, team memberships. |
+| `children` | Child profile, guardian links, tracking consent, child-device identity, team memberships. |
 | `clubs` | Club identity, region, manager users, public status. |
 | `teams` | Team/category such as U8 Nationaux, linked to a club. |
 | `memberships` | User/child membership in clubs and teams. |
@@ -68,3 +68,6 @@
 
 Firestore and Realtime Database rules allow ride/live-trip reads only for the driver, listed parent participants, listed child-device users, and admins.
 Live state is mirrored into Firestore audit summaries by Cloud Functions. The UI must show stale-state warnings when `uploadedAt` is older than the configured threshold.
+
+Native clients list `children` with `guardianUserIds array-contains auth.uid` and pass the selected `childId` to `searchTrips` and `requestBooking`.
+`requestBooking` re-reads the child profile server-side and rejects ids that do not belong to the authenticated parent.

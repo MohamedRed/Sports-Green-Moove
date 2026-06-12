@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
+import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
@@ -37,6 +38,7 @@ fun SportsGreenMooveApp() {
     var role by remember { mutableStateOf(AppRole.Parent) }
     var session by remember { mutableStateOf<AuthSession?>(null) }
     var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
+    var children by remember { mutableStateOf(emptyList<ChildSummary>()) }
     var activeRide by remember { mutableStateOf<LiveRideSnapshot?>(null) }
     var activeRideTrip by remember { mutableStateOf<TripSummary?>(null) }
     var payableBookings by remember { mutableStateOf(emptyList<PayableBookingSummary>()) }
@@ -57,6 +59,7 @@ fun SportsGreenMooveApp() {
     )
     suspend fun refreshAppData() {
         trips = providers.firebase.searchTrips()
+        children = if (role == AppRole.Parent) providers.firebase.listChildren() else emptyList()
         activeRide = providers.firebase.getActiveRide()
         payableBookings = providers.firebase.getPayableBookings()
         driverBookingRequests = if (role == AppRole.Driver) {
@@ -227,6 +230,7 @@ fun SportsGreenMooveApp() {
                                 providers.auth.signOut()
                                 session = null
                                 trips = emptyList()
+                                children = emptyList()
                                 activeRide = null
                                 activeRideTrip = null
                                 payableBookings = emptyList()
@@ -240,6 +244,7 @@ fun SportsGreenMooveApp() {
                             destination = searchController.destination,
                             originSuggestions = searchController.originSuggestions,
                             destinationSuggestions = searchController.destinationSuggestions,
+                            children = children,
                             matches = searchController.matches,
                             loading = searchController.loading,
                             error = errorMessage,

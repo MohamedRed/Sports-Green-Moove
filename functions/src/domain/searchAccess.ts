@@ -1,6 +1,6 @@
 import type { SearchRequest } from "./types.js";
 
-type ChildAccessDocument = {
+export type ChildAccessDocument = {
   guardianUserIds?: unknown;
   clubIds?: unknown;
   teamIds?: unknown;

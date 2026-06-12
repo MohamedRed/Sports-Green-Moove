@@ -10,6 +10,7 @@ final class AppState {
     var darkTheme = false
     var session: AuthSession?
     var trips: [TripSummary] = []
+    var children: [ChildSummary] = []
     var activeRide: LiveRideSnapshot?
     var activeRideTrip: TripSummary?
     var payableBookings: [PayableBookingSummary] = []
@@ -77,6 +78,7 @@ final class AppState {
             try auth.signOut()
             session = nil
             trips = []
+            children = []
             activeRide = nil
             activeRideTrip = nil
             payableBookings = []
@@ -110,6 +112,7 @@ final class AppState {
         defer { loading = false }
         do {
             trips = try await firebase.searchTrips()
+            children = selectedRole == .parent ? try await firebase.listChildren() : []
             activeRide = try await firebase.getActiveRide()
             payableBookings = try await firebase.getPayableBookings()
             driverBookingRequests = selectedRole == .driver
@@ -124,13 +127,13 @@ final class AppState {
         if selectedRole == .driver {
             await startRide(tripId: tripId)
         } else {
-            await requestBooking(tripId: tripId)
+            await requestBooking(tripId: tripId, childId: nil)
         }
     }
 
-    func requestBooking(tripId: String) async {
+    func requestBooking(tripId: String, childId: String?) async {
         do {
-            let bookingId = try await firebase.requestBooking(tripId: tripId)
+            let bookingId = try await firebase.requestBooking(tripId: tripId, childId: childId)
             noticeMessage = "Demande envoyée: \(bookingId)"
         } catch {
             errorMessage = error.localizedDescription
@@ -176,6 +179,10 @@ final class AppState {
             errorMessage = "Choisissez un départ et une destination dans les suggestions."
             return
         }
+        guard !form.requireChildTracking || !(form.childUserId ?? "").isEmpty else {
+            errorMessage = "Choisissez un enfant pour activer le suivi enfant."
+            return
+        }
 
         searchLoading = true
         defer { searchLoading = false }
@@ -189,7 +196,8 @@ final class AppState {
                     baggage: form.baggage,
                     returnTrip: form.returnTrip,
                     requireChildTracking: form.requireChildTracking,
-                    guardianConsent: form.guardianConsent
+                    guardianConsent: form.guardianConsent,
+                    childUserId: form.childUserId
                 )
             )
         } catch {
@@ -197,8 +205,8 @@ final class AppState {
         }
     }
 
-    func requestSearchMatch(_ match: TripMatchSummary) async {
-        await requestBooking(tripId: match.tripId)
+    func requestSearchMatch(_ match: TripMatchSummary, childId: String?) async {
+        await requestBooking(tripId: match.tripId, childId: childId)
     }
 
     func approveBooking(_ request: BookingRequestSummary) async {

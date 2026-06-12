@@ -12,7 +12,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `resolvePlace` | signed-in users | Google Place Details location and formatted address for a selected suggestion. |
 | `searchTrips` | signed-in users | Ranked explainable matches. |
 | `createTrip` | driver | Published ride offer. |
-| `requestBooking` | parent | Pending booking request. |
+| `requestBooking` | parent | Pending booking request. Optional `childId` must belong to the caller through `children/{childId}.guardianUserIds`. |
 | `listDriverBookingRequests` | driver | Requested/approved booking queue for driver approval screens. |
 | `approveBooking` | driver | Approved booking and notification. |
 | `cancelBooking` | parent/driver/admin | Cancelled booking and notification. |

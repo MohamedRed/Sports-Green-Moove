@@ -93,6 +93,10 @@ class SearchController(
             onError("Choisissez un départ et une destination dans les suggestions.")
             return
         }
+        if (form.requireChildTracking && form.childUserId.isNullOrBlank()) {
+            onError("Choisissez un enfant pour activer le suivi enfant.")
+            return
+        }
 
         scope.launch {
             loading = true
@@ -108,6 +112,7 @@ class SearchController(
                         returnTrip = form.returnTrip,
                         requireChildTracking = form.requireChildTracking,
                         guardianConsent = form.guardianConsent,
+                        childUserId = form.childUserId,
                     ),
                 )
             }.onSuccess {
@@ -117,12 +122,12 @@ class SearchController(
         }
     }
 
-    fun requestMatch(match: TripMatchSummary) {
+    fun requestMatch(match: TripMatchSummary, childUserId: String?) {
         scope.launch {
             onAppLoading(true)
             onError(null)
             runCatching {
-                val bookingId = providers.firebase.requestBooking(match.tripId)
+                val bookingId = providers.firebase.requestBooking(match.tripId, childUserId)
                 onNotice("Demande envoyée: $bookingId")
             }.onFailure { onError(it.message) }
             onAppLoading(false)

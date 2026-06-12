@@ -87,11 +87,19 @@ data class TripMatchSummary(
     val pickupDistanceMeters: Int?,
 )
 
+data class ChildSummary(
+    val id: String,
+    val label: String,
+    val teamLabel: String,
+    val trackingEnabled: Boolean,
+)
+
 data class BookingRequestSummary(
     val bookingId: String,
     val tripId: String,
     val parentUserId: String,
     val childId: String?,
+    val childLabel: String?,
     val seats: Int,
     val note: String?,
     val status: String,

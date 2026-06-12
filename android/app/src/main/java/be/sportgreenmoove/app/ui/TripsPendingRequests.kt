@@ -78,7 +78,7 @@ private fun BookingRequestCard(request: BookingRequestSummary, onApprove: () -> 
             overflow = TextOverflow.Ellipsis,
         )
         Text(
-            "${request.seats} place${if (request.seats > 1) "s" else ""} · ${request.priceLabel} · Parent ${request.parentUserId.takeLast(6)}",
+            request.bookingMetaLabel(),
             style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.SemiBold),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
@@ -90,4 +90,10 @@ private fun BookingRequestCard(request: BookingRequestSummary, onApprove: () -> 
             V2Button("APPROUVER", onClick = onApprove, size = V2ButtonSize.Sm)
         }
     }
+}
+
+private fun BookingRequestSummary.bookingMetaLabel(): String {
+    val child = childLabel?.let { "$it · " }.orEmpty()
+    val seatsLabel = "$seats place${if (seats > 1) "s" else ""}"
+    return "$child$seatsLabel · $priceLabel · Parent ${parentUserId.takeLast(6)}"
 }

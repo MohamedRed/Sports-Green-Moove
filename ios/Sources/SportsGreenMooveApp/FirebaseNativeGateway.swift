@@ -26,16 +26,6 @@ enum AppRuntime {
     }
 }
 
-private enum NativeRadarConfiguration {
-    static var publishableKey: String {
-        guard let value = Bundle.main.object(forInfoDictionaryKey: "SGMRadarPublishableKey") as? String else {
-            return ""
-        }
-        let key = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        return key.contains("$(") ? "" : key
-    }
-}
-
 private struct FirebaseAuthGateway: AuthGateway {
     let isConfigured = true
 
@@ -89,9 +79,12 @@ struct FirebaseBackendGateway: FirebaseGateway {
         return try await trips(for: query)
     }
 
-    func requestBooking(tripId: String) async throws -> String {
+    func requestBooking(tripId: String, childId: String?) async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
-            let data: [String: Any] = ["tripId": tripId, "seats": 1]
+            var data: [String: Any] = ["tripId": tripId, "seats": 1]
+            if let childId, !childId.isEmpty {
+                data["childId"] = childId
+            }
             Functions.functions().httpsCallable("requestBooking").call(data) { result, error in
                 if let error {
                     continuation.resume(throwing: error)
