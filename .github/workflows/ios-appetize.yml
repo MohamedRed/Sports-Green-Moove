@@ -6,7 +6,7 @@ on:
 jobs:
   build-and-upload:
     name: Build iOS simulator app and upload to Appetize
-    runs-on: macos-latest
+    runs-on: macos-26-intel
     timeout-minutes: 30
 
     permissions:
@@ -23,7 +23,18 @@ jobs:
 
       - name: Select Xcode
         run: |
-          sudo xcode-select -s /Applications/Xcode.app
+          for xcode in \
+            /Applications/Xcode_26.5.app \
+            /Applications/Xcode_26.4.1.app \
+            /Applications/Xcode_26.3.app \
+            /Applications/Xcode_26.2.app \
+            /Applications/Xcode.app
+          do
+            if [ -d "$xcode" ]; then
+              sudo xcode-select -s "$xcode"
+              break
+            fi
+          done
           xcodebuild -version
 
       - name: Install XcodeGen
