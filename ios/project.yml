@@ -18,6 +18,9 @@ packages:
   Stripe:
     url: https://github.com/stripe/stripe-ios-spm.git
     from: "25.17.0"
+  Radar:
+    url: https://github.com/radarlabs/radar-sdk-ios-spm.git
+    from: "3.34.0"
 
 targets:
   SportsGreenMoove:
@@ -41,6 +44,8 @@ targets:
         product: Stripe
       - package: Stripe
         product: StripePaymentSheet
+      - package: Radar
+        product: RadarSDK
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app
@@ -57,6 +62,7 @@ targets:
         UILaunchScreen: {}
         NSLocationWhenInUseUsageDescription: Sports Green-mOOVe partage votre position uniquement pendant une course active afin d'afficher le véhicule, l'enfant et l'ETA aux parents.
         NSLocationAlwaysAndWhenInUseUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
+        SGMRadarPublishableKey: $(SGM_RADAR_PUBLISHABLE_KEY)
         UIBackgroundModes:
           - location
         UISupportedInterfaceOrientations:

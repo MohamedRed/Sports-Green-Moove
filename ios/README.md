@@ -17,6 +17,7 @@ The app root now uses real Firebase providers when `GoogleService-Info.plist` is
 - Cloud Functions: booking request, ride start, active ride snapshot.
 - Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
 - Parent payments: approved unpaid bookings are listed in-app and launch Stripe PaymentSheet with server-priced intents.
+- Radar SDK trip tracking: when `SGM_RADAR_PUBLISHABLE_KEY` is set at build time, driver ride start calls Radar `startTrip` with the ride session as `externalId` and continuous tracking options.
 - Native location fallback: Core Location writes the first active-ride batch through `writeLocationBatch` when Radar is not configured.
 - `PrivacyInfo.xcprivacy`: bundled privacy manifest for linked account identity and precise active-ride location.
 
@@ -24,12 +25,21 @@ Without the plist, the app shows a configuration-required screen instead of sile
 
 ## Remaining SDK Wiring Points
 
-- `RadarTrackingGateway`
 - `GoogleRoutesGateway`
 
 ## Stripe Slice
 
 `project.yml` declares Stripe iOS `25.17.0` with `StripePaymentSheet`. The backend returns the publishable key and PaymentIntent client secret from `createRidePaymentIntent`; the app must not store Stripe secret keys.
+
+## Radar Slice
+
+`project.yml` declares Radar iOS `3.34.0` with the `RadarSDK` product. Set the iOS Radar publishable key as an environment variable named `SGM_RADAR_PUBLISHABLE_KEY` before production simulator or device builds:
+
+```bash
+SGM_RADAR_PUBLISHABLE_KEY=prj_live_or_test_key xcodebuild -scheme SportsGreenMoove -configuration Debug
+```
+
+The key is expanded into `Info.plist` as a publishable client key only. Radar secret keys and webhook secrets stay server-side in Firebase Functions.
 
 ## Required iOS Capabilities
 

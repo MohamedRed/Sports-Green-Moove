@@ -15,6 +15,7 @@ jobs:
     env:
       APPETIZE_API_TOKEN: ${{ secrets.APPETIZE_API_TOKEN }}
       FIREBASE_IOS_CONFIG_BASE64: ${{ secrets.FIREBASE_IOS_CONFIG_BASE64 }}
+      SGM_RADAR_PUBLISHABLE_KEY: ${{ secrets.SGM_RADAR_PUBLISHABLE_KEY }}
 
     steps:
       - name: Checkout
