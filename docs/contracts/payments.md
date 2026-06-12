@@ -15,6 +15,18 @@
 - the amount is `trip.priceCents * booking.seats`.
 - the destination account comes from `stripeAccounts/{driverUserId}`.
 - client-supplied amounts or destination accounts are not accepted.
+- `STRIPE_PUBLISHABLE_KEY` must be configured before the backend creates the PaymentIntent.
+
+The callable returns the native PaymentSheet setup data:
+
+- `bookingId`
+- `paymentIntentId`
+- `clientSecret`
+- `publishableKey`
+- `amountCents`
+- `currency`
+
+iOS and Android request this config by `bookingId`, initialize the Stripe SDK with the returned publishable key, and present native PaymentSheet with the returned PaymentIntent client secret.
 
 ## Ledgers
 

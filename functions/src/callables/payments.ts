@@ -1,7 +1,7 @@
 import { Timestamp } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
-import { createConnectedAccount, createRideDestinationPaymentIntent } from "../services/stripeConnect.js";
+import { createConnectedAccount, createRideDestinationPaymentIntent, stripePublishableKey } from "../services/stripeConnect.js";
 import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth } from "../lib/https.js";
@@ -69,6 +69,13 @@ export const createRidePaymentIntent = onCall(async (request) => {
     throw new HttpsError("failed-precondition", "Driver Stripe account is required before paid rides.");
   }
 
+  let publishableKey: string;
+  try {
+    publishableKey = stripePublishableKey();
+  } catch (error) {
+    throw new HttpsError("failed-precondition", error instanceof Error ? error.message : "Stripe PaymentSheet is not configured.");
+  }
+
   const paymentIntent = await createRideDestinationPaymentIntent({
     bookingId: data.bookingId,
     tripId: booking.tripId,
@@ -95,6 +102,7 @@ export const createRidePaymentIntent = onCall(async (request) => {
     bookingId: data.bookingId,
     paymentIntentId: paymentIntent.id,
     clientSecret: paymentIntent.client_secret,
+    publishableKey,
     amountCents,
     currency: data.currency,
   };

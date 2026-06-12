@@ -68,8 +68,8 @@ struct UnconfiguredGoogleRoutesGateway: GoogleRoutesGateway {
 struct UnconfiguredStripePaymentsGateway: StripePaymentsGateway {
     let isConfigured = false
 
-    func prepareRidePayment(amountCents: Int) async throws -> String {
-        _ = amountCents
+    func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig {
+        _ = bookingId
         throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
     }
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type Stripe from "stripe";
-import { buildRidePaymentIntentCreateParams } from "../services/stripeConnect.js";
+import { buildRidePaymentIntentCreateParams, stripePublishableKey } from "../services/stripeConnect.js";
 import { buildRidePaymentLedgerEntries } from "../services/stripeLedger.js";
 
 describe("Stripe ride payments", () => {
@@ -51,5 +51,10 @@ describe("Stripe ride payments", () => {
     } finally {
       process.env.PLATFORM_FEE_BPS = previousFee;
     }
+  });
+
+  it("requires a Stripe publishable key before issuing native PaymentSheet config", () => {
+    expect(stripePublishableKey("pk_test_sgm")).toBe("pk_test_sgm");
+    expect(() => stripePublishableKey("")).toThrow("STRIPE_PUBLISHABLE_KEY is required");
   });
 });

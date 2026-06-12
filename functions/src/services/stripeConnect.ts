@@ -10,6 +10,14 @@ export function createStripeClient(secret = process.env.STRIPE_SECRET_KEY): Stri
   return new Stripe(secret, { apiVersion: apiVersion as Stripe.StripeConfig["apiVersion"] });
 }
 
+export function stripePublishableKey(key = process.env.STRIPE_PUBLISHABLE_KEY): string {
+  if (!key) {
+    throw new Error("STRIPE_PUBLISHABLE_KEY is required for native PaymentSheet.");
+  }
+
+  return key;
+}
+
 export type ConnectedAccountRequest = {
   email: string;
   country: "BE";

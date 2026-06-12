@@ -15,6 +15,9 @@ packages:
   Firebase:
     url: https://github.com/firebase/firebase-ios-sdk.git
     from: "12.11.0"
+  Stripe:
+    url: https://github.com/stripe/stripe-ios-spm.git
+    from: "25.17.0"
 
 targets:
   SportsGreenMoove:
@@ -34,6 +37,10 @@ targets:
         product: FirebaseFirestore
       - package: Firebase
         product: FirebaseFunctions
+      - package: Stripe
+        product: Stripe
+      - package: Stripe
+        product: StripePaymentSheet
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app

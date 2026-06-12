@@ -15,6 +15,7 @@ The app root now uses real Firebase providers when `GoogleService-Info.plist` is
 - Firebase Auth: email/password login and signup.
 - Firestore: published trip reads.
 - Cloud Functions: booking request, ride start, active ride snapshot.
+- Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
 
 Without the plist, the app shows a configuration-required screen instead of silently using mock data.
 
@@ -22,7 +23,10 @@ Without the plist, the app shows a configuration-required screen instead of sile
 
 - `RadarTrackingGateway`
 - `GoogleRoutesGateway`
-- `StripePaymentsGateway`
+
+## Stripe Slice
+
+`project.yml` declares Stripe iOS `25.17.0` with `StripePaymentSheet`. The backend returns the publishable key and PaymentIntent client secret from `createRidePaymentIntent`; the app must not store Stripe secret keys.
 
 ## Required iOS Capabilities
 

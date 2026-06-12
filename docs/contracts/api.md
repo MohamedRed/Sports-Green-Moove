@@ -23,7 +23,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `createReport` | signed-in users | Safety/support report. |
 | `createStripeAccount` | driver | Connected account record. |
 | `createStripeAccountLink` | driver | Stripe onboarding link. |
-| `createRidePaymentIntent` | booking parent | Server-priced PaymentSheet client secret for an approved booking. |
+| `createRidePaymentIntent` | booking parent | Server-priced PaymentSheet config for an approved booking. |
 | `issueRewardPayout` | admin | Payout request and ledger entry. |
 
 ## Webhooks

@@ -32,7 +32,11 @@ object AndroidRuntime {
         return if (app == null) {
             AndroidProviderSet(auth = UnconfiguredAuthGateway(), firebase = UnconfiguredFirebaseGateway())
         } else {
-            AndroidProviderSet(auth = FirebaseAndroidAuthGateway(), firebase = FirebaseAndroidBackendGateway())
+            AndroidProviderSet(
+                auth = FirebaseAndroidAuthGateway(),
+                firebase = FirebaseAndroidBackendGateway(),
+                stripe = FirebaseAndroidStripePaymentsGateway(),
+            )
         }
     }
 }

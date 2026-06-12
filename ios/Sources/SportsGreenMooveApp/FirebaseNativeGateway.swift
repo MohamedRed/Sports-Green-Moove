@@ -17,7 +17,11 @@ enum AppRuntime {
             return AppState(auth: UnconfiguredAuthGateway(), firebase: UnconfiguredFirebaseGateway())
         }
 
-        return AppState(auth: FirebaseAuthGateway(), firebase: FirebaseBackendGateway())
+        return AppState(
+            auth: FirebaseAuthGateway(),
+            firebase: FirebaseBackendGateway(),
+            stripe: FirebaseStripePaymentsGateway()
+        )
     }
 }
 

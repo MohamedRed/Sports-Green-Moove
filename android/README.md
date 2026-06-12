@@ -16,9 +16,14 @@ The app root now uses real Firebase providers when `android/app/google-services.
 - Firebase Auth: email/password login and signup.
 - Firestore: published trip reads.
 - Cloud Functions: booking request, ride start, active ride snapshot.
+- Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
 
 Without `google-services.json`, the app shows a configuration-required screen instead of silently using mock data.
 
+## Stripe Slice
+
+The app declares `com.stripe:stripe-android:23.10.0`. The backend returns the publishable key and PaymentIntent client secret from `createRidePaymentIntent`; the app must not store Stripe secret keys.
+
 ## Remaining SDK Wiring Points
 
-Add Radar publishable key, Google Maps key, and Stripe publishable key before production device builds that need tracking, route maps, or PaymentSheet.
+Add Radar publishable key and Google Maps key before production device builds that need tracking or route maps.

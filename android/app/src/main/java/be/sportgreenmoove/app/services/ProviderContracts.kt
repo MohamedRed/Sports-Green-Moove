@@ -3,6 +3,7 @@ package be.sportgreenmoove.app.services
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.PaymentSheetConfig
 import be.sportgreenmoove.app.data.TripSummary
 
 interface AuthGateway {
@@ -35,7 +36,7 @@ interface GoogleRoutesGateway {
 
 interface StripePaymentsGateway {
     val isConfigured: Boolean
-    suspend fun prepareRidePayment(amountCents: Int): String
+    suspend fun prepareRidePayment(bookingId: String): PaymentSheetConfig
 }
 
 class ProviderConfigurationException(message: String) : IllegalStateException(message)
@@ -100,6 +101,6 @@ class UnconfiguredGoogleRoutesGateway : GoogleRoutesGateway {
 class UnconfiguredStripePaymentsGateway : StripePaymentsGateway {
     override val isConfigured: Boolean = false
 
-    override suspend fun prepareRidePayment(amountCents: Int): String =
+    override suspend fun prepareRidePayment(bookingId: String): PaymentSheetConfig =
         throw ProviderConfigurationException("Stripe Android n'est pas configuré.")
 }

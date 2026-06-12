@@ -112,3 +112,12 @@ struct LiveRideSnapshot: Hashable, Sendable {
     let etaLabel: String
     let stale: Bool
 }
+
+struct PaymentSheetConfig: Hashable, Sendable {
+    let bookingId: String
+    let paymentIntentId: String
+    let clientSecret: String
+    let publishableKey: String
+    let amountCents: Int
+    let currency: String
+}

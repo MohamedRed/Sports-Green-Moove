@@ -30,7 +30,7 @@ protocol GoogleRoutesGateway: Sendable {
 
 protocol StripePaymentsGateway: Sendable {
     var isConfigured: Bool { get }
-    func prepareRidePayment(amountCents: Int) async throws -> String
+    func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig
 }
 
 struct ProviderConfigurationError: LocalizedError, Sendable {

@@ -56,3 +56,12 @@ data class LiveRideSnapshot(
     val etaLabel: String,
     val stale: Boolean,
 )
+
+data class PaymentSheetConfig(
+    val bookingId: String,
+    val paymentIntentId: String,
+    val clientSecret: String,
+    val publishableKey: String,
+    val amountCents: Int,
+    val currency: String,
+)

@@ -36,7 +36,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install Android SDK packages
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
 
       - name: Install Firebase Android config
         if: ${{ env.FIREBASE_ANDROID_CONFIG_BASE64 != '' }}
