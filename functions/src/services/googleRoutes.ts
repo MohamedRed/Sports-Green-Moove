@@ -71,7 +71,6 @@ export class GoogleRoutesProvider implements RouteComparisonProvider {
     const driverToPickup = this.requireMatrixMetric(matrix, 0, 0);
     const pickupToDropoff = this.requireMatrixMetric(matrix, 1, 1);
     const dropoffToDestination = this.requireMatrixMetric(matrix, 2, 2);
-    const finalRoute = await this.computeFinalRoute(request, trip);
     const sharedDistanceMeters =
       driverToPickup.distanceMeters + pickupToDropoff.distanceMeters + dropoffToDestination.distanceMeters;
     const sharedDurationSeconds =
@@ -84,12 +83,19 @@ export class GoogleRoutesProvider implements RouteComparisonProvider {
       detourDurationSeconds: Math.max(0, sharedDurationSeconds - baseline.durationSeconds),
       pickupDistanceMeters: driverToPickup.distanceMeters,
       scheduleDeltaMinutes: scheduleDeltaMinutes(request, trip),
-      finalDurationSeconds: finalRoute.durationSeconds,
-      finalDistanceMeters: finalRoute.distanceMeters,
-      finalEncodedPolyline: finalRoute.encodedPolyline,
       driverToPickupDurationSeconds: driverToPickup.durationSeconds,
       pickupToDropoffDurationSeconds: pickupToDropoff.durationSeconds,
       dropoffToDestinationDurationSeconds: dropoffToDestination.durationSeconds,
+    };
+  }
+
+  async completeRouteDetails(request: SearchRequest, trip: Trip, route: RouteComparison): Promise<RouteComparison> {
+    const finalRoute = await this.computeFinalRoute(request, trip);
+    return {
+      ...route,
+      finalDurationSeconds: finalRoute.durationSeconds,
+      finalDistanceMeters: finalRoute.distanceMeters,
+      finalEncodedPolyline: finalRoute.encodedPolyline,
     };
   }
 

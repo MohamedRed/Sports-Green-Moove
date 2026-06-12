@@ -92,6 +92,12 @@ export type SearchRequest = {
   guardianConsent: boolean;
   maxDetourMinutes?: number;
   maxPickupDistanceM?: number;
+  departureWindowBeforeMinutes?: number;
+  departureWindowAfterMinutes?: number;
+  regionGeohashPrefixes?: string[];
+  allowedClubIds?: string[];
+  allowedTeamIds?: string[];
+  enforceMemberships?: boolean;
 };
 
 export type RouteComparison = {

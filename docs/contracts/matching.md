@@ -13,6 +13,16 @@ V1 uses deterministic scoring in Cloud Functions. It does not use ML or OR-Tools
 - Driver is verified and not blocked by the requester.
 - Parent/child has guardian consent and compatible memberships.
 
+`searchTrips` always binds `requesterUserId` to the authenticated Firebase UID. A client-supplied requester id is ignored.
+When `childUserId` is supplied, Cloud Functions verifies that the authenticated user appears in
+`children/{childUserId}.guardianUserIds`, then builds the allowed club/team scope from active `memberships`
+documents plus `children/{childUserId}.clubIds` and `teamIds`.
+
+The default departure window is 180 minutes before and 360 minutes after `desiredDepartureAt`.
+Clients may narrow or widen it up to 24 hours with `departureWindowBeforeMinutes` and
+`departureWindowAfterMinutes`. `regionGeohashPrefixes` narrows candidate trips to matching trip
+`regionGeohash` prefixes before route calls are made.
+
 ## Score Inputs
 
 | Input | Direction |
@@ -27,7 +37,7 @@ V1 uses deterministic scoring in Cloud Functions. It does not use ML or OR-Tools
 | Price cents | Lower is better. |
 | Tracking support | Required for child rides; ranked higher when present. |
 
-Cloud Functions use Google `Compute Route Matrix` for candidate comparison and `Compute Routes` for final route details returned with each ranked match. Missing `GOOGLE_MAPS_API_KEY` is a configuration error; the backend does not silently fall back to a local distance estimate.
+Cloud Functions use Google `Compute Route Matrix` for candidate comparison and `Compute Routes` only for the top shortlisted matches returned to clients. Missing `GOOGLE_MAPS_API_KEY` is a configuration error; the backend does not silently fall back to a local distance estimate.
 
 For each candidate, the matrix request compares:
 

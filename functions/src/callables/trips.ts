@@ -1,7 +1,14 @@
-import { Timestamp } from "firebase-admin/firestore";
-import { onCall } from "firebase-functions/v2/https";
+import { Timestamp, type Query } from "firebase-admin/firestore";
+import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
+import { departureWindowForSearch } from "../domain/candidateFilters.js";
 import { rankTrips } from "../domain/matching.js";
+import {
+  applySearchAccessScope,
+  isGuardianOfChild,
+  requestedScopeIsAllowed,
+  searchAccessScope,
+} from "../domain/searchAccess.js";
 import type { SearchRequest, Trip } from "../domain/types.js";
 import { GoogleRoutesProvider } from "../services/googleRoutes.js";
 import { firestore } from "../lib/firebase.js";
@@ -29,6 +36,9 @@ const searchTripsSchema = z.object({
   guardianConsent: z.boolean(),
   maxDetourMinutes: z.number().positive().optional(),
   maxPickupDistanceM: z.number().positive().optional(),
+  departureWindowBeforeMinutes: z.number().int().positive().max(24 * 60).optional(),
+  departureWindowAfterMinutes: z.number().int().positive().max(24 * 60).optional(),
+  regionGeohashPrefixes: z.array(z.string().min(1).max(12)).max(9).optional(),
 });
 
 const createTripSchema = z.object({
@@ -61,12 +71,59 @@ const createTripSchema = z.object({
 });
 
 async function loadCandidateTrips(request: SearchRequest): Promise<Trip[]> {
-  let query = firestore.collection("trips").where("status", "==", "published");
-  if (request.clubId) query = query.where("clubId", "==", request.clubId);
-  if (request.category) query = query.where("category", "==", request.category);
+  const window = departureWindowForSearch(request);
+  if (!window.fromIso || !window.toIso) {
+    throw new HttpsError("invalid-argument", "desiredDepartureAt must be a valid ISO date.");
+  }
 
-  const snapshot = await query.limit(50).get();
+  let query: Query = firestore
+    .collection("trips")
+    .where("status", "==", "published")
+    .where("departureAt", ">=", window.fromIso)
+    .where("departureAt", "<=", window.toIso)
+    .orderBy("departureAt", "asc");
+
+  const snapshot = await query.limit(100).get();
   return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Trip);
+}
+
+async function loadSearchRequest(uid: string, parsed: z.infer<typeof searchTripsSchema>): Promise<SearchRequest> {
+  const baseRequest: SearchRequest = {
+    ...parsed,
+    requesterUserId: uid,
+  };
+
+  const childSnapshot = parsed.childUserId
+    ? await firestore.collection("children").doc(parsed.childUserId).get()
+    : undefined;
+  const child = childSnapshot?.data();
+
+  if (parsed.childUserId && (!childSnapshot?.exists || !isGuardianOfChild(child, uid))) {
+    throw new HttpsError("permission-denied", "Only a guardian can search trips for this child.");
+  }
+
+  const memberships = await loadMemberships(uid, parsed.childUserId);
+  const requestWithScope = applySearchAccessScope(baseRequest, searchAccessScope(memberships, child));
+
+  if (requestWithScope.enforceMemberships && !requestedScopeIsAllowed(requestWithScope)) {
+    throw new HttpsError("permission-denied", "The requested club or team is not available for this child.");
+  }
+
+  return requestWithScope;
+}
+
+async function loadMemberships(uid: string, childUserId?: string): Promise<Array<Record<string, unknown>>> {
+  const queries = [
+    firestore.collection("memberships").where("userId", "==", uid).limit(50).get(),
+  ];
+
+  if (childUserId) {
+    queries.push(firestore.collection("memberships").where("userId", "==", childUserId).limit(50).get());
+    queries.push(firestore.collection("memberships").where("childUserId", "==", childUserId).limit(50).get());
+  }
+
+  const snapshots = await Promise.all(queries);
+  return snapshots.flatMap((snapshot) => snapshot.docs.map((doc) => doc.data()));
 }
 
 export const listTrips = onCall(async (request) => {
@@ -87,13 +144,10 @@ export const listTrips = onCall(async (request) => {
 export const searchTrips = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   const parsed = searchTripsSchema.parse(request.data);
-  const searchRequest: SearchRequest = {
-    ...parsed,
-    requesterUserId: parsed.requesterUserId ?? uid,
-  };
+  const searchRequest = await loadSearchRequest(uid, parsed);
 
   const candidates = await loadCandidateTrips(searchRequest);
-  const ranked = await rankTrips(searchRequest, candidates, new GoogleRoutesProvider());
+  const ranked = await rankTrips(searchRequest, candidates, new GoogleRoutesProvider(), { finalRouteLimit: 12 });
 
   return {
     matches: ranked.slice(0, 12).map((match) => ({

@@ -55,6 +55,37 @@ describe("carpool matching", () => {
     expect(passesHardFilters(request, { ...baseTrip, supportsChildTracking: false })).toBe(false);
   });
 
+  it("rejects trips outside the requested departure window", () => {
+    expect(passesHardFilters(request, {
+      ...baseTrip,
+      departureAt: "2026-09-12T20:45:00.000Z",
+    })).toBe(false);
+  });
+
+  it("rejects trips outside requested region prefixes", () => {
+    expect(passesHardFilters(
+      { ...request, regionGeohashPrefixes: ["u151"] },
+      { ...baseTrip, regionGeohash: "u150abc" },
+    )).toBe(false);
+
+    expect(passesHardFilters(
+      { ...request, regionGeohashPrefixes: ["u150"] },
+      { ...baseTrip, regionGeohash: "u150abc" },
+    )).toBe(true);
+  });
+
+  it("rejects child searches outside the allowed membership scope", () => {
+    expect(passesHardFilters(
+      { ...request, enforceMemberships: true, allowedClubIds: ["other-club"], allowedTeamIds: [] },
+      baseTrip,
+    )).toBe(false);
+
+    expect(passesHardFilters(
+      { ...request, enforceMemberships: true, allowedClubIds: ["club-royal"], allowedTeamIds: ["team-u8"] },
+      baseTrip,
+    )).toBe(true);
+  });
+
   it("scores same-team, low-detour trips higher than weak matches", () => {
     const strong = scoreCandidate(request, baseTrip, goodRoute);
     const weak = scoreCandidate(
@@ -79,6 +110,30 @@ describe("carpool matching", () => {
     expect(matches[0].trip.id).toBe("trip-1");
     expect(matches[0].reasons).toContain("+6 min détour");
     expect(matches[0].reasons).toContain("Même équipe U8");
+  });
+
+  it("adds final route details only for the configured shortlist", async () => {
+    const matches = await rankTrips(
+      request,
+      [baseTrip, { ...baseTrip, id: "trip-2", priceCents: 800 }],
+      {
+        async compareDetour() {
+          return goodRoute;
+        },
+        async completeRouteDetails(_request, trip, route) {
+          return {
+            ...route,
+            finalDistanceMeters: trip.id === "trip-1" ? 6000 : 7000,
+            finalDurationSeconds: trip.id === "trip-1" ? 1000 : 1200,
+          };
+        },
+      },
+      { finalRouteLimit: 1 },
+    );
+
+    expect(matches).toHaveLength(2);
+    expect(matches[0].route.finalDistanceMeters).toBe(6000);
+    expect(matches[1].route.finalDistanceMeters).toBeUndefined();
   });
 
   it("skips candidates whose route cannot be calculated", async () => {

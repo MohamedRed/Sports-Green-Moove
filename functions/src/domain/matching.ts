@@ -1,4 +1,5 @@
 import type { RankedTrip, RouteComparison, SearchRequest, Trip } from "./types.js";
+import { hasCompatibleMembership, isWithinDepartureWindow, matchesRegion } from "./candidateFilters.js";
 
 const baggageRank = {
   small: 1,
@@ -8,6 +9,7 @@ const baggageRank = {
 
 export type RouteComparisonProvider = {
   compareDetour(request: SearchRequest, trip: Trip): Promise<RouteComparison>;
+  completeRouteDetails?(request: SearchRequest, trip: Trip, route: RouteComparison): Promise<RouteComparison>;
 };
 
 export class RouteUnavailableError extends Error {
@@ -21,6 +23,9 @@ export function passesHardFilters(request: SearchRequest, trip: Trip): boolean {
   if (trip.status !== "published") return false;
   if (!trip.driverVerified) return false;
   if (!request.guardianConsent) return false;
+  if (!isWithinDepartureWindow(request, trip)) return false;
+  if (!matchesRegion(request, trip)) return false;
+  if (!hasCompatibleMembership(request, trip)) return false;
   if (trip.seatsAvailable < request.seatsNeeded) return false;
   if (request.clubId && trip.clubId !== request.clubId) return false;
   if (request.category && trip.category !== request.category) return false;
@@ -79,6 +84,7 @@ export async function rankTrips(
   request: SearchRequest,
   candidates: Trip[],
   routeProvider: RouteComparisonProvider,
+  options: { finalRouteLimit?: number } = {},
 ): Promise<RankedTrip[]> {
   const ranked: RankedTrip[] = [];
 
@@ -101,5 +107,22 @@ export async function rankTrips(
     });
   }
 
-  return ranked.sort((a, b) => b.score - a.score);
+  ranked.sort((a, b) => b.score - a.score);
+
+  if (!routeProvider.completeRouteDetails) return ranked;
+
+  const finalRouteLimit = options.finalRouteLimit ?? 12;
+  const finalized: RankedTrip[] = [];
+  const unfinalized = ranked.slice(finalRouteLimit);
+
+  for (const match of ranked.slice(0, finalRouteLimit)) {
+    try {
+      const route = await routeProvider.completeRouteDetails(request, match.trip, match.route);
+      finalized.push({ ...match, route });
+    } catch (error) {
+      if (!(error instanceof RouteUnavailableError)) throw error;
+    }
+  }
+
+  return [...finalized, ...unfinalized];
 }

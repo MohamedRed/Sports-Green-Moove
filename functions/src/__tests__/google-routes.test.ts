@@ -65,7 +65,7 @@ describe("GoogleRoutesProvider", () => {
     await expect(provider.compareDetour(request, trip)).rejects.toBeInstanceOf(GoogleRoutesConfigurationError);
   });
 
-  it("uses Route Matrix for detour and Compute Routes for final route details", async () => {
+  it("uses Route Matrix for detour comparison before final route details are requested", async () => {
     const calls: Array<{ url: string; init: RequestInit }> = [];
     const fetcher: GoogleRoutesFetch = async (url, init) => {
       calls.push({ url, init });
@@ -89,18 +89,42 @@ describe("GoogleRoutesProvider", () => {
     expect(route.detourDistanceMeters).toBe(600);
     expect(route.detourDurationSeconds).toBe(60);
     expect(route.pickupDistanceMeters).toBe(500);
-    expect(route.finalDistanceMeters).toBe(5600);
-    expect(route.finalDurationSeconds).toBe(660);
-    expect(route.finalEncodedPolyline).toBe("encoded-route");
-    expect(calls).toHaveLength(2);
+    expect(route.finalDistanceMeters).toBeUndefined();
+    expect(calls).toHaveLength(1);
     expect(calls[0].init.headers).toMatchObject({
       "X-Goog-Api-Key": "test-key",
       "X-Goog-FieldMask": "originIndex,destinationIndex,status,condition,distanceMeters,duration",
     });
-    expect(calls[1].init.headers).toMatchObject({
+    expect(JSON.parse(String(calls[0].init.body)).origins).toHaveLength(3);
+  });
+
+  it("uses Compute Routes only for shortlisted final route details", async () => {
+    const calls: Array<{ url: string; init: RequestInit }> = [];
+    const fetcher: GoogleRoutesFetch = async (url, init) => {
+      calls.push({ url, init });
+      return jsonResponse({
+        routes: [{ distanceMeters: 5600, duration: "660s", polyline: { encodedPolyline: "encoded-route" } }],
+      });
+    };
+
+    const provider = new GoogleRoutesProvider({ apiKey: "test-key", fetcher, baseUrl: "https://routes.test" });
+    const route = await provider.completeRouteDetails(request, trip, {
+      baselineDistanceMeters: 5000,
+      baselineDurationSeconds: 600,
+      detourDistanceMeters: 600,
+      detourDurationSeconds: 60,
+      pickupDistanceMeters: 500,
+      scheduleDeltaMinutes: 5,
+    });
+
+    expect(route.finalDistanceMeters).toBe(5600);
+    expect(route.finalDurationSeconds).toBe(660);
+    expect(route.finalEncodedPolyline).toBe("encoded-route");
+    expect(calls).toHaveLength(1);
+    expect(calls[0].url).toBe("https://routes.test/directions/v2:computeRoutes");
+    expect(calls[0].init.headers).toMatchObject({
       "X-Goog-FieldMask": "routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline",
     });
-    expect(JSON.parse(String(calls[0].init.body)).origins).toHaveLength(3);
-    expect(JSON.parse(String(calls[1].init.body)).intermediates).toHaveLength(2);
+    expect(JSON.parse(String(calls[0].init.body)).intermediates).toHaveLength(2);
   });
 });
