@@ -11,6 +11,8 @@ import be.sportgreenmoove.app.data.PaymentSheetConfig
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.RideCompletionSummary
+import be.sportgreenmoove.app.data.StripeConnectAccount
+import be.sportgreenmoove.app.data.StripeConnectAccountLink
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
@@ -61,6 +63,8 @@ interface GoogleRoutesGateway {
 
 interface StripePaymentsGateway {
     val isConfigured: Boolean
+    suspend fun createStripeAccount(email: String): StripeConnectAccount
+    suspend fun createStripeAccountLink(returnUrl: String, refreshUrl: String): StripeConnectAccountLink
     suspend fun prepareRidePayment(bookingId: String): PaymentSheetConfig
 }
 
@@ -204,6 +208,16 @@ class UnconfiguredGoogleRoutesGateway : GoogleRoutesGateway {
 
 class UnconfiguredStripePaymentsGateway : StripePaymentsGateway {
     override val isConfigured: Boolean = false
+
+    override suspend fun createStripeAccount(email: String): StripeConnectAccount {
+        check(email.isNotBlank())
+        throw ProviderConfigurationException("Stripe Android n'est pas configuré.")
+    }
+
+    override suspend fun createStripeAccountLink(returnUrl: String, refreshUrl: String): StripeConnectAccountLink {
+        check(returnUrl.isNotBlank() && refreshUrl.isNotBlank())
+        throw ProviderConfigurationException("Stripe Android n'est pas configuré.")
+    }
 
     override suspend fun prepareRidePayment(bookingId: String): PaymentSheetConfig =
         throw ProviderConfigurationException("Stripe Android n'est pas configuré.")

@@ -64,6 +64,8 @@ targets:
         NSLocationAlwaysUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         NSLocationAlwaysAndWhenInUseUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         SGMRadarPublishableKey: $(SGM_RADAR_PUBLISHABLE_KEY)
+        SGMStripeConnectReturnURL: $(SGM_STRIPE_CONNECT_RETURN_URL)
+        SGMStripeConnectRefreshURL: $(SGM_STRIPE_CONNECT_REFRESH_URL)
         UIBackgroundModes:
           - location
         UISupportedInterfaceOrientations:

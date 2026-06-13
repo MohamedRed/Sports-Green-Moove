@@ -260,21 +260,7 @@ fun SportsGreenMooveApp() {
                         DemoScreen.Impact -> ImpactScreen(onBack = { screen = DemoScreen.Profile })
                         DemoScreen.Rewards -> RewardsScreen(onBack = { screen = DemoScreen.Profile })
                         DemoScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Payments -> PaymentsScreen(
-                            bookings = payableBookings,
-                            loading = loading,
-                            onBack = { screen = DemoScreen.Profile },
-                            onPay = { booking ->
-                                launchPayment(
-                                    scope = scope,
-                                    providers = providers,
-                                    paymentSheet = paymentSheet,
-                                    booking = booking,
-                                    setLoading = { loading = it },
-                                    setError = { errorMessage = it },
-                                )
-                            },
-                        )
+                        DemoScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = DemoScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         DemoScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
                             onBack = { screen = DemoScreen.Trips },

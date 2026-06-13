@@ -37,6 +37,16 @@ driver. The backend loads `stripeAccounts/{uid}`, calls Accounts v2
 `/v2/core/account_links` for `account_onboarding`, and returns the Stripe-hosted
 onboarding URL.
 
+Native onboarding requires environment-specific URLs:
+
+- `SGM_STRIPE_CONNECT_RETURN_URL`
+- `SGM_STRIPE_CONNECT_REFRESH_URL`
+
+Android injects these as string resources at build time. iOS injects them into
+`Info.plist` through XcodeGen and can also read them from the process
+environment for Swift package builds. Missing values are configuration errors;
+the apps do not invent replacement URLs.
+
 ## Ledgers
 
 `rewardLedger` is immutable. Balances are computed from ledger entries, not overwritten fields.

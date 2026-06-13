@@ -14,6 +14,14 @@ val radarPublishableKey = providers
     .gradleProperty("SGM_RADAR_PUBLISHABLE_KEY")
     .orElse(providers.environmentVariable("SGM_RADAR_PUBLISHABLE_KEY"))
     .getOrElse("")
+val stripeConnectReturnUrl = providers
+    .gradleProperty("SGM_STRIPE_CONNECT_RETURN_URL")
+    .orElse(providers.environmentVariable("SGM_STRIPE_CONNECT_RETURN_URL"))
+    .getOrElse("")
+val stripeConnectRefreshUrl = providers
+    .gradleProperty("SGM_STRIPE_CONNECT_REFRESH_URL")
+    .orElse(providers.environmentVariable("SGM_STRIPE_CONNECT_REFRESH_URL"))
+    .getOrElse("")
 
 android {
     namespace = "be.sportgreenmoove.app"
@@ -26,6 +34,8 @@ android {
         versionCode = 1
         versionName = "0.1.0"
         resValue("string", "sgm_radar_publishable_key", radarPublishableKey)
+        resValue("string", "sgm_stripe_connect_return_url", stripeConnectReturnUrl)
+        resValue("string", "sgm_stripe_connect_refresh_url", stripeConnectRefreshUrl)
     }
 
     compileOptions {

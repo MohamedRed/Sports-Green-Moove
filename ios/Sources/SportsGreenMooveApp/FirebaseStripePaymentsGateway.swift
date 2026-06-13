@@ -6,6 +6,56 @@ import FirebaseFunctions
 struct FirebaseStripePaymentsGateway: StripePaymentsGateway {
     let isConfigured = true
 
+    func createStripeAccount(email: String) async throws -> StripeConnectAccount {
+        try await withCheckedThrowingContinuation { continuation in
+            Functions.functions()
+                .httpsCallable("createStripeAccount")
+                .call(["email": email]) { result, error in
+                    if let error {
+                        continuation.resume(throwing: error)
+                        return
+                    }
+
+                    guard let payload = result?.data as? [String: Any],
+                          let accountId = payload["id"] as? String
+                    else {
+                        continuation.resume(throwing: ProviderConfigurationError(message: "Réponse compte Stripe invalide."))
+                        return
+                    }
+
+                    continuation.resume(returning: StripeConnectAccount(
+                        accountId: accountId,
+                        reused: payload["reused"] as? Bool ?? false
+                    ))
+                }
+        }
+    }
+
+    func createStripeAccountLink(returnUrl: String, refreshUrl: String) async throws -> StripeConnectAccountLink {
+        try await withCheckedThrowingContinuation { continuation in
+            Functions.functions()
+                .httpsCallable("createStripeAccountLink")
+                .call(["returnUrl": returnUrl, "refreshUrl": refreshUrl]) { result, error in
+                    if let error {
+                        continuation.resume(throwing: error)
+                        return
+                    }
+
+                    guard let payload = result?.data as? [String: Any],
+                          let url = payload["url"] as? String
+                    else {
+                        continuation.resume(throwing: ProviderConfigurationError(message: "Réponse onboarding Stripe invalide."))
+                        return
+                    }
+
+                    continuation.resume(returning: StripeConnectAccountLink(
+                        url: url,
+                        expiresAt: payload["expiresAt"] as? String
+                    ))
+                }
+        }
+    }
+
     func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig {
         try await withCheckedThrowingContinuation { continuation in
             Functions.functions()

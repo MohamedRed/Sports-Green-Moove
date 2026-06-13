@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type Stripe from "stripe";
 import {
   buildConnectedAccountLinkCreateBody,
+  connectedAccountFromRecord,
   buildRewardPayoutTransferCreateParams,
   buildRidePaymentIntentCreateParams,
   stripePublishableKey,
@@ -162,6 +163,15 @@ describe("Stripe ride payments", () => {
         },
       },
     });
+  });
+
+  it("reuses an existing connected account document before creating another account", () => {
+    expect(connectedAccountFromRecord({ stripeAccountId: "acct_existing" })).toEqual({
+      id: "acct_existing",
+      reused: true,
+    });
+    expect(connectedAccountFromRecord({ stripeAccountId: "" })).toBeNull();
+    expect(connectedAccountFromRecord(undefined)).toBeNull();
   });
 
   it("builds an idempotent reward payout transfer", () => {

@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
@@ -30,14 +31,20 @@ import be.sportgreenmoove.app.design.SgmType
 
 @Composable
 fun PaymentsScreen(
+    role: AppRole,
     bookings: List<PayableBookingSummary>,
     loading: Boolean,
     onBack: () -> Unit,
     onPay: (PayableBookingSummary) -> Unit,
+    onStartConnect: () -> Unit,
 ) {
     V2Screen {
         V2TopBar("PAIEMENTS", onBack = onBack)
         PaymentsHero(bookings = bookings)
+        if (role == AppRole.Driver) {
+            V2SectionLabel("STRIPE CONNECT")
+            PaymentsConnectCard(loading = loading, onStartConnect = onStartConnect)
+        }
         V2SectionLabel("À RÉGLER")
         if (bookings.isEmpty()) {
             PaymentsEmptyCard()

@@ -2,11 +2,19 @@ import SwiftUI
 
 struct PaymentsScreen: View {
     @Environment(AppState.self) private var appState
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
         SGMScreen {
             SGMTopBar(title: "PAIEMENTS", showsBack: true)
             PaymentsHero(bookings: appState.payableBookings)
+            if appState.selectedRole == .driver {
+                SGMSectionLabel("STRIPE CONNECT")
+                PaymentsConnectCard(loading: appState.loading) {
+                    Task { await startStripeConnect() }
+                }
+                .padding(.horizontal, SGMSpace.padScreen)
+            }
             SGMSectionLabel("À RÉGLER")
             if appState.payableBookings.isEmpty {
                 PaymentsEmptyCard()
@@ -27,6 +35,37 @@ struct PaymentsScreen: View {
         }
         .task {
             await appState.refreshAppData()
+        }
+    }
+
+    private func startStripeConnect() async {
+        appState.loading = true
+        appState.errorMessage = nil
+        defer { appState.loading = false }
+
+        do {
+            guard appState.stripe.isConfigured else {
+                throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
+            }
+            guard let email = appState.session?.email, !email.isEmpty else {
+                throw ProviderConfigurationError(message: "Adresse email Firebase requise pour Stripe Connect.")
+            }
+            guard let urls = NativeStripeConnectConfiguration.urls else {
+                throw ProviderConfigurationError(message: "Configurez SGM_STRIPE_CONNECT_RETURN_URL et SGM_STRIPE_CONNECT_REFRESH_URL.")
+            }
+
+            let account = try await appState.stripe.createStripeAccount(email: email)
+            let link = try await appState.stripe.createStripeAccountLink(
+                returnUrl: urls.returnUrl,
+                refreshUrl: urls.refreshUrl
+            )
+            guard let url = URL(string: link.url) else {
+                throw ProviderConfigurationError(message: "Lien onboarding Stripe invalide.")
+            }
+            openURL(url)
+            appState.noticeMessage = account.reused ? "Onboarding Stripe repris." : "Compte Stripe créé."
+        } catch {
+            appState.errorMessage = error.localizedDescription
         }
     }
 
@@ -51,6 +90,34 @@ struct PaymentsScreen: View {
         } catch {
             appState.errorMessage = error.localizedDescription
         }
+    }
+}
+
+private struct PaymentsConnectCard: View {
+    let loading: Bool
+    let action: () -> Void
+
+    var body: some View {
+        HStack(spacing: 12) {
+            SGMIconView(icon: .award, size: 20, color: SGM.orange)
+                .frame(width: 42, height: 42)
+                .background(SGM.orange.opacity(0.12), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Stripe Connect")
+                    .font(.sgmBody(15, weight: .semibold))
+                    .foregroundStyle(SGM.textPrimary)
+                Text("Activez les paiements conducteur et les futurs virements récompenses.")
+                    .font(.sgmBody(12, weight: .medium))
+                    .foregroundStyle(SGM.textMuted)
+                SGMButton(title: loading ? "Ouverture..." : "Continuer l'onboarding", action: action)
+                    .opacity(loading ? 0.58 : 1)
+                    .allowsHitTesting(!loading)
+            }
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
     }
 }
 

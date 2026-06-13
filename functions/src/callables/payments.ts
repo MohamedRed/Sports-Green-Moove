@@ -2,6 +2,7 @@ import { Timestamp } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import {
+  connectedAccountFromRecord,
   createConnectedAccount,
   createConnectedAccountLink,
   createRewardPayoutTransfer,
@@ -35,9 +36,13 @@ export const createStripeAccount = onCall(async (request) => {
     email: z.string().email(),
   });
   const data = schema.parse(request.data);
+  const accountRef = firestore.collection("stripeAccounts").doc(uid);
+  const existing = connectedAccountFromRecord((await accountRef.get()).data());
+  if (existing) return existing;
+
   const account = await createConnectedAccount({ email: data.email, country: "BE", userId: uid });
 
-  await firestore.collection("stripeAccounts").doc(uid).set(
+  await accountRef.set(
     {
       userId: uid,
       stripeAccountId: account.id,

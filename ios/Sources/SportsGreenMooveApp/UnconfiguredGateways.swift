@@ -133,6 +133,16 @@ struct UnconfiguredGoogleRoutesGateway: GoogleRoutesGateway {
 struct UnconfiguredStripePaymentsGateway: StripePaymentsGateway {
     let isConfigured = false
 
+    func createStripeAccount(email: String) async throws -> StripeConnectAccount {
+        _ = email
+        throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
+    }
+
+    func createStripeAccountLink(returnUrl: String, refreshUrl: String) async throws -> StripeConnectAccountLink {
+        _ = (returnUrl, refreshUrl)
+        throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
+    }
+
     func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig {
         _ = bookingId
         throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")

@@ -1,12 +1,39 @@
 package be.sportgreenmoove.app.services
 
 import be.sportgreenmoove.app.data.PaymentSheetConfig
+import be.sportgreenmoove.app.data.StripeConnectAccount
+import be.sportgreenmoove.app.data.StripeConnectAccountLink
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
 
 class FirebaseAndroidStripePaymentsGateway : StripePaymentsGateway {
     private val functions = FirebaseFunctions.getInstance()
     override val isConfigured: Boolean = true
+
+    override suspend fun createStripeAccount(email: String): StripeConnectAccount {
+        val result = functions
+            .getHttpsCallable("createStripeAccount")
+            .call(mapOf("email" to email))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse compte Stripe invalide.")
+        val accountId = payload["id"] as? String ?: throw ProviderConfigurationException("Compte Stripe manquant.")
+        return StripeConnectAccount(
+            accountId = accountId,
+            reused = payload["reused"] as? Boolean ?: false,
+        )
+    }
+
+    override suspend fun createStripeAccountLink(returnUrl: String, refreshUrl: String): StripeConnectAccountLink {
+        val result = functions
+            .getHttpsCallable("createStripeAccountLink")
+            .call(mapOf("returnUrl" to returnUrl, "refreshUrl" to refreshUrl))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse onboarding Stripe invalide.")
+        return StripeConnectAccountLink(
+            url = payload["url"] as? String ?: throw ProviderConfigurationException("Lien onboarding Stripe manquant."),
+            expiresAt = payload["expiresAt"] as? String,
+        )
+    }
 
     override suspend fun prepareRidePayment(bookingId: String): PaymentSheetConfig {
         val result = functions

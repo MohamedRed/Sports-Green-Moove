@@ -24,7 +24,18 @@ export type ConnectedAccountRequest = {
   userId: string;
 };
 
-export async function createConnectedAccount(request: ConnectedAccountRequest): Promise<{ id: string }> {
+export type ConnectedAccountResponse = {
+  id: string;
+  reused?: boolean;
+};
+
+export function connectedAccountFromRecord(record: { stripeAccountId?: unknown } | undefined): ConnectedAccountResponse | null {
+  return typeof record?.stripeAccountId === "string" && record.stripeAccountId.length > 0
+    ? { id: record.stripeAccountId, reused: true }
+    : null;
+}
+
+export async function createConnectedAccount(request: ConnectedAccountRequest): Promise<ConnectedAccountResponse> {
   const stripe = createStripeClient();
   const response = await stripe.rawRequest("POST", "/v2/core/accounts", {
     contact_email: request.email,
