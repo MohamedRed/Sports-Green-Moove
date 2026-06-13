@@ -11,6 +11,7 @@ const files = {
   storeReadiness: read("docs/release/store-readiness.md"),
   evidenceTemplate: read("docs/release/evidence-manifest.example.json"),
   evidenceSchema: read("docs/release/evidence-schema.json"),
+  realDeviceProtocol: read("docs/release/real-device-test-protocol.md"),
   providerValidator: read("scripts/check-provider-readiness.mjs"),
   evidenceValidator: read("scripts/validate-release-evidence.mjs"),
   releaseEvidenceWorkflow: read(".github/workflows/release-evidence.yml"),
@@ -94,6 +95,7 @@ includes(files.dataSafety, "does not sell personal data", "Data-safety doc state
 includes(files.dataSafety, "guardian consent", "Data-safety doc covers guardian consent");
 includes(files.storeReadiness, "privacy-data-safety.md", "Store checklist links data-safety source");
 includes(files.storeReadiness, "evidence-manifest.example.json", "Store checklist links release evidence manifest template");
+includes(files.storeReadiness, "real-device-test-protocol.md", "Store checklist links real-device protocol");
 includes(files.storeReadiness, "validate:provider-readiness", "Store checklist documents provider validation command");
 includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
 
@@ -115,6 +117,7 @@ for (const requiredEvidence of [
 ]) {
   includes(files.evidenceTemplate, requiredEvidence, `Release evidence template includes ${requiredEvidence}`);
   includes(files.evidenceValidator, requiredEvidence, `Release evidence validator requires ${requiredEvidence}`);
+  includes(files.realDeviceProtocol, requiredEvidence, `Real-device protocol covers ${requiredEvidence}`);
 }
 for (const provider of ["firebase", "radar", "googleMaps", "stripeConnect", "metaFacebook"]) {
   includes(files.evidenceTemplate, provider, `Release evidence template includes ${provider}`);
@@ -138,6 +141,7 @@ for (const requiredProviderVariable of [
   includes(files.releaseEvidenceWorkflow, requiredProviderVariable, `Release evidence workflow passes ${requiredProviderVariable}`);
 }
 includes(files.evidenceSchema, "Release Evidence Manifest", "Release evidence schema exists");
+includes(files.realDeviceProtocol, "Release Evidence Gate", "Real-device protocol names release gate");
 includes(files.releaseEvidenceWorkflow, "validate:release-evidence", "Release evidence workflow validates real manifests");
 includes(files.releaseEvidenceWorkflow, "validate:provider-readiness", "Release evidence workflow validates provider readiness");
 includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release readiness validates provider checks");

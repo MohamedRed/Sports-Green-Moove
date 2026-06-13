@@ -73,7 +73,7 @@ Native projects now include the first real Firebase vertical slice: email/passwo
 - Facebook Auth: enable the Facebook provider in Firebase Auth, register the bundle/package identifiers in Meta for Developers, and set `SGM_FACEBOOK_APP_ID` plus `SGM_FACEBOOK_CLIENT_TOKEN`
 - Google Maps route previews: set `SGM_GOOGLE_MAPS_ANDROID_API_KEY` and `SGM_GOOGLE_MAPS_IOS_API_KEY`
 
-Provider production keys, simulator/device UI automation runs, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`. Public-launch approval requires a real manifest derived from `docs/release/evidence-manifest.example.json`:
+Provider production keys, simulator/device UI automation runs, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`, and physical device execution follows `docs/release/real-device-test-protocol.md`. Public-launch approval requires a real manifest derived from `docs/release/evidence-manifest.example.json`:
 
 ```sh
 npm run validate:provider-readiness
