@@ -32,7 +32,7 @@ extension AppState {
         }
     }
 
-    func startRide(tripId: String) async {
+    func startRideAfterPermissionGate(tripId: String) async {
         do {
             let trip = trips.first { $0.id == tripId }
             let result = try await startTrackedRide(

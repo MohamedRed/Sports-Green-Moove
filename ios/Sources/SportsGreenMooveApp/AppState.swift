@@ -24,6 +24,7 @@ final class AppState {
     var loading = false
     var errorMessage: String?
     var noticeMessage: String?
+    var activeRidePermissionDisclosure: ActiveRidePermissionDisclosure?
 
     let auth: AuthGateway
     let firebase: FirebaseGateway
@@ -133,7 +134,7 @@ final class AppState {
 
     func handleTripAction(tripId: String) async {
         if selectedRole == .driver {
-            await startRide(tripId: tripId)
+            requestActiveRideStart(tripId: tripId)
         } else {
             await requestBooking(tripId: tripId, childId: nil)
         }
