@@ -33,7 +33,7 @@ struct AuthScreen: View {
                 AuthDivider()
                 HStack(spacing: 10) {
                     SocialAuthButton(title: "Facebook") {
-                        appState.errorMessage = "Facebook Auth nécessite le SDK Meta natif et les identifiants de l'app."
+                        Task { await appState.signInWithFacebook() }
                     }
                     SocialAuthButton(title: "Google") {
                         Task { await appState.signInWithGoogle() }

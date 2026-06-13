@@ -24,6 +24,9 @@ packages:
   GoogleSignIn:
     url: https://github.com/google/GoogleSignIn-iOS.git
     from: "9.1.0"
+  Facebook:
+    url: https://github.com/facebook/facebook-ios-sdk.git
+    from: "18.0.3"
 
 targets:
   SportsGreenMoove:
@@ -51,6 +54,10 @@ targets:
         product: RadarSDK
       - package: GoogleSignIn
         product: GoogleSignIn
+      - package: Facebook
+        product: FacebookCore
+      - package: Facebook
+        product: FacebookLogin
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app
@@ -70,11 +77,21 @@ targets:
         NSLocationAlwaysAndWhenInUseUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         SGMRadarPublishableKey: $(SGM_RADAR_PUBLISHABLE_KEY)
         SGMGoogleReversedClientID: $(SGM_GOOGLE_REVERSED_CLIENT_ID)
+        FacebookAppID: $(SGM_FACEBOOK_APP_ID)
+        FacebookClientToken: $(SGM_FACEBOOK_CLIENT_TOKEN)
+        FacebookDisplayName: Sports Green-mOOVe
         SGMStripeConnectReturnURL: $(SGM_STRIPE_CONNECT_RETURN_URL)
         SGMStripeConnectRefreshURL: $(SGM_STRIPE_CONNECT_REFRESH_URL)
         CFBundleURLTypes:
           - CFBundleURLSchemes:
               - $(SGM_GOOGLE_REVERSED_CLIENT_ID)
+          - CFBundleURLSchemes:
+              - fb$(SGM_FACEBOOK_APP_ID)
+        LSApplicationQueriesSchemes:
+          - fbapi
+          - fbauth2
+          - fb-messenger-share-api
+          - fbshareextension
         UIBackgroundModes:
           - location
         UISupportedInterfaceOrientations:

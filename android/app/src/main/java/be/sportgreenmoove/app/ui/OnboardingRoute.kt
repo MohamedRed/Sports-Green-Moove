@@ -56,7 +56,21 @@ fun OnboardingRoute(
             }
         },
         onFacebook = {
-            setError("Facebook Auth nécessite le SDK Meta natif et les identifiants de l'app.")
+            scope.launch {
+                val activity = context.findActivity()
+                if (activity == null) {
+                    setError("Activité Android indisponible pour Facebook Auth.")
+                    return@launch
+                }
+                setLoading(true)
+                setError(null)
+                runCatching {
+                    val session = providers.facebookAuth.signIn(activity)
+                    setSession(session)
+                    refreshAppData()
+                }.onFailure { setError(it.message) }
+                setLoading(false)
+            }
         },
     )
 }

@@ -19,6 +19,10 @@ struct UnconfiguredAuthGateway: AuthGateway {
         throw ProviderConfigurationError(message: "Google Auth iOS n'est pas configuré.")
     }
 
+    func signInWithFacebook() async throws -> AuthSession {
+        throw ProviderConfigurationError(message: "Facebook Auth iOS n'est pas configuré.")
+    }
+
     func signOut() throws {}
 }
 

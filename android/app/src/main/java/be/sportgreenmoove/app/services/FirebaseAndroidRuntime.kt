@@ -11,6 +11,7 @@ data class AndroidProviderSet(
     val auth: AuthGateway,
     val firebase: FirebaseGateway,
     val googleAuth: GoogleSocialAuthGateway = UnconfiguredGoogleSocialAuthGateway(),
+    val facebookAuth: FacebookSocialAuthGateway = UnconfiguredFacebookSocialAuthGateway(),
     val radar: RadarTrackingGateway = UnconfiguredRadarTrackingGateway(),
     val googleRoutes: GoogleRoutesGateway = UnconfiguredGoogleRoutesGateway(),
     val stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway(),
@@ -28,6 +29,7 @@ object AndroidRuntime {
                 auth = FirebaseAndroidAuthGateway(),
                 firebase = FirebaseAndroidBackendGateway(context.applicationContext),
                 googleAuth = FirebaseAndroidGoogleSocialAuthGateway(context.applicationContext),
+                facebookAuth = FirebaseAndroidFacebookSocialAuthGateway(context.applicationContext),
                 radar = FirebaseAndroidRadarTrackingGateway(
                     context = context.applicationContext,
                     publishableKey = context.getString(R.string.sgm_radar_publishable_key),

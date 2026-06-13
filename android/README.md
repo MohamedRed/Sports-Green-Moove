@@ -13,7 +13,7 @@ Kotlin + Jetpack Compose source scaffold for the Sports Green-mOOVe Android app.
 
 The app root now uses real Firebase providers when `android/app/google-services.json` is present:
 
-- Firebase Auth: email/password login/signup and Google sign-in through Credential Manager.
+- Firebase Auth: email/password login/signup, Google sign-in through Credential Manager, and Facebook sign-in through the native Meta Login SDK.
 - Firestore: published trip reads.
 - Cloud Functions: booking request, ride start, active ride snapshot.
 - Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
@@ -28,6 +28,16 @@ Google sign-in requires the Firebase web client id generated into
 `default_web_client_id` by the Google Services Gradle plugin. If that client id is
 missing, tapping Google shows a configuration error instead of using a fallback
 identity flow.
+
+Facebook sign-in requires the Facebook provider to be enabled in Firebase Auth,
+the Android package to be registered in Meta for Developers, and these Gradle
+properties or environment variables before production builds:
+
+```bash
+SGM_FACEBOOK_APP_ID=123456789 \
+SGM_FACEBOOK_CLIENT_TOKEN=client_token \
+./gradlew :app:assembleDebug
+```
 
 ## Stripe Slice
 
@@ -45,6 +55,5 @@ The key is compiled into Android resources as a publishable client key only. Rad
 
 ## Remaining SDK Wiring Points
 
-Add Facebook Auth SDK/app identifiers and the Google Maps key before production
-device builds that need social login parity and route maps. Store-review evidence
-is tracked in `../docs/release/store-readiness.md`.
+Add the Google Maps key before production device builds that need route maps.
+Store-review evidence is tracked in `../docs/release/store-readiness.md`.

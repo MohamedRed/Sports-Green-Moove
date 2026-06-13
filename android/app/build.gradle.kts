@@ -22,6 +22,15 @@ val stripeConnectRefreshUrl = providers
     .gradleProperty("SGM_STRIPE_CONNECT_REFRESH_URL")
     .orElse(providers.environmentVariable("SGM_STRIPE_CONNECT_REFRESH_URL"))
     .getOrElse("")
+val facebookAppId = providers
+    .gradleProperty("SGM_FACEBOOK_APP_ID")
+    .orElse(providers.environmentVariable("SGM_FACEBOOK_APP_ID"))
+    .getOrElse("")
+val facebookClientToken = providers
+    .gradleProperty("SGM_FACEBOOK_CLIENT_TOKEN")
+    .orElse(providers.environmentVariable("SGM_FACEBOOK_CLIENT_TOKEN"))
+    .getOrElse("")
+val facebookLoginProtocolScheme = facebookAppId.takeIf(String::isNotBlank)?.let { "fb$it" } ?: ""
 
 android {
     namespace = "be.sportgreenmoove.app"
@@ -36,6 +45,9 @@ android {
         resValue("string", "sgm_radar_publishable_key", radarPublishableKey)
         resValue("string", "sgm_stripe_connect_return_url", stripeConnectReturnUrl)
         resValue("string", "sgm_stripe_connect_refresh_url", stripeConnectRefreshUrl)
+        resValue("string", "facebook_app_id", facebookAppId)
+        resValue("string", "facebook_client_token", facebookClientToken)
+        resValue("string", "fb_login_protocol_scheme", facebookLoginProtocolScheme)
     }
 
     compileOptions {
@@ -74,6 +86,7 @@ dependencies {
     implementation("com.google.firebase:firebase-functions")
     implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+    implementation("com.facebook.android:facebook-login:18.2.3")
     implementation("io.radar:sdk:3.34.0")
     implementation("com.stripe:stripe-android:23.10.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")

@@ -58,14 +58,15 @@ npm run test:android-native
 npm run test:ios-native
 ```
 
-Native projects now include the first real Firebase vertical slice: email/password Auth, Google Auth, Firestore trip reads, booking requests, inbox reads, payments, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
+Native projects now include the first real Firebase vertical slice: email/password Auth, Google Auth, Facebook Auth, Firestore trip reads, booking requests, inbox reads, payments, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
 
 - iOS local/CI: `GoogleService-Info.plist`
 - Android local/CI: `android/app/google-services.json`
 - GitHub Actions: set `FIREBASE_IOS_CONFIG_BASE64` and/or `FIREBASE_ANDROID_CONFIG_BASE64`
 - iOS Google Auth: set `SGM_GOOGLE_REVERSED_CLIENT_ID` to the reversed client id from `GoogleService-Info.plist`
+- Facebook Auth: enable the Facebook provider in Firebase Auth, register the bundle/package identifiers in Meta for Developers, and set `SGM_FACEBOOK_APP_ID` plus `SGM_FACEBOOK_CLIENT_TOKEN`
 
-Facebook Auth, Google Maps native screens, provider production keys, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`.
+Google Maps native screens, provider production keys, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`.
 
 ## Design System
 

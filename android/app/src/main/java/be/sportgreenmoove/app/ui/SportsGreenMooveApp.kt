@@ -215,6 +215,8 @@ fun SportsGreenMooveApp() {
                             onPayments = { screen = DemoScreen.Payments },
                             onOptions = { screen = DemoScreen.Options },
                             onLogout = {
+                                providers.googleAuth.signOut()
+                                providers.facebookAuth.signOut()
                                 providers.auth.signOut()
                                 session = null
                                 trips = emptyList()

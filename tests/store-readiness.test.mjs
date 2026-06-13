@@ -23,6 +23,10 @@ for (const permission of [
 
 includes(files.androidManifest, 'android:foregroundServiceType="location"', "Android ride service is location-typed");
 includes(files.androidManifest, 'android:exported="false"', "Android ride service is not exported");
+includes(files.androidManifest, "com.facebook.sdk.ApplicationId", "Android declares Facebook app id metadata");
+includes(files.androidManifest, "com.facebook.sdk.ClientToken", "Android declares Facebook client token metadata");
+includes(files.androidManifest, "com.facebook.FacebookActivity", "Android declares Facebook login activity");
+includes(files.androidManifest, "com.facebook.CustomTabActivity", "Android declares Facebook custom tab callback activity");
 
 for (const key of [
   "active_ride_permission_disclosure_title",
@@ -44,10 +48,14 @@ for (const key of [
   "UIBackgroundModes:",
   "- location",
   "SGMRadarPublishableKey",
+  "FacebookAppID",
+  "FacebookClientToken",
+  "fb$(SGM_FACEBOOK_APP_ID)",
 ]) {
   includes(files.iosProject, key, `iOS project declares ${key}`);
 }
 includes(files.iosProject, "course active", "iOS usage strings limit tracking to active rides");
+includes(files.iosProject, "product: FacebookLogin", "iOS project links FacebookLogin");
 
 for (const privacyType of [
   "NSPrivacyCollectedDataTypeName",
@@ -61,6 +69,7 @@ includes(files.iosPrivacy, "<key>NSPrivacyTracking</key>\n    <false/>", "iOS pr
 
 for (const processorUrl of [
   "https://firebase.google.com/support/privacy",
+  "https://www.facebook.com/privacy/policy/",
   "https://radar.com/privacy",
   "https://policies.google.com/privacy",
   "https://stripe.com/privacy",

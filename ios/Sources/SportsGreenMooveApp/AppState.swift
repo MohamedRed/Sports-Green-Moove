@@ -77,6 +77,10 @@ final class AppState {
         await authenticate { try await auth.signInWithGoogle() }
     }
 
+    func signInWithFacebook() async {
+        await authenticate { try await auth.signInWithFacebook() }
+    }
+
     func signOut() {
         do {
             try auth.signOut()
