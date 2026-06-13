@@ -144,6 +144,8 @@ final class AppState {
     func handleTripAction(tripId: String) async {
         if selectedRole == .driver {
             requestActiveRideStart(tripId: tripId)
+        } else if selectedRole == .child {
+            requestActiveRideTracking()
         } else {
             await requestBooking(tripId: tripId, childId: nil)
         }

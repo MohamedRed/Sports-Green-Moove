@@ -50,6 +50,8 @@ const iosUiTests = readFile("ios/UITests/SportsGreenMooveUITests/SportsGreenMoov
 const iosProject = readFile("ios/project.yml");
 const nativeCi = readFile(".github/workflows/native-ci.yml");
 const androidHomeCards = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/HomeCards.kt");
+const androidRideActions = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt");
+const androidActiveRideStartup = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideStartup.kt");
 const androidGroups = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/GroupsScreen.kt");
 const androidGroupsGateway = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGroupsGateway.kt");
 const androidImpact = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/ImpactScreen.kt");
@@ -62,6 +64,9 @@ const iosHome = readFile("ios/Sources/SportsGreenMooveApp/HomeScreen.swift");
 const iosImpactRewards = readFile("ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift");
 const iosLedgerGateway = readFile("ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift");
 const iosProfile = readFile("ios/Sources/SportsGreenMooveApp/ProfileScreen.swift");
+const iosAppState = readFile("ios/Sources/SportsGreenMooveApp/AppState.swift");
+const iosActiveRideStartup = readFile("ios/Sources/SportsGreenMooveApp/ActiveRideStartup.swift");
+const iosRideLifecycle = readFile("ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift");
 
 for (const flow of flows) {
   includes(
@@ -135,6 +140,12 @@ notIncludes(iosImpactRewards, "7.50", "iOS Rewards screen must not embed a stati
 notIncludes(iosImpactRewards, "U8 Nationaux", "iOS Rewards screen must not embed static reward events");
 notIncludes(iosProfile, "Rang #47 Belgique", "iOS Profile must not embed static impact ranking");
 notIncludes(iosProfile, "7.50€", "iOS Profile must not embed a static reward balance");
+includes(androidActiveRideStartup, "startAccessibleRideTracking", "Android can attach tracking to an accessible active ride");
+includes(androidRideActions, "AppRole.Child", "Android child role has an active ride tracking branch");
+includes(androidRideActions, "providers.startAccessibleRideTracking(role)", "Android child branch starts child-device tracking");
+includes(iosActiveRideStartup, "startAccessibleRideTracking", "iOS can attach tracking to an accessible active ride");
+includes(iosAppState, "selectedRole == .child", "iOS child role has an active ride tracking branch");
+includes(iosRideLifecycle, "startAccessibleRideTracking(", "iOS child branch starts child-device tracking");
 
 console.log(`Validated ${flows.length} native UI flow identifiers on Android and iOS.`);
 

@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
@@ -8,6 +9,7 @@ import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.services.AndroidProviderSet
 import be.sportgreenmoove.app.services.StripePaymentSheetController
 import be.sportgreenmoove.app.services.endTrackedRide
+import be.sportgreenmoove.app.services.startAccessibleRideTracking
 import be.sportgreenmoove.app.services.startTrackedRide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -80,7 +82,7 @@ fun launchTripAction(
     scope: CoroutineScope,
     providers: AndroidProviderSet,
     trip: TripSummary,
-    role: be.sportgreenmoove.app.data.AppRole,
+    role: AppRole,
     driverBookingRequests: List<BookingRequestSummary>,
     activeRidePermissionGate: ActiveRidePermissionGate,
     setActiveRide: (LiveRideSnapshot) -> Unit,
@@ -92,25 +94,35 @@ fun launchTripAction(
     val action: () -> Unit = {
         scope.launch {
             runCatching {
-                if (role == be.sportgreenmoove.app.data.AppRole.Driver) {
-                    val result = providers.startTrackedRide(
-                        trip.id,
-                        role,
-                        approvedBookingIdsFor(trip, driverBookingRequests),
-                    )
-                    setActiveRide(result.ride)
-                    setActiveRideTrip(trip)
-                    setNotice(result.notice)
-                    setScreen(AppScreen.Ride)
-                } else {
-                    val bookingId = providers.firebase.requestBooking(trip.id)
-                    setNotice("Demande envoyée: $bookingId")
+                when (role) {
+                    AppRole.Driver -> {
+                        val result = providers.startTrackedRide(
+                            trip.id,
+                            role,
+                            approvedBookingIdsFor(trip, driverBookingRequests),
+                        )
+                        setActiveRide(result.ride)
+                        setActiveRideTrip(trip)
+                        setNotice(result.notice)
+                        setScreen(AppScreen.Ride)
+                    }
+                    AppRole.Child -> {
+                        val result = providers.startAccessibleRideTracking(role)
+                        setActiveRide(result.ride)
+                        setActiveRideTrip(trip.takeIf { it.id == result.ride.tripId })
+                        setNotice(result.notice)
+                        setScreen(AppScreen.Ride)
+                    }
+                    else -> {
+                        val bookingId = providers.firebase.requestBooking(trip.id)
+                        setNotice("Demande envoyée: $bookingId")
+                    }
                 }
             }.onFailure { setError(it.message) }
         }
     }
 
-    if (role == be.sportgreenmoove.app.data.AppRole.Driver) {
+    if (role == AppRole.Driver || role == AppRole.Child) {
         activeRidePermissionGate.runWhenReady(action)
     } else {
         action()

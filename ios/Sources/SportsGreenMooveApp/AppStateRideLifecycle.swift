@@ -52,6 +52,23 @@ extension AppState {
         }
     }
 
+    func startAccessibleRideTrackingAfterPermissionGate() async {
+        do {
+            let result = try await startAccessibleRideTracking(
+                firebase: firebase,
+                radar: radar,
+                role: selectedRole
+            )
+            activeRide = result.ride
+            activeRideTrip = result.ride.tripId.flatMap { tripId in trips.first { $0.id == tripId } }
+            noticeMessage = result.notice
+            selectedTab = .trips
+            overlay = .ride
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
     private func markPassenger(_ passenger: RidePassengerStatus, pickup: Bool) async {
         guard let ride = activeRide else { return }
         loading = true

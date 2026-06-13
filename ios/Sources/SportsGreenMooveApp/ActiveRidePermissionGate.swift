@@ -7,7 +7,7 @@ import UserNotifications
 
 struct ActiveRidePermissionDisclosure: Identifiable, Equatable, Sendable {
     let id = UUID()
-    let tripId: String
+    let tripId: String?
 }
 
 enum ActiveRidePermissionCopy {
@@ -24,6 +24,10 @@ extension AppState {
         activeRidePermissionDisclosure = ActiveRidePermissionDisclosure(tripId: tripId)
     }
 
+    func requestActiveRideTracking() {
+        activeRidePermissionDisclosure = ActiveRidePermissionDisclosure(tripId: nil)
+    }
+
     func cancelActiveRideStart() {
         activeRidePermissionDisclosure = nil
         noticeMessage = ActiveRidePermissionCopy.canceled
@@ -35,7 +39,11 @@ extension AppState {
 
         do {
             try await ActiveRidePermissionCoordinator.shared.ensureReadyForActiveRide()
-            await startRideAfterPermissionGate(tripId: pendingRide.tripId)
+            if let tripId = pendingRide.tripId {
+                await startRideAfterPermissionGate(tripId: tripId)
+            } else {
+                await startAccessibleRideTrackingAfterPermissionGate()
+            }
         } catch {
             errorMessage = error.localizedDescription
         }

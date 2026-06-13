@@ -13,6 +13,26 @@ func startTrackedRide(
     bookingIds: [String]
 ) async throws -> ActiveRideStartResult {
     let ride = try await firebase.startRide(tripId: tripId, bookingIds: bookingIds)
+    return try await startTrackingForRide(ride, firebase: firebase, radar: radar, role: role)
+}
+
+func startAccessibleRideTracking(
+    firebase: FirebaseGateway,
+    radar: RadarTrackingGateway,
+    role: AppRole
+) async throws -> ActiveRideStartResult {
+    guard let ride = try await firebase.getActiveRide() else {
+        throw ProviderConfigurationError(message: "Aucune course active accessible pour démarrer le suivi.")
+    }
+    return try await startTrackingForRide(ride, firebase: firebase, radar: radar, role: role)
+}
+
+private func startTrackingForRide(
+    _ ride: LiveRideSnapshot,
+    firebase: FirebaseGateway,
+    radar: RadarTrackingGateway,
+    role: AppRole
+) async throws -> ActiveRideStartResult {
     let radarStarted: Bool
     if radar.isConfigured {
         radarStarted = (try? await radar.startTripTracking(rideSessionId: ride.rideSessionId, role: role)) != nil
