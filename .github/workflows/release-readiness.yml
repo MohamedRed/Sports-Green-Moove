@@ -11,7 +11,9 @@ on:
       - "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"
       - "ios/project.yml"
       - "package.json"
+      - "scripts/check-provider-readiness.mjs"
       - "scripts/validate-release-evidence.mjs"
+      - "tests/provider-readiness.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/store-readiness.test.mjs"
   push:
@@ -26,7 +28,9 @@ on:
       - "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"
       - "ios/project.yml"
       - "package.json"
+      - "scripts/check-provider-readiness.mjs"
       - "scripts/validate-release-evidence.mjs"
+      - "tests/provider-readiness.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/store-readiness.test.mjs"
 
@@ -52,6 +56,9 @@ jobs:
 
       - name: Validate release readiness
         run: npm run test:store-readiness
+
+      - name: Validate provider readiness checks
+        run: npm run test:provider-readiness
 
       - name: Validate release evidence template
         run: npm run test:release-evidence-template

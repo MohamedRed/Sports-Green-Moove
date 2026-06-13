@@ -14,7 +14,8 @@
 ## Review Evidence Required Before Public Launch
 
 - A real release evidence manifest must be created from `docs/release/evidence-manifest.example.json` and validated with `npm run validate:release-evidence -- docs/release/evidence-manifest.json`.
-- The manual Release Evidence Gate workflow validates the real manifest before public-launch approval; the checked-in example is accepted only by `npm run test:release-evidence-template`.
+- Production provider configuration must pass `npm run validate:provider-readiness` with production secrets in the environment.
+- The manual Release Evidence Gate workflow validates production provider configuration and the real manifest before public-launch approval; the checked-in example is accepted only by `npm run test:release-evidence-template`.
 - Real-device iOS and Android locked-screen tracking run.
 - GPS loss, network loss, app restart, and battery-saver tests.
 - Radar webhook delay and Firebase native fallback evidence for iOS and Android active rides.

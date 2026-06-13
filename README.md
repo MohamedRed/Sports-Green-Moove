@@ -58,6 +58,7 @@ npm run test:android-native
 npm run test:android-ui-build
 npm run test:ios-native
 npm run test:native-ui-coverage
+npm run test:provider-readiness
 npm run test:release-evidence-template
 ```
 
@@ -75,6 +76,7 @@ Native projects now include the first real Firebase vertical slice: email/passwo
 Provider production keys, simulator/device UI automation runs, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`. Public-launch approval requires a real manifest derived from `docs/release/evidence-manifest.example.json`:
 
 ```sh
+npm run validate:provider-readiness
 npm run validate:release-evidence -- docs/release/evidence-manifest.json
 ```
 
