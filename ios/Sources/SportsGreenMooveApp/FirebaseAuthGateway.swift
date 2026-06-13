@@ -44,6 +44,7 @@ struct FirebaseAuthGateway: AuthGateway {
         try Auth.auth().signOut()
     }
 
+    @MainActor
     private func authSession(_ action: (@escaping (AuthDataResult?, Error?) -> Void) -> Void) async throws -> AuthSession {
         try await withCheckedThrowingContinuation { continuation in
             action { result, error in
