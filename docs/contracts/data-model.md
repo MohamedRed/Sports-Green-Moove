@@ -15,7 +15,7 @@
 | `messages` | Chat messages linked to trip/booking/ride session. |
 | `notifications` | In-app notification feed and push metadata. |
 | `ratings` | Post-ride ratings and comments. |
-| `co2Ledger` | Immutable CO2 accounting entries. |
+| `co2Ledger` | Immutable CO2 accounting entries written when rides complete. |
 | `rewardLedger` | Immutable reward, bonus, payment, and payout ledger entries. |
 | `stripeAccounts` | Connected account state and onboarding status. |
 | `reports` | Safety/support reports, admin review status, latest review note, and review audit events. |
