@@ -158,6 +158,7 @@ describe("Firestore rules", () => {
 
   it("requires ratings and reports to be written through Cloud Functions", async () => {
     const parent = authed("parent-1", { parent: true });
+    const admin = authed("admin", { admin: true });
 
     await assertFails(parent.firestore().doc("ratings/rating-1").set({
       rideSessionId: "ride-1",
@@ -170,6 +171,18 @@ describe("Firestore rules", () => {
       subjectType: "rideSession",
       reason: "Safety",
       description: "Support review requested.",
+    }));
+    await seedFirestore("reports/report-2", {
+      reporterUserId: "parent-1",
+      subjectType: "rideSession",
+      reason: "Safety",
+      description: "Support review requested.",
+      status: "open",
+    });
+    await assertSucceeds(admin.firestore().doc("reports/report-2").get());
+    await assertFails(admin.firestore().doc("reports/report-2").update({
+      status: "closed",
+      reviewNote: "Handled through console.",
     }));
   });
 });

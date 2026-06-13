@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { emptyRoles, issueRewardPayout, setReportStatus, setUserRoles } from "./actions";
+import { emptyRoles, issueRewardPayout, setUserRoles } from "./actions";
+import { Badge, TableSection } from "./AdminTable";
 import { formatDate, formatEuro, numberValue, statusTone, textValue } from "./format";
+import { ReportsTable } from "./ReportsTable";
 import { useCollection, usePayoutCandidates } from "./useCollections";
 import { Wordmark } from "./App";
 import type { FirestoreRecord, Metric, PayoutCandidate, RoleMap } from "./types";
@@ -171,28 +173,6 @@ function RideSessionsTable({ rideSessions }: { rideSessions: FirestoreRecord[] }
   );
 }
 
-function ReportsTable({ reports }: { reports: FirestoreRecord[] }) {
-  return (
-    <TableSection id="reports" title="Reports">
-      <thead><tr><th>Report</th><th>Reporter</th><th>Reason</th><th>Status</th><th>Review</th></tr></thead>
-      <tbody>{reports.map((report) => <ReportRow key={report.id} report={report} />)}</tbody>
-    </TableSection>
-  );
-}
-
-function ReportRow({ report }: { report: FirestoreRecord }) {
-  const [saving, setSaving] = useState(false);
-  async function update(status: "open" | "reviewing" | "closed") {
-    setSaving(true);
-    try {
-      await setReportStatus(report.id, status);
-    } finally {
-      setSaving(false);
-    }
-  }
-  return <tr><td>{report.id}<span>{textValue(report.subjectType)}</span></td><td>{textValue(report.reporterUserId)}</td><td>{textValue(report.reason)}<span>{textValue(report.description, "")}</span></td><td><Badge tone={statusTone(report.status)}>{textValue(report.status)}</Badge></td><td><button className="small-button" disabled={saving} onClick={() => update("reviewing")}>Review</button><button className="small-button" disabled={saving} onClick={() => update("closed")}>Close</button></td></tr>;
-}
-
 function PayoutsTable({ payouts }: { payouts: PayoutCandidate[] }) {
   return (
     <TableSection id="payouts" title="Payouts">
@@ -214,12 +194,4 @@ function PayoutRow({ candidate }: { candidate: PayoutCandidate }) {
     }
   }
   return <tr><td>{candidate.userId}</td><td>{formatEuro(candidate.balanceCents)}</td><td><Badge tone={candidate.stripeReady ? "ok" : "warning"}>{candidate.stripeReady ? "ready" : "blocked"}</Badge></td><td><button className="small-button" disabled={!candidate.stripeReady || candidate.balanceCents <= 0} onClick={pay}>Payout</button><span>{status}</span></td></tr>;
-}
-
-function TableSection({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
-  return <section className="table-panel" id={id}><h2>{title}</h2><div className="table-scroll"><table>{children}</table></div></section>;
-}
-
-function Badge({ tone, children }: { tone: "ok" | "warning" | "review"; children: React.ReactNode }) {
-  return <span className={`badge ${tone}`}>{children}</span>;
 }

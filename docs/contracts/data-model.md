@@ -18,7 +18,7 @@
 | `co2Ledger` | Immutable CO2 accounting entries. |
 | `rewardLedger` | Immutable reward, bonus, payment, and payout ledger entries. |
 | `stripeAccounts` | Connected account state and onboarding status. |
-| `reports` | Safety/support reports. |
+| `reports` | Safety/support reports, admin review status, latest review note, and review audit events. |
 | `appConfig` | Runtime config such as CO2 factors, thresholds, and feature flags. |
 
 ## Realtime Database

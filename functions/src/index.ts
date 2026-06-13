@@ -1,6 +1,6 @@
 export { setUserRoles } from "./callables/adminUsers.js";
 export { approveBooking, cancelBooking, listDriverBookingRequests, requestBooking } from "./callables/bookings.js";
-export { createReport, submitRating } from "./callables/feedback.js";
+export { createReport, reviewReport, submitRating } from "./callables/feedback.js";
 export { writeLocationBatch } from "./callables/locations.js";
 export { getInbox, sendChatMessage } from "./callables/messages.js";
 export {

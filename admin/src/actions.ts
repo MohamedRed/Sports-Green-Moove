@@ -1,6 +1,5 @@
-import { doc, updateDoc } from "firebase/firestore";
 import { httpsCallable } from "firebase/functions";
-import { firestore, functions } from "./firebase";
+import { functions } from "./firebase";
 import type { RoleMap } from "./types";
 
 export const emptyRoles: RoleMap = {
@@ -25,10 +24,14 @@ export async function issueRewardPayout(userId: string, amountCents: number): Pr
   });
 }
 
-export async function setReportStatus(reportId: string, status: "open" | "reviewing" | "closed"): Promise<void> {
-  if (!firestore) throw new Error("Firebase Firestore is not configured.");
-  await updateDoc(doc(firestore, "reports", reportId), {
+export type ReportStatus = "open" | "reviewing" | "closed";
+
+export async function reviewReport(reportId: string, status: ReportStatus, note: string): Promise<void> {
+  if (!functions) throw new Error("Firebase Functions is not configured.");
+  const trimmedNote = note.trim();
+  await httpsCallable(functions, "reviewReport")({
+    reportId,
     status,
-    updatedAt: new Date(),
+    note: trimmedNote.length > 0 ? trimmedNote : undefined,
   });
 }

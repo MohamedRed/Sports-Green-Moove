@@ -162,8 +162,7 @@ service cloud.firestore {
 
     match /reports/{reportId} {
       allow read: if isAdmin();
-      allow create: if false;
-      allow update, delete: if isAdmin();
+      allow create, update, delete: if false;
     }
 
     match /appConfig/{configId} {

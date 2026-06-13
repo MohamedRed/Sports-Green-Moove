@@ -26,6 +26,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `sendChatMessage` | participants | Message and push fanout. |
 | `submitRating` | ride participant | Immutable rating. |
 | `createReport` | signed-in users | Safety/support report. |
+| `reviewReport` | admin | Status, review note, and audit event for a support report. |
 | `createStripeAccount` | driver | Connected account record. |
 | `createStripeAccountLink` | driver | Stripe onboarding link. |
 | `createRidePaymentIntent` | booking parent | Server-priced PaymentSheet config for an approved booking. |

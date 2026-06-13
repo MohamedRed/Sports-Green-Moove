@@ -1,9 +1,10 @@
-import { Timestamp } from "firebase-admin/firestore";
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { rideParticipantUserIds } from "../domain/access.js";
+import { normalizeReportReviewNote, reportClosedAtValue, REPORT_STATUSES } from "../domain/reports.js";
 import { firestore } from "../lib/firebase.js";
-import { requireAuth } from "../lib/https.js";
+import { requireAdmin, requireAuth } from "../lib/https.js";
 
 type RideSessionDocument = {
   driverUserId?: string;
@@ -74,4 +75,42 @@ export const createReport = onCall(async (request) => {
   });
 
   return { reportId: ref.id, status: "open" };
+});
+
+export const reviewReport = onCall(async (request) => {
+  const uid = requireAuth(request.auth?.uid);
+  requireAdmin(request.auth?.token);
+
+  const schema = z.object({
+    reportId: z.string().trim().min(1),
+    status: z.enum(REPORT_STATUSES),
+    note: z.string().trim().max(1000).optional(),
+  });
+  const data = schema.parse(request.data);
+  const reportRef = firestore.collection("reports").doc(data.reportId);
+  const reviewedAt = Timestamp.now();
+  const note = normalizeReportReviewNote(data.note);
+  const event = {
+    status: data.status,
+    reviewerUserId: uid,
+    note,
+    reviewedAt,
+  };
+
+  await firestore.runTransaction(async (transaction) => {
+    const reportSnap = await transaction.get(reportRef);
+    if (!reportSnap.exists) throw new HttpsError("not-found", "Report not found.");
+
+    transaction.update(reportRef, {
+      status: data.status,
+      reviewedByUserId: uid,
+      reviewedAt,
+      reviewNote: note,
+      reviewEvents: FieldValue.arrayUnion(event),
+      closedAt: reportClosedAtValue(data.status, reviewedAt),
+      updatedAt: reviewedAt,
+    });
+  });
+
+  return { reportId: data.reportId, status: data.status };
 });
