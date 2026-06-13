@@ -16,6 +16,7 @@ on:
       - "package-lock.json"
       - "package.json"
       - "storage.rules"
+      - "tests/admin-plan-coverage.test.mjs"
   push:
     branches:
       - main
@@ -32,6 +33,7 @@ on:
       - "package-lock.json"
       - "package.json"
       - "storage.rules"
+      - "tests/admin-plan-coverage.test.mjs"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -66,6 +68,9 @@ jobs:
 
       - name: Build Admin
         run: npm run build --workspace admin
+
+      - name: Validate admin plan coverage
+        run: npm run test:admin-plan-coverage
 
       - name: Build Website
         run: npm run build --workspace website
