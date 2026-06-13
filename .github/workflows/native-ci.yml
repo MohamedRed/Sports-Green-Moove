@@ -8,6 +8,7 @@ on:
       - "ios/**"
       - "package.json"
       - "scripts/check-ios-native-plan.sh"
+      - "tests/native-ui-coverage.test.mjs"
   push:
     branches:
       - main
@@ -17,11 +18,31 @@ on:
       - "ios/**"
       - "package.json"
       - "scripts/check-ios-native-plan.sh"
+      - "tests/native-ui-coverage.test.mjs"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  native-ui-coverage:
+    name: Native UI flow coverage
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Validate native UI flow identifiers
+        run: npm run test:native-ui-coverage
+
   android-native-unit:
     name: Android native unit tests
     runs-on: ubuntu-latest

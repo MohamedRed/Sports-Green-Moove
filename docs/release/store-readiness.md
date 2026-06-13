@@ -8,10 +8,12 @@
 - iOS bundles `PrivacyInfo.xcprivacy` for linked account identity and precise ride location used for app functionality.
 - If a child has no device or permission is denied, the app must use vehicle tracking plus driver-confirmed pickup/dropoff status; it must not invent a child location.
 - Active rides use native Google Maps SDK route previews when client Maps API keys are configured; missing keys show a configuration-required state, not a fake map.
+- Native UI flow identifiers for auth, groups, publish, search, booking, active ride, messages, rating, CO2, rewards, options, and payments are enforced by `npm run test:native-ui-coverage`.
 
 ## Review Evidence Required Before Public Launch
 
 - Real-device iOS and Android locked-screen tracking run.
+- Simulator/device UI automation runs that consume the native flow identifiers.
 - GPS loss, network loss, app restart, and battery-saver tests.
 - Guardian consent copy and audit events for child tracking.
 - Privacy policy URLs for Firebase, Meta, Radar, Google Maps Platform, and Stripe Connect.

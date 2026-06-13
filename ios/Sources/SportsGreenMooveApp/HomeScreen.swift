@@ -4,7 +4,7 @@ struct HomeScreen: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        SGMScreen(spacing: 0) {
+        SGMScreen(spacing: 0, testID: UITestIdentifier.homeScreen) {
             HomeHeader()
             HomeHeroCard(trip: appState.trips.first) {
                 Task {

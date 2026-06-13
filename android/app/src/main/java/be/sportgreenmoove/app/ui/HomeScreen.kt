@@ -25,6 +25,7 @@ fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .sgmTestTag(SgmTestTags.HomeScreen)
             .background(Sgm.colors.bgApp)
             .verticalScroll(rememberScrollState())
             .padding(bottom = 18.dp),

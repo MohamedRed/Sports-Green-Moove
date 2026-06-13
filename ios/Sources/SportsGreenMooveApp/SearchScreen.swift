@@ -13,7 +13,7 @@ struct SearchScreen: View {
     @State private var selectedChildId: String?
 
     var body: some View {
-        SGMScreen(spacing: 10) {
+        SGMScreen(spacing: 10, testID: UITestIdentifier.searchScreen) {
             SGMTopBar(title: "RECHERCHE", showsBack: true)
             VStack(spacing: 10) {
                 PlaceSearchField(
@@ -44,7 +44,7 @@ struct SearchScreen: View {
                     childTracking: $childTracking,
                     guardianConsent: $guardianConsent
                 )
-                SGMButton(title: appState.searchLoading ? "RECHERCHE EN COURS" : "TROUVER UN TRAJET") {
+                SGMButton(title: appState.searchLoading ? "RECHERCHE EN COURS" : "TROUVER UN TRAJET", testID: UITestIdentifier.searchAction) {
                     Task {
                         await appState.runSearch(
                             form: SearchFormState(
@@ -233,7 +233,7 @@ private struct MatchCard: View {
                     Text("+\(detourMinutes) min détour")
                 }
                 Spacer()
-                SGMButton(title: "Demander", full: false, action: action)
+                SGMButton(title: "Demander", full: false, testID: UITestIdentifier.bookingRequestAction, action: action)
             }
             .font(.sgmBody(12, weight: .semibold))
             .foregroundStyle(SGM.textSecondary)

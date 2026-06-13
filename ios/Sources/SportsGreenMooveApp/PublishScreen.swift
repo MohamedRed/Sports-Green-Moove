@@ -15,7 +15,7 @@ struct PublishScreen: View {
     @State private var departureIso = ISO8601DateFormatter().string(from: Date().addingTimeInterval(TimeInterval(30 * 86_400)))
 
     var body: some View {
-        SGMScreen(spacing: 10) {
+        SGMScreen(spacing: 10, testID: UITestIdentifier.publishScreen) {
             SGMTopBar(title: "PUBLIER UN TRAJET")
             PublishStepper(step: step)
             VStack(spacing: 12) {

@@ -89,6 +89,7 @@ fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, onRate: (Int) -> 
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .sgmTestTag(SgmTestTags.RatingPromptAction)
             .clip(RoundedCornerShape(SgmRadius.LG))
             .background(Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
@@ -109,7 +110,9 @@ fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, onRate: (Int) -> 
                 Text(
                     "★",
                     style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 26.sp),
-                    modifier = Modifier.clickable(enabled = !submitting) { onRate(index + 1) },
+                    modifier = Modifier
+                        .sgmTestTag("${SgmTestTags.RatingPromptAction}.${index + 1}")
+                        .clickable(enabled = !submitting) { onRate(index + 1) },
                 )
             }
         }

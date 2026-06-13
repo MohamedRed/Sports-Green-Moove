@@ -60,7 +60,7 @@ fun PublishScreen(
     var departureIso by remember { mutableStateOf(Instant.now().plus(30, ChronoUnit.DAYS).truncatedTo(ChronoUnit.MINUTES).toString()) }
     var childTracking by remember { mutableStateOf(true) }
 
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.PublishScreen) {
         V2TopBar("PUBLIER UN TRAJET", onBack = if (step > 1) ({ step -= 1 }) else null)
         PublishStepIndicator(step)
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -185,7 +185,7 @@ private fun PublishStepOne(
         SgmGridTexture()
         Text("GREEN SMARTMAP", style = SgmType.Eyebrow.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.40f), fontSize = 14.sp, letterSpacing = 0.12.em))
     }
-    V2Button("SUIVANT →", onClick = onNext, full = true, size = V2ButtonSize.Lg)
+    V2Button("SUIVANT →", onClick = onNext, full = true, size = V2ButtonSize.Lg, testTag = SgmTestTags.PublishNextAction)
 }
 
 @Composable
@@ -214,7 +214,7 @@ private fun PublishStepTwo(
     PublishSeatsRow(seats, onSeats)
     PublishChoiceRow("Fréquence", PublishFreqs, frequency, onFrequency, titleFirst = true)
     PublishPriceRow(price, onPrice)
-    V2Button("SUIVANT →", onClick = onNext, full = true, size = V2ButtonSize.Lg)
+    V2Button("SUIVANT →", onClick = onNext, full = true, size = V2ButtonSize.Lg, testTag = SgmTestTags.PublishNextAction)
 }
 
 @Composable
@@ -230,7 +230,7 @@ private fun PublishStepThree(from: String, to: String, seats: Int, frequency: St
             }
         }
     }
-    V2Button(if (loading) "PUBLICATION..." else "PUBLIER CE TRAJET", onClick = onPublish, full = true, size = V2ButtonSize.Lg)
+    V2Button(if (loading) "PUBLICATION..." else "PUBLIER CE TRAJET", onClick = onPublish, full = true, size = V2ButtonSize.Lg, testTag = SgmTestTags.PublishSubmitAction)
 }
 
 private fun publishDraft(

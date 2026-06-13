@@ -75,6 +75,7 @@ fun MessagesScreen(firebase: FirebaseGateway) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .sgmTestTag(SgmTestTags.MessagesScreen)
             .background(Sgm.colors.bgApp)
             .verticalScroll(rememberScrollState())
             .padding(bottom = 20.dp),
@@ -166,15 +167,17 @@ private fun MessagesTabs(tabs: List<MessageTab>, selected: String, onSelected: (
                 selected = selected == tab.id,
                 onClick = { onSelected(tab.id) },
                 modifier = Modifier.weight(1f),
+                testTag = tab.testTag,
             )
         }
     }
 }
 
 @Composable
-private fun MessageTabButton(tab: MessageTab, selected: Boolean, onClick: () -> Unit, modifier: Modifier) {
+private fun MessageTabButton(tab: MessageTab, selected: Boolean, onClick: () -> Unit, modifier: Modifier, testTag: String?) {
     Row(
         modifier = modifier
+            .sgmOptionalTestTag(testTag)
             .height(34.dp)
             .clip(RoundedCornerShape(999.dp))
             .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)
@@ -199,9 +202,9 @@ private fun MessageTabButton(tab: MessageTab, selected: Boolean, onClick: () -> 
 }
 
 private fun messageTabs(inbox: InboxSummary) = listOf(
-    MessageTab("notifs", "NOTIFS", inbox.notifications.count { it.unread }),
-    MessageTab("chats", "CHATS", inbox.chats.sumOf { it.unreadCount }),
-    MessageTab("avis", "AVIS", inbox.reviews.size),
+    MessageTab("notifs", "NOTIFS", inbox.notifications.count { it.unread }, null),
+    MessageTab("chats", "CHATS", inbox.chats.sumOf { it.unreadCount }, SgmTestTags.ChatTab),
+    MessageTab("avis", "AVIS", inbox.reviews.size, SgmTestTags.RatingTab),
 )
 
-private data class MessageTab(val id: String, val label: String, val count: Int)
+private data class MessageTab(val id: String, val label: String, val count: Int, val testTag: String?)

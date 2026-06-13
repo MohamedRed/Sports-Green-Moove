@@ -46,7 +46,7 @@ private val ImpactRegions = listOf(
 @Suppress("UNUSED_PARAMETER")
 @Composable
 fun ImpactScreen(onBack: () -> Unit) {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.ImpactScreen) {
         V2TopBar("MON IMPACT CO²")
         ImpactHero()
         V2SectionLabel("6 DERNIERS MOIS")

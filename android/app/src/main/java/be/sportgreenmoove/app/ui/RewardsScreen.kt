@@ -46,11 +46,11 @@ private val RewardHistory = listOf(
 @Suppress("UNUSED_PARAMETER")
 @Composable
 fun RewardsScreen(onBack: () -> Unit) {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.RewardsScreen) {
         V2TopBar("RÉCOMPENSES")
         RewardsHero()
         Box(Modifier.padding(start = 20.dp, end = 20.dp, bottom = 16.dp)) {
-            V2Button("RETIRER MES GAINS", onClick = {}, variant = V2ButtonVariant.Orange, size = V2ButtonSize.Lg, full = true)
+            V2Button("RETIRER MES GAINS", onClick = {}, variant = V2ButtonVariant.Orange, size = V2ButtonSize.Lg, full = true, testTag = SgmTestTags.RewardsWithdrawAction)
         }
         V2SectionLabel("PALIERS")
         Row(modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {

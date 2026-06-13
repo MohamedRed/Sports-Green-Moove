@@ -39,7 +39,7 @@ fun RideMonitorScreen(
     onDropoff: (RidePassengerStatus) -> Unit,
     onEndRide: () -> Unit,
 ) {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.ActiveRideScreen) {
         V2TopBar("COURSE ACTIVE", onBack = onBack)
         if (activeRide == null) {
             RideEmptyState(onBack)
@@ -118,6 +118,7 @@ private fun RideEmergencyCard() {
         modifier = Modifier
             .padding(horizontal = 20.dp)
             .fillMaxWidth()
+            .sgmTestTag(SgmTestTags.EmergencyContact)
             .clip(RoundedCornerShape(18.dp))
             .background(SgmColor.Orange.copy(alpha = 0.12f))
             .border(BorderStroke(1.dp, SgmColor.Orange.copy(alpha = 0.28f)), RoundedCornerShape(18.dp))

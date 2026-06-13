@@ -8,7 +8,7 @@ struct AuthScreen: View {
     @State private var password = ""
 
     var body: some View {
-        SGMScreen(spacing: 12, bottomPadding: 28) {
+        SGMScreen(spacing: 12, bottomPadding: 28, testID: UITestIdentifier.authScreen) {
             AuthHero()
             VStack(spacing: 12) {
                 HStack(spacing: 6) {
@@ -20,7 +20,7 @@ struct AuthScreen: View {
                 }
                 AuthField(title: "votre@email.be", text: $email)
                 AuthField(title: "Mot de passe", text: $password, isSecure: true)
-                SGMButton(title: mode == .signIn ? "SE CONNECTER" : "CRÉER MON COMPTE") {
+                SGMButton(title: mode == .signIn ? "SE CONNECTER" : "CRÉER MON COMPTE", testID: UITestIdentifier.authEmailAction) {
                     Task {
                         if mode == .signIn {
                             await appState.signIn(email: email, password: password)
@@ -32,10 +32,10 @@ struct AuthScreen: View {
                 .opacity(appState.loading ? 0.62 : 1)
                 AuthDivider()
                 HStack(spacing: 10) {
-                    SocialAuthButton(title: "Facebook") {
+                    SocialAuthButton(title: "Facebook", testID: UITestIdentifier.authFacebookAction) {
                         Task { await appState.signInWithFacebook() }
                     }
-                    SocialAuthButton(title: "Google") {
+                    SocialAuthButton(title: "Google", testID: UITestIdentifier.authGoogleAction) {
                         Task { await appState.signInWithGoogle() }
                     }
                 }
@@ -59,6 +59,7 @@ private struct AuthDivider: View {
 
 private struct SocialAuthButton: View {
     let title: String
+    let testID: String
     let action: () -> Void
 
     var body: some View {
@@ -72,6 +73,7 @@ private struct SocialAuthButton: View {
                 .overlay(RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous).stroke(SGM.border, lineWidth: 1))
         }
         .buttonStyle(.plain)
+        .sgmUITestIdentifier(testID)
     }
 }
 
@@ -130,7 +132,7 @@ private struct AuthField: View {
 
 struct ConfigurationRequiredScreen: View {
     var body: some View {
-        SGMScreen(spacing: 12, bottomPadding: 28) {
+        SGMScreen(spacing: 12, bottomPadding: 28, testID: UITestIdentifier.configurationRequired) {
             SGMTopBar(title: "CONFIGURATION")
             VStack(alignment: .leading, spacing: 12) {
                 Text("Firebase requis")

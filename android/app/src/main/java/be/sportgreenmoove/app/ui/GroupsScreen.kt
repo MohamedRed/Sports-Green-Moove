@@ -47,7 +47,7 @@ private val SuggestedClubs = listOf(
 @Composable
 fun GroupsScreen(onBack: () -> Unit) {
     var joined by remember { mutableStateOf(setOf<Int>()) }
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.GroupsScreen) {
         V2TopBar("GROUPES")
         V2SectionLabel("MES CLUBS")
         Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -129,7 +129,7 @@ private fun SuggestedClubRow(club: ClubUi, joined: Boolean, onJoin: () -> Unit) 
                 Text("Demandé", style = SgmType.BodyXS.copy(color = SgmColor.Green, fontSize = 12.sp, fontWeight = FontWeight.Bold))
             }
         } else {
-            V2Button("Rejoindre", onClick = onJoin, variant = V2ButtonVariant.Ghost, size = V2ButtonSize.Sm)
+            V2Button("Rejoindre", onClick = onJoin, variant = V2ButtonVariant.Ghost, size = V2ButtonSize.Sm, testTag = SgmTestTags.GroupsJoinAction)
         }
     }
 }

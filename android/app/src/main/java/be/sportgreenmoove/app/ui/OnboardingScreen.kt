@@ -48,7 +48,7 @@ fun OnboardingScreen(
     var password by remember { mutableStateOf("") }
     var club by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.fillMaxSize().background(Sgm.colors.bgApp)) {
+    Column(modifier = Modifier.fillMaxSize().sgmTestTag(SgmTestTags.AuthScreen).background(Sgm.colors.bgApp)) {
         OnboardingHero()
         Column(
             modifier = Modifier
@@ -72,11 +72,12 @@ fun OnboardingScreen(
                 onClick = { onSubmit(mode, name, email, password) },
                 full = true,
                 size = V2ButtonSize.Lg,
+                testTag = SgmTestTags.AuthEmailAction,
             )
             OnboardingDivider()
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                OnboardingSocialButton("Facebook", onFacebook, Modifier.weight(1f))
-                OnboardingSocialButton("Google", onGoogle, Modifier.weight(1f))
+                OnboardingSocialButton("Facebook", onFacebook, Modifier.weight(1f), SgmTestTags.AuthFacebookAction)
+                OnboardingSocialButton("Google", onGoogle, Modifier.weight(1f), SgmTestTags.AuthGoogleAction)
             }
             Spacer(Modifier.weight(1f))
             Text(
@@ -96,7 +97,7 @@ enum class OnboardingMode {
 
 @Composable
 fun ConfigurationRequiredScreen() {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.ConfigurationRequired) {
         V2TopBar("CONFIGURATION")
         Column(
             modifier = Modifier
@@ -179,9 +180,10 @@ private fun OnboardingDivider() {
 }
 
 @Composable
-private fun OnboardingSocialButton(label: String, onClick: () -> Unit, modifier: Modifier) {
+private fun OnboardingSocialButton(label: String, onClick: () -> Unit, modifier: Modifier, testTag: String) {
     Box(
         modifier = modifier
+            .sgmTestTag(testTag)
             .height(46.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(Sgm.colors.bgCard)

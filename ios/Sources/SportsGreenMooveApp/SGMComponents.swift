@@ -3,6 +3,7 @@ import SwiftUI
 struct SGMScreen<Content: View>: View {
     var spacing: CGFloat = SGMSpace.s4
     var bottomPadding: CGFloat = 96
+    var testID: String?
     @ViewBuilder var content: () -> Content
 
     var body: some View {
@@ -12,6 +13,7 @@ struct SGMScreen<Content: View>: View {
             }
             .padding(.bottom, bottomPadding)
         }
+        .sgmUITestIdentifier(testID)
         .background(SGM.bgApp.ignoresSafeArea())
     }
 }
@@ -127,6 +129,7 @@ struct SGMButton: View {
     let title: String
     var variant: Variant = .primary
     var full = true
+    var testID: String?
     var action: () -> Void
 
     var body: some View {
@@ -145,6 +148,7 @@ struct SGMButton: View {
                 .overlay(border)
         }
         .buttonStyle(.plain)
+        .sgmUITestIdentifier(testID)
     }
 
     private var background: Color {
@@ -175,6 +179,7 @@ struct SGMChip: View {
     let text: String
     var selected: Bool
     var badge: String?
+    var testID: String?
     var action: () -> Void = {}
 
     var body: some View {
@@ -197,6 +202,7 @@ struct SGMChip: View {
             .overlay(Capsule().stroke(SGM.border, lineWidth: 1))
         }
         .buttonStyle(.plain)
+        .sgmUITestIdentifier(testID)
     }
 }
 

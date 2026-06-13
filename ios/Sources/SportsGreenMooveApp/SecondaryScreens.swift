@@ -2,16 +2,16 @@ import SwiftUI
 
 struct GroupsScreen: View {
     var body: some View {
-        OverlayListScreen(title: "GROUPES") {
+        OverlayListScreen(title: "GROUPES", testID: UITestIdentifier.groupsScreen) {
             OverlayCard(title: "Royal Ottignies", subtitle: "U8 Nationaux · 18 membres", meta: "OUVRIR")
-            OverlayCard(title: "Collège du Biéreau", subtitle: "Parents · Trajets école", meta: "REJOINDRE")
+            OverlayCard(title: "Collège du Biéreau", subtitle: "Parents · Trajets école", meta: "REJOINDRE", testID: UITestIdentifier.groupsJoinAction)
         }
     }
 }
 
 struct ImpactScreen: View {
     var body: some View {
-        OverlayListScreen(title: "MON IMPACT CO₂") {
+        OverlayListScreen(title: "MON IMPACT CO₂", testID: UITestIdentifier.impactScreen) {
             OverlayHeroMetric(value: "12.4", label: "kg CO₂ économisés", accent: SGM.green)
             OverlayProgressRow(title: "Wallonie", value: "37 356 kg", progress: 0.74)
             OverlayProgressRow(title: "Flandre", value: "45 704 kg", progress: 0.58)
@@ -22,8 +22,9 @@ struct ImpactScreen: View {
 
 struct RewardsScreen: View {
     var body: some View {
-        OverlayListScreen(title: "RÉCOMPENSES") {
+        OverlayListScreen(title: "RÉCOMPENSES", testID: UITestIdentifier.rewardsScreen) {
             OverlayHeroMetric(value: "7.50€", label: "Solde disponible", accent: SGM.orange)
+            SGMButton(title: "RETIRER MES GAINS", variant: .orange, testID: UITestIdentifier.rewardsWithdrawAction) {}
             OverlayProgressRow(title: "Prochain palier", value: "62%", progress: 0.62)
             OverlayCard(title: "Trajet partagé", subtitle: "U8 Nationaux", meta: "+1.20€")
             OverlayCard(title: "Bonus CO₂", subtitle: "Wallonie", meta: "+0.40€")
@@ -35,7 +36,7 @@ struct RideMonitorScreen: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        OverlayListScreen(title: "COURSE ACTIVE") {
+        OverlayListScreen(title: "COURSE ACTIVE", testID: UITestIdentifier.activeRideScreen) {
             if let ride = appState.activeRide {
                 GoogleMapsRoutePreviewCard(ride: ride, preview: appState.activeRideTrip?.mapPreview)
                 OverlayCard(
@@ -53,7 +54,7 @@ struct RideMonitorScreen: View {
                     accent: SGM.greenLight
                 )
             }
-            OverlayCard(title: "Urgence", subtitle: "Contact parent disponible", meta: "APPELER")
+            OverlayCard(title: "Urgence", subtitle: "Contact parent disponible", meta: "APPELER", testID: UITestIdentifier.emergencyContact)
         }
     }
 }
@@ -105,11 +106,13 @@ private struct RidePassengerRow: View {
                 SGMButton(
                     title: "PICKUP",
                     variant: passenger.pickupStatus == "pickedUp" ? .ghost : .primary,
+                    testID: UITestIdentifier.activeRidePickupAction,
                     action: { Task { await appState.markPickup(passenger) } }
                 )
                 SGMButton(
                     title: "DROPOFF",
                     variant: passenger.dropoffStatus == "droppedOff" ? .ghost : .primary,
+                    testID: UITestIdentifier.activeRideDropoffAction,
                     action: { Task { await appState.markDropoff(passenger) } }
                 )
             }
@@ -129,7 +132,7 @@ private struct RideEndControls: View {
             Text("Arrête le suivi Radar et le secours GPS Firebase, puis clôture les réservations attachées.")
                 .font(.sgmBody(12, weight: .bold))
                 .foregroundStyle(SGM.textSecondary)
-            SGMButton(title: "TERMINER LA COURSE", variant: .orange) {
+            SGMButton(title: "TERMINER LA COURSE", variant: .orange, testID: UITestIdentifier.activeRideEndAction) {
                 Task { await appState.endActiveRide() }
             }
         }
@@ -150,10 +153,11 @@ private extension String {
 
 private struct OverlayListScreen<Content: View>: View {
     let title: String
+    var testID: String?
     @ViewBuilder var content: () -> Content
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(testID: testID) {
             SGMTopBar(title: title, showsBack: true)
             VStack(spacing: 10) {
                 content()
@@ -167,6 +171,7 @@ private struct OverlayCard: View {
     let title: String
     let subtitle: String
     let meta: String
+    var testID: String?
 
     var body: some View {
         HStack(spacing: 12) {
@@ -188,6 +193,7 @@ private struct OverlayCard: View {
                 .minimumScaleFactor(0.72)
         }
         .padding(14)
+        .sgmUITestIdentifier(testID)
         .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
     }

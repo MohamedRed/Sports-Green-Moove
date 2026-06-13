@@ -10,7 +10,7 @@ struct MessagesScreen: View {
     @State private var notice: String?
 
     var body: some View {
-        SGMScreen(spacing: 0) {
+        SGMScreen(spacing: 0, testID: UITestIdentifier.messagesScreen) {
             SGMTopBar(title: "MESSAGES")
             MessageTabs(tabs: tabs, selected: selectedTab) { selectedTab = $0 }
             VStack(spacing: 10) {
@@ -125,7 +125,7 @@ private struct MessageTabs: View {
     var body: some View {
         HStack(spacing: 6) {
             ForEach(tabs) { tab in
-                SGMChip(text: tab.label, selected: selected == tab.id, badge: tab.count > 0 ? "\(tab.count)" : nil) {
+                SGMChip(text: tab.label, selected: selected == tab.id, badge: tab.count > 0 ? "\(tab.count)" : nil, testID: tab.testID) {
                     onSelect(tab.id)
                 }
             }
@@ -223,11 +223,23 @@ private struct ReviewCard: View {
                         SGMIconView(icon: .star, size: 18, color: SGM.orange)
                     }
                     .buttonStyle(.plain)
+                    .sgmUITestIdentifier("\(UITestIdentifier.ratingPromptAction).\(score)")
                     .disabled(submitting)
                 }
             }
         }
         .messageCardStyle()
+        .sgmUITestIdentifier(UITestIdentifier.ratingPromptAction)
+    }
+}
+
+private extension MessageTab {
+    var testID: String? {
+        switch id {
+        case "chats": UITestIdentifier.chatTab
+        case "avis": UITestIdentifier.ratingTab
+        default: nil
+        }
     }
 }
 

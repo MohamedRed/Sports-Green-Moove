@@ -57,7 +57,7 @@ private val OptionSections = listOf(
 @Suppress("UNUSED_PARAMETER")
 @Composable
 fun OptionsScreen(firebase: FirebaseGateway, onBack: () -> Unit) {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.OptionsScreen) {
         V2TopBar("OPTIONS")
         OptionHero()
         OptionSections.forEach { section ->
