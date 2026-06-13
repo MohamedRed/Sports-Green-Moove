@@ -88,6 +88,11 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
+    func createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Bool) async throws -> String {
+        _ = (subjectType, subjectId, reason, description, emergency)
+        throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
+    }
+
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
         _ = (rideSessionId, role)
         throw ProviderConfigurationError(message: "Realtime Database iOS n'est pas configuré.")

@@ -16,6 +16,8 @@ enum SGMIcon {
     case award
     case bell
     case settings
+    case arrowRight
+    case check
     case leaf
     case star
 
@@ -36,6 +38,8 @@ enum SGMIcon {
         case .award: "medal"
         case .bell: "bell"
         case .settings: "gearshape"
+        case .arrowRight: "arrow.right"
+        case .check: "checkmark"
         case .leaf: "leaf"
         case .star: "star.fill"
         }

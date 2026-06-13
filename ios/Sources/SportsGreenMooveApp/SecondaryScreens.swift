@@ -31,17 +31,6 @@ struct RewardsScreen: View {
     }
 }
 
-struct OptionsScreen: View {
-    var body: some View {
-        OverlayListScreen(title: "OPTIONS") {
-            OverlayCard(title: "Mon profil", subtitle: "Olivier", meta: "OUVRIR")
-            OverlayCard(title: "Enfants et consentements", subtitle: "2 enfants", meta: "OUVRIR")
-            OverlayCard(title: "Localisation", subtitle: "Permissions", meta: "ACTIVÉE")
-            OverlayCard(title: "Paiements", subtitle: "Stripe Connect", meta: "CONFIGURER")
-        }
-    }
-}
-
 struct RideMonitorScreen: View {
     @Environment(AppState.self) private var appState
 

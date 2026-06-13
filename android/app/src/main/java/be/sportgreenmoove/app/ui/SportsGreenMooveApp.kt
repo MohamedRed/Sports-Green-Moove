@@ -259,7 +259,7 @@ fun SportsGreenMooveApp() {
                         DemoScreen.Groups -> GroupsScreen(onBack = { screen = DemoScreen.Profile })
                         DemoScreen.Impact -> ImpactScreen(onBack = { screen = DemoScreen.Profile })
                         DemoScreen.Rewards -> RewardsScreen(onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Options -> OptionsScreen(onBack = { screen = DemoScreen.Profile })
+                        DemoScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = DemoScreen.Profile })
                         DemoScreen.Payments -> PaymentsScreen(
                             bookings = payableBookings,
                             loading = loading,

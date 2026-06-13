@@ -26,6 +26,7 @@ protocol FirebaseGateway: Sendable {
     func getPayableBookings() async throws -> [PayableBookingSummary]
     func getInbox() async throws -> InboxSummary
     func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String
+    func createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Bool) async throws -> String
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws
     func stopNativeLocationFallback(rideSessionId: String)
 }

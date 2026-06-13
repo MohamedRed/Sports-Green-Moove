@@ -25,6 +25,7 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.services.FirebaseGateway
 
 private val OptionSections = listOf(
     OptionSection(
@@ -55,7 +56,7 @@ private val OptionSections = listOf(
 
 @Suppress("UNUSED_PARAMETER")
 @Composable
-fun OptionsScreen(onBack: () -> Unit) {
+fun OptionsScreen(firebase: FirebaseGateway, onBack: () -> Unit) {
     V2Screen {
         V2TopBar("OPTIONS")
         OptionHero()
@@ -63,6 +64,7 @@ fun OptionsScreen(onBack: () -> Unit) {
             V2SectionLabel(section.title)
             OptionSectionCard(section.rows)
         }
+        OptionsReportCard(firebase)
         Box(Modifier.height(76.dp))
     }
 }

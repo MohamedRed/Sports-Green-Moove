@@ -217,6 +217,25 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
         return payload["ratingId"] as? String ?: throw ProviderConfigurationException("Avis manquant.")
     }
 
+    override suspend fun createReport(
+        subjectType: String,
+        subjectId: String?,
+        reason: String,
+        description: String,
+        emergency: Boolean,
+    ): String {
+        val data = mutableMapOf<String, Any>(
+            "subjectType" to subjectType,
+            "reason" to reason,
+            "description" to description,
+            "emergency" to emergency,
+        )
+        subjectId?.takeIf(String::isNotBlank)?.let { data["subjectId"] = it }
+        val result = functions.getHttpsCallable("createReport").call(data).await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse signalement invalide.")
+        return payload["reportId"] as? String ?: throw ProviderConfigurationException("Signalement manquant.")
+    }
+
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
         val location = try {
             locationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null).await()
