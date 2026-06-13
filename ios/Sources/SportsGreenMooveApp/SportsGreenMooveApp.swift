@@ -8,6 +8,12 @@ struct SportsGreenMooveNativeApp: App {
         SGMFontRegistrar.registerFonts()
         NativeFacebookLifecycle.configureIfAvailable()
         NativeGoogleMapsLifecycle.configureIfAvailable()
+        #if DEBUG
+        if UITestAppStateFactory.isEnabled {
+            _appState = State(initialValue: UITestAppStateFactory.make())
+            return
+        }
+        #endif
         _appState = State(initialValue: AppRuntime.makeAppState())
     }
 

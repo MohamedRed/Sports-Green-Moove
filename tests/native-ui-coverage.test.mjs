@@ -45,6 +45,10 @@ const androidRegistry = readFile("android/app/src/main/java/be/sportgreenmoove/a
 const iosRegistry = readFile("ios/Sources/SportsGreenMooveApp/UITestIdentifiers.swift");
 const androidSources = sourceCorpus(androidUiDir, ".kt", "SgmTestTags.kt");
 const iosSources = sourceCorpus(iosSourceDir, ".swift", "UITestIdentifiers.swift");
+const androidUiTests = readFile("android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SportsGreenMooveUiFlowTest.kt");
+const iosUiTests = readFile("ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift");
+const iosProject = readFile("ios/project.yml");
+const nativeCi = readFile(".github/workflows/native-ci.yml");
 
 for (const flow of flows) {
   includes(
@@ -68,6 +72,15 @@ for (const flow of flows) {
     `iOS UI uses ${flow.label}`,
   );
 }
+
+includes(androidUiTests, "createComposeRule", "Android uses Compose UI automation");
+includes(androidUiTests, "SgmTestTags.ActiveRideScreen", "Android UI tests cover active ride selectors");
+includes(iosUiTests, "XCUIApplication", "iOS uses XCUITest automation");
+includes(iosUiTests, "--sgm-ui-test-fixture", "iOS UI tests launch deterministic fixture mode");
+includes(iosProject, "SportsGreenMooveUITests:", "iOS project declares UI test target");
+includes(iosProject, "type: bundle.ui-testing", "iOS UI test target uses XCUITest bundle type");
+includes(nativeCi, "connectedDebugAndroidTest", "Native CI runs Android UI tests");
+includes(nativeCi, "xcodebuild test", "Native CI runs iOS UI tests");
 
 console.log(`Validated ${flows.length} native UI flow identifiers on Android and iOS.`);
 

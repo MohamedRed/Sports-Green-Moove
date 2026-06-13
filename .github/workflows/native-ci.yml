@@ -70,6 +70,34 @@ jobs:
         working-directory: android
         run: ./gradlew :app:testDebugUnitTest --no-daemon --stacktrace
 
+  android-native-ui:
+    name: Android native UI tests
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Run Android Compose UI tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          script: cd android && ./gradlew :app:connectedDebugAndroidTest --no-daemon --stacktrace
+
   ios-native-checks:
     name: iOS native checks
     runs-on: macos-26-intel
@@ -102,3 +130,48 @@ jobs:
 
       - name: Build Swift package scaffold
         run: swift build --package-path ios
+
+  ios-native-ui:
+    name: iOS native UI tests
+    runs-on: macos-26-intel
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: |
+          for xcode in \
+            /Applications/Xcode_26.5.app \
+            /Applications/Xcode_26.4.1.app \
+            /Applications/Xcode_26.3.app \
+            /Applications/Xcode_26.2.app \
+            /Applications/Xcode.app
+          do
+            if [ -d "$xcode" ]; then
+              sudo xcode-select -s "$xcode"
+              break
+            fi
+          done
+          xcodebuild -version
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate --spec project.yml
+
+      - name: Run iOS simulator UI tests
+        working-directory: ios
+        run: |
+          xcodebuild test \
+            -project SportsGreenMoove.xcodeproj \
+            -scheme SportsGreenMoove \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -derivedDataPath build/UITestDerivedData \
+            CODE_SIGNING_ALLOWED=NO

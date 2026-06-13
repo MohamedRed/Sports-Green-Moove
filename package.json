@@ -12,11 +12,13 @@
     "build:website": "npm run build --workspace website",
     "test": "npm run test --workspace functions",
     "test:android-native": "cd android && gradle :app:testDebugUnitTest --no-daemon",
+    "test:android-ui-build": "cd android && gradle :app:assembleDebugAndroidTest --no-daemon",
+    "test:android-ui": "cd android && gradle :app:connectedDebugAndroidTest --no-daemon",
     "test:ios-native": "bash scripts/check-ios-native-plan.sh",
     "test:native-ui-coverage": "node tests/native-ui-coverage.test.mjs",
     "test:store-readiness": "node tests/store-readiness.test.mjs",
     "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts\"",
-    "test:all": "npm test && npm run test:android-native && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:rules"
+    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:rules"
   },
   "engines": {
     "node": ">=22"

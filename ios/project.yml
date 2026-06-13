@@ -110,6 +110,20 @@ targets:
           - DMSans-Medium.ttf
           - DMSans-Bold.ttf
 
+  SportsGreenMooveUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: UITests/SportsGreenMooveUITests
+    dependencies:
+      - target: SportsGreenMoove
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app.uitests
+        TEST_TARGET_NAME: SportsGreenMoove
+        CODE_SIGN_STYLE: Automatic
+
 schemes:
   SportsGreenMoove:
     build:
@@ -117,5 +131,9 @@ schemes:
         SportsGreenMoove: all
     run:
       config: Debug
+    test:
+      config: Debug
+      targets:
+        - SportsGreenMooveUITests
     archive:
       config: Release

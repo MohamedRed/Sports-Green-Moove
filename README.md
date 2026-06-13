@@ -55,9 +55,12 @@ npm run build
 
 ```sh
 npm run test:android-native
+npm run test:android-ui-build
 npm run test:ios-native
 npm run test:native-ui-coverage
 ```
+
+Run `npm run test:android-ui` on an emulator or CI runner to execute the Android Compose UI tests for the native flow selectors. Native CI also generates the Xcode project and runs the iOS XCUITest flow suite on a simulator.
 
 Native projects now include the first real Firebase vertical slice: email/password Auth, Google Auth, Facebook Auth, Firestore trip reads, booking requests, inbox reads, payments, native Google Maps active-ride route previews, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
 
