@@ -74,7 +74,7 @@ async function reconcilePaymentSucceeded(event: Stripe.Event, eventPath: string)
       booking,
       { id: tripSnap.id, ...tripSnap.data() } as RidePaymentTripSnapshot,
     );
-    if (!validation.ok) {
+    if (validation.ok === false) {
       transaction.set(firestore.doc(eventPath), {
         ...stripeReport(event),
         reconciliationStatus: validation.reconciliationStatus,
@@ -137,7 +137,7 @@ async function reconcilePaymentIncomplete(event: Stripe.Event, eventPath: string
       intent,
       { id: bookingSnap.id, ...bookingSnap.data() } as RidePaymentBookingSnapshot,
     );
-    if (!validation.ok) {
+    if (validation.ok === false) {
       transaction.set(firestore.doc(eventPath), {
         ...stripeReport(event),
         reconciliationStatus: validation.reconciliationStatus,

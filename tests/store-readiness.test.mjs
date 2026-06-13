@@ -17,6 +17,8 @@ const files = {
   realDeviceProtocol: read("docs/release/real-device-test-protocol.md"),
   providerValidator: read("scripts/check-provider-readiness.mjs"),
   evidenceValidator: read("scripts/validate-release-evidence.mjs"),
+  packageJson: read("package.json"),
+  backendCiWorkflow: read(".github/workflows/backend-ci.yml"),
   releaseEvidenceWorkflow: read(".github/workflows/release-evidence.yml"),
   releaseReadinessWorkflow: read(".github/workflows/release-readiness.yml"),
 };
@@ -110,6 +112,7 @@ includes(files.storeReadiness, "evidence-manifest.example.json", "Store checklis
 includes(files.storeReadiness, "real-device-test-protocol.md", "Store checklist links real-device protocol");
 includes(files.storeReadiness, "validate:provider-readiness", "Store checklist documents provider validation command");
 includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
+includes(files.storeReadiness, "test:stripe-webhook-flow", "Store checklist documents Stripe webhook flow validation command");
 
 for (const requiredEvidence of [
   "foreground_tracking",
@@ -158,6 +161,9 @@ includes(files.releaseEvidenceWorkflow, "validate:release-evidence", "Release ev
 includes(files.releaseEvidenceWorkflow, "validate:provider-readiness", "Release evidence workflow validates provider readiness");
 includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release readiness validates provider checks");
 includes(files.releaseReadinessWorkflow, "test:release-evidence-template", "Release readiness validates evidence template");
+includes(files.providerValidator, "STRIPE_WEBHOOK_SECRET", "Provider readiness validates Stripe webhook secret");
+includes(files.packageJson, "test:stripe-webhook-flow", "Package scripts expose Stripe webhook flow emulator test");
+includes(files.backendCiWorkflow, "test:stripe-webhook-flow", "Backend CI validates Stripe webhook flow");
 
 console.log("Store readiness static checks passed.");
 

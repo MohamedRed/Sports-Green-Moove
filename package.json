@@ -23,7 +23,8 @@
     "validate:provider-readiness": "node scripts/check-provider-readiness.mjs",
     "validate:release-evidence": "node scripts/validate-release-evidence.mjs",
     "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts\"",
-    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:provider-readiness && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:rules"
+    "test:stripe-webhook-flow": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore \"vitest run tests/stripe-webhook-flow.test.ts\"",
+    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:provider-readiness && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:rules && npm run test:stripe-webhook-flow"
   },
   "engines": {
     "node": ">=22"
