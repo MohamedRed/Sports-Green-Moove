@@ -173,7 +173,7 @@ struct BookingRequestSummary: Identifiable, Hashable, Sendable {
     var id: String { bookingId }
 }
 
-enum SearchPlaceTarget: Sendable {
+enum SearchPlaceTarget: Sendable, Equatable {
     case origin
     case destination
 }

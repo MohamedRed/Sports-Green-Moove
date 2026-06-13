@@ -213,7 +213,7 @@ fun SportsGreenMooveApp() {
                             onApproveBooking = ::approveBooking,
                         )
 
-                        DemoScreen.Publish -> PublishScreen(role = role)
+                        DemoScreen.Publish -> PublishScreen(role = role, firebase = providers.firebase, onError = { errorMessage = it }, onNotice = { noticeMessage = it }, onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } } })
                         DemoScreen.Messages -> MessagesScreen(firebase = providers.firebase)
                         DemoScreen.Profile -> ProfileScreen(
                             role = role,

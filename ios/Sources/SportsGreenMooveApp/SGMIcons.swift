@@ -18,6 +18,7 @@ enum SGMIcon {
     case settings
     case arrowRight
     case check
+    case flag
     case leaf
     case star
 
@@ -40,6 +41,7 @@ enum SGMIcon {
         case .settings: "gearshape"
         case .arrowRight: "arrow.right"
         case .check: "checkmark"
+        case .flag: "flag"
         case .leaf: "leaf"
         case .star: "star.fill"
         }

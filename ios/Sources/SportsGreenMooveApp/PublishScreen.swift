@@ -1,95 +1,127 @@
 import SwiftUI
 
 struct PublishScreen: View {
+    @Environment(AppState.self) private var appState
+    @State private var controller = PublishController()
     @State private var step = 1
+    @State private var from = ""
+    @State private var to = ""
+    @State private var category = "U 7/8"
+    @State private var returnTrip = true
+    @State private var childTracking = true
+    @State private var seats = 2
+    @State private var frequency = "UNIQUE"
+    @State private var price = ""
+    @State private var departureIso = ISO8601DateFormatter().string(from: Date().addingTimeInterval(TimeInterval(30 * 86_400)))
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(spacing: 10) {
             SGMTopBar(title: "PUBLIER UN TRAJET")
             PublishStepper(step: step)
-            VStack(spacing: 10) {
-                formRow("Club", "Royal Ottignies")
-                formRow("Catégorie", "U8 Nationaux")
-                formRow("Date", "07 Novembre 2022")
-                formRow("Heure de départ", "16h45")
-                formRow("Places disponibles", "2")
-                formRow("Bagage", "Moyen")
-                toggleRow("Suivi enfant", enabled: true)
-                toggleRow("Retour proposé", enabled: false)
+            VStack(spacing: 12) {
+                if appState.selectedRole != .driver {
+                    PublishDriverRequiredCard()
+                } else {
+                    currentStep
+                }
             }
             .padding(.horizontal, SGMSpace.padScreen)
-
-            SGMButton(title: step < 3 ? "CONTINUER" : "PUBLIER", action: {
-                if step < 3 {
-                    step += 1
-                }
-            })
-            .padding(.horizontal, SGMSpace.padScreen)
         }
     }
 
-    private func formRow(_ label: String, _ value: String) -> some View {
-        HStack {
-            Text(label)
-                .font(.sgmBody(14, weight: .semibold))
-                .foregroundStyle(SGM.textPrimary)
-            Spacer()
-            Text(value)
-                .font(.sgmBody(13, weight: .bold))
-                .foregroundStyle(SGM.green)
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-            SGMIconView(icon: .chevronRight, size: 12, color: SGM.textMuted)
+    @ViewBuilder
+    private var currentStep: some View {
+        switch step {
+        case 1:
+            PublishPlaceStep(
+                controller: controller,
+                from: $from,
+                to: $to,
+                onSearchOrigin: { Task { await controller.suggestPlaces(input: from, target: .origin, firebase: appState.firebase, onError: setError) } },
+                onSearchDestination: { Task { await controller.suggestPlaces(input: to, target: .destination, firebase: appState.firebase, onError: setError) } },
+                onSelectOrigin: { suggestion in Task { await controller.select(suggestion, target: .origin, firebase: appState.firebase, onError: setError) } },
+                onSelectDestination: { suggestion in Task { await controller.select(suggestion, target: .destination, firebase: appState.firebase, onError: setError) } },
+                onNext: nextFromPlaces
+            )
+        case 2:
+            PublishDetailsStep(
+                category: $category,
+                departureIso: $departureIso,
+                returnTrip: $returnTrip,
+                childTracking: $childTracking,
+                seats: $seats,
+                frequency: $frequency,
+                price: $price,
+                onNext: { step = 3 }
+            )
+        default:
+            PublishConfirmStep(
+                from: controller.origin?.formattedAddress ?? from,
+                to: controller.destination?.formattedAddress ?? to,
+                category: category,
+                seats: seats,
+                frequency: frequency,
+                returnTrip: returnTrip,
+                price: price,
+                loading: controller.loading,
+                onPublish: publish
+            )
         }
-        .padding(16)
-        .background(SGM.bgSurface, in: RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous).stroke(SGM.border, lineWidth: 1))
     }
 
-    private func toggleRow(_ label: String, enabled: Bool) -> some View {
-        HStack {
-            Text(label)
-                .font(.sgmBody(14, weight: .semibold))
-                .foregroundStyle(SGM.textPrimary)
-            Spacer()
-            Capsule()
-                .fill(enabled ? SGM.green : SGM.bgInput)
-                .frame(width: 46, height: 28)
-                .overlay(alignment: enabled ? .trailing : .leading) {
-                    Circle()
-                        .fill(SGM.textOnGreen)
-                        .frame(width: 22, height: 22)
-                        .padding(3)
-                }
+    private func nextFromPlaces() {
+        guard controller.origin != nil, controller.destination != nil else {
+            appState.errorMessage = "Choisissez un départ et une destination dans les suggestions."
+            return
         }
-        .padding(16)
-        .background(SGM.bgSurface, in: RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous).stroke(SGM.border, lineWidth: 1))
+        step = 2
+    }
+
+    private func publish() {
+        Task {
+            await controller.publish(
+                draft: makeDraft(),
+                firebase: appState.firebase,
+                onNotice: { appState.noticeMessage = $0 },
+                onError: setError,
+                onPublished: { await appState.refreshAppData() }
+            )
+        }
+    }
+
+    private func makeDraft() -> TripPublishDraft? {
+        guard let origin = controller.origin, let destination = controller.destination else { return nil }
+        return TripPublishDraft(
+            title: "U8 Nationaux vs Royal Ottignies SC",
+            sport: "Football",
+            clubName: "Royal Ottignies",
+            teamName: category,
+            clubId: "royal-ottignies",
+            teamId: category.lowercased().replacingOccurrences(of: " ", with: "-"),
+            category: category,
+            departureAtIso: departureIso,
+            origin: origin,
+            destination: destination,
+            pickupRadiusM: 1_500,
+            seatsTotal: seats,
+            seatsAvailable: seats,
+            baggage: "medium",
+            returnTrip: returnTrip,
+            priceCents: parsePriceCents(price),
+            supportsVehicleTracking: true,
+            supportsChildTracking: childTracking,
+            co2SavedKgEstimate: 4.2
+        )
+    }
+
+    private func setError(_ message: String?) {
+        appState.errorMessage = message
     }
 }
 
-private struct PublishStepper: View {
-    let step: Int
-
-    var body: some View {
-        HStack(spacing: 8) {
-            ForEach(1...3, id: \.self) { item in
-                HStack(spacing: 8) {
-                    Text("\(item)")
-                        .font(.sgmBody(12, weight: .bold))
-                        .foregroundStyle(item <= step ? SGM.textOnGreen : SGM.textMuted)
-                        .frame(width: 26, height: 26)
-                        .background(item <= step ? SGM.green : SGM.bgCard, in: Circle())
-                        .overlay(Circle().stroke(SGM.border, lineWidth: 1))
-                    if item < 3 {
-                        Capsule()
-                            .fill(item < step ? SGM.green : SGM.border)
-                            .frame(height: 4)
-                    }
-                }
-            }
-        }
-        .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.bottom, 2)
-    }
+private func parsePriceCents(_ value: String) -> Int {
+    let normalized = value.replacingOccurrences(of: ",", with: ".")
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+    let amount = Double(normalized) ?? 0
+    return max(0, Int(amount * 100))
 }

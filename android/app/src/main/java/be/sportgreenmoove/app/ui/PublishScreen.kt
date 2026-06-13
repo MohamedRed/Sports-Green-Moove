@@ -3,70 +3,84 @@ package be.sportgreenmoove.app.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.AppRole
+import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.services.FirebaseGateway
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 
 private val PublishCats = listOf("U 5/6", "U 7/8", "U 9/10", "U 11/12", "U 13/14", "U 15/16", "Seniors", "Réserves")
 private val PublishFreqs = listOf("UNIQUE", "CHAQUE LUN", "CHAQUE MAR", "CHAQUE MER", "CHAQUE JEU", "CHAQUE VEN", "CHAQUE SAM", "CHAQUE DIM")
 
-@Suppress("UNUSED_PARAMETER")
 @Composable
-fun PublishScreen(role: AppRole) {
+fun PublishScreen(
+    role: AppRole,
+    firebase: FirebaseGateway,
+    onError: (String?) -> Unit,
+    onNotice: (String) -> Unit,
+    onPublished: () -> Unit,
+) {
+    val scope = rememberCoroutineScope()
+    val controller = rememberPublishController(firebase, scope, onError, onNotice, onPublished)
     var step by remember { mutableStateOf(1) }
-    var published by remember { mutableStateOf(false) }
-    var from by remember { mutableStateOf("") }
-    var to by remember { mutableStateOf("") }
+    var from by remember { mutableStateOf(controller.origin?.label.orEmpty()) }
+    var to by remember { mutableStateOf(controller.destination?.label.orEmpty()) }
     var category by remember { mutableStateOf("U 7/8") }
     var returnTrip by remember { mutableStateOf(true) }
     var seats by remember { mutableStateOf(2) }
     var frequency by remember { mutableStateOf("UNIQUE") }
     var price by remember { mutableStateOf("") }
-
-    if (published) {
-        PublishSuccess { published = false; step = 1 }
-        return
-    }
+    var departureIso by remember { mutableStateOf(Instant.now().plus(30, ChronoUnit.DAYS).truncatedTo(ChronoUnit.MINUTES).toString()) }
+    var childTracking by remember { mutableStateOf(true) }
 
     V2Screen {
         V2TopBar("PUBLIER UN TRAJET", onBack = if (step > 1) ({ step -= 1 }) else null)
         PublishStepIndicator(step)
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            when (step) {
-                1 -> PublishStepOne(from, { from = it }, to, { to = it }, onNext = { step = 2 })
+            if (role != AppRole.Driver) {
+                PublishDriverRequired()
+            } else when (step) {
+                1 -> PublishStepOne(
+                    from = from,
+                    onFrom = { from = it },
+                    to = to,
+                    onTo = { to = it },
+                    controller = controller,
+                    onNext = {
+                        if (controller.origin == null || controller.destination == null) {
+                            onError("Choisissez un départ et une destination dans les suggestions.")
+                        } else {
+                            step = 2
+                        }
+                    },
+                )
                 2 -> PublishStepTwo(
                     category = category,
                     onCategory = { category = it },
@@ -78,10 +92,37 @@ fun PublishScreen(role: AppRole) {
                     onFrequency = { frequency = it },
                     price = price,
                     onPrice = { price = it },
+                    departureIso = departureIso,
+                    onDepartureIso = { departureIso = it },
+                    childTracking = childTracking,
+                    onChildTracking = { childTracking = !childTracking },
                     onNext = { step = 3 },
                 )
 
-                else -> PublishStepThree(from, to, seats, frequency, returnTrip, price, category, onPublish = { published = true })
+                else -> PublishStepThree(
+                    from = controller.origin?.formattedAddress ?: from,
+                    to = controller.destination?.formattedAddress ?: to,
+                    seats = seats,
+                    frequency = frequency,
+                    returnTrip = returnTrip,
+                    price = price,
+                    category = category,
+                    loading = controller.loading,
+                    onPublish = {
+                        controller.publish(
+                            publishDraft(
+                                category = category,
+                                departureIso = departureIso,
+                                origin = controller.origin,
+                                destination = controller.destination,
+                                seats = seats,
+                                price = price,
+                                returnTrip = returnTrip,
+                                childTracking = childTracking,
+                            ),
+                        )
+                    },
+                )
             }
         }
     }
@@ -104,10 +145,35 @@ private fun PublishStepIndicator(step: Int) {
 }
 
 @Composable
-private fun PublishStepOne(from: String, onFrom: (String) -> Unit, to: String, onTo: (String) -> Unit, onNext: () -> Unit) {
+private fun PublishStepOne(
+    from: String,
+    onFrom: (String) -> Unit,
+    to: String,
+    onTo: (String) -> Unit,
+    controller: PublishController,
+    onNext: () -> Unit,
+) {
     PublishTitle("DÉPART & DESTINATION")
-    PublishInput(SgmIcon.Location, "Adresse de départ", from, onFrom)
-    PublishInput(SgmIcon.Flag, "Adresse de destination", to, onTo)
+    PublishPlaceField(
+        label = "Adresse de départ",
+        icon = SgmIcon.Location,
+        value = from,
+        selected = controller.origin,
+        suggestions = controller.originSuggestions,
+        onValueChange = onFrom,
+        onSuggest = { controller.suggestPlaces(it, SearchPlaceTarget.Origin) },
+        onSelect = { suggestion -> controller.selectPlace(suggestion, SearchPlaceTarget.Origin) },
+    )
+    PublishPlaceField(
+        label = "Adresse de destination",
+        icon = SgmIcon.Flag,
+        value = to,
+        selected = controller.destination,
+        suggestions = controller.destinationSuggestions,
+        onValueChange = onTo,
+        onSuggest = { controller.suggestPlaces(it, SearchPlaceTarget.Destination) },
+        onSelect = { suggestion -> controller.selectPlace(suggestion, SearchPlaceTarget.Destination) },
+    )
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -134,11 +200,17 @@ private fun PublishStepTwo(
     onFrequency: (String) -> Unit,
     price: String,
     onPrice: (String) -> Unit,
+    departureIso: String,
+    onDepartureIso: (String) -> Unit,
+    childTracking: Boolean,
+    onChildTracking: () -> Unit,
     onNext: () -> Unit,
 ) {
     PublishTitle("DÉTAILS DU TRAJET")
     PublishChoiceRow("Catégorie", PublishCats, category, onCategory)
+    PublishInput(SgmIcon.Calendar, "Date ISO", departureIso, onDepartureIso)
     PublishToggleRow("Aller - retour", returnTrip, onReturnTrip)
+    PublishToggleRow("Suivi enfant", childTracking, onChildTracking)
     PublishSeatsRow(seats, onSeats)
     PublishChoiceRow("Fréquence", PublishFreqs, frequency, onFrequency, titleFirst = true)
     PublishPriceRow(price, onPrice)
@@ -146,7 +218,7 @@ private fun PublishStepTwo(
 }
 
 @Composable
-private fun PublishStepThree(from: String, to: String, seats: Int, frequency: String, returnTrip: Boolean, price: String, category: String, onPublish: () -> Unit) {
+private fun PublishStepThree(from: String, to: String, seats: Int, frequency: String, returnTrip: Boolean, price: String, category: String, loading: Boolean, onPublish: () -> Unit) {
     PublishTitle("CONFIRMER")
     Column(modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(SgmRadius.LG)).background(Sgm.colors.bgCard).border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))) {
         Box(Modifier.fillMaxWidth().background(SgmColor.HeroGradient).padding(horizontal = 16.dp, vertical = 12.dp)) {
@@ -158,77 +230,44 @@ private fun PublishStepThree(from: String, to: String, seats: Int, frequency: St
             }
         }
     }
-    V2Button("PUBLIER CE TRAJET", onClick = onPublish, full = true, size = V2ButtonSize.Lg)
+    V2Button(if (loading) "PUBLICATION..." else "PUBLIER CE TRAJET", onClick = onPublish, full = true, size = V2ButtonSize.Lg)
 }
 
-@Composable
-private fun PublishInput(icon: SgmIcon, placeholder: String, value: String, onValue: (String) -> Unit) {
-    Row(modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(SgmRadius.MD)).background(Sgm.colors.bgInput).border(BorderStroke(1.5.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.MD)).padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-        SgmLineIcon(icon, tint = SgmColor.Green, modifier = Modifier.size(18.dp))
-        Box(Modifier.weight(1f)) {
-            if (value.isEmpty()) Text(placeholder, style = PublishBodyStyle(Sgm.colors.textMuted))
-            BasicTextField(value = value, onValueChange = onValue, textStyle = PublishBodyStyle(Sgm.colors.textPrimary), singleLine = true, modifier = Modifier.fillMaxWidth())
-        }
-    }
+private fun publishDraft(
+    category: String,
+    departureIso: String,
+    origin: be.sportgreenmoove.app.data.ResolvedPlace?,
+    destination: be.sportgreenmoove.app.data.ResolvedPlace?,
+    seats: Int,
+    price: String,
+    returnTrip: Boolean,
+    childTracking: Boolean,
+): TripPublishDraft? {
+    if (origin == null || destination == null) return null
+    return TripPublishDraft(
+        title = "U8 Nationaux vs Royal Ottignies SC",
+        sport = "Football",
+        clubName = "Royal Ottignies",
+        teamName = category,
+        clubId = "royal-ottignies",
+        teamId = category.lowercase().replace(" ", "-"),
+        category = category,
+        departureAtIso = departureIso,
+        origin = origin,
+        destination = destination,
+        pickupRadiusM = 1500,
+        seatsTotal = seats,
+        seatsAvailable = seats,
+        baggage = "medium",
+        returnTrip = returnTrip,
+        priceCents = parsePriceCents(price),
+        supportsVehicleTracking = true,
+        supportsChildTracking = childTracking,
+        co2SavedKgEstimate = 4.2,
+    )
 }
 
-@Composable
-private fun PublishChoiceRow(label: String, values: List<String>, selected: String, onSelect: (String) -> Unit, titleFirst: Boolean = false) {
-    Column(modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(SgmRadius.MD)).background(Sgm.colors.bgSurface).border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.MD)).padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(if (titleFirst) 8.dp else 0.dp)) {
-        Text(label, style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold))
-        Row(modifier = Modifier.horizontalScroll(rememberScrollState()).padding(top = if (titleFirst) 0.dp else 8.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            values.forEach { value -> V2Chip(value, selected = selected == value, onClick = { onSelect(value) }) }
-        }
-    }
+private fun parsePriceCents(value: String): Int {
+    val amount = value.replace(",", ".").trim().toDoubleOrNull() ?: 0.0
+    return (amount * 100).toInt().coerceAtLeast(0)
 }
-
-@Composable
-private fun PublishToggleRow(label: String, selected: Boolean, onClick: () -> Unit) {
-    PublishControlRow(label) {
-        Box(modifier = Modifier.size(width = 44.dp, height = 24.dp).clip(RoundedCornerShape(999.dp)).background(if (selected) SgmColor.Green else Sgm.colors.bgInput).border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(999.dp)).clickable(onClick = onClick)) {
-            Box(Modifier.padding(start = if (selected) 22.dp else 2.dp, top = 2.dp).size(18.dp).clip(CircleShape).background(SgmColor.TextOnGreen))
-        }
-    }
-}
-
-@Composable
-private fun PublishSeatsRow(seats: Int, onSeats: (Int) -> Unit) {
-    PublishControlRow("Places disponibles") {
-        V2CircleIconButton(SgmIcon.ChevronLeft, onClick = { onSeats(seats - 1) }, size = 28)
-        Text(seats.toString(), style = SgmType.DisplayXL.copy(color = SgmColor.Green, fontSize = 22.sp), modifier = Modifier.size(width = 24.dp, height = 28.dp), textAlign = TextAlign.Center)
-        V2CircleIconButton(SgmIcon.Plus, onClick = { onSeats(seats + 1) }, size = 28)
-    }
-}
-
-@Composable
-private fun PublishPriceRow(price: String, onPrice: (String) -> Unit) {
-    PublishControlRow("Prix estimé") {
-        BasicTextField(value = price, onValueChange = onPrice, textStyle = PublishBodyStyle(Sgm.colors.textPrimary).copy(textAlign = TextAlign.End), singleLine = true, modifier = Modifier.size(width = 70.dp, height = 28.dp).clip(RoundedCornerShape(8.dp)).background(Sgm.colors.bgInput).border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(8.dp)).padding(horizontal = 10.dp, vertical = 6.dp))
-        Text("€", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary, fontSize = 14.sp, fontWeight = FontWeight.Bold))
-    }
-}
-
-@Composable
-private fun PublishControlRow(label: String, trailing: @Composable RowScope.() -> Unit) {
-    Row(modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(SgmRadius.MD)).background(Sgm.colors.bgSurface).border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.MD)).padding(horizontal = 14.dp, vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text(label, style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.weight(1f))
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), content = trailing)
-    }
-}
-
-@Composable
-private fun PublishSuccess(onDone: () -> Unit) {
-    V2Screen {
-        Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 40.dp, vertical = 120.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(20.dp)) {
-            Box(Modifier.size(80.dp).clip(CircleShape).background(SgmColor.Green), contentAlignment = Alignment.Center) { SgmLineIcon(SgmIcon.Check, tint = SgmColor.TextOnGreen, modifier = Modifier.size(40.dp)) }
-            Text("TRAJET PUBLIÉ !", style = SgmType.Display2XL.copy(color = Sgm.colors.textPrimary, fontSize = 32.sp, letterSpacing = 0.06.em), textAlign = TextAlign.Center)
-            Text("Votre trajet a bien été partagé avec les autres greens-moovers.", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary, lineHeight = 21.sp), textAlign = TextAlign.Center)
-            V2Button("VOIR MES TRAJETS", onClick = onDone, full = true, size = V2ButtonSize.Lg)
-        }
-    }
-}
-
-@Composable private fun PublishTitle(text: String) = Text(text, style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 20.sp, letterSpacing = 0.06.em), modifier = Modifier.padding(bottom = 4.dp))
-@Composable private fun PublishStepDot(value: Int, active: Boolean) = Box(Modifier.size(28.dp).clip(CircleShape).background(if (active) SgmColor.Green else Sgm.colors.bgCard).then(if (active) Modifier else Modifier.border(BorderStroke(1.dp, Sgm.colors.border), CircleShape)), contentAlignment = Alignment.Center) { Text(value.toString(), style = SgmType.DisplayLG.copy(color = if (active) SgmColor.TextOnGreen else Sgm.colors.textMuted, fontSize = 14.sp)) }
-@Composable private fun PublishSummaryRow(label: String, value: String) = Row(Modifier.fillMaxWidth()) { Text(label, style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.Medium), modifier = Modifier.weight(1f)); Text(value, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold)) }
-@Composable private fun PublishBodyStyle(color: androidx.compose.ui.graphics.Color) = SgmType.BodySM.copy(color = color, fontSize = 14.sp, fontWeight = FontWeight.Medium)

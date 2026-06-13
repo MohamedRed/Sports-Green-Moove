@@ -12,6 +12,7 @@ import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.RideCompletionSummary
 import be.sportgreenmoove.app.data.TripMatchSummary
+import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
 
@@ -30,6 +31,7 @@ interface FirebaseGateway {
     suspend fun suggestPlaces(input: String): List<PlaceSuggestion>
     suspend fun resolvePlace(placeId: String): ResolvedPlace
     suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary>
+    suspend fun createTrip(draft: TripPublishDraft): String
     suspend fun requestBooking(tripId: String, childId: String? = null): String
     suspend fun getDriverBookingRequests(): List<BookingRequestSummary>
     suspend fun approveBooking(bookingId: String): String
@@ -101,6 +103,11 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
 
     override suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary> {
         check(criteria.seatsNeeded > 0)
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
+
+    override suspend fun createTrip(draft: TripPublishDraft): String {
+        check(draft.seatsAvailable <= draft.seatsTotal)
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 

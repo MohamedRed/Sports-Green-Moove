@@ -13,6 +13,7 @@ import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.RideCompletionSummary
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
+import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
 import com.google.android.gms.location.LocationServices
@@ -87,6 +88,15 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
             ?.mapNotNull { it as? Map<*, *> }
             ?.mapNotNull(::mapTripMatch)
             .orEmpty()
+    }
+
+    override suspend fun createTrip(draft: TripPublishDraft): String {
+        val result = functions
+            .getHttpsCallable("createTrip")
+            .call(draft.toCallablePayload())
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse publication invalide.")
+        return payload["tripId"] as? String ?: throw ProviderConfigurationException("Trajet publié manquant.")
     }
 
     override suspend fun requestBooking(tripId: String, childId: String?): String {
