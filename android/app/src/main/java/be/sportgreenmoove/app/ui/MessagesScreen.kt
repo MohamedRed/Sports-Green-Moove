@@ -22,6 +22,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,13 +35,17 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.services.FirebaseGateway
+import kotlinx.coroutines.launch
 
 @Composable
 fun MessagesScreen(firebase: FirebaseGateway) {
+    val scope = rememberCoroutineScope()
     var selectedTab by remember { mutableStateOf("chats") }
     var inbox by remember { mutableStateOf(InboxSummary()) }
     var loading by remember { mutableStateOf(false) }
+    var submittingReviewId by remember { mutableStateOf<String?>(null) }
     var error by remember { mutableStateOf<String?>(null) }
+    var notice by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(firebase) {
         loading = true
@@ -49,6 +54,22 @@ fun MessagesScreen(firebase: FirebaseGateway) {
             .onSuccess { inbox = it }
             .onFailure { error = it.message ?: "Inbox indisponible." }
         loading = false
+    }
+    fun submitReview(reviewId: String, rideSessionId: String, ratedUserId: String, score: Int) {
+        scope.launch {
+            submittingReviewId = reviewId
+            error = null
+            notice = null
+            runCatching {
+                firebase.submitRating(rideSessionId = rideSessionId, ratedUserId = ratedUserId, score = score)
+                inbox = firebase.getInbox()
+            }.onSuccess {
+                notice = "Avis envoyé."
+            }.onFailure {
+                error = it.message ?: "Avis impossible à envoyer."
+            }
+            submittingReviewId = null
+        }
     }
 
     Column(
@@ -67,22 +88,50 @@ fun MessagesScreen(firebase: FirebaseGateway) {
             when {
                 loading -> MessagesEmptyCard("Synchronisation de l'inbox...")
                 error != null -> MessagesEmptyCard(error.orEmpty())
-                selectedTab == "notifs" -> if (inbox.notifications.isEmpty()) {
-                        MessagesEmptyCard("Aucune notification.")
-                    } else {
-                        inbox.notifications.forEach { notice -> NotificationCard(notice) }
-                    }
-                selectedTab == "avis" -> if (inbox.reviews.isEmpty()) {
-                        MessagesEmptyCard("Aucun avis en attente.")
-                    } else {
-                        inbox.reviews.forEach { review -> ReviewCard(review) }
-                    }
-                else -> if (inbox.chats.isEmpty()) {
-                        MessagesEmptyCard("Aucune conversation.")
-                    } else {
-                        inbox.chats.forEach { chat -> ChatCard(chat) }
-                }
+                else -> MessagesListContent(
+                    selectedTab = selectedTab,
+                    inbox = inbox,
+                    notice = notice,
+                    submittingReviewId = submittingReviewId,
+                    onRateReview = ::submitReview,
+                )
             }
+        }
+    }
+}
+
+@Composable
+private fun MessagesListContent(
+    selectedTab: String,
+    inbox: InboxSummary,
+    notice: String?,
+    submittingReviewId: String?,
+    onRateReview: (String, String, String, Int) -> Unit,
+) {
+    notice?.let { MessagesEmptyCard(it) }
+    when (selectedTab) {
+        "notifs" -> if (inbox.notifications.isEmpty()) {
+            MessagesEmptyCard("Aucune notification.")
+        } else {
+            inbox.notifications.forEach { notice -> NotificationCard(notice) }
+        }
+        "avis" -> if (inbox.reviews.isEmpty()) {
+            MessagesEmptyCard("Aucun avis en attente.")
+        } else {
+            inbox.reviews.forEach { review ->
+                ReviewCard(
+                    review = review,
+                    submitting = submittingReviewId == review.id,
+                    onRate = { score ->
+                        onRateReview(review.id, review.rideSessionId, review.ratedUserId, score)
+                    },
+                )
+            }
+        }
+        else -> if (inbox.chats.isEmpty()) {
+            MessagesEmptyCard("Aucune conversation.")
+        } else {
+            inbox.chats.forEach { chat -> ChatCard(chat) }
         }
     }
 }

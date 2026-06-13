@@ -2,9 +2,7 @@ package be.sportgreenmoove.app.services
 
 import android.content.Context
 import android.os.Build
-import be.sportgreenmoove.app.R
 import be.sportgreenmoove.app.data.AppRole
-import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.InboxSummary
@@ -19,66 +17,12 @@ import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
 
-data class AndroidProviderSet(
-    val auth: AuthGateway,
-    val firebase: FirebaseGateway,
-    val radar: RadarTrackingGateway = UnconfiguredRadarTrackingGateway(),
-    val googleRoutes: GoogleRoutesGateway = UnconfiguredGoogleRoutesGateway(),
-    val stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway(),
-) {
-    val isConfigured: Boolean = auth.isConfigured && firebase.isConfigured
-}
-
-object AndroidRuntime {
-    fun create(context: Context): AndroidProviderSet {
-        val app = FirebaseApp.initializeApp(context) ?: FirebaseApp.getApps(context).firstOrNull()
-        return if (app == null) {
-            AndroidProviderSet(auth = UnconfiguredAuthGateway(), firebase = UnconfiguredFirebaseGateway())
-        } else {
-            AndroidProviderSet(
-                auth = FirebaseAndroidAuthGateway(),
-                firebase = FirebaseAndroidBackendGateway(context.applicationContext),
-                radar = FirebaseAndroidRadarTrackingGateway(
-                    context = context.applicationContext,
-                    publishableKey = context.getString(R.string.sgm_radar_publishable_key),
-                ),
-                stripe = FirebaseAndroidStripePaymentsGateway(),
-            )
-        }
-    }
-}
-
-private class FirebaseAndroidAuthGateway : AuthGateway {
-    private val auth = FirebaseAuth.getInstance()
-    override val isConfigured: Boolean = true
-
-    override suspend fun currentSession(): AuthSession? =
-        auth.currentUser?.let { AuthSession(uid = it.uid, email = it.email) }
-
-    override suspend fun signIn(email: String, password: String): AuthSession {
-        val result = auth.signInWithEmailAndPassword(email, password).await()
-        val user = result.user ?: throw ProviderConfigurationException("Réponse Firebase Auth invalide.")
-        return AuthSession(uid = user.uid, email = user.email)
-    }
-
-    override suspend fun signUp(name: String, email: String, password: String): AuthSession {
-        val result = auth.createUserWithEmailAndPassword(email, password).await()
-        val user = result.user ?: throw ProviderConfigurationException("Réponse Firebase Auth invalide.")
-        return AuthSession(uid = user.uid, email = user.email)
-    }
-
-    override fun signOut() {
-        auth.signOut()
-    }
-}
-
-private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway {
+internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway {
     private val appContext = context.applicationContext
     private val firestore = FirebaseFirestore.getInstance()
     private val functions = FirebaseFunctions.getInstance()
@@ -259,6 +203,18 @@ private class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway 
         val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse inbox invalide.")
         val inbox = payload["inbox"] as? Map<*, *> ?: throw ProviderConfigurationException("Inbox manquante.")
         return mapInbox(inbox)
+    }
+
+    override suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?): String {
+        val data = mutableMapOf<String, Any>(
+            "rideSessionId" to rideSessionId,
+            "ratedUserId" to ratedUserId,
+            "score" to score,
+        )
+        comment?.takeIf(String::isNotBlank)?.let { data["comment"] = it }
+        val result = functions.getHttpsCallable("submitRating").call(data).await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse avis invalide.")
+        return payload["ratingId"] as? String ?: throw ProviderConfigurationException("Avis manquant.")
     }
 
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {

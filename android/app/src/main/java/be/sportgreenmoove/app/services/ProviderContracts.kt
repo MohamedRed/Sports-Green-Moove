@@ -40,6 +40,7 @@ interface FirebaseGateway {
     suspend fun endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int): RideCompletionSummary
     suspend fun getPayableBookings(): List<PayableBookingSummary>
     suspend fun getInbox(): InboxSummary
+    suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String? = null): String
     suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole)
     fun stopNativeLocationFallback(rideSessionId: String)
 }
@@ -143,6 +144,12 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     override suspend fun getPayableBookings(): List<PayableBookingSummary> = emptyList()
 
     override suspend fun getInbox(): InboxSummary {
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
+
+    override suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?): String {
+        check(rideSessionId.isNotBlank() && ratedUserId.isNotBlank() && score in 1..5)
+        check(comment == null || comment.length <= 500)
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 

@@ -5,7 +5,9 @@ struct MessagesScreen: View {
     @State private var selectedTab = "chats"
     @State private var inbox = InboxSummary()
     @State private var loading = false
+    @State private var submittingReviewId: String?
     @State private var error: String?
+    @State private var notice: String?
 
     var body: some View {
         SGMScreen(spacing: 0) {
@@ -17,6 +19,9 @@ struct MessagesScreen: View {
                 } else if let error {
                     MessageEmptyCard(message: error)
                 } else {
+                    if let notice {
+                        MessageEmptyCard(message: notice)
+                    }
                     switch selectedTab {
                     case "notifs":
                         notificationContent
@@ -66,7 +71,11 @@ struct MessagesScreen: View {
             if inbox.reviews.isEmpty {
                 MessageEmptyCard(message: "Aucun avis en attente.")
             } else {
-                ForEach(inbox.reviews) { ReviewCard(review: $0) }
+                ForEach(inbox.reviews) { review in
+                    ReviewCard(review: review, submitting: submittingReviewId == review.id) { score in
+                        Task { await submitReview(review, score: score) }
+                    }
+                }
             }
         }
     }
@@ -77,6 +86,25 @@ struct MessagesScreen: View {
         defer { loading = false }
         do {
             inbox = try await appState.firebase.getInbox()
+        } catch {
+            self.error = error.localizedDescription
+        }
+    }
+
+    private func submitReview(_ review: InboxReviewPrompt, score: Int) async {
+        submittingReviewId = review.id
+        error = nil
+        notice = nil
+        defer { submittingReviewId = nil }
+        do {
+            _ = try await appState.firebase.submitRating(
+                rideSessionId: review.rideSessionId,
+                ratedUserId: review.ratedUserId,
+                score: score,
+                comment: nil
+            )
+            inbox = try await appState.firebase.getInbox()
+            notice = "Avis envoyé."
         } catch {
             self.error = error.localizedDescription
         }
@@ -170,6 +198,8 @@ private struct NotificationCard: View {
 
 private struct ReviewCard: View {
     let review: InboxReviewPrompt
+    let submitting: Bool
+    let onRate: (Int) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -182,9 +212,18 @@ private struct ReviewCard: View {
             Text(review.prompt)
                 .font(.sgmBody(13))
                 .foregroundStyle(SGM.textSecondary)
+            Text(submitting ? "Envoi de l'avis..." : "Touchez une note.")
+                .font(.sgmBody(11, weight: .semibold))
+                .foregroundStyle(SGM.textMuted)
             HStack(spacing: 4) {
-                ForEach(0..<5, id: \.self) { _ in
-                    SGMIconView(icon: .star, size: 18, color: SGM.orange)
+                ForEach(1...5, id: \.self) { score in
+                    Button {
+                        onRate(score)
+                    } label: {
+                        SGMIconView(icon: .star, size: 18, color: SGM.orange)
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(submitting)
                 }
             }
         }

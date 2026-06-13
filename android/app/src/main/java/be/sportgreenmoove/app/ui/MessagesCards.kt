@@ -3,6 +3,7 @@ package be.sportgreenmoove.app.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -84,7 +85,7 @@ fun NotificationCard(notice: InboxNotificationSummary) {
 }
 
 @Composable
-fun ReviewCard(review: InboxReviewPrompt) {
+fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, onRate: (Int) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -99,9 +100,17 @@ fun ReviewCard(review: InboxReviewPrompt) {
             Text(review.title, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontWeight = FontWeight.Bold))
         }
         Text(review.prompt, style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
+        Text(
+            if (submitting) "Envoi de l'avis..." else "Touchez une note.",
+            style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold),
+        )
         Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            repeat(5) {
-                Text("★", style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 26.sp))
+            repeat(5) { index ->
+                Text(
+                    "★",
+                    style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 26.sp),
+                    modifier = Modifier.clickable(enabled = !submitting) { onRate(index + 1) },
+                )
             }
         }
     }
