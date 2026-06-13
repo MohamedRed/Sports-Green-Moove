@@ -96,3 +96,10 @@ Paid bookings are never downgraded by later incomplete payment events.
 The backend creates a Stripe Transfer to the connected account and writes a
 negative `payout` ledger entry using `payout_{userId}_{sourceId}` as the
 deterministic document id.
+
+On `transfer.created`, `transfer.updated`, or `transfer.reversed`, the Stripe
+webhook verifies the transfer metadata against the deterministic payout ledger
+entry and writes an admin-visible `reports/stripe_{eventId}` reconciliation
+report. Reversed transfers create a deterministic positive `refund` ledger
+entry using `refund_{transferId}_{userId}` so reward balances remain derived
+from immutable ledger documents.
