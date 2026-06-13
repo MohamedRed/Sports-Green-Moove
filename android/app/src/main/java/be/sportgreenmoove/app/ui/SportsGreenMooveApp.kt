@@ -204,7 +204,15 @@ fun SportsGreenMooveApp() {
                             onApproveBooking = ::approveBooking,
                         )
 
-                        AppScreen.Publish -> PublishScreen(role = role, firebase = providers.firebase, onError = { errorMessage = it }, onNotice = { noticeMessage = it }, onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } } })
+                        AppScreen.Publish -> PublishScreen(
+                            role = role,
+                            firebase = providers.firebase,
+                            initialOrigin = searchController.origin,
+                            initialDestination = searchController.destination,
+                            onError = { errorMessage = it },
+                            onNotice = { noticeMessage = it },
+                            onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } } },
+                        )
                         AppScreen.Messages -> MessagesScreen(firebase = providers.firebase)
                         AppScreen.Profile -> ProfileScreen(
                             role = role,

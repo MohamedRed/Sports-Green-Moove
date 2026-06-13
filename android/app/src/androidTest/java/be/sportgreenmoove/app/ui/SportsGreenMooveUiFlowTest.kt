@@ -41,12 +41,17 @@ class SportsGreenMooveUiFlowTest {
             PublishScreen(
                 role = AppRole.Driver,
                 firebase = firebase,
+                initialOrigin = UiFlowFixtures.origin,
+                initialDestination = UiFlowFixtures.destination,
                 onError = {},
                 onNotice = {},
                 onPublished = {},
             )
         }
         assertTagsExist(SgmTestTags.PublishScreen, SgmTestTags.PublishNextAction)
+        compose.onNodeWithTag(SgmTestTags.PublishNextAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.PublishNextAction).performClick()
+        assertTagsExist(SgmTestTags.PublishSubmitAction)
 
         setTestContent {
             SearchScreen(

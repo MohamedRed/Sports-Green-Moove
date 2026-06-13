@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.AppRole
+import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
@@ -43,6 +45,8 @@ private val PublishFreqs = listOf("UNIQUE", "CHAQUE LUN", "CHAQUE MAR", "CHAQUE 
 fun PublishScreen(
     role: AppRole,
     firebase: FirebaseGateway,
+    initialOrigin: ResolvedPlace? = null,
+    initialDestination: ResolvedPlace? = null,
     onError: (String?) -> Unit,
     onNotice: (String) -> Unit,
     onPublished: () -> Unit,
@@ -50,8 +54,8 @@ fun PublishScreen(
     val scope = rememberCoroutineScope()
     val controller = rememberPublishController(firebase, scope, onError, onNotice, onPublished)
     var step by remember { mutableStateOf(1) }
-    var from by remember { mutableStateOf(controller.origin?.label.orEmpty()) }
-    var to by remember { mutableStateOf(controller.destination?.label.orEmpty()) }
+    var from by remember(initialOrigin?.placeId) { mutableStateOf(initialOrigin?.label.orEmpty()) }
+    var to by remember(initialDestination?.placeId) { mutableStateOf(initialDestination?.label.orEmpty()) }
     var category by remember { mutableStateOf("U 7/8") }
     var returnTrip by remember { mutableStateOf(true) }
     var seats by remember { mutableStateOf(2) }
@@ -59,6 +63,10 @@ fun PublishScreen(
     var price by remember { mutableStateOf("") }
     var departureIso by remember { mutableStateOf(Instant.now().plus(30, ChronoUnit.DAYS).truncatedTo(ChronoUnit.MINUTES).toString()) }
     var childTracking by remember { mutableStateOf(true) }
+
+    LaunchedEffect(initialOrigin, initialDestination) {
+        controller.seedPlaces(initialOrigin, initialDestination)
+    }
 
     V2Screen(testTag = SgmTestTags.PublishScreen) {
         V2TopBar("PUBLIER UN TRAJET", onBack = if (step > 1) ({ step -= 1 }) else null)
@@ -74,6 +82,7 @@ fun PublishScreen(
                     onTo = { to = it },
                     controller = controller,
                     onNext = {
+                        controller.seedPlaces(initialOrigin, initialDestination)
                         if (controller.origin == null || controller.destination == null) {
                             onError("Choisissez un départ et une destination dans les suggestions.")
                         } else {

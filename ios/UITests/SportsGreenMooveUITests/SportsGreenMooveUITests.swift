@@ -13,6 +13,9 @@ final class SportsGreenMooveUITests: XCTestCase {
         var app = launch(route: "publish")
         assertExists("publish.screen", in: app)
         assertExists("publish.next.action", in: app)
+        tapIdentifier("publish.next.action", in: app)
+        tapIdentifier("publish.next.action", in: app)
+        assertExists("publish.submit.action", in: app)
 
         app = launch(route: "search")
         assertExists("search.screen", in: app)
@@ -80,5 +83,11 @@ final class SportsGreenMooveUITests: XCTestCase {
         let button = app.buttons.containing(.staticText, identifier: text).firstMatch
         XCTAssertTrue(button.waitForExistence(timeout: 6), "Missing button containing: \(text)")
         button.tap()
+    }
+
+    private func tapIdentifier(_ identifier: String, in app: XCUIApplication) {
+        let element = app.descendants(matching: .any)[identifier]
+        XCTAssertTrue(element.waitForExistence(timeout: 6), "Missing tappable identifier: \(identifier)")
+        element.tap()
     }
 }

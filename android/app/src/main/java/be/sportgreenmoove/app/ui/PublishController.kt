@@ -47,6 +47,15 @@ class PublishController(
     var loading by mutableStateOf(false)
         private set
 
+    fun seedPlaces(initialOrigin: ResolvedPlace?, initialDestination: ResolvedPlace?) {
+        if (initialOrigin != null && origin == null) {
+            origin = initialOrigin
+        }
+        if (initialDestination != null && destination == null) {
+            destination = initialDestination
+        }
+    }
+
     fun suggestPlaces(input: String, target: SearchPlaceTarget) {
         if (input.isBlank()) {
             onError("Saisissez une adresse à chercher.")

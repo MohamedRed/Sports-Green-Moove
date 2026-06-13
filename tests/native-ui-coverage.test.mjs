@@ -75,8 +75,10 @@ for (const flow of flows) {
 
 includes(androidUiTests, "createComposeRule", "Android uses Compose UI automation");
 includes(androidUiTests, "SgmTestTags.ActiveRideScreen", "Android UI tests cover active ride selectors");
+includes(androidUiTests, "SgmTestTags.PublishSubmitAction", "Android UI tests cover publish submit selectors");
 includes(iosUiTests, "XCUIApplication", "iOS uses XCUITest automation");
 includes(iosUiTests, "--sgm-ui-test-fixture", "iOS UI tests launch deterministic fixture mode");
+includes(iosUiTests, "\"publish.submit.action\"", "iOS UI tests cover publish submit selectors");
 includes(iosProject, "SportsGreenMooveUITests:", "iOS project declares UI test target");
 includes(iosProject, "type: bundle.ui-testing", "iOS UI test target uses XCUITest bundle type");
 includes(nativeCi, "connectedDebugAndroidTest", "Native CI runs Android UI tests");
