@@ -110,10 +110,10 @@ class SportsGreenMooveUiFlowTest {
         setTestContent { GroupsScreen(clubs = UiFlowFixtures.clubs, onBack = {}) }
         assertTagsExist(SgmTestTags.GroupsScreen, SgmTestTags.GroupsJoinAction)
 
-        setTestContent { ImpactScreen(onBack = {}) }
+        setTestContent { ImpactScreen(summary = UiFlowFixtures.impact, onBack = {}) }
         assertTagsExist(SgmTestTags.ImpactScreen)
 
-        setTestContent { RewardsScreen(onBack = {}) }
+        setTestContent { RewardsScreen(summary = UiFlowFixtures.rewards, onBack = {}) }
         assertTagsExist(SgmTestTags.RewardsScreen, SgmTestTags.RewardsWithdrawAction)
 
         setTestContent { OptionsScreen(firebase = firebase, onBack = {}) }

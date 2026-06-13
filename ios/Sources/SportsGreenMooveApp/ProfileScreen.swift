@@ -104,9 +104,11 @@ private struct ProfileIdentity: View {
 }
 
 private struct ProfileImpactCard: View {
+    @Environment(AppState.self) private var appState
     let action: () -> Void
 
     var body: some View {
+        let summary = appState.impactSummary
         Button(action: action) {
             ZStack(alignment: .leading) {
                 SGM.heroGradient
@@ -118,7 +120,7 @@ private struct ProfileImpactCard: View {
                         .foregroundStyle(SGM.textOnGreen.opacity(0.5))
                     HStack(alignment: .bottom, spacing: 24) {
                         VStack(alignment: .leading, spacing: 0) {
-                            Text("12.4")
+                            Text(profileKgValue(summary.totalCo2Kg))
                                 .font(.sgmDisplay(56))
                                 .foregroundStyle(SGM.green)
                             Text("kg CO₂ économisés")
@@ -126,9 +128,8 @@ private struct ProfileImpactCard: View {
                                 .foregroundStyle(SGM.textOnGreen.opacity(0.6))
                         }
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("≈ 847 km parcourus")
-                            Text("24 trajets partagés")
-                            Text("Rang #47 Belgique")
+                            Text("\(summary.sharedDistanceKm) km partagés")
+                            Text("\(summary.rideCount) trajets clôturés")
                         }
                         .font(.sgmBody(12))
                         .foregroundStyle(SGM.textOnGreen.opacity(0.72))
@@ -145,9 +146,11 @@ private struct ProfileImpactCard: View {
 }
 
 private struct ProfileRewardsCard: View {
+    @Environment(AppState.self) private var appState
     let action: () -> Void
 
     var body: some View {
+        let summary = appState.rewardSummary
         Button(action: action) {
             VStack(spacing: 10) {
                 HStack {
@@ -157,15 +160,15 @@ private struct ProfileRewardsCard: View {
                         .tracking(.sgmWide(for: 18))
                         .foregroundStyle(SGM.textPrimary)
                     Spacer()
-                    Text("7.50€")
+                    Text(profileMoneyLabel(summary.balanceCents))
                         .font(.sgmDisplay(24))
                         .foregroundStyle(SGM.orange)
                 }
-                SGMProgressBar(progress: 0.62)
+                SGMProgressBar(progress: CGFloat(summary.progress))
                 HStack {
-                    Text("Prochain palier à 10€")
+                    Text("Prochain palier à \(profileMoneyLabel(summary.nextTierCents))")
                     Spacer()
-                    Text("62%")
+                    Text(profilePercentLabel(summary.progress))
                 }
                 .font(.sgmBody(11, weight: .medium))
                 .foregroundStyle(SGM.textMuted)
@@ -264,4 +267,22 @@ private struct ProfileSetting: Identifiable {
         self.value = value
         self.destination = destination
     }
+}
+
+private func profileKgValue(_ value: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.locale = Locale(identifier: "fr_FR")
+    formatter.minimumFractionDigits = 1
+    formatter.maximumFractionDigits = 1
+    return formatter.string(from: NSNumber(value: value)) ?? String(format: "%.1f", value)
+}
+
+private func profileMoneyLabel(_ cents: Int) -> String {
+    let sign = cents < 0 ? "-" : ""
+    let absolute = abs(cents)
+    return "\(sign)\(absolute / 100),\(String(format: "%02d", absolute % 100))€"
+}
+
+private func profilePercentLabel(_ progress: Double) -> String {
+    "\(Int(min(1, max(0, progress)) * 100))%"
 }

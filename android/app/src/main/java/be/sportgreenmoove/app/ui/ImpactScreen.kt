@@ -27,37 +27,25 @@ import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
-
-private val ImpactMonths = listOf(
-    ImpactMonth("JUIN", 1.2f),
-    ImpactMonth("JUIL", 0.8f),
-    ImpactMonth("AOÛT", 1.6f),
-    ImpactMonth("SEPT", 2.4f),
-    ImpactMonth("OCT", 3.1f),
-    ImpactMonth("NOV", 3.3f),
-)
-
-private val ImpactRegions = listOf(
-    ImpactRegion("WALLONIE", "37 356", 0.75f),
-    ImpactRegion("FLANDRE", "45 784", 0.92f),
-    ImpactRegion("BRUXELLES", "29 886", 0.60f),
-)
+import be.sportgreenmoove.app.data.ImpactMonthSummary
+import be.sportgreenmoove.app.data.ImpactSummary
+import java.util.Locale
 
 @Suppress("UNUSED_PARAMETER")
 @Composable
-fun ImpactScreen(onBack: () -> Unit) {
+fun ImpactScreen(summary: ImpactSummary, onBack: () -> Unit) {
     V2Screen(testTag = SgmTestTags.ImpactScreen) {
         V2TopBar("MON IMPACT CO²")
-        ImpactHero()
+        ImpactHero(summary)
         V2SectionLabel("6 DERNIERS MOIS")
-        ImpactChart()
-        V2SectionLabel("LA BELGIQUE EN TEMPS RÉEL")
-        ImpactRegionsCard()
+        ImpactChart(summary.months)
+        V2SectionLabel("MES TRAJETS")
+        ImpactTotalsCard(summary)
     }
 }
 
 @Composable
-private fun ImpactHero() {
+private fun ImpactHero(summary: ImpactSummary) {
     Box(
         modifier = Modifier
             .padding(start = 20.dp, top = 4.dp, end = 20.dp, bottom = 16.dp)
@@ -70,21 +58,19 @@ private fun ImpactHero() {
         Column {
             Text("CO₂ ÉCONOMISÉ — TOTAL", style = SgmType.Label.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.50f), fontSize = 11.sp, letterSpacing = 0.14.em), modifier = Modifier.padding(bottom = 8.dp))
             Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("12.4", style = SgmType.Display4XL.copy(color = SgmColor.Green, fontSize = 64.sp))
+                Text(kgValue(summary.totalCo2Kg), style = SgmType.Display4XL.copy(color = SgmColor.Green, fontSize = 64.sp))
                 Text("KG", style = SgmType.DisplayXL.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.60f), fontSize = 22.sp), modifier = Modifier.padding(bottom = 8.dp))
             }
             Row(modifier = Modifier.padding(top = 12.dp), horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-                ImpactHeroMetric("≈ 3 arbres plantés")
-                ImpactHeroMetric("847 km partagés")
+                ImpactHeroMetric("${summary.sharedDistanceKm} km partagés")
+                ImpactHeroMetric("${summary.rideCount} trajets")
             }
-            Text("Rang #47 Belgique", style = ImpactHeroText(), modifier = Modifier.padding(top = 6.dp))
         }
     }
 }
 
 @Composable
-private fun ImpactChart() {
-    val max = ImpactMonths.maxOf { it.value }
+private fun ImpactChart(months: List<ImpactMonthSummary>) {
     Row(
         modifier = Modifier
             .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
@@ -97,27 +83,39 @@ private fun ImpactChart() {
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        ImpactMonths.forEachIndexed { index, month ->
-            val latest = index == ImpactMonths.lastIndex
-            Column(modifier = Modifier.weight(1f).fillMaxHeight(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
-                Text(month.value.toString(), style = SgmType.BodyXS.copy(color = if (latest) SgmColor.Green else Sgm.colors.textMuted, fontSize = 10.sp, fontWeight = FontWeight.Bold))
-                Box(
-                    modifier = Modifier
-                        .padding(vertical = 5.dp)
-                        .widthIn(max = 30.dp)
-                        .fillMaxWidth()
-                        .height((month.value / max * 70).dp)
-                        .clip(RoundedCornerShape(6.dp))
-                        .background(if (latest) SgmColor.Green else Sgm.colors.borderStrong),
-                )
-                Text(month.label, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 9.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.04.em))
+        if (months.isEmpty()) {
+            Box(modifier = Modifier.fillMaxWidth().fillMaxHeight(), contentAlignment = Alignment.Center) {
+                Text("Aucun trajet terminé", style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontWeight = FontWeight.SemiBold))
+            }
+        } else {
+            val max = months.maxOf { it.valueKg }.takeIf { it > 0f } ?: 1f
+            months.forEachIndexed { index, month ->
+                val latest = index == months.lastIndex
+                Column(modifier = Modifier.weight(1f).fillMaxHeight(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
+                    Text(kgValue(month.valueKg.toDouble()), style = SgmType.BodyXS.copy(color = if (latest) SgmColor.Green else Sgm.colors.textMuted, fontSize = 10.sp, fontWeight = FontWeight.Bold))
+                    Box(
+                        modifier = Modifier
+                            .padding(vertical = 5.dp)
+                            .widthIn(max = 30.dp)
+                            .fillMaxWidth()
+                            .height(((month.valueKg / max) * 70f).coerceAtLeast(4f).dp)
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(if (latest) SgmColor.Green else Sgm.colors.borderStrong),
+                    )
+                    Text(month.label, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 9.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.04.em))
+                }
             }
         }
     }
 }
 
 @Composable
-private fun ImpactRegionsCard() {
+private fun ImpactTotalsCard(summary: ImpactSummary) {
+    val rows = listOf(
+        ImpactMetric("CO₂ économisé", "${kgValue(summary.totalCo2Kg)} kg", progress = 1f),
+        ImpactMetric("Distance partagée", "${summary.sharedDistanceKm} km", progress = if (summary.sharedDistanceKm > 0) 1f else 0f),
+        ImpactMetric("Trajets clôturés", summary.rideCount.toString(), progress = if (summary.rideCount > 0) 1f else 0f),
+    )
     Column(
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -128,27 +126,22 @@ private fun ImpactRegionsCard() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        ImpactRegions.forEach { region -> ImpactRegionRow(region) }
-        Text(
-            "112 026 utilisateurs actifs · mise à jour en continu",
-            style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold),
-            modifier = Modifier.fillMaxWidth(),
-        )
+        rows.forEach { row -> ImpactMetricRow(row) }
     }
 }
 
 @Composable
-private fun ImpactRegionRow(region: ImpactRegion) {
+private fun ImpactMetricRow(metric: ImpactMetric) {
     Column {
         Row(verticalAlignment = Alignment.Bottom, modifier = Modifier.padding(bottom = 5.dp)) {
-            Text(region.name, style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.04.em), modifier = Modifier.weight(1f))
-            Text(region.count, style = SgmType.DisplayLG.copy(color = SgmColor.Green, fontSize = 18.sp, letterSpacing = 0.04.em))
+            Text(metric.name, style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.04.em), modifier = Modifier.weight(1f))
+            Text(metric.value, style = SgmType.DisplayLG.copy(color = SgmColor.Green, fontSize = 18.sp, letterSpacing = 0.04.em))
         }
-        V2ProgressBar(progress = region.progress)
+        V2ProgressBar(progress = metric.progress)
     }
 }
 
 @Composable private fun ImpactHeroMetric(text: String) = Text(text, style = ImpactHeroText())
 @Composable private fun ImpactHeroText() = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.70f), fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-private data class ImpactMonth(val label: String, val value: Float)
-private data class ImpactRegion(val name: String, val count: String, val progress: Float)
+private fun kgValue(value: Double): String = String.format(Locale.FRANCE, "%.1f", value)
+private data class ImpactMetric(val name: String, val value: String, val progress: Float)

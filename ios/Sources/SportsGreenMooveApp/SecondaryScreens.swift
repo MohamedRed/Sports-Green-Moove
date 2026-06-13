@@ -1,28 +1,5 @@
 import SwiftUI
 
-struct ImpactScreen: View {
-    var body: some View {
-        OverlayListScreen(title: "MON IMPACT CO₂", testID: UITestIdentifier.impactScreen) {
-            OverlayHeroMetric(value: "12.4", label: "kg CO₂ économisés", accent: SGM.green)
-            OverlayProgressRow(title: "Wallonie", value: "37 356 kg", progress: 0.74)
-            OverlayProgressRow(title: "Flandre", value: "45 704 kg", progress: 0.58)
-            OverlayProgressRow(title: "Bruxelles", value: "20 998 kg", progress: 0.42)
-        }
-    }
-}
-
-struct RewardsScreen: View {
-    var body: some View {
-        OverlayListScreen(title: "RÉCOMPENSES", testID: UITestIdentifier.rewardsScreen) {
-            OverlayHeroMetric(value: "7.50€", label: "Solde disponible", accent: SGM.orange)
-            SGMButton(title: "RETIRER MES GAINS", variant: .orange, testID: UITestIdentifier.rewardsWithdrawAction) {}
-            OverlayProgressRow(title: "Prochain palier", value: "62%", progress: 0.62)
-            OverlayCard(title: "Trajet partagé", subtitle: "U8 Nationaux", meta: "+1.20€")
-            OverlayCard(title: "Bonus CO₂", subtitle: "Wallonie", meta: "+0.40€")
-        }
-    }
-}
-
 struct RideMonitorScreen: View {
     @Environment(AppState.self) private var appState
 
@@ -190,7 +167,7 @@ private struct OverlayCard: View {
     }
 }
 
-private struct OverlayHeroMetric: View {
+struct OverlayHeroMetric: View {
     let value: String
     let label: String
     let accent: Color
@@ -213,7 +190,7 @@ private struct OverlayHeroMetric: View {
     }
 }
 
-private struct OverlayProgressRow: View {
+struct OverlayProgressRow: View {
     let title: String
     let value: String
     let progress: CGFloat

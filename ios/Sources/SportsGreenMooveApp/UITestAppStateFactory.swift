@@ -30,6 +30,8 @@ enum UITestAppStateFactory {
         state.activeRideTrip = Fixtures.trip
         state.payableBookings = [Fixtures.payableBooking]
         state.driverBookingRequests = [Fixtures.bookingRequest]
+        state.impactSummary = Fixtures.impact
+        state.rewardSummary = Fixtures.rewards
         state.searchOrigin = Fixtures.origin
         state.searchDestination = Fixtures.destination
         state.searchMatches = [Fixtures.match]
@@ -144,6 +146,27 @@ private enum Fixtures {
         paymentStatus: "required"
     )
 
+    static let impact = ImpactSummary(
+        totalCo2Kg: 6.8,
+        sharedDistanceKm: 412,
+        rideCount: 9,
+        months: [
+            ImpactMonthSummary(label: "SEPT", valueKg: 1.4),
+            ImpactMonthSummary(label: "OCT", valueKg: 2.2),
+            ImpactMonthSummary(label: "NOV", valueKg: 3.2),
+        ]
+    )
+
+    static let rewards = RewardSummary(
+        balanceCents: 680,
+        nextTierCents: 1_000,
+        progress: 0.68,
+        entries: [
+            RewardEntrySummary(id: "reward-1", title: "Bonus CO₂", dateLabel: "07 NOV 2022", amountLabel: "+0,50€", positive: true),
+            RewardEntrySummary(id: "reward-2", title: "Trajet payé", dateLabel: "03 NOV 2022", amountLabel: "+1,20€", positive: true),
+        ]
+    )
+
     static let inbox = InboxSummary(
         notifications: [],
         chats: [InboxChatSummary(id: "chat-1", sourceType: "trip", sourceId: "trip-1", title: "Coach U8", preview: "Départ confirmé.", dateLabel: "16h12", unreadCount: 1, initials: "CO")],
@@ -180,6 +203,8 @@ private struct UITestFirebaseGateway: FirebaseGateway {
     func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String { "droppedOff" }
     func endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int) async throws -> RideCompletionSummary { RideCompletionSummary(rideSessionId: rideSessionId, co2SavedKg: 2.4, rewardCents: 50) }
     func getPayableBookings() async throws -> [PayableBookingSummary] { [Fixtures.payableBooking] }
+    func getImpactSummary() async throws -> ImpactSummary { Fixtures.impact }
+    func getRewardSummary() async throws -> RewardSummary { Fixtures.rewards }
     func getInbox() async throws -> InboxSummary { Fixtures.inbox }
     func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String { "rating-1" }
     func createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Bool) async throws -> String { "report-1" }

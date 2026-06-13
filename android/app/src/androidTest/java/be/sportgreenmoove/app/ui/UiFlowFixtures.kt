@@ -8,6 +8,8 @@ import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.InboxChatSummary
 import be.sportgreenmoove.app.data.InboxReviewPrompt
 import be.sportgreenmoove.app.data.InboxSummary
+import be.sportgreenmoove.app.data.ImpactMonthSummary
+import be.sportgreenmoove.app.data.ImpactSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.MapPoint
 import be.sportgreenmoove.app.data.MapRoutePreview
@@ -16,6 +18,8 @@ import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.RideCompletionSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
+import be.sportgreenmoove.app.data.RewardEntrySummary
+import be.sportgreenmoove.app.data.RewardSummary
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
@@ -93,6 +97,27 @@ object UiFlowFixtures {
         amountLabel = "4,00 EUR",
         paymentStatus = "required",
     )
+
+    val impact = ImpactSummary(
+        totalCo2Kg = 6.8,
+        sharedDistanceKm = 412,
+        rideCount = 9,
+        months = listOf(
+            ImpactMonthSummary("SEPT", 1.4f),
+            ImpactMonthSummary("OCT", 2.2f),
+            ImpactMonthSummary("NOV", 3.2f),
+        ),
+    )
+
+    val rewards = RewardSummary(
+        balanceCents = 680,
+        nextTierCents = 1_000,
+        progress = 0.68f,
+        entries = listOf(
+            RewardEntrySummary("Bonus CO₂", "07 NOV 2022", "+0,50€", true),
+            RewardEntrySummary("Trajet payé", "03 NOV 2022", "+1,20€", true),
+        ),
+    )
 }
 
 class UiFlowFirebaseGateway : FirebaseGateway {
@@ -119,6 +144,8 @@ class UiFlowFirebaseGateway : FirebaseGateway {
     ) = RideCompletionSummary(rideSessionId, co2SavedKg = 2.4, rewardCents = 50)
 
     override suspend fun getPayableBookings() = listOf(UiFlowFixtures.payableBooking)
+    override suspend fun getImpactSummary() = UiFlowFixtures.impact
+    override suspend fun getRewardSummary() = UiFlowFixtures.rewards
 
     override suspend fun getInbox() = InboxSummary(
         chats = listOf(InboxChatSummary("chat-1", "trip", "trip-1", "Coach U8", "Départ confirmé.", "16h12", 1, "CO")),

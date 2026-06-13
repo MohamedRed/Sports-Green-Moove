@@ -94,6 +94,14 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
 
     func getPayableBookings() async throws -> [PayableBookingSummary] { [] }
 
+    func getImpactSummary() async throws -> ImpactSummary {
+        .empty
+    }
+
+    func getRewardSummary() async throws -> RewardSummary {
+        .empty
+    }
+
     func getInbox() async throws -> InboxSummary {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }

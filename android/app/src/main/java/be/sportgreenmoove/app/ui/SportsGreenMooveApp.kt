@@ -20,6 +20,7 @@ import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.NativeLedgerSummaries
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
@@ -45,6 +46,7 @@ fun SportsGreenMooveApp() {
     var activeRideTrip by remember { mutableStateOf<TripSummary?>(null) }
     var payableBookings by remember { mutableStateOf(emptyList<PayableBookingSummary>()) }
     var driverBookingRequests by remember { mutableStateOf(emptyList<BookingRequestSummary>()) }
+    var ledgerSummaries by remember { mutableStateOf(NativeLedgerSummaries()) }
     var darkTheme by remember { mutableStateOf(false) }
     var loading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -68,6 +70,10 @@ fun SportsGreenMooveApp() {
             activeRideTrip?.takeIf { it.id == tripId } ?: trips.firstOrNull { it.id == tripId }
         }
         payableBookings = providers.firebase.getPayableBookings()
+        ledgerSummaries = NativeLedgerSummaries(
+            impact = providers.firebase.getImpactSummary(),
+            rewards = providers.firebase.getRewardSummary(),
+        )
         driverBookingRequests = if (role == AppRole.Driver) {
             providers.firebase.getDriverBookingRequests()
         } else {
@@ -186,12 +192,9 @@ fun SportsGreenMooveApp() {
                     when (screen) {
                         AppScreen.Home -> HomeScreen(
                             trips = trips,
+                            impactSummary = ledgerSummaries.impact,
                             onTrips = { screen = AppScreen.Trips },
-                            onRide = {
-                                trips.firstOrNull()?.let { trip ->
-                                    runTripAction(trip)
-                                }
-                            },
+                            onRide = { trips.firstOrNull()?.let(::runTripAction) },
                             onImpact = { screen = AppScreen.Impact },
                         )
 
@@ -199,9 +202,7 @@ fun SportsGreenMooveApp() {
                             trips = trips,
                             activeRide = activeRide,
                             bookingRequests = driverBookingRequests,
-                            onTripAction = { trip ->
-                                runTripAction(trip)
-                            },
+                            onTripAction = ::runTripAction,
                             onOpenSearch = { screen = AppScreen.Search },
                             onOpenRide = { screen = AppScreen.Ride },
                             onApproveBooking = ::approveBooking,
@@ -220,6 +221,8 @@ fun SportsGreenMooveApp() {
                         AppScreen.Profile -> ProfileScreen(
                             role = role,
                             primaryClubLabel = clubs.firstOrNull { it.isMember }?.name ?: "Aucun club lié",
+                            impactSummary = ledgerSummaries.impact,
+                            rewardSummary = ledgerSummaries.rewards,
                             onRoleChange = {
                                 role = it
                                 scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
@@ -241,6 +244,7 @@ fun SportsGreenMooveApp() {
                                 activeRideTrip = null
                                 payableBookings = emptyList()
                                 driverBookingRequests = emptyList()
+                                ledgerSummaries = NativeLedgerSummaries()
                                 screen = AppScreen.Home
                             },
                         )
@@ -263,8 +267,8 @@ fun SportsGreenMooveApp() {
                             onRequest = searchController::requestMatch,
                         )
                         AppScreen.Groups -> GroupsScreen(clubs = clubs, onBack = { screen = AppScreen.Profile })
-                        AppScreen.Impact -> ImpactScreen(onBack = { screen = AppScreen.Profile })
-                        AppScreen.Rewards -> RewardsScreen(onBack = { screen = AppScreen.Profile })
+                        AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
+                        AppScreen.Rewards -> RewardsScreen(summary = ledgerSummaries.rewards, onBack = { screen = AppScreen.Profile })
                         AppScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = AppScreen.Profile })
                         AppScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = AppScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         AppScreen.Ride -> RideMonitorScreen(

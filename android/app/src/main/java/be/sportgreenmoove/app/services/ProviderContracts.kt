@@ -6,18 +6,22 @@ import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.InboxSummary
+import be.sportgreenmoove.app.data.ImpactSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PaymentSheetConfig
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.RideCompletionSummary
+import be.sportgreenmoove.app.data.RewardSummary
 import be.sportgreenmoove.app.data.StripeConnectAccount
 import be.sportgreenmoove.app.data.StripeConnectAccountLink
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.data.emptyImpactSummary
+import be.sportgreenmoove.app.data.emptyRewardSummary
 
 interface AuthGateway {
     val isConfigured: Boolean
@@ -45,6 +49,8 @@ interface FirebaseGateway {
     suspend fun markDropoff(rideSessionId: String, bookingId: String, childId: String): String
     suspend fun endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int): RideCompletionSummary
     suspend fun getPayableBookings(): List<PayableBookingSummary>
+    suspend fun getImpactSummary(): ImpactSummary
+    suspend fun getRewardSummary(): RewardSummary
     suspend fun getInbox(): InboxSummary
     suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String? = null): String
     suspend fun createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Boolean): String
@@ -153,6 +159,10 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     }
 
     override suspend fun getPayableBookings(): List<PayableBookingSummary> = emptyList()
+
+    override suspend fun getImpactSummary(): ImpactSummary = emptyImpactSummary()
+
+    override suspend fun getRewardSummary(): RewardSummary = emptyRewardSummary()
 
     override suspend fun getInbox(): InboxSummary {
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")

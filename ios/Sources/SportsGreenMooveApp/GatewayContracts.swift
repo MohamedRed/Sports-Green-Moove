@@ -28,6 +28,8 @@ protocol FirebaseGateway: Sendable {
     func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String
     func endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int) async throws -> RideCompletionSummary
     func getPayableBookings() async throws -> [PayableBookingSummary]
+    func getImpactSummary() async throws -> ImpactSummary
+    func getRewardSummary() async throws -> RewardSummary
     func getInbox() async throws -> InboxSummary
     func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String
     func createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Bool) async throws -> String

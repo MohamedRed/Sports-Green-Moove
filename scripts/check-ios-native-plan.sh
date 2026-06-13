@@ -6,6 +6,7 @@ BUILD_DIR="${TMPDIR:-/tmp}/sports-green-moove-ios-native-checks"
 mkdir -p "${BUILD_DIR}"
 
 swiftc \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ClubSummary.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/Models.swift" \

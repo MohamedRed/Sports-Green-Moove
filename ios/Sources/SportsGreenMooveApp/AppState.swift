@@ -16,6 +16,8 @@ final class AppState {
     var activeRideTrip: TripSummary?
     var payableBookings: [PayableBookingSummary] = []
     var driverBookingRequests: [BookingRequestSummary] = []
+    var impactSummary: ImpactSummary = .empty
+    var rewardSummary: RewardSummary = .empty
     var searchOrigin: ResolvedPlace?
     var searchDestination: ResolvedPlace?
     var originSuggestions: [PlaceSuggestion] = []
@@ -91,6 +93,8 @@ final class AppState {
             activeRideTrip = nil
             payableBookings = []
             driverBookingRequests = []
+            impactSummary = .empty
+            rewardSummary = .empty
             selectedTab = .home
             overlay = nil
         } catch {
@@ -127,6 +131,8 @@ final class AppState {
                 activeRideTrip?.id == tripId ? activeRideTrip : trips.first { $0.id == tripId }
             }
             payableBookings = try await firebase.getPayableBookings()
+            impactSummary = try await firebase.getImpactSummary()
+            rewardSummary = try await firebase.getRewardSummary()
             driverBookingRequests = selectedRole == .driver
                 ? try await firebase.getDriverBookingRequests()
                 : []

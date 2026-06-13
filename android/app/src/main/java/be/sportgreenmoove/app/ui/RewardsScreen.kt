@@ -27,42 +27,30 @@ import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
-
-private val RewardTiers = listOf(
-    RewardTier("5€", reached = true, current = false),
-    RewardTier("10€", reached = false, current = true),
-    RewardTier("25€", reached = false, current = false),
-    RewardTier("50€", reached = false, current = false),
-)
-
-private val RewardHistory = listOf(
-    RewardEntry("U8 vs Royal Ottignies SC", "07 NOV 2022", "+0.50€"),
-    RewardEntry("Entraînement U8 — Groupe B", "03 NOV 2022", "+0.50€"),
-    RewardEntry("U8 vs FC Bruges", "29 OCT 2022", "+0.75€"),
-    RewardEntry("Entraînement U8 — Groupe A", "24 OCT 2022", "+0.50€"),
-    RewardEntry("Match Tennis — Catégorie B", "22 OCT 2022", "+0.40€"),
-)
+import be.sportgreenmoove.app.data.RewardEntrySummary
+import be.sportgreenmoove.app.data.RewardSummary
+import java.util.Locale
 
 @Suppress("UNUSED_PARAMETER")
 @Composable
-fun RewardsScreen(onBack: () -> Unit) {
+fun RewardsScreen(summary: RewardSummary, onBack: () -> Unit) {
     V2Screen(testTag = SgmTestTags.RewardsScreen) {
         V2TopBar("RÉCOMPENSES")
-        RewardsHero()
+        RewardsHero(summary)
         Box(Modifier.padding(start = 20.dp, end = 20.dp, bottom = 16.dp)) {
             V2Button("RETIRER MES GAINS", onClick = {}, variant = V2ButtonVariant.Orange, size = V2ButtonSize.Lg, full = true, testTag = SgmTestTags.RewardsWithdrawAction)
         }
         V2SectionLabel("PALIERS")
         Row(modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            RewardTiers.forEach { tier -> RewardTierCard(tier, modifier = Modifier.weight(1f)) }
+            rewardTiers(summary).forEach { tier -> RewardTierCard(tier, modifier = Modifier.weight(1f)) }
         }
         V2SectionLabel("HISTORIQUE")
-        RewardsHistoryCard()
+        RewardsHistoryCard(summary.entries)
     }
 }
 
 @Composable
-private fun RewardsHero() {
+private fun RewardsHero(summary: RewardSummary) {
     Box(
         modifier = Modifier
             .padding(start = 20.dp, top = 4.dp, end = 20.dp, bottom = 16.dp)
@@ -75,15 +63,15 @@ private fun RewardsHero() {
         Column {
             Text("SOLDE GREEN-MOOVER", style = SgmType.Label.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.50f), fontSize = 11.sp, letterSpacing = 0.14.em), modifier = Modifier.padding(bottom = 8.dp))
             Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text("7.50", style = SgmType.Display4XL.copy(color = SgmColor.Orange, fontSize = 60.sp))
+                Text(moneyValue(summary.balanceCents), style = SgmType.Display4XL.copy(color = SgmColor.Orange, fontSize = 60.sp))
                 Text("€", style = SgmType.DisplayXL.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.60f), fontSize = 26.sp), modifier = Modifier.padding(bottom = 6.dp))
             }
             Box(Modifier.padding(top = 14.dp)) {
-                V2ProgressBar(progress = 0.75f)
+                V2ProgressBar(progress = summary.progress.coerceIn(0f, 1f))
             }
             Row(modifier = Modifier.padding(top = 5.dp)) {
-                Text("Prochain palier : 10€", style = RewardsHeroMeta(), modifier = Modifier.weight(1f))
-                Text("75%", style = RewardsHeroMeta())
+                Text("Prochain palier : ${moneyLabel(summary.nextTierCents)}", style = RewardsHeroMeta(), modifier = Modifier.weight(1f))
+                Text(percentLabel(summary.progress), style = RewardsHeroMeta())
             }
         }
     }
@@ -118,7 +106,7 @@ private fun RewardTierCard(tier: RewardTier, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun RewardsHistoryCard() {
+private fun RewardsHistoryCard(entries: List<RewardEntrySummary>) {
     Column(
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -127,14 +115,23 @@ private fun RewardsHistoryCard() {
             .background(Sgm.colors.bgSurface)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG)),
     ) {
-        RewardHistory.forEachIndexed { index, entry ->
-            RewardHistoryRow(entry, showDivider = index < RewardHistory.lastIndex)
+        if (entries.isEmpty()) {
+            Text(
+                "Aucun mouvement enregistré",
+                style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontWeight = FontWeight.SemiBold),
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 18.dp),
+            )
+        } else {
+            entries.forEachIndexed { index, entry ->
+                RewardHistoryRow(entry, showDivider = index < entries.lastIndex)
+            }
         }
     }
 }
 
 @Composable
-private fun RewardHistoryRow(entry: RewardEntry, showDivider: Boolean) {
+private fun RewardHistoryRow(entry: RewardEntrySummary, showDivider: Boolean) {
+    val color = if (entry.positive) SgmColor.Green else SgmColor.Orange
     Column {
         Row(
             modifier = Modifier
@@ -147,21 +144,34 @@ private fun RewardHistoryRow(entry: RewardEntry, showDivider: Boolean) {
                 modifier = Modifier
                     .size(32.dp)
                     .clip(RoundedCornerShape(10.dp))
-                    .background(SgmColor.Green.copy(alpha = 0.12f)),
+                    .background(color.copy(alpha = 0.12f)),
                 contentAlignment = Alignment.Center,
             ) {
-                SgmLineIcon(SgmIcon.Leaf, tint = SgmColor.Green, modifier = Modifier.size(15.dp))
+                SgmLineIcon(SgmIcon.Leaf, tint = color, modifier = Modifier.size(15.dp))
             }
             Column(modifier = Modifier.weight(1f)) {
-                Text(entry.event, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold), maxLines = 1, overflow = TextOverflow.Ellipsis)
-                Text(entry.date, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium))
+                Text(entry.title, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.SemiBold), maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(entry.dateLabel, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium))
             }
-            Text(entry.amount, style = SgmType.DisplayLG.copy(color = SgmColor.Green, fontSize = 16.sp))
+            Text(entry.amountLabel, style = SgmType.DisplayLG.copy(color = color, fontSize = 16.sp))
         }
         if (showDivider) Box(Modifier.padding(start = 60.dp).fillMaxWidth().height(1.dp).background(Sgm.colors.border))
     }
 }
 
 @Composable private fun RewardsHeroMeta() = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.55f), fontSize = 11.sp, fontWeight = FontWeight.SemiBold)
+private fun rewardTiers(summary: RewardSummary): List<RewardTier> =
+    listOf(500, 1_000, 2_500, 5_000).map { cents ->
+        val reached = summary.balanceCents >= cents
+        RewardTier(moneyLabel(cents), reached = reached, current = !reached && summary.nextTierCents == cents)
+    }
+
+private fun moneyValue(cents: Int): String {
+    val sign = if (cents < 0) "-" else ""
+    val abs = kotlin.math.abs(cents)
+    return String.format(Locale.FRANCE, "%s%d,%02d", sign, abs / 100, abs % 100)
+}
+
+private fun moneyLabel(cents: Int): String = "${moneyValue(cents)}€"
+private fun percentLabel(progress: Float): String = "${(progress.coerceIn(0f, 1f) * 100).toInt()}%"
 private data class RewardTier(val amount: String, val reached: Boolean, val current: Boolean)
-private data class RewardEntry(val event: String, val date: String, val amount: String)

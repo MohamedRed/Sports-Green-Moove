@@ -49,11 +49,18 @@ const androidUiTests = readFile("android/app/src/androidTest/java/be/sportgreenm
 const iosUiTests = readFile("ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift");
 const iosProject = readFile("ios/project.yml");
 const nativeCi = readFile(".github/workflows/native-ci.yml");
+const androidHomeCards = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/HomeCards.kt");
 const androidGroups = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/GroupsScreen.kt");
 const androidGroupsGateway = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGroupsGateway.kt");
+const androidImpact = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/ImpactScreen.kt");
+const androidRewards = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/RewardsScreen.kt");
+const androidLedgerGateway = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidLedgerGateway.kt");
 const androidProfile = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileScreen.kt");
 const iosGroups = readFile("ios/Sources/SportsGreenMooveApp/GroupsScreen.swift");
 const iosGroupsGateway = readFile("ios/Sources/SportsGreenMooveApp/FirebaseClubSummaries.swift");
+const iosHome = readFile("ios/Sources/SportsGreenMooveApp/HomeScreen.swift");
+const iosImpactRewards = readFile("ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift");
+const iosLedgerGateway = readFile("ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift");
 const iosProfile = readFile("ios/Sources/SportsGreenMooveApp/ProfileScreen.swift");
 
 for (const flow of flows) {
@@ -103,6 +110,31 @@ includes(androidProfile, "primaryClubLabel", "Android Profile reads the primary 
 notIncludes(androidProfile, "Olivier · Collège du Biéreau", "Android Profile must not embed a static club identity");
 includes(iosProfile, "clubSummaries.first", "iOS Profile reads the primary club from app state");
 notIncludes(iosProfile, "Olivier · Collège du Biéreau", "iOS Profile must not embed a static club identity");
+includes(androidLedgerGateway, 'collection("co2Ledger")', "Android ledger gateway reads CO2 ledger");
+includes(androidLedgerGateway, 'collection("rewardLedger")', "Android ledger gateway reads reward ledger");
+includes(androidHomeCards, "summary: ImpactSummary", "Android Home dashboard renders impact summary");
+includes(androidImpact, "summary: ImpactSummary", "Android Impact screen renders injected ledger summary");
+includes(androidRewards, "summary: RewardSummary", "Android Rewards screen renders injected ledger summary");
+notIncludes(androidHomeCards, "12,4", "Android Home dashboard must not embed a static CO2 total");
+notIncludes(androidHomeCards, "37.356", "Android Home dashboard must not embed static regional counts");
+notIncludes(androidImpact, "12.4", "Android Impact screen must not embed a static CO2 total");
+notIncludes(androidImpact, "37 356", "Android Impact screen must not embed static regional CO2 values");
+notIncludes(androidRewards, "7.50", "Android Rewards screen must not embed a static balance");
+notIncludes(androidRewards, "U8 vs Royal", "Android Rewards screen must not embed static reward events");
+notIncludes(androidProfile, "Rang #47 Belgique", "Android Profile must not embed static impact ranking");
+notIncludes(androidProfile, "7.50€", "Android Profile must not embed a static reward balance");
+includes(iosLedgerGateway, '.collection("co2Ledger")', "iOS ledger gateway reads CO2 ledger");
+includes(iosLedgerGateway, '.collection("rewardLedger")', "iOS ledger gateway reads reward ledger");
+includes(iosHome, "appState.impactSummary", "iOS Home dashboard renders impact summary");
+includes(iosImpactRewards, "appState.impactSummary", "iOS Impact screen renders app ledger summary");
+includes(iosImpactRewards, "appState.rewardSummary", "iOS Rewards screen renders app ledger summary");
+notIncludes(iosHome, "12.4", "iOS Home dashboard must not embed a static CO2 total");
+notIncludes(iosHome, "Wallonie · Flandre · Bruxelles", "iOS Home dashboard must not embed static regional copy");
+notIncludes(iosImpactRewards, "37 356", "iOS Impact screen must not embed static regional CO2 values");
+notIncludes(iosImpactRewards, "7.50", "iOS Rewards screen must not embed a static balance");
+notIncludes(iosImpactRewards, "U8 Nationaux", "iOS Rewards screen must not embed static reward events");
+notIncludes(iosProfile, "Rang #47 Belgique", "iOS Profile must not embed static impact ranking");
+notIncludes(iosProfile, "7.50€", "iOS Profile must not embed a static reward balance");
 
 console.log(`Validated ${flows.length} native UI flow identifiers on Android and iOS.`);
 

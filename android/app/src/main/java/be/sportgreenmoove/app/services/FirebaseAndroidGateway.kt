@@ -7,12 +7,14 @@ import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.InboxSummary
+import be.sportgreenmoove.app.data.ImpactSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.RideCompletionSummary
 import be.sportgreenmoove.app.data.ResolvedPlace
+import be.sportgreenmoove.app.data.RewardSummary
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
@@ -30,6 +32,7 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     private val functions = FirebaseFunctions.getInstance()
     private val locationClient = LocationServices.getFusedLocationProviderClient(appContext)
     private val groupsGateway = FirebaseAndroidGroupsGateway(firestore)
+    private val ledgerGateway = FirebaseAndroidLedgerGateway(firestore)
     override val isConfigured: Boolean = true
 
     override suspend fun searchTrips(): List<TripSummary> {
@@ -212,6 +215,12 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
             mapPayableBooking(id = document.id, booking = booking, trip = trip)
         }
     }
+
+    override suspend fun getImpactSummary(): ImpactSummary =
+        ledgerGateway.getImpactSummary()
+
+    override suspend fun getRewardSummary(): RewardSummary =
+        ledgerGateway.getRewardSummary()
 
     override suspend fun getInbox(): InboxSummary {
         val result = functions.getHttpsCallable("getInbox").call(emptyMap<String, Any>()).await()

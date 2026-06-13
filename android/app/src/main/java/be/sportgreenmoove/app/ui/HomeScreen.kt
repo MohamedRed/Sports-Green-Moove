@@ -10,12 +10,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import be.sportgreenmoove.app.data.ImpactSummary
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 
 @Composable
 fun HomeScreen(
     trips: List<TripSummary>,
+    impactSummary: ImpactSummary,
     onTrips: () -> Unit,
     onRide: () -> Unit,
     onImpact: () -> Unit,
@@ -32,7 +34,7 @@ fun HomeScreen(
     ) {
         HomeHeader()
         HomeHeroCard(trip = trips.firstOrNull(), onClick = onRide)
-        HomeStatsRow()
+        HomeStatsRow(impactSummary)
         HomeSectionLabel(title = "SEMAINE À VENIR", action = "Tout voir", onAction = onTrips)
         Column(
             modifier = Modifier.padding(horizontal = 20.dp),
@@ -44,6 +46,6 @@ fun HomeScreen(
             }
         }
         HomeSectionLabel(title = "IMPACT ÉCOLOGIQUE", action = null, onAction = null)
-        HomeImpactCard(onClick = onImpact)
+        HomeImpactCard(summary = impactSummary, onClick = onImpact)
     }
 }
