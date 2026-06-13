@@ -27,14 +27,14 @@ private func loadMembershipRoles() async throws -> [String: String] {
             .limit(to: 50)
     )
 
-    return snapshot.compactMap { document in
+    let rolePairs: [(String, String)] = snapshot.compactMap { (document: QueryDocumentSnapshot) -> (String, String)? in
         let data = document.data()
         guard let clubId = data["clubId"] as? String else { return nil }
         let role = (data["role"] as? String)?.uppercased(with: Locale(identifier: "fr_BE")) ?? "MEMBRE"
         return (clubId, role)
-    }.reduce(into: [:]) { roles, item in
-        roles[item.0] = item.1
     }
+
+    return Dictionary(uniqueKeysWithValues: rolePairs)
 }
 
 private func mapClubSummary(id: String, data: [String: Any], role: String?) -> ClubSummary {

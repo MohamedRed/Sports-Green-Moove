@@ -146,6 +146,9 @@ final class ActiveRidePermissionCoordinator: NSObject, CLLocationManagerDelegate
             continuation.resume(throwing: ProviderConfigurationError(message: ActiveRidePermissionCopy.blocked))
         case .notDetermined:
             break
+        case .none:
+            authorizationContinuation = nil
+            continuation.resume(throwing: ProviderConfigurationError(message: "Statut localisation iOS inconnu."))
         @unknown default:
             authorizationContinuation = nil
             continuation.resume(throwing: ProviderConfigurationError(message: "Statut localisation iOS inconnu."))
