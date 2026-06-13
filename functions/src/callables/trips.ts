@@ -9,6 +9,7 @@ import {
   requestedScopeIsAllowed,
   searchAccessScope,
 } from "../domain/searchAccess.js";
+import { buildPublishedTrip, createTripSeatsAreValid, driverPublishState } from "../domain/publishTrip.js";
 import type { ClientSearchMatch, SearchRequest, Trip } from "../domain/types.js";
 import { GoogleRoutesProvider } from "../services/googleRoutes.js";
 import { firestore } from "../lib/firebase.js";
@@ -16,8 +17,8 @@ import { requireAuth, requireRole } from "../lib/https.js";
 import { toClientTripSummary } from "../lib/clientTrips.js";
 
 const latLngSchema = z.object({
-  lat: z.number(),
-  lng: z.number(),
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
 });
 
 const searchTripsSchema = z.object({
@@ -42,33 +43,31 @@ const searchTripsSchema = z.object({
 });
 
 const createTripSchema = z.object({
-  title: z.string().optional(),
-  sport: z.string().optional(),
-  clubName: z.string().optional(),
-  teamName: z.string().optional(),
-  clubId: z.string().optional(),
-  teamId: z.string().optional(),
-  category: z.string().optional(),
-  departureAt: z.string().optional(),
-  arrivalBy: z.string().optional(),
-  origin: latLngSchema.optional(),
-  destination: latLngSchema.optional(),
-  pickupRadiusM: z.number().int().positive().optional(),
-  seatsTotal: z.number().int().positive().optional(),
-  seatsAvailable: z.number().int().positive().optional(),
-  baggage: z.enum(["small", "medium", "large"]).optional(),
-  returnTrip: z.boolean().optional(),
-  priceCents: z.number().int().nonnegative().optional(),
-  driverRating: z.number().min(0).max(5).optional(),
-  driverVerified: z.boolean().optional(),
-  supportsVehicleTracking: z.boolean().optional(),
-  supportsChildTracking: z.boolean().optional(),
-  co2SavedKgEstimate: z.number().nonnegative().optional(),
+  title: z.string().trim().min(2).max(140),
+  sport: z.string().trim().min(2).max(40),
+  clubName: z.string().trim().min(2).max(120),
+  teamName: z.string().trim().min(1).max(120).optional(),
+  clubId: z.string().trim().min(1).max(120),
+  teamId: z.string().trim().min(1).max(120),
+  category: z.string().trim().min(1).max(80),
+  departureAt: z.string().refine((value) => !Number.isNaN(Date.parse(value)), "departureAt must be a valid ISO date."),
+  arrivalBy: z.string().refine((value) => !Number.isNaN(Date.parse(value)), "arrivalBy must be a valid ISO date.").optional(),
+  origin: latLngSchema,
+  destination: latLngSchema,
+  pickupRadiusM: z.number().int().min(100).max(10_000),
+  seatsTotal: z.number().int().positive().max(8),
+  seatsAvailable: z.number().int().positive().max(8),
+  baggage: z.enum(["small", "medium", "large"]),
+  returnTrip: z.boolean(),
+  priceCents: z.number().int().nonnegative().max(100_000),
+  supportsVehicleTracking: z.boolean(),
+  supportsChildTracking: z.boolean(),
+  co2SavedKgEstimate: z.number().nonnegative().max(500),
   distanceKm: z.number().nonnegative().optional(),
   passengerInitials: z.array(z.string()).optional(),
   regionGeohash: z.string().optional(),
   blockedUserIds: z.array(z.string()).optional(),
-});
+}).strict();
 
 async function loadCandidateTrips(request: SearchRequest): Promise<Trip[]> {
   const window = departureWindowForSearch(request);
@@ -164,38 +163,18 @@ export const createTrip = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   requireRole(request.auth?.token, "driver");
   const data = createTripSchema.parse(request.data ?? {});
+  if (!createTripSeatsAreValid(data)) {
+    throw new HttpsError("invalid-argument", "Available seats cannot exceed total seats.");
+  }
+
+  const profile = (await firestore.collection("users").doc(uid).get()).data();
+  const driver = driverPublishState(profile);
+  if (!driver.driverVerified) {
+    throw new HttpsError("failed-precondition", "Driver verification is required before publishing trips.");
+  }
+
   const ref = firestore.collection("trips").doc();
-  const trip: Trip = {
-    id: ref.id,
-    driverUserId: uid,
-    status: "published",
-    title: data.title,
-    sport: data.sport,
-    clubName: data.clubName,
-    teamName: data.teamName,
-    clubId: data.clubId ?? "",
-    teamId: data.teamId ?? "",
-    category: data.category ?? "",
-    departureAt: data.departureAt ?? new Date().toISOString(),
-    arrivalBy: data.arrivalBy,
-    origin: data.origin ?? { lat: 0, lng: 0 },
-    destination: data.destination ?? { lat: 0, lng: 0 },
-    pickupRadiusM: data.pickupRadiusM ?? 1500,
-    seatsTotal: data.seatsTotal ?? data.seatsAvailable ?? 1,
-    seatsAvailable: data.seatsAvailable ?? 1,
-    baggage: data.baggage ?? "medium",
-    returnTrip: data.returnTrip ?? false,
-    priceCents: data.priceCents ?? 0,
-    driverRating: data.driverRating ?? 5,
-    driverVerified: data.driverVerified ?? false,
-    supportsVehicleTracking: data.supportsVehicleTracking ?? true,
-    supportsChildTracking: data.supportsChildTracking ?? false,
-    co2SavedKgEstimate: data.co2SavedKgEstimate ?? 0,
-    distanceKm: data.distanceKm,
-    passengerInitials: data.passengerInitials ?? [],
-    regionGeohash: data.regionGeohash,
-    blockedUserIds: data.blockedUserIds ?? [],
-  };
+  const trip: Trip = buildPublishedTrip(ref.id, uid, data, driver);
 
   await ref.set({
     ...trip,

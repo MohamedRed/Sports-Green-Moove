@@ -11,7 +11,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `suggestPlaces` | signed-in users | Belgian Google Places autocomplete suggestions for search origin/destination. |
 | `resolvePlace` | signed-in users | Google Place Details location and formatted address for a selected suggestion. |
 | `searchTrips` | signed-in users | Ranked explainable matches. |
-| `createTrip` | driver | Published ride offer. |
+| `createTrip` | verified driver | Published ride offer with resolved origin/destination coordinates. |
 | `requestBooking` | parent | Pending booking request. Optional `childId` must belong to the caller through `children/{childId}.guardianUserIds`. |
 | `listDriverBookingRequests` | driver | Requested/approved booking queue for driver approval screens. |
 | `approveBooking` | driver | Approved booking and notification. |
@@ -38,3 +38,11 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | --- | --- | --- |
 | Radar | `/radarWebhook` | Validates signature, updates live/audit state, emits arrival/pickup/dropoff notifications. |
 | Stripe | `/stripeWebhook` | Validates signature, reconciles PaymentIntent booking status, account updates, and reward ledger entries. |
+
+## Publish Trip Requirements
+
+`createTrip` rejects incomplete client payloads. Native clients must send resolved
+origin and destination coordinates, club/team/category, departure time, seats,
+baggage, return-trip flag, tracking support flags, price, and CO2 estimate.
+The server reads `users/{uid}.driverVerified` and `driverRating`; clients cannot
+self-declare verification or trust score.
