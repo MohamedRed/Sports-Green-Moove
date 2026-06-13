@@ -32,13 +32,13 @@ import be.sportgreenmoove.app.design.SgmSize
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun AppBottomBar(current: DemoScreen, onNavigate: (DemoScreen) -> Unit) {
+fun AppBottomBar(current: AppScreen, onNavigate: (AppScreen) -> Unit) {
     val items = listOf(
-        NavItem(DemoScreen.Home, SgmIcon.Home, "Accueil"),
-        NavItem(DemoScreen.Trips, SgmIcon.Calendar, "Trajets"),
-        NavItem(DemoScreen.Publish, SgmIcon.Plus, ""),
-        NavItem(DemoScreen.Messages, SgmIcon.Chat, "Messages"),
-        NavItem(DemoScreen.Profile, SgmIcon.Profile, "Profil"),
+        NavItem(AppScreen.Home, SgmIcon.Home, "Accueil"),
+        NavItem(AppScreen.Trips, SgmIcon.Calendar, "Trajets"),
+        NavItem(AppScreen.Publish, SgmIcon.Plus, ""),
+        NavItem(AppScreen.Messages, SgmIcon.Chat, "Messages"),
+        NavItem(AppScreen.Profile, SgmIcon.Profile, "Profil"),
     )
 
     Column(
@@ -55,8 +55,8 @@ fun AppBottomBar(current: DemoScreen, onNavigate: (DemoScreen) -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             items.forEach { item ->
-                if (item.screen == DemoScreen.Publish) {
-                    PublishNavButton(onClick = { onNavigate(DemoScreen.Publish) }, modifier = Modifier.weight(1f))
+                if (item.screen == AppScreen.Publish) {
+                    PublishNavButton(onClick = { onNavigate(AppScreen.Publish) }, modifier = Modifier.weight(1f))
                 } else {
                     BottomNavButton(
                         item = item,
@@ -132,7 +132,7 @@ private fun BottomNavButton(item: NavItem, selected: Boolean, onClick: () -> Uni
 }
 
 private data class NavItem(
-    val screen: DemoScreen,
+    val screen: AppScreen,
     val icon: SgmIcon,
     val label: String,
 )

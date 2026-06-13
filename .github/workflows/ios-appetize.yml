@@ -1,4 +1,4 @@
-name: iOS Appetize Demo
+name: iOS Appetize Release Preview
 
 on:
   workflow_dispatch:
@@ -120,7 +120,7 @@ jobs:
         if: ${{ steps.appetize.outputs.publicKey != '' }}
         run: |
           URL="https://appetize.io/app/${{ steps.appetize.outputs.publicKey }}"
-          echo "### iOS Appetize demo" >> "$GITHUB_STEP_SUMMARY"
+          echo "### iOS Appetize release preview" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "$URL" >> "$GITHUB_STEP_SUMMARY"
           echo "APPETIZE_IOS_URL=$URL" >> "$GITHUB_ENV"

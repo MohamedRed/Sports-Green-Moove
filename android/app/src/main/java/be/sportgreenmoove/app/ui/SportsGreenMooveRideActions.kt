@@ -86,7 +86,7 @@ fun launchTripAction(
     setActiveRide: (LiveRideSnapshot) -> Unit,
     setActiveRideTrip: (TripSummary?) -> Unit,
     setNotice: (String) -> Unit,
-    setScreen: (DemoScreen) -> Unit,
+    setScreen: (AppScreen) -> Unit,
     setError: (String?) -> Unit,
 ) {
     val action: () -> Unit = {
@@ -101,7 +101,7 @@ fun launchTripAction(
                     setActiveRide(result.ride)
                     setActiveRideTrip(trip)
                     setNotice(result.notice)
-                    setScreen(DemoScreen.Ride)
+                    setScreen(AppScreen.Ride)
                 } else {
                     val bookingId = providers.firebase.requestBooking(trip.id)
                     setNotice("Demande envoyée: $bookingId")
@@ -156,7 +156,7 @@ fun launchEndActiveRide(
     setNotice: (String) -> Unit,
     setActiveRide: (LiveRideSnapshot?) -> Unit,
     setActiveRideTrip: (TripSummary?) -> Unit,
-    setScreen: (DemoScreen) -> Unit,
+    setScreen: (AppScreen) -> Unit,
     refreshAppData: suspend () -> Unit,
 ) {
     val activeRide = ride ?: return
@@ -171,7 +171,7 @@ fun launchEndActiveRide(
             )
             setActiveRide(null)
             setActiveRideTrip(null)
-            setScreen(DemoScreen.Trips)
+            setScreen(AppScreen.Trips)
             setNotice("Course terminée · ${"%.1f".format(Locale.FRANCE, completion.co2SavedKg)} kg CO₂ · ${completion.rewardLabel()}")
             refreshAppData()
         }.onFailure { setError(it.message) }

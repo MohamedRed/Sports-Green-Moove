@@ -34,7 +34,7 @@ fun SportsGreenMooveApp() {
     val context = LocalContext.current
     val providers = remember { AndroidRuntime.create(context.applicationContext) }
     val scope = rememberCoroutineScope()
-    var screen by remember { mutableStateOf(DemoScreen.Home) }
+    var screen by remember { mutableStateOf(AppScreen.Home) }
     var role by remember { mutableStateOf(AppRole.Parent) }
     var session by remember { mutableStateOf<AuthSession?>(null) }
     var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
@@ -181,42 +181,42 @@ fun SportsGreenMooveApp() {
                         .padding(padding),
                 ) {
                     when (screen) {
-                        DemoScreen.Home -> HomeScreen(
+                        AppScreen.Home -> HomeScreen(
                             trips = trips,
-                            onTrips = { screen = DemoScreen.Trips },
+                            onTrips = { screen = AppScreen.Trips },
                             onRide = {
                                 trips.firstOrNull()?.let { trip ->
                                     runTripAction(trip)
                                 }
                             },
-                            onImpact = { screen = DemoScreen.Impact },
+                            onImpact = { screen = AppScreen.Impact },
                         )
 
-                        DemoScreen.Trips -> TripsScreen(
+                        AppScreen.Trips -> TripsScreen(
                             trips = trips,
                             activeRide = activeRide,
                             bookingRequests = driverBookingRequests,
                             onTripAction = { trip ->
                                 runTripAction(trip)
                             },
-                            onOpenSearch = { screen = DemoScreen.Search },
-                            onOpenRide = { screen = DemoScreen.Ride },
+                            onOpenSearch = { screen = AppScreen.Search },
+                            onOpenRide = { screen = AppScreen.Ride },
                             onApproveBooking = ::approveBooking,
                         )
 
-                        DemoScreen.Publish -> PublishScreen(role = role, firebase = providers.firebase, onError = { errorMessage = it }, onNotice = { noticeMessage = it }, onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } } })
-                        DemoScreen.Messages -> MessagesScreen(firebase = providers.firebase)
-                        DemoScreen.Profile -> ProfileScreen(
+                        AppScreen.Publish -> PublishScreen(role = role, firebase = providers.firebase, onError = { errorMessage = it }, onNotice = { noticeMessage = it }, onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } } })
+                        AppScreen.Messages -> MessagesScreen(firebase = providers.firebase)
+                        AppScreen.Profile -> ProfileScreen(
                             role = role,
                             onRoleChange = {
                                 role = it
                                 scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
                             },
-                            onGroups = { screen = DemoScreen.Groups },
-                            onImpact = { screen = DemoScreen.Impact },
-                            onRewards = { screen = DemoScreen.Rewards },
-                            onPayments = { screen = DemoScreen.Payments },
-                            onOptions = { screen = DemoScreen.Options },
+                            onGroups = { screen = AppScreen.Groups },
+                            onImpact = { screen = AppScreen.Impact },
+                            onRewards = { screen = AppScreen.Rewards },
+                            onPayments = { screen = AppScreen.Payments },
+                            onOptions = { screen = AppScreen.Options },
                             onLogout = {
                                 providers.googleAuth.signOut()
                                 providers.facebookAuth.signOut()
@@ -228,11 +228,11 @@ fun SportsGreenMooveApp() {
                                 activeRideTrip = null
                                 payableBookings = emptyList()
                                 driverBookingRequests = emptyList()
-                                screen = DemoScreen.Home
+                                screen = AppScreen.Home
                             },
                         )
 
-                        DemoScreen.Search -> SearchScreen(
+                        AppScreen.Search -> SearchScreen(
                             origin = searchController.origin,
                             destination = searchController.destination,
                             originSuggestions = searchController.originSuggestions,
@@ -241,7 +241,7 @@ fun SportsGreenMooveApp() {
                             matches = searchController.matches,
                             loading = searchController.loading,
                             error = errorMessage,
-                            onBack = { screen = DemoScreen.Home },
+                            onBack = { screen = AppScreen.Home },
                             onSuggestOrigin = { searchController.suggestPlaces(it, SearchPlaceTarget.Origin) },
                             onSuggestDestination = { searchController.suggestPlaces(it, SearchPlaceTarget.Destination) },
                             onSelectOrigin = { searchController.selectPlace(it, SearchPlaceTarget.Origin) },
@@ -249,15 +249,15 @@ fun SportsGreenMooveApp() {
                             onSearch = searchController::runSearch,
                             onRequest = searchController::requestMatch,
                         )
-                        DemoScreen.Groups -> GroupsScreen(onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Impact -> ImpactScreen(onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Rewards -> RewardsScreen(onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = DemoScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
-                        DemoScreen.Ride -> RideMonitorScreen(
+                        AppScreen.Groups -> GroupsScreen(onBack = { screen = AppScreen.Profile })
+                        AppScreen.Impact -> ImpactScreen(onBack = { screen = AppScreen.Profile })
+                        AppScreen.Rewards -> RewardsScreen(onBack = { screen = AppScreen.Profile })
+                        AppScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = AppScreen.Profile })
+                        AppScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = AppScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
+                        AppScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
                             routePreview = activeRideTrip?.mapPreview,
-                            onBack = { screen = DemoScreen.Trips },
+                            onBack = { screen = AppScreen.Trips },
                             onPickup = { updatePassengerStatus(it, pickup = true) },
                             onDropoff = { updatePassengerStatus(it, pickup = false) },
                             onEndRide = ::endActiveRide,

@@ -7,8 +7,8 @@ import be.sportgreenmoove.app.design.Sgm
 
 @Composable
 fun SportsGreenMooveScaffold(
-    currentScreen: DemoScreen,
-    onNavigate: (DemoScreen) -> Unit,
+    currentScreen: AppScreen,
+    onNavigate: (AppScreen) -> Unit,
     content: @Composable (PaddingValues) -> Unit,
 ) {
     Scaffold(
