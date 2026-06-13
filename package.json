@@ -17,8 +17,10 @@
     "test:ios-native": "bash scripts/check-ios-native-plan.sh",
     "test:native-ui-coverage": "node tests/native-ui-coverage.test.mjs",
     "test:store-readiness": "node tests/store-readiness.test.mjs",
+    "test:release-evidence-template": "node tests/release-evidence-template.test.mjs",
+    "validate:release-evidence": "node scripts/validate-release-evidence.mjs",
     "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts\"",
-    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:rules"
+    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:release-evidence-template && npm run test:rules"
   },
   "engines": {
     "node": ">=22"

@@ -1,0 +1,301 @@
+{
+  "manifestVersion": "1.0",
+  "template": true,
+  "releaseCandidate": "ios-build-123_android-build-456",
+  "generatedAt": "2026-06-13T00:00:00Z",
+  "owner": "release-owner@example.com",
+  "providerProductionReadiness": {
+    "firebase": {
+      "environment": "production",
+      "status": "production-configured",
+      "checkedAt": "2026-06-13T00:00:00Z",
+      "checkedBy": "release-owner@example.com",
+      "evidenceRefs": [
+        "evidence/firebase-production-project-settings.pdf"
+      ]
+    },
+    "radar": {
+      "environment": "production",
+      "status": "production-configured",
+      "checkedAt": "2026-06-13T00:00:00Z",
+      "checkedBy": "release-owner@example.com",
+      "evidenceRefs": [
+        "evidence/radar-production-trip-webhook-settings.png"
+      ]
+    },
+    "googleMaps": {
+      "environment": "production",
+      "status": "production-configured",
+      "checkedAt": "2026-06-13T00:00:00Z",
+      "checkedBy": "release-owner@example.com",
+      "evidenceRefs": [
+        "evidence/google-maps-production-key-restrictions.png"
+      ]
+    },
+    "stripeConnect": {
+      "environment": "production",
+      "status": "production-configured",
+      "checkedAt": "2026-06-13T00:00:00Z",
+      "checkedBy": "release-owner@example.com",
+      "evidenceRefs": [
+        "evidence/stripe-connect-production-webhook-settings.png"
+      ]
+    },
+    "metaFacebook": {
+      "environment": "production",
+      "status": "production-configured",
+      "checkedAt": "2026-06-13T00:00:00Z",
+      "checkedBy": "release-owner@example.com",
+      "evidenceRefs": [
+        "evidence/meta-facebook-login-production-settings.png"
+      ]
+    }
+  },
+  "realDeviceRuns": [
+    {
+      "platform": "ios",
+      "deviceModel": "iPhone 15",
+      "osVersion": "iOS 18.5",
+      "appBuild": "123",
+      "tester": "qa-ios@example.com",
+      "completedAt": "2026-06-13T00:00:00Z",
+      "evidenceRefs": [
+        "evidence/ios-device-run-summary.pdf"
+      ],
+      "scenarios": [
+        {
+          "id": "foreground_tracking",
+          "status": "passed",
+          "observedResult": "Vehicle and child active-ride locations updated while the app was foregrounded.",
+          "evidenceRefs": ["evidence/ios-foreground-tracking.mp4"]
+        },
+        {
+          "id": "background_tracking",
+          "status": "passed",
+          "observedResult": "Vehicle and child active-ride locations updated while the app was backgrounded.",
+          "evidenceRefs": ["evidence/ios-background-tracking.mp4"]
+        },
+        {
+          "id": "locked_screen_tracking",
+          "status": "passed",
+          "observedResult": "Vehicle and child active-ride locations updated while the device screen was locked.",
+          "evidenceRefs": ["evidence/ios-locked-screen-tracking.mp4"]
+        },
+        {
+          "id": "gps_loss",
+          "status": "passed",
+          "observedResult": "The parent view showed stale-location status after GPS loss.",
+          "evidenceRefs": ["evidence/ios-gps-loss.png"]
+        },
+        {
+          "id": "network_loss",
+          "status": "passed",
+          "observedResult": "The app preserved active ride state and recovered uploads after connectivity returned.",
+          "evidenceRefs": ["evidence/ios-network-loss.mp4"]
+        },
+        {
+          "id": "app_restart",
+          "status": "passed",
+          "observedResult": "The active ride was recovered after app restart and continued tracking.",
+          "evidenceRefs": ["evidence/ios-app-restart.mp4"]
+        },
+        {
+          "id": "battery_saver",
+          "status": "passed",
+          "observedResult": "The app surfaced tracking risk while preserving active ride state.",
+          "evidenceRefs": ["evidence/ios-battery-saver.png"]
+        },
+        {
+          "id": "radar_webhook_delay",
+          "status": "passed",
+          "observedResult": "Delayed Radar events did not remove live active-ride visibility.",
+          "evidenceRefs": ["evidence/ios-radar-delay-audit.json"]
+        },
+        {
+          "id": "firebase_native_fallback",
+          "status": "passed",
+          "observedResult": "Native Firebase fallback location batches updated liveTrips during the active ride.",
+          "evidenceRefs": ["evidence/ios-firebase-fallback-audit.json"]
+        }
+      ]
+    },
+    {
+      "platform": "android",
+      "deviceModel": "Pixel 8",
+      "osVersion": "Android 15",
+      "appBuild": "456",
+      "tester": "qa-android@example.com",
+      "completedAt": "2026-06-13T00:00:00Z",
+      "evidenceRefs": [
+        "evidence/android-device-run-summary.pdf"
+      ],
+      "scenarios": [
+        {
+          "id": "foreground_tracking",
+          "status": "passed",
+          "observedResult": "Vehicle and child active-ride locations updated while the app was foregrounded.",
+          "evidenceRefs": ["evidence/android-foreground-tracking.mp4"]
+        },
+        {
+          "id": "background_tracking",
+          "status": "passed",
+          "observedResult": "Vehicle and child active-ride locations updated while the app was backgrounded.",
+          "evidenceRefs": ["evidence/android-background-tracking.mp4"]
+        },
+        {
+          "id": "locked_screen_tracking",
+          "status": "passed",
+          "observedResult": "Vehicle and child active-ride locations updated while the device screen was locked.",
+          "evidenceRefs": ["evidence/android-locked-screen-tracking.mp4"]
+        },
+        {
+          "id": "gps_loss",
+          "status": "passed",
+          "observedResult": "The parent view showed stale-location status after GPS loss.",
+          "evidenceRefs": ["evidence/android-gps-loss.png"]
+        },
+        {
+          "id": "network_loss",
+          "status": "passed",
+          "observedResult": "The app preserved active ride state and recovered uploads after connectivity returned.",
+          "evidenceRefs": ["evidence/android-network-loss.mp4"]
+        },
+        {
+          "id": "app_restart",
+          "status": "passed",
+          "observedResult": "The active ride was recovered after app restart and continued tracking.",
+          "evidenceRefs": ["evidence/android-app-restart.mp4"]
+        },
+        {
+          "id": "battery_saver",
+          "status": "passed",
+          "observedResult": "The app surfaced tracking risk while preserving active ride state.",
+          "evidenceRefs": ["evidence/android-battery-saver.png"]
+        },
+        {
+          "id": "radar_webhook_delay",
+          "status": "passed",
+          "observedResult": "Delayed Radar events did not remove live active-ride visibility.",
+          "evidenceRefs": ["evidence/android-radar-delay-audit.json"]
+        },
+        {
+          "id": "firebase_native_fallback",
+          "status": "passed",
+          "observedResult": "Native Firebase fallback location batches updated liveTrips during the active ride.",
+          "evidenceRefs": ["evidence/android-firebase-fallback-audit.json"]
+        }
+      ]
+    }
+  ],
+  "storeReviewEvidence": {
+    "items": [
+      {
+        "id": "privacy_policy_url",
+        "status": "accepted",
+        "description": "Published privacy policy covers Firebase, Meta, Radar, Google Maps Platform, Stripe Connect, child safety, and deletion.",
+        "evidenceRefs": ["https://example.com/privacy"]
+      },
+      {
+        "id": "app_store_privacy_answers",
+        "status": "accepted",
+        "description": "App Store privacy answers match docs/release/privacy-data-safety.md.",
+        "evidenceRefs": ["evidence/app-store-privacy-answers.pdf"]
+      },
+      {
+        "id": "google_play_data_safety_answers",
+        "status": "accepted",
+        "description": "Google Play Data safety answers match docs/release/privacy-data-safety.md.",
+        "evidenceRefs": ["evidence/google-play-data-safety-answers.pdf"]
+      },
+      {
+        "id": "guardian_consent_copy",
+        "status": "accepted",
+        "description": "Store reviewer can see guardian consent copy before child tracking starts.",
+        "evidenceRefs": ["evidence/guardian-consent-copy.png"]
+      },
+      {
+        "id": "background_location_disclosure",
+        "status": "accepted",
+        "description": "Prominent disclosure explains active-ride background location use.",
+        "evidenceRefs": ["evidence/background-location-disclosure.png"]
+      },
+      {
+        "id": "child_safety_disclosure",
+        "status": "accepted",
+        "description": "Child safety disclosure explains role access and active ride limits.",
+        "evidenceRefs": ["evidence/child-safety-disclosure.png"]
+      },
+      {
+        "id": "active_ride_tracking_screenshot",
+        "status": "accepted",
+        "description": "Store screenshot shows active ride tracking state.",
+        "evidenceRefs": ["evidence/store-active-ride-tracking.png"]
+      },
+      {
+        "id": "google_maps_route_preview_screenshot",
+        "status": "accepted",
+        "description": "Store screenshot shows native Google Maps route preview.",
+        "evidenceRefs": ["evidence/store-google-maps-route-preview.png"]
+      },
+      {
+        "id": "stale_location_warning_screenshot",
+        "status": "accepted",
+        "description": "Store screenshot shows stale-location warning state.",
+        "evidenceRefs": ["evidence/store-stale-location-warning.png"]
+      },
+      {
+        "id": "emergency_contact_action_screenshot",
+        "status": "accepted",
+        "description": "Store screenshot shows emergency contact action.",
+        "evidenceRefs": ["evidence/store-emergency-contact-action.png"]
+      },
+      {
+        "id": "permission_education_screenshot",
+        "status": "accepted",
+        "description": "Store screenshot shows permission education before OS permission prompts.",
+        "evidenceRefs": ["evidence/store-permission-education.png"]
+      }
+    ]
+  },
+  "safetyAuditEvidence": {
+    "items": [
+      {
+        "id": "guardian_consent_event",
+        "status": "accepted",
+        "description": "Audit export shows guardian consent before child tracking.",
+        "evidenceRefs": ["evidence/audit-guardian-consent.json"]
+      },
+      {
+        "id": "pickup_event",
+        "status": "accepted",
+        "description": "Audit export shows driver-confirmed pickup.",
+        "evidenceRefs": ["evidence/audit-pickup.json"]
+      },
+      {
+        "id": "dropoff_event",
+        "status": "accepted",
+        "description": "Audit export shows driver-confirmed dropoff.",
+        "evidenceRefs": ["evidence/audit-dropoff.json"]
+      },
+      {
+        "id": "radar_webhook_event",
+        "status": "accepted",
+        "description": "Audit export shows signed Radar webhook reconciliation.",
+        "evidenceRefs": ["evidence/audit-radar-webhook.json"]
+      },
+      {
+        "id": "native_fallback_location_event",
+        "status": "accepted",
+        "description": "Audit export shows native fallback location batches.",
+        "evidenceRefs": ["evidence/audit-native-fallback.json"]
+      },
+      {
+        "id": "payment_reconciliation_event",
+        "status": "accepted",
+        "description": "Audit export shows Stripe payment and reward ledger reconciliation.",
+        "evidenceRefs": ["evidence/audit-payment-reconciliation.json"]
+      }
+    ]
+  }
+}
+

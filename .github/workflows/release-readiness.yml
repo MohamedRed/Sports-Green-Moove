@@ -4,24 +4,30 @@ on:
   pull_request:
     paths:
       - ".github/workflows/release-readiness.yml"
+      - ".github/workflows/release-evidence.yml"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/res/values/strings.xml"
       - "docs/release/**"
       - "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"
       - "ios/project.yml"
       - "package.json"
+      - "scripts/validate-release-evidence.mjs"
+      - "tests/release-evidence-template.test.mjs"
       - "tests/store-readiness.test.mjs"
   push:
     branches:
       - main
     paths:
       - ".github/workflows/release-readiness.yml"
+      - ".github/workflows/release-evidence.yml"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/res/values/strings.xml"
       - "docs/release/**"
       - "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"
       - "ios/project.yml"
       - "package.json"
+      - "scripts/validate-release-evidence.mjs"
+      - "tests/release-evidence-template.test.mjs"
       - "tests/store-readiness.test.mjs"
 
 env:
@@ -46,3 +52,6 @@ jobs:
 
       - name: Validate release readiness
         run: npm run test:store-readiness
+
+      - name: Validate release evidence template
+        run: npm run test:release-evidence-template

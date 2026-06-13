@@ -58,6 +58,7 @@ npm run test:android-native
 npm run test:android-ui-build
 npm run test:ios-native
 npm run test:native-ui-coverage
+npm run test:release-evidence-template
 ```
 
 Run `npm run test:android-ui` on an emulator or CI runner to execute the Android Compose UI tests for the native flow selectors. Native CI also generates the Xcode project and runs the iOS XCUITest flow suite on a simulator.
@@ -71,7 +72,11 @@ Native projects now include the first real Firebase vertical slice: email/passwo
 - Facebook Auth: enable the Facebook provider in Firebase Auth, register the bundle/package identifiers in Meta for Developers, and set `SGM_FACEBOOK_APP_ID` plus `SGM_FACEBOOK_CLIENT_TOKEN`
 - Google Maps route previews: set `SGM_GOOGLE_MAPS_ANDROID_API_KEY` and `SGM_GOOGLE_MAPS_IOS_API_KEY`
 
-Provider production keys, simulator/device UI automation runs, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`.
+Provider production keys, simulator/device UI automation runs, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`. Public-launch approval requires a real manifest derived from `docs/release/evidence-manifest.example.json`:
+
+```sh
+npm run validate:release-evidence -- docs/release/evidence-manifest.json
+```
 
 ## Design System
 

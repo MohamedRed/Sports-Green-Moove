@@ -9,6 +9,11 @@ const files = {
   iosPrivacy: read("ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"),
   dataSafety: read("docs/release/privacy-data-safety.md"),
   storeReadiness: read("docs/release/store-readiness.md"),
+  evidenceTemplate: read("docs/release/evidence-manifest.example.json"),
+  evidenceSchema: read("docs/release/evidence-schema.json"),
+  evidenceValidator: read("scripts/validate-release-evidence.mjs"),
+  releaseEvidenceWorkflow: read(".github/workflows/release-evidence.yml"),
+  releaseReadinessWorkflow: read(".github/workflows/release-readiness.yml"),
 };
 
 for (const permission of [
@@ -87,6 +92,35 @@ for (const processorUrl of [
 includes(files.dataSafety, "does not sell personal data", "Data-safety doc states no sale of personal data");
 includes(files.dataSafety, "guardian consent", "Data-safety doc covers guardian consent");
 includes(files.storeReadiness, "privacy-data-safety.md", "Store checklist links data-safety source");
+includes(files.storeReadiness, "evidence-manifest.example.json", "Store checklist links release evidence manifest template");
+includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
+
+for (const requiredEvidence of [
+  "foreground_tracking",
+  "background_tracking",
+  "locked_screen_tracking",
+  "gps_loss",
+  "network_loss",
+  "app_restart",
+  "battery_saver",
+  "radar_webhook_delay",
+  "firebase_native_fallback",
+  "active_ride_tracking_screenshot",
+  "google_maps_route_preview_screenshot",
+  "stale_location_warning_screenshot",
+  "emergency_contact_action_screenshot",
+  "permission_education_screenshot",
+]) {
+  includes(files.evidenceTemplate, requiredEvidence, `Release evidence template includes ${requiredEvidence}`);
+  includes(files.evidenceValidator, requiredEvidence, `Release evidence validator requires ${requiredEvidence}`);
+}
+for (const provider of ["firebase", "radar", "googleMaps", "stripeConnect", "metaFacebook"]) {
+  includes(files.evidenceTemplate, provider, `Release evidence template includes ${provider}`);
+  includes(files.evidenceValidator, provider, `Release evidence validator requires ${provider}`);
+}
+includes(files.evidenceSchema, "Release Evidence Manifest", "Release evidence schema exists");
+includes(files.releaseEvidenceWorkflow, "validate:release-evidence", "Release evidence workflow validates real manifests");
+includes(files.releaseReadinessWorkflow, "test:release-evidence-template", "Release readiness validates evidence template");
 
 console.log("Store readiness static checks passed.");
 

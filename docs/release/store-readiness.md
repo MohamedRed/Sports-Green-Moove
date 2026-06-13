@@ -13,8 +13,12 @@
 
 ## Review Evidence Required Before Public Launch
 
+- A real release evidence manifest must be created from `docs/release/evidence-manifest.example.json` and validated with `npm run validate:release-evidence -- docs/release/evidence-manifest.json`.
+- The manual Release Evidence Gate workflow validates the real manifest before public-launch approval; the checked-in example is accepted only by `npm run test:release-evidence-template`.
 - Real-device iOS and Android locked-screen tracking run.
 - GPS loss, network loss, app restart, and battery-saver tests.
+- Radar webhook delay and Firebase native fallback evidence for iOS and Android active rides.
+- Production configuration evidence for Firebase, Radar, Google Maps Platform, Stripe Connect, and Meta Facebook Login. Do not include secrets in the manifest.
 - Guardian consent copy and audit events for child tracking.
 - Privacy policy URLs for Firebase, Meta, Radar, Google Maps Platform, and Stripe Connect.
 - Store screenshots showing active ride tracking, Google Maps route preview, stale-location warning, emergency contact action, and permission education.
