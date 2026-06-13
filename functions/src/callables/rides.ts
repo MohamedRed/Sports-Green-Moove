@@ -2,6 +2,7 @@ import { Timestamp } from "firebase-admin/firestore";
 import { type CallableRequest, HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { estimateCo2SavedKg } from "../domain/co2.js";
+import { manualPassengerAuditEvent, manualPassengerAuditEventId } from "../domain/rideAudit.js";
 import { rewardForCo2Saved } from "../domain/rewards.js";
 import type { Trip } from "../domain/types.js";
 import { loadAccessibleActiveRide, type RidePassengerDocument, type RideSessionDocument } from "../lib/activeRideLookup.js";
@@ -135,6 +136,14 @@ async function markPassengerStatus(
 
     const now = Timestamp.now();
     const passengers = updateRidePassengers(ride.passengers ?? [], data.bookingId, data.childId, event);
+    const auditEvent = manualPassengerAuditEvent({
+      event,
+      bookingId: data.bookingId,
+      childId: data.childId,
+      driverUserId: uid,
+      note: data.note,
+      recordedAt: now,
+    });
     const statusUpdate =
       event === "pickup"
         ? { pickupStatus: "pickedUp", pickedUpAt: now, pickupNote: data.note ?? null }
@@ -156,6 +165,10 @@ async function markPassengerStatus(
       ...statusUpdate,
       updatedAt: now,
     }, { merge: true });
+    transaction.set(
+      rideRef.collection("auditEvents").doc(manualPassengerAuditEventId(event, data.bookingId, data.childId)),
+      auditEvent,
+    );
 
     return booking.parentUserId ?? booking.requesterUserId;
   });
