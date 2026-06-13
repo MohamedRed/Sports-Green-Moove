@@ -12,7 +12,7 @@ SwiftUI source scaffold for the Sports Green-mOOVe iOS app.
 
 The app root now uses real Firebase providers when `GoogleService-Info.plist` is present in `Sources/SportsGreenMooveApp/Resources`:
 
-- Firebase Auth: email/password login and signup.
+- Firebase Auth: email/password login/signup and Google sign-in through GoogleSignIn.
 - Firestore: published trip reads.
 - Cloud Functions: booking request, ride start, active ride snapshot.
 - Stripe PaymentSheet config: booking-owned native payment setup through `createRidePaymentIntent`.
@@ -23,9 +23,15 @@ The app root now uses real Firebase providers when `GoogleService-Info.plist` is
 
 Without the plist, the app shows a configuration-required screen instead of silently using mock data.
 
+Google sign-in requires `SGM_GOOGLE_REVERSED_CLIENT_ID` to match
+`REVERSED_CLIENT_ID` from `GoogleService-Info.plist`; that value is expanded into
+`Info.plist` as the URL scheme used by GoogleSignIn. Missing Google config is
+reported in-app when the user taps Google.
+
 ## Remaining SDK Wiring Points
 
 - `GoogleRoutesGateway`
+- Facebook Auth SDK/app identifiers
 
 ## Stripe Slice
 

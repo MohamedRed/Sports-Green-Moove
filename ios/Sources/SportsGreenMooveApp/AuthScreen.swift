@@ -30,9 +30,48 @@ struct AuthScreen: View {
                     }
                 }
                 .opacity(appState.loading ? 0.62 : 1)
+                AuthDivider()
+                HStack(spacing: 10) {
+                    SocialAuthButton(title: "Facebook") {
+                        appState.errorMessage = "Facebook Auth nécessite le SDK Meta natif et les identifiants de l'app."
+                    }
+                    SocialAuthButton(title: "Google") {
+                        Task { await appState.signInWithGoogle() }
+                    }
+                }
             }
             .padding(.horizontal, SGMSpace.padScreen)
         }
+    }
+}
+
+private struct AuthDivider: View {
+    var body: some View {
+        HStack(spacing: 10) {
+            Rectangle().fill(SGM.border).frame(height: 1)
+            Text("OU CONTINUER AVEC")
+                .font(.sgmBody(11, weight: .semibold))
+                .foregroundStyle(SGM.textMuted)
+            Rectangle().fill(SGM.border).frame(height: 1)
+        }
+    }
+}
+
+private struct SocialAuthButton: View {
+    let title: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.sgmBody(13, weight: .bold))
+                .foregroundStyle(SGM.textPrimary)
+                .frame(maxWidth: .infinity)
+                .frame(height: 46)
+                .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous).stroke(SGM.border, lineWidth: 1))
+        }
+        .buttonStyle(.plain)
     }
 }
 

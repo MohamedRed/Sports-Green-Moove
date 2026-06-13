@@ -73,6 +73,10 @@ final class AppState {
         await authenticate { try await auth.signUp(name: name, email: email, password: password) }
     }
 
+    func signInWithGoogle() async {
+        await authenticate { try await auth.signInWithGoogle() }
+    }
+
     func signOut() {
         do {
             try auth.signOut()

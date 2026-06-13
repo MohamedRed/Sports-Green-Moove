@@ -154,27 +154,15 @@ fun SportsGreenMooveApp() {
             }
 
             if (session == null) {
-                OnboardingScreen(
+                OnboardingRoute(
                     loading = loading,
                     error = errorMessage,
-                    onSubmit = { mode, name, email, password ->
-                        scope.launch {
-                            loading = true
-                            errorMessage = null
-                            runCatching {
-                                session = if (mode == OnboardingMode.Login) {
-                                    providers.auth.signIn(email, password)
-                                } else {
-                                    providers.auth.signUp(name, email, password)
-                                }
-                                refreshAppData()
-                            }.onFailure { errorMessage = it.message }
-                            loading = false
-                        }
-                    },
-                    onUnsupportedSocial = {
-                        errorMessage = "Connexion sociale à configurer avec Firebase Auth."
-                    },
+                    providers = providers,
+                    scope = scope,
+                    setLoading = { loading = it },
+                    setError = { errorMessage = it },
+                    setSession = { session = it },
+                    refreshAppData = { refreshAppData() },
                 )
                 return@V2ThemeToggleProvider
             }

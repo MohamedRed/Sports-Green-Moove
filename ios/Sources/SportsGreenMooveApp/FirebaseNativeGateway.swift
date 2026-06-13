@@ -26,47 +26,6 @@ enum AppRuntime {
     }
 }
 
-private struct FirebaseAuthGateway: AuthGateway {
-    let isConfigured = true
-
-    func currentSession() async throws -> AuthSession? {
-        guard let user = Auth.auth().currentUser else { return nil }
-        return AuthSession(uid: user.uid, email: user.email)
-    }
-
-    func signIn(email: String, password: String) async throws -> AuthSession {
-        return try await authSession { completion in
-            Auth.auth().signIn(withEmail: email, password: password, completion: completion)
-        }
-    }
-
-    func signUp(name: String, email: String, password: String) async throws -> AuthSession {
-        _ = name
-        return try await authSession { completion in
-            Auth.auth().createUser(withEmail: email, password: password, completion: completion)
-        }
-    }
-
-    func signOut() throws {
-        try Auth.auth().signOut()
-    }
-
-    private func authSession(_ action: (@escaping (AuthDataResult?, Error?) -> Void) -> Void) async throws -> AuthSession {
-        try await withCheckedThrowingContinuation { continuation in
-            action { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let result {
-                    let session = AuthSession(uid: result.user.uid, email: result.user.email)
-                    continuation.resume(returning: session)
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Firebase Auth invalide."))
-                }
-            }
-        }
-    }
-}
-
 struct FirebaseBackendGateway: FirebaseGateway {
     let isConfigured = true
 

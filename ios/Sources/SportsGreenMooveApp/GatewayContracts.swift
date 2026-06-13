@@ -5,6 +5,7 @@ protocol AuthGateway: Sendable {
     func currentSession() async throws -> AuthSession?
     func signIn(email: String, password: String) async throws -> AuthSession
     func signUp(name: String, email: String, password: String) async throws -> AuthSession
+    func signInWithGoogle() async throws -> AuthSession
     func signOut() throws
 }
 

@@ -39,7 +39,8 @@ fun OnboardingScreen(
     loading: Boolean,
     error: String?,
     onSubmit: (OnboardingMode, String, String, String) -> Unit,
-    onUnsupportedSocial: () -> Unit,
+    onGoogle: () -> Unit,
+    onFacebook: () -> Unit,
 ) {
     var mode by remember { mutableStateOf(OnboardingMode.Login) }
     var name by remember { mutableStateOf("") }
@@ -74,8 +75,8 @@ fun OnboardingScreen(
             )
             OnboardingDivider()
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                OnboardingSocialButton("Facebook", onUnsupportedSocial, Modifier.weight(1f))
-                OnboardingSocialButton("Google", onUnsupportedSocial, Modifier.weight(1f))
+                OnboardingSocialButton("Facebook", onFacebook, Modifier.weight(1f))
+                OnboardingSocialButton("Google", onGoogle, Modifier.weight(1f))
             }
             Spacer(Modifier.weight(1f))
             Text(

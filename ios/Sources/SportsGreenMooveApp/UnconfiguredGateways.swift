@@ -15,6 +15,10 @@ struct UnconfiguredAuthGateway: AuthGateway {
         throw ProviderConfigurationError(message: "Firebase iOS n'est pas configuré.")
     }
 
+    func signInWithGoogle() async throws -> AuthSession {
+        throw ProviderConfigurationError(message: "Google Auth iOS n'est pas configuré.")
+    }
+
     func signOut() throws {}
 }
 

@@ -21,6 +21,9 @@ packages:
   Radar:
     url: https://github.com/radarlabs/radar-sdk-ios-spm.git
     from: "3.34.0"
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS.git
+    from: "9.1.0"
 
 targets:
   SportsGreenMoove:
@@ -46,6 +49,8 @@ targets:
         product: StripePaymentSheet
       - package: Radar
         product: RadarSDK
+      - package: GoogleSignIn
+        product: GoogleSignIn
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app
@@ -64,8 +69,12 @@ targets:
         NSLocationAlwaysUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         NSLocationAlwaysAndWhenInUseUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         SGMRadarPublishableKey: $(SGM_RADAR_PUBLISHABLE_KEY)
+        SGMGoogleReversedClientID: $(SGM_GOOGLE_REVERSED_CLIENT_ID)
         SGMStripeConnectReturnURL: $(SGM_STRIPE_CONNECT_RETURN_URL)
         SGMStripeConnectRefreshURL: $(SGM_STRIPE_CONNECT_REFRESH_URL)
+        CFBundleURLTypes:
+          - CFBundleURLSchemes:
+              - $(SGM_GOOGLE_REVERSED_CLIENT_ID)
         UIBackgroundModes:
           - location
         UISupportedInterfaceOrientations:

@@ -14,6 +14,9 @@ struct SportsGreenMooveNativeApp: App {
             AppShell()
                 .environment(appState)
                 .preferredColorScheme(appState.darkTheme ? .dark : .light)
+                .onOpenURL { url in
+                    NativeURLHandler.handleOpenURL(url)
+                }
         }
     }
 }
