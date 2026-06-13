@@ -47,7 +47,7 @@ enum AppOverlay: String, Identifiable, Sendable {
     var id: String { rawValue }
 }
 
-enum TripStatus: String, Hashable, Sendable {
+public enum TripStatus: String, Hashable, Sendable {
     case upcoming
     case past
     case pending

@@ -1,0 +1,83 @@
+name: Native CI
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/native-ci.yml"
+      - "android/**"
+      - "ios/**"
+      - "package.json"
+      - "scripts/check-ios-native-plan.sh"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/native-ci.yml"
+      - "android/**"
+      - "ios/**"
+      - "package.json"
+      - "scripts/check-ios-native-plan.sh"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  android-native-unit:
+    name: Android native unit tests
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Install Android SDK packages
+        run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
+
+      - name: Run Android native unit tests
+        working-directory: android
+        run: ./gradlew :app:testDebugUnitTest --no-daemon --stacktrace
+
+  ios-native-checks:
+    name: iOS native checks
+    runs-on: macos-26-intel
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: |
+          for xcode in \
+            /Applications/Xcode_26.5.app \
+            /Applications/Xcode_26.4.1.app \
+            /Applications/Xcode_26.3.app \
+            /Applications/Xcode_26.2.app \
+            /Applications/Xcode.app
+          do
+            if [ -d "$xcode" ]; then
+              sudo xcode-select -s "$xcode"
+              break
+            fi
+          done
+          xcodebuild -version
+
+      - name: Run iOS native plan checks
+        run: bash scripts/check-ios-native-plan.sh
+
+      - name: Build Swift package scaffold
+        run: swift build --package-path ios

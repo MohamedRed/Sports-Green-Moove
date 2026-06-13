@@ -51,6 +51,13 @@ npm install
 npm run build
 ```
 
+6. Run native plan checks:
+
+```sh
+npm run test:android-native
+npm run test:ios-native
+```
+
 Native projects now include the first real Firebase vertical slice: email/password Auth, Google Auth, Firestore trip reads, booking requests, inbox reads, payments, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
 
 - iOS local/CI: `GoogleService-Info.plist`

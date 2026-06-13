@@ -191,7 +191,7 @@ struct FirebaseBackendGateway: FirebaseGateway {
     }
 
     #if os(iOS) && canImport(CoreLocation)
-    private func uploadNativeLocationUpdate(_ update: NativeLocationFallbackUpdate) async throws {
+    private func uploadNativeLocationUpdate(_ update: NativeLocationBatchUpdate) async throws {
         let updatesJson = try update.callableBatchJson()
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             Functions.functions().httpsCallable("writeLocationBatch").call(["updatesJson": updatesJson]) { result, error in
