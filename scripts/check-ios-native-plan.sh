@@ -7,6 +7,7 @@ mkdir -p "${BUILD_DIR}"
 
 swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ClubSummary.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/Models.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/StripeConnectModels.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TripPublishDraft.swift" \

@@ -18,6 +18,7 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
@@ -39,6 +40,7 @@ fun SportsGreenMooveApp() {
     var session by remember { mutableStateOf<AuthSession?>(null) }
     var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
     var children by remember { mutableStateOf(emptyList<ChildSummary>()) }
+    var clubs by remember { mutableStateOf(emptyList<ClubSummary>()) }
     var activeRide by remember { mutableStateOf<LiveRideSnapshot?>(null) }
     var activeRideTrip by remember { mutableStateOf<TripSummary?>(null) }
     var payableBookings by remember { mutableStateOf(emptyList<PayableBookingSummary>()) }
@@ -60,6 +62,7 @@ fun SportsGreenMooveApp() {
     suspend fun refreshAppData() {
         trips = providers.firebase.searchTrips()
         children = if (role == AppRole.Parent) providers.firebase.listChildren() else emptyList()
+        clubs = providers.firebase.listClubSummaries()
         activeRide = providers.firebase.getActiveRide()
         activeRideTrip = activeRide?.tripId?.let { tripId ->
             activeRideTrip?.takeIf { it.id == tripId } ?: trips.firstOrNull { it.id == tripId }
@@ -216,6 +219,7 @@ fun SportsGreenMooveApp() {
                         AppScreen.Messages -> MessagesScreen(firebase = providers.firebase)
                         AppScreen.Profile -> ProfileScreen(
                             role = role,
+                            primaryClubLabel = clubs.firstOrNull { it.isMember }?.name ?: "Aucun club lié",
                             onRoleChange = {
                                 role = it
                                 scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
@@ -232,6 +236,7 @@ fun SportsGreenMooveApp() {
                                 session = null
                                 trips = emptyList()
                                 children = emptyList()
+                                clubs = emptyList()
                                 activeRide = null
                                 activeRideTrip = null
                                 payableBookings = emptyList()
@@ -257,7 +262,7 @@ fun SportsGreenMooveApp() {
                             onSearch = searchController::runSearch,
                             onRequest = searchController::requestMatch,
                         )
-                        AppScreen.Groups -> GroupsScreen(onBack = { screen = AppScreen.Profile })
+                        AppScreen.Groups -> GroupsScreen(clubs = clubs, onBack = { screen = AppScreen.Profile })
                         AppScreen.Impact -> ImpactScreen(onBack = { screen = AppScreen.Profile })
                         AppScreen.Rewards -> RewardsScreen(onBack = { screen = AppScreen.Profile })
                         AppScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = AppScreen.Profile })

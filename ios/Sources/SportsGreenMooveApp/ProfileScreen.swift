@@ -62,6 +62,8 @@ private struct RoleChip: View {
 }
 
 private struct ProfileIdentity: View {
+    @Environment(AppState.self) private var appState
+
     var body: some View {
         VStack(spacing: 10) {
             Text("OB")
@@ -80,7 +82,7 @@ private struct ProfileIdentity: View {
                     .font(.sgmDisplay(22))
                     .tracking(.sgmWide(for: 22))
                     .foregroundStyle(SGM.textPrimary)
-                Text("Olivier · Collège du Biéreau")
+                Text("Olivier · \(primaryClubLabel)")
                     .font(.sgmBody(13, weight: .medium))
                     .foregroundStyle(SGM.textMuted)
             }
@@ -94,6 +96,10 @@ private struct ProfileIdentity: View {
         .padding(.horizontal, SGMSpace.padScreen)
         .padding(.top, 16)
         .padding(.bottom, 10)
+    }
+
+    private var primaryClubLabel: String {
+        appState.clubSummaries.first(where: \.isMember)?.name ?? "Aucun club lié"
     }
 }
 
@@ -178,14 +184,6 @@ private struct ProfileRewardsCard: View {
 private struct ProfileSettingsCard: View {
     @Environment(AppState.self) private var appState
 
-    private let rows = [
-        ProfileSetting(.groups, "Mon club", "Collège du Biéreau", AppOverlay.groups),
-        ProfileSetting(.award, "Paiements", "Stripe", AppOverlay.payments),
-        ProfileSetting(.location, "Ma ville", "Wavre, Belgique", AppOverlay.options),
-        ProfileSetting(.bell, "Notifications", "Activées", AppOverlay.options),
-        ProfileSetting(.settings, "Paramètres", "", AppOverlay.options)
-    ]
-
     var body: some View {
         VStack(spacing: 0) {
             ForEach(Array(rows.enumerated()), id: \.element.id) { index, row in
@@ -219,6 +217,16 @@ private struct ProfileSettingsCard: View {
         }
         .background(SGM.bgSurface, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
+    }
+
+    private var rows: [ProfileSetting] {
+        [
+            ProfileSetting(.groups, "Mon club", appState.clubSummaries.first(where: \.isMember)?.name ?? "Aucun club lié", AppOverlay.groups),
+            ProfileSetting(.award, "Paiements", "Stripe", AppOverlay.payments),
+            ProfileSetting(.location, "Ma ville", "Wavre, Belgique", AppOverlay.options),
+            ProfileSetting(.bell, "Notifications", "Activées", AppOverlay.options),
+            ProfileSetting(.settings, "Paramètres", "", AppOverlay.options)
+        ]
     }
 }
 

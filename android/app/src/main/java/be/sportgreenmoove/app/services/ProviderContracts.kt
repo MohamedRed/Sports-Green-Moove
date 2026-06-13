@@ -4,6 +4,7 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.InboxSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
@@ -30,6 +31,7 @@ interface FirebaseGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
     suspend fun listChildren(): List<ChildSummary>
+    suspend fun listClubSummaries(): List<ClubSummary>
     suspend fun suggestPlaces(input: String): List<PlaceSuggestion>
     suspend fun resolvePlace(placeId: String): ResolvedPlace
     suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary>
@@ -89,6 +91,8 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     }
 
     override suspend fun listChildren(): List<ChildSummary> = emptyList()
+
+    override suspend fun listClubSummaries(): List<ClubSummary> = emptyList()
 
     override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
         check(input.isNotBlank())

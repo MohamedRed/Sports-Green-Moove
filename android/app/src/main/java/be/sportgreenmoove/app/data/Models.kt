@@ -106,6 +106,18 @@ data class ChildSummary(
     val trackingEnabled: Boolean,
 )
 
+data class ClubSummary(
+    val id: String,
+    val name: String,
+    val sport: String,
+    val memberCount: Int,
+    val roleLabel: String?,
+    val initials: String,
+    val memberInitials: List<String>,
+) {
+    val isMember: Boolean = roleLabel != null
+}
+
 data class BookingRequestSummary(
     val bookingId: String,
     val tripId: String,

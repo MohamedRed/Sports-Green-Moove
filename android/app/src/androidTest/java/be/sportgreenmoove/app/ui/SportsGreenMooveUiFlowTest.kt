@@ -107,7 +107,7 @@ class SportsGreenMooveUiFlowTest {
 
     @Test
     fun secondaryPlanFlowsExposeNativeUiActions() {
-        setTestContent { GroupsScreen(onBack = {}) }
+        setTestContent { GroupsScreen(clubs = UiFlowFixtures.clubs, onBack = {}) }
         assertTagsExist(SgmTestTags.GroupsScreen, SgmTestTags.GroupsJoinAction)
 
         setTestContent { ImpactScreen(onBack = {}) }

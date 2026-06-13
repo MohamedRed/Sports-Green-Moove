@@ -1,14 +1,5 @@
 import SwiftUI
 
-struct GroupsScreen: View {
-    var body: some View {
-        OverlayListScreen(title: "GROUPES", testID: UITestIdentifier.groupsScreen) {
-            OverlayCard(title: "Royal Ottignies", subtitle: "U8 Nationaux · 18 membres", meta: "OUVRIR")
-            OverlayCard(title: "Collège du Biéreau", subtitle: "Parents · Trajets école", meta: "REJOINDRE", testID: UITestIdentifier.groupsJoinAction)
-        }
-    }
-}
-
 struct ImpactScreen: View {
     var body: some View {
         OverlayListScreen(title: "MON IMPACT CO₂", testID: UITestIdentifier.impactScreen) {
@@ -151,7 +142,7 @@ private extension String {
     }
 }
 
-private struct OverlayListScreen<Content: View>: View {
+struct OverlayListScreen<Content: View>: View {
     let title: String
     var testID: String?
     @ViewBuilder var content: () -> Content

@@ -4,6 +4,7 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.InboxChatSummary
 import be.sportgreenmoove.app.data.InboxReviewPrompt
 import be.sportgreenmoove.app.data.InboxSummary
@@ -25,6 +26,10 @@ object UiFlowFixtures {
     val origin = ResolvedPlace("origin", "Wavre", "Rue du Stade 1, Wavre", 50.715, 4.612)
     val destination = ResolvedPlace("dest", "Ottignies", "Avenue du Club 8, Ottignies", 50.669, 4.567)
     val child = ChildSummary("child-1", "Nora", "U8 Royal Ottignies", trackingEnabled = true)
+    val clubs = listOf(
+        ClubSummary("club-royal", "Royal Ottignies Sports", "Football", 89, "PARENT", "RO", listOf("NO", "CO")),
+        ClubSummary("club-tennis", "Tennis Club Wavre", "Tennis", 56, null, "TC", emptyList()),
+    )
     val route = MapRoutePreview(MapPoint(50.715, 4.612), MapPoint(50.669, 4.567))
 
     val trip = TripSummary(
@@ -94,6 +99,7 @@ class UiFlowFirebaseGateway : FirebaseGateway {
     override val isConfigured = true
     override suspend fun searchTrips() = listOf(UiFlowFixtures.trip)
     override suspend fun listChildren() = listOf(UiFlowFixtures.child)
+    override suspend fun listClubSummaries() = UiFlowFixtures.clubs
     override suspend fun suggestPlaces(input: String) = listOf(PlaceSuggestion("place-1", input, input, "Belgique"))
     override suspend fun resolvePlace(placeId: String) = UiFlowFixtures.origin
     override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(UiFlowFixtures.match)

@@ -38,6 +38,10 @@ struct FirebaseBackendGateway: FirebaseGateway {
         return try await trips(for: query)
     }
 
+    func listClubSummaries() async throws -> [ClubSummary] {
+        try await loadClubSummaries()
+    }
+
     func requestBooking(tripId: String, childId: String?) async throws -> String {
         try await withCheckedThrowingContinuation { continuation in
             var data: [String: Any] = ["tripId": tripId, "seats": 1]

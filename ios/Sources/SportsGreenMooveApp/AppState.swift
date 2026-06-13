@@ -11,6 +11,7 @@ final class AppState {
     var session: AuthSession?
     var trips: [TripSummary] = []
     var children: [ChildSummary] = []
+    var clubSummaries: [ClubSummary] = []
     var activeRide: LiveRideSnapshot?
     var activeRideTrip: TripSummary?
     var payableBookings: [PayableBookingSummary] = []
@@ -85,6 +86,7 @@ final class AppState {
             session = nil
             trips = []
             children = []
+            clubSummaries = []
             activeRide = nil
             activeRideTrip = nil
             payableBookings = []
@@ -119,6 +121,7 @@ final class AppState {
         do {
             trips = try await firebase.searchTrips()
             children = selectedRole == .parent ? try await firebase.listChildren() : []
+            clubSummaries = try await firebase.listClubSummaries()
             activeRide = try await firebase.getActiveRide()
             activeRideTrip = activeRide?.tripId.flatMap { tripId in
                 activeRideTrip?.id == tripId ? activeRideTrip : trips.first { $0.id == tripId }

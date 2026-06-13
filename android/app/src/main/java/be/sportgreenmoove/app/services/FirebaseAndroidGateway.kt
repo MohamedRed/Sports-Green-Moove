@@ -5,6 +5,7 @@ import android.os.Build
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.InboxSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
@@ -28,6 +29,7 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     private val firestore = FirebaseFirestore.getInstance()
     private val functions = FirebaseFunctions.getInstance()
     private val locationClient = LocationServices.getFusedLocationProviderClient(appContext)
+    private val groupsGateway = FirebaseAndroidGroupsGateway(firestore)
     override val isConfigured: Boolean = true
 
     override suspend fun searchTrips(): List<TripSummary> {
@@ -55,6 +57,9 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
             mapChild(id = document.id, data = document.data.orEmpty())
         }
     }
+
+    override suspend fun listClubSummaries(): List<ClubSummary> =
+        groupsGateway.listClubSummaries()
 
     override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
         val result = functions

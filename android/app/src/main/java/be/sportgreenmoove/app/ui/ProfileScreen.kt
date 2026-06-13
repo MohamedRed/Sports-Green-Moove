@@ -36,8 +36,8 @@ import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
-private val ProfileSettings = listOf(
-    ProfileSetting(SgmIcon.Groups, "Mon club", "Collège du Biéreau", ProfileAction.Groups),
+private fun profileSettings(primaryClubLabel: String) = listOf(
+    ProfileSetting(SgmIcon.Groups, "Mon club", primaryClubLabel, ProfileAction.Groups),
     ProfileSetting(SgmIcon.Award, "Paiements", "Stripe", ProfileAction.Payments),
     ProfileSetting(SgmIcon.Location, "Ma ville", "Wavre, Belgique", ProfileAction.Options),
     ProfileSetting(SgmIcon.Bell, "Notifications", "Activées", ProfileAction.Options),
@@ -47,6 +47,7 @@ private val ProfileSettings = listOf(
 @Composable
 fun ProfileScreen(
     role: AppRole,
+    primaryClubLabel: String,
     onRoleChange: (AppRole) -> Unit,
     onGroups: () -> Unit,
     onImpact: () -> Unit,
@@ -63,12 +64,13 @@ fun ProfileScreen(
             .padding(bottom = 20.dp),
     ) {
         V2TopBar("MON PROFIL")
-        ProfileIdentity()
+        ProfileIdentity(primaryClubLabel)
         ProfileRoleSelector(role = role, onRoleChange = onRoleChange)
         ProfileImpactCard(onClick = onImpact)
         ProfileRewardsCard(onClick = onRewards)
         V2SectionLabel("PARAMÈTRES")
         ProfileSettingsCard(
+            primaryClubLabel = primaryClubLabel,
             onGroups = onGroups,
             onPayments = onPayments,
             onOptions = onOptions,
@@ -82,7 +84,7 @@ fun ProfileScreen(
 }
 
 @Composable
-private fun ProfileIdentity() {
+private fun ProfileIdentity(primaryClubLabel: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -106,7 +108,7 @@ private fun ProfileIdentity() {
                 style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.06.em),
             )
             Text(
-                "Olivier · Collège du Biéreau",
+                "Olivier · $primaryClubLabel",
                 style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.Medium),
             )
         }
@@ -206,7 +208,14 @@ private fun ProfileRewardsCard(onClick: () -> Unit) {
 }
 
 @Composable
-private fun ProfileSettingsCard(onGroups: () -> Unit, onPayments: () -> Unit, onOptions: () -> Unit, modifier: Modifier = Modifier) {
+private fun ProfileSettingsCard(
+    primaryClubLabel: String,
+    onGroups: () -> Unit,
+    onPayments: () -> Unit,
+    onOptions: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val rows = profileSettings(primaryClubLabel)
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -214,10 +223,10 @@ private fun ProfileSettingsCard(onGroups: () -> Unit, onPayments: () -> Unit, on
             .background(Sgm.colors.bgSurface)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG)),
     ) {
-        ProfileSettings.forEachIndexed { index, setting ->
+        rows.forEachIndexed { index, setting ->
             ProfileSettingRow(
                 setting = setting,
-                showDivider = index < ProfileSettings.lastIndex,
+                showDivider = index < rows.lastIndex,
                 onClick = when (setting.action) {
                     ProfileAction.Groups -> onGroups
                     ProfileAction.Payments -> onPayments

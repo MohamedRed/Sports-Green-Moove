@@ -72,4 +72,8 @@ Live state is mirrored into Firestore audit summaries by Cloud Functions. The UI
 Native clients list `children` with `guardianUserIds array-contains auth.uid` and pass the selected `childId` to `searchTrips` and `requestBooking`.
 `requestBooking` re-reads the child profile server-side and rejects ids that do not belong to the authenticated parent.
 
+Native Groups screens list public `clubs` and join them with the signed-in
+user's `memberships` to separate "Mes clubs" from discoverable clubs. They must
+not ship static club lists as product data.
+
 The Messages tab reads through `getInbox`, not direct static fixtures. The callable returns the caller's `notifications`, groups recent `messages` by booking or ride-session conversation, and derives pending `ratings` prompts from completed ride sessions where the caller has not yet rated the other participant.

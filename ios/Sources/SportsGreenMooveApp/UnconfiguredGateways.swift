@@ -35,6 +35,8 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
 
     func listChildren() async throws -> [ChildSummary] { [] }
 
+    func listClubSummaries() async throws -> [ClubSummary] { [] }
+
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
         _ = input
         throw ProviderConfigurationError(message: "Google Places iOS n'est pas configuré.")

@@ -14,6 +14,7 @@ protocol FirebaseGateway: Sendable {
     var isConfigured: Bool { get }
     func searchTrips() async throws -> [TripSummary]
     func listChildren() async throws -> [ChildSummary]
+    func listClubSummaries() async throws -> [ClubSummary]
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion]
     func resolvePlace(placeId: String) async throws -> ResolvedPlace
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary]

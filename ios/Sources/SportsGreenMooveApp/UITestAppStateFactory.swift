@@ -25,6 +25,7 @@ enum UITestAppStateFactory {
         state.session = signedIn ? Fixtures.session : nil
         state.trips = [Fixtures.trip]
         state.children = [Fixtures.child]
+        state.clubSummaries = Fixtures.clubs
         state.activeRide = Fixtures.activeRide
         state.activeRideTrip = Fixtures.trip
         state.payableBookings = [Fixtures.payableBooking]
@@ -75,6 +76,10 @@ private enum Fixtures {
     static let origin = ResolvedPlace(placeId: "origin", label: "Wavre", formattedAddress: "Rue du Stade 1, Wavre", lat: 50.715, lng: 4.612)
     static let destination = ResolvedPlace(placeId: "dest", label: "Ottignies", formattedAddress: "Avenue du Club 8, Ottignies", lat: 50.669, lng: 4.567)
     static let child = ChildSummary(id: "child-1", label: "Nora", teamLabel: "U8 Royal Ottignies", trackingEnabled: true)
+    static let clubs = [
+        ClubSummary(id: "club-royal", name: "Royal Ottignies Sports", sport: "Football", memberCount: 89, roleLabel: "PARENT", initials: "RO", memberInitials: ["NO", "CO"]),
+        ClubSummary(id: "club-tennis", name: "Tennis Club Wavre", sport: "Tennis", memberCount: 56, roleLabel: nil, initials: "TC", memberInitials: []),
+    ]
     static let route = MapRoutePreview(start: MapPoint(lat: 50.715, lng: 4.612), end: MapPoint(lat: 50.669, lng: 4.567))
 
     static let trip = TripSummary(
@@ -161,6 +166,7 @@ private struct UITestFirebaseGateway: FirebaseGateway {
     var isConfigured: Bool { true }
     func searchTrips() async throws -> [TripSummary] { [Fixtures.trip] }
     func listChildren() async throws -> [ChildSummary] { [Fixtures.child] }
+    func listClubSummaries() async throws -> [ClubSummary] { Fixtures.clubs }
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion] { [PlaceSuggestion(placeId: "place-1", label: input, mainText: input, secondaryText: "Belgique")] }
     func resolvePlace(placeId: String) async throws -> ResolvedPlace { Fixtures.origin }
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary] { [Fixtures.match] }

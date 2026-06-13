@@ -49,6 +49,12 @@ const androidUiTests = readFile("android/app/src/androidTest/java/be/sportgreenm
 const iosUiTests = readFile("ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift");
 const iosProject = readFile("ios/project.yml");
 const nativeCi = readFile(".github/workflows/native-ci.yml");
+const androidGroups = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/GroupsScreen.kt");
+const androidGroupsGateway = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGroupsGateway.kt");
+const androidProfile = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileScreen.kt");
+const iosGroups = readFile("ios/Sources/SportsGreenMooveApp/GroupsScreen.swift");
+const iosGroupsGateway = readFile("ios/Sources/SportsGreenMooveApp/FirebaseClubSummaries.swift");
+const iosProfile = readFile("ios/Sources/SportsGreenMooveApp/ProfileScreen.swift");
 
 for (const flow of flows) {
   includes(
@@ -83,6 +89,20 @@ includes(iosProject, "SportsGreenMooveUITests:", "iOS project declares UI test t
 includes(iosProject, "type: bundle.ui-testing", "iOS UI test target uses XCUITest bundle type");
 includes(nativeCi, "connectedDebugAndroidTest", "Native CI runs Android UI tests");
 includes(nativeCi, "xcodebuild test", "Native CI runs iOS UI tests");
+includes(androidGroups, "clubs: List<ClubSummary>", "Android Groups screen renders Firebase club summaries");
+includes(androidGroupsGateway, 'collection("clubs")', "Android Groups gateway reads clubs");
+includes(androidGroupsGateway, 'collection("memberships")', "Android Groups gateway reads memberships");
+notIncludes(androidGroups, "private val MyClubs", "Android Groups screen must not embed member club fixtures");
+notIncludes(androidGroups, "private val SuggestedClubs", "Android Groups screen must not embed suggested club fixtures");
+includes(iosGroups, "appState.clubSummaries", "iOS Groups screen renders Firebase club summaries");
+includes(iosGroupsGateway, '.collection("clubs")', "iOS Groups gateway reads clubs");
+includes(iosGroupsGateway, '.collection("memberships")', "iOS Groups gateway reads memberships");
+notIncludes(iosGroups, "Royal Ottignies", "iOS Groups screen must not embed club fixtures");
+notIncludes(iosGroups, "Collège du Biéreau", "iOS Groups screen must not embed club fixtures");
+includes(androidProfile, "primaryClubLabel", "Android Profile reads the primary club label from app state");
+notIncludes(androidProfile, "Olivier · Collège du Biéreau", "Android Profile must not embed a static club identity");
+includes(iosProfile, "clubSummaries.first", "iOS Profile reads the primary club from app state");
+notIncludes(iosProfile, "Olivier · Collège du Biéreau", "iOS Profile must not embed a static club identity");
 
 console.log(`Validated ${flows.length} native UI flow identifiers on Android and iOS.`);
 
@@ -109,5 +129,11 @@ function walk(dir) {
 function includes(haystack, needle, message) {
   if (!haystack.includes(needle)) {
     throw new Error(`${message}: missing ${needle}`);
+  }
+}
+
+function notIncludes(haystack, needle, message) {
+  if (haystack.includes(needle)) {
+    throw new Error(`${message}: unexpected ${needle}`);
   }
 }
