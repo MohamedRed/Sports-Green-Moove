@@ -18,31 +18,3 @@ enum NativePaymentSheetFlow {
         #endif
     }
 }
-
-#if canImport(UIKit)
-private extension UIApplication {
-    var sgmTopViewController: UIViewController? {
-        connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap(\.windows)
-            .first { $0.isKeyWindow }?
-            .rootViewController?
-            .sgmTopPresentedController
-    }
-}
-
-private extension UIViewController {
-    var sgmTopPresentedController: UIViewController {
-        if let presentedViewController {
-            return presentedViewController.sgmTopPresentedController
-        }
-        if let navigationController = self as? UINavigationController {
-            return navigationController.visibleViewController?.sgmTopPresentedController ?? navigationController
-        }
-        if let tabBarController = self as? UITabBarController {
-            return tabBarController.selectedViewController?.sgmTopPresentedController ?? tabBarController
-        }
-        return self
-    }
-}
-#endif
