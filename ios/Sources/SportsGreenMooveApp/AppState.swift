@@ -28,7 +28,6 @@ final class AppState {
     let auth: AuthGateway
     let firebase: FirebaseGateway
     let radar: RadarTrackingGateway
-    let googleRoutes: GoogleRoutesGateway
     let stripe: StripePaymentsGateway
 
     var isConfigured: Bool {
@@ -39,13 +38,11 @@ final class AppState {
         auth: AuthGateway,
         firebase: FirebaseGateway,
         radar: RadarTrackingGateway = UnconfiguredRadarTrackingGateway(),
-        googleRoutes: GoogleRoutesGateway = UnconfiguredGoogleRoutesGateway(),
         stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway()
     ) {
         self.auth = auth
         self.firebase = firebase
         self.radar = radar
-        self.googleRoutes = googleRoutes
         self.stripe = stripe
     }
 
@@ -122,6 +119,9 @@ final class AppState {
             trips = try await firebase.searchTrips()
             children = selectedRole == .parent ? try await firebase.listChildren() : []
             activeRide = try await firebase.getActiveRide()
+            activeRideTrip = activeRide?.tripId.flatMap { tripId in
+                activeRideTrip?.id == tripId ? activeRideTrip : trips.first { $0.id == tripId }
+            }
             payableBookings = try await firebase.getPayableBookings()
             driverBookingRequests = selectedRole == .driver
                 ? try await firebase.getDriverBookingRequests()

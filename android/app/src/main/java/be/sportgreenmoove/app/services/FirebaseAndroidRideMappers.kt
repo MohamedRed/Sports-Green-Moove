@@ -35,12 +35,14 @@ internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
             "Suivi véhicule disponible",
         ),
         status = if (departure != null && departure.before(Date())) TripStatus.Past else TripStatus.Upcoming,
+        mapPreview = mapRoutePreviewFromTripData(data),
     )
 }
 
 internal fun mapRide(data: Map<*, *>): LiveRideSnapshot =
     LiveRideSnapshot(
         rideSessionId = data["rideSessionId"] as? String ?: "",
+        tripId = data["tripId"] as? String,
         status = data["status"] as? String ?: "Actif",
         vehicleLastUpdateLabel = data["vehicleLastUpdateLabel"] as? String ?: "En attente du premier point GPS",
         childLastUpdateLabel = data["childLastUpdateLabel"] as? String,

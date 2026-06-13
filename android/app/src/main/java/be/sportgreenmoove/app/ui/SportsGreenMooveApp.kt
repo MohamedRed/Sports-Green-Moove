@@ -61,6 +61,9 @@ fun SportsGreenMooveApp() {
         trips = providers.firebase.searchTrips()
         children = if (role == AppRole.Parent) providers.firebase.listChildren() else emptyList()
         activeRide = providers.firebase.getActiveRide()
+        activeRideTrip = activeRide?.tripId?.let { tripId ->
+            activeRideTrip?.takeIf { it.id == tripId } ?: trips.firstOrNull { it.id == tripId }
+        }
         payableBookings = providers.firebase.getPayableBookings()
         driverBookingRequests = if (role == AppRole.Driver) {
             providers.firebase.getDriverBookingRequests()
@@ -253,6 +256,7 @@ fun SportsGreenMooveApp() {
                         DemoScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = DemoScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         DemoScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
+                            routePreview = activeRideTrip?.mapPreview,
                             onBack = { screen = DemoScreen.Trips },
                             onPickup = { updatePassengerStatus(it, pickup = true) },
                             onDropoff = { updatePassengerStatus(it, pickup = false) },

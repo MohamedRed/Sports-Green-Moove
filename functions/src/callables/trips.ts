@@ -14,7 +14,7 @@ import type { ClientSearchMatch, SearchRequest, Trip } from "../domain/types.js"
 import { GoogleRoutesProvider } from "../services/googleRoutes.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
-import { toClientTripSummary } from "../lib/clientTrips.js";
+import { toClientMapRoutePreview, toClientTripSummary } from "../lib/clientTrips.js";
 
 const latLngSchema = z.object({
   lat: z.number().min(-90).max(90),
@@ -154,7 +154,10 @@ export const searchTrips = onCall(async (request) => {
       score: match.score,
       route: match.route,
       reasons: match.reasons,
-      summary: toClientTripSummary(match.trip),
+      summary: {
+        ...toClientTripSummary(match.trip),
+        mapPreview: toClientMapRoutePreview(match.trip, match.route.finalEncodedPolyline),
+      },
     })),
   };
 });

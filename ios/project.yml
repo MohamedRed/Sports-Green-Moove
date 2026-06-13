@@ -27,6 +27,9 @@ packages:
   Facebook:
     url: https://github.com/facebook/facebook-ios-sdk.git
     from: "18.0.3"
+  GoogleMaps:
+    url: https://github.com/googlemaps/ios-maps-sdk.git
+    from: "10.14.0"
 
 targets:
   SportsGreenMoove:
@@ -58,6 +61,8 @@ targets:
         product: FacebookCore
       - package: Facebook
         product: FacebookLogin
+      - package: GoogleMaps
+        product: GoogleMaps
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app
@@ -76,6 +81,7 @@ targets:
         NSLocationAlwaysUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         NSLocationAlwaysAndWhenInUseUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         SGMRadarPublishableKey: $(SGM_RADAR_PUBLISHABLE_KEY)
+        SGMGoogleMapsIOSAPIKey: $(SGM_GOOGLE_MAPS_IOS_API_KEY)
         SGMGoogleReversedClientID: $(SGM_GOOGLE_REVERSED_CLIENT_ID)
         FacebookAppID: $(SGM_FACEBOOK_APP_ID)
         FacebookClientToken: $(SGM_FACEBOOK_CLIENT_TOKEN)

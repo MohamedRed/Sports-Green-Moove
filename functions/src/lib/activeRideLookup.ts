@@ -13,6 +13,7 @@ export type RidePassengerDocument = {
 };
 
 export type RideSessionDocument = {
+  tripId?: string;
   bookingIds?: string[];
   driverUserId?: string;
   participantUserIds?: string[];

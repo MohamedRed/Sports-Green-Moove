@@ -7,6 +7,7 @@ struct SportsGreenMooveNativeApp: App {
     init() {
         SGMFontRegistrar.registerFonts()
         NativeFacebookLifecycle.configureIfAvailable()
+        NativeGoogleMapsLifecycle.configureIfAvailable()
         _appState = State(initialValue: AppRuntime.makeAppState())
     }
 

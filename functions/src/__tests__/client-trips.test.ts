@@ -43,6 +43,10 @@ describe("client trip summaries", () => {
     expect(summary.priceLabel).toBe("2,50 EUR");
     expect(summary.passengerInitials).toEqual(["IB", "NT"]);
     expect(summary.status).toBe("upcoming");
+    expect(summary.mapPreview).toEqual({
+      start: { lat: 50.716, lng: 4.611 },
+      end: { lat: 50.671, lng: 4.581 },
+    });
   });
 
   it("maps live trip state to source-aware ride snapshots", () => {
@@ -69,6 +73,7 @@ describe("client trip summaries", () => {
         },
       },
       {
+        tripId: "trip-1",
         passengers: [{
           bookingId: "booking-1",
           childId: "child-1",
@@ -82,6 +87,7 @@ describe("client trip summaries", () => {
 
     expect(snapshot).toMatchObject({
       rideSessionId: "ride-1",
+      tripId: "trip-1",
       status: "Actif",
       vehicleLastUpdateLabel: "Secours GPS · il y a 30 s",
       childLastUpdateLabel: "Radar · il y a 45 s",

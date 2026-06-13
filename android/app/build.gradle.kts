@@ -31,6 +31,10 @@ val facebookClientToken = providers
     .orElse(providers.environmentVariable("SGM_FACEBOOK_CLIENT_TOKEN"))
     .getOrElse("")
 val facebookLoginProtocolScheme = facebookAppId.takeIf(String::isNotBlank)?.let { "fb$it" } ?: ""
+val googleMapsAndroidApiKey = providers
+    .gradleProperty("SGM_GOOGLE_MAPS_ANDROID_API_KEY")
+    .orElse(providers.environmentVariable("SGM_GOOGLE_MAPS_ANDROID_API_KEY"))
+    .getOrElse("")
 
 android {
     namespace = "be.sportgreenmoove.app"
@@ -48,6 +52,7 @@ android {
         resValue("string", "facebook_app_id", facebookAppId)
         resValue("string", "facebook_client_token", facebookClientToken)
         resValue("string", "fb_login_protocol_scheme", facebookLoginProtocolScheme)
+        resValue("string", "sgm_google_maps_android_api_key", googleMapsAndroidApiKey)
     }
 
     compileOptions {
@@ -85,7 +90,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-functions")
     implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.google.android.gms:play-services-maps:20.0.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+    implementation("com.google.maps.android:maps-compose:8.3.0")
     implementation("com.facebook.android:facebook-login:18.2.3")
     implementation("io.radar:sdk:3.34.0")
     implementation("com.stripe:stripe-android:23.10.0")

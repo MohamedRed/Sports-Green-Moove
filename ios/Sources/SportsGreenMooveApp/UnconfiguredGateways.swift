@@ -129,15 +129,6 @@ struct UnconfiguredRadarTrackingGateway: RadarTrackingGateway {
     }
 }
 
-struct UnconfiguredGoogleRoutesGateway: GoogleRoutesGateway {
-    let isConfigured = false
-
-    func explainRoute(for tripId: String) async throws -> [String] {
-        _ = tripId
-        throw ProviderConfigurationError(message: "Google Routes n'est pas configuré côté iOS.")
-    }
-}
-
 struct UnconfiguredStripePaymentsGateway: StripePaymentsGateway {
     let isConfigured = false
 

@@ -56,11 +56,6 @@ interface RadarTrackingGateway {
     suspend fun stopTripTracking(rideSessionId: String)
 }
 
-interface GoogleRoutesGateway {
-    val isConfigured: Boolean
-    suspend fun explainRoute(tripId: String): List<String>
-}
-
 interface StripePaymentsGateway {
     val isConfigured: Boolean
     suspend fun createStripeAccount(email: String): StripeConnectAccount
@@ -197,13 +192,6 @@ class UnconfiguredRadarTrackingGateway : RadarTrackingGateway {
     override suspend fun stopTripTracking(rideSessionId: String) {
         check(rideSessionId.isNotBlank())
     }
-}
-
-class UnconfiguredGoogleRoutesGateway : GoogleRoutesGateway {
-    override val isConfigured: Boolean = false
-
-    override suspend fun explainRoute(tripId: String): List<String> =
-        throw ProviderConfigurationException("Google Routes Android n'est pas configuré.")
 }
 
 class UnconfiguredStripePaymentsGateway : StripePaymentsGateway {

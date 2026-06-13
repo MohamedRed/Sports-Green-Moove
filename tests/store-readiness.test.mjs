@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 
 const files = {
+  androidGradle: read("android/app/build.gradle.kts"),
   androidManifest: read("android/app/src/main/AndroidManifest.xml"),
   androidStrings: read("android/app/src/main/res/values/strings.xml"),
   iosProject: read("ios/project.yml"),
@@ -27,6 +28,10 @@ includes(files.androidManifest, "com.facebook.sdk.ApplicationId", "Android decla
 includes(files.androidManifest, "com.facebook.sdk.ClientToken", "Android declares Facebook client token metadata");
 includes(files.androidManifest, "com.facebook.FacebookActivity", "Android declares Facebook login activity");
 includes(files.androidManifest, "com.facebook.CustomTabActivity", "Android declares Facebook custom tab callback activity");
+includes(files.androidManifest, "com.google.android.geo.API_KEY", "Android declares Google Maps SDK key metadata");
+includes(files.androidGradle, "SGM_GOOGLE_MAPS_ANDROID_API_KEY", "Android build reads Google Maps API key");
+includes(files.androidGradle, "com.google.android.gms:play-services-maps:20.0.0", "Android links Maps SDK");
+includes(files.androidGradle, "com.google.maps.android:maps-compose:8.3.0", "Android links Maps Compose");
 
 for (const key of [
   "active_ride_permission_disclosure_title",
@@ -50,12 +55,15 @@ for (const key of [
   "SGMRadarPublishableKey",
   "FacebookAppID",
   "FacebookClientToken",
+  "SGMGoogleMapsIOSAPIKey",
   "fb$(SGM_FACEBOOK_APP_ID)",
 ]) {
   includes(files.iosProject, key, `iOS project declares ${key}`);
 }
 includes(files.iosProject, "course active", "iOS usage strings limit tracking to active rides");
 includes(files.iosProject, "product: FacebookLogin", "iOS project links FacebookLogin");
+includes(files.iosProject, "https://github.com/googlemaps/ios-maps-sdk.git", "iOS project declares Google Maps SDK package");
+includes(files.iosProject, "product: GoogleMaps", "iOS project links GoogleMaps");
 
 for (const privacyType of [
   "NSPrivacyCollectedDataTypeName",

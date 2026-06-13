@@ -1,4 +1,5 @@
 import type {
+  ClientMapRoutePreview,
   ClientRidePassengerStatus,
   ClientRideSnapshot,
   ClientTripSummary,
@@ -17,6 +18,7 @@ type LiveTripSnapshot = {
   vehicle?: LiveTripLocation;
   children?: Record<string, LiveTripLocation | undefined>;
   meta?: {
+    tripId?: string;
     radar?: {
       etaSeconds?: number;
       etaDistanceMeters?: number;
@@ -34,6 +36,7 @@ type RidePassengerSnapshot = {
 };
 
 type RideSessionSnapshot = {
+  tripId?: string;
   passengers?: RidePassengerSnapshot[];
   passengerStatuses?: Record<string, {
     pickupStatus?: string;
@@ -98,6 +101,15 @@ export function toClientTripSummary(trip: Trip): ClientTripSummary {
       trip.supportsChildTracking ? "Suivi enfant disponible" : "Suivi enfant non inclus",
     ],
     status: dates.status,
+    mapPreview: toClientMapRoutePreview(trip),
+  };
+}
+
+export function toClientMapRoutePreview(trip: Trip, encodedPolyline?: string): ClientMapRoutePreview {
+  return {
+    start: trip.origin,
+    end: trip.destination,
+    ...(encodedPolyline ? { encodedPolyline } : {}),
   };
 }
 
@@ -114,6 +126,7 @@ export function toClientRideSnapshot(
 
   return {
     rideSessionId,
+    ...(ride?.tripId ?? live?.meta?.tripId ? { tripId: ride?.tripId ?? live?.meta?.tripId } : {}),
     status: status === "active" ? "Actif" : status,
     vehicleLastUpdateLabel: locationLabel(vehicle, now, "En attente du premier point GPS"),
     childLastUpdateLabel: child ? locationLabel(child, now, "Enfant en attente") : null,

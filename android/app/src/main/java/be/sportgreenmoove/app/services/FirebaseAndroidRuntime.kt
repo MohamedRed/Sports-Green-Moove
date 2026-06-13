@@ -13,7 +13,6 @@ data class AndroidProviderSet(
     val googleAuth: GoogleSocialAuthGateway = UnconfiguredGoogleSocialAuthGateway(),
     val facebookAuth: FacebookSocialAuthGateway = UnconfiguredFacebookSocialAuthGateway(),
     val radar: RadarTrackingGateway = UnconfiguredRadarTrackingGateway(),
-    val googleRoutes: GoogleRoutesGateway = UnconfiguredGoogleRoutesGateway(),
     val stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway(),
 ) {
     val isConfigured: Boolean = auth.isConfigured && firebase.isConfigured

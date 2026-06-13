@@ -46,6 +46,18 @@ data class TripSummary(
     val passengerInitials: List<String> = emptyList(),
     val reasons: List<String>,
     val status: TripStatus = TripStatus.Upcoming,
+    val mapPreview: MapRoutePreview? = null,
+)
+
+data class MapPoint(
+    val lat: Double,
+    val lng: Double,
+)
+
+data class MapRoutePreview(
+    val start: MapPoint,
+    val end: MapPoint,
+    val encodedPolyline: String? = null,
 )
 
 data class PlaceSuggestion(
@@ -112,6 +124,7 @@ data class BookingRequestSummary(
 
 data class LiveRideSnapshot(
     val rideSessionId: String,
+    val tripId: String? = null,
     val status: String,
     val vehicleLastUpdateLabel: String,
     val childLastUpdateLabel: String?,

@@ -24,13 +24,15 @@ func mapTrip(id: String, data: [String: Any]) -> TripSummary {
         priceLabel: priceLabel(intValue(data["priceCents"]) ?? 0),
         passengerInitials: data["passengerInitials"] as? [String] ?? [],
         reasons: ["\(seats) \(seats > 1 ? "places" : "place")", "Suivi véhicule disponible"],
-        status: departure.map { $0 < Date() ? .past : .upcoming } ?? .upcoming
+        status: departure.map { $0 < Date() ? .past : .upcoming } ?? .upcoming,
+        mapPreview: mapRoutePreviewFromTripData(data)
     )
 }
 
 func mapRide(_ data: [String: Any]) -> LiveRideSnapshot {
     LiveRideSnapshot(
         rideSessionId: data["rideSessionId"] as? String ?? "",
+        tripId: data["tripId"] as? String,
         status: data["status"] as? String ?? "Actif",
         vehicleLastUpdateLabel: data["vehicleLastUpdateLabel"] as? String ?? "En attente du premier point GPS",
         childLastUpdateLabel: data["childLastUpdateLabel"] as? String,

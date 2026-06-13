@@ -40,11 +40,6 @@ protocol RadarTrackingGateway: Sendable {
     func stopTripTracking(rideSessionId: String) async throws
 }
 
-protocol GoogleRoutesGateway: Sendable {
-    var isConfigured: Bool { get }
-    func explainRoute(for tripId: String) async throws -> [String]
-}
-
 protocol StripePaymentsGateway: Sendable {
     var isConfigured: Bool { get }
     func createStripeAccount(email: String) async throws -> StripeConnectAccount

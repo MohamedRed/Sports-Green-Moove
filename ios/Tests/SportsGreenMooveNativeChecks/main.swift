@@ -118,4 +118,17 @@ check(first["capturedAt"] as? Int == 1_700_000_000_123, "Location batch timestam
 check(first["speedMps"] as? Double == 2.5, "Location batch speed changed")
 check(first["headingDeg"] == nil, "Location batch should omit missing heading")
 
+let decodedPolyline = MapRoutePolyline.decode("_p~iF~ps|U_ulLnnqC_mqNvxq`@")
+check(decodedPolyline.count == 3, "Google route polyline should decode all points")
+check(abs(decodedPolyline[0].lat - 38.5) < 0.00001, "First decoded latitude changed")
+check(abs(decodedPolyline[0].lng + 120.2) < 0.00001, "First decoded longitude changed")
+check(abs(decodedPolyline[2].lat - 43.252) < 0.00001, "Final decoded latitude changed")
+check(abs(decodedPolyline[2].lng + 126.453) < 0.00001, "Final decoded longitude changed")
+
+let routePreview = MapRoutePreview(
+    start: MapPoint(lat: 50.716, lng: 4.611),
+    end: MapPoint(lat: 50.671, lng: 4.581)
+)
+check(MapRoutePolyline.points(for: routePreview) == [routePreview.start, routePreview.end], "Missing polyline should use route endpoints")
+
 print("SportsGreenMooveNativeChecks passed")

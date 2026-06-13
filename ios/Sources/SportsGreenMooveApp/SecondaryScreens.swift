@@ -36,20 +36,22 @@ struct RideMonitorScreen: View {
 
     var body: some View {
         OverlayListScreen(title: "COURSE ACTIVE") {
-            OverlayHeroMetric(
-                value: appState.activeRide?.etaLabel ?? "16h38",
-                label: "Véhicule · \(appState.activeRide?.vehicleLastUpdateLabel ?? "Il y a 12 s")",
-                accent: SGM.greenLight
-            )
-            OverlayCard(
-                title: "Véhicule",
-                subtitle: appState.activeRide?.vehicleLastUpdateLabel ?? "En attente GPS",
-                meta: appState.activeRide?.stale == true ? "À VÉRIFIER" : "LIVE"
-            )
-            OverlayCard(title: "Enfant", subtitle: appState.activeRide?.childLastUpdateLabel ?? "Non disponible", meta: "SUIVI")
             if let ride = appState.activeRide {
+                GoogleMapsRoutePreviewCard(ride: ride, preview: appState.activeRideTrip?.mapPreview)
+                OverlayCard(
+                    title: "Véhicule",
+                    subtitle: ride.vehicleLastUpdateLabel,
+                    meta: ride.stale ? "À VÉRIFIER" : "LIVE"
+                )
+                OverlayCard(title: "Enfant", subtitle: ride.childLastUpdateLabel ?? "Non disponible", meta: "SUIVI")
                 RidePassengerControls(ride: ride)
                 RideEndControls()
+            } else {
+                OverlayHeroMetric(
+                    value: "Aucune",
+                    label: "Démarrez un trajet confirmé pour activer le suivi.",
+                    accent: SGM.greenLight
+                )
             }
             OverlayCard(title: "Urgence", subtitle: "Contact parent disponible", meta: "APPELER")
         }

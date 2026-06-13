@@ -128,17 +128,18 @@ private func mapTripMatch(_ data: [String: Any]) -> TripMatchSummary? {
 
     let route = data["route"] as? [String: Any]
     let detourSeconds = intValue(route?["detourDurationSeconds"])
+    let summary = mapClientTripSummary(summaryData, route: route)
     return TripMatchSummary(
         tripId: tripId,
         score: doubleValue(data["score"]) ?? 0,
-        summary: mapClientTripSummary(summaryData),
+        summary: summary,
         reasons: data["reasons"] as? [String] ?? [],
         detourMinutes: detourSeconds.map { Int(round(Double($0) / 60)) },
         pickupDistanceMeters: intValue(route?["pickupDistanceMeters"])
     )
 }
 
-private func mapClientTripSummary(_ data: [String: Any]) -> TripSummary {
+private func mapClientTripSummary(_ data: [String: Any], route: [String: Any]?) -> TripSummary {
     let seats = intValue(data["seatsAvailable"]) ?? 0
     return TripSummary(
         id: data["id"] as? String ?? "",
@@ -155,7 +156,8 @@ private func mapClientTripSummary(_ data: [String: Any]) -> TripSummary {
         priceLabel: data["priceLabel"] as? String ?? "Gratuit",
         passengerInitials: data["passengerInitials"] as? [String] ?? [],
         reasons: data["reasons"] as? [String] ?? [],
-        status: TripStatus(rawValue: data["status"] as? String ?? "") ?? .upcoming
+        status: TripStatus(rawValue: data["status"] as? String ?? "") ?? .upcoming,
+        mapPreview: mapRoutePreviewFromMatchData(summary: data, route: route)
     )
 }
 
