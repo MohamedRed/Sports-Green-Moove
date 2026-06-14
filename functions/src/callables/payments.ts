@@ -13,7 +13,7 @@ import { computeRewardBalanceCents } from "../domain/rewards.js";
 import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth, requireRole } from "../lib/https.js";
-import { stripePublishableKeySecret, stripeSecretKeySecret } from "../lib/stripeRuntime.js";
+import { stripePublishableKeySecret, stripeSecretKeySecret } from "../lib/providerSecrets.js";
 
 type BookingDocument = {
   tripId: string;

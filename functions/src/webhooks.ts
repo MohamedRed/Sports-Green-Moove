@@ -4,12 +4,12 @@ import { normalizeRadarWebhookPayload, verifyRadarSignature } from "./services/r
 import { reconcileRadarEvent } from "./services/radarReconciliation.js";
 import { createStripeClient } from "./services/stripeConnect.js";
 import { reconcileStripeEvent } from "./services/stripeReconciliation.js";
-import { stripeSecretKeySecret, stripeWebhookSecret } from "./lib/stripeRuntime.js";
+import { radarWebhookSecret, stripeSecretKeySecret, stripeWebhookSecret } from "./lib/providerSecrets.js";
 
-export const radarWebhook = onRequest(async (req, res) => {
+export const radarWebhook = onRequest({ secrets: [radarWebhookSecret] }, async (req, res) => {
   const signature = req.header("x-radar-signature") ?? req.header("radar-signature");
   const signingId = req.header("x-radar-signing-id");
-  if (!verifyRadarSignature(signingId, signature)) {
+  if (!verifyRadarSignature(signingId, signature, radarWebhookSecret.value())) {
     res.status(401).send("invalid signature");
     return;
   }
