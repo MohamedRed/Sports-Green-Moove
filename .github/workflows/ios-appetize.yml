@@ -9,6 +9,9 @@ env:
 jobs:
   build-and-upload:
     name: Build iOS simulator app and upload to Appetize
+    # macOS runners are intentionally disabled for routine CI cost control.
+    # Re-enable only for an approved final iOS release-candidate build.
+    if: ${{ false }}
     runs-on: macos-26-intel
     timeout-minutes: 30
 

@@ -100,6 +100,9 @@ jobs:
 
   ios-native-checks:
     name: iOS native checks
+    # macOS runners are intentionally disabled for routine CI cost control.
+    # Re-enable only for an approved final iOS release-candidate build.
+    if: ${{ false }}
     runs-on: macos-26-intel
 
     permissions:
@@ -133,6 +136,9 @@ jobs:
 
   ios-native-ui:
     name: iOS native UI tests
+    # macOS runners are intentionally disabled for routine CI cost control.
+    # Re-enable only for an approved final iOS release-candidate build.
+    if: ${{ false }}
     runs-on: macos-26-intel
 
     permissions:
