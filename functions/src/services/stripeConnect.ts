@@ -35,8 +35,11 @@ export function connectedAccountFromRecord(record: { stripeAccountId?: unknown }
     : null;
 }
 
-export async function createConnectedAccount(request: ConnectedAccountRequest): Promise<ConnectedAccountResponse> {
-  const stripe = createStripeClient();
+export async function createConnectedAccount(
+  request: ConnectedAccountRequest,
+  secret?: string,
+): Promise<ConnectedAccountResponse> {
+  const stripe = createStripeClient(secret);
   const response = await stripe.rawRequest("POST", "/v2/core/accounts", {
     contact_email: request.email,
     identity: {
@@ -83,8 +86,9 @@ export function buildConnectedAccountLinkCreateBody(request: ConnectedAccountLin
 
 export async function createConnectedAccountLink(
   request: ConnectedAccountLinkRequest,
+  secret?: string,
 ): Promise<{ url: string; expiresAt?: string }> {
-  const stripe = createStripeClient();
+  const stripe = createStripeClient(secret);
   const response = await stripe.rawRequest("POST", "/v2/core/account_links", buildConnectedAccountLinkCreateBody(request));
   const link = response as unknown as { url: string; expires_at?: string };
   return { url: link.url, expiresAt: link.expires_at };
@@ -130,8 +134,11 @@ export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentCon
   };
 }
 
-export async function createRideDestinationPaymentIntent(context: RidePaymentIntentContext): Promise<Stripe.PaymentIntent> {
-  const stripe = createStripeClient();
+export async function createRideDestinationPaymentIntent(
+  context: RidePaymentIntentContext,
+  secret?: string,
+): Promise<Stripe.PaymentIntent> {
+  const stripe = createStripeClient(secret);
   const request = buildRidePaymentIntentCreateParams(context);
   return stripe.paymentIntents.create(request.params, { idempotencyKey: request.idempotencyKey });
 }
@@ -163,8 +170,11 @@ export function buildRewardPayoutTransferCreateParams(context: RewardPayoutTrans
   };
 }
 
-export async function createRewardPayoutTransfer(context: RewardPayoutTransferContext): Promise<Stripe.Transfer> {
-  const stripe = createStripeClient();
+export async function createRewardPayoutTransfer(
+  context: RewardPayoutTransferContext,
+  secret?: string,
+): Promise<Stripe.Transfer> {
+  const stripe = createStripeClient(secret);
   const request = buildRewardPayoutTransferCreateParams(context);
   return stripe.transfers.create(request.params, { idempotencyKey: request.idempotencyKey });
 }

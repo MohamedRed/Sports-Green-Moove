@@ -4,6 +4,7 @@ import { normalizeRadarWebhookPayload, verifyRadarSignature } from "./services/r
 import { reconcileRadarEvent } from "./services/radarReconciliation.js";
 import { createStripeClient } from "./services/stripeConnect.js";
 import { reconcileStripeEvent } from "./services/stripeReconciliation.js";
+import { stripeSecretKeySecret, stripeWebhookSecret } from "./lib/stripeRuntime.js";
 
 export const radarWebhook = onRequest(async (req, res) => {
   const signature = req.header("x-radar-signature") ?? req.header("radar-signature");
@@ -21,8 +22,8 @@ export const radarWebhook = onRequest(async (req, res) => {
   res.status(204).send();
 });
 
-export const stripeWebhook = onRequest(async (req, res) => {
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
+export const stripeWebhook = onRequest({ secrets: [stripeSecretKeySecret, stripeWebhookSecret] }, async (req, res) => {
+  const secret = stripeWebhookSecret.value();
   const signature = req.header("stripe-signature");
   const rawBody = (req as unknown as { rawBody?: Buffer }).rawBody ?? Buffer.from(JSON.stringify(req.body ?? {}));
 
@@ -32,7 +33,7 @@ export const stripeWebhook = onRequest(async (req, res) => {
   }
 
   try {
-    const stripe = createStripeClient();
+    const stripe = createStripeClient(stripeSecretKeySecret.value());
     const event = stripe.webhooks.constructEvent(rawBody, signature, secret);
     await reconcileStripeEvent(event);
 
