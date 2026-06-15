@@ -21,7 +21,7 @@ class SportsGreenMooveUiFlowTest {
         setTestContent {
             OnboardingScreen(
                 loading = false,
-                error = null,
+                error = "Entrez votre adresse e-mail.",
                 onSubmit = { _, _, _, _ -> },
                 onGoogle = {},
                 onFacebook = {},
@@ -31,10 +31,12 @@ class SportsGreenMooveUiFlowTest {
         assertTagsExist(
             SgmTestTags.AuthScreen,
             SgmTestTags.AuthEmailAction,
+            SgmTestTags.AuthError,
             SgmTestTags.AuthFacebookAction,
             SgmTestTags.AuthGoogleAction,
         )
         compose.onNodeWithTag(SgmTestTags.AuthEmailAction).assertIsDisplayed()
+        compose.onNodeWithTag(SgmTestTags.AuthError).assertIsDisplayed()
         compose.onNodeWithTag(SgmTestTags.AuthGoogleAction).assertIsDisplayed()
     }
 

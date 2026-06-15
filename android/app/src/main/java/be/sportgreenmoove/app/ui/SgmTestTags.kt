@@ -6,6 +6,7 @@ import androidx.compose.ui.platform.testTag
 object SgmTestTags {
     const val AuthScreen = "auth.screen"
     const val AuthEmailAction = "auth.email.action"
+    const val AuthError = "auth.error"
     const val AuthFacebookAction = "auth.facebook.action"
     const val AuthGoogleAction = "auth.google.action"
     const val ConfigurationRequired = "configuration.required"
