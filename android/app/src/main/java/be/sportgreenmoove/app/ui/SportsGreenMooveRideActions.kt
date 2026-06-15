@@ -6,6 +6,7 @@ import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidProviderSet
 import be.sportgreenmoove.app.services.StripePaymentSheetController
 import be.sportgreenmoove.app.services.endTrackedRide
@@ -51,7 +52,7 @@ fun launchPayment(
             val config = providers.stripe.prepareRidePayment(booking.bookingId)
             paymentSheet.present(config)
         }.onFailure {
-            setError(it.message)
+            setError(UserFacingErrorPolicy.messageFor(it))
         }
         setLoading(false)
     }
@@ -73,7 +74,7 @@ fun launchApproveBooking(
             providers.firebase.approveBooking(request.bookingId)
             setNotice("Demande approuvée.")
             refreshAppData()
-        }.onFailure { setError(it.message) }
+        }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         setLoading(false)
     }
 }
@@ -118,7 +119,7 @@ fun launchTripAction(
                         setNotice("Demande envoyée: $bookingId")
                     }
                 }
-            }.onFailure { setError(it.message) }
+            }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         }
     }
 
@@ -153,7 +154,7 @@ fun launchPassengerStatusUpdate(
                 setNotice("Dropoff confirmé.")
             }
             setActiveRide(providers.firebase.getActiveRide())
-        }.onFailure { setError(it.message) }
+        }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         setLoading(false)
     }
 }
@@ -186,7 +187,7 @@ fun launchEndActiveRide(
             setScreen(AppScreen.Trips)
             setNotice("Course terminée · ${"%.1f".format(Locale.FRANCE, completion.co2SavedKg)} kg CO₂ · ${completion.rewardLabel()}")
             refreshAppData()
-        }.onFailure { setError(it.message) }
+        }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         setLoading(false)
     }
 }

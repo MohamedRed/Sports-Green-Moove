@@ -34,6 +34,7 @@ import be.sportgreenmoove.app.data.InboxSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.FirebaseGateway
 import kotlinx.coroutines.launch
 
@@ -52,7 +53,7 @@ fun MessagesScreen(firebase: FirebaseGateway) {
         error = null
         runCatching { firebase.getInbox() }
             .onSuccess { inbox = it }
-            .onFailure { error = it.message ?: "Inbox indisponible." }
+            .onFailure { error = UserFacingErrorPolicy.messageFor(it) }
         loading = false
     }
     fun submitReview(reviewId: String, rideSessionId: String, ratedUserId: String, score: Int) {
@@ -66,7 +67,7 @@ fun MessagesScreen(firebase: FirebaseGateway) {
             }.onSuccess {
                 notice = "Avis envoyé."
             }.onFailure {
-                error = it.message ?: "Avis impossible à envoyer."
+                error = UserFacingErrorPolicy.messageFor(it)
             }
             submittingReviewId = null
         }

@@ -2,7 +2,10 @@ import { Timestamp } from "firebase-admin/firestore";
 import { onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import {
+  defaultRoleKeysForClaims,
+  initializedRoleClaims,
   normalizeRoleMap,
+  roleMapForRoleKeys,
   roleKeysForRoleMap,
   stripLegacyRoleClaims,
   USER_ROLES,
@@ -24,9 +27,51 @@ const setUserRolesSchema = z.object({
   roles: roleMapSchema,
 });
 
+const initializeUserProfileSchema = z.object({
+  displayName: z.string().trim().min(2).max(160).optional(),
+}).strict();
+
 function roleClaims(roleKeys: readonly UserRole[]): Record<string, unknown> {
   return { roleKeys: [...roleKeys] };
 }
+
+export const initializeUserProfile = onCall(async (request) => {
+  const uid = requireAuth(request.auth?.uid);
+  const data = initializeUserProfileSchema.parse(request.data ?? {});
+  const user = await auth.getUser(uid);
+  const currentClaims = user.customClaims ?? {};
+  const roleKeys = defaultRoleKeysForClaims(currentClaims);
+  const rawRoleKeys = currentClaims.roleKeys;
+  const hasLegacyClaims = "roles" in currentClaims || USER_ROLES.some((role) => role in currentClaims);
+  const needsClaimWrite = hasLegacyClaims ||
+    !Array.isArray(rawRoleKeys) ||
+    rawRoleKeys.length !== roleKeys.length ||
+    roleKeys.some((role, index) => rawRoleKeys[index] !== role);
+
+  if (needsClaimWrite) {
+    await auth.setCustomUserClaims(uid, initializedRoleClaims(currentClaims));
+  }
+
+  const profileRef = firestore.collection("users").doc(uid);
+  const profile = await profileRef.get();
+  const now = Timestamp.now();
+  const profileData: Record<string, unknown> = {
+    email: user.email ?? request.auth?.token.email ?? null,
+    roles: roleMapForRoleKeys(roleKeys),
+    updatedAt: now,
+  };
+  const displayName = data.displayName ?? user.displayName;
+  if (displayName) profileData.displayName = displayName;
+  if (!profile.exists) profileData.createdAt = now;
+
+  await profileRef.set(profileData, { merge: true });
+
+  return {
+    userId: uid,
+    roles: roleMapForRoleKeys(roleKeys),
+    roleKeys,
+  };
+});
 
 export const setUserRoles = onCall(async (request) => {
   requireAuth(request.auth?.uid);

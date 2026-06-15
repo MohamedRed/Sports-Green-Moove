@@ -8,6 +8,7 @@ import androidx.compose.runtime.setValue
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripPublishDraft
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.FirebaseGateway
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -66,7 +67,7 @@ class PublishController(
             onError(null)
             runCatching { firebase.suggestPlaces(input) }
                 .onSuccess { setSuggestions(target, it) }
-                .onFailure { onError(it.message) }
+                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }
@@ -85,7 +86,7 @@ class PublishController(
                         destinationSuggestions = emptyList()
                     }
                 }
-                .onFailure { onError(it.message) }
+                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }
@@ -103,7 +104,7 @@ class PublishController(
                     onNotice("Trajet publié: $tripId")
                     onPublished()
                 }
-                .onFailure { onError(it.message) }
+                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }

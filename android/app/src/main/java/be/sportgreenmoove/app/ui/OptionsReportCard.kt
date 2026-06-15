@@ -27,6 +27,7 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.FirebaseGateway
 import kotlinx.coroutines.launch
 
@@ -60,7 +61,7 @@ fun OptionsReportCard(firebase: FirebaseGateway) {
                 description = ""
                 message = "Signalement envoyé: $reportId"
             }.onFailure { error ->
-                message = error.message ?: "Signalement impossible."
+                message = UserFacingErrorPolicy.messageFor(error)
             }
             submitting = false
         }

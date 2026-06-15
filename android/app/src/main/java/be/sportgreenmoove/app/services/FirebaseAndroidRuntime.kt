@@ -5,6 +5,8 @@ import be.sportgreenmoove.app.R
 import be.sportgreenmoove.app.data.AuthSession
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
 
 data class AndroidProviderSet(
@@ -41,24 +43,33 @@ object AndroidRuntime {
 
 private class FirebaseAndroidAuthGateway : AuthGateway {
     private val auth = FirebaseAuth.getInstance()
+    private val functions = FirebaseFunctions.getInstance()
     override val isConfigured: Boolean = true
 
     override suspend fun currentSession(): AuthSession? =
-        auth.currentUser?.let { AuthSession(uid = it.uid, email = it.email) }
+        auth.currentUser?.let { initializeUserProfile(it) }
 
     override suspend fun signIn(email: String, password: String): AuthSession {
         val result = auth.signInWithEmailAndPassword(email, password).await()
         val user = result.user ?: throw ProviderConfigurationException("Réponse Firebase Auth invalide.")
-        return AuthSession(uid = user.uid, email = user.email)
+        return initializeUserProfile(user)
     }
 
     override suspend fun signUp(name: String, email: String, password: String): AuthSession {
         val result = auth.createUserWithEmailAndPassword(email, password).await()
         val user = result.user ?: throw ProviderConfigurationException("Réponse Firebase Auth invalide.")
-        return AuthSession(uid = user.uid, email = user.email)
+        return initializeUserProfile(user, displayName = name)
     }
 
     override fun signOut() {
         auth.signOut()
+    }
+
+    private suspend fun initializeUserProfile(user: FirebaseUser, displayName: String? = null): AuthSession {
+        val data = mutableMapOf<String, Any>()
+        displayName?.takeIf(String::isNotBlank)?.let { data["displayName"] = it }
+        functions.getHttpsCallable("initializeUserProfile").call(data).await()
+        user.getIdToken(true).await()
+        return AuthSession(uid = user.uid, email = user.email)
     }
 }

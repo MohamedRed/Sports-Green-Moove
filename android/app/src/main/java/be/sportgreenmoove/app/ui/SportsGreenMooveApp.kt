@@ -26,6 +26,7 @@ import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmTheme
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidRuntime
 import be.sportgreenmoove.app.services.rememberStripePaymentSheetController
 import com.stripe.android.paymentsheet.PaymentSheetResult
@@ -84,13 +85,13 @@ fun SportsGreenMooveApp() {
         when (result) {
             is PaymentSheetResult.Completed -> {
                 noticeMessage = "Paiement confirmé."
-                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
+                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } }
             }
             is PaymentSheetResult.Canceled -> {
                 noticeMessage = "Paiement annulé."
             }
             is PaymentSheetResult.Failed -> {
-                errorMessage = result.error.localizedMessage ?: "Paiement Stripe refusé."
+                errorMessage = UserFacingErrorPolicy.messageFor(result.error)
             }
         }
     }
@@ -153,7 +154,7 @@ fun SportsGreenMooveApp() {
         if (providers.isConfigured) {
             session = providers.auth.currentSession()
             if (session != null) {
-                runCatching { refreshAppData() }.onFailure { errorMessage = it.message }
+                runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
             }
         }
     }
@@ -215,7 +216,7 @@ fun SportsGreenMooveApp() {
                             initialDestination = searchController.destination,
                             onError = { errorMessage = it },
                             onNotice = { noticeMessage = it },
-                            onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } } },
+                            onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } } },
                         )
                         AppScreen.Messages -> MessagesScreen(firebase = providers.firebase)
                         AppScreen.Profile -> ProfileScreen(
@@ -225,7 +226,7 @@ fun SportsGreenMooveApp() {
                             rewardSummary = ledgerSummaries.rewards,
                             onRoleChange = {
                                 role = it
-                                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
+                                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } }
                             },
                             onGroups = { screen = AppScreen.Groups },
                             onImpact = { screen = AppScreen.Impact },

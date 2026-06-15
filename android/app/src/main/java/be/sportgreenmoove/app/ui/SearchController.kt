@@ -9,6 +9,7 @@ import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripSearchCriteria
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidProviderSet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -62,7 +63,7 @@ class SearchController(
                         destinationSuggestions = suggestions
                     }
                 }
-                .onFailure { onError(it.message) }
+                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }
@@ -81,7 +82,7 @@ class SearchController(
                         destinationSuggestions = emptyList()
                     }
                 }
-                .onFailure { onError(it.message) }
+                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }
@@ -117,7 +118,7 @@ class SearchController(
                 )
             }.onSuccess {
                 matches = it
-            }.onFailure { onError(it.message) }
+            }.onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }
@@ -129,7 +130,7 @@ class SearchController(
             runCatching {
                 val bookingId = providers.firebase.requestBooking(match.tripId, childUserId)
                 onNotice("Demande envoyée: $bookingId")
-            }.onFailure { onError(it.message) }
+            }.onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             onAppLoading(false)
         }
     }
