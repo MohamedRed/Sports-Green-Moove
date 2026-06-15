@@ -46,6 +46,7 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         resValue("string", "sgm_radar_publishable_key", radarPublishableKey)
         resValue("string", "sgm_stripe_connect_return_url", stripeConnectReturnUrl)
         resValue("string", "sgm_stripe_connect_refresh_url", stripeConnectRefreshUrl)
