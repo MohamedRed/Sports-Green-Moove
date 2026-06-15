@@ -19,6 +19,7 @@ const files = {
   evidenceValidator: read("scripts/validate-release-evidence.mjs"),
   packageJson: read("package.json"),
   backendCiWorkflow: read(".github/workflows/backend-ci.yml"),
+  nativeCiWorkflow: read(".github/workflows/native-ci.yml"),
   releaseEvidenceWorkflow: read(".github/workflows/release-evidence.yml"),
   releaseReadinessWorkflow: read(".github/workflows/release-readiness.yml"),
 };
@@ -169,6 +170,10 @@ includes(files.packageJson, "test:stripe-webhook-flow", "Package scripts expose 
 includes(files.packageJson, "smoke:live-backend-flow", "Package scripts expose live backend flow smoke test");
 includes(files.packageJson, "smoke:live-operations-flow", "Package scripts expose live operations flow smoke test");
 includes(files.backendCiWorkflow, "test:stripe-webhook-flow", "Backend CI validates Stripe webhook flow");
+includes(files.nativeCiWorkflow, "workflow_dispatch", "Native CI can be launched manually for Android flow verification");
+includes(files.nativeCiWorkflow, "connectedDebugAndroidTest", "Native CI runs connected Android UI tests");
+includes(files.nativeCiWorkflow, "reactivecircus/android-emulator-runner", "Native CI provisions a GitHub-hosted Android emulator");
+includes(files.nativeCiWorkflow, "android-connected-ui-test-results", "Native CI uploads Android UI test artifacts");
 
 console.log("Store readiness static checks passed.");
 

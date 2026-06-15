@@ -1,6 +1,7 @@
 name: Native CI
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - ".github/workflows/native-ci.yml"
@@ -73,6 +74,7 @@ jobs:
   android-native-ui:
     name: Android native UI tests
     runs-on: ubuntu-latest
+    timeout-minutes: 35
 
     permissions:
       contents: read
@@ -97,6 +99,16 @@ jobs:
           arch: x86_64
           profile: pixel_6
           script: cd android && ./gradlew :app:connectedDebugAndroidTest --no-daemon --stacktrace
+
+      - name: Upload Android instrumentation reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-connected-ui-test-results
+          path: |
+            android/app/build/reports/androidTests/connected/**
+            android/app/build/outputs/androidTest-results/connected/**
+          if-no-files-found: ignore
 
   ios-native-checks:
     name: iOS native checks
