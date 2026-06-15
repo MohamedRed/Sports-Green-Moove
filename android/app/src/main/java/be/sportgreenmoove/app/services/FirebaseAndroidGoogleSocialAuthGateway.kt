@@ -43,7 +43,7 @@ class FirebaseAndroidGoogleSocialAuthGateway(
         val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
         val result = auth.signInWithCredential(firebaseCredential).await()
         val user = result.user ?: throw ProviderConfigurationException("Réponse Google Auth invalide.")
-        return AuthSession(uid = user.uid, email = user.email)
+        return AuthSession(uid = user.uid, email = user.email, displayName = user.displayName)
     }
 
     override fun signOut() {

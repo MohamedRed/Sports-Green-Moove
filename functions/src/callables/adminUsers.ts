@@ -60,7 +60,9 @@ export const initializeUserProfile = onCall(async (request) => {
     roles: roleMapForRoleKeys(roleKeys),
     updatedAt: now,
   };
-  const displayName = data.displayName ?? user.displayName;
+  const existingProfile = profile.data() ?? {};
+  const existingDisplayName = existingProfile.displayName as string | undefined;
+  const displayName = data.displayName ?? user.displayName ?? existingDisplayName;
   if (displayName) profileData.displayName = displayName;
   if (!profile.exists) profileData.createdAt = now;
 
@@ -68,6 +70,8 @@ export const initializeUserProfile = onCall(async (request) => {
 
   return {
     userId: uid,
+    displayName: displayName ?? null,
+    email: user.email ?? request.auth?.token.email ?? null,
     roles: roleMapForRoleKeys(roleKeys),
     roleKeys,
   };

@@ -28,8 +28,6 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmTheme
 import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidRuntime
-import be.sportgreenmoove.app.services.rememberStripePaymentSheetController
-import com.stripe.android.paymentsheet.PaymentSheetResult
 import kotlinx.coroutines.launch
 
 @Composable
@@ -81,20 +79,12 @@ fun SportsGreenMooveApp() {
             emptyList()
         }
     }
-    val paymentSheet = rememberStripePaymentSheetController { result ->
-        when (result) {
-            is PaymentSheetResult.Completed -> {
-                noticeMessage = "Paiement confirmé."
-                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } }
-            }
-            is PaymentSheetResult.Canceled -> {
-                noticeMessage = "Paiement annulé."
-            }
-            is PaymentSheetResult.Failed -> {
-                errorMessage = UserFacingErrorPolicy.messageFor(result.error)
-            }
-        }
-    }
+    val paymentSheet = rememberSportsGreenMoovePaymentSheetController(
+        scope = scope,
+        refreshAppData = { refreshAppData() },
+        setError = { errorMessage = it },
+        setNotice = { noticeMessage = it },
+    )
     fun approveBooking(request: BookingRequestSummary) {
         launchApproveBooking(
             scope = scope,
@@ -192,6 +182,7 @@ fun SportsGreenMooveApp() {
                 ) {
                     when (screen) {
                         AppScreen.Home -> HomeScreen(
+                            displayName = session?.displayName,
                             trips = trips,
                             impactSummary = ledgerSummaries.impact,
                             onTrips = { screen = AppScreen.Trips },
@@ -221,6 +212,8 @@ fun SportsGreenMooveApp() {
                         AppScreen.Messages -> MessagesScreen(firebase = providers.firebase)
                         AppScreen.Profile -> ProfileScreen(
                             role = role,
+                            displayName = session?.displayName,
+                            email = session?.email,
                             primaryClubLabel = clubs.firstOrNull { it.isMember }?.name ?: "Aucun club lié",
                             impactSummary = ledgerSummaries.impact,
                             rewardSummary = ledgerSummaries.rewards,

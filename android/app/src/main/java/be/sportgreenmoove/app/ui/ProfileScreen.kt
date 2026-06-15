@@ -50,6 +50,8 @@ private fun profileSettings(primaryClubLabel: String) = listOf(
 @Composable
 fun ProfileScreen(
     role: AppRole,
+    displayName: String?,
+    email: String?,
     primaryClubLabel: String,
     impactSummary: ImpactSummary,
     rewardSummary: RewardSummary,
@@ -69,7 +71,7 @@ fun ProfileScreen(
             .padding(bottom = 20.dp),
     ) {
         V2TopBar("MON PROFIL")
-        ProfileIdentity(primaryClubLabel)
+        ProfileIdentity(displayName = displayName, email = email, primaryClubLabel = primaryClubLabel)
         ProfileRoleSelector(role = role, onRoleChange = onRoleChange)
         ProfileImpactCard(summary = impactSummary, onClick = onImpact)
         ProfileRewardsCard(summary = rewardSummary, onClick = onRewards)
@@ -89,7 +91,13 @@ fun ProfileScreen(
 }
 
 @Composable
-private fun ProfileIdentity(primaryClubLabel: String) {
+private fun ProfileIdentity(displayName: String?, email: String?, primaryClubLabel: String) {
+    val name = displayName?.takeIf(String::isNotBlank) ?: email?.substringBefore("@") ?: "Green-Mover"
+    val initials = name.split(Regex("\\s+"))
+        .filter(String::isNotBlank)
+        .take(2)
+        .joinToString("") { it.first().uppercaseChar().toString() }
+        .ifBlank { "GM" }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -105,15 +113,15 @@ private fun ProfileIdentity(primaryClubLabel: String) {
                 .background(Brush.linearGradient(listOf(SgmColor.Green, SgmColor.GreenDark))),
             contentAlignment = Alignment.Center,
         ) {
-            Text("OB", style = SgmType.Display2XL.copy(color = SgmColor.TextOnGreen, fontSize = 30.sp, letterSpacing = 0.04.em))
+            Text(initials, style = SgmType.Display2XL.copy(color = SgmColor.TextOnGreen, fontSize = 30.sp, letterSpacing = 0.04.em))
         }
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                "BAKOMBA-NZOLUVONDA",
+                name.uppercase(Locale.FRANCE),
                 style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.06.em),
             )
             Text(
-                "Olivier · $primaryClubLabel",
+                "$primaryClubLabel${email?.let { " · $it" }.orEmpty()}",
                 style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.Medium),
             )
         }

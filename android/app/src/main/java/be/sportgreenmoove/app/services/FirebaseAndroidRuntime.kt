@@ -68,8 +68,13 @@ private class FirebaseAndroidAuthGateway : AuthGateway {
     private suspend fun initializeUserProfile(user: FirebaseUser, displayName: String? = null): AuthSession {
         val data = mutableMapOf<String, Any>()
         displayName?.takeIf(String::isNotBlank)?.let { data["displayName"] = it }
-        functions.getHttpsCallable("initializeUserProfile").call(data).await()
+        val result = functions.getHttpsCallable("initializeUserProfile").call(data).await()
+        val profile = result.data as? Map<*, *>
         user.getIdToken(true).await()
-        return AuthSession(uid = user.uid, email = user.email)
+        return AuthSession(
+            uid = user.uid,
+            email = profile?.get("email") as? String ?: user.email,
+            displayName = profile?.get("displayName") as? String ?: displayName ?: user.displayName,
+        )
     }
 }

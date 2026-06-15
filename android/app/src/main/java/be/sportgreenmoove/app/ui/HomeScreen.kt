@@ -16,6 +16,7 @@ import be.sportgreenmoove.app.design.Sgm
 
 @Composable
 fun HomeScreen(
+    displayName: String?,
     trips: List<TripSummary>,
     impactSummary: ImpactSummary,
     onTrips: () -> Unit,
@@ -32,7 +33,7 @@ fun HomeScreen(
             .verticalScroll(rememberScrollState())
             .padding(bottom = 18.dp),
     ) {
-        HomeHeader()
+        HomeHeader(displayName)
         HomeHeroCard(trip = trips.firstOrNull(), onClick = onRide)
         HomeStatsRow(impactSummary)
         HomeSectionLabel(title = "SEMAINE À VENIR", action = "Tout voir", onAction = onTrips)

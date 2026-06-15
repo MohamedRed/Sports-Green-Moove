@@ -67,7 +67,7 @@ class FirebaseAndroidFacebookSocialAuthGateway(
                                 if (user == null) {
                                     completeWithError(ProviderConfigurationException("Réponse Facebook Auth invalide."))
                                 } else {
-                                    completeWithSession(AuthSession(uid = user.uid, email = user.email))
+                                    completeWithSession(AuthSession(uid = user.uid, email = user.email, displayName = user.displayName))
                                 }
                             }
                             .addOnFailureListener(::completeWithError)

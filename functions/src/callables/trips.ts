@@ -14,6 +14,7 @@ import type { ClientSearchMatch, SearchRequest, Trip } from "../domain/types.js"
 import { GoogleRoutesProvider } from "../services/googleRoutes.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
+import { googleMapsApiKeySecret } from "../lib/providerSecrets.js";
 import { toClientMapRoutePreview, toClientTripSummary } from "../lib/clientTrips.js";
 
 const latLngSchema = z.object({
@@ -140,13 +141,18 @@ export const listTrips = onCall(async (request) => {
   };
 });
 
-export const searchTrips = onCall(async (request) => {
+export const searchTrips = onCall({ secrets: [googleMapsApiKeySecret] }, async (request) => {
   const uid = requireAuth(request.auth?.uid);
   const parsed = searchTripsSchema.parse(request.data);
   const searchRequest = await loadSearchRequest(uid, parsed);
 
   const candidates = await loadCandidateTrips(searchRequest);
-  const ranked = await rankTrips(searchRequest, candidates, new GoogleRoutesProvider(), { finalRouteLimit: 12 });
+  const ranked = await rankTrips(
+    searchRequest,
+    candidates,
+    new GoogleRoutesProvider({ apiKey: googleMapsApiKeySecret.value() }),
+    { finalRouteLimit: 12 },
+  );
 
   return {
     matches: ranked.slice(0, 12).map((match): ClientSearchMatch => ({

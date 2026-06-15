@@ -32,7 +32,8 @@ import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun HomeHeader() {
+fun HomeHeader(displayName: String?) {
+    val firstName = displayName?.trim()?.split(Regex("\\s+"))?.firstOrNull()?.ifBlank { null }
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,7 +43,7 @@ fun HomeHeader() {
         Column(modifier = Modifier.weight(1f)) {
             Row(verticalAlignment = Alignment.Bottom) {
                 Text("Bonjour, ", style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary, fontWeight = FontWeight.Bold))
-                Text("Olivier", style = SgmType.BodyBase.copy(color = SgmColor.Green, fontWeight = FontWeight.Bold))
+                Text(firstName ?: "Green-Mover", style = SgmType.BodyBase.copy(color = SgmColor.Green, fontWeight = FontWeight.Bold))
             }
             Text(
                 "Mardi 07 Novembre 2022",

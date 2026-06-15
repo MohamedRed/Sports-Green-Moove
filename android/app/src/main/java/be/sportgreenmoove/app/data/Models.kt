@@ -11,6 +11,7 @@ enum class AppRole {
 data class AuthSession(
     val uid: String,
     val email: String?,
+    val displayName: String?,
 )
 
 enum class TripStatus {
