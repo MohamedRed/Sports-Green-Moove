@@ -47,6 +47,7 @@ fun OnboardingRoute(
                 setLoading(false)
             }
         },
+        onClearError = { setError(null) },
         onGoogle = {
             scope.launch {
                 val activity = context.findActivity()

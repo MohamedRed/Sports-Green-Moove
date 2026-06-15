@@ -45,6 +45,7 @@ fun OnboardingScreen(
     onSubmit: (OnboardingMode, String, String, String) -> Unit,
     onGoogle: () -> Unit,
     onFacebook: () -> Unit,
+    onClearError: () -> Unit = {},
 ) {
     var mode by remember { mutableStateOf(OnboardingMode.Login) }
     var name by remember { mutableStateOf("") }
@@ -60,15 +61,47 @@ fun OnboardingScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                OnboardingModeTab("SE CONNECTER", selected = mode == OnboardingMode.Login, onClick = { mode = OnboardingMode.Login }, modifier = Modifier.weight(1f))
-                OnboardingModeTab("S'INSCRIRE", selected = mode == OnboardingMode.SignUp, onClick = { mode = OnboardingMode.SignUp }, modifier = Modifier.weight(1f))
+                OnboardingModeTab(
+                    "SE CONNECTER",
+                    selected = mode == OnboardingMode.Login,
+                    onClick = {
+                        mode = OnboardingMode.Login
+                        onClearError()
+                    },
+                    modifier = Modifier.weight(1f),
+                )
+                OnboardingModeTab(
+                    "S'INSCRIRE",
+                    selected = mode == OnboardingMode.SignUp,
+                    onClick = {
+                        mode = OnboardingMode.SignUp
+                        onClearError()
+                    },
+                    modifier = Modifier.weight(1f),
+                )
             }
-            if (mode == OnboardingMode.SignUp) OnboardingInput("Nom et prénom", name, { name = it })
-            OnboardingInput("votre@email.be", email, { email = it }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email))
+            if (mode == OnboardingMode.SignUp) {
+                OnboardingInput("Nom et prénom", name, {
+                    name = it
+                    onClearError()
+                })
+            }
+            OnboardingInput(
+                "votre@email.be",
+                email,
+                {
+                    email = it
+                    onClearError()
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            )
             OnboardingInput(
                 "Mot de passe",
                 password,
-                { password = it },
+                {
+                    password = it
+                    onClearError()
+                },
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             )
