@@ -15,6 +15,7 @@ import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth, requireRole } from "../lib/https.js";
 import { stripePublishableKeySecret, stripeSecretKeySecret } from "../lib/providerSecrets.js";
+import { parseCallableData } from "../lib/validation.js";
 
 type BookingDocument = {
   tripId: string;
@@ -37,7 +38,7 @@ export const createStripeAccount = onCall({ secrets: [stripeSecretKeySecret] }, 
   const schema = z.object({
     email: z.string().email(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const accountRef = firestore.collection("stripeAccounts").doc(uid);
   const existing = connectedAccountFromRecord((await accountRef.get()).data());
   if (existing) return existing;
@@ -67,7 +68,7 @@ export const createStripeAccountLink = onCall({ secrets: [stripeSecretKeySecret]
     returnUrl: z.string().url(),
     refreshUrl: z.string().url(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const accountSnap = await firestore.collection("stripeAccounts").doc(uid).get();
   const stripeAccount = accountSnap.data() as StripeAccountDocument | undefined;
   if (!stripeAccount?.stripeAccountId) {
@@ -103,7 +104,7 @@ export const createRidePaymentIntent = onCall(
       bookingId: z.string(),
       currency: z.literal("eur").default("eur"),
     });
-    const data = schema.parse(request.data);
+    const data = parseCallableData(schema, request.data);
     const bookingSnap = await firestore.collection("bookings").doc(data.bookingId).get();
     if (!bookingSnap.exists) throw new HttpsError("not-found", "Booking not found.");
 
@@ -179,7 +180,7 @@ export const issueRewardPayout = onCall({ secrets: [stripeSecretKeySecret] }, as
     currency: z.literal("eur").default("eur"),
     sourceId: z.string().min(1).max(120).regex(/^[A-Za-z0-9._-]+$/).optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const sourceId = data.sourceId ?? `manual_${Date.now()}`;
   const ledgerId = `payout_${data.userId}_${sourceId}`;
   const ledgerRef = firestore.collection("rewardLedger").doc(ledgerId);

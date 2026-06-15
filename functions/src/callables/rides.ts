@@ -14,6 +14,7 @@ import { firestore, realtimeDb } from "../lib/firebase.js";
 import { hasRole, requireAuth, requireRole } from "../lib/https.js";
 import { notifyUsers } from "../lib/notifications.js";
 import { toClientRideSnapshot } from "../lib/clientTrips.js";
+import { parseCallableData } from "../lib/validation.js";
 
 type BookingDocument = {
   childId?: string;
@@ -32,7 +33,7 @@ export const startRide = onCall(async (request) => {
     tripId: z.string(),
     bookingIds: z.array(z.string()).default([]),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const tripSnap = await firestore.collection("trips").doc(data.tripId).get();
   if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
 
@@ -111,7 +112,7 @@ async function markPassengerStatus(
     childId: z.string(),
     note: z.string().max(300).optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const rideRef = firestore.collection("rideSessions").doc(data.rideSessionId);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
@@ -208,7 +209,7 @@ export const endRide = onCall(async (request) => {
     distanceMeters: z.number().nonnegative().default(0),
     passengersSharing: z.number().int().nonnegative().default(1),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const rideRef = firestore.collection("rideSessions").doc(data.rideSessionId);
 
   const co2SavedKg = estimateCo2SavedKg(data.distanceMeters, data.passengersSharing);

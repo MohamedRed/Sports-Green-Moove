@@ -16,6 +16,7 @@ import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
 import { googleMapsApiKeySecret } from "../lib/providerSecrets.js";
 import { toClientMapRoutePreview, toClientTripSummary } from "../lib/clientTrips.js";
+import { parseCallableData } from "../lib/validation.js";
 
 const latLngSchema = z.object({
   lat: z.number().min(-90).max(90),
@@ -143,7 +144,7 @@ export const listTrips = onCall(async (request) => {
 
 export const searchTrips = onCall({ secrets: [googleMapsApiKeySecret] }, async (request) => {
   const uid = requireAuth(request.auth?.uid);
-  const parsed = searchTripsSchema.parse(request.data);
+  const parsed = parseCallableData(searchTripsSchema, request.data);
   const searchRequest = await loadSearchRequest(uid, parsed);
 
   const candidates = await loadCandidateTrips(searchRequest);
@@ -171,7 +172,7 @@ export const searchTrips = onCall({ secrets: [googleMapsApiKeySecret] }, async (
 export const createTrip = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   requireRole(request.auth?.token, "driver");
-  const data = createTripSchema.parse(request.data ?? {});
+  const data = parseCallableData(createTripSchema, request.data ?? {});
   if (!createTripSeatsAreValid(data)) {
     throw new HttpsError("invalid-argument", "Available seats cannot exceed total seats.");
   }

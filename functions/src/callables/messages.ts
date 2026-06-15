@@ -6,6 +6,7 @@ import { buildInboxChats, buildInboxReviewPrompts, mapInboxNotifications, type I
 import { firestore } from "../lib/firebase.js";
 import { requireAuth } from "../lib/https.js";
 import { notifyUsers } from "../lib/notifications.js";
+import { parseCallableData } from "../lib/validation.js";
 
 type BookingConversation = {
   driverUserId?: string;
@@ -42,7 +43,7 @@ async function conversationParticipants(data: z.infer<typeof sendMessageSchema>)
 
 export const sendChatMessage = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
-  const data = sendMessageSchema.parse(request.data);
+  const data = parseCallableData(sendMessageSchema, request.data);
   const participantUserIds = [...new Set(await conversationParticipants(data))];
   if (!participantUserIds.includes(uid)) {
     throw new HttpsError("permission-denied", "Only conversation participants can send messages.");

@@ -9,13 +9,14 @@ import {
 } from "../domain/memberships.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth } from "../lib/https.js";
+import { parseCallableData } from "../lib/validation.js";
 
 export const requestClubMembership = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   const schema = z.object({
     clubId: z.string().min(1).max(120).regex(/^[A-Za-z0-9._-]+$/),
   });
-  const { clubId } = schema.parse(request.data);
+  const { clubId } = parseCallableData(schema, request.data);
   const clubRef = firestore.collection("clubs").doc(clubId);
   const membershipRef = firestore.collection("memberships").doc(membershipDocumentId(uid, clubId));
 

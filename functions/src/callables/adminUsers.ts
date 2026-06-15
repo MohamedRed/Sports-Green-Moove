@@ -13,6 +13,7 @@ import {
 import type { UserRole } from "../domain/types.js";
 import { auth, firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth } from "../lib/https.js";
+import { parseCallableData } from "../lib/validation.js";
 
 const roleMapSchema = z.object({
   admin: z.boolean().optional(),
@@ -37,7 +38,7 @@ function roleClaims(roleKeys: readonly UserRole[]): Record<string, unknown> {
 
 export const initializeUserProfile = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
-  const data = initializeUserProfileSchema.parse(request.data ?? {});
+  const data = parseCallableData(initializeUserProfileSchema, request.data ?? {});
   const user = await auth.getUser(uid);
   const currentClaims = user.customClaims ?? {};
   const roleKeys = defaultRoleKeysForClaims(currentClaims);
@@ -81,7 +82,7 @@ export const setUserRoles = onCall(async (request) => {
   requireAuth(request.auth?.uid);
   requireAdmin(request.auth?.token);
 
-  const data = setUserRolesSchema.parse(request.data);
+  const data = parseCallableData(setUserRolesSchema, request.data);
   const roles = normalizeRoleMap(data.roles);
   const roleKeys = roleKeysForRoleMap(roles);
   const user = await auth.getUser(data.userId);
