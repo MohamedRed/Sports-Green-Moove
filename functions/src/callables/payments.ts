@@ -9,6 +9,7 @@ import {
   createRideDestinationPaymentIntent,
   stripePublishableKey,
 } from "../services/stripeConnect.js";
+import { ridePaymentAmountCents } from "../services/stripePaymentValidation.js";
 import { computeRewardBalanceCents } from "../domain/rewards.js";
 import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
@@ -117,8 +118,8 @@ export const createRidePaymentIntent = onCall(
     const tripSnap = await firestore.collection("trips").doc(booking.tripId).get();
     if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
     const trip = tripSnap.data() as Trip;
-    const amountCents = trip.priceCents * (booking.seats ?? 1);
-    if (amountCents <= 0) throw new HttpsError("failed-precondition", "This booking does not require payment.");
+    const amountCents = ridePaymentAmountCents({ id: bookingSnap.id, ...booking }, { ...trip, id: tripSnap.id });
+    if (amountCents == null) throw new HttpsError("failed-precondition", "This booking does not require payment.");
 
     const accountSnap = await firestore.collection("stripeAccounts").doc(booking.driverUserId).get();
     const stripeAccount = accountSnap.data() as StripeAccountDocument | undefined;

@@ -9,6 +9,7 @@ import {
 } from "../services/stripeConnect.js";
 import { buildRidePaymentLedgerEntries } from "../services/stripeLedger.js";
 import {
+  ridePaymentAmountCents,
   shouldApplyIncompletePaymentStatus,
   validateSucceededRidePaymentIntent,
 } from "../services/stripePaymentValidation.js";
@@ -121,6 +122,43 @@ describe("Stripe ride payments", () => {
         paymentIntentId: "pi_123",
       },
       { id: "trip-1", priceCents: 250 },
+    )).toMatchObject({ ok: false, reconciliationStatus: "amountMismatch" });
+  });
+
+  it("computes ride payment amount only from valid server-priced booking state", () => {
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 2 }, { id: "trip-1", priceCents: 250 })).toBe(500);
+    expect(ridePaymentAmountCents({ id: "booking-1" }, { id: "trip-1", priceCents: 250 })).toBe(250);
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 2 }, { id: "trip-1", priceCents: 0 })).toBeNull();
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 2 }, { id: "trip-1" })).toBeNull();
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 0 }, { id: "trip-1", priceCents: 250 })).toBeNull();
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 1.5 }, { id: "trip-1", priceCents: 250 })).toBeNull();
+  });
+
+  it("rejects succeeded PaymentIntent reconciliation when server price data is malformed", () => {
+    const intent = {
+      id: "pi_123",
+      amount: 500,
+      currency: "eur",
+      metadata: {
+        bookingId: "booking-1",
+        tripId: "trip-1",
+        payerUserId: "parent-1",
+        driverUserId: "driver-1",
+        platformFeeCents: "0",
+        product: "sports-green-moove",
+      },
+    } as Stripe.PaymentIntent;
+
+    expect(validateSucceededRidePaymentIntent(
+      intent,
+      {
+        id: "booking-1",
+        tripId: "trip-1",
+        parentUserId: "parent-1",
+        driverUserId: "driver-1",
+        seats: 2,
+      },
+      { id: "trip-1" },
     )).toMatchObject({ ok: false, reconciliationStatus: "amountMismatch" });
   });
 
