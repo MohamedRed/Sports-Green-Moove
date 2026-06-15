@@ -11,6 +11,7 @@
 - Native UI flow identifiers for auth, groups, publish, search, booking, active ride, messages, rating, CO2, rewards, options, and payments are enforced by `npm run test:native-ui-coverage`.
 - Android Compose UI tests and iOS XCUITests render the native plan flows with deterministic fixtures and run in Native CI; `npm run test:android-ui-build` compiles the Android test APK locally.
 - Stripe webhook reconciliation for ride payments, immutable reward ledger entries, and connected-account readiness is enforced with the Firestore Emulator by `npm run test:stripe-webhook-flow`.
+- After backend deployments, `npm run smoke:live-backend-flow` creates disposable production users and verifies the deployed email/password auth, profile, publish, search, booking approval, active ride, native location, chat, completion, and rating callables before cleaning up its own data.
 
 ## Review Evidence Required Before Public Launch
 

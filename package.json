@@ -20,6 +20,7 @@
     "test:provider-readiness": "node tests/provider-readiness.test.mjs",
     "test:admin-plan-coverage": "node tests/admin-plan-coverage.test.mjs",
     "test:release-evidence-template": "node tests/release-evidence-template.test.mjs",
+    "smoke:live-backend-flow": "node scripts/live-backend-flow-smoke.mjs",
     "validate:provider-readiness": "node scripts/check-provider-readiness.mjs",
     "validate:release-evidence": "node scripts/validate-release-evidence.mjs",
     "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts\"",

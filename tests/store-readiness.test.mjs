@@ -113,6 +113,7 @@ includes(files.storeReadiness, "real-device-test-protocol.md", "Store checklist 
 includes(files.storeReadiness, "validate:provider-readiness", "Store checklist documents provider validation command");
 includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
 includes(files.storeReadiness, "test:stripe-webhook-flow", "Store checklist documents Stripe webhook flow validation command");
+includes(files.storeReadiness, "smoke:live-backend-flow", "Store checklist documents live backend smoke validation command");
 
 for (const requiredEvidence of [
   "foreground_tracking",
@@ -163,6 +164,7 @@ includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release rea
 includes(files.releaseReadinessWorkflow, "test:release-evidence-template", "Release readiness validates evidence template");
 includes(files.providerValidator, "STRIPE_WEBHOOK_SECRET", "Provider readiness validates Stripe webhook secret");
 includes(files.packageJson, "test:stripe-webhook-flow", "Package scripts expose Stripe webhook flow emulator test");
+includes(files.packageJson, "smoke:live-backend-flow", "Package scripts expose live backend flow smoke test");
 includes(files.backendCiWorkflow, "test:stripe-webhook-flow", "Backend CI validates Stripe webhook flow");
 
 console.log("Store readiness static checks passed.");
