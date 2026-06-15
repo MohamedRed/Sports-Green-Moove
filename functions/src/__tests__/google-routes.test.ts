@@ -98,6 +98,25 @@ describe("GoogleRoutesProvider", () => {
     expect(JSON.parse(String(calls[0].init.body)).origins).toHaveLength(3);
   });
 
+  it("accepts zero-duration matrix legs when Google omits distanceMeters", async () => {
+    const fetcher: GoogleRoutesFetch = async (url) => {
+      expect(url).toContain("/distanceMatrix/v2:computeRouteMatrix");
+      return jsonResponse([
+        { originIndex: 0, destinationIndex: 2, condition: "ROUTE_EXISTS", distanceMeters: 5000, duration: "600s" },
+        { originIndex: 0, destinationIndex: 0, condition: "ROUTE_EXISTS", distanceMeters: 500, duration: "120s" },
+        { originIndex: 1, destinationIndex: 1, condition: "ROUTE_EXISTS", distanceMeters: 2500, duration: "300s" },
+        { originIndex: 2, destinationIndex: 2, condition: "ROUTE_EXISTS", duration: "0s" },
+      ]);
+    };
+
+    const provider = new GoogleRoutesProvider({ apiKey: "test-key", fetcher, baseUrl: "https://routes.test" });
+    const route = await provider.compareDetour({ ...request, destination: trip.destination }, trip);
+
+    expect(route.dropoffToDestinationDurationSeconds).toBe(0);
+    expect(route.detourDistanceMeters).toBe(0);
+    expect(route.detourDurationSeconds).toBe(0);
+  });
+
   it("uses Compute Routes only for shortlisted final route details", async () => {
     const calls: Array<{ url: string; init: RequestInit }> = [];
     const fetcher: GoogleRoutesFetch = async (url, init) => {
@@ -126,5 +145,37 @@ describe("GoogleRoutesProvider", () => {
       "X-Goog-FieldMask": "routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline",
     });
     expect(JSON.parse(String(calls[0].init.body)).intermediates).toHaveLength(2);
+  });
+
+  it("omits duplicate final-destination waypoints from Compute Routes requests", async () => {
+    const calls: Array<{ url: string; init: RequestInit }> = [];
+    const fetcher: GoogleRoutesFetch = async (url, init) => {
+      calls.push({ url, init });
+      return jsonResponse({
+        routes: [{ distanceMeters: 5200, duration: "620s", polyline: { encodedPolyline: "direct-route" } }],
+      });
+    };
+
+    const provider = new GoogleRoutesProvider({ apiKey: "test-key", fetcher, baseUrl: "https://routes.test" });
+    const route = await provider.completeRouteDetails(
+      { ...request, destination: trip.destination },
+      trip,
+      {
+        baselineDistanceMeters: 5000,
+        baselineDurationSeconds: 600,
+        detourDistanceMeters: 200,
+        detourDurationSeconds: 20,
+        pickupDistanceMeters: 500,
+        scheduleDeltaMinutes: 5,
+      },
+    );
+
+    const body = JSON.parse(String(calls[0].init.body));
+    expect(route.finalEncodedPolyline).toBe("direct-route");
+    expect(body.intermediates).toHaveLength(1);
+    expect(body.intermediates[0].location.latLng).toEqual({
+      latitude: request.origin.lat,
+      longitude: request.origin.lng,
+    });
   });
 });
