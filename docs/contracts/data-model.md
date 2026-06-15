@@ -75,5 +75,10 @@ Native clients list `children` with `guardianUserIds array-contains auth.uid` an
 Native Groups screens list public `clubs` and join them with the signed-in
 user's `memberships` to separate "Mes clubs" from discoverable clubs. They must
 not ship static club lists as product data.
+When a signed-in user taps "Rejoindre", the app calls `requestClubMembership`.
+The backend writes `memberships/{userId}_{clubId}` with `status = "requested"`
+and `active = false`; club managers/admins can later review the membership in
+the admin console. Requested memberships render as pending requests, not active
+member clubs.
 
 The Messages tab reads through `getInbox`, not direct static fixtures. The callable returns the caller's `notifications`, groups recent `messages` by booking or ride-session conversation, and derives pending `ratings` prompts from completed ride sessions where the caller has not yet rated the other participant.

@@ -139,7 +139,6 @@ fun SportsGreenMooveApp() {
             setError = { errorMessage = it },
         )
     }
-
     LaunchedEffect(providers) {
         if (providers.isConfigured) {
             session = providers.auth.currentSession()
@@ -218,14 +217,12 @@ fun SportsGreenMooveApp() {
                             onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } } },
                         )
                         AppScreen.Messages -> MessagesScreen(firebase = providers.firebase)
-                        AppScreen.Profile -> ProfileScreen(
+                        AppScreen.Profile -> ProfileRoute(
                             role = role,
                             availableRoles = session?.roles ?: setOf(AppRole.Parent),
-                            displayName = session?.displayName,
-                            email = session?.email,
-                            primaryClubLabel = clubs.firstOrNull { it.isMember }?.name ?: "Aucun club lié",
-                            impactSummary = ledgerSummaries.impact,
-                            rewardSummary = ledgerSummaries.rewards,
+                            session = session,
+                            clubs = clubs,
+                            ledgerSummaries = ledgerSummaries,
                             onRoleChange = {
                                 role = it
                                 scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } }
@@ -252,24 +249,22 @@ fun SportsGreenMooveApp() {
                             },
                         )
 
-                        AppScreen.Search -> SearchScreen(
-                            origin = searchController.origin,
-                            destination = searchController.destination,
-                            originSuggestions = searchController.originSuggestions,
-                            destinationSuggestions = searchController.destinationSuggestions,
+                        AppScreen.Search -> SearchRoute(
+                            searchController = searchController,
                             children = children,
-                            matches = searchController.matches,
-                            loading = searchController.loading,
                             error = errorMessage,
                             onBack = { screen = AppScreen.Home },
-                            onSuggestOrigin = { searchController.suggestPlaces(it, SearchPlaceTarget.Origin) },
-                            onSuggestDestination = { searchController.suggestPlaces(it, SearchPlaceTarget.Destination) },
-                            onSelectOrigin = { searchController.selectPlace(it, SearchPlaceTarget.Origin) },
-                            onSelectDestination = { searchController.selectPlace(it, SearchPlaceTarget.Destination) },
-                            onSearch = searchController::runSearch,
-                            onRequest = searchController::requestMatch,
                         )
-                        AppScreen.Groups -> GroupsScreen(clubs = clubs, onBack = { screen = AppScreen.Profile })
+                        AppScreen.Groups -> GroupsRoute(
+                            clubs = clubs,
+                            scope = scope,
+                            providers = providers,
+                            onBack = { screen = AppScreen.Profile },
+                            setLoading = { loading = it },
+                            setError = { errorMessage = it },
+                            setNotice = { noticeMessage = it },
+                            refreshAppData = { refreshAppData() },
+                        )
                         AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
                         AppScreen.Rewards -> RewardsScreen(summary = ledgerSummaries.rewards, onBack = { screen = AppScreen.Profile })
                         AppScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = AppScreen.Profile })

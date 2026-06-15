@@ -6,12 +6,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import java.util.Locale
 
+private data class ClubMembershipState(
+    val roleLabel: String?,
+    val status: String?,
+)
+
 internal class FirebaseAndroidGroupsGateway(
     private val firestore: FirebaseFirestore,
     private val auth: FirebaseAuth = FirebaseAuth.getInstance(),
 ) {
     suspend fun listClubSummaries(): List<ClubSummary> {
-        val roleByClub = loadRoleByClub()
+        val membershipByClub = loadMembershipByClub()
         val clubs = firestore.collection("clubs")
             .orderBy("name")
             .limit(50)
@@ -22,12 +27,12 @@ internal class FirebaseAndroidGroupsGateway(
             mapClubSummary(
                 id = document.id,
                 data = document.data.orEmpty(),
-                role = roleByClub[document.id],
+                membership = membershipByClub[document.id],
             )
         }
     }
 
-    private suspend fun loadRoleByClub(): Map<String, String> {
+    private suspend fun loadMembershipByClub(): Map<String, ClubMembershipState> {
         val uid = auth.currentUser?.uid ?: return emptyMap()
         val snapshot = firestore.collection("memberships")
             .whereEqualTo("userId", uid)
@@ -38,21 +43,28 @@ internal class FirebaseAndroidGroupsGateway(
         return snapshot.documents.mapNotNull { document ->
             val data = document.data.orEmpty()
             val clubId = data["clubId"] as? String ?: return@mapNotNull null
-            clubId to ((data["role"] as? String)?.uppercase(Locale.FRANCE) ?: "MEMBRE")
+            val status = data["status"] as? String
+            val role = if (status == "requested" || status == "pending") {
+                null
+            } else {
+                (data["role"] as? String)?.uppercase(Locale.FRANCE) ?: "MEMBRE"
+            }
+            clubId to ClubMembershipState(roleLabel = role, status = status)
         }.toMap()
     }
 }
 
-private fun mapClubSummary(id: String, data: Map<String, Any>, role: String?): ClubSummary {
+private fun mapClubSummary(id: String, data: Map<String, Any>, membership: ClubMembershipState?): ClubSummary {
     val name = data["name"] as? String ?: data["displayName"] as? String ?: id
     return ClubSummary(
         id = id,
         name = name,
         sport = data["sport"] as? String ?: data["primarySport"] as? String ?: "Sport",
         memberCount = numberValue(data["memberCount"]) ?: numberValue(data["members"]) ?: 0,
-        roleLabel = role,
+        roleLabel = membership?.roleLabel,
         initials = initials(name),
         memberInitials = stringList(data["memberInitials"]),
+        membershipStatus = membership?.status,
     )
 }
 

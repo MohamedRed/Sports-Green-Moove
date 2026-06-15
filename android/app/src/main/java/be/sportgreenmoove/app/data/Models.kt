@@ -128,8 +128,10 @@ data class ClubSummary(
     val roleLabel: String?,
     val initials: String,
     val memberInitials: List<String>,
+    val membershipStatus: String? = null,
 ) {
-    val isMember: Boolean = roleLabel != null
+    val hasPendingRequest: Boolean = membershipStatus == "requested" || membershipStatus == "pending"
+    val isMember: Boolean = roleLabel != null && !hasPendingRequest
 }
 
 data class BookingRequestSummary(

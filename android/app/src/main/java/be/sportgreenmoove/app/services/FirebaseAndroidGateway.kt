@@ -64,6 +64,15 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     override suspend fun listClubSummaries(): List<ClubSummary> =
         groupsGateway.listClubSummaries()
 
+    override suspend fun requestClubMembership(clubId: String): String {
+        val result = functions
+            .getHttpsCallable("requestClubMembership")
+            .call(mapOf("clubId" to clubId))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse adhésion invalide.")
+        return payload["status"] as? String ?: throw ProviderConfigurationException("Statut adhésion manquant.")
+    }
+
     override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
         val result = functions
             .getHttpsCallable("suggestPlaces")

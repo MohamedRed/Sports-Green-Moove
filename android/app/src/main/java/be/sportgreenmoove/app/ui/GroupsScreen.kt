@@ -14,10 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,8 +30,7 @@ import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun GroupsScreen(clubs: List<ClubSummary>, onBack: () -> Unit) {
-    var requested by remember { mutableStateOf(setOf<String>()) }
+fun GroupsScreen(clubs: List<ClubSummary>, onBack: () -> Unit, onJoinClub: (ClubSummary) -> Unit = {}) {
     val memberships = clubs.filter { it.isMember }
     val suggestions = clubs.filterNot { it.isMember }
     V2Screen(testTag = SgmTestTags.GroupsScreen) {
@@ -51,8 +46,8 @@ fun GroupsScreen(clubs: List<ClubSummary>, onBack: () -> Unit) {
             suggestions.forEach { club ->
                 SuggestedClubRow(
                     club = club,
-                    requested = club.id in requested,
-                    onJoin = { requested = requested + club.id },
+                    requested = club.hasPendingRequest,
+                    onJoin = { onJoinClub(club) },
                 )
             }
         }

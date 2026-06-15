@@ -36,6 +36,7 @@ interface FirebaseGateway {
     suspend fun searchTrips(): List<TripSummary>
     suspend fun listChildren(): List<ChildSummary>
     suspend fun listClubSummaries(): List<ClubSummary>
+    suspend fun requestClubMembership(clubId: String): String
     suspend fun suggestPlaces(input: String): List<PlaceSuggestion>
     suspend fun resolvePlace(placeId: String): ResolvedPlace
     suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary>
@@ -99,6 +100,11 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     override suspend fun listChildren(): List<ChildSummary> = emptyList()
 
     override suspend fun listClubSummaries(): List<ClubSummary> = emptyList()
+
+    override suspend fun requestClubMembership(clubId: String): String {
+        check(clubId.isNotBlank())
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
 
     override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
         check(input.isNotBlank())

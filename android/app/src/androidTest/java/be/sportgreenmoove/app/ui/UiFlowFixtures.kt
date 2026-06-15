@@ -125,6 +125,7 @@ class UiFlowFirebaseGateway : FirebaseGateway {
     override suspend fun searchTrips() = listOf(UiFlowFixtures.trip)
     override suspend fun listChildren() = listOf(UiFlowFixtures.child)
     override suspend fun listClubSummaries() = UiFlowFixtures.clubs
+    override suspend fun requestClubMembership(clubId: String) = "requested"
     override suspend fun suggestPlaces(input: String) = listOf(PlaceSuggestion("place-1", input, input, "Belgique"))
     override suspend fun resolvePlace(placeId: String) = UiFlowFixtures.origin
     override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(UiFlowFixtures.match)
