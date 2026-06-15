@@ -148,6 +148,13 @@ fun SportsGreenMooveApp() {
             }
         }
     }
+    LaunchedEffect(session?.uid, session?.roles) {
+        val roles = session?.roles ?: setOf(AppRole.Parent)
+        if (role !in roles) {
+            role = roles.preferredMobileRole()
+            runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
+        }
+    }
 
     SgmTheme(darkTheme = darkTheme) {
         V2ThemeToggleProvider(darkTheme = darkTheme, onToggle = { darkTheme = !darkTheme }) {
@@ -212,6 +219,7 @@ fun SportsGreenMooveApp() {
                         AppScreen.Messages -> MessagesScreen(firebase = providers.firebase)
                         AppScreen.Profile -> ProfileScreen(
                             role = role,
+                            availableRoles = session?.roles ?: setOf(AppRole.Parent),
                             displayName = session?.displayName,
                             email = session?.email,
                             primaryClubLabel = clubs.firstOrNull { it.isMember }?.name ?: "Aucun club lié",

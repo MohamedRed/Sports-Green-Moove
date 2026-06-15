@@ -2,7 +2,9 @@ package be.sportgreenmoove.app.services
 
 import android.content.Context
 import be.sportgreenmoove.app.R
+import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
+import be.sportgreenmoove.app.data.appRoleFromClaim
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -75,6 +77,15 @@ private class FirebaseAndroidAuthGateway : AuthGateway {
             uid = user.uid,
             email = profile?.get("email") as? String ?: user.email,
             displayName = profile?.get("displayName") as? String ?: displayName ?: user.displayName,
+            roles = profileRoles(profile),
         )
     }
+
+    private fun profileRoles(profile: Map<*, *>?): Set<AppRole> =
+        (profile?.get("roleKeys") as? List<*>)
+            ?.mapNotNull { it as? String }
+            ?.mapNotNull(::appRoleFromClaim)
+            ?.toSet()
+            ?.takeIf { it.isNotEmpty() }
+            ?: setOf(AppRole.Parent)
 }

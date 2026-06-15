@@ -2,11 +2,14 @@ package be.sportgreenmoove.app.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.design.SgmTheme
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 
@@ -144,6 +147,22 @@ class SportsGreenMooveUiFlowTest {
         assertTagsExist(SgmTestTags.MessagesScreen, SgmTestTags.ChatTab, SgmTestTags.RatingTab)
         compose.onNodeWithTag(SgmTestTags.RatingTab).performClick()
         assertTagsExist(SgmTestTags.RatingPromptAction, "${SgmTestTags.RatingPromptAction}.5")
+    }
+
+    @Test
+    fun profileRoleSelectorOnlyShowsGrantedRoles() {
+        setTestContent {
+            ProfileRoleSelector(
+                role = AppRole.Parent,
+                availableRoles = setOf(AppRole.Parent),
+                onRoleChange = {},
+            )
+        }
+
+        compose.onNodeWithText("Parent").assertIsDisplayed()
+        assertTrue(compose.onAllNodesWithText("Conducteur").fetchSemanticsNodes().isEmpty())
+        assertTrue(compose.onAllNodesWithText("Enfant").fetchSemanticsNodes().isEmpty())
+        assertTrue(compose.onAllNodesWithText("Club manager").fetchSemanticsNodes().isEmpty())
     }
 
     private fun assertTagsExist(vararg tags: String) {

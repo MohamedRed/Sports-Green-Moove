@@ -8,10 +8,23 @@ enum class AppRole {
     Admin,
 }
 
+val AppRole.claimKey: String
+    get() = when (this) {
+        AppRole.Parent -> "parent"
+        AppRole.Driver -> "driver"
+        AppRole.Child -> "child"
+        AppRole.ClubManager -> "clubManager"
+        AppRole.Admin -> "admin"
+    }
+
+fun appRoleFromClaim(value: String): AppRole? =
+    AppRole.entries.firstOrNull { it.claimKey == value }
+
 data class AuthSession(
     val uid: String,
     val email: String?,
     val displayName: String?,
+    val roles: Set<AppRole> = setOf(AppRole.Parent),
 )
 
 enum class TripStatus {
