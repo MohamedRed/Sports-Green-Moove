@@ -54,6 +54,8 @@ const androidRideActions = readFile("android/app/src/main/java/be/sportgreenmoov
 const androidActiveRideStartup = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideStartup.kt");
 const androidGroups = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/GroupsScreen.kt");
 const androidGroupsGateway = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGroupsGateway.kt");
+const androidPublish = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/PublishScreen.kt");
+const androidPublishFactory = readFile("android/app/src/main/java/be/sportgreenmoove/app/domain/PublishDraftFactory.kt");
 const androidImpact = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/ImpactScreen.kt");
 const androidRewards = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/RewardsScreen.kt");
 const androidLedgerGateway = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidLedgerGateway.kt");
@@ -106,6 +108,10 @@ includes(androidGroupsGateway, 'collection("clubs")', "Android Groups gateway re
 includes(androidGroupsGateway, 'collection("memberships")', "Android Groups gateway reads memberships");
 notIncludes(androidGroups, "private val MyClubs", "Android Groups screen must not embed member club fixtures");
 notIncludes(androidGroups, "private val SuggestedClubs", "Android Groups screen must not embed suggested club fixtures");
+includes(androidPublish, "memberClubs: List<ClubSummary>", "Android Publish screen receives Firebase member club context");
+includes(androidPublishFactory, "clubId = club.id", "Android Publish draft uses selected member club id");
+notIncludes(androidPublish, "Royal Ottignies", "Android Publish screen must not embed a static club identity");
+notIncludes(androidPublishFactory, "Royal Ottignies", "Android Publish draft factory must not embed a static club identity");
 includes(iosGroups, "appState.clubSummaries", "iOS Groups screen renders Firebase club summaries");
 includes(iosGroupsGateway, '.collection("clubs")', "iOS Groups gateway reads clubs");
 includes(iosGroupsGateway, '.collection("memberships")', "iOS Groups gateway reads memberships");

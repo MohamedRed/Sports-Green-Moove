@@ -210,6 +210,7 @@ fun SportsGreenMooveApp() {
                         AppScreen.Publish -> PublishScreen(
                             role = role,
                             firebase = providers.firebase,
+                            memberClubs = clubs.filter { it.isMember },
                             initialOrigin = searchController.origin,
                             initialDestination = searchController.destination,
                             onError = { errorMessage = it },

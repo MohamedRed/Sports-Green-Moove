@@ -27,13 +27,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.AppRole
+import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.ResolvedPlace
-import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.domain.createTripPublishDraft
 import be.sportgreenmoove.app.services.FirebaseGateway
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -45,6 +46,7 @@ private val PublishFreqs = listOf("UNIQUE", "CHAQUE LUN", "CHAQUE MAR", "CHAQUE 
 fun PublishScreen(
     role: AppRole,
     firebase: FirebaseGateway,
+    memberClubs: List<ClubSummary> = emptyList(),
     initialOrigin: ResolvedPlace? = null,
     initialDestination: ResolvedPlace? = null,
     onError: (String?) -> Unit,
@@ -63,6 +65,7 @@ fun PublishScreen(
     var price by remember { mutableStateOf("") }
     var departureIso by remember { mutableStateOf(Instant.now().plus(30, ChronoUnit.DAYS).truncatedTo(ChronoUnit.MINUTES).toString()) }
     var childTracking by remember { mutableStateOf(true) }
+    val publishClub = memberClubs.firstOrNull { it.isMember }
 
     LaunchedEffect(initialOrigin, initialDestination) {
         controller.seedPlaces(initialOrigin, initialDestination)
@@ -116,20 +119,27 @@ fun PublishScreen(
                     returnTrip = returnTrip,
                     price = price,
                     category = category,
+                    clubName = publishClub?.name ?: "Aucun club lié",
                     loading = controller.loading,
                     onPublish = {
-                        controller.publish(
-                            publishDraft(
-                                category = category,
-                                departureIso = departureIso,
-                                origin = controller.origin,
-                                destination = controller.destination,
-                                seats = seats,
-                                price = price,
-                                returnTrip = returnTrip,
-                                childTracking = childTracking,
-                            ),
-                        )
+                        val club = publishClub
+                        if (club == null) {
+                            onError("Associez votre compte à un club avant de publier un trajet.")
+                        } else {
+                            controller.publish(
+                                createTripPublishDraft(
+                                    club = club,
+                                    category = category,
+                                    departureIso = departureIso,
+                                    origin = controller.origin,
+                                    destination = controller.destination,
+                                    seats = seats,
+                                    price = price,
+                                    returnTrip = returnTrip,
+                                    childTracking = childTracking,
+                                ),
+                            )
+                        }
                     },
                 )
             }
@@ -227,56 +237,17 @@ private fun PublishStepTwo(
 }
 
 @Composable
-private fun PublishStepThree(from: String, to: String, seats: Int, frequency: String, returnTrip: Boolean, price: String, category: String, loading: Boolean, onPublish: () -> Unit) {
+private fun PublishStepThree(from: String, to: String, seats: Int, frequency: String, returnTrip: Boolean, price: String, category: String, clubName: String, loading: Boolean, onPublish: () -> Unit) {
     PublishTitle("CONFIRMER")
     Column(modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(SgmRadius.LG)).background(Sgm.colors.bgCard).border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))) {
         Box(Modifier.fillMaxWidth().background(SgmColor.HeroGradient).padding(horizontal = 16.dp, vertical = 12.dp)) {
             Text("FOOTBALL · $category", style = SgmType.DisplayLG.copy(color = SgmColor.TextOnGreen, fontSize = 18.sp, letterSpacing = 0.04.em))
         }
         Column(modifier = Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            listOf("Départ" to (from.ifBlank { "—" }), "Destination" to (to.ifBlank { "—" }), "Places" to seats.toString(), "Fréquence" to frequency, "Aller-retour" to if (returnTrip) "Oui" else "Non", "Prix" to (if (price.isNotBlank()) "$price€" else "Gratuit")).forEach { (label, value) ->
+            listOf("Club" to clubName, "Départ" to (from.ifBlank { "—" }), "Destination" to (to.ifBlank { "—" }), "Places" to seats.toString(), "Fréquence" to frequency, "Aller-retour" to if (returnTrip) "Oui" else "Non", "Prix" to (if (price.isNotBlank()) "$price€" else "Gratuit")).forEach { (label, value) ->
                 PublishSummaryRow(label, value)
             }
         }
     }
     V2Button(if (loading) "PUBLICATION..." else "PUBLIER CE TRAJET", onClick = onPublish, full = true, size = V2ButtonSize.Lg, testTag = SgmTestTags.PublishSubmitAction)
-}
-
-private fun publishDraft(
-    category: String,
-    departureIso: String,
-    origin: be.sportgreenmoove.app.data.ResolvedPlace?,
-    destination: be.sportgreenmoove.app.data.ResolvedPlace?,
-    seats: Int,
-    price: String,
-    returnTrip: Boolean,
-    childTracking: Boolean,
-): TripPublishDraft? {
-    if (origin == null || destination == null) return null
-    return TripPublishDraft(
-        title = "U8 Nationaux vs Royal Ottignies SC",
-        sport = "Football",
-        clubName = "Royal Ottignies",
-        teamName = category,
-        clubId = "royal-ottignies",
-        teamId = category.lowercase().replace(" ", "-"),
-        category = category,
-        departureAtIso = departureIso,
-        origin = origin,
-        destination = destination,
-        pickupRadiusM = 1500,
-        seatsTotal = seats,
-        seatsAvailable = seats,
-        baggage = "medium",
-        returnTrip = returnTrip,
-        priceCents = parsePriceCents(price),
-        supportsVehicleTracking = true,
-        supportsChildTracking = childTracking,
-        co2SavedKgEstimate = 4.2,
-    )
-}
-
-private fun parsePriceCents(value: String): Int {
-    val amount = value.replace(",", ".").trim().toDoubleOrNull() ?: 0.0
-    return (amount * 100).toInt().coerceAtLeast(0)
 }
