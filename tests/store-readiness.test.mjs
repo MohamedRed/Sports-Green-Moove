@@ -110,6 +110,7 @@ includes(files.dataSafety, "guardian consent", "Data-safety doc covers guardian 
 includes(files.storeReadiness, "privacy-data-safety.md", "Store checklist links data-safety source");
 includes(files.storeReadiness, "evidence-manifest.example.json", "Store checklist links release evidence manifest template");
 includes(files.storeReadiness, "real-device-test-protocol.md", "Store checklist links real-device protocol");
+includes(files.storeReadiness, "android-verification-notes.md", "Store checklist links Android verification notes");
 includes(files.storeReadiness, "validate:provider-readiness", "Store checklist documents provider validation command");
 includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
 includes(files.storeReadiness, "test:stripe-webhook-flow", "Store checklist documents Stripe webhook flow validation command");
