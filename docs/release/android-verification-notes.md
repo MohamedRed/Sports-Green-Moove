@@ -12,6 +12,11 @@ Verified Android and automated-flow gates:
   - Android connected UI job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622972720/job/81676718618
   - Coverage: 6/6 Android instrumentation tests passed on the GitHub-hosted emulator.
   - Artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622972720/artifacts/7669295965
+- Current PR Native CI run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638
+  - Result: passed on commit `2114029d076fde6a14665e6508b269d39aa24a8d`.
+  - Native UI flow coverage job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638/job/81689174991
+  - Android connected UI job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638/job/81689174828
+  - Android connected UI artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638/artifacts/7670823120
 - Android Appetize run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27623663997
   - Result: passed.
   - Firebase Android config was installed from repository secrets.
@@ -26,11 +31,11 @@ Verified Android and automated-flow gates:
   - Screenshot: `docs/release/evidence/appetize-android-email-login-2026-06-16.png`
 - Production backend live smoke:
   - Result: passed.
-  - Run id: `codex-smoke-2026-06-16T14-08-14-205Z-a1a301b9`.
+  - Run id: `codex-smoke-2026-06-16T15-03-55-844Z-41174bcf`.
   - Coverage: disposable auth/profile setup, trip publish, child-tracking search, booking approval, active ride, child native fallback, chat, ride completion, and rating.
 - Production operations live smoke:
   - Result: passed.
-  - Run id: `codex-ops-smoke-2026-06-16T14-08-14-203Z-94ac4ae7`.
+  - Run id: `codex-ops-smoke-2026-06-16T15-03-55-852Z-0e5b2363`.
   - Coverage: disposable auth/profile setup, club membership request and reuse, support report creation, and admin review.
 
 Automated-flow evidence is captured in

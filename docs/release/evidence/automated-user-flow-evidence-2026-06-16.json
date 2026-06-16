@@ -1,9 +1,10 @@
 {
   "evidenceType": "automated-user-flow-evidence",
-  "generatedAt": "2026-06-16T14:50:00Z",
+  "generatedAt": "2026-06-16T15:08:38Z",
   "releaseCandidate": {
     "branch": "codex/implement-plan",
-    "commit": "2e2d8c75c644d964edbb710e3691169af8fdc939",
+    "commit": "2114029d076fde6a14665e6508b269d39aa24a8d",
+    "appSourceCommit": "2e2d8c75c644d964edbb710e3691169af8fdc939",
     "pullRequest": "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
   },
   "items": [
@@ -12,8 +13,8 @@
       "status": "passed",
       "description": "Native UI flow coverage passed for 31 user-flow identifiers.",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622972720",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622972720/job/81676718690"
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638/job/81689174991"
       ]
     },
     {
@@ -21,9 +22,9 @@
       "status": "passed",
       "description": "Android connected Compose UI tests passed 6/6 instrumentation tests on a GitHub-hosted Pixel emulator.",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622972720",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622972720/job/81676718618",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622972720/artifacts/7669295965"
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638/job/81689174828",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426638/artifacts/7670823120"
       ]
     },
     {
@@ -32,14 +33,14 @@
       "description": "Production backend smoke passed for disposable auth/profile setup, trip publish, child-tracking search, booking approval, active ride, child native fallback, chat, ride completion, and rating.",
       "command": "CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11 npm run smoke:live-backend-flow",
       "projectId": "sports-green-moove-prod",
-      "runId": "codex-smoke-2026-06-16T14-08-14-205Z-a1a301b9",
+      "runId": "codex-smoke-2026-06-16T15-03-55-844Z-41174bcf",
       "verified": {
         "authProfiles": 3,
-        "publishedTrip": "NtEOHwoZLLJN79QCHPge",
+        "publishedTrip": "KotFyRbhnjufk21kOArq",
         "searchMatches": 1,
-        "approvedBooking": "hnEpCyWJ0FUukyBp2f4R",
-        "completedRide": "TdDcGK9wVxAc9gWB4vBY",
-        "childNativeFallback": "Dioj15YKzEQeolTfJhWr0h3PPDy2",
+        "approvedBooking": "hxitzfeIodGU7v1AhlOu",
+        "completedRide": "BUMnJ00PbtwPK6XGxACS",
+        "childNativeFallback": "ceq45bfDkmMzaZyXgaNf8iqPgrI2",
         "chatMessages": 1,
         "ratings": 1
       }
@@ -50,11 +51,11 @@
       "description": "Production operations smoke passed for disposable auth/profile setup, club membership request and reuse, support report creation, and admin review.",
       "command": "CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11 npm run smoke:live-operations-flow",
       "projectId": "sports-green-moove-prod",
-      "runId": "codex-ops-smoke-2026-06-16T14-08-14-203Z-94ac4ae7",
+      "runId": "codex-ops-smoke-2026-06-16T15-03-55-852Z-0e5b2363",
       "verified": {
         "authProfiles": 2,
-        "requestedMembership": "QLgd04PSy7a49hCtT9YxsRujsiJ3_codex-ops-smoke-2026-06-16T14-08-14-203Z-94ac4ae7-club",
-        "reviewedReport": "ty7RFP8o86BltjeGXEX6"
+        "requestedMembership": "NPfBhIqzItRg8rg9R8NOyRGJyQj1_codex-ops-smoke-2026-06-16T15-03-55-852Z-0e5b2363-club",
+        "reviewedReport": "nX7IInwmLBrKuRJhdUCb"
       }
     },
     {
@@ -62,8 +63,8 @@
       "status": "passed",
       "description": "Backend CI passed Firestore, Realtime Database, and Storage rules tests.",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622973059",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622973059/job/81676719118"
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426628",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426628/job/81689174639"
       ]
     },
     {
@@ -71,14 +72,15 @@
       "status": "passed",
       "description": "Backend CI passed Stripe webhook flow reconciliation tests against the Firestore Emulator.",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622973059",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27622973059/job/81676719118"
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426628",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27626426628/job/81689174639"
       ]
     },
     {
       "id": "android_appetize_launch",
       "status": "passed",
       "description": "Android debug APK for the current release candidate uploaded to Appetize and launched to the native email/password login screen on Pixel 7 / Android 13.",
+      "appSourceCommit": "2e2d8c75c644d964edbb710e3691169af8fdc939",
       "evidenceRefs": [
         "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27623663997",
         "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27623663997/job/81679247943",
@@ -90,6 +92,7 @@
       "id": "android_appetize_email_login",
       "status": "passed",
       "description": "Android Appetize Pixel 7 / Android 13 session signed in with a disposable Firebase email/password parent account and reached the native home screen with Accueil, Trajets, Messages, and Profil navigation.",
+      "appSourceCommit": "2e2d8c75c644d964edbb710e3691169af8fdc939",
       "projectId": "sports-green-moove-prod",
       "runId": "codex-appetize-login-2026-06-16T14-34-15-317Z-05751972",
       "evidenceRefs": [
