@@ -15,6 +15,8 @@ const files = {
   evidenceTemplate: read("docs/release/evidence-manifest.example.json"),
   evidenceSchema: read("docs/release/evidence-schema.json"),
   realDeviceProtocol: read("docs/release/real-device-test-protocol.md"),
+  androidVerificationNotes: read("docs/release/android-verification-notes.md"),
+  automatedFlowEvidence: read("docs/release/evidence/automated-user-flow-evidence-2026-06-16.json"),
   providerValidator: read("scripts/check-provider-readiness.mjs"),
   evidenceValidator: read("scripts/validate-release-evidence.mjs"),
   packageJson: read("package.json"),
@@ -130,10 +132,15 @@ for (const automatedEvidence of [
 ]) {
   includes(files.evidenceTemplate, automatedEvidence, `Release evidence template includes ${automatedEvidence}`);
   includes(files.evidenceValidator, automatedEvidence, `Release evidence validator requires ${automatedEvidence}`);
+  includes(files.automatedFlowEvidence, automatedEvidence, `Automated flow evidence captures ${automatedEvidence}`);
 }
 includes(files.evidenceSchema, "automatedUserFlowEvidence", "Release evidence schema requires automated user-flow evidence");
 includes(files.storeReadiness, "automated user-flow evidence", "Store checklist documents automated user-flow evidence");
 includes(files.realDeviceProtocol, "automated user-flow evidence", "Real-device protocol requires automated user-flow evidence");
+includes(files.androidVerificationNotes, "automated-user-flow-evidence-2026-06-16.json", "Android notes link current automated-flow evidence");
+includes(files.androidVerificationNotes, "Pixel 7 / Android 13", "Android notes document Appetize launch device");
+includes(files.automatedFlowEvidence, "appetize-android-login-2026-06-16.png", "Automated flow evidence references Appetize launch screenshot");
+includes(files.automatedFlowEvidence, "Physical iOS and Android real-device scenarios remain required", "Automated flow evidence does not claim manual real-device completion");
 
 for (const requiredEvidence of [
   "foreground_tracking",
