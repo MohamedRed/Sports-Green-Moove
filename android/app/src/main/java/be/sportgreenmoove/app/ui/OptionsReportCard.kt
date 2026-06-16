@@ -71,7 +71,6 @@ fun OptionsReportCard(firebase: FirebaseGateway) {
         modifier = Modifier
             .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
             .fillMaxWidth()
-            .sgmTestTag(SgmTestTags.SupportReportAction)
             .background(Sgm.colors.bgSurface, RoundedCornerShape(SgmRadius.LG))
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
             .padding(14.dp),
