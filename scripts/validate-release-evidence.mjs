@@ -30,6 +30,7 @@ const requiredAutomatedFlowEvidence = [
   "firebase_rules_emulator",
   "stripe_webhook_emulator",
   "android_appetize_launch",
+  "android_appetize_email_login",
 ];
 
 const requiredStoreEvidence = [

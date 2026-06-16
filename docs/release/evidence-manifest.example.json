@@ -94,6 +94,12 @@
         "status": "passed",
         "description": "Android release candidate uploaded to Appetize and launched to the native login screen.",
         "evidenceRefs": ["https://appetize.io/app/android/be.sportgreenmoove.app"]
+      },
+      {
+        "id": "android_appetize_email_login",
+        "status": "passed",
+        "description": "Android release candidate signed in with a disposable email/password account in Appetize and reached the native home screen.",
+        "evidenceRefs": ["evidence/appetize-android-email-login.png"]
       }
     ]
   },

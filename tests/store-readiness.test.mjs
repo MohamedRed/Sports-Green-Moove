@@ -129,6 +129,7 @@ for (const automatedEvidence of [
   "firebase_rules_emulator",
   "stripe_webhook_emulator",
   "android_appetize_launch",
+  "android_appetize_email_login",
 ]) {
   includes(files.evidenceTemplate, automatedEvidence, `Release evidence template includes ${automatedEvidence}`);
   includes(files.evidenceValidator, automatedEvidence, `Release evidence validator requires ${automatedEvidence}`);
@@ -139,7 +140,10 @@ includes(files.storeReadiness, "automated user-flow evidence", "Store checklist 
 includes(files.realDeviceProtocol, "automated user-flow evidence", "Real-device protocol requires automated user-flow evidence");
 includes(files.androidVerificationNotes, "automated-user-flow-evidence-2026-06-16.json", "Android notes link current automated-flow evidence");
 includes(files.androidVerificationNotes, "Pixel 7 / Android 13", "Android notes document Appetize launch device");
+includes(files.androidVerificationNotes, "Appetize email/password login", "Android notes document Appetize email login");
 includes(files.automatedFlowEvidence, "appetize-android-login-2026-06-16.png", "Automated flow evidence references Appetize launch screenshot");
+includes(files.automatedFlowEvidence, "appetize-android-email-login-2026-06-16.png", "Automated flow evidence references Appetize email login screenshot");
+includes(files.automatedFlowEvidence, "android_appetize_email_login", "Automated flow evidence captures Appetize email login");
 includes(files.automatedFlowEvidence, "Physical iOS and Android real-device scenarios remain required", "Automated flow evidence does not claim manual real-device completion");
 
 for (const requiredEvidence of [

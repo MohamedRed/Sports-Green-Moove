@@ -3,7 +3,7 @@
 ## 2026-06-16
 
 Branch: `codex/implement-plan`
-Commit: `2e2d8c75c644d964edbb710e3691169af8fdc939`
+Android APK source commit: `2e2d8c75c644d964edbb710e3691169af8fdc939`
 
 Verified Android and automated-flow gates:
 
@@ -18,6 +18,12 @@ Verified Android and automated-flow gates:
   - APK artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27623663997/artifacts/7669565180
   - Appetize upload completed and the browser launch reached the native email/password login screen on Pixel 7 / Android 13.
   - Screenshot: `docs/release/evidence/appetize-android-login-2026-06-16.png`
+- Android Appetize email/password login:
+  - Result: passed.
+  - Appetize native automation signed in with a disposable Firebase Auth parent account on Pixel 7 / Android 13.
+  - Verified post-login native home screen contained `Accueil`, `Trajets`, `Messages`, and `Profil` navigation and did not show an auth error.
+  - Run id: `codex-appetize-login-2026-06-16T14-34-15-317Z-05751972`.
+  - Screenshot: `docs/release/evidence/appetize-android-email-login-2026-06-16.png`
 - Production backend live smoke:
   - Result: passed.
   - Run id: `codex-smoke-2026-06-16T14-08-14-205Z-a1a301b9`.
@@ -34,7 +40,7 @@ Remaining Android evidence needed before public launch:
 
 - Run physical Android real-device background, locked-screen, GPS loss, network loss, app restart, battery-saver, Radar-delay, and Firebase native fallback evidence following `docs/release/real-device-test-protocol.md`.
 - Capture store-review screenshots for active ride tracking, native Google Maps route preview, stale-location warning, emergency contact action, and permission education.
-- Google and Meta OAuth end-to-end checks remain postponed; the Appetize evidence only verifies the current Android build reaches the native login screen.
+- Google and Meta OAuth end-to-end checks remain postponed; the Appetize evidence verifies Android email/password sign-in but not third-party OAuth.
 
 ## 2026-06-15
 

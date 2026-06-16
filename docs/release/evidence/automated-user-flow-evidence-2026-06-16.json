@@ -1,6 +1,6 @@
 {
   "evidenceType": "automated-user-flow-evidence",
-  "generatedAt": "2026-06-16T14:20:00Z",
+  "generatedAt": "2026-06-16T14:50:00Z",
   "releaseCandidate": {
     "branch": "codex/implement-plan",
     "commit": "2e2d8c75c644d964edbb710e3691169af8fdc939",
@@ -85,11 +85,21 @@
         "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27623663997/artifacts/7669565180",
         "appetize-android-login-2026-06-16.png"
       ]
+    },
+    {
+      "id": "android_appetize_email_login",
+      "status": "passed",
+      "description": "Android Appetize Pixel 7 / Android 13 session signed in with a disposable Firebase email/password parent account and reached the native home screen with Accueil, Trajets, Messages, and Profil navigation.",
+      "projectId": "sports-green-moove-prod",
+      "runId": "codex-appetize-login-2026-06-16T14-34-15-317Z-05751972",
+      "evidenceRefs": [
+        "appetize-android-email-login-2026-06-16.png"
+      ]
     }
   ],
   "knownLimitations": [
     "This artifact covers automated user-flow evidence only; it is not a full public-launch release evidence manifest.",
     "Physical iOS and Android real-device scenarios remain required by docs/release/real-device-test-protocol.md.",
-    "Google and Meta OAuth end-to-end verification remains postponed; this Appetize launch evidence verifies the Android app reaches the native login screen."
+    "Google and Meta OAuth end-to-end verification remains postponed; Appetize evidence verifies Android email/password sign-in only."
   ]
 }
