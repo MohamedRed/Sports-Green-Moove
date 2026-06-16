@@ -1,5 +1,9 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { tmpdir } from "node:os";
+import { requiredProviderEnvironmentVariables } from "../scripts/release-evidence-requirements.mjs";
 
 const output = execFileSync(
   process.execPath,
@@ -27,6 +31,45 @@ for (const providerVariable of [
     report.providerEnvironment.missing.includes(providerVariable),
     `Provider environment should report missing ${providerVariable}.`,
   );
+}
+
+const tmpDir = mkdtempSync(join(tmpdir(), "sgm-release-gaps-"));
+try {
+  const configuredSecretNames = requiredProviderEnvironmentVariables.filter((name) => {
+    return ![
+      "SGM_GOOGLE_REVERSED_CLIENT_ID",
+      "SGM_FACEBOOK_APP_ID",
+      "SGM_FACEBOOK_CLIENT_TOKEN",
+    ].includes(name);
+  });
+  const inventoryPath = join(tmpDir, "github-secrets.json");
+  writeFileSync(
+    inventoryPath,
+    JSON.stringify(configuredSecretNames.map((name) => ({ name, updatedAt: "2026-06-14T00:00:00Z" }))),
+  );
+
+  const inventoryReport = JSON.parse(
+    execFileSync(process.execPath, ["scripts/report-release-gaps.mjs", "--json", "--secret-inventory", inventoryPath], {
+      encoding: "utf8",
+      env: {
+        HOME: process.env.HOME,
+        PATH: process.env.PATH,
+      },
+    }),
+  );
+
+  assert.equal(inventoryReport.secretInventory.exists, true, "Secret inventory file should be read.");
+  assert.ok(
+    inventoryReport.providerEnvironment.presentFromSecretInventory.includes("STRIPE_WEBHOOK_SECRET"),
+    "Provider environment should count configured GitHub secret names.",
+  );
+  assert.deepEqual(
+    inventoryReport.providerEnvironment.missing,
+    ["SGM_GOOGLE_REVERSED_CLIENT_ID", "SGM_FACEBOOK_APP_ID", "SGM_FACEBOOK_CLIENT_TOKEN"],
+    "Secret inventory mode should leave only missing Google and Meta OAuth secret names.",
+  );
+} finally {
+  rmSync(tmpDir, { recursive: true, force: true });
 }
 
 for (const platform of ["ios", "android"]) {

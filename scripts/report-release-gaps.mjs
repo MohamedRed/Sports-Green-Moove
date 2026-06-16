@@ -10,10 +10,11 @@ import {
   requiredStoreEvidence,
 } from "./release-evidence-requirements.mjs";
 
-const { manifestPath, automatedEvidencePath, json } = parseArgs(process.argv.slice(2));
+const { manifestPath, automatedEvidencePath, secretInventoryPath, json } = parseArgs(process.argv.slice(2));
 const manifest = readJsonIfExists(manifestPath);
 const automatedEvidence = readJsonIfExists(automatedEvidencePath);
-const report = buildReport(manifest, automatedEvidence);
+const secretInventory = readSecretInventoryIfExists(secretInventoryPath);
+const report = buildReport(manifest, automatedEvidence, secretInventory);
 
 if (json) {
   console.log(JSON.stringify(report, null, 2));
@@ -21,11 +22,11 @@ if (json) {
   printTextReport(report);
 }
 
-function buildReport(manifestResult, automatedResult) {
+function buildReport(manifestResult, automatedResult, secretInventoryResult) {
   const manifest = manifestResult.data;
   const automated = automatedResult.data;
   const automatedItems = automated?.items ?? manifest?.automatedUserFlowEvidence?.items ?? [];
-  const providerEnvironment = providerEnvironmentGaps();
+  const providerEnvironment = providerEnvironmentGaps(secretInventoryResult.names);
   const providerReadiness = providerReadinessGaps(manifest?.providerProductionReadiness);
   const automatedFlowEvidence = itemGaps(automatedItems, requiredAutomatedFlowEvidence);
   const realDeviceRuns = realDeviceGaps(manifest?.realDeviceRuns);
@@ -43,6 +44,7 @@ function buildReport(manifestResult, automatedResult) {
     ].every((section) => section.ok),
     manifest: manifestResult,
     automatedEvidence: automatedResult,
+    secretInventory: secretInventoryResult,
     providerEnvironment,
     providerReadiness,
     automatedFlowEvidence,
@@ -52,13 +54,17 @@ function buildReport(manifestResult, automatedResult) {
   };
 }
 
-function providerEnvironmentGaps() {
-  const present = requiredProviderEnvironmentVariables.filter((name) => hasEnv(name));
-  const missing = requiredProviderEnvironmentVariables.filter((name) => !hasEnv(name));
+function providerEnvironmentGaps(secretNames = []) {
+  const presentFromEnv = requiredProviderEnvironmentVariables.filter((name) => hasEnv(name));
+  const presentFromSecretInventory = requiredProviderEnvironmentVariables.filter((name) => secretNames.includes(name));
+  const presentSet = new Set([...presentFromEnv, ...presentFromSecretInventory]);
+  const missing = requiredProviderEnvironmentVariables.filter((name) => !presentSet.has(name));
   return {
     ok: missing.length === 0,
     required: requiredProviderEnvironmentVariables,
-    present,
+    present: requiredProviderEnvironmentVariables.filter((name) => presentSet.has(name)),
+    presentFromEnv,
+    presentFromSecretInventory,
     missing,
   };
 }
@@ -125,6 +131,67 @@ function readJsonIfExists(path) {
   }
 }
 
+function readSecretInventoryIfExists(path) {
+  if (!path) return { path: null, provided: false, exists: false, names: [] };
+  if (!existsSync(path)) return { path, provided: true, exists: false, names: [] };
+  const raw = readFileSync(path, "utf8");
+  try {
+    return {
+      path,
+      provided: true,
+      exists: true,
+      names: secretNamesFromInventory(raw),
+    };
+  } catch (error) {
+    return {
+      path,
+      provided: true,
+      exists: true,
+      parseError: formatError(error),
+      names: [],
+    };
+  }
+}
+
+function secretNamesFromInventory(raw) {
+  const trimmed = raw.trim();
+  if (trimmed.length === 0) return [];
+
+  if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
+    return secretNamesFromJson(JSON.parse(trimmed));
+  }
+
+  return unique(
+    trimmed
+      .split(/\r?\n/)
+      .map((line) => line.trim().split(/\s+/)[0])
+      .filter(Boolean),
+  );
+}
+
+function secretNamesFromJson(value) {
+  if (Array.isArray(value)) {
+    return unique(value.flatMap(secretNameFromEntry));
+  }
+  if (Array.isArray(value?.names)) {
+    return unique(value.names.flatMap(secretNameFromEntry));
+  }
+  if (Array.isArray(value?.secrets)) {
+    return unique(value.secrets.flatMap(secretNameFromEntry));
+  }
+  throw new Error("Secret inventory must be a JSON array, { names }, { secrets }, or plain text list.");
+}
+
+function secretNameFromEntry(entry) {
+  if (typeof entry === "string") return [entry];
+  if (typeof entry?.name === "string") return [entry.name];
+  return [];
+}
+
+function unique(items) {
+  return [...new Set(items)];
+}
+
 function latestAutomatedEvidencePath() {
   const evidenceDir = "docs/release/evidence";
   if (!existsSync(evidenceDir)) return join(evidenceDir, "automated-user-flow-evidence-2026-06-16.json");
@@ -136,7 +203,7 @@ function latestAutomatedEvidencePath() {
 
 function printTextReport(report) {
   console.log(report.ok ? "Release evidence gaps: none" : "Release evidence gaps remain");
-  printList("Missing provider env vars", report.providerEnvironment.missing);
+  printList("Missing provider env/secret names", report.providerEnvironment.missing);
   printList("Missing provider readiness entries", report.providerReadiness.missing);
   printList("Missing automated evidence", report.automatedFlowEvidence.missing);
   for (const [platform, state] of Object.entries(report.realDeviceRuns.byPlatform)) {
@@ -158,6 +225,7 @@ function parseArgs(args) {
   return {
     manifestPath: valueAfter(args, "--manifest") ?? "docs/release/evidence-manifest.json",
     automatedEvidencePath: valueAfter(args, "--automated-evidence") ?? latestAutomatedEvidencePath(),
+    secretInventoryPath: valueAfter(args, "--secret-inventory"),
     json: args.includes("--json"),
   };
 }

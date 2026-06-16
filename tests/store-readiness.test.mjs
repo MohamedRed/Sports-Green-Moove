@@ -123,6 +123,7 @@ includes(files.storeReadiness, "validate:provider-readiness", "Store checklist d
 includes(files.storeReadiness, "Provider Readiness Probe", "Store checklist documents manual provider probe workflow");
 includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
 includes(files.storeReadiness, "report:release-gaps", "Store checklist documents release gap report command");
+includes(files.storeReadiness, "--secret-inventory", "Store checklist documents non-secret GitHub secret inventory reporting");
 includes(files.storeReadiness, "test:stripe-webhook-flow", "Store checklist documents Stripe webhook flow validation command");
 includes(files.storeReadiness, "smoke:live-backend-flow", "Store checklist documents live backend smoke validation command");
 includes(files.storeReadiness, "smoke:live-operations-flow", "Store checklist documents live operations smoke validation command");
