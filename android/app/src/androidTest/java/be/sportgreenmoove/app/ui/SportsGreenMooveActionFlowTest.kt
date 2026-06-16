@@ -20,11 +20,10 @@ class SportsGreenMooveActionFlowTest {
     val compose = createComposeRule()
 
     @Test
-    fun searchAndBookingActionsDispatchSelectedRideData() {
+    fun searchActionsDispatchSelectedRideData() {
         var searchForm: SearchFormState? = null
         var requestedMatch: TripMatchSummary? = null
         var requestedChildId: String? = null
-        var approvedRequest: BookingRequestSummary? = null
 
         compose.setSgmUiTestContent {
             SearchScreen(
@@ -56,6 +55,11 @@ class SportsGreenMooveActionFlowTest {
         compose.onNodeWithTag(SgmTestTags.BookingRequestAction).performScrollTo().performClick()
         assertEquals(UiFlowFixtures.match.tripId, requestedMatch?.tripId)
         assertEquals(UiFlowFixtures.child.id, requestedChildId)
+    }
+
+    @Test
+    fun bookingApprovalActionDispatchesSelectedRequest() {
+        var approvedRequest: BookingRequestSummary? = null
 
         compose.setSgmUiTestContent {
             BookingRequestsList(
@@ -96,9 +100,8 @@ class SportsGreenMooveActionFlowTest {
     }
 
     @Test
-    fun paymentActionsDispatchBookingAndDriverConnectCallbacks() {
+    fun paymentActionDispatchesSelectedBooking() {
         var paidBooking: PayableBookingSummary? = null
-        var connectTapped = false
 
         compose.setSgmUiTestContent {
             PaymentsScreen(
@@ -113,6 +116,11 @@ class SportsGreenMooveActionFlowTest {
 
         compose.onNodeWithTag(SgmTestTags.PaymentAction).performScrollTo().performClick()
         assertEquals(UiFlowFixtures.payableBooking.bookingId, paidBooking?.bookingId)
+    }
+
+    @Test
+    fun driverConnectActionDispatchesOnboardingCallback() {
+        var connectTapped = false
 
         compose.setSgmUiTestContent {
             PaymentsScreen(
