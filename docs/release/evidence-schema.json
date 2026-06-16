@@ -9,6 +9,7 @@
     "generatedAt",
     "owner",
     "providerProductionReadiness",
+    "automatedUserFlowEvidence",
     "realDeviceRuns",
     "storeReviewEvidence",
     "safetyAuditEvidence"
@@ -22,6 +23,10 @@
     "providerProductionReadiness": {
       "type": "object",
       "required": ["firebase", "radar", "googleMaps", "stripeConnect", "metaFacebook"]
+    },
+    "automatedUserFlowEvidence": {
+      "type": "object",
+      "required": ["items"]
     },
     "realDeviceRuns": {
       "type": "array",
@@ -37,4 +42,3 @@
     }
   }
 }
-

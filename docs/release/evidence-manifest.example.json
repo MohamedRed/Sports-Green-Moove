@@ -51,6 +51,52 @@
       ]
     }
   },
+  "automatedUserFlowEvidence": {
+    "items": [
+      {
+        "id": "native_ui_flow_ci",
+        "status": "passed",
+        "description": "Native UI identifier coverage passed for auth, groups, publish, search, booking, active ride, chat, rating, CO2, rewards, options, and payments.",
+        "evidenceRefs": ["https://github.com/example/repo/actions/runs/123456789"]
+      },
+      {
+        "id": "android_connected_ui_ci",
+        "status": "passed",
+        "description": "Android connected Compose UI tests rendered the native user-flow screens on an emulator.",
+        "evidenceRefs": ["https://github.com/example/repo/actions/runs/123456789"]
+      },
+      {
+        "id": "backend_live_smoke",
+        "status": "passed",
+        "description": "Production backend smoke passed for auth, profile, publish, search, booking approval, active ride, native location, chat, completion, and rating.",
+        "evidenceRefs": ["evidence/backend-live-smoke.json"]
+      },
+      {
+        "id": "operations_live_smoke",
+        "status": "passed",
+        "description": "Production operations smoke passed for club membership request, support report, and admin review.",
+        "evidenceRefs": ["evidence/operations-live-smoke.json"]
+      },
+      {
+        "id": "firebase_rules_emulator",
+        "status": "passed",
+        "description": "Firebase Emulator tests passed for Firestore, Realtime Database, and Storage rules.",
+        "evidenceRefs": ["https://github.com/example/repo/actions/runs/123456789"]
+      },
+      {
+        "id": "stripe_webhook_emulator",
+        "status": "passed",
+        "description": "Stripe webhook emulator tests passed for payment and reward ledger reconciliation.",
+        "evidenceRefs": ["https://github.com/example/repo/actions/runs/123456789"]
+      },
+      {
+        "id": "android_appetize_launch",
+        "status": "passed",
+        "description": "Android release candidate uploaded to Appetize and launched to the native login screen.",
+        "evidenceRefs": ["https://appetize.io/app/android/be.sportgreenmoove.app"]
+      }
+    ]
+  },
   "realDeviceRuns": [
     {
       "platform": "ios",
@@ -298,4 +344,3 @@
     ]
   }
 }
-

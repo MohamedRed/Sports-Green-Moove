@@ -82,3 +82,6 @@ Public launch remains blocked until:
 - `npm run validate:release-evidence -- docs/release/evidence-manifest.json`
   passes.
 - The manual Release Evidence Gate workflow passes for the same manifest path.
+- The manifest links passing automated user-flow evidence for Native CI, Android
+  connected UI, production live smokes, Firebase rules, Stripe webhook
+  reconciliation, and Android Appetize launch.

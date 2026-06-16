@@ -119,6 +119,22 @@ includes(files.storeReadiness, "test:stripe-webhook-flow", "Store checklist docu
 includes(files.storeReadiness, "smoke:live-backend-flow", "Store checklist documents live backend smoke validation command");
 includes(files.storeReadiness, "smoke:live-operations-flow", "Store checklist documents live operations smoke validation command");
 
+for (const automatedEvidence of [
+  "native_ui_flow_ci",
+  "android_connected_ui_ci",
+  "backend_live_smoke",
+  "operations_live_smoke",
+  "firebase_rules_emulator",
+  "stripe_webhook_emulator",
+  "android_appetize_launch",
+]) {
+  includes(files.evidenceTemplate, automatedEvidence, `Release evidence template includes ${automatedEvidence}`);
+  includes(files.evidenceValidator, automatedEvidence, `Release evidence validator requires ${automatedEvidence}`);
+}
+includes(files.evidenceSchema, "automatedUserFlowEvidence", "Release evidence schema requires automated user-flow evidence");
+includes(files.storeReadiness, "automated user-flow evidence", "Store checklist documents automated user-flow evidence");
+includes(files.realDeviceProtocol, "automated user-flow evidence", "Real-device protocol requires automated user-flow evidence");
+
 for (const requiredEvidence of [
   "foreground_tracking",
   "background_tracking",

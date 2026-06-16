@@ -22,6 +22,16 @@ const requiredDeviceScenarios = [
   "firebase_native_fallback",
 ];
 
+const requiredAutomatedFlowEvidence = [
+  "native_ui_flow_ci",
+  "android_connected_ui_ci",
+  "backend_live_smoke",
+  "operations_live_smoke",
+  "firebase_rules_emulator",
+  "stripe_webhook_emulator",
+  "android_appetize_launch",
+];
+
 const requiredStoreEvidence = [
   "privacy_policy_url",
   "app_store_privacy_answers",
@@ -74,6 +84,7 @@ function validateManifest(data) {
   }
 
   validateProviders(data.providerProductionReadiness);
+  validateAutomatedFlowEvidence(data.automatedUserFlowEvidence);
   validateDeviceRuns(data.realDeviceRuns);
   validateStoreEvidence(data.storeReviewEvidence);
   validateAuditEvidence(data.safetyAuditEvidence);
@@ -95,6 +106,16 @@ function validateProviders(providers) {
     validateEvidenceRefs(provider?.evidenceRefs, `${path}.evidenceRefs`);
     rejectSecretFields(provider, path);
   }
+}
+
+function validateAutomatedFlowEvidence(flowEvidence) {
+  requireObject(flowEvidence, "automatedUserFlowEvidence");
+  validateEvidenceItems(
+    flowEvidence?.items,
+    "automatedUserFlowEvidence.items",
+    requiredAutomatedFlowEvidence,
+    "passed",
+  );
 }
 
 function validateDeviceRuns(runs) {
@@ -145,7 +166,7 @@ function validateAuditEvidence(auditEvidence) {
   validateEvidenceItems(auditEvidence?.items, "safetyAuditEvidence.items", requiredAuditEvidence);
 }
 
-function validateEvidenceItems(items, path, requiredIds) {
+function validateEvidenceItems(items, path, requiredIds, expectedStatus = "accepted") {
   requireArray(items, path);
   const byId = new Map();
   for (const [index, item] of (items ?? []).entries()) {
@@ -154,8 +175,8 @@ function validateEvidenceItems(items, path, requiredIds) {
     requireString(item.status, `${itemPath}.status`);
     requireString(item.description, `${itemPath}.description`);
     validateEvidenceRefs(item.evidenceRefs, `${itemPath}.evidenceRefs`);
-    if (!allowPlaceholders && item.status !== "accepted") {
-      errors.push(`${itemPath}.status must be accepted`);
+    if (!allowPlaceholders && item.status !== expectedStatus) {
+      errors.push(`${itemPath}.status must be ${expectedStatus}`);
     }
     if (item.id) byId.set(item.id, item);
   }
