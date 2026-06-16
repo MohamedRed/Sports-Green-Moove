@@ -1,7 +1,7 @@
-import { execFileSync } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import process from "node:process";
 import admin from "firebase-admin";
+import { androidApiKey } from "./firebase-android-config.mjs";
 
 const projectId = process.env.SGM_FIREBASE_PROJECT_ID ?? "sports-green-moove-prod";
 const region = process.env.SGM_FIREBASE_FUNCTIONS_REGION ?? "us-central1";
@@ -14,33 +14,6 @@ const created = {
   membershipIds: [],
   reportIds: [],
 };
-
-function parseFirebaseJson(output) {
-  const start = output.indexOf("{");
-  if (start < 0) throw new Error("Firebase CLI did not return JSON.");
-  return JSON.parse(output.slice(start));
-}
-
-function firebaseCli(args) {
-  return execFileSync("firebase", args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-}
-
-function androidApiKey() {
-  const apps = parseFirebaseJson(firebaseCli(["apps:list", "--project", projectId, "--json"])).result ?? [];
-  const androidApp = apps.find((app) => app.platform === "ANDROID" && app.state === "ACTIVE");
-  if (!androidApp?.appId) throw new Error(`No active Android Firebase app found for ${projectId}.`);
-  const config = parseFirebaseJson(firebaseCli([
-    "apps:sdkconfig",
-    "ANDROID",
-    androidApp.appId,
-    "--project",
-    projectId,
-    "--json",
-  ])).result;
-  const key = JSON.parse(config.fileContents).client?.[0]?.api_key?.[0]?.current_key;
-  if (!key) throw new Error("Android Firebase app config did not include an API key.");
-  return key;
-}
 
 async function authRest(method, apiKey, body) {
   const response = await fetch(`https://identitytoolkit.googleapis.com/v1/${method}?key=${apiKey}`, {
@@ -146,7 +119,7 @@ async function cleanup() {
 
 async function main() {
   admin.initializeApp({ projectId });
-  const apiKey = androidApiKey();
+  const apiKey = await androidApiKey(projectId);
   const [parent, adminUser] = await Promise.all([
     createSession("parent", ["parent"], apiKey),
     createSession("admin", ["admin"], apiKey),

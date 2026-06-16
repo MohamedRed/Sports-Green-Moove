@@ -164,6 +164,7 @@ includes(files.evidenceSchema, "Release Evidence Manifest", "Release evidence sc
 includes(files.realDeviceProtocol, "Release Evidence Gate", "Real-device protocol names release gate");
 includes(files.releaseEvidenceWorkflow, "validate:release-evidence", "Release evidence workflow validates real manifests");
 includes(files.releaseEvidenceWorkflow, "validate:provider-readiness", "Release evidence workflow validates provider readiness");
+includes(files.releaseReadinessWorkflow, "scripts/firebase-android-config.mjs", "Release readiness reruns when Firebase live-smoke config helper changes");
 includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release readiness validates provider checks");
 includes(files.releaseReadinessWorkflow, "test:release-evidence-template", "Release readiness validates evidence template");
 includes(files.providerValidator, "STRIPE_WEBHOOK_SECRET", "Provider readiness validates Stripe webhook secret");
