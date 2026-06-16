@@ -10,7 +10,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import be.sportgreenmoove.app.data.AppRole
-import be.sportgreenmoove.app.design.SgmTheme
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -174,28 +173,15 @@ class SportsGreenMooveUiFlowTest {
     }
 
     private fun setTestContent(content: @Composable () -> Unit) {
-        compose.setContent {
-            TestContent(content)
-        }
+        compose.setSgmUiTestContent(content)
     }
 
     private fun setSwitchableTestContent(content: @Composable () -> Unit): TestContentHost {
         val activeContent = mutableStateOf<@Composable () -> Unit>(content)
-        compose.setContent {
-            TestContent {
-                activeContent.value()
-            }
+        compose.setSgmUiTestContent {
+            activeContent.value()
         }
         return TestContentHost(activeContent)
-    }
-
-    @Composable
-    private fun TestContent(content: @Composable () -> Unit) {
-        SgmTheme(darkTheme = false) {
-            V2ThemeToggleProvider(darkTheme = false, onToggle = {}) {
-                content()
-            }
-        }
     }
 
     private inner class TestContentHost(

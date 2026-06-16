@@ -45,7 +45,10 @@ const androidRegistry = readFile("android/app/src/main/java/be/sportgreenmoove/a
 const iosRegistry = readFile("ios/Sources/SportsGreenMooveApp/UITestIdentifiers.swift");
 const androidSources = sourceCorpus(androidUiDir, ".kt", "SgmTestTags.kt");
 const iosSources = sourceCorpus(iosSourceDir, ".swift", "UITestIdentifiers.swift");
-const androidUiTests = readFile("android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SportsGreenMooveUiFlowTest.kt");
+const androidUiTests = sourceCorpus(
+  path.join(rootDir, "android/app/src/androidTest/java/be/sportgreenmoove/app/ui"),
+  ".kt",
+);
 const iosUiTests = readFile("ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift");
 const iosProject = readFile("ios/project.yml");
 const nativeCi = readFile(".github/workflows/native-ci.yml");
@@ -99,6 +102,11 @@ for (const flow of flows) {
 includes(androidUiTests, "createComposeRule", "Android uses Compose UI automation");
 includes(androidUiTests, "SgmTestTags.ActiveRideScreen", "Android UI tests cover active ride selectors");
 includes(androidUiTests, "SgmTestTags.PublishSubmitAction", "Android UI tests cover publish submit selectors");
+includes(androidUiTests, "class SportsGreenMooveActionFlowTest", "Android UI tests include action-flow callback coverage");
+includes(androidUiTests, "onSearch = { searchForm = it }", "Android UI tests assert search action callbacks");
+includes(androidUiTests, "onRequest = { match, childId ->", "Android UI tests assert booking request callbacks");
+includes(androidUiTests, "onPickup = { pickupPassenger = it }", "Android UI tests assert active ride pickup callbacks");
+includes(androidUiTests, "onPay = { paidBooking = it }", "Android UI tests assert payment callbacks");
 includes(iosUiTests, "XCUIApplication", "iOS uses XCUITest automation");
 includes(iosUiTests, "--sgm-ui-test-fixture", "iOS UI tests launch deterministic fixture mode");
 includes(iosUiTests, "\"publish.submit.action\"", "iOS UI tests cover publish submit selectors");
