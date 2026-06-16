@@ -25,7 +25,9 @@ on:
       - "scripts/release-evidence-requirements.mjs"
       - "scripts/report-release-gaps.mjs"
       - "scripts/validate-release-evidence.mjs"
+      - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
+      - "tests/pr-user-flow-checks.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/store-readiness.test.mjs"
@@ -55,7 +57,9 @@ on:
       - "scripts/release-evidence-requirements.mjs"
       - "scripts/report-release-gaps.mjs"
       - "scripts/validate-release-evidence.mjs"
+      - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
+      - "tests/pr-user-flow-checks.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/store-readiness.test.mjs"
@@ -91,3 +95,6 @@ jobs:
 
       - name: Validate release gap report
         run: npm run test:release-gaps
+
+      - name: Validate PR user-flow check verifier
+        run: npm run test:pr-user-flow-checks

@@ -28,6 +28,8 @@ const files = {
   providerReadinessWorkflow: read(".github/workflows/provider-readiness.yml"),
   releaseEvidenceWorkflow: read(".github/workflows/release-evidence.yml"),
   releaseReadinessWorkflow: read(".github/workflows/release-readiness.yml"),
+  prUserFlowVerifier: read("scripts/verify-pr-user-flow-checks.mjs"),
+  prUserFlowChecksTest: read("tests/pr-user-flow-checks.test.mjs"),
 };
 
 for (const permission of [
@@ -124,6 +126,7 @@ includes(files.storeReadiness, "Provider Readiness Probe", "Store checklist docu
 includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
 includes(files.storeReadiness, "report:release-gaps", "Store checklist documents release gap report command");
 includes(files.storeReadiness, "--secret-inventory", "Store checklist documents non-secret GitHub secret inventory reporting");
+includes(files.storeReadiness, "verify:pr-user-flow-checks", "Store checklist documents live PR user-flow check verification");
 includes(files.storeReadiness, "test:stripe-webhook-flow", "Store checklist documents Stripe webhook flow validation command");
 includes(files.storeReadiness, "smoke:live-backend-flow", "Store checklist documents live backend smoke validation command");
 includes(files.storeReadiness, "smoke:live-operations-flow", "Store checklist documents live operations smoke validation command");
@@ -216,14 +219,19 @@ includes(files.releaseReadinessWorkflow, ".github/workflows/native-ci.yml", "Rel
 includes(files.releaseReadinessWorkflow, ".github/workflows/provider-readiness.yml", "Release readiness reruns when provider readiness workflow changes");
 includes(files.releaseReadinessWorkflow, "scripts/report-release-gaps.mjs", "Release readiness reruns when release gap reporter changes");
 includes(files.releaseReadinessWorkflow, "scripts/release-evidence-requirements.mjs", "Release readiness reruns when release requirements change");
+includes(files.releaseReadinessWorkflow, "scripts/verify-pr-user-flow-checks.mjs", "Release readiness reruns when PR flow verifier changes");
 includes(files.releaseReadinessWorkflow, "tests/release-gaps.test.mjs", "Release readiness reruns when release gap tests change");
+includes(files.releaseReadinessWorkflow, "tests/pr-user-flow-checks.test.mjs", "Release readiness reruns when PR flow verifier tests change");
 includes(files.releaseReadinessWorkflow, "scripts/firebase-android-config.mjs", "Release readiness reruns when Firebase live-smoke config helper changes");
 includes(files.releaseReadinessWorkflow, "scripts/live-backend-child-tracking.mjs", "Release readiness reruns when child tracking smoke helper changes");
 includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release readiness validates provider checks");
 includes(files.releaseReadinessWorkflow, "test:release-evidence-template", "Release readiness validates evidence template");
 includes(files.releaseReadinessWorkflow, "test:release-gaps", "Release readiness validates release gap report");
+includes(files.releaseReadinessWorkflow, "test:pr-user-flow-checks", "Release readiness validates PR user-flow check verifier");
 includes(files.packageJson, "report:release-gaps", "Package scripts expose release gap report");
 includes(files.packageJson, "test:release-gaps", "Package scripts expose release gap test");
+includes(files.packageJson, "verify:pr-user-flow-checks", "Package scripts expose live PR user-flow check verifier");
+includes(files.packageJson, "test:pr-user-flow-checks", "Package scripts expose PR user-flow verifier tests");
 includes(files.releaseGapReporter, "requiredDeviceScenarios", "Release gap reporter checks real-device scenarios");
 includes(files.releaseGapReporter, "requiredProviderEnvironmentVariables", "Release gap reporter checks provider environment");
 includes(files.releaseGapsTest, "locked_screen_tracking", "Release gap test covers locked-screen tracking gap");
@@ -239,6 +247,9 @@ includes(files.nativeCiWorkflow, "Enable KVM group permissions", "Native CI enab
 includes(files.nativeCiWorkflow, "99-kvm4all.rules", "Native CI configures KVM group permissions on GitHub-hosted Ubuntu");
 includes(files.nativeCiWorkflow, "udevadm trigger --name-match=kvm", "Native CI applies KVM udev rules before launching the emulator");
 includes(files.nativeCiWorkflow, "android-connected-ui-test-results", "Native CI uploads Android UI test artifacts");
+includes(files.prUserFlowVerifier, "requiredUserFlowChecks", "PR user-flow verifier uses shared release requirements");
+includes(files.prUserFlowVerifier, "gh", "PR user-flow verifier can read live GitHub check rollups");
+includes(files.prUserFlowChecksTest, "Android native UI tests", "PR user-flow verifier test rejects failed Android UI checks");
 
 console.log("Store readiness static checks passed.");
 

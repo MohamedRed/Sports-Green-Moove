@@ -76,3 +76,46 @@ export const requiredProviderEnvironmentVariables = [
   "SGM_FACEBOOK_APP_ID",
   "SGM_FACEBOOK_CLIENT_TOKEN",
 ];
+
+export const requiredUserFlowChecks = [
+  {
+    workflowName: "Native CI",
+    name: "Native UI flow coverage",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
+    workflowName: "Native CI",
+    name: "Android native unit tests",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
+    workflowName: "Native CI",
+    name: "Android native UI tests",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
+    workflowName: "Backend CI",
+    name: "Functions and Firebase rules",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
+    workflowName: "Web Integration Smoke",
+    name: "Functions, admin, and website smoke",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
+    workflowName: "Release Readiness",
+    name: "Store readiness static checks",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
+    workflowName: "Native CI",
+    name: "iOS native checks",
+    acceptableConclusions: ["SUCCESS", "SKIPPED"],
+  },
+  {
+    workflowName: "Native CI",
+    name: "iOS native UI tests",
+    acceptableConclusions: ["SUCCESS", "SKIPPED"],
+  },
+];
