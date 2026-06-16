@@ -68,7 +68,7 @@
       {
         "id": "backend_live_smoke",
         "status": "passed",
-        "description": "Production backend smoke passed for auth, profile, publish, search, booking approval, active ride, native location, chat, completion, and rating.",
+        "description": "Production backend smoke passed for auth, profile, publish, child-tracking search, child booking, active ride, driver and child native fallback, chat, completion, and rating.",
         "evidenceRefs": ["evidence/backend-live-smoke.json"]
       },
       {

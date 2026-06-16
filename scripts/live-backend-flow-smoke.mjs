@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import process from "node:process";
 import admin from "firebase-admin";
+import { seedChildProfile, verifyNativeFallbackTracking } from "./live-backend-child-tracking.mjs";
 import { androidApiKey } from "./firebase-android-config.mjs";
 
 const projectId = process.env.SGM_FIREBASE_PROJECT_ID ?? "sports-green-moove-prod";
@@ -11,6 +12,7 @@ const runId = `codex-smoke-${new Date().toISOString().replace(/[:.]/g, "-")}-${r
 const created = {
   authUserIds: [],
   userDocIds: [],
+  childIds: [],
   tripIds: [],
   bookingIds: [],
   rideSessionIds: [],
@@ -96,7 +98,7 @@ async function createTrip(driver) {
     returnTrip: false,
     priceCents: 0,
     supportsVehicleTracking: true,
-    supportsChildTracking: false,
+    supportsChildTracking: true,
     co2SavedKgEstimate: 4.2,
     distanceKm: 28.4,
     passengerInitials: [],
@@ -106,16 +108,19 @@ async function createTrip(driver) {
   return { tripId: result.tripId, departureAt };
 }
 
-async function searchCreatedTrip(parent, trip) {
+async function searchCreatedTrip(parent, trip, childId) {
   const result = await callFunction("searchTrips", parent.idToken, {
+    childUserId: childId,
     desiredDepartureAt: trip.departureAt,
     origin: { lat: 50.84673, lng: 4.35247 },
     destination: { lat: 50.66961, lng: 4.61221 },
     seatsNeeded: 1,
     baggage: "small",
     returnTrip: false,
-    requireChildTracking: false,
+    requireChildTracking: true,
     guardianConsent: true,
+    clubId: `${runId}-club`,
+    teamId: `${runId}-team`,
     maxDetourMinutes: 45,
     maxPickupDistanceM: 3000,
     departureWindowBeforeMinutes: 90,
@@ -128,8 +133,8 @@ async function searchCreatedTrip(parent, trip) {
   return result.matches.length;
 }
 
-async function requestAndApproveBooking(parent, driver, tripId) {
-  const request = await callFunction("requestBooking", parent.idToken, { tripId, seats: 1, note: runId });
+async function requestAndApproveBooking(parent, driver, tripId, childId) {
+  const request = await callFunction("requestBooking", parent.idToken, { tripId, childId, seats: 1, note: runId });
   created.bookingIds.push(request.bookingId);
 
   const queue = await callFunction("listDriverBookingRequests", driver.idToken);
@@ -143,7 +148,7 @@ async function requestAndApproveBooking(parent, driver, tripId) {
   return request.bookingId;
 }
 
-async function runRideFlow(parent, driver, tripId, bookingId) {
+async function runRideFlow(parent, driver, child, tripId, bookingId) {
   const chat = await callFunction("sendChatMessage", parent.idToken, { bookingId, body: `Smoke chat ${runId}` });
   created.messageIds.push(chat.messageId);
 
@@ -152,27 +157,10 @@ async function runRideFlow(parent, driver, tripId, bookingId) {
   assert(rideSessionId, "startRide did not return a ride session id.");
   created.rideSessionIds.push(rideSessionId);
 
-  const now = Date.now();
-  const location = await callFunction("writeLocationBatch", driver.idToken, {
-    updates: [{
-      rideSessionId,
-      role: "driver",
-      lat: 50.80112,
-      lng: 4.39731,
-      accuracyM: 12,
-      speedMps: 8.4,
-      headingDeg: 135,
-      batteryPct: 88,
-      capturedAt: now,
-    }],
-  });
-  assert(location.written === 1, "writeLocationBatch did not write the driver location.");
+  await verifyNativeFallbackTracking({ admin, callFunction, assert, parent, driver, child, rideSessionId });
 
-  const activeForParent = await callFunction("getActiveRide", parent.idToken);
-  assert(activeForParent.ride?.rideSessionId === rideSessionId, "Parent could not read the active ride.");
-
-  await callFunction("markPickup", driver.idToken, { rideSessionId, bookingId, childId: bookingId, note: runId });
-  await callFunction("markDropoff", driver.idToken, { rideSessionId, bookingId, childId: bookingId, note: runId });
+  await callFunction("markPickup", driver.idToken, { rideSessionId, bookingId, childId: child.uid, note: runId });
+  await callFunction("markDropoff", driver.idToken, { rideSessionId, bookingId, childId: child.uid, note: runId });
 
   const completed = await callFunction("endRide", driver.idToken, {
     rideSessionId,
@@ -213,6 +201,7 @@ async function cleanup() {
     ...created.notificationIds.map((id) => db.collection("notifications").doc(id).delete().catch(() => undefined)),
     ...created.co2LedgerIds.map((id) => db.collection("co2Ledger").doc(id).delete().catch(() => undefined)),
     ...created.rewardLedgerIds.map((id) => db.collection("rewardLedger").doc(id).delete().catch(() => undefined)),
+    ...created.childIds.map((id) => db.collection("children").doc(id).delete().catch(() => undefined)),
     ...created.bookingIds.map((id) => db.collection("bookings").doc(id).delete().catch(() => undefined)),
     ...created.tripIds.map((id) => db.collection("trips").doc(id).delete().catch(() => undefined)),
     ...created.rideSessionIds.map((id) => db.collection("rideSessions").doc(id).delete().catch(() => undefined)),
@@ -233,30 +222,34 @@ async function main() {
   const apiKey = await androidApiKey(projectId);
   const driver = await createSession("driver", ["driver"], apiKey);
   const parent = await createSession("parent", ["parent"], apiKey);
+  const child = await createSession("child", ["child"], apiKey);
   await Promise.all([
     callFunction("initializeUserProfile", driver.idToken, { displayName: "Codex Driver" }),
     callFunction("initializeUserProfile", parent.idToken, { displayName: "Codex Parent" }),
+    callFunction("initializeUserProfile", child.idToken, { displayName: "Codex Child" }),
   ]);
   await admin.firestore().collection("users").doc(driver.uid).set({
     driverVerified: true,
     driverRating: 4.8,
   }, { merge: true });
 
+  const childId = await seedChildProfile({ admin, runId, parent, child, created });
   const trip = await createTrip(driver);
-  const matchCount = await searchCreatedTrip(parent, trip);
-  const bookingId = await requestAndApproveBooking(parent, driver, trip.tripId);
-  const rideSessionId = await runRideFlow(parent, driver, trip.tripId, bookingId);
+  const matchCount = await searchCreatedTrip(parent, trip, childId);
+  const bookingId = await requestAndApproveBooking(parent, driver, trip.tripId, childId);
+  const rideSessionId = await runRideFlow(parent, driver, child, trip.tripId, bookingId);
 
   console.log(JSON.stringify({
     ok: true,
     projectId,
     runId,
     verified: {
-      authProfiles: 2,
+      authProfiles: 3,
       publishedTrip: trip.tripId,
       searchMatches: matchCount,
       approvedBooking: bookingId,
       completedRide: rideSessionId,
+      childNativeFallback: child.uid,
       chatMessages: created.messageIds.length,
       ratings: created.ratingIds.length,
     },
