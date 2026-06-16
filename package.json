@@ -20,13 +20,15 @@
     "test:provider-readiness": "node tests/provider-readiness.test.mjs",
     "test:admin-plan-coverage": "node tests/admin-plan-coverage.test.mjs",
     "test:release-evidence-template": "node tests/release-evidence-template.test.mjs",
+    "test:release-gaps": "node tests/release-gaps.test.mjs",
+    "report:release-gaps": "node scripts/report-release-gaps.mjs",
     "smoke:live-backend-flow": "node scripts/live-backend-flow-smoke.mjs",
     "smoke:live-operations-flow": "node scripts/live-operations-flow-smoke.mjs",
     "validate:provider-readiness": "node scripts/check-provider-readiness.mjs",
     "validate:release-evidence": "node scripts/validate-release-evidence.mjs",
     "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts\"",
     "test:stripe-webhook-flow": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore \"vitest run tests/stripe-webhook-flow.test.ts\"",
-    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:provider-readiness && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:rules && npm run test:stripe-webhook-flow"
+    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:provider-readiness && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:release-gaps && npm run test:rules && npm run test:stripe-webhook-flow"
   },
   "engines": {
     "node": ">=22"

@@ -17,6 +17,7 @@
 ## Review Evidence Required Before Public Launch
 
 - A real release evidence manifest must be created from `docs/release/evidence-manifest.example.json` and validated with `npm run validate:release-evidence -- docs/release/evidence-manifest.json`.
+- Run `npm run report:release-gaps` while closing evidence to see which public-launch proof is still missing.
 - Production provider configuration must pass `npm run validate:provider-readiness` with production secrets in the environment.
 - The manual Provider Readiness Probe workflow can validate production provider secrets independently before the real-device evidence manifest exists.
 - The real release evidence manifest must cite successful automated user-flow evidence for Native CI, Android connected UI tests, production backend smoke, production operations smoke, Firebase rules, Stripe webhook reconciliation, and Android Appetize launch.

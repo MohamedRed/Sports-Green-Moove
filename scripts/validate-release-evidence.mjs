@@ -1,60 +1,13 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, isAbsolute, resolve } from "node:path";
-
-const requiredProviders = [
-  "firebase",
-  "radar",
-  "googleMaps",
-  "stripeConnect",
-  "metaFacebook",
-];
-
-const requiredDeviceScenarios = [
-  "foreground_tracking",
-  "background_tracking",
-  "locked_screen_tracking",
-  "gps_loss",
-  "network_loss",
-  "app_restart",
-  "battery_saver",
-  "radar_webhook_delay",
-  "firebase_native_fallback",
-];
-
-const requiredAutomatedFlowEvidence = [
-  "native_ui_flow_ci",
-  "android_connected_ui_ci",
-  "backend_live_smoke",
-  "operations_live_smoke",
-  "firebase_rules_emulator",
-  "stripe_webhook_emulator",
-  "android_appetize_launch",
-  "android_appetize_email_login",
-];
-
-const requiredStoreEvidence = [
-  "privacy_policy_url",
-  "app_store_privacy_answers",
-  "google_play_data_safety_answers",
-  "guardian_consent_copy",
-  "background_location_disclosure",
-  "child_safety_disclosure",
-  "active_ride_tracking_screenshot",
-  "google_maps_route_preview_screenshot",
-  "stale_location_warning_screenshot",
-  "emergency_contact_action_screenshot",
-  "permission_education_screenshot",
-];
-
-const requiredAuditEvidence = [
-  "guardian_consent_event",
-  "pickup_event",
-  "dropoff_event",
-  "radar_webhook_event",
-  "native_fallback_location_event",
-  "payment_reconciliation_event",
-];
+import {
+  requiredAuditEvidence,
+  requiredAutomatedFlowEvidence,
+  requiredDeviceScenarios,
+  requiredProviders,
+  requiredStoreEvidence,
+} from "./release-evidence-requirements.mjs";
 
 const { manifestPath, allowPlaceholders } = parseArgs(process.argv.slice(2));
 const manifestDir = dirname(resolve(manifestPath));

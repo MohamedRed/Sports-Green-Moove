@@ -22,8 +22,11 @@ on:
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
+      - "scripts/release-evidence-requirements.mjs"
+      - "scripts/report-release-gaps.mjs"
       - "scripts/validate-release-evidence.mjs"
       - "tests/provider-readiness.test.mjs"
+      - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/store-readiness.test.mjs"
   push:
@@ -49,8 +52,11 @@ on:
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
+      - "scripts/release-evidence-requirements.mjs"
+      - "scripts/report-release-gaps.mjs"
       - "scripts/validate-release-evidence.mjs"
       - "tests/provider-readiness.test.mjs"
+      - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/store-readiness.test.mjs"
 
@@ -82,3 +88,6 @@ jobs:
 
       - name: Validate release evidence template
         run: npm run test:release-evidence-template
+
+      - name: Validate release gap report
+        run: npm run test:release-gaps

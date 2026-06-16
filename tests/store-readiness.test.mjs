@@ -18,7 +18,10 @@ const files = {
   androidVerificationNotes: read("docs/release/android-verification-notes.md"),
   automatedFlowEvidence: read("docs/release/evidence/automated-user-flow-evidence-2026-06-16.json"),
   providerValidator: read("scripts/check-provider-readiness.mjs"),
+  releaseGapReporter: read("scripts/report-release-gaps.mjs"),
+  releaseRequirements: read("scripts/release-evidence-requirements.mjs"),
   evidenceValidator: read("scripts/validate-release-evidence.mjs"),
+  releaseGapsTest: read("tests/release-gaps.test.mjs"),
   packageJson: read("package.json"),
   backendCiWorkflow: read(".github/workflows/backend-ci.yml"),
   nativeCiWorkflow: read(".github/workflows/native-ci.yml"),
@@ -119,6 +122,7 @@ includes(files.storeReadiness, "android-verification-notes.md", "Store checklist
 includes(files.storeReadiness, "validate:provider-readiness", "Store checklist documents provider validation command");
 includes(files.storeReadiness, "Provider Readiness Probe", "Store checklist documents manual provider probe workflow");
 includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
+includes(files.storeReadiness, "report:release-gaps", "Store checklist documents release gap report command");
 includes(files.storeReadiness, "test:stripe-webhook-flow", "Store checklist documents Stripe webhook flow validation command");
 includes(files.storeReadiness, "smoke:live-backend-flow", "Store checklist documents live backend smoke validation command");
 includes(files.storeReadiness, "smoke:live-operations-flow", "Store checklist documents live operations smoke validation command");
@@ -134,7 +138,7 @@ for (const automatedEvidence of [
   "android_appetize_email_login",
 ]) {
   includes(files.evidenceTemplate, automatedEvidence, `Release evidence template includes ${automatedEvidence}`);
-  includes(files.evidenceValidator, automatedEvidence, `Release evidence validator requires ${automatedEvidence}`);
+  includes(files.releaseRequirements, automatedEvidence, `Release requirements include ${automatedEvidence}`);
   includes(files.automatedFlowEvidence, automatedEvidence, `Automated flow evidence captures ${automatedEvidence}`);
 }
 includes(files.evidenceSchema, "automatedUserFlowEvidence", "Release evidence schema requires automated user-flow evidence");
@@ -165,12 +169,12 @@ for (const requiredEvidence of [
   "permission_education_screenshot",
 ]) {
   includes(files.evidenceTemplate, requiredEvidence, `Release evidence template includes ${requiredEvidence}`);
-  includes(files.evidenceValidator, requiredEvidence, `Release evidence validator requires ${requiredEvidence}`);
+  includes(files.releaseRequirements, requiredEvidence, `Release requirements include ${requiredEvidence}`);
   includes(files.realDeviceProtocol, requiredEvidence, `Real-device protocol covers ${requiredEvidence}`);
 }
 for (const provider of ["firebase", "radar", "googleMaps", "stripeConnect", "metaFacebook"]) {
   includes(files.evidenceTemplate, provider, `Release evidence template includes ${provider}`);
-  includes(files.evidenceValidator, provider, `Release evidence validator requires ${provider}`);
+  includes(files.releaseRequirements, provider, `Release requirements include ${provider}`);
 }
 for (const requiredProviderVariable of [
   "FIREBASE_ANDROID_CONFIG_BASE64",
@@ -197,6 +201,7 @@ for (const requiredProviderVariable of [
   "SGM_FACEBOOK_CLIENT_TOKEN",
 ]) {
   includes(files.providerValidator, requiredProviderVariable, `Provider validator checks ${requiredProviderVariable}`);
+  includes(files.releaseRequirements, requiredProviderVariable, `Release requirements include ${requiredProviderVariable}`);
   includes(files.releaseEvidenceWorkflow, requiredProviderVariable, `Release evidence workflow passes ${requiredProviderVariable}`);
   includes(files.providerReadinessWorkflow, requiredProviderVariable, `Provider readiness workflow passes ${requiredProviderVariable}`);
 }
@@ -208,10 +213,19 @@ includes(files.providerReadinessWorkflow, "workflow_dispatch", "Provider readine
 includes(files.providerReadinessWorkflow, "validate:provider-readiness", "Provider readiness workflow validates provider configuration");
 includes(files.releaseReadinessWorkflow, ".github/workflows/native-ci.yml", "Release readiness reruns when Native CI changes");
 includes(files.releaseReadinessWorkflow, ".github/workflows/provider-readiness.yml", "Release readiness reruns when provider readiness workflow changes");
+includes(files.releaseReadinessWorkflow, "scripts/report-release-gaps.mjs", "Release readiness reruns when release gap reporter changes");
+includes(files.releaseReadinessWorkflow, "scripts/release-evidence-requirements.mjs", "Release readiness reruns when release requirements change");
+includes(files.releaseReadinessWorkflow, "tests/release-gaps.test.mjs", "Release readiness reruns when release gap tests change");
 includes(files.releaseReadinessWorkflow, "scripts/firebase-android-config.mjs", "Release readiness reruns when Firebase live-smoke config helper changes");
 includes(files.releaseReadinessWorkflow, "scripts/live-backend-child-tracking.mjs", "Release readiness reruns when child tracking smoke helper changes");
 includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release readiness validates provider checks");
 includes(files.releaseReadinessWorkflow, "test:release-evidence-template", "Release readiness validates evidence template");
+includes(files.releaseReadinessWorkflow, "test:release-gaps", "Release readiness validates release gap report");
+includes(files.packageJson, "report:release-gaps", "Package scripts expose release gap report");
+includes(files.packageJson, "test:release-gaps", "Package scripts expose release gap test");
+includes(files.releaseGapReporter, "requiredDeviceScenarios", "Release gap reporter checks real-device scenarios");
+includes(files.releaseGapReporter, "requiredProviderEnvironmentVariables", "Release gap reporter checks provider environment");
+includes(files.releaseGapsTest, "locked_screen_tracking", "Release gap test covers locked-screen tracking gap");
 includes(files.providerValidator, "STRIPE_WEBHOOK_SECRET", "Provider readiness validates Stripe webhook secret");
 includes(files.packageJson, "test:stripe-webhook-flow", "Package scripts expose Stripe webhook flow emulator test");
 includes(files.packageJson, "smoke:live-backend-flow", "Package scripts expose live backend flow smoke test");
