@@ -22,6 +22,7 @@ const files = {
   packageJson: read("package.json"),
   backendCiWorkflow: read(".github/workflows/backend-ci.yml"),
   nativeCiWorkflow: read(".github/workflows/native-ci.yml"),
+  providerReadinessWorkflow: read(".github/workflows/provider-readiness.yml"),
   releaseEvidenceWorkflow: read(".github/workflows/release-evidence.yml"),
   releaseReadinessWorkflow: read(".github/workflows/release-readiness.yml"),
 };
@@ -116,6 +117,7 @@ includes(files.storeReadiness, "evidence-manifest.example.json", "Store checklis
 includes(files.storeReadiness, "real-device-test-protocol.md", "Store checklist links real-device protocol");
 includes(files.storeReadiness, "android-verification-notes.md", "Store checklist links Android verification notes");
 includes(files.storeReadiness, "validate:provider-readiness", "Store checklist documents provider validation command");
+includes(files.storeReadiness, "Provider Readiness Probe", "Store checklist documents manual provider probe workflow");
 includes(files.storeReadiness, "validate:release-evidence", "Store checklist documents evidence validation command");
 includes(files.storeReadiness, "test:stripe-webhook-flow", "Store checklist documents Stripe webhook flow validation command");
 includes(files.storeReadiness, "smoke:live-backend-flow", "Store checklist documents live backend smoke validation command");
@@ -173,25 +175,39 @@ for (const provider of ["firebase", "radar", "googleMaps", "stripeConnect", "met
 for (const requiredProviderVariable of [
   "FIREBASE_ANDROID_CONFIG_BASE64",
   "FIREBASE_IOS_CONFIG_BASE64",
+  "VITE_FIREBASE_API_KEY",
+  "VITE_FIREBASE_AUTH_DOMAIN",
+  "VITE_FIREBASE_PROJECT_ID",
+  "VITE_FIREBASE_DATABASE_URL",
+  "VITE_FIREBASE_STORAGE_BUCKET",
+  "VITE_FIREBASE_MESSAGING_SENDER_ID",
+  "VITE_FIREBASE_APP_ID",
   "GOOGLE_MAPS_API_KEY",
   "SGM_GOOGLE_MAPS_ANDROID_API_KEY",
   "SGM_GOOGLE_MAPS_IOS_API_KEY",
+  "SGM_GOOGLE_REVERSED_CLIENT_ID",
   "RADAR_WEBHOOK_SECRET",
   "SGM_RADAR_PUBLISHABLE_KEY",
   "STRIPE_SECRET_KEY",
   "STRIPE_PUBLISHABLE_KEY",
   "STRIPE_WEBHOOK_SECRET",
+  "SGM_STRIPE_CONNECT_RETURN_URL",
+  "SGM_STRIPE_CONNECT_REFRESH_URL",
   "SGM_FACEBOOK_APP_ID",
   "SGM_FACEBOOK_CLIENT_TOKEN",
 ]) {
   includes(files.providerValidator, requiredProviderVariable, `Provider validator checks ${requiredProviderVariable}`);
   includes(files.releaseEvidenceWorkflow, requiredProviderVariable, `Release evidence workflow passes ${requiredProviderVariable}`);
+  includes(files.providerReadinessWorkflow, requiredProviderVariable, `Provider readiness workflow passes ${requiredProviderVariable}`);
 }
 includes(files.evidenceSchema, "Release Evidence Manifest", "Release evidence schema exists");
 includes(files.realDeviceProtocol, "Release Evidence Gate", "Real-device protocol names release gate");
 includes(files.releaseEvidenceWorkflow, "validate:release-evidence", "Release evidence workflow validates real manifests");
 includes(files.releaseEvidenceWorkflow, "validate:provider-readiness", "Release evidence workflow validates provider readiness");
+includes(files.providerReadinessWorkflow, "workflow_dispatch", "Provider readiness workflow can be launched manually");
+includes(files.providerReadinessWorkflow, "validate:provider-readiness", "Provider readiness workflow validates provider configuration");
 includes(files.releaseReadinessWorkflow, ".github/workflows/native-ci.yml", "Release readiness reruns when Native CI changes");
+includes(files.releaseReadinessWorkflow, ".github/workflows/provider-readiness.yml", "Release readiness reruns when provider readiness workflow changes");
 includes(files.releaseReadinessWorkflow, "scripts/firebase-android-config.mjs", "Release readiness reruns when Firebase live-smoke config helper changes");
 includes(files.releaseReadinessWorkflow, "scripts/live-backend-child-tracking.mjs", "Release readiness reruns when child tracking smoke helper changes");
 includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release readiness validates provider checks");
