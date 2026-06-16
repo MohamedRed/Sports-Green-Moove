@@ -180,6 +180,7 @@ includes(files.evidenceSchema, "Release Evidence Manifest", "Release evidence sc
 includes(files.realDeviceProtocol, "Release Evidence Gate", "Real-device protocol names release gate");
 includes(files.releaseEvidenceWorkflow, "validate:release-evidence", "Release evidence workflow validates real manifests");
 includes(files.releaseEvidenceWorkflow, "validate:provider-readiness", "Release evidence workflow validates provider readiness");
+includes(files.releaseReadinessWorkflow, ".github/workflows/native-ci.yml", "Release readiness reruns when Native CI changes");
 includes(files.releaseReadinessWorkflow, "scripts/firebase-android-config.mjs", "Release readiness reruns when Firebase live-smoke config helper changes");
 includes(files.releaseReadinessWorkflow, "scripts/live-backend-child-tracking.mjs", "Release readiness reruns when child tracking smoke helper changes");
 includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release readiness validates provider checks");
@@ -192,6 +193,9 @@ includes(files.backendCiWorkflow, "test:stripe-webhook-flow", "Backend CI valida
 includes(files.nativeCiWorkflow, "workflow_dispatch", "Native CI can be launched manually for Android flow verification");
 includes(files.nativeCiWorkflow, "connectedDebugAndroidTest", "Native CI runs connected Android UI tests");
 includes(files.nativeCiWorkflow, "reactivecircus/android-emulator-runner", "Native CI provisions a GitHub-hosted Android emulator");
+includes(files.nativeCiWorkflow, "Enable KVM group permissions", "Native CI enables hardware acceleration for the Android emulator");
+includes(files.nativeCiWorkflow, "99-kvm4all.rules", "Native CI configures KVM group permissions on GitHub-hosted Ubuntu");
+includes(files.nativeCiWorkflow, "udevadm trigger --name-match=kvm", "Native CI applies KVM udev rules before launching the emulator");
 includes(files.nativeCiWorkflow, "android-connected-ui-test-results", "Native CI uploads Android UI test artifacts");
 
 console.log("Store readiness static checks passed.");

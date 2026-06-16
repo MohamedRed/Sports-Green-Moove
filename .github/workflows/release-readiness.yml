@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/release-readiness.yml"
       - ".github/workflows/release-evidence.yml"
+      - ".github/workflows/native-ci.yml"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/res/values/strings.xml"
       - "docs/release/**"
@@ -30,6 +31,7 @@ on:
     paths:
       - ".github/workflows/release-readiness.yml"
       - ".github/workflows/release-evidence.yml"
+      - ".github/workflows/native-ci.yml"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/res/values/strings.xml"
       - "docs/release/**"
