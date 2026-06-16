@@ -1,6 +1,8 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -45,7 +47,7 @@ class SportsGreenMooveUiFlowTest {
 
     @Test
     fun publishingSearchAndBookingFlowsExposeNativeUiActions() {
-        setTestContent {
+        val host = setSwitchableTestContent {
             PublishScreen(
                 role = AppRole.Driver,
                 firebase = firebase,
@@ -61,7 +63,7 @@ class SportsGreenMooveUiFlowTest {
         compose.onNodeWithTag(SgmTestTags.PublishNextAction).performClick()
         assertTagsExist(SgmTestTags.PublishSubmitAction)
 
-        setTestContent {
+        host.show {
             SearchScreen(
                 origin = UiFlowFixtures.origin,
                 destination = UiFlowFixtures.destination,
@@ -82,7 +84,7 @@ class SportsGreenMooveUiFlowTest {
         }
         assertTagsExist(SgmTestTags.SearchScreen, SgmTestTags.SearchAction, SgmTestTags.BookingRequestAction)
 
-        setTestContent {
+        host.show {
             BookingRequestsList(
                 requests = listOf(UiFlowFixtures.bookingRequest),
                 onApprove = {},
@@ -115,19 +117,19 @@ class SportsGreenMooveUiFlowTest {
 
     @Test
     fun secondaryPlanFlowsExposeNativeUiActions() {
-        setTestContent { GroupsScreen(clubs = UiFlowFixtures.clubs, onBack = {}) }
+        val host = setSwitchableTestContent { GroupsScreen(clubs = UiFlowFixtures.clubs, onBack = {}) }
         assertTagsExist(SgmTestTags.GroupsScreen, SgmTestTags.GroupsJoinAction)
 
-        setTestContent { ImpactScreen(summary = UiFlowFixtures.impact, onBack = {}) }
+        host.show { ImpactScreen(summary = UiFlowFixtures.impact, onBack = {}) }
         assertTagsExist(SgmTestTags.ImpactScreen)
 
-        setTestContent { RewardsScreen(summary = UiFlowFixtures.rewards, onBack = {}) }
+        host.show { RewardsScreen(summary = UiFlowFixtures.rewards, onBack = {}) }
         assertTagsExist(SgmTestTags.RewardsScreen, SgmTestTags.RewardsWithdrawAction)
 
-        setTestContent { OptionsScreen(firebase = firebase, onBack = {}) }
+        host.show { OptionsScreen(firebase = firebase, onBack = {}) }
         assertTagsExist(SgmTestTags.OptionsScreen, SgmTestTags.SupportReportAction)
 
-        setTestContent {
+        host.show {
             PaymentsScreen(
                 role = AppRole.Parent,
                 bookings = listOf(UiFlowFixtures.payableBooking),
@@ -173,11 +175,37 @@ class SportsGreenMooveUiFlowTest {
 
     private fun setTestContent(content: @Composable () -> Unit) {
         compose.setContent {
-            SgmTheme(darkTheme = false) {
-                V2ThemeToggleProvider(darkTheme = false, onToggle = {}) {
-                    content()
-                }
+            TestContent(content)
+        }
+    }
+
+    private fun setSwitchableTestContent(content: @Composable () -> Unit): TestContentHost {
+        val activeContent = mutableStateOf<@Composable () -> Unit>(content)
+        compose.setContent {
+            TestContent {
+                activeContent.value()
             }
+        }
+        return TestContentHost(activeContent)
+    }
+
+    @Composable
+    private fun TestContent(content: @Composable () -> Unit) {
+        SgmTheme(darkTheme = false) {
+            V2ThemeToggleProvider(darkTheme = false, onToggle = {}) {
+                content()
+            }
+        }
+    }
+
+    private inner class TestContentHost(
+        private val activeContent: MutableState<@Composable () -> Unit>,
+    ) {
+        fun show(content: @Composable () -> Unit) {
+            compose.runOnIdle {
+                activeContent.value = content
+            }
+            compose.waitForIdle()
         }
     }
 }
