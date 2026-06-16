@@ -107,6 +107,7 @@ includes(androidUiTests, "onSearch = { searchForm = it }", "Android UI tests ass
 includes(androidUiTests, "onRequest = { match, childId ->", "Android UI tests assert booking request callbacks");
 includes(androidUiTests, "onPickup = { pickupPassenger = it }", "Android UI tests assert active ride pickup callbacks");
 includes(androidUiTests, "onPay = { paidBooking = it }", "Android UI tests assert payment callbacks");
+includes(androidUiTests, "SgmTestTags.PaymentConnectAction", "Android UI tests assert Stripe Connect callbacks");
 includes(iosUiTests, "XCUIApplication", "iOS uses XCUITest automation");
 includes(iosUiTests, "--sgm-ui-test-fixture", "iOS UI tests launch deterministic fixture mode");
 includes(iosUiTests, "\"publish.submit.action\"", "iOS UI tests cover publish submit selectors");

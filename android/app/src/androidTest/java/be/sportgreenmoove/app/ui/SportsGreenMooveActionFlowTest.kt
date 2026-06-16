@@ -2,7 +2,6 @@ package be.sportgreenmoove.app.ui
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import be.sportgreenmoove.app.data.AppRole
@@ -68,7 +67,7 @@ class SportsGreenMooveActionFlowTest {
             )
         }
 
-        compose.onNodeWithTag(SgmTestTags.BookingApproveAction).performScrollTo().performClick()
+        compose.onNodeWithTag(SgmTestTags.BookingApproveAction).performClick()
         assertEquals(UiFlowFixtures.bookingRequest.bookingId, approvedRequest?.bookingId)
     }
 
@@ -133,7 +132,7 @@ class SportsGreenMooveActionFlowTest {
             )
         }
 
-        compose.onNodeWithText("Continuer l'onboarding").performScrollTo().performClick()
+        compose.onNodeWithTag(SgmTestTags.PaymentConnectAction).performScrollTo().performClick()
         assertTrue(connectTapped)
     }
 }

@@ -36,6 +36,7 @@ object SgmTestTags {
     const val SupportReportAction = "options.support-report.action"
     const val PaymentsScreen = "payments.screen"
     const val PaymentAction = "payments.payment.action"
+    const val PaymentConnectAction = "payments.connect.action"
 }
 
 fun Modifier.sgmTestTag(tag: String): Modifier = testTag(tag)
