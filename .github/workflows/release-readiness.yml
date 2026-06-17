@@ -150,7 +150,7 @@ jobs:
           STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-        run: npm run validate:stripe-production-readiness
+        run: npm run validate:stripe-production-readiness -- --allow-pending-provider
 
   store-readiness:
     name: Store readiness static checks

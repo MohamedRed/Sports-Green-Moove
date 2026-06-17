@@ -48,3 +48,12 @@ jobs:
           VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
           VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
         run: npm run validate:provider-readiness
+
+      - name: Validate Stripe production readiness
+        env:
+          SGM_STRIPE_CONNECT_REFRESH_URL: ${{ secrets.SGM_STRIPE_CONNECT_REFRESH_URL }}
+          SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+        run: npm run validate:stripe-production-readiness

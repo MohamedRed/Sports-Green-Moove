@@ -45,12 +45,13 @@
     },
     "stripeConnect": {
       "environment": "production",
-      "status": "pending-dashboard-evidence",
-      "checkedAt": "2026-06-17T22:23:29Z",
+      "status": "pending-provider-enablement",
+      "checkedAt": "2026-06-17T22:51:56Z",
       "checkedBy": "Codex",
       "evidenceRefs": [
         "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27723564812/job/82014614800",
         "evidence/provider-secret-validation-2026-06-17.md",
+        "evidence/stripe-connect-readiness-blocker-2026-06-17.md",
         "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
       ]
     }
