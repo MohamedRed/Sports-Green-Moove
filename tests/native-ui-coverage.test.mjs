@@ -105,9 +105,14 @@ includes(androidUiTests, "SgmTestTags.PublishSubmitAction", "Android UI tests co
 includes(androidUiTests, "class SportsGreenMooveActionFlowTest", "Android UI tests include action-flow callback coverage");
 includes(androidUiTests, "onSearch = { searchForm = it }", "Android UI tests assert search action callbacks");
 includes(androidUiTests, "onRequest = { match, childId ->", "Android UI tests assert booking request callbacks");
+includes(androidUiTests, "onPublished = { published = true }", "Android UI tests assert publish callbacks");
+includes(androidUiTests, "onJoinClub = { joinedClubId = it.id }", "Android UI tests assert group join callbacks");
 includes(androidUiTests, "onPickup = { pickupPassenger = it }", "Android UI tests assert active ride pickup callbacks");
 includes(androidUiTests, "onPay = { paidBooking = it }", "Android UI tests assert payment callbacks");
 includes(androidUiTests, "SgmTestTags.PaymentConnectAction", "Android UI tests assert Stripe Connect callbacks");
+includes(androidUiTests, "SgmTestTags.SupportReportDescriptionInput", "Android UI tests assert support report callbacks");
+includes(androidUiTests, "firebase.submittedRating", "Android UI tests assert rating callbacks");
+includes(androidUiTests, "RewardsRoute(", "Android UI tests assert rewards payout routing");
 includes(iosUiTests, "XCUIApplication", "iOS uses XCUITest automation");
 includes(iosUiTests, "--sgm-ui-test-fixture", "iOS UI tests launch deterministic fixture mode");
 includes(iosUiTests, "\"publish.submit.action\"", "iOS UI tests cover publish submit selectors");
@@ -143,6 +148,8 @@ includes(androidLedgerGateway, 'collection("rewardLedger")', "Android ledger gat
 includes(androidHomeCards, "summary: ImpactSummary", "Android Home dashboard renders impact summary");
 includes(androidImpact, "summary: ImpactSummary", "Android Impact screen renders injected ledger summary");
 includes(androidRewards, "summary: RewardSummary", "Android Rewards screen renders injected ledger summary");
+includes(androidRewards, "onWithdraw: () -> Unit", "Android Rewards withdrawal delegates to route logic");
+includes(androidAppState, "RewardsRoute(", "Android app state opens the backend-backed Rewards route");
 notIncludes(androidHomeCards, "12,4", "Android Home dashboard must not embed a static CO2 total");
 notIncludes(androidHomeCards, "37.356", "Android Home dashboard must not embed static regional counts");
 notIncludes(androidImpact, "12.4", "Android Impact screen must not embed a static CO2 total");

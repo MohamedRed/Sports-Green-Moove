@@ -33,6 +33,8 @@ object SgmTestTags {
     const val RewardsScreen = "rewards.screen"
     const val RewardsWithdrawAction = "rewards.withdraw.action"
     const val OptionsScreen = "options.screen"
+    const val SupportReportReasonInput = "options.support-report.reason"
+    const val SupportReportDescriptionInput = "options.support-report.description"
     const val SupportReportAction = "options.support-report.action"
     const val PaymentsScreen = "payments.screen"
     const val PaymentAction = "payments.payment.action"

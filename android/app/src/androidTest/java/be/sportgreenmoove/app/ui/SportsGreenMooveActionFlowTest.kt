@@ -1,15 +1,18 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performTextInput
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripMatchSummary
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -54,6 +57,52 @@ class SportsGreenMooveActionFlowTest {
         compose.onNodeWithTag(SgmTestTags.BookingRequestAction).performScrollTo().performClick()
         assertEquals(UiFlowFixtures.match.tripId, requestedMatch?.tripId)
         assertEquals(UiFlowFixtures.child.id, requestedChildId)
+    }
+
+    @Test
+    fun publishSubmitActionCreatesBackendDraft() {
+        val firebase = UiFlowFirebaseGateway()
+        var published = false
+
+        compose.setSgmUiTestContent {
+            PublishScreen(
+                role = AppRole.Driver,
+                firebase = firebase,
+                memberClubs = UiFlowFixtures.clubs,
+                initialOrigin = UiFlowFixtures.origin,
+                initialDestination = UiFlowFixtures.destination,
+                onError = {},
+                onNotice = {},
+                onPublished = { published = true },
+            )
+        }
+
+        compose.onNodeWithTag(SgmTestTags.PublishNextAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.PublishNextAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.PublishSubmitAction).performScrollTo().performClick()
+        compose.waitUntil(timeoutMillis = 5_000) { firebase.createdTripDraft != null && published }
+
+        val draft = firebase.createdTripDraft
+        assertEquals("club-royal", draft?.clubId)
+        assertEquals(UiFlowFixtures.origin.placeId, draft?.origin?.placeId)
+        assertEquals(UiFlowFixtures.destination.placeId, draft?.destination?.placeId)
+        assertTrue(draft?.supportsChildTracking == true)
+    }
+
+    @Test
+    fun groupJoinActionDispatchesSelectedClub() {
+        var joinedClubId: String? = null
+
+        compose.setSgmUiTestContent {
+            GroupsScreen(
+                clubs = UiFlowFixtures.clubs,
+                onBack = {},
+                onJoinClub = { joinedClubId = it.id },
+            )
+        }
+
+        compose.onNodeWithTag(SgmTestTags.GroupsJoinAction).performScrollTo().performClick()
+        assertEquals("club-tennis", joinedClubId)
     }
 
     @Test
@@ -134,5 +183,92 @@ class SportsGreenMooveActionFlowTest {
 
         compose.onNodeWithTag(SgmTestTags.PaymentConnectAction).performScrollTo().performClick()
         assertTrue(connectTapped)
+    }
+
+    @Test
+    fun supportReportActionCreatesValidatedReport() {
+        val firebase = UiFlowFirebaseGateway()
+
+        compose.setSgmUiTestContent {
+            OptionsScreen(firebase = firebase, onBack = {})
+        }
+
+        compose.onNodeWithTag(SgmTestTags.SupportReportDescriptionInput)
+            .performScrollTo()
+            .performTextInput("Retard au point de rendez-vous avec enfant mineur.")
+        compose.onNodeWithTag(SgmTestTags.SupportReportAction).performScrollTo().performClick()
+        compose.waitUntil(timeoutMillis = 5_000) { firebase.createdReport != null }
+
+        val report = firebase.createdReport
+        assertEquals("other", report?.subjectType)
+        assertEquals("Sécurité", report?.reason)
+        assertEquals(false, report?.emergency)
+        assertTrue(report?.description?.contains("enfant mineur") == true)
+    }
+
+    @Test
+    fun ratingActionSubmitsSelectedReviewScore() {
+        val firebase = UiFlowFirebaseGateway()
+
+        compose.setSgmUiTestContent {
+            MessagesScreen(firebase = firebase)
+        }
+
+        waitUntilTagExists(SgmTestTags.RatingTab)
+        compose.onNodeWithTag(SgmTestTags.RatingTab).performClick()
+        waitUntilTagExists("${SgmTestTags.RatingPromptAction}.5")
+        compose.onNodeWithTag("${SgmTestTags.RatingPromptAction}.5").performClick()
+        compose.waitUntil(timeoutMillis = 5_000) { firebase.submittedRating != null }
+
+        val rating = firebase.submittedRating
+        assertEquals("ride-session-1", rating?.rideSessionId)
+        assertEquals("driver-1", rating?.ratedUserId)
+        assertEquals(5, rating?.score)
+    }
+
+    @Test
+    fun rewardsWithdrawRoutesDriverToPayments() {
+        var payoutRole: AppRole? = null
+        var error: String? = null
+
+        compose.setSgmUiTestContent {
+            RewardsRoute(
+                summary = UiFlowFixtures.rewards,
+                availableRoles = setOf(AppRole.Parent, AppRole.Driver),
+                onBack = {},
+                onOpenPayments = { payoutRole = it },
+                setError = { error = it },
+            )
+        }
+
+        compose.onNodeWithTag(SgmTestTags.RewardsWithdrawAction).performClick()
+        assertEquals(AppRole.Driver, payoutRole)
+        assertNull(error)
+    }
+
+    @Test
+    fun rewardsWithdrawRequiresDriverRole() {
+        var payoutRole: AppRole? = null
+        var error: String? = null
+
+        compose.setSgmUiTestContent {
+            RewardsRoute(
+                summary = UiFlowFixtures.rewards,
+                availableRoles = setOf(AppRole.Parent),
+                onBack = {},
+                onOpenPayments = { payoutRole = it },
+                setError = { error = it },
+            )
+        }
+
+        compose.onNodeWithTag(SgmTestTags.RewardsWithdrawAction).performClick()
+        assertNull(payoutRole)
+        assertEquals("Le retrait des gains nécessite un profil conducteur validé.", error)
+    }
+
+    private fun waitUntilTagExists(tag: String) {
+        compose.waitUntil(timeoutMillis = 5_000) {
+            compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
+        }
     }
 }

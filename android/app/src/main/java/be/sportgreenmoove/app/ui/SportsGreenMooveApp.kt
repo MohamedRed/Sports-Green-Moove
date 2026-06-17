@@ -29,7 +29,6 @@ import be.sportgreenmoove.app.design.SgmTheme
 import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidRuntime
 import kotlinx.coroutines.launch
-
 @Composable
 fun SportsGreenMooveApp() {
     val context = LocalContext.current
@@ -154,14 +153,12 @@ fun SportsGreenMooveApp() {
             runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
         }
     }
-
     SgmTheme(darkTheme = darkTheme) {
         V2ThemeToggleProvider(darkTheme = darkTheme, onToggle = { darkTheme = !darkTheme }) {
             if (!providers.isConfigured) {
                 ConfigurationRequiredScreen()
                 return@V2ThemeToggleProvider
             }
-
             if (session == null) {
                 OnboardingRoute(
                     loading = loading,
@@ -175,7 +172,6 @@ fun SportsGreenMooveApp() {
                 )
                 return@V2ThemeToggleProvider
             }
-
             SportsGreenMooveScaffold(
                 currentScreen = screen,
                 onNavigate = { destination -> screen = destination },
@@ -195,7 +191,6 @@ fun SportsGreenMooveApp() {
                             onRide = { trips.firstOrNull()?.let(::runTripAction) },
                             onImpact = { screen = AppScreen.Impact },
                         )
-
                         AppScreen.Trips -> TripsScreen(
                             trips = trips,
                             activeRide = activeRide,
@@ -205,7 +200,6 @@ fun SportsGreenMooveApp() {
                             onOpenRide = { screen = AppScreen.Ride },
                             onApproveBooking = ::approveBooking,
                         )
-
                         AppScreen.Publish -> PublishScreen(
                             role = role,
                             firebase = providers.firebase,
@@ -248,7 +242,6 @@ fun SportsGreenMooveApp() {
                                 screen = AppScreen.Home
                             },
                         )
-
                         AppScreen.Search -> SearchRoute(
                             searchController = searchController,
                             children = children,
@@ -266,7 +259,16 @@ fun SportsGreenMooveApp() {
                             refreshAppData = { refreshAppData() },
                         )
                         AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
-                        AppScreen.Rewards -> RewardsScreen(summary = ledgerSummaries.rewards, onBack = { screen = AppScreen.Profile })
+                        AppScreen.Rewards -> RewardsRoute(
+                            summary = ledgerSummaries.rewards,
+                            availableRoles = session?.roles ?: setOf(AppRole.Parent),
+                            onBack = { screen = AppScreen.Profile },
+                            onOpenPayments = { payoutRole ->
+                                role = payoutRole
+                                screen = AppScreen.Payments
+                            },
+                            setError = { errorMessage = it },
+                        )
                         AppScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = AppScreen.Profile })
                         AppScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = AppScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         AppScreen.Ride -> RideMonitorScreen(

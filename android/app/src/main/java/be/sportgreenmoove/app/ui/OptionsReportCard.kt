@@ -77,8 +77,8 @@ fun OptionsReportCard(firebase: FirebaseGateway) {
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Text("SIGNALER AU SUPPORT", style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 18.sp))
-        OptionsReportInput("Raison", reason, { reason = it }, singleLine = true)
-        OptionsReportInput("Description", description, { description = it }, singleLine = false)
+        OptionsReportInput("Raison", reason, { reason = it }, singleLine = true, testTag = SgmTestTags.SupportReportReasonInput)
+        OptionsReportInput("Description", description, { description = it }, singleLine = false, testTag = SgmTestTags.SupportReportDescriptionInput)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             V2Chip("Urgent", selected = emergency, onClick = { emergency = !emergency }, modifier = Modifier.weight(1f))
             V2Chip("Support", selected = true, modifier = Modifier.weight(1f))
@@ -91,7 +91,7 @@ fun OptionsReportCard(firebase: FirebaseGateway) {
 }
 
 @Composable
-private fun OptionsReportInput(label: String, value: String, onValue: (String) -> Unit, singleLine: Boolean) {
+private fun OptionsReportInput(label: String, value: String, onValue: (String) -> Unit, singleLine: Boolean, testTag: String) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -106,7 +106,7 @@ private fun OptionsReportInput(label: String, value: String, onValue: (String) -
             onValueChange = onValue,
             textStyle = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Medium),
             singleLine = singleLine,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().sgmTestTag(testTag),
         )
     }
 }

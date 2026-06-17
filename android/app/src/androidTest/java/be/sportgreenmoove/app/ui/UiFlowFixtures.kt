@@ -121,15 +121,30 @@ object UiFlowFixtures {
 }
 
 class UiFlowFirebaseGateway : FirebaseGateway {
+    var createdTripDraft: TripPublishDraft? = null
+        private set
+    var requestedClubId: String? = null
+        private set
+    var submittedRating: SubmittedRating? = null
+        private set
+    var createdReport: CreatedReport? = null
+        private set
+
     override val isConfigured = true
     override suspend fun searchTrips() = listOf(UiFlowFixtures.trip)
     override suspend fun listChildren() = listOf(UiFlowFixtures.child)
     override suspend fun listClubSummaries() = UiFlowFixtures.clubs
-    override suspend fun requestClubMembership(clubId: String) = "requested"
+    override suspend fun requestClubMembership(clubId: String): String {
+        requestedClubId = clubId
+        return "requested"
+    }
     override suspend fun suggestPlaces(input: String) = listOf(PlaceSuggestion("place-1", input, input, "Belgique"))
     override suspend fun resolvePlace(placeId: String) = UiFlowFixtures.origin
     override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(UiFlowFixtures.match)
-    override suspend fun createTrip(draft: TripPublishDraft) = "trip-created"
+    override suspend fun createTrip(draft: TripPublishDraft): String {
+        createdTripDraft = draft
+        return "trip-created"
+    }
     override suspend fun requestBooking(tripId: String, childId: String?) = "booking-created"
     override suspend fun getDriverBookingRequests() = listOf(UiFlowFixtures.bookingRequest)
     override suspend fun approveBooking(bookingId: String) = "approved"
@@ -153,8 +168,31 @@ class UiFlowFirebaseGateway : FirebaseGateway {
         reviews = listOf(InboxReviewPrompt("review-1", "ride-session-1", "driver-1", "Avis conducteur", "Notez le trajet.", "DR")),
     )
 
-    override suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) = "rating-1"
-    override suspend fun createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Boolean) = "report-1"
+    override suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?): String {
+        submittedRating = SubmittedRating(rideSessionId, ratedUserId, score, comment)
+        return "rating-1"
+    }
+
+    override suspend fun createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Boolean): String {
+        createdReport = CreatedReport(subjectType, subjectId, reason, description, emergency)
+        return "report-1"
+    }
+
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) = Unit
     override fun stopNativeLocationFallback(rideSessionId: String) = Unit
 }
+
+data class SubmittedRating(
+    val rideSessionId: String,
+    val ratedUserId: String,
+    val score: Int,
+    val comment: String?,
+)
+
+data class CreatedReport(
+    val subjectType: String,
+    val subjectId: String?,
+    val reason: String,
+    val description: String,
+    val emergency: Boolean,
+)
