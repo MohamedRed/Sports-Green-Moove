@@ -36,3 +36,4 @@
 - App Store privacy answers and Google Play Data safety answers are prepared in `docs/release/evidence/` from `docs/release/privacy-data-safety.md`.
 - The hosted admin build now exposes a public `/privacy` route without Firebase admin auth, and `npm run test:privacy-policy-page` verifies the route content and responsive layout. The production URL `https://sports-green-moove-prod.web.app/privacy` still needs to be published and live-verified before final store submission.
 - Public privacy/data-safety answers stay aligned with `docs/release/privacy-data-safety.md`.
+- Safety-audit exports must be sanitized and validated with `npm run validate:safety-audit-export -- docs/release/evidence/safety-audit-export.json` before the manifest marks audit items accepted.

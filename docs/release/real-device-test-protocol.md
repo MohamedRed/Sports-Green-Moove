@@ -74,11 +74,25 @@ Export the matching Firestore/Realtime Database evidence after the run:
 - payment and reward-ledger entries for the booking if a paid ride was used
 - any support `reports` created during the run
 
+Store the sanitized export as `docs/release/evidence/safety-audit-export.json`
+or pass the export path explicitly:
+
+```bash
+npm run validate:safety-audit-export -- docs/release/evidence/safety-audit-export.json
+```
+
+The export must not include secrets, tokens, passwords, API keys, or raw provider
+credentials. The validator checks that the export contains guardian consent,
+driver pickup, driver dropoff, Radar webhook reconciliation, native fallback
+location, and Stripe payment or payout reconciliation records.
+
 ## Acceptance
 
 Public launch remains blocked until:
 
 - `npm run validate:provider-readiness` passes with production configuration.
+- `npm run validate:safety-audit-export -- docs/release/evidence/safety-audit-export.json`
+  passes against the sanitized safety-audit export.
 - `npm run validate:release-evidence -- docs/release/evidence-manifest.json`
   passes.
 - The manual Release Evidence Gate workflow passes for the same manifest path.

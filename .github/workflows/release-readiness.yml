@@ -29,6 +29,7 @@ on:
       - "scripts/live-operations-flow-smoke.mjs"
       - "scripts/release-evidence-requirements.mjs"
       - "scripts/report-release-gaps.mjs"
+      - "scripts/validate-safety-audit-export.mjs"
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
@@ -36,6 +37,7 @@ on:
       - "tests/privacy-policy-page.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
+      - "tests/safety-audit-export.test.mjs"
       - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
       - "website/index.html"
@@ -69,6 +71,7 @@ on:
       - "scripts/live-operations-flow-smoke.mjs"
       - "scripts/release-evidence-requirements.mjs"
       - "scripts/report-release-gaps.mjs"
+      - "scripts/validate-safety-audit-export.mjs"
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
@@ -76,6 +79,7 @@ on:
       - "tests/privacy-policy-page.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
+      - "tests/safety-audit-export.test.mjs"
       - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
       - "website/index.html"
@@ -111,6 +115,9 @@ jobs:
 
       - name: Validate provider readiness checks
         run: npm run test:provider-readiness
+
+      - name: Validate safety audit export checks
+        run: npm run test:safety-audit-export
 
       - name: Validate release evidence template
         run: npm run test:release-evidence-template
