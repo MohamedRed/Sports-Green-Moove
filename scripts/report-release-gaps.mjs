@@ -201,6 +201,15 @@ function latestAutomatedEvidencePath() {
   return candidates.length > 0 ? join(evidenceDir, candidates.at(-1)) : join(evidenceDir, "automated-user-flow-evidence-2026-06-16.json");
 }
 
+function latestSecretInventoryPath() {
+  const evidenceDir = "docs/release/evidence";
+  if (!existsSync(evidenceDir)) return undefined;
+  const candidates = readdirSync(evidenceDir)
+    .filter((name) => /^provider-secret-inventory-.*\.json$/.test(name))
+    .sort();
+  return candidates.length > 0 ? join(evidenceDir, candidates.at(-1)) : undefined;
+}
+
 function printTextReport(report) {
   console.log(report.ok ? "Release evidence gaps: none" : "Release evidence gaps remain");
   printList("Missing provider env/secret names", report.providerEnvironment.missing);
@@ -225,7 +234,7 @@ function parseArgs(args) {
   return {
     manifestPath: valueAfter(args, "--manifest") ?? "docs/release/evidence-manifest.json",
     automatedEvidencePath: valueAfter(args, "--automated-evidence") ?? latestAutomatedEvidencePath(),
-    secretInventoryPath: valueAfter(args, "--secret-inventory"),
+    secretInventoryPath: valueAfter(args, "--secret-inventory") ?? latestSecretInventoryPath(),
     json: args.includes("--json"),
   };
 }

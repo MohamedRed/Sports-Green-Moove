@@ -21,7 +21,12 @@ const report = JSON.parse(output);
 assert.equal(report.ok, false, "Current release gap report must not claim public-launch completion.");
 assert.equal(report.manifest.exists, true, "In-progress release evidence manifest should be read.");
 assert.equal(report.manifest.data.manifestStatus, "in-progress", "Release evidence manifest must not claim completion.");
+assert.equal(report.secretInventory.exists, true, "Default release gap report should read the checked-in secret inventory.");
 assert.deepEqual(report.automatedFlowEvidence.missing, [], "Automated user-flow evidence should be complete.");
+assert.ok(
+  report.providerEnvironment.presentFromSecretInventory.includes("STRIPE_WEBHOOK_SECRET"),
+  "Default release gap report should count configured GitHub secret names from the checked-in inventory.",
+);
 
 for (const providerVariable of [
   "SGM_GOOGLE_REVERSED_CLIENT_ID",
