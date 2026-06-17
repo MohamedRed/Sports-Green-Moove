@@ -80,7 +80,9 @@ fun SearchScreen(
                 selectedChildId = selectedChildId,
                 onSelectedChild = { selectedChildId = it },
             )
-            ChildTrackingReleaseDisclosures()
+            if (childTracking) {
+                ChildTrackingReleaseDisclosures()
+            }
             SearchOptions(
                 seatsNeeded = seatsNeeded,
                 onSeats = { seatsNeeded = it },
