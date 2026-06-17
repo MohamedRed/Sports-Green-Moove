@@ -52,6 +52,7 @@ fun GoogleMapsRoutePreviewCard(
             .padding(horizontal = 20.dp)
             .fillMaxWidth()
             .height(250.dp)
+            .sgmTestTag(SgmTestTags.GoogleMapsRoutePreview)
             .clip(RoundedCornerShape(22.dp))
             .background(Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(22.dp)),

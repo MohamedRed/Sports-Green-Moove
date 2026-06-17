@@ -108,7 +108,13 @@ private fun RideLiveCard(ride: LiveRideSnapshot) {
         }
         RideInfoLine(SgmIcon.Location, "Véhicule", ride.vehicleLastUpdateLabel)
         RideInfoLine(SgmIcon.Profile, "Enfant", ride.childLastUpdateLabel ?: "Non disponible")
-        if (ride.stale) Text("Position à vérifier avant confirmation.", style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold))
+        if (ride.stale) {
+            Text(
+                "Position à vérifier avant confirmation.",
+                style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+                modifier = Modifier.sgmTestTag(SgmTestTags.ActiveRideStaleWarning),
+            )
+        }
     }
 }
 

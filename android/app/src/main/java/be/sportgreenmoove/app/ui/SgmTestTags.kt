@@ -24,6 +24,8 @@ object SgmTestTags {
     const val ActiveRidePickupAction = "active-ride.pickup.action"
     const val ActiveRideDropoffAction = "active-ride.dropoff.action"
     const val ActiveRideEndAction = "active-ride.end.action"
+    const val GoogleMapsRoutePreview = "active-ride.google-maps-route-preview"
+    const val ActiveRideStaleWarning = "active-ride.stale-warning"
     const val EmergencyContact = "active-ride.emergency-contact"
     const val MessagesScreen = "messages.screen"
     const val ChatTab = "messages.chat.tab"

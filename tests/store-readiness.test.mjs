@@ -30,6 +30,7 @@ const files = {
   releaseReadinessWorkflow: read(".github/workflows/release-readiness.yml"),
   prUserFlowVerifier: read("scripts/verify-pr-user-flow-checks.mjs"),
   prUserFlowChecksTest: read("tests/pr-user-flow-checks.test.mjs"),
+  androidStoreReviewScreenshots: read("android/app/src/androidTest/java/be/sportgreenmoove/app/ui/StoreReviewScreenshotTest.kt"),
 };
 
 for (const permission of [
@@ -176,6 +177,15 @@ for (const requiredEvidence of [
   includes(files.releaseRequirements, requiredEvidence, `Release requirements include ${requiredEvidence}`);
   includes(files.realDeviceProtocol, requiredEvidence, `Real-device protocol covers ${requiredEvidence}`);
 }
+for (const screenshotName of [
+  "store-active-ride-tracking.png",
+  "store-google-maps-route-preview.png",
+  "store-stale-location-warning.png",
+  "store-emergency-contact-action.png",
+  "store-permission-education.png",
+]) {
+  includes(files.androidStoreReviewScreenshots, screenshotName, `Android screenshot test captures ${screenshotName}`);
+}
 for (const provider of ["firebase", "radar", "googleMaps", "stripeConnect", "metaFacebook"]) {
   includes(files.evidenceTemplate, provider, `Release evidence template includes ${provider}`);
   includes(files.releaseRequirements, provider, `Release requirements include ${provider}`);
@@ -242,10 +252,12 @@ includes(files.packageJson, "smoke:live-operations-flow", "Package scripts expos
 includes(files.backendCiWorkflow, "test:stripe-webhook-flow", "Backend CI validates Stripe webhook flow");
 includes(files.nativeCiWorkflow, "workflow_dispatch", "Native CI can be launched manually for Android flow verification");
 includes(files.nativeCiWorkflow, "connectedDebugAndroidTest", "Native CI runs connected Android UI tests");
+includes(files.nativeCiWorkflow, "SGM_GOOGLE_MAPS_ANDROID_API_KEY", "Native CI passes Google Maps key into Android UI tests");
 includes(files.nativeCiWorkflow, "reactivecircus/android-emulator-runner", "Native CI provisions a GitHub-hosted Android emulator");
 includes(files.nativeCiWorkflow, "Enable KVM group permissions", "Native CI enables hardware acceleration for the Android emulator");
 includes(files.nativeCiWorkflow, "99-kvm4all.rules", "Native CI configures KVM group permissions on GitHub-hosted Ubuntu");
 includes(files.nativeCiWorkflow, "udevadm trigger --name-match=kvm", "Native CI applies KVM udev rules before launching the emulator");
+includes(files.nativeCiWorkflow, "app/build/outputs/store-review-screenshots", "Native CI uploads store-review screenshots");
 includes(files.nativeCiWorkflow, "android-connected-ui-test-results", "Native CI uploads Android UI test artifacts");
 includes(files.prUserFlowVerifier, "requiredUserFlowChecks", "PR user-flow verifier uses shared release requirements");
 includes(files.prUserFlowVerifier, "gh", "PR user-flow verifier can read live GitHub check rollups");

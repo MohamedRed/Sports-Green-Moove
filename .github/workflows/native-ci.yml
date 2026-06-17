@@ -100,11 +100,20 @@ jobs:
 
       - name: Run Android Compose UI tests
         uses: reactivecircus/android-emulator-runner@v2
+        env:
+          SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
         with:
           api-level: 35
           arch: x86_64
           profile: pixel_6
-          script: cd android && ./gradlew :app:connectedDebugAndroidTest --no-daemon --stacktrace
+          script: |
+            cd android
+            set +e
+            ./gradlew :app:connectedDebugAndroidTest --no-daemon --stacktrace
+            status=$?
+            mkdir -p app/build/outputs/store-review-screenshots
+            adb pull /sdcard/Android/data/be.sportgreenmoove.app/files/Pictures/sgm-store-review app/build/outputs/store-review-screenshots || true
+            exit $status
 
       - name: Upload Android instrumentation reports
         if: ${{ always() }}
@@ -114,6 +123,7 @@ jobs:
           path: |
             android/app/build/reports/androidTests/connected/**
             android/app/build/outputs/androidTest-results/connected/**
+            android/app/build/outputs/store-review-screenshots/**
           if-no-files-found: ignore
 
   ios-native-checks:
