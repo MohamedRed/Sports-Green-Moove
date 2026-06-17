@@ -16,6 +16,7 @@
     "test:android-ui": "cd android && ./gradlew :app:connectedDebugAndroidTest --no-daemon",
     "test:ios-native": "bash scripts/check-ios-native-plan.sh",
     "test:native-ui-coverage": "node tests/native-ui-coverage.test.mjs",
+    "test:privacy-policy-page": "node tests/privacy-policy-page.test.mjs",
     "test:store-readiness": "node tests/store-readiness.test.mjs",
     "test:store-privacy-answers": "node tests/store-privacy-answers.test.mjs",
     "test:provider-readiness": "node tests/provider-readiness.test.mjs",
@@ -31,7 +32,7 @@
     "validate:release-evidence": "node scripts/validate-release-evidence.mjs",
     "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts\"",
     "test:stripe-webhook-flow": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore \"vitest run tests/stripe-webhook-flow.test.ts\"",
-    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:store-readiness && npm run test:store-privacy-answers && npm run test:provider-readiness && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:release-gaps && npm run test:pr-user-flow-checks && npm run test:rules && npm run test:stripe-webhook-flow"
+    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:privacy-policy-page && npm run test:store-readiness && npm run test:store-privacy-answers && npm run test:provider-readiness && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:release-gaps && npm run test:pr-user-flow-checks && npm run test:rules && npm run test:stripe-webhook-flow"
   },
   "engines": {
     "node": ">=22"

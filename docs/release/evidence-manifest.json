@@ -99,8 +99,13 @@
       {
         "id": "privacy_policy_url",
         "status": "pending",
-        "description": "Published privacy-policy URL is still required for the final store submission.",
-        "evidenceRefs": ["privacy-data-safety.md"]
+        "description": "The hosted admin build exposes /privacy, but the production URL must still be published and verified before final store submission.",
+        "evidenceRefs": [
+          "https://sports-green-moove-prod.web.app/privacy",
+          "privacy-data-safety.md",
+          "../../admin/src/PrivacyPolicyPage.tsx",
+          "../../tests/privacy-policy-page.test.mjs"
+        ]
       },
       {
         "id": "app_store_privacy_answers",

@@ -5,7 +5,7 @@ import { ClubOperationsTables } from "./ClubOperationsTables";
 import { formatDate, formatEuro, numberValue, statusTone, textValue } from "./format";
 import { ReportsTable } from "./ReportsTable";
 import { useCollection, usePayoutCandidates } from "./useCollections";
-import { Wordmark } from "./App";
+import { Wordmark } from "./Wordmark";
 import type { FirestoreRecord, Metric, PayoutCandidate, RoleMap } from "./types";
 
 type Props = {

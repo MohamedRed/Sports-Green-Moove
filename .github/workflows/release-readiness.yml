@@ -7,6 +7,11 @@ on:
       - ".github/workflows/release-evidence.yml"
       - ".github/workflows/provider-readiness.yml"
       - ".github/workflows/native-ci.yml"
+      - "admin/src/App.tsx"
+      - "admin/src/PrivacyPolicyPage.tsx"
+      - "admin/src/Wordmark.tsx"
+      - "admin/src/main.tsx"
+      - "admin/src/privacy.css"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/res/values/strings.xml"
       - "docs/release/**"
@@ -28,10 +33,12 @@ on:
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/privacy-policy-page.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
+      - "website/index.html"
   push:
     branches:
       - main
@@ -40,6 +47,11 @@ on:
       - ".github/workflows/release-evidence.yml"
       - ".github/workflows/provider-readiness.yml"
       - ".github/workflows/native-ci.yml"
+      - "admin/src/App.tsx"
+      - "admin/src/PrivacyPolicyPage.tsx"
+      - "admin/src/Wordmark.tsx"
+      - "admin/src/main.tsx"
+      - "admin/src/privacy.css"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/res/values/strings.xml"
       - "docs/release/**"
@@ -61,10 +73,12 @@ on:
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/privacy-policy-page.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
+      - "website/index.html"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -88,6 +102,9 @@ jobs:
 
       - name: Validate release readiness
         run: npm run test:store-readiness
+
+      - name: Validate public privacy route
+        run: npm run test:privacy-policy-page
 
       - name: Validate store privacy answers
         run: npm run test:store-privacy-answers
