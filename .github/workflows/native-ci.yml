@@ -47,6 +47,7 @@ jobs:
   android-native-unit:
     name: Android native unit tests
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     permissions:
       contents: read
