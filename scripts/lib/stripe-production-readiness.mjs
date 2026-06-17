@@ -5,10 +5,11 @@ export async function checkStripeProductionReadiness({
   fetcher = fetch,
 } = {}) {
   const config = loadConfig(env);
-  const [account, balance, webhookEndpoints] = await Promise.all([
+  const [account, balance, webhookEndpoints, accountsV2] = await Promise.all([
     stripeGet(fetcher, config.secretKey, "/v1/account"),
     stripeGet(fetcher, config.secretKey, "/v1/balance"),
     stripeGet(fetcher, config.secretKey, "/v1/webhook_endpoints?limit=100"),
+    stripeGet(fetcher, config.secretKey, "/v2/core/accounts?limit=1"),
   ]);
 
   const enabledWebhookEndpoints = (webhookEndpoints.data ?? []).filter((endpoint) => endpoint.status === "enabled");
@@ -21,6 +22,9 @@ export async function checkStripeProductionReadiness({
   }
   if (stripeWebhookEndpoints.length === 0) {
     throw new Error("No enabled Stripe webhook endpoint points at stripeWebhook.");
+  }
+  if (!Array.isArray(accountsV2.data)) {
+    throw new Error("Stripe Accounts v2 list endpoint did not return a data array.");
   }
 
   return {
@@ -45,6 +49,11 @@ export async function checkStripeProductionReadiness({
       eventCount: endpoint.enabled_events?.length ?? 0,
       apiVersion: endpoint.api_version,
     })),
+    accountsV2: {
+      reachable: true,
+      returnedAccountCount: accountsV2.data.length,
+      hasNextPage: Boolean(accountsV2.next_page_url),
+    },
     connectUrls: {
       returnUrlHost: safeHost(config.returnUrl),
       refreshUrlHost: safeHost(config.refreshUrl),

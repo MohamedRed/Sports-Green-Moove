@@ -32,6 +32,11 @@ const responses = {
       api_version: "2026-02-25.clover",
     }],
   },
+  "/v2/core/accounts?limit=1": {
+    data: [],
+    next_page_url: null,
+    previous_page_url: null,
+  },
 };
 
 const okFetch = async (url) => {
@@ -48,6 +53,7 @@ assert.equal(result.ok, true);
 assert.equal(result.account.id, "acct_live_123");
 assert.equal(result.balance.livemode, true);
 assert.equal(result.webhookEndpoints[0].urlHost, "us-central1-sports-green-moove-prod.cloudfunctions.net");
+assert.equal(result.accountsV2.reachable, true);
 assert.equal(result.connectUrls.returnUrlHost, "app.sportgreenmoove.be");
 
 await assert.rejects(
@@ -86,6 +92,21 @@ await assert.rejects(
     },
   }),
   /did not return a live-mode balance/,
+);
+
+await assert.rejects(
+  () => checkStripeProductionReadiness({
+    env: validEnv,
+    fetcher: async (url) => {
+      const path = new URL(url).pathname + new URL(url).search;
+      return {
+        ok: true,
+        status: 200,
+        json: async () => path === "/v2/core/accounts?limit=1" ? { object: "list" } : responses[path],
+      };
+    },
+  }),
+  /Accounts v2 list endpoint did not return a data array/,
 );
 
 console.log("Stripe production readiness checks passed.");
