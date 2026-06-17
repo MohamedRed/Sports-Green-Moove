@@ -58,7 +58,16 @@ assert.deepEqual(storeEvidence.google_play_data_safety_answers.evidenceRefs, [
   "privacy-data-safety.md",
 ]);
 
-assert.equal(storeEvidence.privacy_policy_url.status, "pending");
+assert.equal(storeEvidence.privacy_policy_url.status, "accepted");
+for (const url of [
+  "https://sports-green-moove-prod.web.app/privacy",
+  "https://sports-green-moove-prod.firebaseapp.com/privacy",
+]) {
+  assert.ok(
+    storeEvidence.privacy_policy_url.evidenceRefs.includes(url),
+    `Privacy policy URL evidence should include ${url}.`,
+  );
+}
 
 console.log("Store privacy answer checks passed.");
 
