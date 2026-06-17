@@ -4,7 +4,7 @@ set -u
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 android_dir="$repo_root/android"
 output_dir="$android_dir/app/build/outputs/store-review-screenshots"
-remote_dir="/sdcard/Android/data/be.sportgreenmoove.app/files/Pictures/sgm-store-review"
+remote_dir="/sdcard/Download/sgm-store-review"
 
 set +e
 "$android_dir/gradlew" -p "$android_dir" :app:connectedDebugAndroidTest --no-daemon --stacktrace

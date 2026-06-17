@@ -1,6 +1,5 @@
 package be.sportgreenmoove.app.ui
 
-import android.os.Environment
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -12,7 +11,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
-import java.io.File
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -24,17 +22,12 @@ class StoreReviewScreenshotTest {
 
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     private val device = UiDevice.getInstance(instrumentation)
-    private val screenshotDir: File by lazy {
-        File(
-            instrumentation.targetContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-            "sgm-store-review",
-        )
-    }
+    private val screenshotDir = "/sdcard/Download/sgm-store-review"
 
     @Before
     fun prepareScreenshots() {
-        screenshotDir.mkdirs()
-        screenshotDir.listFiles()?.forEach { it.delete() }
+        device.executeShellCommand("rm -rf $screenshotDir")
+        device.executeShellCommand("mkdir -p $screenshotDir")
     }
 
     @Test
@@ -95,9 +88,12 @@ class StoreReviewScreenshotTest {
 
     private fun capture(name: String) {
         compose.waitForIdle()
-        val output = File(screenshotDir, name)
-        assertTrue("Failed to capture $name", device.takeScreenshot(output))
-        assertTrue("$name is empty", output.length() > 0L)
+        val output = "$screenshotDir/$name"
+        device.executeShellCommand("screencap -p $output")
+        assertTrue(
+            "$name is empty",
+            device.executeShellCommand("test -s $output && echo ok").trim() == "ok",
+        )
     }
 
     private fun setSwitchableTestContent(content: @Composable () -> Unit): TestContentHost {

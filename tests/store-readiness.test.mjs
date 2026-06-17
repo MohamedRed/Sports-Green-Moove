@@ -261,6 +261,8 @@ includes(files.nativeCiWorkflow, "run-android-ui-tests-and-collect-screenshots.s
 includes(files.androidUiScreenshotCollector, ":app:connectedDebugAndroidTest", "Android screenshot collector runs connected UI tests");
 includes(files.androidUiScreenshotCollector, "adb pull", "Android screenshot collector pulls emulator screenshots");
 includes(files.androidUiScreenshotCollector, "Expected at least 5 Android store-review screenshots", "Android screenshot collector fails when screenshot evidence is missing");
+includes(files.androidStoreReviewScreenshots, "/sdcard/Download/sgm-store-review", "Android screenshot test writes evidence outside app uninstall cleanup");
+includes(files.androidStoreReviewScreenshots, "screencap -p", "Android screenshot test captures the rendered emulator screen");
 includes(files.nativeCiWorkflow, "app/build/outputs/store-review-screenshots", "Native CI uploads store-review screenshots");
 includes(files.nativeCiWorkflow, "android-connected-ui-test-results", "Native CI uploads Android UI test artifacts");
 includes(files.prUserFlowVerifier, "requiredUserFlowChecks", "PR user-flow verifier uses shared release requirements");
