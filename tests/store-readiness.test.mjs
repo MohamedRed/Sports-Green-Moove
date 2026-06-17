@@ -61,7 +61,11 @@ for (const key of [
   "active_ride_permission_disclosure_title",
   "active_ride_permission_disclosure_body",
   "active_ride_permission_blocked",
+  "guardian_consent_title",
   "child_tracking_guardian_consent",
+  "child_safety_disclosure_title",
+  "child_tracking_safety_disclosure",
+  "privacy_policy_summary_title",
   "privacy_policy_summary",
 ]) {
   includes(files.androidStrings, `name="${key}"`, `Android string ${key} exists`);
@@ -184,6 +188,9 @@ for (const screenshotName of [
   "store-stale-location-warning.png",
   "store-emergency-contact-action.png",
   "store-permission-education.png",
+  "store-guardian-consent-copy.png",
+  "store-child-safety-disclosure.png",
+  "store-privacy-summary.png",
 ]) {
   includes(files.androidStoreReviewScreenshots, screenshotName, `Android screenshot test captures ${screenshotName}`);
 }
@@ -261,7 +268,7 @@ includes(files.nativeCiWorkflow, "run-android-ui-tests-and-collect-screenshots.s
 includes(files.androidUiScreenshotCollector, ":app:connectedDebugAndroidTest", "Android screenshot collector runs connected UI tests");
 includes(files.androidUiScreenshotCollector, "adb pull", "Android screenshot collector pulls emulator screenshots");
 includes(files.androidUiScreenshotCollector, "-size +0c", "Android screenshot collector verifies non-empty screenshots");
-includes(files.androidUiScreenshotCollector, "Expected at least 5 non-empty Android store-review screenshots", "Android screenshot collector fails when screenshot evidence is missing");
+includes(files.androidUiScreenshotCollector, "Expected at least 8 non-empty Android store-review screenshots", "Android screenshot collector fails when screenshot evidence is missing");
 includes(files.androidStoreReviewScreenshots, "/sdcard/Download/sgm-store-review", "Android screenshot test writes evidence outside app uninstall cleanup");
 includes(files.androidStoreReviewScreenshots, "screencap -p", "Android screenshot test captures the rendered emulator screen");
 includes(files.nativeCiWorkflow, "app/build/outputs/store-review-screenshots", "Native CI uploads store-review screenshots");

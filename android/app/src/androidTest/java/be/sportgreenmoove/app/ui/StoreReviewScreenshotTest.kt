@@ -83,6 +83,40 @@ class StoreReviewScreenshotTest {
         compose.onNodeWithText("Suivi de course").assertIsDisplayed()
         compose.onNodeWithText("Continuer").assertIsDisplayed()
         capture("store-permission-education.png")
+
+        host.show {
+            SearchScreen(
+                origin = UiFlowFixtures.origin,
+                destination = UiFlowFixtures.destination,
+                originSuggestions = emptyList(),
+                destinationSuggestions = emptyList(),
+                children = listOf(UiFlowFixtures.child),
+                matches = listOf(UiFlowFixtures.match),
+                loading = false,
+                error = null,
+                onBack = {},
+                onSuggestOrigin = {},
+                onSuggestDestination = {},
+                onSelectOrigin = {},
+                onSelectDestination = {},
+                onSearch = {},
+                onRequest = { _, _ -> },
+            )
+        }
+        compose.onNodeWithTag(SgmTestTags.GuardianConsentDisclosure)
+            .performScrollTo()
+            .assertIsDisplayed()
+        capture("store-guardian-consent-copy.png")
+        compose.onNodeWithTag(SgmTestTags.ChildSafetyDisclosure)
+            .performScrollTo()
+            .assertIsDisplayed()
+        capture("store-child-safety-disclosure.png")
+
+        host.show {
+            OptionsScreen(firebase = UiFlowFirebaseGateway(), onBack = {})
+        }
+        compose.onNodeWithTag(SgmTestTags.PrivacySummaryDisclosure).assertIsDisplayed()
+        capture("store-privacy-summary.png")
     }
 
     private fun capture(name: String) {

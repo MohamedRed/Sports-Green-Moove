@@ -60,6 +60,7 @@ fun OptionsScreen(firebase: FirebaseGateway, onBack: () -> Unit) {
     V2Screen(testTag = SgmTestTags.OptionsScreen) {
         V2TopBar("OPTIONS")
         OptionHero()
+        PrivacyProcessorDisclosure(Modifier.padding(start = 20.dp, end = 20.dp, bottom = 16.dp))
         OptionSections.forEach { section ->
             V2SectionLabel(section.title)
             OptionSectionCard(section.rows)

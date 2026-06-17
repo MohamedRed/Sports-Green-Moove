@@ -93,13 +93,27 @@ assert.ok(
   report.storeReviewEvidence.passed.includes("active_ride_tracking_screenshot"),
   "Store-review evidence should count generated active ride screenshot evidence.",
 );
+for (const acceptedStoreEvidence of [
+  "guardian_consent_copy",
+  "background_location_disclosure",
+  "child_safety_disclosure",
+]) {
+  assert.ok(
+    report.storeReviewEvidence.passed.includes(acceptedStoreEvidence),
+    `Store-review evidence should count generated ${acceptedStoreEvidence} evidence.`,
+  );
+  assert.ok(
+    !report.storeReviewEvidence.missing.includes(acceptedStoreEvidence),
+    `Generated ${acceptedStoreEvidence} should no longer be reported missing.`,
+  );
+}
 assert.ok(
   report.storeReviewEvidence.missing.includes("privacy_policy_url"),
   "Store-review evidence should still report missing published privacy-policy URL.",
 );
 assert.ok(
-  report.storeReviewEvidence.missing.includes("guardian_consent_copy"),
-  "Store-review evidence should still report missing guardian consent copy.",
+  report.storeReviewEvidence.missing.includes("app_store_privacy_answers"),
+  "Store-review evidence should still report missing App Store privacy answers.",
 );
 assert.ok(
   !report.storeReviewEvidence.missing.includes("permission_education_screenshot"),

@@ -116,21 +116,30 @@
       },
       {
         "id": "guardian_consent_copy",
-        "status": "pending",
-        "description": "Guardian consent copy evidence is still required for the final store submission.",
-        "evidenceRefs": ["store-readiness.md"]
+        "status": "accepted",
+        "description": "Native CI captures store-guardian-consent-copy.png with the guardian consent copy shown before child-tracking search.",
+        "evidenceRefs": [
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/workflows/native-ci.yml?query=branch%3Acodex%2Fimplement-plan",
+          "store-readiness.md"
+        ]
       },
       {
         "id": "background_location_disclosure",
-        "status": "pending",
-        "description": "Background location disclosure evidence is still required for the final store submission.",
-        "evidenceRefs": ["store-readiness.md"]
+        "status": "accepted",
+        "description": "Native CI captures store-permission-education.png with the prominent active-ride background-location disclosure.",
+        "evidenceRefs": [
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/workflows/native-ci.yml?query=branch%3Acodex%2Fimplement-plan",
+          "store-readiness.md"
+        ]
       },
       {
         "id": "child_safety_disclosure",
-        "status": "pending",
-        "description": "Child safety disclosure evidence is still required for the final store submission.",
-        "evidenceRefs": ["store-readiness.md"]
+        "status": "accepted",
+        "description": "Native CI captures store-child-safety-disclosure.png with role access and active-ride tracking limits.",
+        "evidenceRefs": [
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/workflows/native-ci.yml?query=branch%3Acodex%2Fimplement-plan",
+          "store-readiness.md"
+        ]
       },
       {
         "id": "active_ride_tracking_screenshot",

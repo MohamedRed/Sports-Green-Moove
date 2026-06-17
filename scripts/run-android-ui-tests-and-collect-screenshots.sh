@@ -18,8 +18,8 @@ fi
 
 if [[ "$test_status" -eq 0 ]]; then
   screenshot_count="$(find "$output_dir" -type f -name "store-*.png" -size +0c | wc -l | tr -d " ")"
-  if [[ "$screenshot_count" -lt 5 ]]; then
-    echo "Expected at least 5 non-empty Android store-review screenshots, found $screenshot_count." >&2
+  if [[ "$screenshot_count" -lt 8 ]]; then
+    echo "Expected at least 8 non-empty Android store-review screenshots, found $screenshot_count." >&2
     exit 1
   fi
 fi
