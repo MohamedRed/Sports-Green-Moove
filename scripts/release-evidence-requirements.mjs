@@ -3,8 +3,9 @@ export const requiredProviders = [
   "radar",
   "googleMaps",
   "stripeConnect",
-  "metaFacebook",
 ];
+
+export const postponedSocialAuthProviders = ["googleSignIn", "metaFacebook"];
 
 export const requiredDeviceScenarios = [
   "foreground_tracking",
@@ -65,7 +66,6 @@ export const requiredProviderEnvironmentVariables = [
   "GOOGLE_MAPS_API_KEY",
   "SGM_GOOGLE_MAPS_ANDROID_API_KEY",
   "SGM_GOOGLE_MAPS_IOS_API_KEY",
-  "SGM_GOOGLE_REVERSED_CLIENT_ID",
   "RADAR_WEBHOOK_SECRET",
   "SGM_RADAR_PUBLISHABLE_KEY",
   "STRIPE_SECRET_KEY",
@@ -73,6 +73,10 @@ export const requiredProviderEnvironmentVariables = [
   "STRIPE_WEBHOOK_SECRET",
   "SGM_STRIPE_CONNECT_RETURN_URL",
   "SGM_STRIPE_CONNECT_REFRESH_URL",
+];
+
+export const postponedSocialAuthEnvironmentVariables = [
+  "SGM_GOOGLE_REVERSED_CLIENT_ID",
   "SGM_FACEBOOK_APP_ID",
   "SGM_FACEBOOK_CLIENT_TOKEN",
 ];

@@ -194,10 +194,13 @@ for (const screenshotName of [
 ]) {
   includes(files.androidStoreReviewScreenshots, screenshotName, `Android screenshot test captures ${screenshotName}`);
 }
-for (const provider of ["firebase", "radar", "googleMaps", "stripeConnect", "metaFacebook"]) {
+for (const provider of ["firebase", "radar", "googleMaps", "stripeConnect"]) {
   includes(files.evidenceTemplate, provider, `Release evidence template includes ${provider}`);
   includes(files.releaseRequirements, provider, `Release requirements include ${provider}`);
 }
+includes(files.evidenceTemplate, "postponedSocialAuthReadiness", "Release evidence template tracks postponed social auth");
+includes(files.evidenceSchema, "postponedSocialAuthReadiness", "Release evidence schema tracks postponed social auth");
+includes(files.storeReadiness, "--include-postponed-social-auth", "Store checklist documents postponed social-auth validation");
 for (const requiredProviderVariable of [
   "FIREBASE_ANDROID_CONFIG_BASE64",
   "FIREBASE_IOS_CONFIG_BASE64",

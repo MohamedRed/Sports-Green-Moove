@@ -9,6 +9,7 @@
     "generatedAt",
     "owner",
     "providerProductionReadiness",
+    "postponedSocialAuthReadiness",
     "automatedUserFlowEvidence",
     "realDeviceRuns",
     "storeReviewEvidence",
@@ -22,7 +23,11 @@
     "owner": { "type": "string", "minLength": 1 },
     "providerProductionReadiness": {
       "type": "object",
-      "required": ["firebase", "radar", "googleMaps", "stripeConnect", "metaFacebook"]
+      "required": ["firebase", "radar", "googleMaps", "stripeConnect"]
+    },
+    "postponedSocialAuthReadiness": {
+      "type": "object",
+      "required": ["googleSignIn", "metaFacebook"]
     },
     "automatedUserFlowEvidence": {
       "type": "object",

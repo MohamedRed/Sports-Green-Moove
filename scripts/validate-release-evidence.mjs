@@ -5,6 +5,7 @@ import {
   requiredAuditEvidence,
   requiredAutomatedFlowEvidence,
   requiredDeviceScenarios,
+  postponedSocialAuthProviders,
   requiredProviders,
   requiredStoreEvidence,
 } from "./release-evidence-requirements.mjs";
@@ -38,10 +39,28 @@ function validateManifest(data) {
   }
 
   validateProviders(data.providerProductionReadiness);
+  validatePostponedSocialAuth(data.postponedSocialAuthReadiness);
   validateAutomatedFlowEvidence(data.automatedUserFlowEvidence);
   validateDeviceRuns(data.realDeviceRuns);
   validateStoreEvidence(data.storeReviewEvidence);
   validateAuditEvidence(data.safetyAuditEvidence);
+}
+
+function validatePostponedSocialAuth(providers) {
+  requireObject(providers, "postponedSocialAuthReadiness");
+  for (const providerId of postponedSocialAuthProviders) {
+    const provider = providers?.[providerId];
+    const path = `postponedSocialAuthReadiness.${providerId}`;
+    requireObject(provider, path);
+    requireString(provider?.status, `${path}.status`);
+    requireString(provider?.reason, `${path}.reason`);
+    requireString(provider?.revisitBefore, `${path}.revisitBefore`);
+    validateEvidenceRefs(provider?.evidenceRefs, `${path}.evidenceRefs`);
+    if (!allowPlaceholders && provider?.status !== "postponed") {
+      errors.push(`${path}.status must be postponed`);
+    }
+    rejectSecretFields(provider, path);
+  }
 }
 
 function validateProviders(providers) {

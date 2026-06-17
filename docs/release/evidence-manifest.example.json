@@ -40,14 +40,25 @@
       "evidenceRefs": [
         "evidence/stripe-connect-production-webhook-settings.png"
       ]
+    }
+  },
+  "postponedSocialAuthReadiness": {
+    "googleSignIn": {
+      "status": "postponed",
+      "reason": "Google federated sign-in is postponed until the federated-auth release.",
+      "revisitBefore": "federated-auth-release",
+      "evidenceRefs": [
+        "evidence/provider-secret-inventory.json",
+        "../contracts/auth.md"
+      ]
     },
     "metaFacebook": {
-      "environment": "production",
-      "status": "production-configured",
-      "checkedAt": "2026-06-13T00:00:00Z",
-      "checkedBy": "release-owner@example.com",
+      "status": "postponed",
+      "reason": "Meta Facebook Login is postponed until the federated-auth release.",
+      "revisitBefore": "federated-auth-release",
       "evidenceRefs": [
-        "evidence/meta-facebook-login-production-settings.png"
+        "evidence/provider-secret-inventory.json",
+        "../contracts/auth.md"
       ]
     }
   },

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const environment = parseEnvironment(process.argv.slice(2));
+const { environment, includePostponedSocialAuth } = parseArgs(process.argv.slice(2));
 const errors = [];
 
 const checks = [
@@ -19,7 +19,6 @@ const checks = [
     required("GOOGLE_MAPS_API_KEY", "Cloud Functions Google Routes and Places key", googleApiKey),
     required("SGM_GOOGLE_MAPS_ANDROID_API_KEY", "Android Google Maps SDK key", googleApiKey),
     required("SGM_GOOGLE_MAPS_IOS_API_KEY", "iOS Google Maps SDK key", googleApiKey),
-    required("SGM_GOOGLE_REVERSED_CLIENT_ID", "iOS Google sign-in reversed client id", reversedGoogleClientId),
   ]),
   group("radar", [
     required("RADAR_WEBHOOK_SECRET", "Radar webhook signing secret", minLength(16)),
@@ -32,11 +31,19 @@ const checks = [
     required("SGM_STRIPE_CONNECT_RETURN_URL", "Stripe Connect return URL", httpsUrl),
     required("SGM_STRIPE_CONNECT_REFRESH_URL", "Stripe Connect refresh URL", httpsUrl),
   ]),
-  group("metaFacebook", [
-    required("SGM_FACEBOOK_APP_ID", "Meta Facebook app id", numeric),
-    required("SGM_FACEBOOK_CLIENT_TOKEN", "Meta Facebook client token", minLength(12)),
-  ]),
 ];
+
+if (includePostponedSocialAuth) {
+  checks.push(
+    group("googleSignIn", [
+      required("SGM_GOOGLE_REVERSED_CLIENT_ID", "iOS Google sign-in reversed client id", reversedGoogleClientId),
+    ]),
+    group("metaFacebook", [
+      required("SGM_FACEBOOK_APP_ID", "Meta Facebook app id", numeric),
+      required("SGM_FACEBOOK_CLIENT_TOKEN", "Meta Facebook client token", minLength(12)),
+    ]),
+  );
+}
 
 for (const providerGroup of checks) {
   validateGroup(providerGroup);
@@ -48,7 +55,8 @@ if (errors.length > 0) {
 }
 
 const variableCount = checks.reduce((total, providerGroup) => total + providerGroup.items.length, 0);
-console.log(`Provider readiness validated for ${environment}: ${variableCount} variables present and structurally valid.`);
+const scope = includePostponedSocialAuth ? "provider and postponed social-auth" : "production launch provider";
+console.log(`Provider readiness validated for ${environment}: ${variableCount} ${scope} variables present and structurally valid.`);
 
 function validateGroup(providerGroup) {
   for (const item of providerGroup.items) {
@@ -147,14 +155,14 @@ function isPlaceholder(value) {
   return /\b(TODO|TBD|PLACEHOLDER|PENDING|EXAMPLE|SAMPLE|REPLACE_ME)\b/i.test(value);
 }
 
-function parseEnvironment(args) {
+function parseArgs(args) {
   const index = args.indexOf("--environment");
-  if (index === -1) return "production";
-  const value = args[index + 1];
-  if (!value || value.startsWith("--")) {
+  const includePostponedSocialAuth = args.includes("--include-postponed-social-auth");
+  if (index === -1) return { environment: "production", includePostponedSocialAuth };
+  const environment = args[index + 1];
+  if (!environment || environment.startsWith("--")) {
     console.error("--environment requires a value");
     process.exit(1);
   }
-  return value;
+  return { environment, includePostponedSocialAuth };
 }
-

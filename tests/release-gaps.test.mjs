@@ -3,7 +3,10 @@ import { execFileSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { requiredProviderEnvironmentVariables } from "../scripts/release-evidence-requirements.mjs";
+import {
+  postponedSocialAuthEnvironmentVariables,
+  requiredProviderEnvironmentVariables,
+} from "../scripts/release-evidence-requirements.mjs";
 
 const output = execFileSync(
   process.execPath,
@@ -28,26 +31,16 @@ assert.ok(
   "Default release gap report should count configured GitHub secret names from the checked-in inventory.",
 );
 
-for (const providerVariable of [
-  "SGM_GOOGLE_REVERSED_CLIENT_ID",
-  "SGM_FACEBOOK_APP_ID",
-  "SGM_FACEBOOK_CLIENT_TOKEN",
-]) {
-  assert.ok(
-    report.providerEnvironment.missing.includes(providerVariable),
-    `Provider environment should report missing ${providerVariable}.`,
-  );
-}
+assert.deepEqual(report.providerEnvironment.missing, [], "Production launch provider secret names should be present.");
+assert.deepEqual(
+  report.postponedSocialAuthEnvironment.missing,
+  postponedSocialAuthEnvironmentVariables,
+  "Postponed Google and Meta OAuth secret names should stay visible without blocking launch provider inventory.",
+);
 
 const tmpDir = mkdtempSync(join(tmpdir(), "sgm-release-gaps-"));
 try {
-  const configuredSecretNames = requiredProviderEnvironmentVariables.filter((name) => {
-    return ![
-      "SGM_GOOGLE_REVERSED_CLIENT_ID",
-      "SGM_FACEBOOK_APP_ID",
-      "SGM_FACEBOOK_CLIENT_TOKEN",
-    ].includes(name);
-  });
+  const configuredSecretNames = requiredProviderEnvironmentVariables;
   const inventoryPath = join(tmpDir, "github-secrets.json");
   writeFileSync(
     inventoryPath,
@@ -71,8 +64,13 @@ try {
   );
   assert.deepEqual(
     inventoryReport.providerEnvironment.missing,
-    ["SGM_GOOGLE_REVERSED_CLIENT_ID", "SGM_FACEBOOK_APP_ID", "SGM_FACEBOOK_CLIENT_TOKEN"],
-    "Secret inventory mode should leave only missing Google and Meta OAuth secret names.",
+    [],
+    "Secret inventory mode should pass production launch provider names without postponed social auth.",
+  );
+  assert.deepEqual(
+    inventoryReport.postponedSocialAuthEnvironment.missing,
+    postponedSocialAuthEnvironmentVariables,
+    "Secret inventory mode should still report postponed social-auth names separately.",
   );
 } finally {
   rmSync(tmpDir, { recursive: true, force: true });

@@ -32,13 +32,26 @@
       "checkedAt": "2026-06-17T10:56:50Z",
       "checkedBy": "Codex",
       "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+    }
+  },
+  "postponedSocialAuthReadiness": {
+    "googleSignIn": {
+      "status": "postponed",
+      "reason": "Google federated sign-in is outside the Android email/password release scope and still needs SGM_GOOGLE_REVERSED_CLIENT_ID before iOS Google Sign-In can be enabled.",
+      "revisitBefore": "federated-auth-release",
+      "evidenceRefs": [
+        "evidence/provider-secret-inventory-2026-06-17.json",
+        "../contracts/auth.md"
+      ]
     },
     "metaFacebook": {
-      "environment": "production",
-      "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:56:50Z",
-      "checkedBy": "Codex",
-      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+      "status": "postponed",
+      "reason": "Meta Facebook Login is outside the Android email/password release scope and still needs SGM_FACEBOOK_APP_ID plus SGM_FACEBOOK_CLIENT_TOKEN before native Facebook sign-in can be enabled.",
+      "revisitBefore": "federated-auth-release",
+      "evidenceRefs": [
+        "evidence/provider-secret-inventory-2026-06-17.json",
+        "../contracts/auth.md"
+      ]
     }
   },
   "automatedUserFlowEvidence": {

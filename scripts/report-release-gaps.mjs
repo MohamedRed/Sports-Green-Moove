@@ -5,6 +5,7 @@ import {
   requiredAuditEvidence,
   requiredAutomatedFlowEvidence,
   requiredDeviceScenarios,
+  postponedSocialAuthEnvironmentVariables,
   requiredProviderEnvironmentVariables,
   requiredProviders,
   requiredStoreEvidence,
@@ -26,7 +27,14 @@ function buildReport(manifestResult, automatedResult, secretInventoryResult) {
   const manifest = manifestResult.data;
   const automated = automatedResult.data;
   const automatedItems = automated?.items ?? manifest?.automatedUserFlowEvidence?.items ?? [];
-  const providerEnvironment = providerEnvironmentGaps(secretInventoryResult.names);
+  const providerEnvironment = providerEnvironmentGaps(
+    secretInventoryResult.names,
+    requiredProviderEnvironmentVariables,
+  );
+  const postponedSocialAuthEnvironment = providerEnvironmentGaps(
+    secretInventoryResult.names,
+    postponedSocialAuthEnvironmentVariables,
+  );
   const providerReadiness = providerReadinessGaps(manifest?.providerProductionReadiness);
   const automatedFlowEvidence = itemGaps(automatedItems, requiredAutomatedFlowEvidence);
   const realDeviceRuns = realDeviceGaps(manifest?.realDeviceRuns);
@@ -46,6 +54,7 @@ function buildReport(manifestResult, automatedResult, secretInventoryResult) {
     automatedEvidence: automatedResult,
     secretInventory: secretInventoryResult,
     providerEnvironment,
+    postponedSocialAuthEnvironment,
     providerReadiness,
     automatedFlowEvidence,
     realDeviceRuns,
@@ -54,15 +63,15 @@ function buildReport(manifestResult, automatedResult, secretInventoryResult) {
   };
 }
 
-function providerEnvironmentGaps(secretNames = []) {
-  const presentFromEnv = requiredProviderEnvironmentVariables.filter((name) => hasEnv(name));
-  const presentFromSecretInventory = requiredProviderEnvironmentVariables.filter((name) => secretNames.includes(name));
+function providerEnvironmentGaps(secretNames = [], requiredNames) {
+  const presentFromEnv = requiredNames.filter((name) => hasEnv(name));
+  const presentFromSecretInventory = requiredNames.filter((name) => secretNames.includes(name));
   const presentSet = new Set([...presentFromEnv, ...presentFromSecretInventory]);
-  const missing = requiredProviderEnvironmentVariables.filter((name) => !presentSet.has(name));
+  const missing = requiredNames.filter((name) => !presentSet.has(name));
   return {
     ok: missing.length === 0,
-    required: requiredProviderEnvironmentVariables,
-    present: requiredProviderEnvironmentVariables.filter((name) => presentSet.has(name)),
+    required: requiredNames,
+    present: requiredNames.filter((name) => presentSet.has(name)),
     presentFromEnv,
     presentFromSecretInventory,
     missing,
@@ -213,6 +222,7 @@ function latestSecretInventoryPath() {
 function printTextReport(report) {
   console.log(report.ok ? "Release evidence gaps: none" : "Release evidence gaps remain");
   printList("Missing provider env/secret names", report.providerEnvironment.missing);
+  printList("Postponed social-auth env/secret names", report.postponedSocialAuthEnvironment.missing);
   printList("Missing provider readiness entries", report.providerReadiness.missing);
   printList("Missing automated evidence", report.automatedFlowEvidence.missing);
   for (const [platform, state] of Object.entries(report.realDeviceRuns.byPlatform)) {

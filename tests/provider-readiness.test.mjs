@@ -41,6 +41,10 @@ const validEnv = {
 
 const validOutput = execFileSync(node, [script], { env: testEnv(validEnv), encoding: "utf8" });
 assert.match(validOutput, /Provider readiness validated for production/);
+assert.match(validOutput, /production launch provider variables/);
+
+const socialAuthOutput = execFileSync(node, [script, "--include-postponed-social-auth"], { env: testEnv(validEnv), encoding: "utf8" });
+assert.match(socialAuthOutput, /provider and postponed social-auth variables/);
 
 assertFailure(
   { ...validEnv, STRIPE_SECRET_KEY: "" },
@@ -60,12 +64,30 @@ assertFailure(
   "Stripe test keys must not pass production readiness.",
 );
 
+const postponedSocialAuthEnv = {
+  ...validEnv,
+  SGM_GOOGLE_REVERSED_CLIENT_ID: "",
+  SGM_FACEBOOK_APP_ID: "",
+  SGM_FACEBOOK_CLIENT_TOKEN: "",
+};
+const productionOnlyOutput = execFileSync(node, [script], {
+  env: testEnv(postponedSocialAuthEnv),
+  encoding: "utf8",
+});
+assert.match(productionOnlyOutput, /production launch provider variables/);
+assertFailure(
+  postponedSocialAuthEnv,
+  /SGM_GOOGLE_REVERSED_CLIENT_ID is required/,
+  "Postponed social-auth secrets must fail when explicitly included.",
+  ["--include-postponed-social-auth"],
+);
+
 console.log("Provider readiness checks passed.");
 
-function assertFailure(env, pattern, message) {
+function assertFailure(env, pattern, message, args = []) {
   let failed = false;
   try {
-    execFileSync(node, [script], { env: testEnv(env), encoding: "utf8", stdio: "pipe" });
+    execFileSync(node, [script, ...args], { env: testEnv(env), encoding: "utf8", stdio: "pipe" });
   } catch (error) {
     failed = true;
     assert.match(String(error.stderr), pattern);
@@ -84,4 +106,3 @@ function testEnv(values) {
 function base64(value) {
   return Buffer.from(value, "utf8").toString("base64");
 }
-
