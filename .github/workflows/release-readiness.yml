@@ -24,9 +24,11 @@ on:
       - "ios/project.yml"
       - "package.json"
       - "scripts/check-provider-readiness.mjs"
+      - "scripts/check-stripe-production-readiness.mjs"
       - "scripts/firebase-android-config.mjs"
       - "scripts/export-safety-audit-evidence.mjs"
       - "scripts/lib/safety-audit-export.mjs"
+      - "scripts/lib/stripe-production-readiness.mjs"
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
@@ -36,6 +38,7 @@ on:
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
+      - "tests/stripe-production-readiness.test.mjs"
       - "tests/android-appetize-workflow.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/privacy-policy-page.test.mjs"
@@ -71,9 +74,11 @@ on:
       - "ios/project.yml"
       - "package.json"
       - "scripts/check-provider-readiness.mjs"
+      - "scripts/check-stripe-production-readiness.mjs"
       - "scripts/firebase-android-config.mjs"
       - "scripts/export-safety-audit-evidence.mjs"
       - "scripts/lib/safety-audit-export.mjs"
+      - "scripts/lib/stripe-production-readiness.mjs"
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
@@ -83,6 +88,7 @@ on:
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
+      - "tests/stripe-production-readiness.test.mjs"
       - "tests/android-appetize-workflow.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/privacy-policy-page.test.mjs"
@@ -137,6 +143,15 @@ jobs:
           VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
         run: npm run validate:provider-readiness
 
+      - name: Validate Stripe production readiness
+        env:
+          SGM_STRIPE_CONNECT_REFRESH_URL: ${{ secrets.SGM_STRIPE_CONNECT_REFRESH_URL }}
+          SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+        run: npm run validate:stripe-production-readiness
+
   store-readiness:
     name: Store readiness static checks
     runs-on: ubuntu-latest
@@ -164,6 +179,9 @@ jobs:
 
       - name: Validate provider readiness checks
         run: npm run test:provider-readiness
+
+      - name: Validate Stripe production readiness checks
+        run: npm run test:stripe-production-readiness
 
       - name: Validate safety audit export checks
         run: npm run test:safety-audit-export
