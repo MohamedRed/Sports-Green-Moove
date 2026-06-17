@@ -7,31 +7,47 @@
   "providerProductionReadiness": {
     "firebase": {
       "environment": "production",
-      "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:56:50Z",
+      "status": "pending-dashboard-evidence",
+      "checkedAt": "2026-06-17T21:57:12Z",
       "checkedBy": "Codex",
-      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+      "evidenceRefs": [
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27722356923/job/82010637034",
+        "evidence/provider-secret-validation-2026-06-17.md",
+        "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
+      ]
     },
     "radar": {
       "environment": "production",
-      "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:56:50Z",
+      "status": "pending-dashboard-evidence",
+      "checkedAt": "2026-06-17T21:57:12Z",
       "checkedBy": "Codex",
-      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+      "evidenceRefs": [
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27722356923/job/82010637034",
+        "evidence/provider-secret-validation-2026-06-17.md",
+        "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
+      ]
     },
     "googleMaps": {
       "environment": "production",
-      "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:56:50Z",
+      "status": "pending-dashboard-evidence",
+      "checkedAt": "2026-06-17T21:57:12Z",
       "checkedBy": "Codex",
-      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+      "evidenceRefs": [
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27722356923/job/82010637034",
+        "evidence/provider-secret-validation-2026-06-17.md",
+        "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
+      ]
     },
     "stripeConnect": {
       "environment": "production",
-      "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:56:50Z",
+      "status": "pending-dashboard-evidence",
+      "checkedAt": "2026-06-17T21:57:12Z",
       "checkedBy": "Codex",
-      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+      "evidenceRefs": [
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27722356923/job/82010637034",
+        "evidence/provider-secret-validation-2026-06-17.md",
+        "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
+      ]
     }
   },
   "postponedSocialAuthReadiness": {
