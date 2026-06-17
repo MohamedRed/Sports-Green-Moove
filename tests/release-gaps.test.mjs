@@ -19,7 +19,8 @@ const output = execFileSync(
 const report = JSON.parse(output);
 
 assert.equal(report.ok, false, "Current release gap report must not claim public-launch completion.");
-assert.equal(report.manifest.exists, false, "Real release evidence manifest is intentionally absent until manual evidence exists.");
+assert.equal(report.manifest.exists, true, "In-progress release evidence manifest should be read.");
+assert.equal(report.manifest.data.manifestStatus, "in-progress", "Release evidence manifest must not claim completion.");
 assert.deepEqual(report.automatedFlowEvidence.missing, [], "Automated user-flow evidence should be complete.");
 
 for (const providerVariable of [
@@ -85,8 +86,24 @@ for (const platform of ["ios", "android"]) {
 }
 
 assert.ok(
-  report.storeReviewEvidence.missing.includes("permission_education_screenshot"),
-  "Store-review evidence should report missing permission education screenshots.",
+  report.storeReviewEvidence.passed.includes("permission_education_screenshot"),
+  "Store-review evidence should count generated permission education screenshot evidence.",
+);
+assert.ok(
+  report.storeReviewEvidence.passed.includes("active_ride_tracking_screenshot"),
+  "Store-review evidence should count generated active ride screenshot evidence.",
+);
+assert.ok(
+  report.storeReviewEvidence.missing.includes("privacy_policy_url"),
+  "Store-review evidence should still report missing published privacy-policy URL.",
+);
+assert.ok(
+  report.storeReviewEvidence.missing.includes("guardian_consent_copy"),
+  "Store-review evidence should still report missing guardian consent copy.",
+);
+assert.ok(
+  !report.storeReviewEvidence.missing.includes("permission_education_screenshot"),
+  "Generated permission education screenshot should no longer be reported missing.",
 );
 assert.ok(
   report.safetyAuditEvidence.missing.includes("payment_reconciliation_event"),

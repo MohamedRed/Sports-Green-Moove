@@ -1,0 +1,207 @@
+{
+  "manifestVersion": "1.0",
+  "manifestStatus": "in-progress",
+  "releaseCandidate": "codex/implement-plan@3610408fba29b426d5fdadf716cec478a99cd093",
+  "generatedAt": "2026-06-17T10:46:01Z",
+  "owner": "Codex",
+  "providerProductionReadiness": {
+    "firebase": {
+      "environment": "production",
+      "status": "pending-release-evidence",
+      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedBy": "Codex",
+      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+    },
+    "radar": {
+      "environment": "production",
+      "status": "pending-release-evidence",
+      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedBy": "Codex",
+      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+    },
+    "googleMaps": {
+      "environment": "production",
+      "status": "pending-release-evidence",
+      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedBy": "Codex",
+      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+    },
+    "stripeConnect": {
+      "environment": "production",
+      "status": "pending-release-evidence",
+      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedBy": "Codex",
+      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+    },
+    "metaFacebook": {
+      "environment": "production",
+      "status": "pending-release-evidence",
+      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedBy": "Codex",
+      "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
+    }
+  },
+  "automatedUserFlowEvidence": {
+    "items": [
+      {
+        "id": "native_ui_flow_ci",
+        "status": "passed",
+        "description": "Native UI flow coverage passed on the current PR head.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/job/81874733602"]
+      },
+      {
+        "id": "android_connected_ui_ci",
+        "status": "passed",
+        "description": "Android connected Compose UI tests passed on the current PR head.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/job/81874733504"]
+      },
+      {
+        "id": "backend_live_smoke",
+        "status": "passed",
+        "description": "Production backend live smoke evidence is recorded in the automated user-flow evidence artifact.",
+        "evidenceRefs": ["evidence/automated-user-flow-evidence-2026-06-16.json"]
+      },
+      {
+        "id": "operations_live_smoke",
+        "status": "passed",
+        "description": "Production operations live smoke evidence is recorded in the automated user-flow evidence artifact.",
+        "evidenceRefs": ["evidence/automated-user-flow-evidence-2026-06-16.json"]
+      },
+      {
+        "id": "firebase_rules_emulator",
+        "status": "passed",
+        "description": "Backend CI passed Firebase rules emulator checks on the current PR head.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973543/job/81874733612"]
+      },
+      {
+        "id": "stripe_webhook_emulator",
+        "status": "passed",
+        "description": "Backend CI passed Stripe webhook emulator checks on the current PR head.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973543/job/81874733612"]
+      },
+      {
+        "id": "android_appetize_launch",
+        "status": "passed",
+        "description": "Android Appetize build and upload evidence is recorded in the automated user-flow evidence artifact.",
+        "evidenceRefs": ["evidence/automated-user-flow-evidence-2026-06-16.json"]
+      },
+      {
+        "id": "android_appetize_email_login",
+        "status": "passed",
+        "description": "Android Appetize email/password login evidence is recorded in the automated user-flow evidence artifact.",
+        "evidenceRefs": ["evidence/automated-user-flow-evidence-2026-06-16.json"]
+      }
+    ]
+  },
+  "realDeviceRuns": [],
+  "storeReviewEvidence": {
+    "items": [
+      {
+        "id": "privacy_policy_url",
+        "status": "pending",
+        "description": "Published privacy-policy URL is still required for the final store submission.",
+        "evidenceRefs": ["privacy-data-safety.md"]
+      },
+      {
+        "id": "app_store_privacy_answers",
+        "status": "pending",
+        "description": "App Store privacy answers are still required for the final store submission.",
+        "evidenceRefs": ["privacy-data-safety.md"]
+      },
+      {
+        "id": "google_play_data_safety_answers",
+        "status": "pending",
+        "description": "Google Play Data safety answers are still required for the final store submission.",
+        "evidenceRefs": ["privacy-data-safety.md"]
+      },
+      {
+        "id": "guardian_consent_copy",
+        "status": "pending",
+        "description": "Guardian consent copy evidence is still required for the final store submission.",
+        "evidenceRefs": ["store-readiness.md"]
+      },
+      {
+        "id": "background_location_disclosure",
+        "status": "pending",
+        "description": "Background location disclosure evidence is still required for the final store submission.",
+        "evidenceRefs": ["store-readiness.md"]
+      },
+      {
+        "id": "child_safety_disclosure",
+        "status": "pending",
+        "description": "Child safety disclosure evidence is still required for the final store submission.",
+        "evidenceRefs": ["store-readiness.md"]
+      },
+      {
+        "id": "active_ride_tracking_screenshot",
+        "status": "accepted",
+        "description": "Native CI generated store-active-ride-tracking.png as a non-empty 1080x2400 Android emulator screenshot.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+      },
+      {
+        "id": "google_maps_route_preview_screenshot",
+        "status": "accepted",
+        "description": "Native CI generated store-google-maps-route-preview.png as a non-empty 1080x2400 Android emulator screenshot.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+      },
+      {
+        "id": "stale_location_warning_screenshot",
+        "status": "accepted",
+        "description": "Native CI generated store-stale-location-warning.png as a non-empty 1080x2400 Android emulator screenshot.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+      },
+      {
+        "id": "emergency_contact_action_screenshot",
+        "status": "accepted",
+        "description": "Native CI generated store-emergency-contact-action.png as a non-empty 1080x2400 Android emulator screenshot.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+      },
+      {
+        "id": "permission_education_screenshot",
+        "status": "accepted",
+        "description": "Native CI generated store-permission-education.png as a non-empty 1080x2400 Android emulator screenshot.",
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+      }
+    ]
+  },
+  "safetyAuditEvidence": {
+    "items": [
+      {
+        "id": "guardian_consent_event",
+        "status": "pending",
+        "description": "A release safety-audit export must show guardian consent before child tracking.",
+        "evidenceRefs": ["store-readiness.md"]
+      },
+      {
+        "id": "pickup_event",
+        "status": "pending",
+        "description": "A release safety-audit export must show the active ride pickup event.",
+        "evidenceRefs": ["store-readiness.md"]
+      },
+      {
+        "id": "dropoff_event",
+        "status": "pending",
+        "description": "A release safety-audit export must show the active ride drop-off event.",
+        "evidenceRefs": ["store-readiness.md"]
+      },
+      {
+        "id": "radar_webhook_event",
+        "status": "pending",
+        "description": "A release safety-audit export must show a Radar webhook event.",
+        "evidenceRefs": ["store-readiness.md"]
+      },
+      {
+        "id": "native_fallback_location_event",
+        "status": "pending",
+        "description": "A release safety-audit export must show a native fallback location event.",
+        "evidenceRefs": ["store-readiness.md"]
+      },
+      {
+        "id": "payment_reconciliation_event",
+        "status": "pending",
+        "description": "A release safety-audit export must show a payment reconciliation event.",
+        "evidenceRefs": ["store-readiness.md"]
+      }
+    ]
+  }
+}
