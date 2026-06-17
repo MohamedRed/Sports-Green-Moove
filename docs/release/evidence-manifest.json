@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-06-17T15:02:17Z",
+  "generatedAt": "2026-06-17T15:28:21Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -198,37 +198,61 @@
         "id": "guardian_consent_event",
         "status": "pending",
         "description": "A release safety-audit export must show guardian consent before child tracking.",
-        "evidenceRefs": ["store-readiness.md"]
+        "evidenceRefs": [
+          "store-readiness.md",
+          "real-device-test-protocol.md",
+          "../../scripts/export-safety-audit-evidence.mjs"
+        ]
       },
       {
         "id": "pickup_event",
         "status": "pending",
         "description": "A release safety-audit export must show the active ride pickup event.",
-        "evidenceRefs": ["store-readiness.md"]
+        "evidenceRefs": [
+          "store-readiness.md",
+          "real-device-test-protocol.md",
+          "../../scripts/export-safety-audit-evidence.mjs"
+        ]
       },
       {
         "id": "dropoff_event",
         "status": "pending",
         "description": "A release safety-audit export must show the active ride drop-off event.",
-        "evidenceRefs": ["store-readiness.md"]
+        "evidenceRefs": [
+          "store-readiness.md",
+          "real-device-test-protocol.md",
+          "../../scripts/export-safety-audit-evidence.mjs"
+        ]
       },
       {
         "id": "radar_webhook_event",
         "status": "pending",
         "description": "A release safety-audit export must show a Radar webhook event.",
-        "evidenceRefs": ["store-readiness.md"]
+        "evidenceRefs": [
+          "store-readiness.md",
+          "real-device-test-protocol.md",
+          "../../scripts/export-safety-audit-evidence.mjs"
+        ]
       },
       {
         "id": "native_fallback_location_event",
         "status": "pending",
         "description": "A release safety-audit export must show a native fallback location event.",
-        "evidenceRefs": ["store-readiness.md"]
+        "evidenceRefs": [
+          "store-readiness.md",
+          "real-device-test-protocol.md",
+          "../../scripts/export-safety-audit-evidence.mjs"
+        ]
       },
       {
         "id": "payment_reconciliation_event",
         "status": "pending",
         "description": "A release safety-audit export must show a payment reconciliation event.",
-        "evidenceRefs": ["store-readiness.md"]
+        "evidenceRefs": [
+          "store-readiness.md",
+          "real-device-test-protocol.md",
+          "../../scripts/export-safety-audit-evidence.mjs"
+        ]
       }
     ]
   }

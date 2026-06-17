@@ -25,6 +25,8 @@ on:
       - "package.json"
       - "scripts/check-provider-readiness.mjs"
       - "scripts/firebase-android-config.mjs"
+      - "scripts/export-safety-audit-evidence.mjs"
+      - "scripts/lib/safety-audit-export.mjs"
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
@@ -40,6 +42,7 @@ on:
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/safety-audit-export.test.mjs"
+      - "tests/safety-audit-exporter.test.mjs"
       - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
       - "website/index.html"
@@ -69,6 +72,8 @@ on:
       - "package.json"
       - "scripts/check-provider-readiness.mjs"
       - "scripts/firebase-android-config.mjs"
+      - "scripts/export-safety-audit-evidence.mjs"
+      - "scripts/lib/safety-audit-export.mjs"
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
@@ -84,6 +89,7 @@ on:
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
       - "tests/safety-audit-export.test.mjs"
+      - "tests/safety-audit-exporter.test.mjs"
       - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
       - "website/index.html"
@@ -122,6 +128,9 @@ jobs:
 
       - name: Validate safety audit export checks
         run: npm run test:safety-audit-export
+
+      - name: Validate safety audit exporter
+        run: npm run test:safety-audit-exporter
 
       - name: Validate Android Appetize workflow
         run: npm run test:android-appetize-workflow

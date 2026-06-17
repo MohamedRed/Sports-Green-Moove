@@ -75,9 +75,11 @@ Export the matching Firestore/Realtime Database evidence after the run:
 - any support `reports` created during the run
 
 Store the sanitized export as `docs/release/evidence/safety-audit-export.json`
-or pass the export path explicitly:
+or pass the export path explicitly. Generate the sanitized export from the
+production Firestore/Realtime Database records for the completed run:
 
 ```bash
+npm run export:safety-audit-evidence -- --ride-session-id <rideSessionId> --booking-id <bookingId> --report-id <stripeReportId>
 npm run validate:safety-audit-export -- docs/release/evidence/safety-audit-export.json
 ```
 
