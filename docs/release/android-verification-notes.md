@@ -1,5 +1,38 @@
 # Android Verification Notes
 
+## 2026-06-17
+
+Branch: `codex/implement-plan`
+Current PR source commit: `d7e9c4f25a71a3207303a9ce6f2f92e513bb9d5b`
+
+Verified current PR gates:
+
+- Native CI run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480591
+  - Result: passed on commit `d7e9c4f25a71a3207303a9ce6f2f92e513bb9d5b`.
+  - Native UI flow coverage job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480591/job/81721428137
+  - Android native unit test job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480591/job/81721428166
+  - Android connected UI job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480591/job/81721428257
+  - Android connected UI artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480591/artifacts/7674641231
+- Backend CI run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480600
+  - Result: passed on commit `d7e9c4f25a71a3207303a9ce6f2f92e513bb9d5b`.
+  - Functions, Firebase rules, and Stripe webhook emulator tests passed in job https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480600/job/81721428095
+- Web Integration Smoke run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480613
+  - Result: passed on commit `d7e9c4f25a71a3207303a9ce6f2f92e513bb9d5b`.
+  - Functions, admin, and website smoke job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480613/job/81721428482
+- Release Readiness run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480584
+  - Result: passed on commit `d7e9c4f25a71a3207303a9ce6f2f92e513bb9d5b`.
+  - Store readiness static checks job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27635480584/job/81721428143
+- Android Appetize run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27676489978
+  - Result: passed on commit `d7e9c4f25a71a3207303a9ce6f2f92e513bb9d5b`.
+  - Firebase Android config was installed from repository secrets.
+  - APK artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27676489978/artifacts/7690225698
+  - Appetize upload completed in job https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27676489978/job/81852955654
+
+Notes:
+
+- The 2026-06-16 Appetize screenshots remain the latest checked-in interactive Android email/password screenshots. They were captured before the non-visual Android action-flow test coverage updates.
+- Full public-launch evidence still requires physical Android real-device scenarios, store-review screenshots, and the safety-audit event trail listed below.
+
 ## 2026-06-16
 
 Branch: `codex/implement-plan`
