@@ -104,15 +104,21 @@
       },
       {
         "id": "app_store_privacy_answers",
-        "status": "pending",
-        "description": "App Store privacy answers are still required for the final store submission.",
-        "evidenceRefs": ["privacy-data-safety.md"]
+        "status": "accepted",
+        "description": "App Store privacy answer artifact is prepared from the release privacy and data-safety source.",
+        "evidenceRefs": [
+          "evidence/app-store-privacy-answers.md",
+          "privacy-data-safety.md"
+        ]
       },
       {
         "id": "google_play_data_safety_answers",
-        "status": "pending",
-        "description": "Google Play Data safety answers are still required for the final store submission.",
-        "evidenceRefs": ["privacy-data-safety.md"]
+        "status": "accepted",
+        "description": "Google Play Data safety answer artifact is prepared from the release privacy and data-safety source.",
+        "evidenceRefs": [
+          "evidence/google-play-data-safety-answers.md",
+          "privacy-data-safety.md"
+        ]
       },
       {
         "id": "guardian_consent_copy",

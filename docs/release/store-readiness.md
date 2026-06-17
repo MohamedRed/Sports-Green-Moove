@@ -33,4 +33,5 @@
 - Guardian consent copy and audit events for child tracking.
 - Privacy policy URLs for Firebase, Meta, Radar, Google Maps Platform, and Stripe Connect.
 - Store screenshots showing active ride tracking, Google Maps route preview, stale-location warning, emergency contact action, and permission education. Android emulator screenshots also capture guardian-consent copy, child-safety disclosure, and data-processor summary copy in Native CI; final store submission still needs the complete evidence package.
+- App Store privacy answers and Google Play Data safety answers are prepared in `docs/release/evidence/` from `docs/release/privacy-data-safety.md`; the public privacy policy URL still needs to be published before final store submission.
 - Public privacy/data-safety answers stay aligned with `docs/release/privacy-data-safety.md`.

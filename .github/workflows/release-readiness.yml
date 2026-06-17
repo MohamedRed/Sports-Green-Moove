@@ -30,6 +30,7 @@ on:
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
+      - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
   push:
     branches:
@@ -62,6 +63,7 @@ on:
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "tests/release-evidence-template.test.mjs"
+      - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
 
 env:
@@ -86,6 +88,9 @@ jobs:
 
       - name: Validate release readiness
         run: npm run test:store-readiness
+
+      - name: Validate store privacy answers
+        run: npm run test:store-privacy-answers
 
       - name: Validate provider readiness checks
         run: npm run test:provider-readiness
