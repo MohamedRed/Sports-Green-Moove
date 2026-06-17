@@ -16,6 +16,7 @@ jobs:
   build-and-upload:
     name: Build Android APK and upload to Appetize
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     permissions:
       contents: read
@@ -41,6 +42,9 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
 
@@ -53,8 +57,21 @@ jobs:
           printf '%s' "$FIREBASE_ANDROID_CONFIG_BASE64" | base64 --decode > android/app/google-services.json
 
       - name: Build debug APK
+        timeout-minutes: 15
         working-directory: android
-        run: ./gradlew :app:assembleDebug --no-daemon --stacktrace
+        run: ./gradlew :app:assembleDebug --no-daemon --stacktrace --warning-mode all
+
+      - name: Upload Gradle diagnostics
+        if: ${{ failure() || cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-appetize-gradle-diagnostics
+          path: |
+            android/app/build/reports/**
+            android/app/build/outputs/logs/**
+            android/build/reports/**
+            ~/.gradle/daemon/**/daemon-*.out.log
+          if-no-files-found: ignore
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v7

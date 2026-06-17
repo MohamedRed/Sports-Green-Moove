@@ -7,6 +7,7 @@ on:
       - ".github/workflows/release-evidence.yml"
       - ".github/workflows/provider-readiness.yml"
       - ".github/workflows/native-ci.yml"
+      - ".github/workflows/android-appetize.yml"
       - "admin/src/App.tsx"
       - "admin/src/PrivacyPolicyPage.tsx"
       - "admin/src/Wordmark.tsx"
@@ -33,6 +34,7 @@ on:
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
+      - "tests/android-appetize-workflow.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/privacy-policy-page.test.mjs"
       - "tests/release-gaps.test.mjs"
@@ -49,6 +51,7 @@ on:
       - ".github/workflows/release-evidence.yml"
       - ".github/workflows/provider-readiness.yml"
       - ".github/workflows/native-ci.yml"
+      - ".github/workflows/android-appetize.yml"
       - "admin/src/App.tsx"
       - "admin/src/PrivacyPolicyPage.tsx"
       - "admin/src/Wordmark.tsx"
@@ -75,6 +78,7 @@ on:
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
+      - "tests/android-appetize-workflow.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/privacy-policy-page.test.mjs"
       - "tests/release-gaps.test.mjs"
@@ -118,6 +122,9 @@ jobs:
 
       - name: Validate safety audit export checks
         run: npm run test:safety-audit-export
+
+      - name: Validate Android Appetize workflow
+        run: npm run test:android-appetize-workflow
 
       - name: Validate release evidence template
         run: npm run test:release-evidence-template

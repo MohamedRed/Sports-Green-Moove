@@ -21,6 +21,7 @@
     "test:store-privacy-answers": "node tests/store-privacy-answers.test.mjs",
     "test:provider-readiness": "node tests/provider-readiness.test.mjs",
     "test:safety-audit-export": "node tests/safety-audit-export.test.mjs",
+    "test:android-appetize-workflow": "node tests/android-appetize-workflow.test.mjs",
     "test:admin-plan-coverage": "node tests/admin-plan-coverage.test.mjs",
     "test:release-evidence-template": "node tests/release-evidence-template.test.mjs",
     "test:release-gaps": "node tests/release-gaps.test.mjs",
@@ -34,7 +35,7 @@
     "validate:release-evidence": "node scripts/validate-release-evidence.mjs",
     "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts\"",
     "test:stripe-webhook-flow": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore \"vitest run tests/stripe-webhook-flow.test.ts\"",
-    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:privacy-policy-page && npm run test:store-readiness && npm run test:store-privacy-answers && npm run test:provider-readiness && npm run test:safety-audit-export && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:release-gaps && npm run test:pr-user-flow-checks && npm run test:rules && npm run test:stripe-webhook-flow"
+    "test:all": "npm test && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:privacy-policy-page && npm run test:store-readiness && npm run test:store-privacy-answers && npm run test:provider-readiness && npm run test:safety-audit-export && npm run test:android-appetize-workflow && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:release-gaps && npm run test:pr-user-flow-checks && npm run test:rules && npm run test:stripe-webhook-flow"
   },
   "engines": {
     "node": ">=22"
