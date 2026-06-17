@@ -3,37 +3,47 @@
 ## 2026-06-17
 
 Branch: `codex/implement-plan`
-Current PR source commit: `faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b`
+Current PR head: `d3af12587f0b317cb278842f2440768ef3feb179`
+Validated Android app-source commit: `b915bfaf16a0360fb866d8354b991c05464ed930`
 
 Verified current PR gates:
 
-- Native CI run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625
-  - Result: passed on commit `faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b`.
-  - Native UI flow coverage job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/job/81871898686
-  - Android native unit test job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/job/81871898530
-  - Android connected UI job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/job/81871898606
-  - Android connected UI artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/artifacts/7692647742
+- Native CI run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696313522
+  - Result: passed on PR head `d3af12587f0b317cb278842f2440768ef3feb179`.
+  - Native UI flow coverage job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696313522/job/81920341272
+  - Android native unit test job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696313522/job/81920341198
+  - Android connected UI job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696313522/job/81920341281
+  - Android connected UI artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696313522/artifacts/7698515393
   - Connected UI result: 18/18 instrumentation tests passed with 0 failures and 0 skipped tests.
   - Store-review screenshot artifact files:
     - `store-active-ride-tracking.png`
-    - `store-google-maps-route-preview.png`
-    - `store-stale-location-warning.png`
+    - `store-child-safety-disclosure.png`
     - `store-emergency-contact-action.png`
+    - `store-google-maps-route-preview.png`
+    - `store-guardian-consent-copy.png`
     - `store-permission-education.png`
-- Backend CI run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124572
-  - Result: passed on commit `faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b`.
-  - Functions, Firebase rules, and Stripe webhook emulator tests passed in job https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124572/job/81871898269
-- Web Integration Smoke run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124597
-  - Result: passed on commit `faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b`.
-  - Functions, admin, and website smoke job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124597/job/81871898527
-- Release Readiness run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124743
-  - Result: passed on commit `faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b`.
-  - Store readiness static checks job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124743/job/81871898323
-- Android Appetize run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678638781
-  - Result: passed on commit `93c32718fd3f474c3087a4bff06091efe7fd2305`.
+    - `store-privacy-summary.png`
+    - `store-stale-location-warning.png`
+- Backend CI run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696310106
+  - Result: passed on PR head `d3af12587f0b317cb278842f2440768ef3feb179`.
+  - Functions, Firebase rules, and Stripe webhook emulator tests passed in job https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696310106/job/81920332186
+- Web Integration Smoke run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696313473
+  - Result: passed on PR head `d3af12587f0b317cb278842f2440768ef3feb179`.
+  - Functions, admin, and website smoke job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696313473/job/81920344624
+- Release Readiness run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696310877
+  - Result: passed on PR head `d3af12587f0b317cb278842f2440768ef3feb179`.
+  - Store readiness static checks job: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27696310877/job/81920333308
+- Android Appetize run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27695263025
+  - Result: passed on validated Android app-source commit `b915bfaf16a0360fb866d8354b991c05464ed930`.
   - Firebase Android config was installed from repository secrets.
-  - APK artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678638781/artifacts/7691106327
-  - Appetize upload completed in job https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678638781/job/81860108058
+  - APK artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27695263025/artifacts/7698026495
+  - Appetize upload completed in job https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27695263025/job/81916650250
+- Android Appetize email/password signup:
+  - Result: passed.
+  - Appetize native automation signed up with a disposable Firebase Auth parent account on Pixel 7 / Android 13.
+  - Verified post-auth native home screen contained `Accueil`, `Trajets`, `Messages`, and `Profil` navigation and did not show an auth error.
+  - Run id: `codex-appetize-2026-06-17T14-44-53-197Z-5ccd9bac`.
+  - Screenshot: `docs/release/evidence/appetize-android-email-signup-2026-06-17.png`
 - Production backend live smoke:
   - Result: passed.
   - Run id: `codex-smoke-2026-06-17T09-32-01-066Z-a85f7fea`.
@@ -46,8 +56,8 @@ Verified current PR gates:
 Notes:
 
 - Android action-flow coverage now verifies publish draft creation, search, group join dispatch, booking approval, active ride pickup/drop-off/end, support report creation, rating submission, payments, Stripe Connect, and rewards withdrawal routing. Commit `93c32718fd3f474c3087a4bff06091efe7fd2305` also routes the rewards withdrawal CTA through the driver payments flow instead of leaving it as a no-op.
-- Commit `faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b` adds repeatable Android store-review screenshot capture to Native CI and validates that the five screenshot PNGs are present and non-empty after the emulator run.
-- The 2026-06-16 Appetize screenshots remain the latest checked-in interactive Android email/password screenshots. They were captured before the non-visual Android action-flow test coverage updates, but the current Android Appetize build/upload was re-run on commit `93c32718fd3f474c3087a4bff06091efe7fd2305`.
+- Commit `faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b` adds repeatable Android store-review screenshot capture to Native CI, and run `27696313522` validates that all eight screenshot PNGs are present and non-empty after the emulator run.
+- The 2026-06-17 Appetize screenshot refresh verifies the current uploaded Android build can complete the native email/password signup path and reach the home screen in Appetize on Pixel 7 / Android 13.
 - Full public-launch evidence still requires physical Android real-device scenarios and the safety-audit event trail listed below. Store-review screenshots are now generated by Native CI, but the final store-submission evidence manifest still needs those artifacts attached to the release package.
 
 ## 2026-06-16
@@ -95,7 +105,7 @@ Remaining Android evidence needed before public launch:
 
 - Run physical Android real-device background, locked-screen, GPS loss, network loss, app restart, battery-saver, Radar-delay, and Firebase native fallback evidence following `docs/release/real-device-test-protocol.md`.
 - Capture store-review screenshots for active ride tracking, native Google Maps route preview, stale-location warning, emergency contact action, and permission education.
-- Google and Meta OAuth end-to-end checks remain postponed; the Appetize evidence verifies Android email/password sign-in but not third-party OAuth.
+- Google and Meta OAuth end-to-end checks remain postponed; the Appetize evidence verifies Android email/password auth but not third-party OAuth.
 
 ## 2026-06-15
 

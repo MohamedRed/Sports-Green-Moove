@@ -1,6 +1,6 @@
 {
   "evidenceType": "automated-user-flow-evidence",
-  "generatedAt": "2026-06-17T14:17:28Z",
+  "generatedAt": "2026-06-17T14:46:39Z",
   "releaseCandidate": {
     "branch": "codex/implement-plan",
     "commit": "b915bfaf16a0360fb866d8354b991c05464ed930",
@@ -148,20 +148,20 @@
     {
       "id": "android_appetize_email_login",
       "status": "passed",
-      "description": "Android Appetize Pixel 7 / Android 13 session signed in with a disposable Firebase email/password parent account and reached the native home screen with Accueil, Trajets, Messages, and Profil navigation.",
-      "appSourceCommit": "2e2d8c75c644d964edbb710e3691169af8fdc939",
+      "description": "Android Appetize Pixel 7 / Android 13 session completed the native email/password signup path with a disposable Firebase parent account and reached the native home screen with Accueil, Trajets, Messages, and Profil navigation.",
+      "appSourceCommit": "b915bfaf16a0360fb866d8354b991c05464ed930",
       "projectId": "sports-green-moove-prod",
-      "runId": "codex-appetize-login-2026-06-16T14-34-15-317Z-05751972",
+      "runId": "codex-appetize-2026-06-17T14-44-53-197Z-5ccd9bac",
       "evidenceRefs": [
-        "appetize-android-email-login-2026-06-16.png"
+        "appetize-android-email-signup-2026-06-17.png"
       ]
     }
   ],
   "knownLimitations": [
     "This artifact covers automated user-flow evidence only; it is not a full public-launch release evidence manifest.",
     "Physical iOS and Android real-device scenarios remain required by docs/release/real-device-test-protocol.md.",
-    "The latest Android Appetize build evidence covers build, APK artifact upload, and Appetize upload for commit b915bfaf16a0360fb866d8354b991c05464ed930. The checked-in Android Appetize email-login screenshot was captured on an earlier app source commit and must be refreshed before final store submission.",
+    "The Android Appetize build evidence covers build, APK artifact upload, Appetize upload, and refreshed native email/password signup evidence for commit b915bfaf16a0360fb866d8354b991c05464ed930.",
     "The recorded releaseCandidate.commit is the validated app-source commit. Later evidence-only commits may move the PR head without changing the Android app source or production backend logic.",
-    "Google and Meta OAuth end-to-end verification remains postponed; Appetize evidence verifies Android email/password sign-in only."
+    "Google and Meta OAuth end-to-end verification remains postponed; Appetize evidence verifies Android email/password auth only."
   ]
 }
