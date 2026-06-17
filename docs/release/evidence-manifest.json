@@ -2,16 +2,16 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-06-17T15:41:45Z",
+  "generatedAt": "2026-06-17T22:36:13Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
       "environment": "production",
       "status": "production-configured",
-      "checkedAt": "2026-06-17T22:20:45Z",
+      "checkedAt": "2026-06-17T22:23:29Z",
       "checkedBy": "Codex",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27723144572/job/82013229825",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27723564812/job/82014614800",
         "evidence/provider-secret-validation-2026-06-17.md",
         "evidence/firebase-production-readiness-2026-06-17.md",
         "evidence/live-user-flow-smoke-2026-06-17.md",
@@ -22,10 +22,10 @@
     "radar": {
       "environment": "production",
       "status": "pending-dashboard-evidence",
-      "checkedAt": "2026-06-17T21:57:12Z",
+      "checkedAt": "2026-06-17T22:23:29Z",
       "checkedBy": "Codex",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27722356923/job/82010637034",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27723564812/job/82014614800",
         "evidence/provider-secret-validation-2026-06-17.md",
         "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
       ]
@@ -46,10 +46,10 @@
     "stripeConnect": {
       "environment": "production",
       "status": "pending-dashboard-evidence",
-      "checkedAt": "2026-06-17T21:57:12Z",
+      "checkedAt": "2026-06-17T22:23:29Z",
       "checkedBy": "Codex",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27722356923/job/82010637034",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27723564812/job/82014614800",
         "evidence/provider-secret-validation-2026-06-17.md",
         "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
       ]

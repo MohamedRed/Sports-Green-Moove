@@ -13,12 +13,26 @@ of scope for this Android email/password release validation.
 
 - Workflow: Release Readiness
 - Job: Production provider secret validation
-- Head commit: `23d8957c221003d8ef90c19321d7bdee0fe042ad`
-- Workflow run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27722356923
-- Job URL: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27722356923/job/82010637034
-- Started at: 2026-06-17T21:57:05Z
-- Completed at: 2026-06-17T21:57:12Z
+- Head commit: `98c1b78dfd5d2862c66cc9d28210d39c85fefa92`
+- Workflow run: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27723564812
+- Job URL: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27723564812/job/82014614800
+- Started at: 2026-06-17T22:23:23Z
+- Completed at: 2026-06-17T22:23:29Z
 - Conclusion: success
+
+## Secret Inventory Refresh
+
+- Source: `gh api repos/MohamedRed/Sports-Green-Moove/actions/secrets --jq '.secrets[] | [.name, .updated_at] | @tsv'`
+- Refreshed at: 2026-06-17T22:36:13Z
+- Result: all production launch provider secret names required by
+  `scripts/release-evidence-requirements.mjs` are present in GitHub Actions
+  repository secrets.
+- The checked-in inventory records names and last-updated dates only; it does
+  not include secret values.
+- Still absent by design for this Android email/password release: postponed
+  Google Sign-In and Meta Facebook Login secret names
+  (`SGM_GOOGLE_REVERSED_CLIENT_ID`, `SGM_FACEBOOK_APP_ID`,
+  `SGM_FACEBOOK_CLIENT_TOKEN`).
 
 ## Validated Providers
 
