@@ -32,5 +32,7 @@ of scope for this Android email/password release validation.
 
 Secret validation alone is not enough to mark a provider
 `production-configured`. Firebase is backed by separate production live-smoke
-and Hosting evidence. Radar, Google Maps Platform, and Stripe Connect still need
-provider dashboard or live-run evidence before they can be marked configured.
+and Hosting evidence. Google Maps Platform is backed by separate production API
+enablement and live Google Routes user-flow evidence. Radar and Stripe Connect
+still need provider dashboard or live-run evidence before they can be marked
+configured.
