@@ -30,6 +30,7 @@ of scope for this Android email/password release validation.
 
 ## Remaining Evidence
 
-The release manifest still needs production dashboard or live-run evidence
-before Firebase, Radar, Google Maps Platform, or Stripe Connect can be marked
-`production-configured`.
+Secret validation alone is not enough to mark a provider
+`production-configured`. Firebase is backed by separate production live-smoke
+and Hosting evidence. Radar, Google Maps Platform, and Stripe Connect still need
+provider dashboard or live-run evidence before they can be marked configured.
