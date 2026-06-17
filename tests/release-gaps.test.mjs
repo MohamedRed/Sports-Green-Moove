@@ -99,6 +99,7 @@ assert.ok(
   "Store-review evidence should count generated active ride screenshot evidence.",
 );
 for (const acceptedStoreEvidence of [
+  "privacy_policy_url",
   "app_store_privacy_answers",
   "google_play_data_safety_answers",
   "guardian_consent_copy",
@@ -115,8 +116,8 @@ for (const acceptedStoreEvidence of [
   );
 }
 assert.ok(
-  report.storeReviewEvidence.missing.includes("privacy_policy_url"),
-  "Store-review evidence should still report missing published privacy-policy URL.",
+  !report.storeReviewEvidence.missing.includes("privacy_policy_url"),
+  "Published privacy-policy URL should no longer be reported missing.",
 );
 assert.ok(
   !report.storeReviewEvidence.missing.includes("app_store_privacy_answers"),

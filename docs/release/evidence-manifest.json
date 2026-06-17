@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-06-17T15:28:21Z",
+  "generatedAt": "2026-06-17T15:41:45Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -105,10 +105,11 @@
     "items": [
       {
         "id": "privacy_policy_url",
-        "status": "pending",
-        "description": "The hosted admin build exposes /privacy, but the production URL must still be published and verified before final store submission.",
+        "status": "accepted",
+        "description": "The production Firebase Hosting privacy URL is published and live-verified with the public policy route.",
         "evidenceRefs": [
           "https://sports-green-moove-prod.web.app/privacy",
+          "https://sports-green-moove-prod.firebaseapp.com/privacy",
           "evidence/privacy-policy-url-check-2026-06-17.md",
           "privacy-data-safety.md",
           "../../admin/src/PrivacyPolicyPage.tsx",
