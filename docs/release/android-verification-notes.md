@@ -27,6 +27,14 @@ Verified current PR gates:
   - Firebase Android config was installed from repository secrets.
   - APK artifact: https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678638781/artifacts/7691106327
   - Appetize upload completed in job https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678638781/job/81860108058
+- Production backend live smoke:
+  - Result: passed.
+  - Run id: `codex-smoke-2026-06-17T09-32-01-066Z-a85f7fea`.
+  - Coverage: disposable auth/profile setup, trip publish, child-tracking search, booking approval, active ride, child native fallback, chat, ride completion, and rating.
+- Production operations live smoke:
+  - Result: passed.
+  - Run id: `codex-ops-smoke-2026-06-17T09-32-01-066Z-c6dce78f`.
+  - Coverage: disposable auth/profile setup, club membership request and reuse, support report creation, and admin review.
 
 Notes:
 

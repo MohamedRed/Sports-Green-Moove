@@ -1,6 +1,6 @@
 {
   "evidenceType": "automated-user-flow-evidence",
-  "generatedAt": "2026-06-17T09:20:57Z",
+  "generatedAt": "2026-06-17T09:33:47Z",
   "releaseCandidate": {
     "branch": "codex/implement-plan",
     "commit": "93c32718fd3f474c3087a4bff06091efe7fd2305",
@@ -33,14 +33,14 @@
       "description": "Production backend smoke passed for disposable auth/profile setup, trip publish, child-tracking search, booking approval, active ride, child native fallback, chat, ride completion, and rating.",
       "command": "CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11 npm run smoke:live-backend-flow",
       "projectId": "sports-green-moove-prod",
-      "runId": "codex-smoke-2026-06-16T15-03-55-844Z-41174bcf",
+      "runId": "codex-smoke-2026-06-17T09-32-01-066Z-a85f7fea",
       "verified": {
         "authProfiles": 3,
-        "publishedTrip": "KotFyRbhnjufk21kOArq",
+        "publishedTrip": "zclFMG9O9zUS9eY1OvuI",
         "searchMatches": 1,
-        "approvedBooking": "hxitzfeIodGU7v1AhlOu",
-        "completedRide": "BUMnJ00PbtwPK6XGxACS",
-        "childNativeFallback": "ceq45bfDkmMzaZyXgaNf8iqPgrI2",
+        "approvedBooking": "VDxkuOO4pyB3YYfHb37Q",
+        "completedRide": "9yNGrkyrfr5d2T7rUpj6",
+        "childNativeFallback": "4ZKqun3y8JTA66VcVIPuQwQTjr52",
         "chatMessages": 1,
         "ratings": 1
       }
@@ -51,11 +51,11 @@
       "description": "Production operations smoke passed for disposable auth/profile setup, club membership request and reuse, support report creation, and admin review.",
       "command": "CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11 npm run smoke:live-operations-flow",
       "projectId": "sports-green-moove-prod",
-      "runId": "codex-ops-smoke-2026-06-16T15-03-55-852Z-0e5b2363",
+      "runId": "codex-ops-smoke-2026-06-17T09-32-01-066Z-c6dce78f",
       "verified": {
         "authProfiles": 2,
-        "requestedMembership": "NPfBhIqzItRg8rg9R8NOyRGJyQj1_codex-ops-smoke-2026-06-16T15-03-55-852Z-0e5b2363-club",
-        "reviewedReport": "nX7IInwmLBrKuRJhdUCb"
+        "requestedMembership": "1yl3Q8EhVSOGWqykVLZGATC3sdO2_codex-ops-smoke-2026-06-17T09-32-01-066Z-c6dce78f-club",
+        "reviewedReport": "8KXllNKPC1Mqmjbormjl"
       }
     },
     {
