@@ -91,13 +91,19 @@
         "id": "backend_live_smoke",
         "status": "passed",
         "description": "Production backend live smoke evidence is recorded in the automated user-flow evidence artifact.",
-        "evidenceRefs": ["evidence/automated-user-flow-evidence-2026-06-16.json"]
+        "evidenceRefs": [
+          "evidence/automated-user-flow-evidence-2026-06-16.json",
+          "evidence/live-user-flow-smoke-2026-06-17.md"
+        ]
       },
       {
         "id": "operations_live_smoke",
         "status": "passed",
         "description": "Production operations live smoke evidence is recorded in the automated user-flow evidence artifact.",
-        "evidenceRefs": ["evidence/automated-user-flow-evidence-2026-06-16.json"]
+        "evidenceRefs": [
+          "evidence/automated-user-flow-evidence-2026-06-16.json",
+          "evidence/live-user-flow-smoke-2026-06-17.md"
+        ]
       },
       {
         "id": "firebase_rules_emulator",

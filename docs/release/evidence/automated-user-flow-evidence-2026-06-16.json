@@ -1,6 +1,6 @@
 {
   "evidenceType": "automated-user-flow-evidence",
-  "generatedAt": "2026-06-17T14:46:39Z",
+  "generatedAt": "2026-06-17T22:11:47Z",
   "releaseCandidate": {
     "branch": "codex/implement-plan",
     "commit": "b915bfaf16a0360fb866d8354b991c05464ed930",
@@ -91,14 +91,18 @@
       "description": "Production backend smoke passed for disposable auth/profile setup, trip publish, child-tracking search, booking approval, active ride, child native fallback, chat, ride completion, and rating.",
       "command": "CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11 npm run smoke:live-backend-flow",
       "projectId": "sports-green-moove-prod",
-      "runId": "codex-smoke-2026-06-17T09-32-01-066Z-a85f7fea",
+      "runId": "codex-smoke-2026-06-17T22-09-51-162Z-373f27f6",
+      "refreshedAt": "2026-06-17T22:11:30Z",
+      "evidenceRefs": [
+        "live-user-flow-smoke-2026-06-17.md"
+      ],
       "verified": {
         "authProfiles": 3,
-        "publishedTrip": "zclFMG9O9zUS9eY1OvuI",
+        "publishedTrip": "bHat2wTxvyoVw5V4LPdW",
         "searchMatches": 1,
-        "approvedBooking": "VDxkuOO4pyB3YYfHb37Q",
-        "completedRide": "9yNGrkyrfr5d2T7rUpj6",
-        "childNativeFallback": "4ZKqun3y8JTA66VcVIPuQwQTjr52",
+        "approvedBooking": "10WmJyi07kdvFukIg3cM",
+        "completedRide": "o7qi2HuUhXNrwCupzuPb",
+        "childNativeFallback": "HuVyLtGaaRhsw6doZ4Z21mQ2KZC2",
         "chatMessages": 1,
         "ratings": 1
       }
@@ -109,11 +113,15 @@
       "description": "Production operations smoke passed for disposable auth/profile setup, club membership request and reuse, support report creation, and admin review.",
       "command": "CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11 npm run smoke:live-operations-flow",
       "projectId": "sports-green-moove-prod",
-      "runId": "codex-ops-smoke-2026-06-17T09-32-01-066Z-c6dce78f",
+      "runId": "codex-ops-smoke-2026-06-17T22-11-41-606Z-029cf779",
+      "refreshedAt": "2026-06-17T22:11:47Z",
+      "evidenceRefs": [
+        "live-user-flow-smoke-2026-06-17.md"
+      ],
       "verified": {
         "authProfiles": 2,
-        "requestedMembership": "1yl3Q8EhVSOGWqykVLZGATC3sdO2_codex-ops-smoke-2026-06-17T09-32-01-066Z-c6dce78f-club",
-        "reviewedReport": "8KXllNKPC1Mqmjbormjl"
+        "requestedMembership": "04UIZtNu74O6cEKHSRWqUTxCZBl1_codex-ops-smoke-2026-06-17T22-11-41-606Z-029cf779-club",
+        "reviewedReport": "boATYkKEOoQngoYuUDC3"
       }
     },
     {

@@ -46,11 +46,11 @@ Verified current PR gates:
   - Screenshot: `docs/release/evidence/appetize-android-email-signup-2026-06-17.png`
 - Production backend live smoke:
   - Result: passed.
-  - Run id: `codex-smoke-2026-06-17T09-32-01-066Z-a85f7fea`.
+  - Run id: `codex-smoke-2026-06-17T22-09-51-162Z-373f27f6`.
   - Coverage: disposable auth/profile setup, trip publish, child-tracking search, booking approval, active ride, child native fallback, chat, ride completion, and rating.
 - Production operations live smoke:
   - Result: passed.
-  - Run id: `codex-ops-smoke-2026-06-17T09-32-01-066Z-c6dce78f`.
+  - Run id: `codex-ops-smoke-2026-06-17T22-11-41-606Z-029cf779`.
   - Coverage: disposable auth/profile setup, club membership request and reuse, support report creation, and admin review.
 
 Notes:
