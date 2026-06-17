@@ -236,6 +236,8 @@ includes(files.releaseEvidenceWorkflow, "validate:release-evidence", "Release ev
 includes(files.releaseEvidenceWorkflow, "validate:provider-readiness", "Release evidence workflow validates provider readiness");
 includes(files.providerReadinessWorkflow, "workflow_dispatch", "Provider readiness workflow can be launched manually");
 includes(files.providerReadinessWorkflow, "validate:provider-readiness", "Provider readiness workflow validates provider configuration");
+includes(files.releaseReadinessWorkflow, "Production provider secret validation", "Release readiness validates production provider secrets");
+includes(files.releaseReadinessWorkflow, "Validate production provider secrets", "Release readiness has a production provider validation step");
 includes(files.releaseReadinessWorkflow, ".github/workflows/native-ci.yml", "Release readiness reruns when Native CI changes");
 includes(files.releaseReadinessWorkflow, ".github/workflows/provider-readiness.yml", "Release readiness reruns when provider readiness workflow changes");
 includes(files.releaseReadinessWorkflow, "scripts/report-release-gaps.mjs", "Release readiness reruns when release gap reporter changes");
@@ -246,6 +248,7 @@ includes(files.releaseReadinessWorkflow, "tests/pr-user-flow-checks.test.mjs", "
 includes(files.releaseReadinessWorkflow, "scripts/firebase-android-config.mjs", "Release readiness reruns when Firebase live-smoke config helper changes");
 includes(files.releaseReadinessWorkflow, "scripts/live-backend-child-tracking.mjs", "Release readiness reruns when child tracking smoke helper changes");
 includes(files.releaseReadinessWorkflow, "test:provider-readiness", "Release readiness validates provider checks");
+includes(files.releaseReadinessWorkflow, "validate:provider-readiness", "Release readiness runs provider readiness against production secrets");
 includes(files.releaseReadinessWorkflow, "test:release-evidence-template", "Release readiness validates evidence template");
 includes(files.releaseReadinessWorkflow, "test:release-gaps", "Release readiness validates release gap report");
 includes(files.releaseReadinessWorkflow, "test:pr-user-flow-checks", "Release readiness validates PR user-flow check verifier");

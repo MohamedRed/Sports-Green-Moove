@@ -113,6 +113,11 @@ export const requiredUserFlowChecks = [
     acceptableConclusions: ["SUCCESS"],
   },
   {
+    workflowName: "Release Readiness",
+    name: "Production provider secret validation",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
     workflowName: "Native CI",
     name: "iOS native checks",
     acceptableConclusions: ["SUCCESS", "SKIPPED"],
