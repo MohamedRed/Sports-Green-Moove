@@ -4,6 +4,7 @@
   "releaseCandidate": {
     "branch": "codex/implement-plan",
     "commit": "b915bfaf16a0360fb866d8354b991c05464ed930",
+    "commitRole": "validated-app-source",
     "appSourceCommit": "b915bfaf16a0360fb866d8354b991c05464ed930",
     "pullRequest": "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
   },
@@ -160,7 +161,7 @@
     "This artifact covers automated user-flow evidence only; it is not a full public-launch release evidence manifest.",
     "Physical iOS and Android real-device scenarios remain required by docs/release/real-device-test-protocol.md.",
     "The latest Android Appetize build evidence covers build, APK artifact upload, and Appetize upload for commit b915bfaf16a0360fb866d8354b991c05464ed930. The checked-in Android Appetize email-login screenshot was captured on an earlier app source commit and must be refreshed before final store submission.",
-    "The current PR head is b915bfaf16a0360fb866d8354b991c05464ed930. The production backend and operations live smokes were last refreshed before the later workflow/evidence commits, which did not modify backend production logic.",
+    "The recorded releaseCandidate.commit is the validated app-source commit. Later evidence-only commits may move the PR head without changing the Android app source or production backend logic.",
     "Google and Meta OAuth end-to-end verification remains postponed; Appetize evidence verifies Android email/password sign-in only."
   ]
 }

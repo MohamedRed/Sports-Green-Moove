@@ -46,13 +46,13 @@
       {
         "id": "native_ui_flow_ci",
         "status": "passed",
-        "description": "Native UI flow coverage passed on the current PR head.",
+        "description": "Native UI flow coverage passed on the validated app-source commit.",
         "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694823687/job/81915079380"]
       },
       {
         "id": "android_connected_ui_ci",
         "status": "passed",
-        "description": "Android connected Compose UI tests passed on the current PR head.",
+        "description": "Android connected Compose UI tests passed on the validated app-source commit.",
         "evidenceRefs": [
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694823687/job/81915079553",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694823687/artifacts/7697882254"
@@ -73,19 +73,19 @@
       {
         "id": "firebase_rules_emulator",
         "status": "passed",
-        "description": "Backend CI passed Firebase rules emulator checks on the current PR head.",
+        "description": "Backend CI passed Firebase rules emulator checks on the validated app-source commit.",
         "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694822421/job/81915074933"]
       },
       {
         "id": "stripe_webhook_emulator",
         "status": "passed",
-        "description": "Backend CI passed Stripe webhook emulator checks on the current PR head.",
+        "description": "Backend CI passed Stripe webhook emulator checks on the validated app-source commit.",
         "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694822421/job/81915074933"]
       },
       {
         "id": "android_appetize_launch",
         "status": "passed",
-        "description": "Android Appetize build and upload passed on the current PR head and is recorded in the automated user-flow evidence artifact.",
+        "description": "Android Appetize build and upload passed on the validated app-source commit and is recorded in the automated user-flow evidence artifact.",
         "evidenceRefs": [
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27695263025/job/81916650250",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27695263025/artifacts/7698026495",
