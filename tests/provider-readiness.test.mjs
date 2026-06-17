@@ -75,6 +75,28 @@ const productionOnlyOutput = execFileSync(node, [script], {
   encoding: "utf8",
 });
 assert.match(productionOnlyOutput, /production launch provider variables/);
+
+const firebaseWithoutOauthClient = {
+  ...validEnv,
+  FIREBASE_IOS_CONFIG_BASE64: base64(`
+    <plist><dict>
+      <key>GOOGLE_APP_ID</key><string>1:1234567890:ios:abcdef</string>
+      <key>PROJECT_ID</key><string>sports-green-moove-prod</string>
+      <key>BUNDLE_ID</key><string>be.sportgreenmoove.app</string>
+    </dict></plist>
+  `),
+};
+const firebaseOnlyOutput = execFileSync(node, [script], {
+  env: testEnv(firebaseWithoutOauthClient),
+  encoding: "utf8",
+});
+assert.match(firebaseOnlyOutput, /production launch provider variables/);
+assertFailure(
+  firebaseWithoutOauthClient,
+  /FIREBASE_IOS_CONFIG_BASE64 must decode to a GoogleService-Info\.plist containing CLIENT_ID/,
+  "Postponed social-auth validation must require the iOS OAuth client id.",
+  ["--include-postponed-social-auth"],
+);
 assertFailure(
   postponedSocialAuthEnv,
   /SGM_GOOGLE_REVERSED_CLIENT_ID is required/,

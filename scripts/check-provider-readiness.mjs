@@ -6,7 +6,11 @@ const errors = [];
 const checks = [
   group("firebase", [
     required("FIREBASE_ANDROID_CONFIG_BASE64", "Android Firebase app config", validateAndroidFirebaseConfig),
-    required("FIREBASE_IOS_CONFIG_BASE64", "iOS Firebase app config", validateIosFirebaseConfig),
+    required(
+      "FIREBASE_IOS_CONFIG_BASE64",
+      "iOS Firebase app config",
+      validateIosFirebaseConfig({ requireClientId: includePostponedSocialAuth }),
+    ),
     required("VITE_FIREBASE_API_KEY", "Admin Firebase web API key", minLength(20)),
     required("VITE_FIREBASE_AUTH_DOMAIN", "Admin Firebase auth domain", minLength(6)),
     required("VITE_FIREBASE_PROJECT_ID", "Admin Firebase project id", minLength(3)),
@@ -129,15 +133,21 @@ function validateAndroidFirebaseConfig(value) {
   }
 }
 
-function validateIosFirebaseConfig(value) {
-  const decoded = decodeBase64(value);
-  if (!decoded.ok) return decoded.error;
-  for (const key of ["GOOGLE_APP_ID", "PROJECT_ID", "BUNDLE_ID", "CLIENT_ID"]) {
-    if (!decoded.text.includes(`<key>${key}</key>`)) {
-      return `must decode to a GoogleService-Info.plist containing ${key}`;
+function validateIosFirebaseConfig({ requireClientId }) {
+  return (value) => {
+    const decoded = decodeBase64(value);
+    if (!decoded.ok) return decoded.error;
+    const requiredKeys = ["GOOGLE_APP_ID", "PROJECT_ID", "BUNDLE_ID"];
+    if (requireClientId) {
+      requiredKeys.push("CLIENT_ID");
     }
-  }
-  return undefined;
+    for (const key of requiredKeys) {
+      if (!decoded.text.includes(`<key>${key}</key>`)) {
+        return `must decode to a GoogleService-Info.plist containing ${key}`;
+      }
+    }
+    return undefined;
+  };
 }
 
 function decodeBase64(value) {
