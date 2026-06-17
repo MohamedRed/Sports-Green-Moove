@@ -52,6 +52,7 @@ const androidUiTests = sourceCorpus(
 const iosUiTests = readFile("ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift");
 const iosProject = readFile("ios/project.yml");
 const nativeCi = readFile(".github/workflows/native-ci.yml");
+const nativeCiAndroidRunner = readFile("scripts/run-android-ui-tests-and-collect-screenshots.sh");
 const androidHomeCards = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/HomeCards.kt");
 const androidRideActions = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt");
 const androidActiveRideStartup = readFile("android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideStartup.kt");
@@ -118,7 +119,8 @@ includes(iosUiTests, "--sgm-ui-test-fixture", "iOS UI tests launch deterministic
 includes(iosUiTests, "\"publish.submit.action\"", "iOS UI tests cover publish submit selectors");
 includes(iosProject, "SportsGreenMooveUITests:", "iOS project declares UI test target");
 includes(iosProject, "type: bundle.ui-testing", "iOS UI test target uses XCUITest bundle type");
-includes(nativeCi, "connectedDebugAndroidTest", "Native CI runs Android UI tests");
+includes(nativeCi, "run-android-ui-tests-and-collect-screenshots.sh", "Native CI delegates Android UI tests to the runner script");
+includes(nativeCiAndroidRunner, "connectedDebugAndroidTest", "Native CI runner runs Android UI tests");
 includes(nativeCi, "xcodebuild test", "Native CI runs iOS UI tests");
 includes(androidGroups, "clubs: List<ClubSummary>", "Android Groups screen renders Firebase club summaries");
 includes(androidGroups, "onJoinClub: (ClubSummary) -> Unit", "Android Groups join delegates to the app Firebase action");

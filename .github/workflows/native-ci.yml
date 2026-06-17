@@ -106,14 +106,7 @@ jobs:
           api-level: 35
           arch: x86_64
           profile: pixel_6
-          script: |
-            cd android
-            set +e
-            ./gradlew :app:connectedDebugAndroidTest --no-daemon --stacktrace
-            status=$?
-            mkdir -p app/build/outputs/store-review-screenshots
-            adb pull /sdcard/Android/data/be.sportgreenmoove.app/files/Pictures/sgm-store-review app/build/outputs/store-review-screenshots || true
-            exit $status
+          script: bash scripts/run-android-ui-tests-and-collect-screenshots.sh
 
       - name: Upload Android instrumentation reports
         if: ${{ always() }}
