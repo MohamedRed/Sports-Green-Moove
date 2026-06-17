@@ -1,10 +1,10 @@
 {
   "evidenceType": "automated-user-flow-evidence",
-  "generatedAt": "2026-06-17T09:33:47Z",
+  "generatedAt": "2026-06-17T10:34:55Z",
   "releaseCandidate": {
     "branch": "codex/implement-plan",
-    "commit": "93c32718fd3f474c3087a4bff06091efe7fd2305",
-    "appSourceCommit": "93c32718fd3f474c3087a4bff06091efe7fd2305",
+    "commit": "faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b",
+    "appSourceCommit": "faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b",
     "pullRequest": "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
   },
   "items": [
@@ -13,18 +13,69 @@
       "status": "passed",
       "description": "Native UI flow coverage passed for the plan-required native user-flow identifiers, including the expanded Android callback/action coverage.",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276422",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276422/job/81858894671"
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/job/81871898686"
       ]
     },
     {
       "id": "android_connected_ui_ci",
       "status": "passed",
-      "description": "Android connected Compose UI tests passed on a GitHub-hosted Pixel emulator, including login, signup, publish, search, group join, booking approval, active ride pickup/drop-off/end, chat/support report, rating, rewards payout routing, payments, and Stripe Connect action coverage.",
+      "description": "Android connected Compose UI tests passed on a GitHub-hosted Pixel emulator, including login, signup, publish, search, group join, booking approval, active ride pickup/drop-off/end, chat/support report, rating, rewards payout routing, payments, Stripe Connect action coverage, and automated store-review screenshot capture.",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276422",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276422/job/81858894608",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276422/artifacts/7691003841"
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/job/81871898606",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/artifacts/7692647742"
+      ],
+      "verified": {
+        "instrumentationTests": 18,
+        "failures": 0,
+        "skipped": 0,
+        "storeReviewScreenshots": [
+          "store-active-ride-tracking.png",
+          "store-google-maps-route-preview.png",
+          "store-stale-location-warning.png",
+          "store-emergency-contact-action.png",
+          "store-permission-education.png"
+        ]
+      }
+    },
+    {
+      "id": "android_store_review_screenshot_artifacts",
+      "status": "passed",
+      "description": "Native CI generated non-empty Android emulator screenshots for the active ride tracking, Google Maps route preview, stale-location warning, emergency contact action, and permission education store-review surfaces.",
+      "appSourceCommit": "faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b",
+      "evidenceRefs": [
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/job/81871898606",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124625/artifacts/7692647742"
+      ],
+      "verified": {
+        "screenshots": [
+          "store-active-ride-tracking.png",
+          "store-google-maps-route-preview.png",
+          "store-stale-location-warning.png",
+          "store-emergency-contact-action.png",
+          "store-permission-education.png"
+        ],
+        "dimensions": "1080x2400"
+      }
+    },
+    {
+      "id": "current_pr_backend_ci",
+      "status": "passed",
+      "description": "Current PR Backend CI passed functions tests, functions build, admin build, Firebase rules tests, and Stripe webhook flow tests.",
+      "evidenceRefs": [
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124572",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124572/job/81871898269"
+      ]
+    },
+    {
+      "id": "current_pr_web_integration_smoke",
+      "status": "passed",
+      "description": "Current PR Web Integration Smoke passed functions tests/build, admin build and plan coverage, Stripe webhook flow tests, and website build.",
+      "evidenceRefs": [
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124597",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124597/job/81871898527"
       ]
     },
     {
@@ -63,8 +114,8 @@
       "status": "passed",
       "description": "Backend CI passed Firestore, Realtime Database, and Storage rules tests.",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276384",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276384/job/81858894535"
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124572",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124572/job/81871898269"
       ]
     },
     {
@@ -72,8 +123,8 @@
       "status": "passed",
       "description": "Backend CI passed Stripe webhook flow reconciliation tests against the Firestore Emulator.",
       "evidenceRefs": [
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276384",
-        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27678276384/job/81858894535"
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124572",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682124572/job/81871898269"
       ]
     },
     {
@@ -103,7 +154,8 @@
   "knownLimitations": [
     "This artifact covers automated user-flow evidence only; it is not a full public-launch release evidence manifest.",
     "Physical iOS and Android real-device scenarios remain required by docs/release/real-device-test-protocol.md.",
-    "The latest Android Appetize build evidence covers build and upload for commit 93c32718fd3f474c3087a4bff06091efe7fd2305; the checked-in Android Appetize login screenshots were captured on an earlier app source commit before the non-visual action-test coverage updates.",
+    "The latest Android Appetize build evidence covers build and upload for commit 93c32718fd3f474c3087a4bff06091efe7fd2305; the checked-in Android Appetize login screenshots were captured on an earlier app source commit before the non-visual action-test coverage updates and before the Native CI store-review screenshot artifact was added.",
+    "The current PR head is faa1abdb1ee8b89f2c8fd1cbbf305e3ecd4cd61b. The production backend and operations live smokes were last refreshed before the later Android CI screenshot-evidence commits, which did not modify backend production logic.",
     "Google and Meta OAuth end-to-end verification remains postponed; Appetize evidence verifies Android email/password sign-in only."
   ]
 }
