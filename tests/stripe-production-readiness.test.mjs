@@ -94,6 +94,29 @@ await assert.rejects(
   /did not return a live-mode balance/,
 );
 
+const accountsV2NotEnabled = await checkStripeProductionReadiness({
+  env: validEnv,
+  fetcher: async (url) => {
+    const path = new URL(url).pathname + new URL(url).search;
+    return path === "/v2/core/accounts?limit=1"
+      ? {
+          ok: false,
+          status: 400,
+          statusText: "Bad Request",
+          json: async () => ({
+            error: {
+              message: "Accounts v2 is not enabled for your livemode merchant acct_123.",
+            },
+          }),
+        }
+      : okFetch(url);
+  },
+});
+assert.equal(accountsV2NotEnabled.ok, false);
+assert.equal(accountsV2NotEnabled.readinessStatus, "pending-accounts-v2-enablement");
+assert.equal(accountsV2NotEnabled.accountsV2.reachable, false);
+assert.match(accountsV2NotEnabled.accountsV2.blocker, /Accounts v2 is not enabled/);
+
 await assert.rejects(
   () => checkStripeProductionReadiness({
     env: validEnv,

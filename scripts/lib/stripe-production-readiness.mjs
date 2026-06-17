@@ -9,7 +9,7 @@ export async function checkStripeProductionReadiness({
     stripeGet(fetcher, config.secretKey, "/v1/account"),
     stripeGet(fetcher, config.secretKey, "/v1/balance"),
     stripeGet(fetcher, config.secretKey, "/v1/webhook_endpoints?limit=100"),
-    stripeGet(fetcher, config.secretKey, "/v2/core/accounts?limit=1"),
+    stripeGetAccountsV2(fetcher, config.secretKey),
   ]);
 
   const enabledWebhookEndpoints = (webhookEndpoints.data ?? []).filter((endpoint) => endpoint.status === "enabled");
@@ -23,12 +23,13 @@ export async function checkStripeProductionReadiness({
   if (stripeWebhookEndpoints.length === 0) {
     throw new Error("No enabled Stripe webhook endpoint points at stripeWebhook.");
   }
-  if (!Array.isArray(accountsV2.data)) {
+  if (!accountsV2.disabled && !Array.isArray(accountsV2.data)) {
     throw new Error("Stripe Accounts v2 list endpoint did not return a data array.");
   }
 
   return {
-    ok: true,
+    ok: !accountsV2.disabled,
+    readinessStatus: accountsV2.disabled ? "pending-accounts-v2-enablement" : "production-configured",
     account: {
       id: account.id,
       country: account.country,
@@ -49,11 +50,16 @@ export async function checkStripeProductionReadiness({
       eventCount: endpoint.enabled_events?.length ?? 0,
       apiVersion: endpoint.api_version,
     })),
-    accountsV2: {
-      reachable: true,
-      returnedAccountCount: accountsV2.data.length,
-      hasNextPage: Boolean(accountsV2.next_page_url),
-    },
+    accountsV2: accountsV2.disabled
+      ? {
+          reachable: false,
+          blocker: accountsV2.blocker,
+        }
+      : {
+          reachable: true,
+          returnedAccountCount: accountsV2.data.length,
+          hasNextPage: Boolean(accountsV2.next_page_url),
+        },
     connectUrls: {
       returnUrlHost: safeHost(config.returnUrl),
       refreshUrlHost: safeHost(config.refreshUrl),
@@ -89,6 +95,28 @@ async function stripeGet(fetcher, secretKey, path) {
   const body = await response.json().catch(() => ({}));
   if (!response.ok) {
     throw new Error(`Stripe ${path} failed (${response.status}): ${body.error?.message ?? response.statusText}`);
+  }
+  return body;
+}
+
+async function stripeGetAccountsV2(fetcher, secretKey) {
+  const path = "/v2/core/accounts?limit=1";
+  const response = await fetcher(`${stripeApiBaseUrl}${path}`, {
+    headers: {
+      Authorization: `Bearer ${secretKey}`,
+      "Stripe-Version": "2026-02-25.clover",
+    },
+  });
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const message = body.error?.message ?? response.statusText;
+    if (response.status === 400 && /Accounts v2 is not enabled/i.test(message)) {
+      return {
+        disabled: true,
+        blocker: message,
+      };
+    }
+    throw new Error(`Stripe ${path} failed (${response.status}): ${message}`);
   }
   return body;
 }
