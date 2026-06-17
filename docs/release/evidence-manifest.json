@@ -1,42 +1,42 @@
 {
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
-  "releaseCandidate": "codex/implement-plan@3610408fba29b426d5fdadf716cec478a99cd093",
-  "generatedAt": "2026-06-17T10:46:01Z",
+  "releaseCandidate": "codex/implement-plan",
+  "generatedAt": "2026-06-17T10:56:50Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
       "environment": "production",
       "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedAt": "2026-06-17T10:56:50Z",
       "checkedBy": "Codex",
       "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
     },
     "radar": {
       "environment": "production",
       "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedAt": "2026-06-17T10:56:50Z",
       "checkedBy": "Codex",
       "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
     },
     "googleMaps": {
       "environment": "production",
       "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedAt": "2026-06-17T10:56:50Z",
       "checkedBy": "Codex",
       "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
     },
     "stripeConnect": {
       "environment": "production",
       "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedAt": "2026-06-17T10:56:50Z",
       "checkedBy": "Codex",
       "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
     },
     "metaFacebook": {
       "environment": "production",
       "status": "pending-release-evidence",
-      "checkedAt": "2026-06-17T10:46:01Z",
+      "checkedAt": "2026-06-17T10:56:50Z",
       "checkedBy": "Codex",
       "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/pull/1"]
     }
@@ -47,13 +47,13 @@
         "id": "native_ui_flow_ci",
         "status": "passed",
         "description": "Native UI flow coverage passed on the current PR head.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/job/81874733602"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635516/job/81876977211"]
       },
       {
         "id": "android_connected_ui_ci",
         "status": "passed",
         "description": "Android connected Compose UI tests passed on the current PR head.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/job/81874733504"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635516/job/81876977189"]
       },
       {
         "id": "backend_live_smoke",
@@ -71,13 +71,13 @@
         "id": "firebase_rules_emulator",
         "status": "passed",
         "description": "Backend CI passed Firebase rules emulator checks on the current PR head.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973543/job/81874733612"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635498/job/81876977208"]
       },
       {
         "id": "stripe_webhook_emulator",
         "status": "passed",
         "description": "Backend CI passed Stripe webhook emulator checks on the current PR head.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973543/job/81874733612"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635498/job/81876977208"]
       },
       {
         "id": "android_appetize_launch",
@@ -136,31 +136,31 @@
         "id": "active_ride_tracking_screenshot",
         "status": "accepted",
         "description": "Native CI generated store-active-ride-tracking.png as a non-empty 1080x2400 Android emulator screenshot.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635516/artifacts/7693294604"]
       },
       {
         "id": "google_maps_route_preview_screenshot",
         "status": "accepted",
         "description": "Native CI generated store-google-maps-route-preview.png as a non-empty 1080x2400 Android emulator screenshot.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635516/artifacts/7693294604"]
       },
       {
         "id": "stale_location_warning_screenshot",
         "status": "accepted",
         "description": "Native CI generated store-stale-location-warning.png as a non-empty 1080x2400 Android emulator screenshot.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635516/artifacts/7693294604"]
       },
       {
         "id": "emergency_contact_action_screenshot",
         "status": "accepted",
         "description": "Native CI generated store-emergency-contact-action.png as a non-empty 1080x2400 Android emulator screenshot.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635516/artifacts/7693294604"]
       },
       {
         "id": "permission_education_screenshot",
         "status": "accepted",
         "description": "Native CI generated store-permission-education.png as a non-empty 1080x2400 Android emulator screenshot.",
-        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27682973519/artifacts/7693012710"]
+        "evidenceRefs": ["https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27683635516/artifacts/7693294604"]
       }
     ]
   },
