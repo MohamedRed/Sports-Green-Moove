@@ -157,7 +157,7 @@ includes(files.realDeviceProtocol, "automated user-flow evidence", "Real-device 
 includes(files.androidVerificationNotes, "automated-user-flow-evidence-2026-06-16.json", "Android notes link current automated-flow evidence");
 includes(files.androidVerificationNotes, "Pixel 7 / Android 13", "Android notes document Appetize launch device");
 includes(files.androidVerificationNotes, "Appetize email/password login", "Android notes document Appetize email login");
-includes(files.automatedFlowEvidence, "appetize-android-login-2026-06-16.png", "Automated flow evidence references Appetize launch screenshot");
+includes(files.automatedFlowEvidence, "27695263025/artifacts/7698026495", "Automated flow evidence references current Appetize APK artifact");
 includes(files.automatedFlowEvidence, "appetize-android-email-login-2026-06-16.png", "Automated flow evidence references Appetize email login screenshot");
 includes(files.automatedFlowEvidence, "android_appetize_email_login", "Automated flow evidence captures Appetize email login");
 includes(files.automatedFlowEvidence, "Physical iOS and Android real-device scenarios remain required", "Automated flow evidence does not claim manual real-device completion");
