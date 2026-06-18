@@ -3,10 +3,12 @@ import process from "node:process";
 import admin from "firebase-admin";
 import { seedChildProfile, verifyNativeFallbackTracking } from "./live-backend-child-tracking.mjs";
 import { androidApiKey } from "./firebase-android-config.mjs";
+import { writeLiveSmokeSafetyAuditExport } from "./lib/live-smoke-safety-audit.mjs";
 
 const projectId = process.env.SGM_FIREBASE_PROJECT_ID ?? "sports-green-moove-prod";
 const region = process.env.SGM_FIREBASE_FUNCTIONS_REGION ?? "us-central1";
 const functionBaseUrl = `https://${region}-${projectId}.cloudfunctions.net`;
+const options = parseArgs(process.argv.slice(2));
 const runId = `codex-smoke-${new Date().toISOString().replace(/[:.]/g, "-")}-${randomUUID().slice(0, 8)}`;
 
 const created = {
@@ -238,6 +240,9 @@ async function main() {
   const matchCount = await searchCreatedTrip(parent, trip, childId);
   const bookingId = await requestAndApproveBooking(parent, driver, trip.tripId, childId);
   const rideSessionId = await runRideFlow(parent, driver, child, trip.tripId, bookingId);
+  const safetyAuditExport = options.safetyAuditOutput
+    ? await writeLiveSmokeSafetyAuditExport({ admin, projectId, created, outputPath: options.safetyAuditOutput })
+    : undefined;
 
   console.log(JSON.stringify({
     ok: true,
@@ -253,7 +258,35 @@ async function main() {
       chatMessages: created.messageIds.length,
       ratings: created.ratingIds.length,
     },
+    safetyAuditExport,
   }, null, 2));
+}
+
+function parseArgs(args) {
+  const options = { safetyAuditOutput: undefined };
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--help" || arg === "-h") usage();
+    if (arg === "--safety-audit-output") options.safetyAuditOutput = requireValue(args, index += 1, arg);
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  return options;
+}
+
+function usage() {
+  console.log(`Usage:
+  npm run smoke:live-backend-flow -- [options]
+
+Options:
+  --safety-audit-output PATH  Write a sanitized disposable safety-audit export before cleanup.
+`);
+  process.exit(0);
+}
+
+function requireValue(args, index, flag) {
+  const value = args[index];
+  if (!value || value.startsWith("--")) throw new Error(`${flag} requires a value.`);
+  return value;
 }
 
 try {

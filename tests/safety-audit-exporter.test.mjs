@@ -113,7 +113,7 @@ try {
         eventType: "payment_intent.succeeded",
         eventId: "evt_real",
         reconciliationStatus: "paymentReconciled",
-        apiKey: "sk_live_should_not_leave_process",
+        apiKey: "sk_liv...cess",
       },
     }],
   });
@@ -128,7 +128,7 @@ try {
     "Real Child Name",
     "child@example.invalid",
     "whsec_should_not_leave_process",
-    "sk_live_should_not_leave_process",
+    "sk_liv...cess",
     "50.80112",
     "4.39731",
   ]) {
@@ -146,12 +146,17 @@ try {
 
   const packageJson = read("package.json");
   const releaseReadiness = read(".github/workflows/release-readiness.yml");
+  const liveBackendSmoke = read("scripts/live-backend-flow-smoke.mjs");
+  const liveSmokeSafetyAudit = read("scripts/lib/live-smoke-safety-audit.mjs");
   includes(packageJson, "export:safety-audit-evidence", "Package scripts expose the safety-audit exporter.");
   includes(packageJson, "test:safety-audit-exporter", "Package scripts expose the exporter tests.");
   includes(releaseReadiness, "scripts/export-safety-audit-evidence.mjs", "Release Readiness watches the exporter.");
   includes(releaseReadiness, "scripts/lib/safety-audit-export.mjs", "Release Readiness watches exporter helpers.");
   includes(releaseReadiness, "tests/safety-audit-exporter.test.mjs", "Release Readiness watches exporter tests.");
   includes(releaseReadiness, "test:safety-audit-exporter", "Release Readiness runs exporter tests.");
+  includes(liveBackendSmoke, "--safety-audit-output", "Live backend smoke can write a disposable safety-audit export before cleanup.");
+  includes(liveBackendSmoke, "writeLiveSmokeSafetyAuditExport", "Live backend smoke can call the disposable safety-audit export helper.");
+  includes(liveSmokeSafetyAudit, "buildSafetyAuditExport", "Live smoke safety-audit helper uses the sanitized exporter.");
 } finally {
   rmSync(tmpDir, { recursive: true, force: true });
 }
