@@ -19,6 +19,33 @@ try {
   assert.deepEqual(passingReport.incomplete, [], "Passing check rollup should not contain incomplete checks.");
   assert.deepEqual(passingReport.failed, [], "Passing check rollup should not contain failed checks.");
 
+  const commitsOnlyInput = join(tmpDir, "commits-only.json");
+  const commitsOnlyRollup = checkRollup();
+  delete commitsOnlyRollup.headRefOid;
+  writeFileSync(commitsOnlyInput, JSON.stringify(commitsOnlyRollup));
+  const commitsOnly = runVerifier(commitsOnlyInput);
+  assert.equal(commitsOnly.status, 0, commitsOnly.stderr);
+  assert.equal(
+    JSON.parse(commitsOnly.stdout).headRefOid,
+    "200080f92934e2aa49c775837239dba4962cb2cc",
+    "Verifier should read the latest PR head from commits when gh does not expose headRefOid.",
+  );
+
+  const workflowLessInput = join(tmpDir, "workflow-less.json");
+  const workflowLessRollup = checkRollup();
+  workflowLessRollup.statusCheckRollup = workflowLessRollup.statusCheckRollup.map((check) => {
+    const { workflowName: _workflowName, ...rest } = check;
+    return rest;
+  });
+  writeFileSync(workflowLessInput, JSON.stringify(workflowLessRollup));
+  const workflowLess = runVerifier(workflowLessInput);
+  assert.equal(workflowLess.status, 0, workflowLess.stderr);
+  assert.equal(
+    JSON.parse(workflowLess.stdout).ok,
+    true,
+    "Verifier should accept live gh statusCheckRollup entries that include check names but no workflowName field.",
+  );
+
   const failingInput = join(tmpDir, "failing.json");
   writeFileSync(
     failingInput,
@@ -55,6 +82,10 @@ function runVerifier(input) {
 function checkRollup(overrides = {}) {
   return {
     headRefOid: "200080f92934e2aa49c775837239dba4962cb2cc",
+    commits: [
+      { oid: "1111111111111111111111111111111111111111" },
+      { oid: "200080f92934e2aa49c775837239dba4962cb2cc" },
+    ],
     url: "https://github.com/MohamedRed/Sports-Green-Moove/pull/1",
     statusCheckRollup: requiredUserFlowChecks.map((check) => ({
       __typename: "CheckRun",

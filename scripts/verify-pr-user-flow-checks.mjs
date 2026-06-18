@@ -21,7 +21,9 @@ function buildReport(source) {
   const checks = Array.isArray(source.statusCheckRollup) ? source.statusCheckRollup : [];
   const results = requiredUserFlowChecks.map((required) => {
     const actual = checks.find((check) => {
-      return check?.workflowName === required.workflowName && check?.name === required.name;
+      const nameMatches = check?.name === required.name;
+      const workflowMatches = !check?.workflowName || check.workflowName === required.workflowName;
+      return nameMatches && workflowMatches;
     });
     const conclusion = normalizeConclusion(actual?.conclusion);
     const status = normalizeStatus(actual?.status);
@@ -42,7 +44,7 @@ function buildReport(source) {
   return {
     ok: results.every((result) => result.ok),
     pullRequest: source.url ?? null,
-    headRefOid: source.headRefOid ?? null,
+    headRefOid: source.headRefOid ?? latestCommitOid(source.commits) ?? null,
     checkedAt: new Date().toISOString(),
     results,
     missing: results.filter((result) => result.issue === "missing").map(checkLabel),
@@ -68,10 +70,15 @@ function loadCheckSource({ input, repo, pr }) {
 
   const raw = execFileSync(
     "gh",
-    ["pr", "view", pr, "--repo", repo, "--json", "headRefOid,statusCheckRollup,url"],
+    ["pr", "view", pr, "--repo", repo, "--json", "commits,statusCheckRollup,url"],
     { encoding: "utf8" },
   );
   return JSON.parse(raw);
+}
+
+function latestCommitOid(commits) {
+  if (!Array.isArray(commits) || commits.length === 0) return undefined;
+  return commits.at(-1)?.oid;
 }
 
 function printReport(report) {
