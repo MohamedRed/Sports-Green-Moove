@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-06-18T15:16:00Z",
+  "generatedAt": "2026-06-18T15:40:07Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -21,13 +21,14 @@
     },
     "radar": {
       "environment": "production",
-      "status": "pending-dashboard-evidence",
-      "checkedAt": "2026-06-17T22:23:29Z",
-      "checkedBy": "Codex",
+      "status": "production-configured",
+      "checkedAt": "2026-06-18T15:40:07Z",
+      "checkedBy": "Mohamed / SGM owner confirmation recorded by Codex",
       "evidenceRefs": [
         "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27723564812/job/82014614800",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27769790839",
         "evidence/provider-secret-validation-2026-06-17.md",
-        "https://github.com/MohamedRed/Sports-Green-Moove/pull/1"
+        "evidence/radar-production-readiness-2026-06-18.md"
       ]
     },
     "googleMaps": {

@@ -45,19 +45,20 @@ of scope for this Android email/password release validation.
 ## Stripe Connect Probe
 
 The no-side-effect Stripe production probe was added after the secret-shape
-validation. It proved the live key, platform account, Stripe webhook endpoint,
-and Connect return/refresh URL shape, then a stricter follow-up found that
-Stripe Accounts v2 is not enabled for the live merchant. The runtime driver
-onboarding path uses Accounts v2, so Stripe Connect remains pending until the
-provider dashboard is updated or the payment account strategy is formally
-changed.
+validation. It originally found that Stripe Accounts v2 was not enabled for the
+live merchant. Follow-up commit `96335d85743d7a8db1ef38a494adc4455eea41cb`
+changed the runtime driver onboarding path to standard Stripe Connect Express,
+and the 2026-06-18 Release Readiness provider job returned
+`readinessStatus: production-configured`. See
+`evidence/stripe-connect-production-readiness-2026-06-18.md`.
 
 ## Remaining Evidence
 
 Secret validation alone is not enough to mark a provider
 `production-configured`. Firebase is backed by separate production live-smoke
 and Hosting evidence. Google Maps Platform is backed by separate production API
-enablement and live Google Routes user-flow evidence. Stripe Connect still needs
-Accounts v2/Connect enablement before it can be marked configured. Radar still
-needs provider dashboard or live-run evidence before it can be marked
-configured.
+enablement and live Google Routes user-flow evidence. Stripe Connect is backed
+by the 2026-06-18 production probe. Radar provider setup is backed by the
+2026-06-18 human dashboard confirmation in
+`evidence/radar-production-readiness-2026-06-18.md`; the final release still
+needs a real Radar webhook event in the safety-audit export.
