@@ -21,6 +21,21 @@ configuration. Do not record or commit provider secrets.
 Record the device model, OS version, app build, tester, completed timestamp, and
 artifact references in `docs/release/evidence-manifest.json`.
 
+BrowserStack App Automate is the preferred repeatable real-device cloud path when
+local physical devices are not available. Use the inert workflow template at
+`docs/ci/browserstack-real-device.yml.template` after a maintainer installs it
+with a GitHub token that has workflow scope and adds BrowserStack secrets. After
+the BrowserStack run, normalize the manifest-ready evidence with:
+
+```bash
+npm run browserstack:real-device-evidence -- \
+  --input docs/release/evidence/browserstack-real-device-input.json \
+  --output docs/release/evidence/browserstack-real-device-evidence.json
+```
+
+The normalizer only accepts completed real-device evidence for both platforms and
+all required scenarios; it does not fake device evidence.
+
 | Platform | Required device state |
 | --- | --- |
 | iOS | precise location allowed, always/background location allowed, notifications allowed |

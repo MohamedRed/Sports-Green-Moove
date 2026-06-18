@@ -1,0 +1,85 @@
+# Inert template: BrowserStack real-device release evidence
+#
+# This file is intentionally not active CI because the current Hermes GitHub token
+# lacks workflow scope. A maintainer with workflow scope can copy it into the
+# repository's Actions workflow directory after adding the required secrets.
+#
+# Required repository secrets:
+# - BROWSERSTACK_USERNAME
+# - BROWSERSTACK_ACCESS_KEY
+# - BROWSERSTACK_ANDROID_APP_URL      # bs://... uploaded release-candidate APK/AAB
+# - BROWSERSTACK_IOS_APP_URL          # bs://... uploaded release-candidate IPA
+#
+# Optional repository variables:
+# - SGM_RELEASE_APP_BUILD             # e.g. codex/implement-plan@<sha>
+# - BROWSERSTACK_ANDROID_DEVICE       # default: Google Pixel 8
+# - BROWSERSTACK_ANDROID_OS_VERSION   # default: 14.0
+# - BROWSERSTACK_IOS_DEVICE           # default: iPhone 15
+# - BROWSERSTACK_IOS_OS_VERSION       # default: 17
+
+name: BrowserStack Real-Device Release Evidence
+
+on:
+  workflow_dispatch:
+    inputs:
+      evidence_input_path:
+        description: "Path to a BrowserStack evidence JSON collected from App Automate sessions"
+        required: true
+        default: "docs/release/evidence/browserstack-real-device-input.json"
+      evidence_output_path:
+        description: "Path for normalized manifest-ready real-device evidence"
+        required: true
+        default: "docs/release/evidence/browserstack-real-device-evidence.json"
+
+jobs:
+  normalize-browserstack-evidence:
+    name: Normalize BrowserStack real-device evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: read
+
+    env:
+      BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      BROWSERSTACK_ANDROID_APP_URL: ${{ secrets.BROWSERSTACK_ANDROID_APP_URL }}
+      BROWSERSTACK_IOS_APP_URL: ${{ secrets.BROWSERSTACK_IOS_APP_URL }}
+      SGM_RELEASE_APP_BUILD: ${{ vars.SGM_RELEASE_APP_BUILD }}
+      BROWSERSTACK_ANDROID_DEVICE: ${{ vars.BROWSERSTACK_ANDROID_DEVICE || 'Google Pixel 8' }}
+      BROWSERSTACK_ANDROID_OS_VERSION: ${{ vars.BROWSERSTACK_ANDROID_OS_VERSION || '14.0' }}
+      BROWSERSTACK_IOS_DEVICE: ${{ vars.BROWSERSTACK_IOS_DEVICE || 'iPhone 15' }}
+      BROWSERSTACK_IOS_OS_VERSION: ${{ vars.BROWSERSTACK_IOS_OS_VERSION || '17' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Guard BrowserStack credentials
+        run: |
+          test -n "$BROWSERSTACK_USERNAME"
+          test -n "$BROWSERSTACK_ACCESS_KEY"
+          test -n "$BROWSERSTACK_ANDROID_APP_URL"
+          test -n "$BROWSERSTACK_IOS_APP_URL"
+
+      - name: Normalize BrowserStack real-device evidence
+        run: |
+          node scripts/browserstack-real-device-evidence.mjs \
+            --input "${{ inputs.evidence_input_path }}" \
+            --output "${{ inputs.evidence_output_path }}"
+
+      - name: Upload normalized evidence
+        uses: actions/upload-artifact@v7
+        with:
+          name: browserstack-real-device-evidence
+          path: ${{ inputs.evidence_output_path }}
+          if-no-files-found: error
