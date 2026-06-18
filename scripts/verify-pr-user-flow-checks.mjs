@@ -73,7 +73,19 @@ function loadCheckSource({ input, repo, pr }) {
     ["pr", "view", pr, "--repo", repo, "--json", "commits,statusCheckRollup,url"],
     { encoding: "utf8" },
   );
-  return JSON.parse(raw);
+  const source = JSON.parse(raw);
+  source.headRefOid = liveHeadRefOid(repo, pr) ?? source.headRefOid ?? latestCommitOid(source.commits);
+  return source;
+}
+
+function liveHeadRefOid(repo, pr) {
+  try {
+    return execFileSync("gh", ["api", `repos/${repo}/pulls/${pr}`, "--jq", ".head.sha"], {
+      encoding: "utf8",
+    }).trim();
+  } catch {
+    return undefined;
+  }
 }
 
 function latestCommitOid(commits) {
