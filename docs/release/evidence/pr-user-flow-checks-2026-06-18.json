@@ -1,0 +1,124 @@
+{
+  "evidenceType": "current-pr-user-flow-checks",
+  "generatedAt": "2026-06-18T11:54:43Z",
+  "source": "node scripts/verify-pr-user-flow-checks.mjs --json",
+  "pullRequest": "https://github.com/MohamedRed/Sports-Green-Moove/pull/1",
+  "headRefOid": "7e3fef7245c0f7beb406df003d5398338f165890",
+  "ok": true,
+  "missing": [],
+  "incomplete": [],
+  "failed": [],
+  "results": [
+    {
+      "workflowName": "Native CI",
+      "name": "Native UI flow coverage",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430832/job/82112646993",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "Android native unit tests",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430832/job/82112646953",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "Android native UI tests",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430832/job/82112647055",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Backend CI",
+      "name": "Functions and Firebase rules",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430852/job/82112646906",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Web Integration Smoke",
+      "name": "Functions, admin, and website smoke",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430829/job/82112646948",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Release Readiness",
+      "name": "Store readiness static checks",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430830/job/82112646848",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Release Readiness",
+      "name": "Production provider secret validation",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430830/job/82112646888",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "iOS native checks",
+      "requiredConclusions": [
+        "SUCCESS",
+        "SKIPPED"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430832/job/82112647846",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "iOS native UI tests",
+      "requiredConclusions": [
+        "SUCCESS",
+        "SKIPPED"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27754430832/job/82112647908",
+      "ok": true,
+      "issue": null
+    }
+  ],
+  "releaseScopeNote": "This proves current PR check status only. It does not close provider-dashboard, real-device, or safety-audit release gaps."
+}
