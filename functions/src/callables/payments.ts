@@ -52,7 +52,7 @@ export const createStripeAccount = onCall({ secrets: [stripeSecretKeySecret] }, 
     {
       userId: uid,
       stripeAccountId: account.id,
-      accountVersion: "v2",
+      accountVersion: "v1-express",
       updatedAt: Timestamp.now(),
     },
     { merge: true },

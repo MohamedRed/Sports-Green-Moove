@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import type Stripe from "stripe";
 import {
-  buildConnectedAccountLinkCreateBody,
+  buildConnectedAccountCreateParams,
+  buildConnectedAccountLinkCreateParams,
   connectedAccountFromRecord,
   buildRewardPayoutTransferCreateParams,
   buildRidePaymentIntentCreateParams,
@@ -185,21 +186,37 @@ describe("Stripe ride payments", () => {
     expect(() => stripePublishableKey("")).toThrow("STRIPE_PUBLISHABLE_KEY is required");
   });
 
-  it("builds an Accounts v2 onboarding link request", () => {
-    expect(buildConnectedAccountLinkCreateBody({
+  it("builds a Stripe Connect Express account request that does not require Accounts v2", () => {
+    expect(buildConnectedAccountCreateParams({
+      email: "driver@example.invalid",
+      country: "BE",
+      userId: "driver-1",
+    })).toEqual({
+      type: "express",
+      country: "BE",
+      email: "driver@example.invalid",
+      business_type: "individual",
+      capabilities: {
+        card_payments: { requested: true },
+        transfers: { requested: true },
+      },
+      metadata: {
+        userId: "driver-1",
+        product: "sports-green-moove",
+      },
+    });
+  });
+
+  it("builds a Stripe Connect v1 onboarding link request", () => {
+    expect(buildConnectedAccountLinkCreateParams({
       accountId: "acct_driver",
       refreshUrl: "https://app.sgm.test/refresh",
       returnUrl: "https://app.sgm.test/return",
     })).toEqual({
       account: "acct_driver",
-      use_case: {
-        type: "account_onboarding",
-        account_onboarding: {
-          configurations: ["merchant"],
-          refresh_url: "https://app.sgm.test/refresh",
-          return_url: "https://app.sgm.test/return",
-        },
-      },
+      refresh_url: "https://app.sgm.test/refresh",
+      return_url: "https://app.sgm.test/return",
+      type: "account_onboarding",
     });
   });
 

@@ -32,7 +32,7 @@ const responses = {
       api_version: "2026-02-25.clover",
     }],
   },
-  "/v2/core/accounts?limit=1": {
+  "/v1/accounts?limit=1": {
     data: [],
     next_page_url: null,
     previous_page_url: null,
@@ -53,7 +53,7 @@ assert.equal(result.ok, true);
 assert.equal(result.account.id, "acct_live_123");
 assert.equal(result.balance.livemode, true);
 assert.equal(result.webhookEndpoints[0].urlHost, "us-central1-sports-green-moove-prod.cloudfunctions.net");
-assert.equal(result.accountsV2.reachable, true);
+assert.equal(result.connectAccounts.reachable, true);
 assert.equal(result.connectUrls.returnUrlHost, "app.sportgreenmoove.be");
 
 await assert.rejects(
@@ -94,28 +94,28 @@ await assert.rejects(
   /did not return a live-mode balance/,
 );
 
-const accountsV2NotEnabled = await checkStripeProductionReadiness({
+const connectNotEnabled = await checkStripeProductionReadiness({
   env: validEnv,
   fetcher: async (url) => {
     const path = new URL(url).pathname + new URL(url).search;
-    return path === "/v2/core/accounts?limit=1"
+    return path === "/v1/accounts?limit=1"
       ? {
           ok: false,
           status: 400,
           statusText: "Bad Request",
           json: async () => ({
             error: {
-              message: "Accounts v2 is not enabled for your livemode merchant acct_123.",
+              message: "Stripe Connect account listing is not enabled for your livemode merchant acct_123.",
             },
           }),
         }
       : okFetch(url);
   },
 });
-assert.equal(accountsV2NotEnabled.ok, false);
-assert.equal(accountsV2NotEnabled.readinessStatus, "pending-accounts-v2-enablement");
-assert.equal(accountsV2NotEnabled.accountsV2.reachable, false);
-assert.match(accountsV2NotEnabled.accountsV2.blocker, /Accounts v2 is not enabled/);
+assert.equal(connectNotEnabled.ok, false);
+assert.equal(connectNotEnabled.readinessStatus, "pending-connect-enablement");
+assert.equal(connectNotEnabled.connectAccounts.reachable, false);
+assert.match(connectNotEnabled.connectAccounts.blocker, /Connect account listing is not enabled/);
 
 await assert.rejects(
   () => checkStripeProductionReadiness({
@@ -125,11 +125,11 @@ await assert.rejects(
       return {
         ok: true,
         status: 200,
-        json: async () => path === "/v2/core/accounts?limit=1" ? { object: "list" } : responses[path],
+        json: async () => path === "/v1/accounts?limit=1" ? { object: "list" } : responses[path],
       };
     },
   }),
-  /Accounts v2 list endpoint did not return a data array/,
+  /Stripe Connect account list endpoint did not return a data array/,
 );
 
 console.log("Stripe production readiness checks passed.");

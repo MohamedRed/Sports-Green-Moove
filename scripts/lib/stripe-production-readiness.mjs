@@ -5,11 +5,11 @@ export async function checkStripeProductionReadiness({
   fetcher = fetch,
 } = {}) {
   const config = loadConfig(env);
-  const [account, balance, webhookEndpoints, accountsV2] = await Promise.all([
+  const [account, balance, webhookEndpoints, connectAccounts] = await Promise.all([
     stripeGet(fetcher, config.secretKey, "/v1/account"),
     stripeGet(fetcher, config.secretKey, "/v1/balance"),
     stripeGet(fetcher, config.secretKey, "/v1/webhook_endpoints?limit=100"),
-    stripeGetAccountsV2(fetcher, config.secretKey),
+    stripeGetConnectAccounts(fetcher, config.secretKey),
   ]);
 
   const enabledWebhookEndpoints = (webhookEndpoints.data ?? []).filter((endpoint) => endpoint.status === "enabled");
@@ -23,13 +23,13 @@ export async function checkStripeProductionReadiness({
   if (stripeWebhookEndpoints.length === 0) {
     throw new Error("No enabled Stripe webhook endpoint points at stripeWebhook.");
   }
-  if (!accountsV2.disabled && !Array.isArray(accountsV2.data)) {
-    throw new Error("Stripe Accounts v2 list endpoint did not return a data array.");
+  if (!connectAccounts.disabled && !Array.isArray(connectAccounts.data)) {
+    throw new Error("Stripe Connect account list endpoint did not return a data array.");
   }
 
   return {
-    ok: !accountsV2.disabled,
-    readinessStatus: accountsV2.disabled ? "pending-accounts-v2-enablement" : "production-configured",
+    ok: !connectAccounts.disabled,
+    readinessStatus: connectAccounts.disabled ? "pending-connect-enablement" : "production-configured",
     account: {
       id: account.id,
       country: account.country,
@@ -50,15 +50,15 @@ export async function checkStripeProductionReadiness({
       eventCount: endpoint.enabled_events?.length ?? 0,
       apiVersion: endpoint.api_version,
     })),
-    accountsV2: accountsV2.disabled
+    connectAccounts: connectAccounts.disabled
       ? {
           reachable: false,
-          blocker: accountsV2.blocker,
+          blocker: connectAccounts.blocker,
         }
       : {
           reachable: true,
-          returnedAccountCount: accountsV2.data.length,
-          hasNextPage: Boolean(accountsV2.next_page_url),
+          returnedAccountCount: connectAccounts.data.length,
+          hasMore: Boolean(connectAccounts.has_more),
         },
     connectUrls: {
       returnUrlHost: safeHost(config.returnUrl),
@@ -99,8 +99,8 @@ async function stripeGet(fetcher, secretKey, path) {
   return body;
 }
 
-async function stripeGetAccountsV2(fetcher, secretKey) {
-  const path = "/v2/core/accounts?limit=1";
+async function stripeGetConnectAccounts(fetcher, secretKey) {
+  const path = "/v1/accounts?limit=1";
   const response = await fetcher(`${stripeApiBaseUrl}${path}`, {
     headers: {
       Authorization: `Bearer ${secretKey}`,
@@ -110,7 +110,7 @@ async function stripeGetAccountsV2(fetcher, secretKey) {
   const body = await response.json().catch(() => ({}));
   if (!response.ok) {
     const message = body.error?.message ?? response.statusText;
-    if (response.status === 400 && /Accounts v2 is not enabled/i.test(message)) {
+    if (response.status === 400 && /connect|account/i.test(message)) {
       return {
         disabled: true,
         blocker: message,
