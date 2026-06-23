@@ -1,6 +1,8 @@
 package be.sportgreenmoove.app.services
 
 import android.content.Context
+import android.util.Log
+import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.R
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
@@ -8,6 +10,8 @@ import be.sportgreenmoove.app.data.appRoleFromClaim
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
 
@@ -28,6 +32,7 @@ object AndroidRuntime {
         return if (app == null) {
             AndroidProviderSet(auth = UnconfiguredAuthGateway(), firebase = UnconfiguredFirebaseGateway())
         } else {
+            FirebaseAndroidEmulatorConfig.configureIfRequested()
             AndroidProviderSet(
                 auth = FirebaseAndroidAuthGateway(),
                 firebase = FirebaseAndroidBackendGateway(context.applicationContext),
@@ -40,6 +45,21 @@ object AndroidRuntime {
                 stripe = FirebaseAndroidStripePaymentsGateway(),
             )
         }
+    }
+}
+
+private object FirebaseAndroidEmulatorConfig {
+    private var configured = false
+
+    fun configureIfRequested() {
+        if (!BuildConfig.SGM_USE_FIREBASE_EMULATOR || configured) return
+        configured = true
+        val host = BuildConfig.SGM_FIREBASE_EMULATOR_HOST
+        if (BuildConfig.DEBUG) Log.d("SGM.FirebaseEmulator", "Configuring Firebase emulators at $host")
+        FirebaseAuth.getInstance().useEmulator(host, 9099)
+        FirebaseFirestore.getInstance().useEmulator(host, 8080)
+        FirebaseFunctions.getInstance().useEmulator(host, 5001)
+        FirebaseDatabase.getInstance().useEmulator(host, 9000)
     }
 }
 
@@ -70,7 +90,13 @@ private class FirebaseAndroidAuthGateway : AuthGateway {
     private suspend fun initializeUserProfile(user: FirebaseUser, displayName: String? = null): AuthSession {
         val data = mutableMapOf<String, Any>()
         displayName?.takeIf(String::isNotBlank)?.let { data["displayName"] = it }
-        val result = functions.getHttpsCallable("initializeUserProfile").call(data).await()
+        if (BuildConfig.DEBUG) Log.d("SGM.FirebaseEmulator", "Calling initializeUserProfile for ${user.uid}")
+        val result = runCatching {
+            functions.getHttpsCallable("initializeUserProfile").call(data).await()
+        }.onFailure {
+            if (BuildConfig.DEBUG) Log.e("SGM.FirebaseEmulator", "initializeUserProfile failed", it)
+        }.getOrThrow()
+        if (BuildConfig.DEBUG) Log.d("SGM.FirebaseEmulator", "initializeUserProfile succeeded for ${user.uid}")
         val profile = result.data as? Map<*, *>
         user.getIdToken(true).await()
         return AuthSession(

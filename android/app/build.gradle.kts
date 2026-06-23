@@ -35,6 +35,15 @@ val googleMapsAndroidApiKey = providers
     .gradleProperty("SGM_GOOGLE_MAPS_ANDROID_API_KEY")
     .orElse(providers.environmentVariable("SGM_GOOGLE_MAPS_ANDROID_API_KEY"))
     .getOrElse("")
+val useFirebaseEmulator = providers
+    .gradleProperty("SGM_USE_FIREBASE_EMULATOR")
+    .orElse(providers.environmentVariable("SGM_USE_FIREBASE_EMULATOR"))
+    .map { it.equals("true", ignoreCase = true) || it == "1" }
+    .getOrElse(false)
+val firebaseEmulatorHost = providers
+    .gradleProperty("SGM_FIREBASE_EMULATOR_HOST")
+    .orElse(providers.environmentVariable("SGM_FIREBASE_EMULATOR_HOST"))
+    .getOrElse("10.0.2.2")
 
 android {
     namespace = "be.sportgreenmoove.app"
@@ -54,6 +63,8 @@ android {
         resValue("string", "facebook_client_token", facebookClientToken)
         resValue("string", "fb_login_protocol_scheme", facebookLoginProtocolScheme)
         resValue("string", "sgm_google_maps_android_api_key", googleMapsAndroidApiKey)
+        buildConfigField("Boolean", "SGM_USE_FIREBASE_EMULATOR", useFirebaseEmulator.toString())
+        buildConfigField("String", "SGM_FIREBASE_EMULATOR_HOST", "\"$firebaseEmulatorHost\"")
     }
 
     compileOptions {
@@ -62,6 +73,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 }

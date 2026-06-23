@@ -35,6 +35,11 @@ ios/SportsGreenMoove.xcodeproj/
 android/.gradle/
 android/build/
 android/app/build/
+android/.gradle
+android/build
+android/app/build
+android/app/google-services.json
+.secret.local
 *.apk
 *.aab
 local.properties
