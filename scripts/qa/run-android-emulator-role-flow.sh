@@ -21,7 +21,20 @@ wait_text() {
   for i in $(seq 1 "$max"); do
     adb shell uiautomator dump /sdcard/window.xml >/dev/null 2>&1 || true
     adb exec-out cat /sdcard/window.xml > "$OUT/${name}.xml" || true
-    if grep -Eiq "$regex" "$OUT/${name}.xml" && ! grep -qi 'responding' "$OUT/${name}.xml"; then
+    if grep -Eiq "Pixel Launcher isn't responding|System UI isn't responding" "$OUT/${name}.xml"; then
+      # System/launcher ANRs can cover the app on constrained headless emulators.
+      # Close only the system dialog; the app under test remains running.
+      adb shell input tap 540 1235 || true
+      sleep 2
+      continue
+    fi
+    if grep -Eiq "isn't responding|not responding|responding" "$OUT/${name}.xml"; then
+      # If the app itself shows an ANR, preserve it as a real blocker instead of hiding it.
+      adb exec-out screencap -p > "$OUT/${name}.png"
+      echo "ANR dialog observed for $name" >&2
+      return 1
+    fi
+    if grep -Eiq "$regex" "$OUT/${name}.xml"; then
       adb exec-out screencap -p > "$OUT/${name}.png"
       echo "matched $regex at poll $i for $name"
       return 0
@@ -36,8 +49,11 @@ wait_text() {
 type_email() {
   local local_part="$1"
   adb shell input text "$local_part"
+  sleep .5
   adb shell input keyevent 77
+  sleep .5
   adb shell input text 'example.test'
+  sleep .8
 }
 
 login_as() {
@@ -58,7 +74,11 @@ login_as() {
   sleep .8
   capture "${role}_02_filled_credentials"
   adb shell input tap 540 1185
-  wait_text 'Accueil|Trajets|Profil|Bonjour|Connexion impossible|E-mail ou mot de passe|adresse e-mail valide' "${role}_03_after_login" 90 || true
+  wait_text 'Accueil|Trajets|Profil|Bonjour' "${role}_03_after_login" 90
+  if grep -Eiq 'Connexion impossible|E-mail ou mot de passe|adresse e-mail valide' "$OUT/${role}_03_after_login.xml"; then
+    echo "login failed for $role" >&2
+    return 1
+  fi
   adb logcat -d > "$OUT/${role}_03_after_login.logcat"
 }
 

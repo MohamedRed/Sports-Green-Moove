@@ -36,6 +36,7 @@ fun SportsGreenMooveApp() {
     val scope = rememberCoroutineScope()
     var screen by remember { mutableStateOf(AppScreen.Home) }
     var role by remember { mutableStateOf(AppRole.Parent) }
+    var lastRoleSelectionSessionUid by remember { mutableStateOf<String?>(null) }
     var session by remember { mutableStateOf<AuthSession?>(null) }
     var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
     var children by remember { mutableStateOf(emptyList<ChildSummary>()) }
@@ -147,10 +148,21 @@ fun SportsGreenMooveApp() {
         }
     }
     LaunchedEffect(session?.uid, session?.roles) {
-        val roles = session?.roles ?: setOf(AppRole.Parent)
-        if (role !in roles) {
-            role = roles.preferredMobileRole()
-            runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
+        val currentSession = session
+        if (currentSession == null) {
+            lastRoleSelectionSessionUid = null
+        } else {
+            val sessionChanged = currentSession.uid != lastRoleSelectionSessionUid
+            val selectedRole = selectActiveMobileRole(
+                currentRole = role,
+                availableRoles = currentSession.roles,
+                sessionChanged = sessionChanged,
+            )
+            lastRoleSelectionSessionUid = currentSession.uid
+            if (selectedRole != role) {
+                role = selectedRole
+                runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
+            }
         }
     }
     SgmTheme(darkTheme = darkTheme) {
@@ -231,6 +243,8 @@ fun SportsGreenMooveApp() {
                                 providers.facebookAuth.signOut()
                                 providers.auth.signOut()
                                 session = null
+                                lastRoleSelectionSessionUid = null
+                                role = AppRole.Parent
                                 trips = emptyList()
                                 children = emptyList()
                                 clubs = emptyList()
