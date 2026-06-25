@@ -44,6 +44,11 @@ object SgmTestTags {
     const val PaymentsScreen = "payments.screen"
     const val PaymentAction = "payments.payment.action"
     const val PaymentConnectAction = "payments.connect.action"
+    const val BottomNavHomeAction = "bottom-nav.home.action"
+    const val BottomNavTripsAction = "bottom-nav.trips.action"
+    const val BottomNavPublishAction = "bottom-nav.publish.action"
+    const val BottomNavMessagesAction = "bottom-nav.messages.action"
+    const val BottomNavProfileAction = "bottom-nav.profile.action"
 }
 
 fun Modifier.sgmTestTag(tag: String): Modifier = testTag(tag)

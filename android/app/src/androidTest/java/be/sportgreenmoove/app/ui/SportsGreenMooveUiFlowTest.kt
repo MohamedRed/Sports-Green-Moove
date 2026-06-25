@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -10,6 +11,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import be.sportgreenmoove.app.data.AppRole
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -148,6 +150,31 @@ class SportsGreenMooveUiFlowTest {
         assertTagsExist(SgmTestTags.MessagesScreen, SgmTestTags.ChatTab, SgmTestTags.RatingTab)
         compose.onNodeWithTag(SgmTestTags.RatingTab).performClick()
         assertTagsExist(SgmTestTags.RatingPromptAction, "${SgmTestTags.RatingPromptAction}.5")
+    }
+
+    @Test
+    fun bottomNavigationDispatchesTopLevelUserFlowDestinations() {
+        val navigated = mutableListOf<AppScreen>()
+
+        setTestContent {
+            SportsGreenMooveScaffold(
+                currentScreen = AppScreen.Home,
+                onNavigate = { navigated += it },
+            ) {
+                Text("Navigation fixture")
+            }
+        }
+
+        compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.BottomNavPublishAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.BottomNavHomeAction).performClick()
+
+        assertEquals(
+            listOf(AppScreen.Trips, AppScreen.Publish, AppScreen.Messages, AppScreen.Profile, AppScreen.Home),
+            navigated,
+        )
     }
 
     @Test

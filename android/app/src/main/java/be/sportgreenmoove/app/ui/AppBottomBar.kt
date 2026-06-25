@@ -31,6 +31,16 @@ import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmSize
 import be.sportgreenmoove.app.design.SgmType
 
+private val AppScreen.bottomNavActionTag: String
+    get() = when (this) {
+        AppScreen.Home -> SgmTestTags.BottomNavHomeAction
+        AppScreen.Trips -> SgmTestTags.BottomNavTripsAction
+        AppScreen.Publish -> SgmTestTags.BottomNavPublishAction
+        AppScreen.Messages -> SgmTestTags.BottomNavMessagesAction
+        AppScreen.Profile -> SgmTestTags.BottomNavProfileAction
+        else -> "bottom-nav.${name.lowercase()}.action"
+    }
+
 @Composable
 fun AppBottomBar(current: AppScreen, onNavigate: (AppScreen) -> Unit) {
     val items = listOf(
@@ -83,6 +93,7 @@ private fun PublishNavButton(onClick: () -> Unit, modifier: Modifier = Modifier)
     ) {
         Box(
             modifier = Modifier
+                .sgmTestTag(AppScreen.Publish.bottomNavActionTag)
                 .offset(y = (-8).dp)
                 .size(50.dp)
                 .clip(CircleShape)
@@ -101,6 +112,7 @@ private fun BottomNavButton(item: NavItem, selected: Boolean, onClick: () -> Uni
     Column(
         modifier = modifier
             .height(SgmSize.NavBar)
+            .sgmTestTag(item.screen.bottomNavActionTag)
             .clickable(onClick = onClick)
             .padding(top = 9.dp, bottom = 6.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
