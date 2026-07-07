@@ -84,7 +84,7 @@ fun OnboardingScreen(
                 OnboardingInput("Nom et prénom", name, {
                     name = it
                     onClearError()
-                })
+                }, testTag = SgmTestTags.AuthNameInput)
             }
             OnboardingInput(
                 "votre@email.be",
@@ -94,6 +94,7 @@ fun OnboardingScreen(
                     onClearError()
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                testTag = SgmTestTags.AuthEmailInput,
             )
             OnboardingInput(
                 "Mot de passe",
@@ -104,6 +105,7 @@ fun OnboardingScreen(
                 },
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                testTag = SgmTestTags.AuthPasswordInput,
             )
             if (error != null) {
                 Text(
@@ -207,6 +209,7 @@ private fun OnboardingInput(
     onValue: (String) -> Unit,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    testTag: String? = null,
 ) {
     Box(
         modifier = Modifier
@@ -224,7 +227,7 @@ private fun OnboardingInput(
             singleLine = true,
             visualTransformation = visualTransformation,
             keyboardOptions = keyboardOptions,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().sgmOptionalTestTag(testTag),
         )
     }
 }

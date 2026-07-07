@@ -40,6 +40,11 @@ val useFirebaseEmulator = providers
     .orElse(providers.environmentVariable("SGM_USE_FIREBASE_EMULATOR"))
     .map { it.equals("true", ignoreCase = true) || it == "1" }
     .getOrElse(false)
+val liveBackendUiTest = providers
+    .gradleProperty("SGM_LIVE_BACKEND_UI_TEST")
+    .orElse(providers.environmentVariable("SGM_LIVE_BACKEND_UI_TEST"))
+    .map { it.equals("true", ignoreCase = true) || it == "1" }
+    .getOrElse(false)
 val firebaseEmulatorHost = providers
     .gradleProperty("SGM_FIREBASE_EMULATOR_HOST")
     .orElse(providers.environmentVariable("SGM_FIREBASE_EMULATOR_HOST"))
@@ -64,6 +69,7 @@ android {
         resValue("string", "fb_login_protocol_scheme", facebookLoginProtocolScheme)
         resValue("string", "sgm_google_maps_android_api_key", googleMapsAndroidApiKey)
         buildConfigField("Boolean", "SGM_USE_FIREBASE_EMULATOR", useFirebaseEmulator.toString())
+        buildConfigField("Boolean", "SGM_LIVE_BACKEND_UI_TEST", liveBackendUiTest.toString())
         buildConfigField("String", "SGM_FIREBASE_EMULATOR_HOST", "\"$firebaseEmulatorHost\"")
     }
 
