@@ -3,22 +3,23 @@
 ## 2026-07-07
 
 Branch: `codex/implement-plan`
-Validated live-backend BrowserStack commit: `c6273f7`
+Validated live-backend BrowserStack commit: `d4d9a05`
 Validated baseline BrowserStack commit: `40606cc72f3cba8b78fb9199451c621c05fbd34e`
 
-Verified BrowserStack Android real-device live-backend smoke:
+Verified BrowserStack Android real-device live-backend signup and authenticated navigation smoke:
 
 - Workflow: `Android BrowserStack Real-Device UI`
-- Run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28882411226>
+- Run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28883797383>
 - Result: passed.
 - Device: Google Pixel 8 / Android 14.0.
-- BrowserStack build: <https://app-automate.browserstack.com/dashboard/v2/builds/aef441d4f5e207e209139702bc166c16b5d635d2>
-- BrowserStack session: `11d709a2335a0bb5cef34304dd7e0fed9a0ef3cc`.
-- APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28882411226/artifacts/8144749121>
-- BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28882411226/artifacts/8144927623>
+- BrowserStack build: <https://app-automate.browserstack.com/dashboard/v2/builds/3b64368d32a25b3c8205d76693fca15f3d2a6464>
+- BrowserStack session: `cf2203ba945cab4dedd5082016640746bb4488b8`.
+- APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28883797383/artifacts/8145328865>
+- BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28883797383/artifacts/8145519415>
 - Coverage: 20/20 Android instrumentation test cases passed with 0 failures, 0 skipped, 0 timed out, and 0 errors.
-- New live-backend coverage: BrowserStack real device completed disposable email/password signup against the configured Firebase Android backend, called profile initialization, reached the authenticated home screen, and verified bottom navigation to trips, publish, messages, and profile.
-- Current PR checks on `c6273f7` also passed: Native CI, Backend CI, Web Integration Smoke, and Release Readiness.
+- New live-backend coverage: BrowserStack real device completed disposable email/password signup against the configured Firebase Android backend, called profile initialization, reached the authenticated home screen, and verified authenticated navigation to Trips (`MES TRAJETS`), Publish (`PUBLIER UN TRAJET`), Messages, and Profile (`MON PROFIL`).
+- Earlier live-backend run `28882411226` also passed against BrowserStack build `aef441d4f5e207e209139702bc166c16b5d635d2`.
+- Current PR checks on `d4d9a05` also passed: Native CI, Backend CI, Web Integration Smoke, and Release Readiness.
 
 Verified BrowserStack Android real-device automation baseline:
 
