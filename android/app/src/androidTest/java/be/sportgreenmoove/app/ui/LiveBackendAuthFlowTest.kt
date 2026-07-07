@@ -41,6 +41,19 @@ class LiveBackendAuthFlowTest {
         compose.onNodeWithTag(SgmTestTags.BottomNavPublishAction).assertExists()
         compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).assertExists()
         compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).assertExists()
+
+        compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
+        compose.onNodeWithText("MES TRAJETS").assertExists()
+
+        compose.onNodeWithTag(SgmTestTags.BottomNavPublishAction).performClick()
+        waitUntilTagExists(SgmTestTags.PublishScreen)
+        compose.onNodeWithText("PUBLIER UN TRAJET").assertExists()
+
+        compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).performClick()
+        waitUntilTagExists(SgmTestTags.MessagesScreen)
+
+        compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
+        compose.onNodeWithText("MON PROFIL").assertExists()
     }
 
     private fun waitUntilTagExists(tag: String, timeoutMillis: Long = 10_000) {
