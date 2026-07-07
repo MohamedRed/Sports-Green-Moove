@@ -1,5 +1,35 @@
 # Android Verification Notes
 
+## 2026-07-07
+
+Branch: `codex/implement-plan`
+Validated commit: `40606cc72f3cba8b78fb9199451c621c05fbd34e`
+
+Verified BrowserStack Android real-device automation:
+
+- Workflow: `Android BrowserStack Real-Device UI`
+- Run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28880297958>
+- Result: passed.
+- Device: Google Pixel 8 / Android 14.0.
+- BrowserStack build: <https://app-automate.browserstack.com/dashboard/v2/builds/73149a459755bd0047dd3d1a3c4c7a5508e273bf>
+- BrowserStack session: `0106a479283458927ccdc1d521189fa8fe713421`.
+- APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28880297958/artifacts/8143856112>
+- BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28880297958/artifacts/8144043029>
+- Coverage: 19/19 Android instrumentation test cases passed with 0 failures, 0 skipped, 0 timed out, and 0 errors.
+- Validated flow surfaces include auth, publish, search, booking request/approval, active ride pickup/drop-off/end, emergency contact, groups, impact, rewards, support report, payments, Stripe Connect routing, messages, rating, bottom navigation, profile role filtering, and store-review screenshot states.
+
+Also verified current PR checks on the same commit:
+
+- Native CI: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28880302423> — passed.
+- Backend CI: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28880302149> — passed.
+- Web Integration Smoke: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28880302055> — passed.
+- Release Readiness: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28880302326> — passed.
+
+Notes:
+
+- This closes the repeatable Android BrowserStack Compose UI automation gap for the current release branch.
+- It does not by itself clear the full public-launch real-device protocol. The GPS/background/locked-screen/network-loss/battery-saver/Radar-delay/Firebase-native-fallback scenarios and sanitized safety-audit export still need dedicated release evidence before public launch can be marked complete.
+
 ## 2026-06-17
 
 Branch: `codex/implement-plan`
