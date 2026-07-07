@@ -3,8 +3,18 @@
 ## 2026-07-07
 
 Branch: `codex/implement-plan`
+Validated multi-device BrowserStack commit: `81a915a`
 Validated live-backend BrowserStack commit: `d4d9a05`
 Validated baseline BrowserStack commit: `40606cc72f3cba8b78fb9199451c621c05fbd34e`
+
+Verified BrowserStack Android workflow can be rerun against a selected device from `workflow_dispatch`:
+
+- Commit: `81a915a` (`ci: allow BrowserStack Android device selection`).
+- Default push run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885160037> — passed on Google Pixel 8 / Android 14.0, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/fd40ef6944120a0d28f9010760338b9b5a0d8343>, session `b063f38232ec6ed657d06afae1ad7558e9b6980b`, 20/20 test cases passed.
+- Manual selected-device run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850> — passed on Samsung Galaxy S23 / Android 13.0, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/5a563f5ad1f0766b4d245e4260a01ad00e27f210>, session `d6fe7feed5d70cf0d8f796bc54b09cb2a8ca6fa4`, 20/20 test cases passed.
+- Samsung APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850/artifacts/8146163405>.
+- Samsung BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850/artifacts/8146310642>.
+- Current PR checks on `81a915a` also passed: Native CI, Backend CI, Web Integration Smoke, and Release Readiness.
 
 Verified BrowserStack Android real-device live-backend signup and authenticated navigation smoke:
 
