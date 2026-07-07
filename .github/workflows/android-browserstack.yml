@@ -2,6 +2,11 @@ name: Android BrowserStack Real-Device UI
 
 on:
   workflow_dispatch:
+    inputs:
+      device:
+        description: BrowserStack Android device/OS target (for example, Google Pixel 8-14.0)
+        required: false
+        default: Google Pixel 8-14.0
   push:
     branches:
       - codex/implement-plan
@@ -25,7 +30,7 @@ jobs:
     env:
       BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
       BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-      BROWSERSTACK_ANDROID_DEVICE: ${{ vars.BROWSERSTACK_ANDROID_DEVICE || 'Google Pixel 8-14.0' }}
+      BROWSERSTACK_ANDROID_DEVICE: ${{ github.event.inputs.device || vars.BROWSERSTACK_ANDROID_DEVICE || 'Google Pixel 8-14.0' }}
       FIREBASE_ANDROID_CONFIG_BASE64: ${{ secrets.FIREBASE_ANDROID_CONFIG_BASE64 }}
       SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
       SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
