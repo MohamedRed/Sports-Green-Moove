@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-06-18T15:40:07Z",
+  "generatedAt": "2026-07-07T17:48:42Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -152,6 +152,27 @@
         "description": "Android Appetize email/password signup/login evidence is recorded in the automated user-flow evidence artifact.",
         "evidenceRefs": [
           "evidence/automated-user-flow-evidence-2026-06-16.json"
+        ]
+      },
+      {
+        "id": "android_browserstack_real_device_ui",
+        "status": "passed",
+        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke on Pixel 8 / Android 14, Samsung Galaxy S23 / Android 13, and Pixel 6 / Android 12 with 20/20 tests passing on the latest selected-device run.",
+        "evidenceRefs": [
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885160037",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28886961491",
+          "android-verification-notes.md"
+        ]
+      },
+      {
+        "id": "android_browserstack_live_backend_signup_navigation",
+        "status": "passed",
+        "description": "BrowserStack real-device Android smoke created a disposable Firebase email/password account, initialized the profile through the configured backend, reached Home, and navigated to Trips, Publish, Messages, and Profile.",
+        "evidenceRefs": [
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28883797383",
+          "https://app-automate.browserstack.com/dashboard/v2/builds/3b64368d32a25b3c8205d76693fca15f3d2a6464",
+          "android-verification-notes.md"
         ]
       }
     ]
