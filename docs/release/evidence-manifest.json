@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-07-08T18:41:43Z",
+  "generatedAt": "2026-07-08T19:03:36Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -159,7 +159,7 @@
       {
         "id": "android_browserstack_real_device_ui",
         "status": "passed",
-        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke. The latest release-candidate commit 6a784e3 passed 22/22 tests on Google Pixel 8 / Android 14.0, Samsung Galaxy S23 / Android 13.0, and Google Pixel 6 / Android 12.0; earlier evidence also covers Samsung Galaxy S20 / Android 10.0. Coverage includes Home dashboard actions and friendly publish network-failure copy.",
+        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke. The latest release-candidate evidence passed 22/22 tests on Google Pixel 8 / Android 14.0, Samsung Galaxy S23 / Android 13.0, Google Pixel 6 / Android 12.0, and Samsung Galaxy S20 / Android 10.0. Coverage includes Home dashboard actions and friendly publish network-failure copy.",
         "evidenceRefs": [
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885160037",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850",
@@ -173,6 +173,8 @@
           "https://app-automate.browserstack.com/dashboard/v2/builds/3d4f9d262adffce9fa89e0bf061628e2cc64859a",
           "https://app-automate.browserstack.com/dashboard/v2/builds/2b37a43c4021b80c49e1d22a6fad714fc08e4e1e",
           "https://app-automate.browserstack.com/dashboard/v2/builds/3107d543db36b653a7e7a199becb1ea2858495d1",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28967531253",
+          "https://app-automate.browserstack.com/dashboard/v2/builds/1080f2cf52d9f3eee7bfdc8566f8642f87de6216",
           "android-verification-notes.md"
         ]
       },
