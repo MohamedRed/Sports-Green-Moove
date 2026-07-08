@@ -116,6 +116,36 @@ class SportsGreenMooveActionFlowTest {
     }
 
     @Test
+    fun publishSubmitFailureShowsFriendlyNetworkCopy() {
+        val firebase = UiFlowFirebaseGateway().apply {
+            failCreateTripMessage = "network unavailable while creating trip"
+        }
+        var error: String? = null
+        var published = false
+
+        compose.setSgmUiTestContent {
+            PublishScreen(
+                role = AppRole.Driver,
+                firebase = firebase,
+                memberClubs = UiFlowFixtures.clubs,
+                initialOrigin = UiFlowFixtures.origin,
+                initialDestination = UiFlowFixtures.destination,
+                onError = { error = it },
+                onNotice = {},
+                onPublished = { published = true },
+            )
+        }
+
+        compose.onNodeWithTag(SgmTestTags.PublishNextAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.PublishNextAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.PublishSubmitAction).performScrollTo().performClick()
+        compose.waitUntil(timeoutMillis = 5_000) { error != null }
+
+        assertEquals("Connexion réseau indisponible. Vérifiez votre connexion puis réessayez.", error)
+        assertTrue(!published)
+    }
+
+    @Test
     fun groupJoinActionDispatchesSelectedClub() {
         var joinedClubId: String? = null
 

@@ -123,6 +123,7 @@ object UiFlowFixtures {
 class UiFlowFirebaseGateway : FirebaseGateway {
     var createdTripDraft: TripPublishDraft? = null
         private set
+    var failCreateTripMessage: String? = null
     var requestedClubId: String? = null
         private set
     var submittedRating: SubmittedRating? = null
@@ -142,6 +143,7 @@ class UiFlowFirebaseGateway : FirebaseGateway {
     override suspend fun resolvePlace(placeId: String) = UiFlowFixtures.origin
     override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(UiFlowFixtures.match)
     override suspend fun createTrip(draft: TripPublishDraft): String {
+        failCreateTripMessage?.let { message -> throw RuntimeException(message) }
         createdTripDraft = draft
         return "trip-created"
     }
