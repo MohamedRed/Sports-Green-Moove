@@ -36,7 +36,12 @@ fun HomeScreen(
         HomeHeader(displayName)
         HomeHeroCard(trip = trips.firstOrNull(), onClick = onRide)
         HomeStatsRow(impactSummary)
-        HomeSectionLabel(title = "SEMAINE À VENIR", action = "Tout voir", onAction = onTrips)
+        HomeSectionLabel(
+            title = "SEMAINE À VENIR",
+            action = "Tout voir",
+            onAction = onTrips,
+            actionTestTag = SgmTestTags.HomeTripsAction,
+        )
         Column(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),

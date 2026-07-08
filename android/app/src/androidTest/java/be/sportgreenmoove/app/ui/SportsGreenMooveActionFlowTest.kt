@@ -22,6 +22,32 @@ class SportsGreenMooveActionFlowTest {
     val compose = createComposeRule()
 
     @Test
+    fun homeDashboardActionsDispatchTopLevelNavigation() {
+        var tripsTapped = 0
+        var rideTapped = 0
+        var impactTapped = 0
+
+        compose.setSgmUiTestContent {
+            HomeScreen(
+                displayName = "Nora Parent",
+                trips = listOf(UiFlowFixtures.trip),
+                impactSummary = UiFlowFixtures.impact,
+                onTrips = { tripsTapped += 1 },
+                onRide = { rideTapped += 1 },
+                onImpact = { impactTapped += 1 },
+            )
+        }
+
+        compose.onNodeWithTag(SgmTestTags.HomeRideAction).performClick()
+        compose.onNodeWithTag(SgmTestTags.HomeTripsAction).performScrollTo().performClick()
+        compose.onNodeWithTag(SgmTestTags.HomeImpactAction).performScrollTo().performClick()
+
+        assertEquals(1, rideTapped)
+        assertEquals(1, tripsTapped)
+        assertEquals(1, impactTapped)
+    }
+
+    @Test
     fun searchActionsDispatchSelectedRideData() {
         var searchForm: SearchFormState? = null
         var requestedMatch: TripMatchSummary? = null

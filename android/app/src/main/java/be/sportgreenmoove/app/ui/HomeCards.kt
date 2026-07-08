@@ -63,6 +63,11 @@ fun HomeStatsRow(summary: ImpactSummary) {
 
 @Composable
 fun HomeSectionLabel(title: String, action: String?, onAction: (() -> Unit)?) {
+    HomeSectionLabel(title = title, action = action, onAction = onAction, actionTestTag = null)
+}
+
+@Composable
+fun HomeSectionLabel(title: String, action: String?, onAction: (() -> Unit)?, actionTestTag: String?) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -79,7 +84,9 @@ fun HomeSectionLabel(title: String, action: String?, onAction: (() -> Unit)?) {
             Text(
                 action,
                 style = SgmType.BodyXS.copy(color = SgmColor.Green, fontSize = 12.sp, fontWeight = FontWeight.Bold),
-                modifier = Modifier.clickable(onClick = onAction),
+                modifier = Modifier
+                    .sgmOptionalTestTag(actionTestTag)
+                    .clickable(onClick = onAction),
                 maxLines = 1,
             )
         }
@@ -139,6 +146,7 @@ fun HomeImpactCard(summary: ImpactSummary, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .padding(horizontal = 20.dp)
+            .sgmTestTag(SgmTestTags.HomeImpactAction)
             .clip(RoundedCornerShape(SgmRadius.LG))
             .background(SgmColor.HeroGradient)
             .clickable(onClick = onClick)

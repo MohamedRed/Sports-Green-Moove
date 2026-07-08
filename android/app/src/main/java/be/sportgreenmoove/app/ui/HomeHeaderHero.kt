@@ -66,6 +66,7 @@ fun HomeHeroCard(trip: TripSummary?, onClick: () -> Unit) {
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
             .height(172.dp)
+            .sgmTestTag(SgmTestTags.HomeRideAction)
             .clip(RoundedCornerShape(20.dp))
             .background(SgmColor.HeroGradient)
             .clickable(onClick = onClick),
