@@ -27,7 +27,7 @@ class ActiveRideStartupTest {
     @Test
     fun startTrackedRideStartsRadarAndNativeFallbackBeforeReturningLiveNotice() = runBlocking {
         val firebase = RecordingFirebaseGateway()
-        val radar = RecordingRadarTrackingGateway(configured = true)
+        val radar = RecordingRadarTrackingGateway(isConfigured = true)
         val providers = AndroidProviderSet(
             auth = UnconfiguredAuthGateway(),
             firebase = firebase,
@@ -49,7 +49,7 @@ class ActiveRideStartupTest {
     @Test
     fun startAccessibleRideTrackingUsesNativeFallbackWhenRadarIsUnavailable() = runBlocking {
         val firebase = RecordingFirebaseGateway()
-        val radar = RecordingRadarTrackingGateway(configured = false)
+        val radar = RecordingRadarTrackingGateway(isConfigured = false)
         val providers = AndroidProviderSet(
             auth = UnconfiguredAuthGateway(),
             firebase = firebase,
@@ -67,7 +67,7 @@ class ActiveRideStartupTest {
     @Test
     fun endTrackedRideStopsNativeFallbackAndRadarTracking() = runBlocking {
         val firebase = RecordingFirebaseGateway()
-        val radar = RecordingRadarTrackingGateway(configured = true)
+        val radar = RecordingRadarTrackingGateway(isConfigured = true)
         val providers = AndroidProviderSet(
             auth = UnconfiguredAuthGateway(),
             firebase = firebase,
