@@ -4,12 +4,21 @@
 
 Branch: `codex/implement-plan`
 Validated latest BrowserStack commit: `1fe083b`
+Prepared latest BrowserStack App Live upload commit: `3bb1460`
 Validated active-ride fallback BrowserStack commit: `7989cb8`
 Validated stale-location BrowserStack commit: `5a47a46`
 Validated latest multi-device BrowserStack commit: `6a784e3`
 Validated publish-failure BrowserStack commit: `0b41489`
 Validated live-backend BrowserStack commit: `d4d9a05`
 Validated baseline BrowserStack commit: `40606cc72f3cba8b78fb9199451c621c05fbd34e`
+
+Verified BrowserStack Android workflow can build and upload the release-candidate APK for App Live-only subscriptions:
+
+- Commit: `3bb1460` (`ci: support BrowserStack App Live uploads`).
+- App Live upload run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28980305279> — passed on rerun after a transient Android SDK package download failure, uploaded the debug APK to BrowserStack App Live with app URL `bs://a2605919c576c50ec565858fe6aa814e4c71c9c0`.
+- App Live APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28980305279/artifacts/8183912370>.
+- App Live upload result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28980305279/artifacts/8183913570>.
+- Scope: App Live upload prepares a manual cloud-device session; it does not run the App Automate Espresso suite or prove the manual real-device release scenarios until a tester completes and records the checklist.
 
 Verified BrowserStack Android workflow can be rerun against a selected device from `workflow_dispatch`:
 
