@@ -157,11 +157,12 @@
       {
         "id": "android_browserstack_real_device_ui",
         "status": "passed",
-        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke on Pixel 8 / Android 14, Samsung Galaxy S23 / Android 13, and Pixel 6 / Android 12 with 20/20 tests passing on the latest selected-device run.",
+        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke on Pixel 8 / Android 14, Samsung Galaxy S23 / Android 13, Pixel 6 / Android 12, and Samsung Galaxy S20 / Android 10 with 20/20 tests passing on the latest selected-device run.",
         "evidenceRefs": [
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885160037",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28886961491",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28945531158",
           "android-verification-notes.md"
         ]
       },
