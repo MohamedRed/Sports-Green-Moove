@@ -3,7 +3,7 @@
 ## 2026-07-07
 
 Branch: `codex/implement-plan`
-Validated multi-device BrowserStack commit: `0b3a2c4`
+Validated multi-device BrowserStack commit: `aae8a96`
 Validated live-backend BrowserStack commit: `d4d9a05`
 Validated baseline BrowserStack commit: `40606cc72f3cba8b78fb9199451c621c05fbd34e`
 
@@ -14,6 +14,7 @@ Verified BrowserStack Android workflow can be rerun against a selected device fr
 - Manual selected-device run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850> — passed on Samsung Galaxy S23 / Android 13.0, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/5a563f5ad1f0766b4d245e4260a01ad00e27f210>, session `d6fe7feed5d70cf0d8f796bc54b09cb2a8ca6fa4`, 20/20 test cases passed.
 - Manual lower-OS run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28886961491> — passed on Google Pixel 6 / Android 12.0, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/97e753a108bd028d29b3a0e6089d7d2fd3072c52>, session `13c55e4117860989a557fea0e0bc5c21a87a947d`, 20/20 test cases passed.
 - Manual older-OS run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28945531158> — passed on Samsung Galaxy S20 / Android 10.0, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/8feead26c9cbeca66fe426c5d55ab313f2276d70>, session `711962681af124a50f435da37c368c09388ff31a`, 20/20 test cases passed.
+- Home dashboard action run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28947098488> — passed on Google Pixel 8 / Android 14.0 after adding deterministic Home dashboard action coverage, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/54ee729c9474011f2924e74e8111e44d85cac81c>, session `1749ff8e76fd37b7ea096e2f91c58239b6f9b82f`, 21/21 test cases passed.
 - BrowserStack device inventory run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28939295650> — listed available Android targets before selecting the Android 10 run.
 - Exploratory Samsung Galaxy Note 9 / Android 8.1 run <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28939351402> timed out while BrowserStack still reported the session as running; no app assertion failure was observed.
 - Samsung APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850/artifacts/8146163405>.
@@ -22,7 +23,9 @@ Verified BrowserStack Android workflow can be rerun against a selected device fr
 - Pixel 6 BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28886961491/artifacts/8146819390>.
 - Galaxy S20 APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28945531158/artifacts/8169515529>.
 - Galaxy S20 BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28945531158/artifacts/8169689651>.
-- Current PR checks on `0b3a2c4` also passed: Native CI, Backend CI, Web Integration Smoke, and Release Readiness.
+- Home dashboard APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28947098488/artifacts/8170176802>.
+- Home dashboard BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28947098488/artifacts/8170468057>.
+- Current PR checks on `aae8a96` also passed: Native CI, Backend CI, Web Integration Smoke, and Release Readiness.
 
 Verified BrowserStack Android real-device live-backend signup and authenticated navigation smoke:
 
