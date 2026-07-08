@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-07-07T17:48:42Z",
+  "generatedAt": "2026-07-08T18:41:43Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -91,11 +91,13 @@
       {
         "id": "android_connected_ui_ci",
         "status": "passed",
-        "description": "Android connected Compose UI tests passed on the validated app-source commit.",
+        "description": "Android connected Compose UI tests passed on the validated app-source commit, with latest manual Native CI verification on release-candidate commit 6a784e3.",
         "evidenceRefs": [
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694823687/job/81915079553",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694823687/artifacts/7697882254",
-          "evidence/pr-user-flow-checks-2026-06-18.json"
+          "evidence/pr-user-flow-checks-2026-06-18.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28955630602",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28955630602/artifacts/8173942942"
         ]
       },
       {
@@ -157,7 +159,7 @@
       {
         "id": "android_browserstack_real_device_ui",
         "status": "passed",
-        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke on Pixel 8 / Android 14, Samsung Galaxy S23 / Android 13, Pixel 6 / Android 12, and Samsung Galaxy S20 / Android 10. The latest Pixel 8 / Android 14 run passed 22/22 tests including Home dashboard actions and friendly publish network-failure copy.",
+        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke. The latest release-candidate commit 6a784e3 passed 22/22 tests on Google Pixel 8 / Android 14.0, Samsung Galaxy S23 / Android 13.0, and Google Pixel 6 / Android 12.0; earlier evidence also covers Samsung Galaxy S20 / Android 10.0. Coverage includes Home dashboard actions and friendly publish network-failure copy.",
         "evidenceRefs": [
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885160037",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850",
@@ -165,6 +167,12 @@
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28945531158",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28947098488",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28948914048",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28955619435",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28955622963",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28955626715",
+          "https://app-automate.browserstack.com/dashboard/v2/builds/3d4f9d262adffce9fa89e0bf061628e2cc64859a",
+          "https://app-automate.browserstack.com/dashboard/v2/builds/2b37a43c4021b80c49e1d22a6fad714fc08e4e1e",
+          "https://app-automate.browserstack.com/dashboard/v2/builds/3107d543db36b653a7e7a199becb1ea2858495d1",
           "android-verification-notes.md"
         ]
       },
