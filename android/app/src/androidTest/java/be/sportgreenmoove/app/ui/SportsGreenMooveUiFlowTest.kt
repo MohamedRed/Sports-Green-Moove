@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.Composable
@@ -114,6 +115,22 @@ class SportsGreenMooveUiFlowTest {
             SgmTestTags.ActiveRideEndAction,
             SgmTestTags.EmergencyContact,
         )
+    }
+
+    @Test
+    fun activeRidePermissionGateShowsBackgroundLocationDisclosureBeforeOsPrompt() {
+        setTestContent {
+            val gate = rememberActiveRidePermissionGate(onBlocked = {})
+            Button(onClick = { gate.runWhenReady {} }) {
+                Text("Démarrer le suivi")
+            }
+        }
+
+        compose.onNodeWithText("Démarrer le suivi").performClick()
+        compose.onNodeWithText("Suivi de course").assertIsDisplayed()
+        compose.onNodeWithText("position précise en arrière-plan", substring = true).assertIsDisplayed()
+        compose.onNodeWithText("Continuer").assertIsDisplayed()
+        compose.onNodeWithText("Annuler").assertIsDisplayed()
     }
 
     @Test
