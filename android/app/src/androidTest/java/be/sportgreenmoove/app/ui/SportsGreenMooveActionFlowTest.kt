@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
@@ -201,6 +202,28 @@ class SportsGreenMooveActionFlowTest {
         assertEquals(passenger.bookingId, pickupPassenger?.bookingId)
         assertEquals(passenger.childId, dropoffPassenger?.childId)
         assertTrue(endRideTapped)
+    }
+
+    @Test
+    fun activeRideStaleLocationShowsSafetyWarning() {
+        compose.setSgmUiTestContent {
+            RideMonitorScreen(
+                activeRide = UiFlowFixtures.activeRide.copy(
+                    stale = true,
+                    vehicleLastUpdateLabel = "Il y a 18 min",
+                    childLastUpdateLabel = "Il y a 21 min",
+                ),
+                routePreview = UiFlowFixtures.route,
+                onBack = {},
+                onPickup = {},
+                onDropoff = {},
+                onEndRide = {},
+            )
+        }
+
+        compose.onNodeWithTag(SgmTestTags.ActiveRideStaleWarning)
+            .performScrollTo()
+            .assertIsDisplayed()
     }
 
     @Test
