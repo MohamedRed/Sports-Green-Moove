@@ -227,6 +227,30 @@ class SportsGreenMooveActionFlowTest {
     }
 
     @Test
+    fun activeRideResumeCardOpensLiveRideAfterAppRefresh() {
+        var openedRide = false
+
+        compose.setSgmUiTestContent {
+            TripsScreen(
+                trips = listOf(UiFlowFixtures.trip),
+                activeRide = UiFlowFixtures.activeRide,
+                bookingRequests = emptyList(),
+                onTripAction = {},
+                onOpenSearch = {},
+                onOpenRide = { openedRide = true },
+                onApproveBooking = {},
+            )
+        }
+
+        compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction)
+            .performScrollTo()
+            .assertIsDisplayed()
+            .performClick()
+
+        assertTrue(openedRide)
+    }
+
+    @Test
     fun paymentActionDispatchesSelectedBooking() {
         var paidBooking: PayableBookingSummary? = null
 
