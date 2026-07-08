@@ -7,6 +7,10 @@ on:
         description: BrowserStack Android device/OS target (for example, Google Pixel 8-14.0)
         required: false
         default: Google Pixel 8-14.0
+      list_devices_only:
+        description: List available BrowserStack Android devices and skip APK build/test
+        required: false
+        default: "false"
   push:
     branches:
       - codex/implement-plan
@@ -58,16 +62,47 @@ jobs:
           test -n "$BROWSERSTACK_USERNAME"
           test -n "$BROWSERSTACK_ACCESS_KEY"
 
+      - name: List BrowserStack Android devices
+        if: ${{ github.event.inputs.list_devices_only == 'true' }}
+        run: |
+          curl -fsS -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" \
+            https://api-cloud.browserstack.com/app-automate/devices.json \
+            > browserstack-android-devices.json
+          python3 - <<'PY'
+          import json
+          from collections import defaultdict
+
+          with open('browserstack-android-devices.json', encoding='utf-8') as handle:
+              devices = json.load(handle)
+
+          android = [device for device in devices if str(device.get('os', '')).lower() == 'android']
+          by_os = defaultdict(list)
+          for device in android:
+              name = device.get('device') or device.get('device_name') or device.get('name')
+              os_version = device.get('os_version') or device.get('version')
+              if name and os_version:
+                  by_os[str(os_version)].append(str(name))
+
+          def version_key(value):
+              return tuple(int(part) if part.isdigit() else 0 for part in value.split('.'))
+
+          for os_version in sorted(by_os, key=version_key):
+              names = ', '.join(sorted(set(by_os[os_version]))[:12])
+              print(f'Android {os_version}: {names}')
+          PY
+
       - name: Install Firebase Android config
-        if: ${{ env.FIREBASE_ANDROID_CONFIG_BASE64 != '' }}
+        if: ${{ github.event.inputs.list_devices_only != 'true' && env.FIREBASE_ANDROID_CONFIG_BASE64 != '' }}
         run: |
           printf '%s' "$FIREBASE_ANDROID_CONFIG_BASE64" | base64 --decode > android/app/google-services.json
 
       - name: Build debug app and instrumentation APKs
+        if: ${{ github.event.inputs.list_devices_only != 'true' }}
         working-directory: android
         run: ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest --no-daemon --stacktrace
 
       - name: Upload APK artifacts
+        if: ${{ github.event.inputs.list_devices_only != 'true' }}
         uses: actions/upload-artifact@v7
         with:
           name: browserstack-android-apks
@@ -77,6 +112,7 @@ jobs:
           if-no-files-found: error
 
       - name: Run BrowserStack Espresso build
+        if: ${{ github.event.inputs.list_devices_only != 'true' }}
         run: |
           python3 scripts/run-browserstack-espresso-build.py \
             --app android/app/build/outputs/apk/debug/app-debug.apk \
@@ -93,3 +129,11 @@ jobs:
           name: browserstack-android-ui-result
           path: browserstack-android-ui-result.json
           if-no-files-found: ignore
+
+      - name: Upload BrowserStack device list
+        if: ${{ github.event.inputs.list_devices_only == 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: browserstack-android-devices
+          path: browserstack-android-devices.json
+          if-no-files-found: error
