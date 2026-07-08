@@ -13,16 +13,22 @@ assert.equal(
 );
 
 assert.ok(existsSync("scripts/browserstack-real-device-evidence.mjs"), "BrowserStack evidence normalizer should exist.");
+assert.ok(existsSync("scripts/upload-browserstack-app-live.py"), "BrowserStack App Live upload helper should exist.");
 assert.ok(
   existsSync("docs/ci/browserstack-real-device.yml.template"),
   "BrowserStack workflow must be staged as an inert template until a workflow-scoped token installs it.",
 );
 
 const protocol = readFileSync("docs/release/real-device-test-protocol.md", "utf8");
-assert.match(protocol, /BrowserStack App Automate/i, "Real-device protocol should document BrowserStack App Automate.");
+assert.match(protocol, /BrowserStack App Live/i, "Real-device protocol should document BrowserStack App Live for App Live-only subscriptions.");
+assert.match(protocol, /BrowserStack App Automate/i, "Real-device protocol should document BrowserStack App Automate when automation is available.");
 assert.match(protocol, /browserstack:real-device-evidence/, "Real-device protocol should mention the evidence normalizer command.");
 
 const template = readFileSync("docs/ci/browserstack-real-device.yml.template", "utf8");
+const activeAndroidWorkflow = readFileSync(".github/workflows/android-browserstack.yml", "utf8");
+assert.match(activeAndroidWorkflow, /app_live_upload/, "Active Android BrowserStack workflow should support App Live upload mode.");
+assert.match(activeAndroidWorkflow, /scripts\/upload-browserstack-app-live\.py/, "Active Android BrowserStack workflow should upload APKs to App Live.");
+assert.match(activeAndroidWorkflow, /app_automate_espresso/, "Active Android BrowserStack workflow should keep App Automate as an explicit opt-in mode.");
 for (const secretName of [
   "BROWSERSTACK_USERNAME",
   "BROWSERSTACK_ACCESS_KEY",

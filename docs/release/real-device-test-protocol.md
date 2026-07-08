@@ -21,11 +21,18 @@ configuration. Do not record or commit provider secrets.
 Record the device model, OS version, app build, tester, completed timestamp, and
 artifact references in `docs/release/evidence-manifest.json`.
 
-BrowserStack App Automate is the preferred repeatable real-device cloud path when
-local physical devices are not available. Use the inert workflow template at
-`docs/ci/browserstack-real-device.yml.template` after a maintainer installs it
-with a GitHub token that has workflow scope and adds BrowserStack secrets. After
-the BrowserStack run, normalize the manifest-ready evidence with:
+BrowserStack App Live is the supported cloud-device path for App Live-only
+subscriptions: run the active `Android BrowserStack Real-Device UI` workflow in
+`app_live_upload` mode, open the uploaded APK in BrowserStack App Live, execute
+the manual scenario checklist below, then attach the App Live session artifacts
+and sanitized backend exports to the release manifest. App Live does not run the
+Espresso/Compose automation suite.
+
+BrowserStack App Automate remains the preferred repeatable automated cloud path
+only when an App Automate subscription is available. Use the inert workflow
+template at `docs/ci/browserstack-real-device.yml.template` after a maintainer
+installs it with a GitHub token that has workflow scope and adds BrowserStack
+secrets. After the BrowserStack run, normalize the manifest-ready evidence with:
 
 ```bash
 npm run browserstack:real-device-evidence -- \

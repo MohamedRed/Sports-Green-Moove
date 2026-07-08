@@ -3,12 +3,20 @@ name: Android BrowserStack Real-Device UI
 on:
   workflow_dispatch:
     inputs:
+      execution_mode:
+        description: BrowserStack mode to run. Use app_live_upload for App Live-only subscriptions; app_automate_espresso requires App Automate.
+        required: false
+        default: app_live_upload
+        type: choice
+        options:
+          - app_live_upload
+          - app_automate_espresso
       device:
-        description: BrowserStack Android device/OS target (for example, Google Pixel 8-14.0)
+        description: BrowserStack Android device/OS target for App Automate (for example, Google Pixel 8-14.0)
         required: false
         default: Google Pixel 8-14.0
       list_devices_only:
-        description: List available BrowserStack Android devices and skip APK build/test
+        description: List available BrowserStack App Automate Android devices and skip APK build/test
         required: false
         default: "false"
   push:
@@ -18,13 +26,14 @@ on:
       - ".github/workflows/android-browserstack.yml"
       - "android/**"
       - "scripts/run-browserstack-espresso-build.py"
+      - "scripts/upload-browserstack-app-live.py"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   browserstack-android-ui:
-    name: BrowserStack Android Compose UI tests
+    name: BrowserStack Android ${{ github.event.inputs.execution_mode || 'app_live_upload' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -34,6 +43,7 @@ jobs:
     env:
       BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
       BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      BROWSERSTACK_EXECUTION_MODE: ${{ github.event.inputs.execution_mode || 'app_live_upload' }}
       BROWSERSTACK_ANDROID_DEVICE: ${{ github.event.inputs.device || vars.BROWSERSTACK_ANDROID_DEVICE || 'Google Pixel 8-14.0' }}
       FIREBASE_ANDROID_CONFIG_BASE64: ${{ secrets.FIREBASE_ANDROID_CONFIG_BASE64 }}
       SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
@@ -63,7 +73,7 @@ jobs:
           test -n "$BROWSERSTACK_ACCESS_KEY"
 
       - name: List BrowserStack Android devices
-        if: ${{ github.event.inputs.list_devices_only == 'true' }}
+        if: ${{ github.event.inputs.list_devices_only == 'true' && env.BROWSERSTACK_EXECUTION_MODE == 'app_automate_espresso' }}
         run: |
           curl -fsS -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" \
             https://api-cloud.browserstack.com/app-automate/devices.json \
@@ -96,13 +106,26 @@ jobs:
         run: |
           printf '%s' "$FIREBASE_ANDROID_CONFIG_BASE64" | base64 --decode > android/app/google-services.json
 
-      - name: Build debug app and instrumentation APKs
+      - name: Build debug APKs
         if: ${{ github.event.inputs.list_devices_only != 'true' }}
         working-directory: android
-        run: ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest --no-daemon --stacktrace
+        run: |
+          if [ "$BROWSERSTACK_EXECUTION_MODE" = "app_automate_espresso" ]; then
+            ./gradlew :app:assembleDebug :app:assembleDebugAndroidTest --no-daemon --stacktrace
+          else
+            ./gradlew :app:assembleDebug --no-daemon --stacktrace
+          fi
 
-      - name: Upload APK artifacts
-        if: ${{ github.event.inputs.list_devices_only != 'true' }}
+      - name: Upload App Live APK artifact
+        if: ${{ github.event.inputs.list_devices_only != 'true' && env.BROWSERSTACK_EXECUTION_MODE == 'app_live_upload' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: browserstack-app-live-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+
+      - name: Upload App Automate APK artifacts
+        if: ${{ github.event.inputs.list_devices_only != 'true' && env.BROWSERSTACK_EXECUTION_MODE == 'app_automate_espresso' }}
         uses: actions/upload-artifact@v7
         with:
           name: browserstack-android-apks
@@ -111,8 +134,17 @@ jobs:
             android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
           if-no-files-found: error
 
+      - name: Upload APK to BrowserStack App Live
+        if: ${{ github.event.inputs.list_devices_only != 'true' && env.BROWSERSTACK_EXECUTION_MODE == 'app_live_upload' }}
+        run: |
+          python3 scripts/upload-browserstack-app-live.py \
+            --app android/app/build/outputs/apk/debug/app-debug.apk \
+            --project "Sports Green-mOOVe" \
+            --build "${GITHUB_REF_NAME}@${GITHUB_SHA::7}" \
+            --output browserstack-app-live-upload.json
+
       - name: Run BrowserStack Espresso build
-        if: ${{ github.event.inputs.list_devices_only != 'true' }}
+        if: ${{ github.event.inputs.list_devices_only != 'true' && env.BROWSERSTACK_EXECUTION_MODE == 'app_automate_espresso' }}
         run: |
           python3 scripts/run-browserstack-espresso-build.py \
             --app android/app/build/outputs/apk/debug/app-debug.apk \
@@ -122,8 +154,16 @@ jobs:
             --build "${GITHUB_REF_NAME}@${GITHUB_SHA::7}" \
             --output browserstack-android-ui-result.json
 
-      - name: Upload BrowserStack result
-        if: ${{ always() }}
+      - name: Upload BrowserStack App Live upload result
+        if: ${{ always() && env.BROWSERSTACK_EXECUTION_MODE == 'app_live_upload' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: browserstack-app-live-upload
+          path: browserstack-app-live-upload.json
+          if-no-files-found: ignore
+
+      - name: Upload BrowserStack App Automate result
+        if: ${{ always() && env.BROWSERSTACK_EXECUTION_MODE == 'app_automate_espresso' }}
         uses: actions/upload-artifact@v7
         with:
           name: browserstack-android-ui-result
@@ -131,7 +171,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Upload BrowserStack device list
-        if: ${{ github.event.inputs.list_devices_only == 'true' }}
+        if: ${{ github.event.inputs.list_devices_only == 'true' && env.BROWSERSTACK_EXECUTION_MODE == 'app_automate_espresso' }}
         uses: actions/upload-artifact@v7
         with:
           name: browserstack-android-devices
