@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-07-08T20:40:05Z",
+  "generatedAt": "2026-07-08T21:17:44Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -159,7 +159,7 @@
       {
         "id": "android_browserstack_real_device_ui",
         "status": "passed",
-        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke. The latest release-candidate evidence passed 26/26 tests on Google Pixel 8 / Android 14.0 after adding active-ride fallback lifecycle coverage. Earlier matrix evidence passed 22/22 tests on Samsung Galaxy S23 / Android 13.0, Google Pixel 6 / Android 12.0, and Samsung Galaxy S20 / Android 10.0. Coverage includes Home dashboard actions, friendly publish network-failure copy, stale active-ride safety-warning UI, and active ride startup/end logic that starts Firebase native fallback, starts Radar when configured, and stops tracking on ride completion.",
+        "description": "BrowserStack App Automate ran the Android instrumentation user-flow suite and live-backend signup/navigation smoke. The latest release-candidate evidence passed 27/27 tests on Google Pixel 8 / Android 14.0 after adding active-ride permission disclosure coverage. Earlier matrix evidence passed 22/22 tests on Samsung Galaxy S23 / Android 13.0, Google Pixel 6 / Android 12.0, and Samsung Galaxy S20 / Android 10.0. Coverage includes Home dashboard actions, friendly publish network-failure copy, stale active-ride safety-warning UI, active ride startup/end native fallback lifecycle, and the prominent active-ride precise/background-location disclosure shown before OS permission prompts.",
         "evidenceRefs": [
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885160037",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28885794850",
@@ -179,6 +179,8 @@
           "https://app-automate.browserstack.com/dashboard/v2/builds/5a3bfb4c20d67af82e1ebb0a5d7c5eaec8a2209f",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28973412099",
           "https://app-automate.browserstack.com/dashboard/v2/builds/18a196784fa7bfce8846f4ed25150b903875b288",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28974834717",
+          "https://app-automate.browserstack.com/dashboard/v2/builds/c9f0bf5decb4b135b5b5e82a58014ccf296e13d4",
           "android-verification-notes.md"
         ]
       },

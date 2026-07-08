@@ -3,7 +3,8 @@
 ## 2026-07-07
 
 Branch: `codex/implement-plan`
-Validated latest BrowserStack commit: `7989cb8`
+Validated latest BrowserStack commit: `1fe083b`
+Validated active-ride fallback BrowserStack commit: `7989cb8`
 Validated stale-location BrowserStack commit: `5a47a46`
 Validated latest multi-device BrowserStack commit: `6a784e3`
 Validated publish-failure BrowserStack commit: `0b41489`
@@ -25,6 +26,7 @@ Verified BrowserStack Android workflow can be rerun against a selected device fr
 - Latest lower-OS rerun on commit `59dc9bd` passed on Samsung Galaxy S20 / Android 10.0: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28967531253>, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/1080f2cf52d9f3eee7bfdc8566f8642f87de6216>, session `50b77cf94115d6f1a267d19c0a163f907671bef3`, 22/22 test cases passed.
 - Latest stale-location warning run on commit `5a47a46` passed on Google Pixel 8 / Android 14.0: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28970678344>, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/5a3bfb4c20d67af82e1ebb0a5d7c5eaec8a2209f>, session `c759d48bbf950d060e271644022c58a3d99adadb`, 23/23 test cases passed after adding active-ride stale-location safety-warning coverage.
 - Latest active-ride fallback lifecycle run on commit `7989cb8` passed on Google Pixel 8 / Android 14.0: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28973412099>, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/18a196784fa7bfce8846f4ed25150b903875b288>, session `14b0a0db1fb90104d7497fac755908e4c1c1e49b`, 26/26 test cases passed after adding coverage that active ride startup starts Radar when configured, always starts Firebase native fallback, and stops native/Radar tracking when the ride ends.
+- Latest active-ride permission disclosure run on commit `1fe083b` passed on Google Pixel 8 / Android 14.0: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28974834717>, BrowserStack build <https://app-automate.browserstack.com/dashboard/v2/builds/c9f0bf5decb4b135b5b5e82a58014ccf296e13d4>, session `b03cf1bde69d603a74e5c69eb5fb35ff3efc5f1c`, 27/27 test cases passed after adding coverage for the prominent active-ride location/background disclosure before OS permission prompts.
 - Latest Native CI manual verification on commit `6a784e3` passed: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28955630602> with connected UI result artifact <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28955630602/artifacts/8173942942>.
 - BrowserStack device inventory run: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28939295650> — listed available Android targets before selecting the Android 10 run.
 - Exploratory Samsung Galaxy Note 9 / Android 8.1 run <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28939351402> timed out while BrowserStack still reported the session as running; no app assertion failure was observed.
@@ -50,6 +52,8 @@ Verified BrowserStack Android workflow can be rerun against a selected device fr
 - Latest stale-location warning BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28970678344/artifacts/8180433034>.
 - Latest active-ride fallback lifecycle APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28973412099/artifacts/8181107269>.
 - Latest active-ride fallback lifecycle BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28973412099/artifacts/8181284954>.
+- Latest active-ride permission disclosure APK artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28974834717/artifacts/8181689243>.
+- Latest active-ride permission disclosure BrowserStack result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28974834717/artifacts/8181977731>.
 - Latest Native CI connected UI result artifact: <https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/28955630602/artifacts/8173942942>.
 - Current PR checks on `0b41489` also passed after rerunning a transient Android SDK download failure in Native CI: Native CI, Backend CI, Web Integration Smoke, and Release Readiness.
 
