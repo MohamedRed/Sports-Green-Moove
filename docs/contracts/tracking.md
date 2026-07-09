@@ -81,6 +81,8 @@ Native Firebase fallback runs for every active ride, including rides where Radar
 
 `getActiveRide` is available to the active ride driver, participant parents, listed child-device users, and admins. It reads `liveTrips/{rideSessionId}` and returns source-aware labels for the native apps. Vehicle location is stale when no vehicle point exists or the latest vehicle point is older than 90 seconds.
 
+The active ride snapshot includes the `tripId`; native clients use that id to recover the trip's route preview from Firebase trip data and render it with the platform Google Maps SDK. If a client Maps key is missing, the app must show a configuration-required state rather than a decorative or estimated map.
+
 Child-device ride access starts from booking assignment: native parent search selects a guardian-owned child profile, `requestBooking` stores `childId` and `childLabel`, and `startRide` copies approved booking child ids into `rideSessions.childUserIds` plus `liveTrips/{rideSessionId}/meta/childUserIds`.
 
 Native end-ride actions call `endRide`, stop Firebase native fallback, and complete Radar trip tracking when Radar is configured. `endRide` completes the ride session and any attached bookings, then writes completed metadata to `liveTrips/{rideSessionId}/meta`.

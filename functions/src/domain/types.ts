@@ -55,6 +55,17 @@ export type Trip = {
 
 export type ClientTripStatus = "upcoming" | "past" | "pending";
 
+export type ClientMapPoint = {
+  lat: number;
+  lng: number;
+};
+
+export type ClientMapRoutePreview = {
+  start: ClientMapPoint;
+  end: ClientMapPoint;
+  encodedPolyline?: string;
+};
+
 export type ClientTripSummary = {
   id: string;
   title: string;
@@ -71,6 +82,7 @@ export type ClientTripSummary = {
   passengerInitials: string[];
   reasons: string[];
   status: ClientTripStatus;
+  mapPreview?: ClientMapRoutePreview;
 };
 
 export type ClientBookingSummary = {
@@ -97,6 +109,7 @@ export type ClientBookingRequestSummary = {
 
 export type ClientRideSnapshot = {
   rideSessionId: string;
+  tripId?: string;
   status: string;
   vehicleLastUpdateLabel: string;
   childLastUpdateLabel: string | null;

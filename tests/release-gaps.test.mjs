@@ -1,0 +1,137 @@
+import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { tmpdir } from "node:os";
+import {
+  postponedSocialAuthEnvironmentVariables,
+  requiredProviderEnvironmentVariables,
+} from "../scripts/release-evidence-requirements.mjs";
+
+const output = execFileSync(
+  process.execPath,
+  ["scripts/report-release-gaps.mjs", "--json"],
+  {
+    encoding: "utf8",
+    env: {
+      HOME: process.env.HOME,
+      PATH: process.env.PATH,
+    },
+  },
+);
+const report = JSON.parse(output);
+
+assert.equal(report.ok, false, "Current release gap report must not claim public-launch completion.");
+assert.equal(report.manifest.exists, true, "In-progress release evidence manifest should be read.");
+assert.equal(report.manifest.data.manifestStatus, "in-progress", "Release evidence manifest must not claim completion.");
+assert.equal(report.secretInventory.exists, true, "Default release gap report should read the checked-in secret inventory.");
+assert.deepEqual(report.automatedFlowEvidence.missing, [], "Automated user-flow evidence should be complete.");
+assert.ok(
+  report.providerEnvironment.presentFromSecretInventory.includes("STRIPE_WEBHOOK_SECRET"),
+  "Default release gap report should count configured GitHub secret names from the checked-in inventory.",
+);
+
+assert.deepEqual(report.providerEnvironment.missing, [], "Production launch provider secret names should be present.");
+assert.deepEqual(
+  report.postponedSocialAuthEnvironment.missing,
+  postponedSocialAuthEnvironmentVariables,
+  "Postponed Google and Meta OAuth secret names should stay visible without blocking launch provider inventory.",
+);
+
+const tmpDir = mkdtempSync(join(tmpdir(), "sgm-release-gaps-"));
+try {
+  const configuredSecretNames = requiredProviderEnvironmentVariables;
+  const inventoryPath = join(tmpDir, "github-secrets.json");
+  writeFileSync(
+    inventoryPath,
+    JSON.stringify(configuredSecretNames.map((name) => ({ name, updatedAt: "2026-06-14T00:00:00Z" }))),
+  );
+
+  const inventoryReport = JSON.parse(
+    execFileSync(process.execPath, ["scripts/report-release-gaps.mjs", "--json", "--secret-inventory", inventoryPath], {
+      encoding: "utf8",
+      env: {
+        HOME: process.env.HOME,
+        PATH: process.env.PATH,
+      },
+    }),
+  );
+
+  assert.equal(inventoryReport.secretInventory.exists, true, "Secret inventory file should be read.");
+  assert.ok(
+    inventoryReport.providerEnvironment.presentFromSecretInventory.includes("STRIPE_WEBHOOK_SECRET"),
+    "Provider environment should count configured GitHub secret names.",
+  );
+  assert.deepEqual(
+    inventoryReport.providerEnvironment.missing,
+    [],
+    "Secret inventory mode should pass production launch provider names without postponed social auth.",
+  );
+  assert.deepEqual(
+    inventoryReport.postponedSocialAuthEnvironment.missing,
+    postponedSocialAuthEnvironmentVariables,
+    "Secret inventory mode should still report postponed social-auth names separately.",
+  );
+} finally {
+  rmSync(tmpDir, { recursive: true, force: true });
+}
+
+for (const platform of ["ios", "android"]) {
+  assert.equal(report.realDeviceRuns.byPlatform[platform].runCount, 0);
+  assert.ok(
+    report.realDeviceRuns.byPlatform[platform].missing.includes("locked_screen_tracking"),
+    `${platform} real-device evidence should report missing locked-screen tracking.`,
+  );
+  assert.ok(
+    report.realDeviceRuns.byPlatform[platform].missing.includes("firebase_native_fallback"),
+    `${platform} real-device evidence should report missing native fallback proof.`,
+  );
+}
+
+assert.ok(
+  report.storeReviewEvidence.passed.includes("permission_education_screenshot"),
+  "Store-review evidence should count generated permission education screenshot evidence.",
+);
+assert.ok(
+  report.storeReviewEvidence.passed.includes("active_ride_tracking_screenshot"),
+  "Store-review evidence should count generated active ride screenshot evidence.",
+);
+for (const acceptedStoreEvidence of [
+  "privacy_policy_url",
+  "app_store_privacy_answers",
+  "google_play_data_safety_answers",
+  "guardian_consent_copy",
+  "background_location_disclosure",
+  "child_safety_disclosure",
+]) {
+  assert.ok(
+    report.storeReviewEvidence.passed.includes(acceptedStoreEvidence),
+    `Store-review evidence should count generated ${acceptedStoreEvidence} evidence.`,
+  );
+  assert.ok(
+    !report.storeReviewEvidence.missing.includes(acceptedStoreEvidence),
+    `Generated ${acceptedStoreEvidence} should no longer be reported missing.`,
+  );
+}
+assert.ok(
+  !report.storeReviewEvidence.missing.includes("privacy_policy_url"),
+  "Published privacy-policy URL should no longer be reported missing.",
+);
+assert.ok(
+  !report.storeReviewEvidence.missing.includes("app_store_privacy_answers"),
+  "Prepared App Store privacy answers should no longer be reported missing.",
+);
+assert.ok(
+  !report.storeReviewEvidence.missing.includes("google_play_data_safety_answers"),
+  "Prepared Google Play Data safety answers should no longer be reported missing.",
+);
+assert.ok(
+  !report.storeReviewEvidence.missing.includes("permission_education_screenshot"),
+  "Generated permission education screenshot should no longer be reported missing.",
+);
+assert.ok(
+  report.safetyAuditEvidence.missing.includes("payment_reconciliation_event"),
+  "Safety-audit evidence should report missing payment reconciliation exports.",
+);
+
+console.log("Release gap report checks passed.");

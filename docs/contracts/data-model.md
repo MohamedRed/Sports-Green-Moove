@@ -15,7 +15,7 @@
 | `messages` | Chat messages linked to trip/booking/ride session. |
 | `notifications` | In-app notification feed and push metadata. |
 | `ratings` | Post-ride ratings and comments. |
-| `co2Ledger` | Immutable CO2 accounting entries. |
+| `co2Ledger` | Immutable CO2 accounting entries written when rides complete. |
 | `rewardLedger` | Immutable reward, bonus, payment, and payout ledger entries. |
 | `stripeAccounts` | Connected account state and onboarding status. |
 | `reports` | Safety/support reports, admin review status, latest review note, and review audit events. |
@@ -71,5 +71,14 @@ Live state is mirrored into Firestore audit summaries by Cloud Functions. The UI
 
 Native clients list `children` with `guardianUserIds array-contains auth.uid` and pass the selected `childId` to `searchTrips` and `requestBooking`.
 `requestBooking` re-reads the child profile server-side and rejects ids that do not belong to the authenticated parent.
+
+Native Groups screens list public `clubs` and join them with the signed-in
+user's `memberships` to separate "Mes clubs" from discoverable clubs. They must
+not ship static club lists as product data.
+When a signed-in user taps "Rejoindre", the app calls `requestClubMembership`.
+The backend writes `memberships/{userId}_{clubId}` with `status = "requested"`
+and `active = false`; club managers/admins can later review the membership in
+the admin console. Requested memberships render as pending requests, not active
+member clubs.
 
 The Messages tab reads through `getInbox`, not direct static fixtures. The callable returns the caller's `notifications`, groups recent `messages` by booking or ride-session conversation, and derives pending `ratings` prompts from completed ride sessions where the caller has not yet rated the other participant.

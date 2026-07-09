@@ -27,11 +27,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import be.sportgreenmoove.app.data.ImpactSummary
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import java.util.Locale
 
 @Composable
 fun rememberHomeTrips(trips: List<TripSummary>): List<HomeTripUi> =
@@ -48,19 +50,24 @@ fun rememberHomeTrips(trips: List<TripSummary>): List<HomeTripUi> =
     }
 
 @Composable
-fun HomeStatsRow() {
+fun HomeStatsRow(summary: ImpactSummary) {
     Row(
         modifier = Modifier.padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        HomeMetricCard("12,4", "kg", "CO₂ économisé", SgmColor.Green, Modifier.weight(1f))
-        HomeMetricCard("24", "trajets", "Partagés", SgmColor.Orange, Modifier.weight(1f))
-        HomeMetricCard("847", "km", "Parcourus", SgmColor.Green, Modifier.weight(1f))
+        HomeMetricCard(homeKgValue(summary.totalCo2Kg), "kg", "CO₂ économisé", SgmColor.Green, Modifier.weight(1f))
+        HomeMetricCard(summary.rideCount.toString(), "trajets", "Partagés", SgmColor.Orange, Modifier.weight(1f))
+        HomeMetricCard(summary.sharedDistanceKm.toString(), "km", "Parcourus", SgmColor.Green, Modifier.weight(1f))
     }
 }
 
 @Composable
 fun HomeSectionLabel(title: String, action: String?, onAction: (() -> Unit)?) {
+    HomeSectionLabel(title = title, action = action, onAction = onAction, actionTestTag = null)
+}
+
+@Composable
+fun HomeSectionLabel(title: String, action: String?, onAction: (() -> Unit)?, actionTestTag: String?) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -77,7 +84,9 @@ fun HomeSectionLabel(title: String, action: String?, onAction: (() -> Unit)?) {
             Text(
                 action,
                 style = SgmType.BodyXS.copy(color = SgmColor.Green, fontSize = 12.sp, fontWeight = FontWeight.Bold),
-                modifier = Modifier.clickable(onClick = onAction),
+                modifier = Modifier
+                    .sgmOptionalTestTag(actionTestTag)
+                    .clickable(onClick = onAction),
                 maxLines = 1,
             )
         }
@@ -133,10 +142,11 @@ fun HomeTripCard(trip: HomeTripUi, onClick: () -> Unit) {
 }
 
 @Composable
-fun HomeImpactCard(onClick: () -> Unit) {
+fun HomeImpactCard(summary: ImpactSummary, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .padding(horizontal = 20.dp)
+            .sgmTestTag(SgmTestTags.HomeImpactAction)
             .clip(RoundedCornerShape(SgmRadius.LG))
             .background(SgmColor.HeroGradient)
             .clickable(onClick = onClick)
@@ -156,7 +166,7 @@ fun HomeImpactCard(onClick: () -> Unit) {
         Column {
             Text("CO₂ EN TEMPS RÉEL", style = SgmType.DisplayXL.copy(color = SgmColor.TextOnGreen, fontSize = 22.sp, letterSpacing = 0.04.em))
             Text(
-                "Wallonie · Flandre · Bruxelles\n37.356 + 45.784 + 29.886 utilisateurs",
+                "${homeKgValue(summary.totalCo2Kg)} kg économisés\n${summary.sharedDistanceKm} km partagés · ${summary.rideCount} trajets",
                 style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.65f), fontSize = 12.sp, lineHeight = 18.sp),
             )
         }
@@ -221,6 +231,8 @@ private fun PassengerBadge(initials: String) {
         Text(initials, style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 8.sp, fontWeight = FontWeight.Bold))
     }
 }
+
+private fun homeKgValue(value: Double): String = String.format(Locale.FRANCE, "%.1f", value)
 
 data class HomeTripUi(
     val sport: String,

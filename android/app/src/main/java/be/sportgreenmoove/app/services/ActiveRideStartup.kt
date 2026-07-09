@@ -15,6 +15,21 @@ suspend fun AndroidProviderSet.startTrackedRide(
     bookingIds: List<String>,
 ): ActiveRideStartResult {
     val ride = firebase.startRide(tripId, bookingIds)
+    return startTrackingForRide(ride, role)
+}
+
+suspend fun AndroidProviderSet.startAccessibleRideTracking(
+    role: AppRole,
+): ActiveRideStartResult {
+    val ride = firebase.getActiveRide()
+        ?: throw ProviderConfigurationException("Aucune course active accessible pour démarrer le suivi.")
+    return startTrackingForRide(ride, role)
+}
+
+private suspend fun AndroidProviderSet.startTrackingForRide(
+    ride: LiveRideSnapshot,
+    role: AppRole,
+): ActiveRideStartResult {
     val radarStarted = if (radar.isConfigured) {
         runCatching {
             radar.startTripTracking(ride.rideSessionId, role)

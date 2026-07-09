@@ -5,7 +5,7 @@ struct PaymentsScreen: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(testID: UITestIdentifier.paymentsScreen) {
             SGMTopBar(title: "PAIEMENTS", showsBack: true)
             PaymentsHero(bookings: appState.payableBookings)
             if appState.selectedRole == .driver {
@@ -175,7 +175,7 @@ private struct PaymentBookingCard: View {
                     .font(.sgmDisplay(22))
                     .foregroundStyle(SGM.orange)
             }
-            SGMButton(title: loading ? "Préparation..." : "Payer maintenant", action: action)
+            SGMButton(title: loading ? "Préparation..." : "Payer maintenant", testID: UITestIdentifier.paymentAction, action: action)
                 .opacity(loading ? 0.58 : 1)
                 .allowsHitTesting(!loading)
         }

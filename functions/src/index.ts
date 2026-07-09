@@ -1,7 +1,10 @@
-export { setUserRoles } from "./callables/adminUsers.js";
+import "./options.js";
+
+export { initializeUserProfile, setUserRoles } from "./callables/adminUsers.js";
 export { approveBooking, cancelBooking, listDriverBookingRequests, requestBooking } from "./callables/bookings.js";
 export { createReport, reviewReport, submitRating } from "./callables/feedback.js";
 export { writeLocationBatch } from "./callables/locations.js";
+export { requestClubMembership } from "./callables/memberships.js";
 export { getInbox, sendChatMessage } from "./callables/messages.js";
 export {
   createRidePaymentIntent,

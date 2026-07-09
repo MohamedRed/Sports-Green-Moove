@@ -52,7 +52,13 @@ fun PaymentsConnectCard(
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text("Stripe Connect", style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary, fontSize = 15.sp, fontWeight = FontWeight.SemiBold))
             Text("Activez les paiements conducteur et les futurs virements récompenses.", style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.Medium))
-            V2Button(if (loading) "Ouverture..." else "Continuer l'onboarding", onClick = onStartConnect, size = V2ButtonSize.Sm, full = true)
+            V2Button(
+                if (loading) "Ouverture..." else "Continuer l'onboarding",
+                onClick = onStartConnect,
+                size = V2ButtonSize.Sm,
+                full = true,
+                testTag = SgmTestTags.PaymentConnectAction,
+            )
         }
     }
 }

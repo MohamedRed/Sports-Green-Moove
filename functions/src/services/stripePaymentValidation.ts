@@ -28,13 +28,26 @@ export type RidePaymentValidationResult =
       reason: string;
     };
 
+export function ridePaymentAmountCents(
+  booking: RidePaymentBookingSnapshot,
+  trip: RidePaymentTripSnapshot,
+): number | null {
+  const priceCents = trip.priceCents;
+  const seats = booking.seats ?? 1;
+  if (typeof priceCents !== "number" || !Number.isSafeInteger(priceCents) || priceCents <= 0) return null;
+  if (typeof seats !== "number" || !Number.isSafeInteger(seats) || seats <= 0) return null;
+
+  const amountCents = priceCents * seats;
+  return Number.isSafeInteger(amountCents) && amountCents > 0 ? amountCents : null;
+}
+
 export function validateSucceededRidePaymentIntent(
   intent: Stripe.PaymentIntent,
   booking: RidePaymentBookingSnapshot,
   trip: RidePaymentTripSnapshot,
 ): RidePaymentValidationResult {
   const parentUserId = booking.parentUserId ?? booking.requesterUserId;
-  const expectedAmount = (trip.priceCents ?? 0) * (booking.seats ?? 1);
+  const expectedAmount = ridePaymentAmountCents(booking, trip);
 
   if (intent.metadata.product !== "sports-green-moove") {
     return rejected("ignoredProduct", "PaymentIntent product metadata does not belong to Sports Green-mOOVe.");
@@ -57,7 +70,7 @@ export function validateSucceededRidePaymentIntent(
   if (intent.currency !== "eur") {
     return rejected("currencyMismatch", "PaymentIntent currency must be EUR.");
   }
-  if (expectedAmount <= 0 || intent.amount !== expectedAmount) {
+  if (expectedAmount == null || intent.amount !== expectedAmount) {
     return rejected("amountMismatch", "PaymentIntent amount does not match server-priced booking amount.");
   }
 

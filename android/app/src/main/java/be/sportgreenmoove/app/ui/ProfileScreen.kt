@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -23,21 +22,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.AppRole
+import be.sportgreenmoove.app.data.ImpactSummary
+import be.sportgreenmoove.app.data.RewardSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import java.util.Locale
 
-private val ProfileSettings = listOf(
-    ProfileSetting(SgmIcon.Groups, "Mon club", "Collège du Biéreau", ProfileAction.Groups),
+private fun profileSettings(primaryClubLabel: String) = listOf(
+    ProfileSetting(SgmIcon.Groups, "Mon club", primaryClubLabel, ProfileAction.Groups),
     ProfileSetting(SgmIcon.Award, "Paiements", "Stripe", ProfileAction.Payments),
     ProfileSetting(SgmIcon.Location, "Ma ville", "Wavre, Belgique", ProfileAction.Options),
     ProfileSetting(SgmIcon.Bell, "Notifications", "Activées", ProfileAction.Options),
@@ -47,6 +48,12 @@ private val ProfileSettings = listOf(
 @Composable
 fun ProfileScreen(
     role: AppRole,
+    availableRoles: Set<AppRole>,
+    displayName: String?,
+    email: String?,
+    primaryClubLabel: String,
+    impactSummary: ImpactSummary,
+    rewardSummary: RewardSummary,
     onRoleChange: (AppRole) -> Unit,
     onGroups: () -> Unit,
     onImpact: () -> Unit,
@@ -63,12 +70,13 @@ fun ProfileScreen(
             .padding(bottom = 20.dp),
     ) {
         V2TopBar("MON PROFIL")
-        ProfileIdentity()
-        ProfileRoleSelector(role = role, onRoleChange = onRoleChange)
-        ProfileImpactCard(onClick = onImpact)
-        ProfileRewardsCard(onClick = onRewards)
+        ProfileIdentity(displayName = displayName, email = email, primaryClubLabel = primaryClubLabel)
+        ProfileRoleSelector(role = role, availableRoles = availableRoles, onRoleChange = onRoleChange)
+        ProfileImpactCard(summary = impactSummary, onClick = onImpact)
+        ProfileRewardsCard(summary = rewardSummary, onClick = onRewards)
         V2SectionLabel("PARAMÈTRES")
         ProfileSettingsCard(
+            primaryClubLabel = primaryClubLabel,
             onGroups = onGroups,
             onPayments = onPayments,
             onOptions = onOptions,
@@ -82,43 +90,7 @@ fun ProfileScreen(
 }
 
 @Composable
-private fun ProfileIdentity() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-    ) {
-        Box(
-            modifier = Modifier
-                .size(80.dp)
-                .shadow(10.dp, CircleShape, clip = false)
-                .clip(CircleShape)
-                .background(Brush.linearGradient(listOf(SgmColor.Green, SgmColor.GreenDark))),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text("OB", style = SgmType.Display2XL.copy(color = SgmColor.TextOnGreen, fontSize = 30.sp, letterSpacing = 0.04.em))
-        }
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                "BAKOMBA-NZOLUVONDA",
-                style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.06.em),
-            )
-            Text(
-                "Olivier · Collège du Biéreau",
-                style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.Medium),
-            )
-        }
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            ProfilePill("GREEN-MOOVER", selected = false)
-            ProfilePill("U8 NATIONAUX", selected = true)
-        }
-    }
-}
-
-@Composable
-private fun ProfileImpactCard(onClick: () -> Unit) {
+private fun ProfileImpactCard(summary: ImpactSummary, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -140,7 +112,7 @@ private fun ProfileImpactCard(onClick: () -> Unit) {
                 horizontalArrangement = Arrangement.spacedBy(24.dp),
             ) {
                 Column {
-                    Text("12.4", style = SgmType.Display4XL.copy(color = SgmColor.Green, fontSize = 56.sp))
+                    Text(kgValue(summary.totalCo2Kg), style = SgmType.Display4XL.copy(color = SgmColor.Green, fontSize = 56.sp))
                     Text(
                         "kg CO₂ économisés",
                         style = SgmType.BodySM.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.60f), fontWeight = FontWeight.SemiBold),
@@ -150,9 +122,8 @@ private fun ProfileImpactCard(onClick: () -> Unit) {
                     modifier = Modifier.padding(bottom = 4.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
-                    Text("≈ 847 km parcourus", style = ProfileImpactMetaStyle())
-                    Text("24 trajets partagés", style = ProfileImpactMetaStyle())
-                    Text("Rang #47 Belgique", style = ProfileImpactMetaStyle())
+                    Text("${summary.sharedDistanceKm} km partagés", style = ProfileImpactMetaStyle())
+                    Text("${summary.rideCount} trajets clôturés", style = ProfileImpactMetaStyle())
                 }
             }
         }
@@ -160,7 +131,7 @@ private fun ProfileImpactCard(onClick: () -> Unit) {
 }
 
 @Composable
-private fun ProfileRewardsCard(onClick: () -> Unit) {
+private fun ProfileRewardsCard(summary: RewardSummary, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 16.dp)
@@ -181,7 +152,7 @@ private fun ProfileRewardsCard(onClick: () -> Unit) {
                     .padding(start = 8.dp)
                     .weight(1f),
             )
-            Text("7.50€", style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 24.sp))
+            Text(moneyLabel(summary.balanceCents), style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 24.sp))
         }
         Box(
             modifier = Modifier
@@ -192,21 +163,28 @@ private fun ProfileRewardsCard(onClick: () -> Unit) {
         ) {
             Box(
                 modifier = Modifier
-                    .fillMaxWidth(0.62f)
+                    .fillMaxWidth(summary.progress.coerceIn(0f, 1f))
                     .height(6.dp)
                     .clip(RoundedCornerShape(999.dp))
                     .background(Brush.horizontalGradient(listOf(SgmColor.Green, SgmColor.Orange))),
             )
         }
         Row {
-            Text("Prochain palier à 10€", style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium), modifier = Modifier.weight(1f))
-            Text("62%", style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium))
+            Text("Prochain palier à ${moneyLabel(summary.nextTierCents)}", style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium), modifier = Modifier.weight(1f))
+            Text(percentLabel(summary.progress), style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium))
         }
     }
 }
 
 @Composable
-private fun ProfileSettingsCard(onGroups: () -> Unit, onPayments: () -> Unit, onOptions: () -> Unit, modifier: Modifier = Modifier) {
+private fun ProfileSettingsCard(
+    primaryClubLabel: String,
+    onGroups: () -> Unit,
+    onPayments: () -> Unit,
+    onOptions: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val rows = profileSettings(primaryClubLabel)
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -214,10 +192,10 @@ private fun ProfileSettingsCard(onGroups: () -> Unit, onPayments: () -> Unit, on
             .background(Sgm.colors.bgSurface)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG)),
     ) {
-        ProfileSettings.forEachIndexed { index, setting ->
+        rows.forEachIndexed { index, setting ->
             ProfileSettingRow(
                 setting = setting,
-                showDivider = index < ProfileSettings.lastIndex,
+                showDivider = index < rows.lastIndex,
                 onClick = when (setting.action) {
                     ProfileAction.Groups -> onGroups
                     ProfileAction.Payments -> onPayments
@@ -249,19 +227,13 @@ private fun ProfileSettingRow(setting: ProfileSetting, showDivider: Boolean, onC
     }
 }
 
-@Composable
-private fun ProfilePill(text: String, selected: Boolean) {
-    Box(
-        modifier = Modifier
-            .clip(RoundedCornerShape(999.dp))
-            .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)
-            .then(if (selected) Modifier else Modifier.border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(999.dp)))
-            .padding(horizontal = 12.dp, vertical = 3.dp),
-    ) {
-        Text(text, style = SgmType.Label.copy(color = if (selected) SgmColor.TextOnGreen else SgmColor.Green, fontSize = 11.sp, letterSpacing = 0.04.em))
-    }
-}
-
 private fun ProfileImpactMetaStyle() = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.70f), fontSize = 12.sp)
+private fun kgValue(value: Double): String = String.format(Locale.FRANCE, "%.1f", value)
+private fun moneyLabel(cents: Int): String {
+    val sign = if (cents < 0) "-" else ""
+    val abs = kotlin.math.abs(cents)
+    return String.format(Locale.FRANCE, "%s%d,%02d€", sign, abs / 100, abs % 100)
+}
+private fun percentLabel(progress: Float): String = "${(progress.coerceIn(0f, 1f) * 100).toInt()}%"
 private data class ProfileSetting(val icon: SgmIcon, val label: String, val value: String, val action: ProfileAction)
 private enum class ProfileAction { Groups, Payments, Options }

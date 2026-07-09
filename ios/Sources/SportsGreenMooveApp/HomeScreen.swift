@@ -4,7 +4,7 @@ struct HomeScreen: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        SGMScreen(spacing: 0) {
+        SGMScreen(spacing: 0, testID: UITestIdentifier.homeScreen) {
             HomeHeader()
             HomeHeroCard(trip: appState.trips.first) {
                 Task {
@@ -13,7 +13,7 @@ struct HomeScreen: View {
                     }
                 }
             }
-            HomeStatsRow()
+            HomeStatsRow(summary: appState.impactSummary)
             SGMSectionLabel("SEMAINE À VENIR", action: "Tout voir") {
                 appState.selectTab(.trips)
             }
@@ -38,7 +38,7 @@ struct HomeScreen: View {
             .padding(.horizontal, SGMSpace.padScreen)
 
             SGMSectionLabel("IMPACT ÉCOLOGIQUE")
-            HomeImpactPreview()
+            HomeImpactPreview(summary: appState.impactSummary)
                 .padding(.horizontal, SGMSpace.padScreen)
         }
     }
@@ -137,11 +137,13 @@ private struct HomeEmptyTrips: View {
 }
 
 private struct HomeStatsRow: View {
+    let summary: ImpactSummary
+
     var body: some View {
         HStack(spacing: 8) {
-            SGMStatTile(value: "12.4", unit: "kg", label: "CO₂ économisé")
-            SGMStatTile(value: "24", unit: "trajets", label: "Partagés", accent: SGM.orange)
-            SGMStatTile(value: "847", unit: "km", label: "Parcourus")
+            SGMStatTile(value: homeKgValue(summary.totalCo2Kg), unit: "kg", label: "CO₂ économisé")
+            SGMStatTile(value: "\(summary.rideCount)", unit: "trajets", label: "Partagés", accent: SGM.orange)
+            SGMStatTile(value: "\(summary.sharedDistanceKm)", unit: "km", label: "Parcourus")
         }
         .padding(.horizontal, SGMSpace.padScreen)
         .padding(.bottom, 16)
@@ -149,6 +151,8 @@ private struct HomeStatsRow: View {
 }
 
 private struct HomeImpactPreview: View {
+    let summary: ImpactSummary
+
     var body: some View {
         HStack(spacing: 14) {
             SGMIconView(icon: .leaf, size: 22, color: SGM.green)
@@ -159,7 +163,7 @@ private struct HomeImpactPreview: View {
                     .font(.sgmDisplay(20))
                     .tracking(.sgmWide(for: 20))
                     .foregroundStyle(SGM.textOnGreen)
-                Text("Wallonie · Flandre · Bruxelles")
+                Text("\(homeKgValue(summary.totalCo2Kg)) kg économisés · \(summary.sharedDistanceKm) km partagés")
                     .font(.sgmBody(12, weight: .medium))
                     .foregroundStyle(SGM.textOnGreen.opacity(0.68))
             }
@@ -169,4 +173,12 @@ private struct HomeImpactPreview: View {
         .background(SGM.heroGradient, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
         .overlay(SGMGridTexture())
     }
+}
+
+private func homeKgValue(_ value: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.locale = Locale(identifier: "fr_FR")
+    formatter.minimumFractionDigits = 1
+    formatter.maximumFractionDigits = 1
+    return formatter.string(from: NSNumber(value: value)) ?? String(format: "%.1f", value)
 }

@@ -14,7 +14,9 @@ import type { ClientSearchMatch, SearchRequest, Trip } from "../domain/types.js"
 import { GoogleRoutesProvider } from "../services/googleRoutes.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
-import { toClientTripSummary } from "../lib/clientTrips.js";
+import { googleMapsApiKeySecret } from "../lib/providerSecrets.js";
+import { toClientMapRoutePreview, toClientTripSummary } from "../lib/clientTrips.js";
+import { parseCallableData } from "../lib/validation.js";
 
 const latLngSchema = z.object({
   lat: z.number().min(-90).max(90),
@@ -140,13 +142,18 @@ export const listTrips = onCall(async (request) => {
   };
 });
 
-export const searchTrips = onCall(async (request) => {
+export const searchTrips = onCall({ secrets: [googleMapsApiKeySecret] }, async (request) => {
   const uid = requireAuth(request.auth?.uid);
-  const parsed = searchTripsSchema.parse(request.data);
+  const parsed = parseCallableData(searchTripsSchema, request.data);
   const searchRequest = await loadSearchRequest(uid, parsed);
 
   const candidates = await loadCandidateTrips(searchRequest);
-  const ranked = await rankTrips(searchRequest, candidates, new GoogleRoutesProvider(), { finalRouteLimit: 12 });
+  const ranked = await rankTrips(
+    searchRequest,
+    candidates,
+    new GoogleRoutesProvider({ apiKey: googleMapsApiKeySecret.value() }),
+    { finalRouteLimit: 12 },
+  );
 
   return {
     matches: ranked.slice(0, 12).map((match): ClientSearchMatch => ({
@@ -154,7 +161,10 @@ export const searchTrips = onCall(async (request) => {
       score: match.score,
       route: match.route,
       reasons: match.reasons,
-      summary: toClientTripSummary(match.trip),
+      summary: {
+        ...toClientTripSummary(match.trip),
+        mapPreview: toClientMapRoutePreview(match.trip, match.route.finalEncodedPolyline),
+      },
     })),
   };
 });
@@ -162,7 +172,7 @@ export const searchTrips = onCall(async (request) => {
 export const createTrip = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   requireRole(request.auth?.token, "driver");
-  const data = createTripSchema.parse(request.data ?? {});
+  const data = parseCallableData(createTripSchema, request.data ?? {});
   if (!createTripSeatsAreValid(data)) {
     throw new HttpsError("invalid-argument", "Available seats cannot exceed total seats.");
   }

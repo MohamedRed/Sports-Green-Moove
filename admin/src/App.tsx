@@ -2,6 +2,7 @@ import { useState } from "react";
 import { firebaseProjectLabel, hasFirebaseConfig } from "./firebase";
 import { signInAdmin, signOutAdmin, useAdminAuth } from "./useAdminAuth";
 import { AdminDashboard } from "./AdminDashboard";
+import { Wordmark } from "./Wordmark";
 
 export function App() {
   const auth = useAdminAuth();
@@ -70,17 +71,5 @@ function Gate({ title, detail, onSignOut }: { title: string; detail: string; onS
         {onSignOut ? <button className="secondary-button" onClick={onSignOut}>Se déconnecter</button> : null}
       </section>
     </main>
-  );
-}
-
-export function Wordmark() {
-  return (
-    <div className="wordmark" aria-label="Sports Green Moove">
-      <span>SPORTS </span>
-      <strong>GREEN-</strong>
-      <b>m</b>
-      <em>OO</em>
-      <b>Ve</b>
-    </div>
   );
 }

@@ -24,6 +24,12 @@ packages:
   GoogleSignIn:
     url: https://github.com/google/GoogleSignIn-iOS.git
     from: "9.1.0"
+  Facebook:
+    url: https://github.com/facebook/facebook-ios-sdk.git
+    from: "18.0.3"
+  GoogleMaps:
+    url: https://github.com/googlemaps/ios-maps-sdk.git
+    from: "10.14.0"
 
 targets:
   SportsGreenMoove:
@@ -51,6 +57,12 @@ targets:
         product: RadarSDK
       - package: GoogleSignIn
         product: GoogleSignIn
+      - package: Facebook
+        product: FacebookCore
+      - package: Facebook
+        product: FacebookLogin
+      - package: GoogleMaps
+        product: GoogleMaps
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app
@@ -69,12 +81,23 @@ targets:
         NSLocationAlwaysUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         NSLocationAlwaysAndWhenInUseUsageDescription: Sports Green-mOOVe utilise la localisation en arrière-plan uniquement pendant une course active afin de maintenir le suivi de sécurité.
         SGMRadarPublishableKey: $(SGM_RADAR_PUBLISHABLE_KEY)
+        SGMGoogleMapsIOSAPIKey: $(SGM_GOOGLE_MAPS_IOS_API_KEY)
         SGMGoogleReversedClientID: $(SGM_GOOGLE_REVERSED_CLIENT_ID)
+        FacebookAppID: $(SGM_FACEBOOK_APP_ID)
+        FacebookClientToken: $(SGM_FACEBOOK_CLIENT_TOKEN)
+        FacebookDisplayName: Sports Green-mOOVe
         SGMStripeConnectReturnURL: $(SGM_STRIPE_CONNECT_RETURN_URL)
         SGMStripeConnectRefreshURL: $(SGM_STRIPE_CONNECT_REFRESH_URL)
         CFBundleURLTypes:
           - CFBundleURLSchemes:
               - $(SGM_GOOGLE_REVERSED_CLIENT_ID)
+          - CFBundleURLSchemes:
+              - fb$(SGM_FACEBOOK_APP_ID)
+        LSApplicationQueriesSchemes:
+          - fbapi
+          - fbauth2
+          - fb-messenger-share-api
+          - fbshareextension
         UIBackgroundModes:
           - location
         UISupportedInterfaceOrientations:
@@ -87,6 +110,20 @@ targets:
           - DMSans-Medium.ttf
           - DMSans-Bold.ttf
 
+  SportsGreenMooveUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: UITests/SportsGreenMooveUITests
+    dependencies:
+      - target: SportsGreenMoove
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app.uitests
+        TEST_TARGET_NAME: SportsGreenMoove
+        CODE_SIGN_STYLE: Automatic
+
 schemes:
   SportsGreenMoove:
     build:
@@ -94,5 +131,9 @@ schemes:
         SportsGreenMoove: all
     run:
       config: Debug
+    test:
+      config: Debug
+      targets:
+        - SportsGreenMooveUITests
     archive:
       config: Release

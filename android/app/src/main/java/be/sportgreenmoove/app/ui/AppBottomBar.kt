@@ -31,14 +31,24 @@ import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmSize
 import be.sportgreenmoove.app.design.SgmType
 
+private val AppScreen.bottomNavActionTag: String
+    get() = when (this) {
+        AppScreen.Home -> SgmTestTags.BottomNavHomeAction
+        AppScreen.Trips -> SgmTestTags.BottomNavTripsAction
+        AppScreen.Publish -> SgmTestTags.BottomNavPublishAction
+        AppScreen.Messages -> SgmTestTags.BottomNavMessagesAction
+        AppScreen.Profile -> SgmTestTags.BottomNavProfileAction
+        else -> "bottom-nav.${name.lowercase()}.action"
+    }
+
 @Composable
-fun AppBottomBar(current: DemoScreen, onNavigate: (DemoScreen) -> Unit) {
+fun AppBottomBar(current: AppScreen, onNavigate: (AppScreen) -> Unit) {
     val items = listOf(
-        NavItem(DemoScreen.Home, SgmIcon.Home, "Accueil"),
-        NavItem(DemoScreen.Trips, SgmIcon.Calendar, "Trajets"),
-        NavItem(DemoScreen.Publish, SgmIcon.Plus, ""),
-        NavItem(DemoScreen.Messages, SgmIcon.Chat, "Messages"),
-        NavItem(DemoScreen.Profile, SgmIcon.Profile, "Profil"),
+        NavItem(AppScreen.Home, SgmIcon.Home, "Accueil"),
+        NavItem(AppScreen.Trips, SgmIcon.Calendar, "Trajets"),
+        NavItem(AppScreen.Publish, SgmIcon.Plus, ""),
+        NavItem(AppScreen.Messages, SgmIcon.Chat, "Messages"),
+        NavItem(AppScreen.Profile, SgmIcon.Profile, "Profil"),
     )
 
     Column(
@@ -55,8 +65,8 @@ fun AppBottomBar(current: DemoScreen, onNavigate: (DemoScreen) -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             items.forEach { item ->
-                if (item.screen == DemoScreen.Publish) {
-                    PublishNavButton(onClick = { onNavigate(DemoScreen.Publish) }, modifier = Modifier.weight(1f))
+                if (item.screen == AppScreen.Publish) {
+                    PublishNavButton(onClick = { onNavigate(AppScreen.Publish) }, modifier = Modifier.weight(1f))
                 } else {
                     BottomNavButton(
                         item = item,
@@ -83,6 +93,7 @@ private fun PublishNavButton(onClick: () -> Unit, modifier: Modifier = Modifier)
     ) {
         Box(
             modifier = Modifier
+                .sgmTestTag(AppScreen.Publish.bottomNavActionTag)
                 .offset(y = (-8).dp)
                 .size(50.dp)
                 .clip(CircleShape)
@@ -101,6 +112,7 @@ private fun BottomNavButton(item: NavItem, selected: Boolean, onClick: () -> Uni
     Column(
         modifier = modifier
             .height(SgmSize.NavBar)
+            .sgmTestTag(item.screen.bottomNavActionTag)
             .clickable(onClick = onClick)
             .padding(top = 9.dp, bottom = 6.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -132,7 +144,7 @@ private fun BottomNavButton(item: NavItem, selected: Boolean, onClick: () -> Uni
 }
 
 private data class NavItem(
-    val screen: DemoScreen,
+    val screen: AppScreen,
     val icon: SgmIcon,
     val label: String,
 )

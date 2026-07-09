@@ -4,30 +4,154 @@ on:
   pull_request:
     paths:
       - ".github/workflows/release-readiness.yml"
+      - ".github/workflows/release-evidence.yml"
+      - ".github/workflows/provider-readiness.yml"
+      - ".github/workflows/native-ci.yml"
+      - ".github/workflows/android-appetize.yml"
+      - "admin/src/App.tsx"
+      - "admin/src/PrivacyPolicyPage.tsx"
+      - "admin/src/Wordmark.tsx"
+      - "admin/src/main.tsx"
+      - "admin/src/privacy.css"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/res/values/strings.xml"
       - "docs/release/**"
+      - "ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift"
+      - "ios/Sources/SportsGreenMooveApp/AppShell.swift"
+      - "ios/Sources/SportsGreenMooveApp/AppState.swift"
+      - "ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift"
       - "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"
       - "ios/project.yml"
       - "package.json"
+      - "scripts/check-provider-readiness.mjs"
+      - "scripts/check-stripe-production-readiness.mjs"
+      - "scripts/firebase-android-config.mjs"
+      - "scripts/export-safety-audit-evidence.mjs"
+      - "scripts/lib/safety-audit-export.mjs"
+      - "scripts/lib/stripe-production-readiness.mjs"
+      - "scripts/live-backend-child-tracking.mjs"
+      - "scripts/live-backend-flow-smoke.mjs"
+      - "scripts/live-operations-flow-smoke.mjs"
+      - "scripts/release-evidence-requirements.mjs"
+      - "scripts/report-release-gaps.mjs"
+      - "scripts/validate-safety-audit-export.mjs"
+      - "scripts/validate-release-evidence.mjs"
+      - "scripts/verify-pr-user-flow-checks.mjs"
+      - "tests/provider-readiness.test.mjs"
+      - "tests/stripe-production-readiness.test.mjs"
+      - "tests/android-appetize-workflow.test.mjs"
+      - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/privacy-policy-page.test.mjs"
+      - "tests/release-gaps.test.mjs"
+      - "tests/release-evidence-template.test.mjs"
+      - "tests/safety-audit-export.test.mjs"
+      - "tests/safety-audit-exporter.test.mjs"
+      - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
+      - "website/index.html"
   push:
     branches:
       - main
     paths:
       - ".github/workflows/release-readiness.yml"
+      - ".github/workflows/release-evidence.yml"
+      - ".github/workflows/provider-readiness.yml"
+      - ".github/workflows/native-ci.yml"
+      - ".github/workflows/android-appetize.yml"
+      - "admin/src/App.tsx"
+      - "admin/src/PrivacyPolicyPage.tsx"
+      - "admin/src/Wordmark.tsx"
+      - "admin/src/main.tsx"
+      - "admin/src/privacy.css"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/res/values/strings.xml"
       - "docs/release/**"
+      - "ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift"
+      - "ios/Sources/SportsGreenMooveApp/AppShell.swift"
+      - "ios/Sources/SportsGreenMooveApp/AppState.swift"
+      - "ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift"
       - "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"
       - "ios/project.yml"
       - "package.json"
+      - "scripts/check-provider-readiness.mjs"
+      - "scripts/check-stripe-production-readiness.mjs"
+      - "scripts/firebase-android-config.mjs"
+      - "scripts/export-safety-audit-evidence.mjs"
+      - "scripts/lib/safety-audit-export.mjs"
+      - "scripts/lib/stripe-production-readiness.mjs"
+      - "scripts/live-backend-child-tracking.mjs"
+      - "scripts/live-backend-flow-smoke.mjs"
+      - "scripts/live-operations-flow-smoke.mjs"
+      - "scripts/release-evidence-requirements.mjs"
+      - "scripts/report-release-gaps.mjs"
+      - "scripts/validate-safety-audit-export.mjs"
+      - "scripts/validate-release-evidence.mjs"
+      - "scripts/verify-pr-user-flow-checks.mjs"
+      - "tests/provider-readiness.test.mjs"
+      - "tests/stripe-production-readiness.test.mjs"
+      - "tests/android-appetize-workflow.test.mjs"
+      - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/privacy-policy-page.test.mjs"
+      - "tests/release-gaps.test.mjs"
+      - "tests/release-evidence-template.test.mjs"
+      - "tests/safety-audit-export.test.mjs"
+      - "tests/safety-audit-exporter.test.mjs"
+      - "tests/store-privacy-answers.test.mjs"
       - "tests/store-readiness.test.mjs"
+      - "website/index.html"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  provider-secret-validation:
+    name: Production provider secret validation
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Validate production provider secrets
+        env:
+          FIREBASE_ANDROID_CONFIG_BASE64: ${{ secrets.FIREBASE_ANDROID_CONFIG_BASE64 }}
+          FIREBASE_IOS_CONFIG_BASE64: ${{ secrets.FIREBASE_IOS_CONFIG_BASE64 }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          RADAR_WEBHOOK_SECRET: ${{ secrets.RADAR_WEBHOOK_SECRET }}
+          SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+          SGM_GOOGLE_MAPS_IOS_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_IOS_API_KEY }}
+          SGM_RADAR_PUBLISHABLE_KEY: ${{ secrets.SGM_RADAR_PUBLISHABLE_KEY }}
+          SGM_STRIPE_CONNECT_REFRESH_URL: ${{ secrets.SGM_STRIPE_CONNECT_REFRESH_URL }}
+          SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
+          VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+          VITE_FIREBASE_DATABASE_URL: ${{ secrets.VITE_FIREBASE_DATABASE_URL }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+        run: npm run validate:provider-readiness
+
+      - name: Validate Stripe production readiness
+        env:
+          SGM_STRIPE_CONNECT_REFRESH_URL: ${{ secrets.SGM_STRIPE_CONNECT_REFRESH_URL }}
+          SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+        run: npm run validate:stripe-production-readiness -- --allow-pending-provider
+
   store-readiness:
     name: Store readiness static checks
     runs-on: ubuntu-latest
@@ -46,3 +170,33 @@ jobs:
 
       - name: Validate release readiness
         run: npm run test:store-readiness
+
+      - name: Validate public privacy route
+        run: npm run test:privacy-policy-page
+
+      - name: Validate store privacy answers
+        run: npm run test:store-privacy-answers
+
+      - name: Validate provider readiness checks
+        run: npm run test:provider-readiness
+
+      - name: Validate Stripe production readiness checks
+        run: npm run test:stripe-production-readiness
+
+      - name: Validate safety audit export checks
+        run: npm run test:safety-audit-export
+
+      - name: Validate safety audit exporter
+        run: npm run test:safety-audit-exporter
+
+      - name: Validate Android Appetize workflow
+        run: npm run test:android-appetize-workflow
+
+      - name: Validate release evidence template
+        run: npm run test:release-evidence-template
+
+      - name: Validate release gap report
+        run: npm run test:release-gaps
+
+      - name: Validate PR user-flow check verifier
+        run: npm run test:pr-user-flow-checks

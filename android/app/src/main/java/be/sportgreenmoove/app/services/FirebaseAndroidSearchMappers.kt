@@ -53,8 +53,11 @@ internal fun mapResolvedPlace(data: Map<*, *>): ResolvedPlace {
 
 internal fun mapTripMatch(data: Map<*, *>): TripMatchSummary? {
     val tripId = data["tripId"] as? String ?: return null
-    val summary = (data["summary"] as? Map<*, *>)?.let(::mapClientTripSummary) ?: return null
+    val summaryData = data["summary"] as? Map<*, *> ?: return null
     val route = data["route"] as? Map<*, *>
+    val summary = mapClientTripSummary(summaryData).copy(
+        mapPreview = mapRoutePreviewFromMatchData(summaryData, route),
+    )
     val detourSeconds = (route?.get("detourDurationSeconds") as? Number)?.toInt()
     return TripMatchSummary(
         tripId = tripId,
@@ -88,5 +91,6 @@ private fun mapClientTripSummary(data: Map<*, *>): TripSummary {
             "pending" -> TripStatus.Pending
             else -> TripStatus.Upcoming
         },
+        mapPreview = mapRoutePreviewFromTripData(data) ?: mapRoutePreviewFromMatchData(data, null),
     )
 }

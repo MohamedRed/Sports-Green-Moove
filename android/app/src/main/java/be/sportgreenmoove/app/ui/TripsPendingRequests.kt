@@ -87,7 +87,7 @@ private fun BookingRequestCard(request: BookingRequestSummary, onApprove: () -> 
             Text(it, style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary, fontSize = 12.sp), maxLines = 2)
         }
         if (request.status == "requested") {
-            V2Button("APPROUVER", onClick = onApprove, size = V2ButtonSize.Sm)
+            V2Button("APPROUVER", onClick = onApprove, size = V2ButtonSize.Sm, testTag = SgmTestTags.BookingApproveAction)
         }
     }
 }

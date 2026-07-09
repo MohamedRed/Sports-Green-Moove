@@ -16,6 +16,7 @@ import { requireAuth, requireRole } from "../lib/https.js";
 import { notifyUsers } from "../lib/notifications.js";
 import { toClientTripSummary } from "../lib/clientTrips.js";
 import { toClientBookingRequestSummary } from "../lib/clientBookings.js";
+import { parseCallableData } from "../lib/validation.js";
 
 type BookingDocument = {
   id?: string;
@@ -70,7 +71,7 @@ export const requestBooking = onCall(async (request) => {
     seats: z.number().int().positive().default(1),
     note: z.string().optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const bookingRef = firestore.collection("bookings").doc();
   const tripRef = firestore.collection("trips").doc(data.tripId);
 
@@ -123,7 +124,7 @@ export const approveBooking = onCall(async (request) => {
   const schema = z.object({
     bookingId: z.string(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
   const approval = await firestore.runTransaction(async (transaction) => {
@@ -173,7 +174,7 @@ export const cancelBooking = onCall(async (request) => {
     bookingId: z.string(),
     reason: z.string().max(300).optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
   const notifyUserIds = await firestore.runTransaction(async (transaction) => {

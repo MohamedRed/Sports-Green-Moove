@@ -1,0 +1,205 @@
+name: Native CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/native-ci.yml"
+      - "android/**"
+      - "ios/**"
+      - "package.json"
+      - "scripts/check-ios-native-plan.sh"
+      - "tests/native-ui-coverage.test.mjs"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/native-ci.yml"
+      - "android/**"
+      - "ios/**"
+      - "package.json"
+      - "scripts/check-ios-native-plan.sh"
+      - "tests/native-ui-coverage.test.mjs"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  native-ui-coverage:
+    name: Native UI flow coverage
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Validate native UI flow identifiers
+        run: npm run test:native-ui-coverage
+
+  android-native-unit:
+    name: Android native unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Install Android SDK packages
+        run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
+
+      - name: Run Android native unit tests
+        working-directory: android
+        run: ./gradlew :app:testDebugUnitTest --no-daemon --stacktrace
+
+  android-native-ui:
+    name: Android native UI tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Enable KVM group permissions
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run Android Compose UI tests
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          script: bash scripts/run-android-ui-tests-and-collect-screenshots.sh
+
+      - name: Upload Android instrumentation reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-connected-ui-test-results
+          path: |
+            android/app/build/reports/androidTests/connected/**
+            android/app/build/outputs/androidTest-results/connected/**
+            android/app/build/outputs/store-review-screenshots/**
+          if-no-files-found: ignore
+
+  ios-native-checks:
+    name: iOS native checks
+    # macOS runners are intentionally disabled for routine CI cost control.
+    # Re-enable only for an approved final iOS release-candidate build.
+    if: ${{ false }}
+    runs-on: macos-26-intel
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: |
+          for xcode in \
+            /Applications/Xcode_26.5.app \
+            /Applications/Xcode_26.4.1.app \
+            /Applications/Xcode_26.3.app \
+            /Applications/Xcode_26.2.app \
+            /Applications/Xcode.app
+          do
+            if [ -d "$xcode" ]; then
+              sudo xcode-select -s "$xcode"
+              break
+            fi
+          done
+          xcodebuild -version
+
+      - name: Run iOS native plan checks
+        run: bash scripts/check-ios-native-plan.sh
+
+      - name: Build Swift package scaffold
+        run: swift build --package-path ios
+
+  ios-native-ui:
+    name: iOS native UI tests
+    # macOS runners are intentionally disabled for routine CI cost control.
+    # Re-enable only for an approved final iOS release-candidate build.
+    if: ${{ false }}
+    runs-on: macos-26-intel
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: |
+          for xcode in \
+            /Applications/Xcode_26.5.app \
+            /Applications/Xcode_26.4.1.app \
+            /Applications/Xcode_26.3.app \
+            /Applications/Xcode_26.2.app \
+            /Applications/Xcode.app
+          do
+            if [ -d "$xcode" ]; then
+              sudo xcode-select -s "$xcode"
+              break
+            fi
+          done
+          xcodebuild -version
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate --spec project.yml
+
+      - name: Run iOS simulator UI tests
+        working-directory: ios
+        run: |
+          xcodebuild test \
+            -project SportsGreenMoove.xcodeproj \
+            -scheme SportsGreenMoove \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -derivedDataPath build/UITestDerivedData \
+            CODE_SIGNING_ALLOWED=NO

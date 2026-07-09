@@ -1,0 +1,90 @@
+name: Web Integration Smoke
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/web-integration-smoke.yml"
+      - "admin/**"
+      - "docs/contracts/**"
+      - "functions/**"
+      - "website/**"
+      - "database.rules.json"
+      - "firebase.json"
+      - "firestore.indexes.json"
+      - "firestore.rules"
+      - "package-lock.json"
+      - "package.json"
+      - "storage.rules"
+      - "tests/admin-plan-coverage.test.mjs"
+      - "tests/stripe-webhook-flow.test.ts"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/web-integration-smoke.yml"
+      - "admin/**"
+      - "docs/contracts/**"
+      - "functions/**"
+      - "website/**"
+      - "database.rules.json"
+      - "firebase.json"
+      - "firestore.indexes.json"
+      - "firestore.rules"
+      - "package-lock.json"
+      - "package.json"
+      - "storage.rules"
+      - "tests/admin-plan-coverage.test.mjs"
+      - "tests/stripe-webhook-flow.test.ts"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  smoke:
+    name: Functions, admin, and website smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test Functions
+        run: npm test --workspace functions
+
+      - name: Build Functions
+        run: npm run build --workspace functions
+
+      - name: Build Admin
+        run: npm run build --workspace admin
+
+      - name: Validate public privacy route
+        run: npm run test:privacy-policy-page
+
+      - name: Validate admin plan coverage
+        run: npm run test:admin-plan-coverage
+
+      - name: Test Stripe webhook flow
+        run: npm run test:stripe-webhook-flow
+
+      - name: Build Website
+        run: npm run build --workspace website

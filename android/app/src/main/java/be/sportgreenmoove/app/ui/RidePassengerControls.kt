@@ -80,7 +80,7 @@ fun RideEndCard(onEndRide: () -> Unit) {
             "Arrête le suivi Radar et le secours GPS Firebase, puis clôture les réservations attachées.",
             style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary, fontSize = 12.sp, fontWeight = FontWeight.SemiBold),
         )
-        V2Button("TERMINER LA COURSE", onClick = onEndRide, variant = V2ButtonVariant.Orange, full = true)
+        V2Button("TERMINER LA COURSE", onClick = onEndRide, variant = V2ButtonVariant.Orange, full = true, testTag = SgmTestTags.ActiveRideEndAction)
     }
 }
 
@@ -111,6 +111,7 @@ private fun PassengerActionRow(
                 modifier = Modifier.weight(1f),
                 variant = if (passenger.pickupStatus == "pickedUp") V2ButtonVariant.Secondary else V2ButtonVariant.Primary,
                 size = V2ButtonSize.Sm,
+                testTag = SgmTestTags.ActiveRidePickupAction,
             )
             V2Button(
                 "DROPOFF",
@@ -118,6 +119,7 @@ private fun PassengerActionRow(
                 modifier = Modifier.weight(1f),
                 variant = if (passenger.dropoffStatus == "droppedOff") V2ButtonVariant.Secondary else V2ButtonVariant.Primary,
                 size = V2ButtonSize.Sm,
+                testTag = SgmTestTags.ActiveRideDropoffAction,
             )
         }
     }

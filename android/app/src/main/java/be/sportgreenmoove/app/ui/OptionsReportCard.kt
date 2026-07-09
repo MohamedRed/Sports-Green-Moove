@@ -27,6 +27,7 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.FirebaseGateway
 import kotlinx.coroutines.launch
 
@@ -60,7 +61,7 @@ fun OptionsReportCard(firebase: FirebaseGateway) {
                 description = ""
                 message = "Signalement envoyé: $reportId"
             }.onFailure { error ->
-                message = error.message ?: "Signalement impossible."
+                message = UserFacingErrorPolicy.messageFor(error)
             }
             submitting = false
         }
@@ -76,13 +77,13 @@ fun OptionsReportCard(firebase: FirebaseGateway) {
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Text("SIGNALER AU SUPPORT", style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 18.sp))
-        OptionsReportInput("Raison", reason, { reason = it }, singleLine = true)
-        OptionsReportInput("Description", description, { description = it }, singleLine = false)
+        OptionsReportInput("Raison", reason, { reason = it }, singleLine = true, testTag = SgmTestTags.SupportReportReasonInput)
+        OptionsReportInput("Description", description, { description = it }, singleLine = false, testTag = SgmTestTags.SupportReportDescriptionInput)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             V2Chip("Urgent", selected = emergency, onClick = { emergency = !emergency }, modifier = Modifier.weight(1f))
             V2Chip("Support", selected = true, modifier = Modifier.weight(1f))
         }
-        V2Button(if (submitting) "ENVOI..." else "ENVOYER", onClick = ::submit, full = true)
+        V2Button(if (submitting) "ENVOI..." else "ENVOYER", onClick = ::submit, full = true, testTag = SgmTestTags.SupportReportAction)
         message?.let {
             Text(it, style = SgmType.BodyXS.copy(color = if (it.startsWith("Signalement")) SgmColor.Green else SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold))
         }
@@ -90,7 +91,7 @@ fun OptionsReportCard(firebase: FirebaseGateway) {
 }
 
 @Composable
-private fun OptionsReportInput(label: String, value: String, onValue: (String) -> Unit, singleLine: Boolean) {
+private fun OptionsReportInput(label: String, value: String, onValue: (String) -> Unit, singleLine: Boolean, testTag: String) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -105,7 +106,7 @@ private fun OptionsReportInput(label: String, value: String, onValue: (String) -
             onValueChange = onValue,
             textStyle = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Medium),
             singleLine = singleLine,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().sgmTestTag(testTag),
         )
     }
 }

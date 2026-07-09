@@ -2,12 +2,14 @@ import { Timestamp } from "firebase-admin/firestore";
 import type Stripe from "stripe";
 import { firestore } from "../lib/firebase.js";
 import { buildRidePaymentLedgerEntries } from "./stripeLedger.js";
+import { isTransferEvent, reconcilePayoutTransfer } from "./stripePayoutReconciliation.js";
 import {
   shouldApplyIncompletePaymentStatus,
   validateSucceededRidePaymentIntent,
   type RidePaymentBookingSnapshot,
   type RidePaymentTripSnapshot,
 } from "./stripePaymentValidation.js";
+import { stripeReport } from "./stripeWebhookReports.js";
 
 type StripeAccountUpdate = {
   id?: string;
@@ -27,6 +29,8 @@ export async function reconcileStripeEvent(event: Stripe.Event): Promise<void> {
     await reconcilePaymentIncomplete(event, eventRef.path);
   } else if (event.type === "account.updated") {
     await reconcileAccountUpdated(event, eventRef.path);
+  } else if (isTransferEvent(event.type)) {
+    await reconcilePayoutTransfer(event, eventRef.path);
   } else {
     await eventRef.set(stripeReport(event));
   }
@@ -74,7 +78,7 @@ async function reconcilePaymentSucceeded(event: Stripe.Event, eventPath: string)
       booking,
       { id: tripSnap.id, ...tripSnap.data() } as RidePaymentTripSnapshot,
     );
-    if (!validation.ok) {
+    if (validation.ok === false) {
       transaction.set(firestore.doc(eventPath), {
         ...stripeReport(event),
         reconciliationStatus: validation.reconciliationStatus,
@@ -137,7 +141,7 @@ async function reconcilePaymentIncomplete(event: Stripe.Event, eventPath: string
       intent,
       { id: bookingSnap.id, ...bookingSnap.data() } as RidePaymentBookingSnapshot,
     );
-    if (!validation.ok) {
+    if (validation.ok === false) {
       transaction.set(firestore.doc(eventPath), {
         ...stripeReport(event),
         reconciliationStatus: validation.reconciliationStatus,
@@ -183,13 +187,4 @@ async function reconcileAccountUpdated(event: Stripe.Event, eventPath: string): 
     reconciliationStatus: snapshot.empty ? "accountMissing" : "accountUpdated",
   });
   await batch.commit();
-}
-
-function stripeReport(event: Stripe.Event) {
-  return {
-    type: "stripeWebhook",
-    eventId: event.id,
-    eventType: event.type,
-    createdAt: Timestamp.now(),
-  };
 }

@@ -2,6 +2,11 @@ import { Timestamp } from "firebase-admin/firestore";
 import { type CallableRequest, HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { estimateCo2SavedKg } from "../domain/co2.js";
+import {
+  buildRideCompletionCo2LedgerEntry,
+  buildRideCompletionRewardLedgerEntry,
+} from "../domain/rideCompletionLedger.js";
+import { manualPassengerAuditEvent, manualPassengerAuditEventId } from "../domain/rideAudit.js";
 import { rewardForCo2Saved } from "../domain/rewards.js";
 import type { Trip } from "../domain/types.js";
 import { loadAccessibleActiveRide, type RidePassengerDocument, type RideSessionDocument } from "../lib/activeRideLookup.js";
@@ -9,6 +14,7 @@ import { firestore, realtimeDb } from "../lib/firebase.js";
 import { hasRole, requireAuth, requireRole } from "../lib/https.js";
 import { notifyUsers } from "../lib/notifications.js";
 import { toClientRideSnapshot } from "../lib/clientTrips.js";
+import { parseCallableData } from "../lib/validation.js";
 
 type BookingDocument = {
   childId?: string;
@@ -27,7 +33,7 @@ export const startRide = onCall(async (request) => {
     tripId: z.string(),
     bookingIds: z.array(z.string()).default([]),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const tripSnap = await firestore.collection("trips").doc(data.tripId).get();
   if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
 
@@ -106,7 +112,7 @@ async function markPassengerStatus(
     childId: z.string(),
     note: z.string().max(300).optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const rideRef = firestore.collection("rideSessions").doc(data.rideSessionId);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
@@ -135,6 +141,14 @@ async function markPassengerStatus(
 
     const now = Timestamp.now();
     const passengers = updateRidePassengers(ride.passengers ?? [], data.bookingId, data.childId, event);
+    const auditEvent = manualPassengerAuditEvent({
+      event,
+      bookingId: data.bookingId,
+      childId: data.childId,
+      driverUserId: uid,
+      note: data.note,
+      recordedAt: now,
+    });
     const statusUpdate =
       event === "pickup"
         ? { pickupStatus: "pickedUp", pickedUpAt: now, pickupNote: data.note ?? null }
@@ -156,6 +170,10 @@ async function markPassengerStatus(
       ...statusUpdate,
       updatedAt: now,
     }, { merge: true });
+    transaction.set(
+      rideRef.collection("auditEvents").doc(manualPassengerAuditEventId(event, data.bookingId, data.childId)),
+      auditEvent,
+    );
 
     return booking.parentUserId ?? booking.requesterUserId;
   });
@@ -191,24 +209,41 @@ export const endRide = onCall(async (request) => {
     distanceMeters: z.number().nonnegative().default(0),
     passengersSharing: z.number().int().nonnegative().default(1),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const rideRef = firestore.collection("rideSessions").doc(data.rideSessionId);
-  const rideSnap = await rideRef.get();
-  if (!rideSnap.exists) throw new HttpsError("not-found", "Ride session not found.");
-
-  const ride = rideSnap.data() as RideSessionDocument;
-  if (!hasRole(request.auth?.token, "admin") && ride.driverUserId !== uid) {
-    throw new HttpsError("permission-denied", "Only the driver or an admin can end this ride.");
-  }
-  if (ride.status !== "active") {
-    throw new HttpsError("failed-precondition", "Only an active ride can be ended.");
-  }
 
   const co2SavedKg = estimateCo2SavedKg(data.distanceMeters, data.passengersSharing);
   const rewardCents = rewardForCo2Saved(co2SavedKg);
+  const completedAtDate = new Date();
+  const completedAt = Timestamp.fromDate(completedAtDate);
 
-  const completedAt = Timestamp.now();
   await firestore.runTransaction(async (transaction) => {
+    const rideSnap = await transaction.get(rideRef);
+    if (!rideSnap.exists) throw new HttpsError("not-found", "Ride session not found.");
+
+    const ride = rideSnap.data() as RideSessionDocument;
+    if (!hasRole(request.auth?.token, "admin") && ride.driverUserId !== uid) {
+      throw new HttpsError("permission-denied", "Only the driver or an admin can end this ride.");
+    }
+    if (!ride.driverUserId) {
+      throw new HttpsError("failed-precondition", "Ride driver is required before completion.");
+    }
+    if (ride.status !== "active") {
+      throw new HttpsError("failed-precondition", "Only an active ride can be ended.");
+    }
+
+    const ledgerInput = {
+      rideSessionId: data.rideSessionId,
+      driverUserId: ride.driverUserId,
+      distanceMeters: data.distanceMeters,
+      passengersSharing: data.passengersSharing,
+      co2SavedKg,
+      rewardCents,
+      createdAt: completedAtDate.toISOString(),
+    };
+    const co2LedgerEntry = buildRideCompletionCo2LedgerEntry(ledgerInput);
+    const rewardLedgerEntry = buildRideCompletionRewardLedgerEntry(ledgerInput);
+
     transaction.set(
       rideRef,
       {
@@ -225,6 +260,10 @@ export const endRide = onCall(async (request) => {
         completedAt,
         updatedAt: completedAt,
       }, { merge: true });
+    }
+    transaction.create(firestore.collection("co2Ledger").doc(co2LedgerEntry.id), co2LedgerEntry);
+    if (rewardLedgerEntry) {
+      transaction.create(firestore.collection("rewardLedger").doc(rewardLedgerEntry.id), rewardLedgerEntry);
     }
   });
   await realtimeDb.ref(`liveTrips/${data.rideSessionId}/meta`).update({

@@ -69,7 +69,7 @@ fun SearchScreen(
     var guardianConsent by remember { mutableStateOf(true) }
     var selectedChildId by remember(children) { mutableStateOf(children.firstOrNull()?.id) }
 
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.SearchScreen) {
         V2TopBar("RECHERCHE", onBack = onBack)
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             PlaceSearchField("Départ", originInput, origin, originSuggestions, { originInput = it }, onSuggestOrigin, onSelectOrigin)
@@ -80,6 +80,9 @@ fun SearchScreen(
                 selectedChildId = selectedChildId,
                 onSelectedChild = { selectedChildId = it },
             )
+            if (childTracking) {
+                ChildTrackingReleaseDisclosures()
+            }
             SearchOptions(
                 seatsNeeded = seatsNeeded,
                 onSeats = { seatsNeeded = it },
@@ -110,6 +113,7 @@ fun SearchScreen(
                 },
                 full = true,
                 size = V2ButtonSize.Lg,
+                testTag = SgmTestTags.SearchAction,
             )
         }
 
@@ -256,7 +260,7 @@ private fun MatchCard(match: TripMatchSummary, onRequest: () -> Unit) {
             Text(match.summary.priceLabel, style = SearchMetaStyle())
             match.detourMinutes?.let { Text("+$it min détour", style = SearchMetaStyle()) }
             Spacer(Modifier.weight(1f))
-            V2Button("Demander", onClick = onRequest, size = V2ButtonSize.Sm)
+            V2Button("Demander", onClick = onRequest, size = V2ButtonSize.Sm, testTag = SgmTestTags.BookingRequestAction)
         }
         Text(match.reasons.take(3).joinToString(" · "), style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.Medium), maxLines = 2, overflow = TextOverflow.Ellipsis)
     }

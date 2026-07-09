@@ -19,6 +19,10 @@ struct UnconfiguredAuthGateway: AuthGateway {
         throw ProviderConfigurationError(message: "Google Auth iOS n'est pas configuré.")
     }
 
+    func signInWithFacebook() async throws -> AuthSession {
+        throw ProviderConfigurationError(message: "Facebook Auth iOS n'est pas configuré.")
+    }
+
     func signOut() throws {}
 }
 
@@ -30,6 +34,8 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
     }
 
     func listChildren() async throws -> [ChildSummary] { [] }
+
+    func listClubSummaries() async throws -> [ClubSummary] { [] }
 
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
         _ = input
@@ -88,6 +94,14 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
 
     func getPayableBookings() async throws -> [PayableBookingSummary] { [] }
 
+    func getImpactSummary() async throws -> ImpactSummary {
+        .empty
+    }
+
+    func getRewardSummary() async throws -> RewardSummary {
+        .empty
+    }
+
     func getInbox() async throws -> InboxSummary {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
@@ -122,15 +136,6 @@ struct UnconfiguredRadarTrackingGateway: RadarTrackingGateway {
 
     func stopTripTracking(rideSessionId: String) async throws {
         _ = rideSessionId
-    }
-}
-
-struct UnconfiguredGoogleRoutesGateway: GoogleRoutesGateway {
-    let isConfigured = false
-
-    func explainRoute(for tripId: String) async throws -> [String] {
-        _ = tripId
-        throw ProviderConfigurationError(message: "Google Routes n'est pas configuré côté iOS.")
     }
 }
 

@@ -63,6 +63,11 @@ Ledger entry types:
 
 The app does not represent rewards as stored value money. It shows an app ledger reconciled against Stripe events.
 
+On `endRide`, the backend completes the ride and writes deterministic immutable accounting entries in the same Firestore transaction:
+
+- `co2Ledger/rideCompletion_{rideSessionId}` records the driver-owned CO2 saving source data.
+- `rewardLedger/co2Bonus_{rideSessionId}_{driverUserId}` records the driver's positive `co2Bonus` when the computed reward is greater than zero.
+
 On `payment_intent.succeeded`, the Stripe webhook marks the booking paid and writes deterministic ledger entries:
 
 - `ridePayment`: negative entry for the parent.
@@ -91,3 +96,10 @@ Paid bookings are never downgraded by later incomplete payment events.
 The backend creates a Stripe Transfer to the connected account and writes a
 negative `payout` ledger entry using `payout_{userId}_{sourceId}` as the
 deterministic document id.
+
+On `transfer.created`, `transfer.updated`, or `transfer.reversed`, the Stripe
+webhook verifies the transfer metadata against the deterministic payout ledger
+entry and writes an admin-visible `reports/stripe_{eventId}` reconciliation
+report. Reversed transfers create a deterministic positive `refund` ledger
+entry using `refund_{transferId}_{userId}` so reward balances remain derived
+from immutable ledger documents.

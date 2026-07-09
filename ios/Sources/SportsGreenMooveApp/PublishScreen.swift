@@ -15,7 +15,7 @@ struct PublishScreen: View {
     @State private var departureIso = ISO8601DateFormatter().string(from: Date().addingTimeInterval(TimeInterval(30 * 86_400)))
 
     var body: some View {
-        SGMScreen(spacing: 10) {
+        SGMScreen(spacing: 10, testID: UITestIdentifier.publishScreen) {
             SGMTopBar(title: "PUBLIER UN TRAJET")
             PublishStepper(step: step)
             VStack(spacing: 12) {
@@ -26,6 +26,9 @@ struct PublishScreen: View {
                 }
             }
             .padding(.horizontal, SGMSpace.padScreen)
+        }
+        .task {
+            seedInitialPlaces()
         }
     }
 
@@ -70,6 +73,7 @@ struct PublishScreen: View {
     }
 
     private func nextFromPlaces() {
+        seedInitialPlaces()
         guard controller.origin != nil, controller.destination != nil else {
             appState.errorMessage = "Choisissez un départ et une destination dans les suggestions."
             return
@@ -124,4 +128,16 @@ private func parsePriceCents(_ value: String) -> Int {
         .trimmingCharacters(in: .whitespacesAndNewlines)
     let amount = Double(normalized) ?? 0
     return max(0, Int(amount * 100))
+}
+
+private extension PublishScreen {
+    func seedInitialPlaces() {
+        controller.seedPlaces(origin: appState.searchOrigin, destination: appState.searchDestination)
+        if from.isEmpty {
+            from = controller.origin?.label ?? ""
+        }
+        if to.isEmpty {
+            to = controller.destination?.label ?? ""
+        }
+    }
 }

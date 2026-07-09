@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,6 +26,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
@@ -41,14 +45,14 @@ fun OnboardingScreen(
     onSubmit: (OnboardingMode, String, String, String) -> Unit,
     onGoogle: () -> Unit,
     onFacebook: () -> Unit,
+    onClearError: () -> Unit = {},
 ) {
     var mode by remember { mutableStateOf(OnboardingMode.Login) }
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var club by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.fillMaxSize().background(Sgm.colors.bgApp)) {
+    Column(modifier = Modifier.fillMaxSize().sgmTestTag(SgmTestTags.AuthScreen).background(Sgm.colors.bgApp)) {
         OnboardingHero()
         Column(
             modifier = Modifier
@@ -57,26 +61,70 @@ fun OnboardingScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                OnboardingModeTab("SE CONNECTER", selected = mode == OnboardingMode.Login, onClick = { mode = OnboardingMode.Login }, modifier = Modifier.weight(1f))
-                OnboardingModeTab("S'INSCRIRE", selected = mode == OnboardingMode.SignUp, onClick = { mode = OnboardingMode.SignUp }, modifier = Modifier.weight(1f))
+                OnboardingModeTab(
+                    "SE CONNECTER",
+                    selected = mode == OnboardingMode.Login,
+                    onClick = {
+                        mode = OnboardingMode.Login
+                        onClearError()
+                    },
+                    modifier = Modifier.weight(1f),
+                )
+                OnboardingModeTab(
+                    "S'INSCRIRE",
+                    selected = mode == OnboardingMode.SignUp,
+                    onClick = {
+                        mode = OnboardingMode.SignUp
+                        onClearError()
+                    },
+                    modifier = Modifier.weight(1f),
+                )
             }
-            if (mode == OnboardingMode.SignUp) OnboardingInput("Nom et prénom", name, { name = it })
-            OnboardingInput("votre@email.be", email, { email = it })
-            OnboardingInput("Mot de passe", password, { password = it })
-            if (mode == OnboardingMode.SignUp) OnboardingInput("Votre club (ex: Collège du Biéreau)", club, { club = it })
+            if (mode == OnboardingMode.SignUp) {
+                OnboardingInput("Nom et prénom", name, {
+                    name = it
+                    onClearError()
+                }, testTag = SgmTestTags.AuthNameInput)
+            }
+            OnboardingInput(
+                "votre@email.be",
+                email,
+                {
+                    email = it
+                    onClearError()
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+                testTag = SgmTestTags.AuthEmailInput,
+            )
+            OnboardingInput(
+                "Mot de passe",
+                password,
+                {
+                    password = it
+                    onClearError()
+                },
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                testTag = SgmTestTags.AuthPasswordInput,
+            )
             if (error != null) {
-                Text(error, style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold))
+                Text(
+                    error,
+                    style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+                    modifier = Modifier.sgmTestTag(SgmTestTags.AuthError),
+                )
             }
             V2Button(
                 if (loading) "CHARGEMENT" else if (mode == OnboardingMode.Login) "SE CONNECTER" else "CRÉER MON COMPTE",
                 onClick = { onSubmit(mode, name, email, password) },
                 full = true,
                 size = V2ButtonSize.Lg,
+                testTag = SgmTestTags.AuthEmailAction,
             )
             OnboardingDivider()
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                OnboardingSocialButton("Facebook", onFacebook, Modifier.weight(1f))
-                OnboardingSocialButton("Google", onGoogle, Modifier.weight(1f))
+                OnboardingSocialButton("Facebook", onFacebook, Modifier.weight(1f), SgmTestTags.AuthFacebookAction)
+                OnboardingSocialButton("Google", onGoogle, Modifier.weight(1f), SgmTestTags.AuthGoogleAction)
             }
             Spacer(Modifier.weight(1f))
             Text(
@@ -96,7 +144,7 @@ enum class OnboardingMode {
 
 @Composable
 fun ConfigurationRequiredScreen() {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.ConfigurationRequired) {
         V2TopBar("CONFIGURATION")
         Column(
             modifier = Modifier
@@ -155,7 +203,14 @@ private fun OnboardingModeTab(label: String, selected: Boolean, onClick: () -> U
 }
 
 @Composable
-private fun OnboardingInput(placeholder: String, value: String, onValue: (String) -> Unit) {
+private fun OnboardingInput(
+    placeholder: String,
+    value: String,
+    onValue: (String) -> Unit,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    testTag: String? = null,
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -165,7 +220,15 @@ private fun OnboardingInput(placeholder: String, value: String, onValue: (String
             .padding(horizontal = 16.dp, vertical = 13.dp),
     ) {
         if (value.isEmpty()) Text(placeholder, style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 14.sp, fontWeight = FontWeight.Medium))
-        BasicTextField(value = value, onValueChange = onValue, textStyle = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Medium), singleLine = true, modifier = Modifier.fillMaxWidth())
+        BasicTextField(
+            value = value,
+            onValueChange = onValue,
+            textStyle = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Medium),
+            singleLine = true,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            modifier = Modifier.fillMaxWidth().sgmOptionalTestTag(testTag),
+        )
     }
 }
 
@@ -179,9 +242,10 @@ private fun OnboardingDivider() {
 }
 
 @Composable
-private fun OnboardingSocialButton(label: String, onClick: () -> Unit, modifier: Modifier) {
+private fun OnboardingSocialButton(label: String, onClick: () -> Unit, modifier: Modifier, testTag: String) {
     Box(
         modifier = modifier
+            .sgmTestTag(testTag)
             .height(46.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(Sgm.colors.bgCard)

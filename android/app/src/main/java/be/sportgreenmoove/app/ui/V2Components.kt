@@ -67,10 +67,11 @@ fun V2ThemeButton(size: Int = 36) {
 }
 
 @Composable
-fun V2Screen(content: @Composable ColumnScope.() -> Unit) {
+fun V2Screen(testTag: String? = null, content: @Composable ColumnScope.() -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .sgmOptionalTestTag(testTag)
             .background(Sgm.colors.bgApp)
             .verticalScroll(rememberScrollState())
             .padding(bottom = 20.dp),
@@ -148,6 +149,7 @@ fun V2Button(
     variant: V2ButtonVariant = V2ButtonVariant.Primary,
     size: V2ButtonSize = V2ButtonSize.Md,
     full: Boolean = false,
+    testTag: String? = null,
 ) {
     val bg = when (variant) {
         V2ButtonVariant.Primary -> SgmColor.Green
@@ -168,6 +170,7 @@ fun V2Button(
     Box(
         modifier = modifier
             .then(if (full) Modifier.fillMaxWidth() else Modifier)
+            .sgmOptionalTestTag(testTag)
             .height(size.height)
             .clip(RoundedCornerShape(SgmRadius.MD))
             .background(bg)
@@ -181,9 +184,10 @@ fun V2Button(
 }
 
 @Composable
-fun V2Chip(text: String, selected: Boolean, onClick: () -> Unit = {}, modifier: Modifier = Modifier) {
+fun V2Chip(text: String, selected: Boolean, onClick: () -> Unit = {}, modifier: Modifier = Modifier, testTag: String? = null) {
     Box(
         modifier = modifier
+            .sgmOptionalTestTag(testTag)
             .clip(RoundedCornerShape(999.dp))
             .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(999.dp))
