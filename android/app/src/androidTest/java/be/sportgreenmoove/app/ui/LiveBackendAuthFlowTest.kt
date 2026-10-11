@@ -5,6 +5,7 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.MainActivity
@@ -54,6 +55,13 @@ class LiveBackendAuthFlowTest {
 
         compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
         compose.onNodeWithText("MON PROFIL").assertExists()
+
+        compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
+        waitUntilTagExists(SgmTestTags.AuthScreen)
+        compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performTextInput(email)
+        compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performTextInput(password)
+        compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performClick()
+        waitUntilTagExists(SgmTestTags.HomeScreen, timeoutMillis = 45_000)
     }
 
     private fun waitUntilTagExists(tag: String, timeoutMillis: Long = 10_000) {

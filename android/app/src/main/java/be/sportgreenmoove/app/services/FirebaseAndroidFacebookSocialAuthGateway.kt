@@ -94,6 +94,8 @@ class FirebaseAndroidFacebookSocialAuthGateway(
     }
 
     override fun signOut() {
+        // Disabled social auth has no SDK session to clear.
+        if (!FacebookSdk.isInitialized()) return
         LoginManager.getInstance().logOut()
     }
 
