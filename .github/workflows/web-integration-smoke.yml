@@ -18,6 +18,10 @@ on:
       - "storage.rules"
       - "tests/admin-plan-coverage.test.mjs"
       - "tests/stripe-webhook-flow.test.ts"
+      - "tests/stripe-production-readiness.test.mjs"
+      - "scripts/check-stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-readiness-http.mjs"
   push:
     branches:
       - main
@@ -36,6 +40,10 @@ on:
       - "storage.rules"
       - "tests/admin-plan-coverage.test.mjs"
       - "tests/stripe-webhook-flow.test.ts"
+      - "tests/stripe-production-readiness.test.mjs"
+      - "scripts/check-stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-readiness-http.mjs"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -85,6 +93,9 @@ jobs:
 
       - name: Test Stripe webhook flow
         run: npm run test:stripe-webhook-flow
+
+      - name: Test Stripe production readiness verification
+        run: npm run test:stripe-production-readiness
 
       - name: Build Website
         run: npm run build --workspace website

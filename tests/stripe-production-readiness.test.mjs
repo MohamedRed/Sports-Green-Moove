@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { checkStripeProductionReadiness } from "../scripts/lib/stripe-production-readiness.mjs";
 
 const validEnv = {
@@ -27,8 +28,9 @@ const responses = {
     data: [{
       id: "we_live_123",
       status: "enabled",
+      livemode: true,
       url: "https://us-central1-sports-green-moove-prod.cloudfunctions.net/stripeWebhook",
-      enabled_events: ["payment_intent.succeeded", "transfer.created"],
+      enabled_events: ["*"],
       api_version: "2026-02-25.clover",
     }],
   },
@@ -40,6 +42,9 @@ const responses = {
 };
 
 const okFetch = async (url) => {
+  if (new URL(url).host === "app.sportgreenmoove.be") {
+    return { ok: true, status: 200, url };
+  }
   const path = new URL(url).pathname + new URL(url).search;
   return {
     ok: true,
@@ -76,7 +81,7 @@ await assert.rejects(
       };
     },
   }),
-  /No enabled Stripe webhook endpoint points at stripeWebhook/,
+  /No enabled live Stripe webhook endpoint targets the production/,
 );
 
 await assert.rejects(
@@ -94,7 +99,7 @@ await assert.rejects(
   /did not return a live-mode balance/,
 );
 
-const connectNotEnabled = await checkStripeProductionReadiness({
+await assert.rejects(() => checkStripeProductionReadiness({
   env: validEnv,
   fetcher: async (url) => {
     const path = new URL(url).pathname + new URL(url).search;
@@ -111,11 +116,7 @@ const connectNotEnabled = await checkStripeProductionReadiness({
         }
       : okFetch(url);
   },
-});
-assert.equal(connectNotEnabled.ok, false);
-assert.equal(connectNotEnabled.readinessStatus, "pending-connect-enablement");
-assert.equal(connectNotEnabled.connectAccounts.reachable, false);
-assert.match(connectNotEnabled.connectAccounts.blocker, /Connect account listing is not enabled/);
+}), /Stripe \/v1\/accounts\?limit=1 failed \(400\)/);
 
 await assert.rejects(
   () => checkStripeProductionReadiness({
@@ -131,5 +132,80 @@ await assert.rejects(
   }),
   /Stripe Connect account list endpoint did not return a data array/,
 );
+
+async function expectInvalidResponse(path, body, pattern) {
+  await assert.rejects(() => checkStripeProductionReadiness({
+    env: validEnv,
+    fetcher: async (url) => new URL(url).pathname + new URL(url).search === path
+      ? { ok: true, status: 200, json: async () => body }
+      : okFetch(url),
+  }), pattern);
+}
+
+const webhook = responses["/v1/webhook_endpoints?limit=100"].data[0];
+for (const override of [
+  { url: "https://attacker.invalid/stripeWebhook" },
+  { url: "https://us-central1-staging.cloudfunctions.net/stripeWebhook" },
+  { livemode: false },
+  { status: "disabled" },
+]) {
+  await expectInvalidResponse("/v1/webhook_endpoints?limit=100", {
+    data: [{ ...webhook, ...override }],
+  }, /No enabled live Stripe webhook/);
+}
+await expectInvalidResponse("/v1/webhook_endpoints?limit=100", {
+  data: [{ ...webhook, enabled_events: ["payment_intent.succeeded"] }],
+}, /events missing:.*account.updated.*transfer.reversed/);
+for (const field of ["charges_enabled", "payouts_enabled", "details_submitted"]) {
+  await expectInvalidResponse("/v1/account", {
+    ...responses["/v1/account"], [field]: false,
+  }, /must all be enabled/);
+}
+
+for (const callbackFailure of [
+  async () => { throw new Error("DNS lookup failed with sensitive data"); },
+  async (url) => ({ ok: false, status: 404, url }),
+  async () => ({ ok: true, status: 200, url: "http://insecure.invalid" }),
+]) {
+  await assert.rejects(() => checkStripeProductionReadiness({
+    env: validEnv,
+    fetcher: async (url) => new URL(url).host === "app.sportgreenmoove.be"
+      ? callbackFailure(url) : okFetch(url),
+  }), /callback.*(could not be reached|HTTP 404|insecure URL)/);
+}
+
+const pageRequests = [];
+const paginatedResult = await checkStripeProductionReadiness({
+  env: validEnv,
+  fetcher: async (url, init) => {
+    assert.equal(init.method, "GET", "Readiness must never mutate live Stripe resources.");
+    const parsed = new URL(url);
+    if (parsed.host === "api.stripe.com" && parsed.pathname === "/v1/webhook_endpoints") {
+      pageRequests.push(parsed.search);
+      return { ok: true, status: 200, json: async () => parsed.searchParams.has("starting_after")
+        ? { data: [webhook], has_more: false }
+        : { data: [{ id: "we_other", status: "disabled" }], has_more: true } };
+    }
+    if (parsed.host === "app.sportgreenmoove.be") {
+      assert.equal(init.headers, undefined, "Stripe credentials must never reach callback hosts.");
+    }
+    return okFetch(url);
+  },
+});
+assert.equal(paginatedResult.ok, true);
+assert.deepEqual(pageRequests, ["?limit=100", "?limit=100&starting_after=we_other"]);
+
+await assert.rejects(() => checkStripeProductionReadiness({
+  env: validEnv,
+  fetcher: async () => ({
+    ok: false, status: 401, json: async () => ({ error: { message: validEnv.STRIPE_SECRET_KEY } }),
+  }),
+}), (error) => !error.message.includes(validEnv.STRIPE_SECRET_KEY) && /401/.test(error.message));
+
+const bypass = spawnSync(process.execPath, ["scripts/check-stripe-production-readiness.mjs", "--allow-pending-provider"], {
+  encoding: "utf8", env: {},
+});
+assert.equal(bypass.status, 1, "The legacy bypass must not turn failed verification green.");
+assert.match(bypass.stderr, /does not support bypass/);
 
 console.log("Stripe production readiness checks passed.");

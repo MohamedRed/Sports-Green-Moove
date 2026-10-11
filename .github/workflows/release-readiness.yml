@@ -1,6 +1,7 @@
 name: Release Readiness
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - ".github/workflows/release-readiness.yml"
@@ -29,6 +30,7 @@ on:
       - "scripts/export-safety-audit-evidence.mjs"
       - "scripts/lib/safety-audit-export.mjs"
       - "scripts/lib/stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-readiness-http.mjs"
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
@@ -79,6 +81,7 @@ on:
       - "scripts/export-safety-audit-evidence.mjs"
       - "scripts/lib/safety-audit-export.mjs"
       - "scripts/lib/stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-readiness-http.mjs"
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
@@ -150,7 +153,7 @@ jobs:
           STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-        run: npm run validate:stripe-production-readiness -- --allow-pending-provider
+        run: npm run validate:stripe-production-readiness
 
   store-readiness:
     name: Store readiness static checks

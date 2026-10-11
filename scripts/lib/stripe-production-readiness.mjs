@@ -1,4 +1,10 @@
-const stripeApiBaseUrl = "https://api.stripe.com";
+import { checkConnectCallback, listWebhookEndpoints, stripeGet } from "./stripe-readiness-http.mjs";
+
+const productionWebhookUrl = "https://us-central1-sports-green-moove-prod.cloudfunctions.net/stripeWebhook";
+const requiredEvents = [
+  "payment_intent.succeeded", "payment_intent.payment_failed", "payment_intent.canceled",
+  "account.updated", "transfer.created", "transfer.updated", "transfer.reversed",
+];
 
 export async function checkStripeProductionReadiness({
   env = process.env,
@@ -8,28 +14,37 @@ export async function checkStripeProductionReadiness({
   const [account, balance, webhookEndpoints, connectAccounts] = await Promise.all([
     stripeGet(fetcher, config.secretKey, "/v1/account"),
     stripeGet(fetcher, config.secretKey, "/v1/balance"),
-    stripeGet(fetcher, config.secretKey, "/v1/webhook_endpoints?limit=100"),
-    stripeGetConnectAccounts(fetcher, config.secretKey),
+    listWebhookEndpoints(fetcher, config.secretKey),
+    stripeGet(fetcher, config.secretKey, "/v1/accounts?limit=1"),
   ]);
 
-  const enabledWebhookEndpoints = (webhookEndpoints.data ?? []).filter((endpoint) => endpoint.status === "enabled");
-  const stripeWebhookEndpoints = enabledWebhookEndpoints.filter((endpoint) => {
-    return typeof endpoint.url === "string" && endpoint.url.includes("stripeWebhook");
-  });
+  const stripeWebhookEndpoints = webhookEndpoints.filter((endpoint) =>
+    endpoint.status === "enabled" && endpoint.livemode === true && endpoint.url === productionWebhookUrl,
+  );
 
   if (balance.livemode !== true) {
     throw new Error("Stripe live secret key did not return a live-mode balance.");
   }
   if (stripeWebhookEndpoints.length === 0) {
-    throw new Error("No enabled Stripe webhook endpoint points at stripeWebhook.");
+    throw new Error("No enabled live Stripe webhook endpoint targets the production stripeWebhook URL.");
   }
-  if (!connectAccounts.disabled && !Array.isArray(connectAccounts.data)) {
+  const events = new Set(stripeWebhookEndpoints.flatMap((endpoint) => endpoint.enabled_events ?? []));
+  const missingEvents = requiredEvents.filter((event) => !events.has("*") && !events.has(event));
+  if (missingEvents.length) throw new Error(`Stripe webhook events missing: ${missingEvents.join(", ")}.`);
+  if (account.charges_enabled !== true || account.payouts_enabled !== true || account.details_submitted !== true) {
+    throw new Error("Stripe platform charges, payouts, and submitted details must all be enabled.");
+  }
+  if (!Array.isArray(connectAccounts.data)) {
     throw new Error("Stripe Connect account list endpoint did not return a data array.");
   }
+  const [returnCallback, refreshCallback] = await Promise.all([
+    checkConnectCallback(fetcher, config.returnUrl, "SGM_STRIPE_CONNECT_RETURN_URL"),
+    checkConnectCallback(fetcher, config.refreshUrl, "SGM_STRIPE_CONNECT_REFRESH_URL"),
+  ]);
 
   return {
-    ok: !connectAccounts.disabled,
-    readinessStatus: connectAccounts.disabled ? "pending-connect-enablement" : "production-configured",
+    ok: true,
+    readinessStatus: "production-configured",
     account: {
       id: account.id,
       country: account.country,
@@ -50,19 +65,16 @@ export async function checkStripeProductionReadiness({
       eventCount: endpoint.enabled_events?.length ?? 0,
       apiVersion: endpoint.api_version,
     })),
-    connectAccounts: connectAccounts.disabled
-      ? {
-          reachable: false,
-          blocker: connectAccounts.blocker,
-        }
-      : {
-          reachable: true,
-          returnedAccountCount: connectAccounts.data.length,
-          hasMore: Boolean(connectAccounts.has_more),
-        },
+    connectAccounts: {
+      reachable: true,
+      returnedAccountCount: connectAccounts.data.length,
+      hasMore: Boolean(connectAccounts.has_more),
+    },
     connectUrls: {
       returnUrlHost: safeHost(config.returnUrl),
       refreshUrlHost: safeHost(config.refreshUrl),
+      returnCallback,
+      refreshCallback,
     },
   };
 }
@@ -83,42 +95,6 @@ function loadConfig(env) {
   assertHttpsUrl(config.refreshUrl, "SGM_STRIPE_CONNECT_REFRESH_URL");
 
   return config;
-}
-
-async function stripeGet(fetcher, secretKey, path) {
-  const response = await fetcher(`${stripeApiBaseUrl}${path}`, {
-    headers: {
-      Authorization: `Bearer ${secretKey}`,
-      "Stripe-Version": "2026-02-25.clover",
-    },
-  });
-  const body = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    throw new Error(`Stripe ${path} failed (${response.status}): ${body.error?.message ?? response.statusText}`);
-  }
-  return body;
-}
-
-async function stripeGetConnectAccounts(fetcher, secretKey) {
-  const path = "/v1/accounts?limit=1";
-  const response = await fetcher(`${stripeApiBaseUrl}${path}`, {
-    headers: {
-      Authorization: `Bearer ${secretKey}`,
-      "Stripe-Version": "2026-02-25.clover",
-    },
-  });
-  const body = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    const message = body.error?.message ?? response.statusText;
-    if (response.status === 400 && /connect|account/i.test(message)) {
-      return {
-        disabled: true,
-        blocker: message,
-      };
-    }
-    throw new Error(`Stripe ${path} failed (${response.status}): ${message}`);
-  }
-  return body;
 }
 
 function uniqueCurrencies(items) {
