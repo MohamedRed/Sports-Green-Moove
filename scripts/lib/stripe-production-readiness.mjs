@@ -1,4 +1,5 @@
 import { checkConnectCallback, listWebhookEndpoints, stripeGet } from "./stripe-readiness-http.mjs";
+import callbacks from "../../functions/src/config/stripeOnboarding.json" with { type: "json" };
 
 const productionWebhookUrl = "https://us-central1-sports-green-moove-prod.cloudfunctions.net/stripeWebhook";
 const requiredEvents = [
@@ -93,6 +94,9 @@ function loadConfig(env) {
   assertPrefix(config.webhookSecret, "whsec_", "STRIPE_WEBHOOK_SECRET");
   assertHttpsUrl(config.returnUrl, "SGM_STRIPE_CONNECT_RETURN_URL");
   assertHttpsUrl(config.refreshUrl, "SGM_STRIPE_CONNECT_REFRESH_URL");
+  if (config.returnUrl !== callbacks.returnUrl || config.refreshUrl !== callbacks.refreshUrl) {
+    throw new Error("Stripe callbacks must use the configured primary Firebase Hosting endpoints.");
+  }
 
   return config;
 }

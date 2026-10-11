@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-10-11T13:02:11.154Z",
+  "generatedAt": "2026-10-11T13:21:44Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -46,14 +46,15 @@
     },
     "stripeConnect": {
       "environment": "production",
-      "status": "pending-callback-verification",
-      "checkedAt": "2026-10-11T12:54:54Z",
+      "status": "production-configured",
+      "checkedAt": "2026-10-11T13:21:44Z",
       "checkedBy": "Codex",
       "evidenceRefs": [
         "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27769270417/job/82164447372",
         "evidence/provider-secret-validation-2026-06-17.md",
         "evidence/stripe-connect-production-readiness-2026-06-18.md",
         "evidence/release-resume-2026-10-11.md",
+        "evidence/stripe-callbacks-production-2026-10-11.md",
         "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38141082159/job/114474917484",
         "https://github.com/MohamedRed/Sports-Green-Moove/commit/96335d85743d7a8db1ef38a494adc4455eea41cb"
       ]

@@ -1,13 +1,14 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { checkStripeProductionReadiness } from "../scripts/lib/stripe-production-readiness.mjs";
 
 const validEnv = {
   STRIPE_SECRET_KEY: "sk_live_" + "s".repeat(24),
   STRIPE_PUBLISHABLE_KEY: "pk_live_" + "p".repeat(24),
   STRIPE_WEBHOOK_SECRET: "whsec_" + "w".repeat(24),
-  SGM_STRIPE_CONNECT_RETURN_URL: "https://app.sportgreenmoove.be/payments/return",
-  SGM_STRIPE_CONNECT_REFRESH_URL: "https://app.sportgreenmoove.be/payments/refresh",
+  SGM_STRIPE_CONNECT_RETURN_URL: "https://sports-green-moove-prod.web.app/payments/return",
+  SGM_STRIPE_CONNECT_REFRESH_URL: "https://sports-green-moove-prod.web.app/payments/refresh",
 };
 
 const responses = {
@@ -42,8 +43,11 @@ const responses = {
 };
 
 const okFetch = async (url) => {
-  if (new URL(url).host === "app.sportgreenmoove.be") {
-    return { ok: true, status: 200, url };
+  if (new URL(url).host === "sports-green-moove-prod.web.app") {
+    assert.equal(new URL(url).searchParams.get("health"), "1");
+    return { ok: true, status: 204, url, headers: new Headers({
+      "x-sgm-stripe-callback": new URL(url).pathname.endsWith("/return") ? "return" : "refresh",
+    }) };
   }
   const path = new URL(url).pathname + new URL(url).search;
   return {
@@ -59,7 +63,7 @@ assert.equal(result.account.id, "acct_live_123");
 assert.equal(result.balance.livemode, true);
 assert.equal(result.webhookEndpoints[0].urlHost, "us-central1-sports-green-moove-prod.cloudfunctions.net");
 assert.equal(result.connectAccounts.reachable, true);
-assert.equal(result.connectUrls.returnUrlHost, "app.sportgreenmoove.be");
+assert.equal(result.connectUrls.returnUrlHost, "sports-green-moove-prod.web.app");
 
 await assert.rejects(
   () => checkStripeProductionReadiness({
@@ -169,7 +173,7 @@ for (const callbackFailure of [
 ]) {
   await assert.rejects(() => checkStripeProductionReadiness({
     env: validEnv,
-    fetcher: async (url) => new URL(url).host === "app.sportgreenmoove.be"
+    fetcher: async (url) => new URL(url).host === "sports-green-moove-prod.web.app"
       ? callbackFailure(url) : okFetch(url),
   }), /callback.*(could not be reached|HTTP 404|insecure URL)/);
 }
@@ -186,7 +190,7 @@ const paginatedResult = await checkStripeProductionReadiness({
         ? { data: [webhook], has_more: false }
         : { data: [{ id: "we_other", status: "disabled" }], has_more: true } };
     }
-    if (parsed.host === "app.sportgreenmoove.be") {
+    if (parsed.host === "sports-green-moove-prod.web.app") {
       assert.equal(init.headers, undefined, "Stripe credentials must never reach callback hosts.");
     }
     return okFetch(url);
@@ -194,6 +198,21 @@ const paginatedResult = await checkStripeProductionReadiness({
 });
 assert.equal(paginatedResult.ok, true);
 assert.deepEqual(pageRequests, ["?limit=100", "?limit=100&starting_after=we_other"]);
+
+for (const response of [
+  { ok: true, status: 200, headers: new Headers() },
+  { ok: true, status: 204, headers: new Headers() },
+  { ok: true, status: 204, headers: new Headers({ "x-sgm-stripe-callback": "wrong" }) },
+]) {
+  await assert.rejects(() => checkStripeProductionReadiness({
+    env: validEnv,
+    fetcher: async (url) => new URL(url).host === "sports-green-moove-prod.web.app" ? response : okFetch(url),
+  }), /expected Stripe callback health contract/);
+}
+await assert.rejects(() => checkStripeProductionReadiness({
+  env: { ...validEnv, SGM_STRIPE_CONNECT_RETURN_URL: "https://app.sportgreenmoove.be/payments/return" },
+  fetcher: async () => { throw new Error("must not be called"); },
+}), /primary Firebase Hosting endpoints/);
 
 await assert.rejects(() => checkStripeProductionReadiness({
   env: validEnv,
@@ -207,5 +226,14 @@ const bypass = spawnSync(process.execPath, ["scripts/check-stripe-production-rea
 });
 assert.equal(bypass.status, 1, "The legacy bypass must not turn failed verification green.");
 assert.match(bypass.stderr, /does not support bypass/);
+
+const hosting = JSON.parse(readFileSync("firebase.json", "utf8")).hosting;
+assert.deepEqual(hosting.rewrites.slice(0, 2).map(({ source, function: handler }) => [source, handler.functionId, handler.region]), [
+  ["/payments/return", "stripeConnectReturn", "us-central1"],
+  ["/payments/refresh", "stripeConnectRefresh", "us-central1"],
+]);
+assert.match(readFileSync("android/app/src/main/AndroidManifest.xml", "utf8"), /android:scheme="sports-green-moove" android:host="payments"/);
+assert.match(readFileSync("ios/project.yml", "utf8"), /- sports-green-moove/);
+assert.match(readFileSync(".github/workflows/android-browserstack.yml", "utf8"), /SGM_RADAR_PUBLISHABLE_KEY: \$\{\{ secrets.SGM_RADAR_PUBLISHABLE_KEY \}\}/);
 
 console.log("Stripe production readiness checks passed.");

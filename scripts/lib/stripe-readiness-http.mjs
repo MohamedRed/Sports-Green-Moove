@@ -46,8 +46,10 @@ export async function listWebhookEndpoints(fetcher, secretKey) {
 
 export async function checkConnectCallback(fetcher, url, name) {
   let response;
+  const healthUrl = new URL(url);
+  healthUrl.searchParams.set("health", "1");
   try {
-    response = await fetcher(url, {
+    response = await fetcher(healthUrl.toString(), {
       method: "GET",
       redirect: "follow",
       signal: AbortSignal.timeout(15_000),
@@ -60,5 +62,9 @@ export async function checkConnectCallback(fetcher, url, name) {
   if (response.url && new URL(response.url).protocol !== "https:") {
     throw new Error(`${name} callback redirected to an insecure URL.`);
   }
-  return { reachable: true, status: response.status };
+  const kind = name === "SGM_STRIPE_CONNECT_RETURN_URL" ? "return" : "refresh";
+  if (response.status !== 204 || response.headers?.get("x-sgm-stripe-callback") !== kind) {
+    throw new Error(`${name} does not expose the expected Stripe callback health contract.`);
+  }
+  return { reachable: true, status: response.status, kind };
 }

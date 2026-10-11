@@ -90,6 +90,8 @@ targets:
         SGMStripeConnectRefreshURL: $(SGM_STRIPE_CONNECT_REFRESH_URL)
         CFBundleURLTypes:
           - CFBundleURLSchemes:
+              - sports-green-moove
+          - CFBundleURLSchemes:
               - $(SGM_GOOGLE_REVERSED_CLIENT_ID)
           - CFBundleURLSchemes:
               - fb$(SGM_FACEBOOK_APP_ID)

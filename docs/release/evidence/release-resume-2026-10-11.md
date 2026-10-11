@@ -14,7 +14,12 @@ head, `2e4b3d914ba54400271a4f99efc052add94f57a9`.
 PR #1 remains open. Its July 9 checks passed, with iOS jobs skipped. Those
 historical checks do not prove October provider health.
 
-## Current Stripe Verification Gap
+## Initial Stripe Verification Gap
+
+This gap was subsequently resolved after the owner approved the existing Firebase
+Hosting domain as the primary callback host. See
+[the deployment evidence](stripe-callbacks-production-2026-10-11.md) for the
+current configuration and its remaining end-to-end verification limits.
 
 The June 18 change moved onboarding to Connect Express v1 and recorded Connect
 API access as configured. The earlier Accounts v2 blocker is historical.

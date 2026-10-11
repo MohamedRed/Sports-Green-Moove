@@ -4,7 +4,6 @@ import { z } from "zod";
 import {
   connectedAccountFromRecord,
   createConnectedAccount,
-  createConnectedAccountLink,
   createRewardPayoutTransfer,
   createRideDestinationPaymentIntent,
   stripePublishableKey,
@@ -16,6 +15,8 @@ import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth, requireRole } from "../lib/https.js";
 import { stripePublishableKeySecret, stripeSecretKeySecret } from "../lib/providerSecrets.js";
 import { parseCallableData } from "../lib/validation.js";
+import { beginStripeOnboarding, stripeOnboardingCallbacks } from "../domain/stripeOnboarding.js";
+import { stripeOnboardingDependencies } from "../services/stripeOnboarding.js";
 
 type BookingDocument = {
   tripId: string;
@@ -65,34 +66,21 @@ export const createStripeAccountLink = onCall({ secrets: [stripeSecretKeySecret]
   const uid = requireAuth(request.auth?.uid);
   requireRole(request.auth?.token, "driver");
   const schema = z.object({
-    returnUrl: z.string().url(),
-    refreshUrl: z.string().url(),
+    returnUrl: z.literal(stripeOnboardingCallbacks.returnUrl),
+    refreshUrl: z.literal(stripeOnboardingCallbacks.refreshUrl),
   });
-  const data = parseCallableData(schema, request.data);
+  parseCallableData(schema, request.data);
   const accountSnap = await firestore.collection("stripeAccounts").doc(uid).get();
   const stripeAccount = accountSnap.data() as StripeAccountDocument | undefined;
   if (!stripeAccount?.stripeAccountId) {
     throw new HttpsError("failed-precondition", "Create a Stripe account before requesting onboarding.");
   }
 
-  const link = await createConnectedAccountLink(
-    {
-      accountId: stripeAccount.stripeAccountId,
-      returnUrl: data.returnUrl,
-      refreshUrl: data.refreshUrl,
-    },
-    stripeSecretKeySecret.value(),
+  return beginStripeOnboarding(
+    uid,
+    stripeAccount.stripeAccountId,
+    stripeOnboardingDependencies(stripeSecretKeySecret.value()),
   );
-
-  await accountSnap.ref.set(
-    {
-      lastAccountLinkCreatedAt: Timestamp.now(),
-      updatedAt: Timestamp.now(),
-    },
-    { merge: true },
-  );
-
-  return link;
 });
 
 export const createRidePaymentIntent = onCall(
