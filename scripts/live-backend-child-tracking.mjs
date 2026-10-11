@@ -1,4 +1,5 @@
 export async function seedChildProfile({ admin, runId, parent, child, created }) {
+  created.childIds.push(child.uid);
   await admin.firestore().collection("children").doc(child.uid).set({
     displayName: "Codex Child",
     guardianUserIds: [parent.uid],
@@ -9,7 +10,6 @@ export async function seedChildProfile({ admin, runId, parent, child, created })
     createdAt: admin.firestore.Timestamp.now(),
     updatedAt: admin.firestore.Timestamp.now(),
   });
-  created.childIds.push(child.uid);
   return child.uid;
 }
 

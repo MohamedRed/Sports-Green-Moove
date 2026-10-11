@@ -4,6 +4,7 @@ import admin from "firebase-admin";
 import { seedChildProfile, verifyNativeFallbackTracking } from "./live-backend-child-tracking.mjs";
 import { androidApiKey } from "./firebase-android-config.mjs";
 import { writeLiveSmokeSafetyAuditExport } from "./lib/live-smoke-safety-audit.mjs";
+import { cleanupLiveSmoke, runWithSmokeCleanup } from "./lib/live-smoke-cleanup.mjs";
 
 const projectId = process.env.SGM_FIREBASE_PROJECT_ID ?? "sports-green-moove-prod";
 const region = process.env.SGM_FIREBASE_FUNCTIONS_REGION ?? "us-central1";
@@ -164,6 +165,8 @@ async function runRideFlow(parent, driver, child, tripId, bookingId) {
   await callFunction("markPickup", driver.idToken, { rideSessionId, bookingId, childId: child.uid, note: runId });
   await callFunction("markDropoff", driver.idToken, { rideSessionId, bookingId, childId: child.uid, note: runId });
 
+  created.co2LedgerIds.push(`rideCompletion_${encodeURIComponent(rideSessionId)}`);
+  created.rewardLedgerIds.push(`co2Bonus_${encodeURIComponent(rideSessionId)}_${encodeURIComponent(driver.uid)}`);
   const completed = await callFunction("endRide", driver.idToken, {
     rideSessionId,
     distanceMeters: 12_000,
@@ -179,40 +182,7 @@ async function runRideFlow(parent, driver, child, tripId, bookingId) {
   });
   created.ratingIds.push(rating.ratingId);
 
-  created.co2LedgerIds.push(`rideCompletion_${encodeURIComponent(rideSessionId)}`);
-  if (completed.rewardCents > 0) {
-    created.rewardLedgerIds.push(`co2Bonus_${encodeURIComponent(rideSessionId)}_${encodeURIComponent(driver.uid)}`);
-  }
   return rideSessionId;
-}
-
-async function collectCleanupIds() {
-  const db = admin.firestore();
-  for (const uid of created.authUserIds) {
-    const notifications = await db.collection("notifications").where("userId", "==", uid).get();
-    created.notificationIds.push(...notifications.docs.map((doc) => doc.id));
-  }
-}
-
-async function cleanup() {
-  const db = admin.firestore();
-  await collectCleanupIds();
-  await Promise.all([
-    ...created.messageIds.map((id) => db.collection("messages").doc(id).delete().catch(() => undefined)),
-    ...created.ratingIds.map((id) => db.collection("ratings").doc(id).delete().catch(() => undefined)),
-    ...created.notificationIds.map((id) => db.collection("notifications").doc(id).delete().catch(() => undefined)),
-    ...created.co2LedgerIds.map((id) => db.collection("co2Ledger").doc(id).delete().catch(() => undefined)),
-    ...created.rewardLedgerIds.map((id) => db.collection("rewardLedger").doc(id).delete().catch(() => undefined)),
-    ...created.childIds.map((id) => db.collection("children").doc(id).delete().catch(() => undefined)),
-    ...created.bookingIds.map((id) => db.collection("bookings").doc(id).delete().catch(() => undefined)),
-    ...created.tripIds.map((id) => db.collection("trips").doc(id).delete().catch(() => undefined)),
-    ...created.rideSessionIds.map((id) => db.collection("rideSessions").doc(id).delete().catch(() => undefined)),
-    ...created.rideSessionIds.map((id) => admin.database().ref(`liveTrips/${id}`).remove().catch(() => undefined)),
-    ...created.userDocIds.map((id) => db.collection("users").doc(id).delete().catch(() => undefined)),
-  ]);
-  if (created.authUserIds.length) {
-    await admin.auth().deleteUsers(created.authUserIds).catch(() => undefined);
-  }
 }
 
 async function main() {
@@ -244,7 +214,7 @@ async function main() {
     ? await writeLiveSmokeSafetyAuditExport({ admin, projectId, created, outputPath: options.safetyAuditOutput })
     : undefined;
 
-  console.log(JSON.stringify({
+  return {
     ok: true,
     projectId,
     runId,
@@ -259,7 +229,7 @@ async function main() {
       ratings: created.ratingIds.length,
     },
     safetyAuditExport,
-  }, null, 2));
+  };
 }
 
 function parseArgs(args) {
@@ -289,9 +259,9 @@ function requireValue(args, index, flag) {
   return value;
 }
 
-try {
-  await main();
-} finally {
-  await cleanup();
-  await Promise.all(admin.apps.filter(Boolean).map((app) => app.delete()));
-}
+const result = await runWithSmokeCleanup({
+  run: main,
+  cleanup: () => cleanupLiveSmoke({ admin, created }),
+  dispose: () => Promise.all(admin.apps.filter(Boolean).map((app) => app.delete())),
+});
+console.log(JSON.stringify({ ...result, cleanup: "complete" }, null, 2));

@@ -40,6 +40,58 @@ Stripe remains pending until these checks pass with the current production
 configuration. The HTTP check establishes callback reachability; completing
 driver onboarding and a paid ride still requires separate user-flow evidence.
 
+The fresh [Release Readiness production check](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38141082159/job/114474917484)
+at `c39e5f2` failed with
+`SGM_STRIPE_CONNECT_REFRESH_URL callback host app.sportgreenmoove.be could not be reached.`
+This confirms the current Actions configuration still uses that host. The Stripe
+API, account, Connect, and webhook checks completed before the callback failure.
+
+Read-only Firebase Hosting inventory returned no custom domains for the production
+site. Local DNS checks for the apex `sportgreenmoove.be` returned `ENOTFOUND` for
+NS, SOA, and A records. Cloud DNS inventory was inaccessible (HTTP 403); that does
+not establish whether zones exist. The owner did not recall the intended domain
+or its DNS provider. No DNS, hosting configuration, or secret values were changed.
+Independent A-record queries through Cloudflare (`1.1.1.1`) and Google (`8.8.8.8`)
+also returned `ENOTFOUND` for both the callback host and apex domain.
+
+Restoring DNS alone will not prove callback behavior. Stripe's
+[hosted-onboarding contract](https://docs.stripe.com/connect/hosted-onboarding#handle-the-connected-account-returning-to-your-platform)
+requires refresh callbacks to generate a new Account Link and return callbacks
+to check the connected account's outstanding requirements. These behaviors need
+end-to-end verification once the intended callback deployment is established.
+
+## Disposable Smoke Cleanup
+
+The live backend smoke previously deleted ride documents without deleting their
+audit subcollections, suppressed deletion errors, and printed success before
+cleanup finished. Cleanup now recursively deletes only this run's recorded ride
+sessions, attempts all owned resource cleanup even after failures, detects partial
+Auth deletion failures, and disposes Firebase clients even when cleanup fails.
+Success is printed only after cleanup succeeds. Deterministic ledger IDs and the
+child profile ID are recorded before their writes to cover partial-call failures.
+
+## Fresh Production Backend Smoke
+
+Run `codex-smoke-2026-10-11T13-00-39-867Z-3f8b433d` passed using disposable
+accounts and a zero-price booking in `sports-green-moove-prod`. It verified three
+auth profiles, trip publication and search (one match), driver approval, chat,
+manual pickup/dropoff, driver and child native-fallback telemetry, parent and
+child active-ride access, ride completion, and rating submission.
+
+The [sanitized export](disposable-safety-audit-smoke-2026-10-11.json) was produced
+at `2026-10-11T13:02:11.154Z`, before cleanup. It contains one completed ride,
+two manual audit events, guardian consent, native-fallback source records, and
+one CO2 bonus ledger entry. It includes no physical-device GPS capture, real
+Radar event, or Stripe payment reconciliation. The strict audit validator fails
+as expected with `radar_webhook_event` and `payment_reconciliation_event` missing,
+and reports no secret-like fields.
+
+The script reported `cleanup: complete`. Independent follow-up reads confirmed
+zero remaining Auth users, zero remaining owned user/child/trip/booking/ride and
+CO2/reward documents, zero ride audit subcollection documents, and no live-trip
+Realtime Database entry. This is backend smoke evidence only; audit manifest
+acceptance and physical-device scenarios remain pending.
+
 ## Remaining Release Work
 
 The manifest still requires all nine tracking scenarios on physical iOS and

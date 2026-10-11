@@ -31,6 +31,7 @@ on:
       - "scripts/lib/safety-audit-export.mjs"
       - "scripts/lib/stripe-production-readiness.mjs"
       - "scripts/lib/stripe-readiness-http.mjs"
+      - "scripts/lib/live-smoke-cleanup.mjs"
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
@@ -41,6 +42,7 @@ on:
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
       - "tests/stripe-production-readiness.test.mjs"
+      - "tests/live-smoke-cleanup.test.mjs"
       - "tests/android-appetize-workflow.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/privacy-policy-page.test.mjs"
@@ -82,6 +84,7 @@ on:
       - "scripts/lib/safety-audit-export.mjs"
       - "scripts/lib/stripe-production-readiness.mjs"
       - "scripts/lib/stripe-readiness-http.mjs"
+      - "scripts/lib/live-smoke-cleanup.mjs"
       - "scripts/live-backend-child-tracking.mjs"
       - "scripts/live-backend-flow-smoke.mjs"
       - "scripts/live-operations-flow-smoke.mjs"
@@ -92,6 +95,7 @@ on:
       - "scripts/verify-pr-user-flow-checks.mjs"
       - "tests/provider-readiness.test.mjs"
       - "tests/stripe-production-readiness.test.mjs"
+      - "tests/live-smoke-cleanup.test.mjs"
       - "tests/android-appetize-workflow.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/privacy-policy-page.test.mjs"
@@ -185,6 +189,9 @@ jobs:
 
       - name: Validate Stripe production readiness checks
         run: npm run test:stripe-production-readiness
+
+      - name: Validate live smoke cleanup
+        run: npm run test:live-smoke-cleanup
 
       - name: Validate safety audit export checks
         run: npm run test:safety-audit-export
