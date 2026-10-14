@@ -9,6 +9,11 @@ on:
       - "docs/contracts/**"
       - "functions/**"
       - "website/**"
+      - "partner-portal/**"
+      - "docs/release/evidence/**"
+      - "scripts/build-partner-portal.mjs"
+      - "tests/partner-portal.test.mjs"
+      - "tests/partner-portal.browser.mjs"
       - "database.rules.json"
       - "firebase.json"
       - "firestore.indexes.json"
@@ -34,6 +39,11 @@ on:
       - "docs/contracts/**"
       - "functions/**"
       - "website/**"
+      - "partner-portal/**"
+      - "docs/release/evidence/**"
+      - "scripts/build-partner-portal.mjs"
+      - "tests/partner-portal.test.mjs"
+      - "tests/partner-portal.browser.mjs"
       - "database.rules.json"
       - "firebase.json"
       - "firestore.indexes.json"
@@ -93,6 +103,9 @@ jobs:
 
       - name: Validate public privacy route
         run: npm run test:privacy-policy-page
+
+      - name: Validate private partner portal evidence and contracts
+        run: node --test tests/partner-portal.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage
