@@ -50,25 +50,36 @@ and landscape screenshot dimensions, and waits for the actual home trip to load.
 
 ## Retained Native Evidence
 
-Source: [Native CI run 38756774445](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38756774445),
-commit `f029cb4aafc748082117244e2710edce71eaa933`, artifact
-`android-connected-ui-test-results`, local run `b90408c1a10ed8934987c2cd1fab4cd7`.
+Source: [Native CI run 38759091076](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38759091076),
+commit `805017cdb53b128c0e273cc05901f54005e2f93f`, artifact
+`android-connected-ui-test-results`, local run `abbef5a061e4936c4126ae2b5d2f23e4`.
 Six instrumentation cases passed in two app-process invocations. The sanitized
 `results.json` is copied unchanged from that run.
 
 Reviewed and retained app-window evidence:
 
 - `local-trips-calendar.png`: current month, real seeded trip, month arrows tested.
-- `local-parent-messages.png`: seeded conversation preview loaded; no reply UI.
+- `local-parent-home.png`: actual loaded trip, current date and remaining places.
+- `local-search-empty.png`: completed empty search. Consent initially unchecked is
+  asserted before the search; the retained screen follows the explicit selection.
 - `local-driver-booking-approved.png`: approval confirmed and both cards approved.
 - `local-login-landscape.png`: actually landscape, empty inputs and submit visible
   after scrolling; the same test subsequently authenticated successfully.
-- `local-theme-after-process-restart.png`: saved dark theme after a fresh process.
+- `local-theme-after-process-restart.png`: saved dark theme after a fresh process,
+  with the authenticated parent and updated trip data.
 
-The home and empty-search screenshots from this run still showed a preceding
-display frame despite updated semantics. They are deliberately excluded, not
-presented as visual proof. The capture helper was changed to synchronized Compose
-window capture, removing dependence on the stale display-buffer screenshot path.
+These are synchronized Compose window captures, without system chrome. No app
+pixels were edited. The earlier home and empty-search display-buffer captures were
+rejected because they showed preceding frames. The new captures were visually
+reviewed and show the expected loaded/empty-result states. Fixture booking notes
+are ordinary synthetic passenger messages, not internal implementation comments.
+
+`local-parent-messages.png` retains the complete reviewed conversation-preview
+capture from [run 38756774445](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38756774445),
+commit `f029cb4aafc748082117244e2710edce71eaa933`, run ID
+`b90408c1a10ed8934987c2cd1fab4cd7`. The newer capture clipped its heading and was
+not substituted. Both runs assert the same loaded preview; neither proves reply UI.
+
 The support submission capture is also excluded from the partner gallery because
 unrelated technical payment labels were visible. Its successful submission remains
 covered by assertions and the separately documented manual management check.
