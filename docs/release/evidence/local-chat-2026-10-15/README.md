@@ -50,3 +50,5 @@ on `8a5f934` reached the new local chat case but stopped at its first text entry
 the composer was still disabled during server loading. The test now waits for
 the actual enabled input instead of assuming that a visible input is ready.
 No new conversation screenshot or app-flow success is accepted from that run.
+The subsequent successful run and four reviewed captures are recorded separately
+in `../local-chat-ui-2026-10-15/README.md`.

@@ -98,12 +98,12 @@ test('app screenshots require a completed scoped run and retain product gaps', (
   const run = JSON.parse(source('docs/release/evidence/local-ui-2026-10-15/results.json'));
   assert.equal(run.testCount, 6);
   assert.equal(run.steps.length, 5);
-  for (const id of ['navigation', 'search', 'booking', 'messages', 'appearance']) {
+  for (const id of ['navigation', 'search', 'booking', 'appearance']) {
     const flow = content.flows.find((item) => item.id === id);
     assert.equal(flow.status, 'partial');
     assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-2026-10-15/results.json');
   }
-  for (const id of ['chat-reply', 'membership-review', 'trip-management', 'booking-decisions', 'contrast']) {
+  for (const id of ['chat-discovery', 'membership-review', 'trip-management', 'booking-decisions', 'contrast']) {
     assert(content.blockers.some((item) => item.id === id));
   }
 });
@@ -115,6 +115,37 @@ test('ride integrity claims use the new eleven-group evidence without promoting 
   assert(run.steps.every((step) => step.status === 'passed'));
   assert(flow.local.groups.includes('ride-passenger-safety'));
   assert.equal(flow.status, 'partial');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+});
+
+test('message safety claims require the passing twelve-group service evidence', () => {
+  const flow = content.flows.find((item) => item.id === 'messages');
+  const run = JSON.parse(source(flow.local.source));
+  assert.equal(run.steps.length, 12);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert(flow.local.groups.includes('chat-delivery-safety'));
+  assert.equal(flow.status, 'partial');
+  assert.match(flow.remaining, /premier message|réservation/);
+  assert.match(flow.remaining, /anciens/);
+  const baseline = JSON.parse(source('docs/release/evidence/local-chat-2026-10-15/baseline-failed.json'));
+  assert.equal(baseline.steps.find((step) => step.id === 'chat-delivery-safety').status, 'failed');
+});
+
+test('conversation captures require the completed eight-case run and keep phone scope open', () => {
+  const flow = content.flows.find((item) => item.id === 'messages');
+  const run = JSON.parse(source(flow.ui.source));
+  assert.equal(run.testCount, 8);
+  assert.equal(run.steps.length, 9);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.deepEqual(flow.ui.groups, ['chat-conversation-ui']);
+  assert.equal(run.chat.messageCount, 5);
+  assert.equal(run.chat.newMessageCount, 4);
+  assert.equal(run.chat.readNotificationCount, 4);
+  assert.equal(run.chat.historyMessageCount, 120);
+  assert.equal(flow.images.length, 4);
+  assert.equal(flow.status, 'partial');
+  assert.match(flow.remaining, /téléphones/);
+  assert(!content.blockers.some((item) => item.id === 'chat-reply'));
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 

@@ -2,6 +2,7 @@ const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
+const chatUiReport = 'docs/release/evidence/local-chat-ui-2026-10-15/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -18,7 +19,6 @@ export const captures = {
   'support-reviewed': 'docs/release/evidence/local-ui-2026-10-15/local-support-reviewed.png',
   'local-home': 'docs/release/evidence/local-ui-2026-10-15/local-parent-home.png',
   'local-calendar': 'docs/release/evidence/local-ui-2026-10-15/local-trips-calendar.png',
-  'local-messages': 'docs/release/evidence/local-ui-2026-10-15/local-parent-messages.png',
   'local-approved': 'docs/release/evidence/local-ui-2026-10-15/local-driver-booking-approved.png',
   'local-landscape': 'docs/release/evidence/local-ui-2026-10-15/local-login-landscape.png',
   'local-search-empty': 'docs/release/evidence/local-ui-2026-10-15/local-search-empty.png',
@@ -29,6 +29,10 @@ export const captures = {
   'ride-rewards': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-rewards.png',
   'ride-review': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-review-prompt.png',
   'ride-review-sent': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-review-sent.png',
+  'chat-parent': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-parent-sent.png',
+  'chat-driver': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-driver-reply.png',
+  'chat-live': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-live-reply.png',
+  'chat-landscape': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-landscape-draft.png',
 };
 
 export const assets = {
@@ -57,6 +61,8 @@ export const content = {
   lastVerifiedAt: '2026-10-15',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-15', title: 'Le parent et le conducteur se répondent dans l’app',
+      text: 'En local : réponses reçues, brouillon conservé et anciens messages retrouvés. Les captures sont disponibles.', flow: 'messages' },
     { date: '2026-10-15', title: 'Un trajet complet, puis un avis',
       text: 'Dans l’app en local : passagers déposés, trajet terminé, historique retrouvé et avis envoyé. Les captures sont disponibles.', flow: 'ride-lifecycle' },
     { date: '2026-10-15', title: 'Le trajet ne peut plus être terminé trop tôt',
@@ -81,9 +87,9 @@ export const content = {
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
   blockers: [
-    { id: 'chat-reply', title: 'Répondre aux messages',
-      text: 'L’app affiche les conversations, mais on ne peut pas encore les ouvrir ni répondre.',
-      next: 'Ajouter le fil de discussion et l’envoi de messages.', source: uiReport },
+    { id: 'chat-discovery', title: 'Retrouver et démarrer les conversations',
+      text: 'La réponse fonctionne en local. La liste peut encore masquer des échanges plus anciens.',
+      next: 'Afficher toutes les conversations et permettre un premier message depuis une réservation.', source: chatUiReport },
     { id: 'membership-review', title: 'Accepter ou refuser une adhésion',
       text: 'Les demandes sont visibles. Les boutons de décision sont encore absents.',
       next: 'Ajouter ces actions pour le club.', source: uiReport },
@@ -149,12 +155,20 @@ export const content = {
       ui: ui(['driver-approval-ui']),
       images: [shot('local-approved', 'Demande acceptée par le conducteur en local')], source: uiReport },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'L’aperçu d’un message apparaît dans l’app. La réponse reste à ajouter.',
-      verified: 'Aperçu chargé dans l’app en local. Les contrôles locaux vérifient les échanges dans les deux sens et refusent l’envoi par un tiers.',
-      remaining: 'Ajouter l’ouverture et la réponse aux conversations dans l’app, puis tester les échanges et les alertes entre téléphones.',
-      local: local(['messages-notifications'], ['Le parent envoie un message au conducteur.', 'Le conducteur répond au parent.', 'Chaque boîte de réception contient le message et sa notification.', 'Une personne extérieure ne peut pas envoyer de message.']),
-      ui: ui(['parent-app-ui']),
-      images: [shot('local-messages', 'Aperçu du message reçu en local')], source: uiReport },
+      summary: 'Le parent et le conducteur se répondent dans l’app, en local.',
+      verified: 'En local : échanges dans les deux sens, réception sans recharger, brouillon conservé et 120 anciens messages chargés. Les doublons et les accès extérieurs sont refusés.',
+      remaining: 'Ajouter le premier message depuis une réservation et l’accès à tous les échanges anciens. Vérifier les alertes entre téléphones et la reprise après une coupure réseau.',
+      local: local(['messages-notifications', 'chat-delivery-safety'], [
+        'Le parent et le conducteur échangent des messages.',
+        'Trois tentatives du même envoi créent un seul message et une notification.',
+        'La lecture est enregistrée sans effacer un message reçu plus tard.',
+        'Une personne extérieure ne peut pas ouvrir la conversation ni y répondre.',
+      ], 'docs/release/evidence/local-chat-2026-10-15/results.json'),
+      ui: { source: 'docs/release/evidence/local-chat-ui-2026-10-15/results.json', groups: ['chat-conversation-ui'] },
+      images: [shot('chat-parent', 'Message envoyé par le parent, en local'),
+        shot('chat-driver', 'Réponse du conducteur dans l’app, en local'),
+        shot('chat-live', 'Message reçu sans recharger et réponse du parent, en local'),
+        shot('chat-landscape', 'Brouillon conservé en paysage, en local')], source: chatUiReport },
     { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-15',
       summary: 'La demande d’adhésion est enregistrée en local, sans doublon.',
       verified: 'En local : demande enregistrée et seconde demande réutilisée. Un club inexistant est refusé.',
