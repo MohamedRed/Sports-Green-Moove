@@ -11,8 +11,8 @@ export async function seedChatDirectoryUiFixtures() {
   for (let index = 1; index <= 25; index += 1) {
     const ordinal = String(index).padStart(2, '0');
     const id = `sgm-qa-directory-ui-${ordinal}`;
-    batch.set(db.doc(`trips/${id}`), { driverUserId: 'sgm-qa-driver', status: 'completed',
-      title: `Trajet archivé ${ordinal}`, departureAt });
+    batch.set(db.doc(`trips/${id}`), { ...tripInput(), driverUserId: 'sgm-qa-driver', status: 'completed',
+      title: `Trajet archivé ${ordinal}`, departureAt, createdAt: departureAt, completedAt: departureAt });
     batch.set(db.doc(`bookings/${id}`), { tripId: id, parentUserId: 'sgm-qa-parent', requesterUserId: 'sgm-qa-parent',
       driverUserId: 'sgm-qa-driver', childLabel: 'Lina QA', status: 'completed', seats: 1, createdAt: departureAt });
     batch.set(db.doc(`messages/${id}`), { sourceType: 'booking', sourceId: id, body: `Ancien rendez-vous ${ordinal}`,

@@ -31,6 +31,9 @@ function instrument(classes, expected) {
   assertInstrumentationPassed(output, expected);
 }
 
+const output = process.env.SGM_LOCAL_UI_OUTPUT;
+mkdirSync(output, { recursive: true });
+let capturesCollected = false;
 try {
   instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest'], 5);
   instrument(['LocalThemeRestartTest'], 1);
@@ -45,9 +48,8 @@ try {
   const directoryFixture = await seedChatDirectoryUiFixtures();
   instrument(['LocalConversationDirectoryFlowTest'], 1);
   const directory = await verifyLocalChatDirectoryUi(directoryFixture);
-  const output = process.env.SGM_LOCAL_UI_OUTPUT;
-  mkdirSync(output, { recursive: true });
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', output]);
+  capturesCollected = true;
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
     'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui']
     .map((id) => ({ id, status: 'passed' }));
@@ -56,6 +58,10 @@ try {
     testCount: 9, steps, ride, chat, directory, limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
       'No physical GPS tracking, provider payments, push delivery or live data tested.'] }, null, 2)}\n`);
 } finally {
+  if (!capturesCollected) {
+    try { run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', output]); }
+    catch { console.warn('Could not collect local UI diagnostic captures.'); }
+  }
   run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'default']);
   run(adb, ['-s', serial, 'shell', 'run-as', 'be.sportgreenmoove.app.local', 'rm', '-f', 'files/local-qa-session.json']);
 }

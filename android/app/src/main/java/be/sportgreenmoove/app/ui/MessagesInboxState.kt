@@ -57,9 +57,8 @@ internal class MessagesInboxState(private val firebase: FirebaseGateway, private
     }
 
     private suspend fun refreshMetadata() {
-        try { inbox = firebase.getInbox(); error = null }
+        try { inbox = firebase.getInbox(); error = null; loading = false }
         catch (cancelled: CancellationException) { throw cancelled }
-        catch (failure: Exception) { error = UserFacingErrorPolicy.messageFor(failure) }
-        finally { loading = false }
+        catch (failure: Exception) { error = UserFacingErrorPolicy.messageFor(failure); loading = false }
     }
 }

@@ -29,9 +29,9 @@ internal class ConversationDirectoryState(private val gateway: ConversationGatew
             timeline.applyLatest(gateway.loadConversations())
             publish()
             error = null
+            loading = false
         } catch (cancelled: CancellationException) { throw cancelled }
         catch (failure: Exception) { fail(failure) }
-        finally { loading = false }
     }
 
     suspend fun loadEarlier() {

@@ -75,13 +75,16 @@ class LocalConversationDirectoryFlowTest {
             }
             captureLocalUi(compose, "local-chat-directory-history.png")
             backToInbox()
+            val booking = runBlocking { runtime.conversations.loadBookingOptions().items.single { it.title == tripTitle } }
             compose.onNodeWithTag(SgmTestTags.ChatNewConversationAction).performClick()
             waitFor(SgmTestTags.ChatBookingScreen)
-            compose.onNodeWithTag(SgmTestTags.ChatBookingList).performScrollToNode(hasText(tripTitle))
-            compose.onNodeWithText(tripTitle).performClick()
+            val bookingTag = "${SgmTestTags.ChatBookingOptionAction}.${booking.ref.sourceId}"
+            waitFor(bookingTag)
+            compose.onNodeWithText(tripTitle).assertIsDisplayed()
+            captureLocalUi(compose, "local-chat-directory-reservation.png")
+            compose.onNodeWithTag(bookingTag).performClick()
             readyComposer()
             waitForText("Aucun message.")
-            val booking = runBlocking { runtime.conversations.loadBookingOptions().items.single { it.title == tripTitle } }
             assertTrue(runBlocking { withTimeout(20_000) { runtime.conversations.observeConversation(booking.ref).first() }.messages.isEmpty() })
             captureLocalUi(compose, "local-chat-directory-empty.png")
             send("Bonjour, pouvons-nous confirmer le rendez-vous ?")
