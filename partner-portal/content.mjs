@@ -31,7 +31,6 @@ export const excerpts = {
 export const content = {
   updatedAt: '2026-10-15',
   lastVerifiedAt: '2026-10-13',
-  platform: 'Android · Google Pixel 8 · Android 14',
   releaseNote: 'Tests en cours.',
   updates: [
     { date: '2026-10-13', title: 'La déconnexion est corrigée',
@@ -62,7 +61,7 @@ export const content = {
     { id: 'login', title: 'Connexion par e-mail', status: 'verified', checkedAt: '2026-10-11',
       summary: 'La connexion par e-mail fonctionne.',
       verified: 'Connexion avec le compte parent de test, puis arrivée sur l’accueil.',
-      remaining: 'Google et Facebook sont prévus plus tard.',
+      remaining: 'La connexion via un autre compte est prévue plus tard.',
       images: [shot('home', 'Accueil authentifié du compte parent de test')], source: manual },
     { id: 'signout', title: 'Déconnexion et relancement', status: 'verified', checkedAt: '2026-10-13',
       summary: 'L’app reste déconnectée après relancement.',
@@ -108,7 +107,7 @@ export const content = {
     { id: 'tracking', title: 'Sécurité enfant et suivi de trajet', status: 'untested',
       summary: 'Le suivi en trajet reste à tester.',
       verified: 'Pas encore de validation sur un trajet réel.',
-      remaining: 'Tester consentement, prise en charge et dépose, puis le suivi : arrière-plan, écran verrouillé, pertes GPS/réseau, redémarrage, batterie et événements Radar.',
+      remaining: 'Tester consentement, prise en charge et dépose, puis le suivi : arrière-plan, écran verrouillé, pertes GPS/réseau, redémarrage, batterie et alertes de position.',
       images: [], source: 'docs/release/real-device-test-protocol.md' },
     { id: 'impact', title: 'Impact et récompenses', status: 'partial', checkedAt: '2026-10-11',
       summary: 'Les écrans s’ouvrent avec un solde à zéro.',
@@ -125,9 +124,9 @@ export const content = {
       verified: 'Passage du clair au sombre et retour ; accueil utilisable en paysage.',
       remaining: 'Corriger le contraste, vérifier que le thème est conservé et tester l’accessibilité.',
       images: [shot('dark', 'Accueil en thème sombre')], source: manual },
-    { id: 'social-auth', title: 'Connexion Google et Facebook', status: 'deferred',
-      summary: 'Prévus après la connexion par e-mail sur Android.',
+    { id: 'social-auth', title: 'Connexion via un autre compte', status: 'deferred',
+      summary: 'Prévue après la connexion par e-mail.',
       verified: 'Pas encore testé.',
-      remaining: 'Terminer la configuration de Google et Facebook, puis tester la connexion.', images: [], source: 'docs/release/evidence-manifest.json' },
+      remaining: 'Activer cette connexion, puis tester l’accès au compte.', images: [], source: 'docs/release/evidence-manifest.json' },
   ],
 };

@@ -32,6 +32,9 @@ export already omits troubleshooting, as documented in its original report.
 Keep the partner-facing copy brief and conversational: videos, short updates,
 and concrete next steps. Do not repeat report disclaimers across the page. Keep
 test status and actual limitations clear; put recording context in optional details.
+Do not name technologies, providers, device models or testing tools in the portal
+copy. Describe user actions and outcomes; keep technical provenance in repository
+reports. Preserve the original app captures rather than editing their contents.
 
 Browser assets use a content-derived directory so HTML, styles and JavaScript
 modules cannot accidentally reuse an older bundle after deployment. Publishing

@@ -63,6 +63,6 @@ export function detail(flow) {
     <section class="detail-copy">
       <h3>Testé</h3><p>${escape(flow.verified)}</p>
       <h3>À faire</h3><p>${escape(flow.remaining)}</p>
-      ${flow.checkedAt ? `<details class="test-info"><summary>Infos du test</summary><p>BrowserStack · Pixel 8 · Android 14.${flow.source.includes('10-13') ? ' Vidéos rejouées le 13 octobre.' : ''}${flow.id === 'signout' ? ' Pauses de dépannage retirées de la vidéo longue.' : ''}</p></details>` : ''}
+      ${flow.recording ? `<details class="test-info"><summary>Infos du test</summary><p>Nouvel enregistrement du parcours.${flow.id === 'signout' ? ' Pauses retirées de la vidéo longue.' : ''}</p></details>` : ''}
     </section></div>`;
 }

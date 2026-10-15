@@ -96,3 +96,12 @@ test('partner copy stays brief and recording context is optional', async () => {
   assert.match(detail(content.flows.find((f) => f.id === 'signout')), /<details[^>]*><summary>Infos du test<\/summary>/);
   assert(!source('partner-portal/src/app.js').includes('validation globale'));
 });
+
+test('partner-facing pages do not name the implementation or testing stack', async () => {
+  const { overview, flowRows, nextSteps, detail } = await import('../partner-portal/src/render.js');
+  const html = [overview(content), flowRows(content.flows), nextSteps(content),
+    ...content.flows.map(detail), source('partner-portal/src/index.html')].join('\n');
+  assert.doesNotMatch(html, /\b(?:BrowserStack|Firebase|Radar|Stripe|Android|Pixel|staging|SDK|backend|callback|Google|Facebook)\b/i);
+  assert.match(html, /alertes de position/);
+  assert.match(html, /Connexion via un autre compte/);
+});
