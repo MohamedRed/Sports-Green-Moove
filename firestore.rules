@@ -55,6 +55,8 @@ service cloud.firestore {
         'driverVerified',
         'driverRating',
         'approvedPassengerUserIds',
+        'activeRideSessionId',
+        'completedAt',
         'status',
         'createdAt'
       ];

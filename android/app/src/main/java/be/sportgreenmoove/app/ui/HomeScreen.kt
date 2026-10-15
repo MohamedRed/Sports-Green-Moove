@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import be.sportgreenmoove.app.data.ImpactSummary
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.design.Sgm
 
 @Composable
@@ -23,7 +24,8 @@ fun HomeScreen(
     onRide: () -> Unit,
     onImpact: () -> Unit,
 ) {
-    val homeTrips = rememberHomeTrips(trips)
+    val upcoming = trips.filter { it.status == TripStatus.Upcoming }
+    val homeTrips = rememberHomeTrips(upcoming)
 
     Column(
         modifier = Modifier
@@ -34,7 +36,7 @@ fun HomeScreen(
             .padding(bottom = 18.dp),
     ) {
         HomeHeader(displayName)
-        HomeHeroCard(trip = trips.firstOrNull(), onClick = onRide)
+        HomeHeroCard(trip = upcoming.firstOrNull(), onClick = onRide)
         HomeStatsRow(impactSummary)
         HomeSectionLabel(
             title = "SEMAINE À VENIR",

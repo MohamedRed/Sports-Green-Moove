@@ -22,6 +22,7 @@ export type ResolvedPlace = PlaceSuggestion & {
 };
 
 export type Trip = {
+  activeRideSessionId?: string;
   id: string;
   driverUserId: string;
   status: TripStatus;
@@ -110,6 +111,7 @@ export type ClientBookingRequestSummary = {
 export type ClientRideSnapshot = {
   rideSessionId: string;
   tripId?: string;
+  driverUserId?: string;
   status: string;
   vehicleLastUpdateLabel: string;
   childLastUpdateLabel: string | null;

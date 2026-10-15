@@ -31,11 +31,10 @@ import be.sportgreenmoove.app.data.RewardEntrySummary
 import be.sportgreenmoove.app.data.RewardSummary
 import java.util.Locale
 
-@Suppress("UNUSED_PARAMETER")
 @Composable
 fun RewardsScreen(summary: RewardSummary, onBack: () -> Unit, onWithdraw: () -> Unit = {}) {
     V2Screen(testTag = SgmTestTags.RewardsScreen) {
-        V2TopBar("RÉCOMPENSES")
+        V2TopBar("RÉCOMPENSES", onBack = onBack)
         RewardsHero(summary)
         Box(Modifier.padding(start = 20.dp, end = 20.dp, bottom = 16.dp)) {
             V2Button("RETIRER MES GAINS", onClick = onWithdraw, variant = V2ButtonVariant.Orange, size = V2ButtonSize.Lg, full = true, testTag = SgmTestTags.RewardsWithdrawAction)

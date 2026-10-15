@@ -111,6 +111,7 @@ describe("Firestore rules", () => {
       driverUserId: "driver-1",
       driverVerified: true,
       driverRating: 4.8,
+      activeRideSessionId: "ride-1",
       status: "published",
     });
 
@@ -122,6 +123,9 @@ describe("Firestore rules", () => {
     await assertSucceeds(admin.firestore().doc("trips/trip-admin").set({ driverUserId: "driver-1", status: "published" }));
     await assertSucceeds(driver.firestore().doc("trips/trip-1").update({ title: "U8 Nationaux updated" }));
     await assertFails(driver.firestore().doc("trips/trip-1").update({ driverUserId: "driver-2" }));
+    await assertFails(driver.firestore().doc("trips/trip-1").update({ activeRideSessionId: "forged-ride" }));
+    await assertFails(driver.firestore().doc("trips/trip-1").update({ activeRideSessionId: null }));
+    await assertFails(driver.firestore().doc("trips/trip-1").update({ completedAt: new Date() }));
     await assertFails(otherDriver.firestore().doc("trips/trip-1").update({ title: "Hijacked" }));
   });
 

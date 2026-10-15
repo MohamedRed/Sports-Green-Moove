@@ -34,6 +34,7 @@ class StoreReviewScreenshotTest {
         val host = setSwitchableTestContent {
             RideMonitorScreen(
                 activeRide = UiFlowFixtures.activeRide,
+                canManageRide = true,
                 routePreview = UiFlowFixtures.route,
                 onBack = {},
                 onPickup = {},
@@ -54,6 +55,7 @@ class StoreReviewScreenshotTest {
                     childLastUpdateLabel = "Secours GPS à vérifier",
                     stale = true,
                 ),
+                canManageRide = true,
                 routePreview = UiFlowFixtures.route,
                 onBack = {},
                 onPickup = {},
@@ -67,6 +69,7 @@ class StoreReviewScreenshotTest {
         host.show {
             RideMonitorScreen(
                 activeRide = UiFlowFixtures.activeRide,
+                canManageRide = true,
                 routePreview = UiFlowFixtures.route,
                 onBack = {},
                 onPickup = {},

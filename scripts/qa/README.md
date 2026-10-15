@@ -20,7 +20,8 @@ accepts a physical-device or live-payment release-manifest requirement.
 
 ## App And Management Screens
 
-The repeatable app suite is `npm run test:local-android-flows -- emulator-5556`
+The repeatable app suite is
+`SGM_LOCAL_DISPOSABLE_EMULATOR=true npm run test:local-android-flows -- emulator-5556`
 with Java 21, Node 22 and a disposable, rendering-enabled emulator already booted.
 It owns the service session, private credentials, app installation, strict test
 completion checks and evidence collection. Use a fresh `SGM_LOCAL_UI_OUTPUT`
@@ -32,6 +33,29 @@ Use a rendering-enabled Android emulator (Google APIs, not ATD). ATD can pass
 semantic assertions while producing black screenshots; the capture helper now
 rejects these. Use a fresh AVD or disposable data directory, not an existing live
 app session. Only the `.local` app package receives the disposable credentials.
+
+The ride case needs a Google APIs image with functioning Play services. It grants
+permissions only to `.local`, then injects a synthetic location through the
+official fused-location mock API. Mock positions affect the entire emulator:
+the explicit disposable-device opt-in is mandatory. Never use a device with
+real accounts, active production apps, or personal location sessions.
+The mock permission is declared only in the emulator-specific debug manifest,
+not ordinary debug or release builds. No production location provider is replaced.
+
+After the separate-process theme check, `LocalRideFlowTest` starts a ride through
+the real app, confirms each passenger, completes it, checks impact/reward screens,
+and signs in as the parent to submit a review. The runner independently verifies
+the completed trip/bookings, four audit events, one pair of ledger records and
+one rating in the local database before accepting UI evidence. These synthetic
+positions and pre-granted permissions do not prove physical GPS or permission UX.
+
+Ride lifecycle deployment requires the checked-in Firestore rules and indexes
+before the new app queries run, followed by the updated callables. The trip's
+server-owned `activeRideSessionId` serializes starts and prevents booking changes
+after departure. Existing active sessions created without that lock must be
+explicitly resumed/reconciled before another start; no silent migration is added.
+Completion closes the trip and all approved attached bookings together. Production
+deployment and index readiness are not established by local emulator tests.
 
 Start the guarded services in a terminal, supplying a fresh absolute private path:
 

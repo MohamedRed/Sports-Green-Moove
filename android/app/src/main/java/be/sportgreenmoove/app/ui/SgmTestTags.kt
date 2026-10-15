@@ -4,6 +4,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 
 object SgmTestTags {
+    const val BackAction = "navigation.back.action"
     const val AuthScreen = "auth.screen"
     const val AuthNameInput = "auth.name.input"
     const val AuthEmailInput = "auth.email.input"

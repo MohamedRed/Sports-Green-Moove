@@ -5,6 +5,8 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { prepareLocalRuntime, runEmulatorEntry, root } from './local-runtime.mjs';
 
+assert.equal(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true',
+  'Ride UI tests inject synthetic positions: explicitly select a disposable emulator with no real accounts');
 const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-tools/adb` : 'adb';
 const devices = spawnSync(adb, ['devices'], { encoding: 'utf8' });
 assert.equal(devices.status, 0, 'Android device inventory unavailable');
@@ -18,6 +20,7 @@ try {
   runtime.env.SGM_LOCAL_ANDROID_SERIAL = serial;
   runtime.env.SGM_LOCAL_UI_SESSION_FILE = resolve(runtime.temp, 'ui-session.json');
   runtime.env.SGM_LOCAL_UI_OUTPUT = output;
+  runtime.env.SGM_LOCAL_DISPOSABLE_EMULATOR = 'true';
   runEmulatorEntry(runtime, 'local-android-session.mjs');
 }
 finally { runtime.cleanup(); }

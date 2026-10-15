@@ -33,20 +33,10 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     private val locationClient = LocationServices.getFusedLocationProviderClient(appContext)
     private val groupsGateway = FirebaseAndroidGroupsGateway(firestore)
     private val ledgerGateway = FirebaseAndroidLedgerGateway(firestore)
+    private val tripGateway = FirebaseAndroidTripGateway(firestore)
     override val isConfigured: Boolean = true
 
-    override suspend fun searchTrips(): List<TripSummary> {
-        val snapshot = firestore.collection("trips")
-            .whereEqualTo("status", "published")
-            .orderBy("departureAt")
-            .limit(30)
-            .get()
-            .await()
-
-        return snapshot.documents.map { document ->
-            mapTrip(id = document.id, data = document.data.orEmpty())
-        }
-    }
+    override suspend fun searchTrips(): List<TripSummary> = tripGateway.listTrips()
 
     override suspend fun listChildren(): List<ChildSummary> {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return emptyList()

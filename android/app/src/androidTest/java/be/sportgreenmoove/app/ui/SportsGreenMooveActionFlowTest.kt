@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -83,14 +84,22 @@ class SportsGreenMooveActionFlowTest {
         var pickupPassenger: RidePassengerStatus? = null
         var dropoffPassenger: RidePassengerStatus? = null
         var endRideTapped = false
+        val ride = mutableStateOf(UiFlowFixtures.activeRide)
 
         compose.setSgmUiTestContent {
             RideMonitorScreen(
-                activeRide = UiFlowFixtures.activeRide,
+                activeRide = ride.value,
+                canManageRide = true,
                 routePreview = UiFlowFixtures.route,
                 onBack = {},
-                onPickup = { pickupPassenger = it },
-                onDropoff = { dropoffPassenger = it },
+                onPickup = { passenger ->
+                    pickupPassenger = passenger
+                    ride.value = ride.value.copy(passengers = listOf(passenger.copy(pickupStatus = "pickedUp")))
+                },
+                onDropoff = { passenger ->
+                    dropoffPassenger = passenger
+                    ride.value = ride.value.copy(passengers = listOf(passenger.copy(dropoffStatus = "droppedOff")))
+                },
                 onEndRide = { endRideTapped = true },
             )
         }
@@ -114,6 +123,7 @@ class SportsGreenMooveActionFlowTest {
                     vehicleLastUpdateLabel = "Il y a 18 min",
                     childLastUpdateLabel = "Il y a 21 min",
                 ),
+                canManageRide = true,
                 routePreview = UiFlowFixtures.route,
                 onBack = {},
                 onPickup = {},

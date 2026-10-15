@@ -154,6 +154,7 @@ data class BookingRequestSummary(
 data class LiveRideSnapshot(
     val rideSessionId: String,
     val tripId: String? = null,
+    val driverUserId: String? = null,
     val status: String,
     val vehicleLastUpdateLabel: String,
     val childLastUpdateLabel: String?,

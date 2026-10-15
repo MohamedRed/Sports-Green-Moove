@@ -79,6 +79,9 @@ android {
             if (useFirebaseEmulator) applicationIdSuffix = ".local"
         }
     }
+    if (useFirebaseEmulator) {
+        sourceSets.getByName("debug").manifest.srcFile("src/localDebug/AndroidManifest.xml")
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

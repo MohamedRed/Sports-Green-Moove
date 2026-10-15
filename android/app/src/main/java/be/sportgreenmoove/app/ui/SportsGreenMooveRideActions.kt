@@ -148,10 +148,10 @@ fun launchPassengerStatusUpdate(
         runCatching {
             if (pickup) {
                 providers.firebase.markPickup(activeRide.rideSessionId, passenger.bookingId, passenger.childId)
-                setNotice("Pickup confirmé.")
+                setNotice("Prise en charge confirmée.")
             } else {
                 providers.firebase.markDropoff(activeRide.rideSessionId, passenger.bookingId, passenger.childId)
-                setNotice("Dropoff confirmé.")
+                setNotice("Dépose confirmée.")
             }
             setActiveRide(providers.firebase.getActiveRide())
         }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }

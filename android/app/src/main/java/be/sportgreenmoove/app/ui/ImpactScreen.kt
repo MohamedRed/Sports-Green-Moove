@@ -35,7 +35,7 @@ import java.util.Locale
 @Composable
 fun ImpactScreen(summary: ImpactSummary, onBack: () -> Unit) {
     V2Screen(testTag = SgmTestTags.ImpactScreen) {
-        V2TopBar("MON IMPACT CO²")
+        V2TopBar("MON IMPACT CO²", onBack = onBack)
         ImpactHero(summary)
         V2SectionLabel("6 DERNIERS MOIS")
         ImpactChart(summary.months)

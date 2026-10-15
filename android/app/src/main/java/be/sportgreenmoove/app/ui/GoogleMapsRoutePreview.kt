@@ -59,8 +59,8 @@ fun GoogleMapsRoutePreviewCard(
     ) {
         when {
             apiKey.isBlank() -> RoutePreviewState(
-                title = "GOOGLE MAPS REQUIS",
-                body = "Ajoutez SGM_GOOGLE_MAPS_ANDROID_API_KEY pour afficher l'itinéraire natif.",
+                title = "CARTE INDISPONIBLE",
+                body = "La carte ne peut pas être affichée pour le moment.",
             )
 
             preview == null -> RoutePreviewState(

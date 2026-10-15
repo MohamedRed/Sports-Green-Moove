@@ -19,6 +19,7 @@ export async function seedLocalUiFixtures() {
       userId, clubId: 'sgm-qa-club-green-wavre', role: 'member', status: 'requested', active: false, createdAt: new Date() });
   }
   const session = { projectId, password: process.env.SGM_QA_PASSWORD,
+    disposableEmulator: process.env.SGM_LOCAL_DISPOSABLE_EMULATOR === 'true',
     parent: 'p@example.test', driver: 'd@example.test', admin: 'admin@example.test' };
   writeFileSync(process.env.SGM_LOCAL_UI_SESSION_FILE, JSON.stringify(session), { mode: 0o600, flag: 'wx' });
   return session;

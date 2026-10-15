@@ -74,6 +74,7 @@ describe("client trip summaries", () => {
       },
       {
         tripId: "trip-1",
+        driverUserId: "driver-1",
         passengers: [{
           bookingId: "booking-1",
           childId: "child-1",
@@ -88,6 +89,7 @@ describe("client trip summaries", () => {
     expect(snapshot).toMatchObject({
       rideSessionId: "ride-1",
       tripId: "trip-1",
+      driverUserId: "driver-1",
       status: "Actif",
       vehicleLastUpdateLabel: "Secours GPS · il y a 30 s",
       childLastUpdateLabel: "Radar · il y a 45 s",
@@ -113,6 +115,17 @@ describe("client trip summaries", () => {
         uploadedAt: now - 91_000,
       },
     }, null, now).stale).toBe(true);
+  });
+
+  it("keeps booking-specific status authoritative over a historical child-level override", () => {
+    const snapshot = toClientRideSnapshot("ride-1", "active", null, {
+      passengers: [{ bookingId: "booking-1", childId: "child-1", pickupStatus: "pending", dropoffStatus: "pending" }],
+      passengerStatuses: {
+        "child-1": { pickupStatus: "pickedUp", dropoffStatus: "droppedOff" },
+        "booking-1": { pickupStatus: "pickedUp", dropoffStatus: "pending" },
+      },
+    });
+    expect(snapshot.passengers[0]).toMatchObject({ pickupStatus: "pickedUp", dropoffStatus: "pending" });
   });
 
   it("applies passenger status overrides from the ride session", () => {

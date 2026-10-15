@@ -182,7 +182,7 @@ private fun TripsCard(trip: TripSummary, onClick: () -> Unit) {
             .clip(RoundedCornerShape(SgmRadius.LG))
             .background(Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
-            .clickable(onClick = onClick),
+            .clickable(enabled = trip.status != TripStatus.Past, onClick = onClick),
     ) {
         Row(
             modifier = Modifier

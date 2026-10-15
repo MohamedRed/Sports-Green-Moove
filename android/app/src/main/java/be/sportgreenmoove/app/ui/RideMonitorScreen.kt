@@ -33,6 +33,7 @@ import be.sportgreenmoove.app.design.SgmType
 @Composable
 fun RideMonitorScreen(
     activeRide: LiveRideSnapshot?,
+    canManageRide: Boolean,
     routePreview: MapRoutePreview?,
     onBack: () -> Unit,
     onPickup: (RidePassengerStatus) -> Unit,
@@ -49,10 +50,14 @@ fun RideMonitorScreen(
             V2SectionLabel("STATUTS")
             RidePassengerStatusCard(
                 ride = activeRide,
+                canManageRide = canManageRide,
                 onPickup = onPickup,
                 onDropoff = onDropoff,
             )
-            RideEndCard(onEndRide = onEndRide)
+            if (canManageRide) RideEndCard(
+                readyToComplete = activeRide.passengers.all { it.pickupStatus == "pickedUp" && it.dropoffStatus == "droppedOff" },
+                onEndRide = onEndRide,
+            )
             RideEmergencyCard()
         }
     }

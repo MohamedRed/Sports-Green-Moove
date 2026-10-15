@@ -25,8 +25,10 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -91,7 +93,8 @@ fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable 
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        if (onBack != null) V2CircleIconButton(SgmIcon.ChevronLeft, onClick = onBack)
+        if (onBack != null) V2CircleIconButton(SgmIcon.ChevronLeft, onClick = onBack,
+            testTag = SgmTestTags.BackAction, description = "Retour")
         Text(
             title,
             style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.08.em),
@@ -104,12 +107,16 @@ fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable 
 }
 
 @Composable
-fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, selected: Boolean = false, testTag: String? = null) {
+fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, selected: Boolean = false,
+    testTag: String? = null, description: String? = null) {
     val isSelected = selected
     Box(
         modifier = Modifier
             .sgmOptionalTestTag(testTag)
-            .semantics { this.selected = isSelected }
+            .semantics {
+                this.selected = isSelected
+                description?.let { contentDescription = it }
+            }
             .size(size.dp)
             .clip(CircleShape)
             .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)
@@ -156,6 +163,7 @@ fun V2Button(
     size: V2ButtonSize = V2ButtonSize.Md,
     full: Boolean = false,
     testTag: String? = null,
+    enabled: Boolean = true,
 ) {
     val bg = when (variant) {
         V2ButtonVariant.Primary -> SgmColor.Green
@@ -178,10 +186,11 @@ fun V2Button(
             .then(if (full) Modifier.fillMaxWidth() else Modifier)
             .sgmOptionalTestTag(testTag)
             .height(size.height)
+            .alpha(if (enabled) 1f else 0.45f)
             .clip(RoundedCornerShape(SgmRadius.MD))
             .background(bg)
             .then(if (border != null) Modifier.border(border, RoundedCornerShape(SgmRadius.MD)) else Modifier)
-            .clickable(onClick = onClick)
+            .clickable(enabled = enabled, onClick = onClick)
             .padding(horizontal = 20.dp),
         contentAlignment = Alignment.Center,
     ) {

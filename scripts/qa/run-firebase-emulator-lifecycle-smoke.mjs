@@ -2,6 +2,7 @@
 import { initializeApp, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
+import { tripInput } from './local-flow-client.mjs';
 
 const { projectId, authHost, functionsOrigin, databaseURL } = configureLocalEmulators();
 if (getApps().length === 0) initializeApp({ projectId, databaseURL });
@@ -64,7 +65,7 @@ async function liveTripMeta(rideSessionId) {
 }
 
 function passengerFromRide(ride, bookingId, childId) {
-  return (ride.passengers ?? []).find((passenger) => passenger.bookingId === bookingId || passenger.childId === childId);
+  return (ride.passengers ?? []).find((passenger) => passenger.bookingId === bookingId && passenger.childId === childId);
 }
 
 const parent = await signIn(qa.parentEmail);
@@ -74,6 +75,8 @@ const driverProfile = await callCallable('initializeUserProfile', driver.idToken
 assert(parentProfile.roleKeys?.includes('parent'), 'Parent profile should include parent role', parentProfile);
 assert(driverProfile.roleKeys?.includes('driver'), 'Driver profile should include driver role', driverProfile);
 
+const lifecycleTrip = await callCallable('createTrip', driver.idToken, { ...tripInput(), priceCents: 350 });
+qa.tripId = lifecycleTrip.tripId;
 const beforeTrip = await docData('trips', qa.tripId);
 const beforeSeats = beforeTrip.seatsAvailable;
 const bookingRequest = await callCallable('requestBooking', parent.idToken, { tripId: qa.tripId, childId: qa.childId, seats: 1, note: 'Lifecycle smoke booking request' });

@@ -22,6 +22,7 @@ import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmTheme
 import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
+import be.sportgreenmoove.app.domain.canManageRide
 import be.sportgreenmoove.app.services.AndroidRuntime
 import kotlinx.coroutines.launch
 @Composable
@@ -181,7 +182,7 @@ fun SportsGreenMooveApp() {
                             trips = trips,
                             impactSummary = ledgerSummaries.impact,
                             onTrips = { screen = AppScreen.Trips },
-                            onRide = { trips.firstOrNull()?.let(::runTripAction) },
+                            onRide = { trips.firstOrNull { it.status == be.sportgreenmoove.app.data.TripStatus.Upcoming }?.let(::runTripAction) },
                             onImpact = { screen = AppScreen.Impact },
                         )
                         AppScreen.Trips -> TripsScreen(
@@ -261,6 +262,7 @@ fun SportsGreenMooveApp() {
                         AppScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = AppScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         AppScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
+                            canManageRide = canManageRide(role, session, activeRide),
                             routePreview = activeRideTrip?.mapPreview,
                             onBack = { screen = AppScreen.Trips },
                             onPickup = { updatePassengerStatus(it, pickup = true) },

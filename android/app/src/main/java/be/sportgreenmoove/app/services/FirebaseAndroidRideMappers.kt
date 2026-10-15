@@ -34,7 +34,8 @@ internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
             if (seats > 1) "$seats places" else "$seats place",
             "Suivi véhicule disponible",
         ),
-        status = if (departure != null && departure.before(Date())) TripStatus.Past else TripStatus.Upcoming,
+        status = if (data["status"] == "completed" || data["status"] == "cancelled" ||
+            (departure != null && departure.before(Date()))) TripStatus.Past else TripStatus.Upcoming,
         mapPreview = mapRoutePreviewFromTripData(data),
         departureAtIso = departure?.toInstant()?.toString(),
     )
@@ -44,6 +45,7 @@ internal fun mapRide(data: Map<*, *>): LiveRideSnapshot =
     LiveRideSnapshot(
         rideSessionId = data["rideSessionId"] as? String ?: "",
         tripId = data["tripId"] as? String,
+        driverUserId = data["driverUserId"] as? String,
         status = data["status"] as? String ?: "Actif",
         vehicleLastUpdateLabel = data["vehicleLastUpdateLabel"] as? String ?: "En attente du premier point GPS",
         childLastUpdateLabel = data["childLastUpdateLabel"] as? String,

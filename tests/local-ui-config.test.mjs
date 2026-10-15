@@ -16,6 +16,9 @@ test('Android local builds skip live Firebase resources and use a separate app s
   const gradle = readFileSync(new URL('../android/app/build.gradle.kts', import.meta.url), 'utf8');
   assert.match(gradle, /if \(!useFirebaseEmulator && file\("google-services.json"\).exists\(\)\)/);
   assert.match(gradle, /if \(useFirebaseEmulator\) applicationIdSuffix = "\.local"/);
+  assert.match(gradle, /if \(useFirebaseEmulator\) \{\s+sourceSets.getByName\("debug"\).manifest.srcFile\("src\/localDebug\/AndroidManifest.xml"\)/);
+  const manifest = readFileSync(new URL('../android/app/src/main/AndroidManifest.xml', import.meta.url), 'utf8');
+  assert(!manifest.includes('ACCESS_MOCK_LOCATION'));
   const runtime = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt', import.meta.url), 'utf8');
   assert.match(runtime, /check\(BuildConfig.DEBUG\)/);
   assert.match(runtime, /all \{ it.options.projectId == "demo-sgm-local-qa" \}/);
@@ -27,4 +30,13 @@ test('instrumentation must finish with the expected count, not just exit zero', 
   for (const output of ['FAILURES!!!\nOK (5 tests)', 'Process crashed.', 'INSTRUMENTATION_FAILED', 'OK (1 test)', '']) {
     assert.throws(() => assertInstrumentationPassed(output, 5));
   }
+});
+
+test('mock positions require an explicitly disposable emulator and a local-only manifest', () => {
+  const runner = readFileSync(new URL('../scripts/qa/run-local-android-flows.mjs', import.meta.url), 'utf8');
+  assert.match(runner, /assert.equal\(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true'/);
+  const local = readFileSync(new URL('../android/app/src/localDebug/AndroidManifest.xml', import.meta.url), 'utf8');
+  assert.match(local, /ACCESS_MOCK_LOCATION/);
+  const fixture = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocation.kt', import.meta.url), 'utf8');
+  assert.match(fixture, /session.getBoolean\("disposableEmulator"\)/);
 });

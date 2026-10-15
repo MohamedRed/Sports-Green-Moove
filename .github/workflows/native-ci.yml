@@ -120,8 +120,10 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         env:
           SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+          SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
         with:
           api-level: 35
+          target: google_apis
           arch: x86_64
           profile: pixel_6
           script: bash scripts/run-android-ui-tests-and-collect-screenshots.sh

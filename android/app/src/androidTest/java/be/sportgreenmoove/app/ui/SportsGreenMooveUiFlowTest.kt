@@ -100,6 +100,7 @@ class SportsGreenMooveUiFlowTest {
         setTestContent {
             RideMonitorScreen(
                 activeRide = UiFlowFixtures.activeRide,
+                canManageRide = true,
                 routePreview = UiFlowFixtures.route,
                 onBack = {},
                 onPickup = {},

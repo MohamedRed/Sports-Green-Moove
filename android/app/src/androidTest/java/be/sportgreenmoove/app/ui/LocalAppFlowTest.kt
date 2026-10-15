@@ -24,6 +24,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import java.io.File
+import kotlinx.coroutines.runBlocking
 
 class LocalAppFlowTest {
     @get:Rule val compose = createEmptyComposeRule()
@@ -46,6 +47,8 @@ class LocalAppFlowTest {
             compose.waitUntil(60_000) { compose.onAllNodesWithText("U 7/8 · Green Wavre QA Club").fetchSemanticsNodes().isNotEmpty() }
             capture("local-parent-home.png")
             compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
+            val trip = runBlocking { AndroidRuntime.create(context).firebase.searchTrips() }.single { it.id == "sgm-qa-trip-u8-wavre-bruxelles" }
+            selectLocalTripMonth(compose, trip)
             compose.waitUntil(60_000) { compose.onAllNodesWithText("U 7/8 · Green Wavre QA Club").fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithText("U 7/8 · Green Wavre QA Club").assertIsDisplayed()
             compose.onNodeWithTag("trips.month.next").performClick()

@@ -37,6 +37,7 @@ type RidePassengerSnapshot = {
 
 type RideSessionSnapshot = {
   tripId?: string;
+  driverUserId?: string;
   passengers?: RidePassengerSnapshot[];
   passengerStatuses?: Record<string, {
     pickupStatus?: string;
@@ -126,6 +127,7 @@ export function toClientRideSnapshot(
 
   return {
     rideSessionId,
+    ...(ride?.driverUserId ? { driverUserId: ride.driverUserId } : {}),
     ...(ride?.tripId ?? live?.meta?.tripId ? { tripId: ride?.tripId ?? live?.meta?.tripId } : {}),
     status: status === "active" ? "Actif" : status,
     vehicleLastUpdateLabel: locationLabel(vehicle, now, "En attente du premier point GPS"),
@@ -142,7 +144,7 @@ function ridePassengers(ride: RideSessionSnapshot | null | undefined): ClientRid
     const childId = passenger.childId;
     if (!bookingId || !childId) return [];
 
-    const overrides = ride?.passengerStatuses?.[childId] ?? ride?.passengerStatuses?.[bookingId];
+    const overrides = ride?.passengerStatuses?.[bookingId] ?? ride?.passengerStatuses?.[childId];
     return [{
       bookingId,
       childId,

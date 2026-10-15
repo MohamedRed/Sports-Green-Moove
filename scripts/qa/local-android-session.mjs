@@ -4,6 +4,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
+import { verifyLocalRideUi } from './verify-local-ride-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -30,14 +31,23 @@ function instrument(classes, expected) {
 try {
   instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest'], 5);
   instrument(['LocalThemeRestartTest'], 1);
+  for (const permission of ['ACCESS_COARSE_LOCATION', 'ACCESS_FINE_LOCATION', 'ACCESS_BACKGROUND_LOCATION', 'POST_NOTIFICATIONS']) {
+    run(adb, ['-s', serial, 'shell', 'pm', 'grant', 'be.sportgreenmoove.app.local', `android.permission.${permission}`]);
+  }
+  run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'allow']);
+  instrument(['LocalRideFlowTest'], 1);
+  const ride = await verifyLocalRideUi();
   const output = process.env.SGM_LOCAL_UI_OUTPUT;
   mkdirSync(output, { recursive: true });
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', output]);
-  const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui']
+  const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
+    'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui']
     .map((id) => ({ id, status: 'passed' }));
   writeFileSync(resolve(output, 'results.json'), `${JSON.stringify({ projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 6, steps, limits: ['No physical GPS tracking, provider payments, push delivery or live data tested.'] }, null, 2)}\n`);
+    testCount: 7, steps, ride, limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
+      'No physical GPS tracking, provider payments, push delivery or live data tested.'] }, null, 2)}\n`);
 } finally {
+  run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'default']);
   run(adb, ['-s', serial, 'shell', 'run-as', 'be.sportgreenmoove.app.local', 'rm', '-f', 'files/local-qa-session.json']);
 }

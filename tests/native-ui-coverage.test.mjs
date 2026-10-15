@@ -108,7 +108,8 @@ includes(androidUiTests, "onSearch = { searchForm = it }", "Android UI tests ass
 includes(androidUiTests, "onRequest = { match, childId ->", "Android UI tests assert booking request callbacks");
 includes(androidUiTests, "onPublished = { published = true }", "Android UI tests assert publish callbacks");
 includes(androidUiTests, "onJoinClub = { joinedClubId = it.id }", "Android UI tests assert group join callbacks");
-includes(androidUiTests, "onPickup = { pickupPassenger = it }", "Android UI tests assert active ride pickup callbacks");
+includes(androidUiTests, "pickupPassenger = passenger", "Android UI tests assert active ride pickup callbacks");
+includes(androidUiTests, "observersHaveStatusesWithoutDriverActions", "Android UI tests enforce read-only observer controls");
 includes(androidUiTests, "onPay = { paidBooking = it }", "Android UI tests assert payment callbacks");
 includes(androidUiTests, "SgmTestTags.PaymentConnectAction", "Android UI tests assert Stripe Connect callbacks");
 includes(androidUiTests, "SgmTestTags.SupportReportDescriptionInput", "Android UI tests assert support report callbacks");
