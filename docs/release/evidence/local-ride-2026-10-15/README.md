@@ -62,3 +62,16 @@ document this regression and require an application-level optional
 `org.apache.http.legacy` library declaration for affected renderers. That
 declaration is now in the main manifest so affected real devices are covered as
 well, rather than disabling maps in the tests or silently changing the renderer.
+
+The corrected [run 38784390455](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38784390455)
+on `8ee6cb0` then passed the native suite, including seven local instrumentation
+cases and the independent ride/audit/ledger/rating assertions. Its source run ID
+is `d312cd0caada69f43ee96010f471e9c1`. Visual review found persistent completion
+feedback obscuring headings, including after signing in as the parent. Those
+new captures were rejected for the partner gallery, not edited to conceal it.
+
+The app now reserves scaffold space for feedback, prioritizes current errors
+over an older success message, and clears both messages during sign-out.
+New component checks cover non-overlap, dismissal and error precedence. The
+local ride case also asserts that driver completion feedback is absent after
+the parent signs in. Fresh visual evidence is required after this correction.

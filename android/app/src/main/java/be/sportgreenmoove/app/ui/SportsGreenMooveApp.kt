@@ -11,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import be.sportgreenmoove.app.data.AppRole
@@ -169,6 +168,12 @@ fun SportsGreenMooveApp() {
             SportsGreenMooveScaffold(
                 currentScreen = screen,
                 onNavigate = { destination -> screen = destination },
+                notice = noticeMessage,
+                error = errorMessage,
+                onDismissMessage = {
+                    noticeMessage = null
+                    errorMessage = null
+                },
             ) { padding ->
                 Box(
                     modifier = Modifier
@@ -228,6 +233,8 @@ fun SportsGreenMooveApp() {
                                 lastRoleSelectionSessionUid = null
                                 role = AppRole.Parent
                                 appData.clear()
+                                noticeMessage = null
+                                errorMessage = null
                                 screen = AppScreen.Home
                             },
                         )
@@ -270,15 +277,6 @@ fun SportsGreenMooveApp() {
                             onEndRide = ::endActiveRide,
                         )
                     }
-                    RuntimeNoticeHost(
-                        notice = noticeMessage,
-                        error = errorMessage,
-                        onDismiss = {
-                            noticeMessage = null
-                            errorMessage = null
-                        },
-                        modifier = Modifier.align(Alignment.TopCenter),
-                    )
                 }
             }
         }

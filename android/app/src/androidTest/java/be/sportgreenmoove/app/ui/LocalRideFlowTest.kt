@@ -87,6 +87,7 @@ class LocalRideFlowTest {
                 compose.onNodeWithTag(SgmTestTags.BackAction).performScrollTo().performClick()
                 logout()
                 login(session.getString("parent"), session.getString("password"))
+                compose.onNodeWithText("Course terminée", substring = true).assertDoesNotExist()
                 compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
                 compose.onNodeWithText("PASSÉS").performClick()
                 val trip = runBlocking { runtime.firebase.searchTrips() }.single { it.id == "sgm-qa-trip-u8-wavre-bruxelles" }
