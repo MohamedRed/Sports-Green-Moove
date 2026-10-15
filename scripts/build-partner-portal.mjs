@@ -5,6 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { content, assets, videos, excerpts } from '../partner-portal/content.mjs';
 import { validate } from '../partner-portal/validate.mjs';
+import { buildBrowserAssets } from '../partner-portal/build-assets.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const portal = resolve(root, 'partner-portal');
@@ -12,8 +13,7 @@ const out = resolve(portal, 'dist');
 validate(root);
 rmSync(out, { recursive: true, force: true });
 mkdirSync(resolve(out, 'media'), { recursive: true });
-cpSync(resolve(portal, 'src'), out, { recursive: true });
-cpSync(resolve(root, 'admin/public/fonts'), resolve(out, 'fonts'), { recursive: true });
+const assetRevision = buildBrowserAssets(root, portal, out);
 mkdirSync(resolve(out, 'icons'));
 for (const name of ['play', 'x', 'search', 'arrow-up-right', 'chevron-left', 'chevron-right', 'download', 'image-off', 'lock-keyhole', 'log-out', 'info', 'leaf']) {
   cpSync(resolve(portal, `node_modules/lucide-static/icons/${name}.svg`), resolve(out, `icons/${name}.svg`));
@@ -35,6 +35,6 @@ for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'sig
 }
 const fingerprints = Object.fromEntries([...new Set(content.flows.map((f) => f.source))].map((source) => [source,
   createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex')]));
-const data = { ...content, evidenceFingerprints: fingerprints };
+const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };
 writeFileSync(resolve(out, 'data.json'), `${JSON.stringify(data, null, 2)}\n`);
 console.log(`Partner portal built: ${content.flows.length} flows, ${Object.keys(excerpts).length} short clips. No production app changes.`);

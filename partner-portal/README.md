@@ -33,6 +33,10 @@ Keep the partner-facing copy brief and conversational: videos, short updates,
 and concrete next steps. Do not repeat report disclaimers across the page. Keep
 test status and actual limitations clear; put recording context in optional details.
 
+Browser assets use a content-derived directory so HTML, styles and JavaScript
+modules cannot accidentally reuse an older bundle after deployment. Publishing
+also checks that the generated bundle matches the current source.
+
 Dates in the page are explicit snapshots, not an automatically refreshed live
 status. Update `updatedAt` when content changes and `lastVerifiedAt` only when a
 new verification actually occurred. Evidence source hashes are included in the

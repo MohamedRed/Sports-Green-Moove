@@ -1,9 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { content, assets, excerpts } from '../partner-portal/content.mjs';
 import { validate } from '../partner-portal/validate.mjs';
+import { assetRevision, buildBrowserAssets, assertBrowserAssetsCurrent } from '../partner-portal/build-assets.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const source = (file) => readFileSync(resolve(root, file), 'utf8');
@@ -58,8 +60,25 @@ test('rendered content is escaped and native accessible controls remain present'
 });
 
 test('portal code modules remain below 300 lines', () => {
-  for (const file of ['content.mjs', 'validate.mjs', 'src/app.js', 'src/render.js', 'src/media.js', 'src/styles.css']) {
+  for (const file of ['content.mjs', 'validate.mjs', 'build-assets.mjs', 'src/app.js', 'src/render.js', 'src/media.js', 'src/styles.css']) {
     assert(source(`partner-portal/${file}`).split('\n').length < 300, `${file} needs splitting`);
+  }
+});
+
+test('frontend bundles are versioned together and stale generated source is rejected', () => {
+  const portal = resolve(root, 'partner-portal');
+  const out = mkdtempSync(resolve(tmpdir(), 'sgm-asset-test-'));
+  try {
+    const revision = buildBrowserAssets(root, portal, out);
+    assert.equal(revision, assetRevision(portal));
+    const html = readFileSync(resolve(out, 'index.html'), 'utf8');
+    for (const file of ['tokens.css', 'styles.css', 'app.js']) assert(html.includes(`assets/${revision}/${file}`));
+    assert(!html.includes('src="app.js"'));
+    assertBrowserAssetsCurrent(portal, out);
+    writeFileSync(resolve(out, 'assets', revision, 'render.js'), '// stale bundle');
+    assert.throws(() => assertBrowserAssetsCurrent(portal, out), /Browser source changed/);
+  } finally {
+    rmSync(out, { recursive: true, force: true });
   }
 });
 

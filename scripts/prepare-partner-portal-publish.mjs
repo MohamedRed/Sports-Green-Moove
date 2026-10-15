@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
-import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { content } from '../partner-portal/content.mjs';
+import { assertBrowserAssetsCurrent, assetRevision } from '../partner-portal/build-assets.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const portal = resolve(root, 'partner-portal');
@@ -22,12 +23,10 @@ assert.equal(dirty, '', 'Commit canonical source before preparing a release');
 const commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 assert(existsSync(resolve(portal, 'dist/data.json')), 'Build the portal first');
 const built = JSON.parse(readFileSync(resolve(portal, 'dist/data.json'), 'utf8'));
-const { evidenceFingerprints, ...snapshot } = built;
+const { evidenceFingerprints, assetRevision: builtRevision, ...snapshot } = built;
 assert.deepEqual(snapshot, content, 'Content changed after build; rebuild before publishing');
-for (const file of readdirSync(resolve(portal, 'src'))) {
-  assert(readFileSync(resolve(portal, 'src', file)).equals(readFileSync(resolve(portal, 'dist', file))),
-    `Application source changed after build (${file}); rebuild before publishing`);
-}
+assert.equal(builtRevision, assetRevision(portal), 'Browser bundle changed; rebuild before publishing');
+assertBrowserAssetsCurrent(portal, resolve(portal, 'dist'));
 for (const [source, fingerprint] of Object.entries(evidenceFingerprints)) {
   assert.equal(createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex'), fingerprint,
     'Evidence source changed after build; review and rebuild before publishing');
