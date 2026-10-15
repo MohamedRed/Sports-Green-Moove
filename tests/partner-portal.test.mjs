@@ -118,6 +118,26 @@ test('ride integrity claims use the new eleven-group evidence without promoting 
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 
+test('new ride captures use a completed seven-case UI run and keep old evidence intact', () => {
+  const run = JSON.parse(source('docs/release/evidence/local-ride-ui-2026-10-15/results.json'));
+  assert.equal(run.testCount, 7);
+  assert.equal(run.steps.length, 8);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.ride.bookingCount, 2);
+  assert.equal(run.ride.auditEventCount, 4);
+  assert.equal(run.ride.ratingCount, 1);
+  for (const [id, group] of [['ride-lifecycle', 'ride-lifecycle-ui'], ['ratings', 'ride-review-ui'], ['impact', 'ride-ledgers-ui']]) {
+    const flow = content.flows.find((item) => item.id === id);
+    assert.equal(flow.ui.source, 'docs/release/evidence/local-ride-ui-2026-10-15/results.json');
+    assert(flow.ui.groups.includes(group));
+    assert.equal(flow.status, 'partial');
+    assert.equal(flow.images.length, 2);
+  }
+  const old = JSON.parse(source('docs/release/evidence/local-ui-2026-10-15/results.json'));
+  assert.equal(old.testCount, 6);
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+});
+
 test('smoke workflow covers portal source, evidence changes and validation', () => {
   const workflow = source('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"partner-portal/**"').length - 1, 2);

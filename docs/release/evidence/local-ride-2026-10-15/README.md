@@ -74,4 +74,5 @@ The app now reserves scaffold space for feedback, prioritizes current errors
 over an older success message, and clears both messages during sign-out.
 New component checks cover non-overlap, dismissal and error precedence. The
 local ride case also asserts that driver completion feedback is absent after
-the parent signs in. Fresh visual evidence is required after this correction.
+the parent signs in. The subsequent successful run and fresh reviewed captures
+are recorded in `../local-ride-ui-2026-10-15/README.md`.

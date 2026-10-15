@@ -2,7 +2,8 @@ const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
-const rideReport = 'docs/release/evidence/local-ride-2026-10-15/README.md';
+const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
+const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
 const ui = (groups, source = 'results.json') => ({ source: `docs/release/evidence/local-ui-2026-10-15/${source}`, groups });
 const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/results.json') => ({ source, groups, checks });
@@ -22,6 +23,12 @@ export const captures = {
   'local-landscape': 'docs/release/evidence/local-ui-2026-10-15/local-login-landscape.png',
   'local-search-empty': 'docs/release/evidence/local-ui-2026-10-15/local-search-empty.png',
   'local-theme': 'docs/release/evidence/local-ui-2026-10-15/local-theme-after-process-restart.png',
+  'ride-delivered': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-passengers-delivered.png',
+  'ride-history': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-parent-history.png',
+  'ride-impact': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-impact.png',
+  'ride-rewards': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-rewards.png',
+  'ride-review': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-review-prompt.png',
+  'ride-review-sent': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-review-sent.png',
 };
 
 export const assets = {
@@ -30,7 +37,6 @@ export const assets = {
   notifications: { source: '13-notifications-empty.jpg', crop: [286, 604, 342, 134] },
   payments: { source: '15-payments-empty.jpg', crop: [286, 604, 342, 134] },
   clubs: { source: '16-clubs-empty.jpg', crop: [286, 604, 342, 134] },
-  impact: { source: '17-impact-empty.jpg', crop: [286, 604, 342, 134] },
   support: { source: '21-support-required-description.jpg', crop: [286, 604, 342, 134] },
 };
 
@@ -51,6 +57,8 @@ export const content = {
   lastVerifiedAt: '2026-10-15',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-15', title: 'Un trajet complet, puis un avis',
+      text: 'Dans l’app en local : passagers déposés, trajet terminé, historique retrouvé et avis envoyé. Les captures sont disponibles.', flow: 'ride-lifecycle' },
     { date: '2026-10-15', title: 'Le trajet ne peut plus être terminé trop tôt',
       text: 'Les contrôles locaux refusent une dépose avant la prise en charge, le mauvais passager et une fin de trajet prématurée.', flow: 'ride-lifecycle' },
     { date: '2026-10-15', title: 'Le conducteur accepte une réservation dans l’app',
@@ -164,27 +172,33 @@ export const content = {
       remaining: 'Tester consentement, prise en charge et dépose, puis le suivi : arrière-plan, écran verrouillé, pertes GPS/réseau, redémarrage, batterie et alertes de position.',
       images: [], source: 'docs/release/real-device-test-protocol.md' },
     { id: 'ride-lifecycle', title: 'Déroulement du trajet', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'Départ, prise en charge, dépose et fin de trajet passent en local.',
-      verified: 'En local : chaque confirmation concerne le bon passager. La fin attend toutes les déposes et ferme les réservations. Deux départs simultanés ne créent qu’un trajet.',
-      remaining: 'Rejouer entre téléphones. Le suivi des positions et les alertes de sécurité restent à tester.',
+      summary: 'Le trajet se termine dans l’app et apparaît dans l’historique du parent, en local.',
+      verified: 'Dans l’app, en local : départ, deux prises en charge, deux déposes et fin de trajet. Le parent retrouve ensuite le trajet dans ses trajets passés.',
+      remaining: 'Rejouer entre téléphones. La carte, les positions et les alertes de sécurité restent à tester.',
+      ui: rideUi(['ride-lifecycle-ui']),
       local: local(['ride-lifecycle', 'ride-audit-ledgers', 'ride-passenger-safety'], [
         'Toutes les réservations acceptées sont incluses au départ.',
         'Un mauvais passager ou une confirmation répétée est refusé.',
         'La dépose attend la prise en charge ; la fin attend toutes les déposes.',
         'Deux départs simultanés ne créent qu’un seul trajet.',
         'Un trajet terminé ne peut plus être réservé ni redémarré.',
-      ], 'docs/release/evidence/local-ride-2026-10-15/results.json'), images: [], source: rideReport },
+      ], 'docs/release/evidence/local-ride-2026-10-15/results.json'),
+      images: [shot('ride-delivered', 'Passagers déposés avant de terminer le trajet, en local'),
+        shot('ride-history', 'Trajet terminé dans l’historique du parent, en local')], source: rideUiReport },
     { id: 'ratings', title: 'Avis après trajet', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'L’avis est enregistré en local ; les doublons sont refusés.',
-      verified: 'En local : avis du parent sur le conducteur enregistré, doublon refusé et demande d’avis retirée. Un tiers ne peut pas noter le trajet.',
-      remaining: 'Rejouer l’envoi et l’affichage des avis sur téléphone.',
-      local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.']), images: [], source: localReport },
+      summary: 'Le parent envoie son avis dans l’app après le trajet local.',
+      verified: 'Dans l’app, en local : envoi d’un avis à cinq étoiles et disparition de la demande. Les contrôles locaux refusent les doublons et les avis d’un tiers.',
+      remaining: 'Rejouer entre téléphones et vérifier l’affichage des notes reçues.',
+      ui: rideUi(['ride-review-ui']),
+      local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.']),
+      images: [shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: rideUiReport },
     { id: 'impact', title: 'Impact et récompenses', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'Impact et récompense enregistrés après le trajet local.',
-      verified: 'En local : une seule écriture d’impact et de récompense après le trajet. Une seconde clôture est refusée.',
-      remaining: 'Vérifier les montants et leur affichage sur téléphone. Aucun versement réel testé.',
+      summary: 'L’impact et le solde sont affichés dans l’app après le trajet local.',
+      verified: 'Dans l’app, en local : impact d’un trajet terminé, solde et historique de récompenses chargés. Les retours vers le profil fonctionnent.',
+      remaining: 'Vérifier les calculs sur un trajet réel. Aucun versement ni retrait réel testé.',
+      ui: rideUi(['ride-ledgers-ui']),
       local: local(['ride-audit-ledgers'], ['Le trajet terminé crée une écriture d’impact.', 'Une récompense est enregistrée.', 'Une seconde clôture est refusée.']),
-      images: [shot('impact', 'Impact vide lors du test du 11 octobre')], source: localReport },
+      images: [shot('ride-impact', 'Impact après un trajet terminé en local'), shot('ride-rewards', 'Solde de test et récompense du trajet local')], source: rideUiReport },
     { id: 'support', title: 'Support', status: 'partial', checkedAt: '2026-10-15',
       summary: 'La demande envoyée depuis l’app est prise en charge puis clôturée en local.',
       verified: 'En local : envoi depuis l’app, prise en charge puis clôture. Le parent ne peut pas accéder à la gestion.',
