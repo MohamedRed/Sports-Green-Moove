@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
-import { content, assets, excerpts } from '../partner-portal/content.mjs';
+import { content, assets, captures, excerpts } from '../partner-portal/content.mjs';
 import { validate } from '../partner-portal/validate.mjs';
 import { assetRevision, buildBrowserAssets, assertBrowserAssetsCurrent } from '../partner-portal/build-assets.mjs';
 
@@ -27,6 +27,21 @@ test('excerpts are bounded, original recordings retained and no audio exported',
   assert.match(build, /'-an'/);
   assert.match(build, /evidenceFingerprints/);
   assert(!Object.values(assets).some((a) => /profile|options|staging-access|19-|20-|28-/.test(a.source)));
+});
+
+test('new form checks do not imply signup or completed participant flows', () => {
+  const validation = content.flows.find((f) => f.id === 'auth-validation');
+  assert.equal(validation.checkedAt, '2026-10-15');
+  assert.equal(validation.images.length, 5);
+  assert.match(validation.remaining, /n’a pas été retestée/);
+  assert.equal(content.flows.find((f) => f.id === 'login').checkedAt, '2026-10-11');
+  for (const id of ['booking', 'publication', 'payments', 'clubs']) {
+    assert.equal(content.flows.find((f) => f.id === id).status, 'blocked');
+  }
+  assert(content.blockers.some((b) => b.id === 'auth-landscape'));
+  assert.equal(content.flows.find((f) => f.id === 'appearance').status, 'partial');
+  assert.equal(Object.keys(captures).length, 6);
+  assert.match(source('scripts/build-partner-portal.mjs'), /Object.entries\(captures\)/);
 });
 
 test('portal has no production app hosting rewrite or client-side auth substitute', () => {

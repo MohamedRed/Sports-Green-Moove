@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
-import { assets, videos, excerpts, content } from './content.mjs';
+import { assets, captures, videos, excerpts, content } from './content.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -23,7 +23,7 @@ export function validate(root) {
       assert(f.images.length || f.clips?.length, `Verified flow ${f.id} needs evidence`);
     }
     for (const image of f.images) {
-      assert(assets[image.file] || ['home', 'signed-out'].includes(image.file));
+      assert(assets[image.file] || captures[image.file] || ['home', 'signed-out'].includes(image.file));
       assert(image.alt?.trim());
     }
     for (const clip of f.clips || []) assert(excerpts[clip]);
@@ -47,6 +47,13 @@ export function validate(root) {
     assert(clip.poster >= clip.start && clip.poster <= clip.end);
   }
   const serialized = JSON.stringify(content);
+  for (const [name, source] of Object.entries(captures)) {
+    assert.match(name, /^[a-z][a-z0-9-]+$/);
+    assert(!assets[name] && !excerpts[name] && !['home', 'signed-out'].includes(name));
+    assert.match(source, /\.(png|jpg)$/);
+    assert(resolve(root, source).startsWith(resolve(root, 'docs/release/evidence') + sep));
+    assert(existsSync(resolve(root, source)), `Missing reviewed capture ${source}`);
+  }
   assert(!/[\w.+-]+@[\w.-]+\.[a-z]{2,}/i.test(serialized), 'Do not publish email addresses');
   assert(!/AIza[\w-]{20,}|-----BEGIN .*PRIVATE KEY|Bearer\s+[\w.-]+/.test(serialized), 'Credential-like content');
   const manifest = JSON.parse(readFileSync(resolve(root, 'partner-portal/.openai/hosting.json'), 'utf8'));

@@ -18,8 +18,10 @@ directory to the public Firebase application host.
 
 ## Content And Evidence
 
-`content.mjs` is the curated, French-language source. Each flow distinguishes its
-status, dated verification, evidence source and remaining scope. An empty screen
+`content.mjs` is the curated, French-language source. Its `captures` allowlist adds
+reviewed device-only screenshots from dated evidence directories without another
+crop to app content. Each flow distinguishes status, dated verification, evidence
+source and remaining scope. An empty screen
 does not establish completion. Existing release manifests remain authoritative for
 final release approval; this portal does not accept new release evidence itself.
 

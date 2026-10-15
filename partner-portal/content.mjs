@@ -1,6 +1,16 @@
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
+const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const shot = (file, alt) => ({ file, alt });
+
+export const captures = {
+  'login-empty': 'docs/release/evidence/browserstack-2026-10-15/01-login-empty-email.png',
+  'signup-name': 'docs/release/evidence/browserstack-2026-10-15/02-signup-empty-name.png',
+  'signup-email': 'docs/release/evidence/browserstack-2026-10-15/03-signup-invalid-email.png',
+  'signup-password': 'docs/release/evidence/browserstack-2026-10-15/04-signup-missing-password.png',
+  'signup-short': 'docs/release/evidence/browserstack-2026-10-15/05-signup-short-password.png',
+  'login-landscape': 'docs/release/evidence/browserstack-2026-10-15/07-login-landscape-after-swipe.png',
+};
 
 export const assets = {
   trips: { source: '02-trips-empty.jpg', crop: [286, 604, 342, 134] },
@@ -30,9 +40,13 @@ export const excerpts = {
 
 export const content = {
   updatedAt: '2026-10-15',
-  lastVerifiedAt: '2026-10-13',
+  lastVerifiedAt: '2026-10-15',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-15', title: 'Les formulaires refusent les saisies incorrectes',
+      text: 'Cinq vérifications réussies : champs vides, e-mail invalide et mot de passe trop court.', flow: 'auth-validation' },
+    { date: '2026-10-15', title: 'Le bouton de connexion disparaît en paysage',
+      text: 'Le bouton disparaît quand on tourne le téléphone. À corriger.', flow: 'appearance' },
     { date: '2026-10-13', title: 'La déconnexion est corrigée',
       text: 'L’app reste déconnectée, même après fermeture et relancement.', flow: 'signout' },
     { date: '2026-10-13', title: 'La navigation parent est filmée',
@@ -41,6 +55,9 @@ export const content = {
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
   blockers: [
+    { id: 'auth-landscape', title: 'Connexion en paysage',
+      text: 'Le bouton de connexion est hors écran et le défilement ne permet pas de l’atteindre.',
+      next: 'Adapter les formulaires à la hauteur de l’écran, puis retester.', source: validation },
     { id: 'staging', title: 'Créer l’espace de test',
       text: 'L’accès à la facturation bloque encore sa création.',
       next: 'Débloquer cet accès pour tester avec des comptes séparés. Budget : 5 €/mois.', source: manual },
@@ -63,6 +80,13 @@ export const content = {
       verified: 'Connexion avec le compte parent de test, puis arrivée sur l’accueil.',
       remaining: 'La connexion via un autre compte est prévue plus tard.',
       images: [shot('home', 'Accueil authentifié du compte parent de test')], source: manual },
+    { id: 'auth-validation', title: 'Vérification des formulaires', status: 'verified', checkedAt: '2026-10-15',
+      summary: 'Les champs vides et les saisies incorrectes sont refusés.',
+      verified: 'Cinq contrôles : e-mail vide, nom manquant, e-mail invalide, mot de passe absent et mot de passe trop court.',
+      remaining: 'Corriger l’affichage en paysage. La création d’un compte n’a pas été retestée ici.',
+      images: [shot('login-empty', 'Adresse e-mail obligatoire'), shot('signup-name', 'Nom obligatoire'),
+        shot('signup-email', 'Adresse e-mail invalide'), shot('signup-password', 'Mot de passe obligatoire'),
+        shot('signup-short', 'Mot de passe trop court')], source: validation },
     { id: 'signout', title: 'Déconnexion et relancement', status: 'verified', checkedAt: '2026-10-13',
       summary: 'L’app reste déconnectée après relancement.',
       verified: 'Déconnexion, fermeture de l’app et relancement : retour à la connexion.',
@@ -119,11 +143,12 @@ export const content = {
       verified: 'Accès au formulaire et contrôle de la description obligatoire.',
       remaining: 'Envoyer une vraie demande de test, puis vérifier sa réception et son traitement.',
       images: [shot('support', 'Validation du support sans description')], source: manual },
-    { id: 'appearance', title: 'Affichage et thème sombre', status: 'partial', checkedAt: '2026-10-11',
-      summary: 'Le thème sombre s’affiche, avec un souci de contraste.',
-      verified: 'Passage du clair au sombre et retour ; accueil utilisable en paysage.',
-      remaining: 'Corriger le contraste, vérifier que le thème est conservé et tester l’accessibilité.',
-      images: [shot('dark', 'Accueil en thème sombre')], source: manual },
+    { id: 'appearance', title: 'Affichage et thème sombre', status: 'partial', checkedAt: '2026-10-15',
+      summary: 'Le bouton de connexion disparaît en paysage. Le contraste sombre reste à corriger.',
+      verified: 'Le 15 octobre : le bouton de connexion reste hors écran en paysage, même après un glissement vers le haut.',
+      remaining: 'Corriger la connexion en paysage et le contraste. Retester le thème, sa conservation et l’accessibilité.',
+      images: [shot('login-landscape', 'Connexion tronquée en paysage après tentative de défilement'),
+        shot('dark', 'Accueil en thème sombre lors du test du 11 octobre')], source: validation },
     { id: 'social-auth', title: 'Connexion via un autre compte', status: 'deferred',
       summary: 'Prévue après la connexion par e-mail.',
       verified: 'Pas encore testé.',

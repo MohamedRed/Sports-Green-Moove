@@ -3,7 +3,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { content, assets, videos, excerpts } from '../partner-portal/content.mjs';
+import { content, assets, captures, videos, excerpts } from '../partner-portal/content.mjs';
 import { validate } from '../partner-portal/validate.mjs';
 import { buildBrowserAssets } from '../partner-portal/build-assets.mjs';
 
@@ -23,6 +23,9 @@ const ffmpeg = (...args) => execFileSync('ffmpeg', ['-hide_banner', '-loglevel',
 for (const [name, asset] of Object.entries(assets)) {
   ffmpeg('-i', resolve(root, 'docs/release/evidence/browserstack-2026-10-11', asset.source),
     '-vf', `crop=${asset.crop.join(':')}`, '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
+}
+for (const [name, source] of Object.entries(captures)) {
+  ffmpeg('-i', resolve(root, source), '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
 }
 for (const [name, clip] of Object.entries(excerpts)) {
   const input = resolve(root, videos[clip.video]);
