@@ -4,7 +4,7 @@ import { indexHistoricalChatMessage, compareChatPosition, type ChatInboxEntry,
   type ChatSource, type IndexedChatMessage } from "../domain/chatInbox.js";
 import { requireChatParticipant } from "./chatConversation.js";
 import { chatHistoryQuery, chatInboxRef, checkedChatInbox } from "./chatInboxIndex.js";
-import { firestore } from "./firebase.js";
+import { firestore } from "./firestore.js";
 
 function historicalMessage(doc: QueryDocumentSnapshot, source: ChatSource): IndexedChatMessage {
   const value = doc.data();

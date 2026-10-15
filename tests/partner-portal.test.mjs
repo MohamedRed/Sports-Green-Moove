@@ -118,12 +118,14 @@ test('ride integrity claims use the new eleven-group evidence without promoting 
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 
-test('message safety claims require the passing twelve-group service evidence', () => {
+test('message directory claims require passing thirteen-group service evidence, not an uncompleted app run', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.local.source));
-  assert.equal(run.steps.length, 12);
+  assert.equal(run.steps.length, 13);
   assert(run.steps.every((step) => step.status === 'passed'));
   assert(flow.local.groups.includes('chat-delivery-safety'));
+  assert(flow.local.groups.includes('chat-directory-safety'));
+  assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
   assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /premier message|réservation/);
   assert.match(flow.remaining, /anciens/);

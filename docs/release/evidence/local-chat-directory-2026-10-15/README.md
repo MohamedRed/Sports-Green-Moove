@@ -6,6 +6,8 @@ this is service verification, not thirteen phone-screen cases. Older 12-group
 delivery evidence remains unchanged in its own directory.
 `timestamp-fixtures-results.json` preserves the earlier 13-group run before the
 published-trip regression case was added; it does not prove that new case.
+`published-date-results.json` retains the next passing run; the current result
+also verifies the shared Firestore-only initialization used by preparation tools.
 
 The new directory group seeds 25 historical sources and one empty reservation
 for separate synthetic adults. It explicitly prepares each private history index,

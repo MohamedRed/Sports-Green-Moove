@@ -3,6 +3,8 @@ const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
 const chatUiReport = 'docs/release/evidence/local-chat-ui-2026-10-15/README.md';
+const chatDirectoryReport = 'docs/release/evidence/local-chat-directory-2026-10-15/README.md';
+const chatAttempts = 'docs/release/evidence/local-chat-directory-2026-10-15/ui-attempts.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -61,6 +63,8 @@ export const content = {
   lastVerifiedAt: '2026-10-15',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-15', title: 'Les anciens échanges passent les contrôles locaux',
+      text: '26 conversations retrouvées, même après 120 messages dans un seul échange. La vérification complète dans l’app continue.', flow: 'messages' },
     { date: '2026-10-15', title: 'Le parent et le conducteur se répondent dans l’app',
       text: 'En local : réponses reçues, brouillon conservé et anciens messages retrouvés. Les captures sont disponibles.', flow: 'messages' },
     { date: '2026-10-15', title: 'Un trajet complet, puis un avis',
@@ -88,8 +92,11 @@ export const content = {
   ],
   blockers: [
     { id: 'chat-discovery', title: 'Retrouver et démarrer les conversations',
-      text: 'La réponse fonctionne en local. La liste peut encore masquer des échanges plus anciens.',
-      next: 'Afficher toutes les conversations et permettre un premier message depuis une réservation.', source: chatUiReport },
+      text: 'Les contrôles locaux passent. Le premier message et la liste complète restent à confirmer dans l’app.',
+      next: 'Terminer ce parcours entre le parent et le conducteur.', source: chatDirectoryReport },
+    { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
+      text: 'Un essai s’est arrêté pendant le passage au compte conducteur. La cause reste à confirmer.',
+      next: 'Examiner le plantage et rejouer le parcours complet.', source: chatAttempts },
     { id: 'membership-review', title: 'Accepter ou refuser une adhésion',
       text: 'Les demandes sont visibles. Les boutons de décision sont encore absents.',
       next: 'Ajouter ces actions pour le club.', source: uiReport },
@@ -156,14 +163,16 @@ export const content = {
       images: [shot('local-approved', 'Demande acceptée par le conducteur en local')], source: uiReport },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-15',
       summary: 'Le parent et le conducteur se répondent dans l’app, en local.',
-      verified: 'En local : échanges dans les deux sens, réception sans recharger, brouillon conservé et 120 anciens messages chargés. Les doublons et les accès extérieurs sont refusés.',
-      remaining: 'Ajouter le premier message depuis une réservation et l’accès à tous les échanges anciens. Vérifier les alertes entre téléphones et la reprise après une coupure réseau.',
-      local: local(['messages-notifications', 'chat-delivery-safety'], [
+      verified: 'Échanges et brouillon déjà vérifiés dans l’app en local. Les nouveaux contrôles retrouvent 26 conversations et conservent les bons messages non lus.',
+      remaining: 'Confirmer le premier message et les anciens échanges dans l’app. Vérifier le changement de compte, la lecture et les alertes entre téléphones, puis la reprise après une coupure réseau.',
+      local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety'], [
         'Le parent et le conducteur échangent des messages.',
         'Trois tentatives du même envoi créent un seul message et une notification.',
         'La lecture est enregistrée sans effacer un message reçu plus tard.',
         'Une personne extérieure ne peut pas ouvrir la conversation ni y répondre.',
-      ], 'docs/release/evidence/local-chat-2026-10-15/results.json'),
+        'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
+        'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
+      ], 'docs/release/evidence/local-chat-directory-2026-10-15/results.json'),
       ui: { source: 'docs/release/evidence/local-chat-ui-2026-10-15/results.json', groups: ['chat-conversation-ui'] },
       images: [shot('chat-parent', 'Message envoyé par le parent, en local'),
         shot('chat-driver', 'Réponse du conducteur dans l’app, en local'),

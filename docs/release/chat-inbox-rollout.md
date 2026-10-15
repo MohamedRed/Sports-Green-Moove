@@ -39,7 +39,8 @@ Current source members see only historical messages originally addressed to them
 no shared last-message summary is copied across changing recipient sets.
 
 Build the functions first, then preview exactly one user and source with ADC
-credentials that are kept outside the repository:
+credentials that are kept outside the repository. The tool initializes only
+Firestore; no Realtime Database URL is required:
 
 ```sh
 npm run build --workspace functions

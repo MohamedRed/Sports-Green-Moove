@@ -2,7 +2,7 @@ import type { Transaction } from "firebase-admin/firestore";
 import { HttpsError } from "firebase-functions/v2/https";
 import { bookingParticipantUserIds, rideParticipantUserIds } from "../domain/access.js";
 import { chatDocumentIdSchema, type ChatReference } from "../domain/chatReference.js";
-import { firestore } from "./firebase.js";
+import { firestore } from "./firestore.js";
 
 export { chatDocumentIdSchema, chatReferenceSchema, type ChatReference } from "../domain/chatReference.js";
 

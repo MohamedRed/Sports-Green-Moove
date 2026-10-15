@@ -2,7 +2,7 @@ import { FieldValue, type DocumentReference, type Transaction, type WithFieldVal
 import { HttpsError } from "firebase-functions/v2/https";
 import { appendChatInbox, chatInboxId, requireChatInbox, type ChatInboxEntry,
   type ChatSource, type IndexedChatMessage } from "../domain/chatInbox.js";
-import { firestore } from "./firebase.js";
+import { firestore } from "./firestore.js";
 
 export const chatInboxRef = (uid: string, source: ChatSource) => firestore.collection("chatInboxes").doc(chatInboxId(uid, source));
 export const chatHistoryQuery = (uid: string, source: ChatSource) => firestore.collection("messages")
