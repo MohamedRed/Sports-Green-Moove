@@ -44,6 +44,12 @@ referenced groups passed on the displayed date. These flows stay `partial`, show
 an explicit local-test date and a results list, not a fabricated app capture.
 Retained older captures carry their original test date in their caption.
 
+Local app/management screen checks use a separate `ui` record backed by scoped
+result JSON. These remain partial and dated as local trials, with reviewed captures
+shown before older service-check lists. A screen test does not accept GPS,
+background tracking, push delivery, live-provider or physical-device requirements.
+Never publish black/blank captures from rendering-disabled test device images.
+
 Browser assets use a content-derived directory so HTML, styles and JavaScript
 modules cannot accidentally reuse an older bundle after deployment. Publishing
 also checks that the generated bundle matches the current source.

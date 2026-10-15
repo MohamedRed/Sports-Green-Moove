@@ -8,10 +8,12 @@ const clipLabels = {
 };
 
 export function createGallery(flow, initialClip) {
+  const images = flow.images.map((item) => ({ type: 'image', file: `${item.file}.jpg`, label: item.alt }));
   const entries = [
+    ...(flow.ui ? images : []),
     ...(flow.local ? [{ type: 'checks', label: 'Essai local, sans enregistrement sur téléphone.' }] : []),
     ...(flow.clips || []).map((id) => ({ type: 'video', file: `${id}.mp4`, poster: `${id}.jpg`, label: clipLabels[id] })),
-    ...flow.images.map((item) => ({ type: 'image', file: `${item.file}.jpg`, label: item.alt })),
+    ...(!flow.ui ? images : []),
   ];
   let index = Math.max(0, entries.findIndex((entry) => entry.file === `${initialClip}.mp4`));
   const container = document.getElementById('media-content');

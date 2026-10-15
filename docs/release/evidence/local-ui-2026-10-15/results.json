@@ -1,0 +1,32 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b90408c1a10ed8934987c2cd1fab4cd7",
+  "testedAt": "2026-10-15T15:12:42.097Z",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 6,
+  "steps": [
+    {
+      "id": "parent-app-ui",
+      "status": "passed"
+    },
+    {
+      "id": "driver-approval-ui",
+      "status": "passed"
+    },
+    {
+      "id": "landscape-login-ui",
+      "status": "passed"
+    },
+    {
+      "id": "calendar-empty-consent-ui",
+      "status": "passed"
+    },
+    {
+      "id": "theme-process-restart-ui",
+      "status": "passed"
+    }
+  ],
+  "limits": [
+    "No physical GPS tracking, provider payments, push delivery or live data tested."
+  ]
+}

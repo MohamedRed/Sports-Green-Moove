@@ -38,6 +38,15 @@ export function validate(root) {
       for (const group of f.local.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven local check ${group}`);
       for (const check of f.local.checks) assert(typeof check === 'string' && check.trim() && check.length <= 150);
     }
+    if (f.ui) {
+      assert.equal(f.status, 'partial', 'Local UI checks do not complete physical-device requirements');
+      const run = JSON.parse(readFileSync(resolve(root, f.ui.source), 'utf8'));
+      assert.equal(run.scope, 'local-ui-not-physical-device');
+      assert.equal(run.projectId, 'demo-sgm-local-qa');
+      assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
+      assert(f.ui.groups.length);
+      for (const group of f.ui.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven UI check ${group}`);
+    }
   }
   for (const u of content.updates) { assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt); }
   for (const b of content.blockers) assert(existsSync(resolve(root, b.source)));

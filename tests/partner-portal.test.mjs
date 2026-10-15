@@ -39,9 +39,9 @@ test('new form checks do not imply signup or completed participant flows', () =>
     assert.equal(content.flows.find((f) => f.id === id).status, 'partial');
   }
   assert.equal(content.flows.find((f) => f.id === 'payments').status, 'blocked');
-  assert(content.blockers.some((b) => b.id === 'auth-landscape'));
+  assert(!content.blockers.some((b) => ['auth-landscape', 'calendar', 'search-empty'].includes(b.id)));
   assert.equal(content.flows.find((f) => f.id === 'appearance').status, 'partial');
-  assert.equal(Object.keys(captures).length, 6);
+  for (const name of ['login-empty', 'signup-name', 'signup-email', 'signup-password', 'signup-short', 'local-landscape']) assert(captures[name]);
   assert.match(source('scripts/build-partner-portal.mjs'), /Object.entries\(captures\)/);
 });
 
@@ -70,6 +70,42 @@ test('local results are backed by successful evidence and are not presented as p
   }
   assert.match(source('partner-portal/src/media.js'), /sans enregistrement sur téléphone/);
   assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
+});
+
+test('manual screen evidence stays scoped and cannot complete a phone requirement', () => {
+  const support = content.flows.find((flow) => flow.id === 'support');
+  const original = support.ui;
+  const originalLocal = support.local;
+  const proof = JSON.parse(source(original.source));
+  assert.equal(proof.method, 'manual-browser-ui');
+  assert.equal(support.status, 'partial');
+  assert(proof.steps.some((step) => step.id === 'admin-access-boundary-ui' && step.status === 'passed'));
+  try {
+    support.ui = { ...original, groups: ['invented-check'] };
+    assert.throws(() => validate(root), /Unproven UI check/);
+    support.ui = original;
+    delete support.local;
+    support.status = 'verified';
+    assert.throws(() => validate(root), /Local UI checks do not complete/);
+  } finally {
+    support.ui = original;
+    support.local = originalLocal;
+    support.status = 'partial';
+  }
+});
+
+test('app screenshots require a completed scoped run and retain product gaps', () => {
+  const run = JSON.parse(source('docs/release/evidence/local-ui-2026-10-15/results.json'));
+  assert.equal(run.testCount, 6);
+  assert.equal(run.steps.length, 5);
+  for (const id of ['navigation', 'search', 'booking', 'messages', 'appearance']) {
+    const flow = content.flows.find((item) => item.id === id);
+    assert.equal(flow.status, 'partial');
+    assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-2026-10-15/results.json');
+  }
+  for (const id of ['chat-reply', 'membership-review', 'trip-management', 'booking-decisions', 'contrast']) {
+    assert(content.blockers.some((item) => item.id === id));
+  }
 });
 
 test('smoke workflow covers portal source, evidence changes and validation', () => {

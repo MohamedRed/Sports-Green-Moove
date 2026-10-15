@@ -56,10 +56,12 @@ try {
   }
   await page.goto(`${base}/#parcours/booking`);
   await page.getByText('Essai local du 15 octobre 2026', { exact: true }).waitFor();
-  assert.equal(await page.locator('.local-results li').count(), 5);
+  await page.getByRole('img', { name: 'Demande acceptée par le conducteur en local' }).waitFor();
   assert.equal(await page.locator('video').count(), 0);
-  assert.equal(await page.locator('.media-navigation').count(), 0);
+  assert.equal(await page.locator('.media-navigation').count(), 1);
   await page.screenshot({ path: `${output}/local-booking.png`, fullPage: true });
+  await page.getByRole('button', { name: 'Preuve suivante' }).click();
+  assert.equal(await page.locator('.local-results li').count(), 5);
   await page.goto(`${base}/#parcours/tracking`);
   await page.getByRole('heading', { name: 'Pas encore de vidéo' }).waitFor();
   assert.equal(await page.locator('video').count(), 0);
