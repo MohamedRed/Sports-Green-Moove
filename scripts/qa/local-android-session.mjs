@@ -45,7 +45,7 @@ const evidenceDir = process.env.SGM_LOCAL_UI_OUTPUT;
 mkdirSync(evidenceDir, { recursive: true });
 let capturesCollected = false;
 try {
-  instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest'], 5);
+  instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest', 'SearchSessionFlowTest'], 7);
   instrument(['LocalThemeRestartTest'], 1);
   for (const permission of ['ACCESS_COARSE_LOCATION', 'ACCESS_FINE_LOCATION', 'ACCESS_BACKGROUND_LOCATION', 'POST_NOTIFICATIONS']) {
     run(adb, ['-s', serial, 'shell', 'pm', 'grant', 'be.sportgreenmoove.app.local', `android.permission.${permission}`]);
@@ -61,11 +61,15 @@ try {
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
   capturesCollected = true;
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
-    'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui']
+    'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui',
+    'search-input-ui', 'search-session-ui']
     .map((id) => ({ id, status: 'passed' }));
   writeFileSync(resolve(evidenceDir, 'results.json'), `${JSON.stringify({ projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 9, steps, ride, chat, directory, limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
+    testCount: 11, steps, ride, chat, directory,
+    search: { method: 'component-ui-with-explicit-fake-gateway',
+      limitation: 'Session identity is changed in the composition host; no real auth or provider request is used by these two cases.' },
+    limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
       'No physical GPS tracking, provider payments, push delivery or live data tested.'] }, null, 2)}\n`);
 } finally {
   if (!capturesCollected) {

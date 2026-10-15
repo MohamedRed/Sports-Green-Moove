@@ -82,6 +82,7 @@ class SportsGreenMooveUiFlowTest {
                 onSelectDestination = {},
                 onSearch = {},
                 onRequest = { _, _ -> },
+                onOriginChanged = {}, onDestinationChanged = {},
             )
         }
         assertTagsExist(SgmTestTags.SearchScreen, SgmTestTags.SearchAction, SgmTestTags.BookingRequestAction)

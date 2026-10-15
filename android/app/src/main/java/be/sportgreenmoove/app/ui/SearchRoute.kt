@@ -1,6 +1,7 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import be.sportgreenmoove.app.data.ChildSummary
 
 @Composable
@@ -9,7 +10,7 @@ fun SearchRoute(
     children: List<ChildSummary>,
     error: String?,
     onBack: () -> Unit,
-) {
+) = key(searchController) {
     SearchScreen(
         origin = searchController.origin,
         destination = searchController.destination,
@@ -27,5 +28,7 @@ fun SearchRoute(
         onSelectDestination = { searchController.selectPlace(it, SearchPlaceTarget.Destination) },
         onSearch = searchController::runSearch,
         onRequest = searchController::requestMatch,
+        onOriginChanged = { searchController.editPlace(SearchPlaceTarget.Origin) },
+        onDestinationChanged = { searchController.editPlace(SearchPlaceTarget.Destination) },
     )
 }

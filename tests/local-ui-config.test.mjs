@@ -33,6 +33,21 @@ test('instrumentation must finish with the expected count, not just exit zero', 
   }
 });
 
+test('search ownership is bound to the session and logout invalidates pending handlers', () => {
+  const read = (name) => readFileSync(new URL(`../android/app/src/main/java/be/sportgreenmoove/app/ui/${name}.kt`, import.meta.url), 'utf8');
+  const app = read('SportsGreenMooveApp');
+  const owner = read('RememberSearchController');
+  const requests = read('SearchRequests');
+  assert.match(app, /sessionUid = session\?\.uid/);
+  assert.match(app, /searchController.close\(\)/);
+  assert(app.indexOf('searchController.close()') < app.indexOf('providers.auth.signOut()'));
+  assert.match(owner, /remember\(providers, scope, sessionUid\)/);
+  assert.match(owner, /onDispose \{ controller.close\(\) \}/);
+  assert.match(requests, /currentCoroutineContext\(\).ensureActive\(\)/);
+  assert.match(requests, /catch \(cancelled: CancellationException\) \{ throw cancelled \}/);
+  assert.match(read('SearchRoute'), /key\(searchController\)/);
+});
+
 test('mock positions require an explicitly disposable emulator and a local-only manifest', () => {
   const runner = readFileSync(new URL('../scripts/qa/run-local-android-flows.mjs', import.meta.url), 'utf8');
   assert.match(runner, /assert.equal\(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true'/);
@@ -48,7 +63,9 @@ test('local conversation evidence requires app execution and independent persist
   assert.match(runner, /const chat = await verifyLocalChatUi\(\)/);
   assert.match(runner, /instrument\(\['LocalConversationDirectoryFlowTest'\], 1\)/);
   assert.match(runner, /const directory = await verifyLocalChatDirectoryUi\(directoryFixture\)/);
-  assert.match(runner, /testCount: 9/);
+  assert.match(runner, /testCount: 11/);
+  assert.match(runner, /'SearchSessionFlowTest'\], 7/);
+  assert.match(runner, /component-ui-with-explicit-fake-gateway/);
   assert.match(runner, /'logcat', '-d', '-b', 'crash'/);
   assert.match(runner, /throw failure/);
   const peer = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalConversationPeer.kt', import.meta.url), 'utf8');

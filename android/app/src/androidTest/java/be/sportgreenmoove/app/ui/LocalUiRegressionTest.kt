@@ -39,7 +39,7 @@ class LocalUiRegressionTest {
         compose.setSgmUiTestContent {
             SearchScreen(UiFlowFixtures.origin, UiFlowFixtures.destination, emptyList(), emptyList(),
                 listOf(UiFlowFixtures.child), emptyList(), false, null, {}, {}, {}, {}, {},
-                { submitted = it }, { _, _ -> }, hasSearched = searched.value)
+                { submitted = it }, { _, _ -> }, {}, {}, hasSearched = searched.value)
         }
         compose.onNodeWithText("Aucun trajet trouvé.").assertDoesNotExist()
         compose.onNodeWithTag(SgmTestTags.SearchAction).performScrollTo().performClick()

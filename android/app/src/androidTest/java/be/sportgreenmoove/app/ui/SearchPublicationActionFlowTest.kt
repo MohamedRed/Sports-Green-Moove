@@ -30,6 +30,7 @@ class SearchPublicationActionFlowTest {
                 onSuggestOrigin = {}, onSuggestDestination = {}, onSelectOrigin = {}, onSelectDestination = {},
                 onSearch = { searchForm = it },
                 onRequest = { match, childId -> requestedMatch = match; requestedChildId = childId },
+                onOriginChanged = {}, onDestinationChanged = {},
             )
         }
         compose.onNodeWithTag(SgmTestTags.SearchAction).performScrollTo().performClick()

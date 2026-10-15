@@ -3,20 +3,16 @@ package be.sportgreenmoove.app.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -58,6 +54,8 @@ fun SearchScreen(
     onSelectDestination: (PlaceSuggestion) -> Unit,
     onSearch: (SearchFormState) -> Unit,
     onRequest: (TripMatchSummary, String?) -> Unit,
+    onOriginChanged: () -> Unit,
+    onDestinationChanged: () -> Unit,
     hasSearched: Boolean = false,
 ) {
     var originInput by remember { mutableStateOf(origin?.label.orEmpty()) }
@@ -69,13 +67,17 @@ fun SearchScreen(
     var childTracking by remember { mutableStateOf(true) }
     var guardianConsent by remember { mutableStateOf(false) }
     var selectedChildId by remember(children) { mutableStateOf(children.firstOrNull()?.id) }
+    LaunchedEffect(origin) { origin?.let { originInput = it.label } }
+    LaunchedEffect(destination) { destination?.let { destinationInput = it.label } }
 
     V2Screen(testTag = SgmTestTags.SearchScreen) {
         V2TopBar("RECHERCHE", onBack = onBack)
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            PlaceSearchField("Départ", originInput, origin, originSuggestions, { originInput = it }, onSuggestOrigin, onSelectOrigin)
-            PlaceSearchField("Destination", destinationInput, destination, destinationSuggestions, { destinationInput = it }, onSuggestDestination, onSelectDestination)
-            SearchInput("Date ISO", departureIso, { departureIso = it })
+            PlaceSearchField("Départ", originInput, origin, originSuggestions, { originInput = it; onOriginChanged() },
+                onSuggestOrigin, onSelectOrigin, SgmTestTags.SearchOriginInput)
+            PlaceSearchField("Destination", destinationInput, destination, destinationSuggestions, { destinationInput = it; onDestinationChanged() },
+                onSuggestDestination, onSelectDestination, SgmTestTags.SearchDestinationInput)
+            SearchInput("Date ISO", departureIso, { departureIso = it }, testTag = SgmTestTags.SearchDateInput)
             SearchChildSelector(
                 children = children,
                 selectedChildId = selectedChildId,
@@ -141,75 +143,6 @@ data class SearchFormState(
 enum class SearchPlaceTarget {
     Origin,
     Destination,
-}
-
-@Composable
-private fun PlaceSearchField(
-    label: String,
-    value: String,
-    selected: ResolvedPlace?,
-    suggestions: List<PlaceSuggestion>,
-    onValueChange: (String) -> Unit,
-    onSuggest: (String) -> Unit,
-    onSelect: (PlaceSuggestion) -> Unit,
-) {
-    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            SearchInput(label, value, onValueChange, modifier = Modifier.weight(1f))
-            V2Button("Chercher", onClick = { onSuggest(value) }, size = V2ButtonSize.Sm, variant = V2ButtonVariant.Secondary)
-        }
-        selected?.let {
-            Text(it.formattedAddress, style = SgmType.BodyXS.copy(color = SgmColor.Green, fontSize = 12.sp, fontWeight = FontWeight.Bold))
-        }
-        suggestions.take(4).forEach { suggestion ->
-            SuggestionRow(suggestion, onClick = { onSelect(suggestion) })
-        }
-    }
-}
-
-@Composable
-private fun SearchInput(label: String, value: String, onValueChange: (String) -> Unit, modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .height(46.dp)
-            .clip(RoundedCornerShape(SgmRadius.MD))
-            .background(Sgm.colors.bgInput)
-            .border(BorderStroke(1.5.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.MD))
-            .padding(horizontal = 14.dp),
-        contentAlignment = Alignment.CenterStart,
-    ) {
-        if (value.isEmpty()) Text(label, style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 14.sp, fontWeight = FontWeight.Medium))
-        BasicTextField(
-            value = value,
-            onValueChange = onValueChange,
-            textStyle = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Medium),
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth(),
-        )
-    }
-}
-
-@Composable
-private fun SuggestionRow(suggestion: PlaceSuggestion, onClick: () -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(12.dp))
-            .clickable(onClick = onClick)
-            .padding(12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
-    ) {
-        SgmLineIcon(SgmIcon.Location, tint = SgmColor.Green, modifier = Modifier.size(16.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Text(suggestion.mainText ?: suggestion.label, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold), maxLines = 1, overflow = TextOverflow.Ellipsis)
-            suggestion.secondaryText?.let {
-                Text(it, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp), maxLines = 1, overflow = TextOverflow.Ellipsis)
-            }
-        }
-    }
 }
 
 @Composable

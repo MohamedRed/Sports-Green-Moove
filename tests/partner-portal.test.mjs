@@ -133,6 +133,21 @@ test('message directory service claims retain thirteen-group evidence and remain
   assert.equal(baseline.steps.find((step) => step.id === 'chat-delivery-safety').status, 'failed');
 });
 
+test('search regression claims retain unit-only scope and actual passing JUnit evidence', () => {
+  const path = 'docs/release/evidence/local-search-state-2026-10-15/';
+  for (const [file, count] of [['requests-passed.xml', 4], ['lifecycle-passed.xml', 6], ['safety-passed.xml', 5]]) {
+    assert(source(path + file).includes(`tests="${count}" skipped="0" failures="0" errors="0"`));
+  }
+  assert(source(path + 'requests-baseline-failed.xml').includes('tests="4" skipped="0" failures="4" errors="0"'));
+  const flow = content.flows.find((item) => item.id === 'search');
+  assert.equal(flow.source, path + 'README.md');
+  assert.equal(flow.status, 'partial');
+  assert.match(flow.remaining, /recherche complète/);
+  assert.match(flow.remaining, /changement de compte/);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-2026-10-15/results.json');
+  assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
+});
+
 test('conversation captures require the completed nine-case run and keep phone scope open', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.ui.source));

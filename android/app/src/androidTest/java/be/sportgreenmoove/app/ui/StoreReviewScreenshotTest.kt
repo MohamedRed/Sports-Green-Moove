@@ -104,6 +104,7 @@ class StoreReviewScreenshotTest {
                 onSelectDestination = {},
                 onSearch = {},
                 onRequest = { _, _ -> },
+                onOriginChanged = {}, onDestinationChanged = {},
             )
         }
         compose.onNodeWithTag(SgmTestTags.GuardianConsentDisclosure)

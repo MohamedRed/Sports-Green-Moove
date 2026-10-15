@@ -55,6 +55,7 @@ fun SportsGreenMooveApp() {
     val searchController = rememberSearchController(
         providers = providers,
         scope = scope,
+        sessionUid = session?.uid,
         onError = { errorMessage = it },
         onNotice = { noticeMessage = it },
         onAppLoading = { loading = it },
@@ -233,6 +234,7 @@ fun SportsGreenMooveApp() {
                             onPayments = { screen = AppScreen.Payments },
                             onOptions = { screen = AppScreen.Options },
                             onLogout = {
+                                searchController.close()
                                 session?.uid?.let { messagesState.removeState(it) }
                                 providers.googleAuth.signOut()
                                 providers.facebookAuth.signOut()
@@ -241,6 +243,7 @@ fun SportsGreenMooveApp() {
                                 lastRoleSelectionSessionUid = null
                                 role = AppRole.Parent
                                 appData.clear()
+                                loading = false
                                 noticeMessage = null
                                 errorMessage = null
                                 screen = AppScreen.Home

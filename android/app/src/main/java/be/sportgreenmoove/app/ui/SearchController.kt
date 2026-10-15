@@ -1,42 +1,23 @@
 package be.sportgreenmoove.app.ui
 
-import androidx.compose.runtime.Composable
+import androidx.annotation.MainThread
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripSearchCriteria
-import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidProviderSet
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
-@Composable
-fun rememberSearchController(
-    providers: AndroidProviderSet,
-    scope: CoroutineScope,
-    onError: (String?) -> Unit,
-    onNotice: (String) -> Unit,
-    onAppLoading: (Boolean) -> Unit,
-): SearchController = remember(providers, scope) {
-    SearchController(
-        providers = providers,
-        scope = scope,
-        onError = onError,
-        onNotice = onNotice,
-        onAppLoading = onAppLoading,
-    )
-}
-
+@MainThread
 class SearchController(
     private val providers: AndroidProviderSet,
-    private val scope: CoroutineScope,
+    scope: CoroutineScope,
     private val onError: (String?) -> Unit,
     private val onNotice: (String) -> Unit,
-    private val onAppLoading: (Boolean) -> Unit,
+    onAppLoading: (Boolean) -> Unit,
 ) {
     var origin by mutableStateOf<ResolvedPlace?>(null)
         private set
@@ -52,44 +33,35 @@ class SearchController(
         private set
     var hasSearched by mutableStateOf(false)
         private set
+    private val requests = SearchRequests(scope, onError, { loading = it }, onAppLoading)
+
+    fun editPlace(target: SearchPlaceTarget) {
+        if (!requests.isActive) return
+        requests.invalidate(target.request())
+        if (target == SearchPlaceTarget.Origin) { origin = null; originSuggestions = emptyList() }
+        else { destination = null; destinationSuggestions = emptyList() }
+        invalidateMatches()
+    }
 
     fun suggestPlaces(input: String, target: SearchPlaceTarget) {
-        scope.launch {
-            loading = true
-            onError(null)
-            runCatching { providers.firebase.suggestPlaces(input) }
-                .onSuccess { suggestions ->
-                    if (target == SearchPlaceTarget.Origin) {
-                        originSuggestions = suggestions
-                    } else {
-                        destinationSuggestions = suggestions
-                    }
-                }
-                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
-            loading = false
+        if (!requests.isActive) return
+        editPlace(target)
+        requests.launch(target.request(), { providers.firebase.suggestPlaces(input) }) {
+            if (target == SearchPlaceTarget.Origin) originSuggestions = it else destinationSuggestions = it
         }
     }
 
     fun selectPlace(suggestion: PlaceSuggestion, target: SearchPlaceTarget) {
-        scope.launch {
-            loading = true
-            onError(null)
-            runCatching { providers.firebase.resolvePlace(suggestion.placeId) }
-                .onSuccess { place ->
-                    if (target == SearchPlaceTarget.Origin) {
-                        origin = place
-                        originSuggestions = emptyList()
-                    } else {
-                        destination = place
-                        destinationSuggestions = emptyList()
-                    }
-                }
-                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
-            loading = false
+        if (!requests.isActive) return
+        editPlace(target)
+        requests.launch(target.request(), { providers.firebase.resolvePlace(suggestion.placeId) }) {
+            if (target == SearchPlaceTarget.Origin) origin = it else destination = it
         }
     }
 
     fun runSearch(form: SearchFormState) {
+        if (!requests.isActive) return
+        invalidateMatches()
         val selectedOrigin = origin
         val selectedDestination = destination
         if (selectedOrigin == null || selectedDestination == null) {
@@ -104,43 +76,34 @@ class SearchController(
             onError("Votre consentement est nécessaire pour activer le suivi enfant.")
             return
         }
-
-        scope.launch {
-            loading = true
-            onError(null)
-            matches = emptyList()
-            hasSearched = false
-            runCatching {
-                providers.firebase.searchTripMatches(
-                    TripSearchCriteria(
-                        origin = selectedOrigin,
-                        destination = selectedDestination,
-                        desiredDepartureAtIso = form.desiredDepartureAtIso,
-                        seatsNeeded = form.seatsNeeded,
-                        baggage = form.baggage,
-                        returnTrip = form.returnTrip,
-                        requireChildTracking = form.requireChildTracking,
-                        guardianConsent = form.guardianConsent,
-                        childUserId = form.childUserId,
-                    ),
-                )
-            }.onSuccess {
-                matches = it
-                hasSearched = true
-            }.onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
-            loading = false
-        }
+        requests.launch(SearchRequest.Matches, {
+            providers.firebase.searchTripMatches(TripSearchCriteria(selectedOrigin, selectedDestination,
+                form.desiredDepartureAtIso, form.seatsNeeded, form.baggage, form.returnTrip,
+                form.requireChildTracking, form.guardianConsent, form.childUserId))
+        }) { matches = it; hasSearched = true }
     }
 
     fun requestMatch(match: TripMatchSummary, childUserId: String?) {
-        scope.launch {
-            onAppLoading(true)
-            onError(null)
-            runCatching {
-                val bookingId = providers.firebase.requestBooking(match.tripId, childUserId)
-                onNotice("Demande envoyée: $bookingId")
-            }.onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
-            onAppLoading(false)
+        requests.launch(SearchRequest.Booking, { providers.firebase.requestBooking(match.tripId, childUserId) }) {
+            onNotice("Demande envoyée.")
         }
     }
+
+    fun close() {
+        requests.close()
+        origin = null
+        destination = null
+        originSuggestions = emptyList()
+        destinationSuggestions = emptyList()
+        matches = emptyList()
+        loading = false
+        hasSearched = false
+    }
+
+    private fun invalidateMatches() {
+        requests.invalidate(SearchRequest.Matches)
+        matches = emptyList()
+        hasSearched = false
+    }
+    private fun SearchPlaceTarget.request() = if (this == SearchPlaceTarget.Origin) SearchRequest.Origin else SearchRequest.Destination
 }
