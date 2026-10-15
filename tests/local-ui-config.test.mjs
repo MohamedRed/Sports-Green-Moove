@@ -46,6 +46,20 @@ test('search ownership is bound to the session and logout invalidates pending ha
   assert.match(requests, /currentCoroutineContext\(\).ensureActive\(\)/);
   assert.match(requests, /catch \(cancelled: CancellationException\) \{ throw cancelled \}/);
   assert.match(read('SearchRoute'), /key\(searchController\)/);
+  assert.match(read('SearchRoute'), /onFormChange = searchController::updateForm/);
+  assert.match(read('SearchController'), /criteria != currentCriteria\(\) \|\| match !in matches/);
+});
+
+test('the native booking gateway uses the selected seat payload and requires persisted SDK verification', () => {
+  const gateway = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt', import.meta.url), 'utf8');
+  assert.match(gateway, /val requestPayload = bookingRequestPayload\(tripId, childId, seats\)/);
+  const controller = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/ui/SearchController.kt', import.meta.url), 'utf8');
+  assert.match(controller, /requestBooking\(match.tripId, criteria.childUserId, criteria.seatsNeeded\)/);
+  const verifier = readFileSync(new URL('../scripts/qa/verify-local-multi-seat-sdk.mjs', import.meta.url), 'utf8');
+  assert.match(verifier, /assert.equal\(snapshot.size, 1/);
+  assert.match(verifier, /assert.equal\(booking.get\('seats'\), 2\)/);
+  const local = readFileSync(new URL('../scripts/qa/run-local-flows.mjs', import.meta.url), 'utf8');
+  assert.match(local, /assert.equal\(result.steps.length, 14\)/);
 });
 
 test('mock positions require an explicitly disposable emulator and a local-only manifest', () => {
@@ -63,8 +77,10 @@ test('local conversation evidence requires app execution and independent persist
   assert.match(runner, /const chat = await verifyLocalChatUi\(\)/);
   assert.match(runner, /instrument\(\['LocalConversationDirectoryFlowTest'\], 1\)/);
   assert.match(runner, /const directory = await verifyLocalChatDirectoryUi\(directoryFixture\)/);
-  assert.match(runner, /testCount: 11/);
-  assert.match(runner, /'SearchSessionFlowTest'\], 7/);
+  assert.match(runner, /testCount: 14/);
+  assert.match(runner, /'SearchSessionFlowTest', 'SearchCriteriaFlowTest'\], 9/);
+  assert.match(runner, /instrument\(\['LocalMultiSeatSdkTest'\], 1\)/);
+  assert.match(runner, /const multiSeatSdk = await verifyLocalMultiSeatSdk\(session.multiSeatTripId\)/);
   assert.match(runner, /component-ui-with-explicit-fake-gateway/);
   assert.match(runner, /'logcat', '-d', '-b', 'crash'/);
   assert.match(runner, /throw failure/);

@@ -8,6 +8,7 @@ import { verifyLocalRideUi } from './verify-local-ride-ui.mjs';
 import { verifyLocalChatUi } from './verify-local-chat-ui.mjs';
 import { seedChatDirectoryUiFixtures } from './local-chat-directory-ui-fixtures.mjs';
 import { verifyLocalChatDirectoryUi } from './verify-local-chat-directory-ui.mjs';
+import { verifyLocalMultiSeatSdk } from './verify-local-multi-seat-sdk.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -45,8 +46,10 @@ const evidenceDir = process.env.SGM_LOCAL_UI_OUTPUT;
 mkdirSync(evidenceDir, { recursive: true });
 let capturesCollected = false;
 try {
-  instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest', 'SearchSessionFlowTest'], 7);
+  instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest', 'SearchSessionFlowTest', 'SearchCriteriaFlowTest'], 9);
   instrument(['LocalThemeRestartTest'], 1);
+  instrument(['LocalMultiSeatSdkTest'], 1);
+  const multiSeatSdk = await verifyLocalMultiSeatSdk(session.multiSeatTripId);
   for (const permission of ['ACCESS_COARSE_LOCATION', 'ACCESS_FINE_LOCATION', 'ACCESS_BACKGROUND_LOCATION', 'POST_NOTIFICATIONS']) {
     run(adb, ['-s', serial, 'shell', 'pm', 'grant', 'be.sportgreenmoove.app.local', `android.permission.${permission}`]);
   }
@@ -62,13 +65,13 @@ try {
   capturesCollected = true;
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
     'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui',
-    'search-input-ui', 'search-session-ui']
+    'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk']
     .map((id) => ({ id, status: 'passed' }));
   writeFileSync(resolve(evidenceDir, 'results.json'), `${JSON.stringify({ projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 11, steps, ride, chat, directory,
+    testCount: 14, steps, ride, chat, directory, multiSeatSdk,
     search: { method: 'component-ui-with-explicit-fake-gateway',
-      limitation: 'Session identity is changed in the composition host; no real auth or provider request is used by these two cases.' },
+      caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },
     limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
       'No physical GPS tracking, provider payments, push delivery or live data tested.'] }, null, 2)}\n`);
 } finally {

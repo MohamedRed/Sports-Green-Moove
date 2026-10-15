@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -20,16 +21,19 @@ class SearchPublicationActionFlowTest {
         var searchForm: SearchFormState? = null
         var requestedMatch: TripMatchSummary? = null
         var requestedChildId: String? = null
+        val selection = mutableStateOf(defaultSearchForm(UiFlowFixtures.child.id))
         compose.setSgmUiTestContent {
             SearchScreen(
+                originInput = UiFlowFixtures.origin.label, destinationInput = UiFlowFixtures.destination.label,
+                form = selection.value, onFormChange = { selection.value = it },
                 origin = UiFlowFixtures.origin,
                 destination = UiFlowFixtures.destination,
                 originSuggestions = emptyList(), destinationSuggestions = emptyList(),
                 children = listOf(UiFlowFixtures.child), matches = listOf(UiFlowFixtures.match),
                 loading = false, error = null, onBack = {},
                 onSuggestOrigin = {}, onSuggestDestination = {}, onSelectOrigin = {}, onSelectDestination = {},
-                onSearch = { searchForm = it },
-                onRequest = { match, childId -> requestedMatch = match; requestedChildId = childId },
+                onSearch = { searchForm = selection.value },
+                onRequest = { match -> requestedMatch = match; requestedChildId = selection.value.childUserId },
                 onOriginChanged = {}, onDestinationChanged = {},
             )
         }

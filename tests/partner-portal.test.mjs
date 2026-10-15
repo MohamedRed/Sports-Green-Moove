@@ -140,7 +140,7 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   }
   assert(source(path + 'requests-baseline-failed.xml').includes('tests="4" skipped="0" failures="4" errors="0"'));
   const flow = content.flows.find((item) => item.id === 'search');
-  assert.equal(flow.source, 'docs/release/evidence/local-search-ui-2026-10-15/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/local-search-criteria-2026-10-15/README.md');
   assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /recherche complète/);
   assert.match(flow.remaining, /vraie déconnexion/);

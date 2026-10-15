@@ -3,6 +3,7 @@ const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
 const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.md';
+const criteriaReport = 'docs/release/evidence/local-search-criteria-2026-10-15/README.md';
 const chatUiReport = 'docs/release/evidence/local-chat-directory-ui-2026-10-15/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
@@ -64,6 +65,8 @@ export const content = {
   lastVerifiedAt: '2026-10-15',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-15', title: 'La demande reprend le nombre de places choisi',
+      text: 'En local, une demande de deux places en retire deux après acceptation ; l’annulation les restitue. Les essais d’écran continuent.', flow: 'booking' },
     { date: '2026-10-15', title: 'La recherche repart à zéro pour un autre compte simulé',
       text: 'Deux essais d’écran locaux passent : lieux effacés au changement de compte simulé et ancien lieu retiré après modification. Une capture est disponible.', flow: 'search' },
     { date: '2026-10-15', title: 'La recherche ne reprend plus un ancien choix',
@@ -150,12 +153,12 @@ export const content = {
       images: [shot('local-home', 'Accueil avec le trajet de test en local'), shot('local-calendar', 'Calendrier du mois courant en local')],
       clips: ['home-to-trips'], recording: 'navigation', source: uiReport },
     { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'Un autre compte simulé repart avec une recherche vide dans l’essai d’écran local.',
-      verified: 'Dans l’essai d’écran local : lieux effacés quand le compte simulé change et anciennes coordonnées retirées après modification d’un lieu. Les contrôles des réponses tardives passent.',
-      remaining: 'Rejouer une vraie déconnexion et connexion. Tester la recherche complète : options, classement, places restantes, réservation et coupure réseau.',
+      summary: 'Les choix et le nombre de places restent liés à la demande dans les contrôles locaux.',
+      verified: 'Compte simulé : recherche réinitialisée. Les nouveaux contrôles locaux refusent une demande issue d’anciens choix et transmettent le nombre de places sélectionné.',
+      remaining: 'Rejouer les options dans les écrans et une vraie déconnexion. Tester la recherche complète, les places restantes et la reprise après coupure.',
       ui: { source: 'docs/release/evidence/local-search-ui-2026-10-15/results.json', groups: ['search-input-ui', 'search-session-ui', 'calendar-empty-consent-ui'] },
       images: [shot('search-account-cleared', 'Recherche vidée après changement de compte simulé, en local'),
-        shot('local-search-empty', 'Recherche sans résultat lors du précédent essai local'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')], source: searchUiReport },
+        shot('local-search-empty', 'Recherche sans résultat lors du précédent essai local'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')], source: criteriaReport },
     { id: 'publication', title: 'Publication d’un trajet', status: 'partial', checkedAt: '2026-10-15',
       summary: 'En local, le conducteur publie et le parent retrouve le trajet.',
       verified: 'Publication et présence dans la liste du parent vérifiées en local. Un parent sans rôle conducteur est refusé.',
@@ -163,12 +166,12 @@ export const content = {
       local: local(['publication'], ['Le conducteur publie un trajet.', 'Le parent le retrouve dans sa liste.', 'La publication sans rôle conducteur est refusée.']),
       images: [shot('guard', 'Restriction conducteur lors du test du 11 octobre')], source: localReport },
     { id: 'booking', title: 'Réservation et approbation', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'Le conducteur accepte une demande dans l’app en local.',
-      verified: 'Acceptation dans l’app vérifiée. Les contrôles locaux confirment le décompte des places, leur restitution après annulation et la protection de la dernière place.',
+      summary: 'Deux places sont retirées puis restituées dans les contrôles locaux.',
+      verified: 'Acceptation dans l’app déjà vérifiée. Les nouveaux contrôles locaux confirment qu’une demande de deux places en retire deux, puis les restitue une seule fois après annulation.',
       remaining: 'Ajouter le refus et l’annulation dans l’app. Rejouer sur téléphone et vérifier les remboursements.',
-      local: local(['booking-cancellation', 'last-seat-concurrency'], ['La demande est enregistrée puis acceptée.', 'L’acceptation retire une place.', 'L’annulation restitue la place une seule fois.', 'Deux acceptations concurrentes ne prennent pas la même dernière place.', 'Un autre utilisateur ne peut pas annuler la réservation.']),
+      local: local(['booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking'], ['La demande est enregistrée puis acceptée.', 'Une demande de deux places est enregistrée avec deux places.', 'Son acceptation retire deux places ; l’annulation les restitue une seule fois.', 'Deux acceptations concurrentes ne prennent pas la même dernière place.', 'Un autre utilisateur ne peut pas annuler la réservation.'], 'docs/release/evidence/local-search-criteria-2026-10-15/services.json'),
       ui: ui(['driver-approval-ui']),
-      images: [shot('local-approved', 'Demande acceptée par le conducteur en local')], source: uiReport },
+      images: [shot('local-approved', 'Demande acceptée lors du précédent essai dans l’app, en local')], source: criteriaReport },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-15',
       summary: 'Le parent et le conducteur se répondent dans l’app, en local.',
       verified: 'Premier message depuis une réservation, réponse du conducteur et ancien échange retrouvés dans l’app en local. Les deux messages sont enregistrés et lus.',

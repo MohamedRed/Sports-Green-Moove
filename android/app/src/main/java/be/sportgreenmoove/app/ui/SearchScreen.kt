@@ -12,12 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,11 +28,12 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
-import java.time.Instant
-import java.time.temporal.ChronoUnit
 
 @Composable
 fun SearchScreen(
+    originInput: String,
+    destinationInput: String,
+    form: SearchFormState,
     origin: ResolvedPlace?,
     destination: ResolvedPlace?,
     originSuggestions: List<PlaceSuggestion>,
@@ -52,68 +47,46 @@ fun SearchScreen(
     onSuggestDestination: (String) -> Unit,
     onSelectOrigin: (PlaceSuggestion) -> Unit,
     onSelectDestination: (PlaceSuggestion) -> Unit,
-    onSearch: (SearchFormState) -> Unit,
-    onRequest: (TripMatchSummary, String?) -> Unit,
-    onOriginChanged: () -> Unit,
-    onDestinationChanged: () -> Unit,
+    onSearch: () -> Unit,
+    onRequest: (TripMatchSummary) -> Unit,
+    onOriginChanged: (String) -> Unit,
+    onDestinationChanged: (String) -> Unit,
+    onFormChange: (SearchFormState) -> Unit,
     hasSearched: Boolean = false,
 ) {
-    var originInput by remember { mutableStateOf(origin?.label.orEmpty()) }
-    var destinationInput by remember { mutableStateOf(destination?.label.orEmpty()) }
-    var departureIso by remember { mutableStateOf(Instant.now().plus(1, ChronoUnit.DAYS).truncatedTo(ChronoUnit.MINUTES).toString()) }
-    var seatsNeeded by remember { mutableIntStateOf(1) }
-    var baggage by remember { mutableStateOf("medium") }
-    var returnTrip by remember { mutableStateOf(false) }
-    var childTracking by remember { mutableStateOf(true) }
-    var guardianConsent by remember { mutableStateOf(false) }
-    var selectedChildId by remember(children) { mutableStateOf(children.firstOrNull()?.id) }
-    LaunchedEffect(origin) { origin?.let { originInput = it.label } }
-    LaunchedEffect(destination) { destination?.let { destinationInput = it.label } }
-
     V2Screen(testTag = SgmTestTags.SearchScreen) {
         V2TopBar("RECHERCHE", onBack = onBack)
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            PlaceSearchField("Départ", originInput, origin, originSuggestions, { originInput = it; onOriginChanged() },
+            PlaceSearchField("Départ", originInput, origin, originSuggestions, onOriginChanged,
                 onSuggestOrigin, onSelectOrigin, SgmTestTags.SearchOriginInput)
-            PlaceSearchField("Destination", destinationInput, destination, destinationSuggestions, { destinationInput = it; onDestinationChanged() },
+            PlaceSearchField("Destination", destinationInput, destination, destinationSuggestions, onDestinationChanged,
                 onSuggestDestination, onSelectDestination, SgmTestTags.SearchDestinationInput)
-            SearchInput("Date ISO", departureIso, { departureIso = it }, testTag = SgmTestTags.SearchDateInput)
+            SearchInput("Date et heure de départ", form.desiredDepartureAtIso,
+                { onFormChange(form.copy(desiredDepartureAtIso = it)) }, testTag = SgmTestTags.SearchDateInput)
             SearchChildSelector(
                 children = children,
-                selectedChildId = selectedChildId,
-                onSelectedChild = { selectedChildId = it; guardianConsent = false },
+                selectedChildId = form.childUserId,
+                onSelectedChild = { onFormChange(form.copy(childUserId = it, guardianConsent = false)) },
             )
-            if (childTracking) {
+            if (form.requireChildTracking) {
                 ChildTrackingReleaseDisclosures()
             }
             SearchOptions(
-                seatsNeeded = seatsNeeded,
-                onSeats = { seatsNeeded = it },
-                baggage = baggage,
-                onBaggage = { baggage = it },
-                returnTrip = returnTrip,
-                onReturnTrip = { returnTrip = it },
-                childTracking = childTracking,
-                onChildTracking = { childTracking = it; guardianConsent = false },
-                guardianConsent = guardianConsent,
-                onGuardianConsent = { guardianConsent = it },
+                seatsNeeded = form.seatsNeeded,
+                onSeats = { onFormChange(form.copy(seatsNeeded = it)) },
+                baggage = form.baggage,
+                onBaggage = { onFormChange(form.copy(baggage = it)) },
+                returnTrip = form.returnTrip,
+                onReturnTrip = { onFormChange(form.copy(returnTrip = it)) },
+                childTracking = form.requireChildTracking,
+                onChildTracking = { onFormChange(form.copy(requireChildTracking = it, guardianConsent = false)) },
+                guardianConsent = form.guardianConsent,
+                onGuardianConsent = { onFormChange(form.copy(guardianConsent = it)) },
             )
             if (error != null) Text(error, style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontWeight = FontWeight.Bold))
             V2Button(
                 if (loading) "RECHERCHE EN COURS" else "TROUVER UN TRAJET",
-                onClick = {
-                    onSearch(
-                        SearchFormState(
-                            desiredDepartureAtIso = departureIso,
-                            seatsNeeded = seatsNeeded,
-                            baggage = baggage,
-                            returnTrip = returnTrip,
-                            requireChildTracking = childTracking,
-                            guardianConsent = guardianConsent,
-                            childUserId = selectedChildId,
-                        ),
-                    )
-                },
+                onClick = onSearch,
                 full = true,
                 size = V2ButtonSize.Lg,
                 testTag = SgmTestTags.SearchAction,
@@ -122,27 +95,12 @@ fun SearchScreen(
 
         V2SectionLabel("${matches.size} MATCH${if (matches.size > 1) "S" else ""}")
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            matches.forEach { match -> MatchCard(match = match, onRequest = { onRequest(match, selectedChildId) }) }
+            matches.forEach { match -> MatchCard(match = match, onRequest = { onRequest(match) }) }
             if (!loading && matches.isEmpty()) {
                 EmptyMatchCard(hasSearched)
             }
         }
     }
-}
-
-data class SearchFormState(
-    val desiredDepartureAtIso: String,
-    val seatsNeeded: Int,
-    val baggage: String,
-    val returnTrip: Boolean,
-    val requireChildTracking: Boolean,
-    val guardianConsent: Boolean,
-    val childUserId: String?,
-)
-
-enum class SearchPlaceTarget {
-    Origin,
-    Destination,
 }
 
 @Composable

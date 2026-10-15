@@ -55,8 +55,8 @@ class SearchControllerRequestsTest {
         }
         fixture(gateway) { state ->
             selectBoth(state)
-            state.runSearch(form)
-            state.runSearch(form.copy(seatsNeeded = 2))
+            submitSearchForm(state, form)
+            submitSearchForm(state, form.copy(seatsNeeded = 2))
             old.complete(listOf(match("old")))
             assertEquals(listOf("new"), state.matches.map { it.tripId })
         }
@@ -64,15 +64,23 @@ class SearchControllerRequestsTest {
 
     @Test fun cancelledBookingCannotPublishAnErrorOrLoadingCallback() = runBlocking {
         val response = CompletableDeferred<String>()
-        val gateway = object : FirebaseGateway by UnconfiguredFirebaseGateway() {
-            override suspend fun requestBooking(tripId: String, childId: String?) = response.await()
+        var bookingStarted = false
+        val gateway = object : FirebaseGateway by placesGateway() {
+            override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(match("trip"))
+            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
+                bookingStarted = true
+                return response.await()
+            }
         }
         val scope = CoroutineScope(SupervisorJob() + Dispatchers.Unconfined)
         val callbacks = mutableListOf<String>()
         val state = SearchController(AndroidProviderSet(UnconfiguredAuthGateway(), gateway), scope,
             { if (it != null) callbacks += "error" }, { callbacks += "notice" }, { callbacks += "loading:$it" })
         try {
-            state.requestMatch(match("trip"), null)
+            selectBoth(state)
+            submitSearchForm(state, form)
+            state.requestMatch(state.matches.single())
+            assertTrue(bookingStarted)
             callbacks.clear()
             scope.cancel()
             assertTrue("Cancelled work must not update another session", callbacks.isEmpty())
@@ -80,7 +88,12 @@ class SearchControllerRequestsTest {
     }
 }
 
-internal val form = SearchFormState("2026-10-17T12:00:00Z", 1, "medium", false, false, false, null)
+internal val form = SearchFormState("2026-10-17T12:00:00Z", 1, "medium", false, false, true, null)
+internal fun submitSearchForm(state: SearchController, requested: SearchFormState) {
+    state.updateForm(requested)
+    if (requested.guardianConsent) state.updateForm(state.form.copy(guardianConsent = true))
+    state.runSearch()
+}
 internal fun suggestion(id: String) = PlaceSuggestion(id, id, id, null)
 internal fun place(id: String) = ResolvedPlace(id, id, "Adresse QA $id", 50.7, 4.6)
 internal fun placesGateway() = object : FirebaseGateway by UnconfiguredFirebaseGateway() {

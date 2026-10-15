@@ -25,7 +25,7 @@ class SearchControllerLifecycleTest {
         }
         SearchTestSession(gateway).use { test ->
             selectBoth(test.state)
-            test.state.runSearch(form)
+            submitSearchForm(test.state, form)
             assertEquals(1, test.state.matches.size)
             assertTrue(test.state.hasSearched)
             test.state.close()
@@ -64,13 +64,13 @@ class SearchControllerLifecycleTest {
         }
         SearchTestSession(gateway).use { test ->
             selectBoth(test.state)
-            test.state.runSearch(form)
+            submitSearchForm(test.state, form)
             test.state.editPlace(SearchPlaceTarget.Origin)
             response.complete(listOf(match("old-coordinates")))
             assertNull(test.state.origin)
             assertTrue(test.state.matches.isEmpty())
             assertFalse(test.state.hasSearched || test.state.loading)
-            test.state.runSearch(form)
+            submitSearchForm(test.state, form)
             assertEquals(1, searches)
             assertEquals("Choisissez un départ et une destination dans les suggestions.", test.errors.last())
         }
@@ -111,14 +111,14 @@ class SearchControllerLifecycleTest {
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> { calls++; return emptyList() }
             override suspend fun resolvePlace(placeId: String): ResolvedPlace { calls++; return place(placeId) }
-            override suspend fun requestBooking(tripId: String, childId: String?): String { calls++; return "booking" }
+            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String { calls++; return "booking" }
         }
         SearchTestSession(gateway).use { test ->
             test.state.close()
             test.state.suggestPlaces("place", SearchPlaceTarget.Origin)
             test.state.selectPlace(suggestion("place"), SearchPlaceTarget.Origin)
-            test.state.runSearch(form)
-            test.state.requestMatch(match("trip"), null)
+            submitSearchForm(test.state, form)
+            test.state.requestMatch(match("trip"))
             assertEquals(0, calls)
             assertTrue(test.errors.isEmpty() && test.notices.isEmpty() && test.appLoading.isEmpty())
         }

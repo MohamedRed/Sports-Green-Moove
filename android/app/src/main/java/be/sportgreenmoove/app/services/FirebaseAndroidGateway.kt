@@ -106,9 +106,8 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
         return payload["tripId"] as? String ?: throw ProviderConfigurationException("Trajet publié manquant.")
     }
 
-    override suspend fun requestBooking(tripId: String, childId: String?): String {
-        val requestPayload = mutableMapOf<String, Any>("tripId" to tripId, "seats" to 1)
-        childId?.takeIf(String::isNotBlank)?.let { requestPayload["childId"] = it }
+    override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
+        val requestPayload = bookingRequestPayload(tripId, childId, seats)
         val result = functions
             .getHttpsCallable("requestBooking")
             .call(requestPayload)

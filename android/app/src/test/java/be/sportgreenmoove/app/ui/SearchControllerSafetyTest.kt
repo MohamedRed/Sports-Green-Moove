@@ -22,11 +22,15 @@ class SearchControllerSafetyTest {
         var writes = 0
         val response = CompletableDeferred<String>()
         val gateway = object : FirebaseGateway by placesGateway() {
-            override suspend fun requestBooking(tripId: String, childId: String?): String { writes++; return response.await() }
+            override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(match("trip"))
+            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String { writes++; return response.await() }
         }
         SearchTestSession(gateway).use { test ->
-            test.state.requestMatch(match("trip"), "child")
-            test.state.requestMatch(match("trip"), "child")
+            selectBoth(test.state)
+            submitSearchForm(test.state, form.copy(childUserId = "child"))
+            val selected = test.state.matches.single()
+            test.state.requestMatch(selected)
+            test.state.requestMatch(selected)
             assertEquals(1, writes)
             assertEquals(listOf(true), test.appLoading)
             response.complete("booking")
@@ -39,14 +43,19 @@ class SearchControllerSafetyTest {
         val old = CompletableDeferred<String>()
         val current = CompletableDeferred<String>()
         val gateway = object : FirebaseGateway by placesGateway() {
-            override suspend fun requestBooking(tripId: String, childId: String?) =
+            override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(match("old"), match("current"))
+            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int) =
                 withContext(NonCancellable) { if (tripId == "old") old.await() else current.await() }
         }
         SearchTestSession(gateway).use { previous ->
-            previous.state.requestMatch(match("old"), null)
+            selectBoth(previous.state)
+            submitSearchForm(previous.state, form)
+            previous.state.requestMatch(previous.state.matches.single { it.tripId == "old" })
             previous.state.close()
             SearchTestSession(gateway).use { next ->
-                next.state.requestMatch(match("current"), null)
+                selectBoth(next.state)
+                submitSearchForm(next.state, form)
+                next.state.requestMatch(next.state.matches.single { it.tripId == "current" })
                 old.complete("old-booking")
                 assertEquals(listOf(true), next.appLoading)
                 assertEquals(listOf(true), previous.appLoading)
@@ -69,14 +78,14 @@ class SearchControllerSafetyTest {
         }
         SearchTestSession(gateway).use { test ->
             selectBoth(test.state)
-            test.state.runSearch(form)
-            test.state.runSearch(form.copy(requireChildTracking = true))
+            submitSearchForm(test.state, form)
+            submitSearchForm(test.state, form.copy(requireChildTracking = true))
             response.complete(listOf(match("stale")))
             assertEquals(1, searches)
             assertTrue(test.state.matches.isEmpty())
             assertFalse(test.state.hasSearched || test.state.loading)
             assertEquals(listOf("Choisissez un enfant pour activer le suivi enfant."), test.errors)
-            test.state.runSearch(form.copy(requireChildTracking = true, childUserId = "child"))
+            submitSearchForm(test.state, form.copy(requireChildTracking = true, childUserId = "child", guardianConsent = false))
             assertEquals("Votre consentement est nécessaire pour activer le suivi enfant.", test.errors.last())
             assertEquals(1, searches)
         }
@@ -103,11 +112,17 @@ class SearchControllerSafetyTest {
         val scope = CoroutineScope(SupervisorJob() + dispatcher)
         var writes = 0
         val gateway = object : FirebaseGateway by placesGateway() {
-            override suspend fun requestBooking(tripId: String, childId: String?): String { writes++; return "booking" }
+            override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(match("trip"))
+            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String { writes++; return "booking" }
         }
         val state = SearchController(AndroidProviderSet(UnconfiguredAuthGateway(), gateway), scope, {}, {}, {})
         try {
-            state.requestMatch(match("trip"), "child")
+            selectBoth(state)
+            dispatcher.runQueued()
+            submitSearchForm(state, form.copy(childUserId = "child"))
+            dispatcher.runQueued()
+            assertEquals(1, state.matches.size)
+            state.requestMatch(state.matches.single())
             state.close()
             dispatcher.runQueued()
             assertEquals(0, writes)

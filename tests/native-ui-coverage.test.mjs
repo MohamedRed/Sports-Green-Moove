@@ -104,8 +104,10 @@ includes(androidUiTests, "createComposeRule", "Android uses Compose UI automatio
 includes(androidUiTests, "SgmTestTags.ActiveRideScreen", "Android UI tests cover active ride selectors");
 includes(androidUiTests, "SgmTestTags.PublishSubmitAction", "Android UI tests cover publish submit selectors");
 includes(androidUiTests, "class SportsGreenMooveActionFlowTest", "Android UI tests include action-flow callback coverage");
-includes(androidUiTests, "onSearch = { searchForm = it }", "Android UI tests assert search action callbacks");
-includes(androidUiTests, "onRequest = { match, childId ->", "Android UI tests assert booking request callbacks");
+includes(androidUiTests, "onSearch = { searchForm = selection.value }", "Android UI tests assert controlled search action callbacks");
+includes(androidUiTests, "onRequest = { match -> requestedMatch = match; requestedChildId = selection.value.childUserId }", "Android UI tests assert booking callbacks use the controlled selection");
+includes(androidUiTests, "class LocalMultiSeatSdkTest", "Android includes native gateway seat verification");
+includes(androidUiTests, "eachOptionChangeRemovesResultsAndRejectsThePreviousBookingAction", "Android includes search criteria invalidation coverage");
 includes(androidUiTests, "onPublished = { published = true }", "Android UI tests assert publish callbacks");
 includes(androidUiTests, "onJoinClub = { joinedClubId = it.id }", "Android UI tests assert group join callbacks");
 includes(androidUiTests, "pickupPassenger = passenger", "Android UI tests assert active ride pickup callbacks");

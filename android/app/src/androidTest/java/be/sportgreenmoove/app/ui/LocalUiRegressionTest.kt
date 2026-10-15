@@ -33,13 +33,19 @@ class LocalUiRegressionTest {
     }
 
     @Test
-    fun emptySearchDistinguishesInitialAndCompletedSearchAndRequiresConsent() {
+    fun emptySearchDistinguishesInitialAndCompletedSearchWithUnselectedConsent() {
         val searched = mutableStateOf(false)
         var submitted: SearchFormState? = null
+        val selection = mutableStateOf(defaultSearchForm(UiFlowFixtures.child.id))
         compose.setSgmUiTestContent {
-            SearchScreen(UiFlowFixtures.origin, UiFlowFixtures.destination, emptyList(), emptyList(),
-                listOf(UiFlowFixtures.child), emptyList(), false, null, {}, {}, {}, {}, {},
-                { submitted = it }, { _, _ -> }, {}, {}, hasSearched = searched.value)
+            SearchScreen(originInput = UiFlowFixtures.origin.label, destinationInput = UiFlowFixtures.destination.label,
+                form = selection.value, onFormChange = { selection.value = it },
+                origin = UiFlowFixtures.origin, destination = UiFlowFixtures.destination,
+                originSuggestions = emptyList(), destinationSuggestions = emptyList(),
+                children = listOf(UiFlowFixtures.child), matches = emptyList(), loading = false, error = null,
+                onBack = {}, onSuggestOrigin = {}, onSuggestDestination = {}, onSelectOrigin = {}, onSelectDestination = {},
+                onSearch = { submitted = selection.value }, onRequest = {}, onOriginChanged = {}, onDestinationChanged = {},
+                hasSearched = searched.value)
         }
         compose.onNodeWithText("Aucun trajet trouvé.").assertDoesNotExist()
         compose.onNodeWithTag(SgmTestTags.SearchAction).performScrollTo().performClick()

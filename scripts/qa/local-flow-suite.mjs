@@ -22,12 +22,12 @@ await check('fixtures', async () => { child('seed-firebase-emulator.mjs'); });
 await check('ride-lifecycle', async () => {
   lifecycle = JSON.parse(child('run-firebase-emulator-lifecycle-smoke.mjs'));
 });
-if (lifecycle) await runScenarios(check, lifecycle);
+const scenarios = lifecycle ? await runScenarios(check, lifecycle) : undefined;
 await check('ride-passenger-safety', checkRidePassengerSafety);
 await check('chat-delivery-safety', checkChatDeliverySafety);
 await check('chat-directory-safety', checkChatDirectorySafety);
 const result = { runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), projectId, scope: 'local-emulated-services-not-phone-ui',
-  steps, lifecycle, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
+  steps, lifecycle, scenarios, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
     'Club approval/rejection, trip editing/cancellation and refund settlement remain unverified.'] };
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
 if (!output) throw new Error('Explicit local evidence output path required');

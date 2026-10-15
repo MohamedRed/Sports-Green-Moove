@@ -67,6 +67,8 @@ class SportsGreenMooveUiFlowTest {
 
         host.show {
             SearchScreen(
+                originInput = UiFlowFixtures.origin.label, destinationInput = UiFlowFixtures.destination.label,
+                form = defaultSearchForm(UiFlowFixtures.child.id), onFormChange = {},
                 origin = UiFlowFixtures.origin,
                 destination = UiFlowFixtures.destination,
                 originSuggestions = emptyList(),
@@ -81,7 +83,7 @@ class SportsGreenMooveUiFlowTest {
                 onSelectOrigin = {},
                 onSelectDestination = {},
                 onSearch = {},
-                onRequest = { _, _ -> },
+                onRequest = {},
                 onOriginChanged = {}, onDestinationChanged = {},
             )
         }

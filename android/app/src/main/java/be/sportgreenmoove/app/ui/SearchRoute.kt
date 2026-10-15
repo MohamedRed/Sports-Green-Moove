@@ -1,6 +1,7 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.key
 import be.sportgreenmoove.app.data.ChildSummary
 
@@ -11,7 +12,11 @@ fun SearchRoute(
     error: String?,
     onBack: () -> Unit,
 ) = key(searchController) {
+    LaunchedEffect(children.map { it.id }) { searchController.updateChildren(children) }
     SearchScreen(
+        originInput = searchController.originInput,
+        destinationInput = searchController.destinationInput,
+        form = searchController.form,
         origin = searchController.origin,
         destination = searchController.destination,
         originSuggestions = searchController.originSuggestions,
@@ -28,7 +33,8 @@ fun SearchRoute(
         onSelectDestination = { searchController.selectPlace(it, SearchPlaceTarget.Destination) },
         onSearch = searchController::runSearch,
         onRequest = searchController::requestMatch,
-        onOriginChanged = { searchController.editPlace(SearchPlaceTarget.Origin) },
-        onDestinationChanged = { searchController.editPlace(SearchPlaceTarget.Destination) },
+        onOriginChanged = { searchController.editPlace(SearchPlaceTarget.Origin, it) },
+        onDestinationChanged = { searchController.editPlace(SearchPlaceTarget.Destination, it) },
+        onFormChange = searchController::updateForm,
     )
 }

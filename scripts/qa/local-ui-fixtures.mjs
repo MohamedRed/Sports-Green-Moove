@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { auth, db } from './local-flow-client.mjs';
+import { auth, db, signIn, call, tripInput } from './local-flow-client.mjs';
 import { projectId } from './local-emulator-config.mjs';
 import { seedLocalChatFixtures } from './local-chat-fixtures.mjs';
 import { indexLocalChatFixtures } from './index-local-chat-fixtures.mjs';
@@ -22,7 +22,11 @@ export async function seedLocalUiFixtures() {
   }
   await seedLocalChatFixtures(process.env.SGM_QA_PASSWORD);
   await indexLocalChatFixtures();
+  const multiSeatTrip = await call('createTrip', await signIn('d@example.test'), {
+    ...tripInput(), title: 'Trajet QA deux places', seatsTotal: 4, seatsAvailable: 4,
+  });
   const session = { projectId, password: process.env.SGM_QA_PASSWORD,
+    multiSeatTripId: multiSeatTrip.tripId,
     disposableEmulator: process.env.SGM_LOCAL_DISPOSABLE_EMULATOR === 'true',
     parent: 'p@example.test', driver: 'd@example.test', admin: 'admin@example.test', outsider: 'outsider@example.test' };
   writeFileSync(process.env.SGM_LOCAL_UI_SESSION_FILE, JSON.stringify(session), { mode: 0o600, flag: 'wx' });

@@ -10,6 +10,7 @@ export async function runScenarios(check, lifecycle) {
   const outsider = await signIn('outsider@example.test');
   await call('initializeUserProfile', outsider);
   let tripId;
+  let multiSeat;
   await check('publication', async () => {
     const input = tripInput();
     await denied('createTrip', parent, input, 'PERMISSION_DENIED');
@@ -53,6 +54,23 @@ export async function runScenarios(check, lifecycle) {
     assert.equal(rejection?.reason.code, 'FAILED_PRECONDITION');
     assert.equal((await document('trips', id)).seatsAvailable, 0);
     await denied('requestBooking', parent, { tripId: id, seats: 1 }, 'FAILED_PRECONDITION');
+  });
+  await check('multi-seat-booking', async () => {
+    const { tripId: id } = await call('createTrip', driver, { ...tripInput(), seatsTotal: 4, seatsAvailable: 4, priceCents: 0 });
+    const { bookingId } = await call('requestBooking', parent, { tripId: id, childId: 'sgm-qa-child-lina', seats: 2 });
+    assert.equal((await document('bookings', bookingId)).seats, 2);
+    assert.equal((await document('trips', id)).seatsAvailable, 4);
+    await call('approveBooking', driver, { bookingId });
+    assert.equal((await document('trips', id)).seatsAvailable, 2);
+    const queue = await call('listDriverBookingRequests', driver);
+    assert.equal(queue.bookings.find((booking) => booking.bookingId === bookingId)?.seats, 2);
+    await call('cancelBooking', parent, { bookingId, reason: 'Local two-seat cancellation' });
+    assert.equal((await document('trips', id)).seatsAvailable, 4);
+    await denied('cancelBooking', parent, { bookingId }, 'FAILED_PRECONDITION');
+    assert.equal((await document('trips', id)).seatsAvailable, 4);
+    await denied('requestBooking', parent, { tripId: id, seats: 5 }, 'FAILED_PRECONDITION');
+    multiSeat = { requestedSeats: 2, seatsBefore: 4, seatsAfterApproval: 2, seatsAfterCancellation: 4,
+      repeatedCancellationRejected: true, livePayment: false };
   });
   await check('messages-notifications', async () => {
     const bookingId = lifecycle.bookingId;
@@ -122,4 +140,5 @@ export async function runScenarios(check, lifecycle) {
     await denied('reviewReport', parent, { reportId: report.reportId, status: 'resolved' }, 'PERMISSION_DENIED');
     await denied('createReport', parent, { subjectType: 'other', reason: 'QA', description: '' }, 'INVALID_ARGUMENT');
   });
+  return { multiSeat };
 }
