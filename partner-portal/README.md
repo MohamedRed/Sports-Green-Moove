@@ -29,6 +29,10 @@ real speed from the October 13 replay exports; no transition or outcome is
 fabricated. Those exports remain available as long recordings. The sign-out long
 export already omits troubleshooting, as documented in its original report.
 
+Keep the partner-facing copy brief and conversational: videos, short updates,
+and concrete next steps. Do not repeat report disclaimers across the page. Keep
+test status and actual limitations clear; put recording context in optional details.
+
 Dates in the page are explicit snapshots, not an automatically refreshed live
 status. Update `updatedAt` when content changes and `lastVerifiedAt` only when a
 new verification actually occurred. Evidence source hashes are included in the

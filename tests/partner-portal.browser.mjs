@@ -14,7 +14,7 @@ try {
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('response', (response) => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
   await page.goto(base);
-  await page.getByRole('heading', { name: 'À voir en quelques secondes' }).waitFor();
+  await page.getByRole('heading', { name: 'Vidéos', exact: true }).waitFor();
   await page.screenshot({ path: `${output}/desktop-overview.png`, fullPage: true });
   await page.getByRole('button', { name: /Déconnexion corrigée/ }).click();
   await page.getByRole('dialog').waitFor();
@@ -38,13 +38,13 @@ try {
   await page.getByRole('searchbox').fill('');
   await page.locator('#status').selectOption('blocked');
   assert.equal(await page.locator('.flow-row').count(), 4);
-  await page.getByRole('link', { name: 'À résoudre', exact: true }).click();
-  await page.getByRole('heading', { name: 'Ce qui reste à résoudre' }).waitFor();
+  await page.getByRole('link', { name: 'À faire', exact: true }).click();
+  await page.getByRole('heading', { name: 'À faire', exact: true }).waitFor();
   await page.screenshot({ path: `${output}/desktop-next.png`, fullPage: true });
   for (const width of [390, 320, 768]) {
     await page.setViewportSize({ width, height: 844 });
     await page.goto(`${base}/#apercu`);
-    await page.getByRole('heading', { name: 'À voir en quelques secondes' }).waitFor();
+    await page.getByRole('heading', { name: 'Vidéos', exact: true }).waitFor();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Overflow at ${width}px`);
     await page.screenshot({ path: `${output}/overview-${width}.png`, fullPage: true });
     await page.getByRole('button', { name: /Déconnexion corrigée/ }).click();
@@ -54,7 +54,7 @@ try {
     await page.keyboard.press('Escape');
   }
   await page.goto(`${base}/#parcours/tracking`);
-  await page.getByRole('heading', { name: 'Pas encore de démonstration' }).waitFor();
+  await page.getByRole('heading', { name: 'Pas encore de vidéo' }).waitFor();
   assert.equal(await page.locator('video').count(), 0);
   assert.deepEqual(errors, []);
   console.log('Portal browser checks passed: desktop/mobile, filters, deep links, dialogs, short-video playback, media navigation, no overflow or failed assets.');

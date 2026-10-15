@@ -53,8 +53,7 @@ async function load() {
     data = await response.json();
     document.getElementById('view-apercu').innerHTML = overview(data);
     document.getElementById('view-suite').innerHTML = nextSteps(data);
-    document.getElementById('freshness').textContent = `Suivi mis à jour le ${date(data.updatedAt)}. Dernier test : ${date(data.lastVerifiedAt)}.`;
-    document.getElementById('footer').innerHTML = `<p>${data.platform}</p><p>Ce suivi décrit les preuves disponibles, pas une validation globale de lancement. Les dates de test restent attachées aux résultats, même lorsque le site est mis à jour.</p>`;
+    document.getElementById('freshness').textContent = `Mis à jour le ${date(data.updatedAt)}`;
     filterFlows();
     route();
   } catch {

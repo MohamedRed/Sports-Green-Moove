@@ -14,7 +14,7 @@ test('every flow has truthful, dated evidence and explicit remaining scope', () 
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');
   assert.equal(content.flows.find((f) => f.id === 'booking').status, 'blocked');
   assert.equal(content.flows.find((f) => f.id === 'social-auth').status, 'deferred');
-  assert.match(content.releaseNote, /pas encore validée/);
+  assert.equal(content.releaseNote, 'Tests en cours.');
 });
 
 test('excerpts are bounded, original recordings retained and no audio exported', () => {
@@ -52,7 +52,7 @@ test('rendered content is escaped and native accessible controls remain present'
   assert.equal(escape('<script>"&'), '&lt;script&gt;&quot;&amp;');
   assert.match(overview(content), /13 s/);
   assert.match(flowRows([]), /Aucun parcours/);
-  assert.match(detail(content.flows[0]), /Ce qui reste à prouver/);
+  assert.match(detail(content.flows[0]), /À faire/);
   assert.match(source('partner-portal/src/app.js'), /hashchange/);
   assert.match(source('partner-portal/src/media.js'), /oldVideo\?\.pause/);
 });
@@ -61,4 +61,19 @@ test('portal code modules remain below 300 lines', () => {
   for (const file of ['content.mjs', 'validate.mjs', 'src/app.js', 'src/render.js', 'src/media.js', 'src/styles.css']) {
     assert(source(`partner-portal/${file}`).split('\n').length < 300, `${file} needs splitting`);
   }
+});
+
+test('partner copy stays brief and recording context is optional', async () => {
+  for (const flow of content.flows) {
+    assert(flow.summary.length <= 100, `${flow.id}: shorten summary`);
+    assert(flow.verified.length <= 200, `${flow.id}: shorten result`);
+    assert(flow.remaining.length <= 240, `${flow.id}: shorten next steps`);
+  }
+  const { overview, detail, statuses } = await import('../partner-portal/src/render.js');
+  assert.equal(statuses.verified, 'Testé');
+  assert.equal(statuses.partial, 'Test partiel');
+  assert(!overview(content).includes('release-note'));
+  assert(!overview(content).includes('La suite'));
+  assert.match(detail(content.flows.find((f) => f.id === 'signout')), /<details[^>]*><summary>Infos du test<\/summary>/);
+  assert(!source('partner-portal/src/app.js').includes('validation globale'));
 });

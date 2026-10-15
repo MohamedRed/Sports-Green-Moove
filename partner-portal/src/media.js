@@ -18,7 +18,7 @@ export function createGallery(flow, initialClip) {
     const oldVideo = container.querySelector('video');
     oldVideo?.pause();
     if (!entries.length) {
-      container.innerHTML = `<div class="no-media">${icon('image-off')}<h3>Pas encore de démonstration</h3><p>Une preuve visuelle sera ajoutée après vérification du parcours.</p></div>`;
+      container.innerHTML = `<div class="no-media">${icon('image-off')}<h3>Pas encore de vidéo</h3></div>`;
       return;
     }
     const entry = entries[index];

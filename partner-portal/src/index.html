@@ -23,28 +23,27 @@
     <a class="icon-button signout" href="/signout-with-chatgpt?return_to=%2F" title="Se déconnecter" aria-label="Se déconnecter" target="_top"><img src="icons/log-out.svg" alt=""></a>
   </header>
   <main id="main" class="shell">
-    <div class="page-heading"><div><h1>Le projet, en clair.</h1><p>Avancées, démonstrations et prochaines étapes de Sports Green-Moove.</p></div><p id="freshness" class="freshness"></p></div>
+    <div class="page-heading"><h1>Suivi du projet</h1><p id="freshness" class="freshness"></p></div>
     <nav class="view-tabs" aria-label="Vues du suivi">
       <a href="#apercu" data-view="apercu" aria-current="page">Aperçu</a>
-      <a href="#parcours" data-view="parcours">Parcours utilisateurs</a>
-      <a href="#suite" data-view="suite">À résoudre</a>
+      <a href="#parcours" data-view="parcours">Parcours</a>
+      <a href="#suite" data-view="suite">À faire</a>
     </nav>
     <div id="loading" role="status">Chargement du suivi…</div>
     <div id="load-error" hidden role="alert"><p>Le suivi n’a pas pu être chargé.</p><button id="retry" type="button">Réessayer</button></div>
     <section id="view-apercu" class="view" aria-label="Aperçu" hidden></section>
     <section id="view-parcours" class="view" aria-label="Parcours utilisateurs" hidden>
-      <div class="section-heading"><h2>Les parcours utilisateurs</h2><p id="flow-count" aria-live="polite"></p></div>
+      <div class="section-heading"><h2>Parcours</h2><p id="flow-count" aria-live="polite"></p></div>
       <form id="filters" class="filters" role="search">
         <label class="search-field"><img src="icons/search.svg" alt=""><span class="sr-only">Rechercher un parcours</span><input id="query" type="search" placeholder="Rechercher un parcours" autocomplete="off"></label>
-        <label class="status-filter"><span class="sr-only">Filtrer par statut</span><select id="status"><option value="all">Tous les statuts</option><option value="verified">Vérifié</option><option value="partial">Partiellement vérifié</option><option value="blocked">Bloqué</option><option value="untested">À tester</option><option value="deferred">Reporté</option></select></label>
+        <label class="status-filter"><span class="sr-only">Filtrer par statut</span><select id="status"><option value="all">Tous</option><option value="verified">Testé</option><option value="partial">Test partiel</option><option value="blocked">Bloqué</option><option value="untested">À tester</option><option value="deferred">Plus tard</option></select></label>
       </form>
       <div id="flow-list" class="flow-list"></div>
     </section>
     <section id="view-suite" class="view" aria-label="Prochaines étapes" hidden></section>
-    <footer id="footer"></footer>
   </main>
   <dialog id="flow-dialog" aria-labelledby="detail-title">
-    <header class="dialog-header"><p>Parcours utilisateur</p><button type="button" id="close-detail" class="icon-button" title="Fermer" aria-label="Fermer"><img src="icons/x.svg" alt=""></button></header>
+    <header class="dialog-header"><button type="button" id="close-detail" class="icon-button" title="Fermer" aria-label="Fermer"><img src="icons/x.svg" alt=""></button></header>
     <div id="flow-detail"></div>
   </dialog>
   <noscript><p class="shell">JavaScript est nécessaire pour consulter ce suivi.</p></noscript>
