@@ -61,14 +61,14 @@ class LocalChatFlowTest {
             closeKeyboard()
             compose.onNodeWithTag(SgmTestTags.BottomNavHomeAction).performClick()
             openMessages()
-            waitFor(SgmTestTags.ChatMessageInput)
+            waitForComposer()
             assertDraft("Rendez-vous devant le stade.")
             activity.recreate()
-            waitFor(SgmTestTags.ChatMessageInput)
+            waitForComposer()
             assertDraft("Rendez-vous devant le stade.")
             activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
             compose.waitUntil(15_000) { context.resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE }
-            waitFor(SgmTestTags.ChatMessageInput)
+            waitForComposer()
             assertDraft("Rendez-vous devant le stade.")
             captureLocalUi(compose, "local-chat-landscape-draft.png", landscape = true)
             activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
@@ -140,7 +140,7 @@ class LocalChatFlowTest {
     }
 
     private fun send(body: String) {
-        waitFor(SgmTestTags.ChatMessageInput)
+        waitForComposer()
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextReplacement(body)
         closeKeyboard()
         compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().performClick()
@@ -168,7 +168,7 @@ class LocalChatFlowTest {
         waitForText(preview, substring)
         compose.onNodeWithText(preview, substring = substring).performScrollTo().performClick()
         waitFor(SgmTestTags.ChatThreadScreen)
-        waitFor(SgmTestTags.ChatMessageInput)
+        waitForComposer()
         compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsDisplayed()
     }
     private fun backToInbox() { compose.onNodeWithTag(SgmTestTags.BackAction).performClick(); waitFor(SgmTestTags.MessagesScreen) }
@@ -187,6 +187,12 @@ class LocalChatFlowTest {
     private fun waitFor(tag: String) {
         compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithTag(tag).assertIsDisplayed()
+    }
+    private fun waitForComposer() {
+        waitFor(SgmTestTags.ChatMessageInput)
+        compose.waitUntil(60_000) {
+            runCatching { compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsEnabled() }.isSuccess
+        }
     }
     private fun waitForText(text: String, substring: Boolean = false) {
         compose.waitUntil(60_000) { compose.onAllNodesWithText(text, substring = substring).fetchSemanticsNodes().isNotEmpty() }

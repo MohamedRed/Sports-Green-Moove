@@ -32,6 +32,8 @@ These results are service checks, not app/physical-device evidence. Real phone
 delivery, push, offline behavior and live-provider integration remain unverified.
 The existing inbox discovers threads from its latest 50 messages; only the thread
 itself supports older-history pagination. iOS conversation UI is not included.
+Starting a new conversation from a booking has no app entry point yet; the native
+test starts from a seeded received message and must not be described as initiation.
 Legacy keyless sends remain compatible but are not idempotent. Legacy random
 notifications are not blanket-marked read.
 
@@ -40,3 +42,11 @@ the new Android client; see `scripts/qa/README.md`. No Terraform resource is
 created: the index uses the repository's canonical Firebase index configuration.
 Web Integration Smoke already covers the changed Functions, local QA scripts,
 indexes and evidence paths and runs the service suite; no trigger change is needed.
+
+## Native Run Not Accepted
+
+[Native CI 38795959058](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38795959058)
+on `8a5f934` reached the new local chat case but stopped at its first text entry:
+the composer was still disabled during server loading. The test now waits for
+the actual enabled input instead of assuming that a visible input is ready.
+No new conversation screenshot or app-flow success is accepted from that run.

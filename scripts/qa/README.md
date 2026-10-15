@@ -68,6 +68,8 @@ notification IDs are not guessed or cleared. Thread history is paginated, while
 the existing inbox still discovers conversations from only its latest 50 messages.
 There is no offline send queue, fabricated delivery state, device push proof or
 iOS conversation implementation in this change.
+The app opens an existing inbox preview; initiating a new conversation directly
+from a reservation remains unimplemented and is not part of this proof.
 
 Ride lifecycle deployment requires the checked-in Firestore rules and indexes
 before the new app queries run, followed by the updated callables. The trip's
