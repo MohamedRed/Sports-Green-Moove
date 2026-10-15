@@ -98,7 +98,7 @@ test('app screenshots require a completed scoped run and retain product gaps', (
   const run = JSON.parse(source('docs/release/evidence/local-ui-2026-10-15/results.json'));
   assert.equal(run.testCount, 6);
   assert.equal(run.steps.length, 5);
-  for (const id of ['navigation', 'search', 'booking', 'appearance']) {
+  for (const id of ['navigation', 'booking', 'appearance']) {
     const flow = content.flows.find((item) => item.id === id);
     assert.equal(flow.status, 'partial');
     assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-2026-10-15/results.json');
@@ -133,18 +133,27 @@ test('message directory service claims retain thirteen-group evidence and remain
   assert.equal(baseline.steps.find((step) => step.id === 'chat-delivery-safety').status, 'failed');
 });
 
-test('search regression claims retain unit-only scope and actual passing JUnit evidence', () => {
+test('search claims distinguish passing unit and simulated-screen evidence from real accounts', () => {
   const path = 'docs/release/evidence/local-search-state-2026-10-15/';
   for (const [file, count] of [['requests-passed.xml', 4], ['lifecycle-passed.xml', 6], ['safety-passed.xml', 5]]) {
     assert(source(path + file).includes(`tests="${count}" skipped="0" failures="0" errors="0"`));
   }
   assert(source(path + 'requests-baseline-failed.xml').includes('tests="4" skipped="0" failures="4" errors="0"'));
   const flow = content.flows.find((item) => item.id === 'search');
-  assert.equal(flow.source, path + 'README.md');
+  assert.equal(flow.source, 'docs/release/evidence/local-search-ui-2026-10-15/README.md');
   assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /recherche complète/);
-  assert.match(flow.remaining, /changement de compte/);
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-2026-10-15/results.json');
+  assert.match(flow.remaining, /vraie déconnexion/);
+  const run = JSON.parse(source(flow.ui.source));
+  assert.equal(run.testCount, 11);
+  assert.equal(run.steps.length, 12);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
+  assert.match(run.search.limitation, /no real auth/);
+  assert(flow.ui.groups.includes('search-session-ui') && flow.ui.groups.includes('search-input-ui'));
+  assert.equal(flow.images.length, 3);
+  assert.match(flow.verified, /simulé/);
+  assert(!Object.values(captures).some((path) => path.endsWith('local-search-edited-place.png')));
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
 });
 

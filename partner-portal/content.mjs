@@ -2,7 +2,7 @@ const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
-const searchStateReport = 'docs/release/evidence/local-search-state-2026-10-15/README.md';
+const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.md';
 const chatUiReport = 'docs/release/evidence/local-chat-directory-ui-2026-10-15/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
@@ -23,6 +23,7 @@ export const captures = {
   'local-approved': 'docs/release/evidence/local-ui-2026-10-15/local-driver-booking-approved.png',
   'local-landscape': 'docs/release/evidence/local-ui-2026-10-15/local-login-landscape.png',
   'local-search-empty': 'docs/release/evidence/local-ui-2026-10-15/local-search-empty.png',
+  'search-account-cleared': 'docs/release/evidence/local-search-ui-2026-10-15/local-search-account-cleared.png',
   'local-theme': 'docs/release/evidence/local-ui-2026-10-15/local-theme-after-process-restart.png',
   'ride-delivered': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-passengers-delivered.png',
   'ride-history': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-parent-history.png',
@@ -63,6 +64,8 @@ export const content = {
   lastVerifiedAt: '2026-10-15',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-15', title: 'La recherche repart à zéro pour un autre compte simulé',
+      text: 'Deux essais d’écran locaux passent : lieux effacés au changement de compte simulé et ancien lieu retiré après modification. Une capture est disponible.', flow: 'search' },
     { date: '2026-10-15', title: 'La recherche ne reprend plus un ancien choix',
       text: '15 contrôles locaux passent : réponses lentes ignorées, recherche vidée à la déconnexion et doubles demandes bloquées pendant un envoi.', flow: 'search' },
     { date: '2026-10-15', title: 'Un premier message depuis une réservation',
@@ -99,8 +102,8 @@ export const content = {
       text: 'Le premier échange depuis une réservation passe en local. Le démarrage depuis un groupe reste à ajouter.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: chatUiReport },
     { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
-      text: 'La recherche est isolée dans les contrôles locaux. Le plantage d’un essai précédent reste inexpliqué.',
-      next: 'Rejouer le changement de compte complet et examiner le plantage.', source: searchStateReport },
+      text: 'L’essai d’écran vide la recherche au changement de compte simulé. Le plantage d’un essai précédent reste inexpliqué.',
+      next: 'Rejouer le changement de compte complet et examiner le plantage.', source: searchUiReport },
     { id: 'membership-review', title: 'Accepter ou refuser une adhésion',
       text: 'Les demandes sont visibles. Les boutons de décision sont encore absents.',
       next: 'Ajouter ces actions pour le club.', source: uiReport },
@@ -147,11 +150,12 @@ export const content = {
       images: [shot('local-home', 'Accueil avec le trajet de test en local'), shot('local-calendar', 'Calendrier du mois courant en local')],
       clips: ['home-to-trips'], recording: 'navigation', source: uiReport },
     { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'Les contrôles locaux isolent la recherche entre deux comptes.',
-      verified: 'Dans les contrôles locaux : choix récent conservé malgré une réponse lente, recherche vidée à la déconnexion et anciennes réponses ignorées.',
-      remaining: 'Confirmer le changement de compte dans l’app, puis tester une recherche complète : classement, places restantes, réservation et reprise après coupure.',
-      ui: ui(['calendar-empty-consent-ui']),
-      images: [shot('local-search-empty', 'Recherche sans résultat lors du précédent essai local'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')], source: searchStateReport },
+      summary: 'Un autre compte simulé repart avec une recherche vide dans l’essai d’écran local.',
+      verified: 'Dans l’essai d’écran local : lieux effacés quand le compte simulé change et anciennes coordonnées retirées après modification d’un lieu. Les contrôles des réponses tardives passent.',
+      remaining: 'Rejouer une vraie déconnexion et connexion. Tester la recherche complète : options, classement, places restantes, réservation et coupure réseau.',
+      ui: { source: 'docs/release/evidence/local-search-ui-2026-10-15/results.json', groups: ['search-input-ui', 'search-session-ui', 'calendar-empty-consent-ui'] },
+      images: [shot('search-account-cleared', 'Recherche vidée après changement de compte simulé, en local'),
+        shot('local-search-empty', 'Recherche sans résultat lors du précédent essai local'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')], source: searchUiReport },
     { id: 'publication', title: 'Publication d’un trajet', status: 'partial', checkedAt: '2026-10-15',
       summary: 'En local, le conducteur publie et le parent retrouve le trajet.',
       verified: 'Publication et présence dans la liste du parent vérifiées en local. Un parent sans rôle conducteur est refusé.',
