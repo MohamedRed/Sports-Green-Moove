@@ -50,6 +50,8 @@ class SearchController(
         private set
     var loading by mutableStateOf(false)
         private set
+    var hasSearched by mutableStateOf(false)
+        private set
 
     fun suggestPlaces(input: String, target: SearchPlaceTarget) {
         scope.launch {
@@ -98,10 +100,16 @@ class SearchController(
             onError("Choisissez un enfant pour activer le suivi enfant.")
             return
         }
+        if (form.requireChildTracking && !form.guardianConsent) {
+            onError("Votre consentement est nécessaire pour activer le suivi enfant.")
+            return
+        }
 
         scope.launch {
             loading = true
             onError(null)
+            matches = emptyList()
+            hasSearched = false
             runCatching {
                 providers.firebase.searchTripMatches(
                     TripSearchCriteria(
@@ -118,6 +126,7 @@ class SearchController(
                 )
             }.onSuccess {
                 matches = it
+                hasSearched = true
             }.onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }

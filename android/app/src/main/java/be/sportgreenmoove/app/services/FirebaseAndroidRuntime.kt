@@ -8,6 +8,7 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.appRoleFromClaim
 import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -28,7 +29,18 @@ data class AndroidProviderSet(
 
 object AndroidRuntime {
     fun create(context: Context): AndroidProviderSet {
-        val app = FirebaseApp.initializeApp(context) ?: FirebaseApp.getApps(context).firstOrNull()
+        val app = if (BuildConfig.SGM_USE_FIREBASE_EMULATOR) {
+            check(BuildConfig.DEBUG) { "Local Firebase configuration is debug-only" }
+            check(BuildConfig.SGM_FIREBASE_EMULATOR_HOST in setOf("10.0.2.2", "127.0.0.1", "localhost"))
+            check(FirebaseApp.getApps(context).all { it.options.projectId == "demo-sgm-local-qa" })
+            FirebaseApp.getApps(context).firstOrNull() ?: FirebaseApp.initializeApp(context, FirebaseOptions.Builder()
+                .setProjectId("demo-sgm-local-qa")
+                .setApplicationId("1:123456789:android:0000000000000000000000")
+                // The SDK validates the shape even when all requests use emulators.
+                .setApiKey("AIza" + "0".repeat(35))
+                .setDatabaseUrl("https://demo-sgm-local-qa.firebaseio.com")
+                .build())
+        } else FirebaseApp.initializeApp(context) ?: FirebaseApp.getApps(context).firstOrNull()
         return if (app == null) {
             AndroidProviderSet(auth = UnconfiguredAuthGateway(), firebase = UnconfiguredFirebaseGateway())
         } else {

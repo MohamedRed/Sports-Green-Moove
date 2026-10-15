@@ -58,6 +58,7 @@ fun SearchScreen(
     onSelectDestination: (PlaceSuggestion) -> Unit,
     onSearch: (SearchFormState) -> Unit,
     onRequest: (TripMatchSummary, String?) -> Unit,
+    hasSearched: Boolean = false,
 ) {
     var originInput by remember { mutableStateOf(origin?.label.orEmpty()) }
     var destinationInput by remember { mutableStateOf(destination?.label.orEmpty()) }
@@ -66,7 +67,7 @@ fun SearchScreen(
     var baggage by remember { mutableStateOf("medium") }
     var returnTrip by remember { mutableStateOf(false) }
     var childTracking by remember { mutableStateOf(true) }
-    var guardianConsent by remember { mutableStateOf(true) }
+    var guardianConsent by remember { mutableStateOf(false) }
     var selectedChildId by remember(children) { mutableStateOf(children.firstOrNull()?.id) }
 
     V2Screen(testTag = SgmTestTags.SearchScreen) {
@@ -78,7 +79,7 @@ fun SearchScreen(
             SearchChildSelector(
                 children = children,
                 selectedChildId = selectedChildId,
-                onSelectedChild = { selectedChildId = it },
+                onSelectedChild = { selectedChildId = it; guardianConsent = false },
             )
             if (childTracking) {
                 ChildTrackingReleaseDisclosures()
@@ -91,7 +92,7 @@ fun SearchScreen(
                 returnTrip = returnTrip,
                 onReturnTrip = { returnTrip = it },
                 childTracking = childTracking,
-                onChildTracking = { childTracking = it },
+                onChildTracking = { childTracking = it; guardianConsent = false },
                 guardianConsent = guardianConsent,
                 onGuardianConsent = { guardianConsent = it },
             )
@@ -121,7 +122,7 @@ fun SearchScreen(
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             matches.forEach { match -> MatchCard(match = match, onRequest = { onRequest(match, selectedChildId) }) }
             if (!loading && matches.isEmpty()) {
-                EmptyMatchCard()
+                EmptyMatchCard(hasSearched)
             }
         }
     }
@@ -267,9 +268,9 @@ private fun MatchCard(match: TripMatchSummary, onRequest: () -> Unit) {
 }
 
 @Composable
-private fun EmptyMatchCard() {
+private fun EmptyMatchCard(hasSearched: Boolean) {
     Text(
-        "Choisissez un départ, une destination et lancez la recherche.",
+        if (hasSearched) "Aucun trajet trouvé." else "Choisissez un départ, une destination et lancez la recherche.",
         style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 14.sp),
         modifier = Modifier.padding(vertical = 24.dp),
     )

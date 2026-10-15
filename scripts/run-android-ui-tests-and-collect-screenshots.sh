@@ -24,4 +24,8 @@ if [[ "$test_status" -eq 0 ]]; then
   fi
 fi
 
+if [[ "$test_status" -eq 0 ]]; then
+  node "$repo_root/scripts/qa/run-local-android-flows.mjs"
+fi
+
 exit "$test_status"

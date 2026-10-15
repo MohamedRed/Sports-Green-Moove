@@ -25,6 +25,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -63,6 +65,7 @@ fun V2ThemeButton(size: Int = 36) {
         onClick = themeToggle.onToggle,
         size = size,
         selected = themeToggle.darkTheme,
+        testTag = "appearance.toggle",
     )
 }
 
@@ -101,9 +104,12 @@ fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable 
 }
 
 @Composable
-fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, selected: Boolean = false) {
+fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, selected: Boolean = false, testTag: String? = null) {
+    val isSelected = selected
     Box(
         modifier = Modifier
+            .sgmOptionalTestTag(testTag)
+            .semantics { this.selected = isSelected }
             .size(size.dp)
             .clip(CircleShape)
             .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)

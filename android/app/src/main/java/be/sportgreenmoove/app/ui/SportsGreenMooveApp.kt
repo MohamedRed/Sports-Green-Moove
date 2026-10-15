@@ -17,11 +17,6 @@ import androidx.compose.ui.platform.LocalContext
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
-import be.sportgreenmoove.app.data.ChildSummary
-import be.sportgreenmoove.app.data.ClubSummary
-import be.sportgreenmoove.app.data.LiveRideSnapshot
-import be.sportgreenmoove.app.data.NativeLedgerSummaries
-import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
@@ -38,15 +33,16 @@ fun SportsGreenMooveApp() {
     var role by remember { mutableStateOf(AppRole.Parent) }
     var lastRoleSelectionSessionUid by remember { mutableStateOf<String?>(null) }
     var session by remember { mutableStateOf<AuthSession?>(null) }
-    var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
-    var children by remember { mutableStateOf(emptyList<ChildSummary>()) }
-    var clubs by remember { mutableStateOf(emptyList<ClubSummary>()) }
-    var activeRide by remember { mutableStateOf<LiveRideSnapshot?>(null) }
-    var activeRideTrip by remember { mutableStateOf<TripSummary?>(null) }
-    var payableBookings by remember { mutableStateOf(emptyList<PayableBookingSummary>()) }
-    var driverBookingRequests by remember { mutableStateOf(emptyList<BookingRequestSummary>()) }
-    var ledgerSummaries by remember { mutableStateOf(NativeLedgerSummaries()) }
-    var darkTheme by remember { mutableStateOf(false) }
+    val appData = remember { AppDataState() }
+    var trips by appData.trips
+    var children by appData.children
+    var clubs by appData.clubs
+    var activeRide by appData.activeRide
+    var activeRideTrip by appData.activeRideTrip
+    var payableBookings by appData.payableBookings
+    var driverBookingRequests by appData.driverBookingRequests
+    var ledgerSummaries by appData.ledgerSummaries
+    var darkTheme by rememberAppDarkTheme()
     var loading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var noticeMessage by remember { mutableStateOf<String?>(null) }
@@ -61,23 +57,7 @@ fun SportsGreenMooveApp() {
         onAppLoading = { loading = it },
     )
     suspend fun refreshAppData() {
-        trips = providers.firebase.searchTrips()
-        children = if (role == AppRole.Parent) providers.firebase.listChildren() else emptyList()
-        clubs = providers.firebase.listClubSummaries()
-        activeRide = providers.firebase.getActiveRide()
-        activeRideTrip = activeRide?.tripId?.let { tripId ->
-            activeRideTrip?.takeIf { it.id == tripId } ?: trips.firstOrNull { it.id == tripId }
-        }
-        payableBookings = providers.firebase.getPayableBookings()
-        ledgerSummaries = NativeLedgerSummaries(
-            impact = providers.firebase.getImpactSummary(),
-            rewards = providers.firebase.getRewardSummary(),
-        )
-        driverBookingRequests = if (role == AppRole.Driver) {
-            providers.firebase.getDriverBookingRequests()
-        } else {
-            emptyList()
-        }
+        appData.refresh(providers, role)
     }
     val paymentSheet = rememberSportsGreenMoovePaymentSheetController(
         scope = scope,
@@ -166,6 +146,7 @@ fun SportsGreenMooveApp() {
         }
     }
     SgmTheme(darkTheme = darkTheme) {
+        AppSystemBars(darkBackground = darkTheme)
         V2ThemeToggleProvider(darkTheme = darkTheme, onToggle = { darkTheme = !darkTheme }) {
             if (!providers.isConfigured) {
                 ConfigurationRequiredScreen()
@@ -245,14 +226,7 @@ fun SportsGreenMooveApp() {
                                 session = null
                                 lastRoleSelectionSessionUid = null
                                 role = AppRole.Parent
-                                trips = emptyList()
-                                children = emptyList()
-                                clubs = emptyList()
-                                activeRide = null
-                                activeRideTrip = null
-                                payableBookings = emptyList()
-                                driverBookingRequests = emptyList()
-                                ledgerSummaries = NativeLedgerSummaries()
+                                appData.clear()
                                 screen = AppScreen.Home
                             },
                         )

@@ -19,6 +19,7 @@ fun SearchRoute(
         matches = searchController.matches,
         loading = searchController.loading,
         error = error,
+        hasSearched = searchController.hasSearched,
         onBack = onBack,
         onSuggestOrigin = { searchController.suggestPlaces(it, SearchPlaceTarget.Origin) },
         onSuggestDestination = { searchController.suggestPlaces(it, SearchPlaceTarget.Destination) },

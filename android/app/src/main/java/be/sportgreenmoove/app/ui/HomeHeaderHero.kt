@@ -46,7 +46,7 @@ fun HomeHeader(displayName: String?) {
                 Text(firstName ?: "Green-Mover", style = SgmType.BodyBase.copy(color = SgmColor.Green, fontWeight = FontWeight.Bold))
             }
             Text(
-                "Mardi 07 Novembre 2022",
+                java.time.LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy", java.util.Locale.forLanguageTag("fr-BE"))),
                 style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontWeight = FontWeight.Medium),
             )
         }

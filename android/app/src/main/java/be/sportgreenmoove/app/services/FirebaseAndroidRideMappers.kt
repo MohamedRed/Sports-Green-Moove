@@ -36,6 +36,7 @@ internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
         ),
         status = if (departure != null && departure.before(Date())) TripStatus.Past else TripStatus.Upcoming,
         mapPreview = mapRoutePreviewFromTripData(data),
+        departureAtIso = departure?.toInstant()?.toString(),
     )
 }
 

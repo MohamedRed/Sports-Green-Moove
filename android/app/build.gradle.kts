@@ -6,10 +6,6 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-if (file("google-services.json").exists()) {
-    apply(plugin = "com.google.gms.google-services")
-}
-
 val radarPublishableKey = providers
     .gradleProperty("SGM_RADAR_PUBLISHABLE_KEY")
     .orElse(providers.environmentVariable("SGM_RADAR_PUBLISHABLE_KEY"))
@@ -50,6 +46,10 @@ val firebaseEmulatorHost = providers
     .orElse(providers.environmentVariable("SGM_FIREBASE_EMULATOR_HOST"))
     .getOrElse("10.0.2.2")
 
+if (!useFirebaseEmulator && file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+}
+
 android {
     namespace = "be.sportgreenmoove.app"
     compileSdk = 36
@@ -61,16 +61,23 @@ android {
         versionCode = 1
         versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        resValue("string", "sgm_radar_publishable_key", radarPublishableKey)
-        resValue("string", "sgm_stripe_connect_return_url", stripeConnectReturnUrl)
-        resValue("string", "sgm_stripe_connect_refresh_url", stripeConnectRefreshUrl)
-        resValue("string", "facebook_app_id", facebookAppId)
-        resValue("string", "facebook_client_token", facebookClientToken)
-        resValue("string", "fb_login_protocol_scheme", facebookLoginProtocolScheme)
-        resValue("string", "sgm_google_maps_android_api_key", googleMapsAndroidApiKey)
+        manifestPlaceholders["sgmFirebaseAutoInit"] = (!useFirebaseEmulator).toString()
+        resValue("string", "sgm_radar_publishable_key", if (useFirebaseEmulator) "" else radarPublishableKey)
+        resValue("string", "sgm_stripe_connect_return_url", if (useFirebaseEmulator) "" else stripeConnectReturnUrl)
+        resValue("string", "sgm_stripe_connect_refresh_url", if (useFirebaseEmulator) "" else stripeConnectRefreshUrl)
+        resValue("string", "facebook_app_id", if (useFirebaseEmulator) "" else facebookAppId)
+        resValue("string", "facebook_client_token", if (useFirebaseEmulator) "" else facebookClientToken)
+        resValue("string", "fb_login_protocol_scheme", if (useFirebaseEmulator) "" else facebookLoginProtocolScheme)
+        resValue("string", "sgm_google_maps_android_api_key", if (useFirebaseEmulator) "" else googleMapsAndroidApiKey)
         buildConfigField("Boolean", "SGM_USE_FIREBASE_EMULATOR", useFirebaseEmulator.toString())
         buildConfigField("Boolean", "SGM_LIVE_BACKEND_UI_TEST", liveBackendUiTest.toString())
         buildConfigField("String", "SGM_FIREBASE_EMULATOR_HOST", "\"$firebaseEmulatorHost\"")
+    }
+
+    buildTypes {
+        getByName("debug") {
+            if (useFirebaseEmulator) applicationIdSuffix = ".local"
+        }
     }
 
     compileOptions {

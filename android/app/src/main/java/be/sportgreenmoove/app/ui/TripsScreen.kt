@@ -24,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,6 +42,10 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.domain.tripFallsInMonth
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 @Composable
 fun TripsScreen(
@@ -53,8 +58,10 @@ fun TripsScreen(
     onApproveBooking: (BookingRequestSummary) -> Unit,
 ) {
     var selectedTab by remember { mutableStateOf("upcoming") }
+    var monthIso by rememberSaveable { mutableStateOf(YearMonth.now().toString()) }
+    val month = YearMonth.parse(monthIso)
     val visibleTrips = trips.filter { trip ->
-        when (selectedTab) {
+        tripFallsInMonth(trip.departureAtIso, month) && when (selectedTab) {
             "past" -> trip.status == TripStatus.Past
             "pending" -> trip.status == TripStatus.Pending
             else -> trip.status == TripStatus.Upcoming
@@ -69,7 +76,7 @@ fun TripsScreen(
             .padding(bottom = 20.dp),
     ) {
         TripsHeader(onSearch = onOpenSearch)
-        TripsMonthNav()
+        TripsMonthNav(month, { monthIso = month.minusMonths(1).toString() }, { monthIso = month.plusMonths(1).toString() })
         TripsTabs(selected = selectedTab, pendingCount = bookingRequests.count { it.status == "requested" }, onSelected = { selectedTab = it })
         Column(
             modifier = Modifier.padding(horizontal = 20.dp),
@@ -108,21 +115,21 @@ private fun TripsHeader(onSearch: () -> Unit) {
 }
 
 @Composable
-private fun TripsMonthNav() {
+private fun TripsMonthNav(month: YearMonth, onPrevious: () -> Unit, onNext: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 20.dp, end = 20.dp, bottom = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        CircleIconButton(icon = SgmIcon.ChevronLeft, onClick = {}, size = 32)
+        CircleIconButton(icon = SgmIcon.ChevronLeft, onClick = onPrevious, size = 32, testTag = "trips.month.previous")
         Text(
-            "NOVEMBRE 2022",
+            month.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.forLanguageTag("fr-BE"))).uppercase(Locale.forLanguageTag("fr-BE")),
             style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 18.sp, letterSpacing = 0.10.em),
             modifier = Modifier.weight(1f),
             textAlign = TextAlign.Center,
         )
-        CircleIconButton(icon = SgmIcon.ChevronRight, onClick = {}, size = 32)
+        CircleIconButton(icon = SgmIcon.ChevronRight, onClick = onNext, size = 32, testTag = "trips.month.next")
     }
 }
 
@@ -234,9 +241,10 @@ private fun TripMeta(icon: SgmIcon, text: String) {
 }
 
 @Composable
-private fun CircleIconButton(icon: SgmIcon, onClick: () -> Unit, size: Int) {
+private fun CircleIconButton(icon: SgmIcon, onClick: () -> Unit, size: Int, testTag: String? = null) {
     Box(
         modifier = Modifier
+            .sgmOptionalTestTag(testTag)
             .size(size.dp)
             .clip(CircleShape)
             .background(Sgm.colors.bgCard)

@@ -8,6 +8,10 @@ on:
       - "android/**"
       - "ios/**"
       - "package.json"
+      - "package-lock.json"
+      - "scripts/qa/**"
+      - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
+      - "tests/local-ui-config.test.mjs"
       - "scripts/check-ios-native-plan.sh"
       - "tests/native-ui-coverage.test.mjs"
   push:
@@ -18,6 +22,10 @@ on:
       - "android/**"
       - "ios/**"
       - "package.json"
+      - "package-lock.json"
+      - "scripts/qa/**"
+      - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
+      - "tests/local-ui-config.test.mjs"
       - "scripts/check-ios-native-plan.sh"
       - "tests/native-ui-coverage.test.mjs"
 
@@ -88,7 +96,16 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: "17"
+          java-version: "21"
+
+      - name: Set up Node for isolated app flows
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install isolated test dependencies
+        run: npm ci
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
@@ -118,6 +135,7 @@ jobs:
             android/app/build/reports/androidTests/connected/**
             android/app/build/outputs/androidTest-results/connected/**
             android/app/build/outputs/store-review-screenshots/**
+            android/app/build/outputs/local-ui-evidence/**
           if-no-files-found: ignore
 
   ios-native-checks:

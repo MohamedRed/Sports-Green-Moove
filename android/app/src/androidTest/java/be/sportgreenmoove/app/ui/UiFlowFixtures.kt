@@ -47,6 +47,7 @@ object UiFlowFixtures {
         passengerInitials = listOf("NO"),
         reasons = listOf("+6 min détour", "Même équipe U8"),
         mapPreview = route,
+        departureAtIso = java.time.Instant.now().toString(),
     )
 
     val match = TripMatchSummary(

@@ -13,6 +13,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -52,7 +56,8 @@ fun OnboardingScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.fillMaxSize().sgmTestTag(SgmTestTags.AuthScreen).background(Sgm.colors.bgApp)) {
+    Column(modifier = Modifier.fillMaxSize().background(Sgm.colors.bgApp).imePadding()
+        .safeDrawingPadding().verticalScroll(rememberScrollState()).sgmTestTag(SgmTestTags.AuthScreen)) {
         OnboardingHero()
         Column(
             modifier = Modifier
@@ -126,7 +131,7 @@ fun OnboardingScreen(
                 OnboardingSocialButton("Facebook", onFacebook, Modifier.weight(1f), SgmTestTags.AuthFacebookAction)
                 OnboardingSocialButton("Google", onGoogle, Modifier.weight(1f), SgmTestTags.AuthGoogleAction)
             }
-            Spacer(Modifier.weight(1f))
+            Spacer(Modifier.height(24.dp))
             Text(
                 "112 000+ greens-moovers en Belgique · Wallonie · Flandre · Bruxelles",
                 style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium),
