@@ -103,7 +103,7 @@ test('app screenshots require a completed scoped run and retain product gaps', (
     assert.equal(flow.status, 'partial');
     assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-2026-10-15/results.json');
   }
-  for (const id of ['chat-discovery', 'membership-review', 'trip-management', 'booking-decisions', 'contrast']) {
+  for (const id of ['group-conversation', 'membership-review', 'trip-management', 'booking-decisions', 'contrast']) {
     assert(content.blockers.some((item) => item.id === id));
   }
 });
@@ -118,7 +118,7 @@ test('ride integrity claims use the new eleven-group evidence without promoting 
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 
-test('message directory claims require passing thirteen-group service evidence, not an uncompleted app run', () => {
+test('message directory service claims retain thirteen-group evidence and remaining scope', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.local.source));
   assert.equal(run.steps.length, 13);
@@ -127,27 +127,36 @@ test('message directory claims require passing thirteen-group service evidence, 
   assert(flow.local.groups.includes('chat-directory-safety'));
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
   assert.equal(flow.status, 'partial');
-  assert.match(flow.remaining, /premier message|réservation/);
-  assert.match(flow.remaining, /anciens/);
+  assert.match(flow.remaining, /groupe/);
+  assert.match(flow.remaining, /clavier/);
   const baseline = JSON.parse(source('docs/release/evidence/local-chat-2026-10-15/baseline-failed.json'));
   assert.equal(baseline.steps.find((step) => step.id === 'chat-delivery-safety').status, 'failed');
 });
 
-test('conversation captures require the completed eight-case run and keep phone scope open', () => {
+test('conversation captures require the completed nine-case run and keep phone scope open', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.ui.source));
-  assert.equal(run.testCount, 8);
-  assert.equal(run.steps.length, 9);
+  assert.equal(run.testCount, 9);
+  assert.equal(run.steps.length, 10);
   assert(run.steps.every((step) => step.status === 'passed'));
-  assert.deepEqual(flow.ui.groups, ['chat-conversation-ui']);
+  assert.deepEqual(flow.ui.groups, ['chat-conversation-ui', 'chat-directory-ui']);
   assert.equal(run.chat.messageCount, 5);
   assert.equal(run.chat.newMessageCount, 4);
   assert.equal(run.chat.readNotificationCount, 4);
   assert.equal(run.chat.historyMessageCount, 120);
-  assert.equal(flow.images.length, 4);
+  assert.equal(run.directory.conversationCount, 28);
+  assert.equal(run.directory.archivedConversationCount, 25);
+  assert.equal(run.directory.firstPageCount, 20);
+  assert.equal(run.directory.secondPageCount, 8);
+  assert.equal(run.directory.messageCount, 2);
+  assert.equal(run.directory.readNotificationCount, 2);
+  assert.equal(flow.images.length, 5);
+  assert.equal(JSON.parse(source('docs/release/evidence/local-chat-ui-2026-10-15/results.json')).testCount, 8);
+  assert(!Object.values(captures).some((path) => /directory-(first-message|reply)\.png/.test(path)));
   assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /téléphones/);
   assert(!content.blockers.some((item) => item.id === 'chat-reply'));
+  assert(!content.blockers.some((item) => item.id === 'chat-discovery'));
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 

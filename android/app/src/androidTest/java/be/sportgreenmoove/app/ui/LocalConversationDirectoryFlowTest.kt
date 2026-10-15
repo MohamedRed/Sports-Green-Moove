@@ -3,6 +3,9 @@ package be.sportgreenmoove.app.ui
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.view.inputmethod.InputMethodManager
+import android.view.WindowManager
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -33,6 +36,7 @@ import org.junit.Assume.assumeTrue
 import org.junit.Rule
 import org.junit.Test
 import java.io.File
+import kotlin.math.abs
 
 class LocalConversationDirectoryFlowTest {
     @get:Rule val compose = createEmptyComposeRule()
@@ -49,7 +53,14 @@ class LocalConversationDirectoryFlowTest {
         context.getSharedPreferences("appearance", Context.MODE_PRIVATE).edit().putBoolean("darkTheme", false).commit()
         ActivityScenario.launch(MainActivity::class.java).use { activity ->
             scenario = activity
-            activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
+            activity.onActivity {
+                it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                @Suppress("DEPRECATION")
+                val mode = it.window.attributes.softInputMode and WindowManager.LayoutParams.SOFT_INPUT_MASK_ADJUST
+                @Suppress("DEPRECATION")
+                val expected = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+                assertEquals(expected, mode)
+            }
             login(session.getString("parent"), session.getString("password"))
             val oldest = runBlocking {
                 val first = runtime.conversations.loadConversations()
@@ -115,9 +126,14 @@ class LocalConversationDirectoryFlowTest {
 
     private fun send(body: String) {
         readyComposer()
+        val restingInputTop = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top
+        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performClick()
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextInput(body)
+        compose.waitUntil(30_000) { keyboardVisible() }
+        assertConversationControls()
         scenario.onActivity { it.getSystemService(InputMethodManager::class.java)
             .hideSoftInputFromWindow(it.window.decorView.windowToken, 0) }
+        compose.waitUntil(30_000) { !keyboardVisible() }
         compose.waitForIdle()
         compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().performClick()
         compose.waitUntil(30_000) {
@@ -125,6 +141,22 @@ class LocalConversationDirectoryFlowTest {
                 .config[SemanticsProperties.EditableText].text.isEmpty()
         }
         waitForText(body)
+        compose.waitUntil(30_000) {
+            abs(compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top - restingInputTop) < 2f
+        }
+        assertConversationControls()
+    }
+    private fun keyboardVisible(): Boolean {
+        var visible = false
+        scenario.onActivity { visible = ViewCompat.getRootWindowInsets(it.window.decorView)
+            ?.isVisible(WindowInsetsCompat.Type.ime()) == true }
+        return visible
+    }
+    private fun assertConversationControls() {
+        compose.onNodeWithTag(SgmTestTags.BackAction).assertIsDisplayed()
+        compose.onNodeWithText(tripTitle).assertIsDisplayed()
+        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsDisplayed()
+        compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsDisplayed()
     }
     private fun openLatest(preview: String) {
         compose.onNodeWithTag(SgmTestTags.ChatInboxList).performScrollToIndex(0)

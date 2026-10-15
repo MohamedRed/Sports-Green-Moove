@@ -18,6 +18,7 @@ test('Android local builds skip live Firebase resources and use a separate app s
   assert.match(gradle, /if \(useFirebaseEmulator\) applicationIdSuffix = "\.local"/);
   assert.match(gradle, /if \(useFirebaseEmulator\) \{\s+sourceSets.getByName\("debug"\).manifest.srcFile\("src\/localDebug\/AndroidManifest.xml"\)/);
   const manifest = readFileSync(new URL('../android/app/src/main/AndroidManifest.xml', import.meta.url), 'utf8');
+  assert.match(manifest, /android:windowSoftInputMode="adjustResize"/);
   assert(!manifest.includes('ACCESS_MOCK_LOCATION'));
   const runtime = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt', import.meta.url), 'utf8');
   assert.match(runtime, /check\(BuildConfig.DEBUG\)/);
