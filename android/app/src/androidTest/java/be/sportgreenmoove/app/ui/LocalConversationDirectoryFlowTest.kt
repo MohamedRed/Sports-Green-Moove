@@ -97,6 +97,9 @@ class LocalConversationDirectoryFlowTest {
             openMessages()
             openLatest("Bonjour, pouvons-nous confirmer le rendez-vous ?")
             compose.onNodeWithText(tripTitle).assertIsDisplayed()
+            compose.waitUntil(30_000) {
+                runBlocking { runtime.conversations.loadConversations().items.single { it.ref == booking.ref }.unreadCount == 0L }
+            }
             send("Oui, rendez-vous devant le stade.")
             captureLocalUi(compose, "local-chat-directory-reply.png")
             logout()
