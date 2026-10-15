@@ -2,6 +2,7 @@ package be.sportgreenmoove.app.ui
 
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -19,7 +20,6 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.uiautomator.UiDevice
 import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.data.ConversationKind
@@ -40,6 +40,7 @@ import java.io.File
 class LocalChatFlowTest {
     @get:Rule val compose = createEmptyComposeRule()
     private val ref = ConversationRef(ConversationKind.Booking, "sgm-qa-booking-approved")
+    private lateinit var scenario: ActivityScenario<MainActivity>
 
     @Test
     fun twoWayConversationDraftHistoryLiveDeliveryAndAccessControl() {
@@ -51,6 +52,7 @@ class LocalChatFlowTest {
         runtime.auth.signOut()
         context.getSharedPreferences("appearance", Context.MODE_PRIVATE).edit().putBoolean("darkTheme", false).commit()
         ActivityScenario.launch(MainActivity::class.java).use { activity ->
+            scenario = activity
             activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
             login(session.getString("parent"), session.getString("password"))
             openMessages()
@@ -149,10 +151,18 @@ class LocalChatFlowTest {
     private fun draft() = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode()
         .config[SemanticsProperties.EditableText].text
     private fun assertDraft(text: String) { assertEquals(text, draft()) }
-    private fun closeKeyboard() { UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack(); compose.waitForIdle() }
+    private fun closeKeyboard() {
+        scenario.onActivity {
+            it.getSystemService(InputMethodManager::class.java).hideSoftInputFromWindow(it.window.decorView.windowToken, 0)
+        }
+        compose.waitForIdle()
+    }
     private fun openMessages() {
         compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).performClick()
-        waitFor(SgmTestTags.MessagesScreen)
+        compose.waitUntil(60_000) {
+            listOf(SgmTestTags.MessagesScreen, SgmTestTags.ChatThreadScreen)
+                .any { compose.onAllNodesWithTag(it).fetchSemanticsNodes().isNotEmpty() }
+        }
     }
     private fun openConversation(preview: String, substring: Boolean = false) {
         waitForText(preview, substring)
