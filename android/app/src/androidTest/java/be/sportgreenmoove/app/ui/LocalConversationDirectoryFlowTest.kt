@@ -126,25 +126,46 @@ class LocalConversationDirectoryFlowTest {
 
     private fun send(body: String) {
         readyComposer()
+        assertTrue("The resting layout must have no keyboard", !keyboardVisible())
         val restingInputTop = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performClick()
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextInput(body)
         compose.waitUntil(30_000) { keyboardVisible() }
         assertConversationControls()
-        scenario.onActivity { it.getSystemService(InputMethodManager::class.java)
-            .hideSoftInputFromWindow(it.window.decorView.windowToken, 0) }
-        compose.waitUntil(30_000) { !keyboardVisible() }
-        compose.waitForIdle()
+        val diagnostics = JSONObject().put("restingInputTop", restingInputTop)
+            .put("typing", layoutState())
         compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().performClick()
         compose.waitUntil(30_000) {
             compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode()
                 .config[SemanticsProperties.EditableText].text.isEmpty()
         }
         waitForText(body)
-        compose.waitUntil(30_000) {
-            abs(compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top - restingInputTop) < 2f
-        }
+        compose.waitUntil(30_000) { compose.onAllNodesWithText("Envoi en cours...").fetchSemanticsNodes().isEmpty() }
         assertConversationControls()
+        diagnostics.put("acknowledged", layoutState())
+        scenario.onActivity { it.getSystemService(InputMethodManager::class.java)
+            .hideSoftInputFromWindow(it.window.decorView.windowToken, 0) }
+        compose.waitUntil(30_000) { !keyboardVisible() }
+        try {
+            compose.waitUntil(30_000) {
+                abs(compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top - restingInputTop) < 2f
+            }
+            assertConversationControls()
+        } finally {
+            diagnostics.put("dismissed", layoutState())
+            val directory = File(InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null), "local-ui-evidence")
+            check(directory.isDirectory || directory.mkdirs())
+            val phase = if (body.startsWith("Bonjour")) "parent" else "driver"
+            File(directory, "keyboard-$phase-layout.json").writeText(diagnostics.toString(2))
+            captureLocalUi(compose, "keyboard-$phase-dismissed.png")
+        }
+    }
+    private fun layoutState() = JSONObject().put("keyboardVisible", keyboardVisible()).apply {
+        for ((name, tag) in listOf("header" to SgmTestTags.BackAction, "composer" to SgmTestTags.ChatMessageInput)) {
+            val bounds = compose.onNodeWithTag(tag).fetchSemanticsNode().boundsInRoot
+            put(name, JSONObject().put("top", bounds.top).put("bottom", bounds.bottom)
+                .put("left", bounds.left).put("right", bounds.right))
+        }
     }
     private fun keyboardVisible(): Boolean {
         var visible = false
@@ -154,6 +175,7 @@ class LocalConversationDirectoryFlowTest {
     }
     private fun assertConversationControls() {
         compose.onNodeWithTag(SgmTestTags.BackAction).assertIsDisplayed()
+        compose.onNodeWithText("CONVERSATION").assertIsDisplayed()
         compose.onNodeWithText(tripTitle).assertIsDisplayed()
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsDisplayed()
         compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsDisplayed()
