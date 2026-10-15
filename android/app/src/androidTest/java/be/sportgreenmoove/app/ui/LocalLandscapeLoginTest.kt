@@ -36,19 +36,27 @@ class LocalLandscapeLoginTest {
         device.setOrientationLeft()
         try {
             ActivityScenario.launch(MainActivity::class.java).use { activity ->
-                activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
-                compose.waitUntil(15_000) {
-                    context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
-                        device.displayWidth > device.displayHeight
+                var originalOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                activity.onActivity {
+                    originalOrientation = it.requestedOrientation
+                    it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
                 }
-                compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.AuthEmailAction).fetchSemanticsNodes().isNotEmpty() }
-                compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed()
-                captureLocalUi(compose, "local-login-landscape.png", landscape = true)
-                compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performScrollTo().performTextInput(session.getString("parent"))
-                compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performScrollTo().performTextInput(session.getString("password"))
-                compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick()
-                compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.HomeScreen).fetchSemanticsNodes().isNotEmpty() }
-                compose.onNodeWithTag(SgmTestTags.HomeScreen).assertIsDisplayed()
+                try {
+                    compose.waitUntil(15_000) {
+                        context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                            device.displayWidth > device.displayHeight
+                    }
+                    compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.AuthEmailAction).fetchSemanticsNodes().isNotEmpty() }
+                    compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed()
+                    captureLocalUi(compose, "local-login-landscape.png", landscape = true)
+                    compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performScrollTo().performTextInput(session.getString("parent"))
+                    compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performScrollTo().performTextInput(session.getString("password"))
+                    compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick()
+                    compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.HomeScreen).fetchSemanticsNodes().isNotEmpty() }
+                    compose.onNodeWithTag(SgmTestTags.HomeScreen).assertIsDisplayed()
+                } finally {
+                    activity.onActivity { it.requestedOrientation = originalOrientation }
+                }
             }
         } finally {
             device.setOrientationNatural()
