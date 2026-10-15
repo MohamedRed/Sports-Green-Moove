@@ -1,5 +1,7 @@
 package be.sportgreenmoove.app.ui
 
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -33,16 +35,24 @@ class LocalLandscapeLoginTest {
         val device = UiDevice.getInstance(instrumentation)
         device.setOrientationLeft()
         try {
-            ActivityScenario.launch(MainActivity::class.java).use {
+            ActivityScenario.launch(MainActivity::class.java).use { activity ->
+                activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
+                compose.waitUntil(15_000) {
+                    context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                        device.displayWidth > device.displayHeight
+                }
                 compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.AuthEmailAction).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed()
-                captureLocalUi(compose, "local-login-landscape.png")
+                captureLocalUi(compose, "local-login-landscape.png", landscape = true)
                 compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performScrollTo().performTextInput(session.getString("parent"))
                 compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performScrollTo().performTextInput(session.getString("password"))
                 compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick()
                 compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.HomeScreen).fetchSemanticsNodes().isNotEmpty() }
                 compose.onNodeWithTag(SgmTestTags.HomeScreen).assertIsDisplayed()
             }
-        } finally { device.unfreezeRotation() }
+        } finally {
+            device.setOrientationNatural()
+            device.unfreezeRotation()
+        }
     }
 }

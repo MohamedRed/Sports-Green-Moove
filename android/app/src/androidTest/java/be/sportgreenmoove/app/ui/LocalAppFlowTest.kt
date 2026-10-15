@@ -43,6 +43,7 @@ class LocalAppFlowTest {
             compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performScrollTo().performTextInput(session.getString("password"))
             compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed().performClick()
             waitFor(SgmTestTags.HomeScreen)
+            compose.waitUntil(60_000) { compose.onAllNodesWithText("U 7/8 · Green Wavre QA Club").fetchSemanticsNodes().isNotEmpty() }
             capture("local-parent-home.png")
             compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
             compose.waitUntil(60_000) { compose.onAllNodesWithText("U 7/8 · Green Wavre QA Club").fetchSemanticsNodes().isNotEmpty() }

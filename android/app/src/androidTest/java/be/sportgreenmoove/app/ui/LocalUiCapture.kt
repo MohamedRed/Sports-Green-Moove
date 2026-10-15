@@ -6,7 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 import java.io.File
 
-internal fun captureLocalUi(compose: ComposeTestRule, name: String) {
+internal fun captureLocalUi(compose: ComposeTestRule, name: String, landscape: Boolean = false) {
     compose.waitForIdle()
     val instrumentation = InstrumentationRegistry.getInstrumentation()
     val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
@@ -15,6 +15,7 @@ internal fun captureLocalUi(compose: ComposeTestRule, name: String) {
     check(UiDevice.getInstance(instrumentation).takeScreenshot(output))
     val bitmap = requireNotNull(BitmapFactory.decodeFile(output.path))
     try {
+        check((bitmap.width > bitmap.height) == landscape) { "Capture orientation does not match the tested layout." }
         val colors = mutableSetOf<Int>()
         for (x in 0 until bitmap.width step 16) {
             for (y in 0 until bitmap.height step 16) colors += bitmap.getPixel(x, y)
