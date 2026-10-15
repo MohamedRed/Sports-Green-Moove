@@ -189,7 +189,7 @@ async function seed() {
     seats: 1,
     status: 'requested',
     paymentStatus: 'not_required',
-    note: 'Fixture: pending approval request',
+    note: 'Rendez-vous devant le stade.',
     createdAt: now,
     updatedAt: now,
   }, { merge: true });
@@ -204,7 +204,7 @@ async function seed() {
     seats: 1,
     status: 'approved',
     paymentStatus: 'required',
-    note: 'Fixture: approved booking for ride/payment screens',
+    note: 'Un siege enfant est necessaire.',
     approvedAt: now,
     createdAt: now,
     updatedAt: now,
