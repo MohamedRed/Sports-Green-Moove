@@ -1,6 +1,6 @@
 {
-  "runId": "a2de83b90c910895461006e8c94256df",
-  "testedAt": "2026-10-15T21:12:20.337Z",
+  "runId": "8f3b4a22609e06b6ba0ba9aab233432c",
+  "testedAt": "2026-10-15T21:42:33.541Z",
   "projectId": "demo-sgm-local-qa",
   "scope": "local-emulated-services-not-phone-ui",
   "steps": [
@@ -59,9 +59,9 @@
   ],
   "lifecycle": {
     "projectId": "demo-sgm-local-qa",
-    "tripId": "3OI5wTUEjbom0YUHXqar",
-    "bookingId": "ndPJo0aQvV3UbJQpWEbH",
-    "rideSessionId": "oUD01UNlLyw5j6rY2FWN",
+    "tripId": "U1mWywJDfwj33iI7dSki",
+    "bookingId": "VoWt5NDvXKsivzBCoHCv",
+    "rideSessionId": "2vOecDqphuSu8C3mZs4G",
     "payment": {
       "status": "blocked_by_missing_local_payment_account",
       "error": "Driver Stripe account is required before paid rides."

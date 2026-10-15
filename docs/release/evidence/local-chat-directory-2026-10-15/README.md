@@ -4,6 +4,8 @@ Date: 2026-10-15. `results.json` is the unchanged sanitized output of the isolat
 local suite executed with the code in this commit. Thirteen scoped groups passed;
 this is service verification, not thirteen phone-screen cases. Older 12-group
 delivery evidence remains unchanged in its own directory.
+`timestamp-fixtures-results.json` preserves the earlier 13-group run before the
+published-trip regression case was added; it does not prove that new case.
 
 The new directory group seeds 25 historical sources and one empty reservation
 for separate synthetic adults. It explicitly prepares each private history index,
@@ -23,6 +25,11 @@ malformed/oversized cursors and canonical-parent override attempts are rejected.
 Counter underflow cannot partially mark a message read. Corrupt summary schema
 blocks sends, a mismatched existing index is not overwritten by preparation, and
 history without a timestamp cannot be skipped into a new summary.
+
+A separate actual local `createTrip` / request / approval sequence also starts a
+new conversation. Its ISO departure date, written by publication, is accepted
+alongside the timestamp representation used by historical fixtures. Both picker
+and conversation directory return the same actual date, with no invented value.
 
 These are disposable local records, with external provider requests blocked.
 This report does not establish app UI, push, real payments, physical tracking,

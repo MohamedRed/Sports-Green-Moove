@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { FieldPath } from 'firebase-admin/firestore';
-import { call, db, denied } from './local-flow-client.mjs';
+import { call, db, denied, tripInput } from './local-flow-client.mjs';
 import { seedChatDirectoryFixtures } from './local-chat-directory-fixtures.mjs';
 
 export async function checkChatDirectorySafety() {
@@ -104,4 +104,19 @@ export async function checkChatDirectorySafety() {
   const eligible = await call('listChatBookingOptions', parent);
   assert(!eligible.items.some((item) => item.sourceId === emptyId), 'Legacy requester cannot override a different canonical parent');
   await denied('getChatConversation', parent, source(emptyId), 'PERMISSION_DENIED');
+
+  await db.doc(`users/${driver.uid}`).update({ driverVerified: true });
+  const title = 'Trajet publié pour une nouvelle discussion QA';
+  const { tripId } = await call('createTrip', driver, { ...tripInput(), title });
+  assert.equal(typeof (await db.doc(`trips/${tripId}`).get()).get('departureAt'), 'string');
+  const { bookingId } = await call('requestBooking', parent, { tripId, seats: 1 });
+  await call('approveBooking', driver, { bookingId });
+  const publishedOptions = await call('listChatBookingOptions', parent);
+  const published = publishedOptions.items.find((item) => item.sourceId === bookingId);
+  assert.equal(published.title, title);
+  assert(published.departureLabel);
+  await send(parent, bookingId, 'Premier échange pour un trajet publié.');
+  const publishedChat = (await call('listChatConversations', parent)).items.find((item) => item.sourceId === bookingId);
+  assert.equal(publishedChat.title, title);
+  assert.equal(publishedChat.departureLabel, published.departureLabel);
 }

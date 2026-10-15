@@ -11,6 +11,8 @@ driver, including reservations without messages. Both use immutable timestamp /
 document-ID cursor values bound to the authenticated user and list kind. The
 cursor is not an authorization token: source membership is checked again.
 Changing a boundary conversation's last activity cannot shift an issued cursor.
+Trip context accepts the actual ISO departure date written by publication and
+historical Firestore timestamps. Missing/invalid dates fail, never default to now.
 
 `chatInboxes/{sha256(JSON.stringify([userId, sourceType, sourceId]))}` is server
 owned. Clients may read only their own entries, never write them. Each entry
