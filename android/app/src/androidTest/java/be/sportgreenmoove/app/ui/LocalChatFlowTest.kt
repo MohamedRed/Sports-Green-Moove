@@ -70,7 +70,7 @@ class LocalChatFlowTest {
             compose.waitUntil(15_000) { context.resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE }
             waitFor(SgmTestTags.ChatMessageInput)
             assertDraft("Rendez-vous devant le stade.")
-            captureLocalUi(compose, "local-chat-landscape-draft.png")
+            captureLocalUi(compose, "local-chat-landscape-draft.png", landscape = true)
             activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
             compose.waitUntil(15_000) { context.resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_PORTRAIT }
             send("Nous serons devant le stade.")

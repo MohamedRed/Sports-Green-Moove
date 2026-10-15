@@ -50,4 +50,6 @@ test('local conversation evidence requires app execution and independent persist
   assert.match(peer, /check\(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR\)/);
   assert.match(peer, /check\(options.projectId == "demo-sgm-local-qa"\)/);
   assert.match(peer, /app.delete\(\)/);
+  const chat = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatFlowTest.kt', import.meta.url), 'utf8');
+  assert.match(chat, /captureLocalUi\(compose, "local-chat-landscape-draft.png", landscape = true\)/);
 });
