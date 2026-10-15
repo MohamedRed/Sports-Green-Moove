@@ -31,7 +31,6 @@ import be.sportgreenmoove.app.data.ImpactMonthSummary
 import be.sportgreenmoove.app.data.ImpactSummary
 import java.util.Locale
 
-@Suppress("UNUSED_PARAMETER")
 @Composable
 fun ImpactScreen(summary: ImpactSummary, onBack: () -> Unit) {
     V2Screen(testTag = SgmTestTags.ImpactScreen) {

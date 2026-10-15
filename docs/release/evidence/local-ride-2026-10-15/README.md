@@ -47,3 +47,18 @@ See `scripts/qa/README.md` for deployment order and legacy-session reconciliatio
 Web Integration Smoke already runs the local suite and covers `functions/**`,
 `scripts/qa/**`, rules, indexes and this evidence directory; no trigger change
 was needed.
+
+## Native Run Not Accepted
+
+[Native CI 38783040437](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38783040437)
+on `a35d16a` crashed during the component screen cases, before the local ride
+suite executed. Its Maps dynamite renderer could not load
+`org.apache.http.ProtocolVersion` under Play services 24.23.35. No new phone or
+app-flow success is claimed from that run.
+
+The Maps SDK 20.0.0
+[official release notes](https://developers.google.com/maps/documentation/android-sdk/release-notes#january_31_2026)
+document this regression and require an application-level optional
+`org.apache.http.legacy` library declaration for affected renderers. That
+declaration is now in the main manifest so affected real devices are covered as
+well, rather than disabling maps in the tests or silently changing the renderer.

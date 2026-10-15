@@ -108,6 +108,16 @@ test('app screenshots require a completed scoped run and retain product gaps', (
   }
 });
 
+test('ride integrity claims use the new eleven-group evidence without promoting phone readiness', () => {
+  const flow = content.flows.find((item) => item.id === 'ride-lifecycle');
+  const run = JSON.parse(source(flow.local.source));
+  assert.equal(run.steps.length, 11);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert(flow.local.groups.includes('ride-passenger-safety'));
+  assert.equal(flow.status, 'partial');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+});
+
 test('smoke workflow covers portal source, evidence changes and validation', () => {
   const workflow = source('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"partner-portal/**"').length - 1, 2);

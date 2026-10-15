@@ -52,6 +52,7 @@ includes(files.androidManifest, "com.facebook.sdk.ClientToken", "Android declare
 includes(files.androidManifest, "com.facebook.FacebookActivity", "Android declares Facebook login activity");
 includes(files.androidManifest, "com.facebook.CustomTabActivity", "Android declares Facebook custom tab callback activity");
 includes(files.androidManifest, "com.google.android.geo.API_KEY", "Android declares Google Maps SDK key metadata");
+includes(files.androidManifest, '<uses-library android:name="org.apache.http.legacy" android:required="false" />', "Maps 20 renderer can load its documented compatibility library");
 includes(files.androidGradle, "SGM_GOOGLE_MAPS_ANDROID_API_KEY", "Android build reads Google Maps API key");
 includes(files.androidGradle, "com.google.android.gms:play-services-maps:20.0.0", "Android links Maps SDK");
 includes(files.androidGradle, "com.google.maps.android:maps-compose:8.3.0", "Android links Maps Compose");
