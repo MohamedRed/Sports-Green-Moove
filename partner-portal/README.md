@@ -38,6 +38,12 @@ Do not name technologies, providers, device models or testing tools in the porta
 copy. Describe user actions and outcomes; keep technical provenance in repository
 reports. Preserve the original app captures rather than editing their contents.
 
+Local service checks use a `local` record with a sanitized JSON evidence path,
+successful scenario IDs and short result statements. Validation checks that the
+referenced groups passed on the displayed date. These flows stay `partial`, show
+an explicit local-test date and a results list, not a fabricated app capture.
+Retained older captures carry their original test date in their caption.
+
 Browser assets use a content-derived directory so HTML, styles and JavaScript
 modules cannot accidentally reuse an older bundle after deployment. Publishing
 also checks that the generated bundle matches the current source.

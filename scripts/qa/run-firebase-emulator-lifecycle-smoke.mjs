@@ -1,18 +1,13 @@
 #!/usr/bin/env node
 import { initializeApp, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
-import { getDatabase } from 'firebase-admin/database';
+import { configureLocalEmulators } from './local-emulator-config.mjs';
 
-const projectId = process.env.GCLOUD_PROJECT || process.env.FIREBASE_PROJECT_ID || 'sports-green-moove-dev';
-const authHost = process.env.FIREBASE_AUTH_EMULATOR_HOST || '127.0.0.1:9099';
-const functionsOrigin = process.env.FUNCTIONS_EMULATOR_ORIGIN || `http://127.0.0.1:5001/${projectId}/us-central1`;
-process.env.FIRESTORE_EMULATOR_HOST ??= '127.0.0.1:8080';
-process.env.FIREBASE_DATABASE_EMULATOR_HOST ??= '127.0.0.1:9000';
-if (getApps().length === 0) initializeApp({ projectId, databaseURL: `http://127.0.0.1:9000/?ns=${projectId}-default-rtdb` });
+const { projectId, authHost, functionsOrigin, databaseURL } = configureLocalEmulators();
+if (getApps().length === 0) initializeApp({ projectId, databaseURL });
 
 const db = getFirestore();
-const rtdb = getDatabase();
-const password = process.env.SGM_QA_PASSWORD || 'QaPass12345';
+const password = process.env.SGM_QA_PASSWORD;
 const qa = { parentEmail: 'p@example.test', driverEmail: 'd@example.test', tripId: 'sgm-qa-trip-u8-wavre-bruxelles', childId: 'sgm-qa-child-lina' };
 
 function assert(condition, message, details) {
@@ -61,14 +56,11 @@ async function docData(collection, id) {
 }
 
 async function liveTripMeta(rideSessionId) {
-  const namespaces = [`${projectId}-default-rtdb`, projectId];
-  for (const namespace of namespaces) {
-    const res = await fetch(`http://127.0.0.1:9000/liveTrips/${rideSessionId}/meta.json?ns=${namespace}`);
-    const value = await res.json().catch(() => null);
-    if (value?.status) return { namespace, value, verified: true };
-  }
-  const adminValue = (await rtdb.ref(`liveTrips/${rideSessionId}/meta`).get()).val();
-  return { namespace: 'admin-default', value: adminValue };
+  const response = await fetch(`http://127.0.0.1:9000/liveTrips/${rideSessionId}/meta.json?ns=${projectId}`,
+    { headers: { authorization: 'Bearer owner' }, signal: AbortSignal.timeout(10_000) });
+  assert(response.ok, 'Local RTDB metadata must be readable from the exact demo namespace');
+  const value = await response.json();
+  return { namespace: projectId, value };
 }
 
 function passengerFromRide(ride, bookingId, childId) {
@@ -98,12 +90,11 @@ const afterApprovalTrip = await docData('trips', qa.tripId);
 assert(afterApprovalTrip.seatsAvailable === beforeSeats - 1, 'Approval should decrement available seats', { beforeSeats, afterSeats: afterApprovalTrip.seatsAvailable });
 
 const paymentAttempt = await tryCallable('createRidePaymentIntent', parent.idToken, { bookingId, currency: 'eur' });
-if (paymentAttempt.ok) {
-  assert(paymentAttempt.result.bookingId === bookingId && paymentAttempt.result.amountCents > 0, 'Payment intent should be valid', paymentAttempt.result);
-} else {
-  const message = JSON.stringify(paymentAttempt.error.response ?? paymentAttempt.error);
-  assert(/Stripe|PaymentSheet|secret|payment|precondition|INTERNAL|internal/i.test(message), 'Payment should only fail with explicit Stripe/test-secret blocker', paymentAttempt.error);
-}
+assert(!paymentAttempt.ok, 'Local QA must not create a provider payment intent');
+const paymentMessage = JSON.stringify(paymentAttempt.error.response ?? paymentAttempt.error);
+assert(paymentAttempt.error.response?.error?.status === 'FAILED_PRECONDITION'
+  && /Driver Stripe account is required before paid rides/.test(paymentMessage),
+  'Payment must fail only at the explicit missing local provider configuration', paymentAttempt.error);
 
 const rideStart = await callCallable('startRide', driver.idToken, { tripId: qa.tripId, bookingIds: [bookingId] });
 const ride = rideStart.ride;
@@ -131,9 +122,7 @@ const completedBooking = await docData('bookings', bookingId);
 assert(completedRide.status === 'completed', 'Ride should persist completed status', completedRide);
 assert(completedBooking.status === 'completed', 'Booking should persist completed status', completedBooking);
 const rtdbMeta = await liveTripMeta(rideSessionId);
-if (rtdbMeta.value?.status) {
-  assert(rtdbMeta.value.status === 'completed', 'RTDB liveTrips meta should be completed when readable', rtdbMeta);
-}
+assert(rtdbMeta.value?.status === 'completed', 'RTDB liveTrips meta must be readable and completed', rtdbMeta);
 const inbox = await callCallable('getInbox', parent.idToken, {});
 assert(Array.isArray(inbox.inbox?.chats), 'Parent inbox should include chats array', inbox);
 
@@ -142,9 +131,8 @@ const summary = {
   tripId: qa.tripId,
   bookingId,
   rideSessionId,
-  payment: paymentAttempt.ok
-    ? { status: 'verified', amountCents: paymentAttempt.result.amountCents, currency: paymentAttempt.result.currency }
-    : { status: 'blocked_by_stripe_test_configuration', error: paymentAttempt.error.response?.error?.message ?? paymentAttempt.error.message },
+  payment: { status: 'blocked_by_missing_local_payment_account',
+    error: paymentAttempt.error.response?.error?.message ?? paymentAttempt.error.message },
   lifecycle: {
     booking: completedBooking.status,
     ride: completedRide.status,
@@ -152,9 +140,7 @@ const summary = {
     dropoff: passengerFromRide(completedRide, bookingId, qa.childId)?.dropoffStatus,
     co2SavedKg: completion.co2SavedKg,
     rewardCents: completion.rewardCents,
-    rtdbMeta: rtdbMeta.value?.status === 'completed'
-      ? { status: 'completed', namespace: rtdbMeta.namespace }
-      : { status: 'not_verified_from_smoke_script', namespace: rtdbMeta.namespace },
+    rtdbMeta: { status: 'completed', namespace: rtdbMeta.namespace },
     inboxChats: inbox.inbox.chats.length,
   },
 };

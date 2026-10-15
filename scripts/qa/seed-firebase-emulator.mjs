@@ -2,26 +2,22 @@
 import { initializeApp, getApps } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { FieldValue, getFirestore, Timestamp } from 'firebase-admin/firestore';
-import { getDatabase } from 'firebase-admin/database';
+import { configureLocalEmulators } from './local-emulator-config.mjs';
 
-const projectId = process.env.GCLOUD_PROJECT || process.env.FIREBASE_PROJECT_ID || 'sports-green-moove-dev';
-process.env.FIRESTORE_EMULATOR_HOST ??= '127.0.0.1:8080';
-process.env.FIREBASE_AUTH_EMULATOR_HOST ??= '127.0.0.1:9099';
-process.env.FIREBASE_DATABASE_EMULATOR_HOST ??= '127.0.0.1:9000';
+const { projectId, databaseURL } = configureLocalEmulators();
 
 if (getApps().length === 0) initializeApp({
   projectId,
-  databaseURL: `http://127.0.0.1:9000/?ns=${projectId}-default-rtdb`,
+  databaseURL,
 });
 
 const auth = getAuth();
 const db = getFirestore();
-const rtdb = getDatabase();
 const now = Timestamp.now();
 const departure = Timestamp.fromDate(new Date(Date.now() + 36 * 60 * 60 * 1000));
 
 const qa = {
-  password: 'QaPass12345',
+  password: process.env.SGM_QA_PASSWORD,
   parent: {
     uid: 'sgm-qa-parent',
     email: 'p@example.test',
@@ -183,14 +179,6 @@ async function seed() {
     updatedAt: now,
   }, { merge: true });
 
-  await db.collection('stripeAccounts').doc(qa.driver.uid).set({
-    userId: qa.driver.uid,
-    stripeAccountId: 'acct_sgm_qa_emulator',
-    payoutsEnabled: true,
-    accountVersion: 'v1-express-emulator',
-    updatedAt: now,
-  }, { merge: true });
-
   await db.collection('bookings').doc(qa.bookingRequestedId).set({
     tripId: qa.tripId,
     parentUserId: qa.parent.uid,
@@ -258,8 +246,6 @@ async function seed() {
     createdAt: now,
   }, { merge: true });
 
-  await rtdb.ref('liveTrips').remove();
-
   const summary = {
     projectId,
     authEmulator: process.env.FIREBASE_AUTH_EMULATOR_HOST,
@@ -267,7 +253,6 @@ async function seed() {
     parentEmail: qa.parent.email,
     driverEmail: qa.driver.email,
     clubManagerEmail: qa.clubManager.email,
-    password: qa.password,
     tripId: qa.tripId,
     requestedBookingId: qa.bookingRequestedId,
     approvedBookingId: qa.bookingApprovedId,

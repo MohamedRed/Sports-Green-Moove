@@ -28,6 +28,16 @@ export function validate(root) {
     }
     for (const clip of f.clips || []) assert(excerpts[clip]);
     if (f.recording) assert(videos[f.recording]);
+    if (f.local) {
+      assert.equal(f.status, 'partial', 'Local service checks cannot complete a phone flow');
+      const run = JSON.parse(readFileSync(resolve(root, f.local.source), 'utf8'));
+      assert.equal(run.scope, 'local-emulated-services-not-phone-ui');
+      assert.equal(run.projectId, 'demo-sgm-local-qa');
+      assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
+      assert(f.local.groups.length && f.local.checks.length);
+      for (const group of f.local.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven local check ${group}`);
+      for (const check of f.local.checks) assert(typeof check === 'string' && check.trim() && check.length <= 150);
+    }
   }
   for (const u of content.updates) { assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt); }
   for (const b of content.blockers) assert(existsSync(resolve(root, b.source)));

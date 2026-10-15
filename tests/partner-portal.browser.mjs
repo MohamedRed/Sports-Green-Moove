@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { mkdirSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
+import { content } from '../partner-portal/content.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE_PATH;
 const { chromium } = modulePath ? await import(pathToFileURL(modulePath).href) : await import('playwright');
@@ -37,7 +38,7 @@ try {
   await page.getByText('Aucun parcours ne correspond').waitFor();
   await page.getByRole('searchbox').fill('');
   await page.locator('#status').selectOption('blocked');
-  assert.equal(await page.locator('.flow-row').count(), 4);
+  assert.equal(await page.locator('.flow-row').count(), content.flows.filter((flow) => flow.status === 'blocked').length);
   await page.getByRole('link', { name: 'À faire', exact: true }).click();
   await page.getByRole('heading', { name: 'À faire', exact: true }).waitFor();
   await page.screenshot({ path: `${output}/desktop-next.png`, fullPage: true });
@@ -53,6 +54,12 @@ try {
     await page.screenshot({ path: `${output}/detail-${width}.png`, fullPage: true });
     await page.keyboard.press('Escape');
   }
+  await page.goto(`${base}/#parcours/booking`);
+  await page.getByText('Essai local du 15 octobre 2026', { exact: true }).waitFor();
+  assert.equal(await page.locator('.local-results li').count(), 5);
+  assert.equal(await page.locator('video').count(), 0);
+  assert.equal(await page.locator('.media-navigation').count(), 0);
+  await page.screenshot({ path: `${output}/local-booking.png`, fullPage: true });
   await page.goto(`${base}/#parcours/tracking`);
   await page.getByRole('heading', { name: 'Pas encore de vidéo' }).waitFor();
   assert.equal(await page.locator('video').count(), 0);

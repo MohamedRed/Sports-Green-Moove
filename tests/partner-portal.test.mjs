@@ -14,7 +14,7 @@ test('every flow has truthful, dated evidence and explicit remaining scope', () 
   assert.equal(validate(root), true);
   assert(content.flows.length >= 14);
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');
-  assert.equal(content.flows.find((f) => f.id === 'booking').status, 'blocked');
+  assert.equal(content.flows.find((f) => f.id === 'booking').status, 'partial');
   assert.equal(content.flows.find((f) => f.id === 'social-auth').status, 'deferred');
   assert.equal(content.releaseNote, 'Tests en cours.');
 });
@@ -35,9 +35,10 @@ test('new form checks do not imply signup or completed participant flows', () =>
   assert.equal(validation.images.length, 5);
   assert.match(validation.remaining, /n’a pas été retestée/);
   assert.equal(content.flows.find((f) => f.id === 'login').checkedAt, '2026-10-11');
-  for (const id of ['booking', 'publication', 'payments', 'clubs']) {
-    assert.equal(content.flows.find((f) => f.id === id).status, 'blocked');
+  for (const id of ['booking', 'publication', 'clubs']) {
+    assert.equal(content.flows.find((f) => f.id === id).status, 'partial');
   }
+  assert.equal(content.flows.find((f) => f.id === 'payments').status, 'blocked');
   assert(content.blockers.some((b) => b.id === 'auth-landscape'));
   assert.equal(content.flows.find((f) => f.id === 'appearance').status, 'partial');
   assert.equal(Object.keys(captures).length, 6);
@@ -55,6 +56,20 @@ test('portal has no production app hosting rewrite or client-side auth substitut
   const manifest = JSON.parse(source('partner-portal/.openai/hosting.json'));
   assert.equal(manifest.static.directory, 'dist');
   assert(!source('partner-portal/src/app.js').includes('localStorage'));
+});
+
+test('local results are backed by successful evidence and are not presented as phone recordings', async () => {
+  const { localResults, detail } = await import('../partner-portal/src/render.js');
+  const flows = content.flows.filter((flow) => flow.local);
+  assert.equal(flows.length, 8);
+  for (const flow of flows) {
+    assert.equal(flow.status, 'partial');
+    assert.match(detail(flow), /Essai local du/);
+    assert(localResults(flow).includes(flow.local.checks[0]));
+    assert(!flow.recording);
+  }
+  assert.match(source('partner-portal/src/media.js'), /sans enregistrement sur téléphone/);
+  assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
 });
 
 test('smoke workflow covers portal source, evidence changes and validation', () => {

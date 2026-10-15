@@ -14,6 +14,9 @@ on:
       - "scripts/build-partner-portal.mjs"
       - "tests/partner-portal.test.mjs"
       - "tests/partner-portal.browser.mjs"
+      - "scripts/qa/**"
+      - "tests/local-emulator-config.test.mjs"
+      - "tests/local-egress-guard.test.mjs"
       - "database.rules.json"
       - "firebase.json"
       - "firestore.indexes.json"
@@ -44,6 +47,9 @@ on:
       - "scripts/build-partner-portal.mjs"
       - "tests/partner-portal.test.mjs"
       - "tests/partner-portal.browser.mjs"
+      - "scripts/qa/**"
+      - "tests/local-emulator-config.test.mjs"
+      - "tests/local-egress-guard.test.mjs"
       - "database.rules.json"
       - "firebase.json"
       - "firestore.indexes.json"
@@ -97,6 +103,12 @@ jobs:
 
       - name: Build Functions
         run: npm run build --workspace functions
+
+      - name: Validate local test isolation
+        run: npm run test:local-flow-isolation
+
+      - name: Test isolated multi-person flows
+        run: npm run test:local-flows
 
       - name: Build Admin
         run: npm run build --workspace admin

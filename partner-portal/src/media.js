@@ -1,4 +1,4 @@
-import { escape, icon } from './render.js';
+import { escape, icon, localResults } from './render.js';
 
 const clipLabels = {
   'home-to-trips': 'De l’accueil aux trajets · 16 s',
@@ -9,6 +9,7 @@ const clipLabels = {
 
 export function createGallery(flow, initialClip) {
   const entries = [
+    ...(flow.local ? [{ type: 'checks', label: 'Essai local, sans enregistrement sur téléphone.' }] : []),
     ...(flow.clips || []).map((id) => ({ type: 'video', file: `${id}.mp4`, poster: `${id}.jpg`, label: clipLabels[id] })),
     ...flow.images.map((item) => ({ type: 'image', file: `${item.file}.jpg`, label: item.alt })),
   ];
@@ -22,15 +23,17 @@ export function createGallery(flow, initialClip) {
       return;
     }
     const entry = entries[index];
-    container.innerHTML = `<div class="media-stage">${entry.type === 'video'
+    container.innerHTML = `${entry.type === 'checks' ? localResults(flow) : `<div class="media-stage">${entry.type === 'video'
       ? `<video controls playsinline preload="metadata" poster="media/${entry.poster}" aria-label="${escape(entry.label)}"><source src="media/${entry.file}" type="video/mp4">Votre navigateur ne prend pas en charge la vidéo.</video>`
       : `<a href="media/${entry.file}" target="_blank" rel="noopener" title="Agrandir la capture"><img src="media/${entry.file}" alt="${escape(entry.label)}"></a>`}
-      </div><p class="media-caption">${escape(entry.label)}</p>
-      <div class="media-navigation"><button class="icon-button" id="previous-media" type="button" aria-label="Preuve précédente" title="Preuve précédente" ${index === 0 ? 'disabled' : ''}>${icon('chevron-left')}</button><span>${index + 1} / ${entries.length}</span><button class="icon-button" id="next-media" type="button" aria-label="Preuve suivante" title="Preuve suivante" ${index === entries.length - 1 ? 'disabled' : ''}>${icon('chevron-right')}</button></div>
-      <div class="media-actions"><a class="text-link" download href="media/${entry.file}">${icon('download')}Télécharger</a>
+      </div>`}${entry.type === 'checks' ? '' : `<p class="media-caption">${escape(entry.label)}</p>`}
+      ${entries.length > 1 ? `<div class="media-navigation"><button class="icon-button" id="previous-media" type="button" aria-label="Preuve précédente" title="Preuve précédente" ${index === 0 ? 'disabled' : ''}>${icon('chevron-left')}</button><span>${index + 1} / ${entries.length}</span><button class="icon-button" id="next-media" type="button" aria-label="Preuve suivante" title="Preuve suivante" ${index === entries.length - 1 ? 'disabled' : ''}>${icon('chevron-right')}</button></div>` : ''}
+      <div class="media-actions">${entry.type === 'checks' ? '' : `<a class="text-link" download href="media/${entry.file}">${icon('download')}Télécharger</a>`}
       ${flow.recording ? `<a href="media/${flow.recording}-full.mp4" target="_blank" rel="noopener">Vidéo longue (${flow.recording === 'navigation' ? '4 min' : '2 min 08'})</a>` : ''}</div>`;
-    container.querySelector('#previous-media').onclick = () => { index -= 1; render(); };
-    container.querySelector('#next-media').onclick = () => { index += 1; render(); };
+    for (const [selector, delta] of [['#previous-media', -1], ['#next-media', 1]]) {
+      const button = container.querySelector(selector);
+      if (button) button.onclick = () => { index += delta; render(); };
+    }
     container.querySelector('video')?.addEventListener('error', () => {
       const note = document.createElement('p');
       note.setAttribute('role', 'alert');

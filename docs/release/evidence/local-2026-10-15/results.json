@@ -1,0 +1,75 @@
+{
+  "runId": "0bccb38eea2f2528e923997fd6c72d82",
+  "testedAt": "2026-10-15T12:11:20.490Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-emulated-services-not-phone-ui",
+  "steps": [
+    {
+      "id": "fixtures",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle",
+      "status": "passed"
+    },
+    {
+      "id": "publication",
+      "status": "passed"
+    },
+    {
+      "id": "booking-cancellation",
+      "status": "passed"
+    },
+    {
+      "id": "last-seat-concurrency",
+      "status": "passed"
+    },
+    {
+      "id": "messages-notifications",
+      "status": "passed"
+    },
+    {
+      "id": "ride-audit-ledgers",
+      "status": "passed"
+    },
+    {
+      "id": "ratings",
+      "status": "passed"
+    },
+    {
+      "id": "club-request",
+      "status": "passed"
+    },
+    {
+      "id": "support-request",
+      "status": "passed"
+    }
+  ],
+  "lifecycle": {
+    "projectId": "demo-sgm-local-qa",
+    "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+    "bookingId": "eq6amt9DmiSCtHPfv1Ke",
+    "rideSessionId": "RTfs4CJRZ8DSpZnL7mzk",
+    "payment": {
+      "status": "blocked_by_missing_local_payment_account",
+      "error": "Driver Stripe account is required before paid rides."
+    },
+    "lifecycle": {
+      "booking": "completed",
+      "ride": "completed",
+      "pickup": "pickedUp",
+      "dropoff": "droppedOff",
+      "co2SavedKg": 3.81,
+      "rewardCents": 46,
+      "rtdbMeta": {
+        "status": "completed",
+        "namespace": "demo-sgm-local-qa"
+      },
+      "inboxChats": 3
+    }
+  },
+  "limits": [
+    "No live provider payments, GPS, device tracking or push delivery tested.",
+    "Club approval/rejection, trip editing/cancellation and refund settlement remain unverified."
+  ]
+}

@@ -57,12 +57,17 @@ export function nextSteps(data) {
 
 export function detail(flow) {
   return `<div class="detail-heading">${status(flow.status)}<h2 id="detail-title">${escape(flow.title)}</h2>
-      ${flow.checkedAt ? `<p class="date">Test du ${date(flow.checkedAt)}</p>` : ''}</div>
+      ${flow.checkedAt ? `<p class="date">${flow.local ? 'Essai local' : 'Test'} du ${date(flow.checkedAt)}</p>` : ''}</div>
     <div class="detail-layout">
-    <section class="detail-media" aria-label="Vidéos et captures"><div id="media-content"></div></section>
+    <section class="detail-media" aria-label="Résultats, vidéos et captures"><div id="media-content"></div></section>
     <section class="detail-copy">
-      <h3>Testé</h3><p>${escape(flow.verified)}</p>
+      ${flow.local ? '' : `<h3>Testé</h3><p>${escape(flow.verified)}</p>`}
       <h3>À faire</h3><p>${escape(flow.remaining)}</p>
       ${flow.recording ? `<details class="test-info"><summary>Infos du test</summary><p>Nouvel enregistrement du parcours.${flow.id === 'signout' ? ' Pauses retirées de la vidéo longue.' : ''}</p></details>` : ''}
     </section></div>`;
+}
+
+export function localResults(flow) {
+  return `<section class="local-results" aria-label="Résultats de l’essai local"><h3>Ce qui a été vérifié</h3>
+    <ul>${flow.local.checks.map((check) => `<li>${escape(check)}</li>`).join('')}</ul></section>`;
 }
