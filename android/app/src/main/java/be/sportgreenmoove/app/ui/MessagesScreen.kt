@@ -24,6 +24,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,30 +33,63 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.InboxSummary
+import be.sportgreenmoove.app.data.InboxChatSummary
+import be.sportgreenmoove.app.data.ConversationKind
+import be.sportgreenmoove.app.data.ConversationRef
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.FirebaseGateway
+import be.sportgreenmoove.app.services.ConversationGateway
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @Composable
-fun MessagesScreen(firebase: FirebaseGateway) {
+fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway) {
     val scope = rememberCoroutineScope()
-    var selectedTab by remember { mutableStateOf("chats") }
+    val owner = LocalLifecycleOwner.current
+    val chatState = rememberSaveableStateHolder()
+    var selectedTab by rememberSaveable { mutableStateOf("chats") }
+    var selectedSourceType by rememberSaveable { mutableStateOf<String?>(null) }
+    var selectedSourceId by rememberSaveable { mutableStateOf<String?>(null) }
+    var refresh by remember { mutableStateOf(0) }
     var inbox by remember { mutableStateOf(InboxSummary()) }
     var loading by remember { mutableStateOf(false) }
     var submittingReviewId by remember { mutableStateOf<String?>(null) }
     var error by remember { mutableStateOf<String?>(null) }
     var notice by remember { mutableStateOf<String?>(null) }
 
-    LaunchedEffect(firebase) {
-        loading = true
-        error = null
-        runCatching { firebase.getInbox() }
-            .onSuccess { inbox = it }
-            .onFailure { error = UserFacingErrorPolicy.messageFor(it) }
-        loading = false
+    LaunchedEffect(firebase, conversations, owner, refresh) {
+        owner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            loading = true
+            error = null
+            try {
+                conversations.observeInboxChanges().collectLatest {
+                    inbox = firebase.getInbox()
+                    loading = false
+                }
+            } catch (cancelled: CancellationException) { throw cancelled }
+            catch (failure: Exception) { error = UserFacingErrorPolicy.messageFor(failure); loading = false }
+        }
+    }
+
+    val selectedType = selectedSourceType
+    val selectedId = selectedSourceId
+    if (selectedType != null && selectedId != null) {
+        val ref = ConversationRef(ConversationKind.fromSource(selectedType), selectedId)
+        chatState.SaveableStateProvider(ref.key) {
+            ConversationRoute(ref = ref, gateway = conversations, onBack = {
+                selectedSourceType = null
+                selectedSourceId = null
+                refresh += 1
+            })
+        }
+        return
     }
     fun submitReview(reviewId: String, rideSessionId: String, ratedUserId: String, score: Int) {
         scope.launch {
@@ -88,14 +123,18 @@ fun MessagesScreen(firebase: FirebaseGateway) {
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             when {
-                loading -> MessagesEmptyCard("Synchronisation de l'inbox...")
-                error != null -> MessagesEmptyCard(error.orEmpty())
+                loading -> MessagesEmptyCard("Chargement...")
+                error != null -> {
+                    MessagesEmptyCard(error.orEmpty())
+                    V2Button("Réessayer", onClick = { refresh += 1 })
+                }
                 else -> MessagesListContent(
                     selectedTab = selectedTab,
                     inbox = inbox,
                     notice = notice,
                     submittingReviewId = submittingReviewId,
                     onRateReview = ::submitReview,
+                    onOpenChat = { chat -> selectedSourceType = chat.sourceType; selectedSourceId = chat.sourceId },
                 )
             }
         }
@@ -109,6 +148,7 @@ private fun MessagesListContent(
     notice: String?,
     submittingReviewId: String?,
     onRateReview: (String, String, String, Int) -> Unit,
+    onOpenChat: (InboxChatSummary) -> Unit,
 ) {
     notice?.let { MessagesEmptyCard(it) }
     when (selectedTab) {
@@ -133,7 +173,7 @@ private fun MessagesListContent(
         else -> if (inbox.chats.isEmpty()) {
             MessagesEmptyCard("Aucune conversation.")
         } else {
-            inbox.chats.forEach { chat -> ChatCard(chat) }
+            inbox.chats.forEach { chat -> ChatCard(chat, onClick = { onOpenChat(chat) }) }
         }
     }
 }

@@ -3,6 +3,7 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { auth, db } from './local-flow-client.mjs';
 import { projectId } from './local-emulator-config.mjs';
+import { seedLocalChatFixtures } from './local-chat-fixtures.mjs';
 
 export async function seedLocalUiFixtures() {
   execFileSync(process.execPath, [resolve(import.meta.dirname, 'seed-firebase-emulator.mjs')],
@@ -18,9 +19,10 @@ export async function seedLocalUiFixtures() {
     await db.collection('memberships').doc(`${userId}_sgm-qa-club-green-wavre`).set({
       userId, clubId: 'sgm-qa-club-green-wavre', role: 'member', status: 'requested', active: false, createdAt: new Date() });
   }
+  await seedLocalChatFixtures(process.env.SGM_QA_PASSWORD);
   const session = { projectId, password: process.env.SGM_QA_PASSWORD,
     disposableEmulator: process.env.SGM_LOCAL_DISPOSABLE_EMULATOR === 'true',
-    parent: 'p@example.test', driver: 'd@example.test', admin: 'admin@example.test' };
+    parent: 'p@example.test', driver: 'd@example.test', admin: 'admin@example.test', outsider: 'outsider@example.test' };
   writeFileSync(process.env.SGM_LOCAL_UI_SESSION_FILE, JSON.stringify(session), { mode: 0o600, flag: 'wx' });
   return session;
 }

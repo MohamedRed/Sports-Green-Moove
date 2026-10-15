@@ -32,13 +32,15 @@ import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun ChatCard(chat: InboxChatSummary) {
+fun ChatCard(chat: InboxChatSummary, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .sgmTestTag(SgmTestTags.ChatOpenAction)
             .clip(RoundedCornerShape(14.dp))
             .background(Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(14.dp))
+            .clickable(onClick = onClick)
             .padding(horizontal = 14.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),

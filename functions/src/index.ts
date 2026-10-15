@@ -5,7 +5,7 @@ export { approveBooking, cancelBooking, listDriverBookingRequests, requestBookin
 export { createReport, reviewReport, submitRating } from "./callables/feedback.js";
 export { writeLocationBatch } from "./callables/locations.js";
 export { requestClubMembership } from "./callables/memberships.js";
-export { getInbox, sendChatMessage } from "./callables/messages.js";
+export { getInbox, sendChatMessage, getChatConversation, markChatMessagesRead } from "./callables/messages.js";
 export {
   createRidePaymentIntent,
   createStripeAccount,

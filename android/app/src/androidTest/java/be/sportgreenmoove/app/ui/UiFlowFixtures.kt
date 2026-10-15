@@ -167,7 +167,7 @@ class UiFlowFirebaseGateway : FirebaseGateway {
     override suspend fun getRewardSummary() = UiFlowFixtures.rewards
 
     override suspend fun getInbox() = InboxSummary(
-        chats = listOf(InboxChatSummary("chat-1", "trip", "trip-1", "Coach U8", "Départ confirmé.", "16h12", 1, "CO")),
+        chats = listOf(InboxChatSummary("chat-1", "booking", "booking-1", "Coach U8", "Départ confirmé.", "16h12", 1, "CO")),
         reviews = listOf(InboxReviewPrompt("review-1", "ride-session-1", "driver-1", "Avis conducteur", "Notez le trajet.", "DR")),
     )
 

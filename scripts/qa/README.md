@@ -49,6 +49,26 @@ the completed trip/bookings, four audit events, one pair of ledger records and
 one rating in the local database before accepting UI evidence. These synthetic
 positions and pre-granted permissions do not prove physical GPS or permission UX.
 
+`LocalChatFlowTest` then uses the parent and driver logins to exchange replies,
+checks draft retention across navigation/recreation/rotation, and loads a seeded
+120-message history with timestamp ties. A separately authenticated local SDK
+peer sends one message while the parent thread stays open; this is not a claim
+of two physical phones or push delivery. An unrelated synthetic account cannot
+open the thread. Independent stored-message, recipient notification and unread
+checks must pass before the runner writes its eight-case/nine-group result.
+
+Conversation deployment requires the new message composite index and updated
+`sendChatMessage`, `getChatConversation`, `markChatMessagesRead` callables before
+shipping the Android client. They are checked in, not deployed by local tests.
+New Android sends always supply a UUID; retries with the same identity/content
+create one message and its recipient notifications in one transaction. Existing
+keyless callers retain their prior API but do not gain retry deduplication.
+Read acknowledgements cover only explicit visible message IDs. Legacy random
+notification IDs are not guessed or cleared. Thread history is paginated, while
+the existing inbox still discovers conversations from only its latest 50 messages.
+There is no offline send queue, fabricated delivery state, device push proof or
+iOS conversation implementation in this change.
+
 Ride lifecycle deployment requires the checked-in Firestore rules and indexes
 before the new app queries run, followed by the updated callables. The trip's
 server-owned `activeRideSessionId` serializes starts and prevents booking changes

@@ -40,3 +40,14 @@ test('mock positions require an explicitly disposable emulator and a local-only 
   const fixture = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocation.kt', import.meta.url), 'utf8');
   assert.match(fixture, /session.getBoolean\("disposableEmulator"\)/);
 });
+
+test('local conversation evidence requires app execution and independent persisted-state checks', () => {
+  const runner = readFileSync(new URL('../scripts/qa/local-android-session.mjs', import.meta.url), 'utf8');
+  assert.match(runner, /instrument\(\['LocalChatFlowTest'\], 1\)/);
+  assert.match(runner, /const chat = await verifyLocalChatUi\(\)/);
+  assert.match(runner, /testCount: 8/);
+  const peer = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalConversationPeer.kt', import.meta.url), 'utf8');
+  assert.match(peer, /check\(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR\)/);
+  assert.match(peer, /check\(options.projectId == "demo-sgm-local-qa"\)/);
+  assert.match(peer, /app.delete\(\)/);
+});

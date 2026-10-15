@@ -11,6 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import be.sportgreenmoove.app.data.AppRole
@@ -29,7 +31,8 @@ fun SportsGreenMooveApp() {
     val context = LocalContext.current
     val providers = remember { AndroidRuntime.create(context.applicationContext) }
     val scope = rememberCoroutineScope()
-    var screen by remember { mutableStateOf(AppScreen.Home) }
+    var screen by rememberSaveable { mutableStateOf(AppScreen.Home) }
+    val messagesState = rememberSaveableStateHolder()
     var role by remember { mutableStateOf(AppRole.Parent) }
     var lastRoleSelectionSessionUid by remember { mutableStateOf<String?>(null) }
     var session by remember { mutableStateOf<AuthSession?>(null) }
@@ -209,7 +212,11 @@ fun SportsGreenMooveApp() {
                             onNotice = { noticeMessage = it },
                             onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } } },
                         )
-                        AppScreen.Messages -> MessagesScreen(firebase = providers.firebase)
+                        AppScreen.Messages -> session?.uid?.let { uid ->
+                            messagesState.SaveableStateProvider(uid) {
+                                MessagesScreen(firebase = providers.firebase, conversations = providers.conversations)
+                            }
+                        }
                         AppScreen.Profile -> ProfileRoute(
                             role = role,
                             availableRoles = session?.roles ?: setOf(AppRole.Parent),
@@ -226,6 +233,7 @@ fun SportsGreenMooveApp() {
                             onPayments = { screen = AppScreen.Payments },
                             onOptions = { screen = AppScreen.Options },
                             onLogout = {
+                                session?.uid?.let { messagesState.removeState(it) }
                                 providers.googleAuth.signOut()
                                 providers.facebookAuth.signOut()
                                 providers.auth.signOut()

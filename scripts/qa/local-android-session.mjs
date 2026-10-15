@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
 import { verifyLocalRideUi } from './verify-local-ride-ui.mjs';
+import { verifyLocalChatUi } from './verify-local-chat-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -20,7 +21,7 @@ run(adb, ['-s', serial, 'install', '-r', resolve(android, 'app/build/outputs/apk
 run(process.execPath, [resolve(import.meta.dirname, 'install-local-ui-session.mjs'), serial, process.env.SGM_LOCAL_UI_SESSION_FILE]);
 
 function instrument(classes, expected) {
-  const output = execFileSync(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '120000',
+  const output = execFileSync(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '240000',
     '-e', 'class', classes.map((name) => `be.sportgreenmoove.app.ui.${name}`).join(','),
     'be.sportgreenmoove.app.local.test/androidx.test.runner.AndroidJUnitRunner'],
   { env: process.env, encoding: 'utf8', timeout: 12 * 60_000, maxBuffer: 4 * 1024 * 1024 });
@@ -37,15 +38,17 @@ try {
   run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'allow']);
   instrument(['LocalRideFlowTest'], 1);
   const ride = await verifyLocalRideUi();
+  instrument(['LocalChatFlowTest'], 1);
+  const chat = await verifyLocalChatUi();
   const output = process.env.SGM_LOCAL_UI_OUTPUT;
   mkdirSync(output, { recursive: true });
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', output]);
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
-    'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui']
+    'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui']
     .map((id) => ({ id, status: 'passed' }));
   writeFileSync(resolve(output, 'results.json'), `${JSON.stringify({ projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 7, steps, ride, limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
+    testCount: 8, steps, ride, chat, limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
       'No physical GPS tracking, provider payments, push delivery or live data tested.'] }, null, 2)}\n`);
 } finally {
   run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'default']);

@@ -163,7 +163,7 @@ class SportsGreenMooveUiFlowTest {
 
     @Test
     fun messagesChatAndRatingFlowsExposeNativeUiActions() {
-        setTestContent { MessagesScreen(firebase = firebase) }
+        setTestContent { MessagesScreen(firebase = firebase, conversations = UiFlowConversationGateway()) }
 
         assertTagsExist(SgmTestTags.MessagesScreen, SgmTestTags.ChatTab, SgmTestTags.RatingTab)
         compose.onNodeWithTag(SgmTestTags.RatingTab).performClick()
