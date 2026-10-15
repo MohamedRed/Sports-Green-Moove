@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { auth, db } from './local-flow-client.mjs';
 import { projectId } from './local-emulator-config.mjs';
 import { seedLocalChatFixtures } from './local-chat-fixtures.mjs';
+import { indexLocalChatFixtures } from './index-local-chat-fixtures.mjs';
 
 export async function seedLocalUiFixtures() {
   execFileSync(process.execPath, [resolve(import.meta.dirname, 'seed-firebase-emulator.mjs')],
@@ -20,6 +21,7 @@ export async function seedLocalUiFixtures() {
       userId, clubId: 'sgm-qa-club-green-wavre', role: 'member', status: 'requested', active: false, createdAt: new Date() });
   }
   await seedLocalChatFixtures(process.env.SGM_QA_PASSWORD);
+  await indexLocalChatFixtures();
   const session = { projectId, password: process.env.SGM_QA_PASSWORD,
     disposableEmulator: process.env.SGM_LOCAL_DISPOSABLE_EMULATOR === 'true',
     parent: 'p@example.test', driver: 'd@example.test', admin: 'admin@example.test', outsider: 'outsider@example.test' };

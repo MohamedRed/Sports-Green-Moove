@@ -246,6 +246,9 @@ async function seed() {
     createdAt: now,
   }, { merge: true });
 
+  const { indexLocalChatFixtures } = await import('./index-local-chat-fixtures.mjs');
+  await indexLocalChatFixtures();
+
   const summary = {
     projectId,
     authEmulator: process.env.FIREBASE_AUTH_EMULATOR_HOST,

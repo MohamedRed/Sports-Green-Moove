@@ -13,6 +13,7 @@
 | `bookings` | Parent passenger requests and driver approvals. |
 | `rideSessions` | Active/completed ride lifecycle and safety audit state. |
 | `messages` | Chat messages linked to trip/booking/ride session. |
+| `chatInboxes` | Server-owned per-user conversation index with full unread counts, activity position and revision; only its owner may read. |
 | `notifications` | In-app notification feed and push metadata. |
 | `ratings` | Post-ride ratings and comments. |
 | `co2Ledger` | Immutable CO2 accounting entries written when rides complete. |
@@ -81,4 +82,4 @@ and `active = false`; club managers/admins can later review the membership in
 the admin console. Requested memberships render as pending requests, not active
 member clubs.
 
-The Messages tab reads through `getInbox`, not direct static fixtures. The callable returns the caller's `notifications`, groups recent `messages` by booking or ride-session conversation, and derives pending `ratings` prompts from completed ride sessions where the caller has not yet rated the other participant.
+Android conversation discovery reads through `listChatConversations`, backed by private `chatInboxes` entries rather than the latest 50 messages. The reservation picker uses `listChatBookingOptions`; an empty conversation is not persisted until a real send. `getInbox` remains compatible for notifications, bounded legacy previews and pending `ratings` prompts derived from completed ride sessions. iOS still uses that legacy contract. See [conversation rollout](../release/chat-inbox-rollout.md) for summary fields, historical preparation and coordinated deployment requirements.

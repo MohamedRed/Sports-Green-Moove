@@ -45,7 +45,9 @@ test('local conversation evidence requires app execution and independent persist
   const runner = readFileSync(new URL('../scripts/qa/local-android-session.mjs', import.meta.url), 'utf8');
   assert.match(runner, /instrument\(\['LocalChatFlowTest'\], 1\)/);
   assert.match(runner, /const chat = await verifyLocalChatUi\(\)/);
-  assert.match(runner, /testCount: 8/);
+  assert.match(runner, /instrument\(\['LocalConversationDirectoryFlowTest'\], 1\)/);
+  assert.match(runner, /const directory = await verifyLocalChatDirectoryUi\(directoryFixture\)/);
+  assert.match(runner, /testCount: 9/);
   const peer = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalConversationPeer.kt', import.meta.url), 'utf8');
   assert.match(peer, /check\(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR\)/);
   assert.match(peer, /check\(options.projectId == "demo-sgm-local-qa"\)/);

@@ -5,6 +5,7 @@ import { configureLocalEmulators } from './local-emulator-config.mjs';
 import { runScenarios } from './local-flow-scenarios.mjs';
 import { checkRidePassengerSafety } from './local-ride-safety.mjs';
 import { checkChatDeliverySafety } from './local-chat-safety.mjs';
+import { checkChatDirectorySafety } from './local-chat-directory-safety.mjs';
 
 const { projectId } = configureLocalEmulators();
 const steps = [];
@@ -24,6 +25,7 @@ await check('ride-lifecycle', async () => {
 if (lifecycle) await runScenarios(check, lifecycle);
 await check('ride-passenger-safety', checkRidePassengerSafety);
 await check('chat-delivery-safety', checkChatDeliverySafety);
+await check('chat-directory-safety', checkChatDirectorySafety);
 const result = { runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), projectId, scope: 'local-emulated-services-not-phone-ui',
   steps, lifecycle, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
     'Club approval/rejection, trip editing/cancellation and refund settlement remain unverified.'] };

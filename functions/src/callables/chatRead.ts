@@ -1,8 +1,10 @@
-import { FieldValue, Timestamp } from "firebase-admin/firestore";
+import { FieldValue } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { chatNotificationId } from "../domain/chatDelivery.js";
+import { acknowledgeChatInbox } from "../domain/chatInbox.js";
 import { chatDocumentIdSchema, chatReferenceSchema, requireChatParticipant } from "../lib/chatConversation.js";
+import { chatInboxRef, checkedChatInbox } from "../lib/chatInboxIndex.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth } from "../lib/https.js";
 import { parseCallableData } from "../lib/validation.js";
@@ -40,8 +42,21 @@ export const markChatMessagesRead = onCall(async (request) => {
       if (!Array.isArray(value.participantUserIds) || !value.participantUserIds.includes(uid)) {
         throw new HttpsError("permission-denied", "Message is not accessible to this user.");
       }
+      if (value.readByUserIds !== undefined && (!Array.isArray(value.readByUserIds) ||
+          value.readByUserIds.some((id: unknown) => typeof id !== "string"))) {
+        throw new HttpsError("failed-precondition", "Message read metadata requires repair.");
+      }
     }
-    const now = Timestamp.now();
+    const indexed = await transaction.get(chatInboxRef(uid, data));
+    if (!indexed.exists) throw new HttpsError("failed-precondition", "Conversation history must be indexed before acknowledging reads.");
+    const entry = checkedChatInbox(indexed.data() ?? {}, uid, data);
+    const newlyRead = messages.filter((message) => message.data()?.senderUserId !== uid &&
+      !message.data()?.readByUserIds?.includes(uid)).length;
+    let updated;
+    try { updated = acknowledgeChatInbox(entry, newlyRead); }
+    catch { throw new HttpsError("failed-precondition", "Conversation unread count requires repair."); }
+    if (newlyRead > 0) transaction.set(indexed.ref, updated);
+    const now = FieldValue.serverTimestamp();
     for (let index = 0; index < messages.length; index += 1) {
       const message = messages[index];
       if (!message.data()?.readByUserIds?.includes(uid)) {

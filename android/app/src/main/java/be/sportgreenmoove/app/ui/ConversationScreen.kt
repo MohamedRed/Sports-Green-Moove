@@ -21,17 +21,22 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.data.ConversationContext
 import kotlinx.coroutines.launch
 
 @Composable
 internal fun ConversationScreen(
-    state: ConversationState, listState: LazyListState, draft: String, onDraft: (String) -> Unit,
+    state: ConversationState, context: ConversationContext?, listState: LazyListState, draft: String, onDraft: (String) -> Unit,
     draftLocked: Boolean, sending: Boolean, sendError: String?, onSend: () -> Unit, onBack: () -> Unit,
     onRetry: () -> Unit, onEarlier: () -> Unit, onRetryRead: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     Column(Modifier.fillMaxSize().sgmTestTag(SgmTestTags.ChatThreadScreen).background(Sgm.colors.bgApp).imePadding()) {
         V2TopBar("CONVERSATION", onBack = onBack)
+        if (state.error == null && context != null) Column(Modifier.padding(horizontal = 20.dp, vertical = 6.dp)) {
+            Text(context.title, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary), maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(context.tripLabel, style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary))
+        }
         if (state.error == null && state.participantNames.isNotEmpty()) Text(state.participantNames.joinToString(" · "),
             style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary), maxLines = 2, overflow = TextOverflow.Ellipsis,
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp))

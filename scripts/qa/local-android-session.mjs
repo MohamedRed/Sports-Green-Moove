@@ -6,6 +6,8 @@ import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
 import { verifyLocalRideUi } from './verify-local-ride-ui.mjs';
 import { verifyLocalChatUi } from './verify-local-chat-ui.mjs';
+import { seedChatDirectoryUiFixtures } from './local-chat-directory-ui-fixtures.mjs';
+import { verifyLocalChatDirectoryUi } from './verify-local-chat-directory-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -40,15 +42,18 @@ try {
   const ride = await verifyLocalRideUi();
   instrument(['LocalChatFlowTest'], 1);
   const chat = await verifyLocalChatUi();
+  const directoryFixture = await seedChatDirectoryUiFixtures();
+  instrument(['LocalConversationDirectoryFlowTest'], 1);
+  const directory = await verifyLocalChatDirectoryUi(directoryFixture);
   const output = process.env.SGM_LOCAL_UI_OUTPUT;
   mkdirSync(output, { recursive: true });
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', output]);
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
-    'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui']
+    'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui']
     .map((id) => ({ id, status: 'passed' }));
   writeFileSync(resolve(output, 'results.json'), `${JSON.stringify({ projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 8, steps, ride, chat, limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
+    testCount: 9, steps, ride, chat, directory, limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
       'No physical GPS tracking, provider payments, push delivery or live data tested.'] }, null, 2)}\n`);
 } finally {
   run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'default']);

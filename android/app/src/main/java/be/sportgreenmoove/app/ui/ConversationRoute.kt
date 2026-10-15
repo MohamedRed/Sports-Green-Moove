@@ -16,6 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
 import be.sportgreenmoove.app.data.ConversationRef
+import be.sportgreenmoove.app.data.ConversationContext
 import be.sportgreenmoove.app.services.ConversationGateway
 import be.sportgreenmoove.app.services.MessageSendException
 import kotlinx.coroutines.CancellationException
@@ -24,7 +25,7 @@ import kotlinx.coroutines.launch
 import java.util.UUID
 
 @Composable
-fun ConversationRoute(ref: ConversationRef, gateway: ConversationGateway, onBack: () -> Unit) {
+fun ConversationRoute(ref: ConversationRef, gateway: ConversationGateway, context: ConversationContext? = null, onBack: () -> Unit) {
     val state = remember(ref, gateway) { ConversationState(ref, gateway) }
     val scope = rememberCoroutineScope()
     val owner = LocalLifecycleOwner.current
@@ -79,7 +80,7 @@ fun ConversationRoute(ref: ConversationRef, gateway: ConversationGateway, onBack
             } finally { sending = false }
         }
     }
-    ConversationScreen(state = state, listState = listState, draft = draft,
+    ConversationScreen(state = state, context = context, listState = listState, draft = draft,
         onDraft = { draft = it; sendError = null }, draftLocked = pendingId != null,
         sending = sending, sendError = sendError, onSend = ::send, onBack = onBack,
         onRetry = { refresh += 1 }, onEarlier = { scope.launch { state.loadEarlier() } },

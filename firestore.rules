@@ -133,6 +133,11 @@ service cloud.firestore {
       allow create, update, delete: if false;
     }
 
+    match /chatInboxes/{entryId} {
+      allow read: if signedIn() && resource.data.userId == request.auth.uid;
+      allow create, update, delete: if false;
+    }
+
     match /notifications/{notificationId} {
       allow read: if signedIn() && resource.data.userId == request.auth.uid;
       allow update: if signedIn() &&

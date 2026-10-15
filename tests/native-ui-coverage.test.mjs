@@ -116,12 +116,14 @@ includes(androidUiTests, "SgmTestTags.SupportReportDescriptionInput", "Android U
 includes(androidUiTests, "firebase.submittedRating", "Android UI tests assert rating callbacks");
 includes(androidUiTests, "RewardsRoute(", "Android UI tests assert rewards payout routing");
 for (const name of ["ChatOpenAction", "ChatThreadScreen", "ChatMessageList", "ChatMessageInput", "ChatSendAction",
-  "ChatLoadEarlierAction", "ChatReadRetryAction", "ChatRetryAction"]) {
+  "ChatLoadEarlierAction", "ChatReadRetryAction", "ChatRetryAction", "ChatNewConversationAction", "ChatInboxList",
+  "ChatInboxEarlierAction", "ChatInboxRetryAction", "ChatBookingScreen", "ChatBookingList", "ChatBookingOptionAction", "ChatBookingEarlierAction"]) {
   includes(androidRegistry, `const val ${name} = `, `Android defines ${name}`);
   includes(androidSources, `SgmTestTags.${name}`, `Android uses ${name}`);
 }
 includes(androidUiTests, "class ConversationFlowTest", "Android exercises message rejection and retry states");
 includes(androidUiTests, "class LocalChatFlowTest", "Android exercises an authenticated local conversation");
+includes(androidUiTests, "class LocalConversationDirectoryFlowTest", "Android exercises first-message and deep inbox discovery locally");
 includes(androidUiTests, "gateway.loadEarlier(history", "Android verifies real SDK message pagination");
 includes(androidUiTests, "SgmTestTags.ChatLoadEarlierAction", "Android exercises older messages in the app");
 includes(iosUiTests, "XCUIApplication", "iOS uses XCUITest automation");

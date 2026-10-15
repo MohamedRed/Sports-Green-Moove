@@ -4,6 +4,8 @@ import be.sportgreenmoove.app.data.ConversationKind
 import be.sportgreenmoove.app.data.ConversationMessage
 import be.sportgreenmoove.app.data.ConversationPage
 import be.sportgreenmoove.app.data.ConversationRef
+import be.sportgreenmoove.app.data.ConversationDirectoryPage
+import be.sportgreenmoove.app.data.ConversationBookingPage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
@@ -18,7 +20,6 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
@@ -31,14 +32,10 @@ internal class FirebaseAndroidConversationGateway(
     private val auth: FirebaseAuth = FirebaseAuth.getInstance(),
 ) : ConversationGateway {
     private data class Access(val uid: String, val names: Map<String, String>)
-    override fun observeInboxChanges(): Flow<Unit> = flow {
-        val uid = currentUid()
-        val messages = snapshots(firestore.collection("messages").whereArrayContains("participantUserIds", uid)
-            .orderBy("createdAt", Query.Direction.DESCENDING).limit(50), uid)
-        val notifications = snapshots(firestore.collection("notifications").whereEqualTo("userId", uid)
-            .orderBy("createdAt", Query.Direction.DESCENDING).limit(20), uid)
-        emitAll(combine(messages, notifications) { _, _ -> Unit }.conflate())
-    }
+    private val directory = FirebaseAndroidConversationDirectory(firestore, functions, auth)
+    override fun observeInboxChanges(): Flow<Unit> = directory.observeChanges()
+    override suspend fun loadConversations(cursor: String?): ConversationDirectoryPage = directory.conversations(cursor)
+    override suspend fun loadBookingOptions(cursor: String?): ConversationBookingPage = directory.bookings(cursor)
 
     override fun observeConversation(ref: ConversationRef): Flow<ConversationPage> = flow {
         val access = authorize(ref)

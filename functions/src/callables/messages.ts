@@ -1,8 +1,9 @@
-import { Timestamp } from "firebase-admin/firestore";
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { chatMessageId, chatNotificationId, sameChatRequest } from "../domain/chatDelivery.js";
 import { chatDocumentIdSchema, requireChatParticipant } from "../lib/chatConversation.js";
+import { inboxWritesForMessage } from "../lib/chatInboxIndex.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth } from "../lib/https.js";
 import { parseCallableData } from "../lib/validation.js";
@@ -38,12 +39,15 @@ export const sendChatMessage = onCall(async (request) => {
       return { messageId: ref.id, participantUserIds, reused: true };
     }
     const createdAt = Timestamp.now();
-    transaction.create(ref, { ...content, participantUserIds, createdAt, readByUserIds: [uid],
+    const inboxWrites = await inboxWritesForMessage(transaction, { ...content, id: ref.id, participantUserIds, createdAt });
+    const committedAt = FieldValue.serverTimestamp();
+    transaction.create(ref, { ...content, participantUserIds, createdAt: committedAt, readByUserIds: [uid],
       ...(data.clientMessageId ? { clientMessageId: data.clientMessageId } : {}) });
+    for (const inbox of inboxWrites) transaction.set(inbox.ref, inbox.data);
     for (const userId of participantUserIds.filter((id) => id !== uid)) {
       transaction.create(firestore.collection("notifications").doc(chatNotificationId(ref.id, userId)), {
         type: "chatMessage", title: "Nouveau message", body: data.body, sourceType, sourceId,
-        messageId: ref.id, userId, read: false, createdAt,
+        messageId: ref.id, userId, read: false, createdAt: committedAt,
       });
     }
     return { messageId: ref.id, participantUserIds, reused: false };

@@ -22,8 +22,12 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `markPickup` | driver | Child pickup status and parent notification. |
 | `markDropoff` | driver | Child dropoff status and parent notification. |
 | `writeLocationBatch` | driver/child | Native fallback location batch bound to the authenticated user. |
-| `getInbox` | signed-in users | Notifications, latest chat previews, and pending post-ride review prompts for the Messages screen. |
-| `sendChatMessage` | participants | Message and push fanout. |
+| `getInbox` | signed-in users | Notifications, bounded legacy previews and pending post-ride review prompts; Android no longer discovers conversations from these previews. |
+| `listChatConversations` | signed-in participants | Paginated private conversation summaries with full unread counts; optional user/list-bound immutable cursor. |
+| `listChatBookingOptions` | booking parent/driver | Paginated reservation context for starting a first message; does not create messages. |
+| `sendChatMessage` | participants | Atomic message, recipient notification records and private summary updates; keyed retries are idempotent. No push-delivery proof implied. |
+| `getChatConversation` | participants | Reauthorizes an exact booking/ride conversation before listening. |
+| `markChatMessagesRead` | participants | Atomically acknowledges up to 50 exact addressed messages/notifications and decrements only newly read incoming counts. |
 | `submitRating` | ride participant | Immutable rating. |
 | `createReport` | signed-in users | Safety/support report. |
 | `reviewReport` | admin | Status, review note, and audit event for a support report. |

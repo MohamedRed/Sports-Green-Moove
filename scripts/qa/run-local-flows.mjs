@@ -10,7 +10,7 @@ try {
   const result = JSON.parse(readFileSync(runtime.env.SGM_LOCAL_FLOW_OUTPUT, 'utf8'));
   assert.equal(result.runId, runtime.env.SGM_LOCAL_RUN_ID, 'A fresh completed run is required');
   assert.equal(result.projectId, projectId);
-  assert.equal(result.steps.length, 12);
+  assert.equal(result.steps.length, 13);
   assert(result.steps.every((step) => step.status === 'passed'), 'Every local scenario must pass');
 } finally {
   runtime.cleanup();
