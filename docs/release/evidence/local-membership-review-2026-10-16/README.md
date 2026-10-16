@@ -177,5 +177,15 @@ execution, with explicit opt-in, single-emulator/QEMU checks and a verified
 disabled package state. It does not dismiss failures, retry cases, disable
 rendering or change production input behavior. Directly launched app flows remain
 the scope; home-screen integration requires a separate unmodified device. This
-setup change still needs a successful full CI replay before it is considered
-verified. The launcher defect itself is not claimed to be repaired.
+setup change was awaiting its full replay when introduced. The launcher defect
+itself is not claimed to be repaired.
+
+[Run 38850984157](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38850984157)
+at `b5903f7` then passed all enabled jobs. Its original `native-replay-isolated.json`
+records the full 15-case replay `de39fa3a290590d58dcd578e5ca0f3d5`, completed at
+`2026-10-16T04:44:36.023Z`. The job log confirms launcher isolation before test
+execution. Four new chat messages, 120 historical messages, the directory,
+reservation decisions and simulated ride all reach their persisted-state checks.
+Keyboard/focus/send assertions remain enabled. This proves this particular
+isolated replay, not repeatability across phones, home navigation, network
+recovery, provider transactions or real tracking. Earlier failures remain intact.

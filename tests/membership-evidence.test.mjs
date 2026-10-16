@@ -90,5 +90,17 @@ test('the repeated failure identifies the native launcher dialog without accepti
   assert.match(state.focusedWindows, /Application Not Responding: com.google.android.apps.nexuslauncher/);
   assert(existsSync(new URL(base + 'launcher-anr-device.png', root)));
   assert(!Object.values(captures).includes(base + 'launcher-anr-device.png'));
-  assert.match(read('README.md'), /launcher defect itself is not claimed to be repaired/);
+  assert.match(read('README.md'), /launcher defect\s+itself is not claimed to be repaired/);
+});
+test('the post-isolation replay is complete without promoting phone or payment scope', () => {
+  const run = json('native-replay-isolated.json');
+  assert.equal(run.runId, 'de39fa3a290590d58dcd578e5ca0f3d5');
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.testCount, 15); assert.equal(run.steps.length, 16);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.chat.newMessageCount, 4); assert.equal(run.chat.historyMessageCount, 120);
+  assert.equal(run.reservationDecisions.livePayment, false);
+  assert.equal(run.search.caseCount, 4);
+  assert.equal(run.multiSeatSdk.method, 'native-sdk-not-ui');
+  assert.match(read('README.md'), /not repeatability across phones, home navigation, network/);
 });
