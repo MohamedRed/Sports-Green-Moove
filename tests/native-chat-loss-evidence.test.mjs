@@ -46,7 +46,9 @@ test('published captures and copy retain controlled local scope and all older ev
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial'); assert.equal(flow.source, published + 'README.md');
   assert.equal(flow.ui.source, published + 'accepted-run/results.json'); assert(flow.ui.groups.includes('chat-post-commit-response-loss-ui'));
-  assert.equal(flow.images[0].file, 'chat-loss-confirmed'); assert.equal(flow.images[1].file, 'chat-loss-rejected-retry');
+  assert.equal(flow.images[0].file, 'chat-restart-recheck-reply');
+  const retained = flow.images.filter((image) => image.file !== 'chat-restart-recheck-reply');
+  assert.equal(retained[0].file, 'chat-loss-confirmed'); assert.equal(retained[1].file, 'chat-loss-rejected-retry');
   for (const name of ['confirmed', 'rejected-retry']) {
     assert.equal(captures['chat-loss-' + name], published + 'accepted-run/local-chat-loss-' + name + '.png');
     const png = readFileSync(new URL('../' + captures['chat-loss-' + name], import.meta.url));
