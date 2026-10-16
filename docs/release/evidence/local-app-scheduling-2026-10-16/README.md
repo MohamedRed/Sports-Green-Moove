@@ -51,3 +51,35 @@ completed replay is required before claiming this scheduling change is verified.
 Physical phones, tracking, live payments and team conversations remain outside
 this result. The agreed team-only audience is documented separately in
 `docs/contracts/team-conversations.md`; no team-message flow exists yet.
+
+## Completed Replay
+
+Native [38873286429](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38873286429)
+passed all enabled jobs at `6d86b8f952d785d2e16064cc36fed324603b04bf`.
+The unmodified result records run `62d83d64a7752b4a9df39e6b6bdb5a55`, completed
+at 2026-10-16T08:36:29.150Z: all 17 isolated cases and 19 coverage groups pass.
+The four search component cases retain their explicit fake gateways.
+
+The ride and reservation cases that interrupted the two earlier runs both pass
+in this replay. This does not establish the SlotWriter root cause or close the
+older crash investigation. One successful run is not general reliability proof.
+
+The network receipt records connected, reachable cellular handover, both radios
+disabled with zero internet networks and an unreachable backend, then restored
+original settings and a reachable backend. The baseline already had both Wi-Fi
+and cellular networks: this does not prove the earlier Wi-Fi-only startup issue
+cannot recur. Wi-Fi was enabled again, but the active route at measurement was
+cellular, not a proven identical Wi-Fi association.
+
+The app retains the unconfirmed message, explicit retry succeeds, and the driver
+replies. Independent checks confirm exactly two intended messages, no duplicate,
+two correctly addressed read notifications, no unread count for either actor and
+no cross-account draft. The original, reviewed `local-chat-network-received.png`
+shows both messages with the header, composer and navigation correctly framed.
+It is newly allowlisted; older poorly framed captures remain excluded. The
+passing instrumentation report is retained separately from the interrupted runs.
+
+The application is not deployed to production. Physical tracking, live payment,
+push, post-commit acknowledgement loss, full conversation process restart and
+team access are not accepted by this replay. Release evidence requirements remain
+unchanged. The partner site remains private and labels these results as local.

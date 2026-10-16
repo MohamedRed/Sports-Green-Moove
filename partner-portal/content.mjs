@@ -7,8 +7,7 @@ const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-1
 const reservationReport = 'docs/release/evidence/local-reservations-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const membershipRefreshReport = 'docs/release/evidence/local-membership-refresh-2026-10-16/README.md';
-const chatUiReport = 'docs/release/evidence/local-chat-directory-ui-2026-10-15/README.md';
-const chatNetworkReport = 'docs/release/evidence/local-chat-network-2026-10-16/README.md';
+const chatNetworkReport = 'docs/release/evidence/local-app-scheduling-2026-10-16/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -52,6 +51,7 @@ export const captures = {
   'chat-history': 'docs/release/evidence/local-chat-directory-ui-2026-10-15/local-chat-directory-history.png',
   'chat-landscape': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-landscape-draft.png',
   'chat-network-draft': 'docs/release/evidence/local-chat-network-2026-10-16/local-chat-network-unconfirmed.png',
+  'chat-network-reply': 'docs/release/evidence/local-app-scheduling-2026-10-16/local-chat-network-received.png',
   'chat-picker-recovered': 'docs/release/evidence/local-chat-network-2026-10-16/booking-picker-recovered.png',
 };
 
@@ -80,8 +80,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
-    { date: '2026-10-16', title: 'Des essais à stabiliser',
-      text: 'Les derniers essais du trajet et des réservations se sont interrompus. Ils doivent repasser avant validation.', flow: 'booking' },
+    { date: '2026-10-16', title: 'Trajet et réservations repassent en local',
+      text: 'Le trajet, les réservations et les messages repassent en local. Une capture montre l’échange après la coupure.', flow: 'messages' },
     { date: '2026-10-16', title: 'Un groupe par équipe',
       text: 'Seuls les membres d’une même équipe pourront lire ses messages. Ce parcours reste à construire et à tester.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le message reprend après une coupure',
@@ -135,7 +135,7 @@ export const content = {
       next: 'Rejouer sur téléphone, après fermeture complète et après une longue absence.', source: chatNetworkReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Les échanges seront réservés aux membres d’une même équipe. Ce parcours reste à construire et à tester.',
-      next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: chatUiReport },
+      next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: 'docs/contracts/team-conversations.md' },
     { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
       text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
       next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: chatNetworkReport },
@@ -214,8 +214,9 @@ export const content = {
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
       ], 'docs/release/evidence/local-chat-network-2026-10-16/services.json'),
-      ui: { source: 'docs/release/evidence/local-chat-network-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui'] },
-      images: [shot('chat-network-draft', 'Coupure : le brouillon reste prêt à être renvoyé, en local'),
+      ui: { source: 'docs/release/evidence/local-app-scheduling-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui'] },
+      images: [shot('chat-network-reply', 'Message renvoyé et réponse reçue après la coupure, en local'),
+        shot('chat-network-draft', 'Coupure : le brouillon reste prêt à être renvoyé, en local'),
         shot('chat-picker-recovered', 'Réservations acceptées, refusées et annulées visibles, en local'),
         shot('chat-reservation', 'Réservation choisie pour le premier message, essai du 15 octobre'),
         shot('chat-empty', 'Conversation avant le premier message, essai du 15 octobre'),
@@ -247,7 +248,7 @@ export const content = {
     { id: 'ride-lifecycle', title: 'Déroulement du trajet', status: 'partial', checkedAt: '2026-10-15',
       summary: 'Le trajet se termine dans l’app et apparaît dans l’historique du parent, en local.',
       verified: 'Dans l’app, en local : départ, deux prises en charge, deux déposes et fin de trajet. Le parent retrouve ensuite le trajet dans ses trajets passés.',
-      remaining: 'Dernier essai interrompu : à rejouer. Restent les échanges entre téléphones, la carte, les positions et les alertes de sécurité.',
+      remaining: 'Confirmer la stabilité sur téléphone. Restent la carte, les positions et les alertes de sécurité.',
       ui: rideUi(['ride-lifecycle-ui']),
       local: local(['ride-lifecycle', 'ride-audit-ledgers', 'ride-passenger-safety'], [
         'Toutes les réservations acceptées sont incluses au départ.',

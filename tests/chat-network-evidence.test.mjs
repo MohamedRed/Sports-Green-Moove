@@ -58,7 +58,7 @@ test('interrupted attempts cannot become recovery evidence and the status regres
 test('partner media stays reviewed, partial and explicit about remaining phone and keyboard work', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.ui.source, base + 'results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-app-scheduling-2026-10-16/results.json');
   assert.equal(flow.local.source, base + 'services.json');
   assert.match(flow.remaining, /clavier/); assert.match(flow.remaining, /téléphones/);
   assert.match(flow.remaining, /groupe/); assert.match(flow.remaining, /Pas encore en ligne/);
@@ -68,9 +68,33 @@ test('partner media stays reviewed, partial and explicit about remaining phone a
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
     assert(Object.values(captures).includes(base + file));
   }
-  assert(!Object.values(captures).some((path) => /network-(received|recovered|other-account)\.png/.test(path)));
+  assert(!Object.values(captures).some((path) => path.startsWith(base) && /network-(received|recovered|other-account)\.png/.test(path)));
   assert.match(read('README.md'), /not deployed to production/);
   assert.match(read('README.md'), /not identical active transport sets/);
+});
+
+test('the queued-scheduler replay proves recovery and retains the earlier crash as unresolved history', () => {
+  const path = 'docs/release/evidence/local-app-scheduling-2026-10-16/';
+  const readCurrent = (name) => readFileSync(new URL(path + name, root));
+  const run = JSON.parse(readCurrent('results.json'));
+  const ui = JSON.parse(readCurrent('local-chat-network-ui.json'));
+  assertChatNetworkReceipt(ui);
+  assert.equal(run.runId, '62d83d64a7752b4a9df39e6b6bdb5a55');
+  assert.equal(ui.runId, run.runId);
+  assert.equal(run.testCount, 17); assert.equal(run.steps.length, 19);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.deepEqual(ui.network.map((state) => state.phase), ['before', 'cellular-ready', 'offline', 'restored']);
+  assert.equal(run.ride.auditEventCount, 4); assert.equal(run.ride.ratingCount, 1);
+  assert.equal(run.reservationDecisions.declinedStatus, 'declined');
+  assert.equal(run.chatNetwork.messageCount, 2); assert.equal(run.chatNetwork.notificationCount, 2);
+  assert.equal(run.chatNetwork.duplicateMessages, 0);
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
+  const png = readCurrent('local-chat-network-received.png');
+  assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
+  assert.equal(captures['chat-network-reply'], path + 'local-chat-network-received.png');
+  assert.match(readCurrent('network-replay-passed.txt').toString(), /OK \(1 test\)/);
+  assert.match(readCurrent('README.md').toString(), /does not establish the SlotWriter root cause/);
 });
 
 test('the ride scheduling interruption cannot be mistaken for a network replay', () => {
