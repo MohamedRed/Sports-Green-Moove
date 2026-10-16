@@ -98,12 +98,12 @@ test('app screenshots require a completed scoped run and retain product gaps', (
   const run = JSON.parse(source('docs/release/evidence/local-ui-2026-10-15/results.json'));
   assert.equal(run.testCount, 6);
   assert.equal(run.steps.length, 5);
-  for (const id of ['navigation', 'booking', 'appearance']) {
+  for (const id of ['navigation', 'appearance']) {
     const flow = content.flows.find((item) => item.id === id);
     assert.equal(flow.status, 'partial');
     assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-2026-10-15/results.json');
   }
-  for (const id of ['group-conversation', 'membership-review', 'trip-management', 'booking-decisions', 'contrast']) {
+  for (const id of ['group-conversation', 'membership-review', 'trip-management', 'contrast']) {
     assert(content.blockers.some((item) => item.id === id));
   }
 });

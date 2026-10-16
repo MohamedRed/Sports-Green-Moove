@@ -49,20 +49,46 @@ unconfirmed writes. The previous global approval callback and unused gateway
 method have been removed. Amounts are labelled per place; cancellation does not
 claim that a refund has settled.
 
-## Pending Screen Verification
+## Accepted Screen Verification
 
-The new isolated app test must cancel one requested and one approved two-seat
-booking, dismiss a confirmation without writing, refuse a third booking as the
-driver, and show that refusal to the parent. Independent service verification
-requires three terminal records, correct actors, restored/unchanged capacity and
-exactly three notifications. Two component cases additionally cover confirmation
-in a 320dp content column and disabled driver actions while busy. Compilation is
-not execution: no new reservation screenshots or screen success are accepted yet.
+Verified by [Native CI run 38838963962](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38838963962)
+at source `e9c7eb5c62260af2f38d486f6c9e84801ac2feb5`. Unchanged
+`ui-results.json` records run `faeaaafa1c0bf888860d4c3281d3b893`, completed at
+`2026-10-16T02:23:27.411Z`. All 15 instrumentation cases pass across seven
+invocations: nine combined app/search cases and six single-case phases. All seven
+original text outputs are retained. The 16 result group IDs are not 16 journeys.
 
-The local runner now requires 15 instrumentation cases and 16 scoped result
-groups, including the pre-existing SDK-only case. Historical UI evidence is kept
-unchanged. Full account/crash stability, trip and club management, settings,
-physical tracking, live payments/push and refund settlement remain open.
+The app cancels one requested and one approved two-seat booking, dismisses a
+confirmation without writing, refuses a third booking as the driver, and shows
+that refusal after the parent signs back in. Independent service checks verify
+three terminal records, correct actors, restored/unchanged four-seat capacity,
+exactly three correctly addressed notifications and no stale active-queue entries.
+These are stored notifications, not push-delivery evidence. No payment is made.
+
+`general-ui-passed.xml` records 60 cases: 50 passed and ten intentional local/live
+gates skipped. Its two reservation component cases cover confirmation in a 320dp
+content column and disabled driver actions while busy; they use an explicit fake
+gateway, not a physical narrow phone. The separate SDK-only multi-seat case and
+four fake-gateway search cases retain their original scope in `ui-results.json`.
+
+Both original 1080x2400 app captures were visually reviewed and copied unchanged:
+`local-parent-reservations-cancelled.png` shows the two cancelled records;
+`local-driver-reservation-declined.png` shows the refused record. Only synthetic
+fixtures appear. The captures show acknowledged outcomes while the broader app
+refresh is still finishing; disabled refresh/actions are not a network-loss test.
+No other new captures are accepted for the site.
+
+Earlier run `38837570786` passed general instrumentation but stopped before this
+new phase: the old approval test clicked a visible but still-disabled action
+before the app-data refresh completed. The harness now waits for enabled actions
+and the confirmation dialog. This changes synchronization, not business behavior;
+the earlier run is not accepted as complete. Messaging also passes in this replay,
+but this does not explain the previously recorded SlotWriter crash or prove all
+account/network transitions stable.
+
+Historical evidence is unchanged. Full account/crash stability, trip and club
+management, settings, physical tracking, live payments/push and refund settlement
+remain open. iOS is unchanged. No final release-manifest items are accepted here.
 
 ## Rollout Boundary
 

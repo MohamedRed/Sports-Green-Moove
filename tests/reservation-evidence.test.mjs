@@ -42,3 +42,34 @@ test('new reservation actions are wired to scoped state and persisted app verifi
   assert.match(runner, /testCount: 15/);
   assert.match(source('.github/workflows/web-integration-smoke.yml'), /tests\/reservation-evidence.test.mjs/);
 });
+test('published reservation captures require the completed native run and saved outcomes', () => {
+  const run = JSON.parse(source(base + 'ui-results.json'));
+  assert.equal(run.projectId, 'demo-sgm-local-qa');
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.testCount, 15);
+  assert.equal(run.steps.length, 16);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.deepEqual(run.reservationDecisions, {
+    method: 'app-ui-with-persisted-checks', requestedCancellation: 'cancelled', approvedCancellation: 'cancelled',
+    declinedStatus: 'declined', requestedSeats: 2, approvedSeatsBeforeCancellation: 2, seatsAfterEachDecision: 4,
+    notificationCount: 3, livePayment: false,
+  });
+  for (const [classes, count] of [
+    ['LocalAppFlowTest-LocalDriverFlowTest-LocalLandscapeLoginTest-LocalUiRegressionTest-SearchSessionFlowTest-SearchCriteriaFlowTest', 9],
+    ...['LocalThemeRestartTest', 'LocalMultiSeatSdkTest', 'LocalRideFlowTest', 'LocalChatFlowTest',
+      'LocalConversationDirectoryFlowTest', 'LocalBookingDecisionsFlowTest'].map((name) => [name, 1]),
+  ]) {
+    const raw = source(base + `${classes}-instrumentation.txt`);
+    assert.match(raw, new RegExp(`OK \\(${count} tests?\\)`));
+    assert(!/FAILURES|INSTRUMENTATION_FAILED/.test(raw));
+  }
+  assert.match(source(base + 'general-ui-passed.xml'), /tests="60" failures="0" errors="0" skipped="10"/);
+  const flow = content.flows.find((item) => item.id === 'booking');
+  assert.equal(flow.checkedAt, run.testedAt.slice(0, 10));
+  assert.equal(flow.ui.source, base + 'ui-results.json');
+  assert(flow.ui.groups.includes('reservation-decisions-ui'));
+  assert.equal(flow.status, 'partial');
+  assert.match(flow.remaining, /téléphone/);
+  assert.match(flow.remaining, /remboursements/);
+  assert(!content.blockers.some((item) => item.id === 'booking-decisions'));
+});
