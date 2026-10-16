@@ -53,12 +53,15 @@ class LocalChatNetworkFlowTest {
             activity = scenario
             try {
                 login("parent")
+                phase = "booking-picker"
                 compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).performClick()
                 waitFor(SgmTestTags.ChatNewConversationAction)
                 compose.onNodeWithTag(SgmTestTags.ChatNewConversationAction).performClick()
                 waitForText("Trajet reprise réseau QA")
+                captureLocalUi(compose, "local-chat-network-booking-options.png")
                 compose.onNodeWithText("Trajet reprise réseau QA").performScrollTo().performClick()
                 waitForText("Aucun message.")
+                captureLocalUi(compose, "local-chat-network-empty.png")
                 compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsEnabled().performTextReplacement(body)
                 closeKeyboard()
                 LocalEmulatorNetwork(context, device, session).use { control ->

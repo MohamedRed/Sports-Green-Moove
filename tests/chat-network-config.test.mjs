@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import ts from 'typescript';
 import { assertChatNetworkReceipt } from '../scripts/qa/chat-network-evidence.mjs';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
@@ -83,4 +84,21 @@ test('SDK conversation replays queue composition effects instead of running them
     assert.match(native(name), /createEmptyComposeRule\(effectContext = StandardTestDispatcher\(\)\)/);
   }
   assert.match(read('android/app/build.gradle.kts'), /androidTestImplementation\("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2"\)/);
+});
+
+test('conversation booking statuses match the backend contract without dropping refused reservations', () => {
+  const ast = ts.createSourceFile('types.ts', read('functions/src/domain/types.ts'), ts.ScriptTarget.Latest, true);
+  const declaration = ast.statements.find((node) => ts.isTypeAliasDeclaration(node) && node.name.text === 'BookingStatus');
+  assert(declaration && ts.isUnionTypeNode(declaration.type));
+  const expected = declaration.type.types.map((node) => {
+    assert(ts.isLiteralTypeNode(node) && ts.isStringLiteral(node.literal));
+    return node.literal.text;
+  });
+  const model = read('android/app/src/main/java/be/sportgreenmoove/app/data/ConversationDirectoryModels.kt');
+  const enumeration = model.match(/enum class ConversationBookingStatus[^\n]*\{([\s\S]*?)\n\}/)?.[1];
+  assert(enumeration);
+  const actual = [...enumeration.matchAll(/\w+\("([a-z]+)",/g)].map((match) => match[1]);
+  assert.deepEqual(actual.sort(), expected.sort());
+  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /bookingStatuses.includes\('declined'\)/);
+  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /bookingStatuses.includes\('cancelled'\)/);
 });

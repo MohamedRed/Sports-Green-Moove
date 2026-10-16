@@ -20,7 +20,7 @@ data class ConversationDirectoryPage(
 
 enum class ConversationBookingStatus(val wire: String, val label: String) {
     Requested("requested", "En attente"), Approved("approved", "Acceptée"), Completed("completed", "Terminée"),
-    Cancelled("cancelled", "Annulée"), Rejected("rejected", "Refusée");
+    Cancelled("cancelled", "Annulée"), Declined("declined", "Refusée");
 }
 
 data class ConversationBookingOption(

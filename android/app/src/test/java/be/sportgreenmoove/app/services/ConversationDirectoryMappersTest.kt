@@ -34,4 +34,17 @@ class ConversationDirectoryMappersTest {
         assertThrows(Exception::class.java) { mapConversationDirectory(mapOf("items" to "invalid")) }
         assertThrows(Exception::class.java) { mapConversationBookings(mapOf("items" to listOf(row() + ("bookingStatus" to "unknown")), "nextCursor" to null)) }
     }
+
+    @Test fun parsesAllFiveBookingStatusesInTheSamePageIncludingDeclined() {
+        val expected = linkedMapOf("requested" to "En attente", "approved" to "Acceptée", "declined" to "Refusée",
+            "cancelled" to "Annulée", "completed" to "Terminée")
+        val items = expected.keys.map { row() + mapOf("sourceId" to "booking-$it", "bookingStatus" to it) }
+        val page = mapConversationBookings(mapOf("items" to items, "nextCursor" to "next-page"))
+        assertEquals(expected.keys.toList(), page.items.map { it.status.wire })
+        assertEquals(expected.values.toList(), page.items.map { it.status.label })
+        assertEquals("next-page", page.nextCursor)
+        assertThrows(ProviderConfigurationException::class.java) {
+            mapConversationBookings(mapOf("items" to listOf(row() + ("bookingStatus" to "rejected")), "nextCursor" to null))
+        }
+    }
 }

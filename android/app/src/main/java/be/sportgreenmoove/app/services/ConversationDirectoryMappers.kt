@@ -53,7 +53,8 @@ internal fun mapConversationDirectory(data: Map<*, *>): ConversationDirectoryPag
 
 internal fun mapConversationBookings(data: Map<*, *>): ConversationBookingPage = ConversationBookingPage(data.rows("items").map { row ->
     val ref = row.reference()
-    val status = ConversationBookingStatus.entries.single { it.wire == row.requiredText("bookingStatus") }
+    val wire = row.requiredText("bookingStatus")
+    val status = ConversationBookingStatus.entries.singleOrNull { it.wire == wire } ?: invalid()
     if (ref.kind != ConversationKind.Booking) invalid()
     ConversationBookingOption(ref, row.requiredText("title"), row.requiredText("departureLabel"), status,
         row.optionalText("peerLabel"), row.optionalText("childLabel"))
