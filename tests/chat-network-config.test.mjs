@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import ts from 'typescript';
-import { assertChatNetworkReceipt } from '../scripts/qa/chat-network-evidence.mjs';
+import { assertChatNetworkReceipt, assertCellularRequestSetup } from '../scripts/qa/chat-network-evidence.mjs';
 import { networkRestoreCommands } from '../scripts/qa/local-network-replay.mjs';
 import { finishDisposableCleanup, waitForDisposableDevice } from '../scripts/qa/disposable-device-cleanup.mjs';
 
@@ -54,7 +54,7 @@ test('network control refuses non-demo, non-local and non-disposable targets', (
     'setOf("10.0.2.2", "127.0.0.1", "localhost")']) assert(control.includes(guard));
   assert.match(control, /Socket\(\).use/);
   assert.match(control, /5001/);
-  assert.match(control, /override fun close\(\) \{ restore\(\) \}/);
+  assert.match(control, /override fun close\(\) \{\s*try \{ restore\(\) \}\s*finally/);
   assert.match(control, /finally \{ device.executeShellCommand\("svc data/);
   assert.match(control, /initialData = telephony.isDataEnabled/);
   assert.match(control, /initialWifi = wifi.isWifiEnabled/);
@@ -64,7 +64,7 @@ test('network control refuses non-demo, non-local and non-disposable targets', (
 
 test('app replay requires actual unconfirmed send, retry and cross-account draft assertions', () => {
   const replay = native('LocalChatNetworkFlowTest');
-  assert.match(replay, /LocalEmulatorNetwork\(context, device, session\).use/);
+  assert.match(replay, /val control = LocalEmulatorNetwork\(context, device, session\)[\s\S]*control.use \{/);
   assert.match(replay, /control.offline\(\)/);
   assert.match(replay, /assertFalse\(.*control.backendReachable\(\)\)/);
   assert.match(replay, /waitForText\("Envoi non confirmé\. Réessayez\."/);
@@ -150,7 +150,51 @@ test('new network replays prove cellular handover without weakening the recorded
   const control = native('LocalEmulatorNetwork');
   const disable = control.slice(control.indexOf('fun disconnect('), control.indexOf('fun cellularReady'));
   assert(disable.indexOf('awaitCellular()') < disable.indexOf('svc data disable'));
-  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /A newly recorded run must prove cellular handover/);
+  assert.match(read('scripts/qa/chat-network-evidence.mjs'), /A newly recorded run must prove cellular handover/);
+});
+
+test('cellular preparation is local-only, guarded, bounded and explicitly released without changing the app route', () => {
+  const control = native('LocalEmulatorNetwork');
+  assert(control.indexOf('requestNetwork(request, cellularCallback)') > control.indexOf('getprop ro.kernel.qemu'));
+  assert.match(control, /if \(initialData\) \{[\s\S]*TRANSPORT_CELLULAR[\s\S]*NET_CAPABILITY_INTERNET/);
+  assert.match(control, /unregisterNetworkCallback\(cellularCallback\)\s*cellularRequestRegistered = false/);
+  assert(!/bindProcessToNetwork|NET_CAPABILITY_VALIDATED|settings put global|gsm data/.test(control));
+  assert.match(native('LocalChatNetworkFlowTest'), /compose.waitUntil\(30_000\) \{ control.prepared\(\) \}/);
+  assert.match(read('android/app/src/localDebug/AndroidManifest.xml'), /CHANGE_NETWORK_STATE/);
+  assert(!read('android/app/src/main/AndroidManifest.xml').includes('CHANGE_NETWORK_STATE'));
+  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /assertCellularRequestSetup\(ui\)/);
+});
+
+function preparedReceipt(dataEnabled = true) {
+  const ui = receipt();
+  ui.setupMethod = 'requested-cellular-network'; ui.cellularRequestReleased = true;
+  ui.preparation = { phase: 'preparing', cellularRequestRegistered: dataEnabled };
+  ui.network[0].internetTransports = dataEnabled ? ['wifi', 'cellular'] : ['wifi'];
+  if (dataEnabled) ui.network.splice(1, 0, { phase: 'cellular-ready', wifiEnabled: false,
+    mobileDataEnabled: true, activeNetwork: true, backendReachable: true,
+    internetNetworkCount: 1, internetTransports: ['cellular'] });
+  for (const state of ui.network) {
+    state.cellularRequestRegistered = dataEnabled;
+    if (!dataEnabled) state.mobileDataEnabled = false;
+  }
+  return ui;
+}
+
+test('new receipts require preparation, the requested route, release and the unchanged offline proof', () => {
+  const validate = (ui) => { assertChatNetworkReceipt(ui); assertCellularRequestSetup(ui); };
+  validate(preparedReceipt()); validate(preparedReceipt(false));
+  assert.throws(() => assertCellularRequestSetup(receipt()));
+  for (const mutate of [
+    (ui) => { ui.setupMethod = 'unknown'; }, (ui) => { ui.cellularRequestReleased = false; },
+    (ui) => { ui.preparation.phase = 'before'; }, (ui) => { ui.preparation.cellularRequestRegistered = false; },
+    (ui) => { ui.network[0].internetTransports = ['wifi']; },
+    (ui) => { ui.network[0].internetTransports = ['cellular']; },
+    (ui) => { ui.network[2].cellularRequestRegistered = false; },
+    (ui) => { ui.network[2].mobileDataEnabled = true; },
+    (ui) => { ui.network.splice(1, 1); },
+  ]) {
+    const ui = preparedReceipt(); mutate(ui); assert.throws(() => validate(ui));
+  }
 });
 
 test('host cleanup uses the current run actual state and rejects stale or ambiguous receipts', () => {

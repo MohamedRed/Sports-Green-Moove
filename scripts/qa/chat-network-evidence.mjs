@@ -33,3 +33,18 @@ export function assertChatNetworkReceipt(ui) {
   assert.equal(restored.wifiEnabled, before.wifiEnabled);
   assert.equal(restored.mobileDataEnabled, before.mobileDataEnabled);
 }
+
+export function assertCellularRequestSetup(ui) {
+  assert.equal(ui.setupMethod, 'requested-cellular-network');
+  assert.equal(ui.cellularRequestReleased, true);
+  assert.equal(ui.preparation.phase, 'preparing');
+  const before = ui.network[0];
+  assert.equal(ui.preparation.cellularRequestRegistered, before.mobileDataEnabled);
+  for (const state of ui.network) assert.equal(state.cellularRequestRegistered, before.mobileDataEnabled);
+  if (before.wifiEnabled) assert(before.internetTransports.includes('wifi'));
+  if (before.mobileDataEnabled) {
+    assert(before.internetTransports.includes('cellular'));
+    assert(ui.network.some((state) => state.phase === 'cellular-ready'),
+      'A newly recorded run must prove cellular handover before disabling mobile data');
+  }
+}

@@ -129,3 +129,34 @@ The connection-handling change improves collection/error preservation, but does
 not fix this cellular setup problem. A deterministic, verified cellular test
 configuration is still needed; no retry, skipped assertion, timeout increase or
 alternate network path has been added to turn this failure into a pass.
+
+## Completed Repeat And Explicit Preparation
+
+Run [38880440467](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38880440467)
+at `99748d2493508c5ac099a06a586b4ff8bb76263e` completed all 17 cases
+and 19 coverage groups. The original result, network receipt and instrumentation
+transcript are retained in `completed-repeat/`, run
+`f8ff172474a879116b4a44015a717301`, tested at 2026-10-16T09:37:05.618Z.
+Independent persisted checks again found exactly two intended messages, two read
+notifications and no duplicates. Cleanup completed before results were written.
+This run also began with both Wi-Fi and cellular networks; it does not resolve
+the Wi-Fi-only startup condition or establish general reliability.
+
+The next test setup explicitly requests a cellular INTERNET network, only when
+mobile data was initially enabled, before any radio changes. Android documents
+this public [requestNetwork use case](https://developer.android.com/develop/connectivity/network-ops/reading-network-state)
+while Wi-Fi is connected. CHANGE_NETWORK_STATE is added only to the isolated
+local-debug manifest, not the production app. All disposable/demo/loopback guards
+run before the request. The setup waits at most 30 seconds for actual expected
+transports and a reachable local backend; it does not bind the app to a route,
+change global settings, restart a modem, retry a test or enlarge existing waits.
+
+The request remains registered through the unchanged cellular handover, fully
+offline send and explicit recovery checks. Both actual radio flags must be off,
+all internet networks absent and the backend unreachable before sending offline.
+The original flags are restored and the callback is explicitly unregistered in
+finally, including failed preparation. New receipts must prove the registered
+request, prepared transports and eventual release; historical receipts remain
+immutable and use their original validator. Compilation and unit/configuration
+checks pass, but a complete replay of this new preparation is still required.
+No new physical, production, safety or payment evidence is accepted here.

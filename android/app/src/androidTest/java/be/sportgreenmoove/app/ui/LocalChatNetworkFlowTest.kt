@@ -48,7 +48,9 @@ class LocalChatNetworkFlowTest {
             .put("scope", "native-ui-with-disposable-os-network-control").put("completed", false)
         val network = JSONArray()
         result.put("network", network)
+        result.put("setupMethod", "requested-cellular-network")
         var phase = "login"
+        var networkControl: LocalEmulatorNetwork? = null
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             activity = scenario
             try {
@@ -63,7 +65,13 @@ class LocalChatNetworkFlowTest {
                 waitForText("Aucun message.")
                 captureLocalUi(compose, "local-chat-network-empty.png")
                 typeDraft(body)
-                LocalEmulatorNetwork(context, device, session).use { control ->
+                val control = LocalEmulatorNetwork(context, device, session)
+                networkControl = control
+                control.use {
+                    phase = "network-preparation"
+                    result.put("preparation", control.snapshot("preparing"))
+                    writeResult(context, result)
+                    compose.waitUntil(30_000) { control.prepared() }
                     network.put(control.snapshot("before"))
                     writeResult(context, result)
                     phase = "disconnect"
@@ -101,6 +109,8 @@ class LocalChatNetworkFlowTest {
                     result.put("recoveredSendConfirmed", true)
                     captureLocalUi(compose, "local-chat-network-recovered.png")
                 }
+                assertFalse("The cellular test request must be released", control.cellularRequestRegistered)
+                result.put("cellularRequestReleased", true)
                 phase = "account-draft"
                 typeDraft(privateDraft)
                 assertDraft(privateDraft)
@@ -128,6 +138,7 @@ class LocalChatNetworkFlowTest {
                 writeResult(context, result)
             } catch (failure: Throwable) {
                 result.put("completed", false).put("failedPhase", phase)
+                result.put("cellularRequestReleased", networkControl?.let { !it.cellularRequestRegistered } ?: JSONObject.NULL)
                 writeResult(context, result)
                 if (authenticated) {
                     runCatching { captureLocalUi(compose, "local-chat-network-failed.png") }

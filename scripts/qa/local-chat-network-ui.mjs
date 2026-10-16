@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { call, db, signIn, tripInput } from './local-flow-client.mjs';
-import { assertChatNetworkReceipt } from './chat-network-evidence.mjs';
+import { assertChatNetworkReceipt, assertCellularRequestSetup } from './chat-network-evidence.mjs';
 
 export async function seedChatNetworkUiFixture() {
   const driver = await signIn('d@example.test');
@@ -22,9 +22,8 @@ export async function seedChatNetworkUiFixture() {
 export async function verifyChatNetworkUi(fixture, evidenceDir) {
   const ui = JSON.parse(readFileSync(resolve(evidenceDir, 'local-chat-network-ui.json'), 'utf8'));
   assertChatNetworkReceipt(ui);
+  assertCellularRequestSetup(ui);
   assert.equal(ui.runId, process.env.SGM_LOCAL_RUN_ID);
-  if (ui.network[0].mobileDataEnabled) assert(ui.network.some((state) => state.phase === 'cellular-ready'),
-    'A newly recorded run must prove cellular handover before disabling mobile data');
   const expected = new Map([
     ['Connexion rétablie, rendez-vous confirmé.', 'sgm-qa-parent'],
     ['Bien reçu après la coupure.', 'sgm-qa-driver'],

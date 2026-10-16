@@ -3,6 +3,7 @@ package be.sportgreenmoove.app.ui
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.NetworkRequest
 import android.net.wifi.WifiManager
 import android.telephony.TelephonyManager
 import androidx.test.uiautomator.UiDevice
@@ -25,6 +26,9 @@ internal class LocalEmulatorNetwork(
     private val initialWifi: Boolean
     private val initialData: Boolean
     private var changed = false
+    private val cellularCallback = object : ConnectivityManager.NetworkCallback() {}
+    var cellularRequestRegistered = false
+        private set
 
     init {
         check(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR)
@@ -37,7 +41,18 @@ internal class LocalEmulatorNetwork(
         initialData = telephony.isDataEnabled
         check(connected()) { "The disposable device must start connected" }
         check(backendReachable()) { "The isolated backend must start reachable" }
+        if (initialData) {
+            val request = NetworkRequest.Builder().addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).build()
+            connectivity.requestNetwork(request, cellularCallback)
+            cellularRequestRegistered = true
+        }
     }
+
+    fun prepared() = connected() && backendReachable() &&
+        wifi.isWifiEnabled == initialWifi && telephony.isDataEnabled == initialData &&
+        (!initialWifi || hasInternetTransport(NetworkCapabilities.TRANSPORT_WIFI)) &&
+        (!initialData || hasInternetTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
 
     fun disconnect(awaitCellular: () -> Unit) {
         changed = true
@@ -72,6 +87,7 @@ internal class LocalEmulatorNetwork(
 
     fun snapshot(phase: String) = JSONObject().put("phase", phase).put("wifiEnabled", wifi.isWifiEnabled)
         .put("mobileDataEnabled", telephony.isDataEnabled).put("activeNetwork", connected())
+        .put("cellularRequestRegistered", cellularRequestRegistered)
         .put("internetNetworkCount", internetNetworks()).put("backendReachable", backendReachable())
         .put("internetTransports", org.json.JSONArray(connectivity.allNetworks.mapNotNull { network ->
             connectivity.getNetworkCapabilities(network)?.takeIf { it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) }
@@ -80,7 +96,21 @@ internal class LocalEmulatorNetwork(
                     NetworkCapabilities.TRANSPORT_VPN to "vpn").filter { capabilities.hasTransport(it.first) }.map { it.second } }
         }.flatten().distinct()))
 
-    override fun close() { restore() }
+    override fun close() {
+        try { restore() }
+        finally {
+            if (cellularRequestRegistered) {
+                connectivity.unregisterNetworkCallback(cellularCallback)
+                cellularRequestRegistered = false
+            }
+        }
+    }
+
+    private fun hasInternetTransport(transport: Int) = connectivity.allNetworks.any { network ->
+        connectivity.getNetworkCapabilities(network)?.let { capabilities ->
+            capabilities.hasTransport(transport) && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } == true
+    }
 
     private fun internetNetworks() = connectivity.allNetworks.count { network ->
         connectivity.getNetworkCapabilities(network)?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true

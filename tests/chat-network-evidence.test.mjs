@@ -149,3 +149,19 @@ test('the unresolved cellular-readiness attempt stays incomplete and separate fr
   assert.match(transcript, /ComposeTimeoutException/); assert.match(transcript, /LocalEmulatorNetwork.disconnect/);
   assert.match(transcript, /FAILURES/); assert(!/OK \(/.test(transcript));
 });
+
+test('a later complete replay is retained without claiming the Wi-Fi-only setup or phone scope is resolved', () => {
+  const path = 'docs/release/evidence/local-app-scheduling-2026-10-16/completed-repeat/';
+  const load = (name) => readFileSync(new URL(path + name, root), 'utf8');
+  const run = JSON.parse(load('results.json')), ui = JSON.parse(load('local-chat-network-ui.json'));
+  assertChatNetworkReceipt(ui);
+  assert.equal(run.runId, 'f8ff172474a879116b4a44015a717301'); assert.equal(ui.runId, run.runId);
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.testCount, 17); assert.equal(run.steps.length, 19);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.chatNetwork.messageCount, 2); assert.equal(run.chatNetwork.notificationCount, 2);
+  assert.equal(run.chatNetwork.duplicateMessages, 0);
+  assert.deepEqual(ui.network[0].internetTransports, ['wifi', 'cellular']);
+  assertInstrumentationPassed(load('LocalChatNetworkFlowTest-instrumentation.txt'), 1);
+  assert.equal(content.flows.find((item) => item.id === 'messages').status, 'partial');
+});

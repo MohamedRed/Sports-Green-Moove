@@ -82,7 +82,7 @@ export const content = {
     { date: '2026-10-16', title: 'Les places réservées restent protégées',
       text: 'En local, un conducteur ne peut plus rendre disponibles des places déjà réservées. L’annulation les libère une seule fois.', flow: 'booking' },
     { date: '2026-10-16', title: 'Un essai incomplet',
-      text: 'Un essai a terminé ses actions sans livrer ses captures et contrôles finaux. Il n’est pas compté comme validé.', flow: 'messages' },
+      text: 'Un essai sans ses contrôles finaux reste écarté. Depuis, un nouveau parcours complet passe en local, avec réponse reçue et sans doublon.', flow: 'messages' },
     { date: '2026-10-16', title: 'Un groupe par équipe',
       text: 'Seuls les membres d’une même équipe pourront lire ses messages. Ce parcours reste à construire et à tester.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le message reprend après une coupure',
@@ -132,7 +132,7 @@ export const content = {
   ],
   blockers: [
     { id: 'chat-send-stability', title: 'Rejouer les coupures de connexion',
-      text: 'Un essai complet passe en local ; un autre s’arrête avant l’envoi.',
+      text: 'Deux essais complets passent en local. D’autres se sont arrêtés avant l’envoi ou les contrôles finaux.',
       next: 'Obtenir des essais reproductibles, puis vérifier sur téléphone et après fermeture complète.', source: chatNetworkReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Les échanges seront réservés aux membres d’une même équipe. Ce parcours reste à construire et à tester.',
