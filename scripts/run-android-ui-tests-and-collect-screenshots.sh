@@ -19,6 +19,13 @@ if ! adb pull "$remote_dir" "$output_dir"; then
 fi
 
 if [[ "$test_status" -eq 0 ]]; then
+  adb pull /sdcard/Download/sgm-session-restoration "$output_dir" || exit 1
+  for name in session-restoration-error.png session-restoration-narrow.png; do
+    if [[ ! -s "$output_dir/sgm-session-restoration/$name" ]]; then
+      echo "Missing session restoration screen: $name" >&2
+      exit 1
+    fi
+  done
   screenshot_count="$(find "$output_dir" -type f -name "store-*.png" -size +0c | wc -l | tr -d " ")"
   if [[ "$screenshot_count" -lt 8 ]]; then
     echo "Expected at least 8 non-empty Android store-review screenshots, found $screenshot_count." >&2

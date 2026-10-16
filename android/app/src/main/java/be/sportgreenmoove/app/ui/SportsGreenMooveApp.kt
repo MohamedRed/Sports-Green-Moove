@@ -111,12 +111,25 @@ fun SportsGreenMooveApp() {
             setError = { errorMessage = it },
         )
     }
-    LaunchedEffect(providers) {
-        if (providers.isConfigured) {
-            session = providers.auth.currentSession()
-            if (session != null) {
-                runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
-            }
+    fun logout() {
+        searchController.close()
+        session?.uid?.let { messagesState.removeState(it) }
+        providers.googleAuth.signOut()
+        providers.facebookAuth.signOut()
+        providers.auth.signOut()
+        session = null
+        lastRoleSelectionSessionUid = null
+        role = AppRole.Parent
+        appData.clear()
+        loading = false
+        noticeMessage = null
+        errorMessage = null
+        screen = AppScreen.Home
+    }
+    val restoration = rememberSessionRestoration(providers.auth, providers.isConfigured) { restored ->
+        session = restored
+        if (restored != null) {
+            runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
         }
     }
     LaunchedEffect(session?.uid, session?.roles) {
@@ -142,6 +155,10 @@ fun SportsGreenMooveApp() {
         V2ThemeToggleProvider(darkTheme = darkTheme, onToggle = { darkTheme = !darkTheme }) {
             if (!providers.isConfigured) {
                 ConfigurationRequiredScreen()
+                return@V2ThemeToggleProvider
+            }
+            if (restoration.phase != SessionRestorationPhase.Ready) {
+                SessionRestorationScreen(restoration, ::logout) { session = it }
                 return@V2ThemeToggleProvider
             }
             if (session == null) {
@@ -225,21 +242,7 @@ fun SportsGreenMooveApp() {
                             onRewards = { screen = AppScreen.Rewards },
                             onPayments = { screen = AppScreen.Payments },
                             onOptions = { screen = AppScreen.Options },
-                            onLogout = {
-                                searchController.close()
-                                session?.uid?.let { messagesState.removeState(it) }
-                                providers.googleAuth.signOut()
-                                providers.facebookAuth.signOut()
-                                providers.auth.signOut()
-                                session = null
-                                lastRoleSelectionSessionUid = null
-                                role = AppRole.Parent
-                                appData.clear()
-                                loading = false
-                                noticeMessage = null
-                                errorMessage = null
-                                screen = AppScreen.Home
-                            },
+                            onLogout = ::logout,
                         )
                         AppScreen.Search -> SearchRoute(
                             searchController = searchController,

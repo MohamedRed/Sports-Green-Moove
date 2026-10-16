@@ -41,6 +41,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'La reprise après rotation reste à stabiliser',
+      text: 'Un essai s’est arrêté après rotation. La reprise de session et les coupures restent à vérifier.', flow: 'appearance' },
     { date: '2026-10-16', title: 'L’échange après relancement passe en local',
       text: 'Les trois messages et la réponse du conducteur sont retrouvés. Le nouvel essai de coupure n’a pas pu démarrer.', flow: 'messages' },
     { date: '2026-10-16', title: 'La réponse après relancement reste à confirmer',
@@ -113,6 +115,9 @@ export const content = {
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
   blockers: [
+    { id: 'session-restoration', title: 'Reprendre la session après une erreur',
+      text: 'Un essai s’est arrêté après rotation. Une erreur de connexion ne doit pas fermer l’app ni déconnecter automatiquement.',
+      next: 'Vérifier la reprise de session et la déconnexion choisie après une coupure.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/README.md' },
     { id: 'chat-send-stability', title: 'Reprendre les essais de coupure',
       text: 'L’échange après relancement passe en local. Le nouvel essai de coupure n’a pas pu démarrer.',
       next: 'Rétablir la connexion de test, puis rejouer les coupures et les brouillons après fermeture complète.', source: 'docs/release/evidence/local-chat-restart-recheck-2026-10-16/second-run/README.md' },
