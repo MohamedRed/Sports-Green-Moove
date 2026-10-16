@@ -64,5 +64,5 @@ export async function checkTripDetailsOwnership() {
       seatsAvailable: saved.seatsAvailable, seatsTotal: saved.seatsTotal },
     savedBooking: { status: originalBooking.status, paymentStatus: originalBooking.paymentStatus, seats: originalBooking.seats },
     syntheticPaymentMetadata: true, nativeUi: false, operationalEditingImplemented: false,
-    reconfirmationPolicyApproved: false, livePayment: false, productionDeployed: false };
+    parentReconfirmationImplemented: false, livePayment: false, productionDeployed: false };
 }

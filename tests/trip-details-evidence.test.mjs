@@ -65,6 +65,8 @@ test('signed-in transport reproduces the bypass then verifies every denial again
   assert.match(source, /deepEqual\(await document\('trips', tripId\), original/);
   assert.match(source, /deepEqual\(await document\('bookings', bookingId\), originalBooking/);
   assert.match(source, /response.body.error\?\.status, 'PERMISSION_DENIED'/);
+  assert.match(source, /parentReconfirmationImplemented: false/);
+  assert(!source.includes('reconfirmationPolicyApproved: false'));
 });
 
 test('raw reports remain byte exact and the portal keeps full editing and real settlement open', () => {
@@ -80,10 +82,15 @@ test('raw reports remain byte exact and the portal keeps full editing and real s
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
-  assert.match(blocker.next, /confirmation des parents/); assert.match(blocker.next, /nouveau trajet/);
+  assert.match(blocker.next, /confirmation des parents/); assert.match(blocker.next, /paiements concernés/);
+  assert(!blocker.next.includes('Choisir entre'));
   assert(content.updates.some((item) => item.date === '2026-10-16' && item.flow === 'publication' && /détails réservés/.test(item.title)));
   assert.match(read(base + 'README.md'), /not been deployed to production/);
-  assert.match(read('docs/contracts/trip-editing.md'), /Neither|Do not silently choose either behavior/);
+  const contract = read('docs/contracts/trip-editing.md');
+  assert.match(contract, /owner explicitly selected \*\*fresh parent confirmation\*\*/);
+  assert.match(contract, /full editing flow\s+is still not implemented/);
+  assert.match(contract, /declined change\s+into a cancellation/);
+  assert(content.updates.some((item) => item.flow === 'publication' && /parents confirmeront/.test(item.title) && /reste à construire/.test(item.text)));
 });
 
 test('CI keeps new rules and evidence checks mandatory alongside the complete service suite', () => {

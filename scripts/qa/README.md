@@ -42,7 +42,9 @@ That scenario uses authenticated local REST writes against a reserved trip with
 synthetic paid metadata. It denies operational mutations, removals and an atomic
 mixed title/price write, then independently checks unchanged booking/trip state
 and the preserved owner-title edit. It does not implement the trip editor or
-choose the outstanding post-reservation parent-confirmation policy.
+the now-approved post-reservation parent-confirmation policy. Historical
+reports retain the policy state captured before that product decision; current
+transport runs report implementation scope, not a product-approval assertion.
 
 ## App And Management Screens
 

@@ -36,9 +36,11 @@ capacity and cancellation. The local runner tears down its own services.
 
 ## Scope Still Open
 
-The full trip-editing flow is **not implemented**. Whether parents must reconfirm
-changed time/route/price or the driver must cancel and publish anew is still
-awaiting an explicit product decision. Neither policy has been silently selected.
+The full trip-editing flow is **not implemented**. After this report's run, the
+owner explicitly selected fresh parent confirmation of changed time/route/price.
+The original `reconfirmationPolicyApproved: false` is retained byte-for-byte
+because it describes the earlier run, not the later decision. No parent editing
+screen or confirmation transaction has been executed by these checks.
 See `docs/contracts/trip-editing.md` for the remaining end-to-end contract.
 
 This fix has not been deployed to production. No live payment/refund, physical
