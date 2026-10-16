@@ -59,7 +59,7 @@ test('the native booking gateway uses the selected seat payload and requires per
   assert.match(verifier, /assert.equal\(snapshot.size, 1/);
   assert.match(verifier, /assert.equal\(booking.get\('seats'\), 2\)/);
   const local = readFileSync(new URL('../scripts/qa/run-local-flows.mjs', import.meta.url), 'utf8');
-  assert.match(local, /assert.equal\(result.steps.length, 19\)/);
+  assert.match(local, /assert.equal\(result.steps.length, 20\)/);
 });
 
 test('mock positions require an explicitly disposable emulator and a local-only manifest', () => {

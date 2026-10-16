@@ -9,6 +9,8 @@ export type RidePaymentBookingSnapshot = {
   seats?: number;
   paymentIntentId?: string;
   paymentStatus?: string;
+  status?: string;
+  refundStatus?: string;
 };
 
 export type RidePaymentTripSnapshot = {

@@ -1,9 +1,10 @@
+import { randomUUID } from "node:crypto";
 import type { Firestore } from "firebase-admin/firestore";
 import type Stripe from "stripe";
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from "vitest";
 
 const PROJECT_ID = "sports-green-moove-rules-test";
-const COLLECTIONS = ["bookings", "trips", "rewardLedger", "reports", "stripeAccounts"];
+const COLLECTIONS = ["bookings", "trips", "rewardLedger", "reports", "stripeAccounts", "tripCancellations", "notifications", "rideSessions"];
 
 let firestore: Firestore;
 let reconcileStripeEvent: (event: Stripe.Event) => Promise<void>;
@@ -28,6 +29,46 @@ afterEach(async () => {
 });
 
 describe("Stripe webhook reconciliation flow", () => {
+  it.each(["payment-first", "cancellation-first", "concurrent"])("preserves a closed booking and pending refund across %s", async (order) => {
+    await seedRidePaymentContext({ status: "approved" });
+    await firestore.doc("trips/trip-1").update({ driverUserId: "driver-1", status: "published", seatsTotal: 4, seatsAvailable: 2 });
+    const { previewTripCancellation, cancelPublishedTrip } = await import("../functions/src/services/tripCancellation.js");
+    const preview = await previewTripCancellation("trip-1", "driver-1", false);
+    const input = { tripId: "trip-1", expectedRevision: preview.revision!, requestId: randomUUID(), reason: "Local cancellation" };
+    const payment = () => reconcileStripeEvent(stripeEvent("evt_cancellation_race", "payment_intent.succeeded", ridePaymentIntent()));
+    const cancel = () => cancelPublishedTrip(input, "driver-1", false);
+    if (order === "payment-first") { await payment(); input.expectedRevision = (await previewTripCancellation("trip-1", "driver-1", false)).revision!; await cancel(); }
+    else if (order === "cancellation-first") { await cancel(); await payment(); }
+    else {
+      const results = await Promise.allSettled([payment(), cancel()]);
+      for (const result of results) if (result.status === "rejected") expect(result.reason.code).toBe("aborted");
+      if ((await firestore.doc("trips/trip-1").get()).get("status") !== "cancelled") {
+        input.expectedRevision = (await previewTripCancellation("trip-1", "driver-1", false)).revision!; await cancel();
+      }
+    }
+    expect((await firestore.doc("bookings/booking-1").get()).data()).toMatchObject({ status: "cancelled", paymentStatus: "paid", refundStatus: "pending" });
+    expect((await firestore.doc("trips/trip-1").get()).data()).toMatchObject({ status: "cancelled", seatsAvailable: 4 });
+    expect((await firestore.collection("rewardLedger").get()).size).toBe(2);
+    expect((await firestore.collection("notifications").get()).size).toBe(1);
+  });
+
+  it.each([undefined, "notRequired", "pending"])("keeps a cancelled booking closed and flags a late payment for refund: %s", async (refundStatus) => {
+    await seedRidePaymentContext({ status: "cancelled", ...(refundStatus ? { refundStatus } : {}) });
+    const event = stripeEvent("evt_late_payment", "payment_intent.succeeded", ridePaymentIntent());
+    await reconcileStripeEvent(event);
+    await reconcileStripeEvent(event);
+    expect((await firestore.doc("bookings/booking-1").get()).data()).toMatchObject({
+      status: "cancelled", paymentStatus: "paid", refundStatus: "pending", amountPaidCents: 500,
+    });
+    expect((await firestore.collection("rewardLedger").get()).size).toBe(2);
+  });
+
+  it("does not reopen a settled refund from a different success event for the same payment", async () => {
+    await seedRidePaymentContext({ status: "cancelled", paymentStatus: "paid", refundStatus: "refunded" });
+    await reconcileStripeEvent(stripeEvent("evt_paid_again", "payment_intent.succeeded", ridePaymentIntent()));
+    expect((await firestore.doc("bookings/booking-1").get()).data()).toMatchObject({ status: "cancelled", refundStatus: "refunded" });
+  });
+
   it("marks a validated ride payment as paid, writes ledger entries, and is idempotent", async () => {
     await seedRidePaymentContext();
 
