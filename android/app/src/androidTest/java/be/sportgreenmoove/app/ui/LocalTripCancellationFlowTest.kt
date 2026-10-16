@@ -62,16 +62,18 @@ class LocalTripCancellationFlowTest {
                     screenshot(device, "local-trip-cancel-review-landscape.png")
                     compose.onNodeWithTag("trip.cancel.confirm").performClick()
                     waitFor("trip.cancel.recorded")
+                    compose.waitUntil(60_000) { runCatching { compose.onNodeWithTag("trip.cancel.keep").assertIsEnabled() }.isSuccess }
+                    compose.onNodeWithTag("trip.cancel.error").assertDoesNotExist()
                     compose.onNodeWithTag("trip.cancel.title").assertTextEquals("Trajet annulé")
                     compose.onNodeWithTag("trip.cancel.refunds").performScrollTo().assertIsDisplayed()
                     screenshot(device, "local-trip-cancel-confirmed-landscape.png")
                     compose.onNodeWithTag("trip.cancel.confirm").assertDoesNotExist()
-                    compose.waitUntil(60_000) { runCatching { compose.onNodeWithTag("trip.cancel.keep").assertIsEnabled() }.isSuccess }
                     compose.onNodeWithTag("trip.cancel.keep").performClick()
                 } finally { activity.onActivity { it.requestedOrientation = originalOrientation } }
                 device.setOrientationNatural()
                 compose.waitUntil(15_000) { context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT && device.displayWidth < device.displayHeight }
-                compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
+                waitFor(SgmTestTags.BottomNavTripsAction)
+                compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).assertIsDisplayed().performClick()
                 compose.onNodeWithText("PASSÉS").performClick()
                 waitFor("trip.cancelled.$tripId")
                 compose.onNodeWithTag("trip.cancelled.$tripId").performScrollTo().assertTextEquals("Annulé")

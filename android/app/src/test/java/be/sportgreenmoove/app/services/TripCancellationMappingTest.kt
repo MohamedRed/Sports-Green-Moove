@@ -30,7 +30,8 @@ class TripCancellationMappingTest {
 
     @Test fun rejectsMalformedOrUnrelatedReceipts() {
         for ((key, value) in listOf("bookingIds" to listOf("same", "same"), "bookingIds" to listOf("one"),
-            "bookingIds" to listOf("one", 2), "seatsAvailable" to 9, "seatsAvailable" to 0.5,
+            "bookingIds" to listOf("one", 2), "bookingIds" to listOf("one", "__reserved__"),
+            "bookingIds" to listOf("one", "x".repeat(257)), "seatsAvailable" to 9, "seatsAvailable" to 0.5,
             "actorUserId" to "other", "requestId" to java.util.UUID.randomUUID().toString(),
             "expectedRevision" to "b".repeat(64), "reason" to "Other reason", "cancelledAt" to "not-a-date")) {
             rejects { tripCancellationReceipt(receipt + (key to value), request, "driver") }

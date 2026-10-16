@@ -48,3 +48,12 @@ test('production and test cancellation modules stay below the repository limit',
     assert(read(`${android}${path}`).split('\n').length < 300, path);
   }
 });
+
+test('rotation requires the recreated authenticated app before tapping navigation again', () => {
+  const replay = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripCancellationFlowTest.kt');
+  const portrait = replay.slice(replay.indexOf('device.setOrientationNatural()'), replay.indexOf('logout()'));
+  assert(portrait.indexOf('waitFor(SgmTestTags.BottomNavTripsAction)') > portrait.indexOf('Configuration.ORIENTATION_PORTRAIT'));
+  assert(portrait.indexOf('waitFor(SgmTestTags.BottomNavTripsAction)') < portrait.indexOf('.assertIsDisplayed().performClick()'));
+  for (const check of ['trip.cancelled.$tripId', 'reservation.status.$id', 'Remboursement en attente', 'runtime.firebase.getInbox()'])
+    assert(replay.includes(check));
+});
