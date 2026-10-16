@@ -89,9 +89,14 @@ test('the additional cold-start stages retain all prior cases and require UI plu
   const prepare = runner.indexOf("instrument(['LocalChatProcessRestartTest#prepareConfirmedConversation'], 1)");
   const stop = runner.indexOf('stopDisposableChatProcess(adb, serial, session.runId, evidenceDir)');
   const resume = runner.indexOf("instrument(['LocalChatProcessRestartTest#reopenConfirmedConversation'], 1)");
-  assert(prepare > runner.indexOf('verifyChatNetworkUi(networkFixture, evidenceDir)'));
+  assert(prepare > runner.indexOf('verifyNativeMembershipUi()'));
   assert(stop > prepare && resume > stop);
-  assert(runner.indexOf('capturesCollected = true') > resume);
+  const verifiedRestart = runner.indexOf('const chatRestart = await verifyChatRestartUi');
+  const network = runner.indexOf('replayWithNetworkCleanup(adb, serial, session.runId, instrument)');
+  assert(verifiedRestart > resume && network > verifiedRestart);
+  assert(runner.indexOf('capturesCollected = true') > network);
+  assert(runner.indexOf('const chatNetwork = await verifyChatNetworkUi') > network);
+  assert(runner.indexOf("writeFileSync(resolve(evidenceDir, 'results.json')") > network);
   assert.match(runner, /const chatRestart = await verifyChatRestartUi/);
   assert.match(runner, /testCount: 19/); assert.match(runner, /'chat-confirmed-process-restart-ui'/);
   const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatProcessRestartTest.kt');

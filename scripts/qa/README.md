@@ -94,8 +94,11 @@ without logging in, reopen the confirmed history and send a new message. The
 driver replies through the app, then the parent reads it. Final persisted checks
 require three unique messages, three addressed/read notifications, unchanged
 original message identity/time and zero unread count for both actors. Receipts
-and captures are collected again after both stages; failures cannot reuse the
-earlier network capture collection as proof that later evidence was pulled.
+and captures are collected after both stages. The network-disruption case runs
+last, after independent restart verification, so a missing device subscription
+cannot prevent the unrelated restart stages from running. Its checks remain
+mandatory, and evidence collection remains pending until that final case ends;
+neither an earlier capture pull nor a restart pass proves a complete suite.
 This is a confirmed-message cold-start test, not activity recreation or proof
 that pending/unsent drafts survive force-stop. It does not close physical-device,
 token-expiry, post-commit acknowledgement-loss or push requirements. Compilation

@@ -75,11 +75,6 @@ try {
   const reservationDecisions = await verifyReservationUi(reservationFixture);
   instrument(['LocalMembershipFlowTest'], 1);
   const membershipRefresh = await verifyNativeMembershipUi();
-  const networkFixture = await seedChatNetworkUiFixture();
-  replayWithNetworkCleanup(adb, serial, session.runId, instrument);
-  waitForDisposableDevice(adb, serial);
-  run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
-  const chatNetwork = await verifyChatNetworkUi(networkFixture, evidenceDir);
   const restartFixture = await seedChatRestartUiFixture();
   instrument(['LocalChatProcessRestartTest#prepareConfirmedConversation'], 1);
   const restartCheckpoint = await checkpointChatRestart(restartFixture, evidenceDir);
@@ -87,8 +82,13 @@ try {
   instrument(['LocalChatProcessRestartTest#reopenConfirmedConversation'], 1);
   waitForDisposableDevice(adb, serial);
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
-  capturesCollected = true;
   const chatRestart = await verifyChatRestartUi(restartFixture, restartCheckpoint, evidenceDir);
+  const networkFixture = await seedChatNetworkUiFixture();
+  replayWithNetworkCleanup(adb, serial, session.runId, instrument);
+  waitForDisposableDevice(adb, serial);
+  run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
+  capturesCollected = true;
+  const chatNetwork = await verifyChatNetworkUi(networkFixture, evidenceDir);
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
     'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui',
     'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui',
