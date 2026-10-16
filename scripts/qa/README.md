@@ -65,7 +65,7 @@ peer sends one message while the parent thread stays open; this is not a claim
 of two physical phones or push delivery. An unrelated synthetic account cannot
 open the thread. Independent stored-message, recipient notification and unread
 checks must pass before the runner writes its result. The current suite requires
-17 instrumentation cases and records 19 coverage groups; these are not the same
+19 instrumentation cases and records 20 coverage groups; these are not the same
 count. Older evidence retains the exact counts of its original run.
 
 `LocalChatNetworkFlowTest` disables Wi-Fi and mobile data on the explicitly
@@ -82,6 +82,25 @@ setting keys. It is saved with the run ID before changing either transport. Host
 cleanup rejects stale/ambiguous baselines; failed disconnections retain their
 observed network state before restoration. No offline result is accepted unless
 the actual network and endpoint checks both pass.
+
+`LocalChatProcessRestartTest` adds two method-selected instrumentation stages
+around a host-issued force-stop of the local-only app. The first signs in and
+sends one message through the app; an independent database checkpoint confirms
+that exact message and request ID before the process boundary. The host checks
+the disposable device, local app session and same-run receipt before stopping
+the app, confirms no app process remains, and never clears app data or credentials.
+The resume stage must have a different process ID, reach the signed-in home
+without logging in, reopen the confirmed history and send a new message. The
+driver replies through the app, then the parent reads it. Final persisted checks
+require three unique messages, three addressed/read notifications, unchanged
+original message identity/time and zero unread count for both actors. Receipts
+and captures are collected again after both stages; failures cannot reuse the
+earlier network capture collection as proof that later evidence was pulled.
+This is a confirmed-message cold-start test, not activity recreation or proof
+that pending/unsent drafts survive force-stop. It does not close physical-device,
+token-expiry, post-commit acknowledgement-loss or push requirements. Compilation
+and configuration checks alone do not accept this new app flow; a complete
+nineteen-case replay is still required.
 
 `LocalMembershipFlowTest` requests two new club memberships through the app,
 then uses a separate authenticated local manager SDK session to approve/refuse
@@ -104,8 +123,8 @@ notification IDs are not guessed or cleared. Thread history is paginated, while
 the existing inbox still discovers conversations from only its latest 50 messages.
 There is no offline send queue, fabricated delivery state, device push proof or
 iOS conversation implementation in this change.
-The app opens an existing inbox preview; initiating a new conversation directly
-from a reservation remains unimplemented and is not part of this proof.
+The Messages picker can start an exchange for an accessible reservation; its
+first-message and archived-directory evidence remains separately scoped.
 
 Ride lifecycle deployment requires the checked-in Firestore rules and indexes
 before the new app queries run, followed by the updated callables. The trip's

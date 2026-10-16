@@ -14,6 +14,8 @@ import { verifyNativeMembershipUi } from './local-native-membership.mjs';
 import { seedChatNetworkUiFixture, verifyChatNetworkUi } from './local-chat-network-ui.mjs';
 import { replayWithNetworkCleanup } from './local-network-replay.mjs';
 import { finishDisposableCleanup, waitForDisposableDevice } from './disposable-device-cleanup.mjs';
+import { seedChatRestartUiFixture, checkpointChatRestart, verifyChatRestartUi } from './local-chat-restart-ui.mjs';
+import { stopDisposableChatProcess } from './local-chat-process-stop.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -77,16 +79,24 @@ try {
   replayWithNetworkCleanup(adb, serial, session.runId, instrument);
   waitForDisposableDevice(adb, serial);
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
-  capturesCollected = true;
   const chatNetwork = await verifyChatNetworkUi(networkFixture, evidenceDir);
+  const restartFixture = await seedChatRestartUiFixture();
+  instrument(['LocalChatProcessRestartTest#prepareConfirmedConversation'], 1);
+  const restartCheckpoint = await checkpointChatRestart(restartFixture, evidenceDir);
+  stopDisposableChatProcess(adb, serial, session.runId, evidenceDir);
+  instrument(['LocalChatProcessRestartTest#reopenConfirmedConversation'], 1);
+  waitForDisposableDevice(adb, serial);
+  run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
+  capturesCollected = true;
+  const chatRestart = await verifyChatRestartUi(restartFixture, restartCheckpoint, evidenceDir);
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
     'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui',
     'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui',
-    'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui']
+    'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui']
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 17, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, membershipRefresh, chatNetwork,
+    testCount: 19, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, membershipRefresh, chatNetwork, chatRestart,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },
     limits: ['Synthetic mock positions and pre-granted emulator permissions only.',

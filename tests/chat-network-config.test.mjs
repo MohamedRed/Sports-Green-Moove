@@ -216,7 +216,7 @@ test('all isolated SDK app replays share queued composition effects rather than 
   assert.match(native('LocalComposeRule'), /createEmptyComposeRule\(effectContext = StandardTestDispatcher\(\)\)/);
   for (const name of ['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalBookingDecisionsFlowTest',
     'LocalConversationDirectoryFlowTest', 'LocalChatFlowTest', 'LocalChatNetworkFlowTest',
-    'LocalRideFlowTest', 'LocalMembershipFlowTest', 'LocalLandscapeLoginTest', 'LocalThemeRestartTest']) {
+    'LocalRideFlowTest', 'LocalMembershipFlowTest', 'LocalLandscapeLoginTest', 'LocalThemeRestartTest', 'LocalChatProcessRestartTest']) {
     assert.match(native(name), /@get:Rule val compose = createLocalAppComposeRule\(\)/);
     assert(!native(name).includes('createEmptyComposeRule'));
   }

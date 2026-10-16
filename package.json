@@ -11,7 +11,7 @@
     "build": "npm run build --workspace functions && npm run build --workspace admin && npm run build --workspace website",
     "build:website": "npm run build --workspace website",
     "test": "npm run test --workspace functions",
-    "test:local-flow-isolation": "node --test tests/local-emulator-config.test.mjs tests/local-egress-guard.test.mjs tests/local-ui-config.test.mjs tests/disposable-android.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/chat-index-command.test.mjs",
+    "test:local-flow-isolation": "node --test tests/local-emulator-config.test.mjs tests/local-egress-guard.test.mjs tests/local-ui-config.test.mjs tests/disposable-android.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/chat-index-command.test.mjs",
     "test:local-flows": "node scripts/qa/run-local-flows.mjs",
     "test:local-android-flows": "node scripts/qa/run-local-android-flows.mjs",
     "test:android-native": "cd android && ./gradlew :app:testDebugUnitTest --no-daemon",
