@@ -41,3 +41,26 @@ groups. Screen captures and result JSON will only be accepted after an actual
 completed run. Physical devices, push delivery, network recovery, child enrolment,
 team assignment and complete club discovery remain unverified. No final release
 manifest acceptance is changed.
+
+## First Replay And Reviewer Session
+
+[Run 38853625167](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38853625167)
+at `4ed57e8` passes the general component suite: `general-ui-passed.xml` records
+64 cases, zero failures/errors and 11 intentional skips. The three Groups layout
+cases pass, including 320dp/1.3x text. The original XML is retained compressed;
+the readable copy normalizes only CRLF and trailing spaces in diagnostic lines.
+
+The isolated membership case reaches its second manager-session creation and
+fails with `FirebaseApp was deleted` inside `FirebaseAuth.useEmulator`. The helper
+created/deleted a separate reviewer app for each decision; the second setup still
+encounters the deleted instance in SDK emulator configuration. No complete
+16-case result was produced. `reviewer-session-failed.txt` removes only extra
+terminal blank lines; the compressed original is unchanged.
+
+The reviewer now has one explicit lifetime across all three decisions, with
+emulator setup/sign-in once and cleanup at the end, including setup-failure
+cleanup. App-side requests, refresh/re-request/recreation/account assertions,
+independent audits and strict case counts remain unchanged. A full replay after
+this harness correction is still required. The separate web smoke failure was
+an old current-run expectation of 15 cases, not a changed historical receipt;
+that expectation now includes the new case while original evidence stays intact.

@@ -37,22 +37,24 @@ class LocalMembershipFlowTest {
             pending(approved)
             join(rejected)
             pending(rejected)
-            runBlocking {
-                reviewLocalMembership(context, session, approved, "approve")
-                reviewLocalMembership(context, session, rejected, "reject")
+            runBlocking { LocalMembershipReviewer.open(context, session) }.use { reviewer ->
+                runBlocking {
+                    reviewer.review(approved, "approve")
+                    reviewer.review(rejected, "reject")
+                }
+                pending(approved)
+                refresh()
+                member(approved)
+                waitFor(hasText("Refusée") and hasAnyAncestor(hasTestTag("groups.discovery.$rejected")))
+                compose.onNodeWithTag("groups.discovery.$rejected").performScrollTo().assertIsDisplayed()
+                captureLocalUi(compose, "local-membership-approved-refused.png")
+                join(rejected)
+                pending(rejected)
+                runBlocking { reviewer.review(rejected, "approve") }
+                refresh()
+                member(approved)
+                member(rejected)
             }
-            pending(approved)
-            refresh()
-            member(approved)
-            waitFor(hasText("Refusée") and hasAnyAncestor(hasTestTag("groups.discovery.$rejected")))
-            compose.onNodeWithTag("groups.discovery.$rejected").performScrollTo().assertIsDisplayed()
-            captureLocalUi(compose, "local-membership-approved-refused.png")
-            join(rejected)
-            pending(rejected)
-            runBlocking { reviewLocalMembership(context, session, rejected, "approve") }
-            refresh()
-            member(approved)
-            member(rejected)
             activity.recreate()
             member(approved)
             member(rejected)
