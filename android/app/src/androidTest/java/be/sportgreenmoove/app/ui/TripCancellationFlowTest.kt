@@ -1,8 +1,13 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.activity.ComponentActivity
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.unit.Density
@@ -82,6 +87,23 @@ class TripCancellationFlowTest {
         compose.onNodeWithTag("trip.cancel.recorded").performScrollTo().assertTextEquals("Match reporté")
         compose.onNodeWithTag("trip.cancel.confirm").assertDoesNotExist()
         assertEquals(1, gateway.requests.size)
+    }
+
+    @Test fun cancelledHistoryExposesItsStatusWithoutADisabledTripAction() {
+        var starts = 0
+        compose.setSgmUiTestContent {
+            Column {
+                Column(Modifier.clickable(enabled = false) {}) {
+                    Text("Annulé", Modifier.testTag("legacy.cancelled.status"))
+                }
+                TripsCard(trip.copy(status = TripStatus.Past, cancelled = true), { starts++ }, null)
+            }
+        }
+        compose.onNodeWithTag("legacy.cancelled.status").assertDoesNotExist()
+        compose.onNodeWithTag("legacy.cancelled.status", useUnmergedTree = true).assertTextEquals("Annulé")
+        compose.onNodeWithTag("trip.cancelled.${trip.id}").assertIsDisplayed().assertTextEquals("Annulé").assertHasNoClickAction()
+        compose.onNodeWithTag("trip.cancelled.${trip.id}").performClick()
+        assertEquals(0, starts)
     }
     private fun waitFor(tag: String) = compose.waitUntil(5_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
 }

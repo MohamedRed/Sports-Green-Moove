@@ -27,7 +27,8 @@ import be.sportgreenmoove.app.design.*
 internal fun TripsCard(trip: TripSummary, onClick: () -> Unit, onCancel: (() -> Unit)?) {
     Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(SgmRadius.LG)).background(Sgm.colors.bgCard)
         .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))) {
-        Column(Modifier.fillMaxWidth().clickable(enabled = trip.status != TripStatus.Past && !trip.cancelled, onClick = onClick)) {
+        val action = if (trip.status != TripStatus.Past && !trip.cancelled) Modifier.clickable(onClick = onClick) else Modifier
+        Column(Modifier.fillMaxWidth().then(action)) {
             Row(Modifier.fillMaxWidth().background(SgmColor.HeroStart).padding(horizontal = 14.dp, vertical = 10.dp),
                 verticalAlignment = Alignment.CenterVertically) {
                 Text(trip.sport.uppercase(), style = SgmType.Eyebrow.copy(color = SgmColor.GreenLight, fontSize = 11.sp, letterSpacing = 0.14.em),

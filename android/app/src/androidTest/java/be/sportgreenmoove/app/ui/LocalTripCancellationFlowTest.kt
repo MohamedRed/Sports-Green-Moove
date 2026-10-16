@@ -75,7 +75,20 @@ class LocalTripCancellationFlowTest {
                 waitFor(SgmTestTags.BottomNavTripsAction)
                 compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).assertIsDisplayed().performClick()
                 compose.onNodeWithText("PASSÉS").performClick()
-                waitFor("trip.cancelled.$tripId")
+                try { waitFor("trip.cancelled.$tripId") }
+                catch (failure: Throwable) {
+                    runCatching { captureLocalUi(compose, "local-trip-history-not-confirmed.png") }
+                    runCatching {
+                        val diagnostic = JSONObject().put("tripId", tripId)
+                        try {
+                            val saved = runBlocking { runtime.firebase.searchTrips().singleOrNull { it.id == tripId } }
+                            diagnostic.put("query", "completed").put("found", saved != null)
+                                .put("cancelled", saved?.cancelled).put("status", saved?.status?.name)
+                        } catch (_: Exception) { diagnostic.put("query", "failed") }
+                        File(context.getExternalFilesDir(null), "local-ui-evidence/local-trip-history-diagnostic.json").writeText(diagnostic.toString(2))
+                    }
+                    throw failure
+                }
                 compose.onNodeWithTag("trip.cancelled.$tripId").performScrollTo().assertTextEquals("Annulé")
                 compose.onNodeWithTag("trip.cancel.$tripId").assertDoesNotExist()
                 captureLocalUi(compose, "local-trip-cancelled-history.png")

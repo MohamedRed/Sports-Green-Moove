@@ -57,3 +57,14 @@ test('rotation requires the recreated authenticated app before tapping navigatio
   for (const check of ['trip.cancelled.$tripId', 'reservation.status.$id', 'Remboursement en attente', 'runtime.firebase.getInbox()'])
     assert(replay.includes(check));
 });
+
+test('closed history is non-interactive instead of hiding status under disabled merged card semantics', () => {
+  const cards = read(`${android}ui/TripListCards.kt`);
+  assert(!cards.includes('.clickable(enabled ='));
+  assert(cards.includes('trip.status != TripStatus.Past && !trip.cancelled'));
+  const test = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripCancellationFlowTest.kt');
+  for (const marker of ['cancelledHistoryExposesItsStatusWithoutADisabledTripAction',
+    'legacy.cancelled.status', 'useUnmergedTree = true', 'assertHasNoClickAction()']) assert(test.includes(marker));
+  const replay = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripCancellationFlowTest.kt');
+  assert(replay.includes('local-trip-history-diagnostic.json'));
+});
