@@ -1,0 +1,2 @@
+component-before.xml -text whitespace=cr-at-eol
+attempt-two-instrumentation/*.txt -text whitespace=-blank-at-eof
