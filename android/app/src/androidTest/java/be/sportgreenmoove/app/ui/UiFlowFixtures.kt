@@ -136,6 +136,8 @@ class UiFlowFirebaseGateway : FirebaseGateway {
         private set
 
     override val isConfigured = true
+    override suspend fun previewTripCancellation(tripId: String): be.sportgreenmoove.app.data.TripCancellationPreview = error("Unused cancellation preview in this fixture")
+    override suspend fun cancelTrip(request: be.sportgreenmoove.app.data.TripCancellationRequest): be.sportgreenmoove.app.data.TripCancellationReceipt = error("Unused cancellation in this fixture")
     override suspend fun searchTrips() = listOf(UiFlowFixtures.trip)
     override suspend fun listChildren() = listOf(UiFlowFixtures.child)
     override suspend fun listClubSummaries() = UiFlowFixtures.clubs

@@ -34,9 +34,14 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     private val groupsGateway = FirebaseAndroidGroupsGateway(firestore)
     private val ledgerGateway = FirebaseAndroidLedgerGateway(firestore)
     private val tripGateway = FirebaseAndroidTripGateway(firestore)
+    private val cancellationGateway = FirebaseAndroidTripCancellationGateway(functions)
     override val isConfigured: Boolean = true
 
     override suspend fun searchTrips(): List<TripSummary> = tripGateway.listTrips()
+
+    override suspend fun previewTripCancellation(tripId: String) = cancellationGateway.previewTripCancellation(tripId)
+
+    override suspend fun cancelTrip(request: be.sportgreenmoove.app.data.TripCancellationRequest) = cancellationGateway.cancelTrip(request)
 
     override suspend fun listChildren(): List<ChildSummary> {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return emptyList()

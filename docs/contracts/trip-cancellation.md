@@ -4,8 +4,9 @@
 
 The callable service supports cancellation of a published/full trip by its own
 driver, or by an explicitly authorized administrator. It does not cancel active
-rides. The Android confirmation screen and replay remain outstanding; exporting
-the service is not proof that a user can perform this flow in the app.
+rides. Android now connects the driver list to an explicit confirmation screen.
+Its new isolated app replay must pass before it can count as app-flow evidence;
+exporting the service or compiling the screen alone is not that proof.
 
 `getTripCancellation({ tripId })` returns `ready`, a revision, the number of
 requested/approved reservations and the number already paid. A cancelled trip
@@ -52,6 +53,30 @@ Notices are stored atomically and exposed in the parent's inbox. Push delivery
 and actual settlement remain separate release requirements. Existing payment
 intent creation/provider races and settlement must be verified before paid
 cancellation can be considered release-ready.
+
+## Android Confirmation
+
+Only the owning driver sees the cancellation command for an upcoming trip without
+the currently active ride. Published and fully booked owned trips are available;
+cancelled owned trips remain in the past tab with an explicit cancelled status.
+The server remains authoritative for role, ownership and ride state.
+
+The confirmation loads current reservation/refund counts before accepting a
+5-300 character reason. It sends a fresh UUID plus the reviewed revision and never
+writes trip/bookings directly. An unknown reply locks editing and submission until
+an explicit preview refresh. An unchanged ready revision retains the exact request;
+a changed revision requires review and a new request. A recorded cancellation
+recovered by refresh is displayed without another mutation. No automatic retry,
+offline queue or invented receipt is used. A confirmed mutation survives a failed
+app refresh and remains distinct from an unconfirmed request. Closing or changing
+account/role invalidates late callbacks and clears the draft.
+
+Local replay uses two synthetic reservations for one parent (two approved seats
+plus one requested). Paid metadata is injected only in the isolated fixture, not
+by a real charge. The app checks keeping the trip, landscape confirmation, driver
+history, parent cancellations and pending refund. Independent host checks require
+the actual receipt, original three offered seats restored, one notice, exact
+idempotency and rejection of rebooking, approval and starting after cancellation.
 
 ## Verification
 

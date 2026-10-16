@@ -17,13 +17,19 @@ internal class FirebaseAndroidTripGateway(
         val completedOwned = firestore.collection("trips").whereEqualTo("driverUserId", uid)
             .whereEqualTo("status", "completed").orderBy("completedAt", Query.Direction.DESCENDING)
             .limit(30).get().await().documents
+        val fullOwned = firestore.collection("trips").whereEqualTo("driverUserId", uid)
+            .whereEqualTo("status", "full").orderBy("departureAt").limit(30).get().await().documents
+        val cancelledOwned = firestore.collection("trips").whereEqualTo("driverUserId", uid)
+            .whereEqualTo("status", "cancelled").orderBy("cancelledAt", Query.Direction.DESCENDING)
+            .limit(30).get().await().documents
         val bookings = firestore.collection("bookings").whereEqualTo("parentUserId", uid)
             .whereEqualTo("status", "completed").orderBy("createdAt", Query.Direction.DESCENDING)
             .limit(30).get().await().documents
         val completedBooked = bookings.mapNotNull { it.getString("tripId") }.distinct().map { id ->
             firestore.collection("trips").document(id).get().await()
         }.filter { it.exists() && it.getString("status") == "completed" }
-        return (published + completedOwned + completedBooked).distinctBy { it.id }
+        check(auth.currentUser?.uid == uid) { "La session a changé." }
+        return (published + fullOwned + completedOwned + cancelledOwned + completedBooked).distinctBy { it.id }
             .map { mapTrip(it.id, it.data.orEmpty()) }
     }
 }

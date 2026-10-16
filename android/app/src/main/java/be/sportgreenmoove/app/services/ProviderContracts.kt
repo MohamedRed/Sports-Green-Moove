@@ -31,7 +31,7 @@ interface AuthGateway {
     fun signOut()
 }
 
-interface FirebaseGateway {
+interface FirebaseGateway : TripCancellationGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
     suspend fun listChildren(): List<ChildSummary>
@@ -91,6 +91,12 @@ class UnconfiguredAuthGateway : AuthGateway {
 
 class UnconfiguredFirebaseGateway : FirebaseGateway {
     override val isConfigured: Boolean = false
+
+    override suspend fun previewTripCancellation(tripId: String): be.sportgreenmoove.app.data.TripCancellationPreview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+
+    override suspend fun cancelTrip(request: be.sportgreenmoove.app.data.TripCancellationRequest): be.sportgreenmoove.app.data.TripCancellationReceipt =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
 
     override suspend fun searchTrips(): List<TripSummary> {
         throw ProviderConfigurationException("Firestore Android n'est pas configuré.")

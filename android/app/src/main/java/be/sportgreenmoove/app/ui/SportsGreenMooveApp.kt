@@ -182,7 +182,9 @@ fun SportsGreenMooveApp() {
                             onRide = { trips.firstOrNull { it.status == be.sportgreenmoove.app.data.TripStatus.Upcoming }?.let(::runTripAction) },
                             onImpact = { screen = AppScreen.Impact },
                         )
-                        AppScreen.Trips -> TripsScreen(
+                        AppScreen.Trips -> TripsRoute(
+                            uid = requireNotNull(session).uid, role = role, gateway = providers.firebase,
+                            onChanged = { refreshAppData() },
                             trips = trips,
                             activeRide = activeRide,
                             pendingCount = driverBookingRequests.count { it.status == "requested" },

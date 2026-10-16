@@ -62,6 +62,8 @@ data class TripSummary(
     val status: TripStatus = TripStatus.Upcoming,
     val mapPreview: MapRoutePreview? = null,
     val departureAtIso: String? = null,
+    val driverUserId: String? = null,
+    val cancelled: Boolean = false,
 )
 
 data class MapPoint(
