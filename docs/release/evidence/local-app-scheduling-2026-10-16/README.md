@@ -189,3 +189,27 @@ identifiers, operator details or location. A failed preparation now records a
 fresh snapshot before releasing the request; diagnostic errors are attached to
 the original failure. These observations are diagnostics, not passing evidence,
 and a later successful run alone would not establish this failure's root cause.
+
+## Diagnostic Reader Regression
+
+Run [38884980881](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38884980881)
+at `30ac579b47fceb7d0134e6f5e6fc3f9ffa221661` passed the preceding
+16 cases, then the new modem reader rejected its console output before invoking
+the network instrumentation case. The after-read failed identically; both errors
+were preserved and the remaining cleanup completed. The original eight passing
+instrumentation transcripts and workflow failure excerpt are retained in
+`diagnostic-reader-interrupted/`. No network receipt or completed result exists.
+The rejected raw console output was not persisted, so no modem values can be
+inferred from this attempt.
+
+The reader incorrectly required exactly one space after the state label. The
+installed emulator binary and the current
+[Android console implementation](https://android.googlesource.com/platform/external/qemu/+/refs/heads/emu-master-dev/android/android-emu/android/console.cpp)
+both format the data line with two spaces before its value. A regression test
+using that exact documented format fails before the parser change and passes
+after it; both original local JUnit reports are retained. Parsing now accepts
+whitespace at that delimiter while still rejecting unknown labels, values,
+duplicate fields, missing states and unrelated output. This fixes the reproduced
+reader incompatibility, not the still-unexplained cellular provisioning failure.
+The raw console response of the interrupted CI run is unavailable; the source
+format comparison is not presented as a captured response from that run.

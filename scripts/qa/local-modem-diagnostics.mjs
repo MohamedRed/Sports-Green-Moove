@@ -10,7 +10,7 @@ export function parseModemStatus(output) {
   const result = {};
   for (const line of output.split(/\r?\n/).map((value) => value.trim()).filter(Boolean)) {
     if (line === 'OK') continue;
-    const match = /^gsm (voice|data) state: (\w+)$/.exec(line);
+    const match = /^gsm (voice|data) state:\s+(\w+)$/.exec(line);
     assert(match && states.has(match[2]), 'Unexpected modem status; do not persist unrecognized console output');
     assert(!Object.hasOwn(result, match[1]), 'Duplicate modem state');
     result[match[1]] = match[2];

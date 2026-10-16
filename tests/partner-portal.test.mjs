@@ -108,6 +108,7 @@ test('app screenshots require a completed scoped run and retain product gaps', (
   }
   const group = content.blockers.find((item) => item.id === 'group-conversation');
   assert.match(group.text, /membres d’une même équipe/);
+  assert.match(group.text, /parents des enfants inscrits/);
   assert.match(group.text, /construire et à tester/);
 });
 

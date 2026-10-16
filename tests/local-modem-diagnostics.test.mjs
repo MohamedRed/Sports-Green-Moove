@@ -6,6 +6,8 @@ import { collectDisposableModem, parseModemStatus } from '../scripts/qa/local-mo
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const runId = 'a'.repeat(32);
 test('modem diagnostics retain only voice/data registration states, never arbitrary console data', () => {
+  assert.deepEqual(parseModemStatus('gsm voice state: home\r\ngsm data state:  home\r\nOK\r\n'),
+    { voice: 'home', data: 'home' });
   assert.deepEqual(parseModemStatus('gsm voice state: home\r\ngsm data state: unregistered\r\nOK\r\n'),
     { voice: 'home', data: 'unregistered' });
   for (const value of ['', 'OK', 'gsm data state: home',
@@ -61,4 +63,11 @@ test('device snapshots retain terminal preparation diagnostics without new permi
     assert.equal(read(`.github/workflows/${workflow}.yml`).split('"tests/local-modem-diagnostics.test.mjs"').length - 1, 2);
   }
   assert(read('package.json').includes('tests/local-modem-diagnostics.test.mjs'));
+});
+
+test('the emulator delimiter regression has retained red/green evidence without promoting a network pass', () => {
+  const base = 'docs/release/evidence/local-app-scheduling-2026-10-16/diagnostic-reader-interrupted/';
+  assert.match(read(base + 'sgm-modem-parser-before-20261016.xml'), /<failure[\s>]/);
+  assert(!read(base + 'sgm-modem-parser-after-20261016.xml').includes('<failure'));
+  assert.match(read(base + 'sgm-modem-reader-failed-20261016.txt'), /Unexpected modem status/);
 });
