@@ -5,6 +5,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.net.wifi.WifiManager
+import android.provider.Settings
+import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
 import androidx.test.uiautomator.UiDevice
 import be.sportgreenmoove.app.BuildConfig
@@ -14,6 +16,7 @@ import java.io.Closeable
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.util.concurrent.atomic.AtomicInteger
 
 internal class LocalEmulatorNetwork(
     context: Context,
@@ -23,10 +26,18 @@ internal class LocalEmulatorNetwork(
     private val connectivity = context.getSystemService(ConnectivityManager::class.java)
     private val wifi = context.applicationContext.getSystemService(WifiManager::class.java)
     private val telephony = context.getSystemService(TelephonyManager::class.java)
+    private val resolver = context.contentResolver
     private val initialWifi: Boolean
     private val initialData: Boolean
     private var changed = false
-    private val cellularCallback = object : ConnectivityManager.NetworkCallback() {}
+    private val availableCallbacks = AtomicInteger()
+    private val lostCallbacks = AtomicInteger()
+    private val unavailableCallbacks = AtomicInteger()
+    private val cellularCallback = object : ConnectivityManager.NetworkCallback() {
+        override fun onAvailable(network: android.net.Network) { availableCallbacks.incrementAndGet() }
+        override fun onLost(network: android.net.Network) { lostCallbacks.incrementAndGet() }
+        override fun onUnavailable() { unavailableCallbacks.incrementAndGet() }
+    }
     var cellularRequestRegistered = false
         private set
 
@@ -88,6 +99,12 @@ internal class LocalEmulatorNetwork(
     fun snapshot(phase: String) = JSONObject().put("phase", phase).put("wifiEnabled", wifi.isWifiEnabled)
         .put("mobileDataEnabled", telephony.isDataEnabled).put("activeNetwork", connected())
         .put("cellularRequestRegistered", cellularRequestRegistered)
+        .put("cellularAvailableCallbacks", availableCallbacks.get()).put("cellularLostCallbacks", lostCallbacks.get())
+        .put("cellularUnavailableCallbacks", unavailableCallbacks.get())
+        .put("cellularDataState", telephony.dataState).put("simState", telephony.simState)
+        .put("hasDefaultDataSubscription", SubscriptionManager.isValidSubscriptionId(SubscriptionManager.getDefaultDataSubscriptionId()))
+        .put("airplaneModeSetting", Settings.Global.getString(resolver, Settings.Global.AIRPLANE_MODE_ON) ?: JSONObject.NULL)
+        .put("mobileDataAlwaysOnSetting", Settings.Global.getString(resolver, "mobile_data_always_on") ?: JSONObject.NULL)
         .put("internetNetworkCount", internetNetworks()).put("backendReachable", backendReachable())
         .put("internetTransports", org.json.JSONArray(connectivity.allNetworks.mapNotNull { network ->
             connectivity.getNetworkCapabilities(network)?.takeIf { it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) }

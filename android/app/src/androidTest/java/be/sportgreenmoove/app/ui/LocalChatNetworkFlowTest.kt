@@ -71,7 +71,14 @@ class LocalChatNetworkFlowTest {
                     phase = "network-preparation"
                     result.put("preparation", control.snapshot("preparing"))
                     writeResult(context, result)
-                    compose.waitUntil(30_000) { control.prepared() }
+                    try { compose.waitUntil(30_000) { control.prepared() } }
+                    catch (failure: Throwable) {
+                        try {
+                            result.put("preparationFailure", control.snapshot("preparation-failed"))
+                            writeResult(context, result)
+                        } catch (diagnosticFailure: Throwable) { failure.addSuppressed(diagnosticFailure) }
+                        throw failure
+                    }
                     network.put(control.snapshot("before"))
                     writeResult(context, result)
                     phase = "disconnect"

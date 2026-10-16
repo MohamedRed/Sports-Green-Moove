@@ -160,3 +160,32 @@ request, prepared transports and eventual release; historical receipts remain
 immutable and use their original validator. Compilation and unit/configuration
 checks pass, but a complete replay of this new preparation is still required.
 No new physical, production, safety or payment evidence is accepted here.
+
+## Explicit Request Did Not Establish The Missing Route
+
+Run [38882570313](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38882570313)
+at `d8ed9d5d24b6045e2fb9a4be3a48f2924be16419` passed 16 preceding
+isolated cases, then failed the unchanged 30-second preparation wait. The original
+receipt and transcript are retained in `preparation-interrupted/`, run
+`2f170dc1fe0d80af6a004dc3c3fd9d66`. No radio transition or app send was attempted;
+the request was registered and subsequently released, but the initial snapshot
+contained Wi-Fi only. No final result exists. Collection and cleanup succeeded.
+
+This contradicts any claim that merely requesting the cellular network resolves
+the test configuration. The failed attempt has no terminal preparation snapshot,
+modem registration state or callback history, so its precise cause is unproven.
+The next diagnostic version records those missing observations without changing
+the requested network, assertions, deadlines, radio configuration or test count.
+Before/after host receipts use the read-only documented
+[gsm status command](https://developer.android.com/studio/run/emulator-console)
+on the same verified disposable emulator. Only recognized voice/data registration
+enums are persisted, bound to the current run. Collection errors remain failures
+and cannot mask the primary test failure or prevent subsequent cleanup steps.
+
+App snapshots add callback counters, SIM/data connection-state enums, whether a
+default data subscription is valid, and read-only airplane/always-on settings.
+They use public APIs without new permissions, phone numbers, subscriber/device
+identifiers, operator details or location. A failed preparation now records a
+fresh snapshot before releasing the request; diagnostic errors are attached to
+the original failure. These observations are diagnostics, not passing evidence,
+and a later successful run alone would not establish this failure's root cause.

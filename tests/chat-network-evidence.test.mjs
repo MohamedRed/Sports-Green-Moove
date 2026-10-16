@@ -165,3 +165,18 @@ test('a later complete replay is retained without claiming the Wi-Fi-only setup 
   assertInstrumentationPassed(load('LocalChatNetworkFlowTest-instrumentation.txt'), 1);
   assert.equal(content.flows.find((item) => item.id === 'messages').status, 'partial');
 });
+
+test('request registration and release do not turn a failed preparation into message-recovery evidence', () => {
+  const path = 'docs/release/evidence/local-app-scheduling-2026-10-16/preparation-interrupted/';
+  const ui = JSON.parse(readFileSync(new URL(path + 'local-chat-network-ui.json', root), 'utf8'));
+  assert.equal(ui.runId, '2f170dc1fe0d80af6a004dc3c3fd9d66');
+  assert.equal(ui.completed, false); assert.equal(ui.failedPhase, 'network-preparation');
+  assert.deepEqual(ui.network, []);
+  assert.equal(ui.preparation.cellularRequestRegistered, true); assert.equal(ui.cellularRequestReleased, true);
+  assert.deepEqual(ui.preparation.internetTransports, ['wifi']);
+  assert.throws(() => assertChatNetworkReceipt(ui));
+  assert(!existsSync(new URL(path + 'results.json', root)));
+  const transcript = readFileSync(new URL(path + 'LocalChatNetworkFlowTest-instrumentation.txt', root), 'utf8');
+  assert.match(transcript, /ComposeTimeoutException/); assert.match(transcript, /30000 ms/);
+  assert.match(transcript, /LocalChatNetworkFlowTest.kt:74/); assert.match(transcript, /FAILURES/);
+});
