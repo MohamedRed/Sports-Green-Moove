@@ -1,6 +1,7 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
@@ -42,8 +43,11 @@ class LocalDriverFlowTest {
             compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
             compose.onNodeWithText("RÉSERVATIONS").performClick()
             val approve = "${SgmTestTags.BookingApproveAction}.sgm-qa-booking-requested"
-            compose.waitUntil(60_000) { compose.onAllNodesWithTag(approve).fetchSemanticsNodes().isNotEmpty() }
-            compose.onNodeWithTag(approve).performScrollTo().assertIsDisplayed().performClick()
+            compose.waitUntil(60_000) {
+                runCatching { compose.onNodeWithTag(approve).assertIsEnabled() }.isSuccess
+            }
+            compose.onNodeWithTag(approve).performScrollTo().assertIsDisplayed().assertIsEnabled().performClick()
+            waitFor("bookings.confirm")
             compose.onNodeWithTag("bookings.confirm").assertIsDisplayed().performClick()
             compose.waitUntil(60_000) {
                 compose.onAllNodesWithTag(approve).fetchSemanticsNodes().isEmpty() &&

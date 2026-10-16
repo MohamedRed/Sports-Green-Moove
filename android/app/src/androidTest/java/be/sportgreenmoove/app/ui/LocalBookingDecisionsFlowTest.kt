@@ -2,6 +2,7 @@ package be.sportgreenmoove.app.ui
 
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -47,8 +48,9 @@ class LocalBookingDecisionsFlowTest {
             val approved = bookingId("Trajet QA annulation approuvée", AppRole.Parent)
             val decline = bookingId("Trajet QA à refuser", AppRole.Parent)
             val cancelTag = decisionTag(ReservationDecision.Cancel, pending)
-            waitFor(cancelTag)
+            waitForEnabled(cancelTag)
             compose.onNodeWithTag(cancelTag).performScrollTo().performClick()
+            waitFor("bookings.keep")
             compose.onNodeWithTag("bookings.keep").assertIsDisplayed().performClick()
             assertEquals("requested", runBlocking { gateway.list(AppRole.Parent).items.single { it.booking.bookingId == pending }.booking.status })
             decide(pending, ReservationDecision.Cancel, "Annulée")
@@ -75,8 +77,9 @@ class LocalBookingDecisionsFlowTest {
     }
     private fun decide(id: String, decision: ReservationDecision, status: String) {
         val tag = decisionTag(decision, id)
-        waitFor(tag)
+        waitForEnabled(tag)
         compose.onNodeWithTag(tag).performScrollTo().assertIsDisplayed().performClick()
+        waitFor("bookings.confirm")
         compose.onNodeWithTag("bookings.confirm").assertIsDisplayed().performClick()
         compose.waitUntil(60_000) {
             runCatching { compose.onNodeWithTag("reservation.status.$id").assertTextEquals(status) }.isSuccess
@@ -102,5 +105,10 @@ class LocalBookingDecisionsFlowTest {
     }
     private fun waitFor(tag: String) {
         compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    }
+    private fun waitForEnabled(tag: String) {
+        compose.waitUntil(60_000) {
+            runCatching { compose.onNodeWithTag(tag).assertIsEnabled() }.isSuccess
+        }
     }
 }
