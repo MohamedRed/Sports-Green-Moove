@@ -3,6 +3,7 @@ const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
 const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.md';
+const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const criteriaReport = 'docs/release/evidence/local-search-criteria-2026-10-15/README.md';
 const chatUiReport = 'docs/release/evidence/local-chat-directory-ui-2026-10-15/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
@@ -25,6 +26,8 @@ export const captures = {
   'local-landscape': 'docs/release/evidence/local-ui-2026-10-15/local-login-landscape.png',
   'local-search-empty': 'docs/release/evidence/local-ui-2026-10-15/local-search-empty.png',
   'search-account-cleared': 'docs/release/evidence/local-search-ui-2026-10-15/local-search-account-cleared.png',
+  'search-options-retained': 'docs/release/evidence/local-search-options-ui-2026-10-16/local-search-retained-options.png',
+  'search-options-invalidated': 'docs/release/evidence/local-search-options-ui-2026-10-16/local-search-options-invalidated.png',
   'local-theme': 'docs/release/evidence/local-ui-2026-10-15/local-theme-after-process-restart.png',
   'ride-delivered': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-passengers-delivered.png',
   'ride-history': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-parent-history.png',
@@ -61,10 +64,12 @@ export const excerpts = {
 };
 
 export const content = {
-  updatedAt: '2026-10-15',
-  lastVerifiedAt: '2026-10-15',
+  updatedAt: '2026-10-16',
+  lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'Les choix restent liés à la demande',
+      text: 'Dans l’essai local simulé, les options sont conservées au retour et un ancien résultat ne peut plus être réservé après modification. Deux captures sont disponibles.', flow: 'search' },
     { date: '2026-10-15', title: 'La demande reprend le nombre de places choisi',
       text: 'En local, une demande de deux places en retire deux après acceptation ; l’annulation les restitue. Les essais d’écran continuent.', flow: 'booking' },
     { date: '2026-10-15', title: 'La recherche repart à zéro pour un autre compte simulé',
@@ -152,13 +157,15 @@ export const content = {
       ui: ui(['parent-app-ui']),
       images: [shot('local-home', 'Accueil avec le trajet de test en local'), shot('local-calendar', 'Calendrier du mois courant en local')],
       clips: ['home-to-trips'], recording: 'navigation', source: uiReport },
-    { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'Les choix et le nombre de places restent liés à la demande dans les contrôles locaux.',
-      verified: 'Compte simulé : recherche réinitialisée. Les nouveaux contrôles locaux refusent une demande issue d’anciens choix et transmettent le nombre de places sélectionné.',
-      remaining: 'Rejouer les options dans les écrans et une vraie déconnexion. Tester la recherche complète, les places restantes et la reprise après coupure.',
-      ui: { source: 'docs/release/evidence/local-search-ui-2026-10-15/results.json', groups: ['search-input-ui', 'search-session-ui', 'calendar-empty-consent-ui'] },
-      images: [shot('search-account-cleared', 'Recherche vidée après changement de compte simulé, en local'),
-        shot('local-search-empty', 'Recherche sans résultat lors du précédent essai local'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')], source: criteriaReport },
+    { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-16',
+      summary: 'Essai local simulé : choix conservés, anciens résultats retirés après modification.',
+      verified: 'Les options restent sélectionnées au retour dans l’essai simulé. La demande reprend le bon enfant et deux places. Modifier un choix impose une nouvelle recherche.',
+      remaining: 'Rejouer une vraie déconnexion et la recherche complète, avec classement, places restantes et reprise après coupure. Simplifier le choix de date.',
+      ui: { source: 'docs/release/evidence/local-search-options-ui-2026-10-16/results.json', groups: ['search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui'] },
+      images: [shot('search-options-retained', 'Choix conservés dans l’essai local simulé'),
+        shot('search-options-invalidated', 'Anciens résultats retirés après modification, en local'),
+        shot('search-account-cleared', 'Compte simulé : recherche vidée lors de l’essai du 15 octobre'),
+        shot('local-search-empty', 'Recherche sans résultat lors de l’essai du 15 octobre'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')], source: optionsUiReport },
     { id: 'publication', title: 'Publication d’un trajet', status: 'partial', checkedAt: '2026-10-15',
       summary: 'En local, le conducteur publie et le parent retrouve le trajet.',
       verified: 'Publication et présence dans la liste du parent vérifiées en local. Un parent sans rôle conducteur est refusé.',

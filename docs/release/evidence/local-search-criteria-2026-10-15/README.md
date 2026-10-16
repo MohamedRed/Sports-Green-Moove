@@ -55,6 +55,11 @@ the accepted run explicitly selected JDK 21 on PATH and JAVA_HOME.
 
 ## Still Pending
 
+Follow-up on October 16: the complete [14-case native run and reviewed options
+captures](../local-search-options-ui-2026-10-16/README.md) now pass. The paragraphs
+below retain this report's original pending scope and intervening diagnostics;
+the newer report is authoritative for the accepted screen/SDK result.
+
 Two new component UI cases cover option invalidation and navigation retention
 with explicit fake gateways. A separate local-only native SDK case requests two
 seats through the actual Android gateway; an independent service verifier must

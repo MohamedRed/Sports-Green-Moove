@@ -22,3 +22,32 @@ test('multi-seat claims require persisted service counts and keep payment/phone 
   assert(booking.local.groups.includes('multi-seat-booking'));
   assert.match(booking.remaining, /téléphone|remboursements/);
 });
+
+test('options screen and native seat claims require the completed fourteen-case local run', () => {
+  const base = new URL('../docs/release/evidence/local-search-options-ui-2026-10-16/', import.meta.url);
+  const run = JSON.parse(readFileSync(new URL('results.json', base), 'utf8'));
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.testCount, 14);
+  assert.equal(run.steps.length, 15);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.search.caseCount, 4);
+  assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
+  assert.equal(run.multiSeatSdk.method, 'native-sdk-not-ui');
+  assert.equal(run.multiSeatSdk.requestedSeats, 2);
+  assert.equal(run.multiSeatSdk.seatsBefore, 4);
+  assert.equal(run.multiSeatSdk.seatsAfterApproval, 2);
+  assert.equal(run.multiSeatSdk.seatsAfterCancellation, 4);
+  assert.equal(run.multiSeatSdk.repeatedCancellationRejected, true);
+  for (const [classes, count] of [
+    ['LocalAppFlowTest-LocalDriverFlowTest-LocalLandscapeLoginTest-LocalUiRegressionTest-SearchSessionFlowTest-SearchCriteriaFlowTest', 9],
+    ...['LocalThemeRestartTest', 'LocalMultiSeatSdkTest', 'LocalRideFlowTest', 'LocalChatFlowTest', 'LocalConversationDirectoryFlowTest'].map((name) => [name, 1]),
+  ]) {
+    const raw = readFileSync(new URL(`${classes}-instrumentation.txt`, base), 'utf8');
+    assert.match(raw, new RegExp(`OK \\(${count} tests?\\)`));
+    assert(!/FAILURES|INSTRUMENTATION_FAILED/.test(raw));
+  }
+  const flow = content.flows.find((item) => item.id === 'search');
+  assert.equal(flow.checkedAt, run.testedAt.slice(0, 10));
+  assert.equal(flow.status, 'partial');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+});
