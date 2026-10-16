@@ -8,6 +8,8 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.hasClickAction
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
@@ -52,13 +54,13 @@ class SearchCriteriaFlowTest {
         search()
         capture("local-search-retained-options.png")
         compose.onNodeWithTag(SgmTestTags.BackAction).performClick()
-        compose.onNodeWithText("Revenir à la recherche").performClick()
-        compose.onNodeWithText("2 places").performScrollTo().assertIsSelected()
-        compose.onNodeWithText("Grand").assertIsSelected()
-        compose.onNodeWithText("Retour").assertIsSelected()
-        compose.onNodeWithText("Suivi enfant").assertIsSelected()
-        compose.onNodeWithText("Consentement").assertIsSelected()
-        compose.onNodeWithText("Enfant B QA").performScrollTo().assertIsSelected()
+        compose.onNodeWithTag("search.returnFromHost").assertIsDisplayed().performClick()
+        choice("2 places").performScrollTo().assertIsSelected()
+        choice("Grand").assertIsSelected()
+        choice("Retour").assertIsSelected()
+        choice("Suivi enfant").assertIsSelected()
+        choice("Consentement").assertIsSelected()
+        choice("Enfant B QA").performScrollTo().assertIsSelected()
         compose.onNodeWithTag(SgmTestTags.SearchDateInput).assertTextEquals("2026-10-17T16:30:00Z")
         compose.onNodeWithTag(SgmTestTags.SearchOriginInput).performScrollTo().assertTextEquals("Départ options QA")
         compose.onNodeWithTag(SgmTestTags.SearchDestinationInput).assertTextEquals("Arrivée options QA")
@@ -112,7 +114,7 @@ class SearchCriteriaFlowTest {
             view = LocalView.current
             current = rememberSearchController(providers, rememberCoroutineScope(), "criteria-parent", { error.value = it }, {}, {})
             if (visible.value) SearchRoute(current, children, error.value, { visible.value = false })
-            else V2Button("Revenir à la recherche", { visible.value = true })
+            else V2Button("Revenir à la recherche", { visible.value = true }, testTag = "search.returnFromHost")
         }
     }
     private fun selectPlaces() {
@@ -126,7 +128,8 @@ class SearchCriteriaFlowTest {
             compose.waitUntil(10_000) { compose.onAllNodesWithText("Adresse $label").fetchSemanticsNodes().isNotEmpty() }
         }
     }
-    private fun option(label: String) { compose.onNodeWithText(label).performScrollTo().performClick() }
+    private fun choice(label: String) = compose.onNode(hasText(label) and hasClickAction())
+    private fun option(label: String) { choice(label).performScrollTo().performClick() }
     private fun search() {
         if (!current.form.guardianConsent) option("Consentement")
         compose.onNodeWithTag(SgmTestTags.SearchAction).performScrollTo().performClick()

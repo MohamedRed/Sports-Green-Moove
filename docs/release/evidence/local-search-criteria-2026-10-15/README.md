@@ -62,6 +62,14 @@ then inspect, approve and cancel that persisted request. These additions compile
 but still require a complete fresh native run and reviewed images. No new screen
 or SDK success is inferred from the unit/service results above.
 
+The first expanded CI attempt, `38826908503` on October 16, stopped in the
+general instrumentation phase: its two new component cases used ambiguous seat
+text and a mixed-case selector for an uppercase host button. Those are test
+selector defects, not accepted app failures or successful screen evidence.
+The selectors now distinguish clickable choices from static result text and use
+the host button's explicit identifier. All selection and booking assertions stay
+in place; a fresh complete run is still required.
+
 The expanded native runner requires 14 instrumentation cases, including one
 SDK-only case, across six invocations. This is not 14 physical-phone journeys.
 Earlier [11-case screen evidence](../local-search-ui-2026-10-15/README.md) remains
