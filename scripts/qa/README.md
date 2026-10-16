@@ -37,6 +37,13 @@ and administrator policy. These checks do not implement or prove team enrollment
 verified guardian relationships, group messaging, or identity reuse after deletion.
 Original reports: `docs/release/evidence/local-team-ownership-2026-10-16/`.
 
+The service suite now requires 21 groups, including `trip-details-ownership`.
+That scenario uses authenticated local REST writes against a reserved trip with
+synthetic paid metadata. It denies operational mutations, removals and an atomic
+mixed title/price write, then independently checks unchanged booking/trip state
+and the preserved owner-title edit. It does not implement the trip editor or
+choose the outstanding post-reservation parent-confirmation policy.
+
 ## App And Management Screens
 
 The repeatable app suite is

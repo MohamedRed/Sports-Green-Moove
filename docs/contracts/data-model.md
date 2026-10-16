@@ -73,6 +73,13 @@ Live state is mirrored into Firestore audit summaries by Cloud Functions. The UI
 Native clients list `children` with `guardianUserIds array-contains auth.uid` and pass the selected `childId` to `searchTrips` and `requestBooking`.
 `requestBooking` re-reads the child profile server-side and rejects ids that do not belong to the authenticated parent.
 
+Ordinary direct trip updates are limited to the owner's legacy cosmetic `title`
+field. Other trip details, including price, route, timing, tracking and future edit
+metadata, require server-owned handling. A field allowlist denies unknown fields,
+removals and mixed title/operational mutations as well. Administrator policy is
+unchanged. Full trip editing and its post-reservation parent-confirmation policy
+remain open; see [trip editing](trip-editing.md).
+
 Native Groups screens list public `clubs` and join them with the signed-in
 user's `memberships` to separate "Mes clubs" from discoverable clubs. They must
 not ship static club lists as product data.

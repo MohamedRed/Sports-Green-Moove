@@ -55,24 +55,6 @@ service cloud.firestore {
       ];
     }
 
-    function tripProtectedFields() {
-      return [
-        'driverUserId',
-        'driverVerified',
-        'driverRating',
-        'seatsAvailable',
-        'seatsTotal',
-        'approvedPassengerUserIds',
-        'activeRideSessionId',
-        'completedAt',
-        'cancelledAt',
-        'cancelledByUserId',
-        'cancelReason',
-        'status',
-        'createdAt'
-      ];
-    }
-
     match /users/{userId} {
       allow read: if isSelf(userId) || isAdmin();
       allow create: if isSelf(userId) && !hasAnyKey(userProtectedFields());
@@ -120,7 +102,7 @@ service cloud.firestore {
       allow create, delete: if isAdmin();
       allow update: if isAdmin() || (signedIn() &&
         resource.data.driverUserId == request.auth.uid &&
-        !request.resource.data.diff(resource.data).affectedKeys().hasAny(tripProtectedFields()));
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title']));
     }
 
     match /bookings/{bookingId} {
