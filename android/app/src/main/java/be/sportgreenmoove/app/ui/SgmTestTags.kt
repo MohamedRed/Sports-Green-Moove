@@ -32,6 +32,8 @@ object SgmTestTags {
     const val GuardianConsentDisclosure = "store.guardian-consent-disclosure"
     const val ChildSafetyDisclosure = "store.child-safety-disclosure"
     const val BookingApproveAction = "booking.approve.action"
+    const val BookingDeclineAction = "booking.decline.action"
+    const val BookingCancelAction = "booking.cancel.action"
     const val ActiveRideScreen = "active-ride.screen"
     const val ActiveRideResumeAction = "active-ride.resume.action"
     const val ActiveRidePickupAction = "active-ride.pickup.action"

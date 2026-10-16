@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
-import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
@@ -69,17 +68,6 @@ fun SportsGreenMooveApp() {
         setError = { errorMessage = it },
         setNotice = { noticeMessage = it },
     )
-    fun approveBooking(request: BookingRequestSummary) {
-        launchApproveBooking(
-            scope = scope,
-            providers = providers,
-            request = request,
-            setLoading = { loading = it },
-            setError = { errorMessage = it },
-            setNotice = { noticeMessage = it },
-            refreshAppData = { refreshAppData() },
-        )
-    }
     fun updatePassengerStatus(passenger: RidePassengerStatus, pickup: Boolean) {
         launchPassengerStatusUpdate(
             scope = scope,
@@ -197,11 +185,13 @@ fun SportsGreenMooveApp() {
                         AppScreen.Trips -> TripsScreen(
                             trips = trips,
                             activeRide = activeRide,
-                            bookingRequests = driverBookingRequests,
+                            pendingCount = driverBookingRequests.count { it.status == "requested" },
                             onTripAction = ::runTripAction,
                             onOpenSearch = { screen = AppScreen.Search },
                             onOpenRide = { screen = AppScreen.Ride },
-                            onApproveBooking = ::approveBooking,
+                            reservationContent = {
+                                ReservationManagementRoute(requireNotNull(session).uid, role, providers.reservations) { refreshAppData() }
+                            },
                         )
                         AppScreen.Publish -> PublishScreen(
                             role = role,

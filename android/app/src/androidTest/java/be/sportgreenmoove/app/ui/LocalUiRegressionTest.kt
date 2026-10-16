@@ -21,7 +21,7 @@ class LocalUiRegressionTest {
         val now = UiFlowFixtures.trip.copy(title = "Current month", departureAtIso = month.atDay(15).atTime(12, 0).atZone(java.time.ZoneId.systemDefault()).toInstant().toString())
         val next = now.copy(id = "next-month", title = "Next month", departureAtIso = month.plusMonths(1).atDay(15).atTime(12, 0).atZone(java.time.ZoneId.systemDefault()).toInstant().toString())
         compose.setSgmUiTestContent {
-            TripsScreen(listOf(now, next), null, emptyList(), {}, {}, {}, {})
+            TripsScreen(listOf(now, next), null, 0, {}, {}, {}, {})
         }
         compose.onNodeWithText("Current month").assertIsDisplayed()
         compose.onNodeWithText("Next month").assertDoesNotExist()

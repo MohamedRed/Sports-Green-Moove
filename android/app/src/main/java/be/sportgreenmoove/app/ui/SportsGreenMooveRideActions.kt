@@ -58,27 +58,6 @@ fun launchPayment(
     }
 }
 
-fun launchApproveBooking(
-    scope: CoroutineScope,
-    providers: AndroidProviderSet,
-    request: BookingRequestSummary,
-    setLoading: (Boolean) -> Unit,
-    setError: (String?) -> Unit,
-    setNotice: (String) -> Unit,
-    refreshAppData: suspend () -> Unit,
-) {
-    scope.launch {
-        setLoading(true)
-        setError(null)
-        runCatching {
-            providers.firebase.approveBooking(request.bookingId)
-            setNotice("Demande approuvée.")
-            refreshAppData()
-        }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
-        setLoading(false)
-    }
-}
-
 fun launchTripAction(
     scope: CoroutineScope,
     providers: AndroidProviderSet,

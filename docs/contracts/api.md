@@ -15,6 +15,8 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `requestBooking` | parent | Pending booking request. Optional `childId` must belong to the caller through `children/{childId}.guardianUserIds`. |
 | `listDriverBookingRequests` | driver | Requested/approved booking queue for driver approval screens. |
 | `approveBooking` | driver | Approved booking and notification. |
+| `declineBooking` | owning driver | Decline a requested booking on an open, not-started trip without changing seats; notify its guardian. Repeated/late decisions are rejected transactionally. |
+| `listReservations` | parent/driver | Role-scoped pages of 20 bookings, newest first, with server-computed allowed actions and refund-pending state. Owner/list-bound cursor; history is retained. |
 | `cancelBooking` | parent/driver/admin | Cancelled booking and notification. |
 | `startRide` | driver | Active ride session with approved booking ids attached as passengers. |
 | `getActiveRide` | ride participants | Current active ride snapshot with live labels/passenger statuses, or `null`. |

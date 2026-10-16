@@ -9,6 +9,7 @@ import { verifyLocalChatUi } from './verify-local-chat-ui.mjs';
 import { seedChatDirectoryUiFixtures } from './local-chat-directory-ui-fixtures.mjs';
 import { verifyLocalChatDirectoryUi } from './verify-local-chat-directory-ui.mjs';
 import { verifyLocalMultiSeatSdk } from './verify-local-multi-seat-sdk.mjs';
+import { seedReservationUiFixtures, verifyReservationUi } from './local-reservation-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -61,15 +62,18 @@ try {
   const directoryFixture = await seedChatDirectoryUiFixtures();
   instrument(['LocalConversationDirectoryFlowTest'], 1);
   const directory = await verifyLocalChatDirectoryUi(directoryFixture);
+  const reservationFixture = await seedReservationUiFixtures();
+  instrument(['LocalBookingDecisionsFlowTest'], 1);
+  const reservationDecisions = await verifyReservationUi(reservationFixture);
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
   capturesCollected = true;
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
     'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui',
-    'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk']
+    'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui']
     .map((id) => ({ id, status: 'passed' }));
   writeFileSync(resolve(evidenceDir, 'results.json'), `${JSON.stringify({ projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 14, steps, ride, chat, directory, multiSeatSdk,
+    testCount: 15, steps, ride, chat, directory, multiSeatSdk, reservationDecisions,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },
     limits: ['Synthetic mock positions and pre-granted emulator permissions only.',

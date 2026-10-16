@@ -5,6 +5,7 @@ const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
 const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.md';
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const criteriaReport = 'docs/release/evidence/local-search-criteria-2026-10-15/README.md';
+const reservationReport = 'docs/release/evidence/local-reservations-2026-10-16/README.md';
 const chatUiReport = 'docs/release/evidence/local-chat-directory-ui-2026-10-15/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
@@ -68,6 +69,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'Le refus et l’annulation avancent',
+      text: 'Les contrôles locaux passent : refus, annulation et restitution des places. Les nouveaux boutons restent à vérifier dans l’app.', flow: 'booking' },
     { date: '2026-10-16', title: 'Un envoi de message à revérifier',
       text: 'Un essai complet passe, mais le suivant s’arrête sur l’envoi du conducteur. Le contrôle du clavier est renforcé avant de rejouer ce parcours.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les choix restent liés à la demande',
@@ -124,8 +127,8 @@ export const content = {
       text: 'Ces actions ne sont pas encore disponibles dans l’app.',
       next: 'Les ajouter, puis vérifier les réservations et les participants concernés.', source: uiReport },
     { id: 'booking-decisions', title: 'Refuser ou annuler une réservation',
-      text: 'Le conducteur peut accepter. Le refus et l’annulation côté parent n’ont pas encore de bouton.',
-      next: 'Compléter ces actions et vérifier la restitution des places.', source: uiReport },
+      text: 'Les contrôles locaux passent. Les nouveaux boutons restent à vérifier dans l’app.',
+      next: 'Rejouer le refus et les deux annulations, puis vérifier l’historique.', source: reservationReport },
     { id: 'shared-testing', title: 'Tester entre plusieurs téléphones',
       text: 'Les essais locaux passent. L’espace de test partagé reste bloqué par l’accès à la facturation.',
       next: 'Débloquer cet accès pour les essais sur téléphone. Budget : 5 €/mois.', source: localReport },
@@ -180,7 +183,7 @@ export const content = {
     { id: 'booking', title: 'Réservation et approbation', status: 'partial', checkedAt: '2026-10-15',
       summary: 'Deux places sont retirées puis restituées dans les contrôles locaux.',
       verified: 'Acceptation dans l’app déjà vérifiée. Les nouveaux contrôles locaux confirment qu’une demande de deux places en retire deux, puis les restitue une seule fois après annulation.',
-      remaining: 'Ajouter le refus et l’annulation dans l’app. Rejouer sur téléphone et vérifier les remboursements.',
+      remaining: 'Vérifier les nouveaux boutons de refus et d’annulation dans l’app. Rejouer sur téléphone et vérifier les remboursements.',
       local: local(['booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking'], ['La demande est enregistrée puis acceptée.', 'Une demande de deux places est enregistrée avec deux places.', 'Son acceptation retire deux places ; l’annulation les restitue une seule fois.', 'Deux acceptations concurrentes ne prennent pas la même dernière place.', 'Un autre utilisateur ne peut pas annuler la réservation.'], 'docs/release/evidence/local-search-criteria-2026-10-15/services.json'),
       ui: ui(['driver-approval-ui']),
       images: [shot('local-approved', 'Demande acceptée lors du précédent essai dans l’app, en local')], source: criteriaReport },

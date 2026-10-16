@@ -24,6 +24,7 @@ data class AndroidProviderSet(
     val radar: RadarTrackingGateway = UnconfiguredRadarTrackingGateway(),
     val stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway(),
     val conversations: ConversationGateway = UnconfiguredConversationGateway(),
+    val reservations: ReservationGateway = UnconfiguredReservationGateway(),
 ) {
     val isConfigured: Boolean = auth.isConfigured && firebase.isConfigured
 }
@@ -50,6 +51,7 @@ object AndroidRuntime {
                 auth = FirebaseAndroidAuthGateway(),
                 firebase = FirebaseAndroidBackendGateway(context.applicationContext),
                 conversations = FirebaseAndroidConversationGateway(),
+                reservations = FirebaseAndroidReservationGateway(),
                 googleAuth = FirebaseAndroidGoogleSocialAuthGateway(context.applicationContext),
                 facebookAuth = FirebaseAndroidFacebookSocialAuthGateway(context.applicationContext),
                 radar = FirebaseAndroidRadarTrackingGateway(

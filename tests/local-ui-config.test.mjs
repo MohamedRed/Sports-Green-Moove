@@ -59,7 +59,7 @@ test('the native booking gateway uses the selected seat payload and requires per
   assert.match(verifier, /assert.equal\(snapshot.size, 1/);
   assert.match(verifier, /assert.equal\(booking.get\('seats'\), 2\)/);
   const local = readFileSync(new URL('../scripts/qa/run-local-flows.mjs', import.meta.url), 'utf8');
-  assert.match(local, /assert.equal\(result.steps.length, 14\)/);
+  assert.match(local, /assert.equal\(result.steps.length, 15\)/);
 });
 
 test('mock positions require an explicitly disposable emulator and a local-only manifest', () => {
@@ -77,7 +77,9 @@ test('local conversation evidence requires app execution and independent persist
   assert.match(runner, /const chat = await verifyLocalChatUi\(\)/);
   assert.match(runner, /instrument\(\['LocalConversationDirectoryFlowTest'\], 1\)/);
   assert.match(runner, /const directory = await verifyLocalChatDirectoryUi\(directoryFixture\)/);
-  assert.match(runner, /testCount: 14/);
+  assert.match(runner, /testCount: 15/);
+  assert.match(runner, /instrument\(\['LocalBookingDecisionsFlowTest'\], 1\)/);
+  assert.match(runner, /await verifyReservationUi\(reservationFixture\)/);
   assert.match(runner, /'SearchSessionFlowTest', 'SearchCriteriaFlowTest'\], 9/);
   assert.match(runner, /instrument\(\['LocalMultiSeatSdkTest'\], 1\)/);
   assert.match(runner, /const multiSeatSdk = await verifyLocalMultiSeatSdk\(session.multiSeatTripId\)/);

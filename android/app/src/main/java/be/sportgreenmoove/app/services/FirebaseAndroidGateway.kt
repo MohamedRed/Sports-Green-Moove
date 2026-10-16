@@ -128,15 +128,6 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
             .orEmpty()
     }
 
-    override suspend fun approveBooking(bookingId: String): String {
-        val result = functions
-            .getHttpsCallable("approveBooking")
-            .call(mapOf("bookingId" to bookingId))
-            .await()
-        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse approbation invalide.")
-        return payload["status"] as? String ?: throw ProviderConfigurationException("Statut approbation manquant.")
-    }
-
     override suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot {
         val result = functions
             .getHttpsCallable("startRide")

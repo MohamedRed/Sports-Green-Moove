@@ -206,7 +206,7 @@ export const cancelBooking = onCall(async (request) => {
       const activeRideId = tripSnap.data()?.activeRideSessionId;
       if (activeRideId) {
         const ride = await transaction.get(firestore.collection("rideSessions").doc(activeRideId));
-        if (!ride.exists || ride.data()?.bookingIds?.includes(data.bookingId)) {
+        if (!ride.exists || !Array.isArray(ride.data()?.bookingIds) || ride.data()?.bookingIds.includes(data.bookingId)) {
           throw new HttpsError("failed-precondition", "An active ride passenger cannot cancel this booking.");
         }
       }

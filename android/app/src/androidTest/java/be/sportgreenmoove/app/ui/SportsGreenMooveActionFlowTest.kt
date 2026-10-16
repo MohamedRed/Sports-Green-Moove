@@ -70,12 +70,15 @@ class SportsGreenMooveActionFlowTest {
 
         compose.setSgmUiTestContent {
             BookingRequestsList(
-                requests = listOf(UiFlowFixtures.bookingRequest),
-                onApprove = { approvedRequest = it },
+                items = listOf(UiFlowFixtures.reservation), busy = false,
+                onDecision = { item, decision ->
+                    assertEquals(be.sportgreenmoove.app.data.ReservationDecision.Approve, decision)
+                    approvedRequest = item.booking
+                },
             )
         }
 
-        compose.onNodeWithTag(SgmTestTags.BookingApproveAction).performClick()
+        compose.onNodeWithTag("${SgmTestTags.BookingApproveAction}.${UiFlowFixtures.bookingRequest.bookingId}").performClick()
         assertEquals(UiFlowFixtures.bookingRequest.bookingId, approvedRequest?.bookingId)
     }
 
@@ -145,11 +148,11 @@ class SportsGreenMooveActionFlowTest {
             TripsScreen(
                 trips = listOf(UiFlowFixtures.trip),
                 activeRide = UiFlowFixtures.activeRide,
-                bookingRequests = emptyList(),
+                pendingCount = 0,
                 onTripAction = {},
                 onOpenSearch = {},
                 onOpenRide = { openedRide = true },
-                onApproveBooking = {},
+                reservationContent = {},
             )
         }
 

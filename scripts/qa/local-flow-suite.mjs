@@ -6,6 +6,7 @@ import { runScenarios } from './local-flow-scenarios.mjs';
 import { checkRidePassengerSafety } from './local-ride-safety.mjs';
 import { checkChatDeliverySafety } from './local-chat-safety.mjs';
 import { checkChatDirectorySafety } from './local-chat-directory-safety.mjs';
+import { checkReservationDecisions } from './local-reservation-decisions.mjs';
 
 const { projectId } = configureLocalEmulators();
 const steps = [];
@@ -26,8 +27,10 @@ const scenarios = lifecycle ? await runScenarios(check, lifecycle) : undefined;
 await check('ride-passenger-safety', checkRidePassengerSafety);
 await check('chat-delivery-safety', checkChatDeliverySafety);
 await check('chat-directory-safety', checkChatDirectorySafety);
+let reservationDecisions;
+await check('reservation-decisions', async () => { reservationDecisions = await checkReservationDecisions(); });
 const result = { runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), projectId, scope: 'local-emulated-services-not-phone-ui',
-  steps, lifecycle, scenarios, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
+  steps, lifecycle, scenarios, reservationDecisions, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
     'Club approval/rejection, trip editing/cancellation and refund settlement remain unverified.'] };
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
 if (!output) throw new Error('Explicit local evidence output path required');

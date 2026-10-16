@@ -34,7 +34,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
@@ -51,11 +50,11 @@ import java.util.Locale
 fun TripsScreen(
     trips: List<TripSummary>,
     activeRide: LiveRideSnapshot?,
-    bookingRequests: List<BookingRequestSummary>,
+    pendingCount: Int,
     onTripAction: (TripSummary) -> Unit,
     onOpenSearch: () -> Unit,
     onOpenRide: () -> Unit,
-    onApproveBooking: (BookingRequestSummary) -> Unit,
+    reservationContent: @Composable () -> Unit,
 ) {
     var selectedTab by remember { mutableStateOf("upcoming") }
     var monthIso by rememberSaveable { mutableStateOf(YearMonth.now().toString()) }
@@ -77,7 +76,7 @@ fun TripsScreen(
     ) {
         TripsHeader(onSearch = onOpenSearch)
         TripsMonthNav(month, { monthIso = month.minusMonths(1).toString() }, { monthIso = month.plusMonths(1).toString() })
-        TripsTabs(selected = selectedTab, pendingCount = bookingRequests.count { it.status == "requested" }, onSelected = { selectedTab = it })
+        TripsTabs(selected = selectedTab, pendingCount = pendingCount, onSelected = { selectedTab = it })
         Column(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -86,7 +85,7 @@ fun TripsScreen(
                 ActiveRideEntryCard(activeRide, onOpenRide)
             }
             if (selectedTab == "pending") {
-                BookingRequestsList(bookingRequests, onApproveBooking)
+                reservationContent()
             } else {
                 visibleTrips.forEach { trip -> TripsCard(trip = trip, onClick = { onTripAction(trip) }) }
                 if (visibleTrips.isEmpty()) TripsEmptyCard()
@@ -141,7 +140,7 @@ private fun TripsTabs(selected: String, pendingCount: Int, onSelected: (String) 
     ) {
         TripsTab("upcoming", "À VENIR", selected, onSelected, Modifier.weight(1f))
         TripsTab("past", "PASSÉS", selected, onSelected, Modifier.weight(1f))
-        TripsTab("pending", "EN ATTENTE", selected, onSelected, Modifier.weight(1f), badge = pendingCount.takeIf { it > 0 }?.toString())
+        TripsTab("pending", "RÉSERVATIONS", selected, onSelected, Modifier.weight(1.35f), badge = pendingCount.takeIf { it > 0 }?.toString())
     }
 }
 

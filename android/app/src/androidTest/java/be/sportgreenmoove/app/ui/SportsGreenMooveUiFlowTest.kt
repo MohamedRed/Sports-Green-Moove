@@ -91,11 +91,11 @@ class SportsGreenMooveUiFlowTest {
 
         host.show {
             BookingRequestsList(
-                requests = listOf(UiFlowFixtures.bookingRequest),
-                onApprove = {},
+                items = listOf(UiFlowFixtures.reservation), busy = false,
+                onDecision = { _, _ -> },
             )
         }
-        assertTagsExist(SgmTestTags.BookingApproveAction)
+        assertTagsExist("${SgmTestTags.BookingApproveAction}.${UiFlowFixtures.bookingRequest.bookingId}")
     }
 
     @Test

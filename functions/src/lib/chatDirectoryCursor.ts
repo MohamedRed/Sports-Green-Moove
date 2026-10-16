@@ -3,7 +3,7 @@ import { HttpsError } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { chatDocumentIdSchema } from "../domain/chatReference.js";
 
-const schema = z.object({ version: z.literal(1), kind: z.enum(["inbox", "bookings"]), userId: z.string().min(1),
+const schema = z.object({ version: z.literal(1), kind: z.enum(["inbox", "bookings", "parent-reservations", "driver-reservations"]), userId: z.string().min(1),
   seconds: z.number().int().min(-62135596800).max(253402300799),
   nanos: z.number().int().min(0).max(999999999), id: chatDocumentIdSchema });
 export type DirectoryKind = z.infer<typeof schema>["kind"];

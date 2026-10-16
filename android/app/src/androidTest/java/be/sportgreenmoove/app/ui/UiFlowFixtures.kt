@@ -75,6 +75,9 @@ object UiFlowFixtures {
         priceLabel = trip.priceLabel,
     )
 
+    val reservation = be.sportgreenmoove.app.data.ReservationItem(bookingRequest,
+        setOf(be.sportgreenmoove.app.data.ReservationDecision.Approve, be.sportgreenmoove.app.data.ReservationDecision.Decline), false)
+
     val activeRide = LiveRideSnapshot(
         rideSessionId = "ride-session-1",
         tripId = trip.id,
@@ -150,7 +153,6 @@ class UiFlowFirebaseGateway : FirebaseGateway {
     }
     override suspend fun requestBooking(tripId: String, childId: String?, seats: Int) = "booking-created"
     override suspend fun getDriverBookingRequests() = listOf(UiFlowFixtures.bookingRequest)
-    override suspend fun approveBooking(bookingId: String) = "approved"
     override suspend fun startRide(tripId: String, bookingIds: List<String>) = UiFlowFixtures.activeRide
     override suspend fun getActiveRide() = UiFlowFixtures.activeRide
     override suspend fun markPickup(rideSessionId: String, bookingId: String, childId: String) = "pickedUp"

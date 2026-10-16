@@ -40,12 +40,14 @@ class LocalDriverFlowTest {
             compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick()
             waitFor(SgmTestTags.HomeScreen)
             compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
-            compose.onNodeWithText("EN ATTENTE").performClick()
-            waitFor(SgmTestTags.BookingApproveAction)
-            compose.onNodeWithTag(SgmTestTags.BookingApproveAction).performClick()
+            compose.onNodeWithText("RÉSERVATIONS").performClick()
+            val approve = "${SgmTestTags.BookingApproveAction}.sgm-qa-booking-requested"
+            compose.waitUntil(60_000) { compose.onAllNodesWithTag(approve).fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag(approve).performScrollTo().assertIsDisplayed().performClick()
+            compose.onNodeWithTag("bookings.confirm").assertIsDisplayed().performClick()
             compose.waitUntil(60_000) {
-                compose.onAllNodesWithTag(SgmTestTags.BookingApproveAction).fetchSemanticsNodes().isEmpty() &&
-                    compose.onAllNodesWithText("APPROVED").fetchSemanticsNodes().size == 2
+                compose.onAllNodesWithTag(approve).fetchSemanticsNodes().isEmpty() &&
+                    compose.onAllNodesWithText("Approuvée").fetchSemanticsNodes().size == 2
             }
             captureLocalUi(compose, "local-driver-booking-approved.png")
             compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()

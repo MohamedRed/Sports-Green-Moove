@@ -43,7 +43,6 @@ interface FirebaseGateway {
     suspend fun createTrip(draft: TripPublishDraft): String
     suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String
     suspend fun getDriverBookingRequests(): List<BookingRequestSummary>
-    suspend fun approveBooking(bookingId: String): String
     suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot
     suspend fun getActiveRide(): LiveRideSnapshot?
     suspend fun markPickup(rideSessionId: String, bookingId: String, childId: String): String
@@ -132,11 +131,6 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     }
 
     override suspend fun getDriverBookingRequests(): List<BookingRequestSummary> = emptyList()
-
-    override suspend fun approveBooking(bookingId: String): String {
-        check(bookingId.isNotBlank())
-        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
-    }
 
     override suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot {
         check(bookingIds.isNotEmpty() || tripId.isNotBlank())

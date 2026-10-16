@@ -136,7 +136,6 @@ private class RecordingFirebaseGateway : FirebaseGateway {
     override suspend fun createTrip(draft: TripPublishDraft): String = "trip-1"
     override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String = "booking-1"
     override suspend fun getDriverBookingRequests(): List<BookingRequestSummary> = emptyList()
-    override suspend fun approveBooking(bookingId: String): String = "approved"
     override suspend fun markPickup(rideSessionId: String, bookingId: String, childId: String): String = "pickedUp"
     override suspend fun markDropoff(rideSessionId: String, bookingId: String, childId: String): String = "droppedOff"
     override suspend fun getPayableBookings(): List<PayableBookingSummary> = emptyList()
