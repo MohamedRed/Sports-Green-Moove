@@ -11,6 +11,7 @@ import { verifyLocalChatDirectoryUi } from './verify-local-chat-directory-ui.mjs
 import { verifyLocalMultiSeatSdk } from './verify-local-multi-seat-sdk.mjs';
 import { seedReservationUiFixtures, verifyReservationUi } from './local-reservation-ui.mjs';
 import { verifyNativeMembershipUi } from './local-native-membership.mjs';
+import { seedChatNetworkUiFixture, verifyChatNetworkUi } from './local-chat-network-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -68,15 +69,28 @@ try {
   const reservationDecisions = await verifyReservationUi(reservationFixture);
   instrument(['LocalMembershipFlowTest'], 1);
   const membershipRefresh = await verifyNativeMembershipUi();
+  const networkFixture = await seedChatNetworkUiFixture();
+  const networkSettings = ['wifi_on', 'mobile_data'].map((key) => {
+    const value = execFileSync(adb, ['-s', serial, 'shell', 'settings', 'get', 'global', key], { encoding: 'utf8' }).trim();
+    assert(['0', '1'].includes(value), `Network cleanup requires an explicit original ${key}`);
+    return value === '1' ? 'enable' : 'disable';
+  });
+  try { instrument(['LocalChatNetworkFlowTest'], 1); }
+  finally {
+    try { run(adb, ['-s', serial, 'shell', 'svc', 'wifi', networkSettings[0]]); }
+    finally { run(adb, ['-s', serial, 'shell', 'svc', 'data', networkSettings[1]]); }
+  }
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
   capturesCollected = true;
+  const chatNetwork = await verifyChatNetworkUi(networkFixture, evidenceDir);
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
     'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui',
-    'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui', 'membership-refresh-ui']
+    'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui',
+    'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui']
     .map((id) => ({ id, status: 'passed' }));
   writeFileSync(resolve(evidenceDir, 'results.json'), `${JSON.stringify({ projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 16, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, membershipRefresh,
+    testCount: 17, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, membershipRefresh, chatNetwork,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },
     limits: ['Synthetic mock positions and pre-granted emulator permissions only.',

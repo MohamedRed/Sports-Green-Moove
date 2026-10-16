@@ -65,8 +65,18 @@ peer sends one message while the parent thread stays open; this is not a claim
 of two physical phones or push delivery. An unrelated synthetic account cannot
 open the thread. Independent stored-message, recipient notification and unread
 checks must pass before the runner writes its result. The current suite requires
-16 instrumentation cases and records 17 coverage groups; these are not the same
+17 instrumentation cases and records 19 coverage groups; these are not the same
 count. Older evidence retains the exact counts of its original run.
+
+`LocalChatNetworkFlowTest` disables Wi-Fi and mobile data on the explicitly
+disposable emulator, requires no active internet network and a failed TCP probe
+to the isolated backend, then sends through the actual app. An unconfirmed send
+must retain its draft and retry action. Restoring the original network settings
+allows an explicit retry; a separate database check requires exactly two messages
+and matching read notifications after the reply. A real account switch must not
+inherit the other account's unsent draft. Both test and host cleanup restore the
+original network settings. This does not cover disconnection after a server commit,
+process restart, expired credentials, physical phones or push delivery.
 
 `LocalMembershipFlowTest` requests two new club memberships through the app,
 then uses a separate authenticated local manager SDK session to approve/refuse
