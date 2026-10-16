@@ -37,7 +37,8 @@ and administrator policy. These checks do not implement or prove team enrollment
 verified guardian relationships, group messaging, or identity reuse after deletion.
 Original reports: `docs/release/evidence/local-team-ownership-2026-10-16/`.
 
-The service suite now requires 21 groups, including `trip-details-ownership`.
+The service suite now requires 22 groups, including `trip-details-ownership` and
+`trip-change-parent-confirmation`.
 That scenario uses authenticated local REST writes against a reserved trip with
 synthetic paid metadata. It denies operational mutations, removals and an atomic
 mixed title/price write, then independently checks unchanged booking/trip state
@@ -45,6 +46,15 @@ and the preserved owner-title edit. It does not implement the trip editor or
 the now-approved post-reservation parent-confirmation policy. Historical
 reports retain the policy state captured before that product decision; current
 transport runs report implementation scope, not a product-approval assertion.
+
+The additional proposal scenario uses four reservations belonging to two parents,
+including child and synthetic paid metadata. It verifies exact-revision decisions,
+parent-scoped reads, duplicate/conflicting requests, withdrawal, non-destructive
+decline, guardian/payment/reservation invalidation, concurrent proposal/booking
+and accept/withdraw outcomes, cancellation closure, active/orphan rides and the
+atomic limit. Consent reaches `confirmed` without applying new terms or touching
+payments. No editing screen, financial adjustment, final application or physical
+phone flow is accepted by this service evidence.
 
 ## App And Management Screens
 

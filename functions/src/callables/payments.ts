@@ -107,6 +107,7 @@ export const createRidePaymentIntent = onCall(
     const tripSnap = await firestore.collection("trips").doc(booking.tripId).get();
     if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
     const trip = tripSnap.data() as Trip;
+    if (trip.pendingChangeId) throw new HttpsError("failed-precondition", "Resolve the proposed trip change before starting payment.");
     const amountCents = ridePaymentAmountCents({ id: bookingSnap.id, ...booking }, { ...trip, id: tripSnap.id });
     if (amountCents == null) throw new HttpsError("failed-precondition", "This booking does not require payment.");
 

@@ -34,10 +34,53 @@ The proposed details and each affected parent's explicit decision must remain
 bound to the same authoritative revision. An unanswered or stale decision must
 not authorize changed details, a changed payment amount or a ride start.
 
-Required work remains: the complete server change contract, authoritative
-revision and repeat/unknown-outcome handling, affected reservation/payment/consent
-behavior, recipient notices, a real native editing and parent-review screen, and
-end-to-end approval/denial/race/recovery tests under the chosen policy.
+The server proposal/decision stage below is implemented locally. Required work
+still includes applying confirmed changes, route/estimate recalculation, payment
+adjustments and settlement, native editing and parent-review screens, and full
+end-to-end approval/denial/race/recovery tests. Do not present the consent API as
+the completed editing flow.
+
+## Local Proposal And Decision Stage
+
+`getTripChangePreview` returns the owning driver's current terms, active booking
+and distinct parent counts, and an authoritative revision. `proposeTripChanges`
+requires that revision, a UUID request identity, and complete proposed time,
+route and price terms. It stores original/proposed terms separately under
+`tripChanges`, captures all active requested/approved reservations, and sends one
+proposal notice per distinct parent. No client-supplied parent list is accepted.
+
+`getTripChangeReview` exposes only the owning parent's affected booking IDs and
+their own decision, or the driver's complete view. Current guardian authority is
+required for child reservations. The source revision includes booking and child
+document versions; a reservation, payment or guardian change invalidates earlier
+consent rather than letting the last parent confirm stale conditions.
+
+`respondToTripChanges` binds an explicit accept/decline decision and UUID to that
+exact proposal revision. One parent confirms all their affected reservations;
+multiple children/reservations do not duplicate consent or notices. Unanimous
+acceptance records `confirmed`, **not applied**. Original trip conditions,
+bookings and payment records remain unchanged in this stage. `applied: false` and
+`applicationImplemented: false` explicitly delimit the current response contract.
+
+Declining closes the proposal without cancelling a reservation or refunding a
+payment. `withdrawTripChanges` lets the owning driver release a pending,
+confirmed or outdated current proposal, retaining the original conditions and
+decision history. A repeated identical request does not duplicate effects;
+reusing an identity for a different operation is rejected. Unanswered proposals
+do not become accepted. Passed departure times cannot receive new decisions.
+
+An open proposal prevents new bookings, approvals, payment initiation and ride
+start; search matching excludes it. Existing booking cancellation remains
+available and makes the proposal outdated. Trip cancellation closes the proposal
+atomically. An outdated proposal cannot receive new consent and can be withdrawn
+by its driver. Cancellation and withdrawal are not automatic edit fallbacks.
+
+The stage has a 100-active-reservation atomic limit and rejects inconsistent
+metadata without partial writes. Proposal and decision documents are accessible
+only through authorized server operations, including for administrators; direct
+client reads, directory queries and writes are denied. It is not deployed and
+has no native entry point yet. Financial settlement and final application are
+not implemented and must not be inferred from a confirmed consent record.
 
 ## Required Editing Verification
 
@@ -61,10 +104,10 @@ end-to-end approval/denial/race/recovery tests under the chosen policy.
   restart and lists with multiple parents/reservations preserve the correct
   proposal and decisions without exposing another account's data.
 
-Declined, withdrawn, expired and partially confirmed proposals need an explicit
-server contract before implementation. Do not silently convert a declined change
-into a cancellation or a new booking. The current local boundary fix is not a
-substitute for this complete flow.
+Final application must account for declined, withdrawn, expired and partially
+confirmed proposals under the above non-destructive consent contract. Do not
+silently convert a declined change into a cancellation or a new booking. This
+local proposal/decision stage is not a substitute for the complete flow.
 
 ## Verification Scope
 

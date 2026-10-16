@@ -19,7 +19,7 @@ export function reservationActions(
 ): ReservationAction[] {
   if (role === "driver") {
     return booking.driverUserId === uid && trip.driverUserId === uid && booking.status === "requested" && booking.paymentStatus !== "paid" &&
-      trip.status === "published" && !trip.activeRideSessionId ? ["approve", "decline"] : [];
+      trip.status === "published" && !trip.activeRideSessionId && !trip.pendingChangeId ? ["approve", "decline"] : [];
   }
   if ((booking.parentUserId ?? booking.requesterUserId) !== uid) return [];
   if (booking.status === "requested") return ["cancel"];

@@ -78,12 +78,12 @@ test('CI runs cancellation checks and the private portal separates local app pro
   assert(workflow.includes('run: npm run test:trip-cancellation-rules'));
   assert.match(workflow, /^\s+run: node --test[^\n]*\btests\/trip-cancellation-evidence\.test\.mjs(?:\s|$)/m);
   assert.match(read('scripts/qa/local-flow-suite.mjs'), /check\('trip-cancellation'/);
-  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 21/);
+  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 22/);
   assert.match(read('scripts/qa/run-local-flows.mjs'), /result.tripCancellation\?\.notificationCount, 2/);
   const pkg = JSON.parse(read('package.json'));
   assert(pkg.scripts['test:rules'].includes('tests/trip-cancellation-rules.test.ts'));
   const flow = content.flows.find((item) => item.id === 'publication');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.local.source, detailsBase + 'sgm-trip-details-services-after.json');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.local.source, detailsBase + 'services.json');
   assert(flow.local.groups.includes('trip-cancellation')); assert.equal(flow.source, detailsBase + 'README.md');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
@@ -93,7 +93,7 @@ test('CI runs cancellation checks and the private portal separates local app pro
 });
 
 const uiBase = 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/';
-const detailsBase = 'docs/release/evidence/local-trip-details-2026-10-16/';
+const detailsBase = 'docs/release/evidence/local-trip-change-consent-2026-10-16/';
 const uiJson = (name) => JSON.parse(read(uiBase + name));
 
 test('completed app cancellation requires the actual same-run receipt and independently verified closed state', () => {

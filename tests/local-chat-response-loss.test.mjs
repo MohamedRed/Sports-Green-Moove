@@ -71,7 +71,7 @@ test('failed independent verification is not represented as a successful post-co
 test('the real service scenario remains mandatory, persisted, denied to outsiders and explicitly non-native', () => {
   const suite = read('scripts/qa/local-flow-suite.mjs'), runner = read('scripts/qa/run-local-flows.mjs');
   assert.match(suite, /check\('chat-post-commit-response-loss'/);
-  assert.match(runner, /result.steps.length, 21/);
+  assert.match(runner, /result.steps.length, 22/);
   assert.match(runner, /result.chatResponseLoss\?\.firstError.code, 'ECONNRESET'/);
   const check = read('scripts/qa/local-chat-response-loss.mjs');
   for (const value of ['original.createdAtMillis', 'original.notificationId', 'conflict.status, 409',

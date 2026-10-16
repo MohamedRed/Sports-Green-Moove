@@ -79,7 +79,7 @@ export const requestBooking = onCall(async (request) => {
   if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
 
   const trip = { id: tripSnap.id, ...tripSnap.data() } as Trip;
-  if (trip.status !== "published" || trip.activeRideSessionId) throw new HttpsError("failed-precondition", "Trip is not available.");
+  if (trip.status !== "published" || trip.activeRideSessionId || trip.pendingChangeId) throw new HttpsError("failed-precondition", "Trip is not available.");
   if (trip.driverUserId === uid) throw new HttpsError("failed-precondition", "Drivers cannot book their own trip.");
   if (trip.seatsAvailable < data.seats) throw new HttpsError("failed-precondition", "Not enough seats available.");
 
@@ -103,7 +103,7 @@ export const requestBooking = onCall(async (request) => {
   await firestore.runTransaction(async (transaction) => {
     const current = await transaction.get(tripRef);
     const available = current.data() as Trip | undefined;
-    if (!available || available.status !== "published" || available.activeRideSessionId ||
+    if (!available || available.status !== "published" || available.activeRideSessionId || available.pendingChangeId ||
         available.driverUserId !== trip.driverUserId || available.seatsAvailable < data.seats) {
       throw new HttpsError("failed-precondition", "Trip is no longer available for this booking.");
     }
@@ -146,7 +146,7 @@ export const approveBooking = onCall(async (request) => {
     if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
     const trip = tripSnap.data() as Trip;
     if (trip.driverUserId !== uid) throw new HttpsError("permission-denied", "Only the driver can approve.");
-    if (trip.status !== "published" || trip.activeRideSessionId) {
+    if (trip.status !== "published" || trip.activeRideSessionId || trip.pendingChangeId) {
       throw new HttpsError("failed-precondition", "Bookings cannot be approved after a trip starts or closes.");
     }
     if (trip.seatsAvailable < (booking.seats ?? 1)) {

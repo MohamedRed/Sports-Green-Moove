@@ -10,7 +10,11 @@ try {
   const result = JSON.parse(readFileSync(runtime.env.SGM_LOCAL_FLOW_OUTPUT, 'utf8'));
   assert.equal(result.runId, runtime.env.SGM_LOCAL_RUN_ID, 'A fresh completed run is required');
   assert.equal(result.projectId, projectId);
-  assert.equal(result.steps.length, 21);
+  assert.equal(result.steps.length, 22);
+  assert.equal(result.tripChanges?.acceptedParentCount, 2);
+  assert.equal(result.tripChanges?.confirmationNotificationCount, 5);
+  assert.equal(result.tripChanges?.originalTripAndBookingsPreserved, true);
+  assert.equal(result.tripChanges?.applicationImplemented, false);
   assert.equal(result.tripDetails?.deniedOwnerMutations, 14);
   assert.equal(result.tripDetails?.deniedOtherActors, 3);
   assert.equal(result.tripDetails?.titleEditAllowed, true);

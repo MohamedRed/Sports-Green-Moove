@@ -1,11 +1,12 @@
 import { createHash } from "node:crypto";
-import { Timestamp, type Transaction } from "firebase-admin/firestore";
+import { FieldValue, Timestamp, type Transaction } from "firebase-admin/firestore";
 import { HttpsError } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { chatDocumentIdSchema as documentId } from "../domain/chatReference.js";
 import { refundStatusForCancellation } from "../domain/access.js";
 import { reservationSchema } from "../domain/reservations.js";
 import { firestore } from "../lib/firebase.js";
+import { loadStoredTripChange } from "./tripChangeState.js";
 
 export const cancellationRequestSchema = z.object({
   tripId: documentId, requestId: z.uuid(), expectedRevision: z.string().regex(/^[a-f0-9]{64}$/),
@@ -15,6 +16,7 @@ export type CancellationRequest = z.infer<typeof cancellationRequestSchema>;
 const tripSchema = z.object({ driverUserId: documentId, status: z.string(),
   seatsTotal: z.number().int().min(1).max(8), seatsAvailable: z.number().int().min(0).max(8),
   activeRideSessionId: documentId.nullish(),
+  pendingChangeId: z.string().regex(/^[a-f0-9]{64}$/).nullish(),
 }).refine((trip) => trip.seatsAvailable <= trip.seatsTotal);
 const receiptSchema = cancellationRequestSchema.extend({ actorUserId: documentId,
   bookingIds: z.array(documentId).max(100), refundPendingCount: z.number().int().min(0).max(100),
@@ -92,6 +94,9 @@ export async function cancelPublishedTrip(data: CancellationRequest, uid: string
       return clientReceipt(receipt);
     }
     if (state.revision !== data.expectedRevision) throw new HttpsError("aborted", "Trip or reservations changed. Review cancellation again.");
+    const proposed = state.trip.pendingChangeId ? await loadStoredTripChange(transaction, data.tripId, state.trip.pendingChangeId) : null;
+    if (proposed && (proposed.change.driverUserId !== state.trip.driverUserId || !["pending", "confirmed"].includes(proposed.change.status)))
+      inconsistent("Trip change metadata must be reconciled before cancellation.");
     const now = Timestamp.now();
     const items = state.items;
     const receipt: Receipt = { ...data, actorUserId: uid, cancelledAt: now,
@@ -113,7 +118,9 @@ export async function cancelPublishedTrip(data: CancellationRequest, uid: string
       });
     }
     transaction.update(state.tripRef, { status: "cancelled", seatsAvailable: receipt.seatsAvailable,
-      approvedPassengerUserIds: [], cancelledAt: now, cancelledByUserId: uid, cancelReason: data.reason, updatedAt: now });
+      approvedPassengerUserIds: [], cancelledAt: now, cancelledByUserId: uid, cancelReason: data.reason, updatedAt: now,
+      ...(proposed ? { pendingChangeId: FieldValue.delete() } : {}) });
+    if (proposed) transaction.update(proposed.ref, { status: "cancelled", updatedAt: now });
     transaction.create(state.receiptRef, receipt);
     return clientReceipt(receipt);
   });

@@ -32,6 +32,7 @@ export const startRide = onCall(async (request) => {
     if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
     const trip = tripSnap.data() as Trip;
     if (trip.driverUserId !== uid) throw new HttpsError("permission-denied", "Only the driver can start this ride.");
+    if (trip.pendingChangeId) throw new HttpsError("failed-precondition", "A proposed change must be resolved before starting the ride.");
     if (trip.status !== "published" && trip.status !== "full") {
       throw new HttpsError("failed-precondition", "Only an available trip can start a ride.");
     }

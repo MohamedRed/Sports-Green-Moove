@@ -75,8 +75,9 @@ test('raw reports remain byte exact and the portal keeps full editing and real s
   for (const [name, hash] of Object.entries(hashes)) assert.equal(createHash('sha256')
     .update(readFileSync(new URL(base + name, root))).digest('hex'), hash, name);
   const flow = content.flows.find((item) => item.id === 'publication');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, base + 'README.md');
-  assert.equal(flow.local.source, base + 'sgm-trip-details-services-after.json');
+  const current = 'docs/release/evidence/local-trip-change-consent-2026-10-16/';
+  assert.equal(flow.status, 'partial'); assert.equal(flow.source, current + 'README.md');
+  assert.equal(flow.local.source, current + 'services.json');
   assert(flow.local.groups.includes('trip-details-ownership'));
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/results.json');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
@@ -103,7 +104,7 @@ test('CI keeps new rules and evidence checks mandatory alongside the complete se
   assert(workflow.includes('run: npm run test:trip-details-rules'));
   assert.match(workflow, /^\s+run: node --test[^\n]*\btests\/trip-details-evidence\.test\.mjs(?:\s|$)/m);
   assert.match(read('scripts/qa/local-flow-suite.mjs'), /check\('trip-details-ownership'/);
-  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 21/);
+  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 22/);
   assert.match(read('scripts/qa/run-local-flows.mjs'), /result.tripDetails\?\.deniedOwnerMutations, 14/);
   const rules = read('firestore.rules');
   assert.match(rules, /affectedKeys\(\)\.hasOnly\(\['title'\]\)/);

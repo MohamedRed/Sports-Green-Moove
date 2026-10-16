@@ -23,6 +23,7 @@ export type ResolvedPlace = PlaceSuggestion & {
 
 export type Trip = {
   activeRideSessionId?: string;
+  pendingChangeId?: string;
   id: string;
   driverUserId: string;
   status: TripStatus;
