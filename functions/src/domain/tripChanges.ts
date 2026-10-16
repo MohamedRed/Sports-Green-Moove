@@ -33,4 +33,3 @@ export function tripChangeHash(value: unknown): string {
 export function tripChangeSourceData(data: Record<string, unknown>) {
   return Object.fromEntries(Object.entries(data).filter(([key]) => !["pendingChangeId", "updatedAt"].includes(key)));
 }
-
