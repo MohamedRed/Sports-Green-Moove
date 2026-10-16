@@ -39,7 +39,7 @@ test('new reservation actions are wired to scoped state and persisted app verifi
   const runner = source('scripts/qa/local-android-session.mjs');
   assert.match(runner, /instrument\(\['LocalBookingDecisionsFlowTest'\], 1\)/);
   assert.match(runner, /const reservationDecisions = await verifyReservationUi\(reservationFixture\)/);
-  assert.match(runner, /testCount: 19/);
+  assert.match(runner, /testCount: 20/);
   assert.match(source('.github/workflows/web-integration-smoke.yml'), /tests\/reservation-evidence.test.mjs/);
 });
 test('published reservation captures require the completed native run and saved outcomes', () => {

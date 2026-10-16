@@ -16,6 +16,7 @@ import { replayWithNetworkCleanup } from './local-network-replay.mjs';
 import { finishDisposableCleanup, waitForDisposableDevice } from './disposable-device-cleanup.mjs';
 import { seedChatRestartUiFixture, checkpointChatRestart, verifyChatRestartUi } from './local-chat-restart-ui.mjs';
 import { stopDisposableChatProcess } from './local-chat-process-stop.mjs';
+import { replayChatLossUi } from './local-chat-loss-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -30,9 +31,10 @@ run(adb, ['-s', serial, 'install', '-r', resolve(android, 'app/build/outputs/apk
 run(adb, ['-s', serial, 'install', '-r', resolve(android, 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk')]);
 run(process.execPath, [resolve(import.meta.dirname, 'install-local-ui-session.mjs'), serial, process.env.SGM_LOCAL_UI_SESSION_FILE]);
 
-function instrument(classes, expected) {
+function instrument(classes, expected, extraArguments = []) {
   run(adb, ['-s', serial, 'logcat', '-b', 'crash', '-c']);
   const output = execFileSync(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '240000',
+    ...extraArguments,
     '-e', 'class', classes.map((name) => `be.sportgreenmoove.app.ui.${name}`).join(','),
     'be.sportgreenmoove.app.local.test/androidx.test.runner.AndroidJUnitRunner'],
   { env: process.env, encoding: 'utf8', timeout: 12 * 60_000, maxBuffer: 4 * 1024 * 1024 });
@@ -83,6 +85,10 @@ try {
   waitForDisposableDevice(adb, serial);
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
   const chatRestart = await verifyChatRestartUi(restartFixture, restartCheckpoint, evidenceDir);
+  const chatResponseLoss = await replayChatLossUi(instrument, () => {
+    waitForDisposableDevice(adb, serial);
+    run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
+  }, evidenceDir);
   const networkFixture = await seedChatNetworkUiFixture();
   replayWithNetworkCleanup(adb, serial, session.runId, instrument);
   waitForDisposableDevice(adb, serial);
@@ -92,11 +98,12 @@ try {
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
     'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui',
     'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui',
-    'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui']
+    'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui',
+    'chat-post-commit-response-loss-ui']
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 19, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, membershipRefresh, chatNetwork, chatRestart,
+    testCount: 20, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, membershipRefresh, chatNetwork, chatRestart, chatResponseLoss,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },
     limits: ['Synthetic mock positions and pre-granted emulator permissions only.',

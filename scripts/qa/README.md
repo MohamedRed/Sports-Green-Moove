@@ -74,7 +74,7 @@ peer sends one message while the parent thread stays open; this is not a claim
 of two physical phones or push delivery. An unrelated synthetic account cannot
 open the thread. Independent stored-message, recipient notification and unread
 checks must pass before the runner writes its result. The current suite requires
-19 instrumentation cases and records 20 coverage groups; these are not the same
+20 instrumentation cases and records 21 coverage groups; these are not the same
 count. Older evidence retains the exact counts of its original run.
 
 `LocalChatNetworkFlowTest` disables Wi-Fi and mobile data on the explicitly
@@ -115,6 +115,23 @@ and configuration checks alone do not accept this app flow. The completed
 nineteen-case replay and unchanged stage/persisted artifacts are retained in
 `docs/release/evidence/local-chat-restart-2026-10-16/`; pending drafts and physical
 devices remain outside that evidence.
+
+`LocalChatResponseLossTest` hosts the production conversation route and real SDK
+gateway in a test activity. A supervised child HTTP proxy forwards only the three
+chat callables to the isolated demo project. The test pauses Firestore networking
+after opening the empty conversation so its independent acknowledgement cannot
+hide a lost callable reply. Every first-phase send reaches the actual service;
+the worker independently checks exactly one stored message and one addressed
+notification before discarding the response. A separately selected second phase
+returns a controlled 429 rejection without forwarding it. The final phase returns
+the real service acknowledgement. The composer must retain its draft and original
+request identity through both failures, then clear on confirmation. Networking is
+restored and exactly one bubble appears. The host verifies the same saved message,
+timestamp, request ID and notification after all attempts. The child has its own
+event loop because the host runs instrumentation synchronously. It is closed in
+cleanup. This is controlled transport/SDK evidence, not OS-network interruption,
+full-app navigation, physical-device, pending-draft restart or push evidence.
+The independent OS-network scenario remains mandatory and runs last.
 
 `LocalMembershipFlowTest` requests two new club memberships through the app,
 then uses a separate authenticated local manager SDK session to approve/refuse

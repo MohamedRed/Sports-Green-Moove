@@ -33,6 +33,7 @@ on:
       - "tests/chat-network-evidence.test.mjs"
       - "tests/cellular-request-evidence.test.mjs"
       - "tests/local-chat-response-loss.test.mjs"
+      - "tests/native-chat-loss.test.mjs"
       - "tests/chat-composer-intent.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Conversation*.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/ui/ConversationComposerStateTest.kt"
@@ -101,6 +102,7 @@ on:
       - "tests/chat-network-evidence.test.mjs"
       - "tests/cellular-request-evidence.test.mjs"
       - "tests/local-chat-response-loss.test.mjs"
+      - "tests/native-chat-loss.test.mjs"
       - "tests/chat-composer-intent.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Conversation*.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/ui/ConversationComposerStateTest.kt"
@@ -179,6 +181,9 @@ jobs:
 
       - name: Validate bounded local response-loss injection
         run: node --test tests/local-chat-response-loss.test.mjs
+
+      - name: Validate native SDK response-loss injection
+        run: node --test tests/native-chat-loss.test.mjs
 
       - name: Test isolated multi-person flows
         run: npm run test:local-flows
