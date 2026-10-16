@@ -122,14 +122,15 @@ test('ride integrity claims use the new eleven-group evidence without promoting 
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 
-test('message service claims use the refreshed sixteen-group evidence and retain history', () => {
+test('message service claims use the refreshed eighteen-group evidence and retain history', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.local.source));
-  assert.equal(run.steps.length, 16);
+  assert.equal(run.steps.length, 18);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-2026-10-15/results.json')).steps.length, 13);
   assert(run.steps.every((step) => step.status === 'passed'));
   assert(flow.local.groups.includes('chat-delivery-safety'));
   assert(flow.local.groups.includes('chat-directory-safety'));
+  assert(flow.local.groups.includes('chat-post-commit-response-loss'));
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
   assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /groupe/);

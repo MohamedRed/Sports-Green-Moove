@@ -9,6 +9,7 @@ import { checkChatDirectorySafety } from './local-chat-directory-safety.mjs';
 import { checkReservationDecisions } from './local-reservation-decisions.mjs';
 import { checkMembershipReview } from './local-membership-review.mjs';
 import { checkTripCapacityOwnership } from './local-trip-capacity.mjs';
+import { checkChatResponseLoss } from './local-chat-response-loss.mjs';
 
 const { projectId } = configureLocalEmulators();
 const steps = [];
@@ -28,6 +29,8 @@ await check('ride-lifecycle', async () => {
 const scenarios = lifecycle ? await runScenarios(check, lifecycle) : undefined;
 await check('ride-passenger-safety', checkRidePassengerSafety);
 await check('chat-delivery-safety', checkChatDeliverySafety);
+let chatResponseLoss;
+await check('chat-post-commit-response-loss', async () => { chatResponseLoss = await checkChatResponseLoss(); });
 await check('chat-directory-safety', checkChatDirectorySafety);
 let reservationDecisions;
 await check('reservation-decisions', async () => { reservationDecisions = await checkReservationDecisions(); });
@@ -36,7 +39,7 @@ await check('membership-review', async () => { membershipReview = await checkMem
 let tripCapacity;
 await check('trip-capacity-ownership', async () => { tripCapacity = await checkTripCapacityOwnership(); });
 const result = { runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), projectId, scope: 'local-emulated-services-not-phone-ui',
-  steps, lifecycle, scenarios, reservationDecisions, membershipReview, tripCapacity, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
+  steps, lifecycle, scenarios, reservationDecisions, membershipReview, tripCapacity, chatResponseLoss, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
     'Membership screen decisions, trip editing/cancellation and refund settlement require separate evidence.'] };
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
 if (!output) throw new Error('Explicit local evidence output path required');

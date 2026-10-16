@@ -47,7 +47,7 @@ test('CI keeps the capacity boundary and all prior service scenarios mandatory',
   const pkg = JSON.parse(read('package.json'));
   assert(pkg.scripts['test:rules'].includes('tests/trip-capacity-rules.test.ts'));
   const runner = read('scripts/qa/run-local-flows.mjs');
-  assert.match(runner, /result.steps.length, 17/);
+  assert.match(runner, /result.steps.length, 18/);
   assert.match(runner, /result.tripCapacity\?\.rejectedOwnerMutations, 7/);
   assert.match(runner, /result.tripCapacity\?\.seatsAfterCancellation, 4/);
   assert.match(read('scripts/qa/local-flow-suite.mjs'), /check\('trip-capacity-ownership'/);

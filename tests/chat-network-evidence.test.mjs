@@ -60,7 +60,7 @@ test('partner media stays reviewed, partial and explicit about remaining phone a
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-chat-restart-2026-10-16/results.json');
-  assert.equal(flow.local.source, base + 'services.json');
+  assert.equal(flow.local.source, 'docs/release/evidence/local-chat-response-loss-2026-10-16/results.json');
   assert.match(flow.remaining, /clavier/); assert.match(flow.remaining, /téléphones/);
   assert.match(flow.remaining, /groupe/); assert.match(flow.remaining, /Pas encore en ligne/);
   for (const file of ['local-chat-network-unconfirmed.png', 'booking-picker-recovered.png']) {

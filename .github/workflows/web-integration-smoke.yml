@@ -32,6 +32,7 @@ on:
       - "tests/native-membership-evidence.test.mjs"
       - "tests/chat-network-evidence.test.mjs"
       - "tests/cellular-request-evidence.test.mjs"
+      - "tests/local-chat-response-loss.test.mjs"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Search*.kt"
@@ -95,6 +96,7 @@ on:
       - "tests/native-membership-evidence.test.mjs"
       - "tests/chat-network-evidence.test.mjs"
       - "tests/cellular-request-evidence.test.mjs"
+      - "tests/local-chat-response-loss.test.mjs"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Search*.kt"
@@ -166,6 +168,9 @@ jobs:
 
       - name: Validate local test isolation
         run: npm run test:local-flow-isolation
+
+      - name: Validate bounded local response-loss injection
+        run: node --test tests/local-chat-response-loss.test.mjs
 
       - name: Test isolated multi-person flows
         run: npm run test:local-flows

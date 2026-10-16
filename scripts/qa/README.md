@@ -18,6 +18,15 @@ Only sanitized result JSON belongs in release evidence. Keep emulators' runtime
 logs and ephemeral credentials out of Git. Local evidence never automatically
 accepts a physical-device or live-payment release-manifest requirement.
 
+The service suite requires 18 groups. `chat-post-commit-response-loss` forwards a
+real authenticated local send, independently verifies its saved message and
+recipient notification, then drops the HTTP reply before any response headers.
+The client must observe a reset without an automatic retry. Two explicit retries
+retain the original record identity/time; changed content and an outside account
+remain denied. This is service transport evidence, not native composer or pending
+draft recovery. The bounded loopback listener is always closed. See
+`docs/release/evidence/local-chat-response-loss-2026-10-16/` for retained runs.
+
 ## App And Management Screens
 
 The repeatable app suite is

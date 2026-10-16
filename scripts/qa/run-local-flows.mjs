@@ -10,7 +10,11 @@ try {
   const result = JSON.parse(readFileSync(runtime.env.SGM_LOCAL_FLOW_OUTPUT, 'utf8'));
   assert.equal(result.runId, runtime.env.SGM_LOCAL_RUN_ID, 'A fresh completed run is required');
   assert.equal(result.projectId, projectId);
-  assert.equal(result.steps.length, 17);
+  assert.equal(result.steps.length, 18);
+  assert.equal(result.chatResponseLoss?.firstError.code, 'ECONNRESET');
+  assert.equal(result.chatResponseLoss?.firstError.responseReceived, false);
+  assert.equal(result.chatResponseLoss?.messageCount, 1);
+  assert.equal(result.chatResponseLoss?.notificationCount, 1);
   assert.equal(result.tripCapacity?.rejectedOwnerMutations, 7);
   assert.equal(result.tripCapacity?.rejectedOtherActors, 3);
   assert.equal(result.tripCapacity?.seatsAfterApproval, 2);
