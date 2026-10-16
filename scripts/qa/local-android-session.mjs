@@ -13,6 +13,7 @@ import { seedReservationUiFixtures, verifyReservationUi } from './local-reservat
 import { verifyNativeMembershipUi } from './local-native-membership.mjs';
 import { seedChatNetworkUiFixture, verifyChatNetworkUi } from './local-chat-network-ui.mjs';
 import { replayWithNetworkCleanup } from './local-network-replay.mjs';
+import { finishDisposableCleanup, waitForDisposableDevice } from './disposable-device-cleanup.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -49,6 +50,8 @@ function instrument(classes, expected) {
 const evidenceDir = process.env.SGM_LOCAL_UI_OUTPUT;
 mkdirSync(evidenceDir, { recursive: true });
 let capturesCollected = false;
+let failure;
+let result;
 try {
   instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest', 'SearchSessionFlowTest', 'SearchCriteriaFlowTest'], 9);
   instrument(['LocalThemeRestartTest'], 1);
@@ -72,6 +75,7 @@ try {
   const membershipRefresh = await verifyNativeMembershipUi();
   const networkFixture = await seedChatNetworkUiFixture();
   replayWithNetworkCleanup(adb, serial, session.runId, instrument);
+  waitForDisposableDevice(adb, serial);
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
   capturesCollected = true;
   const chatNetwork = await verifyChatNetworkUi(networkFixture, evidenceDir);
@@ -80,18 +84,30 @@ try {
     'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui',
     'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui']
     .map((id) => ({ id, status: 'passed' }));
-  writeFileSync(resolve(evidenceDir, 'results.json'), `${JSON.stringify({ projectId: session.projectId,
+  result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
     testCount: 17, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, membershipRefresh, chatNetwork,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },
     limits: ['Synthetic mock positions and pre-granted emulator permissions only.',
-      'No physical GPS tracking, provider payments, push delivery or live data tested.'] }, null, 2)}\n`);
-} finally {
-  if (!capturesCollected) {
-    try { run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]); }
-    catch { console.warn('Could not collect local UI diagnostic captures.'); }
-  }
-  run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'default']);
-  run(adb, ['-s', serial, 'shell', 'run-as', 'be.sportgreenmoove.app.local', 'rm', '-f', 'files/local-qa-session.json']);
+      'No physical GPS tracking, provider payments, push delivery or live data tested.'] };
+} catch (error) { failure = error; }
+finally {
+  finishDisposableCleanup(failure, [
+    () => {
+      if (capturesCollected) return;
+      waitForDisposableDevice(adb, serial);
+      run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
+    },
+    () => {
+      waitForDisposableDevice(adb, serial);
+      run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'default']);
+    },
+    () => {
+      waitForDisposableDevice(adb, serial);
+      run(adb, ['-s', serial, 'shell', 'run-as', 'be.sportgreenmoove.app.local', 'rm', '-f', 'files/local-qa-session.json']);
+    },
+  ]);
 }
+assert(result, 'A complete verified replay is required before recording success');
+writeFileSync(resolve(evidenceDir, 'results.json'), `${JSON.stringify(result, null, 2)}\n`);

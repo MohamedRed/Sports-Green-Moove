@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { finishDisposableCleanup, waitForDisposableDevice } from './disposable-device-cleanup.mjs';
 
 const receiptPath = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/local-chat-network-ui.json';
 const commandOptions = { encoding: 'utf8', timeout: 30_000 };
@@ -24,17 +25,25 @@ export function replayWithNetworkCleanup(adb, serial, runId, instrument) {
   assert.match(runId, /^[a-f0-9]{32}$/);
   assert.equal(execFileSync(adb, ['-s', serial, 'shell', 'getprop', 'ro.kernel.qemu'], commandOptions).trim(), '1');
   execFileSync(adb, ['-s', serial, 'shell', 'rm', '-f', receiptPath], commandOptions);
+  let failure;
   try { instrument(['LocalChatNetworkFlowTest'], 1); }
+  catch (error) { failure = error; }
   finally {
-    const exists = spawnSync(adb, ['-s', serial, 'shell', 'test', '-f', receiptPath], commandOptions);
-    assert([0, 1].includes(exists.status), 'The disposable device must remain available for cleanup');
-    if (exists.status === 0) {
-      const receipt = JSON.parse(execFileSync(adb, ['-s', serial, 'shell', 'cat', receiptPath], commandOptions));
-      const commands = networkRestoreCommands(receipt, runId);
-      if (commands.length) {
-        try { execFileSync(adb, ['-s', serial, ...commands[0]], commandOptions); }
-        finally { execFileSync(adb, ['-s', serial, ...commands[1]], commandOptions); }
+    finishDisposableCleanup(failure, [() => {
+      waitForDisposableDevice(adb, serial);
+      const exists = spawnSync(adb, ['-s', serial, 'shell', 'test', '-f', receiptPath], commandOptions);
+      assert([0, 1].includes(exists.status), 'The disposable device must remain available for cleanup');
+      assert.equal(exists.stderr?.trim() ?? '', '', 'Receipt presence must not hide a transport error');
+      if (exists.status === 0) {
+        const receipt = JSON.parse(execFileSync(adb, ['-s', serial, 'shell', 'cat', receiptPath], commandOptions));
+        const commands = networkRestoreCommands(receipt, runId);
+        if (commands.length) {
+          finishDisposableCleanup(undefined, commands.map((command) => () => {
+            waitForDisposableDevice(adb, serial);
+            execFileSync(adb, ['-s', serial, ...command], commandOptions);
+          }));
+        }
       }
-    }
+    }]);
   }
 }

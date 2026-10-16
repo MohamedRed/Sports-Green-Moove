@@ -80,8 +80,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
-    { date: '2026-10-16', title: 'Trajet et réservations repassent en local',
-      text: 'Le trajet, les réservations et les messages repassent en local. Une capture montre l’échange après la coupure.', flow: 'messages' },
+    { date: '2026-10-16', title: 'Un essai incomplet',
+      text: 'Un essai a terminé ses actions sans livrer ses captures et contrôles finaux. Il n’est pas compté comme validé.', flow: 'messages' },
     { date: '2026-10-16', title: 'Un groupe par équipe',
       text: 'Seuls les membres d’une même équipe pourront lire ses messages. Ce parcours reste à construire et à tester.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le message reprend après une coupure',

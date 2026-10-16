@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import ts from 'typescript';
 import { assertChatNetworkReceipt } from '../scripts/qa/chat-network-evidence.mjs';
 import { networkRestoreCommands } from '../scripts/qa/local-network-replay.mjs';
+import { finishDisposableCleanup, waitForDisposableDevice } from '../scripts/qa/disposable-device-cleanup.mjs';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const native = (name) => read(`android/app/src/androidTest/java/be/sportgreenmoove/app/ui/${name}.kt`);
@@ -81,7 +82,8 @@ test('app replay requires actual unconfirmed send, retry and cross-account draft
   assert.match(cleanup, /assert.equal\(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true'\)/);
   assert.match(cleanup, /'getprop', 'ro.kernel.qemu'/);
   assert.match(cleanup, /instrument\(\['LocalChatNetworkFlowTest'\], 1\)/);
-  assert.match(cleanup, /finally \{ execFileSync\(adb, \['-s', serial, ...commands\[1\]\], commandOptions\)/);
+  assert.match(cleanup, /finishDisposableCleanup\(undefined, commands.map/);
+  assert.match(cleanup, /waitForDisposableDevice\(adb, serial\)/);
   assert.match(cleanup, /timeout: 30_000/);
   assert(replay.indexOf('writeResult(context, result)', replay.indexOf('control.snapshot("before")')) < replay.indexOf('control.disconnect {'));
   assert.match(replay, /control.snapshot\("disconnect-failed"\)/);
@@ -92,6 +94,45 @@ test('app replay requires actual unconfirmed send, retry and cross-account draft
   assert.match(verifier, /assert.equal\(notes.size, 1\)/);
   assert.match(verifier, /readByUserIds/);
   assert.match(verifier, /assert.equal\(note.read, true\)/);
+});
+
+test('device evidence collection waits for one bounded, confirmed disposable transport without restarting or retrying tests', () => {
+  const before = process.env.SGM_LOCAL_DISPOSABLE_EMULATOR;
+  process.env.SGM_LOCAL_DISPOSABLE_EMULATOR = 'true';
+  try {
+    const calls = [];
+    const execute = (adb, args, options) => {
+      calls.push(args);
+      assert.equal(adb, 'adb'); assert.equal(options.timeout, 30_000);
+      return args.includes('get-state') ? 'device\n' : args.includes('getprop') ? '1\n' : '';
+    };
+    waitForDisposableDevice('adb', 'emulator-5554', execute);
+    assert.deepEqual(calls, [['-s', 'emulator-5554', 'wait-for-device'],
+      ['-s', 'emulator-5554', 'get-state'], ['-s', 'emulator-5554', 'shell', 'getprop', 'ro.kernel.qemu']]);
+    assert.throws(() => waitForDisposableDevice('adb', 'physical', execute));
+    const timeout = new Error('transport deadline');
+    assert.throws(() => waitForDisposableDevice('adb', 'emulator-5554', () => { throw timeout; }), (error) => error === timeout);
+    assert.throws(() => waitForDisposableDevice('adb', 'emulator-5554', () => 'offline'));
+    const runner = read('scripts/qa/local-android-session.mjs');
+    assert.match(runner, /waitForDisposableDevice\(adb, serial\);\n  run\(adb, \['-s', serial, 'pull'/);
+    assert.match(runner, /finishDisposableCleanup\(failure, \[/);
+    assert(runner.indexOf("writeFileSync(resolve(evidenceDir, 'results.json')") > runner.indexOf('finishDisposableCleanup(failure'));
+  } finally {
+    if (before === undefined) delete process.env.SGM_LOCAL_DISPOSABLE_EMULATOR;
+    else process.env.SGM_LOCAL_DISPOSABLE_EMULATOR = before;
+  }
+});
+
+test('cleanup attempts every step and preserves the original failure together with cleanup errors', () => {
+  const primary = new Error('original replay failure'), cleanup = new Error('permission reset failure');
+  const calls = [];
+  assert.throws(() => finishDisposableCleanup(primary, [
+    () => { calls.push('reset'); throw cleanup; }, () => calls.push('remove session'),
+  ]), (error) => error instanceof AggregateError && error.errors[0] === primary && error.errors[1] === cleanup);
+  assert.deepEqual(calls, ['reset', 'remove session']);
+  assert.throws(() => finishDisposableCleanup(primary, [() => {}]), (error) => error === primary);
+  assert.throws(() => finishDisposableCleanup(undefined, [() => { throw cleanup; }]), (error) => error === cleanup);
+  assert.doesNotThrow(() => finishDisposableCleanup(undefined, [() => {}]));
 });
 
 test('new network replays prove cellular handover without weakening the recorded offline requirements', () => {

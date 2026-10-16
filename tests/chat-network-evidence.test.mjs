@@ -1,9 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import { content, captures } from '../partner-portal/content.mjs';
 import { assertChatNetworkReceipt } from '../scripts/qa/chat-network-evidence.mjs';
+import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentation-result.mjs';
 
 const base = 'docs/release/evidence/local-chat-network-2026-10-16/';
 const root = new URL('../', import.meta.url);
@@ -113,4 +114,23 @@ test('the ride scheduling interruption cannot be mistaken for a network replay',
   assert.match(teardown, /CompositionImpl.dispose/);
   assert.equal(teardown, gunzipSync(readFileSync(new URL(path + 'reservation-teardown-original.txt.gz', root)))
     .toString('utf8').replace(/\n+$/, '\n'));
+});
+
+test('completed instrumentation without collected evidence or final verification is not a complete replay', () => {
+  const path = 'docs/release/evidence/local-app-scheduling-2026-10-16/transport-interrupted/';
+  const files = readdirSync(new URL(path, root)).filter((name) => name.endsWith('-instrumentation.txt'));
+  assert.equal(files.length, 9);
+  let count = 0;
+  for (const name of files) {
+    const expected = name.startsWith('LocalAppFlowTest-') ? 9 : 1;
+    assertInstrumentationPassed(readFileSync(new URL(path + name, root), 'utf8'), expected);
+    count += expected;
+  }
+  assert.equal(count, 17);
+  assert(!existsSync(new URL(path + 'results.json', root)));
+  assert(!existsSync(new URL(path + 'local-chat-network-ui.json', root)));
+  const log = readFileSync(new URL(path + 'transport-cleanup-failed.txt', root), 'utf8');
+  assert.match(log, /device offline/); assert.match(log, /android:mock_location default/);
+  assert.equal(content.flows.find((item) => item.id === 'messages').ui.source,
+    'docs/release/evidence/local-app-scheduling-2026-10-16/results.json');
 });

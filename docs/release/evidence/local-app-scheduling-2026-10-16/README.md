@@ -83,3 +83,28 @@ The application is not deployed to production. Physical tracking, live payment,
 push, post-commit acknowledgement loss, full conversation process restart and
 team access are not accepted by this replay. Release evidence requirements remain
 unchanged. The partner site remains private and labels these results as local.
+
+## Later Transport Interruption
+
+Run [38875454665](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38875454665)
+at `cab9b51d8fa984c8a11cec75dbe675967295046d` records all 17
+instrumentation cases passing, including network recovery. Immediately after
+that case, ADB reported the disposable device offline. Its saved receipt and
+captures were not collected, final independent verification was not reached,
+and no results file was produced. This is not another accepted complete replay.
+The nine original instrumentation transcripts are retained in
+`transport-interrupted/`; they prove case completion, not final verification.
+
+The outer cleanup then failed while resetting the mock-location permission and
+masked the original failure. Session-file removal was never attempted after
+that exception. The retained workflow excerpt records this sequence; it does
+not establish why the transport disconnected or prove an app regression.
+
+The next version waits, with a fixed command timeout, for the same explicitly
+disposable device to become available before evidence reads and cleanup commands.
+It confirms the transport state and QEMU identity, without restarting a device,
+server or test. All cleanup steps are attempted and original/cleanup errors are
+preserved together. A missing receipt cannot be inferred from a transport error.
+Success is written only after independent verification and successful cleanup.
+This preparation still requires a complete replay; prior completed evidence is
+retained without promoting this interrupted attempt or closing release gaps.
