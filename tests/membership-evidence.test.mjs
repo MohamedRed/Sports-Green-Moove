@@ -69,3 +69,16 @@ test('reviewed images and raw unit/rules evidence remain scoped', () => {
   assert(existsSync(new URL(base + 'parent-denied.jpg', root)));
   assert(!Object.values(captures).includes(base + 'parent-denied.jpg'));
 });
+test('the successful native replay retains earlier failures and its local-only scope', () => {
+  const run = json('native-replay-passed.json');
+  assert.equal(run.runId, '0d579474baf6e0e076060a3c4b11bdfc');
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.testCount, 15); assert.equal(run.steps.length, 16);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.chat.newMessageCount, 4); assert.equal(run.chat.historyMessageCount, 120);
+  assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
+  assert.equal(run.multiSeatSdk.method, 'native-sdk-not-ui');
+  assert.equal(run.reservationDecisions.livePayment, false);
+  assert.match(read('README.md'), /One successful replay after two failures/);
+  assert(content.blockers.some((item) => item.id === 'chat-send-stability'));
+});

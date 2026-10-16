@@ -143,3 +143,20 @@ from an app-input failure before choosing a production fix. The
 describes rejected input sessions before window focus; it is relevant context,
 not proof that this is the same framework defect or grounds for an untested
 dependency upgrade. No production app behavior is changed by these diagnostics.
+
+[Run 38848431193](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38848431193)
+at `8a0859e` passed all enabled jobs. `native-replay-passed.json` is unchanged
+output from the complete isolated replay `0d579474baf6e0e076060a3c4b11bdfc`,
+completed at `2026-10-16T04:11:42.483Z`: 15 instrumentation cases, with 16
+coverage labels. The chat case opens the keyboard after rotation, exchanges four
+new messages, verifies read acknowledgements and reaches all 120 history messages.
+The directory, ride and reservation-decision cases also finish with independent
+persisted-state checks. Search retains four explicit fake-gateway cases, and the
+multi-seat SDK scenario is not a UI booking request. These scope limits remain in
+the original JSON. No physical-device, live-payment or push requirement is accepted.
+
+One successful replay after two failures does not prove that intermittent focus
+loss is resolved or identify which native window previously obscured the app.
+Repeatability, network recovery and real account transitions still need evidence.
+The prior failed reports remain intact; no production input fix or dependency
+upgrade was made merely to obtain a passing run.

@@ -73,8 +73,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
-    { date: '2026-10-16', title: 'Le clavier des messages à revérifier',
-      text: 'Le clavier ne s’ouvre pas après rotation dans deux essais. La reprise de l’écran est à vérifier avant de retester l’envoi.', flow: 'messages' },
+    { date: '2026-10-16', title: 'Le clavier et les messages passent au dernier essai',
+      text: 'Le clavier s’ouvre après rotation et le parent échange avec le conducteur. Ce nouvel essai passe après deux échecs ; les coupures restent à tester.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le club peut accepter ou refuser une adhésion',
       text: 'Le responsable du club et l’administrateur prennent leurs décisions en local. Les statuts et le nombre de membres sont vérifiés. Les captures sont disponibles.', flow: 'clubs' },
     { date: '2026-10-16', title: 'Refus et annulation testés dans l’app',
@@ -120,8 +120,8 @@ export const content = {
   ],
   blockers: [
     { id: 'chat-send-stability', title: 'Répéter l’envoi de messages',
-      text: 'Deux essais s’arrêtent au clavier après rotation. La reprise de l’écran reste à vérifier.',
-      next: 'Rejouer le clavier, puis les coupures et les changements de compte.', source: membershipReport },
+      text: 'Le dernier essai passe après deux échecs au clavier. La régularité reste à confirmer.',
+      next: 'Répéter l’essai, puis tester les coupures et les changements de compte.', source: membershipReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Le premier échange depuis une réservation passe en local. Le démarrage depuis un groupe reste à ajouter.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: chatUiReport },
