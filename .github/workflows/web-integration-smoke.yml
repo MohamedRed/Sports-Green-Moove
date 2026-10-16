@@ -26,6 +26,7 @@ on:
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
       - "tests/native-membership-evidence.test.mjs"
+      - "tests/chat-network-evidence.test.mjs"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Search*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Reservation*.kt"
@@ -82,6 +83,7 @@ on:
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
       - "tests/native-membership-evidence.test.mjs"
+      - "tests/chat-network-evidence.test.mjs"
       - "android/app/src/main/AndroidManifest.xml"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Search*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Reservation*.kt"
@@ -166,7 +168,7 @@ jobs:
         run: npm run test:privacy-policy-page
 
       - name: Validate private partner portal evidence and contracts
-        run: node --test tests/partner-portal.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs
+        run: node --test tests/partner-portal.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

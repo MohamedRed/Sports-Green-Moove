@@ -118,10 +118,11 @@ test('ride integrity claims use the new eleven-group evidence without promoting 
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 
-test('message directory service claims retain thirteen-group evidence and remaining scope', () => {
+test('message service claims use the refreshed sixteen-group evidence and retain history', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.local.source));
-  assert.equal(run.steps.length, 13);
+  assert.equal(run.steps.length, 16);
+  assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-2026-10-15/results.json')).steps.length, 13);
   assert(run.steps.every((step) => step.status === 'passed'));
   assert(flow.local.groups.includes('chat-delivery-safety'));
   assert(flow.local.groups.includes('chat-directory-safety'));
@@ -157,13 +158,13 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
 });
 
-test('conversation captures require the completed nine-case run and keep phone scope open', () => {
+test('conversation captures require the completed seventeen-case run and keep phone scope open', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.ui.source));
-  assert.equal(run.testCount, 9);
-  assert.equal(run.steps.length, 10);
+  assert.equal(run.testCount, 17);
+  assert.equal(run.steps.length, 19);
   assert(run.steps.every((step) => step.status === 'passed'));
-  assert.deepEqual(flow.ui.groups, ['chat-conversation-ui', 'chat-directory-ui']);
+  assert.deepEqual(flow.ui.groups, ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui']);
   assert.equal(run.chat.messageCount, 5);
   assert.equal(run.chat.newMessageCount, 4);
   assert.equal(run.chat.readNotificationCount, 4);
@@ -174,7 +175,8 @@ test('conversation captures require the completed nine-case run and keep phone s
   assert.equal(run.directory.secondPageCount, 8);
   assert.equal(run.directory.messageCount, 2);
   assert.equal(run.directory.readNotificationCount, 2);
-  assert.equal(flow.images.length, 5);
+  assert.equal(flow.images.length, 7);
+  assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-ui-2026-10-15/results.json')).testCount, 9);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-ui-2026-10-15/results.json')).testCount, 8);
   assert(!Object.values(captures).some((path) => /directory-(first-message|reply)\.png/.test(path)));
   assert.equal(flow.status, 'partial');

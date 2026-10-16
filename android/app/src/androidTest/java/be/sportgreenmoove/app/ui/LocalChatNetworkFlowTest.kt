@@ -24,6 +24,7 @@ import org.junit.Assume.assumeTrue
 import org.junit.Rule
 import org.junit.Test
 import java.io.File
+import kotlin.math.abs
 
 class LocalChatNetworkFlowTest {
     @get:Rule val compose = createEmptyComposeRule(effectContext = StandardTestDispatcher())
@@ -63,8 +64,7 @@ class LocalChatNetworkFlowTest {
                 compose.onNodeWithText("Trajet reprise réseau QA").performScrollTo().performClick()
                 waitForText("Aucun message.")
                 captureLocalUi(compose, "local-chat-network-empty.png")
-                compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsEnabled().performTextReplacement(body)
-                closeKeyboard()
+                typeDraft(body)
                 LocalEmulatorNetwork(context, device, session).use { control ->
                     network.put(control.snapshot("before"))
                     writeResult(context, result)
@@ -100,8 +100,7 @@ class LocalChatNetworkFlowTest {
                     captureLocalUi(compose, "local-chat-network-recovered.png")
                 }
                 phase = "account-draft"
-                compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextReplacement(privateDraft)
-                closeKeyboard()
+                typeDraft(privateDraft)
                 assertDraft(privateDraft)
                 logout()
                 login("driver")
@@ -109,8 +108,7 @@ class LocalChatNetworkFlowTest {
                 assertDraft("")
                 waitForReadAcknowledgement(context)
                 result.put("accountDraftCleared", true)
-                compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextReplacement(reply)
-                closeKeyboard()
+                typeDraft(reply)
                 compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().performClick()
                 waitForText(reply)
                 compose.waitUntil(60_000) { draft().isEmpty() }
@@ -141,8 +139,11 @@ class LocalChatNetworkFlowTest {
     private fun login(key: String) {
         authenticated = false
         waitFor(SgmTestTags.AuthEmailAction)
-        compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performScrollTo().performTextReplacement(session.getString(key))
+        compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performScrollTo().performClick().assertIsFocused()
+        compose.waitUntil(30_000) { keyboardVisible() }
+        compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performTextReplacement(session.getString(key))
         compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performScrollTo().performTextReplacement(session.getString("password"))
+        closeKeyboard()
         compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick()
         waitFor(SgmTestTags.HomeScreen)
         assertEquals(if (key == "parent") "sgm-qa-parent" else "sgm-qa-driver", FirebaseAuth.getInstance().currentUser?.uid)
@@ -168,6 +169,17 @@ class LocalChatNetworkFlowTest {
             compose.waitUntil(30_000) { !keyboardVisible() }
         }
         compose.waitForIdle()
+    }
+    private fun typeDraft(value: String) {
+        closeKeyboard()
+        val input = compose.onNodeWithTag(SgmTestTags.ChatMessageInput)
+        val restingTop = input.fetchSemanticsNode().boundsInRoot.top
+        input.assertIsEnabled().performClick().assertIsFocused()
+        compose.waitUntil(30_000) { keyboardVisible() }
+        input.performTextReplacement(value)
+        closeKeyboard()
+        compose.waitUntil(30_000) { abs(input.fetchSemanticsNode().boundsInRoot.top - restingTop) < 2f }
+        assertDraft(value)
     }
     private fun keyboardVisible(): Boolean {
         var visible = false

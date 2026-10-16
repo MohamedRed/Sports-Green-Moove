@@ -81,6 +81,47 @@ This run's separate configuration job also failed because its new TypeScript
 contract parser had no installed dependencies. The workflow now installs the locked
 dependencies before those checks. No case is omitted to obtain a green workflow.
 
+## Completed Fourth Replay
+
+Native CI [38865353101](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38865353101)
+passed all enabled jobs at `dc99ecb5c004c565d7b7587b0fe5c61ff9be46e5`.
+Its immutable `results.json` records run `1914c72fdb83f3cec9c59db6db6c21d8`,
+completed at 2026-10-16T07:23:19.423Z: 17 instrumentation cases and 19 coverage
+groups. The four search component cases still use their explicit fake gateway;
+this does not turn every coverage group into a live-provider test.
+
+`local-chat-network-ui.json` and the original/normalized passing instrumentation
+reports prove the new case completed. Its connected baseline had Wi-Fi and mobile
+data enabled and two internet networks. Offline: both disabled, no active network,
+zero internet networks and the real local Functions endpoint unreachable. After
+restoring the same settings, the endpoint was reachable over an active cellular
+network. This proves settings restoration, not identical active transport sets or
+Wi-Fi association at that exact instant. No timeout or offline assertion was relaxed.
+
+The real app reported an unconfirmed send with its draft and retry action intact.
+Explicit retry succeeded, the driver replied, and the parent saw the reply. A
+private synthetic draft did not cross accounts or reappear on return. Independent
+database verification required exactly two intended messages, zero duplicates,
+two correctly addressed read notifications and zero unread counts for both actors.
+The picker response retained approved, cancelled, completed and declined bookings.
+
+The refreshed `services.json` separately records all 16 isolated service groups
+passing at 2026-10-16T07:27:30.297Z, run `ad09904191c4a173c00d8fa0b8cf9e2d`.
+It does not claim payment-provider or physical-device success.
+
+The portal publishes only the reviewed, correctly framed unconfirmed-send capture
+from the completed run and the earlier recovered-picker capture, with its precise
+provenance above. Other completed-run captures caught keyboard/window movement
+and are not allowlisted; their originals remain in the CI artifact. They are not
+edited to hide that framing issue. Follow-on harness changes explicitly wait for
+keyboard opening, closing and restored composer bounds; those changes belong to
+the next current-head replay, not this saved run. Full phone keyboard/layout
+coverage and the older SlotWriter failure remain open.
+
+The application changes are not deployed to production. The partner website is a
+separate private publication. This evidence does not accept any physical tracking,
+real safety-audit, payment or push requirement in the release manifest.
+
 ## Recovery Scope
 
 The new case requires OS Wi-Fi and mobile data to be disabled on an explicitly

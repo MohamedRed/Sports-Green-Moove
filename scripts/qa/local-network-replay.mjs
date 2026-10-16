@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 
 const receiptPath = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/local-chat-network-ui.json';
+const commandOptions = { encoding: 'utf8', timeout: 30_000 };
 
 export function networkRestoreCommands(receipt, runId) {
   assert.equal(receipt.projectId, 'demo-sgm-local-qa');
@@ -21,18 +22,18 @@ export function replayWithNetworkCleanup(adb, serial, runId, instrument) {
   assert.equal(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
   assert(/^emulator-\d+$/.test(serial));
   assert.match(runId, /^[a-f0-9]{32}$/);
-  assert.equal(execFileSync(adb, ['-s', serial, 'shell', 'getprop', 'ro.kernel.qemu'], { encoding: 'utf8' }).trim(), '1');
-  execFileSync(adb, ['-s', serial, 'shell', 'rm', '-f', receiptPath]);
+  assert.equal(execFileSync(adb, ['-s', serial, 'shell', 'getprop', 'ro.kernel.qemu'], commandOptions).trim(), '1');
+  execFileSync(adb, ['-s', serial, 'shell', 'rm', '-f', receiptPath], commandOptions);
   try { instrument(['LocalChatNetworkFlowTest'], 1); }
   finally {
-    const exists = spawnSync(adb, ['-s', serial, 'shell', 'test', '-f', receiptPath]);
+    const exists = spawnSync(adb, ['-s', serial, 'shell', 'test', '-f', receiptPath], commandOptions);
     assert([0, 1].includes(exists.status), 'The disposable device must remain available for cleanup');
     if (exists.status === 0) {
-      const receipt = JSON.parse(execFileSync(adb, ['-s', serial, 'shell', 'cat', receiptPath], { encoding: 'utf8' }));
+      const receipt = JSON.parse(execFileSync(adb, ['-s', serial, 'shell', 'cat', receiptPath], commandOptions));
       const commands = networkRestoreCommands(receipt, runId);
       if (commands.length) {
-        try { execFileSync(adb, ['-s', serial, ...commands[0]]); }
-        finally { execFileSync(adb, ['-s', serial, ...commands[1]]); }
+        try { execFileSync(adb, ['-s', serial, ...commands[0]], commandOptions); }
+        finally { execFileSync(adb, ['-s', serial, ...commands[1]], commandOptions); }
       }
     }
   }

@@ -68,7 +68,9 @@ test('app replay requires actual unconfirmed send, retry and cross-account draft
   assert.match(replay, /assertFalse\(.*control.backendReachable\(\)\)/);
   assert.match(replay, /waitForText\("Envoi non confirmé\. Réessayez\."/);
   assert.match(replay, /assertContentDescriptionEquals\("Réessayer l'envoi"\)/);
-  assert.match(replay, /performTextReplacement\(privateDraft\)/);
+  assert.match(replay, /typeDraft\(privateDraft\)/);
+  assert.match(replay, /performClick\(\).assertIsFocused\(\)/);
+  assert.match(replay, /abs\(input.fetchSemanticsNode\(\).boundsInRoot.top - restingTop\) < 2f/);
   assert.match(replay, /login\("driver"\)[\s\S]*assertDraft\(""\)/);
   assert.match(replay, /waitForReadAcknowledgement\(context\)/);
   assert.match(replay, /put\("completed", false\).put\("failedPhase", phase\)/);
@@ -79,7 +81,8 @@ test('app replay requires actual unconfirmed send, retry and cross-account draft
   assert.match(cleanup, /assert.equal\(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true'\)/);
   assert.match(cleanup, /'getprop', 'ro.kernel.qemu'/);
   assert.match(cleanup, /instrument\(\['LocalChatNetworkFlowTest'\], 1\)/);
-  assert.match(cleanup, /finally \{ execFileSync\(adb, \['-s', serial, ...commands\[1\]\]/);
+  assert.match(cleanup, /finally \{ execFileSync\(adb, \['-s', serial, ...commands\[1\]\], commandOptions\)/);
+  assert.match(cleanup, /timeout: 30_000/);
   assert(replay.indexOf('writeResult(context, result)', replay.indexOf('control.snapshot("before")')) < replay.indexOf('control.disconnect()'));
   assert.match(replay, /control.snapshot\("disconnect-failed"\)/);
   const verifier = read('scripts/qa/local-chat-network-ui.mjs');

@@ -8,6 +8,7 @@ const reservationReport = 'docs/release/evidence/local-reservations-2026-10-16/R
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const membershipRefreshReport = 'docs/release/evidence/local-membership-refresh-2026-10-16/README.md';
 const chatUiReport = 'docs/release/evidence/local-chat-directory-ui-2026-10-15/README.md';
+const chatNetworkReport = 'docs/release/evidence/local-chat-network-2026-10-16/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -50,6 +51,8 @@ export const captures = {
   'chat-received': 'docs/release/evidence/local-chat-directory-ui-2026-10-15/local-chat-directory-received.png',
   'chat-history': 'docs/release/evidence/local-chat-directory-ui-2026-10-15/local-chat-directory-history.png',
   'chat-landscape': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-landscape-draft.png',
+  'chat-network-draft': 'docs/release/evidence/local-chat-network-2026-10-16/local-chat-network-unconfirmed.png',
+  'chat-picker-recovered': 'docs/release/evidence/local-chat-network-2026-10-16/booking-picker-recovered.png',
 };
 
 export const assets = {
@@ -77,16 +80,14 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'Le message reprend après une coupure',
+      text: 'En local, le nouvel envoi ne crée pas de doublon et les brouillons restent dans le bon compte. Une réservation refusée ne bloque plus le choix d’un échange.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les adhésions se mettent à jour dans l’app',
       text: 'Le parent voit l’acceptation ou le refus, puis peut refaire une demande. Les adhésions restent visibles après réouverture de l’écran.', flow: 'clubs' },
-    { date: '2026-10-16', title: 'Le nouvel échange passe après l’interruption',
-      text: 'Le parent et le conducteur se répondent dans le nouvel essai complet. Les coupures et les changements de compte restent à vérifier.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le club peut accepter ou refuser une adhésion',
       text: 'Le responsable du club et l’administrateur prennent leurs décisions en local. Les statuts et le nombre de membres sont vérifiés. Les captures sont disponibles.', flow: 'clubs' },
     { date: '2026-10-16', title: 'Refus et annulation testés dans l’app',
       text: 'En local, le parent annule deux réservations et le conducteur en refuse une. Les places et les statuts sont vérifiés. Deux captures sont disponibles.', flow: 'booking' },
-    { date: '2026-10-16', title: 'Les messages passent à nouveau',
-      text: 'Le parent et le conducteur se répondent dans le nouvel essai local. Les coupures et les changements de compte restent à vérifier.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les choix restent liés à la demande',
       text: 'Dans l’essai local simulé, les options sont conservées au retour et un ancien résultat ne peut plus être réservé après modification. Deux captures sont disponibles.', flow: 'search' },
     { date: '2026-10-15', title: 'La demande reprend le nombre de places choisi',
@@ -125,15 +126,15 @@ export const content = {
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
   blockers: [
-    { id: 'chat-send-stability', title: 'Répéter l’envoi de messages',
-      text: 'Le nouvel essai complet passe après l’interruption. La régularité entre téléphones reste à confirmer.',
-      next: 'Tester les coupures, les changements de compte et les échanges entre téléphones.', source: membershipReport },
+    { id: 'chat-send-stability', title: 'Rejouer les échanges sur téléphone',
+      text: 'En local : reprise après coupure, réponse et brouillons entre comptes vérifiés.',
+      next: 'Rejouer sur téléphone, après fermeture complète et après une longue absence.', source: chatNetworkReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Le premier échange depuis une réservation passe en local. Le démarrage depuis un groupe reste à ajouter.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: chatUiReport },
     { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
-      text: 'L’essai d’écran vide la recherche au changement de compte simulé. Le plantage d’un essai précédent reste inexpliqué.',
-      next: 'Rejouer le changement de compte complet et examiner le plantage.', source: searchUiReport },
+      text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
+      next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: chatNetworkReport },
     { id: 'trip-management', title: 'Modifier ou annuler un trajet',
       text: 'Ces actions ne sont pas encore disponibles dans l’app.',
       next: 'Les ajouter, puis vérifier les réservations et les participants concernés.', source: uiReport },
@@ -197,10 +198,10 @@ export const content = {
       images: [shot('reservation-cancelled', 'Deux réservations annulées par le parent, en local'),
         shot('reservation-declined', 'Demande refusée par le conducteur, en local'),
         shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre')], source: reservationReport },
-    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'Le parent et le conducteur se répondent dans l’app, en local.',
-      verified: 'Premier message depuis une réservation, réponse du conducteur et ancien échange retrouvés dans l’app en local. Les deux messages sont enregistrés et lus.',
-      remaining: 'Ajouter le démarrage depuis un groupe. Vérifier le clavier et le changement de compte, puis la lecture et les alertes entre téléphones et la reprise après une coupure réseau.',
+    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-16',
+      summary: 'Après une coupure, le message repart sans doublon en local.',
+      verified: 'En local : brouillon conservé, puis renvoyé sans doublon et réponse lue. Brouillons séparés entre comptes et liste des échanges disponible après un refus.',
+      remaining: 'Restent les groupes, le clavier et les échanges entre téléphones. Rejouer une coupure juste après l’envoi et le relancement complet. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety'], [
         'Le parent et le conducteur échangent des messages.',
         'Trois tentatives du même envoi créent un seul message et une notification.',
@@ -208,13 +209,15 @@ export const content = {
         'Une personne extérieure ne peut pas ouvrir la conversation ni y répondre.',
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
-      ], 'docs/release/evidence/local-chat-directory-2026-10-15/results.json'),
-      ui: { source: 'docs/release/evidence/local-chat-directory-ui-2026-10-15/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui'] },
-      images: [shot('chat-reservation', 'Réservation choisie pour le premier message, en local'),
-        shot('chat-empty', 'Conversation vide avant le premier message, en local'),
-        shot('chat-received', 'Premier message et réponse du conducteur, en local'),
-        shot('chat-history', 'Ancien échange retrouvé dans l’app, en local'),
-        shot('chat-landscape', 'Brouillon conservé en paysage, en local')], source: chatUiReport },
+      ], 'docs/release/evidence/local-chat-network-2026-10-16/services.json'),
+      ui: { source: 'docs/release/evidence/local-chat-network-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui'] },
+      images: [shot('chat-network-draft', 'Coupure : le brouillon reste prêt à être renvoyé, en local'),
+        shot('chat-picker-recovered', 'Réservations acceptées, refusées et annulées visibles, en local'),
+        shot('chat-reservation', 'Réservation choisie pour le premier message, essai du 15 octobre'),
+        shot('chat-empty', 'Conversation avant le premier message, essai du 15 octobre'),
+        shot('chat-received', 'Premier message et réponse du conducteur, essai du 15 octobre'),
+        shot('chat-history', 'Ancien échange retrouvé dans l’app, essai du 15 octobre'),
+        shot('chat-landscape', 'Brouillon conservé en paysage, essai du 15 octobre')], source: chatNetworkReport },
     { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-16',
       summary: 'Le parent retrouve la décision dans l’app après actualisation.',
       verified: 'Acceptation, refus, nouvelle demande et réouverture de l’écran vérifiés en local. Les adhésions restent liées au bon compte.',
