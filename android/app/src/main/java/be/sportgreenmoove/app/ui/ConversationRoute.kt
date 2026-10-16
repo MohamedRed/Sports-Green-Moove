@@ -18,11 +18,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import be.sportgreenmoove.app.data.ConversationRef
 import be.sportgreenmoove.app.data.ConversationContext
 import be.sportgreenmoove.app.services.ConversationGateway
-import be.sportgreenmoove.app.services.MessageSendException
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import java.util.UUID
 
 @Composable
 fun ConversationRoute(ref: ConversationRef, gateway: ConversationGateway, context: ConversationContext? = null, onBack: () -> Unit) {
@@ -31,10 +28,9 @@ fun ConversationRoute(ref: ConversationRef, gateway: ConversationGateway, contex
     val owner = LocalLifecycleOwner.current
     val listState = rememberLazyListState()
     var refresh by remember { mutableIntStateOf(0) }
-    var draft by rememberSaveable(ref.key) { mutableStateOf("") }
-    var pendingId by rememberSaveable(ref.key) { mutableStateOf<String?>(null) }
-    var sending by remember { mutableStateOf(false) }
-    var sendError by remember { mutableStateOf<String?>(null) }
+    val draftState = rememberSaveable(ref.key) { mutableStateOf("") }
+    val pendingState = rememberSaveable(ref.key) { mutableStateOf<String?>(null) }
+    val composer = remember(draftState, pendingState) { ConversationComposerState(draftState, pendingState) }
 
     BackHandler(onBack = onBack)
     LaunchedEffect(state, owner, refresh) {
@@ -52,37 +48,13 @@ fun ConversationRoute(ref: ConversationRef, gateway: ConversationGateway, contex
         if (listState.firstVisibleItemIndex <= 1) listState.scrollToItem(0)
     }
     fun acknowledged(id: String) = state.messages.any { it.mine && it.requestId == id }
-    LaunchedEffect(pendingId, state.messages) {
-        pendingId?.takeIf(::acknowledged)?.let { pendingId = null; draft = ""; sendError = null }
+    LaunchedEffect(composer.pendingId, state.messages) {
+        composer.pendingId?.takeIf(::acknowledged)?.let(composer::acknowledge)
     }
-    fun send() {
-        val body = draft.trim()
-        if (sending || body.isBlank() || body.length > 1000) return
-        val requestId = pendingId ?: UUID.randomUUID().toString()
-        pendingId = requestId
-        sending = true
-        sendError = null
-        scope.launch {
-            try {
-                gateway.sendMessage(ref, body, requestId)
-                draft = ""
-                pendingId = null
-            } catch (cancelled: CancellationException) { throw cancelled }
-            catch (failure: Exception) {
-                when {
-                    acknowledged(requestId) -> { draft = ""; pendingId = null }
-                    failure is MessageSendException && failure.definitelyRejected -> {
-                        pendingId = null
-                        sendError = "Envoi refusé. Vérifiez le message et réessayez."
-                    }
-                    else -> sendError = "Envoi non confirmé. Réessayez."
-                }
-            } finally { sending = false }
-        }
-    }
-    ConversationScreen(state = state, context = context, listState = listState, draft = draft,
-        onDraft = { draft = it; sendError = null }, draftLocked = pendingId != null,
-        sending = sending, sendError = sendError, onSend = ::send, onBack = onBack,
+    ConversationScreen(state = state, context = context, listState = listState, draft = composer.draft,
+        onDraft = composer::edit, draftLocked = composer.locked,
+        sending = composer.sending, sendError = composer.error,
+        onSend = { scope.launch { composer.send(ref, gateway, ::acknowledged) } }, onBack = onBack,
         onRetry = { refresh += 1 }, onEarlier = { scope.launch { state.loadEarlier() } },
         onRetryRead = { scope.launch { state.markVisibleRead(listState.layoutInfo.visibleItemsInfo.mapNotNull { it.key as? String }) } })
 }

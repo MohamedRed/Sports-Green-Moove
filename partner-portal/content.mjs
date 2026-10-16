@@ -6,7 +6,7 @@ const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const membershipRefreshReport = 'docs/release/evidence/local-membership-refresh-2026-10-16/README.md';
-const chatNetworkReport = 'docs/release/evidence/local-chat-restart-2026-10-16/README.md';
+const chatReport = 'docs/release/evidence/local-chat-intent-2026-10-16/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -80,14 +80,14 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
-    { date: '2026-10-16', title: 'Les places réservées restent protégées',
-      text: 'En local, un conducteur ne peut plus rendre disponibles des places déjà réservées. L’annulation les libère une seule fois.', flow: 'booking' },
+    { date: '2026-10-16', title: 'Le renvoi garde le même message',
+      text: 'Après un envoi incertain, une erreur ne transforme plus le renvoi en nouveau message. Sept contrôles locaux réussis. À rejouer dans l’app.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les messages restent après fermeture',
       text: 'En local, le parent reste connecté, retrouve ses messages puis reprend l’échange avec le conducteur. Une nouvelle capture est disponible.', flow: 'messages' },
     { date: '2026-10-16', title: 'Un groupe par équipe',
       text: 'Le groupe réunira les membres d’une équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.', flow: 'messages' },
-    { date: '2026-10-16', title: 'Un renvoi ne double pas le message',
-      text: 'Même si la confirmation se perd, les contrôles locaux gardent un seul message et une seule notification après deux renvois. À rejouer dans l’app.', flow: 'messages' },
+    { date: '2026-10-16', title: 'Les places réservées restent protégées',
+      text: 'En local, un conducteur ne peut plus rendre disponibles des places déjà réservées. L’annulation les libère une seule fois.', flow: 'booking' },
     { date: '2026-10-16', title: 'Les adhésions se mettent à jour dans l’app',
       text: 'Le parent voit l’acceptation ou le refus, puis peut refaire une demande. Les adhésions restent visibles après réouverture de l’écran.', flow: 'clubs' },
     { date: '2026-10-16', title: 'Le club peut accepter ou refuser une adhésion',
@@ -134,13 +134,13 @@ export const content = {
   blockers: [
     { id: 'chat-send-stability', title: 'Rejouer les coupures de connexion',
       text: 'Plusieurs essais complets passent en local. La connexion de départ reste à fiabiliser.',
-      next: 'Confirmer les coupures sur téléphone et tester les brouillons après fermeture complète.', source: chatNetworkReport },
+      next: 'Confirmer les coupures sur téléphone et tester les brouillons après fermeture complète.', source: chatReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Les échanges réuniront les membres d’une même équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: 'docs/contracts/team-conversations.md' },
     { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
       text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
-      next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: chatNetworkReport },
+      next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: chatReport },
     { id: 'trip-management', title: 'Modifier ou annuler un trajet',
       text: 'Ces actions ne sont pas encore disponibles dans l’app.',
       next: 'Les ajouter, puis vérifier les réservations et les participants concernés.', source: uiReport },
@@ -225,7 +225,7 @@ export const content = {
         shot('chat-empty', 'Conversation avant le premier message, essai du 15 octobre'),
         shot('chat-received', 'Premier message et réponse du conducteur, essai du 15 octobre'),
         shot('chat-history', 'Ancien échange retrouvé dans l’app, essai du 15 octobre'),
-        shot('chat-landscape', 'Brouillon conservé en paysage, essai du 15 octobre')], source: chatNetworkReport },
+        shot('chat-landscape', 'Brouillon conservé en paysage, essai du 15 octobre')], source: chatReport },
     { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-16',
       summary: 'Le parent retrouve la décision dans l’app après actualisation.',
       verified: 'Acceptation, refus, nouvelle demande et réouverture de l’écran vérifiés en local. Les adhésions restent liées au bon compte.',

@@ -77,6 +77,26 @@ class ConversationFlowTest {
         assertEquals("Message corrigé", gateway.requests[1].body)
     }
 
+    @Test fun aRejectedRetryDoesNotReplaceAnUnconfirmedSend() {
+        val gateway = UiFlowConversationGateway().apply { sendFailure = MessageSendException(false, IOException()) }
+        show(gateway)
+        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextInput("Même envoi malgré une erreur")
+        compose.onNodeWithTag(SgmTestTags.ChatSendAction).performClick()
+        waitForText("Envoi non confirmé. Réessayez.")
+        compose.runOnIdle { gateway.sendFailure = MessageSendException(true, IllegalStateException()) }
+        compose.onNodeWithTag(SgmTestTags.ChatSendAction).performClick()
+        compose.waitUntil(5_000) { gateway.requests.size == 2 }
+        compose.waitForIdle()
+        compose.onNodeWithText("Envoi non confirmé. Réessayez.").assertExists()
+        assertDraft("Même envoi malgré une erreur")
+        compose.runOnIdle { gateway.sendFailure = null }
+        compose.onNodeWithTag(SgmTestTags.ChatSendAction).performClick()
+        compose.waitUntil(5_000) { gateway.requests.size == 3 && gateway.current.value.messages.size == 2 }
+        assertEquals(1, gateway.requests.map { it.requestId }.distinct().size)
+        assertEquals(1, gateway.requests.map { it.body }.distinct().size)
+        assertDraft("")
+    }
+
     @Test fun oversizedDraftsAndInaccessibleThreadsCannotSend() {
         val gateway = UiFlowConversationGateway()
         show(gateway)
