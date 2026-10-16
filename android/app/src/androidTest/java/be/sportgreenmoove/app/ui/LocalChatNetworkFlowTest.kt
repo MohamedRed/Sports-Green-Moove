@@ -15,6 +15,7 @@ import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.services.AndroidRuntime
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
@@ -25,7 +26,7 @@ import org.junit.Test
 import java.io.File
 
 class LocalChatNetworkFlowTest {
-    @get:Rule val compose = createEmptyComposeRule()
+    @get:Rule val compose = createEmptyComposeRule(effectContext = StandardTestDispatcher())
     private lateinit var activity: ActivityScenario<MainActivity>
     private lateinit var session: JSONObject
     private var authenticated = false

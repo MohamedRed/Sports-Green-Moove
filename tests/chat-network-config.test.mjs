@@ -77,3 +77,10 @@ test('app replay requires actual unconfirmed send, retry and cross-account draft
   assert.match(verifier, /readByUserIds/);
   assert.match(verifier, /assert.equal\(note.read, true\)/);
 });
+
+test('SDK conversation replays queue composition effects instead of running them inline on callback threads', () => {
+  for (const name of ['LocalChatFlowTest', 'LocalChatNetworkFlowTest']) {
+    assert.match(native(name), /createEmptyComposeRule\(effectContext = StandardTestDispatcher\(\)\)/);
+  }
+  assert.match(read('android/app/build.gradle.kts'), /androidTestImplementation\("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2"\)/);
+});
