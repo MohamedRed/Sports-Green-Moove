@@ -37,8 +37,8 @@ and administrator policy. These checks do not implement or prove team enrollment
 verified guardian relationships, group messaging, or identity reuse after deletion.
 Original reports: `docs/release/evidence/local-team-ownership-2026-10-16/`.
 
-The service suite now requires 23 groups, including `trip-details-ownership`,
-`trip-change-parent-confirmation` and `trip-change-application`.
+The service suite now requires 24 groups, including `trip-details-ownership`,
+`trip-change-parent-confirmation`, `trip-change-application` and `trip-change-supplement`.
 That scenario uses authenticated local REST writes against a reserved trip with
 synthetic paid metadata. It denies operational mutations, removals and an atomic
 mixed title/price write, then independently checks unchanged booking/trip state
@@ -66,6 +66,15 @@ attempt reuse, invoice binding, cancellation, late success, legacy intent reuse,
 aged unknown attempts and proposal/checkout races. No actual adjustment, refund,
 live route request, editing screen or physical-device result is accepted. See
 `docs/contracts/trip-change-application.md` for the current implementation boundary.
+
+The supplement group uses actual payment-preparation, callback and webhook
+transactions with an explicitly injected synthetic provider. It starts with a
+reconciled original invoice, collects two separate differences and independently
+checks receipts, ledger entries, recorded money, settled balances and start
+eligibility. Concurrent calls, stale/duplicate events, wrong provider responses,
+lost replies, frozen fees, known-intent reuse and late success after cancellation
+remain mandatory. Refunds, native checkout and live provider results are not
+accepted by this scenario. See `docs/contracts/trip-change-payments.md`.
 
 ## App And Management Screens
 

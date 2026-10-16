@@ -59,7 +59,7 @@ test('current source requires atomic application, owned invoice attempts and CI 
   assert(payment.includes('paymentIntents.retrieve(prepared.existingIntentId)'));
   assert(payment.includes('prepareRidePayment')); assert(payment.includes('finishRidePayment'));
   const runner = read('scripts/qa/run-local-flows.mjs');
-  assert(runner.includes('result.steps.length, 23')); assert(runner.includes('result.tripApplication?.receipt.status'));
+  assert(runner.includes('result.steps.length, 24')); assert(runner.includes('result.tripApplication?.receipt.status'));
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/trip-change-application-evidence.test.mjs"').length - 1, 2);
   assert.match(workflow, /^\s+run: node --test[^\n]*\btests\/trip-change-application-evidence\.test\.mjs(?:\s|$)/m);

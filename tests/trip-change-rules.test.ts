@@ -4,7 +4,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from "vitest
 
 let env: RulesTestEnvironment;
 const actors = [null, "parent", "driver", "admin"];
-const collections = ["tripChanges", "tripChangeQuotes", "tripChangeBalances", "ridePaymentAttempts"];
+const collections = ["tripChanges", "tripChangeQuotes", "tripChangeBalances", "ridePaymentAttempts", "ridePaymentReceipts"];
 beforeAll(async () => {
   env = await initializeTestEnvironment({ projectId: "sgm-trip-change-rules-test", firestore: {
     host: "127.0.0.1", port: 8080, rules: readFileSync("firestore.rules", "utf8"),

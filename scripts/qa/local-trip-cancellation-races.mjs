@@ -38,7 +38,8 @@ export async function checkTripCancellationRaces({ driver, parent, outsider, cre
       : action === 'approveBooking' ? call(action, driver, { bookingId }) : call(action, driver, { tripId });
     const results = await Promise.allSettled([operation, call('cancelTrip', driver, request)]);
     assert(results.some((item) => item.status === 'fulfilled'));
-    for (const result of results) if (result.status === 'rejected') assert(['ABORTED', 'FAILED_PRECONDITION'].includes(result.reason.code));
+    for (const result of results) if (result.status === 'rejected') assert(['ABORTED', 'FAILED_PRECONDITION'].includes(result.reason.code),
+      `${action}: unexpected cancellation race failure ${result.reason.code}`);
     let trip = await document('trips', tripId);
     if (trip.status !== 'cancelled' && !trip.activeRideSessionId) {
       await call('cancelTrip', driver, intent(tripId, (await preview(tripId)).revision));

@@ -38,7 +38,7 @@ test('new form checks do not imply signup or completed participant flows', () =>
   for (const id of ['booking', 'publication', 'clubs']) {
     assert.equal(content.flows.find((f) => f.id === id).status, 'partial');
   }
-  assert.equal(content.flows.find((f) => f.id === 'payments').status, 'blocked');
+  assert.equal(content.flows.find((f) => f.id === 'payments').status, 'partial');
   assert(!content.blockers.some((b) => ['auth-landscape', 'calendar', 'search-empty'].includes(b.id)));
   assert.equal(content.flows.find((f) => f.id === 'appearance').status, 'partial');
   for (const name of ['login-empty', 'signup-name', 'signup-email', 'signup-password', 'signup-short', 'local-landscape']) assert(captures[name]);
@@ -61,7 +61,7 @@ test('portal has no production app hosting rewrite or client-side auth substitut
 test('local results are backed by successful evidence and are not presented as phone recordings', async () => {
   const { localResults, detail } = await import('../partner-portal/src/render.js');
   const flows = content.flows.filter((flow) => flow.local);
-  assert.equal(flows.length, 8);
+  assert.equal(flows.length, 9);
   for (const flow of flows) {
     assert.equal(flow.status, 'partial');
     assert.match(detail(flow), /Essai local du/);

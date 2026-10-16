@@ -10,6 +10,8 @@ import {
   type RidePaymentTripSnapshot,
 } from "./stripePaymentValidation.js";
 import { stripeReport } from "./stripeWebhookReports.js";
+import { paymentReceiptFor, paymentReceiptSchema, samePaymentReceipt } from "../domain/paymentReceipts.js";
+import { reconcileTripChangePayment } from "./tripChangePaymentReconciliation.js";
 
 type StripeAccountUpdate = {
   id?: string;
@@ -23,7 +25,10 @@ export async function reconcileStripeEvent(event: Stripe.Event): Promise<void> {
   const eventSnap = await eventRef.get();
   if (eventSnap.exists) return;
 
-  if (event.type === "payment_intent.succeeded") {
+  if (["payment_intent.succeeded", "payment_intent.payment_failed", "payment_intent.canceled"].includes(event.type) &&
+      (event.data.object as Stripe.PaymentIntent).metadata.paymentPurpose === "tripChange") {
+    await reconcileTripChangePayment(event.data.object as Stripe.PaymentIntent, event);
+  } else if (event.type === "payment_intent.succeeded") {
     await reconcilePaymentSucceeded(event, eventRef.path);
   } else if (event.type === "payment_intent.payment_failed" || event.type === "payment_intent.canceled") {
     await reconcilePaymentIncomplete(event, eventRef.path);
@@ -96,6 +101,25 @@ async function reconcilePaymentSucceeded(event: Stripe.Event, eventPath: string)
       return;
     }
 
+    const receiptRef = firestore.collection("ridePaymentReceipts").doc(intent.id);
+    const receiptSnap = await transaction.get(receiptRef);
+    let receipt;
+    try {
+      receipt = paymentReceiptFor(intent, "original");
+      if (receiptSnap.exists && !samePaymentReceipt(paymentReceiptSchema.parse(receiptSnap.data()), receipt))
+        throw new Error("Payment receipt identity changed.");
+    } catch {
+      transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "paymentReceiptMismatch" });
+      return;
+    }
+    const ledgerRefs = ledgerEntries.map((entry) => firestore.collection("rewardLedger").doc(`${intent.id}_${entry.type}_${entry.userId}`));
+    const existingLedger = await transaction.getAll(...ledgerRefs);
+    if (existingLedger.some((doc, index) => doc.exists && Object.entries(ledgerEntries[index]).some(([key, value]) => doc.get(key) !== value))) {
+      transaction.set(firestore.doc(eventPath), { ...stripeReport(event), reconciliationStatus: "paymentLedgerMismatch" });
+      return;
+    }
+    if (!receiptSnap.exists) transaction.create(receiptRef, receipt);
+
     transaction.set(
       bookingRef,
       {
@@ -111,9 +135,10 @@ async function reconcilePaymentSucceeded(event: Stripe.Event, eventPath: string)
       { merge: true },
     );
 
-    for (const entry of ledgerEntries) {
-      const ledgerId = `${intent.id}_${entry.type}_${entry.userId}`;
-      transaction.set(firestore.collection("rewardLedger").doc(ledgerId), {
+    for (const [index, entry] of ledgerEntries.entries()) {
+      if (existingLedger[index].exists) continue;
+      const ledgerId = ledgerRefs[index].id;
+      transaction.create(ledgerRefs[index], {
         ...entry,
         id: ledgerId,
         createdAt: new Date((event.created ?? Math.floor(Date.now() / 1000)) * 1000).toISOString(),

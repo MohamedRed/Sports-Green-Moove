@@ -39,8 +39,9 @@ proposal. Unpaid bookings on an edited paid trip must pay before ride start.
 Cancellation closes the balance plan; any paid cancellation still records only
 `refundStatus: pending`. No refund-issued or settled status is inferred.
 
-Actual collection/refund execution, provider event reconciliation for adjustments,
-and the parent payment/refund UI are still unimplemented. Original-payment
+Supplement collection and its event reconciliation are implemented separately in
+the [payment contract](trip-change-payments.md). Refund execution/reconciliation
+and parent payment/refund UI are still unimplemented. Original-payment
 reconciliation preserves recorded money and does not settle these new balances.
 
 ## Original Payment Preparation

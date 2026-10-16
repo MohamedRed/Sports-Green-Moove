@@ -59,7 +59,7 @@ test('current server wiring preserves the original flow while making parent cons
   assert.match(state, /child.updateTime/); assert.match(state, /Current guardian authority is required/);
   assert.match(state, /applied: change.status === "applied", applicationImplemented: true/);
   assert.match(state, /state.revision === change.expectedRevision/);
-  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 23/);
+  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 24/);
   assert.match(read('scripts/qa/run-local-flows.mjs'), /result.tripChanges\?\.acceptedParentCount, 2/);
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/trip-change-rules.test.ts"').length - 1, 2);

@@ -2,12 +2,16 @@ import { randomUUID } from "node:crypto";
 import type { Firestore } from "firebase-admin/firestore";
 import type Stripe from "stripe";
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from "vitest";
+import { createStripeWebhookFixtures, ridePaymentIntent, rewardPayoutTransfer, stripeEvent } from "./helpers/stripe-webhook-fixtures.js";
 
 const PROJECT_ID = "sports-green-moove-rules-test";
-const COLLECTIONS = ["bookings", "trips", "rewardLedger", "reports", "stripeAccounts", "tripCancellations", "notifications", "rideSessions"];
+const COLLECTIONS = ["bookings", "trips", "rewardLedger", "reports", "stripeAccounts", "tripCancellations", "notifications", "rideSessions",
+  "ridePaymentReceipts", "ridePaymentAttempts", "tripChangeBalances"];
 
 let firestore: Firestore;
 let reconcileStripeEvent: (event: Stripe.Event) => Promise<void>;
+let seedRidePaymentContext: ReturnType<typeof createStripeWebhookFixtures>["seedRidePaymentContext"];
+let clearCollections: ReturnType<typeof createStripeWebhookFixtures>["clearCollections"];
 
 beforeAll(async () => {
   if (!process.env.FIRESTORE_EMULATOR_HOST) {
@@ -18,6 +22,7 @@ beforeAll(async () => {
 
   ({ firestore } = await import("../functions/src/lib/firebase.js"));
   ({ reconcileStripeEvent } = await import("../functions/src/services/stripeReconciliation.js"));
+  ({ seedRidePaymentContext, clearCollections } = createStripeWebhookFixtures(firestore, COLLECTIONS));
 });
 
 beforeEach(async () => {
@@ -29,6 +34,33 @@ afterEach(async () => {
 });
 
 describe("Stripe webhook reconciliation flow", () => {
+  it("preserves immutable invoice and ledger bytes across later events and changed net paid money", async () => {
+    await seedRidePaymentContext();
+    const intent = ridePaymentIntent({ client_secret: "synthetic-not-for-storage" });
+    await reconcileStripeEvent(stripeEvent("evt_receipt_first", "payment_intent.succeeded", intent));
+    const ref = firestore.doc("ridePaymentReceipts/pi_ride_1"), receipt = (await ref.get()).data();
+    const ledger = (await firestore.collection("rewardLedger").get()).docs.map((doc) => doc.data());
+    expect(JSON.stringify(receipt)).not.toContain("synthetic-not-for-storage");
+    await firestore.doc("bookings/booking-1").update({ amountPaidCents: 650 });
+    await reconcileStripeEvent({ ...stripeEvent("evt_receipt_later", "payment_intent.succeeded", intent), created: 1_765_003_600 });
+    expect((await ref.get()).data()).toEqual(receipt);
+    expect((await firestore.collection("rewardLedger").get()).docs.map((doc) => doc.data())).toEqual(ledger);
+    expect((await firestore.doc("bookings/booking-1").get()).get("amountPaidCents")).toBe(650);
+  });
+
+  it.each(["receipt", "ledger"])("reports corrupted %s without overwriting historical money", async (kind) => {
+    await seedRidePaymentContext();
+    const intent = ridePaymentIntent();
+    await reconcileStripeEvent(stripeEvent("evt_receipt_valid", "payment_intent.succeeded", intent));
+    const path = kind === "receipt" ? "ridePaymentReceipts/pi_ride_1" : "rewardLedger/pi_ride_1_driverEarning_driver-1";
+    await firestore.doc(path).update({ amountCents: 501 });
+    const before = (await firestore.doc("bookings/booking-1").get()).data();
+    await reconcileStripeEvent(stripeEvent("evt_receipt_corrupt", "payment_intent.succeeded", intent));
+    expect((await firestore.doc("reports/stripe_evt_receipt_corrupt").get()).get("reconciliationStatus"))
+      .toBe(kind === "receipt" ? "paymentReceiptMismatch" : "paymentLedgerMismatch");
+    expect((await firestore.doc(path).get()).get("amountCents")).toBe(501);
+    expect((await firestore.doc("bookings/booking-1").get()).data()).toEqual(before);
+  });
   it.each(["payment-first", "cancellation-first", "concurrent"])("preserves a closed booking and pending refund across %s", async (order) => {
     await seedRidePaymentContext({ status: "approved" });
     await firestore.doc("trips/trip-1").update({ driverUserId: "driver-1", status: "published", seatsTotal: 4, seatsAvailable: 2 });
@@ -208,84 +240,3 @@ describe("Stripe webhook reconciliation flow", () => {
     });
   });
 });
-
-async function seedRidePaymentContext(bookingOverrides: Record<string, unknown> = {}) {
-  await firestore.collection("trips").doc("trip-1").set({
-    priceCents: 250,
-  });
-  await firestore.collection("bookings").doc("booking-1").set({
-    tripId: "trip-1",
-    parentUserId: "parent-1",
-    driverUserId: "driver-1",
-    seats: 2,
-    paymentIntentId: "pi_ride_1",
-    ...bookingOverrides,
-  });
-}
-
-function ridePaymentIntent(overrides: Partial<Stripe.PaymentIntent> = {}): Stripe.PaymentIntent {
-  return {
-    id: "pi_ride_1",
-    object: "payment_intent",
-    amount: 500,
-    currency: "eur",
-    metadata: {
-      bookingId: "booking-1",
-      tripId: "trip-1",
-      payerUserId: "parent-1",
-      driverUserId: "driver-1",
-      platformFeeCents: "0",
-      product: "sports-green-moove",
-    },
-    ...overrides,
-  } as Stripe.PaymentIntent;
-}
-
-function rewardPayoutTransfer(overrides: Record<string, unknown> = {}): Stripe.Event.Data.Object {
-  return {
-    id: "tr_payout_1",
-    object: "transfer",
-    amount: 750,
-    amount_reversed: 0,
-    currency: "eur",
-    metadata: {
-      userId: "driver-1",
-      sourceId: "cycle-1",
-      product: "sports-green-moove",
-    },
-    reversed: false,
-    ...overrides,
-  } as Stripe.Event.Data.Object;
-}
-
-function stripeEvent(id: string, type: Stripe.Event.Type, object: Stripe.Event.Data.Object): Stripe.Event {
-  return {
-    id,
-    object: "event",
-    api_version: "2026-05-20.preview",
-    created: 1_765_000_000,
-    data: { object },
-    livemode: false,
-    pending_webhooks: 1,
-    request: null,
-    type,
-  } as Stripe.Event;
-}
-
-async function clearCollections() {
-  for (const collection of COLLECTIONS) {
-    await clearCollection(collection);
-  }
-}
-
-async function clearCollection(collection: string) {
-  while (true) {
-    const snapshot = await firestore.collection(collection).limit(200).get();
-    if (snapshot.empty) return;
-    const batch = firestore.batch();
-    for (const doc of snapshot.docs) {
-      batch.delete(doc.ref);
-    }
-    await batch.commit();
-  }
-}

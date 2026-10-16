@@ -35,8 +35,9 @@ bound to the same authoritative revision. An unanswered or stale decision must
 not authorize changed details, a changed payment amount or a ride start.
 
 The server proposal, decision and application stages are implemented locally.
-Required work still includes actual payment adjustments and settlement,
-native editing and parent-review screens, and full
+Supplement collection now has a separate server implementation. Required work
+still includes refund execution and settlement, native editing and parent-review
+screens, and full
 end-to-end approval/denial/race/recovery tests. Do not present the consent API as
 the completed editing flow.
 

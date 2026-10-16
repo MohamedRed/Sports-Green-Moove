@@ -106,13 +106,16 @@ export type RidePaymentIntentContext = {
   currency: "eur";
   destinationStripeAccountId: string;
   paymentAttemptId?: string;
+  platformFeeCents?: number;
 };
 
 export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentContext): {
   params: Stripe.PaymentIntentCreateParams;
   idempotencyKey: string;
 } {
-  const applicationFeeAmount = platformFeeAmountCents(context.amountCents);
+  const applicationFeeAmount = context.platformFeeCents ?? platformFeeAmountCents(context.amountCents);
+  if (!Number.isSafeInteger(applicationFeeAmount) || applicationFeeAmount < 0 || applicationFeeAmount > context.amountCents)
+    throw new Error("Payment fee must be an integer within the invoice amount.");
   return {
     idempotencyKey: `ridePayment:${context.bookingId}:${context.payerUserId}${context.paymentAttemptId ? `:${context.paymentAttemptId}` : ""}`,
     params: {

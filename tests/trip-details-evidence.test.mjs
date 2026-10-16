@@ -104,7 +104,7 @@ test('CI keeps new rules and evidence checks mandatory alongside the complete se
   assert(workflow.includes('run: npm run test:trip-details-rules'));
   assert.match(workflow, /^\s+run: node --test[^\n]*\btests\/trip-details-evidence\.test\.mjs(?:\s|$)/m);
   assert.match(read('scripts/qa/local-flow-suite.mjs'), /check\('trip-details-ownership'/);
-  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 23/);
+  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 24/);
   assert.match(read('scripts/qa/run-local-flows.mjs'), /result.tripDetails\?\.deniedOwnerMutations, 14/);
   const rules = read('firestore.rules');
   assert.match(rules, /affectedKeys\(\)\.hasOnly\(\['title'\]\)/);
