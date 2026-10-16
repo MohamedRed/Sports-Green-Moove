@@ -80,6 +80,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'Un groupe par équipe',
+      text: 'Seuls les membres d’une même équipe pourront lire ses messages. Ce parcours reste à construire et à tester.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le message reprend après une coupure',
       text: 'En local, le nouvel envoi ne crée pas de doublon et les brouillons restent dans le bon compte. Une réservation refusée ne bloque plus le choix d’un échange.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les adhésions se mettent à jour dans l’app',
@@ -130,7 +132,7 @@ export const content = {
       text: 'En local : reprise après coupure, réponse et brouillons entre comptes vérifiés.',
       next: 'Rejouer sur téléphone, après fermeture complète et après une longue absence.', source: chatNetworkReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
-      text: 'Le premier échange depuis une réservation passe en local. Le démarrage depuis un groupe reste à ajouter.',
+      text: 'Les échanges seront réservés aux membres d’une même équipe. Ce parcours reste à construire et à tester.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: chatUiReport },
     { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
       text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',

@@ -106,6 +106,9 @@ test('app screenshots require a completed scoped run and retain product gaps', (
   for (const id of ['group-conversation', 'trip-management', 'contrast']) {
     assert(content.blockers.some((item) => item.id === id));
   }
+  const group = content.blockers.find((item) => item.id === 'group-conversation');
+  assert.match(group.text, /membres d’une même équipe/);
+  assert.match(group.text, /construire et à tester/);
 });
 
 test('ride integrity claims use the new eleven-group evidence without promoting phone readiness', () => {
