@@ -4,7 +4,6 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.provider.Settings
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
@@ -23,7 +22,7 @@ import org.junit.Test
 import java.io.File
 
 class LocalLandscapeLoginTest {
-    @get:Rule val compose = createEmptyComposeRule()
+    @get:Rule val compose = createLocalAppComposeRule()
 
     @Test
     fun landscapeLoginScrollsToInputsAndSubmit() {

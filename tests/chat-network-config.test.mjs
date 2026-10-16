@@ -127,11 +127,17 @@ test('host cleanup uses the current run actual state and rejects stale or ambigu
   }
 });
 
-test('SDK conversation replays queue composition effects instead of running them inline on callback threads', () => {
-  for (const name of ['LocalChatFlowTest', 'LocalChatNetworkFlowTest']) {
-    assert.match(native(name), /createEmptyComposeRule\(effectContext = StandardTestDispatcher\(\)\)/);
+test('all isolated SDK app replays share queued composition effects rather than applying views on callback threads', () => {
+  assert.match(native('LocalComposeRule'), /createEmptyComposeRule\(effectContext = StandardTestDispatcher\(\)\)/);
+  for (const name of ['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalBookingDecisionsFlowTest',
+    'LocalConversationDirectoryFlowTest', 'LocalChatFlowTest', 'LocalChatNetworkFlowTest',
+    'LocalRideFlowTest', 'LocalMembershipFlowTest', 'LocalLandscapeLoginTest', 'LocalThemeRestartTest']) {
+    assert.match(native(name), /@get:Rule val compose = createLocalAppComposeRule\(\)/);
+    assert(!native(name).includes('createEmptyComposeRule'));
   }
   assert.match(read('android/app/build.gradle.kts'), /androidTestImplementation\("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2"\)/);
+  assert.equal(read('.github/workflows/web-integration-smoke.yml').split(
+    'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*.kt').length - 1, 2);
 });
 
 test('conversation booking statuses match the backend contract without dropping refused reservations', () => {

@@ -3,7 +3,6 @@ package be.sportgreenmoove.app.ui
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -27,7 +26,7 @@ import java.io.File
 import kotlinx.coroutines.runBlocking
 
 class LocalAppFlowTest {
-    @get:Rule val compose = createEmptyComposeRule()
+    @get:Rule val compose = createLocalAppComposeRule()
 
     @Test
     fun isolatedParentLoginCalendarSupportAndSessionRestart() {

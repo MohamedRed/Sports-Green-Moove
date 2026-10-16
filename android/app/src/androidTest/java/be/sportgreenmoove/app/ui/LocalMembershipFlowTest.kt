@@ -2,7 +2,6 @@ package be.sportgreenmoove.app.ui
 
 import android.content.Context
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
@@ -17,7 +16,7 @@ import org.junit.Test
 import java.io.File
 
 class LocalMembershipFlowTest {
-    @get:Rule val compose = createEmptyComposeRule()
+    @get:Rule val compose = createLocalAppComposeRule()
     private val approved = "sgm-qa-native-approve"
     private val rejected = "sgm-qa-native-reject"
 

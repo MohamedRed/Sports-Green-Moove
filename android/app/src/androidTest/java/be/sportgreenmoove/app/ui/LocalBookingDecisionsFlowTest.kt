@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -28,7 +27,7 @@ import org.junit.Test
 import java.io.File
 
 class LocalBookingDecisionsFlowTest {
-    @get:Rule val compose = createEmptyComposeRule()
+    @get:Rule val compose = createLocalAppComposeRule()
     private lateinit var session: JSONObject
     private lateinit var gateway: ReservationGateway
 

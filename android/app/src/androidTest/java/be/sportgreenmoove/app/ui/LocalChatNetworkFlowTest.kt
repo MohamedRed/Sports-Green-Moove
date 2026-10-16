@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.test.core.app.ActivityScenario
@@ -15,7 +14,6 @@ import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.services.AndroidRuntime
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.StandardTestDispatcher
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
@@ -27,7 +25,7 @@ import java.io.File
 import kotlin.math.abs
 
 class LocalChatNetworkFlowTest {
-    @get:Rule val compose = createEmptyComposeRule(effectContext = StandardTestDispatcher())
+    @get:Rule val compose = createLocalAppComposeRule()
     private lateinit var activity: ActivityScenario<MainActivity>
     private lateinit var session: JSONObject
     private var authenticated = false

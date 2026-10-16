@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
@@ -30,7 +29,7 @@ import java.io.File
 import java.util.Locale
 
 class LocalRideFlowTest {
-    @get:Rule val compose = createEmptyComposeRule()
+    @get:Rule val compose = createLocalAppComposeRule()
 
     @Test
     fun driverCompletesRideAndParentSubmitsReview() {

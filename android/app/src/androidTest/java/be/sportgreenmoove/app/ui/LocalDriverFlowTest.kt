@@ -2,7 +2,6 @@ package be.sportgreenmoove.app.ui
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
@@ -23,7 +22,7 @@ import org.junit.Test
 import java.io.File
 
 class LocalDriverFlowTest {
-    @get:Rule val compose = createEmptyComposeRule()
+    @get:Rule val compose = createLocalAppComposeRule()
 
     @Test
     fun driverApprovesPendingBookingAndSignsOut() {

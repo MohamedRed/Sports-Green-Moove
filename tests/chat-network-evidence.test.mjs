@@ -72,3 +72,21 @@ test('partner media stays reviewed, partial and explicit about remaining phone a
   assert.match(read('README.md'), /not deployed to production/);
   assert.match(read('README.md'), /not identical active transport sets/);
 });
+
+test('the ride scheduling interruption cannot be mistaken for a network replay', () => {
+  const path = 'docs/release/evidence/local-app-scheduling-2026-10-16/';
+  const original = readFileSync(new URL(path + 'ride-scheduler-original.txt.gz', root));
+  const failure = readFileSync(new URL(path + 'ride-scheduler-failed.txt', root), 'utf8');
+  assert.equal(failure, gunzipSync(original).toString('utf8').replace(/\n+$/, '\n'));
+  assert.match(failure, /CalledFromWrongThreadException/);
+  assert.match(failure, /Expected: main Calling: OkHttp/);
+  assert.match(failure, /TestMonotonicFrameClock/);
+  assert.match(failure, /TasksKt\$awaitImpl/);
+  assert.match(failure, /FAILURES/); assert(!/OK \(/.test(failure));
+  const teardown = readFileSync(new URL(path + 'reservation-teardown-failed.txt', root), 'utf8');
+  assert.match(teardown, /Process crashed while executing/);
+  assert.match(teardown, /SlotWriter.moveSlotGapTo/);
+  assert.match(teardown, /CompositionImpl.dispose/);
+  assert.equal(teardown, gunzipSync(readFileSync(new URL(path + 'reservation-teardown-original.txt.gz', root)))
+    .toString('utf8').replace(/\n+$/, '\n'));
+});

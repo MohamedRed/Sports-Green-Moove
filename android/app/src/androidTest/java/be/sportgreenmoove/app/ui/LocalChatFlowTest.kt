@@ -10,7 +10,6 @@ import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
@@ -34,7 +33,6 @@ import com.google.firebase.functions.FirebaseFunctionsException
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
-import kotlinx.coroutines.test.StandardTestDispatcher
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -45,7 +43,7 @@ import java.io.File
 import kotlin.math.abs
 
 class LocalChatFlowTest {
-    @get:Rule val compose = createEmptyComposeRule(effectContext = StandardTestDispatcher())
+    @get:Rule val compose = createLocalAppComposeRule()
     private val ref = ConversationRef(ConversationKind.Booking, "sgm-qa-booking-approved")
     private lateinit var scenario: ActivityScenario<MainActivity>
 
