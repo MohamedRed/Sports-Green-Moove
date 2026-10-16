@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { call, db, signIn, tripInput } from './local-flow-client.mjs';
 import { faultMessage } from './native-chat-loss-proxy.mjs';
+import { assertChatLossReceipt } from './chat-loss-evidence.mjs';
 
 function nextMessage(worker, type) {
   return new Promise((resolveMessage, reject) => {
@@ -35,19 +36,7 @@ export async function replayChatLossUi(instrument, collect, directory) {
     const pending = nextMessage(worker, 'receipt'); worker.send('receipt'); receipt = (await pending).receipt;
     writeFileSync(resolve(directory, 'local-chat-loss-proxy.json'), `${JSON.stringify(receipt, null, 2)}\n`);
     const ui = JSON.parse(readFileSync(resolve(directory, 'local-chat-loss-ui.json'), 'utf8'));
-    assert.equal(ui.runId, process.env.SGM_LOCAL_RUN_ID); assert.equal(ui.sourceId, bookingId);
-    assert(ui.completed && ui.initialReplyLost && ui.rejectedRetryRetained && ui.finalSendConfirmed && ui.networkRestored);
-    assert.equal(receipt.runId, ui.runId); assert(!receipt.failed);
-    assert.deepEqual(receipt.transitions, [{ from: 'loss', to: 'reject' }, { from: 'reject', to: 'recover' }]);
-    for (const phase of ['loss', 'reject', 'recover']) assert(receipt.attempts.some((attempt) => attempt.phase === phase));
-    assert.equal(new Set(receipt.attempts.map((attempt) => attempt.clientMessageId)).size, 1);
-    for (const attempt of receipt.attempts) {
-      assert.equal(attempt.body, faultMessage);
-      if (attempt.phase === 'loss') assert(attempt.upstreamStatus === 200 && attempt.acknowledgementDropped && attempt.commit);
-      if (attempt.phase === 'reject') assert(attempt.downstreamStatus === 429 && attempt.injectedRejection && !attempt.commit);
-      if (attempt.phase === 'recover') assert(attempt.downstreamStatus === 200 && attempt.commit);
-    }
-    const original = receipt.attempts[0].commit;
+    const original = assertChatLossReceipt(ui, receipt, process.env.SGM_LOCAL_RUN_ID, bookingId);
     const records = await db.collection('messages').where('sourceId', '==', bookingId).get();
     const notes = await db.collection('notifications').where('sourceId', '==', bookingId).where('type', '==', 'chatMessage').get();
     assert.equal(records.size, 1); assert.equal(notes.size, 1);
@@ -69,7 +58,8 @@ export async function replayChatLossUi(instrument, collect, directory) {
         try { writeFileSync(resolve(directory, 'local-chat-loss-proxy-failed.json'), JSON.stringify((await pending).receipt, null, 2)); }
         catch { /* Preserve the instrumentation failure if the worker cannot report. */ }
       }
-      const exited = once(worker, 'exit'); worker.send('close'); await exited;
+      const exited = once(worker, 'exit'); worker.send('close');
+      const [code] = await exited; assert.equal(code, 0, 'The supervised fault worker must close cleanly');
     }
   }
 }

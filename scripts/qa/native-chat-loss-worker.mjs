@@ -25,7 +25,10 @@ let closing = false;
 async function close() {
   if (closing) return;
   closing = true;
+  const deadline = setTimeout(() => process.exit(1), 10_000);
+  deadline.unref();
   await proxy.close(); await db.terminate();
+  clearTimeout(deadline);
   if (process.connected) process.disconnect();
 }
 process.on('message', (message) => {

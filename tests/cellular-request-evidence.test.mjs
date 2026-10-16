@@ -78,7 +78,7 @@ test('read-only modem evidence stays run-bound and does not claim the earlier Wi
 test('the reviewed current capture and source stay partial and retain the approved parent audience', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-chat-restart-2026-10-16/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-native-chat-loss-2026-10-16/results.json');
   const png = read(base + 'local-chat-network-received.png');
   assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
   assert.equal(captures['chat-network-reply'], base + 'local-chat-network-received.png');

@@ -163,13 +163,13 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
 });
 
-test('conversation captures require the completed nineteen-case run and keep phone scope open', () => {
+test('conversation captures require the completed twenty-case run and keep phone scope open', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.ui.source));
-  assert.equal(run.testCount, 19);
-  assert.equal(run.steps.length, 20);
+  assert.equal(run.testCount, 20);
+  assert.equal(run.steps.length, 21);
   assert(run.steps.every((step) => step.status === 'passed'));
-  assert.deepEqual(flow.ui.groups, ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui']);
+  assert.deepEqual(flow.ui.groups, ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui']);
   assert.equal(run.chat.messageCount, 5);
   assert.equal(run.chat.newMessageCount, 4);
   assert.equal(run.chat.readNotificationCount, 4);
@@ -180,7 +180,7 @@ test('conversation captures require the completed nineteen-case run and keep pho
   assert.equal(run.directory.secondPageCount, 8);
   assert.equal(run.directory.messageCount, 2);
   assert.equal(run.directory.readNotificationCount, 2);
-  assert.equal(flow.images.length, 9);
+  assert.equal(flow.images.length, 11);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-ui-2026-10-15/results.json')).testCount, 9);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-ui-2026-10-15/results.json')).testCount, 8);
   assert(!Object.values(captures).some((path) => /directory-(first-message|reply)\.png/.test(path)));
@@ -229,7 +229,7 @@ test('rendered content is escaped and native accessible controls remain present'
 });
 
 test('portal code modules remain below 300 lines', () => {
-  for (const file of ['content.mjs', 'validate.mjs', 'build-assets.mjs', 'src/app.js', 'src/render.js', 'src/media.js', 'src/styles.css']) {
+  for (const file of ['content.mjs', 'evidence-captures.mjs', 'validate.mjs', 'build-assets.mjs', 'src/app.js', 'src/render.js', 'src/media.js', 'src/styles.css']) {
     assert(source(`partner-portal/${file}`).split('\n').length < 300, `${file} needs splitting`);
   }
 });

@@ -63,10 +63,10 @@ test('the evidence keeps UI execution, physical delivery and durable draft recov
   assert.equal(workflow.split('"android/app/src/main/java/be/sportgreenmoove/app/ui/Conversation*.kt"').length - 1, 2);
   assert(workflow.includes('tests/chat-composer-intent.test.mjs\n'));
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, directory + 'README.md');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-chat-restart-2026-10-16/results.json');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/local-native-chat-loss-2026-10-16/README.md');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-native-chat-loss-2026-10-16/results.json');
   assert.equal(flow.local.source, 'docs/release/evidence/local-chat-response-loss-2026-10-16/results.json');
-  const update = content.updates.find((item) => item.title === 'Le renvoi garde le même message');
-  assert.match(update.text, /Sept contrôles locaux réussis/);
-  assert.match(update.text, /À rejouer dans l’app/);
+  const update = content.updates.find((item) => item.title === 'Le renvoi ne crée pas de doublon');
+  assert.match(update.text, /essai local/);
+  assert.match(update.text, /sans doublon/);
 });

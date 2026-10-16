@@ -1,3 +1,5 @@
+export { captures } from './evidence-captures.mjs';
+
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
@@ -6,54 +8,13 @@ const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const membershipRefreshReport = 'docs/release/evidence/local-membership-refresh-2026-10-16/README.md';
-const chatReport = 'docs/release/evidence/local-chat-intent-2026-10-16/README.md';
+const chatReport = 'docs/release/evidence/local-native-chat-loss-2026-10-16/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
 const ui = (groups, source = 'results.json') => ({ source: `docs/release/evidence/local-ui-2026-10-15/${source}`, groups });
 const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/results.json') => ({ source, groups, checks });
 const shot = (file, alt) => ({ file, alt });
-
-export const captures = {
-  'login-empty': 'docs/release/evidence/browserstack-2026-10-15/01-login-empty-email.png',
-  'signup-name': 'docs/release/evidence/browserstack-2026-10-15/02-signup-empty-name.png',
-  'signup-email': 'docs/release/evidence/browserstack-2026-10-15/03-signup-invalid-email.png',
-  'signup-password': 'docs/release/evidence/browserstack-2026-10-15/04-signup-missing-password.png',
-  'signup-short': 'docs/release/evidence/browserstack-2026-10-15/05-signup-short-password.png',
-  'support-reviewed': 'docs/release/evidence/local-ui-2026-10-15/local-support-reviewed.png',
-  'local-home': 'docs/release/evidence/local-ui-2026-10-15/local-parent-home.png',
-  'local-calendar': 'docs/release/evidence/local-ui-2026-10-15/local-trips-calendar.png',
-  'local-approved': 'docs/release/evidence/local-ui-2026-10-15/local-driver-booking-approved.png',
-  'reservation-cancelled': 'docs/release/evidence/local-reservations-2026-10-16/local-parent-reservations-cancelled.png',
-  'reservation-declined': 'docs/release/evidence/local-reservations-2026-10-16/local-driver-reservation-declined.png',
-  'membership-manager': 'docs/release/evidence/local-membership-review-2026-10-16/manager-decisions.jpg',
-  'membership-admin': 'docs/release/evidence/local-membership-review-2026-10-16/admin-decisions.jpg',
-  'membership-mobile': 'docs/release/evidence/local-membership-review-2026-10-16/mobile-confirmation.jpg',
-  'membership-parent': 'docs/release/evidence/local-membership-refresh-2026-10-16/local-membership-approved-refused.png',
-  'membership-reopened': 'docs/release/evidence/local-membership-refresh-2026-10-16/local-membership-after-restart.png',
-  'membership-account': 'docs/release/evidence/local-membership-refresh-2026-10-16/local-membership-other-account.png',
-  'local-landscape': 'docs/release/evidence/local-ui-2026-10-15/local-login-landscape.png',
-  'local-search-empty': 'docs/release/evidence/local-ui-2026-10-15/local-search-empty.png',
-  'search-account-cleared': 'docs/release/evidence/local-search-ui-2026-10-15/local-search-account-cleared.png',
-  'search-options-retained': 'docs/release/evidence/local-search-options-ui-2026-10-16/local-search-retained-options.png',
-  'search-options-invalidated': 'docs/release/evidence/local-search-options-ui-2026-10-16/local-search-options-invalidated.png',
-  'local-theme': 'docs/release/evidence/local-ui-2026-10-15/local-theme-after-process-restart.png',
-  'ride-delivered': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-passengers-delivered.png',
-  'ride-history': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-parent-history.png',
-  'ride-impact': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-impact.png',
-  'ride-rewards': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-rewards.png',
-  'ride-review': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-review-prompt.png',
-  'ride-review-sent': 'docs/release/evidence/local-ride-ui-2026-10-15/local-ride-review-sent.png',
-  'chat-reservation': 'docs/release/evidence/local-chat-directory-ui-2026-10-15/local-chat-directory-reservation.png',
-  'chat-empty': 'docs/release/evidence/local-chat-directory-ui-2026-10-15/local-chat-directory-empty.png',
-  'chat-received': 'docs/release/evidence/local-chat-directory-ui-2026-10-15/local-chat-directory-received.png',
-  'chat-history': 'docs/release/evidence/local-chat-directory-ui-2026-10-15/local-chat-directory-history.png',
-  'chat-landscape': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-landscape-draft.png',
-  'chat-network-draft': 'docs/release/evidence/local-chat-network-2026-10-16/local-chat-network-unconfirmed.png',
-  'chat-network-reply': 'docs/release/evidence/local-cellular-request-2026-10-16/local-chat-network-received.png',
-  'chat-restart-reply': 'docs/release/evidence/local-chat-restart-2026-10-16/local-chat-restart-reply.png',
-  'chat-picker-recovered': 'docs/release/evidence/local-chat-network-2026-10-16/booking-picker-recovered.png',
-};
 
 export const assets = {
   places: { source: '08-search-origin-resolved.jpg', crop: [286, 604, 342, 134] },
@@ -80,8 +41,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
-    { date: '2026-10-16', title: 'Le renvoi garde le même message',
-      text: 'Après un envoi incertain, une erreur ne transforme plus le renvoi en nouveau message. Sept contrôles locaux réussis. À rejouer dans l’app.', flow: 'messages' },
+    { date: '2026-10-16', title: 'Le renvoi ne crée pas de doublon',
+      text: 'Le message reste prêt à être renvoyé après une erreur. L’essai local se termine sans doublon. Deux nouvelles captures sont disponibles.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les messages restent après fermeture',
       text: 'En local, le parent reste connecté, retrouve ses messages puis reprend l’échange avec le conducteur. Une nouvelle capture est disponible.', flow: 'messages' },
     { date: '2026-10-16', title: 'Un groupe par équipe',
@@ -205,9 +166,9 @@ export const content = {
         shot('reservation-declined', 'Demande refusée par le conducteur, en local'),
         shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre')], source: 'docs/release/evidence/local-trip-capacity-2026-10-16/README.md' },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-16',
-      summary: 'Après fermeture complète, l’échange reprend en local.',
-      verified: 'En local : connexion et messages confirmés retrouvés après fermeture, nouvel envoi et réponse reçue sans doublon. Après une coupure, le brouillon peut aussi être renvoyé.',
-      remaining: 'Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et une coupure juste après l’envoi. Pas encore en ligne.',
+      summary: 'Un seul message après un renvoi, même en cas d’erreur.',
+      verified: 'Après une confirmation perdue puis un renvoi refusé, le message peut être renvoyé sans doublon. Vérifié en local, avec une seule notification.',
+      remaining: 'Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
         'Après une confirmation perdue, deux renvois gardent un seul message et une seule notification.',
@@ -216,8 +177,10 @@ export const content = {
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
       ], 'docs/release/evidence/local-chat-response-loss-2026-10-16/results.json'),
-      ui: { source: 'docs/release/evidence/local-chat-restart-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui'] },
-      images: [shot('chat-restart-reply', 'Messages retrouvés et échange repris après fermeture, en local'),
+      ui: { source: 'docs/release/evidence/local-native-chat-loss-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
+      images: [shot('chat-loss-confirmed', 'Un seul message enregistré après les renvois, en local'),
+        shot('chat-loss-rejected-retry', 'Le message reste prêt à être renvoyé après une erreur, en local'),
+        shot('chat-restart-reply', 'Messages retrouvés et échange repris après fermeture, en local'),
         shot('chat-network-reply', 'Message renvoyé et réponse reçue après la coupure, en local'),
         shot('chat-network-draft', 'Coupure : le brouillon reste prêt à être renvoyé, en local'),
         shot('chat-picker-recovered', 'Réservations acceptées, refusées et annulées visibles, en local'),
