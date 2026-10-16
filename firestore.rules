@@ -99,7 +99,11 @@ service cloud.firestore {
 
     match /teams/{teamId} {
       allow read: if true;
-      allow create, update: if isAdmin() || isClubManager(request.resource.data.clubId);
+      allow create: if isAdmin() || isClubManager(request.resource.data.clubId);
+      allow update: if isAdmin() || (
+        resource.data.clubId == request.resource.data.clubId &&
+        isClubManager(resource.data.clubId)
+      );
       allow delete: if isAdmin() || isClubManager(resource.data.clubId);
     }
 

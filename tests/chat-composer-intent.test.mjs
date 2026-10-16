@@ -61,7 +61,7 @@ test('the evidence keeps UI execution, physical delivery and durable draft recov
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/chat-composer-intent.test.mjs"').length - 1, 2);
   assert.equal(workflow.split('"android/app/src/main/java/be/sportgreenmoove/app/ui/Conversation*.kt"').length - 1, 2);
-  assert(workflow.includes('tests/chat-composer-intent.test.mjs\n'));
+  assert.match(workflow, /^\s+run: node --test[^\n]*\btests\/chat-composer-intent\.test\.mjs(?:\s|$)/m);
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/local-native-chat-loss-2026-10-16/README.md');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-native-chat-loss-2026-10-16/results.json');

@@ -7,7 +7,7 @@ const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
 const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.md';
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
-const membershipRefreshReport = 'docs/release/evidence/local-membership-refresh-2026-10-16/README.md';
+const teamOwnershipReport = 'docs/release/evidence/local-team-ownership-2026-10-16/README.md';
 const chatReport = 'docs/release/evidence/local-native-chat-loss-2026-10-16/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
@@ -41,6 +41,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'Les équipes restent dans leur club',
+      text: 'En local, un responsable ne peut plus déplacer ni modifier l’équipe d’un autre club. La gestion des membres et les groupes restent à terminer.', flow: 'clubs' },
     { date: '2026-10-16', title: 'Le renvoi ne crée pas de doublon',
       text: 'Le message reste prêt à être renvoyé après une erreur. L’essai local se termine sans doublon. Deux nouvelles captures sont disponibles.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les messages restent après fermeture',
@@ -191,16 +193,16 @@ export const content = {
         shot('chat-landscape', 'Brouillon conservé en paysage, essai du 15 octobre')], source: chatReport },
     { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-16',
       summary: 'Le parent retrouve la décision dans l’app après actualisation.',
-      verified: 'Acceptation, refus, nouvelle demande et réouverture de l’écran vérifiés en local. Les adhésions restent liées au bon compte.',
-      remaining: 'Restent les enfants, les équipes, le changement de club, les grandes listes et les coupures sur téléphone. Pas encore en ligne.',
-      local: local(['club-request', 'membership-review'], ['La demande est enregistrée sans doublon.', 'Un responsable extérieur au club ne peut pas décider.', 'Deux décisions simultanées ne comptent pas deux fois.', 'Un ancien choix est refusé après une nouvelle demande.'], 'docs/release/evidence/local-membership-review-2026-10-16/services.json'),
+      verified: 'Adhésions et réouverture de l’écran vérifiées en local. Un responsable ne peut pas modifier l’équipe d’un autre club.',
+      remaining: 'Restent l’inscription des enfants, les équipes et leurs groupes, le changement de club, les grandes listes et les coupures sur téléphone. Pas encore en ligne.',
+      local: local(['club-request', 'membership-review', 'team-ownership'], ['La demande est enregistrée sans doublon.', 'Un responsable extérieur au club ne peut pas décider.', 'Deux décisions simultanées ne comptent pas deux fois.', 'Un ancien choix est refusé après une nouvelle demande.', 'Un responsable ne peut pas déplacer ni modifier l’équipe d’un autre club.'], 'docs/release/evidence/local-team-ownership-2026-10-16/services.json'),
       ui: { source: 'docs/release/evidence/local-membership-refresh-2026-10-16/results.json', groups: ['membership-refresh-ui'] },
       images: [shot('membership-parent', 'Acceptation et refus visibles par le parent, en local'),
         shot('membership-reopened', 'Adhésions conservées après réouverture de l’écran, en local'),
         shot('membership-account', 'Autre compte : ces clubs restent à rejoindre'),
         { ...shot('membership-manager', 'Acceptation et refus par le responsable du club, en local'), landscape: true },
         { ...shot('membership-admin', 'Décisions enregistrées dans l’espace de gestion local'), landscape: true },
-        shot('membership-mobile', 'Confirmation sur petit écran, fermée sans modifier la demande')], source: membershipRefreshReport },
+        shot('membership-mobile', 'Confirmation sur petit écran, fermée sans modifier la demande')], source: teamOwnershipReport },
     { id: 'payments', title: 'Paiements et compte conducteur', status: 'blocked', checkedAt: '2026-10-11',
       summary: 'L’écran s’ouvre. Aucun paiement testé.',
       verified: 'Ouverture depuis le profil, solde à zéro et retour au profil.',

@@ -18,7 +18,7 @@ Only sanitized result JSON belongs in release evidence. Keep emulators' runtime
 logs and ephemeral credentials out of Git. Local evidence never automatically
 accepts a physical-device or live-payment release-manifest requirement.
 
-The service suite requires 18 groups. `chat-post-commit-response-loss` forwards a
+The service suite requires 19 groups. `chat-post-commit-response-loss` forwards a
 real authenticated local send, independently verifies its saved message and
 recipient notification, then drops the HTTP reply before any response headers.
 The client must observe a reset without an automatic retry. Two explicit retries
@@ -26,6 +26,16 @@ retain the original record identity/time; changed content and an outside account
 remain denied. This is service transport evidence, not native composer or pending
 draft recovery. The bounded loopback listener is always closed. See
 `docs/release/evidence/local-chat-response-loss-2026-10-16/` for retained runs.
+
+`team-ownership` signs in actual isolated accounts and checks that PATCH,
+replacement and atomic-commit writes cannot move another club's existing team
+into a manager's club. Foreign edits/deletes, non-manager and anonymous writes,
+dual-club reassignment and disabled-manager edits are denied, with the complete
+stored team checked after every attempt. An own-club rename remains allowed.
+The separate 14-case rules suite also preserves allowed create/replace/delete
+and administrator policy. These checks do not implement or prove team enrollment,
+verified guardian relationships, group messaging, or identity reuse after deletion.
+Original reports: `docs/release/evidence/local-team-ownership-2026-10-16/`.
 
 ## App And Management Screens
 

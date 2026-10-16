@@ -10,7 +10,12 @@ try {
   const result = JSON.parse(readFileSync(runtime.env.SGM_LOCAL_FLOW_OUTPUT, 'utf8'));
   assert.equal(result.runId, runtime.env.SGM_LOCAL_RUN_ID, 'A fresh completed run is required');
   assert.equal(result.projectId, projectId);
-  assert.equal(result.steps.length, 18);
+  assert.equal(result.steps.length, 19);
+  assert.equal(result.teamOwnership?.deniedMutations, 10);
+  assert.equal(result.teamOwnership?.foreignTeamUnchanged, true);
+  assert.equal(result.teamOwnership?.scopedNameEditAllowed, true);
+  assert.equal(result.teamOwnership?.twoClubReassignmentDenied, true);
+  assert.equal(result.teamOwnership?.disabledManagerDenied, true);
   assert.equal(result.chatResponseLoss?.firstError.code, 'ECONNRESET');
   assert.equal(result.chatResponseLoss?.firstError.responseReceived, false);
   assert.equal(result.chatResponseLoss?.messageCount, 1);

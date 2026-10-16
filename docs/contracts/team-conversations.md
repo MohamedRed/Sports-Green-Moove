@@ -17,6 +17,16 @@ conversation entry, authoritative team membership and its lifecycle, message
 authorization, and the corresponding app flow remain to be implemented and
 verified together. Club membership alone must not grant team-message access.
 
+## Ownership Boundary
+
+Local rules and signed-in transport checks reproduced and fixed a cross-club
+team update at `local-team-ownership-2026-10-16`: manager updates now retain the
+stored club ID and require authority over that existing club. This does not
+implement team conversation access. Direct create/delete and administrator
+capabilities keep their prior policy, so identity reuse and the complete
+enrollment/guardian lifecycle still need server-owned handling before chat is
+wired. See the dated release evidence for the unchanged red/green reports.
+
 ## Required Verification
 
 - Two active members assigned to the same team can open the conversation,

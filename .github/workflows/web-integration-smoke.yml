@@ -18,6 +18,8 @@ on:
       - "tests/reservation-evidence.test.mjs"
       - "tests/trip-capacity-evidence.test.mjs"
       - "tests/trip-capacity-rules.test.ts"
+      - "tests/team-ownership-rules.test.ts"
+      - "tests/team-ownership-evidence.test.mjs"
       - "tests/membership-review-controller.test.mjs"
       - "tests/membership-evidence.test.mjs"
       - "tests/partner-portal.browser.mjs"
@@ -89,6 +91,8 @@ on:
       - "tests/reservation-evidence.test.mjs"
       - "tests/trip-capacity-evidence.test.mjs"
       - "tests/trip-capacity-rules.test.ts"
+      - "tests/team-ownership-rules.test.ts"
+      - "tests/team-ownership-evidence.test.mjs"
       - "tests/membership-review-controller.test.mjs"
       - "tests/membership-evidence.test.mjs"
       - "tests/partner-portal.browser.mjs"
@@ -192,6 +196,9 @@ jobs:
       - name: Test isolated multi-person flows
         run: npm run test:local-flows
 
+      - name: Test team club ownership rules
+        run: npm run test:team-ownership-rules
+
       - name: Build Admin
         run: npm run build --workspace admin
 
@@ -202,7 +209,7 @@ jobs:
         run: npm run test:privacy-policy-page
 
       - name: Validate private partner portal evidence and contracts
-        run: node --test tests/partner-portal.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/trip-capacity-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs tests/cellular-request-evidence.test.mjs tests/chat-composer-intent.test.mjs
+        run: node --test tests/partner-portal.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/trip-capacity-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs tests/cellular-request-evidence.test.mjs tests/chat-composer-intent.test.mjs tests/team-ownership-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

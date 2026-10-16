@@ -10,6 +10,7 @@ import { checkReservationDecisions } from './local-reservation-decisions.mjs';
 import { checkMembershipReview } from './local-membership-review.mjs';
 import { checkTripCapacityOwnership } from './local-trip-capacity.mjs';
 import { checkChatResponseLoss } from './local-chat-response-loss.mjs';
+import { checkTeamOwnership } from './local-team-ownership.mjs';
 
 const { projectId } = configureLocalEmulators();
 const steps = [];
@@ -38,8 +39,10 @@ let membershipReview;
 await check('membership-review', async () => { membershipReview = await checkMembershipReview(); });
 let tripCapacity;
 await check('trip-capacity-ownership', async () => { tripCapacity = await checkTripCapacityOwnership(); });
+let teamOwnership;
+await check('team-ownership', async () => { teamOwnership = await checkTeamOwnership(); });
 const result = { runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), projectId, scope: 'local-emulated-services-not-phone-ui',
-  steps, lifecycle, scenarios, reservationDecisions, membershipReview, tripCapacity, chatResponseLoss, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
+  steps, lifecycle, scenarios, reservationDecisions, membershipReview, tripCapacity, chatResponseLoss, teamOwnership, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
     'Membership screen decisions, trip editing/cancellation and refund settlement require separate evidence.'] };
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
 if (!output) throw new Error('Explicit local evidence output path required');
