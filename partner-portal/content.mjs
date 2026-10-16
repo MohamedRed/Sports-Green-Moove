@@ -68,6 +68,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'Un envoi de message à revérifier',
+      text: 'Un essai complet passe, mais le suivant s’arrête sur l’envoi du conducteur. Le contrôle du clavier est renforcé avant de rejouer ce parcours.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les choix restent liés à la demande',
       text: 'Dans l’essai local simulé, les options sont conservées au retour et un ancien résultat ne peut plus être réservé après modification. Deux captures sont disponibles.', flow: 'search' },
     { date: '2026-10-15', title: 'La demande reprend le nombre de places choisi',
@@ -106,6 +108,9 @@ export const content = {
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
   blockers: [
+    { id: 'chat-send-stability', title: 'Répéter l’envoi de messages',
+      text: 'Les échanges passent dans un essai complet. Un autre essai ne confirme pas l’envoi du conducteur.',
+      next: 'Rejouer ce parcours avec le clavier et confirmer sa stabilité.', source: optionsUiReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Le premier échange depuis une réservation passe en local. Le démarrage depuis un groupe reste à ajouter.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: chatUiReport },

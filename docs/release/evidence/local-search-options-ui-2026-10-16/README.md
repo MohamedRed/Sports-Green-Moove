@@ -7,8 +7,8 @@ The unchanged `results.json` records isolated run
 
 ## Accepted Results
 
-General instrumentation passed 57 cases with nine intentional local/live-auth
-gates skipped; original XML is retained separately. The isolated local execution
+General instrumentation reported 57 cases: 48 passed and nine intentional
+local/live-auth gates were skipped; original XML is retained separately. The isolated local execution
 then passed all 14 instrumentation cases across six invocations: nine in the
 combined app/search group and one each for theme restart, native seat request,
 ride lifecycle, messaging and conversation directory. All six original text
@@ -56,3 +56,20 @@ idempotency, a proper date/time picker, remaining management actions, live
 payments/push and all physical tracking/safety evidence remain open. iOS is
 unchanged. No production data, billing, infrastructure or release-manifest
 acceptance was changed.
+
+## Subsequent Replay
+
+Run `38831538641` at commit `32102d2` passed the combined nine-case group, theme,
+native seat request and ride phases, then stopped at the driver's first chat
+send. The composer did not clear within 30 seconds; the service log contained
+only the earlier parent's send, with no driver send invocation. There was no
+crash-buffer output. This is not a second successful complete replay.
+
+The older send helper hid the keyboard without waiting for its insets/layout to
+settle and could count the editable draft as the expected message text. It now
+explicitly focuses the composer, waits for the keyboard to open/close and the
+composer to return to its resting position, then requires acknowledgement/empty
+draft before checking the bubble. Failed sends retain a diagnostic capture and
+still fail the test. This changes test synchronization, not message delivery,
+timeouts or provider behavior. A new full replay is required; the accepted run
+above remains a dated snapshot, not a claim of repeatable stability.

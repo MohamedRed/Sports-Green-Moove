@@ -90,6 +90,12 @@ test('local conversation evidence requires app execution and independent persist
   assert.match(peer, /app.delete\(\)/);
   const chat = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatFlowTest.kt', import.meta.url), 'utf8');
   assert.match(chat, /captureLocalUi\(compose, "local-chat-landscape-draft.png", landscape = true\)/);
+  assert.match(chat, /compose.waitUntil\(30_000\) \{ keyboardVisible\(\) \}/);
+  assert.match(chat, /compose.waitUntil\(30_000\) \{ !keyboardVisible\(\) \}/);
+  const send = chat.slice(chat.indexOf('private fun send('), chat.indexOf('private fun draft('));
+  assert(send.indexOf('draft().isEmpty()') < send.indexOf('waitForText(body)'));
+  assert.match(send, /boundsInRoot.top - restingTop/);
+  assert.match(send, /throw failure/);
 });
 
 test('rotation cleanup preserves the inherited lock and waits for portrait before the next case', () => {

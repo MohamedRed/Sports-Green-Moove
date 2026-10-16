@@ -20,6 +20,8 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.data.ConversationKind
@@ -36,6 +38,7 @@ import org.junit.Assume.assumeTrue
 import org.junit.Rule
 import org.junit.Test
 import java.io.File
+import kotlin.math.abs
 
 class LocalChatFlowTest {
     @get:Rule val compose = createEmptyComposeRule()
@@ -141,11 +144,22 @@ class LocalChatFlowTest {
 
     private fun send(body: String) {
         waitForComposer()
-        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextReplacement(body)
         closeKeyboard()
-        compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().performClick()
-        waitForText(body)
-        compose.waitUntil(30_000) { draft().isEmpty() }
+        val restingTop = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top
+        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performClick().performTextReplacement(body)
+        compose.waitUntil(30_000) { keyboardVisible() }
+        closeKeyboard()
+        compose.waitUntil(30_000) {
+            abs(compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top - restingTop) < 2f
+        }
+        try {
+            compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsDisplayed().assertIsEnabled().performClick()
+            compose.waitUntil(30_000) { draft().isEmpty() }
+            waitForText(body)
+        } catch (failure: Throwable) {
+            runCatching { captureLocalUi(compose, "local-chat-send-not-confirmed.png") }
+            throw failure
+        }
     }
 
     private fun draft() = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode()
@@ -155,7 +169,14 @@ class LocalChatFlowTest {
         scenario.onActivity {
             it.getSystemService(InputMethodManager::class.java).hideSoftInputFromWindow(it.window.decorView.windowToken, 0)
         }
+        compose.waitUntil(30_000) { !keyboardVisible() }
         compose.waitForIdle()
+    }
+    private fun keyboardVisible(): Boolean {
+        var visible = false
+        scenario.onActivity { visible = ViewCompat.getRootWindowInsets(it.window.decorView)
+            ?.isVisible(WindowInsetsCompat.Type.ime()) == true }
+        return visible
     }
     private fun openMessages() {
         compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).performClick()
