@@ -163,7 +163,7 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
 });
 
-test('conversation captures require the completed twenty-case run and keep phone scope open', () => {
+test('historical conversation captures retain their complete run separately from the new stage recheck', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.ui.source));
   assert.equal(run.testCount, 20);
@@ -180,7 +180,7 @@ test('conversation captures require the completed twenty-case run and keep phone
   assert.equal(run.directory.secondPageCount, 8);
   assert.equal(run.directory.messageCount, 2);
   assert.equal(run.directory.readNotificationCount, 2);
-  assert.equal(flow.images.length, 11);
+  assert.equal(flow.images.filter((image) => image.file !== 'chat-restart-recheck-reply').length, 11);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-ui-2026-10-15/results.json')).testCount, 9);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-ui-2026-10-15/results.json')).testCount, 8);
   assert(!Object.values(captures).some((path) => /directory-(first-message|reply)\.png/.test(path)));

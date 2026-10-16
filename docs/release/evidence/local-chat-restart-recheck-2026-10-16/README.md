@@ -44,3 +44,10 @@ by this retained failure or the input changes alone.
 
 The original six JSON/XML/transcript files are byte-pinned by SHA-256. No production
 data, physical device, live payment or release-manifest acceptance is involved.
+
+## Subsequent Recheck
+
+The [separate second run](second-run/README.md) passed the restart stage and
+its independent persisted-message checks, then failed during network preparation.
+It has no completed full-run result. This original failed evidence stays unchanged;
+neither the earlier missed send nor the missing subscription is claimed explained.

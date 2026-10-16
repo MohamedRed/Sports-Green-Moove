@@ -1,4 +1,5 @@
 export const captures = {
+  'chat-restart-recheck-reply': 'docs/release/evidence/local-chat-restart-recheck-2026-10-16/second-run/local-chat-restart-reply.png',
   'trip-cancel-review': 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/local-trip-cancel-review-portrait.png',
   'trip-cancel-confirmed': 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/local-trip-cancel-confirmed-landscape.png',
   'trip-cancel-parent': 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/local-trip-cancelled-parent.png',

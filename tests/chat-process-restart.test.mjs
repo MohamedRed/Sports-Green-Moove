@@ -76,7 +76,7 @@ test('restart sends use one actual touch after keyboard/layout readiness and dia
   }
 });
 
-test('failed current-head restart evidence cannot be promoted from successful ordinary components or restored history', () => {
+test('retained failed restart evidence cannot be promoted from successful ordinary components or restored history', () => {
   const base = 'docs/release/evidence/local-chat-restart-recheck-2026-10-16/';
   const load = (name) => JSON.parse(read(base + name));
   const before = load('before.json'), after = load('after-failed.json'), stopped = load('stop.json');
@@ -97,7 +97,8 @@ test('failed current-head restart evidence cannot be promoted from successful or
   assert.equal(existsSync(resolve(root, base + 'results.json')), false);
   assert.match(read(base + 'README.md'), /not established/);
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.match(flow.summary, /reste à confirmer/);
+  assert.equal(flow.status, 'partial');
+  assert(content.updates.some((item) => item.title === 'La réponse après relancement reste à confirmer'));
   assert(flow.images.find((item) => item.file === 'chat-restart-reply').alt.includes('essai précédent'));
   assert(content.blockers.find((item) => item.id === 'chat-send-stability').source.startsWith(base));
 });
