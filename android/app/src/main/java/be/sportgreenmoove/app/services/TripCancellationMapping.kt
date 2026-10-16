@@ -10,7 +10,7 @@ import java.util.UUID
 private const val InvalidCancellation = "Annulation non confirmée. Actualisez le trajet."
 private val revisionPattern = Regex("^[a-f0-9]{64}$")
 private fun documentId(value: Any?): String = (value as? String)?.takeIf {
-    it.isNotBlank() && it != "." && it != ".." && '/' !in it && it.length <= 1500
+    it.isNotBlank() && it != "." && it != ".." && !Regex("^__.*__$").matches(it) && '/' !in it && it.length <= 256
 } ?: throw ProviderConfigurationException(InvalidCancellation)
 private fun text(value: Any?): String = (value as? String)?.takeIf { it.isNotBlank() }
     ?: throw ProviderConfigurationException(InvalidCancellation)

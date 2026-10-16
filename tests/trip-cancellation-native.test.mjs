@@ -23,6 +23,8 @@ test('cancellation uses authenticated callables and never direct client writes',
   assert.equal(gateway.match(/check\(uid\(\) == user\)/g).length, 2);
   assert(!gateway.includes('.update(') && !gateway.includes('.set('));
   const indexes = JSON.parse(read('firestore.indexes.json')).indexes;
+  const trips = read(`${android}services/FirebaseAndroidTripGateway.kt`);
+  assert(trips.includes('.whereEqualTo("driverUserId", uid)\n            .whereIn("status", listOf("published", "full"))'));
   for (const field of ['cancelledAt', 'departureAt']) assert(indexes.some((index) => index.collectionGroup === 'trips' &&
     index.fields.map((item) => item.fieldPath).join(',') === `driverUserId,status,${field}`));
 });

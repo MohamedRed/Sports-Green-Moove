@@ -48,7 +48,9 @@ internal fun TripCancellationDialog(
                     Text("${preview.bookingCount} réservation${if (preview.bookingCount > 1) "s" else ""} concernée${if (preview.bookingCount > 1) "s" else ""}.",
                         style = SgmType.BodySM, modifier = Modifier.testTag("trip.cancel.count"))
                     if (preview.refundPendingCount > 0) Text(
-                        "${preview.refundPendingCount} remboursement${if (preview.refundPendingCount > 1) "s" else ""} en attente. Aucun remboursement n'est confirmé ici.",
+                        if (preview is TripCancellationReady)
+                            "${preview.refundPendingCount} réservation${if (preview.refundPendingCount > 1) "s" else ""} payée${if (preview.refundPendingCount > 1) "s" else ""}. Le remboursement restera à vérifier."
+                        else "${preview.refundPendingCount} remboursement${if (preview.refundPendingCount > 1) "s" else ""} en attente. Aucun remboursement n'est confirmé ici.",
                         style = SgmType.BodySM, modifier = Modifier.testTag("trip.cancel.refunds"))
                     if (preview is TripCancellationReady) OutlinedTextField(
                         value = state.reason, onValueChange = state::editReason, enabled = state.canEdit,

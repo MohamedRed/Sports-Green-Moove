@@ -84,8 +84,15 @@ peer sends one message while the parent thread stays open; this is not a claim
 of two physical phones or push delivery. An unrelated synthetic account cannot
 open the thread. Independent stored-message, recipient notification and unread
 checks must pass before the runner writes its result. The current suite requires
-20 instrumentation cases and records 21 coverage groups; these are not the same
+21 instrumentation cases and records 22 coverage groups; these are not the same
 count. Older evidence retains the exact counts of its original run.
+
+`LocalTripCancellationFlowTest` uses the actual app and authenticated SDK to keep,
+then cancel a driver's trip. Portrait review, landscape confirmation, cancelled
+history, the parent's two closed reservations and pending-refund display are
+checked. The host independently verifies the durable receipt, restored offered
+capacity, one stored notice and denial of booking/approval/start afterward. Paid
+metadata is synthetic; no charge, refund settlement or production data is used.
 
 `LocalChatNetworkFlowTest` disables Wi-Fi and mobile data on the explicitly
 disposable emulator, requires no active internet network and a failed TCP probe
