@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
+import { gunzipSync } from 'node:zlib';
 import { content, captures } from '../partner-portal/content.mjs';
 
 const root = new URL('../', import.meta.url);
@@ -55,6 +56,8 @@ test('reviewed images and raw unit/rules evidence remain scoped', () => {
   assert.match(read('domain-passed.xml'), /tests="4" failures="0" errors="0"/);
   assert.match(read('native-state-passed.xml'), /tests="3" skipped="0" failures="0" errors="0"/);
   assert.match(read('rules-passed.xml'), /tests="16" failures="0" errors="0"/);
+  const rawRules = gunzipSync(readFileSync(new URL(base + 'rules-original.xml.gz', root))).toString('utf8');
+  assert.equal(read('rules-passed.xml'), rawRules.replace(/[\t ]+$/gm, ''));
   assert(existsSync(new URL(base + 'parent-denied.jpg', root)));
   assert(!Object.values(captures).includes(base + 'parent-denied.jpg'));
 });

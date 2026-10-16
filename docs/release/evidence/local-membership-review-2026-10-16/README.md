@@ -34,6 +34,9 @@ label, while retaining the pre-existing explicit legacy active-flag contract.
 boundaries. Requested memberships cannot become management authority, active
 managers cannot bypass audited decisions with direct membership writes, and
 disabled managers lose scoped reads. Unrelated existing rules checks still pass.
+The readable XML removes only trailing spaces from emitted diagnostic log lines;
+`rules-original.xml.gz` retains the unchanged original report. Test outcomes and
+diagnostic text are otherwise unchanged.
 
 ## Manual Management Replay
 
