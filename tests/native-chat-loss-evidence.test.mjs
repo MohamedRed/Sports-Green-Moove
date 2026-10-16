@@ -42,12 +42,13 @@ test('retained SDK evidence proves a committed lost reply, rejected retry and un
   assert.equal(cases, 20);
 });
 test('published captures and copy retain controlled local scope and all older evidence', () => {
+  const published = 'docs/release/evidence/local-ui-collection-2026-10-16/';
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, directory + 'README.md');
-  assert.equal(flow.ui.source, directory + 'results.json'); assert(flow.ui.groups.includes('chat-post-commit-response-loss-ui'));
+  assert.equal(flow.status, 'partial'); assert.equal(flow.source, published + 'README.md');
+  assert.equal(flow.ui.source, published + 'accepted-run/results.json'); assert(flow.ui.groups.includes('chat-post-commit-response-loss-ui'));
   assert.equal(flow.images[0].file, 'chat-loss-confirmed'); assert.equal(flow.images[1].file, 'chat-loss-rejected-retry');
   for (const name of ['confirmed', 'rejected-retry']) {
-    assert.equal(captures['chat-loss-' + name], directory + 'local-chat-loss-' + name + '.png');
+    assert.equal(captures['chat-loss-' + name], published + 'accepted-run/local-chat-loss-' + name + '.png');
     const png = readFileSync(new URL('../' + captures['chat-loss-' + name], import.meta.url));
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
   }

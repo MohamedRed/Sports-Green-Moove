@@ -63,10 +63,10 @@ test('the evidence keeps UI execution, physical delivery and durable draft recov
   assert.equal(workflow.split('"android/app/src/main/java/be/sportgreenmoove/app/ui/Conversation*.kt"').length - 1, 2);
   assert.match(workflow, /^\s+run: node --test[^\n]*\btests\/chat-composer-intent\.test\.mjs(?:\s|$)/m);
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/local-native-chat-loss-2026-10-16/README.md');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-native-chat-loss-2026-10-16/results.json');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/local-ui-collection-2026-10-16/README.md');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/results.json');
   assert.equal(flow.local.source, 'docs/release/evidence/local-chat-response-loss-2026-10-16/results.json');
   const update = content.updates.find((item) => item.title === 'Le renvoi ne crée pas de doublon');
-  assert.match(update.text, /essai local/);
-  assert.match(update.text, /sans doublon/);
+  assert.match(update.text, /essai local/i);
+  assert.match(update.text, /un seul message et une seule notification/);
 });

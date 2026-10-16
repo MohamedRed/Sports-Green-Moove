@@ -109,7 +109,7 @@ test('retained service evidence proves a saved message before the reset without 
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial'); assert.equal(flow.local.source, directory + 'results.json');
   assert(flow.local.groups.includes('chat-post-commit-response-loss'));
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-native-chat-loss-2026-10-16/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/results.json');
   assert(!flow.ui.groups.includes('chat-post-commit-response-loss'));
   assert.match(flow.remaining, /coupures réelles pendant l’envoi/);
   assert.match(read(directory + 'README.md'), /not a native retry/);

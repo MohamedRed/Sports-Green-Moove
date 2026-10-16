@@ -5,6 +5,7 @@ import { XMLParser } from 'fast-xml-parser';
 import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentation-result.mjs';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = (path) => readFileSync(resolve(root, path), 'utf8');
 const base = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
@@ -82,4 +83,15 @@ test('passing device assertions from the interrupted copy attempt are retained w
   }
   assert.equal(total, 20); assert.equal(existsSync(new URL('../' + root + 'results.json', import.meta.url)), false);
   assert.match(read(root + 'README.md'), /diagnostic evidence, not an accepted complete replay/);
+});
+
+test('retained diagnostic files preserve original bytes, including XML line endings and transcript terminal blank lines', () => {
+  const base = 'docs/release/evidence/local-ui-collection-2026-10-16/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json'));
+  assert.equal(Object.keys(hashes).length, 15);
+  for (const [path, expected] of Object.entries(hashes)) {
+    assert.match(expected, /^[a-f0-9]{64}$/);
+    assert.equal(createHash('sha256').update(readFileSync(resolve(root, base, path))).digest('hex'), expected, path);
+  }
+  assert.match(read(base + '.gitattributes'), /component-before.xml -text/);
 });

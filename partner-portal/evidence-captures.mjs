@@ -36,7 +36,7 @@ export const captures = {
   'chat-network-draft': 'docs/release/evidence/local-chat-network-2026-10-16/local-chat-network-unconfirmed.png',
   'chat-network-reply': 'docs/release/evidence/local-cellular-request-2026-10-16/local-chat-network-received.png',
   'chat-restart-reply': 'docs/release/evidence/local-chat-restart-2026-10-16/local-chat-restart-reply.png',
-  'chat-loss-confirmed': 'docs/release/evidence/local-native-chat-loss-2026-10-16/local-chat-loss-confirmed.png',
-  'chat-loss-rejected-retry': 'docs/release/evidence/local-native-chat-loss-2026-10-16/local-chat-loss-rejected-retry.png',
+  'chat-loss-confirmed': 'docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/local-chat-loss-confirmed.png',
+  'chat-loss-rejected-retry': 'docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/local-chat-loss-rejected-retry.png',
   'chat-picker-recovered': 'docs/release/evidence/local-chat-network-2026-10-16/booking-picker-recovered.png',
 };

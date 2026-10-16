@@ -8,7 +8,7 @@ const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const teamOwnershipReport = 'docs/release/evidence/local-team-ownership-2026-10-16/README.md';
-const chatReport = 'docs/release/evidence/local-native-chat-loss-2026-10-16/README.md';
+const chatReport = 'docs/release/evidence/local-ui-collection-2026-10-16/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -46,7 +46,7 @@ export const content = {
     { date: '2026-10-16', title: 'Les équipes restent dans leur club',
       text: 'En local, un responsable ne peut plus déplacer ni modifier l’équipe d’un autre club. La gestion des membres et les groupes restent à terminer.', flow: 'clubs' },
     { date: '2026-10-16', title: 'Le renvoi ne crée pas de doublon',
-      text: 'Le message reste prêt à être renvoyé après une erreur. L’essai local se termine sans doublon. Deux nouvelles captures sont disponibles.', flow: 'messages' },
+      text: 'Essai local repris : un seul message et une seule notification après le renvoi. Les deux captures ont été mises à jour.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les messages restent après fermeture',
       text: 'En local, le parent reste connecté, retrouve ses messages puis reprend l’échange avec le conducteur. Une nouvelle capture est disponible.', flow: 'messages' },
     { date: '2026-10-16', title: 'Un groupe par équipe',
@@ -181,7 +181,7 @@ export const content = {
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
       ], 'docs/release/evidence/local-chat-response-loss-2026-10-16/results.json'),
-      ui: { source: 'docs/release/evidence/local-native-chat-loss-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
+      ui: { source: 'docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
       images: [shot('chat-loss-confirmed', 'Un seul message enregistré après les renvois, en local'),
         shot('chat-loss-rejected-retry', 'Le message reste prêt à être renvoyé après une erreur, en local'),
         shot('chat-restart-reply', 'Messages retrouvés et échange repris après fermeture, en local'),
