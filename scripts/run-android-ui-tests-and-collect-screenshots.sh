@@ -6,6 +6,8 @@ android_dir="$repo_root/android"
 output_dir="$android_dir/app/build/outputs/store-review-screenshots"
 remote_dir="/sdcard/Download/sgm-store-review"
 
+node "$repo_root/scripts/qa/configure-disposable-android.mjs" || exit 1
+
 set +e
 "$android_dir/gradlew" -p "$android_dir" :app:connectedDebugAndroidTest --no-daemon --stacktrace
 test_status=$?

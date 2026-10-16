@@ -82,3 +82,13 @@ test('the successful native replay retains earlier failures and its local-only s
   assert.match(read('README.md'), /One successful replay after two failures/);
   assert(content.blockers.some((item) => item.id === 'chat-send-stability'));
 });
+test('the repeated failure identifies the native launcher dialog without accepting a replay', () => {
+  const state = json('launcher-anr-state.json');
+  assert.equal(state.phase, 'window-ready');
+  assert.equal(state.foregroundPackage, 'android');
+  assert.equal(state.windowFocused, false);
+  assert.match(state.focusedWindows, /Application Not Responding: com.google.android.apps.nexuslauncher/);
+  assert(existsSync(new URL(base + 'launcher-anr-device.png', root)));
+  assert(!Object.values(captures).includes(base + 'launcher-anr-device.png'));
+  assert.match(read('README.md'), /launcher defect itself is not claimed to be repaired/);
+});

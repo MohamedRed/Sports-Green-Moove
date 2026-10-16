@@ -34,6 +34,15 @@ semantic assertions while producing black screenshots; the capture helper now
 rejects these. Use a fresh AVD or disposable data directory, not an existing live
 app session. Only the `.local` app package receives the disposable credentials.
 
+The full CI wrapper first runs `configure-disposable-android.mjs`. It requires
+explicit disposable opt-in, exactly one emulator and a confirmed QEMU identity,
+then disables only the Google home launcher and verifies the resulting state.
+An actual launcher ANR obscured the app in run 38849678049. This setup excludes
+that unrelated background component before testing, without dismissing dialogs,
+retrying failed cases or suppressing system errors. Rendering and Play services
+remain enabled. Home-screen/cross-app navigation is not covered by this setup;
+use a separate unmodified device for those scenarios. Never use personal AVD data.
+
 The ride case needs a Google APIs image with functioning Play services. It grants
 permissions only to `.local`, then injects a synthetic location through the
 official fused-location mock API. Mock positions affect the entire emulator:

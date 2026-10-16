@@ -12,6 +12,7 @@ on:
       - "scripts/qa/**"
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
       - "tests/local-ui-config.test.mjs"
+      - "tests/disposable-android.test.mjs"
       - "scripts/check-ios-native-plan.sh"
       - "tests/native-ui-coverage.test.mjs"
   push:
@@ -26,6 +27,7 @@ on:
       - "scripts/qa/**"
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
       - "tests/local-ui-config.test.mjs"
+      - "tests/disposable-android.test.mjs"
       - "scripts/check-ios-native-plan.sh"
       - "tests/native-ui-coverage.test.mjs"
 
@@ -51,6 +53,9 @@ jobs:
 
       - name: Validate native UI flow identifiers
         run: npm run test:native-ui-coverage
+
+      - name: Validate disposable Android isolation
+        run: node --test tests/disposable-android.test.mjs
 
   android-native-unit:
     name: Android native unit tests

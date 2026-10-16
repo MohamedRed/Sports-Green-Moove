@@ -160,3 +160,22 @@ loss is resolved or identify which native window previously obscured the app.
 Repeatability, network recovery and real account transitions still need evidence.
 The prior failed reports remain intact; no production input fix or dependency
 upgrade was made merely to obtain a passing run.
+
+[Run 38849678049](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38849678049)
+at `b0a3e0e` stops before the first send, this time at `window-ready`.
+`launcher-anr-state.json` and `launcher-anr-device.png` are unchanged diagnostic
+artifacts from local run `c767e19b993dc880b5744c21f8cb311e`. The focused native
+window is `Application Not Responding: com.google.android.apps.nexuslauncher`;
+the full device frame visibly shows "Pixel Launcher isn't responding" over the
+app. The window-ready guard correctly refuses to interact through that dialog.
+This identifies an external obstruction in this run, not a production chat ANR
+or proof that every earlier focus failure had the same cause. No full replay
+result JSON was produced. The diagnostic image is not a partner gallery asset.
+
+The disposable CI setup now isolates that known crashing home component before
+execution, with explicit opt-in, single-emulator/QEMU checks and a verified
+disabled package state. It does not dismiss failures, retry cases, disable
+rendering or change production input behavior. Directly launched app flows remain
+the scope; home-screen integration requires a separate unmodified device. This
+setup change still needs a successful full CI replay before it is considered
+verified. The launcher defect itself is not claimed to be repaired.
