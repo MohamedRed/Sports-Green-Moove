@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { call, db, signIn, tripInput } from './local-flow-client.mjs';
-import { assertChatRestartReceipt } from './chat-restart-evidence.mjs';
+import { assertChatRestartInteractionReceipt } from './chat-restart-evidence.mjs';
 
 const bodies = ['Message confirmé avant relancement.', 'Nouvel envoi après relancement.', 'Réponse reçue après relancement.'];
 const actors = ['sgm-qa-parent', 'sgm-qa-parent', 'sgm-qa-driver'];
@@ -36,7 +36,7 @@ export async function verifyChatRestartUi(fixture, checkpoint, directory) {
   const load = (name) => JSON.parse(readFileSync(resolve(directory, name), 'utf8'));
   const before = load('local-chat-restart-before.json'), after = load('local-chat-restart-after.json');
   const stopped = load('local-chat-restart-stop.json');
-  assertChatRestartReceipt(before, stopped, after, process.env.SGM_LOCAL_RUN_ID);
+  assertChatRestartInteractionReceipt(before, stopped, after, process.env.SGM_LOCAL_RUN_ID);
   assert.equal(checkpoint.runId, before.runId); assert.equal(checkpoint.sourceId, fixture.bookingId);
   const messages = await db.collection('messages').where('sourceId', '==', fixture.bookingId).get();
   assert.equal(messages.size, 3, 'Exactly one record per intended UI send across the process boundary');

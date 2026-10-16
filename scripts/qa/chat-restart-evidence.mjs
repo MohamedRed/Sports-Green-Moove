@@ -26,3 +26,9 @@ export function assertChatRestartReceipt(before, stopped, after, runId) {
   for (const key of ['sessionRestoredWithoutLogin', 'confirmedHistoryRestored', 'newSendConfirmed',
     'driverReplyReceived', 'bothInboxesRead']) assert.equal(after[key], true, `Missing restart proof: ${key}`);
 }
+
+export function assertChatRestartInteractionReceipt(before, stopped, after, runId) {
+  assertChatRestartReceipt(before, stopped, after, runId);
+  assert.equal(before.sendActor, 'first'); assert.equal(before.sendPhase, 'confirmed');
+  assert.equal(after.sendActor, 'driver-reply'); assert.equal(after.sendPhase, 'confirmed');
+}

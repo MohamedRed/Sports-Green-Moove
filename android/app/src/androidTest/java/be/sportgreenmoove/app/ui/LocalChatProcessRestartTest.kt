@@ -46,7 +46,7 @@ class LocalChatProcessRestartTest {
             waitForText("Trajet relancement QA")
             compose.onNodeWithText("Trajet relancement QA").performScrollTo().performClick()
             waitForText("Aucun message.")
-            send(first)
+            send(first, "first", result)
             result.put("firstMessageConfirmed", true)
             captureLocalUi(compose, "local-chat-restart-before.png")
         }
@@ -68,7 +68,7 @@ class LocalChatProcessRestartTest {
             assertDraftEmpty()
             result.put("confirmedHistoryRestored", true)
             captureLocalUi(compose, "local-chat-restart-reopened.png")
-            send(second)
+            send(second, "resumed-parent", result)
             result.put("newSendConfirmed", true)
             logout()
             login("driver")
@@ -76,7 +76,7 @@ class LocalChatProcessRestartTest {
             waitForText(first)
             waitForText(second)
             waitForReadAcknowledgement(second)
-            send(reply)
+            send(reply, "driver-reply", result)
             logout()
             login("parent")
             openConversation(reply)
@@ -142,13 +142,11 @@ class LocalChatProcessRestartTest {
             runCatching { compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsEnabled() }.isSuccess
         }
     }
-    private fun send(body: String) {
-        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsEnabled().performTextReplacement(body)
-        closeKeyboard()
-        compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().performClick()
-        compose.waitUntil(60_000) { draft().isEmpty() }
-        waitForText(body)
-        compose.waitUntil(60_000) { compose.onAllNodesWithText("Envoi en cours...").fetchSemanticsNodes().isEmpty() }
+    private fun send(body: String, label: String, result: JSONObject) {
+        result.put("sendActor", label)
+        LocalChatSendInteraction(compose, activity, directory()).send(body, "local-chat-restart-$label") { phase ->
+            result.put("sendPhase", phase)
+        }
     }
     private fun closeKeyboard() {
         var visible = false

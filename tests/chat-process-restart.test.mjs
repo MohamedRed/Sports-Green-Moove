@@ -1,9 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { XMLParser } from 'fast-xml-parser';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { assertChatRestartReceipt } from '../scripts/qa/chat-restart-evidence.mjs';
+import { assertChatRestartReceipt, assertChatRestartInteractionReceipt } from '../scripts/qa/chat-restart-evidence.mjs';
 import { assertChatNetworkReceipt, assertCellularRequestSetup } from '../scripts/qa/chat-network-evidence.mjs';
 import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentation-result.mjs';
 import { stopDisposableChatProcess } from '../scripts/qa/local-chat-process-stop.mjs';
@@ -37,6 +39,67 @@ test('restart evidence requires complete, same-run app stages and an independent
     (r) => { r[2].newSendConfirmed = false; }, (r) => { r[2].driverReplyReceived = false; },
     (r) => { r[2].bothInboxesRead = false; },
   ]) { const r = receipt(); mutate(r); assert.throws(() => assertChatRestartReceipt(...r, runId)); }
+});
+
+test('fresh restart runs also require confirmed input stages, without rewriting historical receipts', () => {
+  assert.throws(() => assertChatRestartInteractionReceipt(...receipt(), runId));
+  const current = receipt(); current[0].sendActor = 'first'; current[0].sendPhase = 'confirmed';
+  current[2].sendActor = 'driver-reply'; current[2].sendPhase = 'confirmed';
+  assertChatRestartInteractionReceipt(...current, runId);
+  for (const [index, key, value] of [[0, 'sendPhase', 'keyboard-open'], [2, 'sendPhase', 'send-acknowledged'],
+    [2, 'sendActor', 'resumed-parent']]) {
+    const wrong = structuredClone(current); wrong[index][key] = value;
+    assert.throws(() => assertChatRestartInteractionReceipt(...wrong, runId));
+  }
+  assert(read('scripts/qa/local-chat-restart-ui.mjs').includes('assertChatRestartInteractionReceipt(before, stopped, after'));
+});
+
+test('restart sends use one actual touch after keyboard/layout readiness and diagnose before activity closure', () => {
+  const base = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
+  const helper = read(base + 'LocalChatSendInteraction.kt'), replay = read(base + 'LocalChatProcessRestartTest.kt');
+  assert(helper.includes('compose.waitUntil(30_000) { windowFocused() }'));
+  assert(helper.indexOf('input.performClick().assertIsFocused()') < helper.indexOf('compose.waitUntil(30_000) { keyboardVisible() }'));
+  assert(helper.indexOf('compose.waitUntil(30_000) { keyboardVisible() }') < helper.indexOf('input.performTextReplacement(body)'));
+  assert(helper.includes('boundsInRoot.top - restingTop'));
+  assert(helper.indexOf('boundsInRoot.top - restingTop') < helper.indexOf('ChatSendAction).assertIsDisplayed()'));
+  assert.equal((helper.match(/ChatSendAction\).*performClick\(\)/g) ?? []).length, 1);
+  assert(helper.includes('compose.waitUntil(60_000) { draft().isEmpty() }'));
+  assert(helper.indexOf('captureLocalUi(compose') < helper.indexOf('throw failure'));
+  assert(helper.includes('writeDiagnostic(evidenceName, phase)'));
+  assert(!/Thread.sleep|performSemanticsAction|repeat\(/.test(helper));
+  assert(!helper.includes('put("body"')); assert(!helper.includes('put("password"'));
+  assert(replay.includes('send(reply, "driver-reply", result)'));
+  assert(replay.includes('result.put("sendPhase", phase)'));
+  for (const name of ['web-integration-smoke', 'native-ci']) {
+    const workflow = read(`.github/workflows/${name}.yml`);
+    assert(workflow.includes(name === 'native-ci' ? '"android/**"' : '"android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*.kt"'));
+  }
+});
+
+test('failed current-head restart evidence cannot be promoted from successful ordinary components or restored history', () => {
+  const base = 'docs/release/evidence/local-chat-restart-recheck-2026-10-16/';
+  const load = (name) => JSON.parse(read(base + name));
+  const before = load('before.json'), after = load('after-failed.json'), stopped = load('stop.json');
+  assert.equal(before.runId, '872318b3ba7f11359f0945d2bc1701a8'); assert.equal(before.completed, true);
+  assert.equal(after.runId, before.runId); assert.equal(after.completed, false);
+  assert.equal(after.sessionRestoredWithoutLogin, true); assert.equal(after.confirmedHistoryRestored, true);
+  assert.equal(after.newSendConfirmed, true); assert.equal(after.driverReplyReceived, undefined);
+  assert.throws(() => assertChatRestartReceipt(before, stopped, after, before.runId));
+  const transcript = read(base + 'reopen-instrumentation.txt');
+  assert.match(transcript, /FAILURES!!!/); assert.match(transcript, /after 60000 ms/);
+  assert.throws(() => assertInstrumentationPassed(transcript, 1));
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true })
+    .parse(read(base + 'ordinary-components.xml')).testsuite;
+  assert.equal(suite.tests, 73); assert.equal(suite.failures, 0); assert.equal(suite.skipped, 16);
+  const hashes = load('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 6);
+  for (const [name, hash] of Object.entries(hashes)) assert.equal(createHash('sha256')
+    .update(readFileSync(resolve(root, base + name))).digest('hex'), hash, name);
+  assert.equal(existsSync(resolve(root, base + 'results.json')), false);
+  assert.match(read(base + 'README.md'), /not established/);
+  const flow = content.flows.find((item) => item.id === 'messages');
+  assert.equal(flow.status, 'partial'); assert.match(flow.summary, /reste à confirmer/);
+  assert(flow.images.find((item) => item.file === 'chat-restart-reply').alt.includes('essai précédent'));
+  assert(content.blockers.find((item) => item.id === 'chat-send-stability').source.startsWith(base));
 });
 
 function device(overrides = {}) {
