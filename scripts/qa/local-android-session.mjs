@@ -17,6 +17,7 @@ import { finishDisposableCleanup, waitForDisposableDevice } from './disposable-d
 import { seedChatRestartUiFixture, checkpointChatRestart, verifyChatRestartUi } from './local-chat-restart-ui.mjs';
 import { stopDisposableChatProcess } from './local-chat-process-stop.mjs';
 import { replayChatLossUi } from './local-chat-loss-ui.mjs';
+import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -53,6 +54,8 @@ function instrument(classes, expected, extraArguments = []) {
 
 const evidenceDir = process.env.SGM_LOCAL_UI_OUTPUT;
 mkdirSync(evidenceDir, { recursive: true });
+const collectEvidence = (phase) => collectLocalUiEvidence({ adb, serial, evidenceDir, phase,
+  runId: session.runId, password: session.password });
 let capturesCollected = false;
 let failure;
 let result;
@@ -82,17 +85,12 @@ try {
   const restartCheckpoint = await checkpointChatRestart(restartFixture, evidenceDir);
   stopDisposableChatProcess(adb, serial, session.runId, evidenceDir);
   instrument(['LocalChatProcessRestartTest#reopenConfirmedConversation'], 1);
-  waitForDisposableDevice(adb, serial);
-  run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
+  collectEvidence('confirmed-restart');
   const chatRestart = await verifyChatRestartUi(restartFixture, restartCheckpoint, evidenceDir);
-  const chatResponseLoss = await replayChatLossUi(instrument, () => {
-    waitForDisposableDevice(adb, serial);
-    run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
-  }, evidenceDir);
+  const chatResponseLoss = await replayChatLossUi(instrument, () => collectEvidence('response-loss'), evidenceDir);
   const networkFixture = await seedChatNetworkUiFixture();
   replayWithNetworkCleanup(adb, serial, session.runId, instrument);
-  waitForDisposableDevice(adb, serial);
-  run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
+  collectEvidence('network-recovery');
   capturesCollected = true;
   const chatNetwork = await verifyChatNetworkUi(networkFixture, evidenceDir);
   const steps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
@@ -113,8 +111,7 @@ finally {
   finishDisposableCleanup(failure, [
     () => {
       if (capturesCollected) return;
-      waitForDisposableDevice(adb, serial);
-      run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
+      collectEvidence('failure-cleanup');
     },
     () => {
       waitForDisposableDevice(adb, serial);

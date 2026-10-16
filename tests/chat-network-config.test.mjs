@@ -114,7 +114,9 @@ test('device evidence collection waits for one bounded, confirmed disposable tra
     assert.throws(() => waitForDisposableDevice('adb', 'emulator-5554', () => { throw timeout; }), (error) => error === timeout);
     assert.throws(() => waitForDisposableDevice('adb', 'emulator-5554', () => 'offline'));
     const runner = read('scripts/qa/local-android-session.mjs');
-    assert.match(runner, /waitForDisposableDevice\(adb, serial\);\n  run\(adb, \['-s', serial, 'pull'/);
+    assert.match(runner, /collectEvidence\('network-recovery'\)/);
+    const collector = read('scripts/qa/collect-local-ui-evidence.mjs');
+    assert(collector.indexOf('waitForDisposableDevice(adb, serial, execute)') < collector.indexOf("spawn(adb, ['-s', serial, 'pull'"));
     assert.match(runner, /finishDisposableCleanup\(failure, \[/);
     assert(runner.indexOf("writeFileSync(resolve(evidenceDir, 'results.json')") > runner.indexOf('finishDisposableCleanup(failure'));
   } finally {

@@ -12,6 +12,8 @@ on:
       - "scripts/qa/**"
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
       - "tests/local-ui-config.test.mjs"
+      - "tests/local-evidence-collection.test.mjs"
+      - "tests/fixtures/adb-evidence-process.mjs"
       - "tests/disposable-android.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
@@ -31,6 +33,8 @@ on:
       - "scripts/qa/**"
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
       - "tests/local-ui-config.test.mjs"
+      - "tests/local-evidence-collection.test.mjs"
+      - "tests/fixtures/adb-evidence-process.mjs"
       - "tests/disposable-android.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
@@ -67,7 +71,7 @@ jobs:
         run: npm run test:native-ui-coverage
 
       - name: Validate disposable Android isolation
-        run: node --test tests/disposable-android.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/chat-process-restart.test.mjs
+        run: node --test tests/disposable-android.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs
 
   android-native-unit:
     name: Android native unit tests
