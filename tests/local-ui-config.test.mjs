@@ -113,3 +113,13 @@ test('rotation cleanup preserves the inherited lock and waits for portrait befor
     assert.match(cleanup, /if \(autoRotation != 0\) device.unfreezeRotation\(\)/);
   }
 });
+test('chat replay retains keyboard, rotation and send checks without queuing a redundant hide', () => {
+  const chat = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatFlowTest.kt', import.meta.url), 'utf8');
+  assert.match(chat, /if \(keyboardVisible\(\)\) \{/);
+  assert.match(chat, /performClick\(\).assertIsFocused\(\)/);
+  assert.match(chat, /compose.waitUntil\(30_000\) \{ keyboardVisible\(\) \}/);
+  assert.match(chat, /device.displayWidth > device.displayHeight/);
+  assert.match(chat, /windowFocused/);
+  assert.match(chat, /draft\(\).isEmpty\(\)/);
+  assert.match(chat, /writeSendDiagnostic\(phase, device\)/);
+});

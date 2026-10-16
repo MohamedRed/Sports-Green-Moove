@@ -58,6 +58,11 @@ test('reviewed images and raw unit/rules evidence remain scoped', () => {
   assert.match(read('rules-passed.xml'), /tests="16" failures="0" errors="0"/);
   const rawRules = gunzipSync(readFileSync(new URL(base + 'rules-original.xml.gz', root))).toString('utf8');
   assert.equal(read('rules-passed.xml'), rawRules.replace(/[\t ]+$/gm, ''));
+  const chat = read('chat-replay-failed.txt');
+  assert.match(chat, /ComposeTimeoutException/);
+  assert(!/OK \(/.test(chat));
+  const originalChat = gunzipSync(readFileSync(new URL(base + 'chat-replay-original.txt.gz', root))).toString('utf8');
+  assert.equal(chat, originalChat.replace(/\n+$/, '\n'));
   assert(existsSync(new URL(base + 'parent-denied.jpg', root)));
   assert(!Object.values(captures).includes(base + 'parent-denied.jpg'));
 });

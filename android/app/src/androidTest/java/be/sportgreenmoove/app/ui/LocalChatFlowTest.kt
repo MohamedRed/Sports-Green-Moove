@@ -2,10 +2,12 @@ package be.sportgreenmoove.app.ui
 
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
@@ -20,6 +22,7 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTextReplacement
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import be.sportgreenmoove.app.BuildConfig
@@ -70,12 +73,12 @@ class LocalChatFlowTest {
             waitForComposer()
             assertDraft("Rendez-vous devant le stade.")
             activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
-            compose.waitUntil(15_000) { context.resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE }
+            waitForOrientation(Configuration.ORIENTATION_LANDSCAPE)
             waitForComposer()
             assertDraft("Rendez-vous devant le stade.")
             captureLocalUi(compose, "local-chat-landscape-draft.png", landscape = true)
             activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
-            compose.waitUntil(15_000) { context.resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_PORTRAIT }
+            waitForOrientation(Configuration.ORIENTATION_PORTRAIT)
             send("Nous serons devant le stade.")
             captureLocalUi(compose, "local-chat-parent-sent.png")
             backToInbox()
@@ -143,21 +146,28 @@ class LocalChatFlowTest {
     }
 
     private fun send(body: String) {
-        waitForComposer()
-        closeKeyboard()
-        val restingTop = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top
-        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performClick().performTextReplacement(body)
-        compose.waitUntil(30_000) { keyboardVisible() }
-        closeKeyboard()
-        compose.waitUntil(30_000) {
-            abs(compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top - restingTop) < 2f
-        }
+        var phase = "composer-ready"
         try {
+            waitForComposer()
+            closeKeyboard()
+            val restingTop = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top
+            phase = "keyboard-open"
+            compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performClick().assertIsFocused()
+            compose.waitUntil(30_000) { keyboardVisible() }
+            compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextReplacement(body)
+            phase = "keyboard-close"
+            closeKeyboard()
+            compose.waitUntil(30_000) {
+                abs(compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top - restingTop) < 2f
+            }
+            phase = "send-acknowledged"
             compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsDisplayed().assertIsEnabled().performClick()
             compose.waitUntil(30_000) { draft().isEmpty() }
             waitForText(body)
         } catch (failure: Throwable) {
-            runCatching { captureLocalUi(compose, "local-chat-send-not-confirmed.png") }
+            val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+            runCatching { captureLocalUi(compose, "local-chat-send-not-confirmed.png", landscape = device.displayWidth > device.displayHeight) }
+            runCatching { writeSendDiagnostic(phase, device) }
             throw failure
         }
     }
@@ -166,11 +176,38 @@ class LocalChatFlowTest {
         .config[SemanticsProperties.EditableText].text
     private fun assertDraft(text: String) { assertEquals(text, draft()) }
     private fun closeKeyboard() {
-        scenario.onActivity {
-            it.getSystemService(InputMethodManager::class.java).hideSoftInputFromWindow(it.window.decorView.windowToken, 0)
+        if (keyboardVisible()) {
+            scenario.onActivity {
+                it.getSystemService(InputMethodManager::class.java).hideSoftInputFromWindow(it.window.decorView.windowToken, 0)
+            }
+            compose.waitUntil(30_000) { !keyboardVisible() }
         }
-        compose.waitUntil(30_000) { !keyboardVisible() }
         compose.waitForIdle()
+    }
+    private fun waitForOrientation(orientation: Int) {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val device = UiDevice.getInstance(instrumentation)
+        val landscape = orientation == Configuration.ORIENTATION_LANDSCAPE
+        compose.waitUntil(15_000) {
+            var laidOut = false
+            scenario.onActivity { activity ->
+                val view = activity.window.decorView
+                laidOut = view.width > 0 && view.height > 0 && (view.width > view.height) == landscape
+            }
+            instrumentation.targetContext.resources.configuration.orientation == orientation &&
+                (device.displayWidth > device.displayHeight) == landscape && laidOut
+        }
+        instrumentation.waitForIdleSync()
+    }
+    private fun writeSendDiagnostic(phase: String, device: UiDevice) {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val diagnostic = JSONObject().put("phase", phase).put("keyboardVisible", keyboardVisible())
+            .put("displayWidth", device.displayWidth).put("displayHeight", device.displayHeight)
+        scenario.onActivity {
+            diagnostic.put("windowWidth", it.window.decorView.width).put("windowHeight", it.window.decorView.height)
+                .put("windowFocused", it.window.decorView.hasWindowFocus())
+        }
+        File(context.getExternalFilesDir(null), "local-ui-evidence/local-chat-send-state.json").writeText(diagnostic.toString(2))
     }
     private fun keyboardVisible(): Boolean {
         var visible = false

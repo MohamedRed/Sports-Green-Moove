@@ -105,3 +105,24 @@ Child enrolment, team assignment, native membership results after refresh, club
 switching, browser network/restart recovery and real push delivery still need
 end-to-end evidence. Remaining trip/settings/payment, physical tracking and safety
 requirements remain open. No final release-manifest acceptance is changed here.
+
+## Subsequent Native Replay
+
+[Run 38845283780](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38845283780)
+at `215b690` passed the native unit job and general instrumentation, then stopped
+in the isolated chat case before the first parent send. The timeout was the
+keyboard-open wait after returning from landscape to portrait, not a send
+acknowledgement. `chat-replay-failed.txt` retains the failure output with only
+extra terminal blank lines removed; `chat-replay-original.txt.gz` retains the
+unchanged original. The crash buffer was empty. This is not an accepted complete 15-case native run
+and does not invalidate the independently verified web-management replay above.
+
+The test previously issued an asynchronous hide request even if the keyboard was
+already hidden, then immediately tapped the composer. That can conflict with its
+show request; it is a suspected synchronization cause, not a proven app diagnosis.
+The harness now hides only a visible keyboard, checks resource/display/window
+orientation, and requires actual focus and keyboard visibility before replacing
+text. Keyboard visibility, send acknowledgement and persisted-state assertions
+are retained. Preflight failures now also produce a screenshot and a phase/window
+diagnostic instead of missing the send-only diagnostic catch. A successful replay
+is still required; this does not claim that general chat stability is solved.
