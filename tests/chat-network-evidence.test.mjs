@@ -59,7 +59,7 @@ test('interrupted attempts cannot become recovery evidence and the status regres
 test('partner media stays reviewed, partial and explicit about remaining phone and keyboard work', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-app-scheduling-2026-10-16/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-cellular-request-2026-10-16/results.json');
   assert.equal(flow.local.source, base + 'services.json');
   assert.match(flow.remaining, /clavier/); assert.match(flow.remaining, /téléphones/);
   assert.match(flow.remaining, /groupe/); assert.match(flow.remaining, /Pas encore en ligne/);
@@ -93,7 +93,7 @@ test('the queued-scheduler replay proves recovery and retains the earlier crash 
   assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
   const png = readCurrent('local-chat-network-received.png');
   assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
-  assert.equal(captures['chat-network-reply'], path + 'local-chat-network-received.png');
+  assert(!Object.values(captures).includes(path + 'local-chat-network-received.png'));
   assert.match(readCurrent('network-replay-passed.txt').toString(), /OK \(1 test\)/);
   assert.match(readCurrent('README.md').toString(), /does not establish the SlotWriter root cause/);
 });
@@ -132,7 +132,7 @@ test('completed instrumentation without collected evidence or final verification
   const log = readFileSync(new URL(path + 'transport-cleanup-failed.txt', root), 'utf8');
   assert.match(log, /device offline/); assert.match(log, /android:mock_location default/);
   assert.equal(content.flows.find((item) => item.id === 'messages').ui.source,
-    'docs/release/evidence/local-app-scheduling-2026-10-16/results.json');
+    'docs/release/evidence/local-cellular-request-2026-10-16/results.json');
 });
 
 test('the unresolved cellular-readiness attempt stays incomplete and separate from accepted recovery evidence', () => {

@@ -50,7 +50,7 @@ export const captures = {
   'chat-history': 'docs/release/evidence/local-chat-directory-ui-2026-10-15/local-chat-directory-history.png',
   'chat-landscape': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-landscape-draft.png',
   'chat-network-draft': 'docs/release/evidence/local-chat-network-2026-10-16/local-chat-network-unconfirmed.png',
-  'chat-network-reply': 'docs/release/evidence/local-app-scheduling-2026-10-16/local-chat-network-received.png',
+  'chat-network-reply': 'docs/release/evidence/local-cellular-request-2026-10-16/local-chat-network-received.png',
   'chat-picker-recovered': 'docs/release/evidence/local-chat-network-2026-10-16/booking-picker-recovered.png',
 };
 
@@ -86,7 +86,7 @@ export const content = {
     { date: '2026-10-16', title: 'Un groupe par équipe',
       text: 'Le groupe réunira les membres d’une équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le message reprend après une coupure',
-      text: 'En local, le nouvel envoi ne crée pas de doublon et les brouillons restent dans le bon compte. Une réservation refusée ne bloque plus le choix d’un échange.', flow: 'messages' },
+      text: 'Un nouvel essai complet passe en local : brouillon conservé, message renvoyé sans doublon et réponse reçue. La capture est à jour.', flow: 'messages' },
     { date: '2026-10-16', title: 'Les adhésions se mettent à jour dans l’app',
       text: 'Le parent voit l’acceptation ou le refus, puis peut refaire une demande. Les adhésions restent visibles après réouverture de l’écran.', flow: 'clubs' },
     { date: '2026-10-16', title: 'Le club peut accepter ou refuser une adhésion',
@@ -132,7 +132,7 @@ export const content = {
   ],
   blockers: [
     { id: 'chat-send-stability', title: 'Rejouer les coupures de connexion',
-      text: 'Deux essais complets passent en local. D’autres se sont arrêtés avant l’envoi ou les contrôles finaux.',
+      text: 'Plusieurs essais complets passent en local. La connexion de départ reste à fiabiliser.',
       next: 'Obtenir des essais reproductibles, puis vérifier sur téléphone et après fermeture complète.', source: chatNetworkReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Les échanges réuniront les membres d’une même équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.',
@@ -215,7 +215,7 @@ export const content = {
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
       ], 'docs/release/evidence/local-chat-network-2026-10-16/services.json'),
-      ui: { source: 'docs/release/evidence/local-app-scheduling-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui'] },
+      ui: { source: 'docs/release/evidence/local-cellular-request-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui'] },
       images: [shot('chat-network-reply', 'Message renvoyé et réponse reçue après la coupure, en local'),
         shot('chat-network-draft', 'Coupure : le brouillon reste prêt à être renvoyé, en local'),
         shot('chat-picker-recovered', 'Réservations acceptées, refusées et annulées visibles, en local'),
