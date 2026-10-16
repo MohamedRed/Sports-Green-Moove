@@ -44,7 +44,7 @@
     "validate:stripe-production-readiness": "node scripts/check-stripe-production-readiness.mjs",
     "validate:safety-audit-export": "node scripts/validate-safety-audit-export.mjs",
     "validate:release-evidence": "node scripts/validate-release-evidence.mjs",
-    "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts tests/chat-inbox-rules.test.ts tests/membership-rules.test.ts\"",
+    "test:rules": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage \"vitest run tests/security-rules.test.ts tests/chat-inbox-rules.test.ts tests/membership-rules.test.ts tests/trip-capacity-rules.test.ts\"",
     "test:stripe-webhook-flow": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore \"vitest run tests/stripe-webhook-flow.test.ts\"",
     "test:all": "npm test && npm run test:live-smoke-cleanup && npm run test:android-native && npm run test:android-ui-build && npm run test:ios-native && npm run test:native-ui-coverage && npm run test:privacy-policy-page && npm run test:store-readiness && npm run test:store-privacy-answers && npm run test:provider-readiness && npm run test:stripe-production-readiness && npm run test:safety-audit-export && npm run test:safety-audit-exporter && npm run test:android-appetize-workflow && npm run test:admin-plan-coverage && npm run test:release-evidence-template && npm run test:release-gaps && npm run test:pr-user-flow-checks && npm run test:browserstack-real-device-evidence && npm run test:rules && npm run test:stripe-webhook-flow"
   },

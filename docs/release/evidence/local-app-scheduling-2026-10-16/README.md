@@ -108,3 +108,24 @@ preserved together. A missing receipt cannot be inferred from a transport error.
 Success is written only after independent verification and successful cleanup.
 This preparation still requires a complete replay; prior completed evidence is
 retained without promoting this interrupted attempt or closing release gaps.
+
+## Cellular Readiness Still Unresolved
+
+Run [38877951653](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38877951653)
+at `dfb6aa6f8fb9ed1fb8c968dce1d3292ec14c1a23` passed the preceding
+16 isolated cases, then timed out at the unchanged 30-second cellular-readiness
+wait inside LocalEmulatorNetwork.disconnect. The original instrumentation report
+and receipt are retained in `handover-interrupted/`.
+
+The baseline had Wi-Fi only. After Wi-Fi was disabled, there was no active
+network or reachable backend, but mobile data remained enabled and no cellular
+transport became available. The readiness callback failed before the subsequent
+mobile-data-disable command; this is not evidence of an unconfirmed app send or
+message retry. The receipt is incomplete and no final results file was written.
+
+Unlike the previous transport interruption, diagnostic collection and cleanup
+completed and the original instrumentation failure remained the reported error.
+The connection-handling change improves collection/error preservation, but does
+not fix this cellular setup problem. A deterministic, verified cellular test
+configuration is still needed; no retry, skipped assertion, timeout increase or
+alternate network path has been added to turn this failure into a pass.

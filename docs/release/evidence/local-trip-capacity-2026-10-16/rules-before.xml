@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="10" failures="9" errors="0" time="1.3284635">
+    <testsuite name="tests/trip-capacity-rules.test.ts" timestamp="2026-10-16T09:14:30.246Z" hostname="MRRs-MacBook-Air.local" tests="10" failures="9" errors="0" skipped="0" time="1.3284635">
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsAvailable&quot;:4}" time="0.290416334">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:25:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsTotal&quot;:8}" time="0.054319958">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:25:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsAvailable&quot;:8,&quot;seatsTotal&quot;:8}" time="0.040266958">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:25:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsAvailable&quot;:-1}" time="0.037521834">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:25:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsTotal&quot;:0}" time="0.038291458">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:25:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsAvailable&quot;:&quot;4&quot;}" time="0.039065584">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:25:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;title&quot;:&quot;Atomic change must fail&quot;,&quot;seatsAvailable&quot;:4}" time="0.035829042">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:25:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies removing seatsAvailable through a replacement document" time="0.035422583">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:31:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies removing seatsTotal through a replacement document" time="0.03288">
+            <failure message="Expected request to fail, but it succeeded." type="Error">
+Error: Expected request to fail, but it succeeded.
+ ❯ ../Sports%20Green-Moove/node_modules/@firebase/rules-unit-testing/dist/esm/index.esm.js:572:31
+ ❯ tests/trip-capacity-rules.test.ts:31:5
+            </failure>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; keeps the working driver title edit without permitting parent or outsider mutations" time="0.132690166">
+            <system-err>
+[2026-10-16T09:14:30.165Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61ef3b03 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L112:24 for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182, false for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182
+
+[2026-10-16T09:14:30.173Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61ef3b04 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L112:24 for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182, false for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182
+
+[2026-10-16T09:14:30.187Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61ef3b05 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L112:24 for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182, false for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182
+
+[2026-10-16T09:14:30.195Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61ef3b06 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L112:24 for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182, false for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182
+
+[2026-10-16T09:14:30.209Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61ef3b07 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L112, false for &apos;update&apos; @ L182
+
+            </system-err>
+        </testcase>
+    </testsuite>
+</testsuites>

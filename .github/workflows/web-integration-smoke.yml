@@ -16,6 +16,8 @@ on:
       - "tests/partner-portal.test.mjs"
       - "tests/search-criteria-evidence.test.mjs"
       - "tests/reservation-evidence.test.mjs"
+      - "tests/trip-capacity-evidence.test.mjs"
+      - "tests/trip-capacity-rules.test.ts"
       - "tests/membership-review-controller.test.mjs"
       - "tests/membership-evidence.test.mjs"
       - "tests/partner-portal.browser.mjs"
@@ -74,6 +76,8 @@ on:
       - "tests/partner-portal.test.mjs"
       - "tests/search-criteria-evidence.test.mjs"
       - "tests/reservation-evidence.test.mjs"
+      - "tests/trip-capacity-evidence.test.mjs"
+      - "tests/trip-capacity-rules.test.ts"
       - "tests/membership-review-controller.test.mjs"
       - "tests/membership-evidence.test.mjs"
       - "tests/partner-portal.browser.mjs"
@@ -170,7 +174,7 @@ jobs:
         run: npm run test:privacy-policy-page
 
       - name: Validate private partner portal evidence and contracts
-        run: node --test tests/partner-portal.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs
+        run: node --test tests/partner-portal.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/trip-capacity-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

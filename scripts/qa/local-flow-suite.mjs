@@ -8,6 +8,7 @@ import { checkChatDeliverySafety } from './local-chat-safety.mjs';
 import { checkChatDirectorySafety } from './local-chat-directory-safety.mjs';
 import { checkReservationDecisions } from './local-reservation-decisions.mjs';
 import { checkMembershipReview } from './local-membership-review.mjs';
+import { checkTripCapacityOwnership } from './local-trip-capacity.mjs';
 
 const { projectId } = configureLocalEmulators();
 const steps = [];
@@ -32,8 +33,10 @@ let reservationDecisions;
 await check('reservation-decisions', async () => { reservationDecisions = await checkReservationDecisions(); });
 let membershipReview;
 await check('membership-review', async () => { membershipReview = await checkMembershipReview(); });
+let tripCapacity;
+await check('trip-capacity-ownership', async () => { tripCapacity = await checkTripCapacityOwnership(); });
 const result = { runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), projectId, scope: 'local-emulated-services-not-phone-ui',
-  steps, lifecycle, scenarios, reservationDecisions, membershipReview, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
+  steps, lifecycle, scenarios, reservationDecisions, membershipReview, tripCapacity, limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
     'Membership screen decisions, trip editing/cancellation and refund settlement require separate evidence.'] };
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
 if (!output) throw new Error('Explicit local evidence output path required');

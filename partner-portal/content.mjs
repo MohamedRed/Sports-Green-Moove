@@ -4,7 +4,6 @@ const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
 const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.md';
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
-const reservationReport = 'docs/release/evidence/local-reservations-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const membershipRefreshReport = 'docs/release/evidence/local-membership-refresh-2026-10-16/README.md';
 const chatNetworkReport = 'docs/release/evidence/local-app-scheduling-2026-10-16/README.md';
@@ -80,6 +79,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'Les places réservées restent protégées',
+      text: 'En local, un conducteur ne peut plus rendre disponibles des places déjà réservées. L’annulation les libère une seule fois.', flow: 'booking' },
     { date: '2026-10-16', title: 'Un essai incomplet',
       text: 'Un essai a terminé ses actions sans livrer ses captures et contrôles finaux. Il n’est pas compté comme validé.', flow: 'messages' },
     { date: '2026-10-16', title: 'Un groupe par équipe',
@@ -130,9 +131,9 @@ export const content = {
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
   blockers: [
-    { id: 'chat-send-stability', title: 'Rejouer les échanges sur téléphone',
-      text: 'En local : reprise après coupure, réponse et brouillons entre comptes vérifiés.',
-      next: 'Rejouer sur téléphone, après fermeture complète et après une longue absence.', source: chatNetworkReport },
+    { id: 'chat-send-stability', title: 'Rejouer les coupures de connexion',
+      text: 'Un essai complet passe en local ; un autre s’arrête avant l’envoi.',
+      next: 'Obtenir des essais reproductibles, puis vérifier sur téléphone et après fermeture complète.', source: chatNetworkReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Les échanges seront réservés aux membres d’une même équipe. Ce parcours reste à construire et à tester.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: 'docs/contracts/team-conversations.md' },
@@ -197,11 +198,11 @@ export const content = {
       summary: 'Acceptation, refus et annulation passent dans l’app, en local.',
       verified: 'Le parent annule une demande en attente puis une réservation acceptée. Le conducteur refuse une autre demande ; le parent voit le refus. Les places sont restituées une seule fois.',
       remaining: 'Rejouer sur téléphone et vérifier les remboursements. Ces changements ne sont pas encore disponibles dans la version en ligne.',
-      local: local(['booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking', 'reservation-decisions'], ['Une demande de deux places garde le bon nombre de places.', 'L’annulation restitue les places une seule fois.', 'Le refus ne retire aucune place.', 'Une personne extérieure ne peut pas modifier la réservation.', 'Un passager déjà pris en charge ne peut pas annuler.'], 'docs/release/evidence/local-reservations-2026-10-16/services.json'),
+      local: local(['booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking', 'reservation-decisions', 'trip-capacity-ownership'], ['Une demande de deux places garde le bon nombre de places.', 'L’annulation restitue les places une seule fois.', 'Le refus ne retire aucune place.', 'Une personne extérieure ne peut pas modifier la réservation.', 'Un passager déjà pris en charge ne peut pas annuler.', 'Le conducteur ne peut pas modifier directement le nombre de places réservées.'], 'docs/release/evidence/local-trip-capacity-2026-10-16/services-after.json'),
       ui: { source: 'docs/release/evidence/local-reservations-2026-10-16/ui-results.json', groups: ['driver-approval-ui', 'reservation-decisions-ui'] },
       images: [shot('reservation-cancelled', 'Deux réservations annulées par le parent, en local'),
         shot('reservation-declined', 'Demande refusée par le conducteur, en local'),
-        shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre')], source: reservationReport },
+        shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre')], source: 'docs/release/evidence/local-trip-capacity-2026-10-16/README.md' },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-16',
       summary: 'Après une coupure, le message repart sans doublon en local.',
       verified: 'En local : brouillon conservé, puis renvoyé sans doublon et réponse lue. Brouillons séparés entre comptes et liste des échanges disponible après un refus.',

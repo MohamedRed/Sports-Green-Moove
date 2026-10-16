@@ -134,3 +134,18 @@ test('completed instrumentation without collected evidence or final verification
   assert.equal(content.flows.find((item) => item.id === 'messages').ui.source,
     'docs/release/evidence/local-app-scheduling-2026-10-16/results.json');
 });
+
+test('the unresolved cellular-readiness attempt stays incomplete and separate from accepted recovery evidence', () => {
+  const path = 'docs/release/evidence/local-app-scheduling-2026-10-16/handover-interrupted/';
+  const ui = JSON.parse(readFileSync(new URL(path + 'local-chat-network-ui.json', root), 'utf8'));
+  assert.equal(ui.runId, 'c6a16ea31c5262ad6c682658758d4d68');
+  assert.equal(ui.completed, false); assert.equal(ui.failedPhase, 'disconnect');
+  assert.throws(() => assertChatNetworkReceipt(ui));
+  assert.deepEqual(ui.network.map((state) => state.phase), ['before', 'disconnect-failed']);
+  assert.deepEqual(ui.network[0].internetTransports, ['wifi']);
+  assert.equal(ui.network[1].mobileDataEnabled, true);
+  assert.equal(ui.network[1].activeNetwork, false); assert.equal(ui.network[1].backendReachable, false);
+  const transcript = readFileSync(new URL(path + 'LocalChatNetworkFlowTest-instrumentation.txt', root), 'utf8');
+  assert.match(transcript, /ComposeTimeoutException/); assert.match(transcript, /LocalEmulatorNetwork.disconnect/);
+  assert.match(transcript, /FAILURES/); assert(!/OK \(/.test(transcript));
+});
