@@ -83,13 +83,33 @@ test('app replay requires actual unconfirmed send, retry and cross-account draft
   assert.match(cleanup, /instrument\(\['LocalChatNetworkFlowTest'\], 1\)/);
   assert.match(cleanup, /finally \{ execFileSync\(adb, \['-s', serial, ...commands\[1\]\], commandOptions\)/);
   assert.match(cleanup, /timeout: 30_000/);
-  assert(replay.indexOf('writeResult(context, result)', replay.indexOf('control.snapshot("before")')) < replay.indexOf('control.disconnect()'));
+  assert(replay.indexOf('writeResult(context, result)', replay.indexOf('control.snapshot("before")')) < replay.indexOf('control.disconnect {'));
   assert.match(replay, /control.snapshot\("disconnect-failed"\)/);
+  assert.match(replay, /control.cellularReady\(\)/);
+  assert.match(replay, /control.snapshot\("cellular-ready"\)/);
   const verifier = read('scripts/qa/local-chat-network-ui.mjs');
   assert.match(verifier, /assert.equal\(messages.size, 2/);
   assert.match(verifier, /assert.equal\(notes.size, 1\)/);
   assert.match(verifier, /readByUserIds/);
   assert.match(verifier, /assert.equal\(note.read, true\)/);
+});
+
+test('new network replays prove cellular handover without weakening the recorded offline requirements', () => {
+  const ui = receipt();
+  const cellular = { phase: 'cellular-ready', wifiEnabled: false, mobileDataEnabled: true,
+    activeNetwork: true, backendReachable: true, internetNetworkCount: 1, internetTransports: ['cellular'] };
+  ui.network.splice(1, 0, cellular);
+  assertChatNetworkReceipt(ui);
+  cellular.wifiEnabled = true;
+  assert.throws(() => assertChatNetworkReceipt(ui));
+  cellular.wifiEnabled = false; cellular.backendReachable = false;
+  assert.throws(() => assertChatNetworkReceipt(ui));
+  cellular.backendReachable = true; ui.network[2].mobileDataEnabled = true;
+  assert.throws(() => assertChatNetworkReceipt(ui));
+  const control = native('LocalEmulatorNetwork');
+  const disable = control.slice(control.indexOf('fun disconnect('), control.indexOf('fun cellularReady'));
+  assert(disable.indexOf('awaitCellular()') < disable.indexOf('svc data disable'));
+  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /A newly recorded run must prove cellular handover/);
 });
 
 test('host cleanup uses the current run actual state and rejects stale or ambiguous receipts', () => {

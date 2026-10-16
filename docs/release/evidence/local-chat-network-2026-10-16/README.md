@@ -122,6 +122,25 @@ The application changes are not deployed to production. The partner website is a
 separate private publication. This evidence does not accept any physical tracking,
 real safety-audit, payment or push requirement in the release manifest.
 
+## Fifth Replay: Cutoff Setup Interrupted
+
+Run [38868402884](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38868402884)
+at `146855ae06fb4608e7f8b530a2e6ceb5279dbe12` passed the 16 earlier
+isolated cases but stopped at the unchanged disconnection deadline. Its retained
+receipt records Wi-Fi disabled, no active network, zero internet networks and an
+unreachable backend; the mobile-data user preference remained enabled. This is
+not an accepted offline receipt. The app had not attempted the offline send,
+retry or account-switch checks, and no complete results file was produced.
+
+Unlike the completed fourth run, this run began with only a Wi-Fi transport.
+The next replay explicitly waits for a reachable cellular connection after
+disabling Wi-Fi, then disables mobile data. This tests the handover hypothesis
+without weakening any offline assertion or increasing its deadline. It records
+the handover separately; the independently checked receipt must include it for
+new runs that began with mobile data enabled. Historical completed evidence is
+preserved rather than rewritten. A successful shell exit alone is not proof
+that the data setting changed.
+
 ## Recovery Scope
 
 The new case requires OS Wi-Fi and mobile data to be disabled on an explicitly

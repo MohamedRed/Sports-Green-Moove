@@ -38,7 +38,7 @@ test('network claims require the completed seventeen-case replay and actual OS/e
 
 test('interrupted attempts cannot become recovery evidence and the status regression remains recorded', () => {
   assert.match(read('first-conversation-replay-failed.txt'), /SnapshotStateObserver/);
-  for (const prefix of ['second', 'third']) {
+  for (const prefix of ['second', 'third', 'fifth']) {
     const receipt = json(`${prefix}-network-receipt.json`);
     assert.equal(receipt.completed, false);
     assert.throws(() => assertChatNetworkReceipt(receipt));
@@ -46,6 +46,11 @@ test('interrupted attempts cannot become recovery evidence and the status regres
   }
   assert.equal(json('second-network-receipt.json').network.length, 0);
   assert.equal(json('third-network-receipt.json').failedPhase, 'disconnect');
+  const fifth = json('fifth-network-receipt.json');
+  assert.equal(fifth.failedPhase, 'disconnect');
+  const cutoff = fifth.network.at(-1);
+  assert.equal(cutoff.activeNetwork, false); assert.equal(cutoff.backendReachable, false);
+  assert.equal(cutoff.internetNetworkCount, 0); assert.equal(cutoff.mobileDataEnabled, true);
   assert.match(read('booking-status-before.xml'), /tests="3" skipped="0" failures="1" errors="0"/);
   assert.match(read('booking-status-after.xml'), /tests="3" skipped="0" failures="0" errors="0"/);
 });

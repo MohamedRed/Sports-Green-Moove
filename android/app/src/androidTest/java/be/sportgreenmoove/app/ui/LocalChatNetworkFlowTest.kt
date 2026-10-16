@@ -69,8 +69,12 @@ class LocalChatNetworkFlowTest {
                     network.put(control.snapshot("before"))
                     writeResult(context, result)
                     phase = "disconnect"
-                    control.disconnect()
                     try {
+                        control.disconnect {
+                            compose.waitUntil(30_000) { control.cellularReady() }
+                            network.put(control.snapshot("cellular-ready"))
+                            writeResult(context, result)
+                        }
                         compose.waitUntil(30_000) { control.offline() }
                         assertFalse("The actual Functions endpoint must be unreachable", control.backendReachable())
                     } catch (failure: Throwable) {

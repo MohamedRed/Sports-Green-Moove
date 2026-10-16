@@ -39,10 +39,19 @@ internal class LocalEmulatorNetwork(
         check(backendReachable()) { "The isolated backend must start reachable" }
     }
 
-    fun disconnect() {
+    fun disconnect(awaitCellular: () -> Unit) {
         changed = true
         device.executeShellCommand("svc wifi disable")
+        if (initialData) awaitCellular()
         device.executeShellCommand("svc data disable")
+    }
+
+    fun cellularReady(): Boolean {
+        val active = connectivity.activeNetwork ?: return false
+        val capabilities = connectivity.getNetworkCapabilities(active) ?: return false
+        return !wifi.isWifiEnabled && telephony.isDataEnabled &&
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) &&
+            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) && backendReachable()
     }
 
     fun restore() {
