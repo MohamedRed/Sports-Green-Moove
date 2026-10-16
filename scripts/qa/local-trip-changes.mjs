@@ -37,7 +37,7 @@ export async function checkTripChanges() {
   await denied('proposeTripChanges', driver, { ...request, terms: { ...request.terms, departureAt: '2000-01-01T10:00:00Z' } }, 'INVALID_ARGUMENT');
   const pair = await Promise.all([call('proposeTripChanges', driver, request), call('proposeTripChanges', driver, request)]);
   assert.deepEqual(pair[0], pair[1]); const change = pair[0];
-  assert.equal(change.status, 'pending'); assert.equal(change.applied, false); assert.equal(change.applicationImplemented, false);
+  assert.equal(change.status, 'pending'); assert.equal(change.applied, false); assert.equal(change.applicationImplemented, true);
   assert.equal(change.parentCount, 2); assert.equal(change.acceptedParentCount, 0);
   const ref = { tripId, proposalId: change.proposalId };
   for (const actor of [outsider, foreign, null]) {
@@ -87,6 +87,6 @@ export async function checkTripChanges() {
     finalStatus: (await document('tripChanges', change.proposalId)).status, confirmationNotificationCount: notes.size,
     originalTripAndBookingsPreserved: true, repeatedRequestsIdempotent: true, parentViewsScoped: true,
     pendingBookingApprovalPaymentAndStartDenied: true, edges,
-    syntheticPaymentMetadata: true, nativeUi: false, applicationImplemented: false,
+    syntheticPaymentMetadata: true, nativeUi: false, applicationExercised: false,
     livePayment: false, refundIssued: false, productionDeployed: false };
 }

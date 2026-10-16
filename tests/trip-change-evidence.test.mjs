@@ -51,14 +51,15 @@ test('current server wiring preserves the original flow while making parent cons
   const index = read('functions/src/index.ts');
   for (const name of ['getTripChangePreview', 'proposeTripChanges', 'getTripChangeReview', 'respondToTripChanges', 'withdrawTripChanges'])
     assert(index.includes(name));
-  for (const name of ['bookings', 'payments', 'rideStart']) assert(read(`functions/src/callables/${name}.ts`).includes('pendingChangeId'));
+  for (const name of ['bookings', 'rideStart']) assert(read(`functions/src/callables/${name}.ts`).includes('pendingChangeId'));
+  assert(read('functions/src/services/ridePaymentPreparation.ts').includes('pendingChangeId'));
   assert.match(read('functions/src/domain/matching.ts'), /if \(trip.pendingChangeId\) return false/);
   assert.match(read('functions/src/services/tripCancellation.ts'), /status: "cancelled", updatedAt: now/);
   const state = read('functions/src/services/tripChangeState.ts');
   assert.match(state, /child.updateTime/); assert.match(state, /Current guardian authority is required/);
-  assert.match(state, /applied: false, applicationImplemented: false/);
+  assert.match(state, /applied: change.status === "applied", applicationImplemented: true/);
   assert.match(state, /state.revision === change.expectedRevision/);
-  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 22/);
+  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 23/);
   assert.match(read('scripts/qa/run-local-flows.mjs'), /result.tripChanges\?\.acceptedParentCount, 2/);
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/trip-change-rules.test.ts"').length - 1, 2);
@@ -68,10 +69,11 @@ test('current server wiring preserves the original flow while making parent cons
   assert(JSON.parse(read('package.json')).scripts['test:rules'].includes('tests/trip-change-rules.test.ts'));
 });
 
-test('private progress keeps consent separate from a native editor, final application and actual money movement', () => {
+test('private progress keeps historical consent separate from native editing and actual money movement', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, base + 'README.md');
-  assert.equal(flow.local.source, base + 'services.json'); assert(flow.local.groups.includes('trip-change-parent-confirmation'));
+  const current = 'docs/release/evidence/local-trip-change-application-2026-10-16/';
+  assert.equal(flow.status, 'partial'); assert.equal(flow.source, current + 'README.md');
+  assert.equal(flow.local.source, current + 'services.json'); assert(flow.local.groups.includes('trip-change-parent-confirmation'));
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/results.json');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);

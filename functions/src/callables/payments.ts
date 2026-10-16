@@ -7,26 +7,16 @@ import {
   createRewardPayoutTransfer,
   createRideDestinationPaymentIntent,
   stripePublishableKey,
+  createStripeClient,
 } from "../services/stripeConnect.js";
-import { ridePaymentAmountCents } from "../services/stripePaymentValidation.js";
+import { prepareRidePayment, finishRidePayment } from "../services/ridePaymentPreparation.js";
 import { computeRewardBalanceCents } from "../domain/rewards.js";
-import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth, requireRole } from "../lib/https.js";
 import { stripePublishableKeySecret, stripeSecretKeySecret } from "../lib/providerSecrets.js";
 import { parseCallableData } from "../lib/validation.js";
 import { beginStripeOnboarding, stripeOnboardingCallbacks } from "../domain/stripeOnboarding.js";
 import { stripeOnboardingDependencies } from "../services/stripeOnboarding.js";
-
-type BookingDocument = {
-  tripId: string;
-  parentUserId?: string;
-  requesterUserId?: string;
-  driverUserId: string;
-  seats?: number;
-  status?: string;
-  paymentStatus?: string;
-};
 
 type StripeAccountDocument = {
   payoutsEnabled?: boolean;
@@ -93,30 +83,6 @@ export const createRidePaymentIntent = onCall(
       currency: z.literal("eur").default("eur"),
     });
     const data = parseCallableData(schema, request.data);
-    const bookingSnap = await firestore.collection("bookings").doc(data.bookingId).get();
-    if (!bookingSnap.exists) throw new HttpsError("not-found", "Booking not found.");
-
-    const booking = bookingSnap.data() as BookingDocument;
-    const parentUserId = booking.parentUserId ?? booking.requesterUserId;
-    if (parentUserId !== uid) throw new HttpsError("permission-denied", "Only the booking parent can pay.");
-    if (booking.status !== "approved") {
-      throw new HttpsError("failed-precondition", "Booking must be approved before payment.");
-    }
-    if (booking.paymentStatus === "paid") throw new HttpsError("failed-precondition", "Booking is already paid.");
-
-    const tripSnap = await firestore.collection("trips").doc(booking.tripId).get();
-    if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
-    const trip = tripSnap.data() as Trip;
-    if (trip.pendingChangeId) throw new HttpsError("failed-precondition", "Resolve the proposed trip change before starting payment.");
-    const amountCents = ridePaymentAmountCents({ id: bookingSnap.id, ...booking }, { ...trip, id: tripSnap.id });
-    if (amountCents == null) throw new HttpsError("failed-precondition", "This booking does not require payment.");
-
-    const accountSnap = await firestore.collection("stripeAccounts").doc(booking.driverUserId).get();
-    const stripeAccount = accountSnap.data() as StripeAccountDocument | undefined;
-    if (!stripeAccount?.stripeAccountId) {
-      throw new HttpsError("failed-precondition", "Driver Stripe account is required before paid rides.");
-    }
-
     let publishableKey: string;
     try {
       publishableKey = stripePublishableKey(stripePublishableKeySecret.value());
@@ -124,37 +90,18 @@ export const createRidePaymentIntent = onCall(
       throw new HttpsError("failed-precondition", error instanceof Error ? error.message : "Stripe PaymentSheet is not configured.");
     }
 
-    const paymentIntent = await createRideDestinationPaymentIntent(
-      {
-        bookingId: data.bookingId,
-        tripId: booking.tripId,
-        payerUserId: uid,
-        driverUserId: booking.driverUserId,
-        amountCents,
-        currency: data.currency,
-        destinationStripeAccountId: stripeAccount.stripeAccountId,
-      },
-      stripeSecretKeySecret.value(),
-    );
-
-    await bookingSnap.ref.set(
-      {
-        amountCents,
-        currency: data.currency,
-        paymentIntentId: paymentIntent.id,
-        paymentStatus: paymentIntent.status,
-        stripeAccountId: stripeAccount.stripeAccountId,
-        updatedAt: Timestamp.now(),
-      },
-      { merge: true },
-    );
+    const prepared = await prepareRidePayment(data.bookingId, uid);
+    const paymentIntent = prepared.existingIntentId
+      ? await createStripeClient(stripeSecretKeySecret.value()).paymentIntents.retrieve(prepared.existingIntentId)
+      : await createRideDestinationPaymentIntent(prepared, stripeSecretKeySecret.value());
+    await finishRidePayment(prepared, paymentIntent);
 
     return {
       bookingId: data.bookingId,
       paymentIntentId: paymentIntent.id,
       clientSecret: paymentIntent.client_secret,
       publishableKey,
-      amountCents,
+      amountCents: prepared.amountCents,
       currency: data.currency,
     };
   },

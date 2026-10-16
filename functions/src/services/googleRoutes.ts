@@ -65,6 +65,19 @@ export class GoogleRoutesProvider implements RouteComparisonProvider {
     this.baseUrl = options.baseUrl ?? "https://routes.googleapis.com";
   }
 
+  async computeTripRoute(origin: LatLng, destination: LatLng, departureAt: string): Promise<RouteMetric & { encodedPolyline?: string }> {
+    const departureTime = futureDepartureTime(departureAt);
+    if (!departureTime) throw new RouteUnavailableError("A future departure is required for a trip-change route quote.");
+    const response = await this.requestJson<ComputeRoutesResponse>("/directions/v2:computeRoutes", {
+      origin: routeWaypoint(origin), destination: routeWaypoint(destination), departureTime,
+      travelMode: "DRIVE", routingPreference: "TRAFFIC_AWARE", units: "METRIC",
+    }, computeRoutesFieldMask);
+    const route = response.routes?.[0];
+    if (route?.distanceMeters == null || !route.duration) throw new RouteUnavailableError("Google Compute Routes did not return a trip-change route.");
+    return { distanceMeters: route.distanceMeters, durationSeconds: durationSeconds(route.duration),
+      ...(route.polyline?.encodedPolyline ? { encodedPolyline: route.polyline.encodedPolyline } : {}) };
+  }
+
   async compareDetour(request: SearchRequest, trip: Trip): Promise<RouteComparison> {
     const matrix = await this.computeRouteMatrix(request, trip);
     const baseline = this.requireMatrixMetric(matrix, 0, 2);

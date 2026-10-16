@@ -17,6 +17,7 @@ import { notifyUsers } from "../lib/notifications.js";
 import { toClientTripSummary } from "../lib/clientTrips.js";
 import { toClientBookingRequestSummary } from "../lib/clientBookings.js";
 import { parseCallableData } from "../lib/validation.js";
+import { cancellationBalance } from "../services/tripChangeBalanceClosure.js";
 
 type BookingDocument = {
   id?: string;
@@ -93,6 +94,8 @@ export const requestBooking = onCall(async (request) => {
     status: "requested",
     createdAt: Timestamp.now(),
     updatedAt: Timestamp.now(),
+    ...(trip.appliedChangeId ? { agreedPriceCents: trip.priceCents, agreedAmountCents: trip.priceCents * data.seats,
+      tripTermsRevision: trip.appliedChangeId } : {}),
   };
   if (data.childId) {
     bookingData.childId = data.childId;
@@ -212,6 +215,7 @@ export const cancelBooking = onCall(async (request) => {
       }
     }
 
+    const balance = await cancellationBalance(transaction, data.bookingId, booking);
     const now = Timestamp.now();
     transaction.update(bookingRef, {
       status: "cancelled",
@@ -219,8 +223,11 @@ export const cancelBooking = onCall(async (request) => {
       cancelledAt: now,
       cancelledByUserId: uid,
       refundStatus: refundStatusForCancellation(booking.paymentStatus),
+      ...(balance ? { tripChangeBalanceCents: 0 } : {}),
       updatedAt: now,
     });
+
+    if (balance) transaction.update(balance, { state: "cancelled", cancelledAt: now, updatedAt: now });
 
     if (booking.status === "approved") {
       transaction.update(firestore.collection("trips").doc(booking.tripId), {

@@ -11,6 +11,9 @@ export type RidePaymentBookingSnapshot = {
   paymentStatus?: string;
   status?: string;
   refundStatus?: string;
+  paymentPriceCents?: number;
+  amountPaidCents?: number;
+  paymentAttempt?: { id: string; intentId?: string };
 };
 
 export type RidePaymentTripSnapshot = {
@@ -34,7 +37,7 @@ export function ridePaymentAmountCents(
   booking: RidePaymentBookingSnapshot,
   trip: RidePaymentTripSnapshot,
 ): number | null {
-  const priceCents = trip.priceCents;
+  const priceCents = booking.paymentPriceCents === undefined ? trip.priceCents : booking.paymentPriceCents;
   const seats = booking.seats ?? 1;
   if (typeof priceCents !== "number" || !Number.isSafeInteger(priceCents) || priceCents <= 0) return null;
   if (typeof seats !== "number" || !Number.isSafeInteger(seats) || seats <= 0) return null;
@@ -69,6 +72,9 @@ export function validateSucceededRidePaymentIntent(
   if (booking.paymentIntentId && booking.paymentIntentId !== intent.id) {
     return rejected("paymentIntentMismatch", "PaymentIntent id does not match the booking paymentIntentId.");
   }
+  if (!matchesPaymentAttempt(intent, booking)) {
+    return rejected("paymentAttemptMismatch", "PaymentIntent does not belong to the active server payment attempt.");
+  }
   if (intent.currency !== "eur") {
     return rejected("currencyMismatch", "PaymentIntent currency must be EUR.");
   }
@@ -95,8 +101,17 @@ export function shouldApplyIncompletePaymentStatus(
   if (booking.paymentIntentId && booking.paymentIntentId !== intent.id) {
     return rejected("paymentIntentMismatch", "PaymentIntent id does not match the booking paymentIntentId.");
   }
+  if (!matchesPaymentAttempt(intent, booking)) {
+    return rejected("paymentAttemptMismatch", "PaymentIntent does not belong to the active server payment attempt.");
+  }
 
   return { ok: true, amountCents: intent.amount, parentUserId: booking.parentUserId ?? booking.requesterUserId ?? "" };
+}
+
+function matchesPaymentAttempt(intent: Stripe.PaymentIntent, booking: RidePaymentBookingSnapshot): boolean {
+  if (!booking.paymentAttempt) return true;
+  return typeof booking.paymentAttempt.id === "string" && booking.paymentAttempt.id.length > 0 &&
+    (booking.paymentAttempt.intentId === intent.id || booking.paymentIntentId === intent.id || intent.metadata.paymentAttemptId === booking.paymentAttempt.id);
 }
 
 function rejected(reconciliationStatus: string, reason: string): RidePaymentValidationResult {

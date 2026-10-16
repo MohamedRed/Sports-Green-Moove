@@ -78,7 +78,7 @@ test('CI runs cancellation checks and the private portal separates local app pro
   assert(workflow.includes('run: npm run test:trip-cancellation-rules'));
   assert.match(workflow, /^\s+run: node --test[^\n]*\btests\/trip-cancellation-evidence\.test\.mjs(?:\s|$)/m);
   assert.match(read('scripts/qa/local-flow-suite.mjs'), /check\('trip-cancellation'/);
-  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 22/);
+  assert.match(read('scripts/qa/run-local-flows.mjs'), /result.steps.length, 23/);
   assert.match(read('scripts/qa/run-local-flows.mjs'), /result.tripCancellation\?\.notificationCount, 2/);
   const pkg = JSON.parse(read('package.json'));
   assert(pkg.scripts['test:rules'].includes('tests/trip-cancellation-rules.test.ts'));
@@ -93,7 +93,7 @@ test('CI runs cancellation checks and the private portal separates local app pro
 });
 
 const uiBase = 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/';
-const detailsBase = 'docs/release/evidence/local-trip-change-consent-2026-10-16/';
+const detailsBase = 'docs/release/evidence/local-trip-change-application-2026-10-16/';
 const uiJson = (name) => JSON.parse(read(uiBase + name));
 
 test('completed app cancellation requires the actual same-run receipt and independently verified closed state', () => {

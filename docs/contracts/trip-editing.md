@@ -34,9 +34,9 @@ The proposed details and each affected parent's explicit decision must remain
 bound to the same authoritative revision. An unanswered or stale decision must
 not authorize changed details, a changed payment amount or a ride start.
 
-The server proposal/decision stage below is implemented locally. Required work
-still includes applying confirmed changes, route/estimate recalculation, payment
-adjustments and settlement, native editing and parent-review screens, and full
+The server proposal, decision and application stages are implemented locally.
+Required work still includes actual payment adjustments and settlement,
+native editing and parent-review screens, and full
 end-to-end approval/denial/race/recovery tests. Do not present the consent API as
 the completed editing flow.
 
@@ -59,8 +59,10 @@ consent rather than letting the last parent confirm stale conditions.
 exact proposal revision. One parent confirms all their affected reservations;
 multiple children/reservations do not duplicate consent or notices. Unanimous
 acceptance records `confirmed`, **not applied**. Original trip conditions,
-bookings and payment records remain unchanged in this stage. `applied: false` and
-`applicationImplemented: false` explicitly delimit the current response contract.
+bookings and payment records remain unchanged in this stage. Review reports
+`applied: false` until the separate application succeeds; the current server now
+reports `applicationImplemented: true`. Historical reports preserve their earlier
+implementation flags unchanged.
 
 Declining closes the proposal without cancelling a reservation or refunding a
 payment. `withdrawTripChanges` lets the owning driver release a pending,
@@ -79,8 +81,10 @@ The stage has a 100-active-reservation atomic limit and rejects inconsistent
 metadata without partial writes. Proposal and decision documents are accessible
 only through authorized server operations, including for administrators; direct
 client reads, directory queries and writes are denied. It is not deployed and
-has no native entry point yet. Financial settlement and final application are
-not implemented and must not be inferred from a confirmed consent record.
+has no native entry point yet. Financial settlement is not implemented and must
+not be inferred from a confirmed consent record. The separately verified
+[application contract](trip-change-application.md) covers final term updates,
+route recalculation, immutable original invoices and outstanding balance plans.
 
 ## Required Editing Verification
 

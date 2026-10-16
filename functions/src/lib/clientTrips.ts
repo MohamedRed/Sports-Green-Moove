@@ -107,10 +107,11 @@ export function toClientTripSummary(trip: Trip): ClientTripSummary {
 }
 
 export function toClientMapRoutePreview(trip: Trip, encodedPolyline?: string): ClientMapRoutePreview {
+  const polyline = encodedPolyline ?? trip.routeEncodedPolyline;
   return {
     start: trip.origin,
     end: trip.destination,
-    ...(encodedPolyline ? { encodedPolyline } : {}),
+    ...(polyline ? { encodedPolyline: polyline } : {}),
   };
 }
 

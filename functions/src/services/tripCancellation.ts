@@ -7,6 +7,7 @@ import { refundStatusForCancellation } from "../domain/access.js";
 import { reservationSchema } from "../domain/reservations.js";
 import { firestore } from "../lib/firebase.js";
 import { loadStoredTripChange } from "./tripChangeState.js";
+import { cancellationBalance } from "./tripChangeBalanceClosure.js";
 
 export const cancellationRequestSchema = z.object({
   tripId: documentId, requestId: z.uuid(), expectedRevision: z.string().regex(/^[a-f0-9]{64}$/),
@@ -97,6 +98,7 @@ export async function cancelPublishedTrip(data: CancellationRequest, uid: string
     const proposed = state.trip.pendingChangeId ? await loadStoredTripChange(transaction, data.tripId, state.trip.pendingChangeId) : null;
     if (proposed && (proposed.change.driverUserId !== state.trip.driverUserId || !["pending", "confirmed"].includes(proposed.change.status)))
       inconsistent("Trip change metadata must be reconciled before cancellation.");
+    const balances = await Promise.all(state.items.map((item) => cancellationBalance(transaction, item.snapshot.id, item.snapshot.data())));
     const now = Timestamp.now();
     const items = state.items;
     const receipt: Receipt = { ...data, actorUserId: uid, cancelledAt: now,
@@ -104,9 +106,11 @@ export async function cancelPublishedTrip(data: CancellationRequest, uid: string
       refundPendingCount: items.filter((item) => item.booking.paymentStatus === "paid").length,
       seatsAvailable: state.trip.seatsAvailable + state.returnedSeats };
     const recipients = new Map<string, string[]>();
-    for (const { snapshot, booking } of items) {
+    for (const [index, { snapshot, booking }] of items.entries()) {
       transaction.update(snapshot.ref, { status: "cancelled", cancelledAt: now, cancelledByUserId: uid,
-        cancelReason: data.reason, refundStatus: refundStatusForCancellation(booking.paymentStatus), updatedAt: now });
+        cancelReason: data.reason, refundStatus: refundStatusForCancellation(booking.paymentStatus), updatedAt: now,
+        ...(balances[index] ? { tripChangeBalanceCents: 0 } : {}) });
+      if (balances[index]) transaction.update(balances[index]!, { state: "cancelled", cancelledAt: now, updatedAt: now });
       const parentId = (booking.parentUserId ?? booking.requesterUserId)!;
       recipients.set(parentId, [...(recipients.get(parentId) ?? []), snapshot.id]);
     }

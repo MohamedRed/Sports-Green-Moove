@@ -5,6 +5,7 @@ import { chatDocumentIdSchema as documentId } from "../domain/chatReference.js";
 import { reservationSchema } from "../domain/reservations.js";
 import { tripChangeHash, tripChangeSourceData, tripChangeTermsSchema } from "../domain/tripChanges.js";
 import { firestore } from "../lib/firebase.js";
+import { applicationReceiptSchema } from "../domain/tripChangeApplication.js";
 
 export const tripChangeLimit = 100;
 export const changeDecisionRecordSchema = z.object({ requestId: z.uuid(), decision: z.enum(["accept", "decline"]),
@@ -13,9 +14,9 @@ export const storedTripChangeSchema = z.object({
   tripId: documentId, driverUserId: documentId, requestId: z.uuid(), expectedRevision: z.string().regex(/^[a-f0-9]{64}$/),
   revision: z.string().regex(/^[a-f0-9]{64}$/), originalTerms: tripChangeTermsSchema, terms: tripChangeTermsSchema,
   bookingIds: z.array(documentId).max(tripChangeLimit), parentUserIds: z.array(documentId).max(tripChangeLimit),
-  status: z.enum(["pending", "confirmed", "declined", "withdrawn", "cancelled"]),
+  status: z.enum(["pending", "confirmed", "declined", "withdrawn", "cancelled", "applied"]),
   decisions: z.record(documentId, changeDecisionRecordSchema), createdAt: z.instanceof(Timestamp),
-  updatedAt: z.instanceof(Timestamp), withdrawalRequestId: z.uuid().optional(),
+  updatedAt: z.instanceof(Timestamp), withdrawalRequestId: z.uuid().optional(), application: applicationReceiptSchema.optional(),
 }).strict();
 export type StoredTripChange = z.infer<typeof storedTripChangeSchema>;
 const tripSchema = z.object({ driverUserId: documentId, status: z.string(),
@@ -53,9 +54,14 @@ export async function loadTripChangeState(transaction: Transaction, tripId: stri
   const revision = tripChangeHash([tripChangeSourceData(data), items.map((item) =>
     [item.snapshot.id, item.snapshot.updateTime]).sort(([a], [b]) => String(a) < String(b) ? -1 : String(a) > String(b) ? 1 : 0),
   children.map((child) => [child.id, child.exists ? child.updateTime : null])]);
+  const financialReady = items.every((item) => {
+    const booking = item.snapshot.data();
+    return (booking.tripChangeBalanceCents === undefined || booking.tripChangeBalanceCents === 0) &&
+      (booking.paymentStatus === "paid" || booking.paymentStatus === "canceled" || (!booking.paymentAttempt && !booking.paymentIntentId));
+  });
   return { tripId, tripRef, trip, terms: terms.data, items, revision,
     available: ["published", "full"].includes(trip.status) && Date.parse(terms.data.departureAt) > Date.now() &&
-      !trip.activeRideSessionId && activeRides.empty };
+      !trip.activeRideSessionId && activeRides.empty && financialReady };
 }
 export type TripChangeState = Awaited<ReturnType<typeof loadTripChangeState>>;
 
@@ -72,9 +78,13 @@ export async function loadStoredTripChange(transaction: Transaction, tripId: str
     changePrecondition("Trip change identity or parent decisions must be reconciled.");
   const votes = Object.values(change.decisions), allAccepted = change.parentUserIds.every((id) =>
     Object.hasOwn(change.decisions, id) && change.decisions[id].decision === "accept");
-  if ((change.status === "confirmed" && !allAccepted) || (change.status === "pending" && (allAccepted || votes.some((vote) => vote.decision === "decline"))) ||
+  if ((["confirmed", "applied"].includes(change.status) && !allAccepted) || (change.status === "pending" && (allAccepted || votes.some((vote) => vote.decision === "decline"))) ||
       (change.status === "declined" && !votes.some((vote) => vote.decision === "decline")))
     changePrecondition("Trip change status conflicts with its recorded decisions.");
+  if (change.status === "applied" && (!change.application || change.application.tripId !== tripId || change.application.proposalId !== proposalId ||
+      change.application.actorUserId !== change.driverUserId || change.application.proposalRevision !== change.revision ||
+      tripChangeHash(change.application.bookingIds) !== tripChangeHash(change.bookingIds)))
+    changePrecondition("Applied proposal is missing its authoritative application receipt.");
   return { ref, change };
 }
 
@@ -128,6 +138,8 @@ export function tripChangeView(state: TripChangeState, change: StoredTripChange,
     bookingIds: driver ? change.bookingIds : ownBookingIds,
     canRespond: !driver && current && change.status === "pending" && !Object.hasOwn(change.decisions, uid),
     canWithdraw: driver && ["pending", "confirmed"].includes(change.status) && state.trip.pendingChangeId === proposalId,
-    applied: false, applicationImplemented: false,
+    applied: change.status === "applied", applicationImplemented: true,
+    balances: state.items.filter((item) => driver || item.parentUserId === uid).map((item) => ({ bookingId: item.snapshot.id,
+      balanceCents: item.snapshot.data().tripChangeBalanceCents ?? 0 })),
     createdAt: change.createdAt.toDate().toISOString() };
 }

@@ -59,6 +59,19 @@ function jsonResponse(payload: unknown) {
 }
 
 describe("GoogleRoutesProvider", () => {
+  it("quotes a future changed trip with the actual route metrics and field mask", async () => {
+    const calls: Array<{ url: string; init: RequestInit }> = [];
+    const provider = new GoogleRoutesProvider({ apiKey: "test-key", fetcher: async (url, init) => {
+      calls.push({ url, init }); return jsonResponse({ routes: [{ distanceMeters: 12000, duration: "900s", polyline: { encodedPolyline: "quote-polyline" } }] });
+    } });
+    const departure = new Date(Date.now() + 3600_000).toISOString();
+    expect(await provider.computeTripRoute(trip.origin, trip.destination, departure))
+      .toEqual({ distanceMeters: 12000, durationSeconds: 900, encodedPolyline: "quote-polyline" });
+    expect(JSON.parse(String(calls[0].init.body)).departureTime).toBe(departure);
+    expect(calls[0].url).toBe("https://routes.googleapis.com/directions/v2:computeRoutes");
+    await expect(provider.computeTripRoute(trip.origin, trip.destination, "2000-01-01T00:00:00Z")).rejects.toThrow();
+  });
+
   it("requires an API key instead of silently estimating locally", async () => {
     const provider = new GoogleRoutesProvider({ apiKey: "", fetcher: async () => jsonResponse([]) });
 

@@ -14,6 +14,7 @@ import { checkTeamOwnership } from './local-team-ownership.mjs';
 import { checkTripCancellation } from './local-trip-cancellation.mjs';
 import { checkTripDetailsOwnership } from './local-trip-details.mjs';
 import { checkTripChanges } from './local-trip-changes.mjs';
+import { checkTripChangeApplication } from './local-trip-application.mjs';
 
 const { projectId } = configureLocalEmulators();
 const steps = [];
@@ -50,8 +51,10 @@ let tripDetails;
 await check('trip-details-ownership', async () => { tripDetails = await checkTripDetailsOwnership(); });
 let tripChanges;
 await check('trip-change-parent-confirmation', async () => { tripChanges = await checkTripChanges(); });
+let tripApplication;
+await check('trip-change-application', async () => { tripApplication = await checkTripChangeApplication(); });
 const result = { runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), projectId, scope: 'local-emulated-services-not-phone-ui',
-  steps, lifecycle, scenarios, reservationDecisions, membershipReview, tripCapacity, chatResponseLoss, teamOwnership, tripCancellation, tripDetails, tripChanges,
+  steps, lifecycle, scenarios, reservationDecisions, membershipReview, tripCapacity, chatResponseLoss, teamOwnership, tripCancellation, tripDetails, tripChanges, tripApplication,
   limits: ['No live provider payments, GPS, device tracking or push delivery tested.',
     'Trip editing and refund settlement require separate evidence; the cancellation app replay is recorded separately.'] };
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;

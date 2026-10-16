@@ -105,6 +105,7 @@ export type RidePaymentIntentContext = {
   amountCents: number;
   currency: "eur";
   destinationStripeAccountId: string;
+  paymentAttemptId?: string;
 };
 
 export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentContext): {
@@ -113,7 +114,7 @@ export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentCon
 } {
   const applicationFeeAmount = platformFeeAmountCents(context.amountCents);
   return {
-    idempotencyKey: `ridePayment:${context.bookingId}:${context.payerUserId}`,
+    idempotencyKey: `ridePayment:${context.bookingId}:${context.payerUserId}${context.paymentAttemptId ? `:${context.paymentAttemptId}` : ""}`,
     params: {
       amount: context.amountCents,
       currency: context.currency,
@@ -127,6 +128,7 @@ export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentCon
         driverUserId: context.driverUserId,
         platformFeeCents: String(applicationFeeAmount),
         product: "sports-green-moove",
+        ...(context.paymentAttemptId ? { paymentAttemptId: context.paymentAttemptId } : {}),
       },
     },
   };

@@ -102,7 +102,8 @@ async function reconcilePaymentSucceeded(event: Stripe.Event, eventPath: string)
         paymentStatus: "paid",
         ...(booking.status === "cancelled" && [undefined, "notRequired", "pending"].includes(booking.refundStatus)
           ? { refundStatus: "pending" } : {}),
-        amountPaidCents: validation.amountCents,
+        amountPaidCents: booking.paymentStatus === "paid" && Number.isSafeInteger(booking.amountPaidCents)
+          ? booking.amountPaidCents : validation.amountCents,
         paymentIntentId: intent.id,
         paidAt: Timestamp.now(),
         updatedAt: Timestamp.now(),

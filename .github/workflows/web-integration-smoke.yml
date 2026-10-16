@@ -25,6 +25,7 @@ on:
       - "tests/trip-details-evidence.test.mjs"
       - "tests/trip-change-rules.test.ts"
       - "tests/trip-change-evidence.test.mjs"
+      - "tests/trip-change-application-evidence.test.mjs"
       - "tests/trip-cancellation-evidence.test.mjs"
       - "tests/trip-cancellation-native.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Trip*.kt"
@@ -114,6 +115,7 @@ on:
       - "tests/trip-details-evidence.test.mjs"
       - "tests/trip-change-rules.test.ts"
       - "tests/trip-change-evidence.test.mjs"
+      - "tests/trip-change-application-evidence.test.mjs"
       - "tests/trip-cancellation-evidence.test.mjs"
       - "tests/trip-cancellation-native.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Trip*.kt"
@@ -253,7 +255,7 @@ jobs:
         run: npm run test:privacy-policy-page
 
       - name: Validate private partner portal evidence and contracts
-        run: node --test tests/partner-portal.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/trip-capacity-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs tests/cellular-request-evidence.test.mjs tests/chat-composer-intent.test.mjs tests/team-ownership-evidence.test.mjs tests/trip-cancellation-evidence.test.mjs tests/trip-details-evidence.test.mjs tests/trip-change-evidence.test.mjs tests/ui-collection-evidence.test.mjs
+        run: node --test tests/partner-portal.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/trip-capacity-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs tests/cellular-request-evidence.test.mjs tests/chat-composer-intent.test.mjs tests/team-ownership-evidence.test.mjs tests/trip-cancellation-evidence.test.mjs tests/trip-details-evidence.test.mjs tests/trip-change-evidence.test.mjs tests/trip-change-application-evidence.test.mjs tests/ui-collection-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

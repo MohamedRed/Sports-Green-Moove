@@ -16,6 +16,9 @@ type RideBooking = {
   requesterUserId?: string;
   status?: string;
   tripId?: string;
+  paymentStatus?: string;
+  agreedPriceCents?: number;
+  tripChangeBalanceCents?: number;
 };
 
 export const startRide = onCall(async (request) => {
@@ -65,6 +68,8 @@ export const startRide = onCall(async (request) => {
       if (booking.driverUserId !== uid || booking.tripId !== data.tripId || booking.status !== "approved") {
         throw new HttpsError("failed-precondition", "All bookings must be approved for this driver and trip.");
       }
+      if (booking.tripChangeBalanceCents || (trip.appliedChangeId && trip.priceCents > 0 && booking.paymentStatus !== "paid"))
+        throw new HttpsError("failed-precondition", "A confirmed trip change still has an unpaid amount or refund to reconcile.");
       return booking;
     });
     const participantUserIds = bookings.map((booking) => booking.parentUserId ?? booking.requesterUserId)

@@ -37,8 +37,8 @@ and administrator policy. These checks do not implement or prove team enrollment
 verified guardian relationships, group messaging, or identity reuse after deletion.
 Original reports: `docs/release/evidence/local-team-ownership-2026-10-16/`.
 
-The service suite now requires 22 groups, including `trip-details-ownership` and
-`trip-change-parent-confirmation`.
+The service suite now requires 23 groups, including `trip-details-ownership`,
+`trip-change-parent-confirmation` and `trip-change-application`.
 That scenario uses authenticated local REST writes against a reserved trip with
 synthetic paid metadata. It denies operational mutations, removals and an atomic
 mixed title/price write, then independently checks unchanged booking/trip state
@@ -54,7 +54,18 @@ decline, guardian/payment/reservation invalidation, concurrent proposal/booking
 and accept/withdraw outcomes, cancellation closure, active/orphan rides and the
 atomic limit. Consent reaches `confirmed` without applying new terms or touching
 payments. No editing screen, financial adjustment, final application or physical
-phone flow is accepted by this service evidence.
+phone flow is accepted by that consent-only scenario.
+
+The separate application scenario applies unanimously confirmed time/route/price
+through authenticated callables, using an explicitly injected synthetic route
+quote provider. Independent persisted checks cover updated route/impact fields,
+original invoice preservation, positive/negative balance plans, cancelled balance
+closure, expired/stale quotes, guardian changes and application races. Direct
+transactional payment-helper checks use synthetic provider responses/events for
+attempt reuse, invoice binding, cancellation, late success, legacy intent reuse,
+aged unknown attempts and proposal/checkout races. No actual adjustment, refund,
+live route request, editing screen or physical-device result is accepted. See
+`docs/contracts/trip-change-application.md` for the current implementation boundary.
 
 ## App And Management Screens
 
