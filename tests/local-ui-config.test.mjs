@@ -128,3 +128,17 @@ test('chat replay retains keyboard, rotation and send checks without queuing a r
   assert.match(chat, /foregroundPackage/);
   assert.match(chat, /local-chat-native-window.png/);
 });
+
+test('landscape login requires real keyboard readiness and one submit touch without exposing credentials', () => {
+  const root = '../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
+  const helper = readFileSync(new URL(root + 'AuthTestInteractions.kt', import.meta.url), 'utf8');
+  const replay = readFileSync(new URL(root + 'LocalLandscapeLoginTest.kt', import.meta.url), 'utf8');
+  assert(replay.includes('AuthTestInteractions(compose, activity).use'));
+  assert(helper.includes('animations.isEmpty()'));
+  assert(helper.includes('awaitKeyboard(true)') && helper.includes('awaitKeyboard(false)'));
+  assert.equal(helper.match(/AuthEmailAction\)\.performScrollTo\(\).*\.performClick\(\)/g).length, 1);
+  assert(helper.includes('compose.waitUntil(60_000)'));
+  assert(helper.includes('throw failure'));
+  assert(!helper.includes('Thread.sleep') && !helper.includes('performSemanticsAction'));
+  assert(!helper.includes('.put("password",') && !helper.includes('.put("email",'));
+});

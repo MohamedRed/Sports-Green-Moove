@@ -50,10 +50,9 @@ class LocalLandscapeLoginTest {
                     compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.AuthEmailAction).fetchSemanticsNodes().isNotEmpty() }
                     compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed()
                     captureLocalUi(compose, "local-login-landscape.png", landscape = true)
-                    compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performScrollTo().performTextInput(session.getString("parent"))
-                    compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performScrollTo().performTextInput(session.getString("password"))
-                    compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick()
-                    compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.HomeScreen).fetchSemanticsNodes().isNotEmpty() }
+                    AuthTestInteractions(compose, activity).use { input ->
+                        input.signIn(session.getString("parent"), session.getString("password"))
+                    }
                     compose.onNodeWithTag(SgmTestTags.HomeScreen).assertIsDisplayed()
                 } finally {
                     activity.onActivity { it.requestedOrientation = originalOrientation }
