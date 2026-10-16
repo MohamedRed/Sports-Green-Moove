@@ -6,6 +6,15 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ClubMembershipStateTest {
+    @Test fun rejectedInactiveAndMissingStatusesCannotBecomeMembersThroughTheirRoleLabel() {
+        val club = ClubSummary("club", "Club QA", "Football", 3, "MEMBRE", "CQ", emptyList())
+        for (status in listOf("rejected", "inactive", "cancelled", "requested", "pending", null)) {
+            assertFalse(club.copy(membershipStatus = status).isMember)
+        }
+        assertFalse(club.copy(membershipStatus = "active", membershipActive = false).isMember)
+        assertFalse(club.copy(membershipStatus = "rejected", membershipActive = true).isMember)
+        assertTrue(club.copy(membershipActive = true).isMember)
+    }
     @Test
     fun requestedMembershipIsPendingButNotActiveMember() {
         val club = ClubSummary(

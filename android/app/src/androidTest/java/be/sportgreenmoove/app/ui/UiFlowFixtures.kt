@@ -31,7 +31,7 @@ object UiFlowFixtures {
     val destination = ResolvedPlace("dest", "Ottignies", "Avenue du Club 8, Ottignies", 50.669, 4.567)
     val child = ChildSummary("child-1", "Nora", "U8 Royal Ottignies", trackingEnabled = true)
     val clubs = listOf(
-        ClubSummary("club-royal", "Royal Ottignies Sports", "Football", 89, "PARENT", "RO", listOf("NO", "CO")),
+        ClubSummary("club-royal", "Royal Ottignies Sports", "Football", 89, "PARENT", "RO", listOf("NO", "CO"), membershipStatus = "active"),
         ClubSummary("club-tennis", "Tennis Club Wavre", "Tennis", 56, null, "TC", emptyList()),
     )
     val route = MapRoutePreview(MapPoint(50.715, 4.612), MapPoint(50.669, 4.567))

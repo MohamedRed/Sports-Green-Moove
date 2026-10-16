@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import "./controls.css";
+import "./memberships.css";
 import "./privacy.css";
 
 const root = createRoot(document.getElementById("root") as HTMLElement);

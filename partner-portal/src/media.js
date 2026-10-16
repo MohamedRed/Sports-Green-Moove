@@ -8,7 +8,7 @@ const clipLabels = {
 };
 
 export function createGallery(flow, initialClip) {
-  const images = flow.images.map((item) => ({ type: 'image', file: `${item.file}.jpg`, label: item.alt }));
+  const images = flow.images.map((item) => ({ type: 'image', file: `${item.file}.jpg`, label: item.alt, landscape: item.landscape === true }));
   const entries = [
     ...(flow.ui ? images : []),
     ...(flow.local ? [{ type: 'checks', label: 'Essai local, sans enregistrement sur téléphone.' }] : []),
@@ -25,7 +25,7 @@ export function createGallery(flow, initialClip) {
       return;
     }
     const entry = entries[index];
-    container.innerHTML = `${entry.type === 'checks' ? localResults(flow) : `<div class="media-stage">${entry.type === 'video'
+    container.innerHTML = `${entry.type === 'checks' ? localResults(flow) : `<div class="media-stage${entry.landscape ? ' is-landscape' : ''}">${entry.type === 'video'
       ? `<video controls playsinline preload="metadata" poster="media/${entry.poster}" aria-label="${escape(entry.label)}"><source src="media/${entry.file}" type="video/mp4">Votre navigateur ne prend pas en charge la vidéo.</video>`
       : `<a href="media/${entry.file}" target="_blank" rel="noopener" title="Agrandir la capture"><img src="media/${entry.file}" alt="${escape(entry.label)}"></a>`}
       </div>`}${entry.type === 'checks' ? '' : `<p class="media-caption">${escape(entry.label)}</p>`}

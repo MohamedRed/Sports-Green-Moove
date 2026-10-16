@@ -5,6 +5,7 @@ const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
 const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.md';
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const reservationReport = 'docs/release/evidence/local-reservations-2026-10-16/README.md';
+const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const chatUiReport = 'docs/release/evidence/local-chat-directory-ui-2026-10-15/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
@@ -25,6 +26,9 @@ export const captures = {
   'local-approved': 'docs/release/evidence/local-ui-2026-10-15/local-driver-booking-approved.png',
   'reservation-cancelled': 'docs/release/evidence/local-reservations-2026-10-16/local-parent-reservations-cancelled.png',
   'reservation-declined': 'docs/release/evidence/local-reservations-2026-10-16/local-driver-reservation-declined.png',
+  'membership-manager': 'docs/release/evidence/local-membership-review-2026-10-16/manager-decisions.jpg',
+  'membership-admin': 'docs/release/evidence/local-membership-review-2026-10-16/admin-decisions.jpg',
+  'membership-mobile': 'docs/release/evidence/local-membership-review-2026-10-16/mobile-confirmation.jpg',
   'local-landscape': 'docs/release/evidence/local-ui-2026-10-15/local-login-landscape.png',
   'local-search-empty': 'docs/release/evidence/local-ui-2026-10-15/local-search-empty.png',
   'search-account-cleared': 'docs/release/evidence/local-search-ui-2026-10-15/local-search-account-cleared.png',
@@ -49,7 +53,6 @@ export const assets = {
   guard: { source: '11-parent-publish-restriction.jpg', crop: [286, 604, 342, 134] },
   notifications: { source: '13-notifications-empty.jpg', crop: [286, 604, 342, 134] },
   payments: { source: '15-payments-empty.jpg', crop: [286, 604, 342, 134] },
-  clubs: { source: '16-clubs-empty.jpg', crop: [286, 604, 342, 134] },
   support: { source: '21-support-required-description.jpg', crop: [286, 604, 342, 134] },
 };
 
@@ -70,6 +73,8 @@ export const content = {
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-16', title: 'Le club peut accepter ou refuser une adhésion',
+      text: 'Le responsable du club et l’administrateur prennent leurs décisions en local. Les statuts et le nombre de membres sont vérifiés. Les captures sont disponibles.', flow: 'clubs' },
     { date: '2026-10-16', title: 'Refus et annulation testés dans l’app',
       text: 'En local, le parent annule deux réservations et le conducteur en refuse une. Les places et les statuts sont vérifiés. Deux captures sont disponibles.', flow: 'booking' },
     { date: '2026-10-16', title: 'Les messages passent à nouveau',
@@ -121,9 +126,6 @@ export const content = {
     { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
       text: 'L’essai d’écran vide la recherche au changement de compte simulé. Le plantage d’un essai précédent reste inexpliqué.',
       next: 'Rejouer le changement de compte complet et examiner le plantage.', source: searchUiReport },
-    { id: 'membership-review', title: 'Accepter ou refuser une adhésion',
-      text: 'Les demandes sont visibles. Les boutons de décision sont encore absents.',
-      next: 'Ajouter ces actions pour le club.', source: uiReport },
     { id: 'trip-management', title: 'Modifier ou annuler un trajet',
       text: 'Ces actions ne sont pas encore disponibles dans l’app.',
       next: 'Les ajouter, puis vérifier les réservations et les participants concernés.', source: uiReport },
@@ -205,12 +207,15 @@ export const content = {
         shot('chat-received', 'Premier message et réponse du conducteur, en local'),
         shot('chat-history', 'Ancien échange retrouvé dans l’app, en local'),
         shot('chat-landscape', 'Brouillon conservé en paysage, en local')], source: chatUiReport },
-    { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'La demande d’adhésion est enregistrée en local, sans doublon.',
-      verified: 'En local : demande enregistrée et seconde demande réutilisée. Un club inexistant est refusé.',
-      remaining: 'Ajouter l’acceptation et le refus côté club, puis rejouer l’adhésion sur téléphone.',
-      local: local(['club-request'], ['La demande d’adhésion est enregistrée.', 'Une seconde demande ne crée pas de doublon.', 'La demande pour un club inexistant est refusée.']),
-      images: [shot('clubs', 'Clubs sans adhésion lors du test du 11 octobre')], source: localReport },
+    { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-16',
+      summary: 'Le responsable du club peut accepter ou refuser une demande, en local.',
+      verified: 'Deux adhésions acceptées et une refusée dans l’espace de gestion local. Un parent ne peut pas y accéder. Fermer la confirmation ne change pas la demande.',
+      remaining: 'Tester l’adhésion d’un enfant, les changements de club et les alertes sur téléphone. Ces changements ne sont pas encore disponibles en ligne.',
+      local: local(['club-request', 'membership-review'], ['La demande est enregistrée sans doublon.', 'Un responsable extérieur au club ne peut pas décider.', 'Deux décisions simultanées ne comptent pas deux fois.', 'Un ancien choix est refusé après une nouvelle demande.'], 'docs/release/evidence/local-membership-review-2026-10-16/services.json'),
+      ui: { source: 'docs/release/evidence/local-membership-review-2026-10-16/ui-results.json', groups: ['club-manager-membership-ui', 'admin-membership-ui', 'membership-access-ui', 'membership-mobile-layout-ui'] },
+      images: [{ ...shot('membership-manager', 'Acceptation et refus par le responsable du club, en local'), landscape: true },
+        { ...shot('membership-admin', 'Décisions enregistrées dans l’espace de gestion local'), landscape: true },
+        shot('membership-mobile', 'Confirmation sur petit écran, fermée sans modifier la demande')], source: membershipReport },
     { id: 'payments', title: 'Paiements et compte conducteur', status: 'blocked', checkedAt: '2026-10-11',
       summary: 'L’écran s’ouvre. Aucun paiement testé.',
       verified: 'Ouverture depuis le profil, solde à zéro et retour au profil.',

@@ -82,4 +82,27 @@ and `active = false`; club managers/admins can later review the membership in
 the admin console. Requested memberships render as pending requests, not active
 member clubs.
 
+The management site admits administrators and club managers into separate
+workspaces. Manager authority requires the global `clubManager` claim plus an
+exact, active, manager-role membership in the selected club; a requested or
+ordinary membership never grants management access. A false `active` flag revokes
+that authority even while a role token remains valid. Non-admin direct membership
+writes are denied; managers review through `reviewClubMembership`.
+
+Review uses the Firestore document update revision, not a client timestamp, to
+reject stale dialogs and old decisions after a re-request. Accepted requests
+become `status = "active", active = true`; refused requests become
+`status = "rejected", active = false`. The role remains `member`. Each decision
+atomically records `reviewedByUserId`, `reviewedAt`, a `membershipReviews` event
+and a `membershipReviewed` notification. The existing nonnegative integral club
+`memberCount` increments once on approval; missing/invalid counters require repair,
+not an invented starting value. Notification records do not prove push delivery.
+
+Android membership display requires explicit active status (or the already
+supported legacy `active = true` record without status), never just a role label.
+An explicit refusal/inactive status takes precedence over a conflicting flag.
+Membership lists retain team labels and resolve child principals from `children`,
+not from unrelated user profiles. These changes require coordinated Functions,
+rules, management-site and native-client deployment; local checks do not deploy them.
+
 Android conversation discovery reads through `listChatConversations`, backed by private `chatInboxes` entries rather than the latest 50 messages. The reservation picker uses `listChatBookingOptions`; an empty conversation is not persisted until a real send. `getInbox` remains compatible for notifications, bounded legacy previews and pending `ratings` prompts derived from completed ride sessions. iOS still uses that legacy contract. See [conversation rollout](../release/chat-inbox-rollout.md) for summary fields, historical preparation and coordinated deployment requirements.

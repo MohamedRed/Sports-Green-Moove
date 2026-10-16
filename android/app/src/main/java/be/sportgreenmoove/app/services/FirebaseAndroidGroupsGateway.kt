@@ -1,6 +1,7 @@
 package be.sportgreenmoove.app.services
 
 import be.sportgreenmoove.app.data.ClubSummary
+import be.sportgreenmoove.app.data.isActiveClubMembership
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
@@ -9,6 +10,7 @@ import java.util.Locale
 private data class ClubMembershipState(
     val roleLabel: String?,
     val status: String?,
+    val active: Boolean?,
 )
 
 internal class FirebaseAndroidGroupsGateway(
@@ -44,12 +46,13 @@ internal class FirebaseAndroidGroupsGateway(
             val data = document.data.orEmpty()
             val clubId = data["clubId"] as? String ?: return@mapNotNull null
             val status = data["status"] as? String
-            val role = if (status == "requested" || status == "pending") {
+            val active = data["active"] as? Boolean
+            val role = if (!isActiveClubMembership(status, active)) {
                 null
             } else {
                 (data["role"] as? String)?.uppercase(Locale.FRANCE) ?: "MEMBRE"
             }
-            clubId to ClubMembershipState(roleLabel = role, status = status)
+            clubId to ClubMembershipState(roleLabel = role, status = status, active = active)
         }.toMap()
     }
 }
@@ -65,6 +68,7 @@ private fun mapClubSummary(id: String, data: Map<String, Any>, membership: ClubM
         initials = initials(name),
         memberInitials = stringList(data["memberInitials"]),
         membershipStatus = membership?.status,
+        membershipActive = membership?.active,
     )
 }
 

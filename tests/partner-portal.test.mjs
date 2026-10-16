@@ -103,7 +103,7 @@ test('app screenshots require a completed scoped run and retain product gaps', (
     assert.equal(flow.status, 'partial');
     assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-2026-10-15/results.json');
   }
-  for (const id of ['group-conversation', 'membership-review', 'trip-management', 'contrast']) {
+  for (const id of ['group-conversation', 'trip-management', 'contrast']) {
     assert(content.blockers.some((item) => item.id === id));
   }
 });

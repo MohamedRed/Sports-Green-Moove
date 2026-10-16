@@ -6,15 +6,17 @@ import { formatDate, formatEuro, numberValue, statusTone, textValue } from "./fo
 import { ReportsTable } from "./ReportsTable";
 import { useCollection, usePayoutCandidates } from "./useCollections";
 import { Wordmark } from "./Wordmark";
+import { MembershipReviewPanel } from "./MembershipReviewPanel";
 import type { FirestoreRecord, Metric, PayoutCandidate, RoleMap } from "./types";
 
 type Props = {
+  uid: string;
   userEmail: string;
   projectLabel: string;
   onSignOut: () => void;
 };
 
-export function AdminDashboard({ userEmail, projectLabel, onSignOut }: Props) {
+export function AdminDashboard({ uid, userEmail, projectLabel, onSignOut }: Props) {
   const users = useCollection("users");
   const clubs = useCollection("clubs");
   const teams = useCollection("teams");
@@ -58,6 +60,7 @@ export function AdminDashboard({ userEmail, projectLabel, onSignOut }: Props) {
 
         <DataWarning states={[users, clubs, teams, memberships, trips, bookings, rideSessions, reports, ledger, stripeAccounts]} />
         <UsersTable users={users.items} />
+        <MembershipReviewPanel uid={uid} />
         <ClubOperationsTables clubs={clubs.items} teams={teams.items} memberships={memberships.items} />
         <TripsTable trips={trips.items} bookings={bookings.items} />
         <RideSessionsTable rideSessions={rideSessions.items} />

@@ -1,4 +1,5 @@
 import { HttpsError, onCall } from "firebase-functions/v2/https";
+import { FieldValue } from "firebase-admin/firestore";
 import { z } from "zod";
 import {
   canRequestMembership,
@@ -42,7 +43,8 @@ export const requestClubMembership = onCall(async (request) => {
       };
     }
 
-    transaction.set(membershipRef, membershipRequestData(uid, clubId), { merge: true });
+    transaction.set(membershipRef, { ...membershipRequestData(uid, clubId),
+      reviewedAt: FieldValue.delete(), reviewedByUserId: FieldValue.delete() }, { merge: true });
     return {
       membershipId: membershipRef.id,
       clubId,

@@ -27,7 +27,13 @@ service cloud.firestore {
 
     function isClubManager(clubId) {
       return hasClubManagerRole() &&
-        exists(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId));
+        exists(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)) &&
+        get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.userId == request.auth.uid &&
+        get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.clubId == clubId &&
+        get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.role == 'clubManager' &&
+        get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.status == 'active' &&
+        (!get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.keys().hasAny(['active']) ||
+          get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.active != false);
     }
 
     function userProtectedFields() {
@@ -97,12 +103,7 @@ service cloud.firestore {
 
     match /memberships/{membershipId} {
       allow read: if isAdmin() || isSelf(resource.data.userId) || isClubManager(resource.data.clubId);
-      allow create: if isAdmin() || isClubManager(request.resource.data.clubId);
-      allow update: if isAdmin() || (
-        isClubManager(resource.data.clubId) &&
-        request.resource.data.clubId == resource.data.clubId
-      );
-      allow delete: if isAdmin() || isClubManager(resource.data.clubId);
+      allow create, update, delete: if isAdmin();
     }
 
     match /trips/{tripId} {

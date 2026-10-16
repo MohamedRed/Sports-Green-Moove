@@ -23,10 +23,11 @@ for (const collection of [
 for (const section of [
   'id="clubs"',
   'id="teams"',
-  'id="memberships"',
 ]) {
   includes(clubTables, section, `Club operations renders ${section}`);
 }
+includes(read("admin/src/MembershipReviewPanel.tsx"), 'id="memberships"', "Scoped membership review is rendered");
+includes(dashboard, "MembershipReviewPanel", "Admin dashboard renders scoped membership decisions");
 
 includes(dashboard, "ClubOperationsTables", "Admin dashboard renders club operations tables");
 includes(dashboard, "PayoutsTable", "Admin dashboard renders payouts");
