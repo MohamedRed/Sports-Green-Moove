@@ -25,6 +25,15 @@ class ReservationStateTest {
     }
     private fun gateway() = Gateway().apply { read = { ReservationPage(listOf(pending), null) } }
 
+    @Test fun initialLoadingIsNotACompletedEmptyHistory() = runBlocking {
+        val state = ReservationState(Gateway(), AppRole.Parent)
+        assertFalse(state.loaded)
+        state.reload()
+        assertTrue(state.loaded && state.items.isEmpty())
+        state.close()
+        assertFalse(state.loaded)
+    }
+
     @Test fun confirmedDecisionReloadsServerStateAndRefreshesTheApp() = runBlocking {
         val gateway = gateway()
         val state = ReservationState(gateway, AppRole.Driver)

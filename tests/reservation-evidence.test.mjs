@@ -19,7 +19,7 @@ test('reservation decisions retain the completed fifteen-group isolated service 
   });
 });
 test('native decision state and payload checks do not imply phone or refund approval', () => {
-  for (const [file, count] of [['state-passed.xml', 9], ['payload-passed.xml', 3]]) {
+  for (const [file, count] of [['state-passed.xml', 10], ['payload-passed.xml', 3]]) {
     assert(source(base + file).includes(`tests="${count}" skipped="0" failures="0" errors="0"`));
   }
   assert.equal(content.flows.find((flow) => flow.id === 'booking').status, 'partial');

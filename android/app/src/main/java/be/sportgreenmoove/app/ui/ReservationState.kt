@@ -17,6 +17,7 @@ import kotlinx.coroutines.ensureActive
 internal class ReservationState(private val gateway: ReservationGateway, private val role: AppRole) {
     var items by mutableStateOf(emptyList<ReservationItem>()); private set
     var loading by mutableStateOf(false); private set
+    var loaded by mutableStateOf(false); private set
     var loadingMore by mutableStateOf(false); private set
     var acting by mutableStateOf(false); private set
     var error by mutableStateOf<String?>(null); private set
@@ -40,6 +41,7 @@ internal class ReservationState(private val gateway: ReservationGateway, private
             currentCoroutineContext().ensureActive()
             if (!current(ticket)) return
             items = page.items; cursor = page.nextCursor; hasMore = cursor != null
+            loaded = true
             onChanged()
             if (current(ticket)) requiresReload = false
         } catch (cancelled: CancellationException) { throw cancelled }
@@ -116,6 +118,7 @@ internal class ReservationState(private val gateway: ReservationGateway, private
         hasMore = false
         requiresReload = false
         loading = false
+        loaded = false
         loadingMore = false
         acting = false
         error = null

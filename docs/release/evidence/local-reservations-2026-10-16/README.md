@@ -31,13 +31,16 @@ decision evidence. The accepted run corrected that harness path.
 
 ## Native State And Payload Evidence
 
-Original Gradle XML: `state-passed.xml` has nine passing cases and
+Original Gradle XML: `state-passed.xml` has ten passing cases and
 `payload-passed.xml` has three, with no failures/errors/skips. These cover exact
 capabilities, missing/invalid data without invented defaults, concurrent taps,
 explicit refresh after an uncertain decision, acknowledged write versus failed
-reload, closed-session callbacks and stale pagination. The complete Android unit
+reload, closed-session callbacks, initial versus completed-empty history and stale
+pagination. The complete Android unit
 suite and instrumentation APK compilation pass locally. Backend unit tests pass
 134 cases, including five new permission/schema/cursor cases.
+`state-before-loading.xml` retains the preceding nine-case pass before the
+explicit initial/empty-history regression was added; it is not a failing baseline.
 
 The Android reservation tab now has a paginated parent/driver list, explicit
 confirmation, French statuses and server-provided allowed actions. Decision state

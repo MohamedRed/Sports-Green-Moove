@@ -37,8 +37,8 @@ internal fun ReservationManagementRoute(uid: String, role: AppRole, gateway: Res
             variant = V2ButtonVariant.Secondary, testTag = "bookings.refresh")
         if (state.error != null) Text(requireNotNull(state.error), style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary), modifier = Modifier.testTag("bookings.error"))
         else state.notice?.let { Text(it, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary)) }
-        if (state.loading) Text("Chargement des réservations...", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
-        if (!busy && state.error == null && state.items.isEmpty()) Text("Aucune réservation.", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
+        if (state.loading || (!state.loaded && state.error == null)) Text("Chargement des réservations...", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
+        if (state.loaded && !busy && state.error == null && state.items.isEmpty()) Text("Aucune réservation.", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
         BookingRequestsList(state.items, busy || state.requiresReload) { item, decision -> confirmation = item to decision }
         if (state.hasMore) V2Button(if (state.loadingMore) "Chargement..." else "Voir les réservations précédentes",
             { scope.launch { state.more() } }, full = true, enabled = !busy,
