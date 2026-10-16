@@ -12,6 +12,7 @@ import { verifyLocalMultiSeatSdk } from './verify-local-multi-seat-sdk.mjs';
 import { seedReservationUiFixtures, verifyReservationUi } from './local-reservation-ui.mjs';
 import { verifyNativeMembershipUi } from './local-native-membership.mjs';
 import { seedChatNetworkUiFixture, verifyChatNetworkUi } from './local-chat-network-ui.mjs';
+import { replayWithNetworkCleanup } from './local-network-replay.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -70,16 +71,7 @@ try {
   instrument(['LocalMembershipFlowTest'], 1);
   const membershipRefresh = await verifyNativeMembershipUi();
   const networkFixture = await seedChatNetworkUiFixture();
-  const networkSettings = ['wifi_on', 'mobile_data'].map((key) => {
-    const value = execFileSync(adb, ['-s', serial, 'shell', 'settings', 'get', 'global', key], { encoding: 'utf8' }).trim();
-    assert(['0', '1'].includes(value), `Network cleanup requires an explicit original ${key}`);
-    return value === '1' ? 'enable' : 'disable';
-  });
-  try { instrument(['LocalChatNetworkFlowTest'], 1); }
-  finally {
-    try { run(adb, ['-s', serial, 'shell', 'svc', 'wifi', networkSettings[0]]); }
-    finally { run(adb, ['-s', serial, 'shell', 'svc', 'data', networkSettings[1]]); }
-  }
+  replayWithNetworkCleanup(adb, serial, session.runId, instrument);
   run(adb, ['-s', serial, 'pull', '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.', evidenceDir]);
   capturesCollected = true;
   const chatNetwork = await verifyChatNetworkUi(networkFixture, evidenceDir);

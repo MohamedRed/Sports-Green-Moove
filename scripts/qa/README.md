@@ -77,6 +77,11 @@ and matching read notifications after the reply. A real account switch must not
 inherit the other account's unsent draft. Both test and host cleanup restore the
 original network settings. This does not cover disconnection after a server commit,
 process restart, expired credentials, physical phones or push delivery.
+The baseline uses actual Wi-Fi/default-subscription data APIs, not legacy global
+setting keys. It is saved with the run ID before changing either transport. Host
+cleanup rejects stale/ambiguous baselines; failed disconnections retain their
+observed network state before restoration. No offline result is accepted unless
+the actual network and endpoint checks both pass.
 
 `LocalMembershipFlowTest` requests two new club memberships through the app,
 then uses a separate authenticated local manager SDK session to approve/refuse

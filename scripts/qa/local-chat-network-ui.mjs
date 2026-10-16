@@ -22,6 +22,7 @@ export async function seedChatNetworkUiFixture() {
 export async function verifyChatNetworkUi(fixture, evidenceDir) {
   const ui = JSON.parse(readFileSync(resolve(evidenceDir, 'local-chat-network-ui.json'), 'utf8'));
   assertChatNetworkReceipt(ui);
+  assert.equal(ui.runId, process.env.SGM_LOCAL_RUN_ID);
   const expected = new Map([
     ['Connexion rétablie, rendez-vous confirmé.', 'sgm-qa-parent'],
     ['Bien reçu après la coupure.', 'sgm-qa-driver'],

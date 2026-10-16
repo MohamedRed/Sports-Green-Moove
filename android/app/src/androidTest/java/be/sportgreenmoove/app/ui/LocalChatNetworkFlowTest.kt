@@ -45,6 +45,7 @@ class LocalChatNetworkFlowTest {
         val device = UiDevice.getInstance(instrumentation)
         device.setOrientationNatural()
         val result = JSONObject().put("projectId", "demo-sgm-local-qa")
+            .put("runId", session.getString("runId"))
             .put("scope", "native-ui-with-disposable-os-network-control").put("completed", false)
         val network = JSONArray()
         result.put("network", network)
@@ -66,10 +67,17 @@ class LocalChatNetworkFlowTest {
                 closeKeyboard()
                 LocalEmulatorNetwork(context, device, session).use { control ->
                     network.put(control.snapshot("before"))
+                    writeResult(context, result)
                     phase = "disconnect"
                     control.disconnect()
-                    compose.waitUntil(30_000) { control.offline() }
-                    assertFalse("The actual Functions endpoint must be unreachable", control.backendReachable())
+                    try {
+                        compose.waitUntil(30_000) { control.offline() }
+                        assertFalse("The actual Functions endpoint must be unreachable", control.backendReachable())
+                    } catch (failure: Throwable) {
+                        network.put(control.snapshot("disconnect-failed"))
+                        writeResult(context, result)
+                        throw failure
+                    }
                     network.put(control.snapshot("offline"))
                     phase = "offline-send"
                     compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().performClick()

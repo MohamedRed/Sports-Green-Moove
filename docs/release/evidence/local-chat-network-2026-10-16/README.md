@@ -53,6 +53,34 @@ After the fix the same three mapper tests pass in `booking-status-after.xml`.
 The full native unit task and instrumentation APK build also pass locally. These
 checks do not yet establish an app-level picker or connection-recovery pass.
 
+## Third Replay: Picker Recovered, Disconnection Not Proven
+
+Run 38863162034 at `6cdf92f50e705eddf428d18efb2fa8118608ebe8` again
+completed the 16 earlier cases. The new case loaded the actual picker response
+including refused/cancelled reservations, selected the new trip and opened its
+empty authorized conversation. The reviewed original `booking-picker-recovered.png`
+shows accepted, refused and cancelled reservations together; the separately
+retained `booking-conversation-opened.png` shows only the empty conversation.
+Neither image proves a message exchange.
+
+The case then failed at its unchanged 30-second disconnection check. The receipt
+contains only the connected baseline, not a proven offline state. Recovery,
+retry and cross-account draft checks were not reached. No completed result was
+written. The prior global-setting check did not record the state at failure,
+so this report does not infer that Ethernet or another transport remained active.
+
+The next version reads Wi-Fi and mobile-data state through WifiManager and
+[TelephonyManager.isDataEnabled](https://developer.android.com/reference/android/telephony/TelephonyManager#isDataEnabled()),
+which reflects the default data subscription, rather than the legacy global
+mobile_data key. It still requires no active internet network and an unreachable
+backend. It persists original actual settings before mutation, binds them to this
+run's identity, and records failed-disconnection transport/state diagnostics before
+cleanup. Host cleanup reads that same validated baseline, not a guessed default.
+
+This run's separate configuration job also failed because its new TypeScript
+contract parser had no installed dependencies. The workflow now installs the locked
+dependencies before those checks. No case is omitted to obtain a green workflow.
+
 ## Recovery Scope
 
 The new case requires OS Wi-Fi and mobile data to be disabled on an explicitly

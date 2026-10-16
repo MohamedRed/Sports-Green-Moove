@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 export function assertChatNetworkReceipt(ui) {
   assert.equal(ui.scope, 'native-ui-with-disposable-os-network-control');
   assert.equal(ui.projectId, 'demo-sgm-local-qa');
+  assert.match(ui.runId, /^[a-f0-9]{32}$/);
   assert.equal(ui.completed, true);
   for (const key of ['offlineSendUnconfirmed', 'offlineDraftRetained', 'recoveredSendConfirmed', 'accountDraftCleared', 'replyReceived']) {
     assert.equal(ui[key], true, `The app replay must prove ${key}`);

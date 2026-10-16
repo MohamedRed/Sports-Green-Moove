@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/web-integration-smoke.yml"
+      - ".github/workflows/native-ci.yml"
       - "admin/**"
       - "docs/contracts/**"
       - "functions/**"
@@ -30,6 +31,8 @@ on:
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Reservation*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Reservation*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/ReservationModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/ConversationDirectoryModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/ConversationDirectoryMappers.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/RememberSearchController.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt"
@@ -58,6 +61,7 @@ on:
       - main
     paths:
       - ".github/workflows/web-integration-smoke.yml"
+      - ".github/workflows/native-ci.yml"
       - "admin/**"
       - "docs/contracts/**"
       - "functions/**"
@@ -83,6 +87,8 @@ on:
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Reservation*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Reservation*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/ReservationModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/ConversationDirectoryModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/ConversationDirectoryMappers.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/RememberSearchController.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt"
