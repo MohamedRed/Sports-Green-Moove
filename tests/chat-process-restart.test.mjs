@@ -1,10 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { assertChatRestartReceipt } from '../scripts/qa/chat-restart-evidence.mjs';
+import { assertChatNetworkReceipt, assertCellularRequestSetup } from '../scripts/qa/chat-network-evidence.mjs';
+import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentation-result.mjs';
 import { stopDisposableChatProcess } from '../scripts/qa/local-chat-process-stop.mjs';
+import { content, captures } from '../partner-portal/content.mjs';
 
-const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+const root = fileURLToPath(new URL('../', import.meta.url));
+const read = (path) => readFileSync(resolve(root, path), 'utf8');
 const runId = 'a'.repeat(32), appId = 'be.sportgreenmoove.app.local';
 function receipt() {
   const before = { projectId: 'demo-sgm-local-qa', runId, scope: 'native-ui-confirmed-conversation-restart-stage',
@@ -114,4 +120,68 @@ test('the additional cold-start stages retain all prior cases and require UI plu
   for (const workflow of ['native-ci', 'web-integration-smoke'])
     assert.equal(read(`.github/workflows/${workflow}.yml`).split('"tests/chat-process-restart.test.mjs"').length - 1, 2);
   assert(read('package.json').includes('tests/chat-process-restart.test.mjs'));
+});
+
+test('published restart evidence requires the full nineteen-case replay and unchanged persisted confirmed messages', () => {
+  const directory = 'docs/release/evidence/local-chat-restart-2026-10-16/';
+  const load = (name) => JSON.parse(read(directory + name));
+  const run = load('results.json');
+  assert.equal(run.runId, '10da7e922d2622ecf5668869113a4e44');
+  assert.equal(run.testCount, 19); assert.equal(run.steps.length, 20);
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
+  const before = load('local-chat-restart-before.json'), after = load('local-chat-restart-after.json');
+  const stopped = load('local-chat-restart-stop.json');
+  assertChatRestartReceipt(before, stopped, after, run.runId);
+  assert.equal(stopped.observedBeforePid, null);
+  assert.equal(run.chatRestart.preparedProcessId, before.processId);
+  assert.equal(run.chatRestart.resumedProcessId, after.processId);
+  assert.equal(run.chatRestart.messageCount, 3); assert.equal(run.chatRestart.notificationCount, 3);
+  assert.equal(run.chatRestart.duplicateMessages, 0); assert.equal(run.chatRestart.originalMessageUnchanged, true);
+  assert.equal(run.chatRestart.sessionRestoredWithoutLogin, true);
+  const checkpoint = load('local-chat-restart-checkpoint.json'), persisted = load('local-chat-restart-persisted.json');
+  assert.equal(checkpoint.runId, run.runId); assert.equal(persisted.runId, run.runId);
+  assert.equal(checkpoint.sourceId, run.chatRestart.sourceId); assert.equal(persisted.sourceId, checkpoint.sourceId);
+  assert.equal(checkpoint.messageCount, 1); assert.equal(checkpoint.notificationCount, 1);
+  assert.equal(persisted.messages.length, 3);
+  const first = persisted.messages.find((message) => message.messageId === checkpoint.messageId);
+  assert(first); assert.equal(first.clientMessageId, checkpoint.clientMessageId);
+  assert.equal(first.createdAtMillis, checkpoint.createdAtMillis);
+  assert.equal(new Set(persisted.messages.map((message) => message.messageId)).size, 3);
+  assert.equal(new Set(persisted.messages.map((message) => message.notificationId)).size, 3);
+  assert.equal(new Set(persisted.messages.map((message) => message.clientMessageId)).size, 3);
+  const bodies = new Map([
+    ['Message confirmé avant relancement.', 'sgm-qa-parent'],
+    ['Nouvel envoi après relancement.', 'sgm-qa-parent'],
+    ['Réponse reçue après relancement.', 'sgm-qa-driver'],
+  ]);
+  for (const message of persisted.messages) {
+    assert.equal(message.senderUserId, bodies.get(message.body)); bodies.delete(message.body);
+    assert.match(message.clientMessageId, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+    assert.equal(message.read, true);
+    assert.equal(message.recipientUserId, message.senderUserId === 'sgm-qa-parent' ? 'sgm-qa-driver' : 'sgm-qa-parent');
+  }
+  assert.equal(bodies.size, 0);
+  const network = load('local-chat-network-ui.json');
+  assert.equal(network.runId, run.runId); assertChatNetworkReceipt(network); assertCellularRequestSetup(network);
+  assert.equal(run.chatNetwork.duplicateMessages, 0);
+  const files = readdirSync(new URL('../' + directory, import.meta.url)).filter((file) => file.endsWith('-instrumentation.txt'));
+  assert.equal(files.length, 11);
+  let count = 0;
+  for (const file of files) {
+    const cases = file.startsWith('LocalAppFlowTest-') ? 9 : 1;
+    assertInstrumentationPassed(read(directory + file), cases); count += cases;
+  }
+  assert.equal(count, 19);
+  const flow = content.flows.find((item) => item.id === 'messages');
+  assert.equal(flow.ui.source, directory + 'results.json'); assert.equal(flow.status, 'partial');
+  assert(flow.ui.groups.includes('chat-confirmed-process-restart-ui'));
+  assert.match(flow.remaining, /brouillons après fermeture/); assert.match(flow.remaining, /téléphones/);
+  assert.equal(flow.images[0].file, 'chat-restart-reply');
+  assert.equal(captures['chat-restart-reply'], directory + 'local-chat-restart-reply.png');
+  const png = readFileSync(new URL('../' + captures['chat-restart-reply'], import.meta.url));
+  assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
+  assert.match(read(directory + 'README.md'), /pending sends or unsent drafts/);
+  assert.match(read(directory + 'README.md'), /not deployed to production/);
 });

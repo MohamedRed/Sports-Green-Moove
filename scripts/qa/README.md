@@ -102,8 +102,10 @@ neither an earlier capture pull nor a restart pass proves a complete suite.
 This is a confirmed-message cold-start test, not activity recreation or proof
 that pending/unsent drafts survive force-stop. It does not close physical-device,
 token-expiry, post-commit acknowledgement-loss or push requirements. Compilation
-and configuration checks alone do not accept this new app flow; a complete
-nineteen-case replay is still required.
+and configuration checks alone do not accept this app flow. The completed
+nineteen-case replay and unchanged stage/persisted artifacts are retained in
+`docs/release/evidence/local-chat-restart-2026-10-16/`; pending drafts and physical
+devices remain outside that evidence.
 
 `LocalMembershipFlowTest` requests two new club memberships through the app,
 then uses a separate authenticated local manager SDK session to approve/refuse

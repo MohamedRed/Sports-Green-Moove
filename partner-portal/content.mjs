@@ -6,7 +6,7 @@ const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const membershipRefreshReport = 'docs/release/evidence/local-membership-refresh-2026-10-16/README.md';
-const chatNetworkReport = 'docs/release/evidence/local-app-scheduling-2026-10-16/README.md';
+const chatNetworkReport = 'docs/release/evidence/local-chat-restart-2026-10-16/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -51,6 +51,7 @@ export const captures = {
   'chat-landscape': 'docs/release/evidence/local-chat-ui-2026-10-15/local-chat-landscape-draft.png',
   'chat-network-draft': 'docs/release/evidence/local-chat-network-2026-10-16/local-chat-network-unconfirmed.png',
   'chat-network-reply': 'docs/release/evidence/local-cellular-request-2026-10-16/local-chat-network-received.png',
+  'chat-restart-reply': 'docs/release/evidence/local-chat-restart-2026-10-16/local-chat-restart-reply.png',
   'chat-picker-recovered': 'docs/release/evidence/local-chat-network-2026-10-16/booking-picker-recovered.png',
 };
 
@@ -81,8 +82,8 @@ export const content = {
   updates: [
     { date: '2026-10-16', title: 'Les places réservées restent protégées',
       text: 'En local, un conducteur ne peut plus rendre disponibles des places déjà réservées. L’annulation les libère une seule fois.', flow: 'booking' },
-    { date: '2026-10-16', title: 'Un essai incomplet',
-      text: 'Un essai sans ses contrôles finaux reste écarté. Depuis, un nouveau parcours complet passe en local, avec réponse reçue et sans doublon.', flow: 'messages' },
+    { date: '2026-10-16', title: 'Les messages restent après fermeture',
+      text: 'En local, le parent reste connecté, retrouve ses messages puis reprend l’échange avec le conducteur. Une nouvelle capture est disponible.', flow: 'messages' },
     { date: '2026-10-16', title: 'Un groupe par équipe',
       text: 'Le groupe réunira les membres d’une équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le message reprend après une coupure',
@@ -133,7 +134,7 @@ export const content = {
   blockers: [
     { id: 'chat-send-stability', title: 'Rejouer les coupures de connexion',
       text: 'Plusieurs essais complets passent en local. La connexion de départ reste à fiabiliser.',
-      next: 'Obtenir des essais reproductibles, puis vérifier sur téléphone et après fermeture complète.', source: chatNetworkReport },
+      next: 'Confirmer les coupures sur téléphone et tester les brouillons après fermeture complète.', source: chatNetworkReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Les échanges réuniront les membres d’une même équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: 'docs/contracts/team-conversations.md' },
@@ -204,9 +205,9 @@ export const content = {
         shot('reservation-declined', 'Demande refusée par le conducteur, en local'),
         shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre')], source: 'docs/release/evidence/local-trip-capacity-2026-10-16/README.md' },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-16',
-      summary: 'Après une coupure, le message repart sans doublon en local.',
-      verified: 'En local : brouillon conservé, puis renvoyé sans doublon et réponse lue. Brouillons séparés entre comptes et liste des échanges disponible après un refus.',
-      remaining: 'Restent les groupes, le clavier et les échanges entre téléphones. Rejouer une coupure juste après l’envoi et le relancement complet. Pas encore en ligne.',
+      summary: 'Après fermeture complète, l’échange reprend en local.',
+      verified: 'En local : connexion et messages confirmés retrouvés après fermeture, nouvel envoi et réponse reçue sans doublon. Après une coupure, le brouillon peut aussi être renvoyé.',
+      remaining: 'Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et une coupure juste après l’envoi. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety'], [
         'Le parent et le conducteur échangent des messages.',
         'Trois tentatives du même envoi créent un seul message et une notification.',
@@ -215,8 +216,9 @@ export const content = {
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
       ], 'docs/release/evidence/local-chat-network-2026-10-16/services.json'),
-      ui: { source: 'docs/release/evidence/local-cellular-request-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui'] },
-      images: [shot('chat-network-reply', 'Message renvoyé et réponse reçue après la coupure, en local'),
+      ui: { source: 'docs/release/evidence/local-chat-restart-2026-10-16/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui'] },
+      images: [shot('chat-restart-reply', 'Messages retrouvés et échange repris après fermeture, en local'),
+        shot('chat-network-reply', 'Message renvoyé et réponse reçue après la coupure, en local'),
         shot('chat-network-draft', 'Coupure : le brouillon reste prêt à être renvoyé, en local'),
         shot('chat-picker-recovered', 'Réservations acceptées, refusées et annulées visibles, en local'),
         shot('chat-reservation', 'Réservation choisie pour le premier message, essai du 15 octobre'),
