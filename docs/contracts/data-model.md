@@ -105,4 +105,15 @@ Membership lists retain team labels and resolve child principals from `children`
 not from unrelated user profiles. These changes require coordinated Functions,
 rules, management-site and native-client deployment; local checks do not deploy them.
 
+Android's Groups route reloads on entry/resume and offers an explicit refresh.
+Membership and club reads require the server under one unchanged authenticated
+identity. Loading/errors do not render a confirmed empty list or stale join
+controls. Requests are serialized; an uncertain write requires an explicit read,
+not an automatic retry. An acknowledged write remains acknowledged if its later
+read fails. Leaving the route/account invalidates pending callbacks, and a slow
+whole-app snapshot cannot overwrite a newer Groups result. Club summaries are
+shared back to the profile only after the scoped read succeeds. Discovery and
+membership queries still have the existing 50-record bounds; this is not full
+directory pagination or a group-chat implementation.
+
 Android conversation discovery reads through `listChatConversations`, backed by private `chatInboxes` entries rather than the latest 50 messages. The reservation picker uses `listChatBookingOptions`; an empty conversation is not persisted until a real send. `getInbox` remains compatible for notifications, bounded legacy previews and pending `ratings` prompts derived from completed ride sessions. iOS still uses that legacy contract. See [conversation rollout](../release/chat-inbox-rollout.md) for summary fields, historical preparation and coordinated deployment requirements.

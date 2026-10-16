@@ -13,6 +13,7 @@ on:
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
       - "tests/local-ui-config.test.mjs"
       - "tests/disposable-android.test.mjs"
+      - "tests/native-membership-config.test.mjs"
       - "scripts/check-ios-native-plan.sh"
       - "tests/native-ui-coverage.test.mjs"
   push:
@@ -28,6 +29,7 @@ on:
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
       - "tests/local-ui-config.test.mjs"
       - "tests/disposable-android.test.mjs"
+      - "tests/native-membership-config.test.mjs"
       - "scripts/check-ios-native-plan.sh"
       - "tests/native-ui-coverage.test.mjs"
 
@@ -55,7 +57,7 @@ jobs:
         run: npm run test:native-ui-coverage
 
       - name: Validate disposable Android isolation
-        run: node --test tests/disposable-android.test.mjs
+        run: node --test tests/disposable-android.test.mjs tests/native-membership-config.test.mjs
 
   android-native-unit:
     name: Android native unit tests

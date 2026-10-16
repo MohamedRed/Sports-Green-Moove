@@ -64,7 +64,19 @@ checks draft retention across navigation/recreation/rotation, and loads a seeded
 peer sends one message while the parent thread stays open; this is not a claim
 of two physical phones or push delivery. An unrelated synthetic account cannot
 open the thread. Independent stored-message, recipient notification and unread
-checks must pass before the runner writes its eight-case/nine-group result.
+checks must pass before the runner writes its result. The current suite requires
+16 instrumentation cases and records 17 coverage groups; these are not the same
+count. Older evidence retains the exact counts of its original run.
+
+`LocalMembershipFlowTest` requests two new club memberships through the app,
+then uses a separate authenticated local manager SDK session to approve/refuse
+them. The parent explicitly refreshes, re-requests the refused membership, sees
+its later approval after activity recreation, then signs in as another account.
+`verifyNativeMembershipUi` independently checks both active member records, three
+matching audits/notifications, exact counters and unchanged global roles. Manager
+decisions in this case are SDK calls, not a claim of native management controls.
+`GroupsLayoutTest` separately covers loading/error boundaries and a 320dp layout
+with 1.3x text. No phone, push or broad club-discovery evidence is inferred.
 
 Conversation deployment requires the new message composite index and updated
 `sendChatMessage`, `getChatConversation`, `markChatMessagesRead` callables before

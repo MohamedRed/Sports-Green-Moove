@@ -38,7 +38,7 @@ fun SportsGreenMooveApp() {
     val appData = remember { AppDataState() }
     var trips by appData.trips
     var children by appData.children
-    var clubs by appData.clubs
+    val clubs by appData.clubs
     var activeRide by appData.activeRide
     var activeRideTrip by appData.activeRideTrip
     var payableBookings by appData.payableBookings
@@ -246,14 +246,10 @@ fun SportsGreenMooveApp() {
                             onBack = { screen = AppScreen.Home },
                         )
                         AppScreen.Groups -> GroupsRoute(
-                            clubs = clubs,
-                            scope = scope,
+                            sessionUid = requireNotNull(session).uid,
                             providers = providers,
                             onBack = { screen = AppScreen.Profile },
-                            setLoading = { loading = it },
-                            setError = { errorMessage = it },
-                            setNotice = { noticeMessage = it },
-                            refreshAppData = { refreshAppData() },
+                            onClubsLoaded = appData::replaceClubs,
                         )
                         AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
                         AppScreen.Rewards -> RewardsRoute(

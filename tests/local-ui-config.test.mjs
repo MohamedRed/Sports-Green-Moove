@@ -77,7 +77,9 @@ test('local conversation evidence requires app execution and independent persist
   assert.match(runner, /const chat = await verifyLocalChatUi\(\)/);
   assert.match(runner, /instrument\(\['LocalConversationDirectoryFlowTest'\], 1\)/);
   assert.match(runner, /const directory = await verifyLocalChatDirectoryUi\(directoryFixture\)/);
-  assert.match(runner, /testCount: 15/);
+  assert.match(runner, /testCount: 16/);
+  assert.match(runner, /instrument\(\['LocalMembershipFlowTest'\], 1\)/);
+  assert.match(runner, /await verifyNativeMembershipUi\(\)/);
   assert.match(runner, /instrument\(\['LocalBookingDecisionsFlowTest'\], 1\)/);
   assert.match(runner, /await verifyReservationUi\(reservationFixture\)/);
   assert.match(runner, /'SearchSessionFlowTest', 'SearchCriteriaFlowTest'\], 9/);

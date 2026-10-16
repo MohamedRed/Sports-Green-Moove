@@ -109,7 +109,7 @@ fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable 
 
 @Composable
 fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, selected: Boolean = false,
-    testTag: String? = null, description: String? = null) {
+    testTag: String? = null, description: String? = null, enabled: Boolean = true) {
     val isSelected = selected
     Box(
         modifier = Modifier
@@ -122,7 +122,7 @@ fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, 
             .clip(CircleShape)
             .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), CircleShape)
-            .clickable(onClick = onClick),
+            .clickable(enabled = enabled, onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         SgmLineIcon(

@@ -2,6 +2,8 @@ package be.sportgreenmoove.app.ui
 
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.ClubSummary
+import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.services.AndroidProviderSet
 import be.sportgreenmoove.app.services.FirebaseGateway
@@ -77,6 +79,25 @@ class AppDataStateTest {
         pending.cancelAndJoin()
         assertTrue(pending.isCancelled)
         assertTrue(state.trips.value.isEmpty())
+    }
+
+    @Test fun aSlowAppSnapshotCannotUndoANewerGroupsRefresh() = runBlocking {
+        val ride = CompletableDeferred<LiveRideSnapshot?>()
+        val oldClub = ClubSummary("club", "Club QA", "Football", 1, null, "CQ", emptyList(), "requested", false)
+        val currentClub = oldClub.copy(roleLabel = "MEMBRE", membershipStatus = "active", membershipActive = true)
+        val firebase = object : FirebaseGateway by gateway({ listOf(trip("confirmed")) }) {
+            override suspend fun listClubSummaries() = listOf(oldClub)
+            override suspend fun getActiveRide(): LiveRideSnapshot? = ride.await()
+        }
+        val state = AppDataState()
+        val refresh = launch(start = CoroutineStart.UNDISPATCHED) { state.refresh(providers(firebase), AppRole.Parent) }
+        state.replaceClubs(listOf(currentClub))
+        ride.complete(null)
+        refresh.join()
+        assertEquals(listOf(currentClub), state.clubs.value)
+        assertEquals(listOf("confirmed"), state.trips.value.map { it.id })
+        state.clear()
+        assertTrue(state.clubs.value.isEmpty())
     }
 
     private fun gateway(trips: suspend () -> List<TripSummary>) = object : FirebaseGateway by UnconfiguredFirebaseGateway() {

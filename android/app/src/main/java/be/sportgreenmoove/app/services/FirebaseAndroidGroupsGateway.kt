@@ -4,6 +4,8 @@ import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.isActiveClubMembership
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.tasks.await
 import java.util.Locale
 
@@ -18,12 +20,14 @@ internal class FirebaseAndroidGroupsGateway(
     private val auth: FirebaseAuth = FirebaseAuth.getInstance(),
 ) {
     suspend fun listClubSummaries(): List<ClubSummary> {
-        val membershipByClub = loadMembershipByClub()
+        val uid = auth.currentUser?.uid ?: throw IllegalStateException("Sign-in required")
+        val membershipByClub = loadMembershipByClub(uid)
         val clubs = firestore.collection("clubs")
             .orderBy("name")
             .limit(50)
-            .get()
+            .get(Source.SERVER)
             .await()
+        if (auth.currentUser?.uid != uid) throw CancellationException("Account changed during club refresh")
 
         return clubs.documents.map { document ->
             mapClubSummary(
@@ -34,12 +38,11 @@ internal class FirebaseAndroidGroupsGateway(
         }
     }
 
-    private suspend fun loadMembershipByClub(): Map<String, ClubMembershipState> {
-        val uid = auth.currentUser?.uid ?: return emptyMap()
+    private suspend fun loadMembershipByClub(uid: String): Map<String, ClubMembershipState> {
         val snapshot = firestore.collection("memberships")
             .whereEqualTo("userId", uid)
             .limit(50)
-            .get()
+            .get(Source.SERVER)
             .await()
 
         return snapshot.documents.mapNotNull { document ->
@@ -50,7 +53,10 @@ internal class FirebaseAndroidGroupsGateway(
             val role = if (!isActiveClubMembership(status, active)) {
                 null
             } else {
-                (data["role"] as? String)?.uppercase(Locale.FRANCE) ?: "MEMBRE"
+                when (val role = data["role"] as? String) {
+                    "member" -> "MEMBRE"
+                    else -> role?.uppercase(Locale.FRANCE) ?: "MEMBRE"
+                }
             }
             clubId to ClubMembershipState(roleLabel = role, status = status, active = active)
         }.toMap()

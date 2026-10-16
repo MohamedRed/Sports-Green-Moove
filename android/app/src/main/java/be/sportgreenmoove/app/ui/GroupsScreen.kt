@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.activity.compose.BackHandler
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,11 +31,22 @@ import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun GroupsScreen(clubs: List<ClubSummary>, onBack: () -> Unit, onJoinClub: (ClubSummary) -> Unit = {}) {
+fun GroupsScreen(clubs: List<ClubSummary>, onBack: () -> Unit, onJoinClub: (ClubSummary) -> Unit = {},
+    loading: Boolean = false, error: String? = null, notice: String? = null,
+    onDismissNotice: () -> Unit = {}, onRefresh: (() -> Unit)? = null) {
     val memberships = clubs.filter { it.isMember }
     val suggestions = clubs.filterNot { it.isMember }
+    BackHandler(onBack = onBack)
     V2Screen(testTag = SgmTestTags.GroupsScreen) {
-        V2TopBar("GROUPES")
+        V2TopBar("GROUPES", onBack = onBack, trailing = {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                onRefresh?.let { GroupsRefreshButton(loading, it) }
+                V2ThemeButton()
+            }
+        })
+        notice?.let { RuntimeNotice(it, false, onDismissNotice) }
+        if (loading) { GroupEmptyRow("Chargement..."); return@V2Screen }
+        if (error != null) { GroupEmptyRow(error); return@V2Screen }
         V2SectionLabel("MES CLUBS")
         Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             if (memberships.isEmpty()) GroupEmptyRow("Aucun club lié à votre compte.")
@@ -51,17 +63,6 @@ fun GroupsScreen(clubs: List<ClubSummary>, onBack: () -> Unit, onJoinClub: (Club
                 )
             }
         }
-        Box(
-            modifier = Modifier
-                .padding(horizontal = 20.dp)
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(14.dp))
-                .border(BorderStroke(1.5.dp, Sgm.colors.borderStrong), RoundedCornerShape(14.dp))
-                .padding(14.dp),
-            contentAlignment = Alignment.Center,
-        ) {
-            Text("+ Créer un nouveau groupe", style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.Bold))
-        }
     }
 }
 
@@ -70,6 +71,7 @@ private fun MyClubCard(club: ClubSummary) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .sgmTestTag("groups.member.${club.id}")
             .clip(RoundedCornerShape(SgmRadius.LG))
             .background(Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
@@ -90,7 +92,6 @@ private fun MyClubCard(club: ClubSummary) {
             val hiddenMembers = (club.memberCount - club.memberInitials.size).coerceAtLeast(0)
             Text("+$hiddenMembers greens-moovers", style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.padding(start = 8.dp))
             Spacer(Modifier.weight(1f))
-            Text("Voir →", style = SgmType.BodyXS.copy(color = SgmColor.Green, fontSize = 12.sp, fontWeight = FontWeight.Bold))
         }
     }
 }
@@ -100,6 +101,7 @@ private fun SuggestedClubRow(club: ClubSummary, requested: Boolean, onJoin: () -
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .sgmTestTag("groups.discovery.${club.id}")
             .clip(RoundedCornerShape(14.dp))
             .background(Sgm.colors.bgSurface)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(14.dp))
@@ -111,6 +113,9 @@ private fun SuggestedClubRow(club: ClubSummary, requested: Boolean, onJoin: () -
         Column(modifier = Modifier.weight(1f)) {
             Text(club.name, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 13.sp, fontWeight = FontWeight.Bold), maxLines = 1, overflow = TextOverflow.Ellipsis)
             Text("${club.sport} · ${club.memberCount} membres", style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.Medium))
+            if (club.membershipStatus == "rejected") {
+                Text("Refusée", style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary))
+            }
         }
         if (requested) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {

@@ -6,6 +6,7 @@ import { projectId } from './local-emulator-config.mjs';
 import { seedLocalChatFixtures } from './local-chat-fixtures.mjs';
 import { indexLocalChatFixtures } from './index-local-chat-fixtures.mjs';
 import { seedResponsiveMembershipFixture } from './local-membership-ui-fixtures.mjs';
+import { seedNativeMembershipClubs } from './local-native-membership.mjs';
 
 export async function seedLocalUiFixtures() {
   execFileSync(process.execPath, [resolve(import.meta.dirname, 'seed-firebase-emulator.mjs')],
@@ -24,6 +25,7 @@ export async function seedLocalUiFixtures() {
   }
   await seedLocalChatFixtures(process.env.SGM_QA_PASSWORD);
   await seedResponsiveMembershipFixture();
+  await seedNativeMembershipClubs();
   await indexLocalChatFixtures();
   const multiSeatTrip = await call('createTrip', await signIn('d@example.test'), {
     ...tripInput(), title: 'Trajet QA deux places', seatsTotal: 4, seatsAvailable: 4,

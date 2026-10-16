@@ -16,6 +16,7 @@ import be.sportgreenmoove.app.services.AndroidProviderSet
 @MainThread
 internal class AppDataState {
     private var generation = 0L
+    private var clubsGeneration = 0L
     private class SupersededRefresh : RuntimeException()
     val trips = mutableStateOf(emptyList<TripSummary>())
     val children = mutableStateOf(emptyList<ChildSummary>())
@@ -36,6 +37,7 @@ internal class AppDataState {
         try {
             val nextTrips = load { providers.firebase.searchTrips() }
             val nextChildren = if (role == AppRole.Parent) load { providers.firebase.listChildren() } else emptyList()
+            val clubsRequest = clubsGeneration
             val nextClubs = load { providers.firebase.listClubSummaries() }
             val nextRide = load { providers.firebase.getActiveRide() }
             val nextPayable = load { providers.firebase.getPayableBookings() }
@@ -47,7 +49,7 @@ internal class AppDataState {
             Snapshot.withMutableSnapshot {
                 trips.value = nextTrips
                 children.value = nextChildren
-                clubs.value = nextClubs
+                if (clubsRequest == clubsGeneration) clubs.value = nextClubs
                 activeRide.value = nextRide
                 activeRideTrip.value = nextRide?.tripId?.let { id ->
                     activeRideTrip.value?.takeIf { it.id == id } ?: nextTrips.firstOrNull { it.id == id }
@@ -62,8 +64,11 @@ internal class AppDataState {
         catch (failure: Exception) { if (request == generation) throw failure }
     }
 
+    fun replaceClubs(value: List<ClubSummary>) { clubsGeneration += 1; clubs.value = value }
+
     fun clear() {
         generation += 1
+        clubsGeneration += 1
         Snapshot.withMutableSnapshot {
             trips.value = emptyList()
             children.value = emptyList()
