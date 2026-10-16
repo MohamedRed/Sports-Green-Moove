@@ -5,8 +5,9 @@
 The callable service supports cancellation of a published/full trip by its own
 driver, or by an explicitly authorized administrator. It does not cancel active
 rides. Android now connects the driver list to an explicit confirmation screen.
-Its new isolated app replay must pass before it can count as app-flow evidence;
-exporting the service or compiling the screen alone is not that proof.
+Its completed isolated app replay is retained in
+`../release/evidence/local-trip-cancellation-ui-2026-10-16/`. This is not physical
+device, real-payment/refund, push-delivery or production-deployment evidence.
 
 `getTripCancellation({ tripId })` returns `ready`, a revision, the number of
 requested/approved reservations and the number already paid. A cancelled trip

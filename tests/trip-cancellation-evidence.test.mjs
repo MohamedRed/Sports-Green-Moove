@@ -1,10 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { content } from '../partner-portal/content.mjs';
+import { createHash } from 'node:crypto';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { XMLParser } from 'fast-xml-parser';
+import { content, captures } from '../partner-portal/content.mjs';
+import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentation-result.mjs';
+import { assertChatLossReceipt } from '../scripts/qa/chat-loss-evidence.mjs';
+import { assertChatNetworkReceipt, assertCellularRequestSetup } from '../scripts/qa/chat-network-evidence.mjs';
+import { assertChatRestartReceipt } from '../scripts/qa/chat-restart-evidence.mjs';
 
 const base = 'docs/release/evidence/local-trip-cancellation-2026-10-16/';
-const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+const root = fileURLToPath(new URL('../', import.meta.url));
+const read = (path) => readFileSync(resolve(root, path), 'utf8');
 const json = (name) => JSON.parse(read(base + name));
 
 test('local cancellation evidence retains all earlier service groups without accepting app or live payment scope', () => {
@@ -62,7 +71,7 @@ test('rules and synthetic webhook reports cover cancellation authority, late suc
   assert(payments.some((item) => item.fullName.includes('does not reopen a settled refund') && item.status === 'passed'));
 });
 
-test('CI runs cancellation checks and the private portal keeps native cancellation and real refunds open', () => {
+test('CI runs cancellation checks and the private portal separates local app proof from real refunds', () => {
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/trip-cancellation-rules.test.ts"').length - 1, 2);
   assert.equal(workflow.split('"tests/trip-cancellation-evidence.test.mjs"').length - 1, 2);
@@ -75,8 +84,65 @@ test('CI runs cancellation checks and the private portal keeps native cancellati
   assert(pkg.scripts['test:rules'].includes('tests/trip-cancellation-rules.test.ts'));
   const flow = content.flows.find((item) => item.id === 'publication');
   assert.equal(flow.status, 'partial'); assert.equal(flow.local.source, base + 'services.json');
-  assert(flow.local.groups.includes('trip-cancellation')); assert.equal(flow.source, base + 'README.md');
-  assert.match(flow.remaining, /écran d’annulation/); assert.match(flow.remaining, /remboursements/);
+  assert(flow.local.groups.includes('trip-cancellation')); assert.equal(flow.source, uiBase + 'README.md');
+  assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
-  assert.equal(flow.ui, undefined); assert.match(read(base + 'README.md'), /not been deployed to production/);
+  assert.deepEqual(flow.ui, { source: uiBase + 'results.json', groups: ['driver-trip-cancellation-ui'] });
+  assert.match(read(base + 'README.md'), /not been deployed to production/);
+  for (const name of ['trip-cancel-review', 'trip-cancel-confirmed', 'trip-cancel-parent']) assert(captures[name].startsWith(uiBase));
+});
+
+const uiBase = 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/';
+const uiJson = (name) => JSON.parse(read(uiBase + name));
+
+test('completed app cancellation requires the actual same-run receipt and independently verified closed state', () => {
+  const run = uiJson('results.json');
+  assert.equal(run.projectId, 'demo-sgm-local-qa'); assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.runId, '4043ac86a7274758c6e74a9212987c66');
+  assert.equal(run.testedAt, '2026-10-16T18:07:54.115Z');
+  assert.equal(run.testCount, 21); assert.equal(run.steps.length, 22);
+  assert(run.steps.every((item) => item.status === 'passed'));
+  assert(run.steps.some((item) => item.id === 'driver-trip-cancellation-ui'));
+  const result = run.tripCancellation;
+  assert.equal(result.method, 'app-ui-with-independent-persisted-checks');
+  assert.equal(result.bookingCount, 2); assert.equal(result.notificationCount, 1); assert.equal(result.refundPendingCount, 1);
+  assert.equal(result.seatsInitiallyOffered, 3); assert.equal(result.seatsAfterApproval, 1); assert.equal(result.seatsAfterCancellation, 3);
+  assert.equal(result.receipt.tripId, result.tripId); assert.equal(result.receipt.actorUserId, 'sgm-qa-driver');
+  assert.equal(result.receipt.status, 'cancelled'); assert.equal(result.receipt.bookingCount, 2);
+  assert.equal(result.receipt.refundPendingCount, 1); assert.equal(result.receipt.seatsAvailable, 3);
+  assert.equal(new Set(result.receipt.bookingIds).size, 2);
+  assert.match(result.receipt.expectedRevision, /^[a-f0-9]{64}$/); assert.match(result.receipt.requestId, /^[a-f0-9-]{36}$/);
+  for (const key of ['parentCancelledReservationsVisible', 'parentPendingRefundVisible', 'repeatedRequestIdempotent',
+    'rebookApproveStartDenied', 'syntheticPaymentMetadata']) assert.equal(result[key], true);
+  for (const key of ['livePayment', 'refundIssued', 'productionDeployed']) assert.equal(result[key], false);
+  assertInstrumentationPassed(read(uiBase + 'LocalTripCancellationFlowTest-instrumentation.txt'), 1);
+});
+
+test('raw replay artifacts and interrupted attempts remain unchanged and the earlier groups still pass', () => {
+  const hashes = uiJson('artifact-sha256.json');
+  assert.equal(Object.keys(hashes).length, 38);
+  for (const [name, hash] of Object.entries(hashes)) assert.equal(createHash('sha256')
+    .update(readFileSync(resolve(root, uiBase, name))).digest('hex'), hash, name);
+  for (const attempt of ['one', 'two', 'three', 'four']) assert.match(read(uiBase + `attempt-${attempt}-instrumentation.txt`), /FAILURES!!!/);
+  const transcripts = Object.keys(hashes).filter((name) => name.endsWith('-instrumentation.txt') && !name.startsWith('attempt-'));
+  assert.equal(transcripts.length, 13);
+  for (const name of transcripts) assertInstrumentationPassed(read(uiBase + name), name.startsWith('LocalAppFlowTest-') ? 9 : 1);
+  const run = uiJson('results.json');
+  for (const phase of ['confirmed-restart', 'response-loss', 'network-recovery']) {
+    const receipt = uiJson(`adb-pull-${phase}.json`);
+    assert.equal(receipt.runId, run.runId); assert.equal(receipt.status, 0); assert.equal(receipt.completed, true);
+  }
+  assertChatLossReceipt(uiJson('local-chat-loss-ui.json'), uiJson('local-chat-loss-proxy.json'), run.runId, run.chatResponseLoss.sourceId);
+  assertChatNetworkReceipt(uiJson('local-chat-network-ui.json')); assertCellularRequestSetup(uiJson('local-chat-network-ui.json'));
+  assertChatRestartReceipt(uiJson('local-chat-restart-before.json'), uiJson('local-chat-restart-stop.json'), uiJson('local-chat-restart-after.json'), run.runId);
+});
+
+test('all cancellation component cases executed while local app cases remain deliberately separate', () => {
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
+    processEntities: false, isArray: (name) => name === 'testcase' }).parse(read(uiBase + 'component.xml')).testsuite;
+  assert.equal(suite.tests, 73); assert.equal(suite.failures, 0); assert.equal(suite.errors, 0); assert.equal(suite.skipped, 16);
+  const cases = suite.testcase.filter((item) => item.classname === 'be.sportgreenmoove.app.ui.TripCancellationFlowTest');
+  assert.equal(cases.length, 3); assert(cases.every((item) => !item.failure && !Object.hasOwn(item, 'skipped')));
+  assert.match(read(uiBase + 'README.md'), /does not establish why that submit was not confirmed/);
+  assert.match(read(uiBase + 'README.md'), /no general crash, transport or/);
 });

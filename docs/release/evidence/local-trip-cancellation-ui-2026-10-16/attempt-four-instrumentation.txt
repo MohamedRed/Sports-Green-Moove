@@ -1,0 +1,26 @@
+
+be.sportgreenmoove.app.ui.LocalAppFlowTest:.
+be.sportgreenmoove.app.ui.LocalDriverFlowTest:.
+be.sportgreenmoove.app.ui.LocalLandscapeLoginTest:
+Error in landscapeLoginScrollsToInputsAndSubmit(be.sportgreenmoove.app.ui.LocalLandscapeLoginTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalLandscapeLoginTest.landscapeLoginScrollsToInputsAndSubmit(LocalLandscapeLoginTest.kt:56)
+
+be.sportgreenmoove.app.ui.LocalUiRegressionTest:..
+be.sportgreenmoove.app.ui.SearchSessionFlowTest:..
+be.sportgreenmoove.app.ui.SearchCriteriaFlowTest:..
+
+Time: 119.43
+There was 1 failure:
+1) landscapeLoginScrollsToInputsAndSubmit(be.sportgreenmoove.app.ui.LocalLandscapeLoginTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalLandscapeLoginTest.landscapeLoginScrollsToInputsAndSubmit(LocalLandscapeLoginTest.kt:56)
+
+FAILURES!!!
+Tests run: 9,  Failures: 1
+
+

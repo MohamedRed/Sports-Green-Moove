@@ -1,4 +1,7 @@
 export const captures = {
+  'trip-cancel-review': 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/local-trip-cancel-review-portrait.png',
+  'trip-cancel-confirmed': 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/local-trip-cancel-confirmed-landscape.png',
+  'trip-cancel-parent': 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/local-trip-cancelled-parent.png',
   'login-empty': 'docs/release/evidence/browserstack-2026-10-15/01-login-empty-email.png',
   'signup-name': 'docs/release/evidence/browserstack-2026-10-15/02-signup-empty-name.png',
   'signup-email': 'docs/release/evidence/browserstack-2026-10-15/03-signup-invalid-email.png',
