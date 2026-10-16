@@ -40,7 +40,9 @@ test('manual UI evidence is distinguished from persisted-state and phone evidenc
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, ui.testedAt.slice(0, 10));
   assert.match(flow.remaining, /enfant/); assert.match(flow.remaining, /téléphone/);
   assert(!content.blockers.some((item) => item.id === 'membership-review'));
-  assert(flow.images.slice(0, 2).every((image) => image.landscape === true));
+  const wideReviews = flow.images.filter((image) => ['membership-manager', 'membership-admin'].includes(image.file));
+  assert.equal(wideReviews.length, 2);
+  assert(wideReviews.every((image) => image.landscape === true));
   assert.match(readFileSync(new URL('partner-portal/src/styles.css', root), 'utf8'), /\.media-stage\.is-landscape/);
   assert.match(read('README.md'), /have not been deployed/);
 });

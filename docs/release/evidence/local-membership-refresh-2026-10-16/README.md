@@ -1,7 +1,7 @@
 # Native Membership Refresh
 
-Implementation and local checks dated 2026-10-16 UTC. The full device replay is
-pending; do not treat compilation or unit tests as accepted screen evidence.
+Implementation and local checks dated 2026-10-16 UTC. The completed replay below
+is emulator evidence, not physical-device or production evidence.
 No production data, roles, provider transactions or paid resources are changed.
 
 ## Root Cause And Change
@@ -34,11 +34,12 @@ recreates the activity and checks another account. Independent record checks
 require two active memberships, exactly three matching audit/notification pairs,
 unchanged parent roles and counters incremented once per approval. These manager
 decisions are not native management UI proof. Three component layout cases cover
-loading/error boundaries and 320dp with 1.3x text, separately from the real replay.
+loading/error boundaries and 320dp with 1.3x text, separately from the
+service-connected app replay.
 
 The current isolated runner requires 16 instrumentation cases and 17 coverage
-groups. Screen captures and result JSON will only be accepted after an actual
-completed run. Physical devices, push delivery, network recovery, child enrolment,
+groups. Only captures from a completed run are accepted below.
+Physical devices, push delivery, network recovery, child enrolment,
 team assignment and complete club discovery remain unverified. No final release
 manifest acceptance is changed.
 
@@ -64,3 +65,45 @@ independent audits and strict case counts remain unchanged. A full replay after
 this harness correction is still required. The separate web smoke failure was
 an old current-run expectation of 15 cases, not a changed historical receipt;
 that expectation now includes the new case while original evidence stays intact.
+
+## Accepted Replay
+
+[Run 38855004790](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38855004790)
+at `e142d87` passes every enabled check. `results.json` is unchanged output from
+`32718a1063c5fc003cda4cc4142208ab`, completed at `2026-10-16T05:29:26.549Z`:
+16 instrumentation cases, 17 coverage groups. `membership-replay-passed.txt`
+retains its successful one-case report, removing only extra terminal blank lines;
+the compressed original is unchanged. The separate `general-ui-replay-passed.xml`
+records the new general run with all three Groups component cases passing. Its
+original XML is also retained compressed with the same mechanical normalization.
+
+The parent requests two memberships in the actual app. One is approved and one
+refused through the authenticated local manager SDK session. Explicit refresh
+shows the accepted membership under My Clubs and the refusal with a new request
+action. The parent re-requests, the manager approves and refresh shows both active
+memberships. Activity recreation preserves the server-backed results. Signing out
+and into the other fixture account shows its own memberships, with neither parent
+membership carried across. This is activity recreation, not a process restart or
+physical-phone restart test.
+
+The independent verifier confirms both member-role records active, one audit for
+the first and two for the second, three matching notifications, counters exactly
+two in both clubs and unchanged parent Auth roles. It does not prove push delivery.
+The manager-side UI was separately verified in the
+[management replay](../local-membership-review-2026-10-16/README.md); this replay's
+manager decisions are SDK calls, not native management controls.
+
+Reviewed, unaltered original app captures:
+
+- `local-membership-approved-refused.png`: accepted/refused states after refresh.
+- `local-membership-after-restart.png`: two active memberships after activity
+  recreation; the original filename does not imply process-restart proof.
+- `local-membership-other-account.png`: the other account sees those two clubs
+  as joinable, not its memberships. The original capture is scrolled; no app
+  content was cropped or edited afterward.
+
+These three images are allowlisted for the private progress site. No credentials,
+blank frames or interrupted-run captures are published. The 50-record bounds,
+club details/creation, team assignment, child enrolment, full network recovery and
+physical/push/live-payment/safety requirements remain open. The implementation is
+not deployed to production, and no release-manifest acceptance is changed.
