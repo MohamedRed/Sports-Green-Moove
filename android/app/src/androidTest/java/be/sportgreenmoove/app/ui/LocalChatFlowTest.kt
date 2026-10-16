@@ -146,8 +146,10 @@ class LocalChatFlowTest {
     }
 
     private fun send(body: String) {
-        var phase = "composer-ready"
+        var phase = "window-ready"
         try {
+            compose.waitUntil(30_000) { windowFocused() }
+            phase = "composer-ready"
             waitForComposer()
             closeKeyboard()
             val restingTop = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().boundsInRoot.top
@@ -201,13 +203,26 @@ class LocalChatFlowTest {
     }
     private fun writeSendDiagnostic(phase: String, device: UiDevice) {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val directory = File(context.getExternalFilesDir(null), "local-ui-evidence")
+        check(directory.isDirectory || directory.mkdirs())
         val diagnostic = JSONObject().put("phase", phase).put("keyboardVisible", keyboardVisible())
             .put("displayWidth", device.displayWidth).put("displayHeight", device.displayHeight)
+            .put("foregroundPackage", device.currentPackageName)
         scenario.onActivity {
             diagnostic.put("windowWidth", it.window.decorView.width).put("windowHeight", it.window.decorView.height)
                 .put("windowFocused", it.window.decorView.hasWindowFocus())
         }
-        File(context.getExternalFilesDir(null), "local-ui-evidence/local-chat-send-state.json").writeText(diagnostic.toString(2))
+        val focusedWindows = device.executeShellCommand("dumpsys window").lineSequence().filter { line ->
+            listOf("mCurrentFocus=", "mFocusedApp=", "mInputMethodWindow=", "mTopFocusedDisplayId=").any(line::contains)
+        }.joinToString("\n")
+        diagnostic.put("focusedWindows", focusedWindows)
+        File(directory, "local-chat-send-state.json").writeText(diagnostic.toString(2))
+        check(device.takeScreenshot(File(directory, "local-chat-native-window.png")))
+    }
+    private fun windowFocused(): Boolean {
+        var focused = false
+        scenario.onActivity { focused = it.window.decorView.hasWindowFocus() }
+        return focused
     }
     private fun keyboardVisible(): Boolean {
         var visible = false

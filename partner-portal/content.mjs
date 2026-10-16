@@ -74,7 +74,7 @@ export const content = {
   releaseNote: 'Tests en cours.',
   updates: [
     { date: '2026-10-16', title: 'Le clavier des messages à revérifier',
-      text: 'Un nouvel essai s’arrête à l’ouverture du clavier après rotation. Le message n’a pas encore été envoyé dans cet essai.', flow: 'messages' },
+      text: 'Le clavier ne s’ouvre pas après rotation dans deux essais. La reprise de l’écran est à vérifier avant de retester l’envoi.', flow: 'messages' },
     { date: '2026-10-16', title: 'Le club peut accepter ou refuser une adhésion',
       text: 'Le responsable du club et l’administrateur prennent leurs décisions en local. Les statuts et le nombre de membres sont vérifiés. Les captures sont disponibles.', flow: 'clubs' },
     { date: '2026-10-16', title: 'Refus et annulation testés dans l’app',
@@ -120,7 +120,7 @@ export const content = {
   ],
   blockers: [
     { id: 'chat-send-stability', title: 'Répéter l’envoi de messages',
-      text: 'Certains essais passent. Un nouvel essai s’arrête au clavier après rotation, avant l’envoi.',
+      text: 'Deux essais s’arrêtent au clavier après rotation. La reprise de l’écran reste à vérifier.',
       next: 'Rejouer le clavier, puis les coupures et les changements de compte.', source: membershipReport },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Le premier échange depuis une réservation passe en local. Le démarrage depuis un groupe reste à ajouter.',

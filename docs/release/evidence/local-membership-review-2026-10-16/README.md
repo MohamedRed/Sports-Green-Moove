@@ -126,3 +126,20 @@ text. Keyboard visibility, send acknowledgement and persisted-state assertions
 are retained. Preflight failures now also produce a screenshot and a phase/window
 diagnostic instead of missing the send-only diagnostic catch. A successful replay
 is still required; this does not claim that general chat stability is solved.
+
+[Run 38846769469](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38846769469)
+at `2672f64` still fails the first parent keyboard-open check. The retained,
+unchanged `chat-window-state.json` shows correct 1080x2400 portrait dimensions but
+`windowFocused = false` and `keyboardVisible = false`. The composer-focus assertion
+passed; no text replacement or send was attempted. Removing the redundant hide
+and checking orientation did not resolve the failure.
+
+The next replay requires actual window focus before tapping and captures the
+native device frame, foreground package and focused-window identifiers on failure.
+It does not activate another window, dismiss an unknown system prompt, force the
+keyboard or remove assertions. This distinguishes a background/obstructed activity
+from an app-input failure before choosing a production fix. The
+[upstream focus change](https://android.googlesource.com/superprojects/androidx/+/15c5a887a08a2c2a53586d459c7e5e222b64d43d)
+describes rejected input sessions before window focus; it is relevant context,
+not proof that this is the same framework defect or grounds for an untested
+dependency upgrade. No production app behavior is changed by these diagnostics.

@@ -122,4 +122,7 @@ test('chat replay retains keyboard, rotation and send checks without queuing a r
   assert.match(chat, /windowFocused/);
   assert.match(chat, /draft\(\).isEmpty\(\)/);
   assert.match(chat, /writeSendDiagnostic\(phase, device\)/);
+  assert.match(chat, /compose.waitUntil\(30_000\) \{ windowFocused\(\) \}/);
+  assert.match(chat, /foregroundPackage/);
+  assert.match(chat, /local-chat-native-window.png/);
 });

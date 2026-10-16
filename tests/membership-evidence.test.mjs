@@ -63,6 +63,9 @@ test('reviewed images and raw unit/rules evidence remain scoped', () => {
   assert(!/OK \(/.test(chat));
   const originalChat = gunzipSync(readFileSync(new URL(base + 'chat-replay-original.txt.gz', root))).toString('utf8');
   assert.equal(chat, originalChat.replace(/\n+$/, '\n'));
+  const window = json('chat-window-state.json');
+  assert.equal(window.phase, 'keyboard-open');
+  assert.equal(window.windowFocused, false); assert.equal(window.keyboardVisible, false);
   assert(existsSync(new URL(base + 'parent-denied.jpg', root)));
   assert(!Object.values(captures).includes(base + 'parent-denied.jpg'));
 });
