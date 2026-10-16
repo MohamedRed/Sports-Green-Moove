@@ -91,3 +91,17 @@ test('local conversation evidence requires app execution and independent persist
   const chat = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatFlowTest.kt', import.meta.url), 'utf8');
   assert.match(chat, /captureLocalUi\(compose, "local-chat-landscape-draft.png", landscape = true\)/);
 });
+
+test('rotation cleanup preserves the inherited lock and waits for portrait before the next case', () => {
+  for (const name of ['LocalLandscapeLoginTest', 'LocalThemeRestartTest']) {
+    const fixture = readFileSync(new URL(`../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/${name}.kt`, import.meta.url), 'utf8');
+    assert.match(fixture, /val autoRotation = Settings.System.getInt\(context.contentResolver, Settings.System.ACCELEROMETER_ROTATION, 0\)/);
+    const cleanup = fixture.slice(fixture.lastIndexOf('} finally {'));
+    assert.match(cleanup, /device.setOrientationNatural\(\)/);
+    assert.match(cleanup, /compose.waitUntil\(15_000\)/);
+    assert.match(cleanup, /Configuration.ORIENTATION_PORTRAIT/);
+    assert.match(cleanup, /device.displayWidth < device.displayHeight/);
+    assert.match(cleanup, /waitForIdleSync\(\)/);
+    assert.match(cleanup, /if \(autoRotation != 0\) device.unfreezeRotation\(\)/);
+  }
+});

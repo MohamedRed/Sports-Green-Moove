@@ -2,6 +2,7 @@ package be.sportgreenmoove.app.ui
 
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.provider.Settings
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -33,6 +34,7 @@ class LocalLandscapeLoginTest {
         check(session.getString("projectId") == "demo-sgm-local-qa")
         AndroidRuntime.create(context).auth.signOut()
         val device = UiDevice.getInstance(instrumentation)
+        val autoRotation = Settings.System.getInt(context.contentResolver, Settings.System.ACCELEROMETER_ROTATION, 0)
         device.setOrientationLeft()
         try {
             ActivityScenario.launch(MainActivity::class.java).use { activity ->
@@ -60,7 +62,13 @@ class LocalLandscapeLoginTest {
             }
         } finally {
             device.setOrientationNatural()
-            device.unfreezeRotation()
+            compose.waitUntil(15_000) {
+                context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT &&
+                    device.displayWidth < device.displayHeight
+            }
+            instrumentation.waitForIdleSync()
+            // Do not enable sensor rotation when the following tests inherited a portrait lock.
+            if (autoRotation != 0) device.unfreezeRotation()
         }
     }
 }

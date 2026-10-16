@@ -3,6 +3,7 @@ package be.sportgreenmoove.app.ui
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.provider.Settings
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -27,6 +28,7 @@ class LocalThemeRestartTest {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         assertTrue(context.getSharedPreferences("appearance", Context.MODE_PRIVATE).getBoolean("darkTheme", false))
         val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+        val autoRotation = Settings.System.getInt(context.contentResolver, Settings.System.ACCELEROMETER_ROTATION, 0)
         device.setOrientationNatural()
         try {
             ActivityScenario.launch(MainActivity::class.java).use { activity ->
@@ -40,7 +42,13 @@ class LocalThemeRestartTest {
                 captureLocalUi(compose, "local-theme-after-process-restart.png")
             }
         } finally {
-            device.unfreezeRotation()
+            device.setOrientationNatural()
+            compose.waitUntil(15_000) {
+                context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT &&
+                    device.displayWidth < device.displayHeight
+            }
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            if (autoRotation != 0) device.unfreezeRotation()
         }
     }
 }

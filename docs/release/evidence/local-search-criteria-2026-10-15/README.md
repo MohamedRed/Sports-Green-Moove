@@ -70,6 +70,17 @@ The selectors now distinguish clickable choices from static result text and use
 the host button's explicit identifier. All selection and booking assertions stay
 in place; a fresh complete run is still required.
 
+Attempt `38828218654` passed the general instrumentation phase and both new
+criteria UI cases. Its local group then failed three older cases with missing
+Compose roots and a landscape capture where portrait was required. The landscape
+test unconditionally enabled sensor rotation during teardown instead of
+preserving the inherited portrait lock, and did not await portrait restoration.
+Landscape/theme cleanup now waits for portrait configuration/display dimensions
+and only re-enables automatic rotation if it was enabled on entry. This remains
+diagnostic partial execution, not an accepted complete native run. The SDK case
+was not reached. The crash buffer was empty; this does not resolve the separately
+recorded earlier SlotWriter crash.
+
 The expanded native runner requires 14 instrumentation cases, including one
 SDK-only case, across six invocations. This is not 14 physical-phone journeys.
 Earlier [11-case screen evidence](../local-search-ui-2026-10-15/README.md) remains
