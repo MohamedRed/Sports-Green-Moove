@@ -36,10 +36,12 @@ Only after the second stage and acknowledged named evidence copy can host
 verification require every stored record hash to match the pre-stop checkpoint.
 It also checks scoped parent review, outsider denial, the unresolved-change ride
 start guard and three non-empty native captures. A run-bound stage receipt is
-not a full replay; all 28 groups remain mandatory for `results.json`.
+not a full replay. The completed historical replay contains 28 groups; the current
+runner requires 32 after adding the [four-state recovery matrix](native-trip-consent-recovery-test.md).
 
 Scope is confirmed single-parent price consent only. Pending/partially accepted,
-refused and withdrawn proposal recovery, unsent drafts, route computation,
+refused and withdrawn proposal recovery are implemented as separate required tests
+but are not yet proven by a completed run. Unsent drafts, route computation,
 application, real payment/refund and physical-device scenarios remain separate.
 No screenshot or success claim is published before an actual completed run and
 visual review. No production code, provider substitute or fallback is added.
