@@ -1,0 +1,57 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { assertTripChangeUiReceipt } from '../scripts/qa/trip-change-ui-evidence.mjs';
+
+const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+const nativePath = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeFlowTest.kt';
+const fixtures = Object.fromEntries(['confirmed', 'declined', 'withdrawn'].map((kind) => [kind, { tripId: 'test-' + kind }]));
+const runId = 'a'.repeat(32);
+const sample = () => ({ projectId: 'demo-sgm-local-qa', runId, scope: 'native-three-account-trip-consent-ui', completed: true,
+  confirmedTripId: fixtures.confirmed.tripId, declinedTripId: fixtures.declined.tripId, withdrawnTripId: fixtures.withdrawn.tripId,
+  firstParentPending: true, secondParentConfirmed: true, refusalVisible: true, withdrawalVisible: true, routeRequiredBeforeApplication: true });
+
+test('trip consent evidence requires this run, exact fixture identities and every native outcome', () => {
+  assertTripChangeUiReceipt(sample(), { fixtures, runId });
+  for (const [key, value] of Object.entries(sample())) {
+    assert.throws(() => assertTripChangeUiReceipt({ ...sample(), [key]: typeof value === 'boolean' ? false : 'other' }, { fixtures, runId }), key);
+  }
+});
+
+test('the new native case uses the real app and three isolated actors, not simulated gateways or a provider substitute', () => {
+  const native = read(nativePath);
+  for (const marker of ['BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR', 'demo-sgm-local-qa',
+    'ActivityScenario.launch(MainActivity::class.java)', 'AuthTestInteractions(compose, activity)',
+    'tripChangeSecondParentEmail', 'tripChangeSecondBooking', 'Accords reçus : 1 / 2', 'Accords reçus : 2 / 2',
+    'Votre refus est enregistré.', 'Proposition retirée, trajet initial conservé',
+    'compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()',
+    'compose.onNodeWithTag("trip.change.calculate").performScrollTo().assertIsDisplayed().assertIsEnabled()',
+    'File(directory, "local-trip-change-ui.json")']) assert(native.includes(marker), marker);
+  assert(!/setSgmUiTestContent|UiFlow.*Gateway|performSemanticsAction|quoteTripChange\(|applyTripChange\(/.test(native));
+  assert.equal((native.match(/@Test fun /g) ?? []).length, 1);
+  const runner = read('scripts/qa/local-android-session.mjs');
+  assert(runner.includes("instrument(['LocalTripChangeFlowTest'], 1"));
+  assert(runner.indexOf("collectEvidence('trip-change-parent-confirmation')") < runner.indexOf('await verifyTripChangeUi'));
+  assert(runner.indexOf('await verifyTripChangeUi') < runner.indexOf('replayWithNetworkCleanup(adb'));
+  assert(runner.includes('testCount: 25')); assert(runner.includes("'trip-change-parent-confirmation-ui'"));
+});
+
+test('independent saved records, scoped parent reads and denials gate a non-full-run receipt', () => {
+  const verifier = read('scripts/qa/local-trip-change-ui.mjs');
+  for (const marker of ['auth.createUser', "roleKeys: ['parent']", "for (const kind of ['confirmed', 'declined', 'withdrawn'])",
+    "await call('requestBooking'", "await call('approveBooking'", 'assertTripChangeUiReceipt(native, { fixtures, runId })',
+    'assert.deepEqual(cleanTrip(trip), fixture.before', 'fixture.bookingsBefore[index]', 'assert.equal(changes.size, 1)',
+    'assert.deepEqual(review.bookingIds, [fixture.bookingIds[index]])', "await denied('getTripChangeReview', outsider",
+    "call('startRide', driver", 'A proposed change must be resolved before starting the ride.', 'assert.equal(notes.size, 5)',
+    "recordType: 'native-trip-change-stage-not-full-run-result'", 'applicationExercised: false',
+    'routeProviderExercised: false', 'paymentExercised: false', 'fullAppReplay: false', "{ flag: 'wx' }"]) assert(verifier.includes(marker), marker);
+  assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'trip-change-parent-confirmation'"));
+  assert(!verifier.includes('quoteTripChangeApplication'));
+  for (const path of ['scripts/qa/local-trip-change-ui.mjs', 'scripts/qa/trip-change-ui-evidence.mjs', nativePath]) {
+    assert(read(path).split('\n').length < 300);
+  }
+  for (const workflow of ['native-ci.yml', 'web-integration-smoke.yml']) {
+    assert.equal(read('.github/workflows/' + workflow).split('"tests/trip-change-ui.test.mjs"').length - 1, 2);
+  }
+  assert(JSON.parse(read('package.json')).scripts['test:local-flow-isolation'].includes('tests/trip-change-ui.test.mjs'));
+});
