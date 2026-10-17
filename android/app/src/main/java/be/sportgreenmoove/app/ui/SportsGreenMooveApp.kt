@@ -209,7 +209,7 @@ fun SportsGreenMooveApp() {
                             onOpenSearch = { screen = AppScreen.Search },
                             onOpenRide = { screen = AppScreen.Ride },
                             reservationContent = {
-                                ReservationManagementRoute(requireNotNull(session).uid, role, providers.reservations) { refreshAppData() }
+                                ReservationManagementRoute(requireNotNull(session).uid, role, providers.reservations, providers.firebase) { refreshAppData() }
                             },
                         )
                         AppScreen.Publish -> PublishScreen(

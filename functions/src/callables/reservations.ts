@@ -27,6 +27,7 @@ export const listReservations = onCall(async (request) => {
   const snapshot = await query.limit(21).get();
   const scanned = snapshot.docs.slice(0, 20);
   const items = [];
+  const proposals = new Map<string, FirebaseFirestore.DocumentData | undefined>();
   for (const doc of scanned) {
     const parsed = reservationSchema.safeParse(doc.data());
     if (!parsed.success || !(doc.get("createdAt") instanceof Timestamp)) {
@@ -40,9 +41,18 @@ export const listReservations = onCall(async (request) => {
     const trip = { ...tripSnap.data(), id: tripSnap.id } as Trip;
     const ride = trip.activeRideSessionId
       ? (await firestore.collection("rideSessions").doc(trip.activeRideSessionId).get()).data() : undefined;
+    const proposalId = trip.pendingChangeId ?? trip.appliedChangeId;
+    if (proposalId != null && (typeof proposalId !== "string" || !/^[a-f0-9]{64}$/.test(proposalId)))
+      throw new HttpsError("failed-precondition", "Trip change reference requires repair.");
+    if (proposalId && !proposals.has(proposalId))
+      proposals.set(proposalId, (await firestore.collection("tripChanges").doc(proposalId).get()).data());
+    const proposal = proposalId ? proposals.get(proposalId) : undefined;
+    const canReviewChange = proposal?.tripId === booking.tripId && proposal.driverUserId === trip.driverUserId &&
+      Array.isArray(proposal.bookingIds) && proposal.bookingIds.includes(booking.id) &&
+      (input.role === "driver" || (Array.isArray(proposal.parentUserIds) && proposal.parentUserIds.includes(uid)));
     items.push({ ...toClientBookingRequestSummary(booking, trip),
       allowedActions: reservationActions(uid, input.role, booking, trip, ride),
-      refundPending: booking.refundStatus === "pending" });
+      refundPending: booking.refundStatus === "pending", tripChangeId: canReviewChange ? proposalId : null });
   }
   const last = scanned.at(-1);
   return { items, nextCursor: snapshot.size > 20 && last

@@ -75,7 +75,7 @@ fun GoogleMapsRoutePreviewCard(
 }
 
 @Composable
-private fun NativeGoogleMap(preview: MapRoutePreview) {
+internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true) {
     val points = remember(preview) {
         MapRoutePolyline.pointsFor(preview).map { LatLng(it.lat, it.lng) }
     }
@@ -103,7 +103,7 @@ private fun NativeGoogleMap(preview: MapRoutePreview) {
             zoomControlsEnabled = false,
         ),
     ) {
-        Polyline(points = points, color = SgmColor.Green, width = 10f)
+        if (showRoute) Polyline(points = points, color = SgmColor.Green, width = 10f)
         Marker(state = MarkerState(position = start), title = "Départ")
         Marker(state = MarkerState(position = end), title = "Arrivée")
     }

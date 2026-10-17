@@ -17,6 +17,11 @@ const storedQuoteSchema = z.object({ tripId: z.string(), proposalId: z.string(),
   actorUserId: z.string(), requestId: z.uuid(), route: routeQuoteSchema, createdAt: z.instanceof(Timestamp),
   expiresAt: z.instanceof(Timestamp) }).strict();
 
+function quoteExpired(): never {
+  throw new HttpsError("failed-precondition", "Route quote expired. Request a fresh quote explicitly.",
+    { reason: "trip-change-quote-expired" });
+}
+
 async function confirmedState(tripId: string, proposalId: string, uid: string) {
   return firestore.runTransaction(async (transaction) => {
     const record = await loadStoredTripChange(transaction, tripId, proposalId);
@@ -38,8 +43,8 @@ export async function quoteTripChangeApplication(data: z.infer<typeof quoteTripC
     const quote = storedQuoteSchema.parse(existing.data());
     if (quote.tripId !== data.tripId || quote.proposalRevision !== data.proposalRevision || quote.actorUserId !== uid)
       throw new HttpsError("already-exists", "Quote identity belongs to different conditions.");
-    if (quote.expiresAt.toMillis() <= Date.now()) changePrecondition("Route quote expired. Request a fresh quote explicitly.");
-    return { quoteId, route: quote.route, expiresAt: quote.expiresAt.toDate().toISOString() };
+    if (quote.expiresAt.toMillis() <= Date.now()) quoteExpired();
+    return { ...data, quoteId, route: quote.route, expiresAt: quote.expiresAt.toDate().toISOString() };
   }
   const route = routeQuoteSchema.parse(await provider.computeTripRoute(terms.origin, terms.destination, terms.departureAt));
   return firestore.runTransaction(async (transaction) => {
@@ -48,11 +53,11 @@ export async function quoteTripChangeApplication(data: z.infer<typeof quoteTripC
     if (current.driverUserId !== uid || current.status !== "confirmed" || current.revision !== data.proposalRevision ||
         !changeStillCurrent(state, current, data.proposalId)) throw new HttpsError("aborted", "Trip changed while calculating its route.");
     const prior = previous.exists ? storedQuoteSchema.parse(previous.data()) : null;
-    if (prior && prior.expiresAt.toMillis() <= Date.now()) changePrecondition("Route quote expired. Request a fresh quote explicitly.");
+    if (prior && prior.expiresAt.toMillis() <= Date.now()) quoteExpired();
     const now = Timestamp.now(), quote = prior ?? { ...data, actorUserId: uid, route,
       createdAt: now, expiresAt: Timestamp.fromMillis(now.toMillis() + 5 * 60_000) };
     if (!prior) transaction.create(ref, quote);
-    return { quoteId, route: quote.route, expiresAt: quote.expiresAt.toDate().toISOString() };
+    return { ...data, quoteId, route: quote.route, expiresAt: quote.expiresAt.toDate().toISOString() };
   });
 }
 

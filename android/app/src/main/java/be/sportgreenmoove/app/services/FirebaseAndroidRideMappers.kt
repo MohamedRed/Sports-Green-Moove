@@ -41,6 +41,8 @@ internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
         departureAtIso = departure?.toInstant()?.toString(),
         driverUserId = data["driverUserId"] as? String,
         cancelled = data["status"] == "cancelled",
+        pendingChangeId = tripChangeReferenceOrNull(data["pendingChangeId"]),
+        appliedChangeId = tripChangeReferenceOrNull(data["appliedChangeId"]),
         bookingIntent = BookingIntentSnapshot.fromTripData(data + listOf("departureAt", "arrivalBy").associateWith { key ->
             when (val value = data[key]) {
                 is Timestamp -> value.toDate().toInstant().toString()
@@ -50,6 +52,8 @@ internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
         }),
     )
 }
+
+private fun tripChangeReferenceOrNull(value: Any?): String? = value?.let { TripChangeWire.hash(it) }
 
 internal fun mapRide(data: Map<*, *>): LiveRideSnapshot =
     LiveRideSnapshot(

@@ -21,7 +21,8 @@ import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun BookingRequestsList(items: List<ReservationItem>, busy: Boolean, onDecision: (ReservationItem, ReservationDecision) -> Unit) {
+fun BookingRequestsList(items: List<ReservationItem>, busy: Boolean, onReview: ((ReservationItem) -> Unit)? = null,
+    onDecision: (ReservationItem, ReservationDecision) -> Unit) {
     items.forEach { item ->
         val booking = item.booking
         Column(Modifier.testTag("reservation.card.${booking.bookingId}").fillMaxWidth().clip(RoundedCornerShape(SgmRadius.LG)).background(Sgm.colors.bgCard)
@@ -36,6 +37,9 @@ fun BookingRequestsList(items: List<ReservationItem>, busy: Boolean, onDecision:
                 style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
             booking.note?.takeIf(String::isNotBlank)?.let { Text(it, style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary)) }
             if (item.refundPending) Text("Remboursement en attente", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
+            if (item.tripChangeId != null && onReview != null) V2Button("Voir la modification du trajet", { onReview(item) }, full = true,
+                enabled = !busy, size = V2ButtonSize.Sm, variant = V2ButtonVariant.Secondary,
+                testTag = "reservation.change.${booking.bookingId}")
             item.allowedActions.forEach { decision ->
                 V2Button(decisionLabel(decision), { onDecision(item, decision) }, full = true,
                     enabled = !busy, size = V2ButtonSize.Sm,

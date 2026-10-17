@@ -40,6 +40,13 @@ if [[ "$test_status" -eq 0 ]]; then
       exit 1
     fi
   done
+  adb pull /sdcard/Download/sgm-trip-changes "$output_dir" || exit 1
+  for name in trip-change-driver-proposed.png trip-change-parent-review-large-text.png trip-change-parent-accepted.png trip-change-parent-declined.png trip-change-applied-balance-due.png; do
+    if [[ ! -s "$output_dir/sgm-trip-changes/$name" ]]; then
+      echo "Missing trip change screen: $name" >&2
+      exit 1
+    fi
+  done
   screenshot_count="$(find "$output_dir" -type f -name "store-*.png" -size +0c | wc -l | tr -d " ")"
   if [[ "$screenshot_count" -lt 8 ]]; then
     echo "Expected at least 8 non-empty Android store-review screenshots, found $screenshot_count." >&2

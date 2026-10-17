@@ -124,7 +124,7 @@ object UiFlowFixtures {
     )
 }
 
-class UiFlowFirebaseGateway : FirebaseGateway {
+class UiFlowFirebaseGateway : FirebaseGateway, be.sportgreenmoove.app.services.TripChangeGateway by UnusedTripChanges {
     var createdTripDraft: TripPublishDraft? = null
         private set
     var failCreateTripMessage: String? = null

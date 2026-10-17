@@ -30,7 +30,8 @@ internal fun reservationPage(payload: Any?): ReservationPage {
         val refundPending = row["refundPending"] as? Boolean ?: invalid()
         ReservationItem(BookingRequestSummary(text("bookingId"), text("tripId"), text("parentUserId"),
             optional("childId"), optional("childLabel"), seats, optional("note"), status, text("title"),
-            text("club"), text("dateLabel"), text("timeLabel"), text("priceLabel")), actions.toSet(), refundPending)
+            text("club"), text("dateLabel"), text("timeLabel"), text("priceLabel")), actions.toSet(), refundPending,
+            row["tripChangeId"]?.let(TripChangeWire::hash))
     }
     if (items.map { it.booking.bookingId }.distinct().size != items.size) invalid()
     return ReservationPage(items, cursor)

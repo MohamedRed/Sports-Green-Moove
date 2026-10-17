@@ -46,6 +46,12 @@ on:
       - "tests/helpers/**"
       - "tests/trip-cancellation-evidence.test.mjs"
       - "tests/trip-cancellation-native.test.mjs"
+      - "tests/trip-change-native.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/TripChange*Test.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
       - "tests/firestore-streaming-policy.test.mjs"
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
@@ -175,6 +181,12 @@ on:
       - "tests/helpers/**"
       - "tests/trip-cancellation-evidence.test.mjs"
       - "tests/trip-cancellation-native.test.mjs"
+      - "tests/trip-change-native.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/TripChange*Test.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
       - "tests/firestore-streaming-policy.test.mjs"
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
@@ -405,7 +417,7 @@ jobs:
         run: npm run test:trip-change-rules
 
       - name: Validate native trip cancellation integration
-        run: node --test tests/trip-cancellation-native.test.mjs
+        run: node --test tests/trip-cancellation-native.test.mjs tests/trip-change-native.test.mjs
 
       - name: Build Admin
         run: npm run build --workspace admin

@@ -40,7 +40,7 @@ class ReservationActionsUiTest {
         }
         compose.setSgmUiTestContent {
             Column(Modifier.width(320.dp).testTag("narrow.host").verticalScroll(rememberScrollState())) {
-                ReservationManagementRoute("parent-qa", AppRole.Parent, gateway) {}
+                ReservationManagementRoute("parent-qa", AppRole.Parent, gateway, UiFlowFirebaseGateway()) {}
             }
         }
         val cancel = decisionTag(ReservationDecision.Cancel, pending.booking.bookingId)

@@ -31,7 +31,7 @@ interface AuthGateway {
     fun signOut()
 }
 
-interface FirebaseGateway : TripCancellationGateway {
+interface FirebaseGateway : TripCancellationGateway, TripChangeGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
     suspend fun listChildren(): List<ChildSummary>
@@ -91,6 +91,21 @@ class UnconfiguredAuthGateway : AuthGateway {
 
 class UnconfiguredFirebaseGateway : FirebaseGateway {
     override val isConfigured: Boolean = false
+
+    override suspend fun previewTripChange(tripId: String): be.sportgreenmoove.app.data.TripChangePreview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun reviewTripChange(tripId: String, proposalId: String): be.sportgreenmoove.app.data.TripChangeReview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun proposeTripChange(request: be.sportgreenmoove.app.data.TripChangeProposalRequest): be.sportgreenmoove.app.data.TripChangeReview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun respondTripChange(request: be.sportgreenmoove.app.data.TripChangeDecisionRequest): be.sportgreenmoove.app.data.TripChangeReview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun withdrawTripChange(request: be.sportgreenmoove.app.data.TripChangeWithdrawalRequest): be.sportgreenmoove.app.data.TripChangeReview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun quoteTripChange(request: be.sportgreenmoove.app.data.TripChangeQuoteRequest): be.sportgreenmoove.app.data.TripChangeRouteQuote =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun applyTripChange(request: be.sportgreenmoove.app.data.TripChangeApplyRequest): be.sportgreenmoove.app.data.TripChangeApplicationReceipt =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
 
     override suspend fun previewTripCancellation(tripId: String): be.sportgreenmoove.app.data.TripCancellationPreview =
         throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")

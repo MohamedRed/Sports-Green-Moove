@@ -39,6 +39,7 @@ export async function checkTripChanges() {
   assert.deepEqual(pair[0], pair[1]); const change = pair[0];
   assert.equal(change.status, 'pending'); assert.equal(change.applied, false); assert.equal(change.applicationImplemented, true);
   assert.equal(change.parentCount, 2); assert.equal(change.acceptedParentCount, 0);
+  assert.equal(change.proposalRequestId, request.requestId); assert.equal(change.sourceRevision, request.expectedRevision);
   const ref = { tripId, proposalId: change.proposalId };
   for (const actor of [outsider, foreign, null]) {
     const code = actor ? 'PERMISSION_DENIED' : 'UNAUTHENTICATED';
@@ -47,7 +48,13 @@ export async function checkTripChanges() {
   await denied('respondToTripChanges', driver, vote(tripId, change), 'PERMISSION_DENIED');
   const own = await call('getTripChangeReview', parent, ref), other = await call('getTripChangeReview', second, ref);
   assert.deepEqual(own.bookingIds, [firstId, siblingId, pendingId].sort()); assert.deepEqual(other.bookingIds, [secondId]);
-  for (const view of [own, other]) { assert(!Object.hasOwn(view, 'parentUserIds')); assert(!Object.hasOwn(view, 'decisions')); assert.equal(view.canRespond, true); }
+  for (const view of [own, other]) {
+    assert(!Object.hasOwn(view, 'parentUserIds')); assert(!Object.hasOwn(view, 'decisions')); assert.equal(view.canRespond, true);
+    assert.equal(view.proposalRequestId, null); assert.equal(view.decisionRequestId, null); assert.equal(view.withdrawalRequestId, null);
+  }
+  const parentRows = (await call('listReservations', parent, { role: 'parent' })).items;
+  assert(parentRows.filter((item) => item.tripId === tripId).every((item) => item.tripChangeId === change.proposalId));
+  assert.equal(parentRows.filter((item) => item.tripId === tripId).length, 3);
   await denied('respondToTripChanges', parent, { ...vote(tripId, change), parentUserId: second.uid }, 'INVALID_ARGUMENT');
   await denied('respondToTripChanges', parent, { ...vote(tripId, change), proposalRevision: 'a'.repeat(64) }, 'ABORTED');
   await denied('proposeTripChanges', driver, { ...request, terms: { ...request.terms, priceCents: 401 } }, 'ALREADY_EXISTS');
@@ -59,6 +66,9 @@ export async function checkTripChanges() {
   const firstVote = vote(tripId, change);
   const accepted = await Promise.all([call('respondToTripChanges', parent, firstVote), call('respondToTripChanges', parent, firstVote)]);
   assert.deepEqual(accepted[0], accepted[1]); assert.equal(accepted[0].status, 'pending'); assert.equal(accepted[0].acceptedParentCount, 1);
+  assert.equal(accepted[0].decisionRequestId, firstVote.requestId);
+  assert.equal((await call('getTripChangeReview', second, ref)).decisionRequestId, null);
+  assert.equal((await call('getTripChangeReview', driver, ref)).decisionRequestId, null);
   await denied('respondToTripChanges', parent, { ...firstVote, requestId: randomUUID() }, 'ALREADY_EXISTS');
   await denied('respondToTripChanges', parent, { ...firstVote, decision: 'decline' }, 'ALREADY_EXISTS');
   const confirmed = await call('respondToTripChanges', second, vote(tripId, change));
@@ -75,7 +85,8 @@ export async function checkTripChanges() {
   await denied('startRide', driver, { tripId }, 'FAILED_PRECONDITION');
   const withdrawal = { ...ref, requestId: randomUUID() };
   for (const actor of [parent, foreign, null]) await denied('withdrawTripChanges', actor, withdrawal, actor ? 'PERMISSION_DENIED' : 'UNAUTHENTICATED');
-  assert.equal((await call('withdrawTripChanges', driver, withdrawal)).status, 'withdrawn');
+  const withdrawn = await call('withdrawTripChanges', driver, withdrawal);
+  assert.equal(withdrawn.status, 'withdrawn'); assert.equal(withdrawn.withdrawalRequestId, withdrawal.requestId);
   assert.equal((await call('withdrawTripChanges', driver, withdrawal)).status, 'withdrawn');
   await denied('withdrawTripChanges', driver, { ...withdrawal, requestId: randomUUID() }, 'ALREADY_EXISTS');
   assert.equal((await document('trips', tripId)).pendingChangeId, undefined); await preview(tripId);
@@ -86,7 +97,7 @@ export async function checkTripChanges() {
     confirmedStatus: saved.status, originalTerms: saved.originalTerms, proposedTerms: saved.terms,
     finalStatus: (await document('tripChanges', change.proposalId)).status, confirmationNotificationCount: notes.size,
     originalTripAndBookingsPreserved: true, repeatedRequestsIdempotent: true, parentViewsScoped: true,
-    pendingBookingApprovalPaymentAndStartDenied: true, edges,
+    pendingBookingApprovalPaymentAndStartDenied: true, callerOnlyRequestMetadata: true, reservationReviewLinksScoped: true, edges,
     syntheticPaymentMetadata: true, nativeUi: false, applicationExercised: false,
     livePayment: false, refundIssued: false, productionDeployed: false };
 }

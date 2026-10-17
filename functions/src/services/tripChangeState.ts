@@ -130,6 +130,10 @@ export function tripChangeView(state: TripChangeState, change: StoredTripChange,
   const current = changeStillCurrent(state, change, proposalId);
   const open = ["pending", "confirmed"].includes(change.status);
   return { tripId: change.tripId, proposalId, revision: change.revision,
+    sourceRevision: change.expectedRevision,
+    proposalRequestId: driver ? change.requestId : null,
+    decisionRequestId: !driver && Object.hasOwn(change.decisions, uid) ? change.decisions[uid].requestId : null,
+    withdrawalRequestId: driver ? change.withdrawalRequestId ?? null : null,
     status: open && !current ? "outdated" : change.status,
     originalTerms: change.originalTerms, terms: change.terms,
     currentTerms: state.terms, parentCount: change.parentUserIds.length,
@@ -139,7 +143,7 @@ export function tripChangeView(state: TripChangeState, change: StoredTripChange,
     canRespond: !driver && current && change.status === "pending" && !Object.hasOwn(change.decisions, uid),
     canWithdraw: driver && ["pending", "confirmed"].includes(change.status) && state.trip.pendingChangeId === proposalId,
     applied: change.status === "applied", applicationImplemented: true,
-    balances: state.items.filter((item) => driver || item.parentUserId === uid).map((item) => ({ bookingId: item.snapshot.id,
+    balances: state.items.filter((item) => change.bookingIds.includes(item.snapshot.id) && (driver || item.parentUserId === uid)).map((item) => ({ bookingId: item.snapshot.id,
       balanceCents: item.snapshot.data().tripChangeBalanceCents ?? 0 })),
     createdAt: change.createdAt.toDate().toISOString() };
 }

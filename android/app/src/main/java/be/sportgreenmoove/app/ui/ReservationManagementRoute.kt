@@ -22,13 +22,15 @@ import be.sportgreenmoove.app.data.ReservationItem
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.services.ReservationGateway
+import be.sportgreenmoove.app.services.FirebaseGateway
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun ReservationManagementRoute(uid: String, role: AppRole, gateway: ReservationGateway, onChanged: suspend () -> Unit) {
+internal fun ReservationManagementRoute(uid: String, role: AppRole, gateway: ReservationGateway, changes: FirebaseGateway, onChanged: suspend () -> Unit) {
     val state = remember(uid, role, gateway) { ReservationState(gateway, role) }
     val scope = rememberCoroutineScope()
     var confirmation by remember(state) { mutableStateOf<Pair<ReservationItem, ReservationDecision>?>(null) }
+    var changeReservation by remember(state, changes) { mutableStateOf<ReservationItem?>(null) }
     DisposableEffect(state) { onDispose { state.close() } }
     LaunchedEffect(state) { state.reload(onChanged) }
     val busy = state.loading || state.acting || state.loadingMore
@@ -39,10 +41,17 @@ internal fun ReservationManagementRoute(uid: String, role: AppRole, gateway: Res
         else state.notice?.let { Text(it, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary)) }
         if (state.loading || (!state.loaded && state.error == null)) Text("Chargement des réservations...", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
         if (state.loaded && !busy && state.error == null && state.items.isEmpty()) Text("Aucune réservation.", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
-        BookingRequestsList(state.items, busy || state.requiresReload) { item, decision -> confirmation = item to decision }
+        BookingRequestsList(state.items, busy || state.requiresReload,
+            onReview = { changeReservation = it }) { item, decision -> confirmation = item to decision }
         if (state.hasMore) V2Button(if (state.loadingMore) "Chargement..." else "Voir les réservations précédentes",
             { scope.launch { state.more() } }, full = true, enabled = !busy,
             variant = V2ButtonVariant.Secondary, testTag = "bookings.more")
+    }
+    changeReservation?.let { item ->
+        item.tripChangeId?.let { proposalId ->
+            TripChangeDialog(uid, role, item.booking.tripId, item.booking.title, proposalId, changes,
+                onChanged = { state.reload(onChanged) }, onDismiss = { changeReservation = null })
+        }
     }
     confirmation?.let { (item, decision) ->
         AlertDialog(onDismissRequest = { confirmation = null },

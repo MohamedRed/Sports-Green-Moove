@@ -38,6 +38,8 @@ export async function checkTripChangeApplication() {
   await call('respondToTripChanges', parent, { tripId: free.tripId, proposalId: change.proposalId, proposalRevision: change.revision,
     requestId: randomUUID(), decision: 'accept' });
   const qid = randomUUID(), route = await quote(free, change, qid), count = providerCalls;
+  assert.equal(route.requestId, qid); assert.equal(route.tripId, free.tripId);
+  assert.equal(route.proposalId, change.proposalId); assert.equal(route.proposalRevision, change.revision);
   assert.deepEqual(await quote(free, change, qid), route); assert.equal(providerCalls, count);
   const request = apply(free, change, route);
   for (const actor of [parent, other, null]) await denied('applyTripChanges', actor, request, actor ? 'PERMISSION_DENIED' : 'UNAUTHENTICATED');
@@ -56,6 +58,11 @@ export async function checkTripChangeApplication() {
   assert.equal(notes.docs.filter((item) => item.data().title === 'Trajet modifié').length, 2);
   assert.deepEqual(await call('applyTripChanges', driver, request), receipts[0]);
   await denied('applyTripChanges', driver, { ...request, requestId: randomUUID() }, 'ALREADY_EXISTS');
+  const laterBooking = await call('requestBooking', other, await viewedBooking(other, { tripId: free.tripId, seats: 1 }));
+  const laterRows = (await call('listReservations', other, { role: 'parent' })).items;
+  assert.equal(laterRows.find((item) => item.bookingId === laterBooking.bookingId)?.tripChangeId, null);
+  const laterDriverReview = await call('getTripChangeReview', driver, { tripId: free.tripId, proposalId: change.proposalId });
+  assert.deepEqual(laterDriverReview.balances.map((item) => item.bookingId), [free.bookingId]);
   await call('startRide', driver, { tripId: free.tripId });
 
   const balances = [];
@@ -89,6 +96,8 @@ export async function checkTripChangeApplication() {
 
   const stale = await create(), staleChange = await propose(stale, 0), staleQuote = await quote(stale, staleChange);
   await db.collection('tripChangeQuotes').doc(staleQuote.quoteId).update({ expiresAt: (await import('firebase-admin/firestore')).Timestamp.fromMillis(0) });
+  await assert.rejects(() => quote(stale, staleChange, staleQuote.requestId), (error) =>
+    error.code === 'failed-precondition' && error.details?.reason === 'trip-change-quote-expired');
   await denied('applyTripChanges', driver, apply(stale, staleChange, staleQuote), 'FAILED_PRECONDITION');
   assert.equal((await document('trips', stale.tripId)).pendingChangeId, staleChange.proposalId);
   const cancelled = await create(), cancelledChange = await propose(cancelled, 0), cancelledQuote = await quote(cancelled, cancelledChange);
@@ -123,6 +132,7 @@ export async function checkTripChangeApplication() {
       distanceKm: saved.distanceKm, routeDurationSeconds: saved.routeDurationSeconds, co2SavedKgEstimate: saved.co2SavedKgEstimate,
       regionGeohash: saved.regionGeohash }, balances, originalInvoicesPreserved: true, paidBalanceBlocksStart: true,
     cancelledBalancesClosedWithoutRefundClaim: true, duplicateApplicationIdempotent: true, staleAndExpiredQuotesDenied: true,
+    explicitExpiredQuoteRecovery: true, laterBookingExcludedFromPriorProposal: true, quoteResponseBoundToRequest: true,
     guardianChangeInvalidatesQuote: true, providerFailureLeavesNoQuote: true, changedSourceDuringQuoteRejected: true,
     foreignDriverDenied: true, competingApplicationsSingleWinner: true, unpaidEditedTripBlockedUntilPayment: true,
     fence, syntheticRouteQuote: true, syntheticPaymentEvents: true, nativeUi: false, liveMaps: false, livePayment: false,

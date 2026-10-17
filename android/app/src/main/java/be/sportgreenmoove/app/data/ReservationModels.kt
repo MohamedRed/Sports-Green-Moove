@@ -8,6 +8,7 @@ data class ReservationItem(
     val booking: BookingRequestSummary,
     val allowedActions: Set<ReservationDecision>,
     val refundPending: Boolean,
+    val tripChangeId: String? = null,
 )
 
 data class ReservationPage(val items: List<ReservationItem>, val nextCursor: String?)

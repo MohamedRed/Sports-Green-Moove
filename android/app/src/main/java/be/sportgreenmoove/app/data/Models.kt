@@ -65,6 +65,8 @@ data class TripSummary(
     val driverUserId: String? = null,
     val cancelled: Boolean = false,
     val bookingIntent: BookingIntentSnapshot? = null,
+    val pendingChangeId: String? = null,
+    val appliedChangeId: String? = null,
 )
 
 data class MapPoint(
