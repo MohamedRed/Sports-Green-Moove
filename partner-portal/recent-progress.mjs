@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'Le contact d’urgence reste à ajouter',
+    text: 'Le panneau est visible, mais aucun appel ne peut être ouvert depuis l’app. Ce parcours n’est pas validé.', flow: 'tracking' },
   { date: '2026-10-17', title: 'Le clavier bloque à nouveau',
     text: 'Neuf essais s’arrêtent avant la saisie. La date et l’arrivée souhaitée restent à tester. Les captures déjà vérifiées restent disponibles.', flow: 'messages' },
   { date: '2026-10-17', title: 'Le club validera les inscriptions aux équipes',

@@ -1,4 +1,7 @@
 export const blockers = [
+  { id: 'emergency-contact', title: 'Ajouter le contact d’urgence',
+    text: 'Le panneau est visible, mais il n’ouvre pas le téléphone. Le numéro affiché dans les réglages est un exemple.',
+    next: 'Choisir le contact à joindre, puis ajouter et tester l’ouverture du téléphone sans lancer d’appel.', source: 'docs/contracts/emergency-contact.md' },
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
     text: 'Le renvoi depuis la recherche retrouve une seule demande en local.',
     next: 'Rejouer après réouverture, depuis les autres écrans et sur téléphone. Terminer les confirmations des parents.', source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },

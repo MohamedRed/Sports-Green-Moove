@@ -228,7 +228,7 @@ export const content = {
     { id: 'tracking', title: 'Sécurité enfant et suivi de trajet', status: 'untested',
       summary: 'Le suivi en trajet reste à tester.',
       verified: 'Pas encore de validation sur un trajet réel.',
-      remaining: 'Tester consentement, prise en charge et dépose, puis le suivi : arrière-plan, écran verrouillé, pertes GPS/réseau, redémarrage, batterie et alertes de position.',
+      remaining: 'Ajouter et tester le contact d’urgence. Tester consentement, prise en charge et dépose, puis le suivi : arrière-plan, écran verrouillé, pertes GPS/réseau, redémarrage, batterie et alertes de position.',
       images: [], source: 'docs/release/real-device-test-protocol.md' },
     { id: 'ride-lifecycle', title: 'Déroulement du trajet', status: 'partial', checkedAt: '2026-10-15',
       summary: 'Le trajet se termine dans l’app et apparaît dans l’historique du parent, en local.',

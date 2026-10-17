@@ -288,9 +288,10 @@
       },
       {
         "id": "emergency_contact_action_screenshot",
-        "status": "accepted",
-        "description": "Native CI generated store-emergency-contact-action.png as a non-empty 1080x2400 Android emulator screenshot.",
+        "status": "pending",
+        "description": "The historical screenshot shows a static emergency-contact panel, not an actionable contact flow. The current ride panel has no click handler and Options displays a fixed example number. A configured target, enabled action and verified dialer handoff are still required; screenshot dimensions alone cannot accept this item.",
         "evidenceRefs": [
+          "../contracts/emergency-contact.md",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694823687/artifacts/7697882254"
         ]
       },

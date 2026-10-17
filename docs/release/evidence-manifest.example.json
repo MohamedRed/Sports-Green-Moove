@@ -309,7 +309,7 @@
       {
         "id": "emergency_contact_action_screenshot",
         "status": "accepted",
-        "description": "Store screenshot shows emergency contact action.",
+        "description": "Enabled emergency-contact action and verified dialer handoff without placing a call; static panels and image dimensions alone do not qualify.",
         "evidenceRefs": ["evidence/store-emergency-contact-action.png"]
       },
       {

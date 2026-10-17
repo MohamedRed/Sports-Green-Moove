@@ -82,7 +82,7 @@ Capture screenshots and policy documents for every store review evidence item in
 | `active_ride_tracking_screenshot` | Active ride tracking view. |
 | `google_maps_route_preview_screenshot` | Native Google Maps route preview. |
 | `stale_location_warning_screenshot` | Stale-location warning state. |
-| `emergency_contact_action_screenshot` | Emergency contact action. |
+| `emergency_contact_action_screenshot` | Enabled emergency-contact action and its verified dialer handoff, without placing a call. A static panel or non-empty image is not action evidence; see `../contracts/emergency-contact.md`. |
 | `permission_education_screenshot` | Permission education before OS permission prompts. |
 
 ## Audit Exports

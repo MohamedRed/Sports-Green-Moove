@@ -26,6 +26,14 @@ assert.equal(report.manifest.exists, true, "In-progress release evidence manifes
 assert.equal(report.manifest.data.manifestStatus, "in-progress", "Release evidence manifest must not claim completion.");
 assert.equal(report.secretInventory.exists, true, "Default release gap report should read the checked-in secret inventory.");
 assert.deepEqual(report.automatedFlowEvidence.missing, [], "Automated user-flow evidence should be complete.");
+assert.ok(report.storeReviewEvidence.missing.includes("emergency_contact_action_screenshot"),
+  "A static emergency-contact panel must remain missing until its action and dialer handoff are verified.");
+assert.ok(!report.storeReviewEvidence.passed.includes("emergency_contact_action_screenshot"),
+  "Image dimensions alone must not accept the emergency-contact action.");
+const emergency = report.manifest.data.storeReviewEvidence.items.find((item) => item.id === "emergency_contact_action_screenshot");
+assert.equal(emergency.status, "pending");
+assert.ok(emergency.evidenceRefs.includes("../contracts/emergency-contact.md"));
+assert.match(emergency.description, /no click handler/);
 assert.ok(
   report.providerEnvironment.presentFromSecretInventory.includes("STRIPE_WEBHOOK_SECRET"),
   "Default release gap report should count configured GitHub secret names from the checked-in inventory.",
