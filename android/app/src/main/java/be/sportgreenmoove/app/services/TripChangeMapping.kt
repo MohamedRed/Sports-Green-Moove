@@ -10,6 +10,15 @@ internal fun tripChangePreview(raw: Any?, tripId: String): TripChangePreview = w
         integer(data["parentCount"], max = bookings))
 }
 
+internal fun tripChangeProposalResolution(raw: Any?, request: TripChangeProposalRequest): TripChangeReview? = with(TripChangeWire) {
+    val data = map(raw)
+    check(data["tripId"] == request.tripId && data["requestId"] == request.requestId && data.containsKey("review"))
+    if (!flag(data["recorded"])) { check(data["review"] == null); return null }
+    tripChangeReview(data["review"], request.tripId).also {
+        check(it.proposalRequestId == request.requestId && it.sourceRevision == request.expectedRevision && it.terms == request.terms)
+    }
+}
+
 internal fun tripChangeReview(raw: Any?, tripId: String, proposalId: String? = null): TripChangeReview = with(TripChangeWire) {
     val data = map(raw)
     check(id(data["tripId"]) == tripId)

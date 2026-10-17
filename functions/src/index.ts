@@ -22,7 +22,7 @@ export { endRide, getActiveRide, markDropoff, markPickup, startRide } from "./ca
 export { createTrip, listTrips, searchTrips } from "./callables/trips.js";
 export { getTripCancellation, cancelTrip } from "./callables/tripCancellation.js";
 export { getTripChangePreview, proposeTripChanges, getTripChangeReview, respondToTripChanges, withdrawTripChanges } from "./callables/tripChanges.js";
-export { getTripChangeApplicationQuote, applyTripChanges } from "./callables/tripChanges.js";
+export { getTripChangeApplicationQuote, applyTripChanges, resolveTripChangeProposal } from "./callables/tripChanges.js";
 export { getTripChangePaymentStatus, createTripChangePaymentIntent } from "./callables/tripChangePayments.js";
 export { radarWebhook, stripeWebhook } from "./webhooks.js";
 export { stripeConnectReturn, stripeConnectRefresh } from "./stripeOnboardingCallbacks.js";

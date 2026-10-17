@@ -28,6 +28,7 @@ class TripChangeFlowTest {
     private inner class Gateway : FirebaseGateway by UnconfiguredFirebaseGateway() {
         var current = review()
         var proposals = 0
+        var dropProposalAcknowledgement = false
         val decisions = mutableListOf<TripChangeDecisionRequest>()
         var applications = 0
         override suspend fun previewTripChange(tripId: String) = TripChangePreview(tripId, revision, terms, 3, 2)
@@ -35,6 +36,12 @@ class TripChangeFlowTest {
         override suspend fun proposeTripChange(request: TripChangeProposalRequest): TripChangeReview {
             proposals++
             current = current.copy(terms = request.terms, proposalRequestId = request.requestId, canRespond = false, canWithdraw = true)
+            if (dropProposalAcknowledgement) throw IOException()
+            return current
+        }
+        override suspend fun resolveTripChangeProposal(request: TripChangeProposalRequest): TripChangeReview? {
+            assertEquals(current.proposalRequestId, request.requestId)
+            assertEquals(current.terms, request.terms)
             return current
         }
         override suspend fun respondTripChange(request: TripChangeDecisionRequest): TripChangeReview {
@@ -85,6 +92,19 @@ class TripChangeFlowTest {
         capture("trip-change-parent-accepted.png")
         compose.onNodeWithTag("trip.change.accept").assertDoesNotExist(); compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()
         assertEquals(1, gateway.decisions.size); assertFalse(gateway.current.applied)
+    }
+    @Test fun refreshRecoversAStoredProposalWithoutAnotherWriteWhenBothRepliesWereLost() {
+        val gateway = Gateway().apply { dropProposalAcknowledgement = true }
+        compose.setSgmUiTestContent {
+            TripsRoute("driver", AppRole.Driver, gateway, listOf(trip), null, 0, {}, {}, {}, { throw IOException() }, {})
+        }
+        compose.onNodeWithTag("trip.edit.${trip.id}").performScrollTo().performClick(); waitFor("trip.change.price")
+        compose.onNodeWithTag("trip.change.price").performScrollTo().performTextReplacement("4,00")
+        compose.onNodeWithTag("trip.change.propose").performScrollTo().performClick(); waitFor("trip.change.error")
+        compose.onNodeWithTag("trip.change.propose").assertIsNotEnabled()
+        compose.onNodeWithTag("trip.change.refresh").performScrollTo().performClick(); waitFor("trip.change.status")
+        compose.onNodeWithTag("trip.change.status").performScrollTo().assertTextEquals("Accords des parents en attente")
+        compose.onNodeWithTag("trip.change.propose").assertDoesNotExist(); assertEquals(1, gateway.proposals)
     }
     @Test fun refusalKeepsTheInitialTripWithoutCancellingTheBooking() {
         val gateway = Gateway(); host(gateway, AppRole.Parent); waitFor("trip.change.status")

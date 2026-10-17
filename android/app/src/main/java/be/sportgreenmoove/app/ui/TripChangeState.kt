@@ -53,6 +53,16 @@ internal class TripChangeState(
                 if (loaded.applied) onChanged()
             } else {
                 check(role == AppRole.Driver)
+                proposalRequest?.let { request ->
+                    val recorded = gateway.resolveTripChangeProposal(request)
+                    if (!active()) return@perform
+                    if (recorded != null) {
+                        check(recorded.proposalRequestId == request.requestId && recorded.sourceRevision == request.expectedRevision && recorded.terms == request.terms)
+                        acceptReview(recorded)
+                        if (recorded.applied) onChanged()
+                        return@perform
+                    }
+                }
                 val loaded = gateway.previewTripChange(tripId)
                 if (!active()) return@perform
                 check(loaded.tripId == tripId)

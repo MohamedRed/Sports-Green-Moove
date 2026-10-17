@@ -2,7 +2,7 @@ import { onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { chatDocumentIdSchema } from "../domain/chatReference.js";
 import { tripChangeDecisionSchema, tripChangeProposalSchema, tripChangeReferenceSchema,
-  tripChangeWithdrawalSchema } from "../domain/tripChanges.js";
+  tripChangeWithdrawalSchema, tripChangeRequestReferenceSchema } from "../domain/tripChanges.js";
 import { requireAuth, requireRole } from "../lib/https.js";
 import { parseCallableData } from "../lib/validation.js";
 import { previewTripChange, proposeTripChange, respondTripChange, reviewTripChange, withdrawTripChange } from "../services/tripChanges.js";
@@ -10,6 +10,12 @@ import { applyTripChangeSchema, quoteTripChangeSchema } from "../domain/tripChan
 import { applyConfirmedTripChange, quoteTripChangeApplication } from "../services/tripChangeApplication.js";
 import { GoogleRoutesProvider } from "../services/googleRoutes.js";
 import { googleMapsApiKeySecret } from "../lib/providerSecrets.js";
+import { resolveTripChangeRequest } from "../services/tripChangeResolution.js";
+
+export const resolveTripChangeProposal = onCall(async (request) => {
+  const uid = requireAuth(request.auth?.uid); requireRole(request.auth?.token, "driver");
+  return resolveTripChangeRequest(parseCallableData(tripChangeRequestReferenceSchema, request.data), uid);
+});
 
 export const getTripChangePreview = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid); requireRole(request.auth?.token, "driver");

@@ -28,9 +28,12 @@ export async function checkTripChanges() {
   const before = await document('trips', tripId), bookings = await Promise.all([firstId, siblingId, secondId, pendingId].map((id) => document('bookings', id)));
   const initial = await preview(tripId); assert.equal(initial.parentCount, 2); assert.equal(initial.bookingCount, 4);
   const request = proposal(tripId, initial);
+  const resolution = { tripId, requestId: request.requestId };
+  assert.deepEqual(await call('resolveTripChangeProposal', driver, resolution), { ...resolution, recorded: false, review: null });
   for (const actor of [parent, outsider, foreign, null]) {
     await denied('getTripChangePreview', actor, { tripId }, actor ? 'PERMISSION_DENIED' : 'UNAUTHENTICATED');
     await denied('proposeTripChanges', actor, request, actor ? 'PERMISSION_DENIED' : 'UNAUTHENTICATED');
+    await denied('resolveTripChangeProposal', actor, resolution, actor ? 'PERMISSION_DENIED' : 'UNAUTHENTICATED');
   }
   await denied('proposeTripChanges', driver, { ...request, parentUserIds: [parent.uid] }, 'INVALID_ARGUMENT');
   await denied('proposeTripChanges', driver, { ...request, terms: initial.terms }, 'INVALID_ARGUMENT');
@@ -39,6 +42,8 @@ export async function checkTripChanges() {
   assert.deepEqual(pair[0], pair[1]); const change = pair[0];
   assert.equal(change.status, 'pending'); assert.equal(change.applied, false); assert.equal(change.applicationImplemented, true);
   assert.equal(change.parentCount, 2); assert.equal(change.acceptedParentCount, 0);
+  assert.deepEqual(await call('resolveTripChangeProposal', driver, resolution), { ...resolution, recorded: true, review: change });
+  assert.equal((await call('getTripChangeReview', driver, { tripId, proposalId: change.proposalId })).proposalId, change.proposalId);
   assert.equal(change.proposalRequestId, request.requestId); assert.equal(change.sourceRevision, request.expectedRevision);
   const ref = { tripId, proposalId: change.proposalId };
   for (const actor of [outsider, foreign, null]) {
@@ -97,7 +102,8 @@ export async function checkTripChanges() {
     confirmedStatus: saved.status, originalTerms: saved.originalTerms, proposedTerms: saved.terms,
     finalStatus: (await document('tripChanges', change.proposalId)).status, confirmationNotificationCount: notes.size,
     originalTripAndBookingsPreserved: true, repeatedRequestsIdempotent: true, parentViewsScoped: true,
-    pendingBookingApprovalPaymentAndStartDenied: true, callerOnlyRequestMetadata: true, reservationReviewLinksScoped: true, edges,
+    pendingBookingApprovalPaymentAndStartDenied: true, callerOnlyRequestMetadata: true, reservationReviewLinksScoped: true,
+    readOnlyProposalResolution: true, edges,
     syntheticPaymentMetadata: true, nativeUi: false, applicationExercised: false,
     livePayment: false, refundIssued: false, productionDeployed: false };
 }

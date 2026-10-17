@@ -66,4 +66,14 @@ class TripChangeMappingTest {
             mapOf("distanceMeters" to Double.POSITIVE_INFINITY, "durationSeconds" to 1))) rejected { tripChangeRouteQuote(raw + ("route" to route)) }
         rejected { tripChangeRouteQuote(raw + ("expiresAt" to "tomorrow")) }
     }
+    @Test fun readOnlyResolutionRequiresExactRequestAndExplicitAbsence() {
+        val request = TripChangeProposalRequest("trip", revision, terms.copy(priceCents = 400), requestId)
+        val absent = mapOf("tripId" to "trip", "requestId" to requestId, "recorded" to false, "review" to null)
+        assertNull(tripChangeProposalResolution(absent, request))
+        val recorded = absent + mapOf("recorded" to true, "review" to (view() + ("proposalRequestId" to requestId)))
+        assertEquals(proposalId, tripChangeProposalResolution(recorded, request)?.proposalId)
+        for (bad in listOf(absent - "review", absent + ("review" to view()), absent + ("recorded" to "false"),
+            recorded + ("tripId" to "foreign"), recorded + ("requestId" to "22222222-2222-4222-8222-222222222222"),
+            recorded + ("review" to view()))) rejected { tripChangeProposalResolution(bad, request) }
+    }
 }

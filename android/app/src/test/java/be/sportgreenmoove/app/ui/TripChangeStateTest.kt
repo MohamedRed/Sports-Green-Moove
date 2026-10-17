@@ -35,6 +35,25 @@ class TripChangeStateTest {
         requireNotNull(state.draft).price = "4,00"; gateway.propose = succeed; state.propose {}
         assertNotEquals(gateway.proposals[0].requestId, gateway.proposals[1].requestId)
     }
+    @Test fun refreshFindsCommittedProposalEvenWhenBothAcknowledgementAndListRefreshWereLost() = runBlocking {
+        val gateway = ChangeGateway(); val saved = gateway.propose
+        var recorded: TripChangeReview? = null
+        gateway.propose = { recorded = saved(it); throw IOException() }
+        val state = ChangeFixture.state(gateway); state.reload(null); requireNotNull(state.draft).price = "4,00"
+        state.propose { throw IOException() }; assertTrue(state.requiresReload)
+        gateway.preview = { error("A persisted pending proposal has no new editor preview") }
+        gateway.resolve = { recorded }
+        state.reload(null)
+        assertEquals(recorded, state.review); assertFalse(state.requiresReload || state.canEdit)
+        assertEquals(1, gateway.proposals.size); assertTrue(state.canWithdraw)
+    }
+    @Test fun failedResolutionNeverFallsThroughToAnotherPreviewOrWrite() = runBlocking {
+        val gateway = ChangeGateway().apply { propose = { throw IOException() } }
+        val state = ChangeFixture.state(gateway); state.reload(null); requireNotNull(state.draft).price = "4,00"; state.propose {}
+        gateway.resolve = { throw IOException() }; gateway.preview = { fail("No alternate read after unknown resolution"); ChangeFixture.preview }
+        state.reload(null)
+        assertTrue(state.requiresReload); assertEquals(1, gateway.proposals.size); assertNull(state.review)
+    }
     @Test fun eachParentDecisionIsExplicitAndDoesNotApplyTheChange() = runBlocking {
         for (decision in TripChangeDecision.entries) {
             val gateway = ChangeGateway(); val state = ChangeFixture.state(gateway, AppRole.Parent)

@@ -35,6 +35,10 @@ internal class FirebaseAndroidTripChangeGateway(
         return view
     }
 
+    override suspend fun resolveTripChangeProposal(request: TripChangeProposalRequest): TripChangeReview? =
+        tripChangeProposalResolution(call("resolveTripChangeProposal", mapOf("tripId" to TripChangeWire.id(request.tripId),
+            "requestId" to TripChangeWire.uuid(request.requestId)), uid()), request)
+
     override suspend fun respondTripChange(request: TripChangeDecisionRequest): TripChangeReview {
         val view = tripChangeReview(call("respondToTripChanges", request.callablePayload(), uid()), request.tripId, request.proposalId)
         check(view.revision == request.proposalRevision && view.decision == request.decision && view.decisionRequestId == request.requestId)

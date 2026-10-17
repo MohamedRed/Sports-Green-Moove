@@ -10,6 +10,7 @@ export const tripChangeTermsSchema = z.object({
 }).strict().refine((terms) => !terms.arrivalBy || Date.parse(terms.arrivalBy) >= Date.parse(terms.departureAt),
   "Arrival must not precede departure.");
 export const tripChangeReferenceSchema = z.object({ tripId: documentId, proposalId: z.string().regex(/^[a-f0-9]{64}$/) }).strict();
+export const tripChangeRequestReferenceSchema = z.object({ tripId: documentId, requestId: z.uuid() }).strict();
 export const tripChangeProposalSchema = z.object({ tripId: documentId, requestId: z.uuid(),
   expectedRevision: z.string().regex(/^[a-f0-9]{64}$/), terms: tripChangeTermsSchema,
 }).strict();

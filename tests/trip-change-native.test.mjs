@@ -18,7 +18,7 @@ test('driver editing and affected-parent review are reachable with account-scope
 test('native writes use existing authenticated callables without direct Firestore writes or provider substitutes', () => {
   const gateway = read(base + 'services/FirebaseAndroidTripChangeGateway.kt');
   for (const name of ['getTripChangePreview', 'getTripChangeReview', 'proposeTripChanges', 'respondToTripChanges',
-    'withdrawTripChanges', 'getTripChangeApplicationQuote', 'applyTripChanges']) assert(gateway.includes('"' + name + '"'));
+    'withdrawTripChanges', 'getTripChangeApplicationQuote', 'applyTripChanges', 'resolveTripChangeProposal']) assert(gateway.includes('"' + name + '"'));
   assert(gateway.includes('check(uid() == user)'));
   assert(!gateway.includes('.update(') && !gateway.includes('.set('));
   assert(gateway.includes('trip-change-quote-expired'));

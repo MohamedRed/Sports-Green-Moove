@@ -26,6 +26,7 @@ internal class ChangeGateway : TripChangeGateway {
     val quotes = mutableListOf<TripChangeQuoteRequest>()
     val applications = mutableListOf<TripChangeApplyRequest>()
     var preview: suspend () -> TripChangePreview = { ChangeFixture.preview }
+    var resolve: suspend (TripChangeProposalRequest) -> TripChangeReview? = { null }
     var review: suspend () -> TripChangeReview = { ChangeFixture.review }
     var propose: suspend (TripChangeProposalRequest) -> TripChangeReview = {
         ChangeFixture.review.copy(terms = it.terms, sourceRevision = it.expectedRevision, proposalRequestId = it.requestId, canRespond = false, canWithdraw = true)
@@ -41,6 +42,7 @@ internal class ChangeGateway : TripChangeGateway {
     var quote: suspend (TripChangeQuoteRequest) -> TripChangeRouteQuote = { ChangeFixture.quote }
     var apply: suspend (TripChangeApplyRequest) -> TripChangeApplicationReceipt = { ChangeFixture.receipt(it) }
     override suspend fun previewTripChange(tripId: String) = preview()
+    override suspend fun resolveTripChangeProposal(request: TripChangeProposalRequest) = resolve(request)
     override suspend fun reviewTripChange(tripId: String, proposalId: String) = review()
     override suspend fun proposeTripChange(request: TripChangeProposalRequest): TripChangeReview { proposals += request; return propose(request) }
     override suspend fun respondTripChange(request: TripChangeDecisionRequest): TripChangeReview { decisions += request; return decide(request) }

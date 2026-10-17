@@ -7,6 +7,7 @@ internal class TripChangeQuoteExpiredException : Exception("L’estimation a exp
 interface TripChangeGateway {
     suspend fun previewTripChange(tripId: String): TripChangePreview
     suspend fun proposeTripChange(request: TripChangeProposalRequest): TripChangeReview
+    suspend fun resolveTripChangeProposal(request: TripChangeProposalRequest): TripChangeReview?
     suspend fun reviewTripChange(tripId: String, proposalId: String): TripChangeReview
     suspend fun respondTripChange(request: TripChangeDecisionRequest): TripChangeReview
     suspend fun withdrawTripChange(request: TripChangeWithdrawalRequest): TripChangeReview

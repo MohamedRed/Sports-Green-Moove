@@ -48,6 +48,12 @@ retry keeps the same request UUID. Quote retries also preserve their UUID unless
 expiry is known locally or the server returns the explicit
 `trip-change-quote-expired` reason. Expiry does not trigger an automatic request.
 
+`resolveTripChangeProposal` is a driver-owned, read-only resolution of a frozen
+trip/request identity. Explicit refresh uses it after an uncertain proposal,
+even when refreshing the trip list also failed. It never resubmits a proposal.
+Only an authoritative `recorded: false` permits a new preview; a failed resolution
+leaves the screen locked rather than trying another path.
+
 ## Verification Boundary
 
 The implementation includes strict response/payload tests, state recovery and
