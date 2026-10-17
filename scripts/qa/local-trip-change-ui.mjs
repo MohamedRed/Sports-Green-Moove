@@ -35,6 +35,12 @@ export async function seedTripChangeUi() {
 export async function verifyTripChangeUi({ fixtures }, directory, runId) {
   const native = JSON.parse(readFileSync(resolve(directory, 'local-trip-change-ui.json'), 'utf8'));
   assertTripChangeUiReceipt(native, { fixtures, runId });
+  const captureFiles = ['first-parent', 'both-parents', 'parent-refused', 'withdrawn'].map((phase) => `local-trip-change-${phase}.png`);
+  for (const name of captureFiles) {
+    const image = readFileSync(resolve(directory, name));
+    assert(image.length > 24 && image.subarray(0, 8).toString('hex') === '89504e470d0a1a0a', 'A complete PNG capture is required');
+    assert(image.readUInt32BE(16) > 0 && image.readUInt32BE(20) > 0, 'Capture dimensions must be nonzero');
+  }
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
   const second = await signIn(secondParent.email), outsider = await signIn('outsider@example.test');
   const records = [];
@@ -70,7 +76,7 @@ export async function verifyTripChangeUi({ fixtures }, directory, runId) {
   const result = { projectId: 'demo-sgm-local-qa', runId, testedAt: new Date().toISOString(),
     recordType: 'native-trip-change-stage-not-full-run-result', scope: 'local-ui-not-physical-device',
     testCount: 1, steps: [{ id: 'trip-change-parent-confirmation-ui', status: 'passed' }],
-    method: 'native-app-three-account-ui-with-independent-persisted-checks', records, native,
+    method: 'native-app-three-account-ui-with-independent-persisted-checks', records, native, captureFiles,
     tripAndBookingsUnchanged: true, parentViewsScoped: true, outsiderDenied: true, unappliedTripStartDenied: true,
     applicationExercised: false, routeProviderExercised: false, paymentExercised: false, fullAppReplay: false,
     limitation: 'Price proposals, consent, refusal and withdrawal only; no route calculation, application, payment or physical-device proof.' };

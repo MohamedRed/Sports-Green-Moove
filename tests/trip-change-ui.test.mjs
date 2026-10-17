@@ -46,6 +46,9 @@ test('the new native case uses the real app and three isolated actors, not simul
     'compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()',
     'compose.onNodeWithTag("trip.change.calculate").performScrollTo().assertIsDisplayed().assertIsEnabled()',
     'File(directory, "local-trip-change-ui.json")']) assert(native.includes(marker), marker);
+  for (const name of ['first-parent', 'both-parents', 'parent-refused', 'withdrawn']) {
+    assert(native.includes(`capture("local-trip-change-${name}.png")`));
+  }
   assert(!/setSgmUiTestContent|UiFlow.*Gateway|performSemanticsAction|quoteTripChange\(|applyTripChange\(/.test(native));
   assert.equal((native.match(/@Test fun /g) ?? []).length, 1);
   const runner = read('scripts/qa/local-android-session.mjs');

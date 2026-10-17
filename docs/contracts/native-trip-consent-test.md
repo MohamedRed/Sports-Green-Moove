@@ -20,6 +20,9 @@ second parent opens their own booking, still sees one agreement out of two,
 accepts, and sees both agreements recorded. The driver then sees confirmation
 but cannot apply without a route quote, and withdraws the third proposal through
 the app. Native actions require actual controls and keyboard/window readiness.
+Four synchronized dialog captures retain the first agreement, both agreements,
+refusal and withdrawal. They require separate visual review before portal use;
+passing semantics or a non-empty bitmap does not prove that maps rendered.
 
 The host waits for a successful instrumentation transcript and an acknowledged
 device evidence copy before inspecting persisted records. It requires one

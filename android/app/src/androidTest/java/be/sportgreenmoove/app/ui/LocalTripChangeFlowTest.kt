@@ -58,10 +58,12 @@ class LocalTripChangeFlowTest {
             decide("accept", "Votre accord est enregistré.")
             expectStatus("Accords des parents en attente")
             compose.onNodeWithTag("trip.change.consents").assertTextEquals("Accords reçus : 1 / 2")
+            capture("local-trip-change-first-parent.png")
             closeDialog()
             openReservation(refusedBooking)
             decide("decline", "Votre refus est enregistré.")
             expectStatus("Modification refusée, trajet initial conservé")
+            capture("local-trip-change-parent-refused.png")
             closeDialog()
             compose.onNodeWithTag("reservation.status.$refusedBooking").performScrollTo().assertTextEquals("Approuvée")
             compose.onNodeWithTag("reservation.change.$refusedBooking").assertDoesNotExist()
@@ -75,6 +77,7 @@ class LocalTripChangeFlowTest {
             expectStatus("Tous les parents ont confirmé")
             compose.onNodeWithTag("trip.change.consents").assertTextEquals("Accords reçus : 2 / 2")
             compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()
+            capture("local-trip-change-both-parents.png")
             closeDialog()
             logout()
             login(activity, session.getString("driver"))
@@ -89,6 +92,7 @@ class LocalTripChangeFlowTest {
             compose.onNodeWithTag("trip.change.withdraw").performScrollTo().assertIsEnabled().performClick()
             expectStatus("Proposition retirée, trajet initial conservé")
             compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()
+            capture("local-trip-change-withdrawn.png")
             closeDialog()
             val directory = File(context.getExternalFilesDir(null), "local-ui-evidence")
             check(directory.isDirectory || directory.mkdirs())
@@ -104,6 +108,10 @@ class LocalTripChangeFlowTest {
     private fun login(activity: ActivityScenario<MainActivity>, email: String) {
         waitFor(SgmTestTags.AuthEmailInput)
         AuthTestInteractions(compose, activity).use { it.signIn(email, session.getString("password")) }
+    }
+    private fun capture(name: String) {
+        compose.onNodeWithTag("trip.change.status").performScrollTo().assertIsDisplayed()
+        captureLocalUi(compose, name, dialog = true)
     }
     private fun logout() {
         compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
