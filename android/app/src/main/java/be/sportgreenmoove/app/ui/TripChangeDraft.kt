@@ -25,11 +25,27 @@ internal class TripChangeDraft(private val initial: TripChangeTerms) {
     val origin = TripChangePlaceDraft(initial.origin)
     val destination = TripChangePlaceDraft(initial.destination)
 
+    private fun departureValue(): String? = if (departureDate == departure.toLocalDate() && departureTime == departure.toLocalTime()) initial.departureAt
+        else tripChangeInstant(departureDate, departureTime)
+    private fun arrivalValue(): String? = if (!hasArrival) null else if (arrival != null && arrivalDate == arrival.toLocalDate() && arrivalTime == arrival.toLocalTime()) initial.arrivalBy
+        else tripChangeInstant(arrivalDate, arrivalTime)
+
+    fun validationMessage(now: Instant): String? {
+        val departure = departureValue() ?: return "Cette heure de départ est ambiguë ou inexistante à Bruxelles."
+        val arrival = arrivalValue()
+        if (hasArrival && arrival == null) return "Cette heure d’arrivée est ambiguë ou inexistante à Bruxelles."
+        if (!Instant.parse(departure).isAfter(now)) return "Le départ doit être dans le futur."
+        if (arrival != null && Instant.parse(arrival).isBefore(Instant.parse(departure))) return "L’arrivée ne peut pas précéder le départ."
+        if (tripChangePriceCents(price) == null) return "Le prix doit être compris entre 0 et 1 000 EUR, avec deux décimales maximum."
+        if (origin.point == null && !origin.busy) return "L’adresse de départ n’est pas encore confirmée."
+        if (destination.point == null && !destination.busy) return "L’adresse d’arrivée n’est pas encore confirmée."
+        return null
+    }
+
     fun terms(now: Instant): TripChangeTerms? {
-        val departure = if (departureDate == this.departure.toLocalDate() && departureTime == this.departure.toLocalTime()) initial.departureAt
-            else tripChangeInstant(departureDate, departureTime) ?: return null
-        val arrival = if (!hasArrival) null else if (this.arrival != null && arrivalDate == this.arrival.toLocalDate() && arrivalTime == this.arrival.toLocalTime()) initial.arrivalBy
-            else tripChangeInstant(arrivalDate, arrivalTime) ?: return null
+        val departure = departureValue() ?: return null
+        val arrival = arrivalValue()
+        if (hasArrival && arrival == null) return null
         if (!Instant.parse(departure).isAfter(now) || (arrival != null && Instant.parse(arrival).isBefore(Instant.parse(departure)))) return null
         return TripChangeTerms(departure, arrival, origin.point ?: return null, destination.point ?: return null,
             tripChangePriceCents(price) ?: return null)

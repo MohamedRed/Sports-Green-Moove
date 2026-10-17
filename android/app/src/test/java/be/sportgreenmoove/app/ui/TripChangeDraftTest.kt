@@ -29,13 +29,16 @@ class TripChangeDraftTest {
         draft.price = "4,00"
         assertEquals(initial.departureAt, draft.terms(ChangeFixture.now)?.departureAt)
         draft.departureTime = LocalTime.of(2, 45); assertNull(draft.terms(ChangeFixture.now))
+        assertEquals("Cette heure de départ est ambiguë ou inexistante à Bruxelles.", draft.validationMessage(ChangeFixture.now))
     }
     @Test fun invalidScheduleOrUnresolvedPlaceCannotBecomeAProposal() {
         val draft = TripChangeDraft(ChangeFixture.terms)
         draft.price = "4,00"; assertTrue(draft.changedFrom(ChangeFixture.terms, ChangeFixture.now))
         draft.arrivalTime = LocalTime.of(10, 0); assertNull(draft.terms(ChangeFixture.now))
+        assertEquals("L’arrivée ne peut pas précéder le départ.", draft.validationMessage(ChangeFixture.now))
         draft.hasArrival = false; assertNotNull(draft.terms(ChangeFixture.now))
         draft.origin.edit("Unconfirmed place"); assertNull(draft.terms(ChangeFixture.now))
+        assertEquals("L’adresse de départ n’est pas encore confirmée.", draft.validationMessage(ChangeFixture.now))
         draft.origin.keepOriginal(); assertNotNull(draft.terms(ChangeFixture.now))
         draft.departureDate = LocalDate.of(2020, 1, 1); assertNull(draft.terms(ChangeFixture.now))
     }

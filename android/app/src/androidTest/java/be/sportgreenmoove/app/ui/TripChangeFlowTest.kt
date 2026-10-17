@@ -10,6 +10,7 @@ import androidx.test.uiautomator.UiDevice
 import be.sportgreenmoove.app.data.*
 import be.sportgreenmoove.app.services.FirebaseGateway
 import be.sportgreenmoove.app.services.UnconfiguredFirebaseGateway
+import be.sportgreenmoove.app.services.ReservationGateway
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -90,6 +91,24 @@ class TripChangeFlowTest {
         compose.onNodeWithTag("trip.change.status").performScrollTo().assertTextEquals("Modification refusée, trajet initial conservé")
         capture("trip-change-parent-declined.png")
         assertEquals(terms, gateway.current.currentTerms); assertEquals(0, gateway.applications)
+    }
+    @Test fun parentOpensFromAffectedReservationAndKeepsTheRecordedRefusalVisible() {
+        val gateway = Gateway()
+        val item = UiFlowFixtures.reservation.copy(booking = UiFlowFixtures.bookingRequest.copy(tripId = trip.id),
+            tripChangeId = proposal, allowedActions = emptySet())
+        val reservations = object : ReservationGateway {
+            override suspend fun list(role: AppRole, cursor: String?) = ReservationPage(listOf(
+                item.copy(tripChangeId = proposal.takeIf { gateway.current.status == TripChangeStatus.Pending })), null)
+            override suspend fun decide(bookingId: String, decision: ReservationDecision) = error("Unexpected booking mutation")
+        }
+        compose.setSgmUiTestContent { ReservationManagementRoute("parent", AppRole.Parent, reservations, gateway) {} }
+        waitFor("reservation.change.${item.booking.bookingId}")
+        compose.onNodeWithTag("reservation.change.${item.booking.bookingId}").performScrollTo().performClick()
+        waitFor("trip.change.status")
+        compose.onNodeWithTag("trip.change.decline").performScrollTo().performClick(); waitFor("trip.change.decision")
+        compose.onNodeWithTag("trip.change.decision").performScrollTo().assertTextEquals("Votre refus est enregistré.")
+        compose.onNodeWithTag("reservation.change.${item.booking.bookingId}").assertDoesNotExist()
+        assertEquals(1, gateway.decisions.size)
     }
     @Test fun agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement() {
         val gateway = Gateway().apply { current = review().copy(status = TripChangeStatus.Confirmed, acceptedParentCount = 2,

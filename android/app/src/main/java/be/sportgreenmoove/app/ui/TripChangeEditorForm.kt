@@ -42,6 +42,9 @@ internal fun TripChangeEditorForm(draft: TripChangeDraft, enabled: Boolean, gate
             modifier = Modifier.fillMaxWidth().testTag("trip.change.price"))
         TripChangePlaceEditor("Départ", "origin", draft.origin, enabled, gateway)
         TripChangePlaceEditor("Destination", "destination", draft.destination, enabled, gateway)
+        draft.validationMessage(java.time.Instant.now())?.let {
+            Text(it, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary), modifier = Modifier.testTag("trip.change.validation"))
+        }
     }
 }
 

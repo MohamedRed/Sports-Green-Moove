@@ -109,13 +109,27 @@ class TripChangeStateTest {
         state.decide(TripChangeDecision.Accept) { fail() }; state.apply { fail() }; state.calculateRoute()
         assertTrue(gateway.decisions.isEmpty() && gateway.applications.isEmpty() && gateway.quotes.isEmpty())
     }
-    @Test fun closingDropsPrivateDataAndIgnoresLateReadOrWrite() = runBlocking {
+    @Test fun closingDropsPrivateDataAndIgnoresLateWrite() = runBlocking {
         val gateway = ChangeGateway(); val response = CompletableDeferred<TripChangeReview>()
         gateway.decide = { withContext(NonCancellable) { response.await() } }
         val state = ChangeFixture.state(gateway, AppRole.Parent); state.reload(ChangeFixture.review.proposalId)
         val job = launch(start = CoroutineStart.UNDISPATCHED) { state.decide(TripChangeDecision.Accept) { fail() } }
         state.close(); response.complete(ChangeFixture.review); job.join()
         assertNull(state.review); assertNull(state.error); assertFalse(state.busy || state.canRespond)
+    }
+    @Test fun closingIgnoresLatePreviewAndCannotRestoreADraft() = runBlocking {
+        val gateway = ChangeGateway(); val response = CompletableDeferred<TripChangePreview>()
+        gateway.preview = { withContext(NonCancellable) { response.await() } }
+        val state = ChangeFixture.state(gateway)
+        val job = launch(start = CoroutineStart.UNDISPATCHED) { state.reload(null) }
+        state.close(); response.complete(ChangeFixture.preview); job.join()
+        assertNull(state.preview); assertNull(state.draft); assertNull(state.error); assertFalse(state.canEdit || state.busy)
+    }
+    @Test fun foreignReviewCannotReplaceTheCurrentTripOrUnlockActions() = runBlocking {
+        val gateway = ChangeGateway().apply { review = { ChangeFixture.review.copy(tripId = "foreign") } }
+        val state = ChangeFixture.state(gateway, AppRole.Parent); state.reload(ChangeFixture.review.proposalId)
+        assertNull(state.review); assertTrue(state.requiresReload); assertFalse(state.canRespond)
+        state.decide(TripChangeDecision.Accept) { fail() }; assertTrue(gateway.decisions.isEmpty())
     }
     @Test fun overlappingActionsCannotWriteTwiceAndWithdrawalPreservesOriginal() = runBlocking {
         val gateway = ChangeGateway().apply { review = { ChangeFixture.confirmed } }
