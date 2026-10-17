@@ -47,6 +47,9 @@ test('field touches wait for their own resumed focused window, including dialogs
   assert(readiness.includes('view.isAttachedToWindow && view.windowToken != null'));
   assert(readiness.includes('root.isLifecycleInResumedState && view.hasWindowFocus()'));
   assert(readiness.includes('if (inspectEditor) manager.isActive(view) else null'));
+  for (const observation of ['power.isInteractive', 'keyguard.isKeyguardLocked', 'keyguard.isDeviceLocked',
+    'view.rootView.isShown', 'view.windowVisibility', 'view.display?.state']) assert(readiness.includes(observation));
+  assert(!/wakeUp|requestDismissKeyguard|executeShellCommand|FLAG_KEEP_SCREEN_ON|\.requestFocus\(/.test(readiness));
   assert(!/requestFocus|showSoftInput|\.show\(|Thread.sleep|performSemanticsAction/.test(readiness));
   const conversation = read(base + 'ConversationTestInteractions.kt');
   assert(conversation.indexOf('window.awaitFocus(5_000)') < conversation.indexOf('input.assertIsEnabled().performClick()'));
@@ -119,4 +122,42 @@ test('retained diagnostic files preserve original bytes, including XML line endi
     assert.equal(createHash('sha256').update(readFileSync(resolve(root, base, path))).digest('hex'), expected, path);
   }
   assert.match(read(base + '.gitattributes'), /component-before.xml -text/);
+});
+
+test('the later focus and primary-copy failures cannot become schedule or complete replay evidence', () => {
+  const base = 'docs/release/evidence/local-schedule-preparation-2026-10-17/';
+  const json = (name) => JSON.parse(read(base + name));
+  const hashes = json('artifact-sha256.json');
+  assert.equal(Object.keys(hashes).length, 8);
+  for (const [name, hash] of Object.entries(hashes)) {
+    const bytes = readFileSync(resolve(root, base, name));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), hash, name);
+    assert.doesNotMatch(bytes.toString(), /AIza[\w-]{20,}|Bearer\s+[\w.-]+|-----BEGIN .*PRIVATE KEY|"password"\s*:/);
+  }
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
+    isArray: (name) => name === 'testcase' }).parse(read(base + 'general-ui.xml')).testsuite;
+  assert.equal(suite.tests, 104); assert.equal(suite.failures, 9); assert.equal(suite.errors, 0); assert.equal(suite.skipped, 22);
+  const failed = suite.testcase.filter((item) => Object.hasOwn(item, 'failure'));
+  assert.equal(failed.length, 9); assert(failed.every((item) => /InputWindowReadiness.awaitFocus/.test(item.failure)));
+  assert.equal(failed.filter((item) => item.classname.endsWith('.InputWindowReadinessTest')).length, 2);
+  for (const name of ['activity-input-logcat.txt', 'dialog-input-logcat.txt']) {
+    const log = read(base + name);
+    for (const phase of ['before-window-focus', 'window-focus-failed']) {
+      assert.match(log, new RegExp(`phase=${phase} attached=true windowTokenPresent=true resumed=true windowFocused=false`));
+    }
+    assert.doesNotMatch(log, /phase=\S+-keyboard-visible/);
+  }
+  const primary = json('adb-pull-trip-change-parent-confirmation.json'), cleanup = json('adb-pull-failure-cleanup.json');
+  assert.equal(primary.runId, 'c125527403f0a0f684268a4f1fbb46b0'); assert.equal(primary.completed, false);
+  assert.equal(primary.status, 1); assert.equal(primary.signal, null); assert.equal(primary.errorCode, null);
+  assert.match(primary.stderr, /building file list/); assert.equal(cleanup.runId, primary.runId); assert.equal(cleanup.completed, true);
+  assertInstrumentationPassed(read(base + 'LocalTripChangeFlowTest-instrumentation.txt'), 1);
+  assert.equal(json('local-trip-change-ui.json').runId, primary.runId); assert.equal(json('local-trip-change-ui.json').completed, true);
+  assert.deepEqual(json('native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 1, componentEvidence: 0, localReplay: 1 });
+  for (const name of ['results.json', 'trip-change-ui-stage.json', 'trip-change-schedule-ui-stage.json']) {
+    assert.equal(existsSync(resolve(root, base, name)), false);
+  }
+  assert.match(read(base + 'README.md'), /time\/address case and new date\/desired-arrival case were not reached/);
+  assert.equal(read('.github/workflows/web-integration-smoke.yml').split('"' + base + '**"').length - 1, 2);
 });

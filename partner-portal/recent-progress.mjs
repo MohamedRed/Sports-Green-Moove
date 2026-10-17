@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'Le clavier bloque à nouveau',
+    text: 'Neuf essais s’arrêtent avant la saisie. La date et l’arrivée souhaitée restent à tester. Les captures déjà vérifiées restent disponibles.', flow: 'messages' },
   { date: '2026-10-17', title: 'Le club validera les inscriptions aux équipes',
     text: 'Le responsable du club validera les membres et les enfants inscrits. Le groupe reste à construire et à tester.', flow: 'messages' },
   { date: '2026-10-17', title: 'Le parent confirme le nouvel horaire',

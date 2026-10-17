@@ -1,5 +1,7 @@
 package be.sportgreenmoove.app.ui
 
+import android.app.KeyguardManager
+import android.os.PowerManager
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.ui.platform.ViewRootForTest
@@ -40,11 +42,16 @@ internal class InputWindowReadiness(
 
     fun logState(phase: String, inspectEditor: Boolean = false) = compose.runOnUiThread {
         val manager = view.context.getSystemService(InputMethodManager::class.java)
+        val power = view.context.getSystemService(PowerManager::class.java)
+        val keyguard = view.context.getSystemService(KeyguardManager::class.java)
         val active = if (inspectEditor) manager.isActive(view) else null
         val accepting = if (inspectEditor) manager.isAcceptingText else null
         Log.i("SgmInputReadiness", "phase=$phase attached=${view.isAttachedToWindow} " +
             "windowTokenPresent=${view.windowToken != null} resumed=${root.isLifecycleInResumedState} " +
             "windowFocused=${view.hasWindowFocus()} viewFocused=${view.hasFocus()} " +
+            "interactive=${power.isInteractive} keyguardLocked=${keyguard.isKeyguardLocked} " +
+            "deviceLocked=${keyguard.isDeviceLocked} rootShown=${view.rootView.isShown} " +
+            "windowVisibility=${view.windowVisibility} displayState=${view.display?.state} " +
             "servedView=$active acceptingText=$accepting " +
             "keyboardVisible=${ViewCompat.getRootWindowInsets(view)?.isVisible(WindowInsetsCompat.Type.ime())}")
     }

@@ -26,9 +26,20 @@ do field text checks, touch-based send/confirm controls, send-error waits and
 independent persistence assertions. No forced focus, keyboard command, synthetic
 visibility, sleep, retry, provider substitution or production permission is added.
 Trip forms now inspect IME insets on their own root rather than accepting any
-other window's visible keyboard. Readiness and failure logs contain booleans only,
+other window's visible keyboard. Readiness and failure logs contain booleans and platform enum values,
 never field values or credentials. Editor-service inspection occurs after the
 keyboard outcome, not as a preparation step that could reconcile input focus.
+
+The repeat at `b72ee7f` failed nine ordinary cases at this native-window prerequisite,
+including both dedicated probes. Its retained logs show attachment, a token and a
+resumed lifecycle, but no native window focus. They do not establish whether the
+display, lock screen, window visibility or another window caused that condition.
+Readiness logs now also observe interactivity, keyguard/device lock, root visibility,
+window visibility and display state. These are booleans or platform enum values;
+no window titles, field contents, identifiers, shell dumps or credentials are logged.
+The observations do not wake/unlock the device, change focus, extend deadlines or
+turn an unobserved cause into a claimed fix. They still require a fresh executed
+failure or success before drawing conclusions.
 
 Two instrumented probes exercise an activity field and a separate dialog field.
 Compilation and static checks do not prove the runtime outcome. A fresh native

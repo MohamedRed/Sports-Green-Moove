@@ -181,8 +181,8 @@ export const content = {
         shot('booking-review-required', 'Trajet modifié : nouvelle recherche demandée, essai local simulé du 17 octobre'),
         shot('booking-review-narrow', 'Même message en texte agrandi, essai local simulé du 17 octobre')], source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-17',
-      summary: 'Le clavier passe dans le nouvel essai. Les coupures restent à stabiliser.',
-      verified: 'Le brouillon, le renvoi sans doublon et la réponse passent. La connexion initiale revient. L’échange reprend après relancement. Le clavier s’ouvre dans le nouvel essai.',
+      summary: 'Le clavier bloque à nouveau dans certains écrans. Les coupures restent à stabiliser.',
+      verified: 'Le brouillon, le renvoi sans doublon et la réponse passent dans les essais réussis. L’échange reprend après relancement. Le dernier essai du clavier échoue.',
       remaining: 'Rejouer le clavier. Répéter les essais de coupure. Restent les groupes, les échanges entre téléphones, les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
