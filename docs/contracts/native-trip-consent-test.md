@@ -37,7 +37,8 @@ The run-bound device receipt cannot substitute for those independent checks.
 
 `trip-change-ui-stage.json` is emitted only after this scoped stage passes. It is
 explicitly not the full replay result. The existing network-cut stage and every
-other group remain mandatory; only all 25 cases/groups can emit `results.json`.
+other group remain mandatory; the replay now also requires the separate
+time/address-input stage. Only all 26 cases/groups can emit `results.json`.
 No failed or skipped instrumentation may yield a successful scoped receipt.
 
 This covers proposed-price consent, refusal and withdrawal. Time/address entry,
@@ -45,6 +46,8 @@ route calculation, applying the agreed details, payment adjustments/refunds,
 process-death recovery, historical review and physical-device usability remain
 separate requirements. No provider substitute or production deployment is added.
 Compilation and configuration checks are not evidence that this native case ran.
+The separate input-stage contract is in `native-trip-change-inputs-test.md`;
+historical completed 25-group evidence is preserved unchanged.
 
 ## Independent Required Suites
 

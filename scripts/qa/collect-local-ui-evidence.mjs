@@ -6,7 +6,7 @@ import { waitForDisposableDevice } from './disposable-device-cleanup.mjs';
 
 const remote = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.';
 const phases = new Set(['confirmed-restart', 'response-loss', 'booking-response-loss', 'booking-ui-response-loss',
-  'trip-change-parent-confirmation', 'network-recovery', 'failure-cleanup']);
+  'trip-change-parent-confirmation', 'trip-change-inputs', 'network-recovery', 'failure-cleanup']);
 const text = (value) => Buffer.isBuffer(value) ? value.toString('utf8') : typeof value === 'string' ? value : '';
 
 export class EvidenceCollectionError extends Error {
