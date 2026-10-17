@@ -213,3 +213,28 @@ duplicate fields, missing states and unrelated output. This fixes the reproduced
 reader incompatibility, not the still-unexplained cellular provisioning failure.
 The raw console response of the interrupted CI run is unavailable; the source
 format comparison is not presented as a captured response from that run.
+
+## Subscription-Service Diagnosis
+
+Current booking-recovery source `cb6a89c` passed the two staged SDK booking cases,
+but its wider Android run
+[39009054408](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39009054408)
+again stopped during network preparation, before disconnecting. Its app snapshot
+reported a ready SIM, no default data subscription, and only Wi-Fi; both modem
+registration states were `home`. This does not identify a provisioning cause.
+
+The next diagnostic captures `dumpsys isub` before and after this case on the
+same guarded, disposable emulator. It compares service-side defaults, logical
+slot-mapping count, SIM-state enums and the loaded flag with the app observation.
+Only a fixed summary and recognized event names survive parsing; the raw service
+dump, ICCIDs, phone numbers, subscription IDs and arbitrary logs are never saved.
+Child-process errors are replaced with a non-sensitive diagnostic error because
+they can embed raw command output. Unknown schemas fail rather than implying a
+healthy service. Collection has bounded output/time and participates in existing
+all-steps cleanup without masking the original test failure.
+
+The parser follows the Android 15
+[subscription-service dump format](https://android.googlesource.com/platform/frameworks/opt/telephony/+/refs/heads/android15-release/src/java/com/android/internal/telephony/subscription/SubscriptionManagerService.java).
+No device setting, subscription, network route, assertion, test count, skip or
+deadline is changed. These diagnostics are not a provisioning fix or evidence
+that the previously interrupted flow passed.
