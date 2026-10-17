@@ -10,7 +10,7 @@ const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const teamOwnershipReport = 'docs/release/evidence/local-team-ownership-2026-10-16/README.md';
-const chatReport = 'docs/release/evidence/local-ui-collection-2026-10-16/README.md';
+const chatReport = 'docs/release/evidence/local-default-selection-2026-10-17/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -174,9 +174,9 @@ export const content = {
         shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre'),
         shot('booking-review-required', 'Trajet modifié : nouvelle recherche demandée, essai local simulé du 17 octobre'),
         shot('booking-review-narrow', 'Même message en texte agrandi, essai local simulé du 17 octobre')], source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },
-    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-16',
-      summary: 'L’échange après relancement passe en local. Les coupures restent à stabiliser.',
-      verified: 'Après relancement, le parent retrouve les messages et reçoit la réponse du conducteur. Le renvoi après une confirmation perdue ne crée pas de doublon, en local.',
+    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-17',
+      summary: 'Le dernier essai local passe. Les coupures restent à stabiliser.',
+      verified: 'Le brouillon reste pendant la coupure. Après reconnexion, le parent renvoie son message et reçoit la réponse du conducteur, sans doublon. L’échange après relancement passe aussi en local.',
       remaining: 'Stabiliser les essais de coupure. Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
@@ -185,15 +185,17 @@ export const content = {
         'Une personne extérieure ne peut pas ouvrir la conversation ni y répondre.',
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
-      ], 'docs/release/evidence/local-chat-response-loss-2026-10-16/results.json'),
-      ui: { source: 'docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
-      images: [shot('chat-restart-recheck-reply', 'Échange après relancement revérifié en local le 16 octobre'),
-        shot('chat-loss-confirmed', 'Un seul message enregistré après les renvois, en local'),
-        shot('chat-loss-rejected-retry', 'Le message reste prêt à être renvoyé après une erreur, en local'),
+      ], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json'),
+      ui: { source: 'docs/release/evidence/local-default-selection-2026-10-17/completed/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
+      images: [shot('chat-network-current-draft', 'Brouillon conservé pendant la coupure, essai local du 17 octobre'),
+        shot('chat-network-current-reply', 'Message renvoyé et réponse reçue, essai local du 17 octobre'),
+        shot('chat-restart-recheck-reply', 'Échange après relancement revérifié en local le 16 octobre'),
+        shot('chat-loss-confirmed', 'Un seul message enregistré après les renvois, essai local du 16 octobre'),
+        shot('chat-loss-rejected-retry', 'Message prêt à être renvoyé après une erreur, essai local du 16 octobre'),
         shot('chat-restart-reply', 'Échange réussi lors d’un essai précédent du 16 octobre'),
-        shot('chat-network-reply', 'Message renvoyé et réponse reçue après la coupure, en local'),
-        shot('chat-network-draft', 'Coupure : le brouillon reste prêt à être renvoyé, en local'),
-        shot('chat-picker-recovered', 'Réservations acceptées, refusées et annulées visibles, en local'),
+        shot('chat-network-reply', 'Message renvoyé et réponse reçue après la coupure, essai local du 16 octobre'),
+        shot('chat-network-draft', 'Brouillon conservé pendant la coupure, essai local du 16 octobre'),
+        shot('chat-picker-recovered', 'Réservations acceptées, refusées et annulées visibles, essai local du 16 octobre'),
         shot('chat-reservation', 'Réservation choisie pour le premier message, essai du 15 octobre'),
         shot('chat-empty', 'Conversation avant le premier message, essai du 15 octobre'),
         shot('chat-received', 'Premier message et réponse du conducteur, essai du 15 octobre'),

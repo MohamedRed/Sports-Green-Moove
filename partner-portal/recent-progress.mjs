@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: '24 essais locaux passent',
+    text: 'La réservation et les messages après coupure passent dans le dernier essai. Deux nouvelles captures sont disponibles. Les blocages précédents restent suivis.', flow: 'messages' },
   { date: '2026-10-17', title: 'Le renvoi est testé depuis l’écran',
     text: 'Après une réponse perdue, le parent réessaie : une seule demande est retrouvée. Deux captures locales sont ajoutées.', flow: 'booking' },
   { date: '2026-10-17', title: 'Le dernier essai s’arrête avant la coupure',

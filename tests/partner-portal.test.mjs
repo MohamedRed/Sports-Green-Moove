@@ -122,10 +122,11 @@ test('ride integrity claims use the new eleven-group evidence without promoting 
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 
-test('message service claims use the refreshed eighteen-group evidence and retain history', () => {
+test('message service claims use the refreshed 24-group evidence and retain history', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.local.source));
-  assert.equal(run.steps.length, 18);
+  assert.equal(run.steps.length, 24);
+  assert.equal(JSON.parse(source('docs/release/evidence/local-chat-response-loss-2026-10-16/results.json')).steps.length, 18);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-2026-10-15/results.json')).steps.length, 13);
   assert(run.steps.every((step) => step.status === 'passed'));
   assert(flow.local.groups.includes('chat-delivery-safety'));
@@ -163,11 +164,13 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
 });
 
-test('historical conversation captures retain their complete run separately from the new stage recheck', () => {
+test('current conversation evidence retains the full replay and the dated historical captures', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.ui.source));
-  assert.equal(run.testCount, 20);
-  assert.equal(run.steps.length, 21);
+  assert.equal(run.testCount, 24);
+  assert.equal(run.steps.length, 24);
+  const previous = JSON.parse(source('docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/results.json'));
+  assert.equal(previous.testCount, 20); assert.equal(previous.steps.length, 21);
   assert(run.steps.every((step) => step.status === 'passed'));
   assert.deepEqual(flow.ui.groups, ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui']);
   assert.equal(run.chat.messageCount, 5);
@@ -180,7 +183,7 @@ test('historical conversation captures retain their complete run separately from
   assert.equal(run.directory.secondPageCount, 8);
   assert.equal(run.directory.messageCount, 2);
   assert.equal(run.directory.readNotificationCount, 2);
-  assert.equal(flow.images.filter((image) => image.file !== 'chat-restart-recheck-reply').length, 11);
+  assert.equal(flow.images.filter((image) => !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply'].includes(image.file)).length, 11);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-ui-2026-10-15/results.json')).testCount, 9);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-ui-2026-10-15/results.json')).testCount, 8);
   assert(!Object.values(captures).some((path) => /directory-(first-message|reply)\.png/.test(path)));

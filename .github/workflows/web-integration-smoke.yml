@@ -79,6 +79,7 @@ on:
       - "tests/chat-network-config.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/default-selection-evidence.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
@@ -207,6 +208,7 @@ on:
       - "tests/chat-network-config.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/default-selection-evidence.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
@@ -317,6 +319,9 @@ jobs:
 
       - name: Validate booking response-loss evidence
         run: node --test tests/booking-recovery-evidence.test.mjs tests/subscription-diagnosis-evidence.test.mjs tests/booking-ui-loss.test.mjs tests/booking-search-feedback-evidence.test.mjs
+
+      - name: Validate current default selection comparison evidence
+        run: node --test tests/default-selection-evidence.test.mjs
 
       - name: Test booking retry identity and changed-intent races
         env:

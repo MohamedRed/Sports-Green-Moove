@@ -1,4 +1,6 @@
 export const captures = {
+  'chat-network-current-draft': 'docs/release/evidence/local-default-selection-2026-10-17/completed/local-chat-network-unconfirmed.png',
+  'chat-network-current-reply': 'docs/release/evidence/local-default-selection-2026-10-17/completed/local-chat-network-received.png',
   'booking-retry-unconfirmed': 'docs/release/evidence/local-booking-search-feedback-2026-10-17/local-booking-ui-unconfirmed.png',
   'booking-retry-confirmed': 'docs/release/evidence/local-booking-search-feedback-2026-10-17/local-booking-ui-confirmed.png',
   'booking-review-required': 'docs/release/evidence/local-booking-consistency-2026-10-17/booking-review-required.png',
