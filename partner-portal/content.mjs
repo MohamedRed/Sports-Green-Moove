@@ -37,10 +37,12 @@ export const excerpts = {
 };
 
 export const content = {
-  updatedAt: '2026-10-16',
+  updatedAt: '2026-10-17',
   lastVerifiedAt: '2026-10-16',
   releaseNote: 'Tests en cours.',
   updates: [
+    { date: '2026-10-17', title: 'Les essais simulés de reprise passent',
+      text: 'Attente, erreur, nouvel essai et déconnexion choisie : les quatre essais locaux passent. Les coupures restent à stabiliser.', flow: 'appearance' },
     { date: '2026-10-16', title: 'La reprise après rotation reste à stabiliser',
       text: 'Un essai s’est arrêté après rotation. La reprise de session et les coupures restent à vérifier.', flow: 'appearance' },
     { date: '2026-10-16', title: 'L’échange après relancement passe en local',
@@ -115,9 +117,12 @@ export const content = {
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
   blockers: [
+    { id: 'cancellation-race', title: 'Accepter et annuler en même temps',
+      text: 'Un essai local a échoué quand une acceptation et une annulation arrivent ensemble.',
+      next: 'Corriger ce conflit puis rejouer les réservations concernées.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/screen-recheck/README.md' },
     { id: 'session-restoration', title: 'Reprendre la session après une erreur',
-      text: 'Un essai s’est arrêté après rotation. Une erreur de connexion ne doit pas fermer l’app ni déconnecter automatiquement.',
-      next: 'Vérifier la reprise de session et la déconnexion choisie après une coupure.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/README.md' },
+      text: 'Les quatre essais locaux simulés passent.',
+      next: 'Rejouer la rotation et la reconnexion après une coupure.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/README.md' },
     { id: 'chat-send-stability', title: 'Reprendre les essais de coupure',
       text: 'L’échange après relancement passe en local. Le nouvel essai de coupure n’a pas pu démarrer.',
       next: 'Rétablir la connexion de test, puis rejouer les coupures et les brouillons après fermeture complète.', source: 'docs/release/evidence/local-chat-restart-recheck-2026-10-16/second-run/README.md' },
