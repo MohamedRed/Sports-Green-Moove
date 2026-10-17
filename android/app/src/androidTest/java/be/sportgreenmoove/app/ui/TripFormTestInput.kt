@@ -11,17 +11,25 @@ import androidx.test.uiautomator.UiDevice
 
 @RequiresApi(29)
 internal fun enterCancellationReason(compose: ComposeTestRule, reason: String) {
+    enterTripFormText(compose, "trip.cancel.reason", reason, "trip.cancel.confirm")
+}
+
+@RequiresApi(29)
+internal fun enterTripFormText(compose: ComposeTestRule, inputTag: String, value: String, actionTag: String) {
     fun keyboardVisible() = compose.runOnIdle {
         WindowInspector.getGlobalWindowViews().any {
             ViewCompat.getRootWindowInsets(it)?.isVisible(WindowInsetsCompat.Type.ime()) == true
         }
     }
-    val input = compose.onNodeWithTag("trip.cancel.reason")
+    val input = compose.onNodeWithTag(inputTag)
     input.performScrollTo().performClick().assertIsFocused()
     compose.waitUntil(15_000) { keyboardVisible() }
-    input.performTextInput(reason)
+    input.performTextReplacement(value)
+    check(input.fetchSemanticsNode().config[androidx.compose.ui.semantics.SemanticsProperties.EditableText].text == value) {
+        "The trip form must contain the requested text."
+    }
     UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack()
     compose.waitUntil(15_000) { !keyboardVisible() }
     compose.waitForIdle()
-    compose.onNodeWithTag("trip.cancel.confirm").assertIsDisplayed().assertIsEnabled()
+    compose.onNodeWithTag(actionTag).performScrollTo().assertIsDisplayed().assertIsEnabled()
 }

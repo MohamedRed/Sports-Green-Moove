@@ -41,8 +41,7 @@ export function validate(root) {
     if (f.ui) {
       assert.equal(f.status, 'partial', 'Local UI checks do not complete physical-device requirements');
       const run = JSON.parse(readFileSync(resolve(root, f.ui.source), 'utf8'));
-      assert.equal(run.scope, 'local-ui-not-physical-device');
-      assert.equal(run.projectId, 'demo-sgm-local-qa');
+      validateUiScope(run);
       assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
       assert(f.ui.groups.length);
       for (const group of f.ui.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven UI check ${group}`);
@@ -79,4 +78,29 @@ export function validate(root) {
   assert(manifest.project_id === 'appgprj_6acfa0036dac8191bd2792bbf88afaaf');
   assert(manifest.static.directory === 'dist');
   return true;
+}
+
+export function validateUiScope(run) {
+  switch (run.scope) {
+    case 'local-ui-not-physical-device':
+      assert.equal(run.projectId, 'demo-sgm-local-qa');
+      break;
+    case 'local-native-component-ui-not-physical-device':
+      assert.equal(run.projectId, null, 'Component fixtures do not connect to an application project');
+      assert.equal(run.applicationBackendConnected, false);
+      assert.equal(run.gateway, 'in-memory-fixture');
+      assert.equal(run.fullAppReplay, false);
+      assert.equal(run.physicalDevice, false);
+      assert.equal(run.realProviderOutcomesVerified, false);
+      assert.equal(run.componentSuiteCompleted, true);
+      assert.equal(run.failures, 0); assert.equal(run.errors, 0); assert.equal(run.skipped, 0);
+      assert(Number.isSafeInteger(run.testCount) && run.testCount > 0);
+      assert.equal(run.steps.length, run.testCount);
+      assert(run.steps.every((step) => step.status === 'passed'));
+      assert.equal(new Set(run.steps.map((step) => step.id)).size, run.testCount);
+      assert.match(run.sourceCommit, /^[a-f0-9]{40}$/);
+      assert.match(run.sourceRun, /^https:\/\/github\.com\/MohamedRed\/Sports-Green-Moove\/actions\/runs\/\d+$/);
+      break;
+    default: assert.fail('Unknown UI evidence scope');
+  }
 }

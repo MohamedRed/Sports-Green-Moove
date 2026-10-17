@@ -18,6 +18,12 @@ if ! adb pull "$remote_dir" "$output_dir"; then
   echo "::warning::No Android store-review screenshots were pulled from $remote_dir"
 fi
 
+if [[ "$test_status" -ne 0 ]] && adb shell test -d /sdcard/Download/sgm-trip-changes; then
+  if ! adb pull /sdcard/Download/sgm-trip-changes "$output_dir"; then
+    echo "::warning::Could not collect partial trip-change screenshots"
+  fi
+fi
+
 if [[ "$test_status" -eq 0 ]]; then
   adb pull /sdcard/Download/sgm-session-restoration "$output_dir" || exit 1
   for name in session-restoration-error.png session-restoration-narrow.png; do

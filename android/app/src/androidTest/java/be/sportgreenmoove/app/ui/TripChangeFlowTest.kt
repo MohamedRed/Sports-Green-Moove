@@ -1,12 +1,17 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.unit.Density
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
+import androidx.test.filters.SdkSuppress
 import be.sportgreenmoove.app.data.*
 import be.sportgreenmoove.app.services.FirebaseGateway
 import be.sportgreenmoove.app.services.UnconfiguredFirebaseGateway
@@ -16,6 +21,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 
+@SdkSuppress(minSdkVersion = 29)
 class TripChangeFlowTest {
     @get:Rule val compose = createComposeRule()
     private val trip = UiFlowFixtures.trip.copy(driverUserId = "driver")
@@ -68,7 +74,7 @@ class TripChangeFlowTest {
         }
         compose.onNodeWithTag("trip.edit.${trip.id}").performScrollTo().performClick(); waitFor("trip.change.price")
         compose.onNodeWithTag("trip.change.propose").performScrollTo().assertIsNotEnabled()
-        compose.onNodeWithTag("trip.change.price").performScrollTo().performTextReplacement("4,00")
+        enterTripFormText(compose, "trip.change.price", "4,00", "trip.change.propose")
         compose.onNodeWithTag("trip.change.propose").performScrollTo().assertIsEnabled().performClick(); waitFor("trip.change.status")
         compose.onNodeWithTag("trip.change.status").performScrollTo().assertTextEquals("Accords des parents en attente")
         capture("trip-change-driver-proposed.png")
@@ -99,8 +105,9 @@ class TripChangeFlowTest {
             TripsRoute("driver", AppRole.Driver, gateway, listOf(trip), null, 0, {}, {}, {}, { throw IOException() }, {})
         }
         compose.onNodeWithTag("trip.edit.${trip.id}").performScrollTo().performClick(); waitFor("trip.change.price")
-        compose.onNodeWithTag("trip.change.price").performScrollTo().performTextReplacement("4,00")
+        enterTripFormText(compose, "trip.change.price", "4,00", "trip.change.propose")
         compose.onNodeWithTag("trip.change.propose").performScrollTo().performClick(); waitFor("trip.change.error")
+        assertEquals(1, gateway.proposals)
         compose.onNodeWithTag("trip.change.propose").assertIsNotEnabled()
         compose.onNodeWithTag("trip.change.refresh").performScrollTo().performClick(); waitFor("trip.change.status")
         compose.onNodeWithTag("trip.change.status").performScrollTo().assertTextEquals("Accords des parents en attente")
@@ -122,7 +129,11 @@ class TripChangeFlowTest {
                 item.copy(tripChangeId = proposal.takeIf { gateway.current.status == TripChangeStatus.Pending })), null)
             override suspend fun decide(bookingId: String, decision: ReservationDecision) = error("Unexpected booking mutation")
         }
-        compose.setSgmUiTestContent { ReservationManagementRoute("parent", AppRole.Parent, reservations, gateway) {} }
+        compose.setSgmUiTestContent {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                ReservationManagementRoute("parent", AppRole.Parent, reservations, gateway) {}
+            }
+        }
         waitFor("reservation.change.${item.booking.bookingId}")
         compose.onNodeWithTag("reservation.change.${item.booking.bookingId}").performScrollTo().performClick()
         waitFor("trip.change.status")
