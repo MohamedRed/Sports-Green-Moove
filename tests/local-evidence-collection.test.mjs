@@ -49,6 +49,7 @@ test('captures actual subprocess output with scoped tracing and records command 
   assert.equal(pull.options.env.ADB_TRACE, 'sync'); assert.equal(pull.options.timeout, 120_000);
   assert.deepEqual(pull.options.stdio, ['ignore', 'pipe', 'pipe']);
   assert.equal(mock.calls.filter((call) => call.args[2] === 'pull').length, 1);
+  assert(!mock.calls.some((call) => call.args.includes('logcat')), 'Successful copies do not need failure diagnostics');
 });
 
 test('a success-looking file count with exit 1 stays failed, retains redacted diagnostics and is never retried', (t) => {
@@ -72,6 +73,35 @@ test('signals and missing exit statuses cannot be recorded as successful copies'
   const mock = setup(t, 'signal');
   assert.throws(() => mock.collect(), EvidenceCollectionError);
   assert.equal(mock.read().completed, false); assert.equal(mock.read().status, null); assert.equal(mock.read().signal, 'SIGTERM');
+});
+
+test('failed copies retain their failed receipt and collect the device state without another transfer', (t) => {
+  const mock = setup(t, 'failed-summary');
+  const execute = (command, args, options) => {
+    if (args.includes('logcat') || args.includes('dumpsys') || args.includes('/proc/meminfo')) {
+      mock.calls.push({ args, options });
+      if (args.includes('installs')) return 'Active install sessions:\n';
+      return `scoped device diagnostic ${password}`;
+    }
+    return mock.execute(command, args, options);
+  };
+  assert.throws(() => collectLocalUiEvidence(mock.input, execute, mock.spawn), EvidenceCollectionError);
+  assert.equal(mock.read().completed, false);
+  const diagnostic = JSON.parse(readFileSync(resolve(mock.dir, 'evidence-copy-network-recovery-diagnostics.json')));
+  assert.equal(diagnostic.runId, runId); assert.equal(diagnostic.label, 'evidence-copy-network-recovery');
+  assert.equal(diagnostic.scope, 'read-only-native-process-failure-diagnostic-not-flow-verification');
+  assert.equal(diagnostic.records.length, 7); assert(diagnostic.records.every(({ status }) => status === 'collected'));
+  assert.equal(mock.calls.filter((call) => call.args[2] === 'pull').length, 1);
+  for (const { file } of diagnostic.records) assert(!readFileSync(resolve(mock.dir, file), 'utf8').includes(password));
+});
+
+test('unavailable diagnostics cannot mask, repair or retry the original failed copy', (t) => {
+  const mock = setup(t, 'failed-summary');
+  assert.throws(() => mock.collect(), (error) => error instanceof EvidenceCollectionError && error.status === 1);
+  assert.equal(mock.read().status, 1); assert.equal(mock.read().completed, false);
+  const diagnostic = JSON.parse(readFileSync(resolve(mock.dir, 'evidence-copy-network-recovery-diagnostics.json')));
+  assert(diagnostic.records.every(({ status }) => status === 'failed'));
+  assert.equal(mock.calls.filter((call) => call.args[2] === 'pull').length, 1);
 });
 
 test('unapproved, physical, malformed-run and unsupported-phase calls fail before executing commands or writing receipts', (t) => {
