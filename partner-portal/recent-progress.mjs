@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'Le parent confirme le nouvel horaire',
+    text: 'Le changement d’heure passe en local. Une adresse non confirmée bloque l’envoi. Deux nouvelles captures sont disponibles.', flow: 'publication' },
+  { date: '2026-10-17', title: 'Le nouvel essai reste incomplet',
+    text: 'La confirmation passe, mais la copie des preuves s’arrête avant la fin de cet essai. Les captures déjà validées restent disponibles.', flow: 'publication' },
   { date: '2026-10-17', title: 'La confirmation des parents passe en local',
     text: 'Les deux accords, le refus et le retrait sont vérifiés dans l’app et dans les données. Quatre nouvelles captures sont disponibles.', flow: 'publication' },
   { date: '2026-10-17', title: 'Les parents confirment dans l’app',

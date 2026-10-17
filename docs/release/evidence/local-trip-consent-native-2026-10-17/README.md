@@ -225,3 +225,26 @@ The corrected HTTP client also passed a fresh 24-group isolated service replay,
 the shared client against actual local handlers, including parent decisions and
 application/payment boundaries with synthetic providers. It is a separate service
 run, not the interrupted native run's missing persisted-data verification.
+
+## Later Evidence Copy Interrupted
+
+Commit `b16d6c3649d3941162fcbede987d8c248fb0dec7`,
+[Native CI 39045747884](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39045747884),
+again passed the ordinary suite (82 passed, no failures/errors, 20 conditional
+skips) and component collection. Local run `4b698d4d8dc0639a941c0d426dd48a5c`
+passed the three-account consent instrumentation in 48.973 seconds, then its
+named evidence copy exited 1. Six original records and hashes are retained in
+`copy-interrupted/`; there is no accepted scoped consent-stage or full result.
+
+The copy receipt records ADB `37.0.1-15733141`, no launch error or signal, and
+progress only to 16 percent of the first image. The bounded sync trace contains
+no reason for the interruption. The separate cleanup receipt reports exit 0 and
+52 copied files. Cleanup does not repair or replace the original failed command,
+run independent verification or execute the later membership/restart/network
+stages. The whole job remains failed with statuses `0`, `0`, `1`.
+
+This recurrence leaves evidence-transfer reliability unresolved; no cause or fix
+is inferred from a subsequent successful copy. It does not invalidate the earlier
+completed 25-group record, nor establish any new time/address test result. The
+new input-stage test was introduced only in the subsequent commit and requires
+its own real execution and independently checked saved records.

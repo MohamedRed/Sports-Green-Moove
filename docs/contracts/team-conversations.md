@@ -58,3 +58,11 @@ Tests must use two teams in one isolated club, enrolled children, their verified
 parents, an unrelated parent and an outside account. Retain
 denial evidence as well as successful exchanges. Do not reuse a booking exchange
 as proof of team access or publish a non-functional team-message button.
+
+## Approval Policy Pending
+
+The owner has been asked whether team enrollment is approved by the club manager
+or an application administrator. No answer has been received yet. The agreed
+audience does not itself authorize granting either role a new enrollment or
+guardian-management capability. Do not infer access from the existing editable
+child fields or extend club approval to team enrollment without that decision.

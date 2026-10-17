@@ -1,4 +1,6 @@
 export const captures = {
+  'trip-time-confirmed': 'docs/release/evidence/local-trip-change-inputs-native-2026-10-17/completed/local-trip-change-time-confirmed.png',
+  'trip-route-unavailable': 'docs/release/evidence/local-trip-change-inputs-native-2026-10-17/completed/local-trip-change-route-unavailable.png',
   'trip-consent-first': 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/local-trip-change-first-parent.png',
   'trip-consent-confirmed': 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/local-trip-change-both-parents.png',
   'trip-consent-refused': 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/local-trip-change-parent-refused.png',
