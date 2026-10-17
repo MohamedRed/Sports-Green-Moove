@@ -39,3 +39,8 @@ run does not explain or resolve this recurrence.
 No new screenshot is published. Existing reviewed captures keep their original
 source and date. No application, real payment, live route, physical-device,
 tracking or safety-audit evidence is accepted by these diagnostics.
+
+The [later 27-group replay](../local-trip-change-schedule-native-2026-10-17/README.md)
+passed on the same app/test implementation and reached the date/arrival case.
+It does not explain or repair this run's nine focus failures or primary-copy
+failure. This directory remains failed diagnostic evidence, not that later run.

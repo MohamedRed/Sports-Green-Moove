@@ -69,9 +69,9 @@ test('private progress separates simulated editing screens from full native repl
   const flow = content.flows.find((item) => item.id === 'publication');
   const current = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.source, 'docs/release/evidence/local-trip-change-inputs-native-2026-10-17/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/README.md');
   assert.equal(flow.local.source, current + 'services.json'); assert(flow.local.groups.includes('trip-change-application'));
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-change-inputs-native-2026-10-17/completed/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/completed/results.json');
   assert.match(flow.remaining, /entre comptes/); assert.match(flow.remaining, /paiements et remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
   assert(content.updates.some((item) => /changements confirmés s’appliquent/.test(item.title)));

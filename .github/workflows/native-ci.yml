@@ -17,6 +17,7 @@ on:
       - "tests/trip-change-ui.test.mjs"
       - "tests/trip-change-inputs-ui.test.mjs"
       - "tests/trip-change-schedule-ui.test.mjs"
+      - "tests/trip-schedule-completed-evidence.test.mjs"
       - "tests/native-suite-runner.test.mjs"
       - "tests/native-process-failure-evidence.test.mjs"
       - "tests/local-http-request.test.mjs"
@@ -49,6 +50,7 @@ on:
       - "tests/trip-change-ui.test.mjs"
       - "tests/trip-change-inputs-ui.test.mjs"
       - "tests/trip-change-schedule-ui.test.mjs"
+      - "tests/trip-schedule-completed-evidence.test.mjs"
       - "tests/native-suite-runner.test.mjs"
       - "tests/native-process-failure-evidence.test.mjs"
       - "tests/local-http-request.test.mjs"
@@ -96,7 +98,7 @@ jobs:
         run: node --test tests/disposable-android.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs
 
       - name: Validate dual-transport network prerequisites
-        run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/native-suite-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs
+        run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/trip-schedule-completed-evidence.test.mjs tests/native-suite-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs
 
   android-native-unit:
     name: Android native unit tests

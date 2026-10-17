@@ -25,7 +25,7 @@ test('completed local consent adds reviewed images without promoting failed or p
   assert.equal(flow.status, 'partial');
   assert.match(blocker.text, /deux parents confirment séparément/);
   assert.match(blocker.next, /confirmation entre comptes/);
-  assert.equal(blocker.source, 'docs/release/evidence/local-trip-change-inputs-native-2026-10-17/README.md');
+  assert.equal(blocker.source, 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/README.md');
   assert.equal(flow.source, blocker.source);
   const current = Object.values(captures).filter((path) => path.includes('local-trip-consent-native-2026-10-17'));
   assert.equal(current.length, 4); assert(current.every((path) => path.includes('/completed/')));
