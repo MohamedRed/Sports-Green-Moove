@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'Le contrôle après fermeture continue',
+    text: 'Le nouvel essai reprend après fermeture, puis s’arrête côté conducteur. Le contrôle complet reste à terminer.', flow: 'publication' },
   { date: '2026-10-17', title: 'La reprise des accords reste à vérifier',
     text: 'Le dernier essai s’est arrêté avant cette étape. Les captures déjà vérifiées restent disponibles.', flow: 'publication' },
   { date: '2026-10-17', title: 'La date et l’arrivée souhaitée sont confirmées',

@@ -93,6 +93,11 @@ test('native actions restore confirmed consent without a login, injected UI or r
   const reopened = native.slice(native.indexOf('@Test fun reopenConfirmedConsent'), native.indexOf('private fun stage'));
   assert(reopened.indexOf('FirebaseAuth.getInstance().currentUser?.uid') < reopened.indexOf('logout()'));
   assert(!reopened.slice(0, reopened.indexOf('logout()')).includes('login('));
+  assert(native.includes('openDriverTrip(expectedProposalId = null)'));
+  assert(reopened.includes('openDriverTrip(expectedProposalId = proposalId)'));
+  assert(native.includes('expectedProposalId, trip.pendingChangeId'));
+  assert(native.includes('if (expectedProposalId == null) "edit" else "review"'));
+  assert(native.includes('"trip.$unavailableAction.$tripId").assertDoesNotExist()'));
   assert(!/setSgmUiTestContent|UiFlow.*Gateway|performSemanticsAction|runOnUiThread|respondTripChange\(|proposeTripChange\(|applyTripChange\(/.test(native));
   const host = read('scripts/qa/local-trip-consent-restart.mjs');
   for (const marker of ['assertTripConsentRestart(before, stopped, after', 'assert.deepEqual(persisted',

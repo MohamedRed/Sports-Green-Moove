@@ -35,7 +35,7 @@ class LocalTripConsentRestartTest {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             activity = scenario
             login("driver", "sgm-qa-driver")
-            openDriverReview()
+            openDriverTrip(expectedProposalId = null)
             waitFor("trip.change.price")
             enterTripFormText(compose, "trip.change.price", "4.00")
             compose.onNodeWithTag("trip.change.propose").performScrollTo().assertIsEnabled().performClick()
@@ -80,7 +80,7 @@ class LocalTripConsentRestartTest {
             closeDialog()
             logout()
             login("driver", "sgm-qa-driver")
-            openDriverReview()
+            openDriverTrip(expectedProposalId = proposalId)
             expectStatus("Tous les parents ont confirmé")
             idleReview()
             compose.onNodeWithTag("trip.change.consents").assertTextEquals("Accords reçus : 1 / 1")
@@ -133,12 +133,16 @@ class LocalTripConsentRestartTest {
         compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
         waitFor(SgmTestTags.AuthEmailInput)
     }
-    private fun openDriverReview() {
+    private fun openDriverTrip(expectedProposalId: String?) {
         val trip = runBlocking { AndroidRuntime.create(context).firebase.searchTrips().single { it.id == tripId } }
+        assertEquals("The driver must reopen the expected proposal", expectedProposalId, trip.pendingChangeId)
         compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
         selectLocalTripMonth(compose, trip)
-        waitFor("trip.edit.$tripId")
-        compose.onNodeWithTag("trip.edit.$tripId").performScrollTo().assertIsEnabled().performClick()
+        val action = if (expectedProposalId == null) "edit" else "review"
+        val unavailableAction = if (expectedProposalId == null) "review" else "edit"
+        waitFor("trip.$action.$tripId")
+        compose.onNodeWithTag("trip.$unavailableAction.$tripId").assertDoesNotExist()
+        compose.onNodeWithTag("trip.$action.$tripId").performScrollTo().assertIsEnabled().performClick()
     }
     private fun openParentReview() {
         compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()

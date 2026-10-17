@@ -1,7 +1,7 @@
 export const blockers = [
   { id: 'trip-consent-restart', title: 'Retrouver les accords après fermeture',
-    text: 'Le nouvel essai a été interrompu avant cette étape.',
-    next: 'Rejouer la fermeture complète, puis vérifier les accords dans les deux comptes.', source: 'docs/release/evidence/local-consent-restart-interruption-2026-10-17/README.md' },
+    text: 'Le dernier essai reprend après fermeture, puis s’arrête côté conducteur.',
+    next: 'Terminer le contrôle des accords dans les deux comptes.', source: 'docs/release/evidence/local-consent-restart-interruption-2026-10-17/README.md' },
   { id: 'emergency-contact', title: 'Ajouter le contact d’urgence',
     text: 'Le panneau est visible, mais il n’ouvre pas le téléphone. Le numéro affiché dans les réglages est un exemple.',
     next: 'Choisir le contact à joindre, puis ajouter et tester l’ouverture du téléphone sans lancer d’appel.', source: 'docs/contracts/emergency-contact.md' },

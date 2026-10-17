@@ -26,6 +26,11 @@ action. Two explicit review refreshes must preserve that state. Switching to
 the driver account must show the same confirmed proposal and prices, still
 unapplied with no apply control before a route calculation.
 
+The driver's initial trip has no proposal and opens its edit action. After
+restart/account switching, the test must require the exact saved proposal and
+open the review action instead, with edit absent. These are two explicitly
+expected states, not alternative controls tried until one succeeds.
+
 Only after the second stage and acknowledged named evidence copy can host
 verification require every stored record hash to match the pre-stop checkpoint.
 It also checks scoped parent review, outsider denial, the unresolved-change ride

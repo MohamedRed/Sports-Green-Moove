@@ -90,3 +90,29 @@ the file list; cleanup stopped during a PNG transfer. Both used ADB 37.0.1.
 No timeout, signal or subprocess error code was reported. These facts do not
 establish the underlying transport cause or permit an alternate copy/retry to be
 counted as success. Consent restart was not reached and no full result is accepted.
+
+## Driver Review Action In The Restart Test
+
+Run `39073414714`, job `117515536515`, source
+`8a6164a9053cfe47965058625e218afb4213fa77`, reached the new restart case.
+Artifact `12116706372`, local run `53e6af18b205707881ff4af32855c63d`, preserves
+the original preparation/checkpoint/stop records, both native transcripts, failed
+after receipt, device diagnostics and reviewed parent-after image under
+`driver-review-action/` with a byte/hash inventory.
+
+The native assertions passed parent session restoration without login, the same
+proposal and saved decision, absent duplicate decision controls, and two explicit
+refreshes. The after receipt nevertheless has `completed: false`. At 22:17:13 UTC
+the test timed out looking for `trip.edit.<id>` after switching to the driver.
+The app correctly offers `trip.review.<id>` while a proposal exists; the older
+three-account consent test already uses that review action. This is a test-action
+error, not evidence of a broken account switch or a reason to change the app's
+edit/review policy.
+
+The corrected test requires no pending proposal before its initial edit and the
+exact prepared proposal before the later review. It selects the appropriate
+existing action and asserts that the opposite action is absent. All original
+post-stop session, consent, driver-account, unchanged-record, scoped-access and
+ride-start assertions remain mandatory. The host's final independent snapshot,
+complete stage receipt and full 28-group result were not reached in this failed
+run. No restart requirement or new gallery screenshot is accepted from it.
