@@ -138,3 +138,47 @@ All four new read-only diagnostic queries completed. The crash buffer is empty;
 the exit records describe normal force-stops after finished instrumentation in
 this run, not a reproduction or explanation of the earlier process crash. That
 earlier reliability issue remains open.
+
+## Native Interaction Passed, Host Verification Interrupted
+
+Commit `6b1ad211d930b08cdbee74899877a7344b13953e`,
+[Native CI 39041642112](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39041642112),
+passed the ordinary suite (82 passed, no failures/errors, 20 conditional skips)
+and component collection. Isolated replay `c54adf365a442d73d9ada2ff431ec247`
+passed `LocalTripChangeFlowTest` in 45.783 seconds, including both parent
+agreements, refusal without cancellation, withdrawal and the route-quote gate.
+Its run-bound native receipt and four dialog captures were copied successfully.
+Twelve original/excerpted records with byte hashes are retained in
+`ui-passed-verification-interrupted/`; the host error file is an exact CI log
+excerpt, not a full log or a fresh execution result.
+
+The host verifier then failed on its first sign-in request with `fetch failed` /
+`UND_ERR_SOCKET: other side closed`. It did not finish independent persisted-data
+checks. There is no accepted `trip-change-ui-stage.json` or complete `results.json`.
+The overall job remains failed (`0`, `0`, `1`), even though the native interaction
+case passed. Later membership, restart and network stages were not executed.
+
+The local host makes synchronous native subprocess calls between requests. Its
+pooled HTTP socket can expire at the emulator while the host event loop is
+blocked. A separate loopback HTTP fixture reproduces a closed-socket POST failure
+after such a pause; depending on the OS it reports `ECONNRESET` or `UND_ERR_SOCKET`.
+The retained two-case unit report proves that one-shot `Connection: close`
+requests survive the same pause, preserve authorization, open distinct sockets
+and do not retry a deliberately failed POST. External endpoints and redirects
+are denied. Only the local QA HTTP client changes; real application connections,
+backend semantics and evidence acceptance stay unchanged. The next actual replay
+must still prove the independent verification succeeds.
+
+The reviewed both-parent capture still shows a refresh in progress. The isolated
+APK has no map key, so its captures say `Carte indisponible.`; they are not map
+evidence or approved partner-gallery captures. Future consent captures wait for
+the existing review busy marker to clear within the unchanged 60-second budget.
+Earlier process crashes, rendering, physical-device use, applying changes and
+real payments/refunds remain open.
+
+The corrected HTTP client also passed a fresh 24-group isolated service replay,
+`19f3301bcb5bfc84c313eca2a600aa1e`, on 2026-10-17 at 15:04:33 UTC. Its original
+`http-service-recheck.json` is retained alongside the native records. This checks
+the shared client against actual local handlers, including parent decisions and
+application/payment boundaries with synthetic providers. It is a separate service
+run, not the interrupted native run's missing persisted-data verification.

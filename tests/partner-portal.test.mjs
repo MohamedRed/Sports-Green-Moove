@@ -19,11 +19,11 @@ test('every flow has truthful, dated evidence and explicit remaining scope', () 
   assert.equal(content.releaseNote, 'Tests en cours.');
 });
 
-test('the stopped consent replay stays pending without adding incomplete map captures', () => {
+test('interrupted independent consent verification stays pending without adding incomplete captures', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
   assert.equal(flow.status, 'partial');
-  assert.match(blocker.text, /arrêté à l’ouverture côté parent/);
+  assert.match(blocker.text, /vérification finale des données s’est interrompue/);
   assert.match(blocker.next, /confirmation entre comptes/);
   assert.equal(blocker.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.equal(flow.source, blocker.source);

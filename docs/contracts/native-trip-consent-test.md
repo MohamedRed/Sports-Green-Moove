@@ -24,7 +24,8 @@ Reservation rows can appear before the parent refresh finishes. The test waits
 within its existing 60-second budget for the exact review control to be enabled,
 requires no reservation error, then makes one click. Presence alone is not ready.
 Four synchronized dialog captures retain the first agreement, both agreements,
-refusal and withdrawal. They require separate visual review before portal use;
+refusal and withdrawal. They wait for the review busy marker to clear within the
+same 60-second budget. They require separate visual review before portal use;
 passing semantics or a non-empty bitmap does not prove that maps rendered.
 
 The host waits for a successful instrumentation transcript and an acknowledged
@@ -57,3 +58,14 @@ failure is preserved as the exit status and all three statuses are written to
 verification. No test, retry, capture assertion or full-replay gate is removed.
 Shell-harness regression cases prove success, each individual failure, combined
 failure and a denied device prerequisite without using a real user or device.
+
+## Local HTTP Lifetimes
+
+The host's native subprocess calls block its event loop. Local sign-in and
+callable POSTs explicitly close their HTTP connection after each response, so an
+emulator-expired idle socket cannot be reused after a native phase. Requests
+remain loopback-only and reject redirects. Errors propagate without retries or
+alternative data. A separate HTTP fixture reproduces the stale-socket failure,
+checks fresh connections after the same pause, and requires exactly one request
+for a deliberate failed POST. This unit proof cannot replace the subsequent
+native/backend replay or its persisted-data checks.

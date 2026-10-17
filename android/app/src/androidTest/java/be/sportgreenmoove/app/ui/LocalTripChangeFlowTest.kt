@@ -110,6 +110,7 @@ class LocalTripChangeFlowTest {
         AuthTestInteractions(compose, activity).use { it.signIn(email, session.getString("password")) }
     }
     private fun capture(name: String) {
+        compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.busy").fetchSemanticsNodes().isEmpty() }
         compose.onNodeWithTag("trip.change.status").performScrollTo().assertIsDisplayed()
         captureLocalUi(compose, name, dialog = true)
     }

@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
+import { fetchLocalQa } from './local-http-request.mjs';
 export { tripInput } from './local-trip-input.mjs';
 
 const config = configureLocalEmulators();
@@ -20,7 +21,7 @@ export async function viewedBooking(actor, data) {
 }
 
 export async function signIn(email) {
-  const response = await fetch(`http://${config.authHost}/identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=fake-api-key`, {
+  const response = await fetchLocalQa(`http://${config.authHost}/identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=fake-api-key`, {
     method: 'POST', headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ email, password: process.env.SGM_QA_PASSWORD, returnSecureToken: true }),
   });
@@ -30,7 +31,7 @@ export async function signIn(email) {
 }
 
 export async function call(name, actor, data = {}) {
-  const response = await fetch(`${config.functionsOrigin}/${name}`, {
+  const response = await fetchLocalQa(`${config.functionsOrigin}/${name}`, {
     method: 'POST', headers: { 'content-type': 'application/json',
       ...(actor ? { authorization: `Bearer ${actor.token}` } : {}) }, body: JSON.stringify({ data }),
   });

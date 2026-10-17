@@ -55,6 +55,9 @@ test('the new native case uses the real app and three isolated actors, not simul
   assert.match(open, /compose.waitUntil\(60_000\)\s*\{\s*runCatching \{ compose.onNodeWithTag\("reservation.change.\$id"\).assertIsEnabled\(\) \}.isSuccess\s*\}/);
   assert(open.indexOf('.assertIsEnabled() }.isSuccess') < open.indexOf('.performClick()'));
   assert(open.includes('compose.onNodeWithTag("bookings.error").assertDoesNotExist()'));
+  const capture = native.slice(native.indexOf('private fun capture'), native.indexOf('private fun logout'));
+  assert(capture.indexOf('"trip.change.busy"') < capture.indexOf('captureLocalUi(compose'));
+  assert(capture.includes('compose.waitUntil(60_000)'));
   const runner = read('scripts/qa/local-android-session.mjs');
   assert(runner.includes("instrument(['LocalTripChangeFlowTest'], 1"));
   assert(runner.indexOf("collectEvidence('trip-change-parent-confirmation')") < runner.indexOf('await verifyTripChangeUi'));
@@ -133,4 +136,27 @@ test('independent saved records, scoped parent reads and denials gate a non-full
     assert.equal(read('.github/workflows/' + workflow).split('"tests/trip-change-ui.test.mjs"').length - 1, 2);
   }
   assert(JSON.parse(read('package.json')).scripts['test:local-flow-isolation'].includes('tests/trip-change-ui.test.mjs'));
+});
+
+test('passed native interaction and copied receipts do not accept interrupted independent verification', () => {
+  const base = 'docs/release/evidence/local-trip-consent-native-2026-10-17/ui-passed-verification-interrupted/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 12);
+  for (const [name, hash] of Object.entries(hashes)) {
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + name, import.meta.url))).digest('hex'), hash);
+  }
+  assert.match(read(base + 'LocalTripChangeFlowTest-instrumentation.txt'), /OK \(1 test\)/);
+  const native = JSON.parse(read(base + 'local-trip-change-ui.json'));
+  assert.equal(native.runId, 'c54adf365a442d73d9ada2ff431ec247'); assert.equal(native.completed, true);
+  const copy = JSON.parse(read(base + 'adb-pull-trip-change-parent-confirmation.json'));
+  assert.equal(copy.runId, native.runId); assert.equal(copy.status, 0); assert.equal(copy.completed, true);
+  assert.equal(copy.scope, 'local-adb-file-sync-command-not-flow-verification');
+  assert.match(read(base + 'host-verification-error.txt'), /UND_ERR_SOCKET/);
+  assert.match(read(base + 'host-verification-error.txt'), /verifyTripChangeUi/);
+  assert.equal(JSON.parse(read(base + 'native-suite-status.json')).localReplay, 1);
+  assert.match(read(base + 'local-http-unit.xml'), /<!-- pass 2 -->/);
+  assert.match(read(base + 'local-http-unit.xml'), /<!-- fail 0 -->/);
+  const service = JSON.parse(read(base + 'http-service-recheck.json'));
+  assert.equal(service.runId, '19f3301bcb5bfc84c313eca2a600aa1e'); assert.notEqual(service.runId, native.runId);
+  assert.equal(service.scope, 'local-emulated-services-not-phone-ui');
+  assert.equal(service.steps.length, 24); assert(service.steps.every((item) => item.status === 'passed'));
 });
