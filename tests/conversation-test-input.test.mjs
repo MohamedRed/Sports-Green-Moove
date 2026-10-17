@@ -41,6 +41,31 @@ test('the uncertainty and rejection cases retain the same requests, message cont
   assert(screen.includes('@After fun releaseInteractions()'));
 });
 
+test('field touches wait for their own resumed focused window, including dialogs', () => {
+  const readiness = read(base + 'InputWindowReadiness.kt');
+  assert(readiness.includes('input.fetchSemanticsNode().root as? ViewRootForTest'));
+  assert(readiness.includes('view.isAttachedToWindow && view.windowToken != null'));
+  assert(readiness.includes('root.isLifecycleInResumedState && view.hasWindowFocus()'));
+  assert(readiness.includes('if (inspectEditor) manager.isActive(view) else null'));
+  assert(!/requestFocus|showSoftInput|\.show\(|Thread.sleep|performSemanticsAction/.test(readiness));
+  const conversation = read(base + 'ConversationTestInteractions.kt');
+  assert(conversation.indexOf('window.awaitFocus(5_000)') < conversation.indexOf('input.assertIsEnabled().performClick()'));
+  assert(conversation.includes('compose.waitUntil(5_000)'));
+  const form = read(base + 'TripFormTestInput.kt');
+  assert(form.indexOf('window.awaitFocus(15_000)') < form.indexOf('input.performClick()'));
+  assert(form.includes('compose.waitUntil(15_000) { window.keyboardVisible() }'));
+  assert(!form.includes('WindowInspector'));
+  const probes = read(base + 'InputWindowReadinessTest.kt');
+  assert.equal((probes.match(/@Test fun /g) ?? []).length, 2);
+  assert(probes.includes('activityInputUsesItsOwnFocusedWindowAndRealKeyboard'));
+  assert(probes.includes('dialogInputUsesItsOwnFocusedWindowAndRealKeyboard'));
+  assert(probes.includes('input.assertTextEquals("QA input")'));
+  for (const name of ['InputWindowReadiness.kt', 'InputWindowReadinessTest.kt']) {
+    assert(read(base + name).split('\n').length < 300);
+    assert.equal(read('.github/workflows/web-integration-smoke.yml').split('"' + base + name + '"').length - 1, 2);
+  }
+});
+
 test('both CI entry points retain component input readiness coverage', () => {
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml']) {
     const source = read('.github/workflows/' + name);

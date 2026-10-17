@@ -44,9 +44,10 @@ test('new code is modular and smoke coverage includes both sides of the change c
 test('screen fixtures preserve real input readiness, app scrolling and failure artifacts', () => {
   const dir = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
   const input = read(dir + 'TripFormTestInput.kt');
-  for (const marker of ['WindowInspector.getGlobalWindowViews()', 'WindowInsetsCompat.Type.ime()',
+  for (const marker of ['InputWindowReadiness(compose, input)', 'window.awaitFocus(15_000)',
     'performClick().assertIsFocused()', 'performTextReplacement(value)', 'EditableText].text == value',
-    'pressBack()', '!keyboardVisible()', 'assertIsDisplayed().assertIsEnabled()', 'internal fun enterCancellationReason']) assert(input.includes(marker));
+    'pressBack()', '!window.keyboardVisible()', 'assertIsDisplayed().assertIsEnabled()', 'internal fun enterCancellationReason']) assert(input.includes(marker));
+  assert(!input.includes('WindowInspector'), 'Another window cannot prove this field has a keyboard');
   const screens = read(dir + 'TripChangeFlowTest.kt');
   assert.equal(screens.split('enterTripFormText(compose, "trip.change.price", "4,00")').length - 1, 2);
   assert(input.includes('compose.onNodeWithTag("trip.cancel.confirm").assertIsDisplayed().assertIsEnabled()'));

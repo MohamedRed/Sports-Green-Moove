@@ -1,0 +1,51 @@
+package be.sportgreenmoove.app.ui
+
+import android.util.Log
+import android.view.inputmethod.InputMethodManager
+import androidx.compose.ui.platform.ViewRootForTest
+import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+internal class InputWindowReadiness(
+    private val compose: ComposeTestRule,
+    input: SemanticsNodeInteraction,
+) {
+    // A dialog has its own window; the host activity cannot prove its input readiness.
+    private val root = checkNotNull(input.fetchSemanticsNode().root as? ViewRootForTest) {
+        "The input must belong to an Android composition."
+    }
+    private val view get() = root.view
+
+    fun awaitFocus(timeoutMillis: Long) {
+        logState("before-window-focus")
+        try {
+            compose.waitUntil(timeoutMillis) {
+                compose.runOnUiThread {
+                    view.isAttachedToWindow && view.windowToken != null &&
+                        root.isLifecycleInResumedState && view.hasWindowFocus()
+                }
+            }
+            logState("window-focused")
+        } catch (failure: Throwable) {
+            logState("window-focus-failed")
+            throw failure
+        }
+    }
+
+    fun keyboardVisible(): Boolean = compose.runOnUiThread {
+        ViewCompat.getRootWindowInsets(view)?.isVisible(WindowInsetsCompat.Type.ime()) == true
+    }
+
+    fun logState(phase: String, inspectEditor: Boolean = false) = compose.runOnUiThread {
+        val manager = view.context.getSystemService(InputMethodManager::class.java)
+        val active = if (inspectEditor) manager.isActive(view) else null
+        val accepting = if (inspectEditor) manager.isAcceptingText else null
+        Log.i("SgmInputReadiness", "phase=$phase attached=${view.isAttachedToWindow} " +
+            "windowTokenPresent=${view.windowToken != null} resumed=${root.isLifecycleInResumedState} " +
+            "windowFocused=${view.hasWindowFocus()} viewFocused=${view.hasFocus()} " +
+            "servedView=$active acceptingText=$accepting " +
+            "keyboardVisible=${ViewCompat.getRootWindowInsets(view)?.isVisible(WindowInsetsCompat.Type.ime())}")
+    }
+}

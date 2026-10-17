@@ -35,8 +35,12 @@ internal class ConversationTestInteractions(
 
     fun enterDraft(value: String, replace: Boolean = false) {
         val input = compose.onNodeWithTag(SgmTestTags.ChatMessageInput)
+        val window = InputWindowReadiness(compose, input)
+        window.awaitFocus(5_000)
         input.assertIsEnabled().performClick().assertIsFocused()
-        awaitKeyboard(true)
+        try { awaitKeyboard(true) }
+        catch (failure: Throwable) { window.logState("conversation-keyboard-failed", inspectEditor = true); throw failure }
+        window.logState("conversation-keyboard-visible", inspectEditor = true)
         if (replace) input.performTextReplacement(value) else input.performTextInput(value)
     }
 

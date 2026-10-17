@@ -128,5 +128,8 @@ test('the subsequent recheck stays failed with no inferred controller readiness 
     assert.equal(subscription.defaultSubscriptionValid.defaultDataSubId, false);
   }
   assert(content.updates.some((update) => update.title === 'La préparation bloque encore un essai'));
-  assert.match(content.flows.find((flow) => flow.id === 'messages').summary, /^Le nouvel essai de coupure passe/);
+  const current = content.flows.find((flow) => flow.id === 'messages');
+  assert.equal(current.status, 'partial');
+  assert.match(current.summary, /clavier/);
+  assert.match(current.remaining, /Répéter les essais de coupure/);
 });
