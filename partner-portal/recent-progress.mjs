@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'La confirmation des parents passe en local',
+    text: 'Les deux accords, le refus et le retrait sont vérifiés dans l’app et dans les données. Quatre nouvelles captures sont disponibles.', flow: 'publication' },
   { date: '2026-10-17', title: 'Les parents confirment dans l’app',
     text: 'L’accord, le refus et le retrait passent dans l’essai local. La vérification finale des données reste à terminer.', flow: 'publication' },
   { date: '2026-10-17', title: 'Le conducteur propose les nouveaux détails',

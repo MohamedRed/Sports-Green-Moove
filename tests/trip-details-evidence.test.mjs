@@ -80,7 +80,7 @@ test('raw reports remain byte exact and the portal keeps full editing and real s
   assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.equal(flow.local.source, current + 'services.json');
   assert(flow.local.groups.includes('trip-details-ownership'));
-  assert.equal(flow.ui.source, current + 'results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/results.json');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
   const blocker = content.blockers.find((item) => item.id === 'trip-management');

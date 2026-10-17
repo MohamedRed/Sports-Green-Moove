@@ -19,15 +19,16 @@ test('every flow has truthful, dated evidence and explicit remaining scope', () 
   assert.equal(content.releaseNote, 'Tests en cours.');
 });
 
-test('interrupted independent consent verification stays pending without adding incomplete captures', () => {
+test('completed local consent adds reviewed images without promoting failed or physical-device scope', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
   assert.equal(flow.status, 'partial');
-  assert.match(blocker.text, /vérification finale des données s’est interrompue/);
+  assert.match(blocker.text, /deux parents confirment séparément/);
   assert.match(blocker.next, /confirmation entre comptes/);
   assert.equal(blocker.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.equal(flow.source, blocker.source);
-  assert(!Object.values(captures).some((path) => path.includes('local-trip-consent-native-2026-10-17')));
+  const current = Object.values(captures).filter((path) => path.includes('local-trip-consent-native-2026-10-17'));
+  assert.equal(current.length, 4); assert(current.every((path) => path.includes('/completed/')));
 });
 
 test('excerpts are bounded, original recordings retained and no audio exported', () => {

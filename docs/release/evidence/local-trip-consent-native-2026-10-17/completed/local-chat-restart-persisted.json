@@ -1,0 +1,38 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "eb2b795695b03cb8ceb0dc85c609a6ce",
+  "sourceId": "9QUephklu1Vh0YqYkLBc",
+  "scope": "local-persisted-confirmed-conversation-restart",
+  "messages": [
+    {
+      "messageId": "24836b8905e5a6423acb8ab80f349c26fbb97627b4509921723c84464cd89a47",
+      "body": "Message confirmé avant relancement.",
+      "senderUserId": "sgm-qa-parent",
+      "clientMessageId": "01c21005-6061-4192-88fc-65bf7d91baba",
+      "createdAtMillis": 1792250786820,
+      "notificationId": "chat_11e96aed42a39b9541f42b20cfa1e6fc7f6ddefce7e2689219683dcd15c6f241",
+      "recipientUserId": "sgm-qa-driver",
+      "read": true
+    },
+    {
+      "messageId": "bcfcbbfa9efe3eccad490b0e5617f3926509073edc5da201f211da0cf031e960",
+      "body": "Réponse reçue après relancement.",
+      "senderUserId": "sgm-qa-driver",
+      "clientMessageId": "c88a5a91-a231-438f-8cbf-973088b5d61a",
+      "createdAtMillis": 1792250800166,
+      "notificationId": "chat_52e192b763abc92d5671745bb40923b87d57ea582c94edb808d64fed59de025c",
+      "recipientUserId": "sgm-qa-parent",
+      "read": true
+    },
+    {
+      "messageId": "e22b0e0d97af3663b0620b669ac071ea25361e37fe7c7a5fcc3171d38c6b04b5",
+      "body": "Nouvel envoi après relancement.",
+      "senderUserId": "sgm-qa-parent",
+      "clientMessageId": "2e7f282e-e8d6-4a22-8a6c-459df631fb08",
+      "createdAtMillis": 1792250796134,
+      "notificationId": "chat_19d66baa0f060b183d73f0d479a94117b9546f25e2db61c171e4e75f3a9f8f20",
+      "recipientUserId": "sgm-qa-driver",
+      "read": true
+    }
+  ]
+}

@@ -1,4 +1,8 @@
 export const captures = {
+  'trip-consent-first': 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/local-trip-change-first-parent.png',
+  'trip-consent-confirmed': 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/local-trip-change-both-parents.png',
+  'trip-consent-refused': 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/local-trip-change-parent-refused.png',
+  'trip-consent-withdrawn': 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/local-trip-change-withdrawn.png',
   'chat-network-current-draft': 'docs/release/evidence/local-dual-transport-2026-10-17/completed/local-chat-network-unconfirmed.png',
   'chat-network-current-reply': 'docs/release/evidence/local-dual-transport-2026-10-17/completed/local-chat-network-received.png',
   'booking-retry-unconfirmed': 'docs/release/evidence/local-booking-search-feedback-2026-10-17/local-booking-ui-unconfirmed.png',

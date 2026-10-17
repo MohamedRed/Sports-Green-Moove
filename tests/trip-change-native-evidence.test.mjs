@@ -90,13 +90,15 @@ test('partner progress stays partial, dates historical captures and excludes una
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-17');
   assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.equal(flow.local.source, base + 'services.json');
-  assert.equal(flow.ui.source, base + 'results.json');
-  assert.deepEqual(flow.ui.groups.slice().sort(), json('results.json').steps.map((item) => item.id).sort());
-  assert.match(flow.verified, /simulés/); assert.match(flow.remaining, /entre comptes/);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/results.json');
+  assert.deepEqual(flow.ui.groups, ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui']);
+  assert.match(flow.verified, /Deux parents/); assert.match(flow.remaining, /entre comptes/);
   assert.match(flow.remaining, /après fermeture/); assert.match(flow.remaining, /cartes/);
   assert.match(flow.remaining, /paiements et remboursements réels/); assert.match(flow.remaining, /pas en ligne/);
-  assert.equal(flow.images.length, 3);
-  assert(flow.images.every((item) => item.alt.includes('16 octobre') && captures[item.file].includes('local-trip-cancellation-ui-2026-10-16')));
+  assert.equal(flow.images.length, 7);
+  const historical = flow.images.filter((item) => item.file.startsWith('trip-cancel-'));
+  assert.equal(historical.length, 3);
+  assert(historical.every((item) => item.alt.includes('16 octobre') && captures[item.file].includes('local-trip-cancellation-ui-2026-10-16')));
   assert(content.updates.some((item) => item.flow === 'publication' && item.date === '2026-10-17' && /Sept essais d’écran simulés/.test(item.text)));
 });
 

@@ -49,6 +49,7 @@ on:
       - "tests/trip-cancellation-native.test.mjs"
       - "tests/trip-change-native.test.mjs"
       - "tests/trip-change-native-evidence.test.mjs"
+      - "tests/trip-consent-completed-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
@@ -200,6 +201,7 @@ on:
       - "tests/trip-cancellation-native.test.mjs"
       - "tests/trip-change-native.test.mjs"
       - "tests/trip-change-native-evidence.test.mjs"
+      - "tests/trip-consent-completed-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
@@ -453,6 +455,9 @@ jobs:
 
       - name: Validate scoped native trip-change evidence
         run: node --test tests/trip-change-native-evidence.test.mjs
+
+      - name: Validate completed native parent consent evidence
+        run: node --test tests/trip-consent-completed-evidence.test.mjs
 
       - name: Validate dual-transport network prerequisites
         run: node --test tests/dual-transport-config.test.mjs tests/dual-transport-evidence.test.mjs tests/dual-transport-completed-evidence.test.mjs

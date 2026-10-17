@@ -1,5 +1,48 @@
 # Native Parent Consent Replay
 
+## Completed Local Replay
+
+Commit `7981923e9443eca5adfb8679214eb58c32df0456`,
+[Native CI 39043960522](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39043960522),
+completed all 25 native/backend cases and groups in isolated run
+`eb2b795695b03cb8ceb0dc85c609a6ce` at 2026-10-17 15:27:17 UTC. All current required
+PR checks were green at that commit; iOS remained intentionally skipped. The
+ordinary suite separately passed 82 cases with no failures/errors and 20
+conditional local-backend skips. `native-suite-status.json` records `0`, `0`, `0`.
+Fifty-four original artifacts and their hashes are retained in `completed/`.
+Earlier failed attempts below remain unchanged.
+
+The native consent case passed in 38.978 seconds. Independent saved-data checks
+then verified confirmation by two parents, refusal without cancelling bookings,
+withdrawal, unchanged original trips/bookings, private parent views, outsider
+denial, denied start before application and five unique notices per proposal.
+`trip-change-ui-stage.json` is the narrower accepted consent-stage receipt;
+`results.json` additionally proves the rest of the mandatory replay completed.
+The latter retains the scoped stage verbatim, plus strict network cut/handover,
+restoration, message counts and independently stopped process-restart receipts.
+
+The four consent captures were visually reviewed: the first agreement shows
+`1 / 2`, both agreements show `2 / 2`, refusal preserves the initial trip and
+withdrawal preserves the initial trip. Both old/new prices are readable, and the
+refresh indicator has cleared. They are approved only as local price-consent
+illustrations for the private portal. Original bytes and synthetic fixture titles
+are preserved. Maps are explicitly unavailable in this isolated APK; no map,
+route calculation, application, payment/refund, physical-device or production
+result is claimed. Older cancellation captures retain their original dates.
+
+The earlier HTTP-fixture expectation was too narrow: a hosted pool can detect an
+expired connection and reconnect, while the local baseline rejected its stale
+socket. The corrected unit check requires a fresh connection when that baseline
+succeeds and recognizes only a closed-socket error otherwise. The normative
+one-shot connection and failed-POST/no-retry assertions remain mandatory and pass
+on the hosted runner. This does not retroactively accept the interrupted run.
+
+Time/address changes, route calculation, application after agreement, process-death
+recovery of consent, historical review, physical-device tracking, real payments
+and safety audits remain separate work. One successful replay does not explain
+every earlier crash, keyboard, SIM or renderer failure. The release goal remains
+active; no production app, provider configuration or release manifest is changed.
+
 ## Before Rendering Prerequisite Correction
 
 Commit `f2f3eac92fa2b5a7db042adf416200bb97c46295`,

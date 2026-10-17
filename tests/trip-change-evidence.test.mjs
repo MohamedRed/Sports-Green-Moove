@@ -75,7 +75,7 @@ test('private progress keeps historical consent separate from native editing and
   assert.equal(flow.status, 'partial');
   assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.equal(flow.local.source, current + 'services.json'); assert(flow.local.groups.includes('trip-change-parent-confirmation'));
-  assert.equal(flow.ui.source, current + 'results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/results.json');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
   assert(content.updates.some((update) => update.flow === 'publication' && /contrôles des confirmations/.test(update.title) && /écrans/.test(update.text)));

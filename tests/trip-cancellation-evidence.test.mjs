@@ -88,8 +88,8 @@ test('CI runs cancellation checks and the private portal separates local app pro
   assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
-  assert.equal(flow.ui.source, detailsBase + 'results.json');
-  assert(flow.ui.groups.includes('trip-change-parent-decline-ui'));
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/completed/results.json');
+  assert(flow.ui.groups.includes('trip-change-parent-confirmation-ui'));
   assert.match(read(base + 'README.md'), /not been deployed to production/);
   for (const name of ['trip-cancel-review', 'trip-cancel-confirmed', 'trip-cancel-parent']) assert(captures[name].startsWith(uiBase));
 });
