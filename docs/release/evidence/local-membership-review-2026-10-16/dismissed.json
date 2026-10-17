@@ -1,0 +1,56 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "45fcd4490c879c7ea44cd7bbe239d043",
+  "testedAt": "2026-10-16T03:06:43.293Z",
+  "phase": "pending",
+  "scope": "local-management-persisted-state-not-ui-proof",
+  "method": "read-only-independent-record-checks",
+  "sourceBase": "e3c435bd487c9e400bd86af1e13579ae914c7226",
+  "sourceState": "working-tree-before-commit",
+  "fingerprints": {
+    "admin/src/App.tsx": "3bdd84fda9038e3a3b796154febb1f61d09f95fadc6c76de7b6c6b68d738e36c",
+    "admin/src/ClubDashboard.tsx": "b932613152157849c555e709b40c6bf3452152a37f4bb222529f0109d263fe6b",
+    "admin/src/MembershipReviewPanel.tsx": "8ae4035f3d6f68bc93cebb1171e63d6055b1744b6335ff186316b708460a9666",
+    "admin/src/MembershipReviewController.ts": "f11fa7d3a1b09f9b0eb5da73dd6cb540d7d9db89f9fe51d3d2b1265b144dcc87",
+    "admin/src/MembershipConfirmation.tsx": "f0c949c3c5c8dedde8b0f259ee0dcb12fef41e1af9c77d85f343c3dd48b1d018",
+    "admin/src/membershipReviewGateway.ts": "01c9ae2357280c2676d0a7f44c35e850e2027f5a99c9640363d464fe68b11064",
+    "admin/src/useAdminAuth.ts": "a7d277638fbf9d4bb043b30d0b7316022b25313f83e063625fb824fb1d1f2cf7",
+    "admin/src/memberships.css": "295e9f298006f35122a96b4b45a28d476806eb9226e2007e898b81e912a30bd2",
+    "functions/src/callables/membershipReview.ts": "56f9167260bccfb61c1fe737aa8d4047673fe5c92e8ec95733e8e837a97aefa0",
+    "functions/src/callables/membershipLists.ts": "0506479a1cc4f90904e7736a7d09dd5b0ae35a06f6f95ddd580439164a9edcdf",
+    "functions/src/lib/membershipReviewAccess.ts": "ab8a7743fc1806124e38f296fc7cebdb5d60aab74747d53d1e0f6b94c1af752f",
+    "functions/src/domain/membershipReview.ts": "12510713ddcd40274c60695ef592ae1802e52417b5d97ae6aafa1aaf523aca94",
+    "firestore.rules": "39c145423641b8378d260f91aff4f2689e6f2a338b2fa1232e2875fbc93f18da"
+  },
+  "records": [
+    {
+      "membershipId": "sgm-qa-applicant-approve_sgm-qa-club-green-wavre",
+      "userId": "sgm-qa-applicant-approve",
+      "status": "requested",
+      "active": false,
+      "reviewer": null
+    },
+    {
+      "membershipId": "sgm-qa-applicant-reject_sgm-qa-club-green-wavre",
+      "userId": "sgm-qa-applicant-reject",
+      "status": "requested",
+      "active": false,
+      "reviewer": null
+    },
+    {
+      "membershipId": "sgm-qa-applicant-admin_sgm-qa-club-green-wavre",
+      "userId": "sgm-qa-applicant-admin",
+      "status": "requested",
+      "active": false,
+      "reviewer": null
+    }
+  ],
+  "reviewCount": 0,
+  "notificationCount": 0,
+  "memberCount": 3,
+  "livePush": false,
+  "limits": [
+    "Persisted records alone do not prove how the UI action was performed.",
+    "No production data, mobile membership screen or push delivery tested."
+  ]
+}

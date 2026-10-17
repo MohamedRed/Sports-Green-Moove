@@ -1,0 +1,11 @@
+{
+  "recordType": "derived-field-summary-from-native-ci-log",
+  "sourceCommit": "ff7d244edff67d360a4ec97f420f1387911a10b6",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39036624494",
+  "mapsRuntime": {
+    "playStoreEnabled": true,
+    "playServicesEnabled": true,
+    "playServicesVersion": "24.23.35"
+  },
+  "scope": "disposable-emulator-without-home-navigation"
+}

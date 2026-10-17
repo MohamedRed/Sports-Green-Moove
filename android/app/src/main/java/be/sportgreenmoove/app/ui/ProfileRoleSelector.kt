@@ -9,19 +9,36 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import be.sportgreenmoove.app.data.AppRole
 
+private val mobileSelectableRoles = listOf(
+    AppRole.Parent,
+    AppRole.Driver,
+    AppRole.Child,
+    AppRole.ClubManager,
+    AppRole.Admin,
+)
+
 @Composable
-fun ProfileRoleSelector(role: AppRole, onRoleChange: (AppRole) -> Unit) {
+fun ProfileRoleSelector(
+    role: AppRole,
+    availableRoles: Set<AppRole>,
+    onRoleChange: (AppRole) -> Unit,
+) {
+    val roles = mobileSelectableRoles.filter { it in availableRoles }.ifEmpty { listOf(AppRole.Parent) }
     Column(
         modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 14.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            V2Chip("Parent", selected = role == AppRole.Parent, onClick = { onRoleChange(AppRole.Parent) }, modifier = Modifier.weight(1f))
-            V2Chip("Conducteur", selected = role == AppRole.Driver, onClick = { onRoleChange(AppRole.Driver) }, modifier = Modifier.weight(1f))
-        }
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-            V2Chip("Enfant", selected = role == AppRole.Child, onClick = { onRoleChange(AppRole.Child) }, modifier = Modifier.weight(1f))
-            V2Chip("Club manager", selected = role == AppRole.ClubManager, onClick = { onRoleChange(AppRole.ClubManager) }, modifier = Modifier.weight(1f))
+        roles.chunked(2).forEach { rowRoles ->
+            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                rowRoles.forEach { option ->
+                    V2Chip(
+                        roleLabel(option),
+                        selected = role == option,
+                        onClick = { onRoleChange(option) },
+                        modifier = Modifier.weight(1f),
+                    )
+                }
+            }
         }
     }
 }

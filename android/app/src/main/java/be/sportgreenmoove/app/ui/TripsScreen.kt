@@ -24,37 +24,42 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
-import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.domain.tripFallsInMonth
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 @Composable
 fun TripsScreen(
     trips: List<TripSummary>,
     activeRide: LiveRideSnapshot?,
-    bookingRequests: List<BookingRequestSummary>,
+    pendingCount: Int,
     onTripAction: (TripSummary) -> Unit,
     onOpenSearch: () -> Unit,
     onOpenRide: () -> Unit,
-    onApproveBooking: (BookingRequestSummary) -> Unit,
+    reservationContent: @Composable () -> Unit,
+    management: TripManagementActions? = null,
 ) {
     var selectedTab by remember { mutableStateOf("upcoming") }
+    var monthIso by rememberSaveable { mutableStateOf(YearMonth.now().toString()) }
+    val month = YearMonth.parse(monthIso)
     val visibleTrips = trips.filter { trip ->
-        when (selectedTab) {
+        tripFallsInMonth(trip.departureAtIso, month) && when (selectedTab) {
             "past" -> trip.status == TripStatus.Past
             "pending" -> trip.status == TripStatus.Pending
             else -> trip.status == TripStatus.Upcoming
@@ -69,8 +74,8 @@ fun TripsScreen(
             .padding(bottom = 20.dp),
     ) {
         TripsHeader(onSearch = onOpenSearch)
-        TripsMonthNav()
-        TripsTabs(selected = selectedTab, pendingCount = bookingRequests.count { it.status == "requested" }, onSelected = { selectedTab = it })
+        TripsMonthNav(month, { monthIso = month.minusMonths(1).toString() }, { monthIso = month.plusMonths(1).toString() })
+        TripsTabs(selected = selectedTab, pendingCount = pendingCount, onSelected = { selectedTab = it })
         Column(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -79,9 +84,12 @@ fun TripsScreen(
                 ActiveRideEntryCard(activeRide, onOpenRide)
             }
             if (selectedTab == "pending") {
-                BookingRequestsList(bookingRequests, onApproveBooking)
+                reservationContent()
             } else {
-                visibleTrips.forEach { trip -> TripsCard(trip = trip, onClick = { onTripAction(trip) }) }
+                visibleTrips.forEach { trip -> TripsCard(trip = trip, onClick = { onTripAction(trip) },
+                    onCancel = management?.takeIf { it.canCancel(trip) }?.let { { it.onCancel(trip) } },
+                    onEdit = management?.takeIf { it.canEdit(trip) }?.onEdit?.let { { it(trip) } },
+                    onReview = management?.takeIf { it.canReview(trip) }?.onReview?.let { { it(trip) } }) }
                 if (visibleTrips.isEmpty()) TripsEmptyCard()
             }
         }
@@ -108,21 +116,21 @@ private fun TripsHeader(onSearch: () -> Unit) {
 }
 
 @Composable
-private fun TripsMonthNav() {
+private fun TripsMonthNav(month: YearMonth, onPrevious: () -> Unit, onNext: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 20.dp, end = 20.dp, bottom = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        CircleIconButton(icon = SgmIcon.ChevronLeft, onClick = {}, size = 32)
+        CircleIconButton(icon = SgmIcon.ChevronLeft, onClick = onPrevious, size = 32, testTag = "trips.month.previous")
         Text(
-            "NOVEMBRE 2022",
+            month.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.forLanguageTag("fr-BE"))).uppercase(Locale.forLanguageTag("fr-BE")),
             style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 18.sp, letterSpacing = 0.10.em),
             modifier = Modifier.weight(1f),
             textAlign = TextAlign.Center,
         )
-        CircleIconButton(icon = SgmIcon.ChevronRight, onClick = {}, size = 32)
+        CircleIconButton(icon = SgmIcon.ChevronRight, onClick = onNext, size = 32, testTag = "trips.month.next")
     }
 }
 
@@ -134,7 +142,7 @@ private fun TripsTabs(selected: String, pendingCount: Int, onSelected: (String) 
     ) {
         TripsTab("upcoming", "À VENIR", selected, onSelected, Modifier.weight(1f))
         TripsTab("past", "PASSÉS", selected, onSelected, Modifier.weight(1f))
-        TripsTab("pending", "EN ATTENTE", selected, onSelected, Modifier.weight(1f), badge = pendingCount.takeIf { it > 0 }?.toString())
+        TripsTab("pending", "RÉSERVATIONS", selected, onSelected, Modifier.weight(1.35f), badge = pendingCount.takeIf { it > 0 }?.toString())
     }
 }
 
@@ -168,75 +176,10 @@ private fun TripsTab(id: String, label: String, selected: String, onSelected: (S
 }
 
 @Composable
-private fun TripsCard(trip: TripSummary, onClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(SgmRadius.LG))
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
-            .clickable(onClick = onClick),
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(SgmColor.HeroStart)
-                .padding(horizontal = 14.dp, vertical = 10.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(trip.sport.uppercase(), style = SgmType.Eyebrow.copy(color = SgmColor.GreenLight, fontSize = 11.sp, letterSpacing = 0.14.em))
-            Spacer(Modifier.weight(1f))
-            Text("${trip.dateLabel} · ${trip.timeLabel}", style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.62f), fontWeight = FontWeight.Bold))
-        }
-        Column(
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            Text(
-                trip.title,
-                style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 18.sp, lineHeight = 20.sp, letterSpacing = 0.03.em),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                TripMeta(SgmIcon.Location, trip.distanceLabel)
-                Spacer(Modifier.size(14.dp))
-                TripMeta(SgmIcon.Groups, trip.seatsLabel)
-                Spacer(Modifier.weight(1f))
-                Row(horizontalArrangement = Arrangement.spacedBy((-6).dp)) {
-                    trip.passengerInitials.forEach { initials -> PassengerBubble(initials) }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun TripsEmptyCard() {
-    Text(
-        "Aucun trajet dans cet onglet.",
-        style = SgmType.BodySM.copy(color = Sgm.colors.textMuted, fontSize = 13.sp, fontWeight = FontWeight.SemiBold),
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(SgmRadius.LG))
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
-            .padding(16.dp),
-    )
-}
-
-@Composable
-private fun TripMeta(icon: SgmIcon, text: String) {
-    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-        SgmLineIcon(icon = icon, tint = Sgm.colors.textMuted, modifier = Modifier.size(12.dp))
-        Text(text, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.Medium))
-    }
-}
-
-@Composable
-private fun CircleIconButton(icon: SgmIcon, onClick: () -> Unit, size: Int) {
+private fun CircleIconButton(icon: SgmIcon, onClick: () -> Unit, size: Int, testTag: String? = null) {
     Box(
         modifier = Modifier
+            .sgmOptionalTestTag(testTag)
             .size(size.dp)
             .clip(CircleShape)
             .background(Sgm.colors.bgCard)
@@ -245,20 +188,6 @@ private fun CircleIconButton(icon: SgmIcon, onClick: () -> Unit, size: Int) {
         contentAlignment = Alignment.Center,
     ) {
         SgmLineIcon(icon = icon, tint = Sgm.colors.textSecondary, modifier = Modifier.size(16.dp))
-    }
-}
-
-@Composable
-private fun PassengerBubble(initials: String) {
-    Box(
-        modifier = Modifier
-            .size(24.dp)
-            .clip(CircleShape)
-            .background(SgmColor.Green)
-            .border(BorderStroke(2.dp, Sgm.colors.bgCard), CircleShape),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(initials.take(2).uppercase(), style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 8.sp, fontWeight = FontWeight.Bold))
     }
 }
 

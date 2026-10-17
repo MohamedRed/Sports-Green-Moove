@@ -6,6 +6,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.PayableBookingSummary
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidProviderSet
 import be.sportgreenmoove.app.services.StripePaymentSheetController
 import be.sportgreenmoove.app.services.stripeConnectUrls
@@ -81,7 +82,7 @@ private fun launchStripeConnectOnboarding(
             val link = providers.stripe.createStripeAccountLink(returnUrl, refreshUrl)
             openUrl(link.url)
             setNotice(if (account.reused) "Onboarding Stripe repris." else "Compte Stripe créé.")
-        }.onFailure { setError(it.message) }
+        }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         setLoading(false)
     }
 }

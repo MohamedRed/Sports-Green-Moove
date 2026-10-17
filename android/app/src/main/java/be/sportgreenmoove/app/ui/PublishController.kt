@@ -8,6 +8,7 @@ import androidx.compose.runtime.setValue
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripPublishDraft
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.FirebaseGateway
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -47,6 +48,15 @@ class PublishController(
     var loading by mutableStateOf(false)
         private set
 
+    fun seedPlaces(initialOrigin: ResolvedPlace?, initialDestination: ResolvedPlace?) {
+        if (initialOrigin != null && origin == null) {
+            origin = initialOrigin
+        }
+        if (initialDestination != null && destination == null) {
+            destination = initialDestination
+        }
+    }
+
     fun suggestPlaces(input: String, target: SearchPlaceTarget) {
         if (input.isBlank()) {
             onError("Saisissez une adresse à chercher.")
@@ -57,7 +67,7 @@ class PublishController(
             onError(null)
             runCatching { firebase.suggestPlaces(input) }
                 .onSuccess { setSuggestions(target, it) }
-                .onFailure { onError(it.message) }
+                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }
@@ -76,7 +86,7 @@ class PublishController(
                         destinationSuggestions = emptyList()
                     }
                 }
-                .onFailure { onError(it.message) }
+                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }
@@ -94,7 +104,7 @@ class PublishController(
                     onNotice("Trajet publié: $tripId")
                     onPublished()
                 }
-                .onFailure { onError(it.message) }
+                .onFailure { onError(UserFacingErrorPolicy.messageFor(it)) }
             loading = false
         }
     }

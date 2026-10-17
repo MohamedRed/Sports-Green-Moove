@@ -1,0 +1,44 @@
+{
+  "scope": "local-native-component-ui-not-physical-device",
+  "projectId": null,
+  "applicationBackendConnected": false,
+  "gateway": "in-memory-fixture",
+  "fullAppReplay": false,
+  "physicalDevice": false,
+  "realProviderOutcomesVerified": false,
+  "componentSuiteCompleted": true,
+  "sourceCommit": "781b925b00e3bdf72c0e7b5e63cf07f9e2cf873b",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39026693680",
+  "testedAt": "2026-10-17T11:05:22Z",
+  "report": "component.xml",
+  "testCount": 7,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "steps": [
+    { "id": "trip-change-proposal-ui", "case": "owningDriverProposesChangedTermsWithoutStartingTheRide", "status": "passed" },
+    { "id": "trip-change-parent-accept-ui", "case": "largeTextParentSeesBothVersionsAndAcceptsWithoutApplying", "status": "passed" },
+    { "id": "trip-change-parent-decline-ui", "case": "refusalKeepsTheInitialTripWithoutCancellingTheBooking", "status": "passed" },
+    { "id": "trip-change-application-ui", "case": "agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement", "status": "passed" },
+    { "id": "trip-change-reservation-entry-ui", "case": "parentOpensFromAffectedReservationAndKeepsTheRecordedRefusalVisible", "status": "passed" },
+    { "id": "trip-change-application-refresh-ui", "case": "provenApplicationNeverShowsTheStaleUnappliedMessageWhenRefreshFails", "status": "passed" },
+    { "id": "trip-change-proposal-recovery-ui", "case": "refreshRecoversAStoredProposalWithoutAnotherWriteWhenBothRepliesWereLost", "status": "passed" }
+  ],
+  "broaderSuite": {
+    "tests": 95,
+    "passed": 75,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 19,
+    "ciConclusion": "failure",
+    "fullIsolatedReplayStarted": false,
+    "failedCase": "largeTextConfirmationRecoversUnknownOutcomeWithNoSecondWrite",
+    "reason": "The shared helper attempted to scroll a cancellation dialog action with no scroll ancestor. The existing cancellation action is already outside its scrollable body."
+  },
+  "captureReview": {
+    "directory": "compose-captures",
+    "count": 5,
+    "publishable": false,
+    "reason": "Every Compose capture has black native map areas. Kept unaltered for diagnosis; not approved for the partner portal. Full native display captures are required to distinguish capture composition from actual map rendering."
+  }
+}

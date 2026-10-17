@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { canWriteLiveLocation } from "../domain/locationAccess.js";
 import { parseLocationBatchRequest } from "../domain/locationBatch.js";
+import { liveLocationPayload } from "../domain/liveLocationPayload.js";
 import { nativeFallbackUpdateForAuth } from "../domain/locations.js";
 
 describe("native location fallback", () => {
@@ -54,6 +55,33 @@ describe("native location fallback", () => {
 
   it("rejects invalid JSON-encoded location batches", () => {
     expect(() => parseLocationBatchRequest({ updatesJson: "not-json" })).toThrow();
+  });
+
+  it("omits undefined optional fields before writing live trip locations", () => {
+    const payload = liveLocationPayload({
+      rideSessionId: "ride-1",
+      userId: "driver-1",
+      role: "driver",
+      lat: 50.715,
+      lng: 4.612,
+      accuracyM: 8,
+      speedMps: undefined,
+      headingDeg: undefined,
+      batteryPct: undefined,
+      capturedAt: 1760000000000,
+      uploadedAt: 1760000005000,
+      source: "radar",
+    });
+
+    expect(payload).toMatchObject({
+      rideSessionId: "ride-1",
+      userId: "driver-1",
+      source: "radar",
+      uploadedAt: 1760000005000,
+    });
+    expect(payload).not.toHaveProperty("speedMps");
+    expect(payload).not.toHaveProperty("headingDeg");
+    expect(payload).not.toHaveProperty("batteryPct");
   });
 
   it("allows only active ride drivers and child participants to write live locations", () => {

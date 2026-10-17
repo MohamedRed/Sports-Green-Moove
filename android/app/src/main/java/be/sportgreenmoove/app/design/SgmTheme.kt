@@ -14,7 +14,7 @@ package be.sportgreenmoove.app.design
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
@@ -247,12 +247,12 @@ object Sgm {
 // ─────────────────────────────────────────────────────────────
 
 @Composable
-fun SgmGridTexture(
+fun BoxScope.SgmGridTexture(
     modifier: Modifier = Modifier,
     spacing: Float = 24f,
     lineColor: Color = SgmColor.Green.copy(alpha = 0.07f),
 ) {
-    Canvas(modifier = modifier.fillMaxSize()) {
+    Canvas(modifier = modifier.matchParentSize()) {
         var x = 0f
         while (x <= size.width) {
             drawLine(lineColor, Offset(x, 0f), Offset(x, size.height), strokeWidth = 1f)

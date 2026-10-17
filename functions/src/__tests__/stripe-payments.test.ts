@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import type Stripe from "stripe";
 import {
-  buildConnectedAccountLinkCreateBody,
+  buildConnectedAccountCreateParams,
+  buildConnectedAccountLinkCreateParams,
   connectedAccountFromRecord,
   buildRewardPayoutTransferCreateParams,
   buildRidePaymentIntentCreateParams,
@@ -9,6 +10,7 @@ import {
 } from "../services/stripeConnect.js";
 import { buildRidePaymentLedgerEntries } from "../services/stripeLedger.js";
 import {
+  ridePaymentAmountCents,
   shouldApplyIncompletePaymentStatus,
   validateSucceededRidePaymentIntent,
 } from "../services/stripePaymentValidation.js";
@@ -124,6 +126,43 @@ describe("Stripe ride payments", () => {
     )).toMatchObject({ ok: false, reconciliationStatus: "amountMismatch" });
   });
 
+  it("computes ride payment amount only from valid server-priced booking state", () => {
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 2 }, { id: "trip-1", priceCents: 250 })).toBe(500);
+    expect(ridePaymentAmountCents({ id: "booking-1" }, { id: "trip-1", priceCents: 250 })).toBe(250);
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 2 }, { id: "trip-1", priceCents: 0 })).toBeNull();
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 2 }, { id: "trip-1" })).toBeNull();
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 0 }, { id: "trip-1", priceCents: 250 })).toBeNull();
+    expect(ridePaymentAmountCents({ id: "booking-1", seats: 1.5 }, { id: "trip-1", priceCents: 250 })).toBeNull();
+  });
+
+  it("rejects succeeded PaymentIntent reconciliation when server price data is malformed", () => {
+    const intent = {
+      id: "pi_123",
+      amount: 500,
+      currency: "eur",
+      metadata: {
+        bookingId: "booking-1",
+        tripId: "trip-1",
+        payerUserId: "parent-1",
+        driverUserId: "driver-1",
+        platformFeeCents: "0",
+        product: "sports-green-moove",
+      },
+    } as Stripe.PaymentIntent;
+
+    expect(validateSucceededRidePaymentIntent(
+      intent,
+      {
+        id: "booking-1",
+        tripId: "trip-1",
+        parentUserId: "parent-1",
+        driverUserId: "driver-1",
+        seats: 2,
+      },
+      { id: "trip-1" },
+    )).toMatchObject({ ok: false, reconciliationStatus: "amountMismatch" });
+  });
+
   it("does not downgrade paid bookings from incomplete PaymentIntent events", () => {
     const intent = {
       id: "pi_123",
@@ -147,21 +186,37 @@ describe("Stripe ride payments", () => {
     expect(() => stripePublishableKey("")).toThrow("STRIPE_PUBLISHABLE_KEY is required");
   });
 
-  it("builds an Accounts v2 onboarding link request", () => {
-    expect(buildConnectedAccountLinkCreateBody({
+  it("builds a Stripe Connect Express account request that does not require Accounts v2", () => {
+    expect(buildConnectedAccountCreateParams({
+      email: "driver@example.invalid",
+      country: "BE",
+      userId: "driver-1",
+    })).toEqual({
+      type: "express",
+      country: "BE",
+      email: "driver@example.invalid",
+      business_type: "individual",
+      capabilities: {
+        card_payments: { requested: true },
+        transfers: { requested: true },
+      },
+      metadata: {
+        userId: "driver-1",
+        product: "sports-green-moove",
+      },
+    });
+  });
+
+  it("builds a Stripe Connect v1 onboarding link request", () => {
+    expect(buildConnectedAccountLinkCreateParams({
       accountId: "acct_driver",
       refreshUrl: "https://app.sgm.test/refresh",
       returnUrl: "https://app.sgm.test/return",
     })).toEqual({
       account: "acct_driver",
-      use_case: {
-        type: "account_onboarding",
-        account_onboarding: {
-          configurations: ["merchant"],
-          refresh_url: "https://app.sgm.test/refresh",
-          return_url: "https://app.sgm.test/return",
-        },
-      },
+      refresh_url: "https://app.sgm.test/refresh",
+      return_url: "https://app.sgm.test/return",
+      type: "account_onboarding",
     });
   });
 

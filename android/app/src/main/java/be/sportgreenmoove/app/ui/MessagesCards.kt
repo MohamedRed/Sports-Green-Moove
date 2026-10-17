@@ -23,7 +23,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import be.sportgreenmoove.app.data.InboxChatSummary
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import be.sportgreenmoove.app.data.ConversationListItem
 import be.sportgreenmoove.app.data.InboxNotificationSummary
 import be.sportgreenmoove.app.data.InboxReviewPrompt
 import be.sportgreenmoove.app.design.Sgm
@@ -32,20 +34,25 @@ import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun ChatCard(chat: InboxChatSummary) {
+fun ChatCard(chat: ConversationListItem, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .sgmTestTag(SgmTestTags.ChatOpenAction)
             .clip(RoundedCornerShape(14.dp))
             .background(Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(14.dp))
+            .clickable(onClick = onClick)
             .padding(horizontal = 14.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        MessageAvatar(chat.initials, size = 40)
+        MessageAvatar(chat.title.take(2), size = 40)
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text(chat.title, style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary, fontWeight = FontWeight.Bold), maxLines = 1)
+            Text(chat.title, style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary, fontWeight = FontWeight.Bold), maxLines = 2, overflow = TextOverflow.Ellipsis)
+            Text(chat.tripLabel, style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary), maxLines = 1, overflow = TextOverflow.Ellipsis)
+            chat.peerLabel?.let { Text(it, style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary), maxLines = 1, overflow = TextOverflow.Ellipsis) }
+            chat.childLabel?.let { Text(it, style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary), maxLines = 1, overflow = TextOverflow.Ellipsis) }
             Text(
                 chat.preview,
                 style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp),
@@ -55,7 +62,7 @@ fun ChatCard(chat: InboxChatSummary) {
         }
         Column(horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(chat.dateLabel, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 10.sp, fontWeight = FontWeight.Medium))
-            if (chat.unreadCount > 0) MessageUnreadBadge(chat.unreadCount.toString())
+            if (chat.unreadCount > 0) MessageUnreadBadge(if (chat.unreadCount > 99) "99+" else chat.unreadCount.toString(), chat.unreadCount)
         }
     }
 }
@@ -89,6 +96,7 @@ fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, onRate: (Int) -> 
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .sgmTestTag(SgmTestTags.RatingPromptAction)
             .clip(RoundedCornerShape(SgmRadius.LG))
             .background(Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
@@ -109,7 +117,9 @@ fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, onRate: (Int) -> 
                 Text(
                     "★",
                     style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 26.sp),
-                    modifier = Modifier.clickable(enabled = !submitting) { onRate(index + 1) },
+                    modifier = Modifier
+                        .sgmTestTag("${SgmTestTags.RatingPromptAction}.${index + 1}")
+                        .clickable(enabled = !submitting) { onRate(index + 1) },
                 )
             }
         }
@@ -157,10 +167,11 @@ fun MessageTabBadge(text: String, selected: Boolean) {
 }
 
 @Composable
-private fun MessageUnreadBadge(text: String) {
+private fun MessageUnreadBadge(text: String, fullCount: Long) {
     Box(
         modifier = Modifier
-            .size(18.dp)
+            .size(22.dp)
+            .semantics { contentDescription = "$fullCount messages non lus" }
             .clip(CircleShape)
             .background(SgmColor.Green),
         contentAlignment = Alignment.Center,

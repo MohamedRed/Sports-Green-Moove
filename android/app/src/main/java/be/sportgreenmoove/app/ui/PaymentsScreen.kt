@@ -38,7 +38,7 @@ fun PaymentsScreen(
     onPay: (PayableBookingSummary) -> Unit,
     onStartConnect: () -> Unit,
 ) {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.PaymentsScreen) {
         V2TopBar("PAIEMENTS", onBack = onBack)
         PaymentsHero(bookings = bookings)
         if (role == AppRole.Driver) {
@@ -118,6 +118,7 @@ private fun PaymentBookingCard(
             variant = V2ButtonVariant.Primary,
             size = V2ButtonSize.Md,
             full = true,
+            testTag = SgmTestTags.PaymentAction,
         )
     }
 }

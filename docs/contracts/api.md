@@ -7,6 +7,10 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | Function | Caller | Result |
 | --- | --- | --- |
 | `setUserRoles` | admin | Updates Firebase Auth `roleKeys` and `users/{uid}.roles` together. |
+| `requestClubMembership` | signed-in users | Deterministic ordinary-member request. A rejected request can be resubmitted; old current-review fields are cleared without deleting audit history. |
+| `listMembershipReviewClubs` | admin/clubManager | Pages of 20 clubs. Managers see only clubs with their active `clubManager` membership; cursor is actor/list/role bound. |
+| `listClubMemberships` | admin/scoped clubManager | Pages of 20 club memberships, document revision and allowed decisions; no client-side privilege inference. |
+| `reviewClubMembership` | admin/scoped clubManager | Exact `membershipId`, `decision` (`approve`/`reject`) and `expectedVersion` required. Atomically changes an ordinary pending request, increments the existing club counter only on approval, creates an immutable review and a recipient notification. Stale/repeated decisions fail; no global roles are granted. |
 | `listTrips` | signed-in users | Client-ready published trip summaries for home/trips screens. |
 | `suggestPlaces` | signed-in users | Belgian Google Places autocomplete suggestions for search origin/destination. |
 | `resolvePlace` | signed-in users | Google Place Details location and formatted address for a selected suggestion. |
@@ -15,6 +19,8 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `requestBooking` | parent | Pending booking request. Optional `childId` must belong to the caller through `children/{childId}.guardianUserIds`. |
 | `listDriverBookingRequests` | driver | Requested/approved booking queue for driver approval screens. |
 | `approveBooking` | driver | Approved booking and notification. |
+| `declineBooking` | owning driver | Decline a requested booking on an open, not-started trip without changing seats; notify its guardian. Repeated/late decisions are rejected transactionally. |
+| `listReservations` | parent/driver | Role-scoped pages of 20 bookings, newest first, with server-computed allowed actions and refund-pending state. Owner/list-bound cursor; history is retained. |
 | `cancelBooking` | parent/driver/admin | Cancelled booking and notification. |
 | `startRide` | driver | Active ride session with approved booking ids attached as passengers. |
 | `getActiveRide` | ride participants | Current active ride snapshot with live labels/passenger statuses, or `null`. |
@@ -22,8 +28,12 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `markPickup` | driver | Child pickup status and parent notification. |
 | `markDropoff` | driver | Child dropoff status and parent notification. |
 | `writeLocationBatch` | driver/child | Native fallback location batch bound to the authenticated user. |
-| `getInbox` | signed-in users | Notifications, latest chat previews, and pending post-ride review prompts for the Messages screen. |
-| `sendChatMessage` | participants | Message and push fanout. |
+| `getInbox` | signed-in users | Notifications, bounded legacy previews and pending post-ride review prompts; Android no longer discovers conversations from these previews. |
+| `listChatConversations` | signed-in participants | Paginated private conversation summaries with full unread counts; optional user/list-bound immutable cursor. |
+| `listChatBookingOptions` | booking parent/driver | Paginated reservation context for starting a first message; does not create messages. |
+| `sendChatMessage` | participants | Atomic message, recipient notification records and private summary updates; keyed retries are idempotent. No push-delivery proof implied. |
+| `getChatConversation` | participants | Reauthorizes an exact booking/ride conversation before listening. |
+| `markChatMessagesRead` | participants | Atomically acknowledges up to 50 exact addressed messages/notifications and decrements only newly read incoming counts. |
 | `submitRating` | ride participant | Immutable rating. |
 | `createReport` | signed-in users | Safety/support report. |
 | `reviewReport` | admin | Status, review note, and audit event for a support report. |

@@ -1,0 +1,48 @@
+{
+  "restingInputTop": 2101,
+  "typing": {
+    "keyboardVisible": true,
+    "header": {
+      "top": 217,
+      "bottom": 312,
+      "left": 53,
+      "right": 148
+    },
+    "composer": {
+      "top": 1173,
+      "bottom": 1270,
+      "left": 79,
+      "right": 849
+    }
+  },
+  "acknowledged": {
+    "keyboardVisible": true,
+    "header": {
+      "top": 217,
+      "bottom": 312,
+      "left": 53,
+      "right": 148
+    },
+    "composer": {
+      "top": 1218,
+      "bottom": 1270,
+      "left": 79,
+      "right": 849
+    }
+  },
+  "dismissed": {
+    "keyboardVisible": false,
+    "header": {
+      "top": 217,
+      "bottom": 312,
+      "left": 53,
+      "right": 148
+    },
+    "composer": {
+      "top": 2101,
+      "bottom": 2153,
+      "left": 79,
+      "right": 849
+    }
+  }
+}

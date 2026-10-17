@@ -1,0 +1,929 @@
+{
+  "runId": "b46560271a9c7b6d45b5cd85b09f6fec",
+  "testedAt": "2026-10-17T03:18:36.200Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "controlled-local-booking-handler-not-phone-ui",
+  "passed": false,
+  "cases": [
+    {
+      "id": "price",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'aborted'\n",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-price"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "VuPEfaW8lp4QxE1m3aC1",
+          "tripId": "sgm-qa-consistency-price",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:34.909Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 900,
+        "departureAt": "2026-10-18T15:18:34.909Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-price",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "departure",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'aborted'\n",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-departure"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "JYoK9MAVMkUrS5ZJvMwM",
+          "tripId": "sgm-qa-consistency-departure",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.804Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-20T03:18:35.820Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-departure",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "origin",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'aborted'\n",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-origin"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "PSDMeQad94JghSNNGI17",
+          "tripId": "sgm-qa-consistency-origin",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.843Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.843Z",
+        "origin": {
+          "lat": 50.75,
+          "lng": 4.61
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-origin",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "destination",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'aborted'\n",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-destination"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "1EA7vi4N1Z9IMspkjtdi",
+          "tripId": "sgm-qa-consistency-destination",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.878Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.878Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.88,
+          "lng": 4.36
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-destination",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "arrival",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'aborted'\n",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-arrival"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "mqCWmHlxbtFPRFkm3FrT",
+          "tripId": "sgm-qa-consistency-arrival",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.913Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.913Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "arrivalBy": "2026-10-20T04:18:35.927Z"
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-arrival",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "applied-revision",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'aborted'\n",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-applied-revision"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "aeSQWY4mL3fRsIeES5sD",
+          "tripId": "sgm-qa-consistency-applied-revision",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.946Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.946Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "appliedChangeId": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-applied-revision",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "guardian-revoked",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'permission-denied'\n",
+      "expectedError": "permission-denied",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-guardian-revoked"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "XmSlvKgF4LioB2K6CR4U",
+          "tripId": "sgm-qa-consistency-guardian-revoked",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.979Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:35.979Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-guardian-revoked",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "child-deleted",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ undefined\n- 'permission-denied'\n",
+      "expectedError": "permission-denied",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-child-deleted"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "ZWeBrMoRawH1eHvtQZgm",
+          "tripId": "sgm-qa-consistency-child-deleted",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.010Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.010Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": false,
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-child-deleted",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "child-label",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'QA enfant initial'\n- 'QA enfant actualisé'\n             ^\n",
+      "expectedError": null,
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-child-label"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "UfXBvt0FTCEvSTkgUfXT",
+          "tripId": "sgm-qa-consistency-child-label",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.041Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.041Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-child-label",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "cosmetic-title",
+      "status": "failed",
+      "failure": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'Local QA trip'\n- 'QA titre actualisé'\n",
+      "expectedError": null,
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-cosmetic-title"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "gMpRrIfaA17IsYsi7REi",
+          "tripId": "sgm-qa-consistency-cosmetic-title",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.086Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.086Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-cosmetic-title",
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 16h18",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "16h18",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "closed-trip",
+      "status": "passed",
+      "expectedError": "failed-precondition",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-closed-trip"
+      ],
+      "rejected": {
+        "code": "failed-precondition",
+        "message": "Trip is no longer available for this booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.114Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.114Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "pending-proposal",
+      "status": "passed",
+      "expectedError": "failed-precondition",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-pending-proposal"
+      ],
+      "rejected": {
+        "code": "failed-precondition",
+        "message": "Trip is no longer available for this booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.145Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.145Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "lost-capacity",
+      "status": "passed",
+      "expectedError": "failed-precondition",
+      "mutationApplied": true,
+      "reads": [
+        "trips/sgm-qa-consistency-lost-capacity"
+      ],
+      "rejected": {
+        "code": "failed-precondition",
+        "message": "Trip is no longer available for this booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.176Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T15:18:36.176Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    }
+  ],
+  "bookingSourceSha256": "7db9d768a91f95e32f2e1ad720e36e0ea8f93f921e1b5e64b603c23f75c39044",
+  "livePayment": false,
+  "productionDeployed": false
+}

@@ -1,0 +1,51 @@
+
+be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest:
+Error in driverCancelsAndParentSeesClosedReservationsAndPendingRefund(be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest):
+com.google.firebase.FirebaseException: An internal error has occurred. [ unexpected end of stream on com.android.okhttp.Address@f044164 ]
+	at com.google.android.gms.internal.firebase-auth-api.zzadz.zza(com.google.firebase:firebase-auth@@24.1.0:18)
+	at com.google.android.gms.internal.firebase-auth-api.zzaex.zza(com.google.firebase:firebase-auth@@24.1.0:21)
+	at com.google.android.gms.internal.firebase-auth-api.zzaeq.zza(com.google.firebase:firebase-auth@@24.1.0:32)
+	at com.google.android.gms.internal.firebase-auth-api.zzaes.zza(com.google.firebase:firebase-auth@@24.1.0:71)
+	at com.google.android.gms.internal.firebase-auth-api.zzadx.zza(com.google.firebase:firebase-auth@@24.1.0:46)
+	at com.google.android.gms.internal.firebase-auth-api.zzaac.zza(com.google.firebase:firebase-auth@@24.1.0:3)
+	at com.google.android.gms.internal.firebase-auth-api.zzafg.zza(com.google.firebase:firebase-auth@@24.1.0:27)
+	at com.google.android.gms.internal.firebase-auth-api.zzafg.zza(com.google.firebase:firebase-auth@@24.1.0:63)
+	at com.google.android.gms.internal.firebase-auth-api.zzaen.zza(com.google.firebase:firebase-auth@@24.1.0:49)
+	at com.google.android.gms.internal.firebase-auth-api.zzaad.zzb(com.google.firebase:firebase-auth@@24.1.0:108)
+	at com.google.android.gms.internal.firebase-auth-api.zzadw.zzb(com.google.firebase:firebase-auth@@24.1.0:86)
+	at com.google.android.gms.internal.firebase-auth-api.zzacj.zza(com.google.firebase:firebase-auth@@24.1.0:13)
+	at com.google.android.gms.internal.firebase-auth-api.zzaez.run(com.google.firebase:firebase-auth@@24.1.0:3)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+	at com.google.firebase.concurrent.CustomThreadFactory.lambda$newThread$0$com-google-firebase-concurrent-CustomThreadFactory(CustomThreadFactory.java:47)
+	at com.google.firebase.concurrent.CustomThreadFactory$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+	at java.lang.Thread.run(Thread.java:1012)
+
+
+Time: 11.886
+There was 1 failure:
+1) driverCancelsAndParentSeesClosedReservationsAndPendingRefund(be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest)
+com.google.firebase.FirebaseException: An internal error has occurred. [ unexpected end of stream on com.android.okhttp.Address@f044164 ]
+	at com.google.android.gms.internal.firebase-auth-api.zzadz.zza(com.google.firebase:firebase-auth@@24.1.0:18)
+	at com.google.android.gms.internal.firebase-auth-api.zzaex.zza(com.google.firebase:firebase-auth@@24.1.0:21)
+	at com.google.android.gms.internal.firebase-auth-api.zzaeq.zza(com.google.firebase:firebase-auth@@24.1.0:32)
+	at com.google.android.gms.internal.firebase-auth-api.zzaes.zza(com.google.firebase:firebase-auth@@24.1.0:71)
+	at com.google.android.gms.internal.firebase-auth-api.zzadx.zza(com.google.firebase:firebase-auth@@24.1.0:46)
+	at com.google.android.gms.internal.firebase-auth-api.zzaac.zza(com.google.firebase:firebase-auth@@24.1.0:3)
+	at com.google.android.gms.internal.firebase-auth-api.zzafg.zza(com.google.firebase:firebase-auth@@24.1.0:27)
+	at com.google.android.gms.internal.firebase-auth-api.zzafg.zza(com.google.firebase:firebase-auth@@24.1.0:63)
+	at com.google.android.gms.internal.firebase-auth-api.zzaen.zza(com.google.firebase:firebase-auth@@24.1.0:49)
+	at com.google.android.gms.internal.firebase-auth-api.zzaad.zzb(com.google.firebase:firebase-auth@@24.1.0:108)
+	at com.google.android.gms.internal.firebase-auth-api.zzadw.zzb(com.google.firebase:firebase-auth@@24.1.0:86)
+	at com.google.android.gms.internal.firebase-auth-api.zzacj.zza(com.google.firebase:firebase-auth@@24.1.0:13)
+	at com.google.android.gms.internal.firebase-auth-api.zzaez.run(com.google.firebase:firebase-auth@@24.1.0:3)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+	at com.google.firebase.concurrent.CustomThreadFactory.lambda$newThread$0$com-google-firebase-concurrent-CustomThreadFactory(CustomThreadFactory.java:47)
+	at com.google.firebase.concurrent.CustomThreadFactory$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+	at java.lang.Thread.run(Thread.java:1012)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

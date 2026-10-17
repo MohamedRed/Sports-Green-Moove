@@ -1,4 +1,5 @@
 import type {
+  ClientMapRoutePreview,
   ClientRidePassengerStatus,
   ClientRideSnapshot,
   ClientTripSummary,
@@ -6,6 +7,7 @@ import type {
   LocationSource,
   Trip,
 } from "../domain/types.js";
+import { bookingIntentSnapshot } from "../domain/bookingIntent.js";
 
 type LiveTripLocation = {
   uploadedAt?: number;
@@ -17,6 +19,7 @@ type LiveTripSnapshot = {
   vehicle?: LiveTripLocation;
   children?: Record<string, LiveTripLocation | undefined>;
   meta?: {
+    tripId?: string;
     radar?: {
       etaSeconds?: number;
       etaDistanceMeters?: number;
@@ -34,6 +37,8 @@ type RidePassengerSnapshot = {
 };
 
 type RideSessionSnapshot = {
+  tripId?: string;
+  driverUserId?: string;
   passengers?: RidePassengerSnapshot[];
   passengerStatuses?: Record<string, {
     pickupStatus?: string;
@@ -75,11 +80,13 @@ function distanceLabel(trip: Trip): string {
 }
 
 export function toClientTripSummary(trip: Trip): ClientTripSummary {
-  const dates = formatDateParts(trip.departureAt);
+  const intent = bookingIntentSnapshot(trip);
+  const dates = formatDateParts(intent.terms.departureAt);
   const seatsLabel = `${trip.seatsAvailable} ${trip.seatsAvailable > 1 ? "places" : "place"}`;
 
   return {
     id: trip.id,
+    bookingIntent: intent,
     title: trip.title ?? `${trip.category} · Trajet sportif`,
     club: trip.clubName ?? trip.clubId,
     category: trip.category,
@@ -98,6 +105,16 @@ export function toClientTripSummary(trip: Trip): ClientTripSummary {
       trip.supportsChildTracking ? "Suivi enfant disponible" : "Suivi enfant non inclus",
     ],
     status: dates.status,
+    mapPreview: toClientMapRoutePreview(trip),
+  };
+}
+
+export function toClientMapRoutePreview(trip: Trip, encodedPolyline?: string): ClientMapRoutePreview {
+  const polyline = encodedPolyline ?? trip.routeEncodedPolyline;
+  return {
+    start: trip.origin,
+    end: trip.destination,
+    ...(polyline ? { encodedPolyline: polyline } : {}),
   };
 }
 
@@ -114,6 +131,8 @@ export function toClientRideSnapshot(
 
   return {
     rideSessionId,
+    ...(ride?.driverUserId ? { driverUserId: ride.driverUserId } : {}),
+    ...(ride?.tripId ?? live?.meta?.tripId ? { tripId: ride?.tripId ?? live?.meta?.tripId } : {}),
     status: status === "active" ? "Actif" : status,
     vehicleLastUpdateLabel: locationLabel(vehicle, now, "En attente du premier point GPS"),
     childLastUpdateLabel: child ? locationLabel(child, now, "Enfant en attente") : null,
@@ -129,7 +148,7 @@ function ridePassengers(ride: RideSessionSnapshot | null | undefined): ClientRid
     const childId = passenger.childId;
     if (!bookingId || !childId) return [];
 
-    const overrides = ride?.passengerStatuses?.[childId] ?? ride?.passengerStatuses?.[bookingId];
+    const overrides = ride?.passengerStatuses?.[bookingId] ?? ride?.passengerStatuses?.[childId];
     return [{
       bookingId,
       childId,

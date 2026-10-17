@@ -1,0 +1,276 @@
+10-17 13:13:00.931  4328  4358 I TestRunner: started: largeTextParentSeesBothVersionsAndAcceptsWithoutApplying(be.sportgreenmoove.app.ui.TripChangeFlowTest)
+10-17 13:13:00.938  4328  4358 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@7c5ee66]
+10-17 13:13:00.940  4328  4358 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-17 13:13:00.944   557  1798 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10209, packageName = null, attributionTag = null, token = android.os.Binder@8219406, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 13:13:00.957   909   996 D SplashScreenView: Build android.window.SplashScreenView{d98aca2 V.E...... ......ID 0,0-0,0}
+10-17 13:13:00.957   909   996 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-17 13:13:00.957   909   996 D SplashScreenView: Branding: view: android.view.View{5e70d33 G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-17 13:13:00.962   909  2330 I HWUI    : Davey! duration=802ms; Flags=0, FrameTimelineVsyncId=68594, IntendedVsync=544764370086, Vsync=544764370086, InputEventId=0, HandleInputStart=544764541798, AnimationStart=544764542399, PerformTraversalsStart=544764542580, DrawStart=544782151396, FrameDeadline=544781036752, FrameInterval=544764539023, FrameStartTime=16666666, SyncQueued=544782295294, SyncStart=544782321062, IssueDrawCommandsStart=544782369052, SwapBuffers=545509006954, FrameCompleted=545566571835, DequeueBufferDuration=4138, QueueBufferDuration=271446, GpuCompleted=545566390778, SwapBuffersCompleted=545566571835, DisplayPresentTime=0, CommandSubmissionCompleted=545509006954,
+10-17 13:13:00.981   358   385 I netd    : tetherGetStats() -> {[]} <0.38ms>
+10-17 13:13:01.033  4328  4328 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@194864a in: PRE_ON_CREATE
+10-17 13:13:01.033   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 13:13:01.037  4328  4328 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-17 13:13:01.039  4328  4328 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@194864a in: CREATED
+10-17 13:13:01.039  4328  4328 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=androidx.activity.ComponentActivity@194864a
+10-17 13:13:01.041  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:01.042  4328  4328 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@194864a in: STARTED
+10-17 13:13:01.042  4328  4328 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=androidx.activity.ComponentActivity@194864a
+10-17 13:13:01.043  4328  4328 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@194864a in: RESUMED
+10-17 13:13:01.043  4328  4328 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=androidx.activity.ComponentActivity@194864a
+10-17 13:13:01.209   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:01.229   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:01.241   557   578 W ziparchive: Unable to open '/data/app/~~F4M1NzlrCEoEGeL0iIPELw==/be.sportgreenmoove.app-iB4YXqREibl6qkjB0qvYKg==/base.dm': No such file or directory
+10-17 13:13:01.243   557   578 I ActivityTaskManager: Displayed be.sportgreenmoove.app/androidx.activity.ComponentActivity for user 0: +298ms
+10-17 13:13:01.290  1085  1085 D VRI[FallbackHome]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 13:13:01.309   909   992 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@62b4825
+10-17 13:13:01.310   557  1584 W InputManager-JNI: Input channel object 'd5d6d44 Splash Screen be.sportgreenmoove.app (client)' was disposed without first being removed with the input manager!
+10-17 13:13:01.336   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:01.345   557   680 I ImeTracker: be.sportgreenmoove.app:ef419e7f: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 13:13:01.345   557   680 I ImeTracker: be.sportgreenmoove.app:ef419e7f: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-17 13:13:01.365  4328  4328 D AutofillManager: Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+10-17 13:13:01.370  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 13:13:01.462  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 13:13:01.463  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-17 13:13:01.464  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 13:13:01.464  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 13:13:01.472  4328  4328 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+10-17 13:13:01.472  4328  4328 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+10-17 13:13:01.497  4328  4328 D MapsInitializer: preferredRenderer: null
+10-17 13:13:01.500  4328  4328 D zzcc    : preferredRenderer: null
+10-17 13:13:01.501  4328  4328 I Google Maps Android API: Google Play services package version: 242335041
+10-17 13:13:01.501  4328  4328 I Google Maps Android API: Google Play services maps renderer version(legacy): 203115000
+10-17 13:13:01.537   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:01.543  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:01.585  4328  4328 D MapsInitializer: preferredRenderer: null
+10-17 13:13:01.586  4328  4328 D zzcc    : preferredRenderer: null
+10-17 13:13:01.589  4328  4328 I Google Maps Android API: Google Play services package version: 242335041
+10-17 13:13:01.589  4328  4328 I Google Maps Android API: Google Play services maps renderer version(legacy): 203115000
+10-17 13:13:01.802   557   680 I ImeTracker: be.sportgreenmoove.app:44c09f53: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 13:13:01.802   557   680 I ImeTracker: be.sportgreenmoove.app:44c09f53: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-17 13:13:01.804  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 13:13:01.805  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 13:13:01.806  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-17 13:13:01.806  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 13:13:01.807  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 13:13:02.044  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:02.546  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:03.047  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:03.326  4328  4368 D EGL_emulation: app_time_stats: avg=324.47ms min=19.31ms max=1170.15ms count=5
+10-17 13:13:03.414  4328  4337 I HWUI    : Davey! duration=1034ms; Flags=0, FrameTimelineVsyncId=69237, IntendedVsync=546981036664, Vsync=546981036664, InputEventId=0, HandleInputStart=546981580820, AnimationStart=546981581872, PerformTraversalsStart=546981582713, DrawStart=546981698900, FrameDeadline=546997703330, FrameInterval=546981576602, FrameStartTime=16666666, SyncQueued=546981752360, SyncStart=546981778939, IssueDrawCommandsStart=546981833652, SwapBuffers=547543978814, FrameCompleted=548015150679, DequeueBufferDuration=6111, QueueBufferDuration=280632, GpuCompleted=548014088908, SwapBuffersCompleted=548015150679, DisplayPresentTime=0, CommandSubmissionCompleted=547543978814,
+10-17 13:13:03.548  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:03.642  4328  4358 D UiDevice: Taking screenshot (scale=1.000000, quality=90) and storing at /storage/emulated/0/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/trip-change-parent-review-large-text-window.png.
+10-17 13:13:04.053  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:04.554  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:04.556  4328  4358 D UiDevice: Executing shell command: mkdir -p /sdcard/Download/sgm-trip-changes
+10-17 13:13:04.568  4328  4333 I tgreenmoove.app: NativeAlloc concurrent mark compact GC freed 5875KB AllocSpace bytes, 16(712KB) LOS objects, 49% free, 14MB/28MB, paused 306us,13.537ms total 172.427ms
+10-17 13:13:04.574  4328  4358 D UiDevice: Executing shell command: cp /sdcard/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/trip-change-parent-review-large-text.png /sdcard/Download/sgm-trip-changes/trip-change-parent-review-large-text.png
+10-17 13:13:04.586  1410  3468 W MediaProvider: isAppCloneUserPair for user 0: false
+10-17 13:13:04.590  4328  4358 D UiDevice: Executing shell command: cp /sdcard/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/trip-change-parent-review-large-text-window.png /sdcard/Download/sgm-trip-changes/trip-change-parent-review-large-text-window.png
+10-17 13:13:04.606  1410  1789 W MediaProvider: isAppCloneUserPair for user 0: false
+10-17 13:13:04.617  1207  5169 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService started execution. cause:9 exec_start_elapsed_seconds: 549 [CONTEXT service_id=218 ]
+10-17 13:13:04.623  1207  5169 I NetworkScheduler.Stats: Task com.google.android.gms/com.google.android.gms.ipa.base.IpaGcmTaskService finished executing. cause:9 result: 1 elapsed_millis: 15 uptime_millis: 15 exec_start_elapsed_seconds: 549 [CONTEXT service_id=218 ]
+10-17 13:13:05.055  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:05.234  4328  4368 D EGL_emulation: app_time_stats: avg=1906.26ms min=1906.26ms max=1906.26ms count=1
+10-17 13:13:05.556  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:06.058  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:06.559  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:06.958   557  1586 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10210, packageName = null, attributionTag = null, token = android.os.Binder@8219406, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 13:13:06.971  4328  4328 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@194864a in: PAUSED
+10-17 13:13:06.972  4328  4328 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=androidx.activity.ComponentActivity@194864a
+10-17 13:13:06.981   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:07.016   358   385 I netd    : tetherGetStats() -> {[]} <0.32ms>
+10-17 13:13:07.017  4403  4418 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-17 13:13:07.018  4403  4418 I EGL_emulation: Opening libGLESv2_emulation.so
+10-17 13:13:07.023   909   996 D SplashScreenView: Build android.window.SplashScreenView{d839f8b V.E...... ......ID 0,0-0,0}
+10-17 13:13:07.023   909   996 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-17 13:13:07.023   909   996 D SplashScreenView: Branding: view: android.view.View{c297868 G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-17 13:13:07.025   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:07.069  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:07.581  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:07.640   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 13:13:08.041  4403  4422 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[InstrumentationActivityInvoker$EmptyActivity]#42) as ready
+10-17 13:13:08.041  4403  4422 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[InstrumentationActivityInvoker$EmptyActivity]#43) as ready
+10-17 13:13:08.085  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:08.117   909  1577 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[test]#86) as ready
+10-17 13:13:08.117   909  1577 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[test]#87) as ready
+10-17 13:13:08.165  1697  1697 I wpa_supplicant: wlan0: CTRL-EVENT-BEACON-LOSS
+10-17 13:13:08.171   557   578 W ziparchive: Unable to open '/data/app/~~LGegILX47qMaqwzzvDbMRg==/be.sportgreenmoove.app.test-Qq53yHFonUwBZWgp_hsPiw==/base.dm': No such file or directory
+10-17 13:13:08.186  4403  4418 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-17 13:13:08.187   557   578 I ActivityTaskManager: Displayed be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity for user 0: +1s107ms
+10-17 13:13:08.589  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:08.678  1008  1751 D IpClient/wlan0: interfaceLinkStateChanged: ifindex 16 down
+10-17 13:13:09.001  1697  1697 I wpa_supplicant: wlan0: CTRL-EVENT-DISCONNECTED bssid=02:15:b2:00:00:01 reason=4 locally_generated=1
+10-17 13:13:09.017   557  1809 D WifiNl80211Manager: OnRegDomainChanged 00
+10-17 13:13:09.017   557  1809 D WifiNative: onCountryCodeChanged: 00
+10-17 13:13:09.030   557  1809 I WifiCountryCode: Receive onDriverCountryCodeChanged 00
+10-17 13:13:09.038   909   992 I Choreographer: Skipped 116 frames!  The application may be doing too much work on its main thread.
+10-17 13:13:09.039   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:09.040   557   581 W system_server: Long monitor contention with owner android.anim (582) at void com.android.server.wm.WindowSurfacePlacer$Traverser.run()(WindowSurfacePlacer.java:58) waiters=0 in void com.android.server.wm.ActivityTaskSupervisor$ActivityTaskSupervisorHandler.handleMessage(android.os.Message) for 895ms
+10-17 13:13:09.047   557  2014 W system_server: Long monitor contention with owner android.anim (582) at void com.android.server.wm.WindowSurfacePlacer$Traverser.run()(WindowSurfacePlacer.java:58) waiters=1 in void com.android.server.wm.WindowOrganizerController.finishTransition(android.os.IBinder, android.window.WindowContainerTransaction) for 798ms
+10-17 13:13:09.049  4328  5453 D EGL_emulation: app_time_stats: avg=2766.29ms min=2535.61ms max=2996.96ms count=2
+10-17 13:13:09.057  1697  1697 I wpa_supplicant: assoc key_mgmt 0x4 network key_mgmt 0x4
+10-17 13:13:09.062  4328  4328 D VRI[ComponentActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 13:13:09.069   557  1584 W system_server: Long monitor contention with owner android.anim (582) at void com.android.server.wm.WindowSurfacePlacer$Traverser.run()(WindowSurfacePlacer.java:58) waiters=2 in android.app.ActivityTaskManager$RootTaskInfo com.android.server.wm.ActivityTaskManagerService.getFocusedRootTaskInfo() for 791ms
+10-17 13:13:09.070   557   577 W system_server: Long monitor contention with owner android.anim (582) at void com.android.server.wm.WindowSurfacePlacer$Traverser.run()(WindowSurfacePlacer.java:58) waiters=3 in void com.android.server.wm.WindowManagerService.monitor() for 349ms
+10-17 13:13:09.192  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:09.199   557   582 I Choreographer: Skipped 63 frames!  The application may be doing too much work on its main thread.
+10-17 13:13:09.212   909  1045 D EGL_emulation: app_time_stats: avg=1377.78ms min=3.11ms max=7632.06ms count=6
+10-17 13:13:09.308  4403  4427 I HWUI    : Davey! duration=2176ms; Flags=1, FrameTimelineVsyncId=69373, IntendedVsync=551697703142, Vsync=551697703142, InputEventId=0, HandleInputStart=551698036170, AnimationStart=551698037061, PerformTraversalsStart=551698037342, DrawStart=553760846956, FrameDeadline=551714369808, FrameInterval=551698029949, FrameStartTime=16666666, SyncQueued=553760964394, SyncStart=553761431797, IssueDrawCommandsStart=553761571978, SwapBuffers=553762557336, FrameCompleted=553874609457, DequeueBufferDuration=4708, QueueBufferDuration=13294764, GpuCompleted=553874534227, SwapBuffersCompleted=553874609457, DisplayPresentTime=0, CommandSubmissionCompleted=553762557336,
+10-17 13:13:09.341   358   385 I netd    : tetherGetStats() -> {[]} <0.38ms>
+10-17 13:13:09.410   557   680 I ImeTracker: be.sportgreenmoove.app.test:df3e6741: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 13:13:09.437   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:09.437   557   680 I ImeTracker: be.sportgreenmoove.app.test:df3e6741: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-17 13:13:09.459  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 13:13:09.461  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 13:13:09.461  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app.test, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-17 13:13:09.462  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 13:13:09.463  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: DynamicLanguageSetterModule.getApplicationLocales():296 Failed to get the application locales
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: java.lang.SecurityException: getApplicationLocales: Neither user 10152 nor current process has android.permission.READ_APP_SPECIFIC_LOCALES.
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3242)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.os.Parcel.createException(Parcel.java:3226)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.os.Parcel.readException(Parcel.java:3209)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.os.Parcel.readException(Parcel.java:3151)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.app.ILocaleManager$Stub$Proxy.getApplicationLocales(ILocaleManager.java:233)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.app.LocaleManager.getApplicationLocales(LocaleManager.java:149)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at jjf.c(PG:62)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at jjc.c(PG:6)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at kfz.ep(PG:45)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at ldh.run(PG:55)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at pvh.execute(PG:1)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at fni.t(PG:8)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at ldi.k(PG:85)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at ldi.i(PG:34)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at kfm.onStartInput(PG:512)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3390)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:863)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:892)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.os.Looper.loopOnce(Looper.java:232)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.os.Looper.loop(Looper.java:317)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at java.lang.reflect.Method.invoke(Native Method)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: Caused by: android.os.RemoteException: Remote stack trace:
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.app.ContextImpl.enforce(ContextImpl.java:2389)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at android.app.ContextImpl.enforceCallingOrSelfPermission(ContextImpl.java:2417)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at com.android.server.locales.LocaleManagerService.enforceReadAppSpecificLocalesPermission(LocaleManagerService.java:504)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at com.android.server.locales.LocaleManagerService.getApplicationLocales(LocaleManagerService.java:432)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule: 	at com.android.server.locales.LocaleManagerService$LocaleManagerBinderService.getApplicationLocales(LocaleManagerService.java:196)
+10-17 13:13:09.468  1324  1324 W DynamicLanguageSetterModule:
+10-17 13:13:09.491   909   992 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@f8aa967
+10-17 13:13:09.492   557  1586 W InputManager-JNI: Input channel object 'ab5ec15 Splash Screen be.sportgreenmoove.app.test (client)' was disposed without first being removed with the input manager!
+10-17 13:13:09.516   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:09.519   909   909 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 13:13:10.053   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 13:13:10.098  1085  1085 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 13:13:10.128   909   920 I HWUI    : Davey! duration=799ms; Flags=0, FrameTimelineVsyncId=69559, IntendedVsync=553997703050, Vsync=553997703050, InputEventId=0, HandleInputStart=554000811471, AnimationStart=554000811851, PerformTraversalsStart=554000812011, DrawStart=554000837078, FrameDeadline=554014369716, FrameInterval=554000809236, FrameStartTime=16666666, SyncQueued=554000890388, SyncStart=554000914583, IssueDrawCommandsStart=554000952954, SwapBuffers=554048005514, FrameCompleted=554797210108, DequeueBufferDuration=2474, QueueBufferDuration=182511, GpuCompleted=554797110191, SwapBuffersCompleted=554797210108, DisplayPresentTime=0, CommandSubmissionCompleted=554048005514,
+10-17 13:13:10.136  1085  1095 I HWUI    : Davey! duration=701ms; Flags=1, FrameTimelineVsyncId=69588, IntendedVsync=554097703046, Vsync=554097703046, InputEventId=0, HandleInputStart=554107375477, AnimationStart=554107376259, PerformTraversalsStart=554107376459, DrawStart=554740753960, FrameDeadline=554114369712, FrameInterval=554107372131, FrameStartTime=16666666, SyncQueued=554741129410, SyncStart=554741341065, IssueDrawCommandsStart=554741438446, SwapBuffers=554747022543, FrameCompleted=554799531851, DequeueBufferDuration=2645, QueueBufferDuration=2184335, GpuCompleted=554799531851, SwapBuffersCompleted=554780803244, DisplayPresentTime=0, CommandSubmissionCompleted=554747022543,
+10-17 13:13:10.209   358   385 I netd    : interfaceGetCfg(wlan0) -> {InterfaceConfigurationParcel{ifName: wlan0, hwAddr: 02:15:b2:00:00:00, ipv4Addr: 10.0.2.16, prefixLength: 24, flags: [up, broadcast, multicast]}} <0.98ms>
+10-17 13:13:10.216  4328  4328 D VRI[ComponentActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 13:13:10.228  4328  4328 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@194864a in: STOPPED
+10-17 13:13:10.229  4328  4328 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=androidx.activity.ComponentActivity@194864a
+10-17 13:13:10.244  4328  4328 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@3a08b7f
+10-17 13:13:10.266  4403  4403 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 13:13:10.271   557  1586 W InputManager-JNI: Input channel object '3be870d be.sportgreenmoove.app/androidx.activity.ComponentActivity (client)' was disposed without first being removed with the input manager!
+10-17 13:13:10.287  4328  4328 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@194864a in: DESTROYED
+10-17 13:13:10.287  4328  4328 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-17 13:13:10.287  4328  4328 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@391bc1c
+10-17 13:13:10.295  4328  4358 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@7c5ee66]
+10-17 13:13:10.322   557   680 I ImeTracker: com.android.settings:5d24b0a7: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 13:13:10.322   557   680 I ImeTracker: com.android.settings:5d24b0a7: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-17 13:13:10.337  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 13:13:10.341  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 13:13:10.341  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=com.android.settings, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-17 13:13:10.342  1324  1324 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 13:13:10.342  1324  1324 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 13:13:10.373   557  1799 W InputManager-JNI: Input channel object '4907fae be.sportgreenmoove.app/androidx.activity.ComponentActivity (client)' was disposed without first being removed with the input manager!
+10-17 13:13:10.395  4328  4358 E TestRunner: failed: largeTextParentSeesBothVersionsAndAcceptsWithoutApplying(be.sportgreenmoove.app.ui.TripChangeFlowTest)
+10-17 13:13:10.399  4328  4358 E TestRunner: ----- begin exception -----
+10-17 13:13:10.399  4328  4358 E TestRunner: java.lang.AssertionError: Failed waiting for PixelCopy!
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmapFromPixelCopy(WindowCapture.android.kt:157)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmap(WindowCapture.android.kt:135)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0$0(WindowCapture.android.kt:51)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs(Unknown Source:0)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.withDrawingEnabled(WindowCapture.android.kt:89)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0(WindowCapture.android.kt:47)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A(Unknown Source:0)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4.invoke(D8$$SyntheticClass:0)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.runWithRetryWhenNoData(WindowCapture.android.kt:64)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage(WindowCapture.android.kt:45)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.AndroidImageHelpers_androidKt.captureToImage(AndroidImageHelpers.android.kt:101)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi(LocalUiCapture.kt:20)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi$default(LocalUiCapture.kt:12)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at be.sportgreenmoove.app.ui.TripChangeFlowTest.capture(TripChangeFlowTest.kt:179)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at be.sportgreenmoove.app.ui.TripChangeFlowTest.largeTextParentSeesBothVersionsAndAcceptsWithoutApplying(TripChangeFlowTest.kt:99)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$testWithDisposal$1.evaluate(AndroidComposeTestRule.android.kt:322)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invokeSuspend(AndroidComposeTestRule.android.kt:334)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(Unknown Source:8)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(Unknown Source:4)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invokeSuspend(ComposeUiTest.android.kt:605)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(Unknown Source:8)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(Unknown Source:2)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.EspressoLink.withStrategy(EspressoLink.android.kt:69)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invokeSuspend(ComposeUiTest.android.kt:602)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(Unknown Source:8)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(Unknown Source:4)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$workRunner$1.invokeSuspend(TestBuilders.kt:326)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source:1)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source:1)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.runTest(ComposeUiTest.android.kt:585)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1.evaluate(AndroidComposeTestRule.android.kt:334)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+10-17 13:13:10.399  4328  4358 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+10-17 13:13:10.399  4328  4358 E TestRunner: ----- end exception -----
+10-17 13:13:10.420  4328  4358 I TestRunner: finished: largeTextParentSeesBothVersionsAndAcceptsWithoutApplying(be.sportgreenmoove.app.ui.TripChangeFlowTest)

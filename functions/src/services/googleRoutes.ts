@@ -65,6 +65,19 @@ export class GoogleRoutesProvider implements RouteComparisonProvider {
     this.baseUrl = options.baseUrl ?? "https://routes.googleapis.com";
   }
 
+  async computeTripRoute(origin: LatLng, destination: LatLng, departureAt: string): Promise<RouteMetric & { encodedPolyline?: string }> {
+    const departureTime = futureDepartureTime(departureAt);
+    if (!departureTime) throw new RouteUnavailableError("A future departure is required for a trip-change route quote.");
+    const response = await this.requestJson<ComputeRoutesResponse>("/directions/v2:computeRoutes", {
+      origin: routeWaypoint(origin), destination: routeWaypoint(destination), departureTime,
+      travelMode: "DRIVE", routingPreference: "TRAFFIC_AWARE", units: "METRIC",
+    }, computeRoutesFieldMask);
+    const route = response.routes?.[0];
+    if (route?.distanceMeters == null || !route.duration) throw new RouteUnavailableError("Google Compute Routes did not return a trip-change route.");
+    return { distanceMeters: route.distanceMeters, durationSeconds: durationSeconds(route.duration),
+      ...(route.polyline?.encodedPolyline ? { encodedPolyline: route.polyline.encodedPolyline } : {}) };
+  }
+
   async compareDetour(request: SearchRequest, trip: Trip): Promise<RouteComparison> {
     const matrix = await this.computeRouteMatrix(request, trip);
     const baseline = this.requireMatrixMetric(matrix, 0, 2);
@@ -130,7 +143,7 @@ export class GoogleRoutesProvider implements RouteComparisonProvider {
     const body = {
       origin: routeWaypoint(trip.origin),
       destination: routeWaypoint(trip.destination),
-      intermediates: [routeWaypoint(request.origin), routeWaypoint(request.destination)],
+      ...finalRouteIntermediates(request, trip),
       travelMode: "DRIVE",
       routingPreference: "TRAFFIC_AWARE",
       units: "METRIC",
@@ -165,13 +178,18 @@ export class GoogleRoutesProvider implements RouteComparisonProvider {
     if (element.condition && element.condition !== "ROUTE_EXISTS") {
       throw new RouteUnavailableError(`Google route ${originIndex}:${destinationIndex} condition ${element.condition}.`);
     }
-    if (element.distanceMeters == null || !element.duration) {
+    if (!element.duration) {
+      throw new RouteUnavailableError(`Google route ${originIndex}:${destinationIndex} is incomplete.`);
+    }
+    const seconds = durationSeconds(element.duration);
+    const distanceMeters = element.distanceMeters ?? (seconds === 0 ? 0 : undefined);
+    if (distanceMeters == null) {
       throw new RouteUnavailableError(`Google route ${originIndex}:${destinationIndex} is incomplete.`);
     }
 
     return {
-      distanceMeters: element.distanceMeters,
-      durationSeconds: durationSeconds(element.duration),
+      distanceMeters,
+      durationSeconds: seconds,
     };
   }
 
@@ -212,6 +230,20 @@ function routeWaypoint(point: LatLng) {
       },
     },
   };
+}
+
+function finalRouteIntermediates(request: SearchRequest, trip: Trip) {
+  const points = [request.origin, request.destination];
+  const intermediates = points
+    .filter((point) => !samePoint(point, trip.origin) && !samePoint(point, trip.destination))
+    .filter((point, index, filtered) => index === 0 || !samePoint(point, filtered[index - 1]))
+    .map(routeWaypoint);
+
+  return intermediates.length > 0 ? { intermediates } : {};
+}
+
+function samePoint(a: LatLng, b: LatLng): boolean {
+  return Math.abs(a.lat - b.lat) < 0.000001 && Math.abs(a.lng - b.lng) < 0.000001;
 }
 
 function durationSeconds(duration: string): number {

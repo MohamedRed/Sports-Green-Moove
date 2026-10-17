@@ -4,19 +4,24 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.InboxSummary
+import be.sportgreenmoove.app.data.ImpactSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PaymentSheetConfig
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.RideCompletionSummary
+import be.sportgreenmoove.app.data.RewardSummary
 import be.sportgreenmoove.app.data.StripeConnectAccount
 import be.sportgreenmoove.app.data.StripeConnectAccountLink
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.data.emptyImpactSummary
+import be.sportgreenmoove.app.data.emptyRewardSummary
 
 interface AuthGateway {
     val isConfigured: Boolean
@@ -26,23 +31,26 @@ interface AuthGateway {
     fun signOut()
 }
 
-interface FirebaseGateway {
+interface FirebaseGateway : TripCancellationGateway, TripChangeGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
     suspend fun listChildren(): List<ChildSummary>
+    suspend fun listClubSummaries(): List<ClubSummary>
+    suspend fun requestClubMembership(clubId: String): String
     suspend fun suggestPlaces(input: String): List<PlaceSuggestion>
     suspend fun resolvePlace(placeId: String): ResolvedPlace
     suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary>
     suspend fun createTrip(draft: TripPublishDraft): String
-    suspend fun requestBooking(tripId: String, childId: String? = null): String
+    suspend fun requestBooking(trip: TripSummary, childId: String?, seats: Int): String
     suspend fun getDriverBookingRequests(): List<BookingRequestSummary>
-    suspend fun approveBooking(bookingId: String): String
     suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot
     suspend fun getActiveRide(): LiveRideSnapshot?
     suspend fun markPickup(rideSessionId: String, bookingId: String, childId: String): String
     suspend fun markDropoff(rideSessionId: String, bookingId: String, childId: String): String
     suspend fun endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int): RideCompletionSummary
     suspend fun getPayableBookings(): List<PayableBookingSummary>
+    suspend fun getImpactSummary(): ImpactSummary
+    suspend fun getRewardSummary(): RewardSummary
     suspend fun getInbox(): InboxSummary
     suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String? = null): String
     suspend fun createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Boolean): String
@@ -54,11 +62,6 @@ interface RadarTrackingGateway {
     val isConfigured: Boolean
     suspend fun startTripTracking(rideSessionId: String, role: AppRole)
     suspend fun stopTripTracking(rideSessionId: String)
-}
-
-interface GoogleRoutesGateway {
-    val isConfigured: Boolean
-    suspend fun explainRoute(tripId: String): List<String>
 }
 
 interface StripePaymentsGateway {
@@ -87,13 +90,43 @@ class UnconfiguredAuthGateway : AuthGateway {
 }
 
 class UnconfiguredFirebaseGateway : FirebaseGateway {
+    override suspend fun resolveTripChangeProposal(request: be.sportgreenmoove.app.data.TripChangeProposalRequest): be.sportgreenmoove.app.data.TripChangeReview? =
+        throw ProviderConfigurationException("Veuillez vous connecter.")
     override val isConfigured: Boolean = false
+
+    override suspend fun previewTripChange(tripId: String): be.sportgreenmoove.app.data.TripChangePreview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun reviewTripChange(tripId: String, proposalId: String): be.sportgreenmoove.app.data.TripChangeReview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun proposeTripChange(request: be.sportgreenmoove.app.data.TripChangeProposalRequest): be.sportgreenmoove.app.data.TripChangeReview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun respondTripChange(request: be.sportgreenmoove.app.data.TripChangeDecisionRequest): be.sportgreenmoove.app.data.TripChangeReview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun withdrawTripChange(request: be.sportgreenmoove.app.data.TripChangeWithdrawalRequest): be.sportgreenmoove.app.data.TripChangeReview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun quoteTripChange(request: be.sportgreenmoove.app.data.TripChangeQuoteRequest): be.sportgreenmoove.app.data.TripChangeRouteQuote =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+    override suspend fun applyTripChange(request: be.sportgreenmoove.app.data.TripChangeApplyRequest): be.sportgreenmoove.app.data.TripChangeApplicationReceipt =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+
+    override suspend fun previewTripCancellation(tripId: String): be.sportgreenmoove.app.data.TripCancellationPreview =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
+
+    override suspend fun cancelTrip(request: be.sportgreenmoove.app.data.TripCancellationRequest): be.sportgreenmoove.app.data.TripCancellationReceipt =
+        throw ProviderConfigurationException("Veuillez vous connecter pour gérer ce trajet.")
 
     override suspend fun searchTrips(): List<TripSummary> {
         throw ProviderConfigurationException("Firestore Android n'est pas configuré.")
     }
 
     override suspend fun listChildren(): List<ChildSummary> = emptyList()
+
+    override suspend fun listClubSummaries(): List<ClubSummary> = emptyList()
+
+    override suspend fun requestClubMembership(clubId: String): String {
+        check(clubId.isNotBlank())
+        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
+    }
 
     override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
         check(input.isNotBlank())
@@ -115,17 +148,12 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 
-    override suspend fun requestBooking(tripId: String, childId: String?): String {
+    override suspend fun requestBooking(trip: TripSummary, childId: String?, seats: Int): String {
         check(childId == null || childId.isNotBlank())
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 
     override suspend fun getDriverBookingRequests(): List<BookingRequestSummary> = emptyList()
-
-    override suspend fun approveBooking(bookingId: String): String {
-        check(bookingId.isNotBlank())
-        throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
-    }
 
     override suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot {
         check(bookingIds.isNotEmpty() || tripId.isNotBlank())
@@ -154,6 +182,10 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
     }
 
     override suspend fun getPayableBookings(): List<PayableBookingSummary> = emptyList()
+
+    override suspend fun getImpactSummary(): ImpactSummary = emptyImpactSummary()
+
+    override suspend fun getRewardSummary(): RewardSummary = emptyRewardSummary()
 
     override suspend fun getInbox(): InboxSummary {
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
@@ -197,13 +229,6 @@ class UnconfiguredRadarTrackingGateway : RadarTrackingGateway {
     override suspend fun stopTripTracking(rideSessionId: String) {
         check(rideSessionId.isNotBlank())
     }
-}
-
-class UnconfiguredGoogleRoutesGateway : GoogleRoutesGateway {
-    override val isConfigured: Boolean = false
-
-    override suspend fun explainRoute(tripId: String): List<String> =
-        throw ProviderConfigurationException("Google Routes Android n'est pas configuré.")
 }
 
 class UnconfiguredStripePaymentsGateway : StripePaymentsGateway {

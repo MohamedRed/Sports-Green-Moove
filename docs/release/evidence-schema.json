@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sportgreenmoove.local/release-evidence.schema.json",
+  "title": "Sports Green-mOOVe Release Evidence Manifest",
+  "type": "object",
+  "required": [
+    "manifestVersion",
+    "releaseCandidate",
+    "generatedAt",
+    "owner",
+    "providerProductionReadiness",
+    "postponedSocialAuthReadiness",
+    "automatedUserFlowEvidence",
+    "realDeviceRuns",
+    "storeReviewEvidence",
+    "safetyAuditEvidence"
+  ],
+  "properties": {
+    "manifestVersion": { "const": "1.0" },
+    "template": { "type": "boolean" },
+    "releaseCandidate": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 },
+    "providerProductionReadiness": {
+      "type": "object",
+      "required": ["firebase", "radar", "googleMaps", "stripeConnect"]
+    },
+    "postponedSocialAuthReadiness": {
+      "type": "object",
+      "required": ["googleSignIn", "metaFacebook"]
+    },
+    "automatedUserFlowEvidence": {
+      "type": "object",
+      "required": ["items"]
+    },
+    "realDeviceRuns": {
+      "type": "array",
+      "minItems": 2
+    },
+    "storeReviewEvidence": {
+      "type": "object",
+      "required": ["items"]
+    },
+    "safetyAuditEvidence": {
+      "type": "object",
+      "required": ["items"]
+    }
+  }
+}

@@ -9,7 +9,7 @@ struct OptionsScreen: View {
     @State private var message: String?
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(testID: UITestIdentifier.optionsScreen) {
             SGMTopBar(title: "OPTIONS", showsBack: true)
             OptionsHero()
             SGMSectionLabel("SÉCURITÉ")
@@ -47,7 +47,7 @@ struct OptionsScreen: View {
                 .font(.sgmBody(13, weight: .bold))
                 .foregroundStyle(SGM.textPrimary)
                 .tint(SGM.green)
-            SGMButton(title: submitting ? "ENVOI..." : "ENVOYER", action: { Task { await submitReport() } })
+            SGMButton(title: submitting ? "ENVOI..." : "ENVOYER", testID: UITestIdentifier.supportReportAction, action: { Task { await submitReport() } })
             if let message {
                 Text(message)
                     .font(.sgmBody(12, weight: .bold))
@@ -55,6 +55,7 @@ struct OptionsScreen: View {
             }
         }
         .padding(14)
+        .sgmUITestIdentifier(UITestIdentifier.supportReportAction)
         .background(SGM.bgSurface, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
         .padding(.horizontal, SGMSpace.padScreen)

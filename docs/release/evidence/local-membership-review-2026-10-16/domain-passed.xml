@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="4" failures="0" errors="0" time="0.004151042">
+    <testsuite name="src/__tests__/membership-review.test.ts" timestamp="2026-10-16T03:01:22.967Z" hostname="MRRs-MacBook-Air.local" tests="4" failures="0" errors="0" skipped="0" time="0.004151042">
+        <testcase classname="src/__tests__/membership-review.test.ts" name="scoped membership decisions &gt; requires an active manager membership, not a requested or ordinary membership" time="0.002175916">
+        </testcase>
+        <testcase classname="src/__tests__/membership-review.test.ts" name="scoped membership decisions &gt; reviews only explicitly inactive ordinary member requests without promoting roles" time="0.000293959">
+        </testcase>
+        <testcase classname="src/__tests__/membership-review.test.ts" name="scoped membership decisions &gt; rejects malformed identity and represents a document revision without precision loss" time="0.00021425">
+        </testcase>
+        <testcase classname="src/__tests__/membership-review.test.ts" name="scoped membership decisions &gt; binds pagination to the actor, club and list" time="0.000832125">
+        </testcase>
+    </testsuite>
+</testsuites>

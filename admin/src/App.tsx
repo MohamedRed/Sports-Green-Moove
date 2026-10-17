@@ -2,22 +2,27 @@ import { useState } from "react";
 import { firebaseProjectLabel, hasFirebaseConfig } from "./firebase";
 import { signInAdmin, signOutAdmin, useAdminAuth } from "./useAdminAuth";
 import { AdminDashboard } from "./AdminDashboard";
+import { Wordmark } from "./Wordmark";
+import { ClubDashboard } from "./ClubDashboard";
 
 export function App() {
   const auth = useAdminAuth();
 
   if (!hasFirebaseConfig) {
-    return <Gate title="Configuration requise" detail="Renseignez les variables VITE_FIREBASE_* de l'admin console." />;
+    return <Gate title="Configuration requise" detail="L'espace de gestion n'est pas encore configuré." />;
   }
 
-  if (auth.loading) return <Gate title="Connexion Firebase" detail="Lecture de la session administrateur..." />;
-  if (auth.error) return <Gate title="Erreur Firebase Auth" detail={auth.error} onSignOut={signOutAdmin} />;
+  if (auth.loading) return <Gate title="Connexion" detail="Vérification de votre session..." />;
+  if (auth.error) return <Gate title="Connexion impossible" detail="Reconnectez-vous pour accéder à la gestion." onSignOut={signOutAdmin} />;
   if (!auth.user) return <LoginPanel />;
+  if (!auth.roleKeys.includes("admin") && auth.roleKeys.includes("clubManager")) {
+    return <ClubDashboard key={auth.user.uid} uid={auth.user.uid} onSignOut={signOutAdmin} />;
+  }
   if (!auth.roleKeys.includes("admin")) {
-    return <Gate title="Accès admin requis" detail="Le compte connecté n'a pas le claim roleKeys: admin." onSignOut={signOutAdmin} />;
+    return <Gate title="Accès réservé" detail="Ce compte n'a pas accès à la gestion." onSignOut={signOutAdmin} />;
   }
 
-  return <AdminDashboard userEmail={auth.user.email ?? auth.user.uid} projectLabel={firebaseProjectLabel} onSignOut={signOutAdmin} />;
+  return <AdminDashboard key={auth.user.uid} uid={auth.user.uid} userEmail={auth.user.email ?? auth.user.uid} projectLabel={firebaseProjectLabel} onSignOut={signOutAdmin} />;
 }
 
 function LoginPanel() {
@@ -43,8 +48,7 @@ function LoginPanel() {
     <main className="center-screen">
       <form className="auth-panel" onSubmit={submit}>
         <Wordmark />
-        <h1>Admin console</h1>
-        <p>Connectez-vous avec un compte Firebase ayant le role admin.</p>
+        <h1>Espace de gestion</h1>
         <label>
           Email
           <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" required />
@@ -70,17 +74,5 @@ function Gate({ title, detail, onSignOut }: { title: string; detail: string; onS
         {onSignOut ? <button className="secondary-button" onClick={onSignOut}>Se déconnecter</button> : null}
       </section>
     </main>
-  );
-}
-
-export function Wordmark() {
-  return (
-    <div className="wordmark" aria-label="Sports Green Moove">
-      <span>SPORTS </span>
-      <strong>GREEN-</strong>
-      <b>m</b>
-      <em>OO</em>
-      <b>Ve</b>
-    </div>
   );
 }

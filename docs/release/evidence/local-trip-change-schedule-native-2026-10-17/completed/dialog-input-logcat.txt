@@ -1,0 +1,234 @@
+10-17 17:00:59.971  6870  6888 I TestRunner: started: dialogInputUsesItsOwnFocusedWindowAndRealKeyboard(be.sportgreenmoove.app.ui.InputWindowReadinessTest)
+10-17 17:01:00.019  6870  6888 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@279f71b]
+10-17 17:01:00.077  6870  6888 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-17 17:01:00.083   543   563 W ziparchive: Unable to open '/data/app/~~H4Pc91G1SDe_291tDbUn_g==/be.sportgreenmoove.app.test-FUDIK_NLut2koa6gaxUIAQ==/base.dm': No such file or directory
+10-17 17:01:00.088   543   563 I ActivityTaskManager: Displayed be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity for user 0: +373ms
+10-17 17:01:00.090   543  2305 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@9c3334d3 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 17:01:00.107  1059  1059 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 17:01:00.108   421   421 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 17:01:00.120  1367  1689 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-17 17:01:00.120  1367  1689 I AiAiEcho: EchoTargets:
+10-17 17:01:00.120  1367  1689 I AiAiEcho: Filtered by AiAi flag check:
+10-17 17:01:00.120  1367  1689 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-17 17:01:00.120  1367  1689 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+10-17 17:01:00.120  1367  1689 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-17 17:01:00.120  1367  1689 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-17 17:01:00.120  1367  1689 I AiAiEcho: EchoTargets:
+10-17 17:01:00.120  1367  1689 I AiAiEcho: Filtered by AiAi flag check:
+10-17 17:01:00.120  1367  1689 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-17 17:01:00.121  1367  1689 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata:  [CONTEXT ratelimit_period="10 SECONDS" ]
+10-17 17:01:00.121  1367  1689 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-17 17:01:00.121  1367  1689 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+10-17 17:01:00.122   886   886 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+10-17 17:01:00.148   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:00.166  6870  6870 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@3bb20ef in: PRE_ON_CREATE
+10-17 17:01:00.166  6870  6870 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-17 17:01:00.172  6870  6870 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@3bb20ef in: CREATED
+10-17 17:01:00.172  6870  6870 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=androidx.activity.ComponentActivity@3bb20ef
+10-17 17:01:00.191  6870  6870 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@3bb20ef in: STARTED
+10-17 17:01:00.191  6870  6870 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=androidx.activity.ComponentActivity@3bb20ef
+10-17 17:01:00.192  6870  6870 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@3bb20ef in: RESUMED
+10-17 17:01:00.192  6870  6870 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=androidx.activity.ComponentActivity@3bb20ef
+10-17 17:01:00.239   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:00.243   393   406 I RanchuHwc: logCompositionFallbackIfChanged: layer 123 CompositionType fallback from 3 to 1
+10-17 17:01:00.335  6948  6948 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 17:01:00.336   886   959 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@a17094a
+10-17 17:01:00.339   543   622 W InputManager-JNI: Input channel object '8d3050d Splash Screen be.sportgreenmoove.app.test (client)' was disposed without first being removed with the input manager!
+10-17 17:01:00.364   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:00.401   543   554 I system_server: NativeAlloc concurrent mark compact GC freed 5822KB AllocSpace bytes, 6(120KB) LOS objects, 45% free, 28MB/52MB, paused 987us,2.218ms total 297.914ms
+10-17 17:01:00.408   543   563 W ziparchive: Unable to open '/data/app/~~FJR6_JI_QlKCOaGnLCO4EA==/be.sportgreenmoove.app-oVCVZVpJjyHdu1vRc_lIQw==/base.dm': No such file or directory
+10-17 17:01:00.410   543   563 I ActivityTaskManager: Displayed be.sportgreenmoove.app/androidx.activity.ComponentActivity for user 0: +321ms
+10-17 17:01:00.422  6948  6948 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@12fc7c7
+10-17 17:01:00.424   543  1409 W InputManager-JNI: Input channel object '8d95727 be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity (client)' was disposed without first being removed with the input manager!
+10-17 17:01:00.435  6870  6870 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+10-17 17:01:00.435  6870  6870 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+10-17 17:01:00.438   886   959 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@7867329
+10-17 17:01:00.439   543  2296 W InputManager-JNI: Input channel object '106f12b Splash Screen be.sportgreenmoove.app (client)' was disposed without first being removed with the input manager!
+10-17 17:01:00.455   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:00.459   543   556 W System  : A resource failed to call HardwareBuffer.close.
+10-17 17:01:00.463   543   556 W System  : A resource failed to call HardwareBuffer.close.
+10-17 17:01:00.470   543   556 W System  : A resource failed to call release.
+10-17 17:01:00.471   543   556 W System  : A resource failed to call HardwareBuffer.close.
+10-17 17:01:00.475   543   556 W System  : A resource failed to call release.
+10-17 17:01:00.475   543   556 W System  : A resource failed to call HardwareBuffer.close.
+10-17 17:01:00.475   543   556 W System  : A resource failed to call release.
+10-17 17:01:00.475   543   556 W System  : A resource failed to call HardwareBuffer.close.
+10-17 17:01:00.502   543   556 W System  : A resource failed to call release.
+10-17 17:01:00.503   543   556 W System  : A resource failed to call HardwareBuffer.close.
+10-17 17:01:00.504   543   556 W System  : A resource failed to call release.
+10-17 17:01:00.506   543   556 W System  : A resource failed to call release.
+10-17 17:01:00.508   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:00.537   543   556 W System  : A resource failed to call release.
+10-17 17:01:00.537   543   556 W System  : A resource failed to call release.
+10-17 17:01:00.601   886   891 I ndroid.systemui: NativeAlloc concurrent mark compact GC freed 8733KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 22MB/44MB, paused 8.543ms,2.787ms total 792.178ms
+10-17 17:01:00.641  1059  1059 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 17:01:00.697   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.697   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.697   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.697   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.697   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.697   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.697   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.698   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.699   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.700   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.700   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.700   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.700   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.700   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.700   886   893 W System  : A resource failed to call release.
+10-17 17:01:00.932   543   659 I ImeTracker: be.sportgreenmoove.app:710261af: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 17:01:00.932   543   659 I ImeTracker: be.sportgreenmoove.app:710261af: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-17 17:01:00.933  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 17:01:00.934  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 17:01:00.935  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-17 17:01:00.935  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 17:01:00.935  5503  5503 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 17:01:00.992  6870  6870 I SgmInputReadiness: phase=before-window-focus attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=false servedView=null acceptingText=null keyboardVisible=false
+10-17 17:01:00.992  6870  6870 I SgmInputReadiness: phase=window-focused attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=false servedView=null acceptingText=null keyboardVisible=false
+10-17 17:01:01.040  6870  6870 D InsetsController: show(ime(), fromIme=false)
+10-17 17:01:01.040  6870  6870 I ImeTracker: be.sportgreenmoove.app:81182e82: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT_BY_INSETS_API fromUser false
+10-17 17:01:01.041  6870  6870 D InputMethodManager: showSoftInput() view=androidx.compose.ui.platform.AndroidComposeView{6dd451 VFED..... .F....ID 0,0-735,150 aid=1073741825} flags=0 reason=SHOW_SOFT_INPUT_BY_INSETS_API
+10-17 17:01:01.044  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 17:01:01.047  6870  6870 I AssistStructure: Flattened final assist data: 728 bytes, containing 2 windows, 5 views
+10-17 17:01:01.051  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 17:01:01.052  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=404], hintText=null, hintLocales=[]}}, false)
+10-17 17:01:01.053  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 17:01:01.053  5503  5503 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: en-US, ime_english_united_states
+10-17 17:01:01.058  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=404], hintText=null, hintLocales=[]}}, true)
+10-17 17:01:01.058  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 17:01:01.059  5503  5503 W SessionManager: SessionManager.beginSession():53 Try to begin an already begun session [INPUT_SESSION], end it first
+10-17 17:01:01.063  6473  6473 I GmsCoreXrpcWrapper: (REDACTED) Creating an unauthenticated channel provider with trafficStatsTag=%d trafficStatsUid=%d
+10-17 17:01:01.066  5503  5503 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: en-US, ime_english_united_states
+10-17 17:01:01.068  6473  6677 I IPCThreadState: oneway function results for code 1 on binder at 0x75d85d8dc120 will be dropped but finished with status UNKNOWN_TRANSACTION and reply parcel size 80
+10-17 17:01:01.070  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():2098 onStartInputView(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[{android.support.text.emoji.emojiCompat_metadataVersion=9, androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true, android.support.text.emoji.emojiCompat_replaceAll=false}], hintText=null, hintLocales=[]}}, false)
+10-17 17:01:01.070  4056  4056 V InlineSuggestionRenderService: handleDestroySuggestionViews called for 0:1735189672
+10-17 17:01:01.070  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 17:01:01.071  5503  5503 I StylusEducationPopupDialog: StylusEducationPopupDialog.onStartInputView():59 Schedule to show first time education
+10-17 17:01:01.111  6870  6870 I ImeTracker: be.sportgreenmoove.app:ff33b3: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+10-17 17:01:01.111  6870  6870 D InputMethodManager: showSoftInput() view=androidx.compose.ui.platform.AndroidComposeView{6dd451 VFED..... .F....ID 0,0-735,150 aid=1073741825} flags=0 reason=SHOW_SOFT_INPUT
+10-17 17:01:01.118  6870  6870 D Autofill Status: Autofill popup isn't shown because autofill is not available.
+10-17 17:01:01.118  6870  6870 D Autofill Status:
+10-17 17:01:01.118  6870  6870 D Autofill Status: Did you set up autofill?
+10-17 17:01:01.118  6870  6870 D Autofill Status: 1. Go to Settings > System > Languages&input > Advanced > Autofill Service
+10-17 17:01:01.118  6870  6870 D Autofill Status: 2. Pick a service
+10-17 17:01:01.118  6870  6870 D Autofill Status:
+10-17 17:01:01.118  6870  6870 D Autofill Status: Did you add an account?
+10-17 17:01:01.118  6870  6870 D Autofill Status: 1. Go to Settings > System > Languages&input > Advanced
+10-17 17:01:01.118  6870  6870 D Autofill Status: 2. Click on the settings icon next to the Autofill Service
+10-17 17:01:01.118  6870  6870 D Autofill Status: 3. Add your account
+10-17 17:01:01.121  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.getOemKeyboardHeightRatio():206 systemKeyboardHeightRatio:1.000000.
+10-17 17:01:01.121  5503  5503 I AndroidIME: AbstractIme.onActivate():89 LatinIme.onActivate() : EditorInfo = EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[{android.support.text.emoji.emojiCompat_metadataVersion=9, androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true, android.support.text.emoji.emojiCompat_replaceAll=false}], hintText=null, hintLocales=[]}, IncognitoMode = false, DeviceLocked = false
+10-17 17:01:01.122  5503  5503 I Delight5Facilitator: Delight5Facilitator.initializeForIme():747 initializeForIme() : Locale = [en_US], layout = qwerty
+10-17 17:01:01.122  5503  5503 I VoiceInputHandler: VoiceInputHandler.onActivateIme():99 registering TalkbackStateListener
+10-17 17:01:01.123  5503  5503 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.cancelShutdown():102 cancelShutdown()
+10-17 17:01:01.123  5503  5503 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.syncLanguagePacks():114 syncLanguagePacks()
+10-17 17:01:01.123  5503  5503 I LatinIme: LatinIme.updateEnableInlineSuggestionsOnDecoderSideFlags():1174 inline flag updated to:false
+10-17 17:01:01.127  5503  5503 I InputBundle: InputBundle.consumeEvent():884 Skip consuming an event as keyboard status is 0
+10-17 17:01:01.128  5503  5503 I KeyboardWrapper: KeyboardWrapper.activateKeyboard():575 activateKeyboard(): type=prime, status=0, imeDef=ktt{stringId=ime_english_united_states, language=en-US, languageTag=en-US, processedConditions={enable_number_row=false, device=phone}, className=com.google.android.apps.inputmethod.libs.latin5.LatinIme, label=0, keyEventInterpreter=null, inlineComposing=true, autoCapital=true, announceAutoSelectedCandidate=true, statusIcon=0, primeKeyboardType=SOFT, indicatorIcon=0, indicatorLabel=US, displayAppCompletions=true, extraValues=ktl{}, processors=kvl@66b7007, unacceptableMetaKeys=4098, languageSpecificSettings=0, asciiCapable=true, alwaysShowSuggestions=false, useAsciiPasswordKeyboard=false, secondaryIme=null, keyboardGroupDef=kut@ec6f7da, phenotypeFlagId=0, localizationLanguageTag=null, supportsInlineSuggestion=true, supportsAccessPoints=true}
+10-17 17:01:01.128  5503  5503 I KeyboardManager: KeyboardManager.requestKeyboard():234 Creating keyboard prime, imeId=ime_english_united_states, cacheKey=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign
+10-17 17:01:01.128  5503  5503 I KeyboardWrapper: KeyboardWrapper.onKeyboardReady():239 onKeyboardReady(): type=prime(prime), kb=com.google.android.apps.inputmethod.latin.keyboard.LatinPrimeKeyboard@84e2e8
+10-17 17:01:01.128  5503  5503 I KeyboardWrapper: KeyboardWrapper.doActivateKeyboard():606 doActivateKeyboard(): prime
+10-17 17:01:01.129  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.131  5503  7094 I SpeechFactory: SpeechRecognitionFactory.maybeScheduleAutoPackDownloadForFallback():200 maybeScheduleAutoPackDownloadForFallback()
+10-17 17:01:01.131  5503  7094 I FallbackOnDeviceRecognitionProvider: FallbackOnDeviceRecognitionProvider.maybeScheduleAutoPackDownload():197 maybeScheduleAutoPackDownload() for language tag en-US
+10-17 17:01:01.132  5503  5503 W Keyboard: Keyboard.getKeyboardViewHelper():574 null helper is returned: keyboardDef=kuo{processedConditions={enable_more_candidates_view_for_multilingual=false, enable_secondary_symbols=false, variant=qwerty, language=en-US, device=phone, expressions=normal, keyboard_mode=normal, show_secondary_digits=true, enable_preemptive_decode=true, rtl_layout=false}, globalConditions={global_theme_key=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign, global_locale=en_US, global_density_dpi=420, global_orientation=1}, className=.latin.keyboard.LatinPrimeKeyboard, resourceIds=[#0x7f170663, #0x7f1708e0], initialStates=0, keyboardViewDefs=[kvb{direction=null, id=#0x7f0b014d, isScalable=true, layoutId=#0x7f0e039d, type=BODY, touchable=true, defaultShow=true}, kvb{direction=null, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e01aa, type=FLOATING_CANDIDATES, touchable=false, defaultShow=false}, kvb{direction=LOCALE, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e0591, type=HEADER, touchable=true, defaultShow=true}], persistentStates=0, persistentStatesPrefKey=null, popupBubbleLayoutId=#0x7f0e068d, recentKeyLayoutId=0, recentKeyPopupLayoutId=0, recentKeyType=null, rememberRecentKey=NONE, sessionStates=17592186044419}, type=WIDGET, helpersCreated=[kib@b48fee0, kib@cfcf599, kib@7df605e, null], context.getResources().getConfiguration(): {1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.55 fontWeightAdjustment=0}
+10-17 17:01:01.132  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.133  5503  5503 I GoogleInputMethodService: GoogleInputMethodService.startInputIfInputViewStarted():3728 startInputIfInputViewStarted(): default prime
+10-17 17:01:01.133  5503  5503 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():625 setInputView() : supportsOneHandedMode=true supportsSplitMode=true
+10-17 17:01:01.133  5503  5503 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 17:01:01.133  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.133  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.133  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.133  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.133  5503  5503 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 17:01:01.133  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.133  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.133  5503  5503 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():613 setInputView() : supportsOneHandedMode=true, supportSplitMode=true
+10-17 17:01:01.137  5503  5503 I CrowdsourceExtension: CrowdsourceExtension.checkIfDefaultBrowserIsAllowed():110 Failed to get default browser. The default browser may be deactived.
+10-17 17:01:01.144  1059  1059 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 17:01:01.144  5503  5503 I AccessoryInputModeManager: AccessoryInputModeManager.onModeStarted():308 Accessory input mode started: null
+10-17 17:01:01.146  5503  5503 W SupplementaryKeyboardsWrapper: SupplementaryKeyboardsWrapper.deactivateKeyboard():159 keyboard accessory_candidates_consumer is not activated before!
+10-17 17:01:01.147  5503  5503 I VoiceImeExtension: VoiceImeExtension.shouldStartVoiceInputAutomaticallyInCurrentInputBox():415 No private IME option set to start voice input.
+10-17 17:01:01.155  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.155  5503  5503 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 17:01:01.155  5503  5503 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 17:01:01.193  6870  6870 D InsetsController: show(ime(), fromIme=true)
+10-17 17:01:01.197  5503  5503 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=HEADER keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{40f1df4 V.E...... ........ 0,0-1080,116 aid=12}
+10-17 17:01:01.197  5503  5503 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=BODY keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{94f47d9 V.E...... ........ 0,0-1080,641 aid=40}
+10-17 17:01:01.197  5503  5503 I NewLanguagePromptExtension: NewLanguagePromptExtension$1.onKeyboardViewShown():104 Not show new language banner: no change in enabled input method entries
+10-17 17:01:01.197  5503  5503 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 17:01:01.197  5503  5503 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 17:01:01.197  5503  5503 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 17:01:01.197  5503  5503 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 17:01:01.197  5503  5503 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 17:01:01.200  5503  5601 I Delight5Decoder: Delight5DecoderWrapper.setKeyboardLayout():511 setKeyboardLayout()
+10-17 17:01:01.207   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:01.220  6870  6870 D InsetsController: show(ime(), fromIme=true)
+10-17 17:01:01.224  6870  6870 I ImeTracker: be.sportgreenmoove.app:ff33b3: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-17 17:01:01.232  6870  6870 I ImeTracker: be.sportgreenmoove.app:81182e82: onShown
+10-17 17:01:01.240  6870  6870 I SgmInputReadiness: phase=dialog-keyboard-visible attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=true servedView=true acceptingText=true keyboardVisible=true
+10-17 17:01:01.383  5503  5503 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 17:01:01.404  5503  5503 I StylusEducationPopupDialog: StylusEducationPopupDialog.showFirstTimeEducation():79 First time education not shown for null
+10-17 17:01:01.437   543  1409 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@9de80d72 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 17:01:01.491   421   421 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 17:01:01.511  6870  6870 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@3bb20ef in: PAUSED
+10-17 17:01:01.511  6870  6870 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=androidx.activity.ComponentActivity@3bb20ef
+10-17 17:01:01.725  1059  1059 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 17:01:01.739   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:01.824  6948  6965 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-17 17:01:01.825  6948  6965 I EGL_emulation: Opening libGLESv2_emulation.so
+10-17 17:01:01.847  6948  6965 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-17 17:01:01.858   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:01.858   886   886 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 17:01:01.859   393   406 I RanchuHwc: logCompositionFallbackIfChanged: layer 129 CompositionType fallback from 3 to 1
+10-17 17:01:01.859   393   406 I RanchuHwc: logCompositionFallbackIfChanged: layer 131 CompositionType fallback from 3 to 1
+10-17 17:01:01.872  6870  6870 D VRI[ComponentActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 17:01:01.876  6870  6870 D VRI[ComponentActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 17:01:02.047   886   985 D EGL_emulation: app_time_stats: avg=425.66ms min=17.81ms max=1394.69ms count=5
+10-17 17:01:02.050  6870  6870 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@3bb20ef in: STOPPED
+10-17 17:01:02.051  6870  6870 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=androidx.activity.ComponentActivity@3bb20ef
+10-17 17:01:02.057  6870  6870 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@7d97cf6
+10-17 17:01:02.076   543  1041 W InputManager-JNI: Input channel object 'a925c2c be.sportgreenmoove.app/androidx.activity.ComponentActivity (client)' was disposed without first being removed with the input manager!
+10-17 17:01:02.094  6870  6870 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@3bb20ef in: DESTROYED
+10-17 17:01:02.094  6870  6870 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-17 17:01:02.105  6870  6870 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@1e3682c
+10-17 17:01:02.107  6870  6888 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@279f71b]
+10-17 17:01:02.237  1059  1059 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 17:01:02.255   543  1041 W InputManager-JNI: Input channel object '2365aa3 be.sportgreenmoove.app/androidx.activity.ComponentActivity (client)' was disposed without first being removed with the input manager!
+10-17 17:01:02.259  6870  6870 I ImeTracker: be.sportgreenmoove.app:ce4b28de: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false
+10-17 17:01:02.260  6870  6870 I ImeTracker: be.sportgreenmoove.app:ce4b28de: onFailed at PHASE_CLIENT_VIEW_SERVED
+10-17 17:01:02.264  6870  6888 I TestRunner: finished: dialogInputUsesItsOwnFocusedWindowAndRealKeyboard(be.sportgreenmoove.app.ui.InputWindowReadinessTest)

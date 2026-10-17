@@ -1,0 +1,87 @@
+{
+  "runId": "a2de83b90c910895461006e8c94256df",
+  "testedAt": "2026-10-15T21:12:20.337Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-emulated-services-not-phone-ui",
+  "steps": [
+    {
+      "id": "fixtures",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle",
+      "status": "passed"
+    },
+    {
+      "id": "publication",
+      "status": "passed"
+    },
+    {
+      "id": "booking-cancellation",
+      "status": "passed"
+    },
+    {
+      "id": "last-seat-concurrency",
+      "status": "passed"
+    },
+    {
+      "id": "messages-notifications",
+      "status": "passed"
+    },
+    {
+      "id": "ride-audit-ledgers",
+      "status": "passed"
+    },
+    {
+      "id": "ratings",
+      "status": "passed"
+    },
+    {
+      "id": "club-request",
+      "status": "passed"
+    },
+    {
+      "id": "support-request",
+      "status": "passed"
+    },
+    {
+      "id": "ride-passenger-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-delivery-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-directory-safety",
+      "status": "passed"
+    }
+  ],
+  "lifecycle": {
+    "projectId": "demo-sgm-local-qa",
+    "tripId": "3OI5wTUEjbom0YUHXqar",
+    "bookingId": "ndPJo0aQvV3UbJQpWEbH",
+    "rideSessionId": "oUD01UNlLyw5j6rY2FWN",
+    "payment": {
+      "status": "blocked_by_missing_local_payment_account",
+      "error": "Driver Stripe account is required before paid rides."
+    },
+    "lifecycle": {
+      "booking": "completed",
+      "ride": "completed",
+      "pickup": "pickedUp",
+      "dropoff": "droppedOff",
+      "co2SavedKg": 3.81,
+      "rewardCents": 46,
+      "rtdbMeta": {
+        "status": "completed",
+        "namespace": "demo-sgm-local-qa"
+      },
+      "inboxChats": 3
+    }
+  },
+  "limits": [
+    "No live provider payments, GPS, device tracking or push delivery tested.",
+    "Club approval/rejection, trip editing/cancellation and refund settlement remain unverified."
+  ]
+}

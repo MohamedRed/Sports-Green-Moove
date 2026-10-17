@@ -12,7 +12,8 @@ export function buildRidePaymentLedgerEntries(intent: Stripe.PaymentIntent): Led
   const payerUserId = intent.metadata.payerUserId;
   const driverUserId = intent.metadata.driverUserId;
   const platformFeeCents = stripeMetadataAmount(intent.metadata.platformFeeCents);
-  if (!bookingId || !tripId || !payerUserId || !driverUserId || intent.currency !== "eur" || platformFeeCents == null) {
+  if (!bookingId || !tripId || !payerUserId || !driverUserId || intent.currency !== "eur" || platformFeeCents == null ||
+      !Number.isSafeInteger(intent.amount) || intent.amount <= 0 || !Number.isSafeInteger(platformFeeCents) || platformFeeCents > intent.amount) {
     return [];
   }
 

@@ -7,15 +7,15 @@ import {
   isCancellableBookingStatus,
   refundStatusForCancellation,
 } from "../domain/access.js";
-import { childDisplayLabel, type ChildProfileDocument } from "../domain/children.js";
 import { roleKeysFromToken } from "../domain/roles.js";
-import { isGuardianOfChild } from "../domain/searchAccess.js";
 import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
 import { notifyUsers } from "../lib/notifications.js";
-import { toClientTripSummary } from "../lib/clientTrips.js";
 import { toClientBookingRequestSummary } from "../lib/clientBookings.js";
+import { parseCallableData } from "../lib/validation.js";
+import { cancellationBalance } from "../services/tripChangeBalanceClosure.js";
+export { requestBooking } from "./bookingRequests.js";
 
 type BookingDocument = {
   id?: string;
@@ -61,69 +61,13 @@ export const listDriverBookingRequests = onCall(async (request) => {
   };
 });
 
-export const requestBooking = onCall(async (request) => {
-  const uid = requireAuth(request.auth?.uid);
-  requireRole(request.auth?.token, "parent");
-  const schema = z.object({
-    tripId: z.string(),
-    childId: z.string().optional(),
-    seats: z.number().int().positive().default(1),
-    note: z.string().optional(),
-  });
-  const data = schema.parse(request.data);
-  const bookingRef = firestore.collection("bookings").doc();
-  const tripRef = firestore.collection("trips").doc(data.tripId);
-
-  const tripSnap = await tripRef.get();
-  if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
-
-  const trip = { id: tripSnap.id, ...tripSnap.data() } as Trip;
-  if (trip.status !== "published") throw new HttpsError("failed-precondition", "Trip is not available.");
-  if (trip.driverUserId === uid) throw new HttpsError("failed-precondition", "Drivers cannot book their own trip.");
-  if (trip.seatsAvailable < data.seats) throw new HttpsError("failed-precondition", "Not enough seats available.");
-
-  const child = data.childId ? await loadGuardianChild(uid, data.childId) : undefined;
-  const bookingData: Record<string, unknown> = {
-    tripId: data.tripId,
-    parentUserId: uid,
-    requesterUserId: uid,
-    driverUserId: trip.driverUserId,
-    seats: data.seats,
-    status: "requested",
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
-  };
-  if (data.childId) {
-    bookingData.childId = data.childId;
-    bookingData.childLabel = childDisplayLabel(child, data.childId);
-  }
-  if (data.note) bookingData.note = data.note;
-
-  await bookingRef.set(bookingData);
-
-  return {
-    bookingId: bookingRef.id,
-    status: "requested",
-    trip: toClientTripSummary(trip),
-  };
-});
-
-async function loadGuardianChild(uid: string, childId: string): Promise<ChildProfileDocument> {
-  const childSnap = await firestore.collection("children").doc(childId).get();
-  const child = childSnap.data() as ChildProfileDocument | undefined;
-  if (!childSnap.exists || !isGuardianOfChild(child, uid)) {
-    throw new HttpsError("permission-denied", "Only a guardian can book a trip for this child.");
-  }
-  return child ?? {};
-}
-
 export const approveBooking = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   requireRole(request.auth?.token, "driver");
   const schema = z.object({
     bookingId: z.string(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
   const approval = await firestore.runTransaction(async (transaction) => {
@@ -137,6 +81,9 @@ export const approveBooking = onCall(async (request) => {
     if (!tripSnap.exists) throw new HttpsError("not-found", "Trip not found.");
     const trip = tripSnap.data() as Trip;
     if (trip.driverUserId !== uid) throw new HttpsError("permission-denied", "Only the driver can approve.");
+    if (trip.status !== "published" || trip.activeRideSessionId || trip.pendingChangeId) {
+      throw new HttpsError("failed-precondition", "Bookings cannot be approved after a trip starts or closes.");
+    }
     if (trip.seatsAvailable < (booking.seats ?? 1)) {
       throw new HttpsError("failed-precondition", "Not enough seats available.");
     }
@@ -173,7 +120,7 @@ export const cancelBooking = onCall(async (request) => {
     bookingId: z.string(),
     reason: z.string().max(300).optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
   const notifyUserIds = await firestore.runTransaction(async (transaction) => {
@@ -188,7 +135,19 @@ export const cancelBooking = onCall(async (request) => {
     if (!isCancellableBookingStatus(booking.status)) {
       throw new HttpsError("failed-precondition", "Only requested or approved bookings can be cancelled.");
     }
+    if (booking.status === "approved") {
+      const tripSnap = await transaction.get(firestore.collection("trips").doc(booking.tripId));
+      if (!tripSnap.exists) throw new HttpsError("failed-precondition", "Booking trip is missing.");
+      const activeRideId = tripSnap.data()?.activeRideSessionId;
+      if (activeRideId) {
+        const ride = await transaction.get(firestore.collection("rideSessions").doc(activeRideId));
+        if (!ride.exists || !Array.isArray(ride.data()?.bookingIds) || ride.data()?.bookingIds.includes(data.bookingId)) {
+          throw new HttpsError("failed-precondition", "An active ride passenger cannot cancel this booking.");
+        }
+      }
+    }
 
+    const balance = await cancellationBalance(transaction, data.bookingId, booking);
     const now = Timestamp.now();
     transaction.update(bookingRef, {
       status: "cancelled",
@@ -196,8 +155,11 @@ export const cancelBooking = onCall(async (request) => {
       cancelledAt: now,
       cancelledByUserId: uid,
       refundStatus: refundStatusForCancellation(booking.paymentStatus),
+      ...(balance ? { tripChangeBalanceCents: 0 } : {}),
       updatedAt: now,
     });
+
+    if (balance) transaction.update(balance, { state: "cancelled", cancelledAt: now, updatedAt: now });
 
     if (booking.status === "approved") {
       transaction.update(firestore.collection("trips").doc(booking.tripId), {

@@ -71,7 +71,23 @@ Each update includes:
 
 ## Native Radar SDK
 
-Native apps call `startRide` with the approved booking ids selected for the trip. The backend stores those bookings as ride passengers, and the driver UI renders pickup/dropoff controls from the returned `passengers` snapshot. `markPickup` and `markDropoff` update both the ride session passenger state and the booking record before notifying the parent.
+Native apps call `startRide` for an available trip. The backend loads all approved
+bookings; a nonempty supplied booking list must match that complete set, without
+duplicates. A transaction stores the trip's server-owned `activeRideSessionId`,
+so concurrent starts and retries use one session. A legacy active session without
+that lock must be explicitly resumed or reconciled, not duplicated. New booking
+requests/approvals and cancellation of attached approved passengers are refused
+after departure.
+
+The backend stores those bookings as ride passengers. Only the verified assigned
+driver in driver mode sees pickup, dropoff and completion controls; observers
+see passenger statuses without those actions. `markPickup` and `markDropoff`
+require the exact attached booking/child pair on an active ride. They update both
+the ride session passenger state and booking, and create an immutable manual audit
+event before notifying the parent. Status overrides are keyed by booking ID so
+two bookings for the same child are not changed together. Repeated confirmation,
+dropoff before pickup and unrelated passenger updates fail without changing audit
+records. Historical child-keyed status overrides remain readable.
 
 Android uses `io.radar:sdk:3.34.0` when `SGM_RADAR_PUBLISHABLE_KEY` is present at build time. Driver ride start initializes Radar from the generated Android string resource, sets the Firebase UID as the Radar user id when available, writes metadata `{ rideSessionId, role, source: "nativeSdk" }`, and calls `startTrip` with `externalId = rideSessionId` and `RadarTrackingOptions.CONTINUOUS`.
 
@@ -81,6 +97,21 @@ Native Firebase fallback runs for every active ride, including rides where Radar
 
 `getActiveRide` is available to the active ride driver, participant parents, listed child-device users, and admins. It reads `liveTrips/{rideSessionId}` and returns source-aware labels for the native apps. Vehicle location is stale when no vehicle point exists or the latest vehicle point is older than 90 seconds.
 
+The active ride snapshot includes the `tripId`; native clients use that id to recover the trip's route preview from Firebase trip data and render it with the platform Google Maps SDK. If a client Maps key is missing, the app must show a configuration-required state rather than a decorative or estimated map.
+
 Child-device ride access starts from booking assignment: native parent search selects a guardian-owned child profile, `requestBooking` stores `childId` and `childLabel`, and `startRide` copies approved booking child ids into `rideSessions.childUserIds` plus `liveTrips/{rideSessionId}/meta/childUserIds`.
 
-Native end-ride actions call `endRide`, stop Firebase native fallback, and complete Radar trip tracking when Radar is configured. `endRide` completes the ride session and any attached bookings, then writes completed metadata to `liveTrips/{rideSessionId}/meta`.
+Native end-ride actions call `endRide`, stop Firebase native fallback, and complete
+Radar trip tracking when Radar is configured. Completion requires all attached
+approved passengers to have been picked up and dropped off, with every approved
+trip booking included. It atomically completes the ride, trip and bookings and
+creates the completion ledgers, then updates `liveTrips/{rideSessionId}/meta`.
+The completed trip cannot be booked or started again. Android includes own
+completed trips and completed booked trips in its read-only past-trip list;
+queries are bounded to 30 documents per feed, not complete paginated history.
+
+The current completion amount model still accepts caller-supplied distance and
+passenger count. Local lifecycle evidence proves record consistency and duplicate
+protection, not independent mileage validation, reward eligibility or settlement.
+Deploy the checked-in rules/indexes and callables before releasing clients using
+the new history queries; emulator success does not establish live index readiness.

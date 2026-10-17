@@ -4,6 +4,7 @@ import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.data.BookingIntentSnapshot
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -34,13 +35,31 @@ internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
             if (seats > 1) "$seats places" else "$seats place",
             "Suivi véhicule disponible",
         ),
-        status = if (departure != null && departure.before(Date())) TripStatus.Past else TripStatus.Upcoming,
+        status = if (data["status"] == "completed" || data["status"] == "cancelled" ||
+            (departure != null && departure.before(Date()))) TripStatus.Past else TripStatus.Upcoming,
+        mapPreview = mapRoutePreviewFromTripData(data),
+        departureAtIso = departure?.toInstant()?.toString(),
+        driverUserId = data["driverUserId"] as? String,
+        cancelled = data["status"] == "cancelled",
+        pendingChangeId = tripChangeReferenceOrNull(data["pendingChangeId"]),
+        appliedChangeId = tripChangeReferenceOrNull(data["appliedChangeId"]),
+        bookingIntent = BookingIntentSnapshot.fromTripData(data + listOf("departureAt", "arrivalBy").associateWith { key ->
+            when (val value = data[key]) {
+                is Timestamp -> value.toDate().toInstant().toString()
+                is Date -> value.toInstant().toString()
+                else -> value
+            }
+        }),
     )
 }
+
+private fun tripChangeReferenceOrNull(value: Any?): String? = value?.let { TripChangeWire.hash(it) }
 
 internal fun mapRide(data: Map<*, *>): LiveRideSnapshot =
     LiveRideSnapshot(
         rideSessionId = data["rideSessionId"] as? String ?: "",
+        tripId = data["tripId"] as? String,
+        driverUserId = data["driverUserId"] as? String,
         status = data["status"] as? String ?: "Actif",
         vehicleLastUpdateLabel = data["vehicleLastUpdateLabel"] as? String ?: "En attente du premier point GPS",
         childLastUpdateLabel = data["childLastUpdateLabel"] as? String,

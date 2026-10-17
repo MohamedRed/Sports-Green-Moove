@@ -8,9 +8,23 @@ enum class AppRole {
     Admin,
 }
 
+val AppRole.claimKey: String
+    get() = when (this) {
+        AppRole.Parent -> "parent"
+        AppRole.Driver -> "driver"
+        AppRole.Child -> "child"
+        AppRole.ClubManager -> "clubManager"
+        AppRole.Admin -> "admin"
+    }
+
+fun appRoleFromClaim(value: String): AppRole? =
+    AppRole.entries.firstOrNull { it.claimKey == value }
+
 data class AuthSession(
     val uid: String,
     val email: String?,
+    val displayName: String?,
+    val roles: Set<AppRole> = setOf(AppRole.Parent),
 )
 
 enum class TripStatus {
@@ -46,6 +60,24 @@ data class TripSummary(
     val passengerInitials: List<String> = emptyList(),
     val reasons: List<String>,
     val status: TripStatus = TripStatus.Upcoming,
+    val mapPreview: MapRoutePreview? = null,
+    val departureAtIso: String? = null,
+    val driverUserId: String? = null,
+    val cancelled: Boolean = false,
+    val bookingIntent: BookingIntentSnapshot? = null,
+    val pendingChangeId: String? = null,
+    val appliedChangeId: String? = null,
+)
+
+data class MapPoint(
+    val lat: Double,
+    val lng: Double,
+)
+
+data class MapRoutePreview(
+    val start: MapPoint,
+    val end: MapPoint,
+    val encodedPolyline: String? = null,
 )
 
 data class PlaceSuggestion(
@@ -94,6 +126,21 @@ data class ChildSummary(
     val trackingEnabled: Boolean,
 )
 
+data class ClubSummary(
+    val id: String,
+    val name: String,
+    val sport: String,
+    val memberCount: Int,
+    val roleLabel: String?,
+    val initials: String,
+    val memberInitials: List<String>,
+    val membershipStatus: String? = null,
+    val membershipActive: Boolean? = null,
+) {
+    val hasPendingRequest: Boolean = membershipStatus == "requested" || membershipStatus == "pending"
+    val isMember: Boolean = roleLabel != null && isActiveClubMembership(membershipStatus, membershipActive)
+}
+
 data class BookingRequestSummary(
     val bookingId: String,
     val tripId: String,
@@ -112,6 +159,8 @@ data class BookingRequestSummary(
 
 data class LiveRideSnapshot(
     val rideSessionId: String,
+    val tripId: String? = null,
+    val driverUserId: String? = null,
     val status: String,
     val vehicleLastUpdateLabel: String,
     val childLastUpdateLabel: String?,

@@ -5,13 +5,16 @@ import android.os.Build
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
+import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.InboxSummary
+import be.sportgreenmoove.app.data.ImpactSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.RideCompletionSummary
 import be.sportgreenmoove.app.data.ResolvedPlace
+import be.sportgreenmoove.app.data.RewardSummary
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
@@ -23,25 +26,24 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
 
-internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway {
+internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway,
+    TripChangeGateway by FirebaseAndroidTripChangeGateway() {
     private val appContext = context.applicationContext
     private val firestore = FirebaseFirestore.getInstance()
     private val functions = FirebaseFunctions.getInstance()
     private val locationClient = LocationServices.getFusedLocationProviderClient(appContext)
+    private val groupsGateway = FirebaseAndroidGroupsGateway(firestore)
+    private val ledgerGateway = FirebaseAndroidLedgerGateway(firestore)
+    private val tripGateway = FirebaseAndroidTripGateway(firestore)
+    private val cancellationGateway = FirebaseAndroidTripCancellationGateway(functions)
+    private val bookingGateway = FirebaseAndroidBookingGateway(appContext, functions, FirebaseAuth.getInstance())
     override val isConfigured: Boolean = true
 
-    override suspend fun searchTrips(): List<TripSummary> {
-        val snapshot = firestore.collection("trips")
-            .whereEqualTo("status", "published")
-            .orderBy("departureAt")
-            .limit(30)
-            .get()
-            .await()
+    override suspend fun searchTrips(): List<TripSummary> = tripGateway.listTrips()
 
-        return snapshot.documents.map { document ->
-            mapTrip(id = document.id, data = document.data.orEmpty())
-        }
-    }
+    override suspend fun previewTripCancellation(tripId: String) = cancellationGateway.previewTripCancellation(tripId)
+
+    override suspend fun cancelTrip(request: be.sportgreenmoove.app.data.TripCancellationRequest) = cancellationGateway.cancelTrip(request)
 
     override suspend fun listChildren(): List<ChildSummary> {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return emptyList()
@@ -54,6 +56,18 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
         return snapshot.documents.map { document ->
             mapChild(id = document.id, data = document.data.orEmpty())
         }
+    }
+
+    override suspend fun listClubSummaries(): List<ClubSummary> =
+        groupsGateway.listClubSummaries()
+
+    override suspend fun requestClubMembership(clubId: String): String {
+        val result = functions
+            .getHttpsCallable("requestClubMembership")
+            .call(mapOf("clubId" to clubId))
+            .await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse adhésion invalide.")
+        return payload["status"] as? String ?: throw ProviderConfigurationException("Statut adhésion manquant.")
     }
 
     override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> {
@@ -99,15 +113,8 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
         return payload["tripId"] as? String ?: throw ProviderConfigurationException("Trajet publié manquant.")
     }
 
-    override suspend fun requestBooking(tripId: String, childId: String?): String {
-        val requestPayload = mutableMapOf<String, Any>("tripId" to tripId, "seats" to 1)
-        childId?.takeIf(String::isNotBlank)?.let { requestPayload["childId"] = it }
-        val result = functions
-            .getHttpsCallable("requestBooking")
-            .call(requestPayload)
-            .await()
-        val responsePayload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse booking invalide.")
-        return responsePayload["bookingId"] as? String ?: throw ProviderConfigurationException("Booking manquant.")
+    override suspend fun requestBooking(trip: TripSummary, childId: String?, seats: Int): String {
+        return bookingGateway.requestBooking(trip, childId, seats)
     }
 
     override suspend fun getDriverBookingRequests(): List<BookingRequestSummary> {
@@ -120,15 +127,6 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
             ?.mapNotNull { it as? Map<*, *> }
             ?.mapNotNull(::mapBookingRequest)
             .orEmpty()
-    }
-
-    override suspend fun approveBooking(bookingId: String): String {
-        val result = functions
-            .getHttpsCallable("approveBooking")
-            .call(mapOf("bookingId" to bookingId))
-            .await()
-        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse approbation invalide.")
-        return payload["status"] as? String ?: throw ProviderConfigurationException("Statut approbation manquant.")
     }
 
     override suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot {
@@ -207,6 +205,12 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
             mapPayableBooking(id = document.id, booking = booking, trip = trip)
         }
     }
+
+    override suspend fun getImpactSummary(): ImpactSummary =
+        ledgerGateway.getImpactSummary()
+
+    override suspend fun getRewardSummary(): RewardSummary =
+        ledgerGateway.getRewardSummary()
 
     override suspend fun getInbox(): InboxSummary {
         val result = functions.getHttpsCallable("getInbox").call(emptyMap<String, Any>()).await()

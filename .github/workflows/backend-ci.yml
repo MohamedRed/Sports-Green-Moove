@@ -71,3 +71,6 @@ jobs:
 
       - name: Test Firebase rules
         run: npm run test:rules
+
+      - name: Test Stripe webhook flow
+        run: npm run test:stripe-webhook-flow
