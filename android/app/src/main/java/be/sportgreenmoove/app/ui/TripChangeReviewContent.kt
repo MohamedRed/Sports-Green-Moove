@@ -17,9 +17,10 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 @Composable
-internal fun TripChangeReviewContent(review: TripChangeReview) {
+internal fun TripChangeReviewContent(review: TripChangeReview, application: TripChangeApplicationReceipt? = null) {
+    val applied = review.applied || application != null
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(tripChangeStatusLabel(review.status), style = SgmType.BodyLG.copy(color = Sgm.colors.textPrimary),
+        Text(tripChangeStatusLabel(if (applied) TripChangeStatus.Applied else review.status), style = SgmType.BodyLG.copy(color = Sgm.colors.textPrimary),
             modifier = Modifier.testTag("trip.change.status"))
         Text("Accords reçus : ${review.acceptedParentCount} / ${review.parentCount}",
             style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary), modifier = Modifier.testTag("trip.change.consents"))
@@ -28,16 +29,19 @@ internal fun TripChangeReviewContent(review: TripChangeReview) {
         TripChangeTermsContent("Détails initiaux", "original", review.originalTerms)
         TripChangeTermsContent("Détails proposés", "proposed", review.terms)
         if (review.status == TripChangeStatus.Outdated) TripChangeTermsContent("Détails actuels", "current", review.currentTerms)
-        if (!review.applied && review.status in setOf(TripChangeStatus.Pending, TripChangeStatus.Confirmed))
+        if (!applied && review.status in setOf(TripChangeStatus.Pending, TripChangeStatus.Confirmed))
             Text("Les détails proposés ne sont pas encore appliqués.", style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary))
         if (review.canRespond) Text("Votre décision concerne ${review.bookingIds.size} réservation${if (review.bookingIds.size > 1) "s" else ""}.",
             style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary))
-        review.balances.filter { it.balanceCents != 0 }.forEach { balance ->
+        val balances = if (application != null && !review.applied) emptyList() else review.balances
+        balances.filter { it.balanceCents != 0 }.forEach { balance ->
             Text(if (balance.balanceCents > 0) "Supplément restant : ${tripChangeMoney(balance.balanceCents)}"
                 else "Remboursement restant : ${tripChangeMoney(-balance.balanceCents)}",
                 style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary), modifier = Modifier.testTag("trip.change.balance.${balance.bookingId}"))
         }
-        if (review.balances.any { it.balanceCents != 0 }) Text("Aucun règlement ni remboursement n’est confirmé ici.",
+        if (application != null && !review.applied) Text("Actualisez pour voir les soldes après modification.",
+            style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
+        if (balances.any { it.balanceCents != 0 }) Text("Aucun règlement ni remboursement n’est confirmé ici.",
             style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
     }
 }

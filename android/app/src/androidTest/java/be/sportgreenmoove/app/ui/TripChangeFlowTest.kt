@@ -14,6 +14,7 @@ import be.sportgreenmoove.app.services.ReservationGateway
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import java.io.IOException
 
 class TripChangeFlowTest {
     @get:Rule val compose = createComposeRule()
@@ -122,11 +123,22 @@ class TripChangeFlowTest {
         capture("trip-change-applied-balance-due.png")
         assertEquals(1, gateway.applications); compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()
     }
-    private fun host(gateway: Gateway, role: AppRole, compact: Boolean = false) {
+    @Test fun provenApplicationNeverShowsTheStaleUnappliedMessageWhenRefreshFails() {
+        val gateway = Gateway().apply { current = review().copy(status = TripChangeStatus.Confirmed, acceptedParentCount = 2,
+            canRespond = false, canWithdraw = true) }
+        host(gateway, AppRole.Driver, changed = { throw IOException() }); waitFor("trip.change.status")
+        compose.onNodeWithTag("trip.change.calculate").performScrollTo().performClick(); waitFor("trip.change.apply")
+        compose.onNodeWithTag("trip.change.apply").performScrollTo().performClick(); waitFor("trip.change.error")
+        compose.onNodeWithTag("trip.change.status").performScrollTo().assertTextEquals("Nouveaux détails appliqués")
+        compose.onNodeWithText("Les détails proposés ne sont pas encore appliqués.").assertDoesNotExist()
+        compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()
+        assertEquals(1, gateway.applications)
+    }
+    private fun host(gateway: Gateway, role: AppRole, compact: Boolean = false, changed: suspend () -> Unit = {}) {
         compose.setSgmUiTestContent {
             val density = LocalDensity.current
             CompositionLocalProvider(LocalDensity provides Density(density.density * if (compact) 1.3f else 1f, if (compact) 1.5f else density.fontScale)) {
-                TripChangeDialog(if (role == AppRole.Driver) "driver" else "parent", role, trip.id, trip.title, proposal, gateway, {}, {})
+                TripChangeDialog(if (role == AppRole.Driver) "driver" else "parent", role, trip.id, trip.title, proposal, gateway, changed, {})
             }
         }
     }

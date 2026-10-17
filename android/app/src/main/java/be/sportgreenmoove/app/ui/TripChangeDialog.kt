@@ -54,7 +54,7 @@ internal fun TripChangeDialog(
                         enabled = state.canPropose, testTag = "trip.change.propose")
                 }
                 state.review?.let { review ->
-                    TripChangeReviewContent(review)
+                    TripChangeReviewContent(review, state.application)
                     if (state.canRespond) {
                         V2Button("Accepter les nouveaux détails", { scope.launch { state.decide(TripChangeDecision.Accept, onChanged) } },
                             full = true, testTag = "trip.change.accept")
