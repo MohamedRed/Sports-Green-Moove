@@ -82,3 +82,25 @@ test('all successful raw artifacts retain original bytes and explicit smoke cove
   assert.equal(workflow.split('"tests/dual-transport-completed-evidence.test.mjs"').length - 1, 2);
   assert(workflow.includes('tests/dual-transport-evidence.test.mjs tests/dual-transport-completed-evidence.test.mjs'));
 });
+
+test('the repeat keyboard failure is retained without replacing the completed replay', () => {
+  const raw = readFileSync(new URL('../' + base + 'repeat/general-ui.xml', import.meta.url));
+  assert.equal(createHash('sha256').update(raw).digest('hex'),
+    '51576920b33737c7054adc39542350a427c3dae0e796c145dee939d1f9f773bf');
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
+    isArray: (name) => name === 'testcase' }).parse(raw).testsuite;
+  assert.equal(suite.tests, 99); assert.equal(suite.failures, 7);
+  assert.equal(suite.errors, 0); assert.equal(suite.skipped, 19);
+  const failures = suite.testcase.filter((item) => Object.hasOwn(item, 'failure'));
+  assert.equal(failures.length, 7);
+  for (const item of failures) {
+    assert.match(item.failure, /ComposeTimeoutException/);
+    assert.match(item.failure, /ConversationTestInteractions\.awaitKeyboard|TripFormTestInputKt\.enterTripFormText/);
+  }
+  const flow = content.flows.find((item) => item.id === 'messages');
+  assert.match(flow.summary, /clavier/); assert.match(flow.remaining, /clavier/);
+  assert.equal(flow.ui.source, base + 'completed/results.json');
+  assert.equal(content.updates[0].title, 'Le nouvel essai bloque au clavier');
+  const report = readFileSync(new URL('../' + base + 'README.md', import.meta.url), 'utf8');
+  assert.match(report, /39031056051/); assert.match(report, /replay did not start/);
+});

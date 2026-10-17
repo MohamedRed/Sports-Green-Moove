@@ -60,3 +60,24 @@ real send-time cuts, physical tracking, provider/payment outcomes and the six re
 safety-audit events remain open. Historical version-1 runs and the failed `before/`
 artifacts stay unchanged. No release-manifest requirement is accepted by this
 report. The full goal remains active.
+
+## Repeat Stopped Before The Full Replay
+
+The unchanged app/test implementation was checked again at commit
+`bd7aec720d511b01276f1a5600a75662ac99b8c3`,
+[Native CI run 39031056051](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39031056051).
+The original `repeat/general-ui.xml` declares 99 cases: 73 passed, seven failed,
+no errors and 19 conditional local-backend skips. Four conversation cases timed
+out waiting for the actual keyboard at `ConversationTestInteractions.kt:73`.
+One cancellation and two trip-change cases timed out waiting for the keyboard at
+`TripFormTestInput.kt:27`. All four observation/cleanup tests passed; five of the
+seven trip-change cases and two of the three cancellation cases passed.
+
+The collected per-case logs report `PHASE_CLIENT_REQUEST_IME_SHOW` failures.
+They do not establish whether the cause is device input setup, window focus or
+application input handling. No keyboard assertion was removed, no wait increased,
+and no synthetic keyboard state substituted. The full 24-case native/backend
+replay did not start, so this run neither repeats nor disproves its recorded
+network handover. The earlier complete success remains retained, but consistent
+execution is not proven. Diagnose keyboard readiness before treating another
+complete pass as stability evidence.
