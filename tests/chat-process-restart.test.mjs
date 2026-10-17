@@ -100,7 +100,7 @@ test('retained failed restart evidence cannot be promoted from successful ordina
   assert.equal(flow.status, 'partial');
   assert(content.updates.some((item) => item.title === 'La réponse après relancement reste à confirmer'));
   assert(flow.images.find((item) => item.file === 'chat-restart-reply').alt.includes('essai précédent'));
-  assert(content.blockers.find((item) => item.id === 'chat-send-stability').source.startsWith(base));
+  assert(content.blockers.some((item) => item.id === 'chat-send-stability'));
 });
 
 function device(overrides = {}) {

@@ -1,13 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
-import { assertChatNetworkReceipt } from '../scripts/qa/chat-network-evidence.mjs';
+import { assertChatNetworkReceipt, assertCellularRequestSetup } from '../scripts/qa/chat-network-evidence.mjs';
 import { assertChatRestartInteractionReceipt } from '../scripts/qa/chat-restart-evidence.mjs';
+import { assertChatLossReceipt } from '../scripts/qa/chat-loss-evidence.mjs';
+import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentation-result.mjs';
 import { content } from '../partner-portal/content.mjs';
 
-const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+const root = fileURLToPath(new URL('../', import.meta.url));
+const read = (path) => readFileSync(resolve(root, path), 'utf8');
 const ui = 'android/app/src/main/java/be/sportgreenmoove/app/ui/';
 
 test('startup failures are gated before onboarding and cannot silently become signed-out sessions', () => {
@@ -90,4 +95,63 @@ test('four executed recovery cases and reviewed captures stay distinct from fail
   assert.equal(content.blockers.find((item) => item.id === 'cancellation-race').source, base + 'README.md');
   assert.match(content.blockers.find((item) => item.id === 'session-restoration').text, /simulés/);
   assert(!/getSubscriberId|getImei|line1Number/.test(read(ui + 'SessionRestorationState.kt')));
+});
+
+test('the subsequent complete replay requires every transcript, strict receipts and saved outcomes without closing the earlier reliability risks', () => {
+  const base = 'docs/release/evidence/local-complete-replay-2026-10-17/';
+  const json = (name) => JSON.parse(read(base + name));
+  const run = json('results.json'), runId = 'a7a5366ace1d3ec71b9385ef4fa55401';
+  assert.equal(run.runId, runId); assert.equal(run.testedAt, '2026-10-17T02:11:48.524Z');
+  assert.equal(run.scope, 'local-ui-not-physical-device'); assert.equal(run.projectId, 'demo-sgm-local-qa');
+  assert.equal(run.testCount, 21); assert.equal(run.steps.length, 22);
+  assert.equal(new Set(run.steps.map((step) => step.id)).size, 22);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway'); assert.equal(run.search.caseCount, 4);
+  const files = readdirSync(resolve(root, base)).filter((name) => name.endsWith('-instrumentation.txt'));
+  assert.equal(files.length, 13);
+  let total = 0;
+  for (const file of files) {
+    const count = file.startsWith('LocalAppFlowTest-') ? 9 : 1;
+    assertInstrumentationPassed(read(base + file), count); total += count;
+  }
+  assert.equal(total, 21);
+  const ordinary = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true })
+    .parse(read(base + 'ordinary-components.xml')).testsuite;
+  assert.equal(ordinary.tests, 77); assert.equal(ordinary.failures, 0); assert.equal(ordinary.errors, 0); assert.equal(ordinary.skipped, 16);
+  assertChatRestartInteractionReceipt(json('local-chat-restart-before.json'), json('local-chat-restart-stop.json'),
+    json('local-chat-restart-after.json'), runId);
+  const checkpoint = json('local-chat-restart-checkpoint.json'), persisted = json('local-chat-restart-persisted.json');
+  assert.equal(persisted.runId, runId); assert.equal(persisted.sourceId, run.chatRestart.sourceId);
+  assert.equal(persisted.messages.length, 3); assert(persisted.messages.every((message) => message.read));
+  for (const key of ['messageId', 'notificationId', 'clientMessageId']) {
+    assert.equal(new Set(persisted.messages.map((message) => message[key])).size, 3);
+  }
+  const original = persisted.messages.find((message) => message.messageId === checkpoint.messageId);
+  assert.equal(original.clientMessageId, checkpoint.clientMessageId); assert.equal(original.createdAtMillis, checkpoint.createdAtMillis);
+  const network = json('local-chat-network-ui.json'); assert.equal(network.runId, runId);
+  assertChatNetworkReceipt(network); assertCellularRequestSetup(network);
+  assert.equal(run.chatNetwork.messageCount, 2); assert.equal(run.chatNetwork.notificationCount, 2);
+  assert.equal(run.chatNetwork.duplicateMessages, 0);
+  assertChatLossReceipt(json('local-chat-loss-ui.json'), json('local-chat-loss-proxy.json'), runId, run.chatResponseLoss.sourceId);
+  assert.equal(run.chatResponseLoss.messageCount, 1); assert.equal(run.chatResponseLoss.notificationCount, 1);
+  const versions = new Set();
+  for (const phase of ['confirmed-restart', 'response-loss', 'network-recovery']) {
+    const copy = json(`adb-pull-${phase}.json`);
+    assert.equal(copy.runId, runId); assert.equal(copy.phase, phase); assert.equal(copy.completed, true);
+    assert.equal(copy.status, 0); assert.equal(copy.signal, null); assert.equal(copy.errorCode, null);
+    assert(Date.parse(copy.recordedAt) <= Date.parse(run.testedAt)); versions.add(copy.version);
+  }
+  assert.equal(versions.size, 1);
+  assert.equal(run.tripCancellation.bookingCount, 2); assert.equal(run.tripCancellation.notificationCount, 1);
+  assert.equal(run.tripCancellation.refundPendingCount, 1); assert.equal(run.tripCancellation.seatsAfterCancellation, 3);
+  for (const key of ['refundIssued', 'livePayment', 'productionDeployed']) assert.equal(run.tripCancellation[key], false);
+  const hashes = json('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 28);
+  for (const [name, hash] of Object.entries(hashes)) assert.equal(createHash('sha256')
+    .update(readFileSync(resolve(root, base, name))).digest('hex'), hash, name);
+  assert.match(read(base + 'README.md'), /does not explain or resolve/);
+  assert.match(read(base + 'README.md'), /no transaction-order root fix/);
+  assert.equal(content.lastVerifiedAt, '2026-10-17');
+  assert(content.blockers.some((item) => item.id === 'cancellation-race'));
+  assert.match(content.blockers.find((item) => item.id === 'chat-send-stability').text, /instable/);
+  assert(content.updates.some((item) => item.date === '2026-10-17' && item.title === 'Les échanges reprennent après coupure'));
 });

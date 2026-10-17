@@ -38,11 +38,11 @@ export const excerpts = {
 
 export const content = {
   updatedAt: '2026-10-17',
-  lastVerifiedAt: '2026-10-16',
+  lastVerifiedAt: '2026-10-17',
   releaseNote: 'Tests en cours.',
   updates: [
-    { date: '2026-10-17', title: 'Les essais simulés de reprise passent',
-      text: 'Attente, erreur, nouvel essai et déconnexion choisie : les quatre essais locaux passent. Les coupures restent à stabiliser.', flow: 'appearance' },
+    { date: '2026-10-17', title: 'Les échanges reprennent après coupure',
+      text: 'L’essai local passe, y compris après fermeture complète. La préparation des essais reste instable.', flow: 'messages' },
     { date: '2026-10-16', title: 'La reprise après rotation reste à stabiliser',
       text: 'Un essai s’est arrêté après rotation. La reprise de session et les coupures restent à vérifier.', flow: 'appearance' },
     { date: '2026-10-16', title: 'L’échange après relancement passe en local',
@@ -124,8 +124,8 @@ export const content = {
       text: 'Les quatre essais locaux simulés passent.',
       next: 'Rejouer la rotation et la reconnexion après une coupure.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/README.md' },
     { id: 'chat-send-stability', title: 'Reprendre les essais de coupure',
-      text: 'L’échange après relancement passe en local. Le nouvel essai de coupure n’a pas pu démarrer.',
-      next: 'Rétablir la connexion de test, puis rejouer les coupures et les brouillons après fermeture complète.', source: 'docs/release/evidence/local-chat-restart-recheck-2026-10-16/second-run/README.md' },
+      text: 'Un essai de coupure passe en local. La préparation reste instable.',
+      next: 'Stabiliser ces essais, puis vérifier les brouillons après fermeture complète.', source: 'docs/release/evidence/local-complete-replay-2026-10-17/README.md' },
     { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
       text: 'Les échanges réuniront les membres d’une même équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.',
       next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: 'docs/contracts/team-conversations.md' },
@@ -200,9 +200,9 @@ export const content = {
         shot('reservation-declined', 'Demande refusée par le conducteur, en local'),
         shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre')], source: 'docs/release/evidence/local-trip-capacity-2026-10-16/README.md' },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-16',
-      summary: 'L’échange après relancement passe en local. Les coupures restent à reprendre.',
+      summary: 'L’échange après relancement passe en local. Les coupures restent à stabiliser.',
       verified: 'Après relancement, le parent retrouve les messages et reçoit la réponse du conducteur. Le renvoi après une confirmation perdue ne crée pas de doublon, en local.',
-      remaining: 'Le nouvel essai de coupure n’a pas pu démarrer. Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
+      remaining: 'Stabiliser les essais de coupure. Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
         'Après une confirmation perdue, deux renvois gardent un seul message et une seule notification.',
