@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
-import { content } from '../partner-portal/content.mjs';
+import { content, captures } from '../partner-portal/content.mjs';
 
 const base = 'docs/release/evidence/local-booking-consistency-2026-10-17/';
 const bytes = (path) => readFileSync(new URL(`../${path}`, import.meta.url));
@@ -16,6 +16,12 @@ const hashes = {
   'search-recovery.xml': 'ab9220a7e75cdd8304fc1488fc47c669c60169077357e2bef5996247c095ec14',
   'error-policy.xml': '88fe955fb4627b0c5a7921426c34e6c04292da77bc4c63d89a6feb3645ca28ff',
   'services.json': '391c9040ff793b46eb4a8cb21be692b44ab7d11bb8ab4ea1549b00463e38e9b0',
+  'native-components.xml': 'b22742782bfceb0d9c591fed776b4d3b19ede894c690d0aea84ad8bfb6088535',
+  'network-preparation-failure.json': '4810efdb5f38881a47745157455e696872b5019b1cde6f7c9bb202b9e4943057',
+  'modem-before.json': '613515821592d1473a258e149e2d437c018a52f47060e9fecaf40bd4b6924b1e',
+  'modem-after.json': '932fe648488277a0fa105e206950a808f544b20158ea7f6f5b2fec29da4b1225',
+  'booking-review-required.png': 'c57d5681d3562c514dc2be6dffcbe859c92a21cec9bc9bc3a4b56267deaf2425',
+  'booking-review-narrow.png': 'cb6b488a2e3edc0dce613ed720d0d294198f9cca6dcbb839eb4f78e89ecf6a1f',
 };
 
 test('retained booking evidence preserves original bytes and isolated scope', () => {
@@ -90,4 +96,30 @@ test('smoke CI covers the harness and Android recovery while release status rema
   assert.equal(content.flows.find((item) => item.id === 'booking').status, 'partial');
   assert.equal(content.blockers.find((item) => item.id === 'booking-review').source, base + 'README.md');
   assert.match(read(base + 'README.md'), /does not bind a request to the terms previously displayed/);
+});
+
+test('the three executed screen cases and captures do not promote the later failed network replay', () => {
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(read(base + 'native-components.xml')).testsuite;
+  assert.equal(Number(suite['@_tests']), 80); assert.equal(Number(suite['@_skipped']), 16);
+  assert.equal(Number(suite['@_failures']), 0); assert.equal(Number(suite['@_errors']), 0);
+  const cases = suite.testcase.filter((item) => item['@_classname'].endsWith('.BookingReviewFlowTest'));
+  assert.equal(cases.length, 3);
+  assert(cases.every((item) => !Object.hasOwn(item, 'skipped') && !Object.hasOwn(item, 'failure') && !Object.hasOwn(item, 'error')));
+  for (const name of ['booking-review-required', 'booking-review-narrow']) {
+    assert.equal(captures[name], base + name + '.png');
+    assert(content.flows.find((item) => item.id === 'booking').images.some((item) => item.file === name && /17 octobre/.test(item.alt)));
+  }
+  const failed = json('network-preparation-failure.json');
+  assert.equal(failed.completed, false); assert.equal(failed.failedPhase, 'network-preparation');
+  assert.equal(failed.runId, '94d5b9ed9fb95675d9c4104d151c14c6');
+  assert.deepEqual(failed.network, []); assert.equal(failed.cellularRequestReleased, true);
+  assert.equal(failed.preparationFailure.hasDefaultDataSubscription, false);
+  assert.equal(failed.preparationFailure.backendReachable, true);
+  assert.deepEqual(failed.preparationFailure.internetTransports, ['wifi']);
+  assert.equal(failed.preparationFailure.cellularAvailableCallbacks, 0);
+  assert(!Object.hasOwn(failed, 'recoveredSendConfirmed'));
+  for (const phase of ['before', 'after']) {
+    const modem = json(`modem-${phase}.json`);
+    assert.equal(modem.runId, failed.runId); assert.equal(modem.voice, 'home'); assert.equal(modem.data, 'home');
+  }
 });

@@ -77,3 +77,45 @@ SHA-256 of the original retained bytes:
 
 Use `npm run test:booking-consistency` for a new isolated run. Preserve its own
 timestamp and run ID instead of rewriting these historical receipts.
+
+## Subsequent CI Screen Verification
+
+[Native CI 38999953425](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/38999953425)
+ran pushed source `366a5ac63b37c27ac09e140906435bec1777de6a`. Its ordinary
+instrumentation suite recorded 80 cases: 64 executed, 16 intentionally assumed out
+in this non-emulator-backend stage, zero failures or errors. All three
+`BookingReviewFlowTest` cases actually executed and passed. `native-components.xml`
+is the original report, not a three-case reconstruction. The two reviewed PNGs
+show the actual controlled component render (fake gateway, not the real SDK race).
+The review message and new-search action fit at 320 dp / 1.5 font scale; other
+existing form controls truncate their labels at that size. That separate layout
+gap is not fixed or accepted by these focused recovery tests.
+
+The later full local app replay **failed**, so this Native CI run is not green.
+`network-preparation-failure.json` retains the actual incomplete run
+`94d5b9ed9fb95675d9c4104d151c14c6`: the conversation opened, but preparation
+timed out before disconnect or sending. The phone reported no default data
+subscription and no cellular Internet transport/callback, despite enabled mobile
+data, a ready SIM and modem registration `home` before/after. The backend remained
+reachable over Wi-Fi. The requested cellular callback was released. This is not
+proof of offline send, recovery or a successful final 21-case replay; no complete
+host results receipt was produced. No timeout, skip, fallback or automatic rerun
+was added to conceal this failure. The emulator provisioning cause remains open.
+
+The independent Web Integration Smoke run 38999953432 passed all 14 controlled
+booking cases against the same production source hashes (run
+`38572ac6337696dd7d4942e1a622ecb0`, 03:48:55 UTC). Backend, release checks and
+Android unit tests also passed; that does not cancel the failed full Native run.
+The booking flow keeps its October 16 full-scenario date on the portal; appended
+component captures explicitly state their October 17 date and simulated scope.
+
+Additional original SHA-256 values:
+
+| File | SHA-256 |
+| --- | --- |
+| native-components.xml | `b22742782bfceb0d9c591fed776b4d3b19ede894c690d0aea84ad8bfb6088535` |
+| network-preparation-failure.json | `4810efdb5f38881a47745157455e696872b5019b1cde6f7c9bb202b9e4943057` |
+| modem-before.json | `613515821592d1473a258e149e2d437c018a52f47060e9fecaf40bd4b6924b1e` |
+| modem-after.json | `932fe648488277a0fa105e206950a808f544b20158ea7f6f5b2fec29da4b1225` |
+| booking-review-required.png | `c57d5681d3562c514dc2be6dffcbe859c92a21cec9bc9bc3a4b56267deaf2425` |
+| booking-review-narrow.png | `cb6b488a2e3edc0dce613ed720d0d294198f9cca6dcbb839eb4f78e89ecf6a1f` |

@@ -1,4 +1,6 @@
 export const captures = {
+  'booking-review-required': 'docs/release/evidence/local-booking-consistency-2026-10-17/booking-review-required.png',
+  'booking-review-narrow': 'docs/release/evidence/local-booking-consistency-2026-10-17/booking-review-narrow.png',
   'chat-restart-recheck-reply': 'docs/release/evidence/local-chat-restart-recheck-2026-10-16/second-run/local-chat-restart-reply.png',
   'trip-cancel-review': 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/local-trip-cancel-review-portrait.png',
   'trip-cancel-confirmed': 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/local-trip-cancel-confirmed-landscape.png',
