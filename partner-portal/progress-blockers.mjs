@@ -9,7 +9,7 @@ export const blockers = [
     text: 'Les quatre essais locaux simulés passent.',
     next: 'Rejouer la rotation et la reconnexion après une coupure.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/README.md' },
   { id: 'chat-send-stability', title: 'Reprendre les essais de coupure',
-    text: 'Le dernier essai passe. La préparation reste instable : les échecs précédents ne sont pas expliqués.',
+    text: 'Un essai complet passe, un autre s’arrête avant la coupure. La préparation reste instable.',
     next: 'Expliquer ces blocages, puis vérifier les brouillons après fermeture complète.', source: 'docs/release/evidence/local-default-selection-2026-10-17/README.md' },
   { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
     text: 'Les échanges réuniront les membres d’une même équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.',

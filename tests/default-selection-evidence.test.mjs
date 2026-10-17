@@ -101,3 +101,31 @@ test('current captures and dates cannot promote this comparison to physical or s
   assert.equal(workflow.split('"tests/default-selection-evidence.test.mjs"').length - 1, 2);
   assert(workflow.includes('node --test tests/default-selection-evidence.test.mjs'));
 });
+
+test('the subsequent recheck stays failed with no inferred controller readiness or full result', () => {
+  const prefix = 'interrupted-recheck/';
+  assert.equal(createHash('sha256').update(bytes(prefix + 'artifact-sha256.json')).digest('hex'),
+    '0e7210a3d3062b71b325c72478b4b7b2a3be4f718bbd2ed6c8fa2d631e11eae7');
+  const hashes = json(prefix + 'artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 8);
+  for (const [file, hash] of Object.entries(hashes)) {
+    assert.match(file, /^[\w.-]+$/);
+    assert.equal(createHash('sha256').update(bytes(prefix + file)).digest('hex'), hash, file);
+  }
+  const ui = json(prefix + 'local-chat-network-ui.json');
+  assert.equal(ui.runId, 'aeca3bbbb4047fd169b3e7d54511efec');
+  assert.equal(ui.completed, false); assert.deepEqual(ui.network, []);
+  assert.equal(ui.failedPhase, 'network-preparation');
+  assert.equal(ui.preparationFailure.hasDefaultDataSubscription, false);
+  assert.throws(() => assertChatNetworkReceipt(ui));
+  assert.throws(() => assertInstrumentationPassed(text(prefix + 'LocalChatNetworkFlowTest-instrumentation.txt'), 1));
+  for (const phase of ['before', 'after']) {
+    const history = json(prefix + `chat-default-selection-${phase}.json`);
+    assert.equal(history.runId, ui.runId); assert.equal(history.lastReadiness, null);
+    assert.deepEqual(history.events, []); assert.equal(history.recognizedEventCount, 0);
+    const subscription = json(prefix + `chat-subscriptions-${phase}.json`);
+    assert.equal(subscription.runId, ui.runId); assert.equal(subscription.allSubscriptionsLoaded, true);
+    assert.equal(subscription.defaultSubscriptionValid.defaultDataSubId, false);
+  }
+  assert(content.updates.some((update) => update.title === 'La préparation bloque encore un essai'));
+  assert.match(content.flows.find((flow) => flow.id === 'messages').summary, /^Un essai local complet passe/);
+});

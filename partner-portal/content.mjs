@@ -175,7 +175,7 @@ export const content = {
         shot('booking-review-required', 'Trajet modifié : nouvelle recherche demandée, essai local simulé du 17 octobre'),
         shot('booking-review-narrow', 'Même message en texte agrandi, essai local simulé du 17 octobre')], source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-17',
-      summary: 'Le dernier essai local passe. Les coupures restent à stabiliser.',
+      summary: 'Un essai local complet passe. Les coupures restent à stabiliser.',
       verified: 'Le brouillon reste pendant la coupure. Après reconnexion, le parent renvoie son message et reçoit la réponse du conducteur, sans doublon. L’échange après relancement passe aussi en local.',
       remaining: 'Stabiliser les essais de coupure. Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [

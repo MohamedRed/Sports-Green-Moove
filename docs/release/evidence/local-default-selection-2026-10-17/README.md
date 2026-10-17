@@ -81,3 +81,30 @@ preserving the failed run and the original dates of older captures. Real phones,
 pending-draft process death, token expiry, groups, payment/provider integration,
 physical tracking and real safety-audit evidence remain incomplete. There is no
 production deployment, test skip, deadline increase or alternate network route.
+
+## Subsequent Interrupted Recheck
+
+[Native CI 39021285665](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39021285665)
+on `3e20db3e1cf828fde93cb8baed7f0a5aaeb51ff4`, run
+`aeca3bbbb4047fd169b3e7d54511efec`, failed again at network preparation before
+disconnect. `interrupted-recheck/` retains the original failed instrumentation,
+app receipt and sanitized before/after diagnostics. There is no complete result
+for this run. The SIM was loaded and the modem registered, but the default/active
+data subscription was again invalid and no cellular callback arrived. Both
+controller histories again contain zero events and null readiness. The history
+collector does not yet distinguish logging suppression from buffer retention;
+it did not identify the missing-selection cause. A current carrier-loader state
+observation or an early-boot diagnostic is still needed before any repair can be
+justified. Do not force SIM defaults, add an alternate route or rerun merely to
+obtain green CI.
+
+The corrected commit's backend, website smoke and release-readiness checks passed.
+An earlier documentation commit's stale current-evidence assertions were fixed
+without changing historical receipts. Its callback connectivity failure was
+separately checked with the exact public health endpoints and unchanged helper:
+both returned the required 204 and callback-kind header, and the current release
+check passed. This is not a real payment/refund execution claim.
+
+The successful 24-case snapshot remains published alongside this later failure.
+Partner copy describes a successful local run, not a stable suite or a claim that
+the last check passed. The wider goal remains active.
