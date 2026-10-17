@@ -72,6 +72,7 @@ export type ClientMapRoutePreview = {
 };
 
 export type ClientTripSummary = {
+  bookingIntent: import("./bookingIntent.js").BookingIntentSnapshot;
   id: string;
   title: string;
   club: string;

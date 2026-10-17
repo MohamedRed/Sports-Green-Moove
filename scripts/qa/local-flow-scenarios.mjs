@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { auth, db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, auth, db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
 
 export async function runScenarios(check, lifecycle) {
   const parent = await signIn('p@example.test');
@@ -25,7 +25,7 @@ export async function runScenarios(check, lifecycle) {
   });
   await check('booking-cancellation', async () => {
     assert(tripId, 'Publication must pass first');
-    const booking = await call('requestBooking', parent, { tripId, childId: 'sgm-qa-child-lina', seats: 1 });
+    const booking = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 1 }));
     const id = booking.bookingId;
     assert.equal((await document('trips', tripId)).seatsAvailable, 4);
     await denied('approveBooking', parent, { bookingId: id }, 'PERMISSION_DENIED');
@@ -38,26 +38,26 @@ export async function runScenarios(check, lifecycle) {
     assert.equal((await document('trips', tripId)).seatsAvailable, 4);
     await denied('cancelBooking', parent, { bookingId: id }, 'FAILED_PRECONDITION');
     assert.equal((await document('trips', tripId)).seatsAvailable, 4);
-    const pending = await call('requestBooking', parent, { tripId, seats: 1 });
+    const pending = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }));
     await call('cancelBooking', driver, { bookingId: pending.bookingId });
     assert.equal((await document('trips', tripId)).seatsAvailable, 4);
-    await denied('requestBooking', outsider, { tripId, childId: 'sgm-qa-child-lina', seats: 1 }, 'PERMISSION_DENIED');
-    await denied('requestBooking', driver, { tripId, seats: 1 }, 'FAILED_PRECONDITION');
+    await denied('requestBooking', outsider, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 1 }), 'PERMISSION_DENIED');
+    await denied('requestBooking', driver, await viewedBooking({ tripId, seats: 1 }), 'FAILED_PRECONDITION');
   });
   await check('last-seat-concurrency', async () => {
     const { tripId: id } = await call('createTrip', driver, { ...tripInput(), seatsTotal: 1, seatsAvailable: 1 });
-    const first = await call('requestBooking', parent, { tripId: id, seats: 1 });
-    const second = await call('requestBooking', outsider, { tripId: id, seats: 1 });
+    const first = await call('requestBooking', parent, await viewedBooking({ tripId: id, seats: 1 }));
+    const second = await call('requestBooking', outsider, await viewedBooking({ tripId: id, seats: 1 }));
     const results = await Promise.allSettled([first, second].map((b) => call('approveBooking', driver, { bookingId: b.bookingId })));
     assert.equal(results.filter((r) => r.status === 'fulfilled').length, 1);
     const rejection = results.find((r) => r.status === 'rejected');
     assert.equal(rejection?.reason.code, 'FAILED_PRECONDITION');
     assert.equal((await document('trips', id)).seatsAvailable, 0);
-    await denied('requestBooking', parent, { tripId: id, seats: 1 }, 'FAILED_PRECONDITION');
+    await denied('requestBooking', parent, await viewedBooking({ tripId: id, seats: 1 }), 'FAILED_PRECONDITION');
   });
   await check('multi-seat-booking', async () => {
     const { tripId: id } = await call('createTrip', driver, { ...tripInput(), seatsTotal: 4, seatsAvailable: 4, priceCents: 0 });
-    const { bookingId } = await call('requestBooking', parent, { tripId: id, childId: 'sgm-qa-child-lina', seats: 2 });
+    const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId: id, childId: 'sgm-qa-child-lina', seats: 2 }));
     assert.equal((await document('bookings', bookingId)).seats, 2);
     assert.equal((await document('trips', id)).seatsAvailable, 4);
     await call('approveBooking', driver, { bookingId });
@@ -68,7 +68,7 @@ export async function runScenarios(check, lifecycle) {
     assert.equal((await document('trips', id)).seatsAvailable, 4);
     await denied('cancelBooking', parent, { bookingId }, 'FAILED_PRECONDITION');
     assert.equal((await document('trips', id)).seatsAvailable, 4);
-    await denied('requestBooking', parent, { tripId: id, seats: 5 }, 'FAILED_PRECONDITION');
+    await denied('requestBooking', parent, await viewedBooking({ tripId: id, seats: 5 }), 'FAILED_PRECONDITION');
     multiSeat = { requestedSeats: 2, seatsBefore: 4, seatsAfterApproval: 2, seatsAfterCancellation: 4,
       repeatedCancellationRejected: true, livePayment: false };
   });

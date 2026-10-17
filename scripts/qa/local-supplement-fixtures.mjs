@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { call, db, document, signIn, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, call, db, document, signIn, tripInput } from './local-flow-client.mjs';
 
 export async function supplementFixtures() {
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
@@ -28,7 +28,7 @@ export async function supplementFixtures() {
   };
   const create = async () => {
     const { tripId } = await call('createTrip', driver, { ...tripInput(), priceCents: 250 });
-    const { bookingId } = await call('requestBooking', parent, { tripId, seats: 1, childId: 'sgm-qa-child-lina' });
+    const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1, childId: 'sgm-qa-child-lina' }));
     await call('approveBooking', driver, { bookingId });
     const prepared = await prepareRidePayment(bookingId, parent.uid), request = buildRidePaymentIntentCreateParams(prepared);
     const original = { ...request.params, id: `pi_local_${randomUUID()}`, status: 'succeeded', application_fee_amount: request.params.application_fee_amount ?? 0 };

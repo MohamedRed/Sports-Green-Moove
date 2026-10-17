@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { auth, db, call, denied, document, signIn } from './local-flow-client.mjs';
+import { auth, db, call, denied, document, signIn, viewedBooking } from './local-flow-client.mjs';
 
 export async function checkTripCancellationRaces({ driver, parent, outsider, create, preview, intent, book }) {
   await auth.createUser({ uid: 'sgm-qa-cancel-other-driver', email: 'cancel-other-driver@example.test', password: process.env.SGM_QA_PASSWORD });
@@ -34,7 +34,8 @@ export async function checkTripCancellationRaces({ driver, parent, outsider, cre
     const tripId = await create();
     const bookingId = action === 'approveBooking' ? await book(parent, tripId) : undefined;
     const request = intent(tripId, (await preview(tripId)).revision);
-    const operation = action === 'requestBooking' ? call(action, outsider, { tripId, seats: 1 })
+    const displayed = action === 'requestBooking' ? await viewedBooking({ tripId, seats: 1 }) : undefined;
+    const operation = action === 'requestBooking' ? call(action, outsider, displayed)
       : action === 'approveBooking' ? call(action, driver, { bookingId }) : call(action, driver, { tripId });
     const results = await Promise.allSettled([operation, call('cancelTrip', driver, request)]);
     assert(results.some((item) => item.status === 'fulfilled'));

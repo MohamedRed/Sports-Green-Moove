@@ -153,7 +153,7 @@ class UiFlowFirebaseGateway : FirebaseGateway {
         createdTripDraft = draft
         return "trip-created"
     }
-    override suspend fun requestBooking(tripId: String, childId: String?, seats: Int) = "booking-created"
+    override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int) = "booking-created"
     override suspend fun getDriverBookingRequests() = listOf(UiFlowFixtures.bookingRequest)
     override suspend fun startRide(tripId: String, bookingIds: List<String>) = UiFlowFixtures.activeRide
     override suspend fun getActiveRide() = UiFlowFixtures.activeRide

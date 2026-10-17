@@ -3,7 +3,7 @@ import { fork } from 'node:child_process';
 import { once } from 'node:events';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { call, db, signIn, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, call, db, signIn, tripInput } from './local-flow-client.mjs';
 import { faultMessage } from './native-chat-loss-proxy.mjs';
 import { assertChatLossReceipt } from './chat-loss-evidence.mjs';
 
@@ -22,7 +22,7 @@ function nextMessage(worker, type) {
 
 export async function replayChatLossUi(instrument, collect, directory) {
   const { tripId } = await call('createTrip', await signIn('d@example.test'), { ...tripInput(), title: 'Trajet réponse perdue QA' });
-  const { bookingId } = await call('requestBooking', await signIn('p@example.test'), { tripId, seats: 1 });
+  const { bookingId } = await call('requestBooking', await signIn('p@example.test'), await viewedBooking({ tripId, seats: 1 }));
   await call('approveBooking', await signIn('d@example.test'), { bookingId });
   assert.equal((await db.collection('messages').where('sourceId', '==', bookingId).get()).size, 0);
   // Instrumentation is synchronous; the independently supervised child must keep serving its HTTP requests.

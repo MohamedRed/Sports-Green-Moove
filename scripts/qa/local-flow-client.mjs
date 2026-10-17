@@ -2,11 +2,19 @@ import assert from 'node:assert/strict';
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
+export { tripInput } from './local-trip-input.mjs';
 
 const config = configureLocalEmulators();
 initializeApp({ projectId: config.projectId, databaseURL: config.databaseURL });
 export const { firestore: db } = await import('../../functions/lib/lib/firestore.js');
 export const auth = getAuth();
+const { bookingIntentSnapshot } = await import('../../functions/lib/domain/bookingIntent.js');
+
+export async function viewedBooking(data) {
+  assert(!Object.hasOwn(data, 'expectedBookingIntent'), 'Submit an already captured snapshot directly, without refreshing it');
+  const trip = await document('trips', data.tripId);
+  return { ...data, expectedBookingIntent: bookingIntentSnapshot({ ...trip, id: data.tripId }) };
+}
 
 export async function signIn(email) {
   const response = await fetch(`http://${config.authHost}/identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=fake-api-key`, {
@@ -41,14 +49,4 @@ export async function document(collection, id) {
   const snapshot = await db.collection(collection).doc(id).get();
   assert(snapshot.exists, `${collection} record must exist`);
   return snapshot.data();
-}
-
-export function tripInput() {
-  const departure = new Date(Date.now() + 36 * 3600_000);
-  return { title: 'Local QA trip', sport: 'Football', clubName: 'Green Wavre QA Club',
-    clubId: 'sgm-qa-club-green-wavre', teamId: 'sgm-qa-club-green-wavre-u8', category: 'U 7/8',
-    departureAt: departure.toISOString(), origin: { lat: 50.7167, lng: 4.6167 },
-    destination: { lat: 50.8503, lng: 4.3517 }, pickupRadiusM: 1500,
-    seatsTotal: 4, seatsAvailable: 4, baggage: 'medium', returnTrip: false, priceCents: 0,
-    supportsVehicleTracking: true, supportsChildTracking: true, co2SavedKgEstimate: 7.4 };
 }

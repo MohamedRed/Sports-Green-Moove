@@ -1,0 +1,1731 @@
+{
+  "runId": "3d21ae2d233fce3234c5fdc4c4ae1ce0",
+  "testedAt": "2026-10-17T05:08:56.464Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "controlled-displayed-booking-intent-not-phone-ui",
+  "sourceRef": "working-tree",
+  "sourceSha256": {
+    "callables/bookingRequests.ts": "8b891578c7e7a536eab6e840339d5e4b623cf2fe36f46b138ca210fb773a07a1",
+    "domain/bookingIntent.ts": "44e3955b2ee8679f6e44ec5fce03778dd8c81f0889e813de5906005f0e700cea",
+    "lib/clientTrips.ts": "5ea484767068345789874a8a04ad7ed30a4a936743965fc68bc4fedb87f0a3b1"
+  },
+  "passed": true,
+  "cases": [
+    {
+      "id": "price",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 900,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:54.657Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:54.657Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "departure",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.828Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.828Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "arrival",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.859Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.859Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "origin",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.890Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.890Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "destination",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.919Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.919Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "driver",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.943Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.943Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "club",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.973Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.973Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "team",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.999Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:55.999Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "category",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.026Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.026Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "pickup",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.051Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.051Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "baggage",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.074Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.074Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "return",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.094Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.094Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "vehicle-tracking",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.112Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.112Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "child-tracking",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.129Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.129Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "total-seats",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.148Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.148Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "applied-revision",
+      "status": "passed",
+      "expectedError": "aborted",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.174Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.174Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "missing-snapshot",
+      "status": "passed",
+      "expectedError": "invalid-argument",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "invalid-argument",
+        "message": "Invalid request data at expectedBookingIntent: Invalid input: expected object, received undefined"
+      },
+      "refreshed": false,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.208Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": []
+    },
+    {
+      "id": "malformed-snapshot",
+      "status": "passed",
+      "expectedError": "invalid-argument",
+      "bookingCount": 0,
+      "rejected": {
+        "code": "invalid-argument",
+        "message": "Invalid request data at expectedBookingIntent.terms: Invalid input: expected object, received undefined"
+      },
+      "refreshed": false,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.226Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {},
+      "saved": []
+    },
+    {
+      "id": "cosmetic-title",
+      "status": "passed",
+      "bookingCount": 1,
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.240Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.240Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": [
+        {
+          "id": "xNt0UfPd1MxKJv4XXutf",
+          "seats": 2,
+          "agreedPriceCents": 250,
+          "agreedAmountCents": 500,
+          "tripTermsRevision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "id": "available-capacity",
+      "status": "passed",
+      "bookingCount": 1,
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.325Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.325Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": [
+        {
+          "id": "olPaDYDUdqUqSkNG6o7N",
+          "seats": 2,
+          "agreedPriceCents": 250,
+          "agreedAmountCents": 500,
+          "tripTermsRevision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "id": "unchanged",
+      "status": "passed",
+      "bookingCount": 1,
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.354Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.354Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": [
+        {
+          "id": "DUFW6rnlb1QC8zJf86zi",
+          "seats": 2,
+          "agreedPriceCents": 250,
+          "agreedAmountCents": 500,
+          "tripTermsRevision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "id": "fresh-review",
+      "status": "passed",
+      "bookingCount": 1,
+      "refreshed": true,
+      "displayedPriceCents": 900,
+      "currentPriceCents": 900,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.377Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.377Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 900
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      },
+      "saved": [
+        {
+          "id": "hHvVTxnVY1cbwr27JA2f",
+          "seats": 2,
+          "agreedPriceCents": 900,
+          "agreedAmountCents": 1800,
+          "tripTermsRevision": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "id": "timestamp-document",
+      "status": "passed",
+      "bookingCount": 1,
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.402Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.402Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": [
+        {
+          "id": "Hj203TPqMCqZ3Y473tZa",
+          "seats": 2,
+          "agreedPriceCents": 250,
+          "agreedAmountCents": 500,
+          "tripTermsRevision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "id": "date-document",
+      "status": "passed",
+      "bookingCount": 1,
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.422Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T17:08:56.422Z",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": [
+        {
+          "id": "xov9lmck8NRymMcy5shV",
+          "seats": 2,
+          "agreedPriceCents": 250,
+          "agreedAmountCents": 500,
+          "tripTermsRevision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    },
+    {
+      "id": "equivalent-time-format",
+      "status": "passed",
+      "bookingCount": 1,
+      "refreshed": false,
+      "displayedPriceCents": 250,
+      "currentPriceCents": 250,
+      "displayedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T19:08:56.442+02:00",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "submittedIntent": {
+        "terms": {
+          "departureAt": "2026-10-18T19:08:56.442+02:00",
+          "arrivalBy": null,
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "priceCents": 250
+        },
+        "context": {
+          "driverUserId": "sgm-qa-displayed-driver",
+          "seatsTotal": 4,
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "pickupRadiusM": 1500,
+          "baggage": "medium",
+          "returnTrip": false,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      },
+      "saved": [
+        {
+          "id": "BSqAN8PgSr6arkn9VLhF",
+          "seats": 2,
+          "agreedPriceCents": 250,
+          "agreedAmountCents": 500,
+          "tripTermsRevision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ]
+    }
+  ],
+  "livePayment": false,
+  "productionDeployed": false
+}

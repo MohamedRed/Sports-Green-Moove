@@ -7,6 +7,7 @@ import type {
   LocationSource,
   Trip,
 } from "../domain/types.js";
+import { bookingIntentSnapshot } from "../domain/bookingIntent.js";
 
 type LiveTripLocation = {
   uploadedAt?: number;
@@ -79,11 +80,13 @@ function distanceLabel(trip: Trip): string {
 }
 
 export function toClientTripSummary(trip: Trip): ClientTripSummary {
-  const dates = formatDateParts(trip.departureAt);
+  const intent = bookingIntentSnapshot(trip);
+  const dates = formatDateParts(intent.terms.departureAt);
   const seatsLabel = `${trip.seatsAvailable} ${trip.seatsAvailable > 1 ? "places" : "place"}`;
 
   return {
     id: trip.id,
+    bookingIntent: intent,
     title: trip.title ?? `${trip.category} · Trajet sportif`,
     club: trip.clubName ?? trip.clubId,
     category: trip.category,

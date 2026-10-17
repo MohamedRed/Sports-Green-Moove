@@ -1,9 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { bookingIntentSnapshot } from "../domain/bookingIntent.js";
+import type { Trip } from "../domain/types.js";
 
 const state = vi.hoisted(() => ({
   trip: {} as Record<string, unknown> | undefined,
   child: {} as Record<string, unknown> | undefined,
-  afterPreflight: undefined as (() => void) | undefined,
+  beforeTransaction: undefined as (() => void) | undefined,
   retry: undefined as (() => void) | undefined,
   reads: [] as string[], committed: [] as { path: string; data: Record<string, unknown> }[],
   discarded: [] as { path: string; data: Record<string, unknown> }[], attempts: 0,
@@ -17,13 +19,9 @@ vi.mock("../lib/firebase.js", () => {
   };
   const firestore = {
     collection: (name: string) => ({ doc: (id = "new-booking") => ({ path: `${name}/${id}`, id,
-      get: async () => {
-        const result = snapshot(`${name}/${id}`);
-        state.afterPreflight?.();
-        return result;
-      },
     }) }),
     runTransaction: async (action: (transaction: unknown) => Promise<unknown>) => {
+      state.beforeTransaction?.();
       const attempt = async () => {
         state.attempts++;
         const pending: typeof state.committed = [];
@@ -48,7 +46,8 @@ vi.mock("../lib/firebase.js", () => {
 import { requestBooking } from "../callables/bookingRequests.js";
 
 const invoke = (data: Record<string, unknown> = {}) => requestBooking.run({
-  data: { tripId: "trip", childId: "child", seats: 2, ...data },
+  data: { tripId: "trip", childId: "child", seats: 2,
+    expectedBookingIntent: bookingIntentSnapshot(state.trip as Trip), ...data },
   auth: { uid: "parent", token: { roleKeys: ["parent"] } },
 } as Parameters<typeof requestBooking.run>[0]);
 
@@ -57,7 +56,7 @@ beforeEach(() => {
     departureAt: "2027-01-10T10:00:00.000Z", origin: { lat: 50.7, lng: 4.6 }, destination: { lat: 50.8, lng: 4.3 },
     seatsAvailable: 4, seatsTotal: 4, title: "Initial", clubId: "club", category: "U 7/8" };
   state.child = { displayName: "Initial child", guardianUserIds: ["parent"] };
-  state.afterPreflight = undefined; state.retry = undefined; state.reads = [];
+  state.beforeTransaction = undefined; state.retry = undefined; state.reads = [];
   state.committed = []; state.discarded = []; state.attempts = 0;
 });
 
@@ -87,7 +86,7 @@ describe("booking transaction consistency", () => {
     expect(state.committed[0].path).toBe(state.discarded[0].path);
   });
   it("returns the current cosmetic title without accepting changed operational terms", async () => {
-    state.afterPreflight = () => { state.trip!.title = "Updated title"; };
+    state.beforeTransaction = () => { state.trip!.title = "Updated title"; };
     expect((await invoke()).trip.title).toBe("Updated title");
   });
   it("binds a post-change booking amount to the same current applied revision", async () => {
@@ -102,28 +101,39 @@ describe("booking transaction consistency", () => {
     expect(state.committed[0].data).not.toHaveProperty("childId");
   });
   it("rejects a deleted child without committing a booking", async () => {
-    state.afterPreflight = () => { state.child = undefined; };
+    state.beforeTransaction = () => { state.child = undefined; };
     await expect(invoke()).rejects.toMatchObject({ code: "permission-denied" });
     expect(state.committed).toEqual([]);
   });
-  it("invalid initial terms fail closed before starting the transaction", async () => {
-    state.trip!.priceCents = -1;
+  it("invalid persisted terms fail closed without writing", async () => {
+    state.beforeTransaction = () => { state.trip!.priceCents = -1; };
     await expect(invoke()).rejects.toMatchObject({ code: "failed-precondition" });
-    expect(state.attempts).toBe(0); expect(state.committed).toEqual([]);
+    expect(state.committed).toEqual([]);
   });
   it("allows a separate fresh request after changed terms are reviewed, without saving the stale request", async () => {
-    state.afterPreflight = () => { state.trip!.priceCents = 900; state.trip!.appliedChangeId = "b".repeat(64); };
+    state.beforeTransaction = () => { state.trip!.priceCents = 900; state.trip!.appliedChangeId = "b".repeat(64); };
     await expect(invoke()).rejects.toMatchObject({ code: "aborted" });
     expect(state.committed).toEqual([]);
-    state.afterPreflight = undefined;
+    state.beforeTransaction = undefined;
     await invoke();
     expect(state.committed).toHaveLength(1);
     expect(state.committed[0].data).toMatchObject({ agreedPriceCents: 900, agreedAmountCents: 1800,
       tripTermsRevision: "b".repeat(64) });
   });
   it("uses current capacity without rejecting an unchanged intent when two seats still fit", async () => {
-    state.afterPreflight = () => { state.trip!.seatsAvailable = 3; };
+    state.beforeTransaction = () => { state.trip!.seatsAvailable = 3; };
     await invoke();
     expect(state.committed).toHaveLength(1); expect(state.committed[0].data.seats).toBe(2);
+  });
+  it("refuses changed details even when they changed before the server call", async () => {
+    const displayed = bookingIntentSnapshot(state.trip as Trip);
+    state.trip!.priceCents = 900;
+    await expect(invoke({ expectedBookingIntent: displayed })).rejects.toMatchObject({ code: "aborted" });
+    expect(state.committed).toEqual([]);
+  });
+  it("does not silently substitute server terms for a missing or malformed displayed snapshot", async () => {
+    for (const expectedBookingIntent of [undefined, null, {}, { terms: {}, context: {} }])
+      await expect(invoke({ expectedBookingIntent })).rejects.toMatchObject({ code: "invalid-argument" });
+    expect(state.attempts).toBe(0); expect(state.committed).toEqual([]);
   });
 });

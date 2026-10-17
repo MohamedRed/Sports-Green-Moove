@@ -70,6 +70,7 @@ struct TripSummary: Identifiable, Hashable, Sendable {
     let reasons: [String]
     let status: TripStatus
     let mapPreview: MapRoutePreview?
+    let bookingIntent: BookingIntentSnapshot?
 
     init(
         id: String,
@@ -87,7 +88,8 @@ struct TripSummary: Identifiable, Hashable, Sendable {
         passengerInitials: [String] = [],
         reasons: [String],
         status: TripStatus = .upcoming,
-        mapPreview: MapRoutePreview? = nil
+        mapPreview: MapRoutePreview? = nil,
+        bookingIntent: BookingIntentSnapshot? = nil
     ) {
         self.id = id
         self.title = title
@@ -105,10 +107,11 @@ struct TripSummary: Identifiable, Hashable, Sendable {
         self.reasons = reasons
         self.status = status
         self.mapPreview = mapPreview
+        self.bookingIntent = bookingIntent
     }
 }
 
-struct MapPoint: Hashable, Sendable {
+struct MapPoint: Codable, Hashable, Sendable {
     let lat: Double
     let lng: Double
 }

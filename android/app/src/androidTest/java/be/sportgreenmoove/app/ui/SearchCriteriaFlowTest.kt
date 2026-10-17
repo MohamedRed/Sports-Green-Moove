@@ -104,8 +104,8 @@ class SearchCriteriaFlowTest {
                 searches += criteria
                 return listOf(UiFlowFixtures.match.let { it.copy(summary = it.summary.copy(seatsAvailable = 4)) })
             }
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
-                bookings += Triple(tripId, childId, seats)
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String {
+                bookings += Triple(trip.id, childId, seats)
                 return "synthetic-booking"
             }
         }

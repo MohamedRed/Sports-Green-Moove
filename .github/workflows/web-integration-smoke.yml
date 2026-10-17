@@ -4,6 +4,16 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/BookingRequestPayload.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroid*Mapper*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/ProviderContracts.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/data/BookingIntentSnapshotTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/Booking*Test.kt"
+      - "ios/Sources/SportsGreenMooveApp/*.swift"
+      - "tests/booking-display-evidence.test.mjs"
       - ".github/workflows/web-integration-smoke.yml"
       - ".github/workflows/native-ci.yml"
       - "admin/**"
@@ -110,6 +120,16 @@ on:
     branches:
       - main
     paths:
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/BookingRequestPayload.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroid*Mapper*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/ProviderContracts.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/data/BookingIntentSnapshotTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/Booking*Test.kt"
+      - "ios/Sources/SportsGreenMooveApp/*.swift"
+      - "tests/booking-display-evidence.test.mjs"
       - ".github/workflows/web-integration-smoke.yml"
       - ".github/workflows/native-ci.yml"
       - "admin/**"
@@ -267,6 +287,31 @@ jobs:
 
       - name: Validate booking consistency and recovery evidence
         run: node --test tests/booking-consistency-evidence.test.mjs
+
+      - name: Validate displayed booking intent evidence
+        run: node --test tests/booking-display-evidence.test.mjs
+
+      - name: Test Swift booking snapshot wire contract
+        env:
+          SGM_SWIFT_BOOKING_OUTPUT: ${{ runner.temp }}/sgm-booking-wire/results.json
+        run: |
+          mkdir -p "${{ runner.temp }}/sgm-booking-wire"
+          npm run test:booking-intent-wire
+
+      - name: Test displayed terms against current booking conditions
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-booking-display/results.json
+        run: npm run test:booking-display
+
+      - name: Upload displayed booking and wire evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-display-results
+          path: |
+            ${{ runner.temp }}/sgm-booking-display/**
+            ${{ runner.temp }}/sgm-booking-wire/**
+          if-no-files-found: ignore
 
       - name: Test controlled approval and cancellation overlap
         env:

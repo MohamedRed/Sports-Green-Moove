@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { call, db, signIn, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, call, db, signIn, tripInput } from './local-flow-client.mjs';
 import { assertChatNetworkReceipt, assertCellularRequestSetup } from './chat-network-evidence.mjs';
 
 export async function seedChatNetworkUiFixture() {
   const driver = await signIn('d@example.test');
   const parent = await signIn('p@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Trajet reprise réseau QA' });
-  const { bookingId } = await call('requestBooking', parent, { tripId, childId: 'sgm-qa-child-lina', seats: 1 });
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 1 }));
   await call('approveBooking', driver, { bookingId });
   assert.equal((await db.collection('messages').where('sourceId', '==', bookingId).get()).size, 0);
   const options = await call('listChatBookingOptions', parent);

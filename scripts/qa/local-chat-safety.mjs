@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
 
 export async function checkChatDeliverySafety() {
   const parent = await signIn('p@example.test');
   const driver = await signIn('d@example.test');
   const outsider = await signIn('outsider@example.test');
   const { tripId } = await call('createTrip', driver, tripInput());
-  const { bookingId } = await call('requestBooking', parent, { tripId, seats: 1 });
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }));
   const ref = { sourceType: 'booking', sourceId: bookingId };
   const clientMessageId = randomUUID();
   const input = { bookingId, body: 'Rendez-vous devant le stade.', clientMessageId };

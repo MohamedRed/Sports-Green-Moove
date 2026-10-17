@@ -111,7 +111,7 @@ class SearchController(
     fun requestMatch(match: TripMatchSummary) {
         if (!requests.isActive) return
         val criteria = acceptedCriteria
-        if (!hasSearched || criteria == null || criteria != currentCriteria() || match !in matches) {
+        if (!hasSearched || criteria == null || criteria != currentCriteria() || match !in matches || match.tripId != match.summary.id) {
             onError("Relancez la recherche avant de demander ce trajet.")
             return
         }
@@ -121,7 +121,7 @@ class SearchController(
         }
         val generation = matchesGeneration
         requests.launch(SearchRequest.Booking, {
-            providers.firebase.requestBooking(match.tripId, criteria.childUserId, criteria.seatsNeeded)
+            providers.firebase.requestBooking(match.summary, criteria.childUserId, criteria.seatsNeeded)
         }, onFailure = { failure ->
             if (failure is BookingReviewRequiredException && generation == matchesGeneration) invalidateMatches()
         }) { onNotice("Demande envoyée.") }

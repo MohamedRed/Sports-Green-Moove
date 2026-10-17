@@ -19,7 +19,8 @@ class LocalMultiSeatSdkTest {
         val runtime = AndroidRuntime.create(context)
         runtime.auth.signOut()
         runtime.auth.signIn(session.getString("parent"), session.getString("password"))
-        val booking = runtime.firebase.requestBooking(session.getString("multiSeatTripId"), "sgm-qa-child-lina", 2)
+        val displayed = runtime.firebase.searchTrips().single { it.id == session.getString("multiSeatTripId") }
+        val booking = runtime.firebase.requestBooking(displayed, "sgm-qa-child-lina", 2)
         assertTrue(booking.isNotBlank())
     }
 }

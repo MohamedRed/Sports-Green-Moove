@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { Timestamp } from 'firebase-admin/firestore';
-import { call, db, signIn, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, call, db, signIn, tripInput } from './local-flow-client.mjs';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
 import { indexLocalChatFixtures } from './index-local-chat-fixtures.mjs';
 
@@ -24,7 +24,7 @@ export async function seedChatDirectoryUiFixtures() {
   const driver = await signIn('d@example.test');
   const parent = await signIn('p@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Nouveau trajet de discussion QA' });
-  const { bookingId } = await call('requestBooking', parent, { tripId, childId: 'sgm-qa-child-lina', seats: 1 });
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 1 }));
   await call('approveBooking', driver, { bookingId });
   const indexes = await db.collection('chatInboxes').where('userId', '==', parent.uid).get();
   assert.equal(indexes.size, 27, 'Two existing conversations plus 25 archived fixtures');

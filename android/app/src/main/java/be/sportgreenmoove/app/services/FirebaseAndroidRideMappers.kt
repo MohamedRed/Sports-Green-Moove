@@ -4,6 +4,7 @@ import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.data.BookingIntentSnapshot
 import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -40,6 +41,13 @@ internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
         departureAtIso = departure?.toInstant()?.toString(),
         driverUserId = data["driverUserId"] as? String,
         cancelled = data["status"] == "cancelled",
+        bookingIntent = BookingIntentSnapshot.fromTripData(data + listOf("departureAt", "arrivalBy").associateWith { key ->
+            when (val value = data[key]) {
+                is Timestamp -> value.toDate().toInstant().toString()
+                is Date -> value.toInstant().toString()
+                else -> value
+            }
+        }),
     )
 }
 

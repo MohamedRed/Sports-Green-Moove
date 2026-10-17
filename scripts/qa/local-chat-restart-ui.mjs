@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { call, db, signIn, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, call, db, signIn, tripInput } from './local-flow-client.mjs';
 import { assertChatRestartInteractionReceipt } from './chat-restart-evidence.mjs';
 
 const bodies = ['Message confirmé avant relancement.', 'Nouvel envoi après relancement.', 'Réponse reçue après relancement.'];
@@ -11,7 +11,7 @@ const save = (directory, name, value) => writeFileSync(resolve(directory, name),
 export async function seedChatRestartUiFixture() {
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Trajet relancement QA' });
-  const { bookingId } = await call('requestBooking', parent, { tripId, childId: 'sgm-qa-child-lina', seats: 1 });
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 1 }));
   await call('approveBooking', driver, { bookingId });
   assert.equal((await db.collection('messages').where('sourceId', '==', bookingId).get()).size, 0);
   return { tripId, bookingId };

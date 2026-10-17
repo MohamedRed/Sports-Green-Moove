@@ -61,7 +61,7 @@ test('the independent complete replay preserves the failed run and proves actual
   assert.equal(run.chatNetwork.duplicateMessages, 0);
   assert.equal(run.tripCancellation.livePayment, false); assert.equal(run.tripCancellation.refundIssued, false);
   assert.equal(json('network-preparation-failure.json').completed, false);
-  assert.match(content.updates[0].text, /instable/);
+  assert(content.updates.some((item) => item.flow === 'messages' && /instable/.test(item.text)));
 });
 
 test('the original thirteen-case failure remains a failure, not retroactively accepted', () => {
@@ -119,7 +119,8 @@ test('smoke CI covers the harness and Android recovery while release status rema
   const collector = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
   for (const name of ['booking-review-required.png', 'booking-review-narrow.png']) assert(collector.includes(name));
   assert.equal(content.flows.find((item) => item.id === 'booking').status, 'partial');
-  assert.equal(content.blockers.find((item) => item.id === 'booking-review').source, base + 'README.md');
+  assert.equal(content.blockers.find((item) => item.id === 'booking-idempotency').source,
+    'docs/release/evidence/local-booking-display-2026-10-17/README.md');
   assert.match(read(base + 'README.md'), /does not bind a request to the terms previously displayed/);
 });
 

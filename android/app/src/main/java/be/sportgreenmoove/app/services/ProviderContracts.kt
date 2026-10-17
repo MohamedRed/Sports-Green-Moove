@@ -41,7 +41,7 @@ interface FirebaseGateway : TripCancellationGateway {
     suspend fun resolvePlace(placeId: String): ResolvedPlace
     suspend fun searchTripMatches(criteria: TripSearchCriteria): List<TripMatchSummary>
     suspend fun createTrip(draft: TripPublishDraft): String
-    suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String
+    suspend fun requestBooking(trip: TripSummary, childId: String?, seats: Int): String
     suspend fun getDriverBookingRequests(): List<BookingRequestSummary>
     suspend fun startRide(tripId: String, bookingIds: List<String>): LiveRideSnapshot
     suspend fun getActiveRide(): LiveRideSnapshot?
@@ -131,7 +131,7 @@ class UnconfiguredFirebaseGateway : FirebaseGateway {
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 
-    override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
+    override suspend fun requestBooking(trip: TripSummary, childId: String?, seats: Int): String {
         check(childId == null || childId.isNotBlank())
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { call, db, denied, document, signIn, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, call, db, denied, document, signIn, tripInput } from './local-flow-client.mjs';
 import { checkPaymentAttemptFence } from './local-payment-attempt-fence.mjs';
 
 export async function checkTripChangeApplication() {
@@ -9,7 +9,7 @@ export async function checkTripChangeApplication() {
   const { reconcileStripeEvent } = await import('../../functions/lib/services/stripeReconciliation.js');
   const create = async (priceCents = 0, paid = false) => {
     const { tripId } = await call('createTrip', driver, { ...tripInput(), priceCents });
-    const { bookingId } = await call('requestBooking', parent, { tripId, seats: 1, childId: 'sgm-qa-child-lina' });
+    const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1, childId: 'sgm-qa-child-lina' }));
     await call('approveBooking', driver, { bookingId });
     if (paid) await db.collection('bookings').doc(bookingId).update({ paymentStatus: 'paid', amountPaidCents: priceCents,
       paymentIntentId: `pi_local_${bookingId}`, currency: 'eur' });

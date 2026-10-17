@@ -66,7 +66,7 @@ struct SearchScreen: View {
             VStack(spacing: 8) {
                 ForEach(appState.searchMatches) { match in
                     MatchCard(match: match) {
-                        Task { await appState.requestSearchMatch(match, childId: selectedChildId) }
+                        Task { await appState.requestSearchMatch(match, childId: selectedChildId, seats: seatsNeeded) }
                     }
                 }
                 if !appState.searchLoading && appState.searchMatches.isEmpty {

@@ -147,15 +147,20 @@ final class AppState {
         } else if selectedRole == .child {
             requestActiveRideTracking()
         } else {
-            await requestBooking(tripId: tripId, childId: nil)
+            guard let trip = trips.first(where: { $0.id == tripId }) else { return }
+            await requestBooking(trip: trip, childId: nil, seats: 1)
         }
     }
 
-    func requestBooking(tripId: String, childId: String?) async {
+    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async {
+        let uid = session?.uid
         do {
-            let bookingId = try await firebase.requestBooking(tripId: tripId, childId: childId)
+            let bookingId = try await firebase.requestBooking(trip: trip, childId: childId, seats: seats)
+            guard session?.uid == uid else { return }
             noticeMessage = "Demande envoyée: \(bookingId)"
         } catch {
+            guard session?.uid == uid else { return }
+            if error is BookingReviewRequiredError { searchMatches.removeAll { $0.summary == trip } }
             errorMessage = error.localizedDescription
         }
     }
@@ -225,8 +230,9 @@ final class AppState {
         }
     }
 
-    func requestSearchMatch(_ match: TripMatchSummary, childId: String?) async {
-        await requestBooking(tripId: match.tripId, childId: childId)
+    func requestSearchMatch(_ match: TripMatchSummary, childId: String?, seats: Int) async {
+        guard searchMatches.contains(match), match.tripId == match.summary.id else { return }
+        await requestBooking(trip: match.summary, childId: childId, seats: seats)
     }
 
     func approveBooking(_ request: BookingRequestSummary) async {

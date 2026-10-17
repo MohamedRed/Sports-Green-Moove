@@ -78,7 +78,7 @@ class BookingReviewFlowTest {
                 searches++
                 return listOf(UiFlowFixtures.match.copy(summary = UiFlowFixtures.match.summary.copy(seatsAvailable = 4)))
             }
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String {
                 requests++
                 if (changed) throw BookingReviewRequiredException(IllegalStateException("private-provider-detail"))
                 throw IllegalStateException("network unavailable")

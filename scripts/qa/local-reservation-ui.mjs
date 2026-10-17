@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { signIn, call, db, document, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, signIn, call, db, document, tripInput } from './local-flow-client.mjs';
 
 export async function seedReservationUiFixtures() {
   const parent = await signIn('p@example.test');
@@ -11,7 +11,7 @@ export async function seedReservationUiFixtures() {
     ['declined', 'Trajet QA à refuser', false],
   ]) {
     const { tripId } = await call('createTrip', driver, { ...tripInput(), title });
-    const { bookingId } = await call('requestBooking', parent, { tripId, childId: 'sgm-qa-child-lina', seats: 2 });
+    const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 2 }));
     if (approved) await call('approveBooking', driver, { bookingId });
     assert.equal((await document('trips', tripId)).seatsAvailable, approved ? 2 : 4);
     records[key] = { bookingId, tripId };

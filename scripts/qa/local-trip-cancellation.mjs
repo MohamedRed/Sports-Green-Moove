@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
 import { checkTripCancellationRaces } from './local-trip-cancellation-races.mjs';
 
 export async function checkTripCancellation() {
@@ -10,7 +10,7 @@ export async function checkTripCancellation() {
   const preview = (tripId) => call('getTripCancellation', driver, { tripId });
   const intent = (tripId, revision) => ({ tripId, expectedRevision: revision, requestId: randomUUID(), reason: 'Annulation de contrôle local' });
   const tripId = await create({ seatsAvailable: 3, priceCents: 250 });
-  const book = async (actor, id = tripId, seats = 1) => (await call('requestBooking', actor, { tripId: id, seats })).bookingId;
+  const book = async (actor, id = tripId, seats = 1) => (await call('requestBooking', actor, await viewedBooking({ tripId: id, seats }))).bookingId;
   const paid = await book(parent, tripId, 2);
   await call('approveBooking', driver, { bookingId: paid });
   await db.collection('bookings').doc(paid).update({ paymentStatus: 'paid' }); // Synthetic metadata, not a real charge.
@@ -64,7 +64,7 @@ export async function checkTripCancellation() {
   assert.deepEqual(await preview(tripId), receipt);
   await denied('cancelTrip', driver, { ...request, requestId: randomUUID() }, 'ALREADY_EXISTS');
   await denied('cancelTrip', driver, { ...request, reason: 'Changed cancellation reason' }, 'ALREADY_EXISTS');
-  await denied('requestBooking', parent, { tripId, seats: 1 }, 'FAILED_PRECONDITION');
+  await denied('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }), 'FAILED_PRECONDITION');
   await denied('approveBooking', driver, { bookingId: pending }, 'FAILED_PRECONDITION');
   await denied('startRide', driver, { tripId }, 'FAILED_PRECONDITION');
   assert.deepEqual(await document('tripCancellations', tripId), storedReceipt);

@@ -52,9 +52,10 @@ test('search ownership is bound to the session and logout invalidates pending ha
 
 test('the native booking gateway uses the selected seat payload and requires persisted SDK verification', () => {
   const gateway = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt', import.meta.url), 'utf8');
-  assert.match(gateway, /val requestPayload = bookingRequestPayload\(tripId, childId, seats\)/);
+  assert.match(gateway, /val requestPayload = bookingRequestPayload\(trip, childId, seats\)/);
   const controller = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/ui/SearchController.kt', import.meta.url), 'utf8');
-  assert.match(controller, /requestBooking\(match.tripId, criteria.childUserId, criteria.seatsNeeded\)/);
+  assert.match(controller, /requestBooking\(match.summary, criteria.childUserId, criteria.seatsNeeded\)/);
+  assert.match(controller, /match.tripId != match.summary.id/);
   const verifier = readFileSync(new URL('../scripts/qa/verify-local-multi-seat-sdk.mjs', import.meta.url), 'utf8');
   assert.match(verifier, /assert.equal\(snapshot.size, 1/);
   assert.match(verifier, /assert.equal\(booking.get\('seats'\), 2\)/);

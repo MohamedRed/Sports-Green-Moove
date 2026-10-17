@@ -13,7 +13,7 @@ class SearchBookingRecoveryTest {
         var bookings = 0
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun searchTripMatches(criteria: be.sportgreenmoove.app.data.TripSearchCriteria) = listOf(match("trip"))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String {
                 bookings++
                 throw BookingReviewRequiredException()
             }
@@ -37,7 +37,7 @@ class SearchBookingRecoveryTest {
         var searches = 0
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun searchTripMatches(criteria: be.sportgreenmoove.app.data.TripSearchCriteria) = listOf(match("trip-${++searches}"))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int) = withContext(NonCancellable) { response.await() }
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int) = withContext(NonCancellable) { response.await() }
         }
         SearchTestSession(gateway).use { test ->
             ready(test)
@@ -53,7 +53,7 @@ class SearchBookingRecoveryTest {
         val response = CompletableDeferred<String>()
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun searchTripMatches(criteria: be.sportgreenmoove.app.data.TripSearchCriteria) = listOf(match("trip"))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int) = withContext(NonCancellable) { response.await() }
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int) = withContext(NonCancellable) { response.await() }
         }
         SearchTestSession(gateway).use { previous ->
             ready(previous); previous.state.requestMatch(previous.state.matches.single()); previous.state.close()
@@ -69,7 +69,7 @@ class SearchBookingRecoveryTest {
     @Test fun anUnrelatedFailureKeepsTheExistingErrorPolicyAndDoesNotClaimChangedTerms() {
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun searchTripMatches(criteria: be.sportgreenmoove.app.data.TripSearchCriteria) = listOf(match("trip"))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String = error("network unavailable")
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String = error("network unavailable")
         }
         SearchTestSession(gateway).use { test ->
             ready(test); test.state.requestMatch(test.state.matches.single())

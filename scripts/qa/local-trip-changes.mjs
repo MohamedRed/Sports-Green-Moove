@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { auth, call, db, denied, document, signIn, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, auth, call, db, denied, document, signIn, tripInput } from './local-flow-client.mjs';
 import { checkTripChangeEdges } from './local-trip-change-edges.mjs';
 
 export async function checkTripChanges() {
@@ -11,7 +11,7 @@ export async function checkTripChanges() {
   const foreign = await signIn('trip-change-driver@example.test');
   const create = async (overrides = {}) => (await call('createTrip', driver, { ...tripInput(), priceCents: 250, ...overrides })).tripId;
   const book = async (tripId, actor = parent, child = false) => (await call('requestBooking', actor,
-    { tripId, seats: 1, ...(child ? { childId: 'sgm-qa-child-lina' } : {}) })).bookingId;
+    await viewedBooking({ tripId, seats: 1, ...(child ? { childId: 'sgm-qa-child-lina' } : {}) }))).bookingId;
   const preview = (tripId) => call('getTripChangePreview', driver, { tripId });
   const proposal = (tripId, initial, overrides = {}) => ({ tripId, expectedRevision: initial.revision, requestId: randomUUID(),
     terms: { ...initial.terms, departureAt: new Date(Date.parse(initial.terms.departureAt) + 30 * 60_000).toISOString(),
@@ -52,7 +52,7 @@ export async function checkTripChanges() {
   await denied('respondToTripChanges', parent, { ...vote(tripId, change), proposalRevision: 'a'.repeat(64) }, 'ABORTED');
   await denied('proposeTripChanges', driver, { ...request, terms: { ...request.terms, priceCents: 401 } }, 'ALREADY_EXISTS');
   await denied('proposeTripChanges', driver, { ...request, requestId: randomUUID() }, 'FAILED_PRECONDITION');
-  await denied('requestBooking', outsider, { tripId, seats: 1 }, 'FAILED_PRECONDITION');
+  await denied('requestBooking', outsider, await viewedBooking({ tripId, seats: 1 }), 'FAILED_PRECONDITION');
   await denied('approveBooking', driver, { bookingId: pendingId }, 'FAILED_PRECONDITION');
   await denied('startRide', driver, { tripId }, 'FAILED_PRECONDITION');
   await denied('createRidePaymentIntent', second, { bookingId: secondId }, 'FAILED_PRECONDITION');

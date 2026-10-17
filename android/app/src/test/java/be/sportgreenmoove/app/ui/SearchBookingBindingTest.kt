@@ -1,6 +1,9 @@
 package be.sportgreenmoove.app.ui
 
 import be.sportgreenmoove.app.data.TripSearchCriteria
+import be.sportgreenmoove.app.data.BookingIntentSnapshot
+import be.sportgreenmoove.app.data.MapPoint
+import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.services.FirebaseGateway
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -57,6 +60,31 @@ class SearchBookingBindingTest {
         }
     }
 
+    @Test fun theRequestCarriesTheDisplayedTripObjectWithoutFetchingNewTerms() {
+        val gateway = RecordingSearchGateway()
+        val intent = BookingIntentSnapshot("2027-01-10T10:00:00Z", null, MapPoint(50.7, 4.6), MapPoint(50.8, 4.3), 250, "driver", 4)
+        gateway.results = listOf(match("trip").let { it.copy(summary = it.summary.copy(bookingIntent = intent)) })
+        SearchTestSession(gateway).use { test ->
+            ready(test)
+            val displayed = test.state.matches.single()
+            test.state.requestMatch(displayed)
+            gateway.results = listOf(displayed.copy(summary = displayed.summary.copy(bookingIntent = intent.copy(priceCents = 900))))
+            assertTrue(gateway.submittedTrips.single() === displayed.summary)
+            assertEquals(250, gateway.submittedTrips.single().bookingIntent!!.priceCents)
+        }
+    }
+
+    @Test fun aMismatchedSummaryCannotSubstituteAnotherTrip() {
+        val gateway = RecordingSearchGateway()
+        gateway.results = listOf(match("trip").let { it.copy(summary = it.summary.copy(id = "other")) })
+        SearchTestSession(gateway).use { test ->
+            ready(test)
+            test.state.requestMatch(test.state.matches.single())
+            assertTrue(gateway.bookings.isEmpty())
+            assertTrue(test.errors.isNotEmpty())
+        }
+    }
+
     private fun ready(test: SearchTestSession, child: String? = null) {
         selectBoth(test.state)
         submitSearchForm(test.state, form.copy(childUserId = child, guardianConsent = true))
@@ -68,12 +96,14 @@ internal class RecordingSearchGateway : FirebaseGateway by placesGateway() {
     var results = listOf(match("trip"))
     val bookings = mutableListOf<Triple<String, String?, Int>>()
     val searches = mutableListOf<TripSearchCriteria>()
+    val submittedTrips = mutableListOf<TripSummary>()
     override suspend fun searchTripMatches(criteria: TripSearchCriteria): List<be.sportgreenmoove.app.data.TripMatchSummary> {
         searches += criteria
         return results
     }
-    override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
-        bookings += Triple(tripId, childId, seats)
+    override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String {
+        submittedTrips += trip
+        bookings += Triple(trip.id, childId, seats)
         return "booking"
     }
 }

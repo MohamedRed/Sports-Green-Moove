@@ -63,7 +63,8 @@ extension FirebaseBackendGateway {
                     return
                 }
 
-                continuation.resume(returning: matches.compactMap(mapTripMatch))
+                do { continuation.resume(returning: try matches.compactMap(mapTripMatch)) }
+                catch { continuation.resume(throwing: error) }
             }
         }
     }
@@ -121,7 +122,7 @@ private func mapResolvedPlace(_ data: [String: Any]) throws -> ResolvedPlace {
     )
 }
 
-private func mapTripMatch(_ data: [String: Any]) -> TripMatchSummary? {
+private func mapTripMatch(_ data: [String: Any]) throws -> TripMatchSummary? {
     guard let tripId = data["tripId"] as? String,
           let summaryData = data["summary"] as? [String: Any]
     else { return nil }
@@ -129,6 +130,7 @@ private func mapTripMatch(_ data: [String: Any]) -> TripMatchSummary? {
     let route = data["route"] as? [String: Any]
     let detourSeconds = intValue(route?["detourDurationSeconds"])
     let summary = mapClientTripSummary(summaryData, route: route)
+    guard summary.id == tripId else { throw BookingIntentError.unavailable }
     return TripMatchSummary(
         tripId: tripId,
         score: doubleValue(data["score"]) ?? 0,
@@ -157,7 +159,8 @@ private func mapClientTripSummary(_ data: [String: Any], route: [String: Any]?) 
         passengerInitials: data["passengerInitials"] as? [String] ?? [],
         reasons: data["reasons"] as? [String] ?? [],
         status: TripStatus(rawValue: data["status"] as? String ?? "") ?? .upcoming,
-        mapPreview: mapRoutePreviewFromMatchData(summary: data, route: route)
+        mapPreview: mapRoutePreviewFromMatchData(summary: data, route: route),
+        bookingIntent: (data["bookingIntent"] as? [String: Any]).flatMap(BookingIntentSnapshot.fromPayload)
     )
 }
 

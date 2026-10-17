@@ -67,7 +67,7 @@ class SearchControllerRequestsTest {
         var bookingStarted = false
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(match("trip"))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String {
                 bookingStarted = true
                 return response.await()
             }

@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'La demande garde les détails du trajet affiché',
+    text: '25 contrôles locaux passent : un ancien prix, horaire ou parcours est refusé. Les essais dans l’app continuent.', flow: 'booking' },
   { date: '2026-10-17', title: 'La reprise après coupure passe en local',
     text: 'L’essai complet passe. Un autre s’est arrêté avant la coupure : la préparation reste instable.', flow: 'messages' },
   { date: '2026-10-17', title: 'Un essai s’est arrêté avant la coupure',

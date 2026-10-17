@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { FieldValue, Timestamp } from 'firebase-admin/firestore';
-import { auth, db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
+import { viewedBooking, auth, db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
 
 export async function checkReservationDecisions() {
   const parent = await signIn('p@example.test');
@@ -10,7 +10,7 @@ export async function checkReservationDecisions() {
   await auth.setCustomUserClaims('sgm-qa-other-driver', { roleKeys: ['driver'] });
   const otherDriver = await signIn('other-driver@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Local reservation decisions QA' });
-  const request = (seats = 1) => call('requestBooking', parent, { tripId, childId: 'sgm-qa-child-lina', seats });
+  const request = async (seats = 1) => call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats }));
   const list = (actor, role) => call('listReservations', actor, { role });
   const pending = await request(2);
   assert.deepEqual((await list(parent, 'parent')).items.find((b) => b.bookingId === pending.bookingId)?.allowedActions, ['cancel']);

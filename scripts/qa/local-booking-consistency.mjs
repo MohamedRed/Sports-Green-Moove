@@ -6,6 +6,7 @@ import { dirname } from 'node:path';
 import { Transaction } from 'firebase-admin/firestore';
 import { db, tripInput } from './local-flow-client.mjs';
 import { requestBooking } from '../../functions/lib/callables/bookings.js';
+import { bookingIntentSnapshot } from '../../functions/lib/domain/bookingIntent.js';
 import { applyChangesDuringBooking } from './local-booking-application-race.mjs';
 
 const parentUserId = 'sgm-qa-consistency-parent', driverUserId = 'sgm-qa-consistency-driver';
@@ -46,7 +47,8 @@ for (const [id, expectedError, mutate] of scenarios) {
     return originalGet.call(this, reference, ...options);
   };
   try {
-    returned = await requestBooking.run({ data: { tripId: trip.id, childId: child.id, seats: 2 },
+    returned = await requestBooking.run({ data: { tripId: trip.id, childId: child.id, seats: 2,
+      expectedBookingIntent: bookingIntentSnapshot(initial) },
       auth: { uid: parentUserId, token: { roleKeys: ['parent'] } } });
   } catch (error) { rejected = { code: error.code, message: error.message }; }
   finally { Transaction.prototype.get = originalGet; }

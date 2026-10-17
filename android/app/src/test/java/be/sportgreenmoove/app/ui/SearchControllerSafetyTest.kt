@@ -23,7 +23,7 @@ class SearchControllerSafetyTest {
         val response = CompletableDeferred<String>()
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(match("trip"))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String { writes++; return response.await() }
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String { writes++; return response.await() }
         }
         SearchTestSession(gateway).use { test ->
             selectBoth(test.state)
@@ -44,8 +44,8 @@ class SearchControllerSafetyTest {
         val current = CompletableDeferred<String>()
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(match("old"), match("current"))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int) =
-                withContext(NonCancellable) { if (tripId == "old") old.await() else current.await() }
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int) =
+                withContext(NonCancellable) { if (trip.id == "old") old.await() else current.await() }
         }
         SearchTestSession(gateway).use { previous ->
             selectBoth(previous.state)
@@ -113,7 +113,7 @@ class SearchControllerSafetyTest {
         var writes = 0
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun searchTripMatches(criteria: TripSearchCriteria) = listOf(match("trip"))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String { writes++; return "booking" }
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String { writes++; return "booking" }
         }
         val state = SearchController(AndroidProviderSet(UnconfiguredAuthGateway(), gateway), scope, {}, {}, {})
         try {

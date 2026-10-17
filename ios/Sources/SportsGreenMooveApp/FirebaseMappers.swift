@@ -25,8 +25,17 @@ func mapTrip(id: String, data: [String: Any]) -> TripSummary {
         passengerInitials: data["passengerInitials"] as? [String] ?? [],
         reasons: ["\(seats) \(seats > 1 ? "places" : "place")", "Suivi véhicule disponible"],
         status: departure.map { $0 < Date() ? .past : .upcoming } ?? .upcoming,
-        mapPreview: mapRoutePreviewFromTripData(data)
+        mapPreview: mapRoutePreviewFromTripData(data),
+        bookingIntent: bookingIntentFromTripData(data)
     )
+}
+
+private func bookingIntentFromTripData(_ data: [String: Any]) -> BookingIntentSnapshot? {
+    var values = data
+    for field in ["departureAt", "arrivalBy"] {
+        if let timestamp = data[field] as? Timestamp { values[field] = timestamp.dateValue() }
+    }
+    return BookingIntentSnapshot.fromTripData(values)
 }
 
 func mapRide(_ data: [String: Any]) -> LiveRideSnapshot {

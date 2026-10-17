@@ -194,7 +194,7 @@ private struct UITestFirebaseGateway: FirebaseGateway {
     func resolvePlace(placeId: String) async throws -> ResolvedPlace { Fixtures.origin }
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary] { [Fixtures.match] }
     func createTrip(draft: TripPublishDraft) async throws -> String { "trip-created" }
-    func requestBooking(tripId: String, childId: String?) async throws -> String { "booking-created" }
+    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String { "booking-created" }
     func getDriverBookingRequests() async throws -> [BookingRequestSummary] { [Fixtures.bookingRequest] }
     func approveBooking(bookingId: String) async throws -> String { "approved" }
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot { Fixtures.activeRide }

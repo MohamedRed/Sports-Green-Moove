@@ -89,20 +89,29 @@ route recalculation, immutable original invoices and outstanding balance plans.
 
 ## Required Editing Verification
 
-Booking requests also preserve their initial server-read operational terms across
-transaction retries. A change during the request rejects the stale intent rather
-than creating a booking with mixed revisions. The child and current guardian
+Booking requests require the operational snapshot attached to the displayed trip.
+Both native clients pass that same immutable summary from search and trip-list
+entry points, including the selected seats and child. The server compares it with
+current authoritative terms inside every transaction attempt. A change between
+display and dispatch, or during a retry, rejects the stale request without creating
+a booking. Missing or malformed snapshots are rejected, never refreshed silently.
+Actual persisted Timestamp, Date and ISO date values normalize to the same UTC
+millisecond representation; equivalent instants do not create false conflicts.
+Cosmetic titles and currently available seats do not change the agreement hash;
+current availability is still checked independently. The child and current guardian
 authority are read inside the transaction; an earlier guardian snapshot cannot
 authorize a new child reservation. Android recognizes this explicit stale-trip
 rejection, removes the affected results and requires a new search. Delayed errors
 must not remove a newer search or appear in a closed account.
 
-This is not yet a client-bound quote: a change after a result is displayed but
-before the server's initial read still requires a separate end-to-end revision
-binding. Uncertain-response booking idempotency, child-list refresh after revoked
-access, iOS recovery and the editing/parent-decision screens remain unfinished.
-See `docs/release/evidence/local-booking-consistency-2026-10-17/README.md` for the
-exact local coverage rather than treating this prerequisite as the full editor.
+This is a client-reported snapshot checked against authoritative state, not a
+server-signed quote or payment authorization. It is a mandatory wire-contract
+change requiring coordinated server/client release; it has not been deployed.
+Uncertain-response booking idempotency, child-list refresh after revoked access,
+full iOS recovery and the editing/parent-decision screens remain unfinished.
+See `docs/release/evidence/local-booking-display-2026-10-17/README.md` for current
+local handler, native mapping and wire coverage. The earlier consistency report
+retains its original narrower scope. Neither report proves the completed editor.
 
 - A driver proposes changed time, route or price; the parent sees original and
   proposed details before explicitly deciding. Existing consent is not reused.

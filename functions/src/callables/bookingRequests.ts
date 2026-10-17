@@ -1,7 +1,7 @@
 import { Timestamp, type Transaction } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
-import { bookingIntentRevision } from "../domain/bookingIntent.js";
+import { bookingIntentRevision, bookingIntentSnapshotSchema, bookingSnapshotRevision } from "../domain/bookingIntent.js";
 import { childDisplayLabel, type ChildProfileDocument } from "../domain/children.js";
 import { isGuardianOfChild } from "../domain/searchAccess.js";
 import type { Trip } from "../domain/types.js";
@@ -34,17 +34,14 @@ export const requestBooking = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   requireRole(request.auth?.token, "parent");
   const schema = z.object({ tripId: z.string(), childId: z.string().optional(),
-    seats: z.number().int().positive().default(1), note: z.string().optional() });
+    seats: z.number().int().positive().default(1), note: z.string().optional(),
+    expectedBookingIntent: bookingIntentSnapshotSchema });
   const data = parseCallableData(schema, request.data);
   const bookingRef = firestore.collection("bookings").doc();
   const tripRef = firestore.collection("trips").doc(data.tripId);
-  const preflight = await tripRef.get();
-  if (!preflight.exists) throw new HttpsError("not-found", "Trip not found.");
-  const initial = { id: preflight.id, ...preflight.data() } as Trip;
-  requireBookableTrip(initial, uid, data.seats);
-  const expectedRevision = intentRevision(initial);
+  const expectedRevision = bookingSnapshotRevision(data.expectedBookingIntent);
 
-  // Keep this intent outside the retry callback; a retried transaction cannot silently accept new terms.
+  // The client's displayed snapshot stays fixed across every transaction attempt.
   const savedTrip = await firestore.runTransaction(async (transaction) => {
     const snapshot = await transaction.get(tripRef);
     if (!snapshot.exists) throw new HttpsError("not-found", "Trip not found.");

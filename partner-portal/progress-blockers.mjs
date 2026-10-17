@@ -1,7 +1,7 @@
 export const blockers = [
-  { id: 'booking-review', title: 'Vérifier le trajet affiché avant la demande',
-    text: 'Un changement pendant l’envoi est refusé en local.',
-    next: 'Vérifier aussi les changements entre l’affichage du trajet et l’envoi de la demande.', source: 'docs/release/evidence/local-booking-consistency-2026-10-17/README.md' },
+  { id: 'booking-idempotency', title: 'Retrouver une demande après une réponse perdue',
+    text: 'Les contrôles locaux refusent les anciens détails du trajet.',
+    next: 'Vérifier qu’un renvoi après une réponse perdue ne crée pas deux demandes, puis rejouer sur téléphone.', source: 'docs/release/evidence/local-booking-display-2026-10-17/README.md' },
   { id: 'cancellation-race', title: 'Rejouer le conflit d’annulation sur téléphone',
     text: 'Les essais locaux passent après correction.',
     next: 'Rejouer sur téléphone. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-contention-2026-10-17/README.md' },

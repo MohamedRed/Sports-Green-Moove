@@ -111,7 +111,7 @@ class SearchControllerLifecycleTest {
         val gateway = object : FirebaseGateway by placesGateway() {
             override suspend fun suggestPlaces(input: String): List<PlaceSuggestion> { calls++; return emptyList() }
             override suspend fun resolvePlace(placeId: String): ResolvedPlace { calls++; return place(placeId) }
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String { calls++; return "booking" }
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int): String { calls++; return "booking" }
         }
         SearchTestSession(gateway).use { test ->
             test.state.close()

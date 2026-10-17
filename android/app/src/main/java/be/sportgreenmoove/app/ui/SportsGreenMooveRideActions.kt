@@ -94,7 +94,7 @@ fun launchTripAction(
                         setScreen(AppScreen.Ride)
                     }
                     else -> {
-                        val bookingId = providers.firebase.requestBooking(trip.id, null, 1)
+                        val bookingId = providers.firebase.requestBooking(trip, null, 1)
                         setNotice("Demande envoyée: $bookingId")
                     }
                 }

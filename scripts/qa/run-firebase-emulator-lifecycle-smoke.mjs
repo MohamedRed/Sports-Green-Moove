@@ -77,7 +77,8 @@ const lifecycleTrip = await callCallable('createTrip', driver.idToken, { ...trip
 qa.tripId = lifecycleTrip.tripId;
 const beforeTrip = await docData('trips', qa.tripId);
 const beforeSeats = beforeTrip.seatsAvailable;
-const bookingRequest = await callCallable('requestBooking', parent.idToken, { tripId: qa.tripId, childId: qa.childId, seats: 1, note: 'Lifecycle smoke booking request' });
+const bookingRequest = await callCallable('requestBooking', parent.idToken, { tripId: qa.tripId, childId: qa.childId,
+  expectedBookingIntent: lifecycleTrip.trip.bookingIntent, seats: 1, note: 'Lifecycle smoke booking request' });
 assert(bookingRequest.status === 'requested' && bookingRequest.bookingId, 'requestBooking should create requested booking', bookingRequest);
 const bookingId = bookingRequest.bookingId;
 

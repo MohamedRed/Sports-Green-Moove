@@ -133,11 +133,12 @@ async function searchCreatedTrip(parent, trip, childId) {
     Array.isArray(result.matches) && result.matches.some((match) => match.tripId === trip.tripId),
     "searchTrips did not return the disposable trip.",
   );
-  return result.matches.length;
+  return { matchCount: result.matches.length, displayed: result.matches.find((match) => match.tripId === trip.tripId).summary };
 }
 
-async function requestAndApproveBooking(parent, driver, tripId, childId) {
-  const request = await callFunction("requestBooking", parent.idToken, { tripId, childId, seats: 1, note: runId });
+async function requestAndApproveBooking(parent, driver, tripId, childId, displayed) {
+  const request = await callFunction("requestBooking", parent.idToken, { tripId, childId, seats: 1,
+    expectedBookingIntent: displayed.bookingIntent, note: runId });
   created.bookingIds.push(request.bookingId);
 
   const queue = await callFunction("listDriverBookingRequests", driver.idToken);
@@ -207,8 +208,8 @@ async function main() {
 
   const childId = await seedChildProfile({ admin, runId, parent, child, created });
   const trip = await createTrip(driver);
-  const matchCount = await searchCreatedTrip(parent, trip, childId);
-  const bookingId = await requestAndApproveBooking(parent, driver, trip.tripId, childId);
+  const { matchCount, displayed } = await searchCreatedTrip(parent, trip, childId);
+  const bookingId = await requestAndApproveBooking(parent, driver, trip.tripId, childId, displayed);
   const rideSessionId = await runRideFlow(parent, driver, child, trip.tripId, bookingId);
   const safetyAuditExport = options.safetyAuditOutput
     ? await writeLiveSmokeSafetyAuditExport({ admin, projectId, created, outputPath: options.safetyAuditOutput })

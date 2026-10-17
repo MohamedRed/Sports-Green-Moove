@@ -42,15 +42,15 @@ struct FirebaseBackendGateway: FirebaseGateway {
         try await loadClubSummaries()
     }
 
-    func requestBooking(tripId: String, childId: String?) async throws -> String {
-        try await withCheckedThrowingContinuation { continuation in
-            var data: [String: Any] = ["tripId": tripId, "seats": 1]
-            if let childId, !childId.isEmpty {
-                data["childId"] = childId
-            }
+    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String {
+        let data = try bookingRequestPayload(trip: trip, childId: childId, seats: seats)
+        return try await withCheckedThrowingContinuation { continuation in
             Functions.functions().httpsCallable("requestBooking").call(data) { result, error in
                 if let error {
-                    continuation.resume(throwing: error)
+                    let failure = error as NSError
+                    if failure.domain == FunctionsErrorDomain && failure.code == FunctionsErrorCode.aborted.rawValue {
+                        continuation.resume(throwing: BookingReviewRequiredError())
+                    } else { continuation.resume(throwing: error) }
                 } else if let payload = result?.data as? [String: Any],
                           let bookingId = payload["bookingId"] as? String {
                     continuation.resume(returning: bookingId)

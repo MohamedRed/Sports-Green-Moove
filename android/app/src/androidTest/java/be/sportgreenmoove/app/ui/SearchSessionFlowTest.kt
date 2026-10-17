@@ -64,7 +64,7 @@ class SearchSessionFlowTest {
         val gateway = object : FirebaseGateway by gateway() {
             override suspend fun suggestPlaces(input: String) = if (input == "deferred")
                 withContext(NonCancellable) { suggestionsStarted = true; suggestions.await() } else listOf(PlaceSuggestion(input, input, input, null))
-            override suspend fun requestBooking(tripId: String, childId: String?, seats: Int) = withContext(NonCancellable) { bookingStarted = true; booking.await() }
+            override suspend fun requestBooking(trip: be.sportgreenmoove.app.data.TripSummary, childId: String?, seats: Int) = withContext(NonCancellable) { bookingStarted = true; booking.await() }
         }
         host(gateway)
         selectPlace(SgmTestTags.SearchOriginInput, "Départ parent QA")

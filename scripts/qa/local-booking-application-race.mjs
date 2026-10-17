@@ -2,12 +2,14 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { db } from './local-flow-client.mjs';
 import { approveBooking, requestBooking } from '../../functions/lib/callables/bookings.js';
+import { bookingIntentSnapshot } from '../../functions/lib/domain/bookingIntent.js';
 import { previewTripChange, proposeTripChange, respondTripChange } from '../../functions/lib/services/tripChanges.js';
 import { applyConfirmedTripChange, quoteTripChangeApplication } from '../../functions/lib/services/tripChangeApplication.js';
 
 export async function applyChangesDuringBooking(trip, driverUserId) {
   const parentUserId = 'sgm-qa-consistency-existing-parent';
-  const original = await requestBooking.run({ data: { tripId: trip.id, seats: 1 },
+  const original = await requestBooking.run({ data: { tripId: trip.id, seats: 1,
+    expectedBookingIntent: bookingIntentSnapshot((await trip.get()).data()) },
     auth: { uid: parentUserId, token: { roleKeys: ['parent'] } } });
   await approveBooking.run({ data: { bookingId: original.bookingId },
     auth: { uid: driverUserId, token: { roleKeys: ['driver'] } } });
