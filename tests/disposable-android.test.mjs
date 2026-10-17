@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { configureDisposableAndroid } from '../scripts/qa/configure-disposable-android.mjs';
-import { androidMapsPrerequisites } from '../scripts/qa/android-maps-prerequisites.mjs';
+import { androidMapsPrerequisites, playServicesVersionCommand } from '../scripts/qa/android-maps-prerequisites.mjs';
 
 const launcher = 'com.google.android.apps.nexuslauncher';
 function device(overrides = {}) {
@@ -11,7 +11,7 @@ function device(overrides = {}) {
     'getprop ro.kernel.qemu': '1', [`pm path ${launcher}`]: 'package:/system/launcher.apk',
     'pm list packages -e --user 0 com.android.vending': 'package:com.android.vending',
     'pm list packages -e --user 0 com.google.android.gms': 'package:com.google.android.gms',
-    'dumpsys package com.google.android.gms': 'Packages:\n  Package [com.google.android.gms]:\n    versionName=25.39.33 (190400-test)\n',
+    [playServicesVersionCommand]: 'Packages:\n  Package [com.google.android.gms]:\n    versionName=25.39.33 (190400-test)\n',
     [`pm disable-user --user 0 ${launcher}`]: 'new state: disabled-user',
     [`pm list packages -d --user 0 ${launcher}`]: `package:${launcher}`, ...overrides };
   return { calls, execute: (command, args) => {
@@ -35,14 +35,31 @@ test('Maps runtime prerequisites fail closed before changing the disposable laun
   for (const overrides of [
     { 'pm list packages -e --user 0 com.android.vending': '' },
     { 'pm list packages -e --user 0 com.google.android.gms': '' },
-    { 'dumpsys package com.google.android.gms': 'versionName=21.39.13' },
-    { 'dumpsys package com.google.android.gms': 'versionName=unavailable' },
-    { 'dumpsys package com.google.android.gms': 'versionName=25.39.33\nversionName=25.40.00' },
+    { [playServicesVersionCommand]: 'versionName=21.39.13' },
+    { [playServicesVersionCommand]: 'versionName=unavailable' },
+    { [playServicesVersionCommand]: 'versionName=25.39.33\nversionName=25.40.00' },
   ]) {
     const mock = device(overrides);
     assert.throws(() => configureDisposableAndroid({ SGM_LOCAL_DISPOSABLE_EMULATOR: 'true' }, mock.execute));
     assert(!mock.calls.some((call) => call.args.includes('disable-user')));
   }
+});
+
+test('package diagnostics are filtered on the device and child failures cannot print raw output', () => {
+  const mock = device();
+  const fail = (command, args, options) => {
+    if (args.includes(playServicesVersionCommand)) throw Object.assign(new Error('private package output'), {
+      code: 'ENOBUFS', status: null, stdout: 'private-stdout', stderr: 'private-stderr',
+    });
+    return mock.execute(command, args, options);
+  };
+  assert.throws(() => configureDisposableAndroid({ SGM_LOCAL_DISPOSABLE_EMULATOR: 'true' }, fail), (error) => {
+    assert.match(error.message, /ENOBUFS/); assert.doesNotMatch(String(error), /private/);
+    assert.equal(error.cause, undefined); assert.equal(error.stdout, undefined);
+    return true;
+  });
+  assert(playServicesVersionCommand.includes('| grep -E "versionName=|Hidden system packages:"'));
+  assert(!mock.calls.some((call) => call.args.includes('disable-user')));
 });
 
 test('Maps prerequisite version boundaries use the active package, not an inactive factory version', () => {

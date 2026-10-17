@@ -37,3 +37,19 @@ This corrects a renderer prerequisite, not proven causality for the PixelCopy
 timeout. A new actual run must prove renderer behavior, captures and the complete
 consent stage. Map visibility, time/address entry, application, payments, process
 death, physical tracking and safety audits remain open. The goal stays active.
+
+## First Play Store Image Attempt
+
+Commit `5d7fd995e8cd738585f46a48a357a54778de0f6d`,
+[Native CI 39036191921](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39036191921),
+booted the new image and reached the prerequisite reader, but the full Play
+services package dump exceeded the command-output buffer (`ENOBUFS`). No ordinary
+screen or three-account test ran. Package presence checks preceded that failure;
+the service version and actual renderer were not established by it.
+
+The version query now filters only version-name and inactive-package-boundary
+fields on the device, so unrelated package diagnostics never cross into the
+Node buffer. A subprocess failure exposes only its code/status, not its attached
+raw stdout/stderr. No buffer/wait increase, retry or test substitution is added.
+Unit checks cover failure sanitization, the active package and version boundaries;
+the next actual run must still establish the runtime result.
