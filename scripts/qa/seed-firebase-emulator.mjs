@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { initializeApp, getApps } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
-import { FieldValue, getFirestore, Timestamp } from 'firebase-admin/firestore';
+import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
 
 const { projectId, databaseURL } = configureLocalEmulators();
@@ -12,7 +12,7 @@ if (getApps().length === 0) initializeApp({
 });
 
 const auth = getAuth();
-const db = getFirestore();
+const { firestore: db } = await import('../../functions/lib/lib/firestore.js');
 const now = Timestamp.now();
 const departure = Timestamp.fromDate(new Date(Date.now() + 36 * 60 * 60 * 1000));
 

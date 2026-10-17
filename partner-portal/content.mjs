@@ -1,4 +1,5 @@
 export { captures } from './evidence-captures.mjs';
+import { recentProgress } from './recent-progress.mjs';
 
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
@@ -41,10 +42,7 @@ export const content = {
   lastVerifiedAt: '2026-10-17',
   releaseNote: 'Tests en cours.',
   updates: [
-    { date: '2026-10-17', title: 'Les échanges reprennent après coupure',
-      text: 'L’essai local passe, y compris après fermeture complète. La préparation des essais reste instable.', flow: 'messages' },
-    { date: '2026-10-16', title: 'La reprise après rotation reste à stabiliser',
-      text: 'Un essai s’est arrêté après rotation. La reprise de session et les coupures restent à vérifier.', flow: 'appearance' },
+    ...recentProgress,
     { date: '2026-10-16', title: 'L’échange après relancement passe en local',
       text: 'Les trois messages et la réponse du conducteur sont retrouvés. Le nouvel essai de coupure n’a pas pu démarrer.', flow: 'messages' },
     { date: '2026-10-16', title: 'La réponse après relancement reste à confirmer',
@@ -117,9 +115,9 @@ export const content = {
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
   blockers: [
-    { id: 'cancellation-race', title: 'Accepter et annuler en même temps',
-      text: 'Un essai local a échoué quand une acceptation et une annulation arrivent ensemble.',
-      next: 'Corriger ce conflit puis rejouer les réservations concernées.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/screen-recheck/README.md' },
+    { id: 'cancellation-race', title: 'Rejouer le conflit d’annulation sur téléphone',
+      text: 'Les essais locaux passent après correction.',
+      next: 'Rejouer sur téléphone. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-contention-2026-10-17/README.md' },
     { id: 'session-restoration', title: 'Reprendre la session après une erreur',
       text: 'Les quatre essais locaux simulés passent.',
       next: 'Rejouer la rotation et la reconnexion après une coupure.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/README.md' },

@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 import { initializeApp, getApps } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
-import { tripInput } from './local-flow-client.mjs';
+import { db, tripInput } from './local-flow-client.mjs';
 
 const { projectId, authHost, functionsOrigin, databaseURL } = configureLocalEmulators();
 if (getApps().length === 0) initializeApp({ projectId, databaseURL });
 
-const db = getFirestore();
 const password = process.env.SGM_QA_PASSWORD;
 const qa = { parentEmail: 'p@example.test', driverEmail: 'd@example.test', tripId: 'sgm-qa-trip-u8-wavre-bruxelles', childId: 'sgm-qa-child-lina' };
 

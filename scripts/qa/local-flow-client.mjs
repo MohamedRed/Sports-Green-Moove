@@ -1,12 +1,11 @@
 import assert from 'node:assert/strict';
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
-import { getFirestore } from 'firebase-admin/firestore';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
 
 const config = configureLocalEmulators();
 initializeApp({ projectId: config.projectId, databaseURL: config.databaseURL });
-export const db = getFirestore();
+export const { firestore: db } = await import('../../functions/lib/lib/firestore.js');
 export const auth = getAuth();
 
 export async function signIn(email) {

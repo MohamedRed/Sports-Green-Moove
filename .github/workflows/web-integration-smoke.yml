@@ -30,6 +30,8 @@ on:
       - "tests/helpers/**"
       - "tests/trip-cancellation-evidence.test.mjs"
       - "tests/trip-cancellation-native.test.mjs"
+      - "tests/firestore-streaming-policy.test.mjs"
+      - "tests/trip-contention-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Trip*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Trip*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TripCancellationModels.kt"
@@ -128,6 +130,8 @@ on:
       - "tests/helpers/**"
       - "tests/trip-cancellation-evidence.test.mjs"
       - "tests/trip-cancellation-native.test.mjs"
+      - "tests/firestore-streaming-policy.test.mjs"
+      - "tests/trip-contention-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Trip*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Trip*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TripCancellationModels.kt"
@@ -245,6 +249,22 @@ jobs:
 
       - name: Test isolated multi-person flows
         run: npm run test:local-flows
+
+      - name: Test transaction query conflict propagation
+        run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs
+
+      - name: Test controlled approval and cancellation overlap
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-trip-contention/results.json
+        run: npm run test:trip-contention
+
+      - name: Upload controlled transaction conflict evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: trip-contention-results
+          path: ${{ runner.temp }}/sgm-trip-contention/**
+          if-no-files-found: ignore
 
       - name: Test team club ownership rules
         run: npm run test:team-ownership-rules
