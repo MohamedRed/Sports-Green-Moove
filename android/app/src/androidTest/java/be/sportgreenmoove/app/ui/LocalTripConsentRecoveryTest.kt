@@ -234,14 +234,21 @@ class LocalTripConsentRecoveryTest {
         compose.onNodeWithTag("trip.${if (review) "edit" else "review"}.$id").assertDoesNotExist()
         compose.onNodeWithTag("trip.$action.$id").performScrollTo().assertIsEnabled().performClick()
         waitFor(if (review) "trip.change.status" else "trip.change.price")
+        idleReview()
+        compose.onNodeWithTag("trip.change.error").assertDoesNotExist()
     }
     private fun refreshReview() {
         compose.onNodeWithTag("trip.change.refresh").performScrollTo().assertIsEnabled().performClick()
+        compose.waitForIdle()
         idleReview(); compose.onNodeWithTag("trip.change.error").assertDoesNotExist()
     }
     private fun idleReview() = compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.busy").fetchSemanticsNodes().isEmpty() }
-    private fun expectStatus(label: String) = compose.waitUntil(60_000) {
-        runCatching { compose.onNodeWithTag("trip.change.status").assertTextEquals(label) }.isSuccess
+    private fun expectStatus(label: String) {
+        compose.waitUntil(60_000) {
+            runCatching { compose.onNodeWithTag("trip.change.status").assertTextEquals(label) }.isSuccess
+        }
+        idleReview()
+        compose.onNodeWithTag("trip.change.error").assertDoesNotExist()
     }
     private fun closeDialog() {
         idleReview(); compose.onNodeWithContentDescription("Fermer").assertIsEnabled().performClick()

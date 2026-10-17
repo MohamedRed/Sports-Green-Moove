@@ -9,6 +9,26 @@ import java.io.IOException
 import java.time.Instant
 
 class TripChangeStateTest {
+    @Test fun proposalStatusCanArriveBeforeRefreshReleasesTheWithdrawalAction() = runBlocking {
+        val gateway = ChangeGateway(); val state = ChangeFixture.state(gateway)
+        state.reload(null); requireNotNull(state.draft).price = "4,00"
+        val refreshStarted = CompletableDeferred<Unit>()
+        val releaseRefresh = CompletableDeferred<Unit>()
+        val job = launch(start = CoroutineStart.UNDISPATCHED) {
+            state.propose { refreshStarted.complete(Unit); releaseRefresh.await() }
+        }
+        refreshStarted.await()
+        try {
+            assertEquals(TripChangeStatus.Pending, state.review?.status)
+            assertTrue(state.busy); assertFalse(state.canWithdraw || state.canPropose)
+            state.withdraw { fail("An unfinished proposal must not start another action") }
+            assertTrue(gateway.withdrawals.isEmpty()); assertEquals(1, gateway.proposals.size)
+        } finally { releaseRefresh.complete(Unit); job.join() }
+        assertFalse(state.busy); assertTrue(state.canWithdraw)
+        state.withdraw {}; assertEquals(1, gateway.withdrawals.size)
+        assertEquals(TripChangeStatus.Withdrawn, state.review?.status)
+    }
+
     @Test fun onlyExplicitValidChangedDriverTermsCanBeProposed() = runBlocking {
         val gateway = ChangeGateway(); val state = ChangeFixture.state(gateway)
         state.propose { fail() }; assertTrue(gateway.proposals.isEmpty())

@@ -62,8 +62,15 @@ cases. The isolated callable suite independently checks caller-only metadata,
 affected-reservation links, exclusion of later bookings, and explicit quote
 expiry. Screen execution and captures must be recorded separately from compilation.
 
-Not yet proven: a complete multi-account native replay against the isolated
-backend, durable pending edits across process death, review history after a
-decline/withdrawal, real address/map usability, live payment/refund settlement,
+The completed 28-group isolated native replay proves two-parent consent and
+single-parent confirmed-price consent across a new app process. A separate
+four-state recovery matrix was implemented but its first native preparation
+stopped before the process boundary; see the
+[interruption report](../release/evidence/local-consent-restart-interruption-2026-10-17/README.md).
+
+Not yet proven: pending/partial/refused/withdrawn proposal recovery, a complete
+multi-account native change-application replay, durable pending edits across
+process death, review history after a decline/withdrawal, real address/map
+usability, live payment/refund settlement,
 push delivery and physical-device behavior. Production Functions and app builds
 have not been deployed by this change. This is not full release acceptance.

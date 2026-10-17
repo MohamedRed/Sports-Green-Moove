@@ -1,0 +1,56 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "aa828e143677a3827a4ce37de85a7cc7",
+  "label": "LocalTripConsentRecoveryTest#prepareRecoveryStates",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-17T23:25:11.014Z",
+  "host": {
+    "totalMemoryBytes": 16765378560,
+    "freeMemoryBytes": 6351155200,
+    "cpuCount": 4
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "LocalTripConsentRecoveryTest#prepareRecoveryStates-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "LocalTripConsentRecoveryTest#prepareRecoveryStates-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "LocalTripConsentRecoveryTest#prepareRecoveryStates-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "LocalTripConsentRecoveryTest#prepareRecoveryStates-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "LocalTripConsentRecoveryTest#prepareRecoveryStates-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "LocalTripConsentRecoveryTest#prepareRecoveryStates-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "LocalTripConsentRecoveryTest#prepareRecoveryStates-package-operations.txt",
+      "empty": true
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { mkdtempSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
@@ -155,4 +156,33 @@ test('all replay copy boundaries use named diagnostics and stay behind complete 
   }
   const pkg = JSON.parse(read('package.json'));
   assert(pkg.scripts['test:local-flow-isolation'].includes('tests/local-evidence-collection.test.mjs'));
+});
+
+test('a real failed primary copy stays failed when diagnostic cleanup later recovers its files', () => {
+  const base = 'docs/release/evidence/local-consent-restart-interruption-2026-10-17/copy-with-diagnostics/';
+  const bytes = (name) => readFileSync(new URL('../' + base + name, import.meta.url));
+  const json = (name) => JSON.parse(bytes(name));
+  const hashes = json('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 13);
+  for (const [name, expected] of Object.entries(hashes)) {
+    const raw = bytes(name); assert.equal(createHash('sha256').update(raw).digest('hex'), expected, name);
+    assert.doesNotMatch(raw.toString(), /AIza[\w-]{20,}|Bearer\s+[\w.-]+|"password"\s*:/);
+  }
+  const primary = json('adb-pull-trip-change-parent-confirmation.json'), cleanup = json('adb-pull-failure-cleanup.json');
+  assert.equal(primary.runId, '056f9cdedafa1f214f4b12b22a058756'); assert.equal(cleanup.runId, primary.runId);
+  assert.equal(primary.completed, false); assert.equal(primary.status, 1);
+  assert.equal(primary.signal, null); assert.equal(primary.errorCode, null);
+  assert.match(primary.stderr, /pull: building file list/); assert.match(primary.version, /37\.0\.1-15733141/);
+  assert.equal(cleanup.completed, true); assert.equal(cleanup.status, 0); assert.match(cleanup.stderr, /52 files pulled/);
+  const label = 'evidence-copy-trip-change-parent-confirmation';
+  const diagnostics = json(label + '-diagnostics.json'); assert.equal(diagnostics.runId, primary.runId);
+  assert.equal(diagnostics.records.length, 7); assert(diagnostics.records.every((record) => record.status === 'collected'));
+  assert.equal(bytes(label + '-crash.txt').length, 0); assert.equal(bytes(label + '-package-operations.txt').length, 0);
+  assert.match(bytes(label + '-frozen-packages.txt').toString(), /Frozen packages:\s+\(none\)/);
+  assert.deepEqual(json(label + '-install-sessions.txt').sections.find((section) => section.kind === 'active').sessions, []);
+  assert.match(bytes(label + '-exit-info.txt').toString(), /due to finished inst/);
+  assert.match(bytes('LocalTripChangeFlowTest-instrumentation.txt').toString(), /OK \(1 test\)/);
+  assert.equal(json('local-trip-change-ui.json').completed, true);
+  assert.deepEqual(json('native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 0, componentEvidence: 0, localReplay: 1 });
+  assert(!readdirSync(new URL('../' + base, import.meta.url)).includes('results.json'));
 });

@@ -121,3 +121,63 @@ The subsequent [completed 28-group replay](../local-trip-consent-restart-native-
 verifies the corrected confirmed-consent restart case. These failed originals
 retain their failed status; that later pass does not resolve the independent
 update, evidence-transport or earlier keyboard interruptions.
+
+## Copy Failure With Device Diagnostics
+
+Run `39076934577`, job `117525916519`, source
+`7d984812231176f6d0ac5cfc4d01c7ea25684d37`, stopped at the named
+parent-confirmation evidence copy at `2026-10-17T23:12:27.755Z`. Artifact
+`12117826462`, local run `056f9cdedafa1f214f4b12b22a058756`, retains 13 unchanged
+records under `copy-with-diagnostics/` with a SHA-256 inventory.
+
+The native parent-confirmation method reported `OK (1 test)` and a completed
+screen receipt, but the required copy returned status 1 while building its file
+list. ADB was `37.0.1-15733141`; signal and subprocess error code were null. All
+seven device queries then completed. The crash buffer and package-operation log
+were empty; no package was frozen and no install session was active. The most
+recent app exit was the expected instrumentation finish/force-stop, not a Java
+crash or low-memory kill. Historical package updates do not establish an update
+at this copy failure.
+
+The separately named cleanup copy returned status 0 with 52 files. It recovered
+diagnostic files but did not repair or retry the failed primary boundary: the
+suite still records local replay exit 1, and host verification after that boundary
+and both consent-restart stages were not reached. There is no full `results.json`
+or new accepted gallery capture from this run.
+
+These records narrow the immediate observations, not the transfer cause. The
+existing process diagnostics do not capture a host ADB server log or a guest
+file-sync protocol trace. A successful later run cannot prove the intermittent
+copy issue fixed. No transfer substitution, compression change or retry is
+introduced on this evidence.
+
+## Recovery Test Acted Before The Action Was Ready
+
+Run `39077535206`, job `117527691482`, source
+`ef72644ac921befee1c8698836a3b4b6a2fbe74d`, reached preparation of the new
+four-state recovery matrix. Artifact `12118331594`, local run
+`aa828e143677a3827a4ce37de85a7cc7`, retains 13 original records under
+`recovery-action-readiness/` and their SHA-256 inventory. At 23:25:10 UTC the
+native test failed because `trip.change.withdraw` was absent immediately after
+the withdrawn fixture's proposal. The preparation receipt remains incomplete;
+no matrix checkpoint, stop, reopen, full result or new gallery proof is accepted.
+
+The production state deliberately keeps actions unavailable while its proposal
+operation finishes refreshing the surrounding app. `propose` stores the returned
+review before awaiting `onChanged`; `canWithdraw` requires `!busy`. The dialog can
+therefore show the pending status before the withdrawal button is rendered. The
+new test waited only for that status and attempted the action too early. This is
+a test readiness defect, not evidence that withdrawal or account switching is
+broken. A controlled delayed-refresh unit case reproduces the status/busy/action
+sequence and requires only one proposal and one later explicit withdrawal.
+
+The corrected native helper requires the expected status, completion of the
+existing busy state and no error before proceeding. Initial editor/review entry
+and explicit refresh also wait for the same completion state. No fixed sleep,
+alternate control, action retry, production-code change or weaker requirement is
+introduced. The full 32-group replay must still prove the corrected test.
+
+Earlier in this same run, confirmed-consent restart completed at
+`2026-10-17T23:24:39.816Z` with different processes 10498/10654 and matching full
+record hashes. Its retained stage explicitly has `fullAppReplay: false`. That
+narrow repeat does not prove the four new cases or make this failed run complete.

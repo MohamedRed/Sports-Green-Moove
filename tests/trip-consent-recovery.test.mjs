@@ -1,10 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { recoveryKinds, assertPreparedRecovery, assertRecoveryRecords, assertRecoveryRestart } from '../scripts/qa/trip-consent-recovery-evidence.mjs';
 import { stopDisposableAppProcess } from '../scripts/qa/local-disposable-process-stop.mjs';
 
-const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+const bytes = (path) => readFileSync(new URL('../' + path.split('/').map(encodeURIComponent).join('/'), import.meta.url));
+const read = (path) => bytes(path).toString('utf8');
 const runId = 'a'.repeat(32), proposalId = 'c'.repeat(64), appId = 'be.sportgreenmoove.app.local';
 function saved(kind) {
   const before = { title: 'Recovery QA', status: 'published', priceCents: 250, seatsAvailable: 2, seatsTotal: 4,
@@ -114,6 +116,28 @@ test('the new stop name uses the existing disposable-only guard and sanitized re
   }
 });
 
+test('the first native matrix failure stays incomplete despite a narrower repeated confirmed-consent pass', () => {
+  const base = 'docs/release/evidence/local-consent-restart-interruption-2026-10-17/recovery-action-readiness/';
+  const json = (name) => JSON.parse(read(base + name));
+  const hashes = json('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 13);
+  for (const [name, hash] of Object.entries(hashes)) {
+    const raw = bytes(base + name); assert.equal(createHash('sha256').update(raw).digest('hex'), hash, name);
+    assert.doesNotMatch(raw.toString(), /AIza[\w-]{20,}|Bearer\s+[\w.-]+|"password"\s*:/);
+  }
+  const failed = json('local-trip-consent-recovery-before.json');
+  assert.equal(failed.runId, 'aa828e143677a3827a4ce37de85a7cc7'); assert.equal(failed.completed, false);
+  assert.equal(failed.processId, 10790); assert.equal(failed.stage, 'before'); assert.equal(failed.records, undefined);
+  assert.throws(() => assertPreparedRecovery(failed, failed.runId));
+  assert.match(read(base + 'LocalTripConsentRecoveryTest#prepareRecoveryStates-instrumentation.txt'), /could not find any node[\s\S]*trip.change.withdraw/);
+  assert.equal(json('adb-pull-failure-cleanup.json').completed, true);
+  assert.equal(json('native-suite-status.json').localReplay, 1);
+  const narrower = json('trip-consent-restart-ui-stage.json'); assert.equal(narrower.runId, failed.runId);
+  assert.equal(narrower.fullAppReplay, false); assert.equal(narrower.testCount, 1);
+  assert.equal(narrower.native.before.processId, 10498); assert.equal(narrower.native.after.processId, 10654);
+  assert.deepEqual(narrower.checkpoint.hashes, narrower.persisted.hashes);
+  assert.match(read(base + '../README.md'), /test readiness defect/);
+});
+
 test('native matrix uses real actions and same-session reopen while host compares every complete saved record', () => {
   const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripConsentRecoveryTest.kt');
   assert.equal((native.match(/@Test fun /g) ?? []).length, 2);
@@ -123,6 +147,11 @@ test('native matrix uses real actions and same-session reopen while host compare
   const reopened = native.slice(native.indexOf('@Test fun reopenRecoveryStates'), native.indexOf('private fun verifyParent'));
   assert(!reopened.slice(0, reopened.indexOf('logout()')).includes('login('));
   assert(!/setSgmUiTestContent|UiFlow.*Gateway|performSemanticsAction|proposeTripChange\(|respondTripChange\(|withdrawTripChange\(/.test(native));
+  const statusWait = native.slice(native.indexOf('private fun expectStatus'), native.indexOf('private fun closeDialog'));
+  assert(statusWait.indexOf('idleReview()') > statusWait.indexOf('assertTextEquals(label)'));
+  assert(statusWait.includes('"trip.change.error").assertDoesNotExist()'));
+  assert(read('android/app/src/test/java/be/sportgreenmoove/app/ui/TripChangeStateTest.kt')
+    .includes('proposalStatusCanArriveBeforeRefreshReleasesTheWithdrawalAction'));
   const host = read('scripts/qa/local-trip-consent-recovery.mjs');
   for (const marker of ['assertRecoveryRestart(before, stopped, after', 'assert.deepEqual(persisted, checkpoint',
     'assert.equal(changes.size, 1)', "toString('base64url')", 'tripChangeHash(trip)', 'tripChangeHash(bookings)',

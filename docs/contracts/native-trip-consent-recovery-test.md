@@ -1,7 +1,11 @@
 # Four-State Consent Recovery After Process Death
 
-Status: implemented and locally compiled/contract-tested; native runtime result
-is still pending. The partner portal keeps the last completed 28-group proof.
+Status: implemented and locally compiled/contract-tested; the first runtime run
+stopped during preparation because the test acted before the proposal operation
+finished refreshing. Its original failure is retained in the
+[interruption report](../release/evidence/local-consent-restart-interruption-2026-10-17/README.md).
+The corrected test still needs a completed native run. The partner portal keeps
+the last completed 28-group proof.
 Adding a test or passing its validator is not user-flow evidence.
 
 The existing isolated runner now requires 32 groups: all previous 28 plus pending,
@@ -9,6 +13,10 @@ partially accepted, declined and withdrawn proposal recovery. Two separately
 instrumented methods cover four distinct trips, each with two approved parent
 reservations. Fixtures create trips/bookings only; the real app creates every
 proposal, acceptance, refusal and withdrawal. No provider replacement is added.
+
+The native readiness helper requires the expected status, the end of the existing
+busy state and no error before inspecting or using the next action. Status text
+alone does not prove the proposal operation's surrounding refresh has completed.
 
 ## Preparation
 
