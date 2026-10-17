@@ -6,6 +6,7 @@ on:
     paths:
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
+      - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt"
@@ -125,6 +126,7 @@ on:
     paths:
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
+      - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt"
@@ -298,7 +300,7 @@ jobs:
         run: node --test tests/booking-display-evidence.test.mjs
 
       - name: Validate booking response-loss evidence
-        run: node --test tests/booking-recovery-evidence.test.mjs
+        run: node --test tests/booking-recovery-evidence.test.mjs tests/subscription-diagnosis-evidence.test.mjs
 
       - name: Test booking retry identity and changed-intent races
         env:

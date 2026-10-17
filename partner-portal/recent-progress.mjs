@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'Le nouvel essai complet passe',
+    text: '23 essais locaux passent, dont la reprise d’une demande après fermeture et des messages après coupure. Le blocage intermittent reste suivi.', flow: 'messages' },
   { date: '2026-10-17', title: 'Le renvoi garde une seule demande',
     text: 'Après une réponse perdue puis fermeture, l’essai local retrouve une seule demande. À rejouer sur téléphone.', flow: 'booking' },
   { date: '2026-10-17', title: 'La demande garde les détails du trajet affiché',
