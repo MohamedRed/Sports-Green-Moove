@@ -88,14 +88,15 @@ test('seven component cases passed while the broader cancellation regression and
 test('partner progress stays partial, dates historical captures and excludes unapproved map images', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-17');
-  assert.equal(flow.source, 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/README.md');
   assert.equal(flow.local.source, base + 'services.json');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/completed/results.json');
-  assert.deepEqual(flow.ui.groups, ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui']);
-  assert.match(flow.verified, /Deux parents/); assert.match(flow.remaining, /entre comptes/);
-  assert.match(flow.remaining, /après fermeture/); assert.match(flow.remaining, /cartes/);
-  assert.match(flow.remaining, /paiements et remboursements réels/); assert.match(flow.remaining, /pas en ligne/);
-  assert.equal(flow.images.length, 10);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/completed/results.json');
+  assert.deepEqual(flow.ui.groups, ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui']);
+  assert.match(flow.verified, /Deux parents/);
+  assert.match(flow.remaining, /demandes en attente, refus et retraits après fermeture/);
+  assert.match(flow.remaining, /changement de parcours et l’application/);
+  assert.match(flow.remaining, /paiements et remboursements réels/); assert.match(flow.remaining, /pas encore en ligne/i);
+  assert.equal(flow.images.length, 12);
   const historical = flow.images.filter((item) => item.file.startsWith('trip-cancel-'));
   assert.equal(historical.length, 3);
   assert(historical.every((item) => item.alt.includes('16 octobre') && captures[item.file].includes('local-trip-cancellation-ui-2026-10-16')));

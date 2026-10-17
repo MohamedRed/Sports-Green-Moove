@@ -85,10 +85,10 @@ test('CI runs cancellation checks and the private portal separates local app pro
   const flow = content.flows.find((item) => item.id === 'publication');
   assert.equal(flow.status, 'partial'); assert.equal(flow.local.source, detailsBase + 'services.json');
   assert(flow.local.groups.includes('trip-cancellation'));
-  assert.equal(flow.source, 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/README.md');
   assert.match(flow.remaining, /parcours.*application/); assert.match(flow.remaining, /remboursements réels/);
-  assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/completed/results.json');
+  assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas encore en ligne/i);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/completed/results.json');
   assert(flow.ui.groups.includes('trip-change-parent-confirmation-ui'));
   assert.match(read(base + 'README.md'), /not been deployed to production/);
   for (const name of ['trip-cancel-review', 'trip-cancel-confirmed', 'trip-cancel-parent']) assert(captures[name].startsWith(uiBase));

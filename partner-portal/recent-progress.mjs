@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'L’accord reste après fermeture',
+    text: 'Le parent puis le conducteur retrouvent le même accord de prix en local, sans doublon. Les 28 essais passent. Deux nouvelles captures sont disponibles.', flow: 'publication' },
   { date: '2026-10-17', title: 'Le contrôle après fermeture continue',
     text: 'Le nouvel essai reprend après fermeture, puis s’arrête côté conducteur. Le contrôle complet reste à terminer.', flow: 'publication' },
   { date: '2026-10-17', title: 'La reprise des accords reste à vérifier',

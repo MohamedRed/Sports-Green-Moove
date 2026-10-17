@@ -67,8 +67,8 @@ test('parent consent cannot replace strict offline, handover, response-loss and 
 
 test('reviewed local consent images are backed by completion and cannot promote map or phone readiness', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/completed/results.json');
-  assert.deepEqual(flow.ui.groups, ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui']);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/completed/results.json');
+  assert.deepEqual(flow.ui.groups, ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui']);
   assert.match(flow.verified, /Deux parents/); assert.match(flow.remaining, /changement de parcours/);
   assert.match(flow.remaining, /application/); assert.match(flow.remaining, /paiements et remboursements réels/);
   const images = [['trip-consent-first', 'first-parent'], ['trip-consent-confirmed', 'both-parents'],

@@ -2,8 +2,9 @@
 
 This required local test is implemented in two separately instrumented stages.
 Compilation and configuration checks alone do not establish its runtime result.
-The existing accepted 27-group schedule replay remains historical evidence;
-the new full replay requires 28 groups.
+The [completed native replay](../release/evidence/local-trip-consent-restart-native-2026-10-17/README.md)
+now verifies this confirmed-consent scope in all 28 required local groups. The
+older 27-group schedule replay remains unchanged historical evidence.
 
 The driver proposes a EUR 2.50 to EUR 4.00 change through the real app. The parent
 signs into their own account, opens their affected reservation and accepts. The

@@ -116,3 +116,8 @@ post-stop session, consent, driver-account, unchanged-record, scoped-access and
 ride-start assertions remain mandatory. The host's final independent snapshot,
 complete stage receipt and full 28-group result were not reached in this failed
 run. No restart requirement or new gallery screenshot is accepted from it.
+
+The subsequent [completed 28-group replay](../local-trip-consent-restart-native-2026-10-17/README.md)
+verifies the corrected confirmed-consent restart case. These failed originals
+retain their failed status; that later pass does not resolve the independent
+update, evidence-transport or earlier keyboard interruptions.

@@ -1,4 +1,6 @@
 export const captures = {
+  'trip-consent-restored-parent': 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/completed/local-trip-consent-restart-after.png',
+  'trip-consent-restored-driver': 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/completed/local-trip-consent-restart-driver.png',
   'trip-date-arrival-confirmed': 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/completed/local-trip-change-date-arrival-confirmed.png',
   'trip-time-confirmed': 'docs/release/evidence/local-trip-change-inputs-native-2026-10-17/completed/local-trip-change-time-confirmed.png',
   'trip-route-unavailable': 'docs/release/evidence/local-trip-change-inputs-native-2026-10-17/completed/local-trip-change-route-unavailable.png',
