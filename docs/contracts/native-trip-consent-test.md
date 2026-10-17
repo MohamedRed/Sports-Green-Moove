@@ -20,6 +20,9 @@ second parent opens their own booking, still sees one agreement out of two,
 accepts, and sees both agreements recorded. The driver then sees confirmation
 but cannot apply without a route quote, and withdraws the third proposal through
 the app. Native actions require actual controls and keyboard/window readiness.
+Reservation rows can appear before the parent refresh finishes. The test waits
+within its existing 60-second budget for the exact review control to be enabled,
+requires no reservation error, then makes one click. Presence alone is not ready.
 Four synchronized dialog captures retain the first agreement, both agreements,
 refusal and withdrawal. They require separate visual review before portal use;
 passing semantics or a non-empty bitmap does not prove that maps rendered.

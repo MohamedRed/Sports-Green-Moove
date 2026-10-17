@@ -105,3 +105,36 @@ the Java crash buffer is empty. Passwords, API keys and signed/unsigned tokens a
 redacted. Diagnostic failure never changes the original failed result, retries a
 test or restarts the app. The next actual replay must establish the cause and run
 the consent case before it can be accepted.
+
+## First Executed Consent Attempt
+
+Commit `27cfccf9ca6ca74da328a6f1bcf77402267745f4`,
+[Native CI 39039936468](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39039936468),
+again passed 82 ordinary cases with no failures/errors and 20 conditional skips.
+Component collection passed; the required local replay failed. Its isolated run
+was `435f5ded82dc9ae293252c1c5b3749a3`. Seven original records are retained with
+hashes in `first-consent-attempt/`.
+
+This replay passed `LocalTripCancellationFlowTest` and reached the new consent
+case. That case proposed all three price changes through the driver account and
+asserted the pending status with zero of two agreements for each. It then signed
+in as the first parent and failed at the first `openReservation` call: the review
+row existed but its control was disabled. No parent decision, withdrawal,
+independent persisted consent verification or accepted consent-stage receipt was
+completed. The native case failed after 27.376 seconds, rather than exhausting its
+existing 60-second readiness budget.
+
+`ReservationState.reload` publishes fetched rows before awaiting its `onChanged`
+refresh and releasing `loading`. `ReservationManagementRoute` deliberately
+disables those controls while loading or requiring reconciliation. The test had
+waited only for row presence, then asserted enabled immediately. It now waits
+within the unchanged 60-second budget for that exact control to be enabled,
+requires no reservation error, then scrolls and makes the same single click.
+There is no forced disabled action, semantics bypass, retry, longer deadline,
+production behavior change or weakened outcome assertion. Compilation alone does
+not prove this correction passes; an actual replay remains required.
+
+All four new read-only diagnostic queries completed. The crash buffer is empty;
+the exit records describe normal force-stops after finished instrumentation in
+this run, not a reproduction or explanation of the earlier process crash. That
+earlier reliability issue remains open.

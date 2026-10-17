@@ -125,6 +125,10 @@ class LocalTripChangeFlowTest {
     }
     private fun openReservation(id: String) {
         waitFor("reservation.change.$id")
+        compose.waitUntil(60_000) {
+            runCatching { compose.onNodeWithTag("reservation.change.$id").assertIsEnabled() }.isSuccess
+        }
+        compose.onNodeWithTag("bookings.error").assertDoesNotExist()
         compose.onNodeWithTag("reservation.change.$id").performScrollTo().assertIsEnabled().performClick()
         waitFor("trip.change.status")
         compose.onNodeWithTag("trip.change.original").performScrollTo().assertIsDisplayed()

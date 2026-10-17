@@ -51,6 +51,10 @@ test('the new native case uses the real app and three isolated actors, not simul
   }
   assert(!/setSgmUiTestContent|UiFlow.*Gateway|performSemanticsAction|quoteTripChange\(|applyTripChange\(/.test(native));
   assert.equal((native.match(/@Test fun /g) ?? []).length, 1);
+  const open = native.slice(native.indexOf('private fun openReservation'), native.indexOf('private fun openDriverReview'));
+  assert.match(open, /compose.waitUntil\(60_000\)\s*\{\s*runCatching \{ compose.onNodeWithTag\("reservation.change.\$id"\).assertIsEnabled\(\) \}.isSuccess\s*\}/);
+  assert(open.indexOf('.assertIsEnabled() }.isSuccess') < open.indexOf('.performClick()'));
+  assert(open.includes('compose.onNodeWithTag("bookings.error").assertDoesNotExist()'));
   const runner = read('scripts/qa/local-android-session.mjs');
   assert(runner.includes("instrument(['LocalTripChangeFlowTest'], 1"));
   assert(runner.indexOf("collectEvidence('trip-change-parent-confirmation')") < runner.indexOf('await verifyTripChangeUi'));
@@ -91,6 +95,24 @@ test('eligible renderer prerequisites cannot promote an interrupted suite into a
   assert.match(suite.testcase.find((item) => item.failure).failure, /Failed waiting for PixelCopy/);
   assert(Object.hasOwn(suite.testcase.find((item) => item.classname.endsWith('.LocalTripChangeFlowTest')), 'skipped'));
   assert.match(read(base + 'trip-change-pixelcopy-logcat.txt'), /renderer version\(legacy\)/);
+});
+
+test('the first executed consent attempt stays failed at the disabled parent control', () => {
+  const base = 'docs/release/evidence/local-trip-consent-native-2026-10-17/first-consent-attempt/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 7);
+  for (const [name, hash] of Object.entries(hashes)) {
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + name, import.meta.url))).digest('hex'), hash);
+  }
+  assert.match(read(base + 'LocalTripChangeFlowTest-instrumentation.txt'), /Failed to assert the following: \(is enabled\)/);
+  assert.match(read(base + 'LocalTripChangeFlowTest-instrumentation.txt'), /\[Disabled\]/);
+  assert.match(read(base + 'LocalTripChangeFlowTest-instrumentation.txt'), /LocalTripChangeFlowTest.openReservation/);
+  assert.match(read(base + 'LocalTripCancellationFlowTest-instrumentation.txt'), /OK \(1 test\)/);
+  assert.equal(JSON.parse(read(base + 'native-suite-status.json')).localReplay, 1);
+  const diagnostics = JSON.parse(read(base + 'LocalTripChangeFlowTest-diagnostics.json'));
+  assert.equal(diagnostics.runId, '435f5ded82dc9ae293252c1c5b3749a3');
+  assert.equal(diagnostics.scope, 'read-only-native-process-failure-diagnostic-not-flow-verification');
+  assert.equal(diagnostics.records.length, 4); assert(diagnostics.records.every((item) => item.status === 'collected'));
+  assert.equal(read(base + 'LocalTripChangeFlowTest-crash.txt'), '');
 });
 
 test('independent saved records, scoped parent reads and denials gate a non-full-run receipt', () => {

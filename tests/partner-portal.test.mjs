@@ -23,8 +23,8 @@ test('the stopped consent replay stays pending without adding incomplete map cap
   const flow = content.flows.find((item) => item.id === 'publication');
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
   assert.equal(flow.status, 'partial');
-  assert.match(blocker.text, /arrêté avant la confirmation/);
-  assert.match(blocker.next, /pourquoi l’app s’arrête/);
+  assert.match(blocker.text, /arrêté à l’ouverture côté parent/);
+  assert.match(blocker.next, /confirmation entre comptes/);
   assert.equal(blocker.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.equal(flow.source, blocker.source);
   assert(!Object.values(captures).some((path) => path.includes('local-trip-consent-native-2026-10-17')));
