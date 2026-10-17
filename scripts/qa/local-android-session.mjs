@@ -25,6 +25,7 @@ import { seedTripChangeUi, verifyTripChangeUi } from './local-trip-change-ui.mjs
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { seedTripChangeInputsUi, verifyTripChangeInputsUi } from './local-trip-change-inputs-ui.mjs';
 import { seedTripScheduleUi, verifyTripScheduleUi } from './local-trip-change-schedule-ui.mjs';
+import { replayTripConsentRestart } from './local-trip-consent-restart.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -123,6 +124,8 @@ try {
   ]);
   collectEvidence('trip-change-schedule');
   const tripSchedule = await verifyTripScheduleUi(scheduleFixture, evidenceDir, session.runId);
+  const tripConsentRestart = await replayTripConsentRestart({ instrument, adb, serial, directory: evidenceDir, runId: session.runId,
+    collect: () => collectEvidence('trip-consent-restart') });
   instrument(['LocalMembershipFlowTest'], 1);
   const membershipRefresh = await verifyNativeMembershipUi();
   const restartFixture = await seedChatRestartUiFixture();
@@ -143,11 +146,12 @@ try {
     'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui',
     'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui',
     'chat-post-commit-response-loss-ui', 'driver-trip-cancellation-ui', 'booking-post-commit-response-loss-sdk', 'booking-response-loss-search-ui',
-    'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui']
+    'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui']
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 27, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule, membershipRefresh,
+    testCount: 28, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
+    tripConsentRestart, membershipRefresh,
     chatNetwork, chatRestart, chatResponseLoss, bookingResponseLoss, bookingUiResponseLoss,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },
