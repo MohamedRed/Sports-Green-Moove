@@ -33,3 +33,34 @@ callback health endpoints returned the required HTTP 204 contracts from the
 development host afterward. That does not explain the CI network failure.
 Readiness diagnostics now distinguish safe timeout/DNS/connection categories
 without disclosing underlying errors, changing the 15-second timeout or retrying.
+
+## Package Update Identified On The Next Run
+
+Run `39071331815`, job `117509404110`, at source `6c787e2bad8c3a8d73f9eb0cd8ae55ca377b2046`
+failed at the same booking-recovery case. Artifact `12114699737` contains local
+run `493fcbaef51a1c79c06a99247ae441a0`; its nine original diagnostic/transcript
+files and SHA-256 inventory are retained under `package-update/`.
+
+At 21:45:17.599 UTC the package manager continued install session `572905264`.
+At 21:45:17.708 it explicitly logged updating the system `com.google.android.gms`
+package. The active, committed, sealed installation identifies that same package
+and `com.android.vending` as its initiating/original installer. The frozen-package
+dump has a reference count of one for it. At 21:45:21.486 Android force-stopped
+dependent app PID 7862 because that service could not start. All seven diagnostic
+queries completed. This run therefore establishes an in-flight package update
+as the immediate interruption, not merely a hypothesized memory or Java crash.
+One historical installer package label is partial; it is not used for that
+identification. Future typed collection joins line-wrapped values before parsing.
+The consent-restart stage still was not reached, and no full result is accepted.
+
+The next setup change uses Android's documented
+[Test Harness Mode](https://source.android.com/docs/core/tests/debug/harness)
+on the fresh hosted CI emulator only, before any test-app installation. It makes
+one explicit reset request, requires a different completed boot, and verifies the
+test-mode property and automatic system-update setting. It then retains the
+existing enabled Play Store/Play services and Maps version checks. It refuses
+local/self-hosted/physical targets, pre-existing third-party apps and unsupported
+or incomplete setup. There is no reset or test retry, image substitution or
+silent ordinary-device continuation. Runtime effectiveness against this Play
+services update remains to be verified; Android's system-update setting alone
+does not prove that no app package will update.

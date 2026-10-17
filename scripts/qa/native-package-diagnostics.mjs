@@ -11,7 +11,15 @@ const booleanFields = new Set(['mCommitted', 'mSealed', 'mDestroyed',
 export function installationState(output) {
   const sections = [];
   let section, session;
+  const lines = [];
   for (const line of output.split('\n')) {
+    const first = line.trim().split(/\s+/)[0];
+    const structural = /install sessions:|^(?:(?:Active|Finalized|Orphaned) (?:Child )?)?Session \d+:$/.test(line.trim());
+    if (lines.length && first && !first.includes('=') && !structural && /\w+=\S*$/.test(lines.at(-1)))
+      lines[lines.length - 1] += line.trimStart();
+    else lines.push(line);
+  }
+  for (const line of lines) {
     const header = line.trim().match(/^(Active|Historical|Finalized|Orphaned|Legacy) install sessions:$/);
     if (header) {
       section = { kind: header[1].toLowerCase(), sessions: [] };

@@ -91,3 +91,19 @@ test('an unrecognized installer response cannot be recorded as an empty successf
   assert.equal(receipt.records.at(-1).status, 'collected');
   assert(!JSON.stringify(receipt).includes('private'));
 });
+
+test('wrapped installer values cannot silently become truncated package names or timestamps', () => {
+  const result = JSON.parse(installationState(`Active install sessions:
+  Active Session 123:
+    appPackageName=com.google.and
+    roid.gms createdMillis=17922735
+    17550 mCommitted=true
+Historical install sessions:
+  Session 122:
+    appPackageName=com.and
+    roid.vending mDestroyed=true
+`));
+  assert.equal(result.sections[0].sessions[0].appPackageName, 'com.google.android.gms');
+  assert.equal(result.sections[0].sessions[0].createdMillis, 1792273517550);
+  assert.equal(result.sections[1].sessions[0].appPackageName, 'com.android.vending');
+});
