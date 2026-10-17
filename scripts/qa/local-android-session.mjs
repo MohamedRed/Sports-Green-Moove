@@ -20,6 +20,7 @@ import { replayChatLossUi } from './local-chat-loss-ui.mjs';
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { seedTripCancellationUi, verifyTripCancellationUi } from './local-trip-cancellation-ui.mjs';
 import { replayNativeBookingLoss } from './local-native-booking-loss.mjs';
+import { replayBookingUiLoss } from './local-booking-ui-loss.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -68,6 +69,8 @@ try {
   const multiSeatSdk = await verifyLocalMultiSeatSdk(session.multiSeatTripId);
   const bookingResponseLoss = await replayNativeBookingLoss({ instrument, collect: () => collectEvidence('booking-response-loss'),
     directory: evidenceDir, adb, serial, runId: session.runId });
+  const bookingUiResponseLoss = await replayBookingUiLoss({ instrument, collect: () => collectEvidence('booking-ui-response-loss'),
+    directory: evidenceDir, runId: session.runId });
   for (const permission of ['ACCESS_COARSE_LOCATION', 'ACCESS_FINE_LOCATION', 'ACCESS_BACKGROUND_LOCATION', 'POST_NOTIFICATIONS']) {
     run(adb, ['-s', serial, 'shell', 'pm', 'grant', 'be.sportgreenmoove.app.local', `android.permission.${permission}`]);
   }
@@ -108,12 +111,12 @@ try {
     'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui',
     'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui',
     'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui',
-    'chat-post-commit-response-loss-ui', 'driver-trip-cancellation-ui', 'booking-post-commit-response-loss-sdk']
+    'chat-post-commit-response-loss-ui', 'driver-trip-cancellation-ui', 'booking-post-commit-response-loss-sdk', 'booking-response-loss-search-ui']
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 23, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, membershipRefresh,
-    chatNetwork, chatRestart, chatResponseLoss, bookingResponseLoss,
+    testCount: 24, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, membershipRefresh,
+    chatNetwork, chatRestart, chatResponseLoss, bookingResponseLoss, bookingUiResponseLoss,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },
     limits: ['Synthetic mock positions and pre-granted emulator permissions only.',

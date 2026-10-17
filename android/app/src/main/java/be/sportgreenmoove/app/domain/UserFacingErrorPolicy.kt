@@ -11,6 +11,8 @@ object UserFacingErrorPolicy {
         return when {
             error is BookingReviewRequiredException ->
                 "Les détails du trajet ont changé. Relancez la recherche avant de réserver."
+            error is BookingReplyUnconfirmedException ->
+                "Demande non confirmée. Réessayez pour vérifier son envoi."
             isNetworkError(className, normalizedMessage) ->
                 "Connexion réseau indisponible. Vérifiez votre connexion puis réessayez."
             normalizedMessage.contains("driver role is required") ->

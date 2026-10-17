@@ -1,24 +1,14 @@
 package be.sportgreenmoove.app.ui
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
@@ -26,7 +16,6 @@ import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
-import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
@@ -53,6 +42,9 @@ fun SearchScreen(
     onDestinationChanged: (String) -> Unit,
     onFormChange: (SearchFormState) -> Unit,
     hasSearched: Boolean = false,
+    bookingTripId: String? = null,
+    confirmedBookingTripIds: Set<String> = emptySet(),
+    retryBookingTripIds: Set<String> = emptySet(),
 ) {
     V2Screen(testTag = SgmTestTags.SearchScreen) {
         V2TopBar("RECHERCHE", onBack = onBack)
@@ -95,7 +87,11 @@ fun SearchScreen(
 
         V2SectionLabel("${matches.size} MATCH${if (matches.size > 1) "S" else ""}")
         Column(modifier = Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            matches.forEach { match -> MatchCard(match = match, onRequest = { onRequest(match) }) }
+            matches.forEach { match ->
+                SearchMatchCard(match, sending = bookingTripId == match.tripId,
+                    confirmed = match.tripId in confirmedBookingTripIds, retry = match.tripId in retryBookingTripIds,
+                    requestEnabled = bookingTripId == null, onRequest = { onRequest(match) })
+            }
             if (!loading && matches.isEmpty()) {
                 EmptyMatchCard(hasSearched)
             }
@@ -132,33 +128,6 @@ private fun SearchOptions(
 }
 
 @Composable
-private fun MatchCard(match: TripMatchSummary, onRequest: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(SgmRadius.LG))
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
-            .padding(14.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(match.summary.sport.uppercase(), style = SgmType.Eyebrow.copy(color = SgmColor.Green, fontSize = 11.sp, letterSpacing = 0.14.em), modifier = Modifier.weight(1f))
-            Text(match.summary.departureLabel, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold))
-        }
-        Text(match.summary.title, style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 17.sp, letterSpacing = 0.03.em), maxLines = 1, overflow = TextOverflow.Ellipsis)
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(match.summary.seatsLabel, style = SearchMetaStyle())
-            Text(match.summary.priceLabel, style = SearchMetaStyle())
-            match.detourMinutes?.let { Text("+$it min détour", style = SearchMetaStyle()) }
-            Spacer(Modifier.weight(1f))
-            V2Button("Demander", onClick = onRequest, size = V2ButtonSize.Sm, testTag = SgmTestTags.BookingRequestAction)
-        }
-        Text(match.reasons.take(3).joinToString(" · "), style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.Medium), maxLines = 2, overflow = TextOverflow.Ellipsis)
-    }
-}
-
-@Composable
 private fun EmptyMatchCard(hasSearched: Boolean) {
     Text(
         if (hasSearched) "Aucun trajet trouvé." else "Choisissez un départ, une destination et lancez la recherche.",
@@ -166,6 +135,3 @@ private fun EmptyMatchCard(hasSearched: Boolean) {
         modifier = Modifier.padding(vertical = 24.dp),
     )
 }
-
-@Composable
-private fun SearchMetaStyle() = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)

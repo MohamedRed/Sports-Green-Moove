@@ -6,6 +6,7 @@ on:
     paths:
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
+      - "tests/booking-ui-loss.test.mjs"
       - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
@@ -48,6 +49,9 @@ on:
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReplyUnconfirmedException.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingFeedbackLayoutTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingFeedbackTest.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicy.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicyTest.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingRecoveryTest.kt"
@@ -126,6 +130,7 @@ on:
     paths:
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
+      - "tests/booking-ui-loss.test.mjs"
       - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
@@ -168,6 +173,9 @@ on:
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReplyUnconfirmedException.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingFeedbackLayoutTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingFeedbackTest.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicy.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicyTest.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingRecoveryTest.kt"
@@ -300,7 +308,7 @@ jobs:
         run: node --test tests/booking-display-evidence.test.mjs
 
       - name: Validate booking response-loss evidence
-        run: node --test tests/booking-recovery-evidence.test.mjs tests/subscription-diagnosis-evidence.test.mjs
+        run: node --test tests/booking-recovery-evidence.test.mjs tests/subscription-diagnosis-evidence.test.mjs tests/booking-ui-loss.test.mjs
 
       - name: Test booking retry identity and changed-intent races
         env:

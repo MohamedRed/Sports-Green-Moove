@@ -4,6 +4,10 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class UserFacingErrorPolicyTest {
+    @Test fun anUnconfirmedBookingReplyDoesNotClaimTheServerRejectedTheRequest() {
+        val error = BookingReplyUnconfirmedException(RuntimeException("UNAVAILABLE private-provider-debug"))
+        assertEquals("Demande non confirmée. Réessayez pour vérifier son envoi.", UserFacingErrorPolicy.messageFor(error))
+    }
     @Test fun aChangedBookingGetsAnActionableMessageWithoutProviderDetails() {
         val error = BookingReviewRequiredException(RuntimeException("private-provider-debug"))
         assertEquals("Les détails du trajet ont changé. Relancez la recherche avant de réserver.", UserFacingErrorPolicy.messageFor(error))

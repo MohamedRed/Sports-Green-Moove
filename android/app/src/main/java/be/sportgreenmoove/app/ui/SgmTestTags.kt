@@ -30,6 +30,7 @@ object SgmTestTags {
     const val SearchDestinationInput = "search.destination.input"
     const val SearchDateInput = "search.date.input"
     const val BookingRequestAction = "booking.request.action"
+    const val BookingRequestConfirmed = "booking.request.confirmed"
     const val GuardianConsentDisclosure = "store.guardian-consent-disclosure"
     const val ChildSafetyDisclosure = "store.child-safety-disclosure"
     const val BookingApproveAction = "booking.approve.action"

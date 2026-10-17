@@ -11,6 +11,7 @@ import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.services.AndroidProviderSet
 import be.sportgreenmoove.app.domain.BookingReviewRequiredException
+import be.sportgreenmoove.app.domain.BookingReplyUnconfirmedException
 import kotlinx.coroutines.CoroutineScope
 
 @MainThread
@@ -41,10 +42,19 @@ class SearchController(
         private set
     var hasSearched by mutableStateOf(false)
         private set
+    var bookingTripId by mutableStateOf<String?>(null)
+        private set
+    var confirmedBookingTripIds by mutableStateOf(emptySet<String>())
+        private set
+    var retryBookingTripIds by mutableStateOf(emptySet<String>())
+        private set
     private var initializedChild = false
     private var acceptedCriteria: TripSearchCriteria? = null
     private var matchesGeneration = 0L
-    private val requests = SearchRequests(scope, onError, { loading = it }, onAppLoading)
+    private val requests = SearchRequests(scope, onError, { loading = it }) { busy ->
+        if (!busy) bookingTripId = null
+        onAppLoading(busy)
+    }
 
     fun updateChildren(children: List<ChildSummary>) {
         if (!requests.isActive) return
@@ -110,6 +120,7 @@ class SearchController(
 
     fun requestMatch(match: TripMatchSummary) {
         if (!requests.isActive) return
+        if (bookingTripId != null || match.tripId in confirmedBookingTripIds) return
         val criteria = acceptedCriteria
         if (!hasSearched || criteria == null || criteria != currentCriteria() || match !in matches || match.tripId != match.summary.id) {
             onError("Relancez la recherche avant de demander ce trajet.")
@@ -120,11 +131,19 @@ class SearchController(
             return
         }
         val generation = matchesGeneration
+        bookingTripId = match.tripId
+        retryBookingTripIds -= match.tripId
         requests.launch(SearchRequest.Booking, {
             providers.firebase.requestBooking(match.summary, criteria.childUserId, criteria.seatsNeeded)
         }, onFailure = { failure ->
-            if (failure is BookingReviewRequiredException && generation == matchesGeneration) invalidateMatches()
-        }) { onNotice("Demande envoyée.") }
+            if (generation == matchesGeneration) {
+                if (failure is BookingReviewRequiredException) invalidateMatches()
+                else if (failure is BookingReplyUnconfirmedException) retryBookingTripIds += match.tripId
+            }
+        }) {
+            if (generation == matchesGeneration) confirmedBookingTripIds += match.tripId
+            onNotice("Demande envoyée.")
+        }
     }
 
     fun close() {
@@ -141,6 +160,9 @@ class SearchController(
         acceptedCriteria = null
         loading = false
         hasSearched = false
+        bookingTripId = null
+        confirmedBookingTripIds = emptySet()
+        retryBookingTripIds = emptySet()
     }
 
     private fun currentCriteria(): TripSearchCriteria? {
@@ -156,6 +178,8 @@ class SearchController(
         acceptedCriteria = null
         matches = emptyList()
         hasSearched = false
+        confirmedBookingTripIds = emptySet()
+        retryBookingTripIds = emptySet()
     }
     private fun SearchPlaceTarget.request() = if (this == SearchPlaceTarget.Origin) SearchRequest.Origin else SearchRequest.Destination
 }
