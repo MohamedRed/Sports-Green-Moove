@@ -58,6 +58,24 @@ test('the new native case uses the real app and three isolated actors, not simul
   assert(runner.includes('testCount: 25')); assert(runner.includes("'trip-change-parent-confirmation-ui'"));
 });
 
+test('eligible renderer prerequisites cannot promote an interrupted suite into a consent pass', () => {
+  const base = 'docs/release/evidence/local-trip-consent-native-2026-10-17/eligible-runtime/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 3);
+  for (const [name, hash] of Object.entries(hashes)) {
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + name, import.meta.url))).digest('hex'), hash);
+  }
+  const metadata = JSON.parse(read(base + 'maps-runtime.json'));
+  assert.equal(metadata.recordType, 'derived-field-summary-from-native-ci-log');
+  assert.equal(metadata.sourceCommit, 'ff7d244edff67d360a4ec97f420f1387911a10b6');
+  assert.deepEqual(metadata.mapsRuntime, { playStoreEnabled: true, playServicesEnabled: true, playServicesVersion: '24.23.35' });
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
+    isArray: (name) => name === 'testcase' }).parse(read(base + 'general-ui.xml')).testsuite;
+  assert.equal(suite.tests, 102); assert.equal(suite.failures, 1); assert.equal(suite.skipped, 20);
+  assert.match(suite.testcase.find((item) => item.failure).failure, /Failed waiting for PixelCopy/);
+  assert(Object.hasOwn(suite.testcase.find((item) => item.classname.endsWith('.LocalTripChangeFlowTest')), 'skipped'));
+  assert.match(read(base + 'trip-change-pixelcopy-logcat.txt'), /renderer version\(legacy\)/);
+});
+
 test('independent saved records, scoped parent reads and denials gate a non-full-run receipt', () => {
   const verifier = read('scripts/qa/local-trip-change-ui.mjs');
   for (const marker of ['auth.createUser', "roleKeys: ['parent']", "for (const kind of ['confirmed', 'declined', 'withdrawn'])",

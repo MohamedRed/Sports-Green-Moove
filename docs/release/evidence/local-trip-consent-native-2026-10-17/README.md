@@ -53,3 +53,25 @@ Node buffer. A subprocess failure exposes only its code/status, not its attached
 raw stdout/stderr. No buffer/wait increase, retry or test substitution is added.
 Unit checks cover failure sanitization, the active package and version boundaries;
 the next actual run must still establish the runtime result.
+
+## Eligible Runtime Result
+
+Commit `ff7d244edff67d360a4ec97f420f1387911a10b6`,
+[Native CI 39036624494](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39036624494),
+passed the device prerequisite check: Store/services enabled, active Play services
+version `24.23.35`. `eligible-runtime/maps-runtime.json` is a labeled derived
+projection of that exact CI log observation, not a new runtime or flow result.
+The original XML and failing per-case log are retained alongside it.
+
+The ordinary suite again had 102 declared cases: 81 passed, one failure, no errors
+and 20 conditional skips. This time
+`refusalKeepsTheInitialTripWithoutCancellingTheBooking` failed waiting for PixelCopy.
+The failing log still reports the legacy Maps renderer. Renderer eligibility did
+not establish a renderer upgrade or resolve the capture failure. No new map or
+consent capture is approved, and the three-account case/full replay did not start.
+
+The independent-required-suite runner change prevents this failure from silently
+suppressing the other mandatory replay. It preserves a failed overall result if
+either suite or component evidence fails, with separate status metadata. Eight
+shell-harness regression cases verify those failure paths; they are not app-flow
+evidence. The actual next run must still execute the native consent scenario.
