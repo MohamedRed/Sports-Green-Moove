@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { XMLParser } from 'fast-xml-parser';
 import { assertTripChangeUiReceipt } from '../scripts/qa/trip-change-ui-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
@@ -16,6 +18,23 @@ test('trip consent evidence requires this run, exact fixture identities and ever
   for (const [key, value] of Object.entries(sample())) {
     assert.throws(() => assertTripChangeUiReceipt({ ...sample(), [key]: typeof value === 'boolean' ? false : 'other' }, { fixtures, runId }), key);
   }
+});
+
+test('the initial replay attempt remains unexecuted after a real PixelCopy failure', () => {
+  const base = 'docs/release/evidence/local-trip-consent-native-2026-10-17/before-renderer/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json'));
+  assert.equal(Object.keys(hashes).length, 2);
+  for (const [name, hash] of Object.entries(hashes)) {
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + name, import.meta.url))).digest('hex'), hash);
+  }
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
+    isArray: (name) => name === 'testcase' }).parse(read(base + 'general-ui.xml')).testsuite;
+  assert.equal(suite.tests, 102); assert.equal(suite.failures, 1); assert.equal(suite.skipped, 20);
+  const failure = suite.testcase.filter((item) => Object.hasOwn(item, 'failure'));
+  assert.equal(failure.length, 1); assert.match(failure[0].failure, /Failed waiting for PixelCopy/);
+  const consent = suite.testcase.find((item) => item.classname.endsWith('.LocalTripChangeFlowTest'));
+  assert(consent && Object.hasOwn(consent, 'skipped'));
+  assert.match(read(base + 'trip-change-pixelcopy-logcat.txt'), /renderer version\(legacy\)/);
 });
 
 test('the new native case uses the real app and three isolated actors, not simulated gateways or a provider substitute', () => {

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
+import { androidMapsPrerequisites } from './android-maps-prerequisites.mjs';
 
 const launcher = 'com.google.android.apps.nexuslauncher';
 
@@ -14,12 +15,13 @@ export function configureDisposableAndroid(env = process.env, execute = execFile
   const serial = serials[0];
   assert.equal(run(['-s', serial, 'shell', 'getprop', 'ro.kernel.qemu']), '1', 'Emulator identity required');
   const shell = (...args) => run(['-s', serial, 'shell', ...args]);
+  const mapsRuntime = androidMapsPrerequisites(shell);
   assert.equal(shell('pm', 'path', launcher).startsWith('package:'), true, 'Expected Google APIs launcher missing');
   // This suite launches activities directly; exclude the independently crashing home app before execution.
   shell('pm', 'disable-user', '--user', '0', launcher);
   assert(shell('pm', 'list', 'packages', '-d', '--user', '0', launcher).split('\n')
     .includes(`package:${launcher}`), 'Launcher isolation was not applied');
-  return { serial, launcher, launcherDisabled: true, scope: 'disposable-emulator-without-home-navigation' };
+  return { serial, launcher, launcherDisabled: true, mapsRuntime, scope: 'disposable-emulator-without-home-navigation' };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
