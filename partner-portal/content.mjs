@@ -177,7 +177,7 @@ export const content = {
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-17',
       summary: 'La reprise après coupure passe une fois. Le nouvel essai bloque au clavier.',
       verified: 'Le brouillon reste après la coupure. Le renvoi et la réponse du conducteur passent, sans doublon. La connexion initiale revient. L’échange après relancement passe aussi.',
-      remaining: 'Débloquer le clavier. Répéter les essais de coupure. Restent les groupes, les échanges entre téléphones, les brouillons après fermeture et les coupures pendant l’envoi. Pas encore en ligne.',
+      remaining: 'Débloquer le clavier. Répéter les essais de coupure. Restent les groupes, les échanges entre téléphones, les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
         'Après une confirmation perdue, deux renvois gardent un seul message et une seule notification.',
