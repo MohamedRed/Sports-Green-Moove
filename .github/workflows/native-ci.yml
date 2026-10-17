@@ -25,7 +25,6 @@ on:
       - "tests/fixtures/local-idle-http-server.mjs"
       - "tests/fixtures/adb-evidence-process.mjs"
       - "tests/disposable-android.test.mjs"
-      - "tests/ci-test-harness.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
       - "tests/dual-transport-config.test.mjs"
@@ -60,7 +59,6 @@ on:
       - "tests/fixtures/local-idle-http-server.mjs"
       - "tests/fixtures/adb-evidence-process.mjs"
       - "tests/disposable-android.test.mjs"
-      - "tests/ci-test-harness.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
       - "tests/dual-transport-config.test.mjs"
@@ -99,7 +97,7 @@ jobs:
         run: npm run test:native-ui-coverage
 
       - name: Validate disposable Android isolation
-        run: node --test tests/disposable-android.test.mjs tests/ci-test-harness.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs
+        run: node --test tests/disposable-android.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs
 
       - name: Validate dual-transport network prerequisites
         run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/trip-schedule-completed-evidence.test.mjs tests/trip-consent-restart.test.mjs tests/native-suite-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs
@@ -173,7 +171,6 @@ jobs:
         env:
           SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
           SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
-          SGM_LOCAL_CI_TEST_HARNESS: "true"
         with:
           api-level: 35
           target: google_apis_playstore

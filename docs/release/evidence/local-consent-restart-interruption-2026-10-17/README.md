@@ -53,7 +53,7 @@ One historical installer package label is partial; it is not used for that
 identification. Future typed collection joins line-wrapped values before parsing.
 The consent-restart stage still was not reached, and no full result is accepted.
 
-The next setup change uses Android's documented
+The subsequently rejected setup attempted Android's documented
 [Test Harness Mode](https://source.android.com/docs/core/tests/debug/harness)
 on the fresh hosted CI emulator only, before any test-app installation. It makes
 one explicit reset request, requires a different completed boot, and verifies the
@@ -64,3 +64,29 @@ or incomplete setup. There is no reset or test retry, image substitution or
 silent ordinary-device continuation. Runtime effectiveness against this Play
 services update remains to be verified; Android's system-update setting alone
 does not prove that no app package will update.
+
+## Reset Mode Rejected
+
+Run `39072735641`, Android job `117513519478`, source
+`b1e81f92231ff06372b16b3cd8f41c127aae4ba6`, stopped at setup at
+21:54:21 UTC: `cmd testharness enable` returned exit 1 and
+`Failed to enable Test Harness Mode`. No ordinary/local app test ran there.
+The unsupported reset helper, tests and workflow opt-in have been removed. The
+job did not fall through to a different setup and is still recorded as failed.
+A boot-property alternative was reviewed in source only and not run or retained;
+support on this image was not established. The existing image/rendering options
+and enabled Play Store/Play services prerequisites are preserved. No successful
+update-interruption fix or 28-group replay is claimed. Approval has been requested
+before pausing the disposable device's app store during a future test session.
+
+## Separate Evidence-Transport Interruption
+
+Run `39071818707`, job `117510827092`, source
+`e7506b4b4ea8bf5ec86bc684205f65ebbd30319a`, reached the parent-confirmation case
+but failed its named evidence copy at 21:57:18 UTC. The cleanup copy failed too.
+Artifact `12116216244`, local run `134bfdf6168c8705cb18b573726d3466`, retains both
+status-1 receipts under `evidence-transport/`. The first stopped while building
+the file list; cleanup stopped during a PNG transfer. Both used ADB 37.0.1.
+No timeout, signal or subprocess error code was reported. These facts do not
+establish the underlying transport cause or permit an alternate copy/retry to be
+counted as success. Consent restart was not reached and no full result is accepted.
