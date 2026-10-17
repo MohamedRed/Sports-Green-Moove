@@ -74,7 +74,7 @@ test('original bytes, truthful partial copy and current smoke coverage remain ma
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial'); assert.match(flow.summary, /clavier passe/);
   assert.match(flow.remaining, /Rejouer le clavier/); assert.match(flow.remaining, /coupures réelles/);
-  assert.equal(content.updates[0].title, 'Les essais du clavier passent');
+  assert.equal(content.updates.find((item) => item.flow === 'messages').title, 'Les essais du clavier passent');
   assert(content.updates.some((item) => item.title === 'Le nouvel essai bloque au clavier'));
   const workflow = readFileSync(new URL('../.github/workflows/web-integration-smoke.yml', import.meta.url), 'utf8');
   for (const path of ['tests/input-readiness-evidence.test.mjs', base + '**']) assert.equal(workflow.split('"' + path + '"').length - 1, 2);

@@ -68,7 +68,8 @@ test('current source requires atomic application, owned invoice attempts and CI 
 test('private progress separates simulated editing screens from full native replay and money movement', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
   const current = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, current + 'README.md');
+  assert.equal(flow.status, 'partial');
+  assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.equal(flow.local.source, current + 'services.json'); assert(flow.local.groups.includes('trip-change-application'));
   assert.equal(flow.ui.source, current + 'results.json');
   assert.match(flow.remaining, /entre comptes/); assert.match(flow.remaining, /paiements et remboursements réels/);

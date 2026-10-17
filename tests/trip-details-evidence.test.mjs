@@ -76,14 +76,15 @@ test('raw reports remain byte exact and the portal keeps full editing and real s
     .update(readFileSync(new URL(base + name, root))).digest('hex'), hash, name);
   const flow = content.flows.find((item) => item.id === 'publication');
   const current = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, current + 'README.md');
+  assert.equal(flow.status, 'partial');
+  assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
   assert.equal(flow.local.source, current + 'services.json');
   assert(flow.local.groups.includes('trip-details-ownership'));
   assert.equal(flow.ui.source, current + 'results.json');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
-  assert.match(blocker.next, /confirmation des parents/); assert.match(blocker.next, /paiements concernés/);
+  assert.match(blocker.next, /confirmation entre comptes/); assert.match(blocker.next, /paiements concernés/);
   assert(!blocker.next.includes('Choisir entre'));
   assert(content.updates.some((item) => item.date === '2026-10-16' && item.flow === 'publication' && /détails réservés/.test(item.title)));
   assert.match(read(base + 'README.md'), /not been deployed to production/);

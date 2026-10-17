@@ -88,7 +88,8 @@ test('seven component cases passed while the broader cancellation regression and
 test('partner progress stays partial, dates historical captures and excludes unapproved map images', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-17');
-  assert.equal(flow.source, base + 'README.md'); assert.equal(flow.local.source, base + 'services.json');
+  assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md');
+  assert.equal(flow.local.source, base + 'services.json');
   assert.equal(flow.ui.source, base + 'results.json');
   assert.deepEqual(flow.ui.groups.slice().sort(), json('results.json').steps.map((item) => item.id).sort());
   assert.match(flow.verified, /simulés/); assert.match(flow.remaining, /entre comptes/);
