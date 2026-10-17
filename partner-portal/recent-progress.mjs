@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'La reprise des accords reste à vérifier',
+    text: 'Le dernier essai s’est arrêté avant cette étape. Les captures déjà vérifiées restent disponibles.', flow: 'publication' },
   { date: '2026-10-17', title: 'La date et l’arrivée souhaitée sont confirmées',
     text: 'Le parent confirme les nouveaux détails en local. Les 27 essais passent. Une nouvelle capture est disponible ; l’application des changements reste à tester.', flow: 'publication' },
   { date: '2026-10-17', title: 'Le contact d’urgence reste à ajouter',
