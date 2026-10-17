@@ -24,6 +24,7 @@ import { replayBookingUiLoss } from './local-booking-ui-loss.mjs';
 import { seedTripChangeUi, verifyTripChangeUi } from './local-trip-change-ui.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { seedTripChangeInputsUi, verifyTripChangeInputsUi } from './local-trip-change-inputs-ui.mjs';
+import { seedTripScheduleUi, verifyTripScheduleUi } from './local-trip-change-schedule-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -112,6 +113,16 @@ try {
   ]);
   collectEvidence('trip-change-inputs');
   const tripChangeInputs = await verifyTripChangeInputsUi(tripInputsFixture, evidenceDir, session.runId);
+  const scheduleFixture = await seedTripScheduleUi();
+  instrument(['LocalTripChangeScheduleFlowTest'], 1, [
+    '-e', 'tripScheduleTripId', scheduleFixture.tripId, '-e', 'tripScheduleBookingId', scheduleFixture.bookingId,
+    '-e', 'tripScheduleOriginalDeparture', scheduleFixture.originalDepartureAt,
+    '-e', 'tripScheduleProposedDeparture', scheduleFixture.proposedDepartureAt,
+    '-e', 'tripScheduleDesiredArrival', scheduleFixture.desiredArrivalBy,
+    '-e', 'tripSchedulePastDeparture', scheduleFixture.pastDepartureAt,
+  ]);
+  collectEvidence('trip-change-schedule');
+  const tripSchedule = await verifyTripScheduleUi(scheduleFixture, evidenceDir, session.runId);
   instrument(['LocalMembershipFlowTest'], 1);
   const membershipRefresh = await verifyNativeMembershipUi();
   const restartFixture = await seedChatRestartUiFixture();
@@ -132,11 +143,11 @@ try {
     'search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui',
     'membership-refresh-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui',
     'chat-post-commit-response-loss-ui', 'driver-trip-cancellation-ui', 'booking-post-commit-response-loss-sdk', 'booking-response-loss-search-ui',
-    'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui']
+    'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui']
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 26, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, membershipRefresh,
+    testCount: 27, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule, membershipRefresh,
     chatNetwork, chatRestart, chatResponseLoss, bookingResponseLoss, bookingUiResponseLoss,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },

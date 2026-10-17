@@ -36,6 +36,7 @@ zero saved route quotes and exactly three unique notices for the two accounts.
 `trip-change-inputs-ui-stage.json` is written exclusively after these checks.
 It is explicitly not a full replay and records successful route change,
 application, payment, date-picker and physical-device coverage as absent.
-The complete runner now requires 26 groups; previous 25-group raw evidence
-remains an immutable record of what actually ran at that time. Native execution
+The complete runner now also requires the separate date/arrival stage (27 groups).
+Previous 25- and 26-group raw evidence remains an immutable record of what actually
+ran at that time. Native execution
 and visual review are still required before publishing any resulting capture.

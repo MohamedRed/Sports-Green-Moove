@@ -38,7 +38,8 @@ The run-bound device receipt cannot substitute for those independent checks.
 `trip-change-ui-stage.json` is emitted only after this scoped stage passes. It is
 explicitly not the full replay result. The existing network-cut stage and every
 other group remain mandatory; the replay now also requires the separate
-time/address-input stage. Only all 26 cases/groups can emit `results.json`.
+time/address-input and date/arrival stages. Only all 27 cases/groups can emit
+`results.json`.
 No failed or skipped instrumentation may yield a successful scoped receipt.
 
 This covers proposed-price consent, refusal and withdrawal. Time/address entry,
