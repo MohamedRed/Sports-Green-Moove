@@ -45,6 +45,9 @@ test('subscription summary distinguishes service provisioning from app observati
   assert.equal(notProvisioned.defaultSubscriptionValid.defaultDataSubId, false);
   assert.equal(notProvisioned.allSubscriptionsLoaded, false);
   assert.deepEqual(notProvisioned.simStates, ['READY']);
+  const inactiveSlot = parseSubscriptionDiagnostics(subscriptionDump() + '\nmSimState[1]=UNKNOWN');
+  assert.equal(inactiveSlot.modemCount, 1); assert.equal(inactiveSlot.supportedSlotCount, 2);
+  assert.deepEqual(inactiveSlot.simStates, ['LOADED', 'UNKNOWN']);
 });
 
 test('unsupported, missing, duplicated or malformed subscription fields cannot become healthy defaults', () => {
@@ -56,6 +59,8 @@ test('unsupported, missing, duplicated or malformed subscription fields cannot b
     original.replace('defaultDataSubId=1', 'defaultDataSubId=9999999999'),
     original + '\ndefaultDataSubId=1', original.replace('mSimState[0]=LOADED', ''),
     original.replace('mSimState[0]=LOADED', 'mSimState[0]=PRIVATE_STATE'),
+    original.replace('mSimState[0]=LOADED', 'mSimState[8]=LOADED'),
+    original + '\nmSimState[0]=READY',
     original.replace('Logical SIM slot 0: subId=1', 'Logical SIM slot 1: subId=1'),
     original.replace('Logical SIM slot 0: subId=1', 'Logical SIM slot 0: subId=PRIVATE_ID'),
     original + '\nLogical SIM slot 0: subId=1']) {

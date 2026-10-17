@@ -31,10 +31,13 @@ export function parseSubscriptionDiagnostics(output) {
   const slots = mapping.map((match) => Number(match[1]));
   assert.equal(new Set(slots).size, slots.length);
   assert(slots.every((slot) => slot < modemCount));
+  assert(mapping.every((match) => Number(match[2]) <= 2147483647));
   const sims = lines.map((line) => /^mSimState\[([0-7])\]=(\w+)$/.exec(line)).filter(Boolean);
-  assert.equal(sims.length, modemCount, 'Missing SIM-state diagnostic');
-  assert.equal(new Set(sims.map((match) => match[1])).size, modemCount);
-  assert(sims.every((match) => Number(match[1]) < modemCount && simStates.has(match[2])));
+  assert.equal(sims.length, lines.filter((line) => line.startsWith('mSimState[')).length);
+  // Android dumps supported slots, which can outnumber currently active modems.
+  assert(sims.length >= modemCount && sims.length <= 8, 'Missing SIM-state diagnostic');
+  assert.equal(new Set(sims.map((match) => match[1])).size, sims.length);
+  assert(sims.every((match) => Number(match[1]) < sims.length && simStates.has(match[2])));
 
   // Local-log events preserve ordering without IDs, timestamps or free-form messages.
   const events = [];
@@ -48,7 +51,8 @@ export function parseSubscriptionDiagnostics(output) {
     else if (/Database has not been initialized\./.test(line)) events.push('database-not-initialized');
   }
   return { modemCount, allSubscriptionsLoaded, defaultSubscriptionValid: defaults,
-    mappedSlotCount: slots.length, simStates: sims.sort((a, b) => Number(a[1]) - Number(b[1])).map((match) => match[2]),
+    mappedSlotCount: slots.length, supportedSlotCount: sims.length,
+    simStates: sims.sort((a, b) => Number(a[1]) - Number(b[1])).map((match) => match[2]),
     recognizedEventCount: events.length, eventsTruncated: events.length > 128, events: events.slice(-128) };
 }
 
