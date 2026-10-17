@@ -19,6 +19,12 @@ const hashes = {
   'displayed-agreement.json': 'ddf7f5dbcfce809041c03350a4ad518b10b6080f7a4f537d497a0065fedfd031',
   'transaction-consistency.json': '3b2c6b97c21d259cc4f845ff84d8caafacceba9d5df507e274ee88d5b176dbbf',
   'services.json': 'c4e4159660cd710cda9f0d18329ccee8cb797568d0d0b40f7903923a309be283',
+  'native-booking-loss.json': 'b4a7f2460ac722e81eff1082fba511804e232f205cf2e6801e18adc1d40b68b7',
+  'native-replay.json': '54b800cdc37053774158d9fc0eb2569ba4fa962e07e042c96e2145d7fceae5f1',
+  'native-prepare.txt': 'ebe73846853b92cf3a8b43cdeeebad37fef8cfe0fd457c038524143667c7902b',
+  'native-recover.txt': '43dd654dc2c77a1910a6c5f426354ab688d784e48e21578445d3a6fc479e9571',
+  'android-durability-before.xml': 'ab6eddcc3c6a3fc6268abc0a4f2424c341459bc17927dbada70254f2a8299ad3',
+  'android-durability-after.xml': '26559729883819a79475c149e221d4af3672d8c70ffe4d4652a06a43d4dfd6df',
 };
 test('original response-loss receipts retain their bytes and explicitly local scope', () => {
   for (const [file, hash] of Object.entries(hashes)) {
@@ -103,4 +109,36 @@ test('CI requires fresh transport, storage and guarded native process stages', (
   const stop = read('scripts/qa/local-booking-process-stop.mjs');
   for (const text of ["process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true'", 'session.runId, runId',
     'session.disposableEmulator, true']) assert(stop.includes(text));
+});
+
+test('the executed native replay recovers one real SDK booking after a verified process stop', () => {
+  const run = json('native-replay.json'), sdk = json('native-booking-loss.json');
+  assert.equal(run.runId, 'cb3ac1aeb07582924a2a4f48d51c9dab'); assert.equal(run.testCount, 23);
+  assert.equal(run.steps.length, 23); assert(run.steps.every((item) => item.status === 'passed'));
+  assert.equal(sdk.runId, run.runId); assert.equal(sdk.completed, true);
+  assert.equal(sdk.scope, 'native-sdk-booking-response-loss-not-ui');
+  assert.equal(sdk.bookingCount, 1); assert.equal(sdk.receiptCount, 1); assert.equal(sdk.livePayment, false);
+  assert.equal(sdk.productionDeployed, false); assert.equal(sdk.attempts.length, 2);
+  const original = sdk.attempts[0].commit;
+  assert.equal(sdk.attempts[0].upstreamStatus, 200); assert.equal(sdk.attempts[0].acknowledgementDropped, true);
+  assert.equal(sdk.attempts[1].upstreamStatus, 200); assert.equal(sdk.attempts[1].acknowledgementDropped, false);
+  assert.equal(sdk.before.clientRequestId, original.clientRequestId); assert.equal(sdk.after.clientRequestId, original.clientRequestId);
+  assert.equal(sdk.after.bookingId, original.bookingId); assert.equal(sdk.after.pendingClearedAfterAcknowledgement, true);
+  assert.notEqual(sdk.before.processId, sdk.after.processId);
+  assert.equal(sdk.stopped.forceStopIssued, true); assert.equal(sdk.stopped.noProcessAfterStop, true);
+  for (const file of ['native-prepare.txt', 'native-recover.txt']) assert.match(read(base + file), /OK \(1 test\)/);
+});
+
+test('the cached-write failure remains red and its corrective rerun preserves all eleven cases', () => {
+  const parse = (file) => new XMLParser({ ignoreAttributes: false }).parse(read(base + file)).testsuite;
+  const before = parse('android-durability-before.xml'), after = parse('android-durability-after.xml');
+  assert.equal(Number(before['@_tests']), 11); assert.equal(Number(before['@_failures']), 1);
+  assert.equal(Number(after['@_tests']), 11);
+  for (const name of ['failures', 'errors', 'skipped']) assert.equal(Number(after[`@_${name}`]), 0);
+  const failing = before.testcase.filter((item) => Object.hasOwn(item, 'failure'));
+  assert.equal(failing.length, 1);
+  assert.equal(failing[0]['@_name'], 'aCachedIdentityAfterFailedDiskWriteCannotBypassDurabilityOnRetry');
+  assert.deepEqual(before.testcase.map((item) => item['@_name']), after.testcase.map((item) => item['@_name']));
+  const store = read('android/app/src/main/java/be/sportgreenmoove/app/services/PendingBookingOperations.kt');
+  assert(store.includes('storage.write(slot, operation)'));
 });

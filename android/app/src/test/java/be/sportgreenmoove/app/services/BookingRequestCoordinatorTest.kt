@@ -13,10 +13,12 @@ class BookingRequestCoordinatorTest {
     private class Storage : BookingOperationStorage {
         val rows = mutableMapOf<BookingSlot, PendingBookingOperation>()
         var failWrites = false
+        var failAfterMemoryUpdate = false
         override fun read(slot: BookingSlot) = rows[slot]
         override fun write(slot: BookingSlot, operation: PendingBookingOperation?) {
             check(!failWrites)
             if (operation == null) rows.remove(slot) else rows[slot] = operation
+            check(!failAfterMemoryUpdate) { "Cached value was not persisted" }
         }
     }
     private class Transport : BookingRequestTransport {
@@ -115,5 +117,17 @@ class BookingRequestCoordinatorTest {
             val error = runCatching { BookingRequestCoordinator(store, transport) { "parent" }.request(intent) }.exceptionOrNull()
             assertTrue(error is ProviderConfigurationException); assertNull(disk.read(slot)); assertEquals(1, transport.sent.size)
         }
+    }
+    @Test fun aCachedIdentityAfterFailedDiskWriteCannotBypassDurabilityOnRetry() = runBlocking {
+        val disk = Storage().also { it.failAfterMemoryUpdate = true }; val transport = Transport()
+        val first = BookingRequestCoordinator(PendingBookingOperations(disk), transport) { "parent" }
+        assertTrue(runCatching { first.request(intent) }.isFailure)
+        val cached = checkNotNull(disk.read(slot))
+        val recreated = BookingRequestCoordinator(PendingBookingOperations(disk), transport) { "parent" }
+        assertTrue(runCatching { recreated.request(intent) }.isFailure)
+        assertTrue(transport.sent.isEmpty())
+        disk.failAfterMemoryUpdate = false
+        assertEquals("saved", recreated.request(intent))
+        assertEquals(cached.requestId, transport.sent.single().second["clientRequestId"])
     }
 }

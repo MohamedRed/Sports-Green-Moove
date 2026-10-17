@@ -29,6 +29,8 @@ Both native gateways preserve an operation before sending it. The private local
 store is scoped to account, trip and child, and binds the selected seats and exact
 displayed snapshot. Android commits private preferences with backup disabled;
 Swift atomically writes its app-support store and excludes it from iOS backup.
+Android also re-commits an existing cached identity before every dispatch: a
+previous failed preference write must not make a cached-only ID look durable.
 No authentication credentials are stored in these records. An uncertain error,
 malformed acknowledgement or account change cannot discard the pending identity.
 Corrupt or unwritable storage blocks submission, rather than inventing a new ID.

@@ -1,6 +1,6 @@
 export const recentProgress = [
   { date: '2026-10-17', title: 'Le renvoi garde une seule demande',
-    text: 'Après une réponse perdue, les renvois retrouvent la demande d’origine en local. Les essais sur téléphone restent à faire.', flow: 'booking' },
+    text: 'Après une réponse perdue puis fermeture, l’essai local retrouve une seule demande. À rejouer sur téléphone.', flow: 'booking' },
   { date: '2026-10-17', title: 'La demande garde les détails du trajet affiché',
     text: '25 contrôles locaux passent : un ancien prix, horaire ou parcours est refusé. Les essais dans l’app continuent.', flow: 'booking' },
   { date: '2026-10-17', title: 'La reprise après coupure passe en local',

@@ -1,6 +1,6 @@
 export const blockers = [
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
-    text: 'Les renvois retrouvent une seule demande dans les contrôles locaux.',
+    text: 'La reprise après fermeture retrouve une seule demande en local.',
     next: 'Rejouer les coupures et les changements de choix sur téléphone, puis terminer les confirmations des parents.', source: 'docs/release/evidence/local-booking-recovery-2026-10-17/README.md' },
   { id: 'cancellation-race', title: 'Rejouer le conflit d’annulation sur téléphone',
     text: 'Les essais locaux passent après correction.',

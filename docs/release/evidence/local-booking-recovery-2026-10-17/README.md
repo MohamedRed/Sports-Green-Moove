@@ -62,9 +62,32 @@ Native CI now requires a two-stage SDK test: independently commit and discard a
 booking response, preserve the private pending identity, stop only the validated
 disposable app, recover in a different process and verify exactly one persisted
 booking and receipt. Its stage is named `booking-post-commit-response-loss-sdk`,
-not a parent-tap UI test. The fresh CI artifact, not compilation or this test's
-presence, must prove its actual execution. No such artifact is included in the
-local receipts above.
+not a parent-tap UI test. Run
+[39007864517](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39007864517)
+at source `4c0b263e0d34f3b1b99a29ef43e48b74bca7271f` completed successfully.
+`native-prepare.txt` and `native-recover.txt` each record one executed test.
+`native-booking-loss.json`, run `cb3ac1aeb07582924a2a4f48d51c9dab`, records a saved
+booking and receipt before the reset, process IDs 5846 then 5941, the same request
+and booking identity, and pending state cleared only after acknowledgement.
+`native-replay.json` records all 23 executed local app/SDK cases and 23 verified
+groups at 06:09:18 UTC. The ordinary network test also passed in this run; that
+does not explain or close its previously recorded intermittent preparation failure.
+
+## Additional Durability Regression
+
+After that successful SDK replay, a new JVM test modeled a preference write that
+updates memory but reports disk failure. Against the same `4c0b263` production
+store, `android-durability-before.xml` records **11 tests with one failure**: a
+second attempt used the cached-only ID without another successful persistence.
+This models the documented memory/disk split in the
+[Android implementation](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/android15-release/core/java/android/app/SharedPreferencesImpl.java).
+It is not a physical full-disk or power-loss experiment.
+
+The corrected store requires persistence even for an existing cached operation,
+keeping the same ID and refusing network submission while writes fail.
+`android-durability-after.xml` records **11/11 passed**. The ten-case receipt above
+and native replay remain unchanged: they predate this extra durability correction,
+which requires its own fresh current-head CI replay. No failed record is rewritten.
 
 ## Protocol And Remaining Work
 

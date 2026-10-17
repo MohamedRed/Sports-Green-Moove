@@ -18,7 +18,10 @@ internal interface BookingOperationStorage {
 
 internal class PendingBookingOperations(private val storage: BookingOperationStorage) {
     fun begin(slot: BookingSlot, intent: PendingBookingIntent): PendingBookingOperation = synchronized(lock) {
-        storage.read(slot) ?: PendingBookingOperation(UUID.randomUUID().toString(), intent).also { storage.write(slot, it) }
+        val operation = storage.read(slot) ?: PendingBookingOperation(UUID.randomUUID().toString(), intent)
+        // A failed preference commit can update memory without writing the ID to disk.
+        storage.write(slot, operation)
+        operation
     }
     fun acknowledge(slot: BookingSlot, requestId: String) = synchronized(lock) {
         if (storage.read(slot)?.requestId == requestId) storage.write(slot, null)
