@@ -10,7 +10,7 @@ export async function checkReservationDecisions() {
   await auth.setCustomUserClaims('sgm-qa-other-driver', { roleKeys: ['driver'] });
   const otherDriver = await signIn('other-driver@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Local reservation decisions QA' });
-  const request = async (seats = 1) => call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats }));
+  const request = async (seats = 1) => call('requestBooking', parent, await viewedBooking(parent, { tripId, childId: 'sgm-qa-child-lina', seats }));
   const list = (actor, role) => call('listReservations', actor, { role });
   const pending = await request(2);
   assert.deepEqual((await list(parent, 'parent')).items.find((b) => b.bookingId === pending.bookingId)?.allowedActions, ['cancel']);

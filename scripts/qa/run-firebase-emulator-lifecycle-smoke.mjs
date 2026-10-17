@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { randomUUID } from 'node:crypto';
 import { initializeApp, getApps } from 'firebase-admin/app';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
 import { db, tripInput } from './local-flow-client.mjs';
@@ -78,7 +79,8 @@ qa.tripId = lifecycleTrip.tripId;
 const beforeTrip = await docData('trips', qa.tripId);
 const beforeSeats = beforeTrip.seatsAvailable;
 const bookingRequest = await callCallable('requestBooking', parent.idToken, { tripId: qa.tripId, childId: qa.childId,
-  expectedBookingIntent: lifecycleTrip.trip.bookingIntent, seats: 1, note: 'Lifecycle smoke booking request' });
+  expectedBookingIntent: lifecycleTrip.trip.bookingIntent, seats: 1, note: 'Lifecycle smoke booking request',
+  clientRequestId: randomUUID(), requesterUserId: parent.uid });
 assert(bookingRequest.status === 'requested' && bookingRequest.bookingId, 'requestBooking should create requested booking', bookingRequest);
 const bookingId = bookingRequest.bookingId;
 

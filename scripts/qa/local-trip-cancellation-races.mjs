@@ -34,7 +34,7 @@ export async function checkTripCancellationRaces({ driver, parent, outsider, cre
     const tripId = await create();
     const bookingId = action === 'approveBooking' ? await book(parent, tripId) : undefined;
     const request = intent(tripId, (await preview(tripId)).revision);
-    const displayed = action === 'requestBooking' ? await viewedBooking({ tripId, seats: 1 }) : undefined;
+    const displayed = action === 'requestBooking' ? await viewedBooking(outsider, { tripId, seats: 1 }) : undefined;
     const operation = action === 'requestBooking' ? call(action, outsider, displayed)
       : action === 'approveBooking' ? call(action, driver, { bookingId }) : call(action, driver, { tripId });
     const results = await Promise.allSettled([operation, call('cancelTrip', driver, request)]);

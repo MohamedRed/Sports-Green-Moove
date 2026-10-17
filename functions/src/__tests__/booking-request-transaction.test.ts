@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { randomUUID } from "node:crypto";
 import { bookingIntentSnapshot } from "../domain/bookingIntent.js";
 import type { Trip } from "../domain/types.js";
 
@@ -13,7 +14,7 @@ const state = vi.hoisted(() => ({
 
 vi.mock("../lib/firebase.js", () => {
   const snapshot = (path: string) => {
-    const value = path.startsWith("trips/") ? state.trip : state.child;
+    const value = path.startsWith("trips/") ? state.trip : path.startsWith("children/") ? state.child : undefined;
     const copy = value && structuredClone(value);
     return { id: path.split("/")[1], exists: copy !== undefined, data: () => copy };
   };
@@ -47,6 +48,7 @@ import { requestBooking } from "../callables/bookingRequests.js";
 
 const invoke = (data: Record<string, unknown> = {}) => requestBooking.run({
   data: { tripId: "trip", childId: "child", seats: 2,
+    clientRequestId: randomUUID(), requesterUserId: "parent",
     expectedBookingIntent: bookingIntentSnapshot(state.trip as Trip), ...data },
   auth: { uid: "parent", token: { roleKeys: ["parent"] } },
 } as Parameters<typeof requestBooking.run>[0]);
@@ -63,14 +65,16 @@ beforeEach(() => {
 describe("booking transaction consistency", () => {
   it("reads child authority in the same transaction and retains the requested seats and note", async () => {
     await invoke({ note: "Two seats" });
-    expect(state.reads).toEqual(["trips/trip", "children/child"]);
-    expect(state.committed).toHaveLength(1);
+    expect(state.reads.filter((path) => !path.startsWith("bookingRequestReceipts/"))).toEqual(["trips/trip", "children/child"]);
+    expect(state.reads.filter((path) => path.startsWith("bookingRequestReceipts/"))).toHaveLength(1);
+    expect(state.committed).toHaveLength(2);
+    expect(state.committed[1].data).toMatchObject({ uid: "parent", state: "committed" });
     expect(state.committed[0].data).toMatchObject({ seats: 2, note: "Two seats", childLabel: "Initial child", status: "requested" });
   });
   it("preserves the original intent when a simulated SDK retry observes changed price", async () => {
     state.retry = () => { state.trip!.priceCents = 900; };
     await expect(invoke()).rejects.toMatchObject({ code: "aborted" });
-    expect(state.attempts).toBe(2); expect(state.discarded).toHaveLength(1); expect(state.committed).toEqual([]);
+    expect(state.attempts).toBe(2); expect(state.discarded).toHaveLength(2); expect(state.committed).toEqual([]);
   });
   it("rechecks guardian authority on every simulated retry", async () => {
     state.retry = () => { state.child!.guardianUserIds = []; };
@@ -81,7 +85,7 @@ describe("booking transaction consistency", () => {
   it("a simulated retry refreshes labels but retains one booking document identity", async () => {
     state.retry = () => { state.child!.displayName = "Updated child"; };
     await invoke();
-    expect(state.committed).toHaveLength(1);
+    expect(state.committed).toHaveLength(2);
     expect(state.committed[0].data.childLabel).toBe("Updated child");
     expect(state.committed[0].path).toBe(state.discarded[0].path);
   });
@@ -97,7 +101,7 @@ describe("booking transaction consistency", () => {
   });
   it("retains the existing adult-booking path without inventing a child", async () => {
     await invoke({ childId: undefined });
-    expect(state.reads).toEqual(["trips/trip"]);
+    expect(state.reads.filter((path) => !path.startsWith("bookingRequestReceipts/"))).toEqual(["trips/trip"]);
     expect(state.committed[0].data).not.toHaveProperty("childId");
   });
   it("rejects a deleted child without committing a booking", async () => {
@@ -116,14 +120,14 @@ describe("booking transaction consistency", () => {
     expect(state.committed).toEqual([]);
     state.beforeTransaction = undefined;
     await invoke();
-    expect(state.committed).toHaveLength(1);
+    expect(state.committed).toHaveLength(2);
     expect(state.committed[0].data).toMatchObject({ agreedPriceCents: 900, agreedAmountCents: 1800,
       tripTermsRevision: "b".repeat(64) });
   });
   it("uses current capacity without rejecting an unchanged intent when two seats still fit", async () => {
     state.beforeTransaction = () => { state.trip!.seatsAvailable = 3; };
     await invoke();
-    expect(state.committed).toHaveLength(1); expect(state.committed[0].data.seats).toBe(2);
+    expect(state.committed).toHaveLength(2); expect(state.committed[0].data.seats).toBe(2);
   });
   it("refuses changed details even when they changed before the server call", async () => {
     const displayed = bookingIntentSnapshot(state.trip as Trip);

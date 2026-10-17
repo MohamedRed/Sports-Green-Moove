@@ -6,7 +6,7 @@ import { openPostCommitLossProxy, postJsonWithoutRetry } from './post-commit-los
 export async function checkChatResponseLoss() {
   const parent = await signIn('p@example.test'), driver = await signIn('d@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Local response loss QA' });
-  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }));
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }));
   await call('approveBooking', driver, { bookingId });
   const input = { bookingId, body: 'Message enregistré malgré une réponse perdue.', clientMessageId: randomUUID() };
   const messages = () => db.collection('messages').where('sourceId', '==', bookingId).get();

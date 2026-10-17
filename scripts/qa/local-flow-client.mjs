@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
 import { initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { configureLocalEmulators } from './local-emulator-config.mjs';
@@ -10,10 +11,12 @@ export const { firestore: db } = await import('../../functions/lib/lib/firestore
 export const auth = getAuth();
 const { bookingIntentSnapshot } = await import('../../functions/lib/domain/bookingIntent.js');
 
-export async function viewedBooking(data) {
+export async function viewedBooking(actor, data) {
+  assert(typeof actor?.uid === 'string' && actor.uid.length > 0, 'An explicit booking account is required');
   assert(!Object.hasOwn(data, 'expectedBookingIntent'), 'Submit an already captured snapshot directly, without refreshing it');
   const trip = await document('trips', data.tripId);
-  return { ...data, expectedBookingIntent: bookingIntentSnapshot({ ...trip, id: data.tripId }) };
+  return { clientRequestId: randomUUID(), ...data, requesterUserId: actor.uid,
+    expectedBookingIntent: bookingIntentSnapshot({ ...trip, id: data.tripId }) };
 }
 
 export async function signIn(email) {

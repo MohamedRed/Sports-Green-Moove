@@ -1,0 +1,773 @@
+{
+  "runId": "3391a9030a03a7d357a3afc9a130bf5d",
+  "testedAt": "2026-10-17T05:49:17.311Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "controlled-local-booking-handler-not-phone-ui",
+  "passed": true,
+  "cases": [
+    {
+      "id": "price",
+      "status": "passed",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/0b7096de617e97d2780492621c0b79d47e2cebff490c1bd98cdde2691dedfa8f",
+        "trips/sgm-qa-consistency-price"
+      ],
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:15.959Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 900,
+        "departureAt": "2026-10-18T17:49:15.959Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "appliedChangeId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "departure",
+      "status": "passed",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/0761177928f01b867f04f73ece5d396e8a1c28b81505cc9e926d5366feb3f7c3",
+        "trips/sgm-qa-consistency-departure"
+      ],
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.770Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-20T05:49:16.778Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "origin",
+      "status": "passed",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/7cf6b6c3feac9c05600bf572682673bd79723ca5850348fae16de639885d3830",
+        "trips/sgm-qa-consistency-origin"
+      ],
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.803Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.803Z",
+        "origin": {
+          "lat": 50.75,
+          "lng": 4.61
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "destination",
+      "status": "passed",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/2238010c4a257f89f656eb8de0179a5fbc1235a03951ff9cb3b5e6804c929f08",
+        "trips/sgm-qa-consistency-destination"
+      ],
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.831Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.831Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.88,
+          "lng": 4.36
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "arrival",
+      "status": "passed",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/34836b78c09f853e66bcdad3044c9ca2d015182b864b4e0ee98ca8f2c7c7eda4",
+        "trips/sgm-qa-consistency-arrival"
+      ],
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.857Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.857Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "arrivalBy": "2026-10-20T06:49:16.864Z"
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "applied-revision",
+      "status": "passed",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/b33f154ef5276d91629c16b2023bbf396b34f9dacb6a82bc2d6a5b5470d0b650",
+        "trips/sgm-qa-consistency-applied-revision"
+      ],
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.885Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.885Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "appliedChangeId": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "guardian-revoked",
+      "status": "passed",
+      "expectedError": "permission-denied",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/e72faea7932b6d8c5df6903deaddd8df5b93bc0655ef9b79ae9516d6d2b1c423",
+        "trips/sgm-qa-consistency-guardian-revoked",
+        "children/sgm-qa-consistency-guardian-revoked-child"
+      ],
+      "rejected": {
+        "code": "permission-denied",
+        "message": "Only a guardian can book a trip for this child."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.909Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.909Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": []
+    },
+    {
+      "id": "child-deleted",
+      "status": "passed",
+      "expectedError": "permission-denied",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/05af280b8c0742ad1cb6cc8be89d988e71aa532202bdbb36c020e2849cb30b16",
+        "trips/sgm-qa-consistency-child-deleted",
+        "children/sgm-qa-consistency-child-deleted-child"
+      ],
+      "rejected": {
+        "code": "permission-denied",
+        "message": "Only a guardian can book a trip for this child."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.934Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.934Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": false
+    },
+    {
+      "id": "child-label",
+      "status": "passed",
+      "expectedError": null,
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/064e9d6fc66a42d188dd34d44b6fbeca3b60293512cfa8f621c63e5e80e0d7a6",
+        "trips/sgm-qa-consistency-child-label",
+        "children/sgm-qa-consistency-child-label-child"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "3PdYNseeD8JeyU5HKjzs",
+          "tripId": "sgm-qa-consistency-child-label",
+          "seats": 2,
+          "childLabel": "QA enfant actualisé",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.962Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:16.962Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-child-label",
+        "bookingIntent": {
+          "terms": {
+            "departureAt": "2026-10-18T17:49:16.962Z",
+            "arrivalBy": null,
+            "origin": {
+              "lat": 50.7167,
+              "lng": 4.6167
+            },
+            "destination": {
+              "lat": 50.8503,
+              "lng": 4.3517
+            },
+            "priceCents": 250
+          },
+          "context": {
+            "driverUserId": "sgm-qa-consistency-driver",
+            "seatsTotal": 4,
+            "clubId": "sgm-qa-club-green-wavre",
+            "teamId": "sgm-qa-club-green-wavre-u8",
+            "category": "U 7/8",
+            "pickupRadiusM": 1500,
+            "baggage": "medium",
+            "returnTrip": false,
+            "supportsVehicleTracking": true,
+            "supportsChildTracking": true,
+            "appliedChangeId": null
+          }
+        },
+        "title": "Local QA trip",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 18h49",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "18h49",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "cosmetic-title",
+      "status": "passed",
+      "expectedError": null,
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/c53069d1a04eadacb9a9231bb86a90587c0c663ae3bc2475e16f9f7cd6dd5492",
+        "trips/sgm-qa-consistency-cosmetic-title",
+        "children/sgm-qa-consistency-cosmetic-title-child"
+      ],
+      "bookingCount": 1,
+      "bookings": [
+        {
+          "id": "O5ccyzGuwR6fpL21E3KO",
+          "tripId": "sgm-qa-consistency-cosmetic-title",
+          "seats": 2,
+          "childLabel": "QA enfant initial",
+          "status": "requested"
+        }
+      ],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.037Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.037Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ],
+      "returnedTrip": {
+        "id": "sgm-qa-consistency-cosmetic-title",
+        "bookingIntent": {
+          "terms": {
+            "departureAt": "2026-10-18T17:49:17.037Z",
+            "arrivalBy": null,
+            "origin": {
+              "lat": 50.7167,
+              "lng": 4.6167
+            },
+            "destination": {
+              "lat": 50.8503,
+              "lng": 4.3517
+            },
+            "priceCents": 250
+          },
+          "context": {
+            "driverUserId": "sgm-qa-consistency-driver",
+            "seatsTotal": 4,
+            "clubId": "sgm-qa-club-green-wavre",
+            "teamId": "sgm-qa-club-green-wavre-u8",
+            "category": "U 7/8",
+            "pickupRadiusM": 1500,
+            "baggage": "medium",
+            "returnTrip": false,
+            "supportsVehicleTracking": true,
+            "supportsChildTracking": true,
+            "appliedChangeId": null
+          }
+        },
+        "title": "QA titre actualisé",
+        "club": "Green Wavre QA Club",
+        "category": "U 7/8",
+        "sport": "Football",
+        "departureLabel": "DIM 18 OCT. · 18h49",
+        "dateLabel": "DIM 18 OCT.",
+        "timeLabel": "18h49",
+        "distanceLabel": "Distance à confirmer",
+        "seatsAvailable": 4,
+        "seatsLabel": "4 places",
+        "priceLabel": "2,50 EUR",
+        "passengerInitials": [],
+        "reasons": [
+          "4 places",
+          "Suivi véhicule disponible",
+          "Suivi enfant disponible"
+        ],
+        "status": "upcoming",
+        "mapPreview": {
+          "start": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "end": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          }
+        }
+      }
+    },
+    {
+      "id": "closed-trip",
+      "status": "passed",
+      "expectedError": "failed-precondition",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/fef18c2e9781fb8f846b34f09fbe10332ccafb440a5181eb925c875578745059",
+        "trips/sgm-qa-consistency-closed-trip"
+      ],
+      "rejected": {
+        "code": "failed-precondition",
+        "message": "Trip is not available."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.064Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.064Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "pending-proposal",
+      "status": "passed",
+      "expectedError": "failed-precondition",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/34c81925e122f5f3c4562ace4bcd632892d54a41ad3b5a197c8e7f154dea105b",
+        "trips/sgm-qa-consistency-pending-proposal"
+      ],
+      "rejected": {
+        "code": "failed-precondition",
+        "message": "Trip is not available."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.086Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.086Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "lost-capacity",
+      "status": "passed",
+      "expectedError": "failed-precondition",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/979b5a6cbaf6e3c90191f81d85792f9af089d2364bf52034d68cf9d6948f4116",
+        "trips/sgm-qa-consistency-lost-capacity"
+      ],
+      "rejected": {
+        "code": "failed-precondition",
+        "message": "Not enough seats available."
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.107Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.107Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    },
+    {
+      "id": "confirmed-application",
+      "status": "passed",
+      "expectedError": "aborted",
+      "mutationApplied": true,
+      "reads": [
+        "bookingRequestReceipts/2de6bff1c746eb3842bbedec91cf69a4f4b0f670d4930cfd704954301cd9f162",
+        "trips/sgm-qa-consistency-confirmed-application"
+      ],
+      "rejected": {
+        "code": "aborted",
+        "message": "Trip details changed. Review the current trip before booking."
+      },
+      "mutationResult": {
+        "method": "real-local-proposal-confirmation-application",
+        "proposalId": "342baf438fd5143335b7841126519a751013b52a7cae646549aadfb6e9aeec16",
+        "existingBookingId": "qH4l2d41tGs8tPY8Yx6U",
+        "status": "applied",
+        "parentDecision": "accept",
+        "affectedBookingIds": [
+          "qH4l2d41tGs8tPY8Yx6U"
+        ],
+        "newPriceCents": 900,
+        "providerCalls": 1,
+        "syntheticRoute": true,
+        "livePayment": false
+      },
+      "bookingCount": 0,
+      "bookings": [],
+      "initialTerms": {
+        "priceCents": 250,
+        "departureAt": "2026-10-18T17:49:17.130Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        }
+      },
+      "currentTerms": {
+        "priceCents": 900,
+        "departureAt": "2026-10-18T18:49:17.130Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "appliedChangeId": "342baf438fd5143335b7841126519a751013b52a7cae646549aadfb6e9aeec16"
+      },
+      "childExists": true,
+      "currentGuardians": [
+        "sgm-qa-consistency-parent"
+      ]
+    }
+  ],
+  "bookingSourceSha256": "f1de643813d2c092b59468a76956b64f50d3ad42acf4222f1b58c7b89c5bb4d9",
+  "requestSourceSha256": "18474b67b0e1487297870602ad8a8268b247f0297d863eb2ded05a124406a09c",
+  "intentSourceSha256": "44e3955b2ee8679f6e44ec5fce03778dd8c81f0889e813de5906005f0e700cea",
+  "livePayment": false,
+  "productionDeployed": false
+}

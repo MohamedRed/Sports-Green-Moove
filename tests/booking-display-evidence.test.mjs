@@ -102,7 +102,8 @@ test('native receipts are JVM and Foundation checks, not promoted to phone UI ev
   assert(swift.cases.every((item) => item.status === 'passed'));
   assert.equal(content.flows.find((item) => item.id === 'booking').status, 'partial');
   assert(content.updates.some((item) => item.flow === 'booking' && /25 contrôles locaux/.test(item.text)));
-  assert.equal(content.blockers.find((item) => item.id === 'booking-idempotency').source, base + 'README.md');
+  assert.equal(content.blockers.find((item) => item.id === 'booking-retry-devices').source,
+    'docs/release/evidence/local-booking-recovery-2026-10-17/README.md');
 });
 
 test('smoke CI executes fresh handler and wire checks without weakening native gates', () => {
@@ -111,8 +112,8 @@ test('smoke CI executes fresh handler and wire checks without weakening native g
   for (const command of ['node --test tests/booking-display-evidence.test.mjs',
     'npm run test:booking-display', 'npm run test:booking-intent-wire']) assert(workflow.includes(command));
   assert(workflow.includes('name: booking-display-results'));
-  const backend = read('functions/src/callables/bookingRequests.ts');
-  assert.match(backend, /expectedBookingIntent: bookingIntentSnapshotSchema\s*}/);
+  const backend = read('functions/src/domain/bookingRequestIdentity.ts');
+  assert.match(backend, /expectedBookingIntent: bookingIntentSnapshotSchema/);
   assert(!backend.includes('expectedBookingIntent: bookingIntentSnapshotSchema.optional'));
   assert(read('scripts/qa/check-booking-intent-wire.mjs').includes("'-swift-version', '6'"));
 });

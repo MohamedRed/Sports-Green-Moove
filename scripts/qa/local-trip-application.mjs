@@ -9,7 +9,7 @@ export async function checkTripChangeApplication() {
   const { reconcileStripeEvent } = await import('../../functions/lib/services/stripeReconciliation.js');
   const create = async (priceCents = 0, paid = false) => {
     const { tripId } = await call('createTrip', driver, { ...tripInput(), priceCents });
-    const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1, childId: 'sgm-qa-child-lina' }));
+    const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1, childId: 'sgm-qa-child-lina' }));
     await call('approveBooking', driver, { bookingId });
     if (paid) await db.collection('bookings').doc(bookingId).update({ paymentStatus: 'paid', amountPaidCents: priceCents,
       paymentIntentId: `pi_local_${bookingId}`, currency: 'eur' });

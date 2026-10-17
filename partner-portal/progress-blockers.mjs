@@ -1,7 +1,7 @@
 export const blockers = [
-  { id: 'booking-idempotency', title: 'Retrouver une demande après une réponse perdue',
-    text: 'Les contrôles locaux refusent les anciens détails du trajet.',
-    next: 'Vérifier qu’un renvoi après une réponse perdue ne crée pas deux demandes, puis rejouer sur téléphone.', source: 'docs/release/evidence/local-booking-display-2026-10-17/README.md' },
+  { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
+    text: 'Les renvois retrouvent une seule demande dans les contrôles locaux.',
+    next: 'Rejouer les coupures et les changements de choix sur téléphone, puis terminer les confirmations des parents.', source: 'docs/release/evidence/local-booking-recovery-2026-10-17/README.md' },
   { id: 'cancellation-race', title: 'Rejouer le conflit d’annulation sur téléphone',
     text: 'Les essais locaux passent après correction.',
     next: 'Rejouer sur téléphone. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-contention-2026-10-17/README.md' },

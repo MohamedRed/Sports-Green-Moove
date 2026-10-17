@@ -11,7 +11,7 @@ const save = (directory, name, value) => writeFileSync(resolve(directory, name),
 export async function seedChatRestartUiFixture() {
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Trajet relancement QA' });
-  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 1 }));
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, childId: 'sgm-qa-child-lina', seats: 1 }));
   await call('approveBooking', driver, { bookingId });
   assert.equal((await db.collection('messages').where('sourceId', '==', bookingId).get()).size, 0);
   return { tripId, bookingId };

@@ -6,7 +6,7 @@ export async function checkTripDetailsOwnership() {
   const { projectId } = configureLocalEmulators();
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Trip details boundary QA', priceCents: 250 });
-  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 2 }));
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, childId: 'sgm-qa-child-lina', seats: 2 }));
   await call('approveBooking', driver, { bookingId });
   // Local fixture metadata only; no provider payment is created.
   await db.collection('bookings').doc(bookingId).update({ paymentStatus: 'paid' });

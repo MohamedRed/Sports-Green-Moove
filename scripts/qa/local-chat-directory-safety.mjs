@@ -109,7 +109,7 @@ export async function checkChatDirectorySafety() {
   const title = 'Trajet publié pour une nouvelle discussion QA';
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title });
   assert.equal(typeof (await db.doc(`trips/${tripId}`).get()).get('departureAt'), 'string');
-  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }));
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }));
   await call('approveBooking', driver, { bookingId });
   const publishedOptions = await call('listChatBookingOptions', parent);
   const published = publishedOptions.items.find((item) => item.sourceId === bookingId);

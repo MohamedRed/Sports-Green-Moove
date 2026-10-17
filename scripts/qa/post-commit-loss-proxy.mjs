@@ -2,20 +2,23 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import { once } from 'node:events';
 
-const endpoint = 'http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/sendChatMessage';
+const origin = 'http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/';
+const endpoints = new Map([[`${origin}sendChatMessage`, 'messageId'], [`${origin}requestBooking`, 'bookingId']]);
 
 export async function openPostCommitLossProxy(target, afterCommit) {
-  assert.equal(target, endpoint, 'Fault injection is restricted to the isolated send callable');
+  const resultKey = endpoints.get(target);
+  assert(resultKey, 'Fault injection is restricted to an explicitly isolated send callable');
   assert.equal(typeof afterCommit, 'function');
   const attempts = [];
   const server = http.createServer((request, response) => {
     void (async () => {
-      assert.equal(request.method, 'POST'); assert.equal(request.url, '/');
+      assert.equal(request.method, 'POST');
+      assert(['/', new URL(target).pathname].includes(request.url), 'Only the selected isolated callable path is allowed');
       const chunks = []; let length = 0;
       for await (const chunk of request) {
         length += chunk.length; assert(length <= 16_384, 'Local request exceeds the test bound'); chunks.push(chunk);
       }
-      const upstream = await fetch(target, { method: 'POST', signal: AbortSignal.timeout(20_000),
+      const upstream = await fetch(target, { method: 'POST', redirect: 'error', signal: AbortSignal.timeout(20_000),
         headers: { 'content-type': 'application/json', authorization: request.headers.authorization || '' },
         body: Buffer.concat(chunks) });
       const body = await upstream.text();
@@ -23,9 +26,9 @@ export async function openPostCommitLossProxy(target, afterCommit) {
       const attempt = { number: attempts.length + 1, upstreamStatus: upstream.status, acknowledgementDropped: false };
       attempts.push(attempt);
       if (attempt.number === 1) {
-        assert.equal(upstream.status, 200); assert.equal(typeof json.result?.messageId, 'string');
-        attempt.commit = await afterCommit(json.result.messageId);
-        assert.equal(attempt.commit?.messageId, json.result.messageId, 'Independent commit verification is mandatory');
+        assert.equal(upstream.status, 200); assert.equal(typeof json.result?.[resultKey], 'string');
+        attempt.commit = await afterCommit(json.result[resultKey]);
+        assert.equal(attempt.commit?.[resultKey], json.result[resultKey], 'Independent commit verification is mandatory');
         attempt.acknowledgementDropped = true;
         response.destroy();
         return;
@@ -41,7 +44,7 @@ export async function openPostCommitLossProxy(target, afterCommit) {
   });
   server.listen(0, '127.0.0.1');
   await once(server, 'listening');
-  return { url: `http://127.0.0.1:${server.address().port}/`, attempts,
+  return { port: server.address().port, url: `http://127.0.0.1:${server.address().port}/`, attempts,
     async close() { const closed = once(server, 'close'); server.close(); server.closeAllConnections(); await closed; } };
 }
 

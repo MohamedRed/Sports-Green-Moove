@@ -6,11 +6,11 @@ export async function seedTripCancellationUi() {
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Trajet QA annulé par le conducteur',
     seatsTotal: 4, seatsAvailable: 3, priceCents: 250 });
-  const { bookingId: paidId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 2 }));
+  const { bookingId: paidId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 2 }));
   await call('approveBooking', driver, { bookingId: paidId });
   // Isolated metadata only: no payment is created or settled by this fixture.
   await db.collection('bookings').doc(paidId).update({ paymentStatus: 'paid' });
-  const { bookingId: pendingId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }));
+  const { bookingId: pendingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }));
   assert.equal((await document('trips', tripId)).seatsAvailable, 1);
   return { tripId, paidId, pendingId };
 }
@@ -40,7 +40,7 @@ export async function verifyTripCancellationUi(fixture) {
   const intent = { tripId, requestId: receipt.requestId, expectedRevision: receipt.expectedRevision, reason: receipt.reason };
   assert.deepEqual(await call('cancelTrip', driver, intent), confirmed);
   await denied('cancelTrip', driver, { ...intent, requestId: randomUUID() }, 'ALREADY_EXISTS');
-  await denied('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }), 'FAILED_PRECONDITION');
+  await denied('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }), 'FAILED_PRECONDITION');
   await denied('approveBooking', driver, { bookingId: pendingId }, 'FAILED_PRECONDITION');
   await denied('startRide', driver, { tripId }, 'FAILED_PRECONDITION');
   assert.deepEqual(await document('tripCancellations', tripId), receipt);

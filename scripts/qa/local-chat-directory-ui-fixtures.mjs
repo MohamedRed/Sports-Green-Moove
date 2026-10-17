@@ -24,7 +24,7 @@ export async function seedChatDirectoryUiFixtures() {
   const driver = await signIn('d@example.test');
   const parent = await signIn('p@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Nouveau trajet de discussion QA' });
-  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 1 }));
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, childId: 'sgm-qa-child-lina', seats: 1 }));
   await call('approveBooking', driver, { bookingId });
   const indexes = await db.collection('chatInboxes').where('userId', '==', parent.uid).get();
   assert.equal(indexes.size, 27, 'Two existing conversations plus 25 archived fixtures');

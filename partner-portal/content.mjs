@@ -164,7 +164,7 @@ export const content = {
     { id: 'booking', title: 'Réservations', status: 'partial', checkedAt: '2026-10-16',
       summary: 'Acceptation, refus et annulation passent dans l’app, en local.',
       verified: 'Le parent annule une demande en attente puis une réservation acceptée. Le conducteur refuse une autre demande ; le parent voit le refus. Les places sont restituées une seule fois.',
-      remaining: 'Les anciens détails sont refusés dans les contrôles locaux du 17 octobre. Restent le renvoi après une réponse perdue, les confirmations des parents et les remboursements. À rejouer sur téléphone ; pas encore en ligne.',
+      remaining: 'Les anciens détails et les doublons après une réponse perdue sont refusés dans les contrôles locaux du 17 octobre. Restent les essais sur téléphone, les confirmations des parents et les remboursements. Pas encore en ligne.',
       local: local(['booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking', 'reservation-decisions', 'trip-capacity-ownership'], ['Une demande de deux places garde le bon nombre de places.', 'L’annulation restitue les places une seule fois.', 'Le refus ne retire aucune place.', 'Une personne extérieure ne peut pas modifier la réservation.', 'Un passager déjà pris en charge ne peut pas annuler.', 'Le conducteur ne peut pas modifier directement le nombre de places réservées.'], 'docs/release/evidence/local-trip-capacity-2026-10-16/services-after.json'),
       ui: { source: 'docs/release/evidence/local-reservations-2026-10-16/ui-results.json', groups: ['driver-approval-ui', 'reservation-decisions-ui'] },
       images: [shot('reservation-cancelled', 'Deux réservations annulées par le parent, en local'),

@@ -43,22 +43,11 @@ struct FirebaseBackendGateway: FirebaseGateway {
     }
 
     func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String {
-        let data = try bookingRequestPayload(trip: trip, childId: childId, seats: seats)
-        return try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable("requestBooking").call(data) { result, error in
-                if let error {
-                    let failure = error as NSError
-                    if failure.domain == FunctionsErrorDomain && failure.code == FunctionsErrorCode.aborted.rawValue {
-                        continuation.resume(throwing: BookingReviewRequiredError())
-                    } else { continuation.resume(throwing: error) }
-                } else if let payload = result?.data as? [String: Any],
-                          let bookingId = payload["bookingId"] as? String {
-                    continuation.resume(returning: bookingId)
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse booking invalide."))
-                }
-            }
-        }
+        _ = try bookingRequestPayload(trip: trip, childId: childId, seats: seats)
+        guard let terms = trip.bookingIntent else { throw BookingIntentError.unavailable }
+        let coordinator = BookingRequestCoordinator(store: try PendingBookingStore.platformStore(),
+            transport: FirebaseBookingRequestTransport(), currentUid: { Auth.auth().currentUser?.uid })
+        return try await coordinator.request(PendingBookingIntent(tripId: trip.id, childId: childId, seats: seats, terms: terms))
     }
 
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {

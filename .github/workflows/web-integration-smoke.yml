@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
+      - "tests/booking-recovery-evidence.test.mjs"
+      - "tests/booking-request-rules.test.ts"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/BookingRequestPayload.kt"
@@ -120,6 +123,9 @@ on:
     branches:
       - main
     paths:
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
+      - "tests/booking-recovery-evidence.test.mjs"
+      - "tests/booking-request-rules.test.ts"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/BookingRequestPayload.kt"
@@ -290,6 +296,30 @@ jobs:
 
       - name: Validate displayed booking intent evidence
         run: node --test tests/booking-display-evidence.test.mjs
+
+      - name: Validate booking response-loss evidence
+        run: node --test tests/booking-recovery-evidence.test.mjs
+
+      - name: Test booking retry identity and changed-intent races
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-booking-recovery/transport.json
+        run: npm run test:booking-response-loss
+
+      - name: Test durable Swift booking recovery
+        env:
+          SGM_SWIFT_BOOKING_RECOVERY_OUTPUT: ${{ runner.temp }}/sgm-booking-recovery/swift.json
+        run: npm run test:booking-recovery-wire
+
+      - name: Upload booking retry receipts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-recovery-results
+          path: ${{ runner.temp }}/sgm-booking-recovery/**
+          if-no-files-found: ignore
+
+      - name: Test server-only booking request receipts
+        run: npx firebase emulators:exec --project sports-green-moove-rules-test --only firestore "npx vitest run tests/booking-request-rules.test.ts"
 
       - name: Test Swift booking snapshot wire contract
         env:

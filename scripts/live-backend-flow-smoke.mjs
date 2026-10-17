@@ -138,7 +138,7 @@ async function searchCreatedTrip(parent, trip, childId) {
 
 async function requestAndApproveBooking(parent, driver, tripId, childId, displayed) {
   const request = await callFunction("requestBooking", parent.idToken, { tripId, childId, seats: 1,
-    expectedBookingIntent: displayed.bookingIntent, note: runId });
+    expectedBookingIntent: displayed.bookingIntent, note: runId, clientRequestId: randomUUID(), requesterUserId: parent.uid });
   created.bookingIds.push(request.bookingId);
 
   const queue = await callFunction("listDriverBookingRequests", driver.idToken);

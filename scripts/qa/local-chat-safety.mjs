@@ -7,7 +7,7 @@ export async function checkChatDeliverySafety() {
   const driver = await signIn('d@example.test');
   const outsider = await signIn('outsider@example.test');
   const { tripId } = await call('createTrip', driver, tripInput());
-  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }));
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }));
   const ref = { sourceType: 'booking', sourceId: bookingId };
   const clientMessageId = randomUUID();
   const input = { bookingId, body: 'Rendez-vous devant le stade.', clientMessageId };

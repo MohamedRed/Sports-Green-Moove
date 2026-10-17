@@ -11,7 +11,7 @@ export async function seedReservationUiFixtures() {
     ['declined', 'Trajet QA à refuser', false],
   ]) {
     const { tripId } = await call('createTrip', driver, { ...tripInput(), title });
-    const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 2 }));
+    const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, childId: 'sgm-qa-child-lina', seats: 2 }));
     if (approved) await call('approveBooking', driver, { bookingId });
     assert.equal((await document('trips', tripId)).seatsAvailable, approved ? 2 : 4);
     records[key] = { bookingId, tripId };

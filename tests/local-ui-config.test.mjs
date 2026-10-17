@@ -52,7 +52,9 @@ test('search ownership is bound to the session and logout invalidates pending ha
 
 test('the native booking gateway uses the selected seat payload and requires persisted SDK verification', () => {
   const gateway = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt', import.meta.url), 'utf8');
-  assert.match(gateway, /val requestPayload = bookingRequestPayload\(trip, childId, seats\)/);
+  assert.match(gateway, /return bookingGateway.requestBooking\(trip, childId, seats\)/);
+  const booking = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidBookingGateway.kt', import.meta.url), 'utf8');
+  assert.match(booking, /bookingRequestPayload\(trip, childId, seats\)/);
   const controller = readFileSync(new URL('../android/app/src/main/java/be/sportgreenmoove/app/ui/SearchController.kt', import.meta.url), 'utf8');
   assert.match(controller, /requestBooking\(match.summary, criteria.childUserId, criteria.seatsNeeded\)/);
   assert.match(controller, /match.tripId != match.summary.id/);
@@ -78,7 +80,7 @@ test('local conversation evidence requires app execution and independent persist
   assert.match(runner, /const chat = await verifyLocalChatUi\(\)/);
   assert.match(runner, /instrument\(\['LocalConversationDirectoryFlowTest'\], 1\)/);
   assert.match(runner, /const directory = await verifyLocalChatDirectoryUi\(directoryFixture\)/);
-  assert.match(runner, /testCount: 21/);
+  assert.match(runner, /testCount: 23/);
   assert.match(runner, /instrument\(\['LocalMembershipFlowTest'\], 1\)/);
   assert.match(runner, /await verifyNativeMembershipUi\(\)/);
   assert.match(runner, /instrument\(\['LocalBookingDecisionsFlowTest'\], 1\)/);

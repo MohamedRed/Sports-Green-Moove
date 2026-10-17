@@ -107,8 +107,10 @@ must not remove a newer search or appear in a closed account.
 This is a client-reported snapshot checked against authoritative state, not a
 server-signed quote or payment authorization. It is a mandatory wire-contract
 change requiring coordinated server/client release; it has not been deployed.
-Uncertain-response booking idempotency, child-list refresh after revoked access,
-full iOS recovery and the editing/parent-decision screens remain unfinished.
+Booking response-loss recovery now has a separate local implementation and
+[verification scope](../release/evidence/local-booking-recovery-2026-10-17/README.md).
+Child-list refresh after revoked access, full iOS device recovery and the
+editing/parent-decision screens remain unfinished.
 See `docs/release/evidence/local-booking-display-2026-10-17/README.md` for current
 local handler, native mapping and wire coverage. The earlier consistency report
 retains its original narrower scope. Neither report proves the completed editor.

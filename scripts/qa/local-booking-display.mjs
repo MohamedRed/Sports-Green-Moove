@@ -1,6 +1,6 @@
 import './local-egress-guard.mjs';
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -53,7 +53,8 @@ for (const scenario of scenarios) {
   if (scenario.equivalentTime) expected.terms.departureAt =
     new Date(Date.parse(expected.terms.departureAt) + 7200_000).toISOString().replace('Z', '+02:00');
   let returned, rejected, failure;
-  try { returned = await requestBooking.run({ data: { tripId: trip.id, seats: 2, expectedBookingIntent: expected },
+  try { returned = await requestBooking.run({ data: { tripId: trip.id, seats: 2, expectedBookingIntent: expected,
+    clientRequestId: randomUUID(), requesterUserId: parentUserId },
     auth: { uid: parentUserId, token: { roleKeys: ['parent'] } } }); }
   catch (error) { rejected = { code: error.code, message: error.message }; }
   const saved = await db.collection('bookings').where('tripId', '==', trip.id).get();

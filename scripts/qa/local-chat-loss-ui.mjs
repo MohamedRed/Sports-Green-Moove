@@ -6,23 +6,12 @@ import { resolve } from 'node:path';
 import { viewedBooking, call, db, signIn, tripInput } from './local-flow-client.mjs';
 import { faultMessage } from './native-chat-loss-proxy.mjs';
 import { assertChatLossReceipt } from './chat-loss-evidence.mjs';
-
-function nextMessage(worker, type) {
-  return new Promise((resolveMessage, reject) => {
-    const timer = setTimeout(() => finish(new Error('Local fault worker timed out')), 30_000);
-    const onMessage = (message) => { if (message.type === type) finish(null, message); };
-    const onExit = () => finish(new Error('Local fault worker exited before its receipt'));
-    const finish = (error, value) => {
-      clearTimeout(timer); worker.off('message', onMessage); worker.off('exit', onExit); worker.off('error', finish);
-      if (error) reject(error); else resolveMessage(value);
-    };
-    worker.on('message', onMessage); worker.once('exit', onExit); worker.once('error', finish);
-  });
-}
+import { nextFaultMessage as nextMessage } from './local-fault-worker-ipc.mjs';
 
 export async function replayChatLossUi(instrument, collect, directory) {
   const { tripId } = await call('createTrip', await signIn('d@example.test'), { ...tripInput(), title: 'Trajet réponse perdue QA' });
-  const { bookingId } = await call('requestBooking', await signIn('p@example.test'), await viewedBooking({ tripId, seats: 1 }));
+  const parent = await signIn('p@example.test');
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }));
   await call('approveBooking', await signIn('d@example.test'), { bookingId });
   assert.equal((await db.collection('messages').where('sourceId', '==', bookingId).get()).size, 0);
   // Instrumentation is synchronous; the independently supervised child must keep serving its HTTP requests.

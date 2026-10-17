@@ -1,6 +1,6 @@
 import './local-egress-guard.mjs';
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { Transaction } from 'firebase-admin/firestore';
@@ -48,6 +48,7 @@ for (const [id, expectedError, mutate] of scenarios) {
   };
   try {
     returned = await requestBooking.run({ data: { tripId: trip.id, childId: child.id, seats: 2,
+      clientRequestId: randomUUID(), requesterUserId: parentUserId,
       expectedBookingIntent: bookingIntentSnapshot(initial) },
       auth: { uid: parentUserId, token: { roleKeys: ['parent'] } } });
   } catch (error) { rejected = { code: error.code, message: error.message }; }

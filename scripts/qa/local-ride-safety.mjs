@@ -8,7 +8,7 @@ export async function checkRidePassengerSafety() {
   const { tripId } = await call('createTrip', driver, tripInput());
   const bookings = [];
   for (const input of [{ childId }, { childId }, {}]) {
-    const booking = await call('requestBooking', parent, await viewedBooking({ tripId, seats: 1, ...input }));
+    const booking = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1, ...input }));
     if (bookings.length < 2) await call('approveBooking', driver, { bookingId: booking.bookingId });
     bookings.push(booking.bookingId);
   }
@@ -19,7 +19,7 @@ export async function checkRidePassengerSafety() {
   assert.equal((await db.collection('rideSessions').where('tripId', '==', tripId).get()).size, 1);
   assert.equal((await call('startRide', driver, { tripId })).ride.rideSessionId, ride.rideSessionId);
   await denied('startRide', driver, { tripId, bookingIds: [bookings[0]] }, 'FAILED_PRECONDITION');
-  await denied('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }), 'FAILED_PRECONDITION');
+  await denied('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }), 'FAILED_PRECONDITION');
   await denied('approveBooking', driver, { bookingId: bookings[2] }, 'FAILED_PRECONDITION');
   await denied('cancelBooking', parent, { bookingId: bookings[0] }, 'FAILED_PRECONDITION');
   const target = { rideSessionId: ride.rideSessionId, bookingId: bookings[0], childId };
@@ -55,7 +55,7 @@ export async function checkRidePassengerSafety() {
   assert.equal((await audit.get()).size, 4);
   await call('endRide', driver, { rideSessionId: ride.rideSessionId, distanceMeters: 28600, passengersSharing: 2 });
   assert.equal((await document('trips', tripId)).status, 'completed');
-  await denied('requestBooking', parent, await viewedBooking({ tripId, seats: 1 }), 'FAILED_PRECONDITION');
+  await denied('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }), 'FAILED_PRECONDITION');
   await denied('startRide', driver, { tripId, bookingIds: [] }, 'FAILED_PRECONDITION');
   await call('cancelBooking', parent, { bookingId: bookings[2] });
 

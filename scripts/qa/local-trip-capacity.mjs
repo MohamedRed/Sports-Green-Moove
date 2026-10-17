@@ -8,7 +8,7 @@ export async function checkTripCapacityOwnership() {
   const driver = await signIn('d@example.test');
   const outsider = await signIn('outsider@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Seat integrity QA' });
-  const { bookingId } = await call('requestBooking', parent, await viewedBooking({ tripId, childId: 'sgm-qa-child-lina', seats: 2 }));
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, childId: 'sgm-qa-child-lina', seats: 2 }));
   await call('approveBooking', driver, { bookingId });
   assert.equal((await document('trips', tripId)).seatsAvailable, 2);
   const base = `http://${process.env.FIRESTORE_EMULATOR_HOST}/v1/projects/${projectId}/databases/(default)/documents/trips/${tripId}`;

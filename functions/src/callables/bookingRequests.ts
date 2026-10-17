@@ -1,7 +1,8 @@
 import { Timestamp, type Transaction } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
-import { z } from "zod";
-import { bookingIntentRevision, bookingIntentSnapshotSchema, bookingSnapshotRevision } from "../domain/bookingIntent.js";
+import { bookingIntentRevision, bookingSnapshotRevision } from "../domain/bookingIntent.js";
+import { bookingRequestSchema, bookingRequestDocumentId, bookingRequestFingerprint, requireReceiptOwner,
+  type BookingRequestReceipt } from "../domain/bookingRequestIdentity.js";
 import { childDisplayLabel, type ChildProfileDocument } from "../domain/children.js";
 import { isGuardianOfChild } from "../domain/searchAccess.js";
 import type { Trip } from "../domain/types.js";
@@ -33,16 +34,29 @@ async function loadCurrentChild(transaction: Transaction, uid: string, childId: 
 export const requestBooking = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   requireRole(request.auth?.token, "parent");
-  const schema = z.object({ tripId: z.string(), childId: z.string().optional(),
-    seats: z.number().int().positive().default(1), note: z.string().optional(),
-    expectedBookingIntent: bookingIntentSnapshotSchema });
-  const data = parseCallableData(schema, request.data);
+  const data = parseCallableData(bookingRequestSchema, request.data);
+  if (data.requesterUserId !== uid) throw new HttpsError("permission-denied", "Booking account changed. Sign in again.");
   const bookingRef = firestore.collection("bookings").doc();
+  const receiptRef = firestore.collection("bookingRequestReceipts").doc(bookingRequestDocumentId(uid, data.clientRequestId));
+  const fingerprint = bookingRequestFingerprint(data);
   const tripRef = firestore.collection("trips").doc(data.tripId);
   const expectedRevision = bookingSnapshotRevision(data.expectedBookingIntent);
 
   // The client's displayed snapshot stays fixed across every transaction attempt.
-  const savedTrip = await firestore.runTransaction(async (transaction) => {
+  return firestore.runTransaction(async (transaction) => {
+    const existing = await transaction.get(receiptRef);
+    if (existing.exists) {
+      const receipt = existing.data() as BookingRequestReceipt;
+      requireReceiptOwner(receipt, uid, data.clientRequestId);
+      if (receipt.state === "abandoned") throw new HttpsError("failed-precondition", "This booking request was abandoned.");
+      if (receipt.fingerprint !== fingerprint) throw new HttpsError("already-exists", "Request ID already used for different booking details.");
+      const booking = (await transaction.get(firestore.collection("bookings").doc(receipt.response!.bookingId))).data();
+      if (!booking || booking.parentUserId !== uid || booking.tripId !== data.tripId ||
+          !["requested", "approved", "declined", "cancelled", "completed"].includes(booking.status)) {
+        throw new HttpsError("internal", "Original booking must be reconciled.");
+      }
+      return { ...receipt.response!, currentBookingStatus: booking.status as string, reused: true };
+    }
     const snapshot = await transaction.get(tripRef);
     if (!snapshot.exists) throw new HttpsError("not-found", "Trip not found.");
     const trip = { id: snapshot.id, ...snapshot.data() } as Trip;
@@ -59,7 +73,10 @@ export const requestBooking = onCall(async (request) => {
       ...(data.childId ? { childId: data.childId, childLabel: childDisplayLabel(child, data.childId) } : {}),
       ...(data.note ? { note: data.note } : {}),
     });
-    return trip;
+    const response = { bookingId: bookingRef.id, clientRequestId: data.clientRequestId,
+      status: "requested" as const, trip: toClientTripSummary(trip) };
+    transaction.create(receiptRef, { uid, clientRequestId: data.clientRequestId, fingerprint,
+      state: "committed", response, createdAt: now });
+    return { ...response, currentBookingStatus: "requested", reused: false };
   });
-  return { bookingId: bookingRef.id, status: "requested", trip: toClientTripSummary(savedTrip) };
 });

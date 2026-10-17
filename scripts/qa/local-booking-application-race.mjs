@@ -9,6 +9,7 @@ import { applyConfirmedTripChange, quoteTripChangeApplication } from '../../func
 export async function applyChangesDuringBooking(trip, driverUserId) {
   const parentUserId = 'sgm-qa-consistency-existing-parent';
   const original = await requestBooking.run({ data: { tripId: trip.id, seats: 1,
+    clientRequestId: randomUUID(), requesterUserId: parentUserId,
     expectedBookingIntent: bookingIntentSnapshot((await trip.get()).data()) },
     auth: { uid: parentUserId, token: { roleKeys: ['parent'] } } });
   await approveBooking.run({ data: { bookingId: original.bookingId },
