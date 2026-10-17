@@ -86,6 +86,8 @@ on:
       - "tests/disposable-android.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
+      - "tests/dual-transport-config.test.mjs"
+      - "tests/dual-transport-evidence.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/default-selection-evidence.test.mjs"
@@ -224,6 +226,8 @@ on:
       - "tests/disposable-android.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
+      - "tests/dual-transport-config.test.mjs"
+      - "tests/dual-transport-evidence.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/default-selection-evidence.test.mjs"
@@ -427,6 +431,9 @@ jobs:
 
       - name: Validate scoped native trip-change evidence
         run: node --test tests/trip-change-native-evidence.test.mjs
+
+      - name: Validate dual-transport network prerequisites
+        run: node --test tests/dual-transport-config.test.mjs tests/dual-transport-evidence.test.mjs
 
       - name: Validate explicit partner component evidence scope
         run: node --test tests/partner-component-scope.test.mjs

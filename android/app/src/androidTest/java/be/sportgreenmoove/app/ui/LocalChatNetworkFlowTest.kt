@@ -48,7 +48,8 @@ class LocalChatNetworkFlowTest {
             .put("scope", "native-ui-with-disposable-os-network-control").put("completed", false)
         val network = JSONArray()
         result.put("network", network)
-        result.put("setupMethod", "requested-cellular-network")
+        result.put("setupMethod", "requested-wifi-and-cellular-networks")
+        result.put("transportSetupVersion", 2)
         result.put("handoverObservationVersion", 1)
         var phase = "login"
         var networkControl: LocalEmulatorNetwork? = null
@@ -72,7 +73,11 @@ class LocalChatNetworkFlowTest {
                     phase = "network-preparation"
                     result.put("preparation", control.snapshot("preparing"))
                     writeResult(context, result)
-                    try { compose.waitUntil(30_000) { control.prepared() } }
+                    var preparedEvidence: JSONObject? = null
+                    try { compose.waitUntil(30_000) {
+                        preparedEvidence = control.preparedSnapshot()
+                        preparedEvidence != null
+                    } }
                     catch (failure: Throwable) {
                         try {
                             result.put("preparationFailure", control.snapshot("preparation-failed"))
@@ -80,7 +85,7 @@ class LocalChatNetworkFlowTest {
                         } catch (diagnosticFailure: Throwable) { failure.addSuppressed(diagnosticFailure) }
                         throw failure
                     }
-                    network.put(control.snapshot("before"))
+                    network.put(checkNotNull(preparedEvidence))
                     writeResult(context, result)
                     phase = "disconnect"
                     try {
@@ -111,8 +116,12 @@ class LocalChatNetworkFlowTest {
                     captureLocalUi(compose, "local-chat-network-unconfirmed.png")
                     phase = "restore"
                     control.restore()
-                    compose.waitUntil(30_000) { control.restored() && control.backendReachable() }
-                    network.put(control.snapshot("restored"))
+                    var restoredEvidence: JSONObject? = null
+                    compose.waitUntil(30_000) {
+                        restoredEvidence = control.restoredSnapshot()
+                        restoredEvidence != null
+                    }
+                    network.put(checkNotNull(restoredEvidence))
                     phase = "retry-send"
                     compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().performClick()
                     waitForText(body)
@@ -122,7 +131,9 @@ class LocalChatNetworkFlowTest {
                     captureLocalUi(compose, "local-chat-network-recovered.png")
                 }
                 assertFalse("The cellular test request must be released", control.cellularRequestRegistered)
+                assertFalse("The Wi-Fi test request must be released", control.wifiRequestRegistered)
                 result.put("cellularRequestReleased", true)
+                result.put("wifiRequestReleased", true)
                 phase = "account-draft"
                 typeDraft(privateDraft)
                 assertDraft(privateDraft)
@@ -151,6 +162,7 @@ class LocalChatNetworkFlowTest {
             } catch (failure: Throwable) {
                 result.put("completed", false).put("failedPhase", phase)
                 result.put("cellularRequestReleased", networkControl?.let { !it.cellularRequestRegistered } ?: JSONObject.NULL)
+                result.put("wifiRequestReleased", networkControl?.let { !it.wifiRequestRegistered } ?: JSONObject.NULL)
                 writeResult(context, result)
                 if (authenticated) {
                     runCatching { captureLocalUi(compose, "local-chat-network-failed.png") }

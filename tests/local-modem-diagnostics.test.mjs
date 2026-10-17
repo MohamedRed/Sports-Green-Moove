@@ -161,7 +161,7 @@ test('read-only modem collection is run-bound, bounded, emulator-only and fail-c
 test('device snapshots retain terminal preparation diagnostics without new permissions or phone identifiers', () => {
   const control = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmulatorNetwork.kt');
   for (const value of ['telephony.dataState', 'telephony.simState', 'getDefaultDataSubscriptionId()',
-    'availableCallbacks.get()', 'lostCallbacks.get()', 'unavailableCallbacks.get()']) assert(control.includes(value));
+    'cellular.availableCount', 'cellular.lostCount', 'cellular.unavailableCount']) assert(control.includes(value));
   assert(!/getSubscriberId|getImei|simSerialNumber|line1Number|adoptShellPermissionIdentity|putInt/.test(control));
   const replay = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt');
   assert.match(replay, /control.snapshot\("preparation-failed"\)/);

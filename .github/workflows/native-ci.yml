@@ -18,6 +18,7 @@ on:
       - "tests/disposable-android.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
+      - "tests/dual-transport-config.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/chat-process-restart.test.mjs"
@@ -42,6 +43,7 @@ on:
       - "tests/disposable-android.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
+      - "tests/dual-transport-config.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/chat-process-restart.test.mjs"
@@ -78,6 +80,9 @@ jobs:
 
       - name: Validate disposable Android isolation
         run: node --test tests/disposable-android.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs
+
+      - name: Validate dual-transport network prerequisites
+        run: node --test tests/dual-transport-config.test.mjs
 
   android-native-unit:
     name: Android native unit tests

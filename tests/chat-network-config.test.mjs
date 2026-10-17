@@ -54,7 +54,7 @@ test('network control refuses non-demo, non-local and non-disposable targets', (
     'setOf("10.0.2.2", "127.0.0.1", "localhost")']) assert(control.includes(guard));
   assert.match(control, /Socket\(\).use/);
   assert.match(control, /5001/);
-  assert.match(control, /override fun close\(\) \{\s*try \{ restore\(\) \}\s*finally/);
+  assert.match(control, /finishLocalNetworkCleanup\(null, ::restore, cellular::close, wireless::close\)/);
   assert.match(control, /finally \{ device.executeShellCommand\("svc data/);
   assert.match(control, /initialData = telephony.isDataEnabled/);
   assert.match(control, /initialWifi = wifi.isWifiEnabled/);
@@ -85,7 +85,7 @@ test('app replay requires actual unconfirmed send, retry and cross-account draft
   assert.match(cleanup, /finishDisposableCleanup\(undefined, commands.map/);
   assert.match(cleanup, /waitForDisposableDevice\(adb, serial\)/);
   assert.match(cleanup, /timeout: 30_000/);
-  assert(replay.indexOf('writeResult(context, result)', replay.indexOf('control.snapshot("before")')) < replay.indexOf('control.disconnect {'));
+  assert(replay.indexOf('writeResult(context, result)', replay.indexOf('network.put(checkNotNull(preparedEvidence))')) < replay.indexOf('control.disconnect {'));
   assert.match(replay, /control.snapshot\("disconnect-failed"\)/);
   assert.match(replay, /control.cellularReadySnapshot\(\)/);
   assert.match(replay, /network.put\(checkNotNull\(cellularEvidence\)\)/);
@@ -157,14 +157,16 @@ test('new network replays prove cellular handover without weakening the recorded
 
 test('cellular preparation is local-only, guarded, bounded and explicitly released without changing the app route', () => {
   const control = native('LocalEmulatorNetwork');
-  assert(control.indexOf('requestNetwork(request, cellularCallback)') > control.indexOf('getprop ro.kernel.qemu'));
-  assert.match(control, /if \(initialData\) \{[\s\S]*TRANSPORT_CELLULAR[\s\S]*NET_CAPABILITY_INTERNET/);
-  assert.match(control, /unregisterNetworkCallback\(cellularCallback\)\s*cellularRequestRegistered = false/);
-  assert(!/bindProcessToNetwork|NET_CAPABILITY_VALIDATED|settings put global|gsm data/.test(control));
-  assert.match(native('LocalChatNetworkFlowTest'), /compose.waitUntil\(30_000\) \{ control.prepared\(\) \}/);
+  const request = native('LocalRequestedTransport');
+  assert(control.indexOf('cellular.start()') > control.indexOf('getprop ro.kernel.qemu'));
+  assert.match(control, /check\(initialWifi && initialData\)/);
+  assert.match(request, /addTransportType\(transport\)[\s\S]*NET_CAPABILITY_INTERNET/);
+  assert.match(request, /unregisterNetworkCallback\(callback\)\s*registered = false/);
+  assert(!/bindProcessToNetwork|NET_CAPABILITY_VALIDATED|settings put global|gsm data/.test(control + request));
+  assert.match(native('LocalChatNetworkFlowTest'), /compose.waitUntil\(30_000\) \{\s*preparedEvidence = control.preparedSnapshot\(\)/);
   assert.match(read('android/app/src/localDebug/AndroidManifest.xml'), /CHANGE_NETWORK_STATE/);
   assert(!read('android/app/src/main/AndroidManifest.xml').includes('CHANGE_NETWORK_STATE'));
-  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /assertCellularRequestSetup\(ui\)/);
+  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /assertTransportRequestSetup\(ui\)/);
 });
 
 function preparedReceipt(dataEnabled = true) {
@@ -218,7 +220,8 @@ test('fresh handover evidence uses the same exclusive cellular observation that 
   const predicate = native('LocalCellularObservation');
   assert.match(predicate, /transports\("activeInternetTransports"\) == setOf\("cellular"\)/);
   assert.match(predicate, /transports\("internetTransports"\) == setOf\("cellular"\)/);
-  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /assertObservedCellularHandover\(ui\)/);
+  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /assertTransportRequestSetup\(ui\)/);
+  assert.match(read('scripts/qa/chat-network-evidence.mjs'), /export function assertTransportRequestSetup[\s\S]*assertObservedCellularHandover\(ui\)/);
 });
 
 test('host cleanup uses the current run actual state and rejects stale or ambiguous receipts', () => {

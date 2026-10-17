@@ -3,7 +3,6 @@ package be.sportgreenmoove.app.ui
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkRequest
 import android.net.wifi.WifiManager
 import android.provider.Settings
 import android.telephony.SubscriptionManager
@@ -16,7 +15,6 @@ import java.io.Closeable
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
-import java.util.concurrent.atomic.AtomicInteger
 
 internal class LocalEmulatorNetwork(
     context: Context,
@@ -30,16 +28,10 @@ internal class LocalEmulatorNetwork(
     private val initialWifi: Boolean
     private val initialData: Boolean
     private var changed = false
-    private val availableCallbacks = AtomicInteger()
-    private val lostCallbacks = AtomicInteger()
-    private val unavailableCallbacks = AtomicInteger()
-    private val cellularCallback = object : ConnectivityManager.NetworkCallback() {
-        override fun onAvailable(network: android.net.Network) { availableCallbacks.incrementAndGet() }
-        override fun onLost(network: android.net.Network) { lostCallbacks.incrementAndGet() }
-        override fun onUnavailable() { unavailableCallbacks.incrementAndGet() }
-    }
-    var cellularRequestRegistered = false
-        private set
+    private val cellular = LocalRequestedTransport(connectivity, NetworkCapabilities.TRANSPORT_CELLULAR)
+    private val wireless = LocalRequestedTransport(connectivity, NetworkCapabilities.TRANSPORT_WIFI)
+    val cellularRequestRegistered get() = cellular.registered
+    val wifiRequestRegistered get() = wireless.registered
 
     init {
         check(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR)
@@ -50,25 +42,23 @@ internal class LocalEmulatorNetwork(
         check(device.executeShellCommand("getprop ro.kernel.qemu").trim() == "1")
         initialWifi = wifi.isWifiEnabled
         initialData = telephony.isDataEnabled
+        check(initialWifi && initialData) { "The handover scenario requires both test radios enabled" }
         check(connected()) { "The disposable device must start connected" }
         check(backendReachable()) { "The isolated backend must start reachable" }
-        if (initialData) {
-            val request = NetworkRequest.Builder().addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
-                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).build()
-            connectivity.requestNetwork(request, cellularCallback)
-            cellularRequestRegistered = true
+        try {
+            wireless.start()
+            cellular.start()
+        } catch (failure: Throwable) {
+            finishLocalNetworkCleanup(failure, cellular::close, wireless::close)
         }
     }
 
-    fun prepared() = connected() && backendReachable() &&
-        wifi.isWifiEnabled == initialWifi && telephony.isDataEnabled == initialData &&
-        (!initialWifi || hasInternetTransport(NetworkCapabilities.TRANSPORT_WIFI)) &&
-        (!initialData || hasInternetTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
+    fun preparedSnapshot() = snapshot("before").takeIf(::isInitialNetworkObservation)
 
     fun disconnect(awaitCellular: () -> Unit) {
         changed = true
         device.executeShellCommand("svc wifi disable")
-        if (initialData) awaitCellular()
+        awaitCellular()
         device.executeShellCommand("svc data disable")
     }
 
@@ -83,7 +73,7 @@ internal class LocalEmulatorNetwork(
 
     fun connected() = connectivity.activeNetwork != null
     fun offline() = !connected() && internetNetworks() == 0 && !wifi.isWifiEnabled && !telephony.isDataEnabled
-    fun restored() = connected() && wifi.isWifiEnabled == initialWifi && telephony.isDataEnabled == initialData
+    fun restoredSnapshot() = snapshot("restored").takeIf(::isInitialNetworkObservation)
 
     fun backendReachable(): Boolean = try {
         Socket().use { it.connect(InetSocketAddress(BuildConfig.SGM_FIREBASE_EMULATOR_HOST, 5001), 2_000) }
@@ -98,8 +88,11 @@ internal class LocalEmulatorNetwork(
         return JSONObject().put("phase", phase).put("wifiEnabled", wifi.isWifiEnabled)
         .put("mobileDataEnabled", telephony.isDataEnabled).put("activeNetwork", active != null)
         .put("cellularRequestRegistered", cellularRequestRegistered)
-        .put("cellularAvailableCallbacks", availableCallbacks.get()).put("cellularLostCallbacks", lostCallbacks.get())
-        .put("cellularUnavailableCallbacks", unavailableCallbacks.get())
+        .put("cellularAvailableCallbacks", cellular.availableCount).put("cellularLostCallbacks", cellular.lostCount)
+        .put("cellularUnavailableCallbacks", cellular.unavailableCount)
+        .put("wifiRequestRegistered", wifiRequestRegistered)
+        .put("wifiAvailableCallbacks", wireless.availableCount).put("wifiLostCallbacks", wireless.lostCount)
+        .put("wifiUnavailableCallbacks", wireless.unavailableCount)
         .put("cellularDataState", telephony.dataState).put("simState", telephony.simState)
         .put("hasDefaultDataSubscription", SubscriptionManager.isValidSubscriptionId(SubscriptionManager.getDefaultDataSubscriptionId()))
         .put("airplaneModeSetting", Settings.Global.getString(resolver, Settings.Global.AIRPLANE_MODE_ON) ?: JSONObject.NULL)
@@ -117,19 +110,7 @@ internal class LocalEmulatorNetwork(
     }
 
     override fun close() {
-        try { restore() }
-        finally {
-            if (cellularRequestRegistered) {
-                connectivity.unregisterNetworkCallback(cellularCallback)
-                cellularRequestRegistered = false
-            }
-        }
-    }
-
-    private fun hasInternetTransport(transport: Int) = connectivity.allNetworks.any { network ->
-        connectivity.getNetworkCapabilities(network)?.let { capabilities ->
-            capabilities.hasTransport(transport) && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-        } == true
+        finishLocalNetworkCleanup(null, ::restore, cellular::close, wireless::close)
     }
 
     private fun internetNetworks() = connectivity.allNetworks.count { network ->

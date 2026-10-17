@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { viewedBooking, call, db, signIn, tripInput } from './local-flow-client.mjs';
-import { assertChatNetworkReceipt, assertCellularRequestSetup, assertObservedCellularHandover } from './chat-network-evidence.mjs';
+import { assertChatNetworkReceipt, assertTransportRequestSetup } from './chat-network-evidence.mjs';
 
 export async function seedChatNetworkUiFixture() {
   const driver = await signIn('d@example.test');
@@ -22,8 +22,7 @@ export async function seedChatNetworkUiFixture() {
 export async function verifyChatNetworkUi(fixture, evidenceDir) {
   const ui = JSON.parse(readFileSync(resolve(evidenceDir, 'local-chat-network-ui.json'), 'utf8'));
   assertChatNetworkReceipt(ui);
-  assertCellularRequestSetup(ui);
-  assertObservedCellularHandover(ui);
+  assertTransportRequestSetup(ui);
   assert.equal(ui.runId, process.env.SGM_LOCAL_RUN_ID);
   const expected = new Map([
     ['Connexion rétablie, rendez-vous confirmé.', 'sgm-qa-parent'],

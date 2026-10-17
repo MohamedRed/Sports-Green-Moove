@@ -86,12 +86,12 @@ test('collection is guarded, bounded and read-only, and child errors never expos
   }
 });
 
-test('fresh native runs collect both histories without changing network preparation or acceptance', () => {
+test('fresh native runs collect both histories while retaining the preparation deadline and strict observations', () => {
   const host = read('scripts/qa/local-network-replay.mjs');
   assert(host.indexOf("collectSelection('before')") < host.indexOf("instrument(['LocalChatNetworkFlowTest']"));
   assert(host.includes("() => collectSelection('after')"));
   const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt');
-  assert(native.includes('compose.waitUntil(30_000) { control.prepared() }'));
+  assert.match(native, /compose.waitUntil\(30_000\) \{\s*preparedEvidence = control.preparedSnapshot\(\)/);
   for (const path of ['package.json', '.github/workflows/native-ci.yml', '.github/workflows/web-integration-smoke.yml'])
     assert(read(path).includes('tests/local-default-selection-diagnostics.test.mjs'));
   const source = read('scripts/qa/local-default-selection-diagnostics.mjs');

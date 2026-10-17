@@ -36,6 +36,10 @@ export function assertChatNetworkReceipt(ui) {
 
 export function assertCellularRequestSetup(ui) {
   assert.equal(ui.setupMethod, 'requested-cellular-network');
+  assertRequestedCellularState(ui);
+}
+
+function assertRequestedCellularState(ui) {
   assert.equal(ui.cellularRequestReleased, true);
   assert.equal(ui.preparation.phase, 'preparing');
   const before = ui.network[0];
@@ -46,6 +50,24 @@ export function assertCellularRequestSetup(ui) {
     assert(before.internetTransports.includes('cellular'));
     assert(ui.network.some((state) => state.phase === 'cellular-ready'),
       'A newly recorded run must prove cellular handover before disabling mobile data');
+  }
+}
+
+export function assertTransportRequestSetup(ui) {
+  assert.equal(ui.setupMethod, 'requested-wifi-and-cellular-networks');
+  assert.equal(ui.transportSetupVersion, 2);
+  assertRequestedCellularState(ui);
+  assertObservedCellularHandover(ui);
+  assert.equal(ui.wifiRequestReleased, true);
+  const before = ui.network[0], restored = ui.network.at(-1);
+  assert.equal(before.wifiEnabled, true); assert.equal(before.mobileDataEnabled, true);
+  assert.equal(ui.preparation.wifiRequestRegistered, true);
+  assert(ui.network.every((sample) => sample.wifiRequestRegistered === true && sample.cellularRequestRegistered === true));
+  for (const sample of [before, restored]) {
+    assert(sample.wifiEnabled && sample.mobileDataEnabled && sample.activeNetwork && sample.backendReachable);
+    assert(sample.internetNetworkCount >= 2);
+    assert.deepEqual(sample.activeInternetTransports, ['wifi']);
+    assert.deepEqual([...sample.internetTransports].sort(), ['cellular', 'wifi']);
   }
 }
 
