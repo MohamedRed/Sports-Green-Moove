@@ -58,6 +58,23 @@ test('the new native case uses the real app and three isolated actors, not simul
   assert(runner.includes('testCount: 25')); assert(runner.includes("'trip-change-parent-confirmation-ui'"));
 });
 
+test('passing ordinary screens cannot hide a process-stopped replay or accept an unexecuted consent stage', () => {
+  const base = 'docs/release/evidence/local-trip-consent-native-2026-10-17/process-stopped/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 4);
+  for (const [name, hash] of Object.entries(hashes)) {
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + name, import.meta.url))).digest('hex'), hash);
+  }
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
+    isArray: (name) => name === 'testcase' }).parse(read(base + 'general-ui.xml')).testsuite;
+  assert.equal(suite.tests, 102); assert.equal(suite.failures, 0); assert.equal(suite.errors, 0); assert.equal(suite.skipped, 20);
+  assert(Object.hasOwn(suite.testcase.find((item) => item.classname.endsWith('.LocalTripChangeFlowTest')), 'skipped'));
+  const statuses = JSON.parse(read(base + 'native-suite-status.json'));
+  assert.equal(statuses.scope, 'native-suite-exit-status-not-flow-verification');
+  assert.equal(statuses.ordinaryTests, 0); assert.equal(statuses.componentEvidence, 0); assert.equal(statuses.localReplay, 1);
+  assert.match(read(base + 'LocalTripCancellationFlowTest-instrumentation.txt'), /shortMsg=Process crashed/);
+  assert.equal(read(base + 'LocalTripCancellationFlowTest-crash.txt'), '');
+});
+
 test('eligible renderer prerequisites cannot promote an interrupted suite into a consent pass', () => {
   const base = 'docs/release/evidence/local-trip-consent-native-2026-10-17/eligible-runtime/';
   const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 3);

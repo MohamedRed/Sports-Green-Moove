@@ -75,3 +75,33 @@ suppressing the other mandatory replay. It preserves a failed overall result if
 either suite or component evidence fails, with separate status metadata. Eight
 shell-harness regression cases verify those failure paths; they are not app-flow
 evidence. The actual next run must still execute the native consent scenario.
+
+## Replay Stopped Before Consent
+
+Commit `77dc13605dba0568bd8790ca1a7c211593dcc5fa`,
+[Native CI 39037894686](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39037894686),
+completed the ordinary suite: 102 cases, 82 passed, no failures/errors and 20
+conditional skips. Component evidence collection completed too. The saved
+`native-suite-status.json` records statuses `0`, `0`, `1` for ordinary tests,
+component evidence and the required local replay respectively. The overall job
+correctly failed. Original XML, statuses and the failing transcript are retained
+in `process-stopped/` with byte hashes.
+
+Local replay `bb65bdbdac1d5bef056785c3ec627b38` reached
+`LocalTripCancellationFlowTest`, then reported `shortMsg=Process crashed.` with
+`INSTRUMENTATION_CODE: 0`. The verifier rejected this as not passing. Its crash
+buffer was empty; these records do not establish whether a cancellation action,
+application exception, native error or operating-system termination caused the
+exit. The three-account consent case did not start. No consent-stage receipt or
+new consent capture is accepted.
+
+Reviewed component captures still contain incomplete map tiles, so they are not
+added to the partner gallery. A passing screen assertion does not establish map
+usability or a completed multi-account flow.
+
+The next replay collects OS process-exit records, bounded filtered process logs
+and guest/host memory diagnostics after a failed instrumentation result, even if
+the Java crash buffer is empty. Passwords, API keys and signed/unsigned tokens are
+redacted. Diagnostic failure never changes the original failed result, retries a
+test or restarts the app. The next actual replay must establish the cause and run
+the consent case before it can be accepted.

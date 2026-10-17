@@ -22,6 +22,7 @@ import { seedTripCancellationUi, verifyTripCancellationUi } from './local-trip-c
 import { replayNativeBookingLoss } from './local-native-booking-loss.mjs';
 import { replayBookingUiLoss } from './local-booking-ui-loss.mjs';
 import { seedTripChangeUi, verifyTripChangeUi } from './local-trip-change-ui.mjs';
+import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -48,10 +49,9 @@ function instrument(classes, expected, extraArguments = []) {
   try { assertInstrumentationPassed(output, expected); }
   catch (failure) {
     try {
-      const crash = execFileSync(adb, ['-s', serial, 'logcat', '-d', '-b', 'crash', '-v', 'brief'],
-        { env: process.env, encoding: 'utf8', timeout: 30_000, maxBuffer: 4 * 1024 * 1024 });
-      writeFileSync(resolve(evidenceDir, `${classes.join('-')}-crash.txt`), crash.replaceAll(session.password, '[REDACTED]'));
-    } catch { console.warn('Could not collect the local crash buffer.'); }
+      collectNativeProcessFailure({ adb, serial, directory: evidenceDir, label: classes.join('-'),
+        password: session.password, runId: session.runId });
+    } catch { console.warn('Could not collect the local process-exit diagnostics.'); }
     throw failure;
   }
 }

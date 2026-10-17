@@ -160,7 +160,7 @@ export const content = {
       images: [shot('trip-cancel-review', 'Réservations concernées avant annulation, essai local du 16 octobre'),
         shot('trip-cancel-confirmed', 'Annulation confirmée en paysage, essai local du 16 octobre'),
         shot('trip-cancel-parent', 'Deux réservations annulées côté parent, essai local du 16 octobre')],
-      source: 'docs/release/evidence/local-trip-change-native-2026-10-17/README.md' },
+      source: 'docs/release/evidence/local-trip-consent-native-2026-10-17/README.md' },
     { id: 'booking', title: 'Réservations', status: 'partial', checkedAt: '2026-10-17',
       summary: 'Après une réponse perdue, le renvoi retrouve une seule demande en local.',
       verified: 'Le parent peut réessayer, puis voit « Demande envoyée ». Le bouton d’envoi disparaît. L’acceptation, le refus et l’annulation ont aussi été testés en local.',

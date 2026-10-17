@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'La confirmation entre parents reste à tester',
+    text: 'Le dernier essai s’est arrêté avant ce parcours. Les écrans simulés passent, mais les nouvelles captures ne sont pas assez lisibles.', flow: 'publication' },
   { date: '2026-10-17', title: 'Les essais du clavier passent',
     text: 'Les écrans passent le nouvel essai. La coupure n’a pas été rejouée : la connexion de départ reste à préparer.', flow: 'messages' },
   { date: '2026-10-17', title: 'Le nouvel essai bloque au clavier',
