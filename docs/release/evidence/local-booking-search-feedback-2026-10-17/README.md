@@ -15,8 +15,24 @@ gateways. See the complete [feedback contract](../../../contracts/booking-search
 additionally distinguishing a definitive business rejection from an unconfirmed reply. Only the latter gets
 the retry label; the original reply-error case now uses that typed domain error.
 
-The parent-screen replay and narrow/large-text layout cases are implemented and
-compiled locally but have not yet been executed on the test device in this
-snapshot. No native UI pass, new capture, physical-phone result or production
-rollout is claimed here. The wider release and the other booking entry points
-remain incomplete.
+## Interrupted First Device Run
+
+[Native CI 39013901545](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39013901545)
+on `099de1a49ef1d61104da6d222c89e3194d966033` ran 85 ordinary cases:
+two failed, 19 skipped. The original report is `native-layout-before.xml`.
+Both new 150-percent text-size cases failed the actual text-layout overflow
+assertion in `BookingFeedbackLayoutTest.inside`, not the outer screen-bounds
+check. The isolated backend/screen replay was not reached. No passing native
+screen result or new capture may be inferred from this run.
+
+The shared button constrained its label to a fixed height. The correction uses
+the existing size as a minimum and allows measured text plus vertical padding
+to grow. A controlled test-only copy of the old height is retained as a probe:
+it must demonstrate vertical, not horizontal overflow at the same text scale,
+while the production button must fit. Its numeric receipt will distinguish an
+actual sizing cause from merely accepting a later green run. No assertion is
+removed or weakened.
+
+The corrected device run remains pending in this snapshot. The wider release,
+physical phones and the other booking entry points remain incomplete. No
+production rollout has occurred.

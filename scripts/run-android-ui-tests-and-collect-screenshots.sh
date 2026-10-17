@@ -34,7 +34,7 @@ if [[ "$test_status" -eq 0 ]]; then
     fi
   done
   adb pull /sdcard/Download/sgm-booking-feedback "$output_dir" || exit 1
-  for name in booking-feedback-sending-narrow.png booking-feedback-confirmed-narrow.png; do
+  for name in booking-feedback-sending-narrow.png booking-feedback-confirmed-narrow.png booking-feedback-height-probe.json; do
     if [[ ! -s "$output_dir/sgm-booking-feedback/$name" ]]; then
       echo "Missing booking feedback screen: $name" >&2
       exit 1

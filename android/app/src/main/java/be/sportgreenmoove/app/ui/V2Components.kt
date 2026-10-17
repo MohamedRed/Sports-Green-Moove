@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -186,13 +187,13 @@ fun V2Button(
         modifier = modifier
             .then(if (full) Modifier.fillMaxWidth() else Modifier)
             .sgmOptionalTestTag(testTag)
-            .height(size.height)
+            .heightIn(min = size.height)
             .alpha(if (enabled) 1f else 0.45f)
             .clip(RoundedCornerShape(SgmRadius.MD))
             .background(bg)
             .then(if (border != null) Modifier.border(border, RoundedCornerShape(SgmRadius.MD)) else Modifier)
             .clickable(enabled = enabled, onClick = onClick)
-            .padding(horizontal = 20.dp),
+            .padding(horizontal = 20.dp, vertical = 4.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(title.uppercase(), style = SgmType.Label.copy(color = fg, fontSize = size.fontSize, letterSpacing = 0.04.em), textAlign = TextAlign.Center)
