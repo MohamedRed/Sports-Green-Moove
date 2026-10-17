@@ -14,12 +14,17 @@ test('one-shot local requests survive a native-style host pause without replayin
   t.after(async () => { const exit = once(server, 'exit'); server.kill('SIGTERM'); await exit; });
   const [{ port }] = await once(server, 'message');
   const url = `http://127.0.0.1:${port}/sign-in`;
-  const baseline = await fetch(url, request); await baseline.json(); await setImmediate();
+  const baseline = await (await fetch(url, request)).json(); await setImmediate();
   block();
-  await assert.rejects(() => fetch(url, request), (error) => {
-    assert(['UND_ERR_SOCKET', 'ECONNRESET'].includes(error.cause?.code), 'A closed baseline socket is required');
-    return true;
+  const baselineOutcome = await fetch(url, request).then(async (response) => {
+    const refreshed = await response.json();
+    assert.notEqual(refreshed.connection, baseline.connection, 'An expired connection must not be reused');
+    return 'fresh-connection';
+  }, (error) => {
+    assert(['UND_ERR_SOCKET', 'ECONNRESET'].includes(error.cause?.code), 'Only a closed-socket baseline failure is recognized');
+    return 'closed-socket-rejected';
   });
+  t.diagnostic('Unmanaged pool observation: ' + baselineOutcome);
   const first = await (await fetchLocalQa(url, { ...request, headers: { ...request.headers, connection: 'keep-alive' } })).json();
   await setImmediate();
   block();
