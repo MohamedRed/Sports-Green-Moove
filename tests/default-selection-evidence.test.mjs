@@ -84,13 +84,14 @@ test('fresh handover, offline and restored app evidence remain independently req
 
 test('current captures and dates cannot promote this comparison to physical or stable readiness', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
+  const latest = 'docs/release/evidence/local-dual-transport-2026-10-17/';
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-17');
-  assert.equal(flow.ui.source, base + 'completed/results.json'); assert.equal(flow.source, base + 'README.md');
+  assert.equal(flow.ui.source, latest + 'completed/results.json'); assert.equal(flow.source, latest + 'README.md');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(blocker.source, base + 'README.md'); assert.match(blocker.text, /instable/);
+  assert.equal(blocker.source, latest + 'README.md'); assert.match(blocker.text, /précédents/);
   for (const [id, file] of [['chat-network-current-draft', 'local-chat-network-unconfirmed.png'],
     ['chat-network-current-reply', 'local-chat-network-received.png']]) {
-    assert.equal(captures[id], base + 'completed/' + file);
+    assert.equal(captures[id], latest + 'completed/' + file);
     assert(flow.images.some((image) => image.file === id && /17 octobre/.test(image.alt)));
     const png = bytes('completed/' + file);
     assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
@@ -127,5 +128,5 @@ test('the subsequent recheck stays failed with no inferred controller readiness 
     assert.equal(subscription.defaultSubscriptionValid.defaultDataSubId, false);
   }
   assert(content.updates.some((update) => update.title === 'La préparation bloque encore un essai'));
-  assert.match(content.flows.find((flow) => flow.id === 'messages').summary, /^Un essai local complet passe/);
+  assert.match(content.flows.find((flow) => flow.id === 'messages').summary, /^Le nouvel essai de coupure passe/);
 });

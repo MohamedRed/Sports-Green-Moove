@@ -43,7 +43,7 @@ test('passing component cases cannot promote the later failed full native replay
   const transcript = bytes('before/LocalChatNetworkFlowTest-instrumentation.txt').toString('utf8');
   assert.match(transcript, /after 30000 ms/); assert.match(transcript, /LocalChatNetworkFlowTest.kt:75/);
   assert.match(transcript, /Tests run: 1,\s+Failures: 1/);
-  assert(!Object.values(captures).some((path) => path.startsWith(base)));
+  assert(!Object.values(captures).some((path) => path.startsWith(base + 'before/')));
 });
 
 test('failure artifacts retain their original bytes and stay in smoke coverage', () => {

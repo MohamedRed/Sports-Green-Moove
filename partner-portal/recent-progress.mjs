@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'La coupure et la reprise passent',
+    text: 'Le message est renvoyé une seule fois, puis le conducteur répond. La connexion de départ est retrouvée dans cet essai local.', flow: 'messages' },
   { date: '2026-10-17', title: 'Les parents peuvent confirmer ou refuser',
     text: 'Sept essais d’écran simulés passent, dont la reprise sans doublon. Les cartes restent à vérifier avant d’ajouter les captures.', flow: 'publication' },
   { date: '2026-10-17', title: 'La préparation bloque encore un essai',

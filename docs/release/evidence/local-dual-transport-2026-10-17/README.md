@@ -29,11 +29,34 @@ The [version-2 protocol](../../../contracts/local-network-handover.md) explicitl
 requests both required internet transports. It records the exact Wi-Fi-default
 observation before the cut and after restoration, releases both callbacks, and
 retains the original wait limits, offline send, retry and saved-message checks.
-The missing Wi-Fi request is corrected; the exact underlying OS cause and a
-successful complete replay still require runtime evidence. No SSID, route,
+The missing Wi-Fi request is corrected; the completed runtime result is below.
+This does not establish that all older setup failures share this cause. No SSID, route,
 subscription, validation state, provider configuration or production data is forced.
 
-Host validation tests and compilation are not a substitute for executing the four
-new native observation/cleanup cases or the complete connected replay. Historical
-version-1 runs stay unchanged and cannot satisfy the fresh version-2 verifier.
-No release-manifest requirement is accepted by this report. The goal remains active.
+## Completed Version-2 Replay
+
+`completed/` retains the original output of commit
+`74e568d416daf4991c83f6bf65c272c78e78d691`,
+[Native CI run 39029499127](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39029499127).
+Run `ff75301b1aaf2f96a48b464854dbc1d8` completed at
+`2026-10-17T11:56:26.968Z`: all 24 native/backend cases and 24 groups passed.
+The 16 original instrumentation transcripts contain those 24 cases. The separate
+ordinary report declares 99 cases: 80 passed, no failures/errors and 19 conditional
+local-backend skips. All four new observation/cleanup cases, seven trip-change
+cases and three cancellation component cases executed successfully.
+
+The recorded states prove Wi-Fi default plus cellular availability, exclusive
+cellular handover, no active/internet network with an unreachable backend, and
+restoration to Wi-Fi default plus both transports. Both requests were released.
+The draft survived, explicit retry persisted one parent message, and the driver
+replied. Independent saved-data checks found exactly two messages and two read
+notifications with no duplicate intent. The receipts also retain confirmed
+process-restart, booking recovery, reply-loss and all five successful host copies.
+Two unaltered message screenshots were visually reviewed for the private portal.
+
+This single passing version-2 run does not prove that every previous SIM/default
+selection or startup failure is resolved. Repetition, draft process-death,
+real send-time cuts, physical tracking, provider/payment outcomes and the six real
+safety-audit events remain open. Historical version-1 runs and the failed `before/`
+artifacts stay unchanged. No release-manifest requirement is accepted by this
+report. The full goal remains active.

@@ -95,11 +95,12 @@ test('new raw evidence is byte-pinned and the ordinary component pass stays sepa
 
 test('the private update shows only the verified restart stage and keeps the latest interruption explicit', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.match(flow.summary, /coupures restent à stabiliser/);
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-default-selection-2026-10-17/completed/results.json');
+  assert.equal(flow.status, 'partial'); assert.match(flow.summary, /nouvel essai de coupure passe/);
+  assert.match(flow.remaining, /Répéter les essais de coupure/);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
   const issue = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(issue.source, 'docs/release/evidence/local-default-selection-2026-10-17/README.md');
-  assert.match(issue.text, /instable/);
+  assert.equal(issue.source, 'docs/release/evidence/local-dual-transport-2026-10-17/README.md');
+  assert.match(issue.text, /précédents/);
   const image = flow.images.find((item) => item.file === 'chat-restart-recheck-reply');
   assert.match(image.alt, /revérifié en local/);
   assert.equal(captures[image.file], base + 'local-chat-restart-reply.png');

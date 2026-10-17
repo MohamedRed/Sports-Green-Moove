@@ -10,7 +10,7 @@ const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.
 const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const teamOwnershipReport = 'docs/release/evidence/local-team-ownership-2026-10-16/README.md';
-const chatReport = 'docs/release/evidence/local-default-selection-2026-10-17/README.md';
+const chatReport = 'docs/release/evidence/local-dual-transport-2026-10-17/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -175,9 +175,9 @@ export const content = {
         shot('booking-review-required', 'Trajet modifié : nouvelle recherche demandée, essai local simulé du 17 octobre'),
         shot('booking-review-narrow', 'Même message en texte agrandi, essai local simulé du 17 octobre')], source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-17',
-      summary: 'Un essai local complet passe. Les coupures restent à stabiliser.',
-      verified: 'Le brouillon reste pendant la coupure. Après reconnexion, le parent renvoie son message et reçoit la réponse du conducteur, sans doublon. L’échange après relancement passe aussi en local.',
-      remaining: 'Stabiliser les essais de coupure. Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
+      summary: 'Le nouvel essai de coupure passe, avec retour à la connexion initiale.',
+      verified: 'Le brouillon reste après la coupure. Le renvoi et la réponse du conducteur passent, sans doublon. La connexion initiale revient. L’échange après relancement passe aussi.',
+      remaining: 'Répéter les essais de coupure. Restent les groupes, le clavier et les échanges entre téléphones. Tester les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
         'Après une confirmation perdue, deux renvois gardent un seul message et une seule notification.',
@@ -186,7 +186,7 @@ export const content = {
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
       ], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json'),
-      ui: { source: 'docs/release/evidence/local-default-selection-2026-10-17/completed/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
+      ui: { source: 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
       images: [shot('chat-network-current-draft', 'Brouillon conservé pendant la coupure, essai local du 17 octobre'),
         shot('chat-network-current-reply', 'Message renvoyé et réponse reçue, essai local du 17 octobre'),
         shot('chat-restart-recheck-reply', 'Échange après relancement revérifié en local le 16 octobre'),

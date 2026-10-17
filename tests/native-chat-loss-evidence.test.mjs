@@ -44,8 +44,8 @@ test('retained SDK evidence proves a committed lost reply, rejected retry and un
 test('published captures and copy retain controlled local scope and all older evidence', () => {
   const published = 'docs/release/evidence/local-ui-collection-2026-10-16/';
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/local-default-selection-2026-10-17/README.md');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-default-selection-2026-10-17/completed/results.json'); assert(flow.ui.groups.includes('chat-post-commit-response-loss-ui'));
+  assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/local-dual-transport-2026-10-17/README.md');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json'); assert(flow.ui.groups.includes('chat-post-commit-response-loss-ui'));
   assert.equal(flow.images[0].file, 'chat-network-current-draft');
   const retained = flow.images.filter((image) => !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply'].includes(image.file));
   assert.equal(retained[0].file, 'chat-loss-confirmed'); assert.equal(retained[1].file, 'chat-loss-rejected-retry');

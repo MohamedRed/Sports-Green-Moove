@@ -59,7 +59,7 @@ test('interrupted attempts cannot become recovery evidence and the status regres
 test('partner media stays reviewed, partial and explicit about remaining phone and keyboard work', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-default-selection-2026-10-17/completed/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
   assert.equal(flow.local.source, 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json');
   assert.match(flow.remaining, /clavier/); assert.match(flow.remaining, /téléphones/);
   assert.match(flow.remaining, /groupe/); assert.match(flow.remaining, /Pas encore en ligne/);
@@ -132,7 +132,7 @@ test('completed instrumentation without collected evidence or final verification
   const log = readFileSync(new URL(path + 'transport-cleanup-failed.txt', root), 'utf8');
   assert.match(log, /device offline/); assert.match(log, /android:mock_location default/);
   assert.equal(content.flows.find((item) => item.id === 'messages').ui.source,
-    'docs/release/evidence/local-default-selection-2026-10-17/completed/results.json');
+    'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
 });
 
 test('the unresolved cellular-readiness attempt stays incomplete and separate from accepted recovery evidence', () => {
