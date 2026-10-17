@@ -35,11 +35,11 @@ test('published capacity checks require real local actors, denial checks and pre
   assert.match(read(base + 'rules-after.xml'), /tests="26" failures="0" errors="0"/);
   assert.match(read(base + 'rules-after.xml'), /name="tests\/trip-capacity-rules.test.ts"[^>]*tests="10" failures="0"/);
   const flow = content.flows.find((item) => item.id === 'booking');
-  assert.equal(flow.local.source, base + 'services-after.json');
+  assert.equal(flow.local.source, 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json');
   assert(flow.local.groups.includes('trip-capacity-ownership'));
   assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /remboursements/);
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-reservations-2026-10-16/ui-results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-booking-search-feedback-2026-10-17/results.json');
   assert.match(read(base + 'README.md'), /not been deployed to production/);
 });
 

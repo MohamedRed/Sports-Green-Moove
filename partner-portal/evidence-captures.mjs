@@ -1,4 +1,6 @@
 export const captures = {
+  'booking-retry-unconfirmed': 'docs/release/evidence/local-booking-search-feedback-2026-10-17/local-booking-ui-unconfirmed.png',
+  'booking-retry-confirmed': 'docs/release/evidence/local-booking-search-feedback-2026-10-17/local-booking-ui-confirmed.png',
   'booking-review-required': 'docs/release/evidence/local-booking-consistency-2026-10-17/booking-review-required.png',
   'booking-review-narrow': 'docs/release/evidence/local-booking-consistency-2026-10-17/booking-review-narrow.png',
   'chat-restart-recheck-reply': 'docs/release/evidence/local-chat-restart-recheck-2026-10-16/second-run/local-chat-restart-reply.png',

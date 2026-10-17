@@ -98,7 +98,7 @@ test('the private update shows only the verified restart stage and keeps the lat
   assert.equal(flow.status, 'partial'); assert.match(flow.summary, /coupures restent à stabiliser/);
   assert.equal(flow.ui.source, 'docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/results.json');
   const issue = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(issue.source, 'docs/release/evidence/local-subscription-diagnosis-2026-10-17/README.md');
+  assert.equal(issue.source, 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md');
   assert.match(issue.text, /instable/);
   const image = flow.images.find((item) => item.file === 'chat-restart-recheck-reply');
   assert.match(image.alt, /revérifié en local/);

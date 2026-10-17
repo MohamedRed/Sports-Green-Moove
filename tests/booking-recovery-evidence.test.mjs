@@ -93,7 +93,8 @@ test('native data and process contracts do not become physical phone or iOS SDK 
   assert.equal(services.scope, 'local-emulated-services-not-phone-ui');
   assert.equal(services.steps.length, 24); assert(services.steps.every((item) => item.status === 'passed'));
   assert.equal(content.flows.find((item) => item.id === 'booking').status, 'partial');
-  assert.equal(content.blockers.find((item) => item.id === 'booking-retry-devices').source, base + 'README.md');
+  assert.equal(content.blockers.find((item) => item.id === 'booking-retry-devices').source,
+    'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md');
 });
 test('CI requires fresh transport, storage and guarded native process stages', () => {
   const workflow = read('.github/workflows/web-integration-smoke.yml');

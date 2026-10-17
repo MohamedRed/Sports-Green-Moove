@@ -7,6 +7,7 @@ on:
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
       - "tests/booking-ui-loss.test.mjs"
+      - "tests/booking-search-feedback-evidence.test.mjs"
       - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
@@ -133,6 +134,7 @@ on:
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
       - "tests/booking-ui-loss.test.mjs"
+      - "tests/booking-search-feedback-evidence.test.mjs"
       - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
@@ -312,7 +314,7 @@ jobs:
         run: node --test tests/booking-display-evidence.test.mjs
 
       - name: Validate booking response-loss evidence
-        run: node --test tests/booking-recovery-evidence.test.mjs tests/subscription-diagnosis-evidence.test.mjs tests/booking-ui-loss.test.mjs
+        run: node --test tests/booking-recovery-evidence.test.mjs tests/subscription-diagnosis-evidence.test.mjs tests/booking-ui-loss.test.mjs tests/booking-search-feedback-evidence.test.mjs
 
       - name: Test booking retry identity and changed-intent races
         env:

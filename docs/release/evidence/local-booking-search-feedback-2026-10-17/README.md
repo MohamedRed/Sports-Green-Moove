@@ -103,7 +103,29 @@ network setting, retry, route fallback or assertion is relaxed. Fresh verifiers
 require observation version 1 and both exclusive transport fields. Historical
 receipts retain their original validation/version and bytes.
 
-The corrected handover device run remains pending in this snapshot. The earlier
-intermittent missing-subscription preparation failure is still not explained by
-this different mismatch. The wider release, physical phones and other booking
-entry points remain incomplete. No production rollout has occurred.
+## Current Recheck
+
+[Native CI 39017050031](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39017050031)
+on `9fe107960e36e7c61c817c988193e149e80a530a` ran 88 ordinary cases:
+69 passed, 19 conditional cases skipped, zero failures/errors. Both new
+exclusive-observation predicate cases passed (`native-layout-recheck.xml`).
+The real booking screen stage passed again (`native-booking-ui-recheck.txt`).
+`booking-ui-recheck.json` independently confirms two calls, one booking and one
+receipt. Its collection timestamp is retained in `booking-ui-collection-recheck.json`.
+
+The full replay **failed later before disconnect**, at the unchanged 30-second
+network-preparation wait (`native-network-recheck.txt`). The original
+`network-preparation-recheck.json` has no network transitions and completion is
+false. It records no default data subscription, no cellular callback and only
+Wi-Fi, despite mobile data enabled. Thus the corrected cellular-handover
+observation was not exercised by this recheck. This is the earlier intermittent
+preparation problem, not proof the separate sampling mismatch is solved live.
+No blind rerun, relaxed deadline or alternate route is substituted.
+
+`results.json` is an explicitly derived one-stage summary for the private portal,
+not the absent full-run result. Its successful stage and date are checked against
+the raw instrumentation, independent booking receipt and collection timestamp.
+The two displayed captures remain the earlier reviewed stage from run
+`9c36b2e83bed87a618800ae0a4211d42`; they are not relabeled as recheck captures.
+The wider release, physical phones, other booking entry points and actual
+search-screen restart recovery remain open. No production rollout has occurred.
