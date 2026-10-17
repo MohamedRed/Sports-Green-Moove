@@ -1,1 +1,2 @@
 *.xml -text whitespace=cr-at-eol
+native-*.txt -text -whitespace
