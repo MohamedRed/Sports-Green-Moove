@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'Le club validera les inscriptions aux équipes',
+    text: 'Le responsable du club validera les membres et les enfants inscrits. Le groupe reste à construire et à tester.', flow: 'messages' },
   { date: '2026-10-17', title: 'Le parent confirme le nouvel horaire',
     text: 'Le changement d’heure passe en local. Une adresse non confirmée bloque l’envoi. Deux nouvelles captures sont disponibles.', flow: 'publication' },
   { date: '2026-10-17', title: 'Le nouvel essai reste incomplet',

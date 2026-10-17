@@ -67,3 +67,17 @@ test('the boundary is registered in both CI paths and does not promote group or 
   assert.match(read(base + 'README.md'), /not been deployed to production/);
   assert.match(read(base + 'README.md'), /not proof that a team ID cannot be deleted and\nrecreated/);
 });
+
+test('the selected manager approval policy is recorded without claiming team chat or guardian authority is implemented', () => {
+  const contract = read('docs/contracts/team-conversations.md');
+  assert.match(contract, /owner selected the club manager to approve people and children/);
+  assert.match(contract, /team's stored club, not a client-supplied club ID/);
+  assert.match(contract, /administrator\nrole alone does not grant/);
+  assert.match(contract, /not permission to invent or edit\nguardian relationships/);
+  assert.match(contract, /remain unimplemented\nand unverified/);
+  assert(!contract.includes('Approval Policy Pending'));
+  const group = content.blockers.find((item) => item.id === 'group-conversation');
+  assert.match(group.next, /responsable du club/); assert(!group.next.includes('Choisir qui'));
+  assert.match(group.text, /construire et à tester/);
+  assert(content.updates.some((item) => item.title === 'Le club validera les inscriptions aux équipes' && item.date === '2026-10-17'));
+});

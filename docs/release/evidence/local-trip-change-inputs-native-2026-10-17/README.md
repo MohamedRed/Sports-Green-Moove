@@ -47,7 +47,8 @@ remain unchanged.
 Date-picker changes, desired-arrival editing, successful address lookup/route
 changes, route calculation, application after agreement, consent recovery after
 process death, historical review, real payments/refunds, physical tracking and
-six safety-audit records remain open. Team chat additionally awaits the enrollment
-approval decision and its authoritative membership/guardian lifecycle. No
+six safety-audit records remain open. Team chat still needs its authoritative
+membership/guardian lifecycle. The subsequently confirmed enrollment approver is
+the club manager; see the current team-conversation contract. No
 production app deployment, new provider outcome, paid resource, infrastructure
 change or release-manifest acceptance is claimed. The overall goal stays active.

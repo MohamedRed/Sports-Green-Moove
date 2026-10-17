@@ -59,10 +59,16 @@ parents, an unrelated parent and an outside account. Retain
 denial evidence as well as successful exchanges. Do not reuse a booking exchange
 as proof of team access or publish a non-functional team-message button.
 
-## Approval Policy Pending
+## Enrollment Approval
 
-The owner has been asked whether team enrollment is approved by the club manager
-or an application administrator. No answer has been received yet. The agreed
-audience does not itself authorize granting either role a new enrollment or
-guardian-management capability. Do not infer access from the existing editable
-child fields or extend club approval to team enrollment without that decision.
+On 2026-10-17 the owner selected the club manager to approve people and children
+joining a team. Approval must require current management authority over the
+team's stored club, not a client-supplied club ID. An application administrator
+role alone does not grant this team-enrollment approval capability.
+
+Only an approved, active enrollment can grant the team's conversation access.
+Parents qualify through an authoritative guardian relationship to an approved,
+actively enrolled child; club approval is not permission to invent or edit
+guardian relationships. Requests, refusals and removals retain the denial and
+revocation requirements above. The lifecycle and chat flow remain unimplemented
+and unverified; this product decision does not approve any production records.

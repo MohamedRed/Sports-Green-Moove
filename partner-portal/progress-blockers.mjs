@@ -13,7 +13,7 @@ export const blockers = [
     next: 'Stabiliser les deux connexions, puis rejouer les coupures et les brouillons après fermeture complète.', source: 'docs/release/evidence/local-dual-transport-2026-10-17/README.md' },
   { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
     text: 'Les échanges réuniront les membres d’une même équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.',
-    next: 'Choisir qui valide les inscriptions, puis tester l’accès à la conversation.', source: 'docs/contracts/team-conversations.md' },
+    next: 'Ajouter la validation des inscriptions par le responsable du club, puis tester l’accès à la conversation.', source: 'docs/contracts/team-conversations.md' },
   { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
     text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
     next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: 'docs/release/evidence/local-ui-collection-2026-10-16/README.md' },
