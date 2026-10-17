@@ -52,6 +52,11 @@ if [[ "$test_status" -eq 0 ]]; then
       echo "Missing trip change screen: $name" >&2
       exit 1
     fi
+    window_name="${name%.png}-window.png"
+    if [[ ! -s "$output_dir/sgm-trip-changes/$window_name" ]]; then
+      echo "Missing native trip change display capture: $window_name" >&2
+      exit 1
+    fi
   done
   screenshot_count="$(find "$output_dir" -type f -name "store-*.png" -size +0c | wc -l | tr -d " ")"
   if [[ "$screenshot_count" -lt 8 ]]; then

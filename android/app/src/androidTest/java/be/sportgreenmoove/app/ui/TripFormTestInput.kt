@@ -11,11 +11,12 @@ import androidx.test.uiautomator.UiDevice
 
 @RequiresApi(29)
 internal fun enterCancellationReason(compose: ComposeTestRule, reason: String) {
-    enterTripFormText(compose, "trip.cancel.reason", reason, "trip.cancel.confirm")
+    enterTripFormText(compose, "trip.cancel.reason", reason)
+    compose.onNodeWithTag("trip.cancel.confirm").assertIsDisplayed().assertIsEnabled()
 }
 
 @RequiresApi(29)
-internal fun enterTripFormText(compose: ComposeTestRule, inputTag: String, value: String, actionTag: String) {
+internal fun enterTripFormText(compose: ComposeTestRule, inputTag: String, value: String) {
     fun keyboardVisible() = compose.runOnIdle {
         WindowInspector.getGlobalWindowViews().any {
             ViewCompat.getRootWindowInsets(it)?.isVisible(WindowInsetsCompat.Type.ime()) == true
@@ -31,5 +32,4 @@ internal fun enterTripFormText(compose: ComposeTestRule, inputTag: String, value
     UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack()
     compose.waitUntil(15_000) { !keyboardVisible() }
     compose.waitForIdle()
-    compose.onNodeWithTag(actionTag).performScrollTo().assertIsDisplayed().assertIsEnabled()
 }

@@ -20,6 +20,7 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
+import java.io.File
 
 @SdkSuppress(minSdkVersion = 29)
 class TripChangeFlowTest {
@@ -74,7 +75,7 @@ class TripChangeFlowTest {
         }
         compose.onNodeWithTag("trip.edit.${trip.id}").performScrollTo().performClick(); waitFor("trip.change.price")
         compose.onNodeWithTag("trip.change.propose").performScrollTo().assertIsNotEnabled()
-        enterTripFormText(compose, "trip.change.price", "4,00", "trip.change.propose")
+        enterTripFormText(compose, "trip.change.price", "4,00")
         compose.onNodeWithTag("trip.change.propose").performScrollTo().assertIsEnabled().performClick(); waitFor("trip.change.status")
         compose.onNodeWithTag("trip.change.status").performScrollTo().assertTextEquals("Accords des parents en attente")
         capture("trip-change-driver-proposed.png")
@@ -105,8 +106,8 @@ class TripChangeFlowTest {
             TripsRoute("driver", AppRole.Driver, gateway, listOf(trip), null, 0, {}, {}, {}, { throw IOException() }, {})
         }
         compose.onNodeWithTag("trip.edit.${trip.id}").performScrollTo().performClick(); waitFor("trip.change.price")
-        enterTripFormText(compose, "trip.change.price", "4,00", "trip.change.propose")
-        compose.onNodeWithTag("trip.change.propose").performScrollTo().performClick(); waitFor("trip.change.error")
+        enterTripFormText(compose, "trip.change.price", "4,00")
+        compose.onNodeWithTag("trip.change.propose").performScrollTo().assertIsDisplayed().assertIsEnabled().performClick(); waitFor("trip.change.error")
         assertEquals(1, gateway.proposals)
         compose.onNodeWithTag("trip.change.propose").assertIsNotEnabled()
         compose.onNodeWithTag("trip.change.refresh").performScrollTo().performClick(); waitFor("trip.change.status")
@@ -178,7 +179,11 @@ class TripChangeFlowTest {
         captureLocalUi(compose, name, dialog = true)
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val device = UiDevice.getInstance(instrumentation)
+        val windowName = name.removeSuffix(".png") + "-window.png"
+        val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
+        check(device.takeScreenshot(File(directory, windowName))) { "Native display capture failed." }
         device.executeShellCommand("mkdir -p /sdcard/Download/sgm-trip-changes")
         device.executeShellCommand("cp /sdcard/Android/data/${instrumentation.targetContext.packageName}/files/local-ui-evidence/$name /sdcard/Download/sgm-trip-changes/$name")
+        device.executeShellCommand("cp /sdcard/Android/data/${instrumentation.targetContext.packageName}/files/local-ui-evidence/$windowName /sdcard/Download/sgm-trip-changes/$windowName")
     }
 }

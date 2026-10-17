@@ -40,3 +40,24 @@ test('new code is modular and smoke coverage includes both sides of the change c
   assert(workflow.includes('run: node --test tests/trip-cancellation-native.test.mjs tests/trip-change-native.test.mjs'));
   assert(read('scripts/run-android-ui-tests-and-collect-screenshots.sh').includes('adb pull /sdcard/Download/sgm-trip-changes'));
 });
+
+test('screen fixtures preserve real input readiness, app scrolling and failure artifacts', () => {
+  const dir = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
+  const input = read(dir + 'TripFormTestInput.kt');
+  for (const marker of ['WindowInspector.getGlobalWindowViews()', 'WindowInsetsCompat.Type.ime()',
+    'performClick().assertIsFocused()', 'performTextReplacement(value)', 'EditableText].text == value',
+    'pressBack()', '!keyboardVisible()', 'assertIsDisplayed().assertIsEnabled()', 'internal fun enterCancellationReason']) assert(input.includes(marker));
+  const screens = read(dir + 'TripChangeFlowTest.kt');
+  assert.equal(screens.split('enterTripFormText(compose, "trip.change.price", "4,00")').length - 1, 2);
+  assert(input.includes('compose.onNodeWithTag("trip.cancel.confirm").assertIsDisplayed().assertIsEnabled()'));
+  assert(!input.includes('actionTag'), 'Layout-specific button scrolling must remain with its screen test');
+  assert(screens.includes('Column(Modifier.verticalScroll(rememberScrollState()))'));
+  assert(screens.includes('compose.waitUntil(10_000)'));
+  assert(screens.includes('assertEquals(1, gateway.proposals)'));
+  assert(screens.includes('device.takeScreenshot(File(directory, windowName))'));
+  assert(screens.includes('captureLocalUi(compose, name, dialog = true)'));
+  const collection = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
+  assert(collection.includes('[[ "$test_status" -ne 0 ]] && adb shell test -d /sdcard/Download/sgm-trip-changes'));
+  assert(collection.includes('exit "$test_status"'));
+  assert(collection.includes('Missing native trip change display capture: $window_name'));
+});
