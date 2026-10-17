@@ -1,5 +1,14 @@
 const stripeApiBaseUrl = "https://api.stripe.com";
 
+function networkFailureKind(error) {
+  const code = error?.cause?.code ?? error?.code;
+  if (error?.name === "TimeoutError" || ["ETIMEDOUT", "UND_ERR_CONNECT_TIMEOUT", "UND_ERR_HEADERS_TIMEOUT", "UND_ERR_BODY_TIMEOUT"].includes(code)) return "timeout";
+  if (["ENOTFOUND", "EAI_AGAIN"].includes(code)) return "dns";
+  if (["ECONNREFUSED", "ECONNRESET", "ENETUNREACH", "EHOSTUNREACH", "UND_ERR_SOCKET"].includes(code)) return "connection";
+  if (error?.name === "AbortError") return "aborted";
+  return "unclassified";
+}
+
 export async function stripeGet(fetcher, secretKey, path) {
   let response;
   try {
@@ -11,8 +20,8 @@ export async function stripeGet(fetcher, secretKey, path) {
       },
       signal: AbortSignal.timeout(15_000),
     });
-  } catch {
-    throw new Error(`Stripe ${path} could not be reached.`);
+  } catch (error) {
+    throw new Error(`Stripe ${path} could not be reached (${networkFailureKind(error)}).`);
   }
   let body;
   try {
@@ -54,8 +63,8 @@ export async function checkConnectCallback(fetcher, url, name) {
       redirect: "follow",
       signal: AbortSignal.timeout(15_000),
     });
-  } catch {
-    throw new Error(`${name} callback host ${new URL(url).host} could not be reached.`);
+  } catch (error) {
+    throw new Error(`${name} callback host ${new URL(url).host} could not be reached (${networkFailureKind(error)}).`);
   }
   await response.body?.cancel();
   if (!response.ok) throw new Error(`${name} callback returned HTTP ${response.status}.`);

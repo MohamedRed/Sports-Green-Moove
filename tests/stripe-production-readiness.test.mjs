@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { checkStripeProductionReadiness } from "../scripts/lib/stripe-production-readiness.mjs";
+import { checkConnectCallback, stripeGet } from "../scripts/lib/stripe-readiness-http.mjs";
 
 const validEnv = {
   STRIPE_SECRET_KEY: "sk_live_" + "s".repeat(24),
@@ -235,5 +236,23 @@ assert.deepEqual(hosting.rewrites.slice(0, 2).map(({ source, function: handler }
 assert.match(readFileSync("android/app/src/main/AndroidManifest.xml", "utf8"), /android:scheme="sports-green-moove" android:host="payments"/);
 assert.match(readFileSync("ios/project.yml", "utf8"), /- sports-green-moove/);
 assert.match(readFileSync(".github/workflows/android-browserstack.yml", "utf8"), /SGM_RADAR_PUBLISHABLE_KEY: \$\{\{ secrets.SGM_RADAR_PUBLISHABLE_KEY \}\}/);
+
+for (const [error, kind] of [
+  [Object.assign(new Error(validEnv.STRIPE_SECRET_KEY), { name: "TimeoutError" }), "timeout"],
+  [{ cause: { code: "UND_ERR_CONNECT_TIMEOUT", message: validEnv.STRIPE_SECRET_KEY } }, "timeout"],
+  [{ cause: { code: "ENOTFOUND" } }, "dns"], [{ code: "EAI_AGAIN" }, "dns"],
+  [{ cause: { code: "ECONNRESET" } }, "connection"], [{ name: "AbortError" }, "aborted"],
+  [{ cause: { code: validEnv.STRIPE_SECRET_KEY } }, "unclassified"],
+]) {
+  for (const check of [
+    (fetcher) => checkConnectCallback(fetcher, validEnv.SGM_STRIPE_CONNECT_REFRESH_URL, "SGM_STRIPE_CONNECT_REFRESH_URL"),
+    (fetcher) => stripeGet(fetcher, validEnv.STRIPE_SECRET_KEY, "/v1/account"),
+  ]) {
+    let attempts = 0;
+    await assert.rejects(() => check(async () => { attempts++; throw error; }), (failure) =>
+      failure.message.endsWith(`could not be reached (${kind}).`) && !failure.message.includes(validEnv.STRIPE_SECRET_KEY));
+    assert.equal(attempts, 1, "Network diagnostics must not retry a failed request.");
+  }
+}
 
 console.log("Stripe production readiness checks passed.");
