@@ -59,6 +59,51 @@ snapshot; an earlier Git addition normalized only its line endings. Test results
 and case contents are unchanged. Scoped attributes now preserve raw native
 reports without changing source-code whitespace checks.
 
-The corrected device run remains pending in this snapshot. The wider release,
-physical phones and the other booking entry points remain incomplete. No
-production rollout has occurred.
+## Executed Search-Screen Stage
+
+[Native CI 39015636778](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39015636778)
+on `579486f33f1509d8b8ee38d97b5d139eac4550a2` declared 86 ordinary cases:
+67 passed and 19 conditional cases were skipped. `native-layout-after.xml`
+records zero failures/errors. All three new layout/measurement cases passed.
+The numeric `width-probe.json` reports a measured label width of 317 pixels but a
+reconstructed semantics paragraph width of 734 pixels. Remeasuring at the actual
+317-pixel frame retains the complete label and its 75-pixel height. No height
+overflow was present. This confirms the measurement diagnosis rather than a
+button-height defect. The original production button sizing is retained.
+
+The isolated search-screen test passed (`native-booking-ui-passed.txt`, one
+executed case). Run `9c36b2e83bed87a618800ae0a4211d42` independently verified
+two real booking SDK calls, one booking and one receipt. The first successful
+server reply was discarded after its committed booking was independently read;
+the parent saw the unconfirmed message and pressed retry. The same operation
+returned the original booking, cleared its pending identity and displayed
+`Demande envoyée.` without another request button. A stale callback made no
+third SDK call. `booking-ui-loss.json` retains the independent receipt and
+`local-booking-ui-loss.json` the original screen assertions. Reviewed captures
+show the unconfirmed and acknowledged states. Discovery remains explicitly
+stubbed; no provider search or process restart is claimed for this screen test.
+
+## Later Handover Rejection
+
+The same full run **failed later**, despite the app network case reporting
+completion (`native-network-app-before.txt`). Its original
+`network-handover-before.json` still lists both Wi-Fi and cellular transports in
+the supposedly cellular-only sample. The unchanged host verifier rejected it;
+there is no complete 24-case result for this run. An app self-report does not
+replace independent handover evidence or qualify the whole run as passing.
+
+Readiness previously checked the active cellular network, then took a separate
+sample of all networks for evidence. The corrected test instead waits on the
+same immutable observation that is recorded. Both active and all Internet
+transports must be exclusively cellular, the Wi-Fi flag off, data enabled,
+an active network present and the backend reachable. Counts and transport names
+come from the same capabilities collection. This is not an atomic OS transaction;
+it removes the separate readiness/evidence sampling mismatch. No deadline,
+network setting, retry, route fallback or assertion is relaxed. Fresh verifiers
+require observation version 1 and both exclusive transport fields. Historical
+receipts retain their original validation/version and bytes.
+
+The corrected handover device run remains pending in this snapshot. The earlier
+intermittent missing-subscription preparation failure is still not explained by
+this different mismatch. The wider release, physical phones and other booking
+entry points remain incomplete. No production rollout has occurred.

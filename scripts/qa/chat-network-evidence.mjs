@@ -48,3 +48,12 @@ export function assertCellularRequestSetup(ui) {
       'A newly recorded run must prove cellular handover before disabling mobile data');
   }
 }
+
+export function assertObservedCellularHandover(ui) {
+  assert.equal(ui.handoverObservationVersion, 1, 'A fresh run must use the recorded readiness observation');
+  if (!ui.network[0].mobileDataEnabled) return;
+  const cellular = ui.network.find((sample) => sample.phase === 'cellular-ready');
+  assert(cellular, 'A cellular readiness observation is required');
+  assert.deepEqual(cellular.activeInternetTransports, ['cellular']);
+  assert.deepEqual(cellular.internetTransports, ['cellular']);
+}

@@ -72,13 +72,7 @@ internal class LocalEmulatorNetwork(
         device.executeShellCommand("svc data disable")
     }
 
-    fun cellularReady(): Boolean {
-        val active = connectivity.activeNetwork ?: return false
-        val capabilities = connectivity.getNetworkCapabilities(active) ?: return false
-        return !wifi.isWifiEnabled && telephony.isDataEnabled &&
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) &&
-            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) && backendReachable()
-    }
+    fun cellularReadySnapshot(): JSONObject? = snapshot("cellular-ready").takeIf(::isExclusiveCellularObservation)
 
     fun restore() {
         if (!changed) return
@@ -96,8 +90,13 @@ internal class LocalEmulatorNetwork(
         true
     } catch (_: IOException) { false }
 
-    fun snapshot(phase: String) = JSONObject().put("phase", phase).put("wifiEnabled", wifi.isWifiEnabled)
-        .put("mobileDataEnabled", telephony.isDataEnabled).put("activeNetwork", connected())
+    fun snapshot(phase: String): JSONObject {
+        val active = connectivity.activeNetwork
+        val activeCapabilities = active?.let(connectivity::getNetworkCapabilities)
+        val internetCapabilities = connectivity.allNetworks.mapNotNull(connectivity::getNetworkCapabilities)
+            .filter { it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) }
+        return JSONObject().put("phase", phase).put("wifiEnabled", wifi.isWifiEnabled)
+        .put("mobileDataEnabled", telephony.isDataEnabled).put("activeNetwork", active != null)
         .put("cellularRequestRegistered", cellularRequestRegistered)
         .put("cellularAvailableCallbacks", availableCallbacks.get()).put("cellularLostCallbacks", lostCallbacks.get())
         .put("cellularUnavailableCallbacks", unavailableCallbacks.get())
@@ -105,13 +104,17 @@ internal class LocalEmulatorNetwork(
         .put("hasDefaultDataSubscription", SubscriptionManager.isValidSubscriptionId(SubscriptionManager.getDefaultDataSubscriptionId()))
         .put("airplaneModeSetting", Settings.Global.getString(resolver, Settings.Global.AIRPLANE_MODE_ON) ?: JSONObject.NULL)
         .put("mobileDataAlwaysOnSetting", Settings.Global.getString(resolver, "mobile_data_always_on") ?: JSONObject.NULL)
-        .put("internetNetworkCount", internetNetworks()).put("backendReachable", backendReachable())
-        .put("internetTransports", org.json.JSONArray(connectivity.allNetworks.mapNotNull { network ->
-            connectivity.getNetworkCapabilities(network)?.takeIf { it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) }
-                ?.let { capabilities -> listOf(NetworkCapabilities.TRANSPORT_WIFI to "wifi",
-                    NetworkCapabilities.TRANSPORT_CELLULAR to "cellular", NetworkCapabilities.TRANSPORT_ETHERNET to "ethernet",
-                    NetworkCapabilities.TRANSPORT_VPN to "vpn").filter { capabilities.hasTransport(it.first) }.map { it.second } }
-        }.flatten().distinct()))
+        .put("internetNetworkCount", internetCapabilities.size).put("backendReachable", backendReachable())
+        .put("activeInternetTransports", org.json.JSONArray(transportNames(activeCapabilities)))
+        .put("internetTransports", org.json.JSONArray(internetCapabilities.flatMap(::transportNames).distinct()))
+    }
+
+    private fun transportNames(capabilities: NetworkCapabilities?): List<String> {
+        if (capabilities == null || !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) return emptyList()
+        return listOf(NetworkCapabilities.TRANSPORT_WIFI to "wifi", NetworkCapabilities.TRANSPORT_CELLULAR to "cellular",
+            NetworkCapabilities.TRANSPORT_ETHERNET to "ethernet", NetworkCapabilities.TRANSPORT_VPN to "vpn")
+            .filter { capabilities.hasTransport(it.first) }.map { it.second }
+    }
 
     override fun close() {
         try { restore() }

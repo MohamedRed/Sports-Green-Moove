@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import ts from 'typescript';
-import { assertChatNetworkReceipt, assertCellularRequestSetup } from '../scripts/qa/chat-network-evidence.mjs';
+import { assertChatNetworkReceipt, assertCellularRequestSetup, assertObservedCellularHandover } from '../scripts/qa/chat-network-evidence.mjs';
 import { networkRestoreCommands } from '../scripts/qa/local-network-replay.mjs';
 import { finishDisposableCleanup, waitForDisposableDevice } from '../scripts/qa/disposable-device-cleanup.mjs';
 
@@ -87,8 +87,8 @@ test('app replay requires actual unconfirmed send, retry and cross-account draft
   assert.match(cleanup, /timeout: 30_000/);
   assert(replay.indexOf('writeResult(context, result)', replay.indexOf('control.snapshot("before")')) < replay.indexOf('control.disconnect {'));
   assert.match(replay, /control.snapshot\("disconnect-failed"\)/);
-  assert.match(replay, /control.cellularReady\(\)/);
-  assert.match(replay, /control.snapshot\("cellular-ready"\)/);
+  assert.match(replay, /control.cellularReadySnapshot\(\)/);
+  assert.match(replay, /network.put\(checkNotNull\(cellularEvidence\)\)/);
   const verifier = read('scripts/qa/local-chat-network-ui.mjs');
   assert.match(verifier, /assert.equal\(messages.size, 2/);
   assert.match(verifier, /assert.equal\(notes.size, 1\)/);
@@ -197,6 +197,28 @@ test('new receipts require preparation, the requested route, release and the unc
   ]) {
     const ui = preparedReceipt(); mutate(ui); assert.throws(() => validate(ui));
   }
+});
+
+test('fresh handover evidence uses the same exclusive cellular observation that released its wait', () => {
+  const complete = preparedReceipt(); complete.handoverObservationVersion = 1;
+  complete.network[1].activeInternetTransports = ['cellular'];
+  assertObservedCellularHandover(complete);
+  for (const mutate of [
+    (ui) => { delete ui.handoverObservationVersion; }, (ui) => { ui.handoverObservationVersion = 2; },
+    (ui) => { ui.network[1].internetTransports.push('wifi'); },
+    (ui) => { ui.network[1].activeInternetTransports = ['wifi']; },
+    (ui) => { ui.network[1].internetTransports.push('vpn'); },
+    (ui) => { delete ui.network[1].activeInternetTransports; },
+  ]) { const ui = structuredClone(complete); mutate(ui); assert.throws(() => assertObservedCellularHandover(ui)); }
+  const replay = native('LocalChatNetworkFlowTest');
+  assert.match(replay, /cellularEvidence = control.cellularReadySnapshot\(\)/);
+  assert.match(replay, /network.put\(checkNotNull\(cellularEvidence\)\)/);
+  assert(!replay.includes('control.snapshot("cellular-ready")'));
+  assert.match(native('LocalEmulatorNetwork'), /snapshot\("cellular-ready"\).takeIf\(::isExclusiveCellularObservation\)/);
+  const predicate = native('LocalCellularObservation');
+  assert.match(predicate, /transports\("activeInternetTransports"\) == setOf\("cellular"\)/);
+  assert.match(predicate, /transports\("internetTransports"\) == setOf\("cellular"\)/);
+  assert.match(read('scripts/qa/local-chat-network-ui.mjs'), /assertObservedCellularHandover\(ui\)/);
 });
 
 test('host cleanup uses the current run actual state and rejects stale or ambiguous receipts', () => {

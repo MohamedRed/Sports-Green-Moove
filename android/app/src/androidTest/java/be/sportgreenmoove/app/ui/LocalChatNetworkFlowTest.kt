@@ -49,6 +49,7 @@ class LocalChatNetworkFlowTest {
         val network = JSONArray()
         result.put("network", network)
         result.put("setupMethod", "requested-cellular-network")
+        result.put("handoverObservationVersion", 1)
         var phase = "login"
         var networkControl: LocalEmulatorNetwork? = null
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
@@ -84,8 +85,12 @@ class LocalChatNetworkFlowTest {
                     phase = "disconnect"
                     try {
                         control.disconnect {
-                            compose.waitUntil(30_000) { control.cellularReady() }
-                            network.put(control.snapshot("cellular-ready"))
+                            var cellularEvidence: JSONObject? = null
+                            compose.waitUntil(30_000) {
+                                cellularEvidence = control.cellularReadySnapshot()
+                                cellularEvidence != null
+                            }
+                            network.put(checkNotNull(cellularEvidence))
                             writeResult(context, result)
                         }
                         compose.waitUntil(30_000) { control.offline() }
