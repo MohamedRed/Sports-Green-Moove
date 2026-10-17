@@ -95,7 +95,8 @@ test('new raw evidence is byte-pinned and the ordinary component pass stays sepa
 
 test('the private update shows only the verified restart stage and keeps the latest interruption explicit', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.match(flow.summary, /nouvel essai de coupure passe/);
+  assert.equal(flow.status, 'partial'); assert.match(flow.summary, /passe une fois/);
+  assert.match(flow.summary, /bloque au clavier/);
   assert.match(flow.remaining, /Répéter les essais de coupure/);
   assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
   const issue = content.blockers.find((item) => item.id === 'chat-send-stability');
