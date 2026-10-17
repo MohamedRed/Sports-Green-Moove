@@ -36,3 +36,8 @@ run must execute both probes, all seven previously failed cases, and the separat
 full native/backend replay. Retain any failure without weakening these checks.
 Even a passing run does not close phone keyboard/layout, map rendering, physical
 tracking, live payments or safety-audit requirements.
+
+The [first observed result](../release/evidence/local-input-readiness-2026-10-17/README.md)
+passed both probes and all previously failed cases, but the independent network
+preparation still failed. Pre-touch windows were already focused in the retained
+samples, so causality and repeated-run reliability remain unproven.

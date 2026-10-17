@@ -80,6 +80,8 @@ on:
       - "tests/local-ui-config.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
+      - "tests/input-readiness-evidence.test.mjs"
+      - "docs/release/evidence/local-input-readiness-2026-10-17/**"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationTestInteractions.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadiness.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadinessTest.kt"
@@ -223,6 +225,8 @@ on:
       - "tests/local-ui-config.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
+      - "tests/input-readiness-evidence.test.mjs"
+      - "docs/release/evidence/local-input-readiness-2026-10-17/**"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationTestInteractions.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadiness.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadinessTest.kt"
@@ -440,6 +444,9 @@ jobs:
 
       - name: Validate dual-transport network prerequisites
         run: node --test tests/dual-transport-config.test.mjs tests/dual-transport-evidence.test.mjs tests/dual-transport-completed-evidence.test.mjs
+
+      - name: Validate input window readiness evidence
+        run: node --test tests/input-readiness-evidence.test.mjs
 
       - name: Validate explicit partner component evidence scope
         run: node --test tests/partner-component-scope.test.mjs

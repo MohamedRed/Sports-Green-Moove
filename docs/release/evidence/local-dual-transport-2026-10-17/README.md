@@ -81,3 +81,8 @@ replay did not start, so this run neither repeats nor disproves its recorded
 network handover. The earlier complete success remains retained, but consistent
 execution is not proven. Diagnose keyboard readiness before treating another
 complete pass as stability evidence.
+
+The subsequent [input-readiness report](../local-input-readiness-2026-10-17/README.md)
+retains two more runs. Screen cases pass, including two new real-keyboard probes,
+while their full replays stop at different network prerequisites. These outcomes
+do not promote this earlier 24-case success into a reliability or release claim.

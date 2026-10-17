@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'Les essais du clavier passent',
+    text: 'Les écrans passent le nouvel essai. La coupure n’a pas été rejouée : la connexion de départ reste à préparer.', flow: 'messages' },
   { date: '2026-10-17', title: 'Le nouvel essai bloque au clavier',
     text: 'Sept essais d’écran s’arrêtent avant la saisie. La coupure n’a pas été rejouée. Les captures de l’essai réussi restent disponibles.', flow: 'messages' },
   { date: '2026-10-17', title: 'La coupure et la reprise passent',

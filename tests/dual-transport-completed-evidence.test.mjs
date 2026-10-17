@@ -100,7 +100,7 @@ test('the repeat keyboard failure is retained without replacing the completed re
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.match(flow.summary, /clavier/); assert.match(flow.remaining, /clavier/);
   assert.equal(flow.ui.source, base + 'completed/results.json');
-  assert.equal(content.updates[0].title, 'Le nouvel essai bloque au clavier');
+  assert(content.updates.some((item) => item.title === 'Le nouvel essai bloque au clavier'));
   const report = readFileSync(new URL('../' + base + 'README.md', import.meta.url), 'utf8');
   assert.match(report, /39031056051/); assert.match(report, /replay did not start/);
 });
