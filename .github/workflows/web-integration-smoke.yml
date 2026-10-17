@@ -48,6 +48,7 @@ on:
       - "tests/trip-cancellation-evidence.test.mjs"
       - "tests/trip-cancellation-native.test.mjs"
       - "tests/trip-change-native.test.mjs"
+      - "tests/trip-change-native-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
@@ -185,6 +186,7 @@ on:
       - "tests/trip-cancellation-evidence.test.mjs"
       - "tests/trip-cancellation-native.test.mjs"
       - "tests/trip-change-native.test.mjs"
+      - "tests/trip-change-native-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
@@ -422,6 +424,9 @@ jobs:
 
       - name: Validate native trip cancellation integration
         run: node --test tests/trip-cancellation-native.test.mjs tests/trip-change-native.test.mjs
+
+      - name: Validate scoped native trip-change evidence
+        run: node --test tests/trip-change-native-evidence.test.mjs
 
       - name: Validate explicit partner component evidence scope
         run: node --test tests/partner-component-scope.test.mjs

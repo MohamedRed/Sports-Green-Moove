@@ -75,11 +75,11 @@ test('raw reports remain byte exact and the portal keeps full editing and real s
   for (const [name, hash] of Object.entries(hashes)) assert.equal(createHash('sha256')
     .update(readFileSync(new URL(base + name, root))).digest('hex'), hash, name);
   const flow = content.flows.find((item) => item.id === 'publication');
-  const current = 'docs/release/evidence/local-trip-change-application-2026-10-16/';
+  const current = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
   assert.equal(flow.status, 'partial'); assert.equal(flow.source, current + 'README.md');
   assert.equal(flow.local.source, current + 'services.json');
   assert(flow.local.groups.includes('trip-details-ownership'));
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/results.json');
+  assert.equal(flow.ui.source, current + 'results.json');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
@@ -89,7 +89,8 @@ test('raw reports remain byte exact and the portal keeps full editing and real s
   assert.match(read(base + 'README.md'), /not been deployed to production/);
   const contract = read('docs/contracts/trip-editing.md');
   assert.match(contract, /owner explicitly selected \*\*fresh parent confirmation\*\*/);
-  assert.match(contract, /full editing flow\s+is still not implemented/);
+  assert.match(contract, /complete editing\s+flow is not yet verified end to end/);
+  assert.match(contract, /Android editing and parent-review screens\s+are implemented/);
   assert.match(contract, /declined change\s+into a cancellation/);
   assert(content.updates.some((item) => item.flow === 'publication' && /parents confirmeront/.test(item.title) && /reste à construire/.test(item.text)));
 });

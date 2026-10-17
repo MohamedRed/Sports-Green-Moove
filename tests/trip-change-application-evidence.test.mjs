@@ -65,12 +65,13 @@ test('current source requires atomic application, owned invoice attempts and CI 
   assert.match(workflow, /^\s+run: node --test[^\n]*\btests\/trip-change-application-evidence\.test\.mjs(?:\s|$)/m);
 });
 
-test('private progress names completed local application without accepting editing screens or money movement', () => {
+test('private progress separates simulated editing screens from full native replay and money movement', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, base + 'README.md');
-  assert.equal(flow.local.source, base + 'services.json'); assert(flow.local.groups.includes('trip-change-application'));
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/results.json');
-  assert.match(flow.remaining, /écrans/); assert.match(flow.remaining, /paiements et remboursements réels/);
+  const current = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
+  assert.equal(flow.status, 'partial'); assert.equal(flow.source, current + 'README.md');
+  assert.equal(flow.local.source, current + 'services.json'); assert(flow.local.groups.includes('trip-change-application'));
+  assert.equal(flow.ui.source, current + 'results.json');
+  assert.match(flow.remaining, /entre comptes/); assert.match(flow.remaining, /paiements et remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
   assert(content.updates.some((item) => /changements confirmés s’appliquent/.test(item.title)));
   assert(flow.local.checks.some((item) => /Aucun paiement ni remboursement réel/.test(item)));

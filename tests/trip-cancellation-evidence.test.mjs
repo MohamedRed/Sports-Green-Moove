@@ -87,13 +87,14 @@ test('CI runs cancellation checks and the private portal separates local app pro
   assert(flow.local.groups.includes('trip-cancellation')); assert.equal(flow.source, detailsBase + 'README.md');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
-  assert.deepEqual(flow.ui, { source: uiBase + 'results.json', groups: ['driver-trip-cancellation-ui'] });
+  assert.equal(flow.ui.source, detailsBase + 'results.json');
+  assert(flow.ui.groups.includes('trip-change-parent-decline-ui'));
   assert.match(read(base + 'README.md'), /not been deployed to production/);
   for (const name of ['trip-cancel-review', 'trip-cancel-confirmed', 'trip-cancel-parent']) assert(captures[name].startsWith(uiBase));
 });
 
 const uiBase = 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/';
-const detailsBase = 'docs/release/evidence/local-trip-change-application-2026-10-16/';
+const detailsBase = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
 const uiJson = (name) => JSON.parse(read(uiBase + name));
 
 test('completed app cancellation requires the actual same-run receipt and independently verified closed state', () => {

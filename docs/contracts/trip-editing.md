@@ -25,8 +25,8 @@ positive tests, not just denial tests.
 
 On 2026-10-16 the owner explicitly selected **fresh parent confirmation** for
 changes to the time, route or price after reservations. Cancellation followed by
-a newly published trip is not the selected editing policy. The full editing flow
-is still not implemented.
+a newly published trip is not the selected editing policy. The complete editing
+flow is not yet verified end to end.
 
 Old consent must not stand for agreement to new details. Do not cancel
 reservations automatically or publish a title-only screen as the completed editor.
@@ -36,10 +36,11 @@ not authorize changed details, a changed payment amount or a ride start.
 
 The server proposal, decision and application stages are implemented locally.
 Supplement collection now has a separate server implementation. Required work
-still includes refund execution and settlement, native editing and parent-review
-screens, and full
-end-to-end approval/denial/race/recovery tests. Do not present the consent API as
-the completed editing flow.
+still includes refund execution and settlement and full multi-account native
+approval/denial/race/recovery replay. Android editing and parent-review screens
+are implemented; see the [native contract](android-trip-changes.md) for their
+entry points and unverified boundaries. Do not present either a consent API or
+fixture-backed screen checks as the completed editing flow.
 
 ## Local Proposal And Decision Stage
 
@@ -81,9 +82,10 @@ by its driver. Cancellation and withdrawal are not automatic edit fallbacks.
 The stage has a 100-active-reservation atomic limit and rejects inconsistent
 metadata without partial writes. Proposal and decision documents are accessible
 only through authorized server operations, including for administrators; direct
-client reads, directory queries and writes are denied. It is not deployed and
-has no native entry point yet. Financial settlement is not implemented and must
-not be inferred from a confirmed consent record. The separately verified
+client reads, directory queries and writes are denied. It is not deployed. Android
+entry points now invoke the authenticated callables; a full multi-account native
+replay remains required. Financial settlement is not established and must not be
+inferred from a confirmed consent record. The separately verified
 [application contract](trip-change-application.md) covers final term updates,
 route recalculation, immutable original invoices and outstanding balance plans.
 
@@ -109,8 +111,10 @@ server-signed quote or payment authorization. It is a mandatory wire-contract
 change requiring coordinated server/client release; it has not been deployed.
 Booking response-loss recovery now has a separate local implementation and
 [verification scope](../release/evidence/local-booking-recovery-2026-10-17/README.md).
-Child-list refresh after revoked access, full iOS device recovery and the
-editing/parent-decision screens remain unfinished.
+Child-list refresh after revoked access, full iOS device recovery and complete
+editing/parent-decision replay remain unfinished. The Android screens are
+implemented, with pending-edit process-death recovery and closed-proposal history
+still open.
 See `docs/release/evidence/local-booking-display-2026-10-17/README.md` for current
 local handler, native mapping and wire coverage. The earlier consistency report
 retains its original narrower scope. Neither report proves the completed editor.

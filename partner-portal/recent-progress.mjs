@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'Les parents peuvent confirmer ou refuser',
+    text: 'Sept essais d’écran simulés passent, dont la reprise sans doublon. Les cartes restent à vérifier avant d’ajouter les captures.', flow: 'publication' },
   { date: '2026-10-17', title: 'La préparation bloque encore un essai',
     text: 'Après les 24 essais réussis, un autre s’arrête avant la coupure. Les captures de l’essai réussi restent disponibles.', flow: 'messages' },
   { date: '2026-10-17', title: '24 essais locaux passent',

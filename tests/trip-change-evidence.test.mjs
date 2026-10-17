@@ -71,10 +71,10 @@ test('current server wiring preserves the original flow while making parent cons
 
 test('private progress keeps historical consent separate from native editing and actual money movement', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
-  const current = 'docs/release/evidence/local-trip-change-application-2026-10-16/';
+  const current = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
   assert.equal(flow.status, 'partial'); assert.equal(flow.source, current + 'README.md');
   assert.equal(flow.local.source, current + 'services.json'); assert(flow.local.groups.includes('trip-change-parent-confirmation'));
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-cancellation-ui-2026-10-16/results.json');
+  assert.equal(flow.ui.source, current + 'results.json');
   assert.match(flow.remaining, /modification/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas en ligne/);
   assert(content.updates.some((update) => update.flow === 'publication' && /contrôles des confirmations/.test(update.title) && /écrans/.test(update.text)));
