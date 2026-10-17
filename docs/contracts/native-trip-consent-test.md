@@ -41,3 +41,16 @@ route calculation, applying the agreed details, payment adjustments/refunds,
 process-death recovery, historical review and physical-device usability remain
 separate requirements. No provider substitute or production deployment is added.
 Compilation and configuration checks are not evidence that this native case ran.
+
+## Independent Required Suites
+
+The device prerequisite guard remains mandatory before any app test. Once it
+passes, ordinary connected tests, their capture collection and the isolated
+backend/native replay retain separate outcomes. An ordinary test or capture
+failure does not suppress the other required replay. This is not an alternative
+success path: the job returns nonzero if any required outcome failed. The first
+failure is preserved as the exit status and all three statuses are written to
+`native-suite-status.json`, explicitly labeled as exit metadata rather than flow
+verification. No test, retry, capture assertion or full-replay gate is removed.
+Shell-harness regression cases prove success, each individual failure, combined
+failure and a denied device prerequisite without using a real user or device.
