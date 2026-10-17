@@ -52,4 +52,7 @@ test('failure artifacts retain their original bytes and stay in smoke coverage',
   const workflow = readFileSync(new URL('.github/workflows/web-integration-smoke.yml', root), 'utf8');
   assert.equal(workflow.split('"tests/dual-transport-evidence.test.mjs"').length - 1, 2);
   assert(workflow.includes('run: node --test tests/dual-transport-config.test.mjs tests/dual-transport-evidence.test.mjs'));
+  const attributes = readFileSync(new URL('.gitattributes', root), 'utf8');
+  assert(attributes.includes(base + '**/*.xml -text -whitespace'));
+  assert(attributes.includes(base + '**/*.txt -text -whitespace'));
 });
