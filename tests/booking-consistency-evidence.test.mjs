@@ -22,6 +22,8 @@ const hashes = {
   'modem-after.json': '932fe648488277a0fa105e206950a808f544b20158ea7f6f5b2fec29da4b1225',
   'booking-review-required.png': 'c57d5681d3562c514dc2be6dffcbe859c92a21cec9bc9bc3a4b56267deaf2425',
   'booking-review-narrow.png': 'cb6b488a2e3edc0dce613ed720d0d294198f9cca6dcbb839eb4f78e89ecf6a1f',
+  'complete-replay.json': 'ffd06c8085d29a6e9ff4d219ffe52e0dcf30154b5e148a1c651907caef1352ab',
+  'network-recovery.json': '6d59766eb071b74c09ff644a326e17164506632e8d90444d28b62f341cd6b45a',
 };
 
 test('retained booking evidence preserves original bytes and isolated scope', () => {
@@ -37,6 +39,29 @@ test('retained booking evidence preserves original bytes and isolated scope', ()
     assert.match(run.runId, /^[a-f0-9]{32}$/);
     assert.equal(run.testedAt.slice(0, 10), '2026-10-17');
   }
+});
+
+test('the independent complete replay preserves the failed run and proves actual offline and restored boundaries', () => {
+  const run = json('complete-replay.json'), network = json('network-recovery.json');
+  assert.equal(run.runId, 'd849f6670fc0f34f60b36823eaa4ba92');
+  assert.equal(run.testedAt, '2026-10-17T04:18:31.327Z');
+  assert.equal(run.scope, 'local-ui-not-physical-device'); assert.equal(run.testCount, 21);
+  assert.equal(run.steps.length, 22); assert(run.steps.every((item) => item.status === 'passed'));
+  assert.equal(network.runId, run.runId); assert.equal(network.completed, true);
+  assert.equal(network.preparation.hasDefaultDataSubscription, true);
+  const offline = network.network.find((item) => item.phase === 'offline');
+  assert.equal(offline.activeNetwork, false); assert.equal(offline.internetNetworkCount, 0);
+  assert.equal(offline.backendReachable, false); assert.equal(offline.wifiEnabled, false);
+  assert.equal(offline.mobileDataEnabled, false);
+  const restored = network.network.find((item) => item.phase === 'restored');
+  assert.equal(restored.backendReachable, true); assert.equal(restored.activeNetwork, true);
+  for (const key of ['offlineSendUnconfirmed', 'offlineDraftRetained', 'recoveredSendConfirmed',
+    'cellularRequestReleased', 'accountDraftCleared', 'replyReceived']) assert.equal(network[key], true);
+  assert.equal(run.chatNetwork.messageCount, 2); assert.equal(run.chatNetwork.notificationCount, 2);
+  assert.equal(run.chatNetwork.duplicateMessages, 0);
+  assert.equal(run.tripCancellation.livePayment, false); assert.equal(run.tripCancellation.refundIssued, false);
+  assert.equal(json('network-preparation-failure.json').completed, false);
+  assert.match(content.updates[0].text, /instable/);
 });
 
 test('the original thirteen-case failure remains a failure, not retroactively accepted', () => {

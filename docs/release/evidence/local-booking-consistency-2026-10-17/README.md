@@ -119,3 +119,33 @@ Additional original SHA-256 values:
 | modem-after.json | `932fe648488277a0fa105e206950a808f544b20158ea7f6f5b2fec29da4b1225` |
 | booking-review-required.png | `c57d5681d3562c514dc2be6dffcbe859c92a21cec9bc9bc3a4b56267deaf2425` |
 | booking-review-narrow.png | `cb6b488a2e3edc0dce613ed720d0d294198f9cca6dcbb839eb4f78e89ecf6a1f` |
+
+## Independent Complete Replay
+
+The evidence-only follow-up commit `56baf75ec9769806b25d70be6a028f3fa7479d1a`
+changed no production Android, Functions or QA runner source. Its ordinary CI run
+[39001244548](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39001244548)
+completed successfully. This was the normal check triggered by the evidence commit,
+not a manually requested rerun of the failed job. All enabled PR checks were green;
+the two iOS jobs remained intentionally disabled.
+
+`complete-replay.json` is the original completed host receipt: run
+`d849f6670fc0f34f60b36823eaa4ba92`, 04:18:31 UTC, 21 instrumentation cases and
+22 successful result groups, scope `local-ui-not-physical-device`.
+`network-recovery.json` records a valid default data subscription, actual cellular
+handover, zero active Internet networks and an unreachable backend while offline,
+restoration, retained draft, one confirmed resend, cross-account draft clearing,
+reply reception and callback release. Host verification found two messages and
+two notifications without duplicates. Restart and controlled response-loss groups
+also passed under their distinct stated limits. No live payment or refund occurred.
+
+The failed run above stays failed. This independent success proves one complete
+replay, not stable emulator provisioning or resolution of the missing-subscription
+failure. No runner or timeout was changed between those outcomes. The portal now
+states both outcomes without promoting a physical-device or release requirement.
+Further equivalent CI receipts do not need another documentation-only commit.
+
+| File | SHA-256 |
+| --- | --- |
+| complete-replay.json | `ffd06c8085d29a6e9ff4d219ffe52e0dcf30154b5e148a1c651907caef1352ab` |
+| network-recovery.json | `6d59766eb071b74c09ff644a326e17164506632e8d90444d28b62f341cd6b45a` |

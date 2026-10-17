@@ -1,6 +1,8 @@
 export const recentProgress = [
-  { date: '2026-10-17', title: 'L’essai de coupure s’arrête avant la déconnexion',
-    text: 'La conversation s’ouvre, mais le dernier essai ne peut pas préparer la coupure. La reprise reste à stabiliser.', flow: 'messages' },
+  { date: '2026-10-17', title: 'La reprise après coupure passe en local',
+    text: 'L’essai complet passe. Un autre s’est arrêté avant la coupure : la préparation reste instable.', flow: 'messages' },
+  { date: '2026-10-17', title: 'Un essai s’est arrêté avant la coupure',
+    text: 'La conversation s’est ouverte, mais la coupure n’a pas pu être préparée. Cet échec reste suivi.', flow: 'messages' },
   { date: '2026-10-17', title: 'La demande s’arrête si le trajet change pendant l’envoi',
     text: 'Le message et la nouvelle recherche passent dans l’essai local simulé. Deux captures du 17 octobre ont été ajoutées.', flow: 'booking' },
   { date: '2026-10-17', title: 'Le conflit d’annulation passe en local',
