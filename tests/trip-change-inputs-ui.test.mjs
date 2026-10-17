@@ -125,6 +125,8 @@ const completedBase = 'docs/release/evidence/local-trip-change-inputs-native-202
 const completed = (name) => JSON.parse(read(completedBase + name));
 
 test('completed input proof preserves all 26 groups, 18 transcripts, seven acknowledged copies and byte-exact raw records', () => {
+  for (const extension of ['xml', 'txt']) assert(read('.gitattributes').includes(
+    `docs/release/evidence/local-trip-change-inputs-native-2026-10-17/**/*.${extension} -text -whitespace`));
   const hashes = completed('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 56);
   for (const [name, hash] of Object.entries(hashes)) assert.equal(createHash('sha256').update(bytes(completedBase + name)).digest('hex'), hash, name);
   const run = completed('results.json'); assert.equal(run.projectId, 'demo-sgm-local-qa');
