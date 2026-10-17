@@ -55,13 +55,17 @@ try {
     await page.keyboard.press('Escape');
   }
   await page.goto(`${base}/#parcours/booking`);
-  await page.getByText('Essai local du 15 octobre 2026', { exact: true }).waitFor();
-  await page.getByRole('img', { name: 'Demande acceptée par le conducteur en local' }).waitFor();
+  const booking = content.flows.find((flow) => flow.id === 'booking');
+  const checkedAt = new Intl.DateTimeFormat('fr-BE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+    .format(new Date(booking.checkedAt));
+  await page.getByText(`Essai local du ${checkedAt}`, { exact: true }).waitFor();
+  await page.getByRole('img', { name: booking.images[0].alt, exact: true }).waitFor();
   assert.equal(await page.locator('video').count(), 0);
   assert.equal(await page.locator('.media-navigation').count(), 1);
   await page.screenshot({ path: `${output}/local-booking.png`, fullPage: true });
-  await page.getByRole('button', { name: 'Preuve suivante' }).click();
-  assert.equal(await page.locator('.local-results li').count(), 5);
+  for (let image = 0; image < booking.images.length; image++)
+    await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click();
+  assert.equal(await page.locator('.local-results li').count(), booking.local.checks.length);
   await page.goto(`${base}/#parcours/tracking`);
   await page.getByRole('heading', { name: 'Pas encore de vidéo' }).waitFor();
   assert.equal(await page.locator('video').count(), 0);

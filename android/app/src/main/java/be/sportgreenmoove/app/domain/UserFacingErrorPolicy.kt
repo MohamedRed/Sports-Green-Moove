@@ -9,6 +9,8 @@ object UserFacingErrorPolicy {
         val normalizedMessage = message.lowercase(Locale.ROOT)
 
         return when {
+            error is BookingReviewRequiredException ->
+                "Les détails du trajet ont changé. Relancez la recherche avant de réserver."
             isNetworkError(className, normalizedMessage) ->
                 "Connexion réseau indisponible. Vérifiez votre connexion puis réessayez."
             normalizedMessage.contains("driver role is required") ->

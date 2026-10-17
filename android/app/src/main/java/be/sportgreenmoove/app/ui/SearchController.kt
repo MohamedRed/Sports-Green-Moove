@@ -10,6 +10,7 @@ import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.services.AndroidProviderSet
+import be.sportgreenmoove.app.domain.BookingReviewRequiredException
 import kotlinx.coroutines.CoroutineScope
 
 @MainThread
@@ -42,6 +43,7 @@ class SearchController(
         private set
     private var initializedChild = false
     private var acceptedCriteria: TripSearchCriteria? = null
+    private var matchesGeneration = 0L
     private val requests = SearchRequests(scope, onError, { loading = it }, onAppLoading)
 
     fun updateChildren(children: List<ChildSummary>) {
@@ -117,8 +119,11 @@ class SearchController(
             onError("Ce trajet ne propose plus assez de places. Relancez la recherche.")
             return
         }
+        val generation = matchesGeneration
         requests.launch(SearchRequest.Booking, {
             providers.firebase.requestBooking(match.tripId, criteria.childUserId, criteria.seatsNeeded)
+        }, onFailure = { failure ->
+            if (failure is BookingReviewRequiredException && generation == matchesGeneration) invalidateMatches()
         }) { onNotice("Demande envoyée.") }
     }
 
@@ -146,6 +151,7 @@ class SearchController(
             form.returnTrip, form.requireChildTracking, form.guardianConsent, form.childUserId)
     }
     private fun invalidateMatches() {
+        matchesGeneration++
         requests.invalidate(SearchRequest.Matches)
         acceptedCriteria = null
         matches = emptyList()

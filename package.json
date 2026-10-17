@@ -14,6 +14,7 @@
     "test:local-flow-isolation": "node --test tests/local-emulator-config.test.mjs tests/local-egress-guard.test.mjs tests/local-ui-config.test.mjs tests/disposable-android.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/chat-index-command.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs",
     "test:local-flows": "node scripts/qa/run-local-flows.mjs",
     "test:trip-contention": "node scripts/qa/run-local-trip-contention.mjs",
+    "test:booking-consistency": "node scripts/qa/run-local-booking-consistency.mjs",
     "test:local-android-flows": "node scripts/qa/run-local-android-flows.mjs",
     "test:android-native": "cd android && ./gradlew :app:testDebugUnitTest --no-daemon",
     "test:android-ui-build": "cd android && ./gradlew :app:assembleDebugAndroidTest --no-daemon",

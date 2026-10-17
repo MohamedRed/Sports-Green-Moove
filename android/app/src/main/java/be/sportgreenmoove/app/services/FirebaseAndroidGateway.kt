@@ -19,11 +19,13 @@ import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.domain.BookingReviewRequiredException
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.FirebaseFunctionsException
 import kotlinx.coroutines.tasks.await
 
 internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway {
@@ -113,10 +115,12 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
 
     override suspend fun requestBooking(tripId: String, childId: String?, seats: Int): String {
         val requestPayload = bookingRequestPayload(tripId, childId, seats)
-        val result = functions
-            .getHttpsCallable("requestBooking")
-            .call(requestPayload)
-            .await()
+        val result = try {
+            functions.getHttpsCallable("requestBooking").call(requestPayload).await()
+        } catch (failure: FirebaseFunctionsException) {
+            if (failure.code == FirebaseFunctionsException.Code.ABORTED) throw BookingReviewRequiredException(failure)
+            throw failure
+        }
         val responsePayload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse booking invalide.")
         return responsePayload["bookingId"] as? String ?: throw ProviderConfigurationException("Booking manquant.")
     }

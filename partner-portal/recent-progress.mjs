@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-17', title: 'La demande s’arrête si le trajet change pendant l’envoi',
+    text: 'En local, les changements pendant l’envoi et l’accès parent retiré sont détectés. L’app demande une nouvelle recherche si le trajet a changé.', flow: 'booking' },
   { date: '2026-10-17', title: 'Le conflit d’annulation passe en local',
     text: '12 essais simultanés passent. Les places et l’avis au parent restent corrects. À revoir sur téléphone.', flow: 'publication' },
   { date: '2026-10-17', title: 'Les échanges reprennent après coupure',

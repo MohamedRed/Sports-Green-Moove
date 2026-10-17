@@ -19,7 +19,7 @@ directory to the public Firebase application host.
 ## Content And Evidence
 
 `content.mjs` is the curated, French-language source; `recent-progress.mjs` holds
-the newest progress entries. Its `captures` allowlist adds
+the newest progress entries and `progress-blockers.mjs` the remaining work. Its `captures` allowlist adds
 reviewed device-only screenshots from dated evidence directories without another
 crop to app content. Each flow distinguishes status, dated verification, evidence
 source and remaining scope. An empty screen

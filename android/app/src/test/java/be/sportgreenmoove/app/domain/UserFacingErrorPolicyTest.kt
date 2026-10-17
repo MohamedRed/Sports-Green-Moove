@@ -4,6 +4,10 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class UserFacingErrorPolicyTest {
+    @Test fun aChangedBookingGetsAnActionableMessageWithoutProviderDetails() {
+        val error = BookingReviewRequiredException(RuntimeException("private-provider-debug"))
+        assertEquals("Les détails du trajet ont changé. Relancez la recherche avant de réserver.", UserFacingErrorPolicy.messageFor(error))
+    }
     @Test
     fun mapsMissingParentRoleToActionableMessage() {
         val message = UserFacingErrorPolicy.messageFor(RuntimeException("PERMISSION_DENIED: parent role is required."))

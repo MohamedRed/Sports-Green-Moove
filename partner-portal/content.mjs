@@ -1,5 +1,6 @@
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
+import { blockers } from './progress-blockers.mjs';
 
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
@@ -114,35 +115,7 @@ export const content = {
     { date: '2026-10-11', title: 'La recherche trouve les lieux',
       text: 'Wavre et Louvain-la-Neuve sont reconnus. Aucun trajet disponible pour tester la réservation.', flow: 'search' },
   ],
-  blockers: [
-    { id: 'cancellation-race', title: 'Rejouer le conflit d’annulation sur téléphone',
-      text: 'Les essais locaux passent après correction.',
-      next: 'Rejouer sur téléphone. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-contention-2026-10-17/README.md' },
-    { id: 'session-restoration', title: 'Reprendre la session après une erreur',
-      text: 'Les quatre essais locaux simulés passent.',
-      next: 'Rejouer la rotation et la reconnexion après une coupure.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/README.md' },
-    { id: 'chat-send-stability', title: 'Reprendre les essais de coupure',
-      text: 'Un essai de coupure passe en local. La préparation reste instable.',
-      next: 'Stabiliser ces essais, puis vérifier les brouillons après fermeture complète.', source: 'docs/release/evidence/local-complete-replay-2026-10-17/README.md' },
-    { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
-      text: 'Les échanges réuniront les membres d’une même équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.',
-      next: 'Ajouter ce point de départ, puis tester les participants autorisés.', source: 'docs/contracts/team-conversations.md' },
-    { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
-      text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
-      next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: chatReport },
-    { id: 'trip-management', title: 'Modifier un trajet',
-      text: 'Les changements et les suppléments simulés passent en local. Les écrans et les remboursements restent à terminer.',
-      next: 'Ajouter les écrans de modification et de confirmation des parents, puis rejouer les paiements concernés et les remboursements.', source: 'docs/contracts/trip-editing.md' },
-    { id: 'shared-testing', title: 'Tester entre plusieurs téléphones',
-      text: 'Les essais en local continuent. L’espace de test partagé reste bloqué par l’accès à la facturation.',
-      next: 'Débloquer cet accès pour les essais sur téléphone. Budget : 5 €/mois.', source: localReport },
-    { id: 'settings', title: 'Paramètres de compte',
-      text: 'Le numéro d’urgence, les notifications et les frais sont encore figés.',
-      next: 'Rendre ces réglages modifiables et enregistrer les changements.', source: manual },
-    { id: 'contrast', title: 'Lisibilité des écrans',
-      text: 'Le thème est conservé, mais certains textes secondaires restent peu contrastés.',
-      next: 'Revoir les contrastes, les dates des réservations et les marges en haut de l’écran.', source: uiReport },
-  ],
+  blockers,
   flows: [
     { id: 'login', title: 'Connexion par e-mail', status: 'verified', checkedAt: '2026-10-11',
       summary: 'La connexion par e-mail fonctionne.',

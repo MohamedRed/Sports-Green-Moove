@@ -27,7 +27,7 @@ internal class SearchRequests(
     private val busy = mutableSetOf<SearchRequest>()
     val isActive get() = lifetime.isActive
 
-    fun <T> launch(key: SearchRequest, action: suspend () -> T, accept: (T) -> Unit) {
+    fun <T> launch(key: SearchRequest, action: suspend () -> T, onFailure: (Exception) -> Unit = {}, accept: (T) -> Unit) {
         if (!isActive || (key == SearchRequest.Booking && key in busy)) return
         val version = nextVersion(key)
         jobs.remove(key)?.cancel()
@@ -41,7 +41,10 @@ internal class SearchRequests(
                 if (isCurrent(key, version)) accept(value)
             } catch (cancelled: CancellationException) { throw cancelled }
             catch (failure: Exception) {
-                if (isCurrent(key, version)) onError(UserFacingErrorPolicy.messageFor(failure))
+                if (isCurrent(key, version)) {
+                    onFailure(failure)
+                    onError(UserFacingErrorPolicy.messageFor(failure))
+                }
             } finally {
                 if (isCurrent(key, version)) {
                     jobs.remove(key)

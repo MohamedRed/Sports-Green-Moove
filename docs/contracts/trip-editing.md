@@ -89,6 +89,21 @@ route recalculation, immutable original invoices and outstanding balance plans.
 
 ## Required Editing Verification
 
+Booking requests also preserve their initial server-read operational terms across
+transaction retries. A change during the request rejects the stale intent rather
+than creating a booking with mixed revisions. The child and current guardian
+authority are read inside the transaction; an earlier guardian snapshot cannot
+authorize a new child reservation. Android recognizes this explicit stale-trip
+rejection, removes the affected results and requires a new search. Delayed errors
+must not remove a newer search or appear in a closed account.
+
+This is not yet a client-bound quote: a change after a result is displayed but
+before the server's initial read still requires a separate end-to-end revision
+binding. Uncertain-response booking idempotency, child-list refresh after revoked
+access, iOS recovery and the editing/parent-decision screens remain unfinished.
+See `docs/release/evidence/local-booking-consistency-2026-10-17/README.md` for the
+exact local coverage rather than treating this prerequisite as the full editor.
+
 - A driver proposes changed time, route or price; the parent sees original and
   proposed details before explicitly deciding. Existing consent is not reused.
 - Only affected parents can decide for their own reservations. Another parent,

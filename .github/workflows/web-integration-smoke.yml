@@ -32,6 +32,12 @@ on:
       - "tests/trip-cancellation-native.test.mjs"
       - "tests/firestore-streaming-policy.test.mjs"
       - "tests/trip-contention-evidence.test.mjs"
+      - "tests/booking-consistency-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicy.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicyTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingRecoveryTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingReviewFlowTest.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Trip*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Trip*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TripCancellationModels.kt"
@@ -132,6 +138,12 @@ on:
       - "tests/trip-cancellation-native.test.mjs"
       - "tests/firestore-streaming-policy.test.mjs"
       - "tests/trip-contention-evidence.test.mjs"
+      - "tests/booking-consistency-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicy.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicyTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingRecoveryTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingReviewFlowTest.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Trip*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Trip*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TripCancellationModels.kt"
@@ -253,10 +265,26 @@ jobs:
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs
 
+      - name: Validate booking consistency and recovery evidence
+        run: node --test tests/booking-consistency-evidence.test.mjs
+
       - name: Test controlled approval and cancellation overlap
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-trip-contention/results.json
         run: npm run test:trip-contention
+
+      - name: Test transactional booking terms and guardian authority
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-booking-consistency/results.json
+        run: npm run test:booking-consistency
+
+      - name: Upload controlled booking consistency evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-consistency-results
+          path: ${{ runner.temp }}/sgm-booking-consistency/**
+          if-no-files-found: ignore
 
       - name: Upload controlled transaction conflict evidence
         if: always()
