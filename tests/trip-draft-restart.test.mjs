@@ -7,6 +7,7 @@ import { content, captures } from '../partner-portal/content.mjs';
 import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentation-result.mjs';
 import { assertPreparedTripDraft, assertTripDraftRestart } from '../scripts/qa/trip-draft-restart-evidence.mjs';
 import { stopDisposableAppProcess } from '../scripts/qa/local-disposable-process-stop.mjs';
+import { assertPreparedScheduleDraft, assertScheduleDraftRestart, scheduleDraftFields } from '../scripts/qa/trip-schedule-draft-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const runId = 'a'.repeat(32), appId = 'be.sportgreenmoove.app.local';
@@ -58,11 +59,77 @@ test('guarded draft stop uses the same isolated session, serial and sanitized re
     assert.equal(valid.calls.filter((args) => args.includes('force-stop')).length, 1);
     assert(!valid.calls.some((args) => args.includes('clear')));
     assert(valid.writes.every(([, text]) => !text.includes('never-archive')));
+    const schedule = device(scheduleReceipt()[0]);
+    stopDisposableAppProcess({ ...input, beforeName: 'local-trip-schedule-draft-before.json', validateBefore: assertPreparedScheduleDraft }, schedule);
+    assert.equal(schedule.calls.filter((args) => args.includes('force-stop')).length, 1);
+    assert(schedule.writes.some(([path]) => path.endsWith('/local-trip-schedule-draft-stop.json')));
     for (const before of [{ ...receipt()[0], completed: false }, { ...receipt()[0], password: 'never-archive' }]) {
       const bad = device(before); assert.throws(() => stopDisposableAppProcess(input, bad));
       assert(!bad.calls.some((args) => args.includes('force-stop'))); assert.equal(bad.writes.length, 0);
     }
   } finally { if (old === undefined) delete process.env.SGM_LOCAL_DISPOSABLE_EMULATOR; else process.env.SGM_LOCAL_DISPOSABLE_EMULATOR = old; }
+});
+
+const scheduleFixture = { ...fixture, originalDepartureAt: '2099-12-01T09:00:00Z',
+  draftDepartureAt: '2099-12-02T10:00:00Z', draftArrivalBy: '2099-12-02T11:00:00Z' };
+function scheduleReceipt() {
+  const common = { projectId: 'demo-sgm-local-qa', runId, scope: 'native-ui-private-schedule-draft-restart',
+    completed: true, actorUserId: 'sgm-qa-driver', ...fixture, draftHash: 'c'.repeat(64),
+    ...scheduleDraftFields(scheduleFixture.draftDepartureAt, scheduleFixture.draftArrivalBy),
+    originalPlacesRetained: true, otherTripIsolated: true, proposeEnabled: true };
+  return [{ ...common, stage: 'before', processId: 101, scheduleSaved: true }, receipt()[1],
+    { ...common, stage: 'after', processId: 202, scheduleRestored: true, sessionRestoredWithoutLogin: true }];
+}
+
+test('schedule draft recovery requires exact Belgian fields, a private hash and a separate stopped process', () => {
+  assertScheduleDraftRestart(...scheduleReceipt(), scheduleFixture, runId);
+  const exited = scheduleReceipt(); exited[1].observedBeforePid = null;
+  assertScheduleDraftRestart(...exited, scheduleFixture, runId);
+  for (const [index, record] of scheduleReceipt().entries()) for (const [key, value] of Object.entries(record)) {
+    const changed = scheduleReceipt(); changed[index][key] = typeof value === 'boolean' ? false : typeof value === 'number' ? -1 : 'other';
+    assert.throws(() => assertScheduleDraftRestart(...changed, scheduleFixture, runId), `${index}.${key}`);
+    const missing = scheduleReceipt(); delete missing[index][key];
+    assert.throws(() => assertScheduleDraftRestart(...missing, scheduleFixture, runId), `missing ${index}.${key}`);
+  }
+  const same = scheduleReceipt(); same[2].processId = 101;
+  assert.throws(() => assertScheduleDraftRestart(...same, scheduleFixture, runId));
+  assert.throws(() => assertPreparedScheduleDraft({ ...scheduleReceipt()[0], password: 'never-archive' }, runId));
+  assert.throws(() => assertPreparedScheduleDraft({ ...scheduleReceipt()[0], departureDate: '2099-02-30' }, runId));
+  assert.throws(() => assertScheduleDraftRestart(...scheduleReceipt(), { ...scheduleFixture, draftDepartureAt: '2099-12-02T10:01:00Z' }, runId));
+  assert.throws(() => assertScheduleDraftRestart(...scheduleReceipt(), { ...scheduleFixture, originalDepartureAt: scheduleFixture.draftDepartureAt }, runId));
+});
+
+test('schedule expectations are independently converted in Brussels across month and DST boundaries', () => {
+  assert.deepEqual(scheduleDraftFields('2026-10-31T23:15:00Z', '2026-11-01T00:30:00Z'), {
+    departureDate: '2026-11-01', departureTime: '00:15', arrivalDate: '2026-11-01', arrivalTime: '01:30', hasArrival: true });
+  assert.equal(scheduleDraftFields('2026-07-01T10:00:00Z', '2026-07-01T11:00:00Z').departureTime, '12:00');
+  assert.equal(scheduleDraftFields('2026-12-01T10:00:00Z', '2026-12-01T11:00:00Z').departureTime, '11:00');
+  assert.throws(() => scheduleDraftFields('bad', 'bad'));
+  assert.throws(() => scheduleDraftFields('2026-07-01T10:00:00Z', '2026-07-01T09:00:00Z'));
+});
+
+test('the complete draft group also requires actual schedule pickers and a second independently verified restart', () => {
+  const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripScheduleDraftRestartTest.kt');
+  assert.equal((native.match(/@Test fun /g) ?? []).length, 2);
+  for (const required of ['enterNativePickerDate(from, target)', 'enterNativePickerTime(target.toLocalTime())',
+    'assertEquals(departure.toLocalDate(), record.input.departureDate)', 'assertEquals(arrival.toLocalTime(), record.input.arrivalTime)',
+    'assertNull(record.pendingProposal)', 'assertNull(SharedPreferencesTripChangeDrafts(context).read(uid, otherTripId))',
+    'trip.change.propose").performScrollTo().assertIsEnabled()', 'assertNotEquals(before.getInt("processId"), Process.myPid())']) assert(native.includes(required), required);
+  const resumed = native.slice(native.indexOf('@Test fun recoverScheduleDraft'), native.indexOf('private fun open'));
+  assert(!/signIn\(|login\(/.test(resumed));
+  assert(!/setSgmUiTestContent|FakeGateway|proposeTripChange\(|applyTripChange\(|resolvePlace\(|\.write\(/.test(native));
+  const host = read('scripts/qa/local-trip-schedule-draft-restart.mjs');
+  assert(host.includes('seedPrivateDraftTrips({ departureAt: times.originalDepartureAt })'));
+  assert(host.indexOf('const baseline = await snapshotPrivateDraftTrips(fixture)') < host.indexOf("instrument(['LocalTripScheduleDraftRestartTest#prepare"));
+  assert(host.indexOf('stopDisposableAppProcess({') < host.indexOf("instrument(['LocalTripScheduleDraftRestartTest#recover"));
+  assert(host.includes('assert.deepEqual(checkpoint, baseline')); assert(host.includes('assert.deepEqual(persisted, baseline'));
+  assert(host.includes('assertScheduleDraftRestart(before, stopped, after, fixture, runId)'));
+  const runner = read('scripts/qa/local-android-session.mjs');
+  assert(runner.indexOf('await replayScheduleDraftRestart') < runner.indexOf('const steps ='));
+  assert(runner.includes('tripDraftRestart, tripScheduleDraftRestart')); assert(runner.includes('testCount: 33, nativeCaseCount: 35'));
+  assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'trip-schedule-draft-restart'"));
+  for (const path of ['scripts/qa/local-trip-schedule-draft-restart.mjs', 'scripts/qa/trip-schedule-draft-evidence.mjs',
+    'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripScheduleDraftRestartTest.kt']) assert(read(path).split('\n').length < 300);
 });
 
 test('draft replay drives actual app fields, checks private storage and unchanged shared records without creating proposals', () => {

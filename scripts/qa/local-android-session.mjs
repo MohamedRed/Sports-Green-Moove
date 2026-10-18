@@ -28,6 +28,7 @@ import { seedTripScheduleUi, verifyTripScheduleUi } from './local-trip-change-sc
 import { replayTripConsentRestart } from './local-trip-consent-restart.mjs';
 import { replayTripConsentRecovery } from './local-trip-consent-recovery.mjs';
 import { replayTripDraftRestart } from './local-trip-draft-restart.mjs';
+import { replayScheduleDraftRestart } from './local-trip-schedule-draft-restart.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -132,6 +133,8 @@ try {
     collect: () => collectEvidence('trip-consent-recovery') });
   const tripDraftRestart = await replayTripDraftRestart({ instrument, adb, serial, directory: evidenceDir, runId: session.runId,
     collect: () => collectEvidence('trip-draft-restart') });
+  const tripScheduleDraftRestart = await replayScheduleDraftRestart({ instrument, adb, serial, directory: evidenceDir, runId: session.runId,
+    collect: () => collectEvidence('trip-schedule-draft-restart') });
   instrument(['LocalMembershipFlowTest'], 1);
   const membershipRefresh = await verifyNativeMembershipUi();
   const restartFixture = await seedChatRestartUiFixture();
@@ -158,8 +161,8 @@ try {
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 33, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
-    tripConsentRestart, tripConsentRecovery, tripDraftRestart, membershipRefresh,
+    testCount: 33, nativeCaseCount: 35, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
+    tripConsentRestart, tripConsentRecovery, tripDraftRestart, tripScheduleDraftRestart, membershipRefresh,
     chatNetwork, chatRestart, chatResponseLoss, bookingResponseLoss, bookingUiResponseLoss,
     search: { method: 'component-ui-with-explicit-fake-gateway',
       caseCount: 4, limitation: 'The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching.' },

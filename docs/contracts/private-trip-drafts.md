@@ -54,3 +54,13 @@ in run 39085977464 and the restored image was reviewed; the broader run still
 failed in separate capture/network-preparation checks. See the
 [scoped evidence](../release/evidence/local-trip-drafts-2026-10-18/README.md).
 Other draft variants, physical phones and iOS remain unproven.
+
+The same required group now also includes a second
+[schedule-draft restart scenario](native-schedule-draft-restart-test.md): a valid
+unsubmitted departure date/time and desired arrival must survive a separate
+process boundary, with the original endpoints, price and all shared records
+unchanged. Both raw-input and schedule stages must finish before the group can
+pass. The fresh matrix still has 33 groups but now requires 35 actual local
+instrumentation cases across 27 transcripts. The schedule scenario compiles and
+its guard tests pass locally; device execution and reviewed images remain
+pending. Earlier 33-group evidence does not prove these additional fields.

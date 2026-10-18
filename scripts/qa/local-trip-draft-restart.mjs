@@ -8,11 +8,11 @@ import { tripChangeHash } from '../../functions/lib/domain/tripChanges.js';
 
 const save = (directory, name, value) => writeFileSync(resolve(directory, name), JSON.stringify(value, null, 2) + '\n', { flag: 'wx' });
 
-async function seed() {
+async function seed(overrides = {}) {
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
   const ids = [], bookings = [];
   for (const title of ['Brouillon de trajet', 'Autre trajet sans brouillon']) {
-    const { tripId } = await call('createTrip', driver, { ...tripInput(), title, priceCents: 250 }); ids.push(tripId);
+    const { tripId } = await call('createTrip', driver, { ...tripInput(), ...overrides, title, priceCents: 250 }); ids.push(tripId);
     const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }));
     await call('approveBooking', driver, { bookingId }); bookings.push(bookingId);
   }
@@ -34,6 +34,8 @@ async function snapshot(fixture) {
     .map((doc) => ({ id: doc.id, ...doc.data() })).sort((a, b) => a.id.localeCompare(b.id));
   return { hashes: { trips: tripChangeHash(trips), bookings: tripChangeHash(bookings), notifications: tripChangeHash(notifications) }, emptyCollections };
 }
+
+export { seed as seedPrivateDraftTrips, snapshot as snapshotPrivateDraftTrips };
 
 export async function replayTripDraftRestart({ instrument, collect, adb, serial, directory, runId }) {
   const fixture = await seed(), baseline = await snapshot(fixture);
