@@ -7,6 +7,7 @@ import { androidMapsPrerequisites } from './android-maps-prerequisites.mjs';
 import { startRealMapsBroker } from './real-maps-broker.mjs';
 import { attachRealMapsBroker, runMapUiEmulators } from './real-maps-runtime.mjs';
 import { assertRealMapsUiProviderEvidence } from './real-maps-ui-evidence.mjs';
+import { assertRealMapDisplay } from './real-map-display-evidence.mjs';
 
 assert.deepEqual(process.argv.slice(2), ['--approved-isolated-real-maps']);
 const { serial, shell } = disposableAndroidShell();
@@ -26,6 +27,7 @@ try {
   await runMapUiEmulators(runtime);
   const result = JSON.parse(readFileSync(resolve(output, 'results.json'), 'utf8'));
   assertRealMapsUiProviderEvidence(result, broker.receipts(), runtime.env.SGM_LOCAL_RUN_ID);
+  assertRealMapDisplay(result.native.mapDisplay);
 } finally {
   try {
     if (broker) {
@@ -36,4 +38,5 @@ try {
 }
 writeFileSync(resolve(output, 'verified.json'), JSON.stringify({ projectId: 'demo-sgm-local-qa', runId: runtime.env.SGM_LOCAL_RUN_ID,
   scope: 'native-ui-provider-and-persisted-evidence-join-not-physical-device', status: 'passed', testedAt: new Date().toISOString(),
-  approvedRequestLimit: 5, nativeUi: true, physicalDevice: false, paymentExercised: false, productionDataWritten: false }, null, 2) + '\n', { flag: 'wx' });
+  approvedRequestLimit: 5, nativeUi: true, mapDisplayVerified: true,
+  physicalDevice: false, paymentExercised: false, productionDataWritten: false }, null, 2) + '\n', { flag: 'wx' });

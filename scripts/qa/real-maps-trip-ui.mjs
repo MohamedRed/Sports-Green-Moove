@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { FieldValue } from 'firebase-admin/firestore';
 import { auth, db, call, denied, document, signIn, viewedBooking, tripInput } from './local-flow-client.mjs';
+import { verifyRealMapDisplayFiles } from './real-map-display-evidence.mjs';
 
 const secondParent = { uid: 'sgm-qa-real-route-parent-two', email: 'real-route-parent-two@example.test' };
 export async function seedRealMapsTripUi() {
@@ -27,6 +28,7 @@ export async function verifyRealMapsTripUi(fixture, directory, runId) {
   const native = JSON.parse(readFileSync(resolve(directory, 'local-real-maps-ui.json'), 'utf8'));
   assert.equal(native.projectId, 'demo-sgm-local-qa'); assert.equal(native.runId, runId);
   assert.equal(native.scope, 'native-three-account-real-map-trip-application'); assert.equal(native.tripId, fixture.tripId);
+  verifyRealMapDisplayFiles(native.mapDisplay, directory);
   for (const key of ['completed', 'realSuggestionsSelected', 'unconfirmedPlaceBlocked', 'bothParentsConfirmedInApp',
     'originalTripKeptBeforeApplication', 'parentsCannotApply', 'routeQuoteRequired', 'driverAppliedInApp']) assert.equal(native[key], true, key);
   assert.equal(native.selectedPlaceIds.length, 2); assert.equal(new Set(native.selectedPlaceIds).size, 2);
@@ -61,7 +63,7 @@ export async function verifyRealMapsTripUi(fixture, directory, runId) {
   const notices = await db.collection('notifications').where('proposalId', '==', proposalId).get();
   assert.equal(notices.docs.filter((d) => d.data().title === 'Trajet modifié').length, 3);
   await denied('getTripChangeReview', await signIn('outsider@example.test'), { tripId: fixture.tripId, proposalId }, 'PERMISSION_DENIED');
-  const captureFiles = ['local-real-maps-selected.png', 'local-real-maps-applied.png'];
+  const captureFiles = ['local-real-maps-selected.png', 'local-real-maps-applied.png', native.mapDisplay.screenFile, native.mapDisplay.regionFile];
   for (const file of captureFiles) {
     const png = readFileSync(resolve(directory, file));
     assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');

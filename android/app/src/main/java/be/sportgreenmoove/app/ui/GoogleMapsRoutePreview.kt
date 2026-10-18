@@ -14,11 +14,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -75,7 +80,8 @@ fun GoogleMapsRoutePreviewCard(
 }
 
 @Composable
-internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true) {
+internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true, modifier: Modifier = Modifier) {
+    var loaded by remember { mutableStateOf(false) }
     val points = remember(preview) {
         MapRoutePolyline.pointsFor(preview).map { LatLng(it.lat, it.lng) }
     }
@@ -89,23 +95,29 @@ internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true
         position = CameraPosition.fromLatLngZoom(center, routeZoom(preview))
     }
 
-    GoogleMap(
-        modifier = Modifier.fillMaxWidth().height(250.dp),
-        cameraPositionState = cameraState,
-        properties = MapProperties(isTrafficEnabled = true),
-        uiSettings = MapUiSettings(
-            compassEnabled = false,
-            indoorLevelPickerEnabled = false,
-            mapToolbarEnabled = false,
-            myLocationButtonEnabled = false,
-            rotationGesturesEnabled = false,
-            tiltGesturesEnabled = false,
-            zoomControlsEnabled = false,
-        ),
-    ) {
-        if (showRoute) Polyline(points = points, color = SgmColor.Green, width = 10f)
-        Marker(state = MarkerState(position = start), title = "Départ")
-        Marker(state = MarkerState(position = end), title = "Arrivée")
+    Box(modifier.fillMaxWidth().height(250.dp).semantics {
+        stateDescription = if (loaded) "Carte chargée" else "Chargement de la carte"
+    }) {
+        GoogleMap(
+            modifier = Modifier.fillMaxSize(),
+            cameraPositionState = cameraState,
+            contentDescription = "Carte du trajet",
+            onMapLoaded = { loaded = true },
+            properties = MapProperties(isTrafficEnabled = true),
+            uiSettings = MapUiSettings(
+                compassEnabled = false,
+                indoorLevelPickerEnabled = false,
+                mapToolbarEnabled = false,
+                myLocationButtonEnabled = false,
+                rotationGesturesEnabled = false,
+                tiltGesturesEnabled = false,
+                zoomControlsEnabled = false,
+            ),
+        ) {
+            if (showRoute) Polyline(points = points, color = SgmColor.Green, width = 10f)
+            Marker(state = MarkerState(position = start), title = "Départ")
+            Marker(state = MarkerState(position = end), title = "Arrivée")
+        }
     }
 }
 

@@ -28,6 +28,7 @@ class LocalRealMapsTripChangeTest {
     @Test fun realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm() {
         val args = InstrumentationRegistry.getArguments()
         assumeTrue(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR && args.getString("realMapsApproved") != null)
+        check(BuildConfig.SGM_LOCAL_REAL_MAPS_UI) { "This replay requires the explicitly enabled real-map display build." }
         val context = instrumentation.targetContext
         session = JSONObject(File(context.filesDir, "local-qa-session.json").readText())
         check(session.getString("projectId") == "demo-sgm-local-qa" && session.getBoolean("disposableEmulator"))
@@ -128,9 +129,10 @@ class LocalRealMapsTripChangeTest {
             compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()
             compose.onNodeWithTag("trip.change.status").performScrollTo().assertIsDisplayed()
             captureLocalUi(compose, "local-real-maps-applied.png", dialog = true)
+            val mapDisplay = captureLoadedTripMap(compose, "trip.change.proposed.map")
             val evidence = JSONObject().put("projectId", session.getString("projectId")).put("runId", session.getString("runId"))
                 .put("scope", "native-three-account-real-map-trip-application").put("completed", true).put("tripId", tripId)
-                .put("selectedPlaceIds", JSONArray(selectedIds)).put("quoteText", quoteText)
+                .put("selectedPlaceIds", JSONArray(selectedIds)).put("quoteText", quoteText).put("mapDisplay", mapDisplay)
             for (key in listOf("realSuggestionsSelected", "unconfirmedPlaceBlocked", "bothParentsConfirmedInApp",
                 "originalTripKeptBeforeApplication", "parentsCannotApply", "routeQuoteRequired", "driverAppliedInApp")) evidence.put(key, true)
             val directory = File(context.getExternalFilesDir(null), "local-ui-evidence")

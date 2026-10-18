@@ -57,6 +57,9 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeDecisionAwait.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRealMapsTripChangeTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RealMapDisplayEvidence.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/GoogleMapsRoutePreview.kt"
+      - "android/app/build.gradle.kts"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripFormTestInput.kt"
       - "tests/firestore-streaming-policy.test.mjs"
       - "tests/trip-contention-evidence.test.mjs"
@@ -82,6 +85,7 @@ on:
       - "tests/local-emulator-config.test.mjs"
       - "tests/real-maps-local.test.mjs"
       - "tests/real-maps-ui.test.mjs"
+      - "tests/real-map-display.test.mjs"
       - "tests/native-draft-and-map-stage-evidence.test.mjs"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
@@ -241,6 +245,9 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeDecisionAwait.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRealMapsTripChangeTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RealMapDisplayEvidence.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/GoogleMapsRoutePreview.kt"
+      - "android/app/build.gradle.kts"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripFormTestInput.kt"
       - "tests/firestore-streaming-policy.test.mjs"
       - "tests/trip-contention-evidence.test.mjs"
@@ -266,6 +273,7 @@ on:
       - "tests/local-emulator-config.test.mjs"
       - "tests/real-maps-local.test.mjs"
       - "tests/real-maps-ui.test.mjs"
+      - "tests/real-map-display.test.mjs"
       - "tests/native-draft-and-map-stage-evidence.test.mjs"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
@@ -430,7 +438,7 @@ jobs:
         run: npm run test:local-flow-isolation
 
       - name: Validate explicit real-map test boundaries without provider calls
-        run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs
+        run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs
 
       - name: Validate bounded local response-loss injection
         run: node --test tests/local-chat-response-loss.test.mjs

@@ -13,7 +13,7 @@ on:
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
       - "scripts/run-real-maps-android-ui.sh"
-      - "tests/real-maps-ui.test.mjs"
+      - "tests/real-map*.test.mjs"
       - "android/**"
       - "ios/**"
       - "package.json"
@@ -56,7 +56,7 @@ on:
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
       - "scripts/run-real-maps-android-ui.sh"
-      - "tests/real-maps-ui.test.mjs"
+      - "tests/real-map*.test.mjs"
       - "android/**"
       - "ios/**"
       - "package.json"
@@ -117,7 +117,7 @@ jobs:
         run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/trip-schedule-completed-evidence.test.mjs tests/trip-consent-restart.test.mjs tests/trip-draft-restart.test.mjs tests/trip-consent-recovery.test.mjs tests/trip-consent-recovery-completed-evidence.test.mjs tests/trip-consent-restart-completed-evidence.test.mjs tests/native-suite-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs
 
       - name: Validate real-map UI isolation without provider calls
-        run: node --test tests/real-maps-ui.test.mjs
+        run: node --test tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs
 
   android-native-unit:
     name: Android native unit tests

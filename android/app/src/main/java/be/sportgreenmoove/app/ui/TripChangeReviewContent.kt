@@ -56,7 +56,8 @@ internal fun TripChangeTermsContent(label: String, tag: String, terms: TripChang
         Text("Départ : ${tripChangeCoordinates(terms.origin)}", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
         Text("Destination : ${tripChangeCoordinates(terms.destination)}", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
         if (stringResource(R.string.sgm_google_maps_android_api_key).isNotBlank())
-            NativeGoogleMap(MapRoutePreview(terms.origin, terms.destination), showRoute = false)
+            NativeGoogleMap(MapRoutePreview(terms.origin, terms.destination), showRoute = false,
+                modifier = Modifier.testTag("trip.change.$tag.map"))
         else Text("Carte indisponible.", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
     }
 }

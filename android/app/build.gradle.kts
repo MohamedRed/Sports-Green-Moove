@@ -36,6 +36,13 @@ val useFirebaseEmulator = providers
     .orElse(providers.environmentVariable("SGM_USE_FIREBASE_EMULATOR"))
     .map { it.equals("true", ignoreCase = true) || it == "1" }
     .getOrElse(false)
+val localRealMapsUi = providers
+    .gradleProperty("SGM_LOCAL_REAL_MAPS_UI")
+    .orElse(providers.environmentVariable("SGM_LOCAL_REAL_MAPS_UI"))
+    .map { it.equals("true", ignoreCase = true) || it == "1" }
+    .getOrElse(false)
+check(!localRealMapsUi || useFirebaseEmulator) { "Real-map local UI requires the isolated Firebase emulator build." }
+check(!localRealMapsUi || googleMapsAndroidApiKey.isNotBlank()) { "Real-map local UI requires an Android map credential." }
 val liveBackendUiTest = providers
     .gradleProperty("SGM_LIVE_BACKEND_UI_TEST")
     .orElse(providers.environmentVariable("SGM_LIVE_BACKEND_UI_TEST"))
@@ -68,8 +75,9 @@ android {
         resValue("string", "facebook_app_id", if (useFirebaseEmulator) "" else facebookAppId)
         resValue("string", "facebook_client_token", if (useFirebaseEmulator) "" else facebookClientToken)
         resValue("string", "fb_login_protocol_scheme", if (useFirebaseEmulator) "" else facebookLoginProtocolScheme)
-        resValue("string", "sgm_google_maps_android_api_key", if (useFirebaseEmulator) "" else googleMapsAndroidApiKey)
+        resValue("string", "sgm_google_maps_android_api_key", if (useFirebaseEmulator && !localRealMapsUi) "" else googleMapsAndroidApiKey)
         buildConfigField("Boolean", "SGM_USE_FIREBASE_EMULATOR", useFirebaseEmulator.toString())
+        buildConfigField("Boolean", "SGM_LOCAL_REAL_MAPS_UI", localRealMapsUi.toString())
         buildConfigField("Boolean", "SGM_LIVE_BACKEND_UI_TEST", liveBackendUiTest.toString())
         buildConfigField("String", "SGM_FIREBASE_EMULATOR_HOST", "\"$firebaseEmulatorHost\"")
     }

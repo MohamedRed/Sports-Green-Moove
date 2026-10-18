@@ -35,6 +35,11 @@ try {
   result = await verifyRealMapsTripUi(fixture, directory, session.runId);
 } catch (error) {
   failure = new Error(String(error.stack ?? error).replaceAll(session.password, '[REDACTED]'));
+  try {
+    const logs = run(adb, ['-s', serial, 'logcat', '-d', '-v', 'brief', 'Google Maps Android API:E', '*:S']);
+    writeFileSync(resolve(directory, 'map-display-provider-errors.txt'), logs.replace(/AIza[\w-]{20,}/g, '[REDACTED]')
+      .replaceAll(session.password, '[REDACTED]'), { mode: 0o600, flag: 'wx' });
+  } catch { console.warn('Map display provider diagnostics were unavailable.'); }
   try { collectNativeProcessFailure({ adb, serial, directory, label: 'real-maps-application', password: session.password, runId: session.runId }); }
   catch { console.warn('Additional map UI failure diagnostics were unavailable.'); }
 } finally {
