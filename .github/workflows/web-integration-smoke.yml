@@ -123,6 +123,7 @@ on:
       - "tests/dual-transport-completed-evidence.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/pr-user-flow-checks.test.mjs"
       - "tests/default-selection-evidence.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
@@ -296,6 +297,7 @@ on:
       - "tests/dual-transport-completed-evidence.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/pr-user-flow-checks.test.mjs"
       - "tests/default-selection-evidence.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
@@ -378,6 +380,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate required checks and report ordering
+        run: npm run test:pr-user-flow-checks
+
       - name: Test Functions
         run: npm test --workspace functions
 
@@ -397,14 +402,6 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-trip-history/results.json
         run: node scripts/qa/run-local-trip-history.mjs
-
-      - name: Upload isolated trip history results
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: trip-history-results
-          path: ${{ runner.temp }}/sgm-trip-history/**
-          if-no-files-found: ignore
 
       - name: Build Functions
         run: npm run build --workspace functions
@@ -446,14 +443,6 @@ jobs:
           SGM_SWIFT_BOOKING_RECOVERY_OUTPUT: ${{ runner.temp }}/sgm-booking-recovery/swift.json
         run: npm run test:booking-recovery-wire
 
-      - name: Upload booking retry receipts
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: booking-recovery-results
-          path: ${{ runner.temp }}/sgm-booking-recovery/**
-          if-no-files-found: ignore
-
       - name: Test server-only booking request receipts
         run: npx firebase emulators:exec --project sports-green-moove-rules-test --only firestore "npx vitest run tests/booking-request-rules.test.ts"
 
@@ -469,16 +458,6 @@ jobs:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-booking-display/results.json
         run: npm run test:booking-display
 
-      - name: Upload displayed booking and wire evidence
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: booking-display-results
-          path: |
-            ${{ runner.temp }}/sgm-booking-display/**
-            ${{ runner.temp }}/sgm-booking-wire/**
-          if-no-files-found: ignore
-
       - name: Test controlled approval and cancellation overlap
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-trip-contention/results.json
@@ -488,22 +467,6 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-booking-consistency/results.json
         run: npm run test:booking-consistency
-
-      - name: Upload controlled booking consistency evidence
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: booking-consistency-results
-          path: ${{ runner.temp }}/sgm-booking-consistency/**
-          if-no-files-found: ignore
-
-      - name: Upload controlled transaction conflict evidence
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: trip-contention-results
-          path: ${{ runner.temp }}/sgm-trip-contention/**
-          if-no-files-found: ignore
 
       - name: Test team club ownership rules
         run: npm run test:team-ownership-rules
@@ -561,3 +524,45 @@ jobs:
 
       - name: Build Website
         run: npm run build --workspace website
+
+      - name: Upload isolated trip history results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: trip-history-results
+          path: ${{ runner.temp }}/sgm-trip-history/**
+          if-no-files-found: ignore
+
+      - name: Upload booking retry receipts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-recovery-results
+          path: ${{ runner.temp }}/sgm-booking-recovery/**
+          if-no-files-found: ignore
+
+      - name: Upload displayed booking and wire evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-display-results
+          path: |
+            ${{ runner.temp }}/sgm-booking-display/**
+            ${{ runner.temp }}/sgm-booking-wire/**
+          if-no-files-found: ignore
+
+      - name: Upload controlled booking consistency evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-consistency-results
+          path: ${{ runner.temp }}/sgm-booking-consistency/**
+          if-no-files-found: ignore
+
+      - name: Upload controlled transaction conflict evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: trip-contention-results
+          path: ${{ runner.temp }}/sgm-trip-contention/**
+          if-no-files-found: ignore

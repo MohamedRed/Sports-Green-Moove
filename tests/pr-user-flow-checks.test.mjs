@@ -1,9 +1,21 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { requiredUserFlowChecks } from "../scripts/release-evidence-requirements.mjs";
+
+const smoke = readFileSync(new URL("../.github/workflows/web-integration-smoke.yml", import.meta.url), "utf8");
+const steps = smoke.split(/^      - name: /m).slice(1);
+const reports = steps.filter((step) => step.includes("uses: actions/upload-artifact@"));
+assert.equal(reports.length, 5, "Keep every existing evidence artifact.");
+assert(steps.indexOf(reports[0]) > steps.findLastIndex((step) => /^        run: /m.test(step)),
+  "Report uploads must not stop later tests or builds when the artifact service is unavailable.");
+for (const report of reports) {
+  assert.match(report, /        if: always\(\)/, "Retain evidence after test failures.");
+  assert(!report.includes("continue-on-error"), "Upload failures must remain visible as failures.");
+}
+assert(smoke.includes("run: npm run test:pr-user-flow-checks"), "Check upload ordering in the smoke job itself.");
 
 const tmpDir = mkdtempSync(join(tmpdir(), "sgm-pr-checks-"));
 
