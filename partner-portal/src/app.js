@@ -44,6 +44,7 @@ function route() {
       dialogFlow = flow.id;
     }
     if (!dialog.open) dialog.showModal();
+    dialog.scrollTop = 0;
   } else if (dialog.open) {
     const lastFlow = dialogFlow;
     dialogFlow = undefined;

@@ -104,6 +104,7 @@ try {
   await page.waitForFunction(() => document.querySelector('video').currentTime > .3);
   await page.getByRole('link', { name: 'Suivant', exact: true }).click();
   await page.getByText('Étape 2 sur 2', { exact: true }).waitFor();
+  assert.equal(await page.locator('dialog').evaluate((element) => element.scrollTop), 0);
   await page.goto(`${base}/#parcours/tracking`);
   await page.getByRole('heading', { name: 'Pas encore de vidéo' }).waitFor();
   assert.equal(await page.locator('video').count(), 0);
