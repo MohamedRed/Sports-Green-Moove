@@ -26,7 +26,14 @@ fail an otherwise green suite without overwriting an earlier suite failure.
 Hard runner termination destroys this CI emulator; no persistent personal device
 has its state changed. Home-screen/store navigation remains outside this suite.
 
-Seven mock-device tests and nine native-suite-shell tests check these contracts.
+Eight mock-device tests and nine native-suite-shell tests check these contracts.
 These are configuration/cleanup tests, not proof that a new device replay has run
 or that the previous package-update interruption can no longer occur. The first
 actual paused-store execution remains pending.
+
+The first native attempt (39084958578, source `0f5603c`) stopped at preflight,
+before either app suite, because the diagnostic matched two `User 0:` lines.
+AOSP emits bare user headings for permission/changed-package sections in addition
+to the actual package-state row. Parsing now excludes only those bare headings,
+still requires exactly one concrete installed/stopped row, and rejects duplicate
+concrete states. A new regression covers both forms; no state check was bypassed.

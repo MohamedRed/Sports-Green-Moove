@@ -6,8 +6,10 @@ export const storeStateCommand = 'dumpsys package com.android.vending | sed \'/H
 const store = 'com.android.vending';
 
 function stopped(shell) {
-  const lines = shell(storeStateCommand).split('\n').filter((line) => /^\s*User 0:/.test(line));
+  // AOSP also emits bare User 0: headings for permissions/changed-package lists.
+  const lines = shell(storeStateCommand).split('\n').filter((line) => /^\s*User 0:\s*\S/.test(line));
   assert.equal(lines.length, 1, 'Exactly one store user state is required');
+  assert.match(lines[0], /\binstalled=true\b/, 'Store must remain installed');
   const match = lines[0].match(/\bstopped=(true|false)\b/);
   assert(match, 'Store stopped state unavailable');
   return match[1] === 'true';

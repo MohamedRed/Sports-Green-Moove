@@ -15,7 +15,9 @@ function device(options = {}) {
     if (command.startsWith('pm list packages -e --user 0 ')) return `package:${args.at(-1)}`;
     if (command === playServicesVersionCommand) return `versionName=${mutated && options.versionChanged ? '26.0.0' : '25.39.33'}`;
     if (command === 'cmd location is-location-enabled --user 0') return options.location ?? 'true';
-    if (command === storeStateCommand) return options.stateMalformed ? 'unknown' : `  User 0: installed=true stopped=${stopped} enabled=0`;
+    if (command === storeStateCommand) return options.stateMalformed ? 'unknown' :
+      `  User 0: installed=true stopped=${stopped} enabled=0` + (options.bareUserHeader ? '\n  User 0:\n' : '') +
+      (options.duplicateState ? '\n  User 0: installed=true stopped=false enabled=0' : '');
     if (command === 'dumpsys package installs') return options.installs ?? 'Active install sessions:\nHistorical install sessions:\n';
     if (command === 'am force-stop --user 0 com.android.vending') { mutated = true; stopped = !options.stopIgnored; return ''; }
     if (command === 'pm unstop --user 0 com.android.vending') { stopped = false; return ''; }
@@ -40,6 +42,14 @@ test('already-stopped store remains stopped after cleanup', () => {
   const mock = device({ wasStopped: true }); const receipt = pauseDisposableStore(mock.shell);
   restoreDisposableStore(mock.shell, receipt);
   assert.equal(mock.stopped(), true); assert(!mock.calls.some((line) => line.startsWith('pm unstop')));
+});
+
+test('bare AOSP permission/changed-package user headings are not a second package state', () => {
+  const mock = device({ bareUserHeader: true }); const receipt = pauseDisposableStore(mock.shell);
+  assert.equal(mock.stopped(), true); restoreDisposableStore(mock.shell, receipt); assert.equal(mock.stopped(), false);
+  const ambiguous = device({ duplicateState: true });
+  assert.throws(() => pauseDisposableStore(ambiguous.shell), /Exactly one store user state/);
+  assert(!ambiguous.calls.some((line) => /force-stop|unstop/.test(line)));
 });
 
 test('unsafe or incompatible preconditions refuse mutation without retrying', () => {
