@@ -90,6 +90,8 @@ class UnconfiguredAuthGateway : AuthGateway {
 }
 
 class UnconfiguredFirebaseGateway : FirebaseGateway {
+    override suspend fun tripChangeHistory(tripId: String, cursor: String?): be.sportgreenmoove.app.data.TripChangeHistoryPage =
+        throw ProviderConfigurationException("Veuillez vous connecter pour consulter l’historique.")
     override suspend fun resolveTripChangeProposal(request: be.sportgreenmoove.app.data.TripChangeProposalRequest): be.sportgreenmoove.app.data.TripChangeReview? =
         throw ProviderConfigurationException("Veuillez vous connecter.")
     override val isConfigured: Boolean = false

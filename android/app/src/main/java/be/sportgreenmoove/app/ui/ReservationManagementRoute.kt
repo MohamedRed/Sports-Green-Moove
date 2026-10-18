@@ -31,6 +31,7 @@ internal fun ReservationManagementRoute(uid: String, role: AppRole, gateway: Res
     val scope = rememberCoroutineScope()
     var confirmation by remember(state) { mutableStateOf<Pair<ReservationItem, ReservationDecision>?>(null) }
     var changeReservation by remember(state, changes) { mutableStateOf<ReservationItem?>(null) }
+    var history by remember(state, changes) { mutableStateOf<ReservationItem?>(null) }
     DisposableEffect(state) { onDispose { state.close() } }
     LaunchedEffect(state) { state.reload(onChanged) }
     val busy = state.loading || state.acting || state.loadingMore
@@ -42,7 +43,7 @@ internal fun ReservationManagementRoute(uid: String, role: AppRole, gateway: Res
         if (state.loading || (!state.loaded && state.error == null)) Text("Chargement des réservations...", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
         if (state.loaded && !busy && state.error == null && state.items.isEmpty()) Text("Aucune réservation.", style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
         BookingRequestsList(state.items, busy || state.requiresReload,
-            onReview = { changeReservation = it }) { item, decision -> confirmation = item to decision }
+            onReview = { changeReservation = it }, onHistory = { history = it }) { item, decision -> confirmation = item to decision }
         if (state.hasMore) V2Button(if (state.loadingMore) "Chargement..." else "Voir les réservations précédentes",
             { scope.launch { state.more() } }, full = true, enabled = !busy,
             variant = V2ButtonVariant.Secondary, testTag = "bookings.more")
@@ -52,6 +53,10 @@ internal fun ReservationManagementRoute(uid: String, role: AppRole, gateway: Res
             TripChangeDialog(uid, role, item.booking.tripId, item.booking.title, proposalId, changes,
                 onChanged = { state.reload(onChanged) }, onDismiss = { changeReservation = null })
         }
+    }
+    history?.let { item ->
+        TripChangeHistoryDialog(uid, role, item.booking.tripId, item.booking.title, changes,
+            onChanged = { state.reload(onChanged) }, onDismiss = { history = null })
     }
     confirmation?.let { (item, decision) ->
         AlertDialog(onDismissRequest = { confirmation = null },

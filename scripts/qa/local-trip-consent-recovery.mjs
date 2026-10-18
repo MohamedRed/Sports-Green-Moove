@@ -65,6 +65,8 @@ export async function replayTripConsentRecovery({ instrument, collect, adb, seri
   const before = load('local-trip-consent-recovery-before.json'), after = load('local-trip-consent-recovery-after.json');
   const stopped = load('local-trip-consent-recovery-stop.json');
   assertRecoveryRestart(before, stopped, after, fixtures, runId);
+  for (const record of after.records.filter((item) => ['declined', 'withdrawn'].includes(item.kind)))
+    for (const field of ['parentHistoryRestored', 'secondParentHistoryScoped', 'driverHistoryRestored']) assert.equal(record[field], true);
   const persisted = await snapshot(fixtures);
   assert.deepEqual(persisted, checkpoint, 'Reopening four proposal states must not create a decision, notice, quote or balance');
   const actors = [await signIn('p@example.test'), await signIn(secondEmail), await signIn('d@example.test')];
@@ -84,7 +86,8 @@ export async function replayTripConsentRecovery({ instrument, collect, adb, seri
     }
     await denied('getTripChangeReview', outsider, { tripId: record.tripId, proposalId: record.proposalId }, 'PERMISSION_DENIED');
   }
-  const captureFiles = recoveryKinds.map((kind) => `local-trip-consent-recovery-${kind}.png`);
+  const captureFiles = [...recoveryKinds.map((kind) => `local-trip-consent-recovery-${kind}.png`),
+    'local-trip-history-declined.png', 'local-trip-history-withdrawn.png'];
   for (const name of captureFiles) {
     const image = readFileSync(resolve(directory, name));
     assert(image.length > 24 && image.subarray(0, 8).toString('hex') === '89504e470d0a1a0a');
@@ -94,9 +97,9 @@ export async function replayTripConsentRecovery({ instrument, collect, adb, seri
     recordType: 'native-trip-consent-recovery-stage-not-full-run-result', scope: 'local-ui-not-physical-device',
     testCount: 4, nativeCaseCount: 2, steps: recoveryKinds.map((kind) => ({ id: `trip-consent-${kind}-restart-ui`, status: 'passed' })),
     native: { before, stopped, after }, checkpoint, persisted, captureFiles,
-    recordsUnchanged: true, parentViewsScoped: true, outsiderDenied: true, applicationExercised: false,
+    recordsUnchanged: true, parentViewsScoped: true, outsiderDenied: true, closedHistoryExercised: true, applicationExercised: false,
     routeProviderExercised: false, paymentExercised: false, fullAppReplay: false,
-    limitation: 'Pending, partial, refused and withdrawn price proposals after a new process only; terminal proposals have no history entry in the app. No unsent drafts, application, real routes/payments or physical-device proof.' };
+    limitation: 'Pending, partial, refused and withdrawn price proposals after a new process, including closed history for both parents and driver. No unsent drafts, application, real routes/payments or physical-device proof.' };
   save(directory, 'trip-consent-recovery-ui-stage.json', result);
   return result;
 }

@@ -20,6 +20,7 @@ internal object ChangeFixture {
 }
 
 internal class ChangeGateway : TripChangeGateway {
+    override suspend fun tripChangeHistory(tripId: String, cursor: String?): TripChangeHistoryPage = error("Unexpected history call")
     val proposals = mutableListOf<TripChangeProposalRequest>()
     val decisions = mutableListOf<TripChangeDecisionRequest>()
     val withdrawals = mutableListOf<TripChangeWithdrawalRequest>()

@@ -90,7 +90,9 @@ fun TripsScreen(
                 visibleTrips.forEach { trip -> TripsCard(trip = trip, onClick = { onTripAction(trip) },
                     onCancel = management?.takeIf { it.canCancel(trip) }?.let { { it.onCancel(trip) } },
                     onEdit = management?.takeIf { it.canEdit(trip) }?.onEdit?.let { { it(trip) } },
-                    onReview = management?.takeIf { it.canReview(trip) }?.onReview?.let { { it(trip) } }) }
+                    onReview = management?.takeIf { it.canReview(trip) }?.onReview?.let { { it(trip) } },
+                    onHistory = management?.takeIf { it.role == be.sportgreenmoove.app.data.AppRole.Driver && it.uid == trip.driverUserId }
+                        ?.onHistory?.let { { it(trip) } }) }
                 if (visibleTrips.isEmpty()) TripsEmptyCard()
             }
         }

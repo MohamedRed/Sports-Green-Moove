@@ -89,6 +89,9 @@ on:
       - "tests/trip-consent-recovery.test.mjs"
       - "tests/trip-consent-recovery-completed-evidence.test.mjs"
       - "tests/trip-date-evidence.test.mjs"
+      - "tests/trip-history-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeHistoryModels.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripHistoryFlowTest.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripDateLabels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripCalendar.kt"
       - "docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/**"
@@ -254,6 +257,9 @@ on:
       - "tests/trip-consent-recovery.test.mjs"
       - "tests/trip-consent-recovery-completed-evidence.test.mjs"
       - "tests/trip-date-evidence.test.mjs"
+      - "tests/trip-history-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeHistoryModels.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripHistoryFlowTest.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripDateLabels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripCalendar.kt"
       - "docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/**"
@@ -373,6 +379,22 @@ jobs:
 
       - name: Validate Belgian trip date regression evidence
         run: node --test tests/trip-date-evidence.test.mjs
+
+      - name: Validate scoped trip history evidence
+        run: node --test tests/trip-history-evidence.test.mjs
+
+      - name: Test isolated trip history access and paging
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-trip-history/results.json
+        run: node scripts/qa/run-local-trip-history.mjs
+
+      - name: Upload isolated trip history results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: trip-history-results
+          path: ${{ runner.temp }}/sgm-trip-history/**
+          if-no-files-found: ignore
 
       - name: Build Functions
         run: npm run build --workspace functions

@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'L’historique des modifications est ajouté',
+    text: 'Les anciens refus et retraits sont retrouvés dans les essais locaux, avec les bons accès. L’écran reste à tester dans l’app.', flow: 'publication' },
+  { date: '2026-10-18', title: 'L’essai dans l’app a été interrompu',
+    text: 'Une mise à jour du téléphone de test a fermé l’app avant les contrôles des horaires. L’essai reste incomplet.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les horaires sont corrigés dans les calculs',
     text: 'Les vérifications locales passent, même autour de minuit et des changements d’heure. Il reste à rejouer le parcours dans l’app. Pas encore en ligne.', flow: 'publication' },
   { date: '2026-10-17', title: 'Les réponses restent après fermeture',

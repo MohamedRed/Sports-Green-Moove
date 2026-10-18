@@ -96,6 +96,7 @@ class LocalTripConsentRecoveryTest {
                 verifyParent(fixture, second = false, capture = true)
                 val record = record(fixture).put("parentStateRestored", true).put("refreshUnchanged", true)
                 record.put(if (isOpen(fixture)) "originalProposalRestored" else "closedActionsAbsent", true)
+                if (!isOpen(fixture)) record.put("parentHistoryRestored", true)
                 records.put(record)
             }
             logout()
@@ -105,6 +106,7 @@ class LocalTripConsentRecoveryTest {
                 compose.onNodeWithTag("reservation.change.${fixture.getString("bookingId")}").assertDoesNotExist()
                 verifyParent(fixture, second = true, capture = false)
                 records.getJSONObject(index).put("secondParentScoped", true)
+                if (!isOpen(fixture)) records.getJSONObject(index).put("secondParentHistoryScoped", true)
             }
             logout()
             login(session.getString("driver"), "sgm-qa-driver")
@@ -121,6 +123,10 @@ class LocalTripConsentRecoveryTest {
                     compose.onNodeWithTag("trip.change.status").assertDoesNotExist()
                 }
                 closeDialog()
+                if (!isOpen(fixture)) {
+                    LocalTripHistoryAssertions(compose).driver(trip(fixture), proposals.getValue(fixture.getString("kind")), fixture.getString("kind"))
+                    records.getJSONObject(index).put("driverHistoryRestored", true)
+                }
                 records.getJSONObject(index).put("driverStateRestored", true)
             }
             result.put("records", records).put("endedAsUserId", FirebaseAuth.getInstance().currentUser?.uid)
@@ -153,6 +159,7 @@ class LocalTripConsentRecoveryTest {
                 compose.onNodeWithTag("reservation.change.$booking").assertDoesNotExist()
             }
             if (capture) captureLocalUi(compose, "local-trip-consent-recovery-${fixture.getString("kind")}.png")
+            LocalTripHistoryAssertions(compose).parent(booking, proposals.getValue(fixture.getString("kind")), fixture.getString("kind"), capture)
         }
     }
     private fun assertReview(fixture: JSONObject, second: Boolean, driver: Boolean) {

@@ -10,6 +10,7 @@ import be.sportgreenmoove.app.services.FirebaseGateway
 data class TripManagementActions(
     val uid: String, val role: AppRole, val activeTripId: String?,
     val onEdit: ((TripSummary) -> Unit)? = null, val onReview: ((TripSummary) -> Unit)? = null,
+    val onHistory: ((TripSummary) -> Unit)? = null,
     val onCancel: (TripSummary) -> Unit,
 ) {
     fun canCancel(trip: TripSummary) = role == AppRole.Driver && uid == trip.driverUserId &&
@@ -28,9 +29,13 @@ internal fun TripsRoute(
 ) {
     var selected by remember(uid, role, gateway) { mutableStateOf<TripSummary?>(null) }
     var change by remember(uid, role, gateway) { mutableStateOf<Pair<String, Boolean>?>(null) }
+    var history by remember(uid, role, gateway) { mutableStateOf<TripSummary?>(null) }
     TripsScreen(trips, activeRide, pendingCount, onTripAction, onOpenSearch, onOpenRide, reservationContent,
         management = TripManagementActions(uid, role, activeRide?.tripId,
-            onEdit = { change = it.id to false }, onReview = { change = it.id to true }) { selected = it })
+            onEdit = { change = it.id to false }, onReview = { change = it.id to true }, onHistory = { history = it }) { selected = it })
+    history?.let { trip ->
+        TripChangeHistoryDialog(uid, role, trip.id, trip.title, gateway, onChanged, onDismiss = { history = null })
+    }
     selected?.let { trip ->
         TripCancellationDialog(uid, role, trip, gateway, onChanged, onDismiss = { selected = null })
     }

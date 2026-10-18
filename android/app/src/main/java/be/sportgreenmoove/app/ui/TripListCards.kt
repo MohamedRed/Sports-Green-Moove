@@ -24,7 +24,8 @@ import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.*
 
 @Composable
-internal fun TripsCard(trip: TripSummary, onClick: () -> Unit, onCancel: (() -> Unit)?, onEdit: (() -> Unit)? = null, onReview: (() -> Unit)? = null) {
+internal fun TripsCard(trip: TripSummary, onClick: () -> Unit, onCancel: (() -> Unit)?, onEdit: (() -> Unit)? = null,
+    onReview: (() -> Unit)? = null, onHistory: (() -> Unit)? = null) {
     Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(SgmRadius.LG)).background(Sgm.colors.bgCard)
         .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))) {
         val action = if (trip.status != TripStatus.Past && !trip.cancelled) Modifier.clickable(onClick = onClick) else Modifier
@@ -59,6 +60,9 @@ internal fun TripsCard(trip: TripSummary, onClick: () -> Unit, onCancel: (() -> 
         }
         if (onCancel != null) TextButton(onClick = onCancel, modifier = Modifier.padding(horizontal = 6.dp).testTag("trip.cancel.${trip.id}")) {
             Text("Annuler le trajet", color = Sgm.colors.textPrimary)
+        }
+        if (onHistory != null) TextButton(onClick = onHistory, modifier = Modifier.padding(horizontal = 6.dp).testTag("trip.history.${trip.id}")) {
+            Text("Historique des modifications", color = Sgm.colors.textPrimary)
         }
     }
 }

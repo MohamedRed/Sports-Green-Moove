@@ -26,6 +26,10 @@ internal class FirebaseAndroidTripChangeGateway(
     override suspend fun previewTripChange(tripId: String): TripChangePreview =
         tripChangePreview(call("getTripChangePreview", mapOf("tripId" to TripChangeWire.id(tripId)), uid()), tripId)
 
+    override suspend fun tripChangeHistory(tripId: String, cursor: String?): TripChangeHistoryPage =
+        tripHistoryPage(call("getTripChangeHistory", mapOf("tripId" to TripChangeWire.id(tripId)) +
+            (cursor?.let { mapOf("cursor" to it) } ?: emptyMap()), uid()), tripId)
+
     override suspend fun reviewTripChange(tripId: String, proposalId: String): TripChangeReview =
         tripChangeReview(call("getTripChangeReview", TripChangeWire.reference(tripId, proposalId), uid()), tripId, proposalId)
 

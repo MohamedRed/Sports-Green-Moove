@@ -5,6 +5,7 @@ import be.sportgreenmoove.app.services.TripChangeGateway
 
 /** Fixtures not exercising trip changes must fail if one is accidentally dispatched. */
 internal object UnusedTripChanges : TripChangeGateway {
+    override suspend fun tripChangeHistory(tripId: String, cursor: String?): TripChangeHistoryPage = error("Unexpected history call")
     override suspend fun resolveTripChangeProposal(request: TripChangeProposalRequest): TripChangeReview? = error("Unexpected proposal resolution")
     override suspend fun previewTripChange(tripId: String): TripChangePreview = error("Unexpected change preview")
     override suspend fun proposeTripChange(request: TripChangeProposalRequest): TripChangeReview = error("Unexpected proposal")

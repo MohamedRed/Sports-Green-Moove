@@ -22,6 +22,7 @@ import be.sportgreenmoove.app.design.SgmType
 
 @Composable
 fun BookingRequestsList(items: List<ReservationItem>, busy: Boolean, onReview: ((ReservationItem) -> Unit)? = null,
+    onHistory: ((ReservationItem) -> Unit)? = null,
     onDecision: (ReservationItem, ReservationDecision) -> Unit) {
     items.forEach { item ->
         val booking = item.booking
@@ -40,6 +41,8 @@ fun BookingRequestsList(items: List<ReservationItem>, busy: Boolean, onReview: (
             if (item.tripChangeId != null && onReview != null) V2Button("Voir la modification du trajet", { onReview(item) }, full = true,
                 enabled = !busy, size = V2ButtonSize.Sm, variant = V2ButtonVariant.Secondary,
                 testTag = "reservation.change.${booking.bookingId}")
+            if (onHistory != null) V2Button("Historique des modifications", { onHistory(item) }, full = true, enabled = !busy,
+                size = V2ButtonSize.Sm, variant = V2ButtonVariant.Secondary, testTag = "reservation.history.${booking.bookingId}")
             item.allowedActions.forEach { decision ->
                 V2Button(decisionLabel(decision), { onDecision(item, decision) }, full = true,
                     enabled = !busy, size = V2ButtonSize.Sm,

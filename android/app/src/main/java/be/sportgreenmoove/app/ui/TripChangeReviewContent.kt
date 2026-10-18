@@ -72,5 +72,5 @@ internal fun tripChangeStatusLabel(status: TripChangeStatus) = when (status) {
 }
 internal fun tripChangeMoney(cents: Int) = String.format(Locale.forLanguageTag("fr-BE"), "%.2f EUR", cents / 100.0)
 private fun tripChangeCoordinates(point: MapPoint) = String.format(Locale.ROOT, "%.6f, %.6f", point.lat, point.lng)
-private fun tripChangeDate(value: String) = Instant.parse(value).atZone(BelgianTripZone)
+internal fun tripChangeDate(value: String) = Instant.parse(value).atZone(BelgianTripZone)
     .format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'à' HH:mm XXX", Locale.forLanguageTag("fr-BE")))

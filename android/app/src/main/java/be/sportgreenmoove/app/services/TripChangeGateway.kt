@@ -5,6 +5,7 @@ import be.sportgreenmoove.app.data.*
 internal class TripChangeQuoteExpiredException : Exception("L’estimation a expiré. Calculez un nouvel itinéraire.")
 
 interface TripChangeGateway {
+    suspend fun tripChangeHistory(tripId: String, cursor: String?): TripChangeHistoryPage
     suspend fun previewTripChange(tripId: String): TripChangePreview
     suspend fun proposeTripChange(request: TripChangeProposalRequest): TripChangeReview
     suspend fun resolveTripChangeProposal(request: TripChangeProposalRequest): TripChangeReview?

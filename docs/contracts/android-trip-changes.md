@@ -68,6 +68,12 @@ entry states across a new app process. See the
 [completed recovery evidence](../release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md).
 Declined/withdrawn entry checks do not establish proposal-history retrieval.
 
+An independent [history entry](trip-change-history.md) is now implemented for
+drivers and affected parents. The 18 October isolated history service checks
+and native controller/mapper units pass; current history screen execution and
+post-restart captures remain pending. This does not promote the older 32-group
+recovery proof or the interrupted time-fix replay into history UI evidence.
+
 The 18 October [date regression checks](../release/evidence/local-trip-dates-2026-10-18/README.md)
 reproduce and correct server/device-default timezone labels. Unit checks pass
 across three default timezones. The next native replay additionally compares
