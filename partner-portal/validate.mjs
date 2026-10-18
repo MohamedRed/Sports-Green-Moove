@@ -59,7 +59,6 @@ export function validate(root) {
       for (const group of f.ui.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven UI check ${group}`);
     }
   }
-  for (const id of content.featuredTours) assert(content.flows.some((f) => f.id === id && f.tour));
   for (const u of content.updates) { assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt); }
   for (const b of content.blockers) assert(existsSync(resolve(root, b.source)));
   for (const a of Object.values(assets)) {

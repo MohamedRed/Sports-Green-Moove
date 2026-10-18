@@ -20,7 +20,7 @@ test('smoke workflow covers portal source, evidence changes and validation', () 
 test('rendered content is escaped and native accessible controls remain present', async () => {
   const { escape, overview, flowRows, detail } = await import('../partner-portal/src/render.js');
   assert.equal(escape('<script>"&'), '&lt;script&gt;&quot;&amp;');
-  assert.match(overview(content), /13 s/);
+  assert.doesNotMatch(overview(content), /data-flow=|<video|class="flow-preview"/);
   assert.match(flowRows([]), /Aucun parcours/);
   assert.match(detail(content.flows[0]), /À faire/);
   assert.match(source('partner-portal/src/app.js'), /hashchange/);
@@ -75,7 +75,6 @@ test('partner-facing pages do not name the implementation or testing stack', asy
 });
 
 test('guided tours reference reviewed flow evidence and reject invented steps', () => {
-  assert(content.featuredTours.length >= 6);
   assert(content.flows.filter((flow) => flow.tour).length >= 10);
   const flow = content.flows.find((item) => item.id === 'booking');
   const original = flow.tour[0].image;
@@ -86,10 +85,11 @@ test('guided tours reference reviewed flow evidence and reject invented steps', 
   assert.equal(validate(root), true);
 });
 
-test('overview and flow list expose available screenshots with direct tour controls', async () => {
+test('overview stays focused while the catalogue exposes every tour and screenshot', async () => {
   const { overview, flowRows } = await import('../partner-portal/src/render.js');
-  const html = overview(content);
-  assert.equal((html.match(/data-tour="true"/g) || []).length, content.featuredTours.length);
+  const html = flowRows(content.flows);
+  assert.equal((html.match(/data-tour="true"/g) || []).length, content.flows.filter((flow) => flow.tour).length);
+  assert.match(overview(content), /Voir les nouvelles précédentes/);
   for (const flow of content.flows.filter((item) => item.images.length)) {
     assert.match(flowRows([flow]), /class="flow-preview"/);
     assert.match(flowRows([flow]), /loading="lazy"/);

@@ -1,5 +1,5 @@
 import { escape, date, icon, status } from './ui.js';
-import { visualOverview, flowPreview } from './visuals.js';
+import { flowPreview } from './visuals.js';
 export { escape, date, icon, status, statuses } from './ui.js';
 const link = (hash, label) => `<a class="text-link" href="#${hash}">${escape(label)}${icon('arrow-up-right')}</a>`;
 
@@ -13,31 +13,24 @@ export function overview(data) {
       <div><strong>${partial}</strong><span>en partie testés</span></div>
       <div><strong>${remaining}</strong><span>en attente</span></div>
     </div>
-    ${visualOverview(data)}
-    <div class="section-heading"><h2>Vidéos</h2>${link('parcours', 'Tous les parcours')}</div>
-    <div class="demos">
-      ${demo('signout', 'signout-action', 'Déconnexion corrigée', '13 s')}
-      ${demo('navigation', 'home-to-trips', 'De l’accueil aux trajets', '16 s')}
-    </div>
     <div class="overview-bottom">
       <section aria-labelledby="recent-title"><h2 id="recent-title">Dernières nouvelles</h2>
-        ${data.updates.map((u) => `<article class="update"><time datetime="${u.date}">${date(u.date)}</time><h3><a href="#parcours/${u.flow}">${escape(u.title)}</a></h3><p>${escape(u.text)}</p></article>`).join('')}
+        ${data.updates.slice(0, 6).map(update).join('')}
+        ${data.updates.length > 6 ? `<details class="previous-updates"><summary>Voir les nouvelles précédentes</summary>${data.updates.slice(6).map(update).join('')}</details>` : ''}
       </section>
     </div>`;
 }
 
-function demo(id, clip, title, duration) {
-  return `<button type="button" class="demo" data-flow="${id}" data-clip="${clip}">
-    <span class="demo-image"><img src="media/${clip}.jpg" alt="" loading="lazy"><span class="play-icon">${icon('play')}</span></span>
-    <span class="demo-copy"><strong>${title}</strong><small>${duration}</small></span></button>`;
+function update(u) {
+  return `<article class="update"><time datetime="${u.date}">${date(u.date)}</time><h3><a href="#parcours/${u.flow}">${escape(u.title)}</a></h3><p>${escape(u.text)}</p></article>`;
 }
 
 export function flowRows(flows) {
   if (!flows.length) return '<p class="empty-result">Aucun parcours ne correspond à votre recherche.</p>';
-  return flows.map((f) => `<button class="flow-row" type="button" data-flow="${f.id}">
-    ${flowPreview(f)}<span><h3>${escape(f.title)}</h3><p>${escape(f.summary)}</p></span>
+  return flows.map((f) => `<button class="flow-row" type="button" data-flow="${f.id}"${f.tour ? ' data-tour="true"' : ''}>
+    ${flowPreview(f)}<span class="flow-copy"><h3>${escape(f.title)}</h3><p>${escape(f.summary)}</p></span>
     <span class="flow-meta">${status(f.status)}${f.checkedAt ? `<time datetime="${f.checkedAt}">${date(f.checkedAt)}</time>` : ''}</span>
-    ${icon('arrow-up-right')}</button>`).join('');
+    <span class="flow-action">${f.tour ? `Visite guidée · ${f.tour.length} étapes` : f.images.length || f.clips?.length ? 'Voir les captures' : 'Voir l’avancement'}${icon('arrow-up-right')}</span></button>`).join('');
 }
 
 export function nextSteps(data) {

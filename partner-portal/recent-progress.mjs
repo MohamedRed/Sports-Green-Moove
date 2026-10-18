@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le suivi est plus simple à parcourir',
+    text: 'L’aperçu rassemble l’avancement et les nouvelles récentes. Les captures, vidéos et visites guidées sont réunies dans Parcours.', flow: 'navigation' },
   { date: '2026-10-18', title: 'Les parcours se découvrent en images',
     text: 'Des aperçus et des visites étape par étape rendent les captures et les vidéos plus faciles à parcourir.', flow: 'navigation' },
   { date: '2026-10-18', title: 'La carte s’affiche dans l’app',

@@ -54,5 +54,3 @@ export const tours = {
     image('ride-rewards', 'Consulter ses récompenses', 'Le solde et la récompense du trajet de test sont visibles.'),
   ],
 };
-
-export const featuredTours = ['publication', 'booking', 'messages', 'clubs', 'search', 'ride-lifecycle'];

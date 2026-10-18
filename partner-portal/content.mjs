@@ -1,4 +1,4 @@
-import { tours, featuredTours } from './tours.mjs';
+import { tours } from './tours.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
@@ -42,7 +42,6 @@ export const excerpts = {
 
 export const content = {
   updatedAt: '2026-10-18',
-  featuredTours,
   lastVerifiedAt: '2026-10-18',
   releaseNote: 'Tests en cours.',
   updates: [

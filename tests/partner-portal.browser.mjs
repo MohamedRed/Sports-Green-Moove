@@ -15,14 +15,20 @@ try {
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('response', (response) => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
   await page.goto(base);
-  await page.getByRole('heading', { name: 'Vidéos', exact: true }).waitFor();
+  await page.getByRole('heading', { name: 'Dernières nouvelles', exact: true }).waitFor();
   await page.screenshot({ path: `${output}/desktop-overview.png`, fullPage: true });
-  assert(await page.locator('.tour-card .flow-preview').first().evaluate((frame) => {
+  assert.equal(await page.locator('#view-apercu [data-flow], #view-apercu .flow-preview').count(), 0);
+  assert.equal(await page.locator('#recent-title + .update').count(), 1);
+  await page.getByRole('link', { name: 'Parcours', exact: true }).click();
+  await page.getByRole('heading', { name: 'Parcours', exact: true }).waitFor();
+  assert.equal(await page.locator('.flow-row').count(), content.flows.length);
+  assert(await page.locator('.flow-row .flow-preview').first().evaluate((frame) => {
     const image = frame.querySelector('img').getBoundingClientRect();
     const box = frame.getBoundingClientRect();
     return image.top >= box.top && image.bottom <= box.bottom;
   }), 'Preview must contain the full screenshot');
-  await page.getByRole('button', { name: /Déconnexion corrigée/ }).click();
+  await page.screenshot({ path: `${output}/desktop-catalogue.png`, fullPage: true });
+  await page.locator('.flow-row[data-flow="signout"]').click();
   await page.getByRole('dialog').waitFor();
   const video = page.locator('video');
   await video.evaluate((element) => element.play());
@@ -30,6 +36,8 @@ try {
   const duration = await video.evaluate((element) => element.duration);
   assert(duration > 12 && duration < 14);
   await page.screenshot({ path: `${output}/desktop-flow.png`, fullPage: true });
+  await page.getByRole('link', { name: 'Toutes les preuves', exact: true }).click();
+  await page.locator('.media-navigation').waitFor();
   await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click();
   await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click();
   await page.locator('.media-stage img').waitFor();
@@ -44,16 +52,21 @@ try {
   await page.getByRole('searchbox').fill('');
   await page.locator('#status').selectOption('blocked');
   assert.equal(await page.locator('.flow-row').count(), content.flows.filter((flow) => flow.status === 'blocked').length);
+  await page.locator('#status').selectOption('all');
   await page.getByRole('link', { name: 'À faire', exact: true }).click();
   await page.getByRole('heading', { name: 'À faire', exact: true }).waitFor();
   await page.screenshot({ path: `${output}/desktop-next.png`, fullPage: true });
   for (const width of [390, 320, 768]) {
     await page.setViewportSize({ width, height: 844 });
     await page.goto(`${base}/#apercu`);
-    await page.getByRole('heading', { name: 'Vidéos', exact: true }).waitFor();
+    await page.getByRole('heading', { name: 'Dernières nouvelles', exact: true }).waitFor();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Overflow at ${width}px`);
     await page.screenshot({ path: `${output}/overview-${width}.png`, fullPage: true });
-    await page.getByRole('button', { name: /Déconnexion corrigée/ }).click();
+    await page.getByRole('link', { name: 'Parcours', exact: true }).click();
+    await page.getByRole('heading', { name: 'Parcours', exact: true }).waitFor();
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Catalogue overflow at ${width}px`);
+    await page.screenshot({ path: `${output}/catalogue-${width}.png`, fullPage: true });
+    await page.locator('.flow-row[data-flow="signout"]').click();
     await page.getByRole('dialog').waitFor();
     assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth), `Dialog overflow at ${width}px`);
     await page.screenshot({ path: `${output}/detail-${width}.png`, fullPage: true });
@@ -71,9 +84,9 @@ try {
   for (let image = 0; image < booking.images.length; image++)
     await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click();
   assert.equal(await page.locator('.local-results li').count(), booking.local.checks.length);
-  await page.goto(`${base}/#apercu`);
-  assert.equal(await page.locator('.tour-card').count(), content.featuredTours.length);
-  await page.locator('.tour-card[data-flow="publication"]').click();
+  await page.goto(`${base}/#parcours`);
+  assert.equal(await page.locator('.flow-row[data-tour]').count(), content.flows.filter((flow) => flow.tour).length);
+  await page.locator('.flow-row[data-flow="publication"]').click();
   await page.getByText('Étape 1 sur 4', { exact: true }).waitFor();
   await page.getByRole('link', { name: 'Suivant', exact: true }).click();
   await page.getByRole('heading', { name: 'Recueillir les deux accords', exact: true }).waitFor();

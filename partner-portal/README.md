@@ -19,8 +19,9 @@ directory to the public Firebase application host.
 ## Content And Evidence
 
 `tours.mjs` defines guided steps using only each flow’s reviewed images or clips.
-The overview features six tours; all available captures also appear as previews in
-the flow list. Guided steps have shareable `#parcours/<id>/visite/<step>` links and
+The overview contains progress totals and six recent updates, with earlier news
+inside an expandable history. Parcours is the single searchable visual catalogue:
+each flow opens its guided tour when available, or its evidence gallery. Guided steps have shareable `#parcours/<id>/visite/<step>` links and
 preserve original capture captions, dates and remaining scope. These are recorded
 walkthroughs, not an interactive connection to the running native app. The hosted
 native preview must be refreshed and its private test access verified separately
