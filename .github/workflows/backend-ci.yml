@@ -94,3 +94,6 @@ jobs:
 
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
+
+      - name: Test scoped team and verified child choices
+        run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs

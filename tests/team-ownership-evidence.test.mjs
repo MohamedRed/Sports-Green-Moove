@@ -78,7 +78,8 @@ test('the selected manager approval policy is recorded without claiming team cha
   assert.match(contract, /club manager to\nverify parent-child authorisation as a separate decision from team enrollment/);
   assert.match(contract, /parents cannot approve\ntheir own relationship/);
   assert.match(contract, /client-declared `children.guardianUserIds` array does not establish\nthis verification/);
-  assert.match(contract, /team chat flow and native team enrollment\nscreens remain unimplemented and unverified/);
+  assert.match(contract, /team chat flow remains unimplemented/);
+  assert.match(contract, /no connected end-to-end native\nresult is accepted/);
   assert(!contract.includes('Approval Policy Pending'));
   const group = content.blockers.find((item) => item.id === 'group-conversation');
   assert.match(group.next, /responsable du club/); assert(!group.next.includes('Choisir qui'));

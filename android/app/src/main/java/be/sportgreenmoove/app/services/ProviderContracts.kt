@@ -31,7 +31,7 @@ interface AuthGateway {
     fun signOut()
 }
 
-interface FirebaseGateway : TripCancellationGateway, TripChangeGateway, GuardianVerificationGateway {
+interface FirebaseGateway : TripCancellationGateway, TripChangeGateway, GuardianVerificationGateway, TeamEnrollmentGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
     suspend fun listChildren(): List<ChildSummary>
@@ -90,7 +90,8 @@ class UnconfiguredAuthGateway : AuthGateway {
     override fun signOut() = Unit
 }
 
-class UnconfiguredFirebaseGateway : FirebaseGateway, GuardianVerificationGateway by UnconfiguredGuardianVerificationGateway() {
+class UnconfiguredFirebaseGateway : FirebaseGateway, GuardianVerificationGateway by UnconfiguredGuardianVerificationGateway(),
+    TeamEnrollmentGateway by UnconfiguredTeamEnrollmentGateway() {
     override suspend fun tripChangeHistory(tripId: String, cursor: String?): be.sportgreenmoove.app.data.TripChangeHistoryPage =
         throw ProviderConfigurationException("Veuillez vous connecter pour consulter l’historique.")
     override suspend fun resolveTripChangeProposal(request: be.sportgreenmoove.app.data.TripChangeProposalRequest): be.sportgreenmoove.app.data.TripChangeReview? =

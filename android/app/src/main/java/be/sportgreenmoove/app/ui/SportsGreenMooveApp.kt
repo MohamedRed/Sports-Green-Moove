@@ -260,8 +260,10 @@ fun SportsGreenMooveApp() {
                             onBack = { screen = AppScreen.Profile },
                             onClubsLoaded = appData::replaceClubs,
                             onGuardianVerification = if (AppRole.Parent in requireNotNull(session).roles) ({ screen = AppScreen.Guardians }) else null,
+                            onTeamEnrollment = if (canManageTeamEnrollment(requireNotNull(session).roles)) ({ screen = AppScreen.TeamEnrollments }) else null,
                         )
                         AppScreen.Guardians -> GuardianVerificationRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Groups }
+                        AppScreen.TeamEnrollments -> TeamEnrollmentRoute(requireNotNull(session).uid, providers.firebase, AppRole.Parent in requireNotNull(session).roles) { screen = AppScreen.Groups }
                         AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
                         AppScreen.Rewards -> RewardsRoute(
                             summary = ledgerSummaries.rewards,

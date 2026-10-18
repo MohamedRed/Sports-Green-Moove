@@ -23,7 +23,7 @@ test('retained enrollment proof binds current sources without accepting team cha
     assert.equal(createHash('sha256').update(read(path)).digest('hex'), hash, path);
   const flow = content.flows.find((item) => item.id === 'team-enrollment');
   assert.equal(flow.status, 'partial'); assert.equal(flow.images.length, 0); assert(!flow.ui);
-  assert.equal(flow.local.source, base + 'services.json'); assert.match(flow.remaining, /écrans/);
+  assert.equal(flow.local.source, 'docs/release/evidence/local-team-enrollment-native-2026-10-18/choices.json'); assert.match(flow.remaining, /écrans/);
   assert.equal(content.flows.find((item) => item.id === 'messages').status, 'partial');
 });
 test('enrollment identity and authority stay server owned and transaction fenced', () => {

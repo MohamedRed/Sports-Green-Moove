@@ -13,6 +13,7 @@ fun AppScreen.toTopLevel(): AppScreen =
 private val profileChildScreens = setOf(
     AppScreen.Groups,
     AppScreen.Guardians,
+    AppScreen.TeamEnrollments,
     AppScreen.Impact,
     AppScreen.Rewards,
     AppScreen.Options,
@@ -29,6 +30,9 @@ fun roleLabel(role: AppRole): String =
         AppRole.Admin -> "Admin"
     }
 
+internal fun canManageTeamEnrollment(roles: Set<AppRole>) = AppRole.Child !in roles &&
+    roles.any { it in setOf(AppRole.Parent, AppRole.Driver, AppRole.ClubManager) }
+
 enum class AppScreen {
     Home,
     Trips,
@@ -38,6 +42,7 @@ enum class AppScreen {
     Search,
     Groups,
     Guardians,
+    TeamEnrollments,
     Impact,
     Rewards,
     Options,

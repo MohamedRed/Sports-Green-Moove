@@ -36,3 +36,6 @@ docs/release/evidence/local-contact-dialer-failure-2026-10-18/**/*.txt -text -wh
 docs/release/evidence/local-contact-scheduler-2026-10-18/**/*.xml -text -whitespace
 docs/release/evidence/local-contact-dialer-pass-2026-10-18/**/*.xml -text -whitespace
 docs/release/evidence/local-contact-dialer-pass-2026-10-18/**/*.txt -text -whitespace
+docs/release/evidence/local-emergency-editor-2026-10-18/source-snapshot/** -text -whitespace
+docs/release/evidence/local-team-enrollment-native-2026-10-18/**/*.xml -text -whitespace
+docs/release/evidence/local-team-enrollment-native-2026-10-18/**/*.txt -text -whitespace

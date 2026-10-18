@@ -69,9 +69,25 @@ test('failed or malformed diagnostic reads are explicit and do not suppress rema
     return 'bounded service log';
   });
   assert.equal(calls, 4);
-  assert.deepEqual(result.observations[0], { id: 'directory-stat', collected: false, status: 1, errorCode: 'ETIMEDOUT' });
+  assert.deepEqual(result.observations[0], { id: 'directory-stat', collected: false, status: 1, errorCode: 'ETIMEDOUT',
+    failureKind: 'command-exit', stderr: '', stderrTruncated: false });
   assert.equal(result.observations[2].collected, false); assert.equal(result.observations[3].collected, true);
   assert(!JSON.stringify(result).includes(password));
+});
+
+test('diagnostic command errors retain bounded redacted stderr but never stdout or an invented successful copy', (t) => {
+  const input = fixture(t);
+  const result = collectAdbSyncFailureDiagnostics(input, () => {
+    throw Object.assign(new Error('not retained'), { status: 1, stderr: Buffer.from(`permission denied ${password} Bearer secret/token+= ` + 'x'.repeat(6000)),
+      stdout: 'private child data must not be retained' });
+  });
+  assert.equal(result.observations.length, 4);
+  for (const row of result.observations) {
+    assert.equal(row.collected, false); assert.equal(row.failureKind, 'command-exit'); assert.equal(row.status, 1);
+    assert.equal(row.stderr.length, 4096); assert.equal(row.stderrTruncated, true); assert(row.stderr.startsWith('permission denied [REDACTED] [REDACTED]'));
+    assert(!JSON.stringify(row).includes(password)); assert(!JSON.stringify(row).includes('secret/token'));
+  }
+  assert(!JSON.stringify(result).includes('private child data')); assert(!Object.hasOwn(result, 'completed'));
 });
 
 test('physical, non-disposable and malformed identity cannot execute diagnostics', (t) => {

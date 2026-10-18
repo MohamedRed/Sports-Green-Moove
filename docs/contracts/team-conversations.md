@@ -83,15 +83,32 @@ to team-message access.
 A verified link must
 not grant access to another team or club without a current approved enrollment.
 Requests, refusals and removals retain the denial and
-revocation requirements above. The team chat flow and native team enrollment
-screens remain unimplemented and unverified; no production record is approved.
+revocation requirements above. The team chat flow remains unimplemented. Native
+team enrollment screens now have source, but no connected end-to-end native
+result is accepted; no production record is approved.
+
+## Android Enrollment Screen Source
+
+The app now has a Groups entry for eligible adults to select a club/team, request
+their own enrollment or choose a currently verified child, review current status
+and confirm a request/withdrawal. Selection uses the paged
+`listTeamEnrollmentOptions` callable, not editable profile/roster arrays. Four
+component cases compile; execution and visual review remain pending. Sixteen
+unit cases and 12 isolated directory groups are retained in
+`local-team-enrollment-native-2026-10-18/README.md`.
+
+This is not a completed native flow. Manager-facing team decisions, owned-request
+history after lost eligibility/retired teams and the full SDK-connected replay
+remain pending. Backgrounding clears private choices and selection; no automatic
+resubmission occurs after an unknown write. Team conversation access is unchanged.
 
 ## Isolated Enrollment Service
 
 `getTeamEnrollmentView`, `requestTeamEnrollment`, `transitionTeamEnrollment` and
 `listTeamEnrollments` now have 20 isolated transport scenario groups plus six
 domain unit cases. See `local-team-enrollment-2026-10-18/README.md`. This is a
-backend-only source implementation, not a deployed or end-to-end native flow.
+backend-only evidence, not a deployed or end-to-end native flow. The Android
+screen source above does not promote these service checks to native evidence.
 
 Team identity binds the stored club and immutable server document creation time,
 including nanoseconds; child enrollment also binds the child document's server

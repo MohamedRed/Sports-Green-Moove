@@ -1,5 +1,10 @@
 # Contact Editor Build And Unit Checks
 
+This is the original editor build, not proof of subsequent team navigation.
+`source-provenance.json` explicitly identifies two exact historical navigation
+files retained from `351aa4d` under `source-snapshot/`. Their hashes still match
+the unchanged original build report; all contact leaf hashes remain current.
+
 The retained original JUnit XMLs contain 23 executed Android unit cases:
 17 controller/privacy/recovery cases and six strict wire-validation cases.
 Zero failed, errored or skipped. `build-checks.json` records their original

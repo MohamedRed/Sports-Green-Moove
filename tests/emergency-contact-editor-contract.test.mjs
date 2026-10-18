@@ -58,7 +58,7 @@ test('new contact code and the app root remain below the modularity limit', () =
     'ui/EmergencyContactScreen.kt', 'ui/EmergencyContactRoute.kt', 'ui/EmergencyContactDialogs.kt', 'ui/SportsGreenMooveApp.kt'];
   for (const path of paths) assert(read(base + path).split('\n').length < 300, path);
 });
-test('retained current-source evidence proves 23 unit cases and compilation only', () => {
+test('retained editor snapshot proves 23 unit cases and compilation only without claiming newer navigation was tested', () => {
   const evidence = 'docs/release/evidence/local-emergency-editor-2026-10-18/';
   const report = JSON.parse(read(evidence + 'build-checks.json'));
   assert.equal(report.unitCaseCount, 23); assert.equal(report.nativeComponentCasesCompiled, 6);
@@ -73,5 +73,13 @@ test('retained current-source evidence proves 23 unit cases and compilation only
     count += Number(suite['@_tests']);
   }
   assert.equal(count, 23);
-  for (const [path, hash] of Object.entries(report.sourceFiles)) assert.equal(createHash('sha256').update(read(path)).digest('hex'), hash, path);
+  const provenance = JSON.parse(read(evidence + 'source-provenance.json'));
+  assert.equal(provenance.sourceCommit, '351aa4d571d2de3e0df670b4bff906250523a9e0');
+  const historical = provenance.historicalSourceFiles;
+  assert.deepEqual(Object.keys(historical).sort(), ['android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt',
+    'android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt']);
+  for (const [path, hash] of Object.entries(report.sourceFiles)) {
+    const exactSource = Object.hasOwn(historical, path) ? evidence + historical[path] : path;
+    assert.equal(createHash('sha256').update(read(exactSource)).digest('hex'), hash, path);
+  }
 });

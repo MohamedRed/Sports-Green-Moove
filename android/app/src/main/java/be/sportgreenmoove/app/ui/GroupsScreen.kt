@@ -33,7 +33,8 @@ import be.sportgreenmoove.app.design.SgmType
 @Composable
 fun GroupsScreen(clubs: List<ClubSummary>, onBack: () -> Unit, onJoinClub: (ClubSummary) -> Unit = {},
     loading: Boolean = false, error: String? = null, notice: String? = null,
-    onDismissNotice: () -> Unit = {}, onRefresh: (() -> Unit)? = null, onGuardianVerification: (() -> Unit)? = null) {
+    onDismissNotice: () -> Unit = {}, onRefresh: (() -> Unit)? = null, onGuardianVerification: (() -> Unit)? = null,
+    onTeamEnrollment: (() -> Unit)? = null) {
     val memberships = clubs.filter { it.isMember }
     val suggestions = clubs.filterNot { it.isMember }
     BackHandler(onBack = onBack)
@@ -45,6 +46,11 @@ fun GroupsScreen(clubs: List<ClubSummary>, onBack: () -> Unit, onJoinClub: (Club
             }
         })
         notice?.let { RuntimeNotice(it, false, onDismissNotice) }
+        onTeamEnrollment?.let { open ->
+            androidx.compose.material3.TextButton(onClick = open, modifier = Modifier.padding(horizontal = 20.dp).sgmTestTag("groups.team-enrollment")) {
+                Text("Inscription à une équipe", color = Sgm.colors.textPrimary)
+            }
+        }
         onGuardianVerification?.let { open ->
             androidx.compose.material3.TextButton(onClick = open, modifier = Modifier.padding(horizontal = 20.dp).sgmTestTag("groups.guardian")) {
                 Text("Parents et enfants", color = Sgm.colors.textPrimary)

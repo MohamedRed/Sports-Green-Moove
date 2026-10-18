@@ -1,0 +1,32 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d5375b51c7c7ddf126b458eddf93a8c3",
+  "phase": "trip-change-parent-confirmation",
+  "recordedAt": "2026-10-18T20:24:32.156Z",
+  "scope": "read-only-sync-failure-diagnostics-not-copy-or-flow-verification",
+  "observations": [
+    {
+      "id": "directory-stat",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR"
+    },
+    {
+      "id": "shell-listing",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR"
+    },
+    {
+      "id": "sync-listing",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR"
+    },
+    {
+      "id": "storage-service-log",
+      "collected": true,
+      "value": "--------- beginning of main\n10-18 20:24:30.993  1863  1863 I adbd    : Remote process closed the socket (on MSG_PEEK)\n10-18 20:24:31.123  1863  1884 I adbd    : host-18: connection terminated: write failed\n10-18 20:24:31.124  1863  1863 I adbd    : host-18: offline\n10-18 20:24:31.130  1863  1863 I adbd    : destroying transport host-18\n10-18 20:24:31.130  1863  1863 I adbd    : BlockingConnectionAdapter(host-18): stopping\n10-18 20:24:31.130  1863  1883 I adbd    : host-18: read failed: Success\n10-18 20:24:31.130  1863  1863 I adbd    : BlockingConnectionAdapter(host-18): stopped\n10-18 20:24:31.130  1863  1863 I adbd    : BlockingConnectionAdapter(host-18): destructing\n10-18 20:24:31.130  1863  1863 I adbd    : BlockingConnectionAdapter(host-18): already stopped\n10-18 20:24:31.876  1863 11081 I adbd    : host-19: write thread spawning\n10-18 20:24:31.876  1863 11080 I adbd    : host-19: read thread spawning\n10-18 20:24:31.876  1863  1863 I adbd    : host-19: already offline\n10-18 20:24:31.877  1863  1863 I adbd    : Calling send_auth_request...\n10-18 20:24:31.880  1863  1863 I adbd    : adbd_auth: loading keys from /data/misc/adb/adb_keys\n10-18 20:24:31.892  1863  1863 I adbd    : adb client authorized\n"
+    }
+  ]
+}

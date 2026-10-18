@@ -4,6 +4,13 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/team-enrollment-native-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TeamEnrollmentModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*TeamEnrollment*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollment*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamEnrollmentStateTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/TeamEnrollmentWireTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt"
       - "tests/team-enrollment-contract.test.mjs"
       - "tests/emergency-contact-completed-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
@@ -229,6 +236,13 @@ on:
     branches:
       - main
     paths:
+      - "tests/team-enrollment-native-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TeamEnrollmentModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*TeamEnrollment*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollment*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamEnrollmentStateTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/TeamEnrollmentWireTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt"
       - "tests/team-enrollment-contract.test.mjs"
       - "tests/emergency-contact-completed-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
@@ -543,6 +557,9 @@ jobs:
 
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
+
+      - name: Test scoped team and verified child choices
+        run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

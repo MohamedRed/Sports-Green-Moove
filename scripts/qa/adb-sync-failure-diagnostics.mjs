@@ -51,9 +51,12 @@ export function collectAdbSyncFailureDiagnostics({ adb, serial, runId, evidenceD
       });
       observations.push({ id, collected: true, value: select(output) });
     } catch (failure) {
+      const stderr = redact(Buffer.isBuffer(failure.stderr) ? failure.stderr.toString('utf8') : typeof failure.stderr === 'string' ? failure.stderr : '');
       observations.push({ id, collected: false,
         status: Number.isInteger(failure.status) ? failure.status : null,
-        errorCode: /^[A-Z0-9_]{1,40}$/.test(failure.code) ? failure.code : 'DIAGNOSTIC_ERROR' });
+        errorCode: /^[A-Z0-9_]{1,40}$/.test(failure.code) ? failure.code : 'DIAGNOSTIC_ERROR',
+        failureKind: Number.isInteger(failure.status) ? 'command-exit' : 'parse-or-client-error',
+        stderr: stderr.slice(0, 4096), stderrTruncated: stderr.length > 4096 });
     }
   }
   const result = { projectId: 'demo-sgm-local-qa', runId, phase, recordedAt: new Date().toISOString(),

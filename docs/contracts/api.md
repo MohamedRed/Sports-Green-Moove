@@ -51,6 +51,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `requestTeamEnrollment` | eligible adult or currently verified parent | Requests, never approves. Requires viewed `expectedTeamInstanceId`, `expectedEnrollmentId`, `expectedRevision` and UUID `requestId`. |
 | `transitionTeamEnrollment` | scoped manager; requesting account for withdrawal | Versioned approve/refuse/revoke/withdraw by exact enrollment ID. Current eligibility required for approval; payload-bound idempotency never restores stale state. |
 | `listTeamEnrollments` | current stored-club manager | At most 20 scanned rows per page, with account/team-identity-bound cursor; nullable authorized labels and allowed actions. |
+| `listTeamEnrollmentOptions` | eligible adult; current verified parent for child choices | Strict `kind`: `clubs`, `teams` plus `clubId`, or `children` plus `teamId`; optional context/account-bound cursor. At most 20 scanned rows plus lookahead; no writes. An empty filtered page may still have a next cursor. |
 
 See [team conversations](team-conversations.md) for lifecycle, identity reuse and
 withdrawal policy. These endpoints do not enable team messages or change roles.

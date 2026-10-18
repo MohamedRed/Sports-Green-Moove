@@ -44,7 +44,7 @@ collect_component_evidence() {
 
   if [[ "$test_status" -ne 0 ]]; then
     mkdir -p "$output_dir/partial-components" || return 1
-    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact; do
+    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment; do
       if adb shell test -d "/sdcard/Download/$directory"; then
         if ! adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"; then
           echo "::warning::Could not collect partial component screenshots: $directory"
@@ -54,6 +54,13 @@ collect_component_evidence() {
   fi
 
   if [[ "$test_status" -eq 0 ]]; then
+    adb pull /sdcard/Download/sgm-team-enrollment "$output_dir" || return 1
+    for name in team-requested.png team-requested-window.png team-approved-narrow.png team-approved-narrow-window.png; do
+      if [[ ! -s "$output_dir/sgm-team-enrollment/$name" ]]; then
+        echo "Missing team enrollment component capture: $name" >&2
+        return 1
+      fi
+    done
     adb pull /sdcard/Download/sgm-emergency-contact "$output_dir" || return 1
     for name in emergency-editor-narrow.png emergency-editor-narrow-window.png emergency-editor-changed.png emergency-editor-changed-window.png; do
       if [[ ! -s "$output_dir/sgm-emergency-contact/$name" ]]; then

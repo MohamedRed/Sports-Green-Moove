@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les écrans d’inscription à une équipe sont ajoutés',
+    text: 'Choisir une équipe, vérifier la demande, confirmer ou retirer : les écrans sont ajoutés. Les choix passent douze essais locaux ; les écrans restent à rejouer.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Le contact ouvre le téléphone',
     text: 'Le numéro enregistré apparaît sans lancer d’appel. Enregistrement, réouverture, retrait, suppression et changement de compte passent en local. Sept captures sont ajoutées.', flow: 'emergency-contact' },
   { date: '2026-10-18', title: 'Les règles d’inscription à une équipe passent',
