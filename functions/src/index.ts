@@ -9,6 +9,7 @@ export { writeLocationBatch } from "./callables/locations.js";
 export { requestClubMembership } from "./callables/memberships.js";
 export { listMembershipReviewClubs, listClubMemberships } from "./callables/membershipLists.js";
 export { reviewClubMembership } from "./callables/membershipReview.js";
+export { transitionGuardianVerification } from "./callables/guardianVerification.js";
 export { getInbox, sendChatMessage, getChatConversation, markChatMessagesRead } from "./callables/messages.js";
 export { listChatConversations, listChatBookingOptions } from "./callables/chatDirectory.js";
 export {

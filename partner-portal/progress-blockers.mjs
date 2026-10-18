@@ -25,7 +25,7 @@ export const blockers = [
     next: 'Stabiliser la préparation des coupures et les captures, puis rejouer l’ensemble.', source: 'docs/release/evidence/local-replay-33-2026-10-18/README.md' },
   { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
     text: 'Les échanges réuniront les membres d’une même équipe et les parents des enfants inscrits. Ce parcours reste à construire et à tester.',
-    next: 'Le responsable du club validera les inscriptions et vérifiera les liens parent-enfant séparément. Ajouter ces validations, puis tester la conversation.', source: 'docs/contracts/team-conversations.md' },
+    next: 'La vérification des liens parent-enfant passe en local. Ajouter les écrans du responsable du club, les inscriptions par équipe et les échanges.', source: 'docs/release/evidence/local-guardian-verification-2026-10-18/README.md' },
   { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
     text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
     next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: 'docs/release/evidence/local-ui-collection-2026-10-16/README.md' },

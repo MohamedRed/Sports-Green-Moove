@@ -74,9 +74,11 @@ An enrollment approval alone must not verify a parent; parents cannot approve
 their own relationship, and a manager of a different club cannot verify it.
 
 The existing client-declared `children.guardianUserIds` array does not establish
-this verification. Server-owned verification records and their lifecycle must
-be implemented before they grant this team's chat access. A verified link must
+this verification. Server-owned verification transitions and private records now
+have 20 isolated service checks; see `guardian-verification.md`. They are not
+deployed or connected to native request/review screens or team-message access.
+A verified link must
 not grant access to another team or club without a current approved enrollment.
 Requests, refusals and removals retain the denial and
-revocation requirements above. The lifecycle and chat flow remain unimplemented
-and unverified; this product decision does not approve any production records.
+revocation requirements above. The team enrollment lifecycle and chat flow remain
+unimplemented and unverified; this work does not approve any production records.

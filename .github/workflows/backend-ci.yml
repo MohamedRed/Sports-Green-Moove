@@ -79,3 +79,6 @@ jobs:
 
       - name: Test isolated payment confirmation access and read-only status
         run: node scripts/qa/run-local-payment-status.mjs
+
+      - name: Test isolated guardian verification authority and lifecycle
+        run: npm run test:guardian-verification

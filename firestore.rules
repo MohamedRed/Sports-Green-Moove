@@ -97,6 +97,16 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    match /guardianVerifications/{verificationId} {
+      allow read: if isSelf(resource.data.parentUserId) || isClubManager(resource.data.clubId);
+      allow write: if false;
+    }
+
+    match /guardianVerificationEvents/{eventId} {
+      allow read: if isSelf(resource.data.parentUserId) || isClubManager(resource.data.clubId);
+      allow write: if false;
+    }
+
     match /trips/{tripId} {
       allow read: if signedIn();
       allow create, delete: if isAdmin();

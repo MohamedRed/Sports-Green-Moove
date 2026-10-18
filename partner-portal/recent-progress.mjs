@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'La vérification des parents passe les essais locaux',
+    text: '20 vérifications passent : un parent ne peut pas se valider lui-même, un autre club ne peut pas décider et un accord retiré ne revient pas. Les écrans restent à ajouter.', flow: 'clubs' },
   { date: '2026-10-18', title: 'Le contact d’urgence sera personnel',
     text: 'Chacun choisira son contact. Pour un enfant, ce sera son parent, après vérification du lien par le responsable du club. Ce parcours reste à ajouter.', flow: 'tracking' },
   { date: '2026-10-18', title: 'Le nouvel essai complet échoue',

@@ -32,7 +32,9 @@ The current `guardianUserIds` link is not evidence of manager verification:
 clients can declare that link when creating a child record. Do not reuse it as
 verified-parent authority for this new flow. Verification needs server-owned
 records, current scoped manager authority, revocation and denial tests before
-the child's editor can be enabled. These decisions are not an implementation,
+the child's editor can be enabled. `guardian-verification.md` now records the
+isolated service checks for that authority; native review and contact integration
+are still missing. These decisions are not an implementation,
 a production permission change or a successful native handoff.
 
 Do not invent a number, substitute emergency services, or place a call

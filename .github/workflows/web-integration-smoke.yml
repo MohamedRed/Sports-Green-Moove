@@ -38,6 +38,7 @@ on:
       - "tests/trip-capacity-rules.test.ts"
       - "tests/team-ownership-rules.test.ts"
       - "tests/team-ownership-evidence.test.mjs"
+      - "tests/guardian-verification-contract.test.mjs"
       - "tests/trip-cancellation-rules.test.ts"
       - "tests/trip-details-rules.test.ts"
       - "tests/trip-details-evidence.test.mjs"
@@ -242,6 +243,7 @@ on:
       - "tests/trip-capacity-rules.test.ts"
       - "tests/team-ownership-rules.test.ts"
       - "tests/team-ownership-evidence.test.mjs"
+      - "tests/guardian-verification-contract.test.mjs"
       - "tests/trip-cancellation-rules.test.ts"
       - "tests/trip-details-rules.test.ts"
       - "tests/trip-details-evidence.test.mjs"
@@ -483,6 +485,12 @@ jobs:
 
       - name: Test isolated multi-person flows
         run: npm run test:local-flows
+
+      - name: Validate guardian verification contracts and retained scope
+        run: node --test tests/guardian-verification-contract.test.mjs
+
+      - name: Test isolated guardian verification authority and lifecycle
+        run: npm run test:guardian-verification
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

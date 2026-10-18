@@ -11,6 +11,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `listMembershipReviewClubs` | admin/clubManager | Pages of 20 clubs. Managers see only clubs with their active `clubManager` membership; cursor is actor/list/role bound. |
 | `listClubMemberships` | admin/scoped clubManager | Pages of 20 club memberships, document revision and allowed decisions; no client-side privilege inference. |
 | `reviewClubMembership` | admin/scoped clubManager | Exact `membershipId`, `decision` (`approve`/`reject`) and `expectedVersion` required. Atomically changes an ordinary pending request, increments the existing club counter only on approval, creates an immutable review and a recipient notification. Stale/repeated decisions fail; no global roles are granted. |
+| `transitionGuardianVerification` | owning parent / scoped clubManager | Versioned request/withdraw or verify/refuse/revoke with a stable operation UUID. Managers cannot verify themselves; admin alone cannot decide. Private verification and audit only, not team enrollment or chat access. See [parent-child verification](guardian-verification.md). |
 | `listTrips` | signed-in users | Client-ready published trip summaries for home/trips screens. |
 | `suggestPlaces` | signed-in users | Belgian Google Places autocomplete suggestions for search origin/destination. |
 | `resolvePlace` | signed-in users | Google Place Details location and formatted address for a selected suggestion. |
