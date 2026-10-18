@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'La carte s’affiche dans l’app',
+    text: 'Le conducteur applique le parcours après les deux accords. La carte est visible ; le cadrage des repères reste à corriger.', flow: 'publication' },
+  { date: '2026-10-18', title: 'La fermeture du panneau bloque le nouvel essai',
+    text: 'Les adresses sont retrouvées. L’essai s’arrête en revenant aux réservations ; la carte reste à vérifier.', flow: 'publication' },
   { date: '2026-10-18', title: 'Le conducteur applique le parcours après les deux accords',
     text: 'Le parcours passe dans l’app en local, sans paiement. La capture est ajoutée ; l’affichage de la carte reste à vérifier.', flow: 'publication' },
   { date: '2026-10-18', title: 'La date et l’arrivée reviennent dans le brouillon',

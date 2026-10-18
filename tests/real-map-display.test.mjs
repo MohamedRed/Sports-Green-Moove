@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { assertRealMapDisplay } from '../scripts/qa/real-map-display-evidence.mjs';
+import { assertRealMapDisplay, assertFramedRealMapDisplay } from '../scripts/qa/real-map-display-evidence.mjs';
 
 const source = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const display = () => ({ sdkLoaded: true, capture: 'native-display', screenFile: 'local-real-map-display.png',
@@ -38,7 +38,16 @@ test('isolated map display requires explicit opt-in and keeps all other provider
 
 test('native display proof waits for real SDK load and captures the real screen without fake map content', () => {
   const map = source('android/app/src/main/java/be/sportgreenmoove/app/ui/GoogleMapsRoutePreview.kt');
-  assert.match(map, /onMapLoaded = \{ loaded = true \}/); assert.match(map, /stateDescription = if \(loaded\)/);
+  assert.match(map, /stateDescription = if \(loaded\)/);
+  assert.match(map, /onSizeChanged \{ viewport = it \}/);
+  assert.match(map, /FitRouteMapCamera\(cameraState, points, listOf\(start, end\), viewport, paddingPixels\)/);
+  assert(!map.includes('routeZoom('));
+  const fit = source('android/app/src/main/java/be/sportgreenmoove/app/ui/FitRouteMapCamera.kt');
+  assert.match(fit, /\(points \+ anchors\).forEach\(::include\)/);
+  assert.match(fit, /newLatLngBounds\(bounds, viewport.width, viewport.height, paddingPixels\)/);
+  assert(fit.indexOf('camera.move(') < fit.indexOf('map.setOnMapLoadedCallback {'));
+  assert.match(fit, /map.projection.toScreenLocation/); assert.match(fit, /reportLoaded\(routeMapAnchorsFit/);
+  assert.match(fit, /finally \{ map.setOnMapLoadedCallback\(null\) \}/);
   const capture = source('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RealMapDisplayEvidence.kt');
   assert(capture.indexOf('StateDescription') < capture.indexOf('uiAutomation.takeScreenshot()'));
   assert.match(capture, /getLocationOnScreen/); assert.match(capture, /node.boundsInRoot/);
@@ -54,9 +63,16 @@ test('native display proof waits for real SDK load and captures the real screen 
   assert.match(source('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeFlowTest.kt'),
     /largeTextReviewKeepsCloseVisibleAfterScrollingToTheDecision/);
   assert.match(source('scripts/qa/real-maps-trip-ui.mjs'), /verifyRealMapDisplayFiles\(native.mapDisplay, directory\)/);
-  assert.match(source('scripts/qa/run-real-maps-android.mjs'), /assertRealMapDisplay\(result.native.mapDisplay\)/);
+  assert.match(source('scripts/qa/run-real-maps-android.mjs'), /assertFramedRealMapDisplay\(result.native.mapDisplay\)/);
   const session = source('scripts/qa/real-maps-android-session.mjs');
   assert.match(session, /instrumentation.txt'\), redact\(output\)/);
   assert.match(session, /new Error\(redact\(error.stack \?\? error\)\)/);
   assert.match(session, /map-display-provider-errors.txt'\), redact\(logs\)/);
+});
+
+test('a loaded raster does not retroactively prove marker framing', () => {
+  const prior = display(); assertRealMapDisplay(prior);
+  assert.throws(() => assertFramedRealMapDisplay(prior));
+  assertFramedRealMapDisplay({ ...prior, anchorsFramed: true });
+  assert.throws(() => assertFramedRealMapDisplay({ ...prior, anchorsFramed: false }));
 });

@@ -2,9 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import { XMLParser } from 'fast-xml-parser';
 import { assertScheduleDraftRestart } from '../scripts/qa/trip-schedule-draft-evidence.mjs';
 import { assertRealMapsUiProviderEvidence } from '../scripts/qa/real-maps-ui-evidence.mjs';
+import { verifyRealMapDisplayFiles, assertFramedRealMapDisplay } from '../scripts/qa/real-map-display-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 
 const url = (path) => new URL('../' + path.split('/').map(encodeURIComponent).join('/'), import.meta.url);
@@ -100,10 +102,24 @@ test('the display-enabled failure stays incomplete before quote or map-load chec
   assert.match(text(mapsBase + 'README.md'), /Do not infer a map load or key/);
 });
 
-test('private portal retains failed and successful captures while map rendering and physical scope stay open', () => {
+test('actual loaded map tiles and application do not hide the separately observed clipped marker', () => {
+  const prefix = mapsBase + 'completed-display/', { json } = originals(prefix, 13);
+  const run = json('replay/results.json'), verified = json('replay/verified.json');
+  assert.equal(run.runId, '21d7098846ec41c305f1dd90d315840c');
+  assertRealMapsUiProviderEvidence(run, json('replay/real-maps-provider.json'), verified.runId);
+  verifyRealMapDisplayFiles(run.native.mapDisplay, fileURLToPath(url(prefix + 'replay/')));
+  assert.equal(verified.mapDisplayVerified, true); assert.equal(verified.mapFramingVerified, undefined);
+  assert.throws(() => assertFramedRealMapDisplay(run.native.mapDisplay));
+  assert.equal(run.native.mapDisplay.colorBins, 163); assert.equal(run.native.mapDisplay.samples, 13563);
+  assert.equal(json('disposable-store-restore.json').verified, true);
+  assert.match(text(prefix + 'replay/LocalRealMapsTripChangeTest-instrumentation.txt'), /OK \(1 test\)/);
+  assert.match(text(mapsBase + 'README.md'), /One departure marker head is clipped/);
+});
+
+test('private portal retains failed and successful captures while map framing and physical scope stay open', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
   assert.deepEqual(flow.images.slice(0, 3).map((i) => i.file), ['trip-real-route-applied', 'trip-real-places-selected', 'trip-schedule-draft-restored']);
-  assert.match(flow.images[0].alt, /appliqué après les deux accords/); assert.match(flow.remaining, /affichage de la carte/);
+  assert.match(flow.images[0].alt, /appliqué après les deux accords/); assert.match(flow.remaining, /cadrage de la carte/);
   assert.match(flow.remaining, /sur téléphone/); assert.match(flow.remaining, /paiements et remboursements réels/);
   assert.equal(captures['trip-real-places-selected'], mapsBase + 'first-attempt/replay/local-real-maps-selected.png');
   assert.equal(captures['trip-schedule-draft-restored'], draftBase + 'originals/local-trip-schedule-draft-restored.png');

@@ -21,12 +21,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.R
@@ -36,7 +39,6 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.domain.MapRoutePolyline
-import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
@@ -81,28 +83,23 @@ fun GoogleMapsRoutePreviewCard(
 
 @Composable
 internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true, modifier: Modifier = Modifier) {
-    var loaded by remember { mutableStateOf(false) }
+    var viewport by remember { mutableStateOf(IntSize.Zero) }
+    var loaded by remember(preview, viewport) { mutableStateOf(false) }
+    val paddingPixels = with(LocalDensity.current) { 48.dp.roundToPx() }
     val points = remember(preview) {
         MapRoutePolyline.pointsFor(preview).map { LatLng(it.lat, it.lng) }
     }
     val start = LatLng(preview.start.lat, preview.start.lng)
     val end = LatLng(preview.end.lat, preview.end.lng)
-    val center = LatLng(
-        (preview.start.lat + preview.end.lat) / 2.0,
-        (preview.start.lng + preview.end.lng) / 2.0,
-    )
-    val cameraState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(center, routeZoom(preview))
-    }
+    val cameraState = rememberCameraPositionState()
 
     Box(modifier.fillMaxWidth().height(250.dp).semantics {
         stateDescription = if (loaded) "Carte chargée" else "Chargement de la carte"
     }) {
         GoogleMap(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().onSizeChanged { viewport = it },
             cameraPositionState = cameraState,
             contentDescription = "Carte du trajet",
-            onMapLoaded = { loaded = true },
             properties = MapProperties(isTrafficEnabled = true),
             uiSettings = MapUiSettings(
                 compassEnabled = false,
@@ -114,6 +111,7 @@ internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true
                 zoomControlsEnabled = false,
             ),
         ) {
+            FitRouteMapCamera(cameraState, points, listOf(start, end), viewport, paddingPixels) { loaded = it }
             if (showRoute) Polyline(points = points, color = SgmColor.Green, width = 10f)
             Marker(state = MarkerState(position = start), title = "Départ")
             Marker(state = MarkerState(position = end), title = "Arrivée")
@@ -163,17 +161,5 @@ private fun BoxScope.RoutePreviewOverlay(ride: LiveRideSnapshot) {
             ride.etaLabel,
             style = SgmType.BodySM.copy(color = SgmColor.TextOnGreen, fontSize = 13.sp, fontWeight = FontWeight.Bold),
         )
-    }
-}
-
-private fun routeZoom(preview: MapRoutePreview): Float {
-    val latDelta = kotlin.math.abs(preview.start.lat - preview.end.lat)
-    val lngDelta = kotlin.math.abs(preview.start.lng - preview.end.lng)
-    val delta = maxOf(latDelta, lngDelta)
-    return when {
-        delta < 0.015 -> 14f
-        delta < 0.06 -> 12f
-        delta < 0.18 -> 10f
-        else -> 8f
     }
 }

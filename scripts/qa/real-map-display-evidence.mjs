@@ -14,6 +14,11 @@ export function assertRealMapDisplay(display) {
   assert(Number.isFinite(display.dominantFraction) && display.dominantFraction >= 1 / display.colorBins && display.dominantFraction < 0.85);
 }
 
+export function assertFramedRealMapDisplay(display) {
+  assertRealMapDisplay(display);
+  assert.equal(display.anchorsFramed, true);
+}
+
 export function verifyRealMapDisplayFiles(display, directory) {
   assertRealMapDisplay(display);
   assert.deepEqual(JSON.parse(readFileSync(resolve(directory, 'local-real-map-display.json'), 'utf8')), display);

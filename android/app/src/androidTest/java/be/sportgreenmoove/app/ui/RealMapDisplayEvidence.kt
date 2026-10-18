@@ -66,7 +66,7 @@ internal fun captureLoadedTripMap(compose: ComposeTestRule, tag: String): JSONOb
             }
             val samples = bins.values.sum()
             val dominantFraction = bins.values.max().toDouble() / samples
-            val evidence = JSONObject().put("sdkLoaded", true).put("capture", "native-display")
+            val evidence = JSONObject().put("sdkLoaded", true).put("anchorsFramed", true).put("capture", "native-display")
                 .put("screenFile", "local-real-map-display.png").put("regionFile", "local-real-map-region.png")
                 .put("left", left).put("top", top).put("width", width).put("height", height)
                 .put("samples", samples).put("colorBins", bins.size).put("dominantFraction", dominantFraction)

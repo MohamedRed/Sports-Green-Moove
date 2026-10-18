@@ -22,6 +22,17 @@ samples only its central 60% to avoid treating attribution or controls as tiles.
 Pixel checks are a blank-image guard, not geographic verification. Review the
 original display and crop before recording map-rendering evidence as verified.
 
+Loaded tiles do not prove that both pins fit: the first passed display run
+retains a visibly clipped departure marker. The current implementation fits SDK
+bounds to measured pixel dimensions with 48 dp marker padding, includes endpoints
+and any decoded route points, and validates the actual projected anchors before
+reporting ready. It owns a fresh one-shot load callback after fitting and clears
+it when the effect ends. Route/size changes refit; ordinary recomposition or a
+user pan does not. `mapFramingVerified` additionally requires the new native
+`anchorsFramed` proof. Historical loaded-map receipts without it stay scoped to
+tile display. See [SDK camera bounds](https://developers.google.com/maps/documentation/android-sdk/views#updating_camera_to_fit_bounds)
+and the pinned [map effect API](https://googlemaps.github.io/android-maps-compose/maps-compose/com.google.maps.android.compose/-map-effect.html).
+
 Configuration and compile tests are not proof that the key permits the isolated
 package/debug certificate or that tiles render. A rejected key or load timeout
 must fail the replay. Do not widen key restrictions, substitute another key,

@@ -107,3 +107,38 @@ version `26.40.32`. The crash archive also contains an earlier separate Google
 services SIGSEGV at 09:37:44; it is not an app crash or proof of the later dialog
 timeout's cause. No deadlines, request caps, provider responses, key restrictions
 or offline defaults were relaxed. No payment or production data write occurred.
+
+## Loaded Map And Native Application: Framing Gap
+
+Source `113c219184f498a23ac68faa15b8100301bf2453`, manual Native CI
+[39117088068](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39117088068),
+artifact `12132344981` (1,941,121 bytes). Thirteen unchanged originals and their
+SHA-256 manifest are retained in `completed-display/`. The actual native case
+passed in 68.051 seconds; the entire dispatched job also passed.
+
+Run `21d7098846ec41c305f1dd90d315840c` completed the native/persisted stage at
+10:03:04.219Z and the independent join at 10:03:05.592Z. All five real provider
+requests returned HTTP 200; the selected stations, endpoints, 7,512-metre route,
+558-second duration, saved route hash, both agreements and applied booking
+revisions match. The close control was required to be displayed before every
+parent-panel dismissal. The primary evidence copy and store restoration passed
+with unchanged service version `26.40.32`.
+
+The real SDK reported loaded; the native full display and exact 910 x 656 map
+crop were reviewed. The central raster has 13,563 sampled pixels, 163 color bins
+and a 0.388041 dominant-bin fraction. Actual roads, labels and station locations
+are visible. **One departure marker head is clipped at the proposed map's top
+edge.** This run proves loaded map tiles and application, not correct framing of
+both complete pins. Its existing receipt does not contain framing proof and is
+never retroactively upgraded. These originals are retained without alteration;
+the clipped crop is not used to claim the framing issue is resolved.
+
+The repair replaces fixed zoom thresholds with SDK bounds fitting to the actual
+map pixel dimensions, including route points and both endpoints, with marker
+padding. A fresh one-shot SDK load callback is registered after that camera move;
+readiness also checks both actual projected anchors against the padded viewport.
+The bounds are recalculated for route or size changes, not every recomposition
+or user pan. The superseded zoom heuristic is removed. The three viewport unit
+tests and native test compilation pass; an actual fitted-map replay and visual
+inspection remain required. No substitute imagery, relaxed raster thresholds,
+provider retries, request-cap increase or cloud restriction changes are used.
