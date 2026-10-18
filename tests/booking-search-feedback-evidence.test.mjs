@@ -108,7 +108,7 @@ test('the current recheck passes the booking stage but does not claim the unexer
   assert.throws(() => assertInstrumentationPassed(text('native-network-recheck.txt'), 1));
   const booking = content.flows.find((item) => item.id === 'booking');
   assert.equal(booking.ui.source, base + 'results.json');
-  assert.equal(booking.checkedAt, run.testedAt.slice(0, 10));
+  assert.equal(booking.ui.checkedAt, run.testedAt.slice(0, 10));
   assert.equal(run.captureSourceRunId, json('booking-ui-loss.json').runId);
   for (const id of ['booking-retry-unconfirmed', 'booking-retry-confirmed'])
     assert(booking.images.some((image) => image.file === id && /17 octobre/.test(image.alt)));

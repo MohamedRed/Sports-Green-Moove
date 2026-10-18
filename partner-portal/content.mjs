@@ -1,4 +1,5 @@
 import { tours } from './tours.mjs';
+import { createBookingFlow } from './booking-flow.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
@@ -182,19 +183,7 @@ export const content = {
         shot('trip-cancel-confirmed', 'Annulation confirmée en paysage, essai local du 16 octobre'),
         shot('trip-cancel-parent', 'Deux réservations annulées côté parent, essai local du 16 octobre')],
       source: 'docs/release/evidence/real-maps-native-2026-10-18/README.md' },
-    { id: 'booking', title: 'Réservations', status: 'partial', checkedAt: '2026-10-17',
-      summary: 'Après une réponse perdue, le renvoi retrouve une seule demande en local.',
-      verified: 'Le parent peut réessayer, puis voit « Demande envoyée ». Le bouton d’envoi disparaît. L’acceptation, le refus et l’annulation ont aussi été testés en local.',
-      remaining: 'Rejouer après réouverture, depuis les autres écrans et sur téléphone. Restent les confirmations des parents et les remboursements. Pas encore en ligne.',
-      local: local(['booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking', 'reservation-decisions', 'trip-capacity-ownership'], ['Une demande de deux places garde le bon nombre de places.', 'L’annulation restitue les places une seule fois.', 'Le refus ne retire aucune place.', 'Une personne extérieure ne peut pas modifier la réservation.', 'Un passager déjà pris en charge ne peut pas annuler.', 'Le conducteur ne peut pas modifier directement le nombre de places réservées.'], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json'),
-      ui: { source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/results.json', groups: ['booking-response-loss-search-ui'] },
-      images: [shot('booking-retry-unconfirmed', 'Réponse perdue : le parent peut réessayer, essai local du 17 octobre'),
-        shot('booking-retry-confirmed', 'Une seule demande envoyée après le renvoi, essai local du 17 octobre'),
-        shot('reservation-cancelled', 'Deux réservations annulées par le parent, essai local du 16 octobre'),
-        shot('reservation-declined', 'Demande refusée par le conducteur, essai local du 16 octobre'),
-        shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre'),
-        shot('booking-review-required', 'Trajet modifié : nouvelle recherche demandée, essai local simulé du 17 octobre'),
-        shot('booking-review-narrow', 'Même message en texte agrandi, essai local simulé du 17 octobre')], source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },
+    createBookingFlow(local, shot),
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-17',
       summary: 'Le clavier passe dans le dernier essai. La stabilité reste à vérifier.',
       verified: 'Le brouillon, le renvoi sans doublon et la réponse passent dans les essais réussis. L’échange reprend après relancement. Le clavier passe aussi ce nouvel essai.',

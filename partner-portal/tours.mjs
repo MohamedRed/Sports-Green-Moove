@@ -27,8 +27,9 @@ export const tours = {
     image('trip-consent-withdrawn', 'Si le conducteur retire sa proposition', 'Autre cas testé : le changement est retiré sans annuler les réservations.'),
   ],
   booking: [
-    image('booking-retry-unconfirmed', 'Vérifier une demande sans réponse', 'Après une réponse perdue, le parent peut renvoyer sa demande.'),
-    image('booking-retry-confirmed', 'Retrouver la confirmation', 'Le renvoi retrouve une seule demande enregistrée dans cet essai local.'),
+    image('phone-booking-requested', 'Demander une place', 'Sur téléphone, le parent retrouve sa demande. Cet essai utilise des données de test et un trajet gratuit.'),
+    image('phone-booking-approved', 'Retrouver l’accord', 'Après actualisation, la réservation est approuvée. L’acceptation depuis le téléphone du conducteur reste à tester.'),
+    image('phone-booking-cancelled', 'Annuler la réservation', 'Le parent confirme l’annulation depuis son téléphone. La place est à nouveau disponible. Aucun paiement.'),
   ],
   messages: [
     image('chat-reservation', 'Choisir la réservation', 'Le parent choisit la réservation depuis laquelle écrire au conducteur.'),

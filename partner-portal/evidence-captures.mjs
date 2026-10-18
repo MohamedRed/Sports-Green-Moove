@@ -1,4 +1,7 @@
 export const captures = {
+  'phone-booking-requested': 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/phone-booking-requested.png',
+  'phone-booking-approved': 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/phone-booking-approved.png',
+  'phone-booking-cancelled': 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/phone-booking-cancelled.png',
   'trip-real-map-visible': 'docs/release/evidence/real-maps-native-2026-10-18/completed-display/replay/local-real-map-display.png',
   'trip-real-route-applied': 'docs/release/evidence/real-maps-native-2026-10-18/completed-application/replay/local-real-maps-applied.png',
   'trip-real-places-selected': 'docs/release/evidence/real-maps-native-2026-10-18/first-attempt/replay/local-real-maps-selected.png',

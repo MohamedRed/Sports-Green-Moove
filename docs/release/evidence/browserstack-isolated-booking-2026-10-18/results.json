@@ -1,0 +1,19 @@
+{
+  "scope": "physical-android-parent-ui-with-isolated-services-and-sdk-peer",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "edd9407bfe61370693403d569b5dfcd4",
+  "testedAt": "2026-10-18T11:04:49.796Z",
+  "sourceCommit": "f20fb884000ae491414faa0fb9c8d4b73f5e4eae",
+  "appSha256": "4b7ad7123375956585508ec31d2062f6caa1beac69feb09d207eef7e1127b958",
+  "device": { "model": "Google Pixel 8", "os": "Android 14", "service": "BrowserStack App Live" },
+  "physicalDevice": true,
+  "driverNativeUi": false,
+  "paymentExercised": false,
+  "productionDataWritten": false,
+  "childBookingVerified": false,
+  "trackingVerified": false,
+  "twoPhoneFlowVerified": false,
+  "videoCaptured": false,
+  "steps": ["parent-requested", "parent-saw-approval", "parent-cancelled"],
+  "captures": ["phone-booking-requested.png", "phone-booking-approved.png", "phone-booking-cancelled.png"]
+}

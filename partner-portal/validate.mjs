@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
+import { validatePhoneEvidence } from './phone-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -54,9 +55,16 @@ export function validate(root) {
       assert.equal(f.status, 'partial', 'Local UI checks do not complete physical-device requirements');
       const run = JSON.parse(readFileSync(resolve(root, f.ui.source), 'utf8'));
       validateUiScope(run);
-      assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
+      if (Object.hasOwn(f.ui, 'checkedAt')) {
+        assertDate(f.ui.checkedAt); assert(f.ui.checkedAt <= f.checkedAt);
+        assert.equal(run.testedAt.slice(0, 10), f.ui.checkedAt);
+      } else assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
       assert(f.ui.groups.length);
       for (const group of f.ui.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven UI check ${group}`);
+    }
+    if (f.phone) {
+      assert.equal(f.status, 'partial', 'A bounded parent phone flow does not complete all booking requirements');
+      validatePhoneEvidence(root, f.phone, f.checkedAt);
     }
   }
   for (const u of content.updates) { assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt); }

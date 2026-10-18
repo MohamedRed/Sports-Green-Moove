@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Une réservation passe sur téléphone',
+    text: 'Le parent demande une place, retrouve l’accord puis annule. La place est rendue disponible. Trois captures sont ajoutées, avec des données de test et sans paiement.', flow: 'booking' },
   { date: '2026-10-18', title: 'Le suivi est plus simple à parcourir',
     text: 'L’aperçu rassemble l’avancement et les nouvelles récentes. Les captures, vidéos et visites guidées sont réunies dans Parcours.', flow: 'navigation' },
   { date: '2026-10-18', title: 'Les parcours se découvrent en images',

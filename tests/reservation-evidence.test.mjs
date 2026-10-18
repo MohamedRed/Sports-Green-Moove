@@ -66,7 +66,7 @@ test('published reservation captures require the completed native run and saved 
   assert.match(source(base + 'general-ui-passed.xml'), /tests="60" failures="0" errors="0" skipped="10"/);
   const flow = content.flows.find((item) => item.id === 'booking');
   assert.equal(run.testedAt.slice(0, 10), '2026-10-16');
-  assert.equal(flow.checkedAt, '2026-10-17');
+  assert.equal(flow.ui.checkedAt, '2026-10-17');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-booking-search-feedback-2026-10-17/results.json');
   assert(flow.ui.groups.includes('booking-response-loss-search-ui'));
   for (const file of ['reservation-cancelled', 'reservation-declined'])

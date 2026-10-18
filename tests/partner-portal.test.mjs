@@ -88,7 +88,8 @@ test('local results are backed by successful evidence and are not presented as p
   assert.equal(flows.length, 9);
   for (const flow of flows) {
     assert.equal(flow.status, 'partial');
-    assert.match(detail(flow), /Essai local du/);
+    assert.match(detail(flow), flow.phone ? /Essai sur téléphone du/ : /Essai local du/);
+    if (flow.phone) assert.match(localResults(flow), /Essai local du 17 octobre 2026/);
     assert(localResults(flow).includes(flow.local.checks[0]));
     assert(!flow.recording);
   }

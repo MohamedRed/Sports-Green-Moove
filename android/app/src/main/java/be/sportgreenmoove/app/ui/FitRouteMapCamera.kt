@@ -11,6 +11,9 @@ import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.MapEffect
 import com.google.maps.android.compose.MapsComposeExperimentalApi
 import kotlinx.coroutines.awaitCancellation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.withContext
 
 @OptIn(MapsComposeExperimentalApi::class)
 @Composable
@@ -29,6 +32,10 @@ internal fun FitRouteMapCamera(
             val projected = anchors.map { map.projection.toScreenLocation(it).let { point -> point.x to point.y } }
             reportLoaded(routeMapAnchorsFit(projected, viewport.width, viewport.height, paddingPixels))
         }
-        try { awaitCancellation() } finally { map.setOnMapLoadedCallback(null) }
+        try { awaitCancellation() } finally {
+            withContext(NonCancellable + Dispatchers.Main.immediate) {
+                map.setOnMapLoadedCallback(null)
+            }
+        }
     }
 }

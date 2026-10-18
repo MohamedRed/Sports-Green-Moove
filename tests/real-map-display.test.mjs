@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { XMLParser } from 'fast-xml-parser';
 import { assertRealMapDisplay, assertFramedRealMapDisplay } from '../scripts/qa/real-map-display-evidence.mjs';
 
 const source = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
@@ -47,7 +49,7 @@ test('native display proof waits for real SDK load and captures the real screen 
   assert.match(fit, /newLatLngBounds\(bounds, viewport.width, viewport.height, paddingPixels\)/);
   assert(fit.indexOf('camera.move(') < fit.indexOf('map.setOnMapLoadedCallback {'));
   assert.match(fit, /map.projection.toScreenLocation/); assert.match(fit, /reportLoaded\(routeMapAnchorsFit/);
-  assert.match(fit, /finally \{ map.setOnMapLoadedCallback\(null\) \}/);
+  assert.match(fit, /finally \{\s+withContext\(NonCancellable \+ Dispatchers.Main.immediate\) \{\s+map.setOnMapLoadedCallback\(null\)/);
   const capture = source('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RealMapDisplayEvidence.kt');
   assert(capture.indexOf('StateDescription') < capture.indexOf('uiAutomation.takeScreenshot()'));
   assert.match(capture, /getLocationOnScreen/); assert.match(capture, /node.boundsInRoot/);
@@ -86,4 +88,22 @@ test('all trip editor and review replays require the pinned close control to be 
     assert.match(replay, /onNodeWithTag\("trip.change.close"(?:, useUnmergedTree = true)?\).assertIsDisplayed\(\).assertIsEnabled\(\).performClick\(\)/, name);
     assert(!replay.includes('onNodeWithContentDescription("Fermer")'), name);
   }
+});
+
+test('retained ordinary failures identify callback cleanup during off-main recomposer cancellation', () => {
+  const base = 'docs/release/evidence/real-maps-native-2026-10-18/cleanup-main-thread/';
+  const raw = source(base + 'ordinary-ui.xml'), hashes = JSON.parse(source(base + 'artifact-sha256.json'));
+  assert.equal(createHash('sha256').update(raw).digest('hex'), hashes['ordinary-ui.xml']);
+  const suite = new XMLParser({ ignoreAttributes: false, isArray: (name) => name === 'testcase' }).parse(raw).testsuite;
+  const failures = suite.testcase.filter((entry) => entry.failure);
+  assert.equal(failures.length, 10);
+  const cleanup = failures.filter((entry) => String(entry.failure).includes('Not on the main thread'));
+  assert.equal(cleanup.length, 9);
+  for (const entry of cleanup) {
+    assert.match(entry.failure, /FitRouteMapCamera.kt:32/);
+    assert.match(entry.failure, /GoogleMap.setOnMapLoadedCallback/);
+    assert.match(entry.failure, /Recomposer.cancel/);
+  }
+  const fit = source('android/app/src/main/java/be/sportgreenmoove/app/ui/FitRouteMapCamera.kt');
+  assert.match(fit, /withContext\(NonCancellable \+ Dispatchers.Main.immediate\)/);
 });

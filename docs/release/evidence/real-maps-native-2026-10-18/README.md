@@ -187,3 +187,28 @@ diagnostic. No retry or alternative copy is used to claim that run passed.
 These routine component builds already include the Android map-display key;
 only their separate `.local` replay is provider-disabled by default. Neither
 routine job is proof that all SDK traffic is offline.
+
+## Cleanup Thread Regression Found In The Routine Run
+
+The source `0001ac1d2f7ae3f4d4c8d5017f9029bca5467a9a` routine run
+[39118543326](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39118543326)
+failed with ten ordinary component failures; its raw XML from artifact
+`12133499213` is retained byte-exact in `cleanup-main-thread/`. Nine failures
+report `Not on the main thread`, with the actual stack identifying
+`GoogleMap.setOnMapLoadedCallback` at `FitRouteMapCamera.kt:32` during Compose test
+recomposer cancellation, not camera fitting or provider authentication. The tenth
+is the older pinned-close scrolling-helper failure already repaired separately.
+The subsequent local replay also failed its primary consent-recovery evidence
+copy. This routine job remains failed.
+
+The scoped correction dispatches listener removal to `Dispatchers.Main.immediate`
+inside a non-cancellable cleanup block, so an already cancelled effect still
+releases the listener on the required UI thread. It preserves the original
+camera fitting, callback, projection and raster checks. It does not retry tests,
+hide SDK exceptions, bypass load checks or accept marker framing. The existing
+nine affected cases are the execution regression gate; a successful fresh run
+is still required. The new isolated phone booking check used no live-map key
+and does not verify this correction.
+
+References: [GoogleMap thread contract](https://developers.google.com/android/reference/com/google/android/gms/maps/GoogleMap),
+[Kotlin cancellation cleanup](https://kotlinlang.org/docs/cancellation-and-timeouts.html#run-non-cancellable-block).
