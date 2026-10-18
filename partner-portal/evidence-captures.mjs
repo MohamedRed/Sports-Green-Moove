@@ -1,4 +1,6 @@
 export const captures = {
+  'team-requested-simulated': 'docs/release/evidence/team-screen-export-2026-10-18/completed/team-requested-window.png',
+  'team-approved-simulated-narrow': 'docs/release/evidence/team-screen-export-2026-10-18/completed/team-approved-narrow-window.png',
   'emergency-passed-saved': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-self-saved.png',
   'emergency-passed-restored': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-self-restored.png',
   'emergency-passed-child': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-child-saved.png',

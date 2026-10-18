@@ -185,6 +185,24 @@ try {
       }
     }
   }
+  for (const width of [1440, 768, 390, 320]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto(`${base}/#parcours`);
+    await page.goto(`${base}/#parcours/team-enrollment`);
+    await page.getByRole('dialog').getByRole('heading', { name: 'Inscription à une équipe', exact: true }).waitFor();
+    const flow = content.flows.find((item) => item.id === 'team-enrollment');
+    for (const [index, image] of flow.images.entries()) {
+      await waitForImage();
+      assert.equal(await page.locator('.media-stage img').getAttribute('alt'), image.alt);
+      assert.match(image.alt, /simulé/);
+      assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+      await page.screenshot({ path: `${output}/team-${index + 1}-${width}.png`, fullPage: false });
+      await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click();
+    }
+    await page.getByRole('heading', { name: 'Ce qui a été vérifié', exact: true }).waitFor();
+    assert.equal(await page.locator('.local-results li').count(), 4);
+  }
   await page.goto(`${base}/#parcours/signout/visite/1`);
   await page.locator('video').evaluate((element) => element.play());
   await page.waitForFunction(() => document.querySelector('video').currentTime > .3);

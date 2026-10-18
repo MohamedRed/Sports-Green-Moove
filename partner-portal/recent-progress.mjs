@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Deux captures de l’inscription sont ajoutées',
+    text: 'Demande en attente et texte agrandi : les quatre essais d’écran passent avec des réponses simulées. Les captures sont récupérées.', flow: 'team-enrollment' },
+  { date: '2026-10-18', title: 'Les parcours et leurs captures passent ensemble',
+    text: 'Les 35 parcours locaux, les essais d’écran et la récupération des captures passent dans le même essai. Les tests sur téléphone restent ouverts.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les 35 parcours locaux passent',
     text: 'Le nouvel essai va jusqu’au bout. L’ensemble reste non validé car les captures des nouveaux écrans d’inscription manquent encore.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les premiers écrans d’inscription passent',

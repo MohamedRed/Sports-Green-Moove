@@ -100,3 +100,34 @@ test('team capture export uses safe direct argv paths and verifies original byte
   for (const guard of ['original.isFile && original.length() > 0', 'MessageDigest.getInstance("SHA-256").digest(original.readBytes())',
     'sha256sum $target', 'observed.size == 2 && observed[0] == expected && observed[1] == target']) assert(fixture.includes(guard), guard);
 });
+test('the completed replay binds actual XML cases and original captures without promoting simulated responses to a real enrollment', () => {
+  const sub = 'docs/release/evidence/team-screen-export-2026-10-18/completed/';
+  const report = json(sub + 'component-results.json');
+  assert.equal(report.scope, 'local-native-component-ui-not-physical-device'); assert.equal(report.projectId, null);
+  assert.equal(report.sourceCommit, '0cb8e4c4cfdcc51f25201bfe1af8a90ec7bd3b36');
+  assert.equal(report.gateway, 'in-memory-fixture'); assert.equal(report.componentSuiteCompleted, true);
+  for (const flag of ['applicationBackendConnected', 'fullAppReplay', 'physicalDevice', 'realProviderOutcomesVerified']) assert.equal(report[flag], false);
+  assert.equal(Object.keys(report.artifacts).length, 8);
+  for (const [path, hash] of Object.entries(report.artifacts)) assert.equal(sha(read(sub + path)), hash, path);
+  for (const [path, hash] of Object.entries(report.sourceFiles)) assert.equal(sha(read(path)), hash, path);
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(text(sub + 'ordinary-tests.xml')).testsuite;
+  assert.equal(Number(suite['@_tests']), 143); assert.equal(Number(suite['@_skipped']), 33);
+  for (const field of ['failures', 'errors']) assert.equal(Number(suite['@_' + field]), 0);
+  const cases = suite.testcase.filter((item) => item['@_classname'] === 'be.sportgreenmoove.app.ui.TeamEnrollmentFlowTest');
+  assert.equal(cases.length, 4); assert(cases.every((item) => !('failure' in item) && !('error' in item) && !('skipped' in item)));
+  assert.equal(report.testedAt, suite['@_timestamp'] + 'Z'); assert.equal(report.testCount, 4);
+  assert.deepEqual(report.steps, cases.map((item) => ({ id: item['@_name'], status: 'passed' })));
+  for (const file of ['team-requested-window.png', 'team-approved-narrow-window.png']) {
+    const image = read(sub + file); assert.equal(image.readUInt32BE(16), 1080); assert.equal(image.readUInt32BE(20), 2400);
+  }
+});
+test('the complete native run preserves all 35 local groups and passes every primary suite boundary', () => {
+  const sub = 'docs/release/evidence/team-screen-export-2026-10-18/completed/';
+  const run = json(sub + 'local-replay.json'); assert.equal(run.projectId, 'demo-sgm-local-qa');
+  assert.equal(run.runId, '1d6cf0c01fe85db4566bb5610e13d919'); assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.testCount, 35); assert.equal(run.nativeCaseCount, 37); assert.equal(run.steps.length, 35);
+  assert(run.steps.every((step) => step.status === 'passed')); assert.equal(new Set(run.steps.map((step) => step.id)).size, 35);
+  assert.deepEqual(json(sub + 'native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 0, componentEvidence: 0, localReplay: 0 });
+  const restore = json(sub + 'disposable-store-restore.json'); assert.equal(restore.restored, true); assert.equal(restore.verified, true);
+});
