@@ -3,10 +3,26 @@ import { flowPreview } from './visuals.js';
 export { escape, date, icon, status, statuses } from './ui.js';
 const link = (hash, label) => `<a class="text-link" href="#${hash}">${escape(label)}${icon('arrow-up-right')}</a>`;
 
+export function partitionUpdates(updates) {
+  const recent = [];
+  const previous = [];
+  const flows = new Set();
+  for (const entry of updates) {
+    if (recent.length < 6 && !flows.has(entry.flow)) {
+      recent.push(entry);
+      flows.add(entry.flow);
+    } else {
+      previous.push(entry);
+    }
+  }
+  return { recent, previous };
+}
+
 export function overview(data) {
   const verified = data.flows.filter((f) => f.status === 'verified').length;
   const partial = data.flows.filter((f) => f.status === 'partial').length;
   const remaining = data.flows.length - verified - partial;
+  const { recent, previous } = partitionUpdates(data.updates);
   return `
     <div class="summary" aria-label="État des parcours documentés">
       <div><strong>${verified}</strong><span>testés</span></div>
@@ -15,8 +31,8 @@ export function overview(data) {
     </div>
     <div class="overview-bottom">
       <section aria-labelledby="recent-title"><h2 id="recent-title">Dernières nouvelles</h2>
-        ${data.updates.slice(0, 6).map(update).join('')}
-        ${data.updates.length > 6 ? `<details class="previous-updates"><summary>Voir les nouvelles précédentes</summary>${data.updates.slice(6).map(update).join('')}</details>` : ''}
+        ${recent.map(update).join('')}
+        ${previous.length ? `<details class="previous-updates"><summary>Voir les nouvelles précédentes</summary>${previous.map(update).join('')}</details>` : ''}
       </section>
     </div>`;
 }

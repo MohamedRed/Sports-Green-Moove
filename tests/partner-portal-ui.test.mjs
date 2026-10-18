@@ -97,3 +97,39 @@ test('overview stays focused while the catalogue exposes every tour and screensh
   const workflow = source('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/partner-portal-ui.test.mjs"').length - 1, 2);
 });
+
+test('overview selects the newest result per flow without losing previous results', async () => {
+  const { partitionUpdates, overview } = await import('../partner-portal/src/render.js');
+  const entry = (flow, title) => Object.freeze({ flow, title, date: '2026-10-18', text: title });
+  const updates = Object.freeze([
+    entry('publication', 'Latest run passed'),
+    entry('publication', 'Earlier run interrupted'),
+    entry('payments', 'Payment review captured'),
+    entry('publication', 'Oldest run interrupted'),
+    entry('clubs', 'Parent verification checked'),
+  ]);
+  const { recent, previous } = partitionUpdates(updates);
+  assert.deepEqual(recent, [updates[0], updates[2], updates[4]]);
+  assert.deepEqual(previous, [updates[1], updates[3]]);
+  assert.equal(new Set([...recent, ...previous]).size, updates.length);
+  const html = overview({ ...content, updates });
+  const [visible, history] = html.split('<details class="previous-updates">');
+  assert.match(visible, /Latest run passed/);
+  assert.doesNotMatch(visible, /Earlier run interrupted|Oldest run interrupted/);
+  assert.match(history, /Earlier run interrupted/);
+  assert.match(history, /Oldest run interrupted/);
+});
+
+test('update partition handles empty, repeated and more than six distinct flows', async () => {
+  const { partitionUpdates, overview } = await import('../partner-portal/src/render.js');
+  assert.deepEqual(partitionUpdates([]), { recent: [], previous: [] });
+  assert(!overview({ ...content, updates: [] }).includes('previous-updates'));
+  const repeated = Array.from({ length: 4 }, (_, i) => ({ flow: 'publication', title: `${i}` }));
+  assert.deepEqual(partitionUpdates(repeated), { recent: repeated.slice(0, 1), previous: repeated.slice(1) });
+  const distinct = Array.from({ length: 8 }, (_, i) => ({ flow: `flow-${i}` }));
+  assert.deepEqual(partitionUpdates(distinct), { recent: distinct.slice(0, 6), previous: distinct.slice(6) });
+  const { recent, previous } = partitionUpdates(content.updates);
+  assert.equal(new Set(recent.map((entry) => entry.flow)).size, recent.length);
+  assert.equal(recent.length + previous.length, content.updates.length);
+  for (const entry of recent) assert.equal(content.updates.find((u) => u.flow === entry.flow), entry);
+});
