@@ -22,7 +22,8 @@ export function App() {
     return <Gate title="Accès réservé" detail="Ce compte n'a pas accès à la gestion." onSignOut={signOutAdmin} />;
   }
 
-  return <AdminDashboard key={auth.user.uid} uid={auth.user.uid} userEmail={auth.user.email ?? auth.user.uid} projectLabel={firebaseProjectLabel} onSignOut={signOutAdmin} />;
+  return <AdminDashboard key={auth.user.uid} uid={auth.user.uid} userEmail={auth.user.email ?? auth.user.uid} projectLabel={firebaseProjectLabel}
+    canReviewGuardians={auth.roleKeys.includes("clubManager")} onSignOut={signOutAdmin} />;
 }
 
 function LoginPanel() {

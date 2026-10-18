@@ -39,6 +39,8 @@ on:
       - "tests/team-ownership-rules.test.ts"
       - "tests/team-ownership-evidence.test.mjs"
       - "tests/guardian-verification-contract.test.mjs"
+      - "tests/guardian-review-controller.test.mjs"
+      - "tests/guardian-review-evidence.test.mjs"
       - "tests/trip-cancellation-rules.test.ts"
       - "tests/trip-details-rules.test.ts"
       - "tests/trip-details-evidence.test.mjs"
@@ -245,6 +247,8 @@ on:
       - "tests/team-ownership-rules.test.ts"
       - "tests/team-ownership-evidence.test.mjs"
       - "tests/guardian-verification-contract.test.mjs"
+      - "tests/guardian-review-controller.test.mjs"
+      - "tests/guardian-review-evidence.test.mjs"
       - "tests/trip-cancellation-rules.test.ts"
       - "tests/trip-details-rules.test.ts"
       - "tests/trip-details-evidence.test.mjs"
@@ -493,6 +497,9 @@ jobs:
 
       - name: Test isolated guardian verification authority and lifecycle
         run: npm run test:guardian-verification
+
+      - name: Test guardian review permissions, pagination and decision state
+        run: npm run test:guardian-review && node --test tests/guardian-review-controller.test.mjs tests/guardian-review-evidence.test.mjs
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

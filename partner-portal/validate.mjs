@@ -102,6 +102,16 @@ export function validate(root) {
 
 export function validateUiScope(run) {
   switch (run.scope) {
+    case 'isolated-guardian-review-http-not-native-ui':
+      assert.equal(run.projectId, 'demo-sgm-local-qa');
+      assert.equal(run.productionWrites, false); assert.equal(run.physicalDevice, false);
+      assert.equal(run.providerRequests, 0);
+      assert.equal(run.browser?.scope, 'local-management-browser-not-native-or-physical');
+      assert.equal(run.browser.externalRequests, 0); assert.equal(run.browser.productionWrites, false);
+      assert.equal(run.browser.checks.length, 9);
+      assert(run.browser.checks.every((check) => check.status === 'passed'));
+      assert.equal(new Set(run.browser.checks.map((check) => check.id)).size, 9);
+      break;
     case 'local-ui-not-physical-device':
       assert.equal(run.projectId, 'demo-sgm-local-qa');
       break;

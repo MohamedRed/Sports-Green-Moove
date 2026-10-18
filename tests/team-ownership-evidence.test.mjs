@@ -60,8 +60,10 @@ test('the boundary is registered in both CI paths and does not promote group or 
   assert.match(read('scripts/qa/run-local-flows.mjs'), /result.teamOwnership\?\.deniedMutations, 10/);
   const clubs = content.flows.find((flow) => flow.id === 'clubs'), messages = content.flows.find((flow) => flow.id === 'messages');
   assert.equal(clubs.status, 'partial'); assert.equal(clubs.local.source, base + 'services.json');
-  assert(clubs.local.groups.includes('team-ownership')); assert.equal(clubs.source, base + 'README.md');
-  assert.equal(clubs.ui.source, 'docs/release/evidence/local-membership-refresh-2026-10-16/results.json');
+  assert(clubs.local.groups.includes('team-ownership')); assert.equal(clubs.local.checkedAt, '2026-10-16');
+  assert.equal(clubs.source, 'docs/release/evidence/local-guardian-review-2026-10-18/README.md');
+  assert.match(read(clubs.source), /local-team-ownership-2026-10-16\/README.md/);
+  assert.equal(clubs.ui.source, 'docs/release/evidence/local-guardian-review-2026-10-18/results.json');
   assert.equal(messages.status, 'partial'); assert.match(messages.remaining, /groupes/);
   assert.match(clubs.remaining, /enfants/); assert.match(clubs.remaining, /téléphone/);
   assert.match(read(base + 'README.md'), /not been deployed to production/);

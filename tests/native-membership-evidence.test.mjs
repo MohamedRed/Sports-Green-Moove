@@ -26,9 +26,12 @@ test('native membership captures require the completed sixteen-case replay and e
   });
   const flow = content.flows.find((item) => item.id === 'clubs');
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.ui.source, base + 'results.json');
-  assert.deepEqual(flow.ui.groups, ['membership-refresh-ui']);
-  assert.equal(flow.images[0].file, 'membership-parent');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-guardian-review-2026-10-18/results.json');
+  for (const file of ['membership-parent', 'membership-reopened', 'membership-account']) {
+    assert.match(flow.images.find((image) => image.file === file).alt, /16 octobre/);
+  }
+  assert(run.steps.some((step) => step.id === 'membership-refresh-ui' && step.status === 'passed'));
+  assert.match(readFileSync(new URL(flow.source, root), 'utf8'), /local-membership-refresh-2026-10-16\/README.md/);
   assert.match(flow.remaining, /enfant/); assert.match(flow.remaining, /téléphone/);
   assert.match(read('README.md'), /not a process restart/);
   assert.match(read('README.md'), /not deployed to production/);

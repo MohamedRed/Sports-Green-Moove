@@ -82,3 +82,6 @@ jobs:
 
       - name: Test isolated guardian verification authority and lifecycle
         run: npm run test:guardian-verification
+
+      - name: Test guardian review permissions, pagination and decision state
+        run: npm run test:guardian-review && node --test tests/guardian-review-controller.test.mjs tests/guardian-review-evidence.test.mjs

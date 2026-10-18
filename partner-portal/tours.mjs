@@ -45,6 +45,8 @@ export const tours = {
     image('chat-history', 'Retrouver un ancien échange', 'Un autre cas de l’essai vérifie l’accès à l’historique.'),
   ],
   clubs: [
+    image('guardian-review-confirmation', 'Confirmer le lien parent-enfant', 'Dans l’espace de gestion local, le responsable confirme le parent et l’enfant concernés.'),
+    image('guardian-review-verified', 'Retrouver le parent vérifié', 'Le résultat est visible après confirmation. La demande depuis l’app reste à ajouter.'),
     image('membership-manager', 'Examiner les adhésions', 'Le responsable du club accepte ou refuse les demandes dans son espace.'),
     image('membership-parent', 'Voir la décision dans l’app', 'Le parent retrouve les acceptations et les refus.'),
     image('membership-reopened', 'Revenir aux adhésions', 'Les décisions restent visibles après réouverture de l’écran.'),

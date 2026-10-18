@@ -117,7 +117,7 @@ try {
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto(`${base}/#parcours/clubs/visite/1`);
-    await page.getByText('Étape 1 sur 3', { exact: true }).waitFor();
+    await page.getByText(`Étape 1 sur ${content.flows.find((flow) => flow.id === 'clubs').tour.length}`, { exact: true }).waitFor();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
     await page.screenshot({ path: `${output}/tour-${width}.png`, fullPage: true });

@@ -1,4 +1,7 @@
 export const captures = {
+  'guardian-review-desktop': 'docs/release/evidence/local-guardian-review-2026-10-18/guardian-reviewed-desktop.png',
+  'guardian-review-confirmation': 'docs/release/evidence/local-guardian-review-2026-10-18/guardian-confirmation-mobile.png',
+  'guardian-review-verified': 'docs/release/evidence/local-guardian-review-2026-10-18/guardian-verified-mobile.png',
   'payment-pending-narrow': 'docs/release/evidence/local-payment-layout-2026-10-18/payment-pending-narrow.png',
   'payment-review': 'docs/release/evidence/local-payment-layout-2026-10-18/payment-review.png',
   'trip-framed-map-visible': 'docs/release/evidence/real-maps-native-2026-10-18/completed-framing/replay/local-real-map-display.png',

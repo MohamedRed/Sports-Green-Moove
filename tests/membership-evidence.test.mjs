@@ -37,7 +37,7 @@ test('manual UI evidence is distinguished from persisted-state and phone evidenc
   assert(Object.values(persisted.fingerprints).every((hash) => /^[a-f0-9]{64}$/.test(hash)));
   assert.equal(ui.observations.horizontalOverflow, false);
   const flow = content.flows.find((item) => item.id === 'clubs');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, ui.testedAt.slice(0, 10));
+  assert.equal(flow.status, 'partial'); assert.equal(flow.local.checkedAt, ui.testedAt.slice(0, 10));
   assert.match(flow.remaining, /enfant/); assert.match(flow.remaining, /téléphone/);
   assert(!content.blockers.some((item) => item.id === 'membership-review'));
   const wideReviews = flow.images.filter((image) => ['membership-manager', 'membership-admin'].includes(image.file));

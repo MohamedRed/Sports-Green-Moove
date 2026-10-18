@@ -1,4 +1,5 @@
 import { MembershipReviewPanel } from "./MembershipReviewPanel";
+import { GuardianReviewPanel } from "./GuardianReviewPanel";
 import { Wordmark } from "./Wordmark";
 
 export function ClubDashboard({ uid, onSignOut }: { uid: string; onSignOut: () => void }) {
@@ -6,5 +7,6 @@ export function ClubDashboard({ uid, onSignOut }: { uid: string; onSignOut: () =
     <header className="topbar"><Wordmark /><button className="secondary-button" onClick={onSignOut}>Se déconnecter</button></header>
     <h1>Votre club</h1>
     <MembershipReviewPanel uid={uid} />
+    <GuardianReviewPanel uid={uid} />
   </main>;
 }

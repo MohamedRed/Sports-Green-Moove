@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le responsable peut vérifier les parents',
+    text: 'Confirmer, refuser ou retirer un lien parent-enfant passe dans l’espace de gestion local. Les captures sont ajoutées. La demande depuis l’app reste à faire.', flow: 'clubs' },
   { date: '2026-10-18', title: 'Le dernier essai local est allé jusqu’au bout',
     text: 'Les écrans, les 33 essais prévus et la récupération des résultats passent ensemble. Les vérifications sur téléphone et les parcours à terminer restent ouverts.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les écrans passent, la copie bloque encore',

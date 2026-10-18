@@ -35,12 +35,46 @@ administrator clients, are denied. The parent and the currently scoped manager
 can read these private records; foreign managers and unscoped role claims cannot.
 No contact numbers, child names or documents are copied into these records.
 
+## Private Lists And Manager Review
+
+`listGuardianReviewClubs` requires the manager claim and lists only canonical,
+currently active management memberships, even for an account also holding admin.
+`listClubGuardianVerifications` rechecks that exact club's current management
+membership inside the same read transaction as each page. Admin alone cannot list.
+`listMyGuardianVerifications` requires parent and restricts results to that UID,
+including closed requests and requests from a former club. There is no client
+supplied parent ID. Inputs are strict and all pages scan at most 20 records with
+one lookahead. Cursors bind the account and list/club, not an authority grant.
+Each page reauthorizes access. Single equality plus document-ID ordering uses
+existing automatic indexes; no new infrastructure or Terraform is required.
+
+Rows contain the canonical tuple ID, revision/status, nullable display names and
+currently allowed actions. No email, phone, document or child-profile payload is
+returned. Invalid verification records fail the entire page closed. A child's
+current name is not revealed through a historical request after its declared
+parent link is removed. Manager rows also hide current parent/child names when
+the parent no longer has active club membership. History ownership is not a
+grant to read someone's current profile. A child's declared guardian list is
+only request eligibility, not approval. Missing current
+membership, removed child declaration or archive removes grant actions; removal
+actions remain available. Managers never receive actions for their own requests.
+
+The management website now has a separate parent-verification section. Managers
+confirm verification, refusal or revocation after reviewing the named pair and
+club. Unnamed pairs cannot be newly verified through this screen. Operations use
+the displayed revision and a new UUID. There is no optimistic verified state or
+automatic decision retry. An uncertain reply clears stale rows and requires a
+fresh read; a confirmed decision with a failed refresh is labelled separately.
+Account changes discard old screen results. A replayed result displays its actual
+current status rather than assuming the original decision is still in effect.
+
 ## Integration Still Required
 
-The service and rules have isolated verification evidence, not a deployed or
-native manager/parent flow. Request/review screens, paging, interrupted-operation
-recovery, child/team enrollment, team conversation access and personal emergency
-contacts still require implementation and user-flow testing.
+The service/rules and management review have isolated evidence, not a deployed or
+native parent flow. The parent's native request/withdraw/reopen screens,
+child/team enrollment, team conversation access and personal emergency contacts
+still require implementation and user-flow testing. No production deployment or
+physical-device verification is implied by the management browser tests.
 
 Existing booking/search guardian behavior is unchanged. No existing child or
 membership record is migrated, promoted or rewritten. Future consumers must
