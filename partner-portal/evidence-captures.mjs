@@ -1,4 +1,6 @@
 export const captures = {
+  'payment-pending-narrow': 'docs/release/evidence/local-payment-layout-2026-10-18/payment-pending-narrow.png',
+  'payment-review': 'docs/release/evidence/local-payment-layout-2026-10-18/payment-review.png',
   'trip-framed-map-visible': 'docs/release/evidence/real-maps-native-2026-10-18/completed-framing/replay/local-real-map-display.png',
   'trip-framed-route-applied': 'docs/release/evidence/real-maps-native-2026-10-18/completed-framing/replay/local-real-maps-applied.png',
   'trip-framed-places-selected': 'docs/release/evidence/real-maps-native-2026-10-18/completed-framing/replay/local-real-maps-selected.png',

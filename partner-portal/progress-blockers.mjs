@@ -1,7 +1,7 @@
 export const blockers = [
   { id: 'test-device-stability', title: 'Stabiliser les essais',
-    text: 'Un essai échoue sur la saisie, puis le suivant s’arrête dans l’app. La copie des résultats échoue aussi.',
-    next: 'Expliquer l’arrêt et les blocages de saisie, conserver les captures et rejouer l’ensemble.', source: 'docs/release/evidence/native-input-focus-2026-10-18/README.md' },
+    text: 'L’essai récent bloque sur une capture. Les anciens arrêts et blocages de saisie restent à expliquer.',
+    next: 'Fiabiliser les captures, expliquer les interruptions, puis rejouer l’ensemble.', source: 'docs/release/evidence/local-payment-layout-2026-10-18/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },

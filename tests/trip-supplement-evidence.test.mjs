@@ -68,7 +68,7 @@ test('private progress calls the payments simulated and retains older screen evi
   assert.equal(flow.source, latest + 'README.md'); assert.equal(flow.local.source, latest + 'services.json');
   assert.deepEqual(flow.local.groups, ['ride-payment-confirmation']); assert.match(flow.summary, /essais locaux/);
   assert(read(latest + 'README.md').includes('../local-trip-supplement-2026-10-16/README.md'));
-  assert.match(flow.images[0].alt, /11 octobre/); assert.match(flow.remaining, /écrans/);
+  assert(flow.images.some((image) => /11 octobre/.test(image.alt))); assert.match(flow.remaining, /écrans/);
   assert.match(flow.remaining, /remboursements/); assert.match(flow.remaining, /paiements réels sur téléphone/);
   assert(content.updates.some((item) => item.flow === 'payments' && /suppléments/.test(item.title)));
   assert(flow.local.checks.some((item) => /Aucun paiement ni remboursement réel/.test(item)));

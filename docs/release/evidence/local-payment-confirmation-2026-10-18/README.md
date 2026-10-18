@@ -1,5 +1,9 @@
 # Isolated Payment Confirmation, 18 October 2026
 
+Follow-up: three scoped payment-layout cases and two reviewed component captures
+are retained at `../local-payment-layout-2026-10-18/README.md`. That enclosing
+native run failed on another screenshot; it is not an accepted full-suite pass.
+
 `services.json` is a fresh, completed HTTP-callable run against the isolated
 `demo-sgm-local-qa` Auth/Functions/Firestore services. Run
 `d7dd675fde98227a73c2b4ca2d486617` completed at `2026-10-18T13:56:38.897Z`.
@@ -26,9 +30,10 @@ treating them as pending. An unrelated intent returns `review` before reading
 its receipt. Session changes clear old payment feedback on both clients. These
 defensive checks do not add provider requests or widen release evidence.
 
-Android component layout tests have been added for 320dp/large text, disabled
-repeat actions and an inconsistent-record message. Their connected run and
-visual review are still pending in this snapshot. No new screenshot is claimed.
+At this service-run snapshot, Android component layout tests for 320dp/large
+text, disabled repeat actions and an inconsistent-record message were awaiting
+their connected run and visual review. The later scoped results and captures
+are linked at the top; the service run itself did not produce them.
 
 ## Retained Evidence And Limits
 

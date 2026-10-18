@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Deux captures de paiement sont ajoutées',
+    text: 'Confirmation en attente et paiement à vérifier : les captures des essais locaux sont disponibles. Aucun paiement réel dans ces essais.', flow: 'payments' },
   { date: '2026-10-18', title: 'La vérification des parents passe les essais locaux',
     text: '20 vérifications passent : un parent ne peut pas se valider lui-même, un autre club ne peut pas décider et un accord retiré ne revient pas. Les écrans restent à ajouter.', flow: 'clubs' },
   { date: '2026-10-18', title: 'Le contact d’urgence sera personnel',
