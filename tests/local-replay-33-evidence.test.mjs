@@ -70,7 +70,7 @@ test('the successful network and draft receipts retain strict observations rathe
 test('private updates retain historical failures and distinguish the latest pass from physical and payment proof', () => {
   assert(content.updates.some((u) => u.date === '2026-10-18' && u.title === 'Les 33 essais locaux prévus passent'));
   const blocker = content.blockers.find((b) => b.id === 'test-device-stability');
-  assert.equal(blocker.source, 'docs/release/evidence/team-screen-export-2026-10-18/later-update-interruption/README.md');
+  assert.equal(blocker.source, 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/connected-replay-not-started/README.md');
   assert.match(blocker.next, /rejouer sur téléphone/); assert.match(blocker.text, /35 parcours locaux passent/);
   assert(content.updates.some((u) => u.title === 'L’essai complet reste à stabiliser'));
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');

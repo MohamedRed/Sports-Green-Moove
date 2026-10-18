@@ -9,6 +9,7 @@ on:
         default: false
   pull_request:
     paths:
+      - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
@@ -57,6 +58,7 @@ on:
     branches:
       - main
     paths:
+      - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
@@ -125,6 +127,9 @@ jobs:
 
       - name: Validate SDK-connected team replay evidence requirements
         run: node --test tests/team-enrollment-sdk.test.mjs
+
+      - name: Validate sanitized host transport observations
+        run: node --test tests/adb-host-health.test.mjs
 
       - name: Validate membership cursor regression and client decoder evidence
         run: node --test tests/membership-cursor-contract.test.mjs

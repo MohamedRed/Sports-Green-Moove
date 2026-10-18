@@ -4,7 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt"
       - "tests/membership-cursor-contract.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/MembershipPageToken.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt"
@@ -241,7 +244,10 @@ on:
     branches:
       - main
     paths:
+      - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt"
       - "tests/membership-cursor-contract.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/MembershipPageToken.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt"
@@ -575,7 +581,7 @@ jobs:
         run: npm run test:membership-cursors && node --test tests/membership-cursor-contract.test.mjs
 
       - name: Test native team fixture lifecycle and fail-closed evidence contract
-        run: npm run test:team-native-fixtures && node --test tests/team-enrollment-sdk.test.mjs
+        run: npm run test:team-native-fixtures && node --test tests/team-enrollment-sdk.test.mjs tests/adb-host-health.test.mjs
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

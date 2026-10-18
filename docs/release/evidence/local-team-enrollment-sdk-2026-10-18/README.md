@@ -34,3 +34,7 @@ screenshots still use simulated responses. A connected native run, review of its
 new captures, manager-facing review/history, team chat, physical devices and the
 explicit tracking/safety/payment release requirements remain pending. No production
 data, paid provider request or infrastructure change is involved.
+
+The first CI attempt is retained in `connected-replay-not-started/`: the device
+connection was unavailable before the isolated replay could start. No connected
+team result or successful store restoration is accepted from that attempt.

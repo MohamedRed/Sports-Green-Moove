@@ -72,6 +72,9 @@ test('backend, native and web smoke gates enforce the new evidence contract and 
     assert(read('.github/workflows/' + name).includes('tests/team-enrollment-sdk.test.mjs'), name);
   for (const name of ['backend-ci.yml', 'web-integration-smoke.yml'])
     assert(read('.github/workflows/' + name).includes('npm run test:team-native-fixtures'), name);
+  const smoke = read('.github/workflows/web-integration-smoke.yml');
+  for (const file of ['LocalTeamEnrollmentFlowTest.kt', 'LocalTeamEnrollmentPeer.kt'])
+    assert.equal(smoke.split('"android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file + '"').length - 1, 2);
 });
 test('six executed service groups bind the current fixture sources and retain explicit non-native scope', () => {
   const report = JSON.parse(read('docs/release/evidence/local-team-enrollment-sdk-2026-10-18/fixtures.json'));
@@ -103,4 +106,43 @@ test('the compiled emulator-profile replay and 16 original unit passes cannot im
     assert.equal(createHash('sha256').update(readFileSync(new URL('../' + path, import.meta.url))).digest('hex'), expected, path);
     assert(read(path).split('\n').length < 300, path);
   }
+});
+test('the preceding primary copy failure retains its offline observations rather than accepting recovered cleanup', () => {
+  const base = 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/previous-transfer-failure/';
+  const json = (file) => JSON.parse(read(base + file));
+  const hashes = json('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 5);
+  for (const [path, expected] of Object.entries(hashes))
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + path, import.meta.url))).digest('hex'), expected, path);
+  const primary = json('adb-pull-trip-change-schedule.json');
+  assert.equal(primary.runId, '08c6a2bd92fbf46004a32c7c6d85293d'); assert.equal(primary.phase, 'trip-change-schedule');
+  assert.equal(primary.completed, false); assert.equal(primary.status, 1); assert.equal(primary.signal, null);
+  const observations = json('adb-sync-trip-change-schedule-diagnostics.json').observations;
+  for (const id of ['directory-stat', 'shell-listing', 'sync-listing']) {
+    const observation = observations.find((item) => item.id === id); assert.equal(observation.collected, false);
+    assert.equal(observation.failureKind, 'command-exit'); assert.match(observation.stderr, /device offline/);
+  }
+  const log = observations.find((item) => item.id === 'storage-service-log'); assert.equal(log.collected, true);
+  assert.match(log.value, /connection terminated: write failed/); assert.match(log.value, /adb client authorized/);
+  assert.deepEqual(json('native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 0, componentEvidence: 0, localReplay: 1 });
+  assert.equal(json('disposable-store-restore.json').verified, true);
+});
+test('an unavailable device before the connected replay cannot become a native team pass', () => {
+  const base = 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/connected-replay-not-started/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 4);
+  for (const [path, expected] of Object.entries(hashes))
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + path, import.meta.url))).digest('hex'), expected, path);
+  assert.equal(read(base + 'disposable-store-restore.json'), '');
+  assert.deepEqual(JSON.parse(read(base + 'native-suite-status.json')),
+    { scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 0, componentEvidence: 1, localReplay: 1 });
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(read(base + 'ordinary-tests.xml')).testsuite;
+  assert.equal(Number(suite['@_tests']), 144); assert.equal(suite.testcase.length, 144);
+  assert.equal(Number(suite['@_skipped']), 34); assert.equal(suite.testcase.filter((row) => Object.hasOwn(row, 'skipped')).length, 34);
+  for (const field of ['errors', 'failures']) assert.equal(Number(suite['@_' + field]), 0);
+  const team = suite.testcase.filter((row) => row['@_classname'] === 'be.sportgreenmoove.app.ui.LocalTeamEnrollmentFlowTest');
+  assert.equal(team.length, 1); assert(Object.hasOwn(team[0], 'skipped'));
+  const log = read(base + 'native-job.log');
+  assert(log.includes('Select one available disposable Android emulator'));
+  assert(log.includes('Exactly one disposable emulator must be connected'));
+  assert(log.includes('OK: killing emulator, bye bye'));
 });

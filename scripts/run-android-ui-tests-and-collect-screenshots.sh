@@ -118,8 +118,18 @@ collect_component_evidence() {
 
 capture_status=0
 collect_component_evidence || capture_status=$?
+if [[ "$capture_status" -ne 0 ]]; then
+  if ! node "$repo_root/scripts/qa/adb-host-health.mjs" component-transfer "$output_dir/adb-host-component-transfer.json"; then
+    echo "::warning::Host transport observation unavailable; original component failure is preserved"
+  fi
+fi
 replay_status=0
 node "$repo_root/scripts/qa/run-local-android-flows.mjs" || replay_status=$?
+if [[ "$replay_status" -ne 0 ]]; then
+  if ! node "$repo_root/scripts/qa/adb-host-health.mjs" local-replay "$output_dir/adb-host-local-replay.json"; then
+    echo "::warning::Host transport observation unavailable; original replay failure is preserved"
+  fi
+fi
 
 printf 'Ordinary tests: %s; component evidence: %s; local replay: %s\n' "$test_status" "$capture_status" "$replay_status"
 printf '{"scope":"native-suite-exit-status-not-flow-verification","ordinaryTests":%s,"componentEvidence":%s,"localReplay":%s}\n' \
