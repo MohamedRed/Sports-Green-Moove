@@ -70,8 +70,8 @@ test('the successful network and draft receipts retain strict observations rathe
 test('private updates describe a local pass and keep runtime, physical and payment limitations visible', () => {
   assert(content.updates.some((u) => u.date === '2026-10-18' && u.title === 'Les 33 essais locaux prévus passent'));
   const blocker = content.blockers.find((b) => b.id === 'test-device-stability');
-  assert.equal(blocker.source, 'docs/release/evidence/local-payment-layout-2026-10-18/README.md');
-  assert.match(blocker.next, /Fiabiliser les captures/); assert.match(blocker.text, /restent à expliquer/);
+  assert.equal(blocker.source, 'docs/release/evidence/native-transfer-interruption-2026-10-18/README.md');
+  assert.match(blocker.next, /copie interrompue/); assert.match(blocker.text, /copie des résultats bloque/);
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');
   assert.match(content.flows.find((f) => f.id === 'payments').remaining, /paiements réels/);

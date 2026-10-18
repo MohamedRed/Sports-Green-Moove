@@ -128,6 +128,7 @@ on:
       - "docs/release/evidence/local-trip-consent-restart-native-2026-10-17/**"
       - "tests/native-suite-runner.test.mjs"
       - "tests/native-process-failure-evidence.test.mjs"
+      - "tests/adb-sync-failure-diagnostics.test.mjs"
       - "tests/local-http-request.test.mjs"
       - "tests/fixtures/local-idle-http-server.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeFlowTest.kt"
@@ -333,6 +334,7 @@ on:
       - "docs/release/evidence/local-trip-consent-restart-native-2026-10-17/**"
       - "tests/native-suite-runner.test.mjs"
       - "tests/native-process-failure-evidence.test.mjs"
+      - "tests/adb-sync-failure-diagnostics.test.mjs"
       - "tests/local-http-request.test.mjs"
       - "tests/fixtures/local-idle-http-server.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeFlowTest.kt"
@@ -568,6 +570,9 @@ jobs:
 
       - name: Validate input window readiness evidence
         run: node --test tests/input-readiness-evidence.test.mjs
+
+      - name: Validate bounded file-sync failure diagnostics
+        run: node --test tests/adb-sync-failure-diagnostics.test.mjs
 
       - name: Validate explicit partner component evidence scope
         run: node --test tests/partner-component-scope.test.mjs

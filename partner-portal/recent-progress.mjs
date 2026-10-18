@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les écrans passent, la copie bloque encore',
+    text: 'Les essais d’écran passent en local. Le nouvel essai s’arrête ensuite pendant la copie des résultats ; il reste non validé.', flow: 'publication' },
   { date: '2026-10-18', title: 'Deux captures de paiement sont ajoutées',
     text: 'Confirmation en attente et paiement à vérifier : les captures des essais locaux sont disponibles. Aucun paiement réel dans ces essais.', flow: 'payments' },
   { date: '2026-10-18', title: 'La vérification des parents passe les essais locaux',

@@ -4,6 +4,7 @@ import { existsSync, writeFileSync } from 'node:fs';
 import { isAbsolute, resolve } from 'node:path';
 import { waitForDisposableDevice } from './disposable-device-cleanup.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
+import { collectAdbSyncFailureDiagnostics } from './adb-sync-failure-diagnostics.mjs';
 
 const remote = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.';
 const phases = new Set(['confirmed-restart', 'response-loss', 'booking-response-loss', 'booking-ui-response-loss',
@@ -54,6 +55,9 @@ export function collectLocalUiEvidence({ adb, serial, runId, evidenceDir, phase,
     status, signal, errorCode, stdout, stderr, completed: status === 0 && signal === null && errorCode === null };
   writeFileSync(receiptPath, `${JSON.stringify(receipt, null, 2)}\n`, { mode: 0o600, flag: 'wx' });
   if (!receipt.completed) {
+    try {
+      collectAdbSyncFailureDiagnostics({ adb, serial, runId, evidenceDir, phase, password }, execute);
+    } catch { console.warn('Could not collect the failed evidence copy file-sync diagnostics.'); }
     try {
       collectNativeProcessFailure({ adb, serial, runId, directory: evidenceDir,
         label: `evidence-copy-${phase}`, password }, execute);
