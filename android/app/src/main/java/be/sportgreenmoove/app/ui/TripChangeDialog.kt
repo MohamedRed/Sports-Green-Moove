@@ -7,6 +7,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -17,6 +18,7 @@ import be.sportgreenmoove.app.data.TripChangeDecision
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.services.FirebaseGateway
+import be.sportgreenmoove.app.services.SharedPreferencesTripChangeDrafts
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.Instant
@@ -26,7 +28,9 @@ internal fun TripChangeDialog(
     uid: String, role: AppRole, tripId: String, title: String, proposalId: String?, gateway: FirebaseGateway,
     onChanged: suspend () -> Unit, onDismiss: () -> Unit,
 ) {
-    val state = remember(uid, role, tripId, gateway) { TripChangeState(tripId, uid, role, gateway) }
+    val context = LocalContext.current.applicationContext
+    val storage = remember(context) { SharedPreferencesTripChangeDrafts(context) }
+    val state = remember(uid, role, tripId, gateway, storage) { TripChangeState(tripId, uid, role, gateway, storage) }
     val scope = rememberCoroutineScope()
     DisposableEffect(state) { onDispose { state.close() } }
     LaunchedEffect(state, proposalId) { state.reload(proposalId, onChanged) }
@@ -50,6 +54,17 @@ internal fun TripChangeDialog(
                     Text("${preview.parentCount} parent${if (preview.parentCount > 1) "s" else ""} · ${preview.bookingCount} réservation${if (preview.bookingCount > 1) "s" else ""}",
                         style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
                     state.draft?.let { TripChangeEditorForm(it, state.canEdit, gateway) }
+                    if (state.draftConflict) {
+                        Text("Le trajet a changé. Votre brouillon est conservé.", style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary),
+                            modifier = Modifier.testTag("trip.change.draft.conflict"))
+                        V2Button("Repartir des détails actuels", state::discardDraft, full = true, enabled = !state.busy && !state.requiresReload,
+                            variant = V2ButtonVariant.Secondary, testTag = "trip.change.draft.reset")
+                    }
+                    state.draftSaveError?.let {
+                        Text(it, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary), modifier = Modifier.testTag("trip.change.draft.error"))
+                        V2Button("Réessayer l’enregistrement", state::saveDraft, full = true, enabled = !state.busy,
+                            variant = V2ButtonVariant.Secondary, testTag = "trip.change.draft.save")
+                    }
                     V2Button("Proposer les changements", { scope.launch { state.propose(onChanged) } }, full = true,
                         enabled = state.canPropose, testTag = "trip.change.propose")
                 }

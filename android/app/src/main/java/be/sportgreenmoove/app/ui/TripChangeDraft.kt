@@ -13,17 +13,25 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.util.Locale
 
-internal class TripChangeDraft(private val initial: TripChangeTerms) {
+internal class TripChangeDraft(private val initial: TripChangeTerms, restored: TripChangeDraftInput? = null, private val onChange: () -> Unit = {}) {
     private val departure = Instant.parse(initial.departureAt).atZone(BelgianTripZone)
     private val arrival = initial.arrivalBy?.let { Instant.parse(it).atZone(BelgianTripZone) }
-    var departureDate by mutableStateOf(departure.toLocalDate())
-    var departureTime by mutableStateOf(departure.toLocalTime())
-    var arrivalDate by mutableStateOf(arrival?.toLocalDate() ?: departure.toLocalDate())
-    var arrivalTime by mutableStateOf(arrival?.toLocalTime() ?: departure.toLocalTime())
-    var hasArrival by mutableStateOf(arrival != null)
-    var price by mutableStateOf(String.format(Locale.ROOT, "%.2f", initial.priceCents / 100.0).replace('.', ','))
-    val origin = TripChangePlaceDraft(initial.origin)
-    val destination = TripChangePlaceDraft(initial.destination)
+    private var departureDateValue by mutableStateOf(restored?.departureDate ?: departure.toLocalDate())
+    private var departureTimeValue by mutableStateOf(restored?.departureTime ?: departure.toLocalTime())
+    private var arrivalDateValue by mutableStateOf(restored?.arrivalDate ?: arrival?.toLocalDate() ?: departure.toLocalDate())
+    private var arrivalTimeValue by mutableStateOf(restored?.arrivalTime ?: arrival?.toLocalTime() ?: departure.toLocalTime())
+    private var hasArrivalValue by mutableStateOf(restored?.hasArrival ?: (arrival != null))
+    private var priceValue by mutableStateOf(restored?.price ?: String.format(Locale.ROOT, "%.2f", initial.priceCents / 100.0).replace('.', ','))
+    var departureDate: LocalDate get() = departureDateValue; set(value) { departureDateValue = value; onChange() }
+    var departureTime: LocalTime get() = departureTimeValue; set(value) { departureTimeValue = value; onChange() }
+    var arrivalDate: LocalDate get() = arrivalDateValue; set(value) { arrivalDateValue = value; onChange() }
+    var arrivalTime: LocalTime get() = arrivalTimeValue; set(value) { arrivalTimeValue = value; onChange() }
+    var hasArrival: Boolean get() = hasArrivalValue; set(value) { hasArrivalValue = value; onChange() }
+    var price: String get() = priceValue; set(value) { priceValue = value; onChange() }
+    val origin = TripChangePlaceDraft(initial.origin, restored?.origin, onChange)
+    val destination = TripChangePlaceDraft(initial.destination, restored?.destination, onChange)
+
+    fun snapshot() = TripChangeDraftInput(departureDate, departureTime, arrivalDate, arrivalTime, hasArrival, price, origin.snapshot(), destination.snapshot())
 
     private fun departureValue(): String? = if (departureDate == departure.toLocalDate() && departureTime == departure.toLocalTime()) initial.departureAt
         else tripChangeInstant(departureDate, departureTime)
@@ -57,10 +65,10 @@ internal class TripChangeDraft(private val initial: TripChangeTerms) {
     } == true
 }
 
-internal class TripChangePlaceDraft(private val initial: MapPoint) {
-    var input by mutableStateOf(""); private set
-    var point by mutableStateOf<MapPoint?>(initial); private set
-    var address by mutableStateOf<String?>(null); private set
+internal class TripChangePlaceDraft(private val initial: MapPoint, restored: TripChangePlaceInput? = null, private val onChange: () -> Unit = {}) {
+    var input by mutableStateOf(restored?.input ?: ""); private set
+    var point by mutableStateOf<MapPoint?>(if (restored == null) initial else restored.point); private set
+    var address by mutableStateOf(restored?.address); private set
     var suggestions by mutableStateOf<List<PlaceSuggestion>>(emptyList()); private set
     var busy by mutableStateOf(false); private set
     var error by mutableStateOf<String?>(null); private set
@@ -70,10 +78,12 @@ internal class TripChangePlaceDraft(private val initial: MapPoint) {
     fun edit(value: String) {
         if (closed || value == input) return
         generation++; input = value; point = null; address = null; suggestions = emptyList(); error = null; busy = false
+        onChange()
     }
     fun keepOriginal() {
         if (closed) return
         generation++; input = ""; point = initial; address = null; suggestions = emptyList(); error = null; busy = false
+        onChange()
     }
     suspend fun suggest(gateway: be.sportgreenmoove.app.services.FirebaseGateway) {
         if (closed || input.isBlank() || busy) return
@@ -94,10 +104,12 @@ internal class TripChangePlaceDraft(private val initial: MapPoint) {
                 check(place.placeId == suggestion.placeId && place.lat.isFinite() && place.lng.isFinite() &&
                     place.lat in -90.0..90.0 && place.lng in -180.0..180.0)
                 input = place.label; address = place.formattedAddress; point = MapPoint(place.lat, place.lng); suggestions = emptyList()
+                onChange()
             }
         } catch (cancelled: kotlinx.coroutines.CancellationException) { throw cancelled }
         catch (_: Exception) { if (!closed && generation == ticket) error = "Adresse non confirmée. Relancez la recherche." }
         finally { if (!closed && generation == ticket) busy = false }
     }
+    fun snapshot() = TripChangePlaceInput(input, point, address)
     fun close() { closed = true; generation++; input = ""; point = null; address = null; suggestions = emptyList(); error = null; busy = false }
 }

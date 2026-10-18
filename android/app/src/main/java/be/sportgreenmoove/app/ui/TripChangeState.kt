@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import be.sportgreenmoove.app.data.*
 import be.sportgreenmoove.app.services.TripChangeGateway
+import be.sportgreenmoove.app.services.TripChangeDraftStorage
 import be.sportgreenmoove.app.services.TripChangeQuoteExpiredException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.currentCoroutineContext
@@ -15,8 +16,10 @@ import java.time.Instant
 @MainThread
 internal class TripChangeState(
     private val tripId: String, private val uid: String, private val role: AppRole, private val gateway: TripChangeGateway,
+    storage: TripChangeDraftStorage,
     private val now: () -> Instant = Instant::now,
 ) {
+    private val drafts = TripChangeDraftSession(uid, tripId, storage)
     var preview by mutableStateOf<TripChangePreview?>(null); private set
     var review by mutableStateOf<TripChangeReview?>(null); private set
     var draft by mutableStateOf<TripChangeDraft?>(null); private set
@@ -25,6 +28,8 @@ internal class TripChangeState(
     var busy by mutableStateOf(false); private set
     var requiresReload by mutableStateOf(false); private set
     var error by mutableStateOf<String?>(null); private set
+    var draftSaveError by mutableStateOf<String?>(null); private set
+    var draftConflict by mutableStateOf(false); private set
     private var proposalRequest: TripChangeProposalRequest? = null
     private var decisionRequest: TripChangeDecisionRequest? = null
     private var withdrawalRequest: TripChangeWithdrawalRequest? = null
@@ -33,8 +38,8 @@ internal class TripChangeState(
     private var generation = 0L
     private var closed = false
     val applied get() = application != null || review?.applied == true
-    val canEdit get() = !closed && !busy && !requiresReload && role == AppRole.Driver && preview != null && review == null
-    val canPropose get() = canEdit && draft?.changedFrom(requireNotNull(preview).terms, now()) == true &&
+    val canEdit get() = !closed && !busy && !requiresReload && !draftConflict && role == AppRole.Driver && preview != null && review == null
+    val canPropose get() = canEdit && draftSaveError == null && draft?.changedFrom(requireNotNull(preview).terms, now()) == true &&
         draft?.origin?.busy == false && draft?.destination?.busy == false
     val canRespond get() = !closed && !busy && !requiresReload && role == AppRole.Parent && review?.canRespond == true
     val canWithdraw get() = !closed && !busy && !requiresReload && role == AppRole.Driver && review?.canWithdraw == true && !applied
@@ -53,6 +58,8 @@ internal class TripChangeState(
                 if (loaded.applied) onChanged()
             } else {
                 check(role == AppRole.Driver)
+                drafts.load()
+                if (proposalRequest == null) proposalRequest = drafts.pendingProposal
                 proposalRequest?.let { request ->
                     val recorded = gateway.resolveTripChangeProposal(request)
                     if (!active()) return@perform
@@ -68,7 +75,11 @@ internal class TripChangeState(
                 check(loaded.tripId == tripId)
                 if (preview?.revision != loaded.revision) {
                     draft?.origin?.close(); draft?.destination?.close()
-                    draft = TripChangeDraft(loaded.terms); proposalRequest = null
+                    draft = drafts.open(loaded, ::saveDraft)
+                    draftConflict = drafts.conflicts(loaded)
+                    if (draftConflict && proposalRequest != null) {
+                        drafts.clearUnrecordedRequest(); proposalRequest = null
+                    }
                 }
                 preview = loaded
             }
@@ -82,6 +93,7 @@ internal class TripChangeState(
         val request = proposalRequest?.takeIf { it.expectedRevision == loaded.revision && it.terms == terms }
             ?: TripChangeProposalRequest(tripId, loaded.revision, terms).also { proposalRequest = it }
         perform("Proposition non confirmée. Actualisez avant de réessayer.", onChanged) {
+            drafts.save(loaded, requireNotNull(draft).snapshot(), request)
             val result = gateway.proposeTripChange(request)
             if (!active()) return@perform
             check(result.sourceRevision == request.expectedRevision && result.terms == request.terms && result.proposalRequestId == request.requestId)
@@ -186,9 +198,29 @@ internal class TripChangeState(
         currentCoroutineContext().ensureActive()
         if (closed) return
         check(result.tripId == tripId && (review == null || review?.proposalId == result.proposalId))
+        if (role == AppRole.Driver) drafts.accepted(result)
         if (review?.revision != result.revision || result.status != TripChangeStatus.Confirmed) { quote = null; quoteRequest = null }
         review = result; preview = null
         draft?.origin?.close(); draft?.destination?.close(); draft = null
+    }
+
+    fun saveDraft() {
+        if (closed || draftConflict || role != AppRole.Driver) return
+        val loaded = preview ?: return
+        val input = draft?.snapshot() ?: return
+        val request = proposalRequest?.takeIf { it.terms == draft?.terms(now()) }
+        try { drafts.save(loaded, input, request); proposalRequest = request; draftSaveError = null }
+        catch (_: Exception) { draftSaveError = "Brouillon non enregistré. Réessayez avant de fermer." }
+    }
+
+    fun discardDraft() {
+        if (closed || busy || requiresReload || role != AppRole.Driver) return
+        val loaded = preview ?: return
+        try {
+            val next = drafts.discard(loaded, ::saveDraft)
+            draft?.origin?.close(); draft?.destination?.close()
+            draft = next; draftConflict = false; draftSaveError = null; proposalRequest = null
+        } catch (_: Exception) { draftSaveError = "Impossible de remplacer le brouillon. Réessayez." }
     }
 
     private suspend fun active(): Boolean {
@@ -200,6 +232,7 @@ internal class TripChangeState(
         closed = true; generation++
         draft?.origin?.close(); draft?.destination?.close()
         draft = null; preview = null; review = null; quote = null; application = null; error = null
+        draftSaveError = null; draftConflict = false
         proposalRequest = null; decisionRequest = null; withdrawalRequest = null; quoteRequest = null; applyRequest = null
         busy = false; requiresReload = false
     }

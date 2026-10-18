@@ -47,11 +47,12 @@ class TripChangeStateTest {
         state.reload(null); gateway.propose = succeed; state.propose {}
         assertEquals(gateway.proposals[0], gateway.proposals[1])
     }
-    @Test fun changedSourceRevisionRequiresFreshDraftAndRequest() = runBlocking {
+    @Test fun changedSourceRevisionKeepsDraftButRequiresExplicitResetAndFreshRequest() = runBlocking {
         val gateway = ChangeGateway(); val succeed = gateway.propose; gateway.propose = { throw IOException() }
         val state = ChangeFixture.state(gateway); state.reload(null); requireNotNull(state.draft).price = "4,00"; state.propose {}
         gateway.preview = { ChangeFixture.preview.copy(revision = "e".repeat(64)) }
-        state.reload(null); assertEquals("2,50", requireNotNull(state.draft).price); assertFalse(state.canPropose)
+        state.reload(null); assertEquals("4,00", requireNotNull(state.draft).price); assertTrue(state.draftConflict); assertFalse(state.canPropose)
+        state.discardDraft(); assertEquals("2,50", requireNotNull(state.draft).price)
         requireNotNull(state.draft).price = "4,00"; gateway.propose = succeed; state.propose {}
         assertNotEquals(gateway.proposals[0].requestId, gateway.proposals[1].requestId)
     }

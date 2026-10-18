@@ -11,8 +11,29 @@ test('driver editing and affected-parent review are reachable with account-scope
   assert(read(base + 'ui/SportsGreenMooveApp.kt').includes('providers.reservations, providers.firebase'));
   assert(read(base + 'ui/ReservationManagementRoute.kt').includes('TripChangeDialog(uid, role, item.booking.tripId'));
   const dialog = read(base + 'ui/TripChangeDialog.kt');
-  for (const marker of ['remember(uid, role, tripId, gateway)', 'onDispose { state.close() }', 'verticalScroll(rememberScrollState())',
+  for (const marker of ['remember(uid, role, tripId, gateway, storage)', 'onDispose { state.close() }', 'verticalScroll(rememberScrollState())',
     'state.decide(TripChangeDecision.Accept', 'state.decide(TripChangeDecision.Decline', 'state.calculateRoute()', 'state.apply(onChanged)']) assert(dialog.includes(marker));
+});
+
+test('private drafts retain unfinished input and resolve frozen requests before reopening an editor', () => {
+  const state = read(base + 'ui/TripChangeState.kt');
+  assert(state.indexOf('drafts.load()') < state.indexOf('gateway.previewTripChange(tripId)'));
+  assert(state.indexOf('drafts.save(loaded, requireNotNull(draft).snapshot(), request)') < state.indexOf('gateway.proposeTripChange(request)'));
+  for (const marker of ['draftSaveError == null', '!draftConflict', 'drafts.open(loaded, ::saveDraft)', 'fun discardDraft()']) assert(state.includes(marker));
+  const draft = read(base + 'ui/TripChangeDraft.kt');
+  assert(draft.includes('if (restored == null) initial else restored.point'));
+  assert(draft.includes('fun snapshot() = TripChangeDraftInput('));
+  const storage = read(base + 'services/SharedPreferencesTripChangeDrafts.kt');
+  assert(storage.includes('Context.MODE_PRIVATE')); assert(storage.includes('check(edit.commit())'));
+  const codec = read(base + 'services/TripChangeDraftCodec.kt');
+  assert(codec.includes('json["uid"] == uid && json["tripId"] == tripId'));
+  assert(codec.includes('request["expectedRevision"] == revision'));
+  assert(!storage.includes('Firebase') && !storage.includes('println'));
+  assert(read('android/app/src/main/AndroidManifest.xml').includes('android:allowBackup="false"'));
+  for (const path of ['data/TripChangeDraftRecord.kt', 'services/TripChangeDraftStorage.kt', 'services/TripChangeDraftCodec.kt',
+    'services/SharedPreferencesTripChangeDrafts.kt', 'ui/TripChangeDraftSession.kt']) assert(read(base + path).split('\n').length < 300, path);
+  const workflow = read('.github/workflows/web-integration-smoke.yml');
+  assert.equal(workflow.split('"' + base + 'data/TripChangeDraftRecord.kt"').length - 1, 2);
 });
 
 test('native writes use existing authenticated callables without direct Firestore writes or provider substitutes', () => {

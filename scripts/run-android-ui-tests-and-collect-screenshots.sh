@@ -6,7 +6,17 @@ android_dir="$repo_root/android"
 output_dir="$android_dir/app/build/outputs/store-review-screenshots"
 remote_dir="/sdcard/Download/sgm-store-review"
 
-node "$repo_root/scripts/qa/configure-disposable-android.mjs" || exit 1
+mkdir -p "$output_dir" || exit 1
+device_receipt="$output_dir/disposable-device-setup.json"
+node "$repo_root/scripts/qa/configure-disposable-android.mjs" > "$device_receipt" || exit 1
+restore_test_store() {
+  suite_status=$?
+  restore_status=0
+  node "$repo_root/scripts/qa/restore-disposable-store.mjs" "$device_receipt" > "$output_dir/disposable-store-restore.json" || restore_status=$?
+  if [[ "$suite_status" -ne 0 ]]; then exit "$suite_status"; fi
+  exit "$restore_status"
+}
+trap restore_test_store EXIT
 
 set +e
 "$android_dir/gradlew" -p "$android_dir" :app:connectedDebugAndroidTest --no-daemon --stacktrace
@@ -49,7 +59,7 @@ collect_component_evidence() {
       fi
     done
     adb pull /sdcard/Download/sgm-trip-changes "$output_dir" || return 1
-    for name in trip-change-driver-proposed.png trip-change-parent-review-large-text.png trip-change-parent-accepted.png trip-change-parent-declined.png trip-change-applied-balance-due.png; do
+    for name in trip-change-driver-proposed.png trip-change-parent-review-large-text.png trip-change-parent-accepted.png trip-change-parent-declined.png trip-change-applied-balance-due.png trip-draft-restored-large-text.png; do
       if [[ ! -s "$output_dir/sgm-trip-changes/$name" ]]; then
         echo "Missing trip change screen: $name" >&2
         return 1

@@ -42,8 +42,10 @@ responses echo `tripId`, `proposalId`, `proposalRevision` and `requestId` for ex
 native binding. Receipts additionally require the exact signed-in actor.
 
 The gateway checks the account before and after each callable. State belongs to
-the account, role and trip and is cleared on disposal; late completions cannot
-restore it. Uncertain writes lock actions until explicit refresh. An unchanged
+the account, role and trip; in-memory views are cleared on disposal and late
+completions cannot restore them. The approved [private unfinished draft](private-trip-drafts.md)
+and an uncertain proposal identity persist on this device, scoped to account/trip.
+Uncertain writes lock actions until explicit refresh. An unchanged
 retry keeps the same request UUID. Quote retries also preserve their UUID unless
 expiry is known locally or the server returns the explicit
 `trip-change-quote-expired` reason. Expiry does not trigger an automatic request.

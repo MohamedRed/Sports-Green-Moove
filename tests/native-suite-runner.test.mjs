@@ -13,7 +13,7 @@ function fixture(t) {
   const log = join(root, 'calls');
   const executable = (path, content) => writeFileSync(join(root, path), '#!/bin/bash\n' + content, { mode: 0o700 });
   executable('android/gradlew', 'echo ordinary >> "$CALL_LOG"\nexit "$ORDINARY_STATUS"\n');
-  executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; exit "$SETUP_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
+  executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
   executable('bin/adb', 'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nexit 0\n');
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
@@ -22,7 +22,7 @@ function fixture(t) {
     'sgm-booking-review': ['booking-review-required.png', 'booking-review-narrow.png'],
     'sgm-booking-feedback': ['booking-feedback-sending-narrow.png', 'booking-feedback-confirmed-narrow.png', 'booking-feedback-width-probe.json'],
     'sgm-trip-changes': ['trip-change-driver-proposed', 'trip-change-parent-review-large-text', 'trip-change-parent-accepted',
-      'trip-change-parent-declined', 'trip-change-applied-balance-due'].flatMap((name) => [name + '.png', name + '-window.png']),
+      'trip-change-parent-declined', 'trip-change-applied-balance-due', 'trip-draft-restored-large-text'].flatMap((name) => [name + '.png', name + '-window.png']),
   };
   for (const [directory, names] of Object.entries(screens)) {
     mkdirSync(join(out, directory));
@@ -32,7 +32,7 @@ function fixture(t) {
   return (env) => {
     const result = spawnSync('bash', [join(root, 'scripts/run.sh')], { encoding: 'utf8', env: { ...process.env,
       PATH: join(root, 'bin') + ':' + process.env.PATH, CALL_LOG: log, ORDINARY_STATUS: '0', REPLAY_STATUS: '0',
-      SETUP_STATUS: '0', CAPTURE_FAILURE: '0', ...env } });
+      SETUP_STATUS: '0', RESTORE_STATUS: '0', CAPTURE_FAILURE: '0', ...env } });
     assert.equal(result.error, undefined);
     const statusFile = join(out, 'native-suite-status.json');
     return { ...result, calls: readFileSync(log, 'utf8').trim().split('\n'),
@@ -49,7 +49,7 @@ for (const [name, env, exit, statuses] of [
   ['both failures retain both outcomes and return the first', { ORDINARY_STATUS: '7', REPLAY_STATUS: '11' }, 7, [7, 0, 11]],
 ]) test(name, (t) => {
   const result = fixture(t)(env);
-  assert.equal(result.status, exit, result.stderr); assert.deepEqual(result.calls, ['setup', 'ordinary', 'replay']);
+  assert.equal(result.status, exit, result.stderr); assert.deepEqual(result.calls, ['setup', 'ordinary', 'replay', 'restore']);
   assert.equal(result.statuses.scope, 'native-suite-exit-status-not-flow-verification');
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
 });
@@ -57,6 +57,13 @@ for (const [name, env, exit, statuses] of [
 test('an unsafe or unavailable device stops both suites before app execution', (t) => {
   const result = fixture(t)({ SETUP_STATUS: '3' });
   assert.equal(result.status, 1); assert.deepEqual(result.calls, ['setup']); assert.equal(result.statuses, null);
+});
+
+test('store cleanup failure cannot produce a green suite or overwrite an earlier failure', (t) => {
+  const success = fixture(t)({ RESTORE_STATUS: '13' });
+  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['setup', 'ordinary', 'replay', 'restore']);
+  const failure = fixture(t)({ RESTORE_STATUS: '13', REPLAY_STATUS: '11' });
+  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['setup', 'ordinary', 'replay', 'restore']);
 });
 
 test('both CI entry points retain independent-suite verification and upload its status metadata', () => {

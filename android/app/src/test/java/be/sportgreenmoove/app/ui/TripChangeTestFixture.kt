@@ -2,6 +2,7 @@ package be.sportgreenmoove.app.ui
 
 import be.sportgreenmoove.app.data.*
 import be.sportgreenmoove.app.services.TripChangeGateway
+import be.sportgreenmoove.app.services.TripChangeDraftStorage
 import java.time.Instant
 
 internal object ChangeFixture {
@@ -16,7 +17,18 @@ internal object ChangeFixture {
     fun receipt(request: TripChangeApplyRequest) = TripChangeApplicationReceipt(request.tripId, request.proposalId,
         request.proposalRevision, request.quoteId, request.requestId, "driver", now.toString(), listOf("booking"), 1)
     fun state(gateway: TripChangeGateway, role: AppRole = AppRole.Driver, now: () -> Instant = { this.now }) =
-        TripChangeState("trip", if (role == AppRole.Driver) "driver" else "parent", role, gateway, now)
+        TripChangeState("trip", if (role == AppRole.Driver) "driver" else "parent", role, gateway, TestTripDraftStorage(), now)
+}
+
+internal class TestTripDraftStorage : TripChangeDraftStorage {
+    val records = mutableMapOf<Pair<String, String>, TripChangeDraftRecord>()
+    var failRead = false
+    var failWrite = false
+    override fun read(uid: String, tripId: String): TripChangeDraftRecord? { check(!failRead); return records[uid to tripId] }
+    override fun write(uid: String, tripId: String, record: TripChangeDraftRecord?) {
+        check(!failWrite)
+        if (record == null) records.remove(uid to tripId) else records[uid to tripId] = record
+    }
 }
 
 internal class ChangeGateway : TripChangeGateway {
