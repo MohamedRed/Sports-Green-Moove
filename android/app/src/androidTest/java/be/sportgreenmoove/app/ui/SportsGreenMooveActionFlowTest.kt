@@ -2,6 +2,7 @@ package be.sportgreenmoove.app.ui
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
@@ -87,6 +88,7 @@ class SportsGreenMooveActionFlowTest {
         var pickupPassenger: RidePassengerStatus? = null
         var dropoffPassenger: RidePassengerStatus? = null
         var endRideTapped = false
+        var emergencyTapped = false
         val ride = mutableStateOf(UiFlowFixtures.activeRide)
 
         compose.setSgmUiTestContent {
@@ -104,10 +106,13 @@ class SportsGreenMooveActionFlowTest {
                     ride.value = ride.value.copy(passengers = listOf(passenger.copy(dropoffStatus = "droppedOff")))
                 },
                 onEndRide = { endRideTapped = true },
+                onEmergencyContact = { emergencyTapped = true },
             )
         }
 
         val passenger = UiFlowFixtures.activeRide.passengers.first()
+        compose.onNodeWithTag(SgmTestTags.EmergencyContact).performScrollTo().assertIsEnabled().performClick()
+        assertTrue(emergencyTapped)
         compose.onNodeWithTag(SgmTestTags.ActiveRidePickupAction).performScrollTo().performClick()
         compose.onNodeWithTag(SgmTestTags.ActiveRideDropoffAction).performScrollTo().performClick()
         compose.onNodeWithTag(SgmTestTags.ActiveRideEndAction).performScrollTo().performClick()
@@ -132,6 +137,7 @@ class SportsGreenMooveActionFlowTest {
                 onPickup = {},
                 onDropoff = {},
                 onEndRide = {},
+                onEmergencyContact = {},
             )
         }
 
@@ -207,7 +213,7 @@ class SportsGreenMooveActionFlowTest {
         val firebase = UiFlowFirebaseGateway()
 
         compose.setSgmUiTestContent {
-            OptionsScreen(firebase = firebase, onBack = {})
+            OptionsScreen(firebase = firebase, onBack = {}, onEmergencyContact = {})
         }
 
         compose.onNodeWithTag(SgmTestTags.SupportReportDescriptionInput)

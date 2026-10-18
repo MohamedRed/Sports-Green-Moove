@@ -46,7 +46,8 @@ public team/club documents, logs or shared evidence.
 On 2026-10-18, `getEmergencyContact` and `saveEmergencyContact` were added to
 source and verified through 16 isolated HTTP scenario groups. Original proof:
 `docs/release/evidence/local-emergency-contact-2026-10-18/README.md`.
-These endpoints are not deployed and are not wired to a native screen yet.
+These endpoints are not deployed. Android editor source is now wired, with
+execution still pending as described below.
 
 An adult-role account manages only its authenticated identity. Child-role
 accounts cannot manage contacts, including mixed child/parent claims. A child
@@ -71,6 +72,35 @@ The service tests do not establish the app editor, process interruption recovery
 account-switch privacy in the app, child/driver ride access or a dialer handoff.
 No call is placed, no contact permissions are added to public club/team records,
 and the store-review emergency action remains pending.
+
+## Android Editor Source
+
+The Android editor and its settings/active-ride entry points now compile. Original
+evidence `local-emergency-editor-2026-10-18` records 23 executed unit cases and six
+compiled-only component cases. No native screen execution or phone handoff is
+accepted from that build evidence. The former fixed settings number and inactive
+ride row are replaced, not retained as successful fallback behavior.
+
+Adult edits are auth-bound; the parent chooses a child from paged verified history,
+then the adapter re-reads its exact current identity and the contact server enforces
+current authority. Missing names are not invented. Unsaved navigation/removal asks
+for confirmation. A failed or unknown save clears actionable contact data until
+an explicit fresh read. Backgrounding/account disposal clears contact values;
+restoration stores only owner-scoped target IDs, not contact names or numbers.
+
+A phone tap re-reads the server and compares the saved revision and destination.
+A changed destination requires another tap. The only platform handoff is
+`ACTION_DIAL`; no direct-call permission, automatic call or substituted number is
+added. Missing dialer/security failures keep the authorized contact visible with
+an accurate failure, not a connected-call claim.
+
+This editor is not the child's own dial path: child-role accounts cannot edit,
+and their separate read-only active-ride access remains to implement. It must use
+authenticated child-device identity and currently valid authority of the parent
+who saved the contact. Current service records do not yet retain that verification
+club as read-only child-access provenance. Native end-to-end replay, actual dialer
+verification, visual review, narrow/landscape checks and the store-review action
+remain pending; no existing manifest item is accepted by source compilation.
 
 ## Required Verification
 

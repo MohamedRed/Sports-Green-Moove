@@ -113,3 +113,26 @@ test('the failed parent replay preserves ordinary component passes without inven
   assert.equal(cleanup.runId, 'b2bd4c4e01584c9678b8c087a2d328db');
   assert.equal(cleanup.phase, 'failure-cleanup'); assert.equal(cleanup.completed, false); assert.equal(cleanup.status, 1);
 });
+
+test('the completed parent stage requires its original marker, primary transfer, captures and audit proof despite the failed whole run', () => {
+  const base = 'docs/release/evidence/local-guardian-parent-native-2026-10-18/';
+  const raw = read(base + 'guardian-parent-results.json'), report = JSON.parse(raw);
+  assert.equal(createHash('sha256').update(raw).digest('hex'), 'eb5ba17a72f560ac4781819b05e7cb7913a70c0eb05b088355182f5021d91838');
+  assert.equal(report.runId, 'dcaf30b6b6b5e66753fa2709163d44a8');
+  validateGuardianParentDevice(JSON.parse(read(base + 'guardian-parent-device.json')),
+    JSON.parse(read(base + 'adb-pull-guardian-parent-verification.json')), report.runId,
+    (file) => readFileSync(new URL('../' + base + file, import.meta.url)));
+  assert.equal(report.testCount, 1); assert.equal(report.nativeCaseCount, 1);
+  assert.deepEqual(report.steps, [{ id: 'guardian-parent-ui', status: 'passed' }]);
+  assert.equal(report.auditEventCount, 8); assert.equal(report.revision, 8); assert.equal(report.status, 'revoked');
+  assert.equal(report.managerDecisionMethod, 'authenticated-local-sdk-not-management-ui');
+  assert.equal(report.physicalDevice, false); assert.equal(report.productionWrites, false);
+  assert.match(read(base + 'LocalGuardianVerificationFlowTest-instrumentation.txt'), /OK \(1 test\)/);
+  assert.equal(createHash('sha256').update(read(base + 'LocalGuardianVerificationFlowTest-instrumentation.txt')).digest('hex'), report.transcriptSha256);
+  for (const [path, hash] of Object.entries(report.sourceFiles)) assert.equal(createHash('sha256').update(read(path)).digest('hex'), hash, path);
+  const whole = JSON.parse(read(base + 'full-run/native-suite-status.json'));
+  assert.equal(whole.ordinaryTests, 1); assert.equal(whole.componentEvidence, 0); assert.equal(whole.localReplay, 1);
+  const store = JSON.parse(read(base + 'full-run/disposable-store-restore.json'));
+  assert.equal(store.restored, true); assert.equal(store.verified, false);
+  assert(read(base + 'full-run/LocalChatNetworkFlowTest-instrumentation.txt').includes('FAILURES!!!'));
+});

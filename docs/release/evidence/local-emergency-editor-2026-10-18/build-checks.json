@@ -1,0 +1,45 @@
+{
+  "scope": "android-local-unit-and-apk-build-not-native-execution",
+  "buildReportedAt": "2026-10-18T17:56:01.787Z",
+  "unitCaseCount": 23,
+  "unitSuites": [
+    {
+      "name": "be.sportgreenmoove.app.ui.EmergencyContactStateTest",
+      "count": 17,
+      "testedAt": "2026-10-18T17:54:27.695Z"
+    },
+    {
+      "name": "be.sportgreenmoove.app.services.EmergencyContactWireTest",
+      "count": 6,
+      "testedAt": "2026-10-18T17:54:27.610Z"
+    }
+  ],
+  "nativeTestApkCompiled": true,
+  "nativeComponentCasesCompiled": 6,
+  "nativeUiExecuted": false,
+  "dialerOpened": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "serviceImplementationDeployed": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt": "46e05ad44ba611461022138e398e30cceee2e5c8f4b2dd4c6f58cd68650a8839",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactGateway.kt": "576c57b345a8bfa7572f364df71e85630df8e7c1da03b3ef1ee009be1d5e72ee",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt": "cd2089875faa31eb8c989cc1d309703bd550b0bccff4802892e2df85150ca52b",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt": "360ed1bba41bcd1185e32339820932c5538b21696779a05265927f2aabc96361",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidEmergencyDialer.kt": "52a691dace3ba9b91e713f0c7f7fcf05a89e89a7464854fc0ed4d26d4d2bb075",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "62f3c7618664035744fe4fe1d70c6e50205aa90ce7985c315da2c210d069d49c",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt": "9daad857a59c6c5918d22032eba009aee235e2e46b18e8368f3b091dce93a473",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt": "359ab39ed86524bb3e1af76942bb2b016e27854e1408afdab480d378430daf35",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactDialogs.kt": "ca885dde23332f83ce9fda8d6c77bae107f3d03fa2b9a8d98097f445b22a9343",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt": "2781f7db08deb1eb20ebde86da70699270c670274088c7c18152b588a8a81b00",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsScreen.kt": "27137868a56f00534975be256dc36fb7ff30ca562499e7217a258ab52a4e4de0",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt": "dde40205d87be0c3e4c0e271b65c7c3e2baf5803faa1a34a784d87b1a78e4c60",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt": "41ff30b37e89929a61664e8ff159360af97325573146dd8a2499d55df041c23d",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "1b37259b47c007bcfaaaba15d762be6bafefbd5790d19b9a9730bbe620b9e2db",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/EmergencyContactFlowTest.kt": "80150b2e5a606ac57a674b0dc3c3685b63e51c6377e9ced180ea4495250948e0"
+  },
+  "artifacts": {
+    "TEST-be.sportgreenmoove.app.ui.EmergencyContactStateTest.xml": "43f32c223e6ae74f43324d5f13e6e922281a7ab5a99ad57931d49044b43bf25c",
+    "TEST-be.sportgreenmoove.app.services.EmergencyContactWireTest.xml": "639992dfa78d69d98c983ada2452f7fed5d39d11d7a4941c56d4cec9475228c9"
+  }
+}

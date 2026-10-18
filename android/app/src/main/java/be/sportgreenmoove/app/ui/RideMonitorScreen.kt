@@ -39,6 +39,7 @@ fun RideMonitorScreen(
     onPickup: (RidePassengerStatus) -> Unit,
     onDropoff: (RidePassengerStatus) -> Unit,
     onEndRide: () -> Unit,
+    onEmergencyContact: () -> Unit,
 ) {
     V2Screen(testTag = SgmTestTags.ActiveRideScreen) {
         V2TopBar("COURSE ACTIVE", onBack = onBack)
@@ -58,7 +59,7 @@ fun RideMonitorScreen(
                 readyToComplete = activeRide.passengers.all { it.pickupStatus == "pickedUp" && it.dropoffStatus == "droppedOff" },
                 onEndRide = onEndRide,
             )
-            RideEmergencyCard()
+            RideEmergencyAction(onEmergencyContact)
         }
     }
 }
@@ -124,24 +125,9 @@ private fun RideLiveCard(ride: LiveRideSnapshot) {
 }
 
 @Composable
-private fun RideEmergencyCard() {
-    Row(
-        modifier = Modifier
-            .padding(horizontal = 20.dp)
-            .fillMaxWidth()
-            .sgmTestTag(SgmTestTags.EmergencyContact)
-            .clip(RoundedCornerShape(18.dp))
-            .background(SgmColor.Orange.copy(alpha = 0.12f))
-            .border(BorderStroke(1.dp, SgmColor.Orange.copy(alpha = 0.28f)), RoundedCornerShape(18.dp))
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        V2Avatar("!", size = 42, color = SgmColor.Orange)
-        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text("Contact urgence", style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold))
-            Text("Action directe disponible pendant toute course active.", style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary, fontSize = 12.sp, fontWeight = FontWeight.SemiBold))
-        }
+private fun RideEmergencyAction(onOpen: () -> Unit) {
+    Box(Modifier.padding(horizontal = 20.dp)) {
+        EmergencyContactButton("Contact d’urgence", SgmTestTags.EmergencyContact, true, onOpen, SgmIcon.Profile)
     }
 }
 

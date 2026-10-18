@@ -97,12 +97,22 @@ close the old state and the SDK checks the explicit owner UID before/after calls
 Reopening the app reads history/current state instead of restoring capabilities
 from a cached screen. This does not grant team-chat or emergency-contact access.
 
+## Completed Local Parent Stage
+
+The scoped parent app/SDK stage completed on 2026-10-18 at 17:47:29 UTC in
+run `39150235114`, source `5d89788e2b4db440ad65c1575cc072acdf3f8030`.
+The original device marker, five reviewed captures, successful primary-copy
+receipt, passing transcript and independently checked eight audit events are
+retained in `local-guardian-parent-native-2026-10-18`. Request, cancellation,
+refusal/reopen, verification, activity recreation, withdrawal/revocation and
+account isolation passed. This does not prove full process death or a physical
+phone. The whole run failed later on other cases and device restoration checks.
+
 ## Integration Still Required
 
 The service/rules and management review have isolated evidence. The Android
-parent screens have unit/build checks and a real local-SDK app replay wired into
-the native suite; do not call that replay passed without its device marker,
-successful primary copy receipt and independently checked audit records.
+parent screens have unit/build checks and the separately completed local-SDK
+stage above. Full process restart and physical-device replay are still required.
 The iOS parent screen, child/team enrollment, team conversation access and
 personal emergency contacts still require implementation/user-flow testing.
 No production deployment or physical-device verification is implied.

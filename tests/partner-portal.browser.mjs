@@ -140,7 +140,7 @@ try {
           return image.left >= frame.left - 1 && image.right <= frame.right + 1 &&
             image.top >= frame.top - 1 && image.bottom <= frame.bottom + 1 && caption.top >= image.bottom;
         }), `Landscape evidence overlaps its caption: ${flow.id}/${image.file} at ${width}px`);
-        if (flow.id === 'clubs' && index === 0) await page.screenshot({ path: `${output}/landscape-${width}.png`, fullPage: false });
+        if (flow.id === 'clubs' && image.file === 'guardian-review-desktop') await page.screenshot({ path: `${output}/landscape-${width}.png`, fullPage: false });
       }
     }
   }

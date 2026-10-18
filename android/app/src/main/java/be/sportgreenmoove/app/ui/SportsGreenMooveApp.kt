@@ -31,6 +31,7 @@ fun SportsGreenMooveApp() {
     val providers = remember { AndroidRuntime.create(context.applicationContext) }
     val scope = rememberCoroutineScope()
     var screen by rememberSaveable { mutableStateOf(AppScreen.Home) }
+    var contactReturn by rememberSaveable { mutableStateOf(AppScreen.Options) }
     val messagesState = rememberSaveableStateHolder()
     var role by remember { mutableStateOf(AppRole.Parent) }
     var lastRoleSelectionSessionUid by remember { mutableStateOf<String?>(null) }
@@ -127,6 +128,7 @@ fun SportsGreenMooveApp() {
         noticeMessage = null
         errorMessage = null
         screen = AppScreen.Home
+        contactReturn = AppScreen.Options
     }
     val restoration = rememberSessionRestoration(providers.auth, providers.isConfigured) { restored ->
         session = restored
@@ -271,7 +273,10 @@ fun SportsGreenMooveApp() {
                             },
                             setError = { errorMessage = it },
                         )
-                        AppScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = AppScreen.Profile })
+                        AppScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = AppScreen.Profile },
+                            onEmergencyContact = { contactReturn = AppScreen.Options; screen = AppScreen.EmergencyContacts })
+                        AppScreen.EmergencyContacts -> EmergencyContactRoute(requireNotNull(session).uid, requireNotNull(session).roles,
+                            providers.emergencyContacts, providers.firebase, { screen = contactReturn })
                         AppScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = AppScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         AppScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
@@ -281,6 +286,7 @@ fun SportsGreenMooveApp() {
                             onPickup = { updatePassengerStatus(it, pickup = true) },
                             onDropoff = { updatePassengerStatus(it, pickup = false) },
                             onEndRide = ::endActiveRide,
+                            onEmergencyContact = { contactReturn = AppScreen.Ride; screen = AppScreen.EmergencyContacts },
                         )
                     }
                 }

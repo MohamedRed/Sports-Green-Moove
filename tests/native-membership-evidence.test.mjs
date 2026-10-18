@@ -26,7 +26,7 @@ test('native membership captures require the completed sixteen-case replay and e
   });
   const flow = content.flows.find((item) => item.id === 'clubs');
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-guardian-review-2026-10-18/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-results.json');
   for (const file of ['membership-parent', 'membership-reopened', 'membership-account']) {
     assert.match(flow.images.find((image) => image.file === file).alt, /16 octobre/);
   }

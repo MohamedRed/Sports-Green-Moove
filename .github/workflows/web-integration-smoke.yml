@@ -44,6 +44,10 @@ on:
       - "tests/guardian-review-evidence.test.mjs"
       - "tests/guardian-parent-contract.test.mjs"
       - "tests/emergency-contact-contract.test.mjs"
+      - "tests/emergency-contact-editor-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Emergency*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Emergency*.kt"
       - "tests/trip-cancellation-rules.test.ts"
       - "tests/trip-details-rules.test.ts"
       - "tests/trip-details-evidence.test.mjs"
@@ -255,6 +259,10 @@ on:
       - "tests/guardian-review-evidence.test.mjs"
       - "tests/guardian-parent-contract.test.mjs"
       - "tests/emergency-contact-contract.test.mjs"
+      - "tests/emergency-contact-editor-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Emergency*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Emergency*.kt"
       - "tests/trip-cancellation-rules.test.ts"
       - "tests/trip-details-rules.test.ts"
       - "tests/trip-details-evidence.test.mjs"
@@ -511,7 +519,7 @@ jobs:
         run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs
 
       - name: Test private emergency contact ownership and revocation
-        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs
+        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'La demande du parent passe dans l’app',
+    text: 'Demande, réponse, retrait et changement de compte passent en local. Cinq captures sont ajoutées. La fermeture complète de l’app reste à tester.', flow: 'clubs' },
+  { date: '2026-10-18', title: 'L’écran du contact d’urgence est ajouté',
+    text: 'L’écran et le bouton en trajet sont ajoutés. Les essais d’écran et l’ouverture du téléphone restent à faire.', flow: 'tracking' },
+  { date: '2026-10-18', title: 'L’essai complet reste à stabiliser',
+    text: 'Le parcours du parent passe. D’autres essais échouent encore sur une capture et la reprise réseau ; l’ensemble reste non validé.', flow: 'publication' },
   { date: '2026-10-18', title: 'Le parcours du parent reste à rejouer',
     text: 'Les quatre essais d’écran passent. Le parcours complet s’arrête avant le chargement des choix. L’attente est corrigée ; il reste à le rejouer.', flow: 'clubs' },
   { date: '2026-10-18', title: 'Le contact d’urgence s’enregistre en local',

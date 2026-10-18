@@ -1,4 +1,9 @@
 export const captures = {
+  'guardian-parent-requested': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-requested.png',
+  'guardian-parent-verified': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-verified.png',
+  'guardian-parent-restored': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-restored.png',
+  'guardian-parent-revoked': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-revoked.png',
+  'guardian-parent-other-account': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-other-account.png',
   'guardian-review-desktop': 'docs/release/evidence/local-guardian-review-2026-10-18/guardian-reviewed-desktop.png',
   'guardian-review-confirmation': 'docs/release/evidence/local-guardian-review-2026-10-18/guardian-confirmation-mobile.png',
   'guardian-review-verified': 'docs/release/evidence/local-guardian-review-2026-10-18/guardian-verified-mobile.png',

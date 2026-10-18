@@ -41,7 +41,7 @@ class RideAuthorityFlowTest {
     private fun show(ride: LiveRideSnapshot, canManageRide: Boolean) {
         compose.setSgmUiTestContent {
             RideMonitorScreen(activeRide = ride, canManageRide = canManageRide, routePreview = UiFlowFixtures.route,
-                onBack = {}, onPickup = {}, onDropoff = {}, onEndRide = {})
+                onBack = {}, onPickup = {}, onDropoff = {}, onEndRide = {}, onEmergencyContact = {})
         }
     }
 }

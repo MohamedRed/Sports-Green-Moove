@@ -61,9 +61,9 @@ test('the boundary is registered in both CI paths and does not promote group or 
   const clubs = content.flows.find((flow) => flow.id === 'clubs'), messages = content.flows.find((flow) => flow.id === 'messages');
   assert.equal(clubs.status, 'partial'); assert.equal(clubs.local.source, base + 'services.json');
   assert(clubs.local.groups.includes('team-ownership')); assert.equal(clubs.local.checkedAt, '2026-10-16');
-  assert.equal(clubs.source, 'docs/release/evidence/local-guardian-parent-2026-10-18/README.md');
+  assert.equal(clubs.source, 'docs/release/evidence/local-guardian-parent-native-2026-10-18/README.md');
   assert.match(read(clubs.source), /local-team-ownership-2026-10-16\/README.md/);
-  assert.equal(clubs.ui.source, 'docs/release/evidence/local-guardian-review-2026-10-18/results.json');
+  assert.equal(clubs.ui.source, 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-results.json');
   assert.equal(messages.status, 'partial'); assert.match(messages.remaining, /groupes/);
   assert.match(clubs.remaining, /enfants/); assert.match(clubs.remaining, /téléphone/);
   assert.match(read(base + 'README.md'), /not been deployed to production/);
@@ -92,10 +92,11 @@ test('personal emergency contacts preserve verified-parent authority without cla
   assert.match(contract, /manager's verification role does not give them permission to\nchoose or edit/);
   assert.match(contract, /current `guardianUserIds` link is not evidence of manager verification/);
   assert.match(contract, /not a complete implementation/);
-  assert.match(contract, /not wired to a native screen yet/);
+  assert.match(contract, /Android editor source is now wired/);
+  assert.match(contract, /execution still pending/);
   assert.match(contract, /Do not invent a number, substitute emergency services, or place a call\nautomatically/);
   const emergency = content.blockers.find((item) => item.id === 'emergency-contact');
-  assert.match(emergency.next, /Ajouter les écrans/);
+  assert.match(emergency.next, /Rejouer les écrans/);
   assert.match(emergency.next, /sans lancer d’appel/);
   assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });

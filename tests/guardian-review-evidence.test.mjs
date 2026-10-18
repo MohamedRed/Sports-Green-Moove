@@ -41,12 +41,12 @@ test('guardian review retains a complete real HTTP and management browser run wi
     assert(read(file).toString().split('\n').length < 300, file);
 });
 
-test('the private website publishes reviewed management images without claiming a native parent or emergency flow', () => {
+test('the private website keeps separate management images alongside the scoped native parent proof', () => {
   const flow = content.flows.find((item) => item.id === 'clubs');
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-18');
   assert.equal(flow.local.checkedAt, '2026-10-16');
-  assert.equal(flow.ui.source, base + 'results.json'); validateUiScope(run);
-  assert.match(flow.remaining, /demande du parent dans l’app/);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-results.json'); validateUiScope(run);
+  assert.match(flow.remaining, /fermeture complète/);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
   for (const file of ['guardian-review-desktop', 'guardian-review-confirmation', 'guardian-review-verified']) {
     assert(flow.images.some((image) => image.file === file)); assert(captures[file].startsWith(base));

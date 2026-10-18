@@ -109,6 +109,7 @@ class SportsGreenMooveUiFlowTest {
                 onPickup = {},
                 onDropoff = {},
                 onEndRide = {},
+                onEmergencyContact = {},
             )
         }
 
@@ -148,7 +149,7 @@ class SportsGreenMooveUiFlowTest {
         host.show { RewardsScreen(summary = UiFlowFixtures.rewards, onBack = {}) }
         assertTagsExist(SgmTestTags.RewardsScreen, SgmTestTags.RewardsWithdrawAction)
 
-        host.show { OptionsScreen(firebase = firebase, onBack = {}) }
+        host.show { OptionsScreen(firebase = firebase, onBack = {}, onEmergencyContact = {}) }
         assertTagsExist(SgmTestTags.OptionsScreen, SgmTestTags.SupportReportAction)
 
         host.show {

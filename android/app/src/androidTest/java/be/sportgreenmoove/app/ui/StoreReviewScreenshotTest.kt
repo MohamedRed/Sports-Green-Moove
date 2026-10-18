@@ -40,6 +40,7 @@ class StoreReviewScreenshotTest {
                 onPickup = {},
                 onDropoff = {},
                 onEndRide = {},
+                onEmergencyContact = {},
             )
         }
         compose.onNodeWithTag(SgmTestTags.ActiveRideScreen).assertIsDisplayed()
@@ -61,6 +62,7 @@ class StoreReviewScreenshotTest {
                 onPickup = {},
                 onDropoff = {},
                 onEndRide = {},
+                onEmergencyContact = {},
             )
         }
         compose.onNodeWithTag(SgmTestTags.ActiveRideStaleWarning).assertIsDisplayed()
@@ -75,6 +77,7 @@ class StoreReviewScreenshotTest {
                 onPickup = {},
                 onDropoff = {},
                 onEndRide = {},
+                onEmergencyContact = {},
             )
         }
         compose.onNodeWithTag(SgmTestTags.EmergencyContact).performScrollTo().assertIsDisplayed()
@@ -119,7 +122,7 @@ class StoreReviewScreenshotTest {
         capture("store-child-safety-disclosure.png")
 
         host.show {
-            OptionsScreen(firebase = UiFlowFirebaseGateway(), onBack = {})
+            OptionsScreen(firebase = UiFlowFirebaseGateway(), onBack = {}, onEmergencyContact = {})
         }
         compose.onNodeWithTag(SgmTestTags.PrivacySummaryDisclosure).assertIsDisplayed()
         capture("store-privacy-summary.png")

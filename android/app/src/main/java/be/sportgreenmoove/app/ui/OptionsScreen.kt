@@ -31,7 +31,6 @@ private val OptionSections = listOf(
     OptionSection(
         "SÉCURITÉ",
         listOf(
-            OptionRow(SgmIcon.Profile, "Contact urgence", "+32 470 00 00 00", "Action visible pendant une course active"),
             OptionRow(SgmIcon.Check, "Journal d'audit", "Activé", "Pickup, dropoff, consentements et paiements"),
             OptionRow(SgmIcon.Groups, "Consentement parent", "Obligatoire", "Chaque enfant reste lié à son tuteur"),
         ),
@@ -55,11 +54,14 @@ private val OptionSections = listOf(
 )
 
 @Composable
-fun OptionsScreen(firebase: FirebaseGateway, onBack: () -> Unit) {
+fun OptionsScreen(firebase: FirebaseGateway, onBack: () -> Unit, onEmergencyContact: () -> Unit) {
     V2Screen(testTag = SgmTestTags.OptionsScreen) {
         V2TopBar("OPTIONS", onBack = onBack)
         OptionHero()
         PrivacyProcessorDisclosure(Modifier.padding(start = 20.dp, end = 20.dp, bottom = 16.dp))
+        Box(Modifier.padding(horizontal = 20.dp)) {
+            EmergencyContactButton("Contact d’urgence", "options.emergency", true, onEmergencyContact, SgmIcon.Profile)
+        }
         OptionSections.forEach { section ->
             V2SectionLabel(section.title)
             OptionSectionCard(section.rows)
