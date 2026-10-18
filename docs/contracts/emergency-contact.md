@@ -98,9 +98,29 @@ This editor is not the child's own dial path: child-role accounts cannot edit,
 and their separate read-only active-ride access remains to implement. It must use
 authenticated child-device identity and currently valid authority of the parent
 who saved the contact. Current service records do not yet retain that verification
-club as read-only child-access provenance. Native end-to-end replay, actual dialer
-verification, visual review, narrow/landscape checks and the store-review action
-remain pending; no existing manifest item is accepted by source compilation.
+club as read-only child-access provenance. Connected native end-to-end replay,
+actual dialer verification, landscape checks and the store-review action remain
+pending; no existing manifest item is accepted by source compilation.
+
+## Executed Android Components
+
+The completed run at `53508fbe5e0925097a66e5f36b1b5925e835c423` executed all six
+contact component cases. `local-replay-34-2026-10-18` retains the original passing
+suite and four reviewed captures, including narrow layout and large text. The
+contact gateway and dialer results are explicit in-memory fixtures; this does not
+prove SDK-connected storage or an actual phone handoff. The same whole run passed
+34 local application groups / 36 native cases, with the original network readiness
+checks and successful device-policy restoration.
+
+`LocalEmergencyContactFlowTest` adds a separate isolated connected replay:
+adult save, activity recreation, verified-parent child save, manager revocation,
+actual `ACTION_DIAL` destination/window, return, removal and account isolation.
+The verified fixture relationship is preseeded; only revocation is performed by
+the manager SDK in this stage. The stage requires its same-run primary copy,
+original screenshots, passing transcript, independent contact/operation checks
+and successful scoped cleanup before it can write a success report. It expands
+the next full runner to 35 groups / 37 native cases, but execution is still
+pending. It is not physical-device, full process-death or child-own-account proof.
 
 ## Required Verification
 

@@ -162,7 +162,7 @@ try {
   }
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
-    for (const id of ['navigation', 'search']) {
+    for (const id of ['navigation', 'search', 'emergency-contact']) {
       await page.goto(`${base}/#parcours/${id}/visite/1`);
       const flow = content.flows.find((item) => item.id === id);
       await page.getByRole('heading', { name: flow.tour[0].title, exact: true }).waitFor();

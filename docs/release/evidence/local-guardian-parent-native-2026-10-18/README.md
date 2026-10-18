@@ -47,3 +47,22 @@ remained enabled. This is an observation, not proof that the update caused each
 failure. The original restore receipt records restored=true/verified=false.
 There is no complete 34-group/36-case result. No deadline, capture assertion,
 network test or restoration requirement is waived by retaining this scoped proof.
+
+## Later Process Diagnosis
+
+The original run's TripChangeFlowTest log identifies the test process as PID
+5043 at 17:45:40.725. At 17:45:42.249 that same process logs a forced restart
+because the `googlecertificates` module configuration changed, immediately
+followed by `Sending signal. PID: 5043 SIG: 9`. This establishes the source of
+that ordinary-suite process death more precisely than the earlier capture-time
+observation. It does not explain the separate network-preparation failure or
+prove every historical crash has this cause.
+
+Original artifact path:
+`outputs/androidTest-results/connected/debug/emulator-5554 - 15/logcat-be.sportgreenmoove.app.ui.TripChangeFlowTest-agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement.txt`.
+SHA-256: `b41a9ef374bbcb4c1ad9b5c1b024340ab1f31a758a6efba671a8bbec081e392c`.
+Relevant original line numbers: 1, 241 and 242. The full system log is not copied
+into shared evidence because unrelated store telemetry includes opaque values.
+
+The later completed 34-group run is retained separately in
+`local-replay-34-2026-10-18`. This historical run remains failed.

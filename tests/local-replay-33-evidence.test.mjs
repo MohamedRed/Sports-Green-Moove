@@ -67,11 +67,11 @@ test('the successful network and draft receipts retain strict observations rathe
     'do **not** prove updates stayed', 'No production deployment', 'Previous failures']) assert(report.includes(required), required);
 });
 
-test('private updates retain the historical pass and latest full-run failure with physical and payment limitations', () => {
+test('private updates retain historical failures and distinguish the latest pass from physical and payment proof', () => {
   assert(content.updates.some((u) => u.date === '2026-10-18' && u.title === 'Les 33 essais locaux prévus passent'));
   const blocker = content.blockers.find((b) => b.id === 'test-device-stability');
-  assert.equal(blocker.source, 'docs/release/evidence/local-guardian-parent-native-2026-10-18/README.md');
-  assert.match(blocker.next, /rejouer l’ensemble/); assert.match(blocker.text, /restent à expliquer/);
+  assert.equal(blocker.source, 'docs/release/evidence/local-replay-34-2026-10-18/README.md');
+  assert.match(blocker.next, /rejouer sur téléphone/); assert.match(blocker.text, /34 parcours locaux passent/);
   assert(content.updates.some((u) => u.title === 'L’essai complet reste à stabiliser'));
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');

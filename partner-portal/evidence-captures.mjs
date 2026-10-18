@@ -1,4 +1,6 @@
 export const captures = {
+  'emergency-editor-narrow': 'docs/release/evidence/local-replay-34-2026-10-18/emergency-editor-narrow.png',
+  'emergency-editor-changed': 'docs/release/evidence/local-replay-34-2026-10-18/emergency-editor-changed.png',
   'guardian-parent-requested': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-requested.png',
   'guardian-parent-verified': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-verified.png',
   'guardian-parent-restored': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-restored.png',

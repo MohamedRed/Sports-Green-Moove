@@ -2,6 +2,10 @@ const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
+  'emergency-contact': [
+    image('emergency-editor-narrow', 'Choisir son contact', 'L’écran garde les champs et les actions accessibles avec du texte agrandi, dans l’essai simulé.'),
+    image('emergency-editor-changed', 'Si le téléphone ne s’ouvre pas', 'Le nouveau numéro reste visible avec le message d’erreur. L’ouverture réelle du téléphone reste à tester.'),
+  ],
   'auth-validation': [
     image('login-empty', 'Renseigner l’adresse e-mail', 'Le formulaire signale une adresse manquante.'),
     image('signup-name', 'Renseigner le nom', 'La création du compte demande un nom.'),

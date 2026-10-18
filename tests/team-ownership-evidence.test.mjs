@@ -96,7 +96,7 @@ test('personal emergency contacts preserve verified-parent authority without cla
   assert.match(contract, /execution still pending/);
   assert.match(contract, /Do not invent a number, substitute emergency services, or place a call\nautomatically/);
   const emergency = content.blockers.find((item) => item.id === 'emergency-contact');
-  assert.match(emergency.next, /Rejouer les écrans/);
+  assert.match(emergency.next, /Rejouer l’enregistrement et le téléphone/);
   assert.match(emergency.next, /sans lancer d’appel/);
   assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });

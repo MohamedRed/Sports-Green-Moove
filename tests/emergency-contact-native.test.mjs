@@ -1,0 +1,59 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { emergencyNativeChecks, emergencyNativeScreenshots, validateEmergencyDevice } from '../scripts/qa/emergency-contact-evidence.mjs';
+
+const runId = 'a'.repeat(32), png = Buffer.alloc(24);
+Buffer.from('89504e470d0a1a0a', 'hex').copy(png); png.writeUInt32BE(320, 16); png.writeUInt32BE(720, 20);
+const hash = createHash('sha256').update(png).digest('hex');
+const marker = () => ({ projectId: 'demo-sgm-local-qa', runId, scope: 'local-native-contact-ui-with-sdk-and-dialer-not-physical',
+  checks: emergencyNativeChecks.map((id) => ({ id, status: 'passed' })),
+  screenshots: Object.fromEntries(emergencyNativeScreenshots.map((name) => [name, hash])), dialerPackage: 'com.android.dialer',
+  dialerActionObserved: 'android.intent.action.DIAL', directCallIntentCount: 0, dialerNumberMatched: true,
+  managerRevokeRequestId: 'e0f9228a-c4f6-45ed-a273-139d9c191125' });
+const receipt = () => ({ projectId: 'demo-sgm-local-qa', runId, scope: 'local-adb-file-sync-command-not-flow-verification',
+  phase: 'emergency-contact', completed: true, status: 0, signal: null, errorCode: null });
+const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+
+test('native contact proof requires exact original captures, complete checks and a dial-only handoff', () => {
+  validateEmergencyDevice(marker(), receipt(), runId, () => png);
+  for (const patch of [{ runId: 'b'.repeat(32) }, { projectId: 'production' }, { checks: marker().checks.slice(1) },
+    { dialerPackage: 'be.sportgreenmoove.app.local' }, { dialerActionObserved: 'android.intent.action.CALL' },
+    { directCallIntentCount: 1 }, { dialerNumberMatched: false }, { managerRevokeRequestId: 'unknown' },
+    { screenshots: { ...marker().screenshots, 'extra.png': hash } }])
+    assert.throws(() => validateEmergencyDevice({ ...marker(), ...patch }, receipt(), runId, () => png));
+  const failed = marker(); failed.checks[0].status = 'failed';
+  assert.throws(() => validateEmergencyDevice(failed, receipt(), runId, () => png));
+  assert.throws(() => validateEmergencyDevice(marker(), receipt(), runId, () => Buffer.from('changed')));
+  const blank = Buffer.from(png); blank.writeUInt32BE(0, 16);
+  assert.throws(() => validateEmergencyDevice(marker(), receipt(), runId, () => blank));
+});
+test('later cleanup or failed evidence transfer cannot stand in for the primary contact copy', () => {
+  for (const patch of [{ phase: 'failure-cleanup' }, { completed: false }, { status: 1 }, { signal: 'SIGTERM' },
+    { errorCode: 'ETIMEDOUT' }, { runId: 'b'.repeat(32) }, { projectId: 'production' }])
+    assert.throws(() => validateEmergencyDevice(marker(), { ...receipt(), ...patch }, runId, () => png));
+});
+test('the new replay is additive and verifies backend effects before successful cleanup and reporting', () => {
+  const runner = read('scripts/qa/local-android-session.mjs'), replay = read('scripts/qa/local-emergency-contact-ui.mjs');
+  assert(runner.includes("collectEvidence('emergency-contact')")); assert(runner.includes('testCount: 35, nativeCaseCount: 37'));
+  assert(runner.indexOf('await replayGuardianParentUi') < runner.indexOf('await replayEmergencyContactUi'));
+  assert(runner.indexOf('await replayEmergencyContactUi') < runner.indexOf("instrument(['LocalAppFlowTest'"));
+  assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'emergency-contact'"));
+  assert(replay.indexOf('await verifyEmergencyNativeFixture') < replay.indexOf('await cleanupEmergencyNativeFixture'));
+  assert(replay.indexOf('if (failure) throw failure') < replay.indexOf("'emergency-contact-results.json'"));
+  assert(replay.includes('assertInstrumentationPassed')); assert(replay.includes('verificationPreseeded: true'));
+  assert(replay.includes('childOwnAccountDialImplemented: false'));
+  const fixture = read('scripts/qa/local-emergency-native-fixture.mjs');
+  for (const guard of ['assert.equal(operations.length, 3)', 'assert.deepEqual(await protectedState(), fixture.before)',
+    "assert.equal(record.get('status'), 'revoked')", 'marker.managerRevokeRequestId']) assert(fixture.includes(guard), guard);
+});
+test('instrumented contact actions remain emulator-only with no direct call or fixture authority grant', () => {
+  const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt');
+  for (const guard of ['BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR', 'getprop ro.kernel.qemu',
+    'activity.recreate()', 'assertEquals(0, directCall.hits)', 'assertEquals(1, dial.hits)', 'captureEmergencyDialer',
+    'assertNull(removed.contact)', 'assertEquals(2L, removed.revision)']) assert(native.includes(guard), guard);
+  assert(!native.includes('Intent(Intent.ACTION_CALL')); assert(!native.includes('CALL_PHONE'));
+  const peer = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyPeer.kt');
+  assert(peer.includes('"action" to "revoke"')); assert(!peer.includes('"action" to "verify"'));
+});

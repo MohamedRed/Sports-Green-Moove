@@ -45,6 +45,8 @@ on:
       - "tests/guardian-parent-contract.test.mjs"
       - "tests/emergency-contact-contract.test.mjs"
       - "tests/emergency-contact-editor-contract.test.mjs"
+      - "tests/emergency-contact-native.test.mjs"
+      - "tests/local-replay-34-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Emergency*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Emergency*.kt"
@@ -260,6 +262,8 @@ on:
       - "tests/guardian-parent-contract.test.mjs"
       - "tests/emergency-contact-contract.test.mjs"
       - "tests/emergency-contact-editor-contract.test.mjs"
+      - "tests/emergency-contact-native.test.mjs"
+      - "tests/local-replay-34-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Emergency*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Emergency*.kt"
@@ -478,7 +482,7 @@ jobs:
         run: node --test tests/trip-date-evidence.test.mjs
 
       - name: Validate scoped trip history evidence
-        run: node --test tests/trip-history-evidence.test.mjs tests/local-replay-33-evidence.test.mjs
+        run: node --test tests/trip-history-evidence.test.mjs tests/local-replay-33-evidence.test.mjs tests/local-replay-34-evidence.test.mjs
 
       - name: Test isolated trip history access and paging
         env:
@@ -519,7 +523,7 @@ jobs:
         run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs
 
       - name: Test private emergency contact ownership and revocation
-        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs
+        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

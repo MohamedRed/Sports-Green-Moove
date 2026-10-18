@@ -62,7 +62,7 @@ test('the new native case uses the real app and three isolated actors, not simul
   assert(runner.includes("instrument(['LocalTripChangeFlowTest'], 1"));
   assert(runner.indexOf("collectEvidence('trip-change-parent-confirmation')") < runner.indexOf('await verifyTripChangeUi'));
   assert(runner.indexOf('await verifyTripChangeUi') < runner.indexOf('replayWithNetworkCleanup(adb'));
-  assert(runner.includes('testCount: 34')); assert(runner.includes("'trip-change-parent-confirmation-ui'"));
+  assert(runner.includes('testCount: 35')); assert(runner.includes("'trip-change-parent-confirmation-ui'"));
 });
 
 test('passing ordinary screens cannot hide a process-stopped replay or accept an unexecuted consent stage', () => {

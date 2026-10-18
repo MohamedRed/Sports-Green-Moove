@@ -30,7 +30,7 @@ test('failed primary transfer and later cleanup cannot be promoted to guardian U
   const runner = read('scripts/qa/local-android-session.mjs');
   assert(runner.includes("collectEvidence('guardian-parent-verification')"));
   assert(runner.indexOf('await replayGuardianParentUi') < runner.indexOf("instrument(['LocalAppFlowTest'"));
-  assert(runner.includes('testCount: 34, nativeCaseCount: 36'));
+  assert(runner.includes('testCount: 35, nativeCaseCount: 37'));
   assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'guardian-parent-verification'"));
   const verifier = read('scripts/qa/local-guardian-parent-ui.mjs');
   assert(verifier.indexOf('readGuardianParentDevice(directory, runId)') < verifier.indexOf("'guardian-parent-results.json'"));

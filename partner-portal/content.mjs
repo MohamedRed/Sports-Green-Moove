@@ -1,6 +1,7 @@
 import { tours } from './tours.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { createNavigationFlow, createSearchFlow } from './parent-phone-flows.mjs';
+import { createEmergencyFlow } from './emergency-flow.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
@@ -229,11 +230,12 @@ export const content = {
       images: [shot('payment-pending-narrow', 'Confirmation en attente sur écran étroit, essai local du 18 octobre'),
         shot('payment-review', 'Paiement à vérifier, essai local du 18 octobre'),
         shot('payments', 'Écran de paiement vide lors de l’essai du 11 octobre')], source: 'docs/release/evidence/local-payment-confirmation-2026-10-18/README.md' },
+    createEmergencyFlow(),
     { id: 'tracking', title: 'Sécurité enfant et suivi de trajet', status: 'untested',
       summary: 'Le suivi en trajet reste à tester.',
-      verified: 'L’enregistrement privé et les droits passent en local. L’éditeur et l’accès depuis le trajet sont ajoutés, mais leurs essais d’écran et l’ouverture du téléphone restent à valider.',
-      remaining: 'Tester l’éditeur, le contact de l’enfant et le téléphone sans appeler. Restent consentement, prise en charge, dépose, arrière-plan, verrouillage, pertes GPS/réseau, redémarrage, batterie et alertes de position.',
-      images: [], source: 'docs/release/evidence/local-emergency-editor-2026-10-18/README.md' },
+      verified: 'Le bouton en trajet ouvre le choix du contact dans les essais d’écran. Le suivi réel de l’enfant n’est pas encore validé.',
+      remaining: 'Tester le contact depuis le compte de l’enfant. Restent consentement, prise en charge, dépose, arrière-plan, verrouillage, pertes GPS/réseau, redémarrage, batterie et alertes de position.',
+      images: [], source: 'docs/release/evidence/local-replay-34-2026-10-18/README.md' },
     { id: 'ride-lifecycle', title: 'Déroulement du trajet', status: 'partial', checkedAt: '2026-10-15',
       summary: 'Le trajet se termine dans l’app et apparaît dans l’historique du parent, en local.',
       verified: 'Dans l’app, en local : départ, deux prises en charge, deux déposes et fin de trajet. Le parent retrouve ensuite le trajet dans ses trajets passés.',

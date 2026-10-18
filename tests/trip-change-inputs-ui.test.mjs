@@ -87,7 +87,7 @@ test('the real app uses the native picker and existing address actions without b
   assert(runner.includes("instrument(['LocalTripChangeInputsFlowTest'], 1"));
   assert(runner.indexOf("collectEvidence('trip-change-inputs')") < runner.indexOf('await verifyTripChangeInputsUi'));
   assert(runner.indexOf('await verifyTripChangeInputsUi') < runner.indexOf('replayWithNetworkCleanup(adb'));
-  assert(runner.includes('testCount: 34')); assert(runner.includes("'trip-change-inputs-ui'"));
+  assert(runner.includes('testCount: 35')); assert(runner.includes("'trip-change-inputs-ui'"));
   assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'trip-change-inputs'"));
   for (const workflow of ['native-ci.yml', 'web-integration-smoke.yml']) {
     assert.equal(read('.github/workflows/' + workflow).split('"tests/trip-change-inputs-ui.test.mjs"').length - 1, 2);

@@ -30,6 +30,7 @@ import { replayTripConsentRecovery } from './local-trip-consent-recovery.mjs';
 import { replayTripDraftRestart } from './local-trip-draft-restart.mjs';
 import { replayScheduleDraftRestart } from './local-trip-schedule-draft-restart.mjs';
 import { replayGuardianParentUi } from './local-guardian-parent-ui.mjs';
+import { replayEmergencyContactUi } from './local-emergency-contact-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -72,6 +73,8 @@ let failure;
 let result;
 try {
   const guardianParent = await replayGuardianParentUi({ instrument, collect: () => collectEvidence('guardian-parent-verification'),
+    directory: evidenceDir, runId: session.runId });
+  const emergencyContact = await replayEmergencyContactUi({ instrument, collect: () => collectEvidence('emergency-contact'),
     directory: evidenceDir, runId: session.runId });
   instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest', 'SearchSessionFlowTest', 'SearchCriteriaFlowTest'], 9);
   instrument(['LocalThemeRestartTest'], 1);
@@ -160,12 +163,12 @@ try {
     'chat-post-commit-response-loss-ui', 'driver-trip-cancellation-ui', 'booking-post-commit-response-loss-sdk', 'booking-response-loss-search-ui',
     'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui',
     'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui',
-    'trip-draft-process-restart-ui', 'guardian-parent-ui']
+    'trip-draft-process-restart-ui', 'guardian-parent-ui', 'emergency-contact-ui']
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 34, nativeCaseCount: 36, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
-    guardianParent,
+    testCount: 35, nativeCaseCount: 37, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
+    guardianParent, emergencyContact,
     tripConsentRestart, tripConsentRecovery, tripDraftRestart, tripScheduleDraftRestart, membershipRefresh,
     chatNetwork, chatRestart, chatResponseLoss, bookingResponseLoss, bookingUiResponseLoss,
     search: { method: 'component-ui-with-explicit-fake-gateway',
