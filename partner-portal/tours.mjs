@@ -3,6 +3,10 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'emergency-contact': [
+    image('emergency-native-saved', 'Enregistrer son contact', 'L’app affiche le contact fictif comme enregistré. L’essai s’arrête plus tard, à l’ouverture du téléphone.'),
+    image('emergency-native-restored', 'Rouvrir l’écran', 'Le même contact revient après réouverture de l’écran, avant l’arrêt de l’essai local.'),
+    image('emergency-native-child', 'Choisir le contact de l’enfant', 'Le parent de test dispose déjà d’un lien vérifié. Le contact de l’enfant apparaît comme enregistré.'),
+    image('emergency-native-revoked', 'Retirer la vérification', 'Après le retrait, l’app masque le contact. L’ouverture du téléphone reste non validée.'),
     image('emergency-editor-narrow', 'Choisir son contact', 'L’écran garde les champs et les actions accessibles avec du texte agrandi, dans l’essai simulé.'),
     image('emergency-editor-changed', 'Si le téléphone ne s’ouvre pas', 'Le nouveau numéro reste visible avec le message d’erreur. L’ouverture réelle du téléphone reste à tester.'),
   ],

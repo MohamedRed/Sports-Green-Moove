@@ -122,6 +122,22 @@ and successful scoped cleanup before it can write a success report. It expands
 the next full runner to 35 groups / 37 native cases, but execution is still
 pending. It is not physical-device, full process-death or child-own-account proof.
 
+## First Connected Replay Attempt
+
+Run `39155710166` at `f3da854499b422b82ce726be504aaef4915c71a4` reached
+adult save/reload, activity recreation, the preverified child's contact and
+revocation. Four reviewed pre-failure observations are retained in
+`local-contact-dialer-failure-2026-10-18`. The stage then failed waiting for the
+resolved phone package. There is no passing contact marker, independent final
+operation verification, removal/account-isolation pass or completed 35-group run.
+The child's own account path remains unimplemented.
+
+The next attempt records the resolved component, visible package, nonblocking
+intent-monitor counts, allowlisted app feedback and a window capture before the
+same 60-second assertion. This diagnostic does not substitute a phone app,
+launch from the shell, place a call, weaken an assertion or grant permissions.
+If diagnostics fail too, the missing-phone assertion still remains a failure.
+
 ## Required Verification
 
 - The agreed destination must be displayed accurately and backed by the relevant

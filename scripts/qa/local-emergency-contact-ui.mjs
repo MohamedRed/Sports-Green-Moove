@@ -27,7 +27,7 @@ export async function replayEmergencyContactUi({ instrument, collect, directory,
     'ui/EmergencyContactScreen.kt', 'ui/EmergencyContactDialogs.kt', 'ui/EmergencyContactRoute.kt'].map((path) => base + path);
   sources.push('functions/src/domain/emergencyContact.ts', 'functions/src/services/emergencyContactAuthority.ts',
     'functions/src/services/emergencyContact.ts', 'functions/src/callables/emergencyContact.ts',
-    ...['LocalEmergencyContactFlowTest.kt', 'LocalEmergencyPeer.kt', 'LocalEmergencyEvidence.kt']
+    ...['LocalEmergencyContactFlowTest.kt', 'LocalEmergencyPeer.kt', 'LocalEmergencyEvidence.kt', 'LocalEmergencyDialerDiagnostic.kt']
       .map((path) => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + path));
   const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
   const result = { projectId: 'demo-sgm-local-qa', runId, testedAt: new Date().toISOString(),

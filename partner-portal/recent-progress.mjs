@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le contact revient dans l’app',
+    text: 'Quatre captures sont ajoutées. Le contact revient après réouverture de l’écran, puis l’essai s’arrête en attendant le téléphone. La cause reste à identifier.', flow: 'emergency-contact' },
+  { date: '2026-10-18', title: 'Le nouvel essai s’arrête au téléphone',
+    text: 'Les écrans passent, mais le parcours du contact reste incomplet. Les 34 parcours du précédent essai restent documentés.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les écrans du contact passent les essais',
     text: 'Six essais locaux passent, avec des réponses simulées. Deux captures sont ajoutées. L’ouverture du téléphone reste à vérifier.', flow: 'emergency-contact' },
   { date: '2026-10-18', title: 'Les 34 parcours locaux vont jusqu’au bout',

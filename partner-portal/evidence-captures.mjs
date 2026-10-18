@@ -1,4 +1,8 @@
 export const captures = {
+  'emergency-native-saved': 'docs/release/evidence/local-contact-dialer-failure-2026-10-18/emergency-self-saved.png',
+  'emergency-native-restored': 'docs/release/evidence/local-contact-dialer-failure-2026-10-18/emergency-self-restored.png',
+  'emergency-native-child': 'docs/release/evidence/local-contact-dialer-failure-2026-10-18/emergency-child-saved.png',
+  'emergency-native-revoked': 'docs/release/evidence/local-contact-dialer-failure-2026-10-18/emergency-child-revoked.png',
   'emergency-editor-narrow': 'docs/release/evidence/local-replay-34-2026-10-18/emergency-editor-narrow.png',
   'emergency-editor-changed': 'docs/release/evidence/local-replay-34-2026-10-18/emergency-editor-changed.png',
   'guardian-parent-requested': 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-requested.png',

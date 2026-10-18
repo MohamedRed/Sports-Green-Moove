@@ -55,7 +55,10 @@ class LocalEmergencyContactFlowTest {
             val dial = instrumentation.addMonitor(IntentFilter(Intent.ACTION_DIAL).apply { addDataScheme("tel") }, null, false)
             val directCall = instrumentation.addMonitor(IntentFilter(Intent.ACTION_CALL).apply { addDataScheme("tel") }, null, false)
             try {
-                click("emergency.dial"); check(device.wait(Until.hasObject(By.pkg(dialerPackage)), 60_000))
+                click("emergency.dial")
+                val appeared = device.wait(Until.hasObject(By.pkg(dialerPackage)), 60_000)
+                try { recordEmergencyDialerAttempt(context, device, session.getString("runId"), resolved, appeared, dial.hits, directCall.hits) }
+                finally { check(appeared) { "Resolved phone package did not appear; see emergency-dialer-attempt.json and its capture" } }
                 assertEquals(dialerPackage, device.currentPackageName)
                 val digits = phone.filter(Char::isDigit)
                 check(device.findObjects(By.text(Pattern.compile(".*555.*"))).any { it.text.orEmpty().filter(Char::isDigit) == digits })

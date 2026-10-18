@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import { XMLParser } from 'fast-xml-parser';
+import { content } from '../partner-portal/content.mjs';
 import { emergencyNativeChecks, emergencyNativeScreenshots, validateEmergencyDevice } from '../scripts/qa/emergency-contact-evidence.mjs';
 
 const runId = 'a'.repeat(32), png = Buffer.alloc(24);
@@ -56,4 +58,38 @@ test('instrumented contact actions remain emulator-only with no direct call or f
   assert(!native.includes('Intent(Intent.ACTION_CALL')); assert(!native.includes('CALL_PHONE'));
   const peer = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyPeer.kt');
   assert(peer.includes('"action" to "revoke"')); assert(!peer.includes('"action" to "verify"'));
+});
+test('dialer timeout retains a distinct attempt diagnostic before the unchanged failure assertion', () => {
+  const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt');
+  assert(native.includes('device.wait(Until.hasObject(By.pkg(dialerPackage)), 60_000)'));
+  assert(native.indexOf('recordEmergencyDialerAttempt(') < native.indexOf('check(appeared)'));
+  assert(native.indexOf('check(appeared)') < native.indexOf('writeEmergencyDeviceEvidence('));
+  const diagnostic = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyDialerDiagnostic.kt');
+  for (const field of ['read-only-local-dialer-attempt-diagnostic-not-flow-verification', 'resolvedComponent', 'observedPackage',
+    'dialIntentCount', 'directCallIntentCount', 'device.takeScreenshot', 'knownAppFeedback']) assert(diagnostic.includes(field), field);
+  assert(!diagnostic.includes('session.getString("password")')); assert(!diagnostic.includes('dumpWindowHierarchy'));
+});
+test('the actual failed contact replay preserves observations without inventing a passing contact or full replay', () => {
+  const base = 'docs/release/evidence/local-contact-dialer-failure-2026-10-18/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 9);
+  for (const [file, hash] of Object.entries(hashes)) {
+    const raw = readFileSync(new URL('../' + base + file, import.meta.url));
+    assert.equal(createHash('sha256').update(raw).digest('hex'), hash, file);
+    if (!file.endsWith('.png')) assert.doesNotMatch(raw.toString('utf8'), /AIza[\w-]{20,}|Bearer\s+[\w.-]+|"password"\s*:/);
+  }
+  const transcript = read(base + 'LocalEmergencyContactFlowTest-instrumentation.txt');
+  assert(transcript.includes('FAILURES!!!')); assert(transcript.includes('LocalEmergencyContactFlowTest.kt:58'));
+  const receipt = JSON.parse(read(base + 'adb-pull-failure-cleanup.json'));
+  assert.equal(receipt.runId, 'c070f1f81b73b785a68dc9584a383c52'); assert.equal(receipt.phase, 'failure-cleanup');
+  assert.equal(receipt.completed, true); assert.notEqual(receipt.phase, 'emergency-contact');
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(read(base + 'ordinary-tests.xml')).testsuite;
+  assert.equal(Number(suite['@_tests']), 136); assert.equal(Number(suite['@_skipped']), 33);
+  assert.equal(Number(suite['@_failures']), 0); assert.equal(Number(suite['@_errors']), 0);
+  assert.deepEqual(JSON.parse(read(base + 'native-suite-status.json')), {
+    scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 0, componentEvidence: 0, localReplay: 1 });
+  const flow = content.flows.find((item) => item.id === 'emergency-contact'); assert.equal(flow.status, 'partial');
+  assert.match(flow.verified, /s’arrête/); assert.match(flow.remaining, /sans appeler/);
+  assert.equal(flow.images.filter((image) => image.file.startsWith('emergency-native-')).length, 4);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-replay-34-2026-10-18/contact-component-results.json');
+  assert(content.updates.some((item) => item.title === 'Les 34 parcours locaux vont jusqu’au bout'));
 });

@@ -46,6 +46,7 @@ test('six contact component passes and reviewed captures do not impersonate an a
   assert.deepEqual(selected.steps.map((step) => step.id), cases.map((item) => item.name));
   assert(selected.steps.every((step) => step.status === 'passed'));
   const emergency = content.flows.find((flow) => flow.id === 'emergency-contact'); assert.equal(emergency.status, 'partial');
-  assert.equal(emergency.images.length, 2); assert.match(emergency.verified, /simulées/); assert.match(emergency.remaining, /sans appeler/);
+  assert.equal(emergency.images.filter((image) => image.file.startsWith('emergency-editor-')).length, 2);
+  assert.match(emergency.verified, /simulés/); assert.match(emergency.remaining, /sans appeler/);
   assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
 });
