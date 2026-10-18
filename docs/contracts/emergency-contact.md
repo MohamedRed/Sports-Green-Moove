@@ -22,10 +22,22 @@ deleted, rewritten or relabeled as a successful call.
 
 ## Product Decision
 
-The owner has been asked whether the target is a user-saved contact or emergency
-services. Do not choose a destination, invent a contact, or silently substitute
-one for the other while that decision is pending. No production profile or
-notification policy is changed by this audit.
+On 2026-10-18 the owner selected a saved personal emergency contact. Adults
+manage their own contact; a child's verified parent chooses the child's contact.
+The club manager verifies parent-child authorisation, separately from approving
+team enrollment. A manager's verification role does not give them permission to
+choose or edit that child's emergency contact.
+
+The current `guardianUserIds` link is not evidence of manager verification:
+clients can declare that link when creating a child record. Do not reuse it as
+verified-parent authority for this new flow. Verification needs server-owned
+records, current scoped manager authority, revocation and denial tests before
+the child's editor can be enabled. These decisions are not an implementation,
+a production permission change or a successful native handoff.
+
+Do not invent a number, substitute emergency services, or place a call
+automatically. Contact details must remain private and must not be copied into
+public team/club documents, logs or shared evidence.
 
 ## Required Verification
 
@@ -40,9 +52,12 @@ notification policy is changed by this audit.
   sharing. A mocked callback or intent assertion is only component evidence.
 - A device without a compatible dialer must show an accurate failure and retain
   the visible contact, not substitute another number or claim success.
-- If the owner chooses a personal contact, test validation, save/reload, failed
+- For the personal contact, test validation, save/reload, failed
   save, interrupted reply, concurrent edits, removal and account switching. No
   other account may read, edit, retain or dial the previous user's contact.
+- For a child, deny edits by an unverified, refused or revoked parent and by the
+  manager who verified the relationship. Verify that current parent authority is
+  checked on the server, including concurrent revocation and account changes.
 - Verify the active-ride entry point for parent and driver, navigation back to
   the ride, large text and narrow layout. Do not reuse pickup/dropoff or tracking
   screenshots as proof of emergency-contact behavior.

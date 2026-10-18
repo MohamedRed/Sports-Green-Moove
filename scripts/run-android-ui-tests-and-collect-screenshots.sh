@@ -29,6 +29,12 @@ set +e
 test_status=$?
 set -e
 
+if [[ "$test_status" -ne 0 ]]; then
+  if ! node "$repo_root/scripts/qa/collect-ordinary-android-failure.mjs" "$output_dir/ordinary-failure"; then
+    echo "::warning::Could not collect ordinary-suite process diagnostics; original test failure is preserved"
+  fi
+fi
+
 collect_component_evidence() {
   mkdir -p "$output_dir" || return 1
   if ! adb pull "$remote_dir" "$output_dir"; then
@@ -36,10 +42,15 @@ collect_component_evidence() {
     if [[ "$test_status" -eq 0 ]]; then return 1; fi
   fi
 
-  if [[ "$test_status" -ne 0 ]] && adb shell test -d /sdcard/Download/sgm-trip-changes; then
-    if ! adb pull /sdcard/Download/sgm-trip-changes "$output_dir"; then
-      echo "::warning::Could not collect partial trip-change screenshots"
-    fi
+  if [[ "$test_status" -ne 0 ]]; then
+    mkdir -p "$output_dir/partial-components" || return 1
+    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback; do
+      if adb shell test -d "/sdcard/Download/$directory"; then
+        if ! adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"; then
+          echo "::warning::Could not collect partial component screenshots: $directory"
+        fi
+      fi
+    done
   fi
 
   if [[ "$test_status" -eq 0 ]]; then

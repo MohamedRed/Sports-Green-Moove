@@ -81,7 +81,10 @@ test('screen fixtures preserve real input readiness, app scrolling and failure a
   assert(screens.includes('device.takeScreenshot(File(directory, windowName))'));
   assert(screens.includes('captureLocalUi(compose, name, dialog = true)'));
   const collection = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
-  assert(collection.includes('[[ "$test_status" -ne 0 ]] && adb shell test -d /sdcard/Download/sgm-trip-changes'));
+  assert(collection.includes('if [[ "$test_status" -ne 0 ]]; then'));
+  assert(collection.includes('for directory in sgm-trip-changes sgm-payment-confirmation'));
+  assert(collection.includes('adb shell test -d "/sdcard/Download/$directory"'));
+  assert(collection.includes('adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"'));
   assert(collection.includes('exit "$test_status"'));
   assert(collection.includes('Missing native trip change display capture: $window_name'));
 });

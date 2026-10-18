@@ -3,6 +3,7 @@ package be.sportgreenmoove.app.ui
 import android.app.KeyguardManager
 import android.os.PowerManager
 import android.util.Log
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.ui.platform.ViewRootForTest
 import androidx.compose.ui.test.SemanticsNodeInteraction
@@ -32,6 +33,7 @@ internal class InputWindowReadiness(
             logState("window-focused")
         } catch (failure: Throwable) {
             logState("window-focus-failed")
+            InputWindowDiagnostics.captureFailure()
             throw failure
         }
     }
@@ -46,11 +48,14 @@ internal class InputWindowReadiness(
         val keyguard = view.context.getSystemService(KeyguardManager::class.java)
         val active = if (inspectEditor) manager.isActive(view) else null
         val accepting = if (inspectEditor) manager.isAcceptingText else null
+        val window = view.rootView.layoutParams as? WindowManager.LayoutParams
         Log.i("SgmInputReadiness", "phase=$phase attached=${view.isAttachedToWindow} " +
             "windowTokenPresent=${view.windowToken != null} resumed=${root.isLifecycleInResumedState} " +
             "windowFocused=${view.hasWindowFocus()} viewFocused=${view.hasFocus()} " +
             "interactive=${power.isInteractive} keyguardLocked=${keyguard.isKeyguardLocked} " +
             "deviceLocked=${keyguard.isDeviceLocked} rootShown=${view.rootView.isShown} " +
+            "decorWindowFocused=${view.rootView.hasWindowFocus()} windowType=${window?.type} " +
+            "windowNotFocusable=${window?.let { it.flags and WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE != 0 }} " +
             "windowVisibility=${view.windowVisibility} displayState=${view.display?.state} " +
             "servedView=$active acceptingText=$accepting " +
             "keyboardVisible=${ViewCompat.getRootWindowInsets(view)?.isVisible(WindowInsetsCompat.Type.ime())}")

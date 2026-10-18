@@ -11,10 +11,11 @@ function fixture(t) {
   for (const dir of ['scripts', 'android', 'bin']) mkdirSync(join(root, dir));
   cpSync(new URL('../scripts/run-android-ui-tests-and-collect-screenshots.sh', import.meta.url), join(root, 'scripts/run.sh'));
   const log = join(root, 'calls');
+  const adbLog = join(root, 'adb-calls');
   const executable = (path, content) => writeFileSync(join(root, path), '#!/bin/bash\n' + content, { mode: 0o700 });
   executable('android/gradlew', 'if [[ "$*" == *:app:assembleDebugAndroidTest* ]]; then echo build >> "$CALL_LOG"; exit "$BUILD_STATUS"; fi\necho ordinary >> "$CALL_LOG"\nexit "$ORDINARY_STATUS"\n');
-  executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
-  executable('bin/adb', 'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-payment-confirmation && "$CAPTURE_FAILURE" == payments ]]; then exit 9; fi\nexit 0\n');
+  executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*collect-ordinary-android-failure.mjs) echo diagnostic >> "$CALL_LOG"; exit "$DIAGNOSTIC_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
+  executable('bin/adb', 'printf "%s\\n" "$*" >> "$ADB_CALL_LOG"\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-payment-confirmation && "$CAPTURE_FAILURE" == payments ]]; then exit 9; fi\nexit 0\n');
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
   const screens = {
@@ -32,11 +33,12 @@ function fixture(t) {
   for (let i = 0; i < 8; i++) writeFileSync(join(out, `store-${i}.png`), 'shell-harness-fixture');
   return (env) => {
     const result = spawnSync('bash', [join(root, 'scripts/run.sh')], { encoding: 'utf8', env: { ...process.env,
-      PATH: join(root, 'bin') + ':' + process.env.PATH, CALL_LOG: log, ORDINARY_STATUS: '0', REPLAY_STATUS: '0',
-      BUILD_STATUS: '0', SETUP_STATUS: '0', RESTORE_STATUS: '0', CAPTURE_FAILURE: '0', ...env } });
+      PATH: join(root, 'bin') + ':' + process.env.PATH, CALL_LOG: log, ADB_CALL_LOG: adbLog, ORDINARY_STATUS: '0', REPLAY_STATUS: '0',
+      BUILD_STATUS: '0', SETUP_STATUS: '0', RESTORE_STATUS: '0', DIAGNOSTIC_STATUS: '0', CAPTURE_FAILURE: '0', ...env } });
     assert.equal(result.error, undefined);
     const statusFile = join(out, 'native-suite-status.json');
     return { ...result, calls: readFileSync(log, 'utf8').trim().split('\n'),
+      adbCalls: existsSync(adbLog) ? readFileSync(adbLog, 'utf8').trim().split('\n') : [],
       build: JSON.parse(readFileSync(join(out, 'native-build-status.json'), 'utf8')),
       statuses: existsSync(statusFile) ? JSON.parse(readFileSync(statusFile, 'utf8')) : null };
   };
@@ -52,10 +54,30 @@ for (const [name, env, exit, statuses] of [
   ['both failures retain both outcomes and return the first', { ORDINARY_STATUS: '7', REPLAY_STATUS: '11' }, 7, [7, 0, 11]],
 ]) test(name, (t) => {
   const result = fixture(t)(env);
-  assert.equal(result.status, exit, result.stderr); assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'replay', 'restore']);
+  assert.equal(result.status, exit, result.stderr);
+  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', ...(env.ORDINARY_STATUS ? ['diagnostic'] : []), 'replay', 'restore']);
   assert.deepEqual(result.build, { scope: 'native-build-before-device-policy-not-flow-verification', status: 0 });
   assert.equal(result.statuses.scope, 'native-suite-exit-status-not-flow-verification');
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
+});
+
+test('failed suites retain partial payment and other component captures without replacing the original failure', (t) => {
+  const result = fixture(t)({ ORDINARY_STATUS: '7', CAPTURE_FAILURE: 'payments' });
+  assert.equal(result.status, 7);
+  assert.match(result.stdout, /Could not collect partial component screenshots: sgm-payment-confirmation/);
+  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback']) {
+    assert(result.adbCalls.some((call) => call.startsWith('pull /sdcard/Download/' + name + ' ') && call.endsWith('/partial-components')));
+  }
+  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
+  assert.equal(result.statuses.ordinaryTests, 7);
+});
+
+test('unavailable process diagnostics never suppress the original failure or the independent replay', (t) => {
+  const result = fixture(t)({ ORDINARY_STATUS: '7', DIAGNOSTIC_STATUS: '9' });
+  assert.equal(result.status, 7);
+  assert.match(result.stdout, /original test failure is preserved/);
+  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
+  assert.equal(result.statuses.ordinaryTests, 7);
 });
 
 test('an unsafe or unavailable device stops both suites before app execution', (t) => {

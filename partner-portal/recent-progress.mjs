@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le contact d’urgence sera personnel',
+    text: 'Chacun choisira son contact. Pour un enfant, ce sera son parent, après vérification du lien par le responsable du club. Ce parcours reste à ajouter.', flow: 'tracking' },
+  { date: '2026-10-18', title: 'Le nouvel essai complet échoue',
+    text: 'L’app s’arrête pendant une modification de trajet. Les trois vérifications d’affichage du paiement passent, mais les nouvelles captures ne sont pas récupérées.', flow: 'payments' },
   { date: '2026-10-18', title: 'La confirmation du paiement passe les essais locaux',
     text: 'Une confirmation tardive reste en attente. Vérifier ne relance pas de paiement. Les paiements réels restent à tester.', flow: 'payments' },
   { date: '2026-10-18', title: 'Les deux repères sont visibles sur la carte',

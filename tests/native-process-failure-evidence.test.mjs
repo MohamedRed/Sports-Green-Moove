@@ -44,7 +44,24 @@ test('unapproved or physical targets never execute a diagnostic command', (t) =>
   process.env.SGM_LOCAL_DISPOSABLE_EMULATOR = 'true';
   assert.throws(() => collectNativeProcessFailure({ ...settings, serial: 'physical-device' }, () => { calls++; }));
   assert.throws(() => collectNativeProcessFailure({ ...settings, label: '../outside' }, () => { calls++; }));
+  assert.throws(() => collectNativeProcessFailure({ ...settings, packageName: 'private.app' }, () => { calls++; }));
   assert.equal(calls, 0);
+});
+
+test('ordinary component failures query their own package rather than the isolated replay package', (t) => {
+  const settings = input(t), previous = process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, calls = [];
+  process.env.SGM_LOCAL_DISPOSABLE_EMULATOR = 'true';
+  t.after(() => { if (previous === undefined) delete process.env.SGM_LOCAL_DISPOSABLE_EMULATOR; else process.env.SGM_LOCAL_DISPOSABLE_EMULATOR = previous; });
+  const receipt = collectNativeProcessFailure({ ...settings, password: undefined, packageName: 'be.sportgreenmoove.app' }, (adb, args) => {
+    calls.push(args);
+    return args.includes('installs') ? 'Active install sessions:\n' : 'synthetic diagnostic';
+  });
+  assert(calls[1].includes('be.sportgreenmoove.app'));
+  assert(!calls.flat().includes('be.sportgreenmoove.app.local'));
+  assert.equal(receipt.packageName, 'be.sportgreenmoove.app');
+  const runner = readFileSync(new URL('../scripts/run-android-ui-tests-and-collect-screenshots.sh', import.meta.url), 'utf8');
+  assert(runner.indexOf('collect-ordinary-android-failure.mjs') < runner.indexOf('collect_component_evidence()'));
+  assert(runner.includes('original test failure is preserved'));
 });
 
 test('one failed diagnostic preserves its code without stopping the remaining queries or leaking child output', (t) => {

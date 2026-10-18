@@ -79,6 +79,56 @@ test('both CI entry points retain component input readiness coverage', () => {
   assert(JSON.parse(read('package.json')).scripts['test:local-flow-isolation'].includes('tests/conversation-test-input.test.mjs'));
 });
 
+test('focus failure diagnostics are bounded, read-only and cannot replace or retry the original assertion', () => {
+  const readiness = read(base + 'InputWindowReadiness.kt');
+  assert(readiness.indexOf('InputWindowDiagnostics.captureFailure()') > readiness.indexOf('catch (failure: Throwable)'));
+  assert(readiness.indexOf('throw failure') > readiness.indexOf('InputWindowDiagnostics.captureFailure()'));
+  assert.match(readiness, /decorWindowFocused=\$\{view.rootView.hasWindowFocus\(\)\}/);
+  const helper = read(base + 'InputWindowDiagnostics.kt');
+  assert(helper.includes('executeShellCommand("dumpsys -t 1 window displays")'));
+  assert(helper.includes('ByteArray(128 * 1024)'));
+  assert(helper.includes('WindowFocusSnapshot.sanitize('));
+  assert(helper.includes('AutoCloseInputStream(descriptor).use'));
+  assert.doesNotMatch(helper, /\.message|printStackTrace|Thread.sleep|requestFocus|am start|input keyevent|wm dismiss/);
+  const parser = read('android/app/src/debug/java/be/sportgreenmoove/app/testing/WindowFocusSnapshot.kt');
+  assert(parser.includes('owner in knownPackages'));
+  assert(parser.includes('take(24)'));
+  for (const path of [base + 'InputWindowDiagnostics.kt',
+    'android/app/src/debug/java/be/sportgreenmoove/app/testing/WindowFocusSnapshot.kt',
+    'android/app/src/test/java/be/sportgreenmoove/app/testing/WindowFocusSnapshotTest.kt']) {
+    assert.equal(read('.github/workflows/web-integration-smoke.yml').split('"' + path + '"').length - 1, 2);
+    assert(read(path).split('\n').length < 300);
+  }
+});
+
+test('the retained six input failures are not mistaken for a successful full suite or payment screenshots', () => {
+  const path = 'docs/release/evidence/native-input-focus-2026-10-18/';
+  const bytes = readFileSync(resolve(root, path + 'general-ui.xml'));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), '6c83bbc35e23ee39cb8c268dfba892ac604cf2ae5170af521d55d222425daedc');
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
+    isArray: (name) => name === 'testcase' }).parse(bytes).testsuite;
+  assert.equal(suite.tests, 124); assert.equal(suite.failures, 6); assert.equal(suite.errors, 0); assert.equal(suite.skipped, 31);
+  const failures = suite.testcase.filter((item) => Object.hasOwn(item, 'failure'));
+  assert.equal(failures.length, 6); assert(failures.every((item) => /InputWindowReadiness.awaitFocus/.test(item.failure)));
+  const payments = suite.testcase.filter((item) => item.classname.endsWith('.PaymentConfirmationLayoutTest'));
+  assert.equal(payments.length, 3); assert(payments.every((item) => !Object.hasOwn(item, 'failure') && !Object.hasOwn(item, 'skipped')));
+  assert.deepEqual(JSON.parse(read(path + 'native-suite-status.json')), {
+    scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 1, componentEvidence: 0, localReplay: 0,
+  });
+  assert.match(read(path + 'README.md'), /focus owner was not captured/);
+  assert.match(read(path + 'README.md'), /No new payment screenshots/);
+  const nextBytes = readFileSync(resolve(root, path + 'next-general-ui.xml'));
+  assert.equal(createHash('sha256').update(nextBytes).digest('hex'), '5e5e14b581ecd3441f6c72af99ee0b52f5da147c07e59651b808f6d07524097f');
+  const nextSuite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
+    isArray: (name) => name === 'testcase' }).parse(nextBytes).testsuite;
+  assert.equal(nextSuite.tests, 117); assert.equal(nextSuite.failures, 1); assert.equal(nextSuite.skipped, 31);
+  assert.equal(nextSuite.testcase.filter((item) => Object.hasOwn(item, 'failure'))[0].failure, '');
+  assert.deepEqual(JSON.parse(read(path + 'next-native-suite-status.json')), {
+    scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 1, componentEvidence: 0, localReplay: 1,
+  });
+  assert.equal(read('.github/workflows/web-integration-smoke.yml').split('"' + path + '**"').length - 1, 2);
+});
+
 test('the retained component failure is the original first-error wait, not a failed database or copy assertion', () => {
   const xml = read('docs/release/evidence/local-ui-collection-2026-10-16/component-before.xml');
   const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,

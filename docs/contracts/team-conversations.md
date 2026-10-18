@@ -68,7 +68,15 @@ role alone does not grant this team-enrollment approval capability.
 
 Only an approved, active enrollment can grant the team's conversation access.
 Parents qualify through an authoritative guardian relationship to an approved,
-actively enrolled child; club approval is not permission to invent or edit
-guardian relationships. Requests, refusals and removals retain the denial and
+actively enrolled child. On 2026-10-18 the owner selected the club manager to
+verify parent-child authorisation as a separate decision from team enrollment.
+An enrollment approval alone must not verify a parent; parents cannot approve
+their own relationship, and a manager of a different club cannot verify it.
+
+The existing client-declared `children.guardianUserIds` array does not establish
+this verification. Server-owned verification records and their lifecycle must
+be implemented before they grant this team's chat access. A verified link must
+not grant access to another team or club without a current approved enrollment.
+Requests, refusals and removals retain the denial and
 revocation requirements above. The lifecycle and chat flow remain unimplemented
 and unverified; this product decision does not approve any production records.

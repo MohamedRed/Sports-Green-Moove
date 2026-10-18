@@ -73,11 +73,25 @@ test('the selected manager approval policy is recorded without claiming team cha
   assert.match(contract, /owner selected the club manager to approve people and children/);
   assert.match(contract, /team's stored club, not a client-supplied club ID/);
   assert.match(contract, /administrator\nrole alone does not grant/);
-  assert.match(contract, /not permission to invent or edit\nguardian relationships/);
+  assert.match(contract, /club manager to\nverify parent-child authorisation as a separate decision from team enrollment/);
+  assert.match(contract, /parents cannot approve\ntheir own relationship/);
+  assert.match(contract, /client-declared `children.guardianUserIds` array does not establish\nthis verification/);
   assert.match(contract, /remain unimplemented\nand unverified/);
   assert(!contract.includes('Approval Policy Pending'));
   const group = content.blockers.find((item) => item.id === 'group-conversation');
   assert.match(group.next, /responsable du club/); assert(!group.next.includes('Choisir qui'));
   assert.match(group.text, /construire et à tester/);
   assert(content.updates.some((item) => item.title === 'Le club validera les inscriptions aux équipes' && item.date === '2026-10-17'));
+});
+
+test('personal emergency contacts preserve verified-parent authority without claiming a working emergency action', () => {
+  const contract = read('docs/contracts/emergency-contact.md');
+  assert.match(contract, /Adults\nmanage their own contact; a child's verified parent chooses the child's contact/);
+  assert.match(contract, /manager's verification role does not give them permission to\nchoose or edit/);
+  assert.match(contract, /current `guardianUserIds` link is not evidence of manager verification/);
+  assert.match(contract, /not an implementation/);
+  assert.match(contract, /Do not invent a number, substitute emergency services, or place a call\nautomatically/);
+  const emergency = content.blockers.find((item) => item.id === 'emergency-contact');
+  assert.match(emergency.next, /enregistrer/);
+  assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });

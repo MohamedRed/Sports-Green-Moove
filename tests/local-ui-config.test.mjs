@@ -92,7 +92,8 @@ test('local conversation evidence requires app execution and independent persist
   assert.match(runner, /collectNativeProcessFailure\(\{ adb, serial, directory: evidenceDir/);
   const failureDiagnostics = readFileSync(new URL('../scripts/qa/native-process-failure-evidence.mjs', import.meta.url), 'utf8');
   assert.match(failureDiagnostics, /'logcat', '-d', '-b', 'crash'/);
-  assert.match(failureDiagnostics, /'dumpsys', 'activity', 'exit-info', 'be.sportgreenmoove.app.local'/);
+  assert.match(failureDiagnostics, /packageName = 'be.sportgreenmoove.app.local'/);
+  assert.match(failureDiagnostics, /'dumpsys', 'activity', 'exit-info', packageName/);
   assert.match(runner, /throw failure/);
   const peer = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalConversationPeer.kt', import.meta.url), 'utf8');
   assert.match(peer, /check\(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR\)/);
