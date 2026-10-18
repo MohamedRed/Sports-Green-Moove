@@ -78,13 +78,14 @@ test('ordinary skips remain separate from the actual local cases and neither suc
   assert.match(text(base + 'README.md'), /does not prove the earlier intermittent copy/);
 });
 
-test('three reviewed captures replace no historical proof and keep Belgian-time, history and release gaps visible', () => {
+test('three earlier captures remain historical alongside newer evidence without hiding release gaps', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.equal(flow.source, base + 'README.md'); assert.equal(flow.ui.source, base + 'completed/results.json');
+  assert.equal(flow.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert.equal(flow.ui.groups.length, 9);
   for (const kind of recoveryKinds) assert(flow.ui.groups.includes(`trip-consent-${kind}-restart-ui`));
   const ids = ['trip-consent-recovery-pending', 'trip-consent-recovery-partial', 'trip-consent-recovery-closed'];
-  assert.deepEqual(flow.images.slice(0, 3).map((i) => i.file), ids); assert.equal(flow.images.length, 15);
+  assert.deepEqual(flow.images.slice(2, 5).map((i) => i.file), ids); assert.equal(flow.images.length, 17);
   for (const [index, name] of ['pending', 'partial', 'declined'].entries()) {
     assert.equal(captures[ids[index]], base + `completed/local-trip-consent-recovery-${name}.png`);
     const png = bytes(captures[ids[index]]); assert.equal(png.readUInt32BE(16), 1080);
@@ -94,9 +95,9 @@ test('three reviewed captures replace no historical proof and keep Belgian-time,
     .equals(bytes(base + 'completed/local-trip-consent-recovery-withdrawn.png')));
   assert.equal(Object.values(captures).filter((p) => p.startsWith(base)).length, 3);
   const timeGap = content.blockers.find((b) => b.id === 'booking-time-display');
-  assert.equal(timeGap.source, 'docs/release/evidence/local-trip-dates-2026-10-18/README.md');
-  assert.match(timeGap.text, /11h50.*13h50/); assert.match(timeGap.next, /Rejouer dans l’app/);
-  for (const scope of [/horaires/, /sur téléphone/, /application/, /historique/, /brouillons/, /paiements et remboursements réels/])
+  assert.equal(timeGap.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
+  assert.match(timeGap.text, /corrigé.*essai local/); assert.match(timeGap.next, /Rejouer sur téléphone/);
+  for (const scope of [/sur téléphone/, /application/, /brouillons/, /paiements et remboursements réels/])
     assert.match(flow.remaining, scope);
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');
   const manifest = JSON.parse(text('docs/release/evidence-manifest.json'));

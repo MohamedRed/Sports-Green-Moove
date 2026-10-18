@@ -163,7 +163,7 @@ test('reviewed time and unavailable-route captures require the independently ver
     'paymentExercised', 'datePickerExercised', 'fullAppReplay']) assert.equal(stage[key], false);
   assert.equal(stage.notificationCount, 3);
   const flow = content.flows.find((item) => item.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert(flow.ui.groups.includes('trip-change-inputs-ui'));
   assert.match(flow.remaining, /changement de parcours/); assert.match(flow.remaining, /application/);
   assert.match(flow.remaining, /sur téléphone/); assert.match(flow.remaining, /paiements et remboursements réels/);

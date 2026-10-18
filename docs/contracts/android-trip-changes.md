@@ -68,23 +68,25 @@ The completed 32-group isolated native replay proves two-parent consent,
 confirmed-price consent and the separate pending/partial/declined/withdrawn
 entry states across a new app process. See the
 [completed recovery evidence](../release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md).
-Declined/withdrawn entry checks do not establish proposal-history retrieval.
+That earlier source's declined/withdrawn entry checks do not establish
+proposal-history retrieval.
 
 An independent [history entry](trip-change-history.md) is now implemented for
 drivers and affected parents. The 18 October isolated history service checks
-and native controller/mapper units pass; current history screen execution and
-post-restart captures remain pending. This does not promote the older 32-group
-recovery proof or the interrupted time-fix replay into history UI evidence.
+and native controller/mapper units pass. The separate completed 18 October
+32-group replay now proves both parents' and the driver's closed history before
+and after a guarded restart, with unchanged records and reviewed captures. See
+the [current native evidence](../release/evidence/local-trip-history-2026-10-18/README.md).
+The interrupted earlier replay remains failed.
 
 The 18 October [date regression checks](../release/evidence/local-trip-dates-2026-10-18/README.md)
 reproduce and correct server/device-default timezone labels. Unit checks pass
-across three default timezones. The next native replay additionally compares
+across three default timezones. The completed 18 October native replay compares
 the direct trip summary and both parents' reservation times against an independent
-Belgian-time expectation. Compilation is not a completed on-screen replay.
+Belgian-time expectation. It passes those on-screen assertions.
 
 Not yet proven: a complete multi-account native change-application replay,
-consistent Belgian-time labels in trip/booking cards, durable pending edits across
-process death, review history after a decline/withdrawal, real address/map
+durable pending edits across process death, real address/map
 usability, live payment/refund settlement,
 push delivery and physical-device behavior. Production Functions and app builds
 have not been deployed by this change. This is not full release acceptance.

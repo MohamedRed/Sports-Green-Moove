@@ -79,8 +79,8 @@ test('the passing ordinary keyboard probes do not erase the retained failures or
 test('only the reviewed schedule image is added and the private page retains the untested release scope', () => {
   const name = 'local-trip-change-date-arrival-confirmed.png', id = 'trip-date-arrival-confirmed';
   const flow = content.flows.find((item) => item.id === 'publication');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/results.json');
-  assert(flow.ui.groups.includes('trip-change-schedule-ui')); assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
+  assert(flow.ui.groups.includes('trip-change-schedule-ui')); assert.equal(flow.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
   assert.equal(captures[id], base + 'completed/' + name); assert.deepEqual(json('trip-change-schedule-ui-stage.json').captureFiles, [name]);
   assert(flow.images.some((item) => item.file === id && /essai local du 17 octobre/.test(item.alt)));
   const png = bytes(captures[id]); assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');

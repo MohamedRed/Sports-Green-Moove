@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les anciens refus et retraits se rouvrent',
+    text: 'Les deux parents et le conducteur retrouvent l’historique après fermeture. Les 32 essais locaux passent. Deux captures sont ajoutées.', flow: 'publication' },
+  { date: '2026-10-18', title: 'Les horaires sont alignés dans l’app',
+    text: 'Le trajet et les réservations affichent la même heure dans l’essai local. La mise en ligne reste à faire.', flow: 'publication' },
+  { date: '2026-10-18', title: 'Le brouillon du trajet est ajouté',
+    text: 'Les champs inachevés sont gardés séparément pour chaque compte et trajet. Les premiers contrôles passent ; l’essai dans l’app suit.', flow: 'publication' },
   { date: '2026-10-18', title: 'L’historique des modifications est ajouté',
     text: 'Les anciens refus et retraits sont retrouvés dans les essais locaux, avec les bons accès. L’écran reste à tester dans l’app.', flow: 'publication' },
   { date: '2026-10-18', title: 'L’essai dans l’app a été interrompu',

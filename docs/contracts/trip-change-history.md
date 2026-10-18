@@ -35,5 +35,5 @@ app deployment was performed, and no paid resource or separate Terraform-managed
 infrastructure was introduced.
 
 See [18 October evidence](../release/evidence/local-trip-history-2026-10-18/README.md)
-for passing isolated service/unit checks and the still-unexecuted history UI
+for passing isolated service/unit checks and the completed 32-group native history UI
 checks. The prior interrupted native run did not exercise this feature.

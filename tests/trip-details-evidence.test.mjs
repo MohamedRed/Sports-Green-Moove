@@ -77,14 +77,15 @@ test('raw reports remain byte exact and the portal keeps full editing and real s
   const flow = content.flows.find((item) => item.id === 'publication');
   const current = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.source, 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
   assert.equal(flow.local.source, current + 'services.json');
   assert(flow.local.groups.includes('trip-details-ownership'));
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert.match(flow.remaining, /parcours.*application/); assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas encore en ligne/i);
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
-  assert.match(blocker.next, /rejouer sur téléphone/); assert.match(blocker.next, /historique et les brouillons/);
+  assert.match(blocker.next, /rejouer sur téléphone/); assert.match(blocker.next, /brouillons/);
+  assert.match(blocker.text, /historique.*passent en local/);
   assert.match(blocker.next, /paiements concernés/);
   assert(!blocker.next.includes('Choisir entre'));
   assert(content.updates.some((item) => item.date === '2026-10-16' && item.flow === 'publication' && /détails réservés/.test(item.title)));

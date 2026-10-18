@@ -1,4 +1,6 @@
 export const captures = {
+  'trip-history-declined': 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/local-trip-history-declined.png',
+  'trip-history-withdrawn': 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/local-trip-history-withdrawn.png',
   'trip-consent-recovery-pending': 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/local-trip-consent-recovery-pending.png',
   'trip-consent-recovery-partial': 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/local-trip-consent-recovery-partial.png',
   'trip-consent-recovery-closed': 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/local-trip-consent-recovery-declined.png',

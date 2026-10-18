@@ -69,5 +69,6 @@ export function detail(flow) {
 
 export function localResults(flow) {
   return `<section class="local-results" aria-label="Résultats de l’essai local"><h3>Ce qui a été vérifié</h3>
+    ${flow.local.checkedAt ? `<p class="date">Essai local du ${date(flow.local.checkedAt)}</p>` : ''}
     <ul>${flow.local.checks.map((check) => `<li>${escape(check)}</li>`).join('')}</ul></section>`;
 }

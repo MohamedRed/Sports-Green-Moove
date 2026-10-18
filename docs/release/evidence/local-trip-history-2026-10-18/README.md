@@ -1,4 +1,4 @@
-# Trip History And Interrupted Time Replay - 18 October 2026
+# Trip History And Time Replay - 18 October 2026
 
 ## Verified Locally
 
@@ -33,8 +33,34 @@ not a transport fix, retry or weakened ordering assertion.
 `functions.json` retains 258/258 passing backend cases. `unit/` retains the
 successful 4-case Android history controller and 2-case strict wire mapper
 reports. The complete Android unit suite passes 234/234, and the new native
-history, large-text and idempotent month-selection cases compile. Those native
-cases have not been executed on the changed history source yet.
+history, large-text and idempotent month-selection cases subsequently passed in
+the completed native replay below.
+
+## Completed Native Replay
+
+Source: `92ea11dcb87b3c2fc0bf266b437122ce73b23bdb`.
+Run: 39083223705; Android UI job: 117544333585.
+Artifact: 12120371476, `android-connected-ui-test-results`, 14,052,245 bytes.
+Local run: `fa5204526c51182f1de9203112d01814`, completed at
+2026-10-18T00:56:48.574Z. All 32 required groups pass. The 23 original local
+instrumentation transcripts account for 31 native cases; all ten evidence copies
+succeeded. Ordinary/component instrumentation reports 111 cases, 85 passed,
+26 conditional local-only skips, no failures/errors. The three new history
+component cases actually ran, including large text and repeated month selection.
+
+The recovery matrix opens declined and withdrawn history for both parents and
+the owning driver, before and after a guarded new process. Original 2.50 and
+proposed 4.00 prices remain visible, closed response/withdraw/quote/apply/propose
+actions remain absent and all independent record hashes stay unchanged. Both
+parents' reservation times and the direct trip label match the independently
+computed Brussels expectation. The time-label fix is now exercised in the app,
+not only in unit tests. This does not exercise every DST boundary on-screen.
+
+`completed-native/` retains 83 exact original files with SHA-256 hashes, including
+the complete result, stages/checkpoints, receipts, transcripts and ordinary XML.
+Two actual 1080×2140 history captures were visually reviewed and allowlisted for
+the partner site; original app content is not edited. Maps remain unavailable in
+this isolated build: neither image is evidence of working route rendering.
 
 ## Prior Native Replay Was Interrupted
 
@@ -62,14 +88,14 @@ not a successful time fix replay or evidence that every app crash is explained.
 
 ## Still Open
 
-The native matrix now enters closed history for both parents and driver, before
-and after the guarded restart, and requires new captures and explicit receipts.
-No new history/time-fix image is published yet. The prior reviewed 17 October
-captures remain historical. Approval to pause app-store updates on the
-disposable test device is pending; no store, maps or location service was
-disabled and no browser was restarted.
+The owner approved retaining private unfinished drafts and pausing app-store
+updates only on the disposable test phone. Those implementations and their
+unit/configuration checks are separate from this completed run. Their next
+native execution remains pending. This completed source did not pause the store;
+it cannot prove the update interruption is permanently fixed. No store, maps or
+location service was disabled in this run and no browser was restarted.
 
-History UI execution, current native time display, unsent drafts, successful
+Unsent drafts across process death, successful
 route/application flows, real payments/refunds, emergency action and physical
 tracking/safety evidence remain unproven. No production deployment or release
 completion is claimed.

@@ -44,16 +44,19 @@ compilation and the Functions TypeScript build passed locally. The Swift check
 script's missing `BookingIntentSnapshot.swift` dependency was added so its
 existing model checks actually compile; no type stub or fallback was introduced.
 
-## App Replay Still Required
+## Completed App Replay
 
 The existing four-state consent recovery replay now independently computes the
 expected Belgian time on the host and asserts it in both the app's direct trip
 summary and each parent's reservation card, before and after reopening. This
-test is compiled but no successful replay of the changed source is recorded here
-yet. The previous 32-group run proves the previous source, not these new checks.
+test subsequently passed in source `92ea11d`, run 39083223705. The complete
+32-group result and original reports are retained in the
+[18 October native evidence](../local-trip-history-2026-10-18/README.md).
+The previous 17 October run remains evidence only of its own earlier source.
 
-No new app capture is published for this fix. Do not mark the on-screen mismatch
-resolved until the updated native run and its captures are reviewed. This report
+Two history app captures from the completed run were reviewed and added to the
+partner portal; on-screen time assertions pass for the direct trip and each
+parent's reservation before and after reopening. This report
 does not establish production deployment, real-phone behavior, real payments or
 refunds, route application, proposal history, drafts or safety tracking. The
 overall release/user-flow goal remains open.

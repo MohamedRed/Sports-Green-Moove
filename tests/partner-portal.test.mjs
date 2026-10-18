@@ -23,14 +23,24 @@ test('completed local consent adds reviewed images without promoting failed or p
   const flow = content.flows.find((item) => item.id === 'publication');
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
   assert.equal(flow.status, 'partial');
-  assert.match(blocker.text, /deux parents confirment séparément/);
+  assert.match(flow.verified, /Deux parents confirment séparément/);
   assert.match(blocker.next, /rejouer sur téléphone/);
-  assert.match(blocker.next, /historique et les brouillons/);
-  assert.equal(blocker.source, 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md');
+  assert.match(blocker.next, /brouillons/);
+  assert.equal(blocker.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
+  assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-18');
   assert(flow.ui.groups.includes('trip-consent-process-restart-ui'));
   assert.equal(flow.source, blocker.source);
   const current = Object.values(captures).filter((path) => path.includes('local-trip-consent-native-2026-10-17'));
   assert.equal(current.length, 4); assert(current.every((path) => path.includes('/completed/')));
+});
+
+test('older local results retain their own date when a newer app replay is added', () => {
+  const flow = content.flows.find((item) => item.id === 'publication');
+  assert.equal(validate(root), true);
+  const original = flow.local.checkedAt;
+  try { flow.local.checkedAt = '2026-10-18'; assert.throws(() => validate(root)); }
+  finally { flow.local.checkedAt = original; }
+  assert(source('partner-portal/src/render.js').includes('date(flow.local.checkedAt)'));
 });
 
 test('excerpts are bounded, original recordings retained and no audio exported', () => {

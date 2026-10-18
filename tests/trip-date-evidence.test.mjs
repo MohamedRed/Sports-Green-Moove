@@ -41,7 +41,7 @@ test('native mapper and calendar regressions retain failing originals and succes
   assert.match(read(base + 'swift-native-checks.txt'), /SportsGreenMooveNativeChecks passed/);
 });
 
-test('CI reruns timezone cases and native replay checks both direct and reservation times without claiming a completed replay', () => {
+test('CI reruns timezone cases and current native proof retains physical-device/publication limits', () => {
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert.match(workflow, /for timezone in UTC America\/Los_Angeles Asia\/Tokyo/);
   assert.match(workflow, /TZ="\$timezone" npm test --workspace functions -- src\/__tests__\/client-trip-dates.test.ts/);
@@ -51,8 +51,8 @@ test('CI reruns timezone cases and native replay checks both direct and reservat
   assert.match(native, /assertEquals\(expectedTime, trip\(fixture\).timeLabel\)/);
   assert(native.includes('hasText(" · $expectedTime", substring = true)'));
   const gap = content.blockers.find((b) => b.id === 'booking-time-display');
-  assert.equal(gap.source, base + 'README.md'); assert.match(gap.next, /Rejouer dans l’app/);
+  assert.equal(gap.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md'); assert.match(gap.next, /Rejouer sur téléphone/);
   assert.match(gap.next, /pas encore en ligne/);
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');
-  assert.match(read(base + 'README.md'), /no successful replay of the changed source is recorded here/);
+  assert.match(read(base + 'README.md'), /32-group result and original reports are retained/);
 });

@@ -15,7 +15,8 @@ const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
 const ui = (groups, source = 'results.json') => ({ source: `docs/release/evidence/local-ui-2026-10-15/${source}`, groups });
-const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/results.json') => ({ source, groups, checks });
+const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/results.json', checkedAt) =>
+  ({ source, groups, checks, ...(checkedAt ? { checkedAt } : {}) });
 const shot = (file, alt) => ({ file, alt });
 
 export const assets = {
@@ -151,13 +152,15 @@ export const content = {
         shot('search-options-invalidated', 'Anciens résultats retirés après modification, en local'),
         shot('search-account-cleared', 'Compte simulé : recherche vidée lors de l’essai du 15 octobre'),
         shot('local-search-empty', 'Recherche sans résultat lors de l’essai du 15 octobre'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')], source: optionsUiReport },
-    { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-17',
-      summary: 'Demandes en attente, accord, refus et retrait passent après fermeture, en local.',
-      verified: 'Deux parents confirment séparément. Après fermeture, attente et accord partiel sont retrouvés dans les bons comptes. Refus et retrait conservent les réservations initiales, en local.',
-      remaining: 'Revoir les horaires dans l’app. Rejouer sur téléphone. Tester le changement de parcours et l’application. Revoir l’historique et les brouillons après fermeture. Terminer les paiements et remboursements réels. Pas encore en ligne.',
-      local: local(['publication', 'trip-cancellation', 'trip-details-ownership', 'trip-change-parent-confirmation', 'trip-change-application'], ['Le conducteur publie ; le parent retrouve le trajet.', 'L’annulation ferme les réservations et prévient les parents.', 'Répéter une demande ne crée aucun doublon.', 'Deux parents confirment séparément les détails proposés.', 'Un refus conserve le trajet initial et ses réservations.', 'Après accord, les nouveaux horaire, parcours et prix sont enregistrés.', 'Une réponse perdue est retrouvée sans recréer la proposition.', 'Un supplément ou remboursement non réglé bloque le départ.', 'Aucun paiement ni remboursement réel dans ces essais.'], 'docs/release/evidence/local-trip-change-native-2026-10-17/services.json'),
-      ui: { source: 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/results.json', groups: ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui', 'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui'] },
-      images: [shot('trip-consent-recovery-pending', 'Demande sans réponse après fermeture, essai local du 17 octobre'),
+    { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-18',
+      summary: 'Les réponses et l’historique sont retrouvés après fermeture, en local.',
+      verified: 'Deux parents confirment séparément. L’attente, l’accord partiel, les refus et les retraits sont retrouvés dans les bons comptes. L’historique se rouvre et les horaires affichés sont alignés, en local.',
+      remaining: 'Rejouer sur téléphone. Tester le changement de parcours et l’application. Vérifier les brouillons après fermeture. Terminer les paiements et remboursements réels. Pas encore en ligne.',
+      local: local(['publication', 'trip-cancellation', 'trip-details-ownership', 'trip-change-parent-confirmation', 'trip-change-application'], ['Le conducteur publie ; le parent retrouve le trajet.', 'L’annulation ferme les réservations et prévient les parents.', 'Répéter une demande ne crée aucun doublon.', 'Deux parents confirment séparément les détails proposés.', 'Un refus conserve le trajet initial et ses réservations.', 'Après accord, les nouveaux horaire, parcours et prix sont enregistrés.', 'Une réponse perdue est retrouvée sans recréer la proposition.', 'Un supplément ou remboursement non réglé bloque le départ.', 'Aucun paiement ni remboursement réel dans ces essais.'], 'docs/release/evidence/local-trip-change-native-2026-10-17/services.json', '2026-10-17'),
+      ui: { source: 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json', groups: ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui', 'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui'] },
+      images: [shot('trip-history-declined', 'Refus retrouvé dans l’historique après fermeture, essai local du 18 octobre'),
+        shot('trip-history-withdrawn', 'Retrait retrouvé dans l’historique après fermeture, essai local du 18 octobre'),
+        shot('trip-consent-recovery-pending', 'Demande sans réponse après fermeture, essai local du 17 octobre'),
         shot('trip-consent-recovery-partial', 'Un accord sur deux retrouvé après fermeture, essai local du 17 octobre'),
         shot('trip-consent-recovery-closed', 'Refus et retrait : réservations conservées après fermeture, essai local du 17 octobre'),
         shot('trip-consent-restored-parent', 'Accord retrouvé côté parent après fermeture, essai local du 17 octobre'),
@@ -172,7 +175,7 @@ export const content = {
         shot('trip-cancel-review', 'Réservations concernées avant annulation, essai local du 16 octobre'),
         shot('trip-cancel-confirmed', 'Annulation confirmée en paysage, essai local du 16 octobre'),
         shot('trip-cancel-parent', 'Deux réservations annulées côté parent, essai local du 16 octobre')],
-      source: 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md' },
+      source: 'docs/release/evidence/local-trip-history-2026-10-18/README.md' },
     { id: 'booking', title: 'Réservations', status: 'partial', checkedAt: '2026-10-17',
       summary: 'Après une réponse perdue, le renvoi retrouve une seule demande en local.',
       verified: 'Le parent peut réessayer, puis voit « Demande envoyée ». Le bouton d’envoi disparaît. L’acceptation, le refus et l’annulation ont aussi été testés en local.',
