@@ -132,6 +132,21 @@ class TripChangeFlowTest {
         compose.onNodeWithTag("trip.change.status").assertTextEquals("Accords des parents en attente")
         assertEquals(1, gateway.decisions.size)
     }
+    @Test fun largeTextReviewKeepsCloseVisibleAfterScrollingToTheDecision() {
+        var dismissed by mutableStateOf(false)
+        val gateway = Gateway()
+        host(gateway, AppRole.Parent, compact = true, dismissed = { dismissed = true }, shown = { !dismissed })
+        waitFor("trip.change.status")
+        compose.onNodeWithTag("trip.change.accept").performScrollTo().assertIsDisplayed()
+        val before = compose.onNodeWithTag("trip.change.close").assertIsDisplayed().fetchSemanticsNode().boundsInRoot
+        compose.onNodeWithTag("trip.change.refresh").performScrollTo().assertIsDisplayed()
+        val after = compose.onNodeWithTag("trip.change.close").assertIsDisplayed().fetchSemanticsNode().boundsInRoot
+        assertEquals(before, after)
+        capture("trip-change-close-pinned-large-text.png")
+        compose.onNodeWithTag("trip.change.close").assertIsEnabled().performClick()
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("trip.change.title").fetchSemanticsNodes().isEmpty() }
+        assertTrue(dismissed); assertTrue(gateway.decisions.isEmpty()); assertEquals(0, gateway.applications)
+    }
     @Test fun refusalKeepsTheInitialTripWithoutCancellingTheBooking() {
         val gateway = Gateway(); host(gateway, AppRole.Parent); waitFor("trip.change.status")
         compose.onNodeWithTag("trip.change.decline").performScrollTo().performClick(); waitFor("trip.change.decision")
@@ -184,11 +199,12 @@ class TripChangeFlowTest {
         compose.onNodeWithTag("trip.change.apply").assertDoesNotExist()
         assertEquals(1, gateway.applications)
     }
-    private fun host(gateway: Gateway, role: AppRole, compact: Boolean = false, changed: suspend () -> Unit = {}) {
+    private fun host(gateway: Gateway, role: AppRole, compact: Boolean = false, changed: suspend () -> Unit = {},
+        dismissed: () -> Unit = {}, shown: () -> Boolean = { true }) {
         compose.setSgmUiTestContent {
             val density = LocalDensity.current
             CompositionLocalProvider(LocalDensity provides Density(density.density * if (compact) 1.3f else 1f, if (compact) 1.5f else density.fontScale)) {
-                TripChangeDialog(if (role == AppRole.Driver) "driver" else "parent", role, trip.id, trip.title, proposal, gateway, changed, {})
+                if (shown()) TripChangeDialog(if (role == AppRole.Driver) "driver" else "parent", role, trip.id, trip.title, proposal, gateway, changed, dismissed)
             }
         }
     }

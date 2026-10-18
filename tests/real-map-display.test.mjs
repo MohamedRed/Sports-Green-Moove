@@ -47,6 +47,16 @@ test('native display proof waits for real SDK load and captures the real screen 
   const ui = source('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRealMapsTripChangeTest.kt');
   assert.match(ui, /check\(BuildConfig.SGM_LOCAL_REAL_MAPS_UI\)/);
   assert.match(ui, /captureLoadedTripMap\(compose, "trip.change.proposed.map"\)/);
+  assert.match(ui, /onNodeWithTag\("trip.change.close"\).assertIsDisplayed\(\).assertIsEnabled\(\).performClick\(\)/);
+  const dialog = source('android/app/src/main/java/be/sportgreenmoove/app/ui/TripChangeDialog.kt');
+  assert(dialog.indexOf('testTag("trip.change.close")') < dialog.indexOf('verticalScroll(rememberScrollState())'));
+  assert.match(dialog, /Column\(Modifier.weight\(1f\).fillMaxWidth\(\).verticalScroll/);
+  assert.match(source('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeFlowTest.kt'),
+    /largeTextReviewKeepsCloseVisibleAfterScrollingToTheDecision/);
   assert.match(source('scripts/qa/real-maps-trip-ui.mjs'), /verifyRealMapDisplayFiles\(native.mapDisplay, directory\)/);
   assert.match(source('scripts/qa/run-real-maps-android.mjs'), /assertRealMapDisplay\(result.native.mapDisplay\)/);
+  const session = source('scripts/qa/real-maps-android-session.mjs');
+  assert.match(session, /instrumentation.txt'\), redact\(output\)/);
+  assert.match(session, /new Error\(redact\(error.stack \?\? error\)\)/);
+  assert.match(session, /map-display-provider-errors.txt'\), redact\(logs\)/);
 });

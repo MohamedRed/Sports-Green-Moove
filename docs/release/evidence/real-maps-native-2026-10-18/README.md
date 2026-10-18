@@ -68,7 +68,7 @@ local Android build intentionally removes every provider key, including the Maps
 display key, even when one is supplied to the build. The reviewed applied screen
 therefore explicitly says `Carte indisponible.` This run proves real address
 resolution, route calculation, both in-app agreements and local application, not
-map-tile display. A separately explicit map-only local build mode is still needed;
+map-tile display. At that stage a separately explicit map-only local build mode was still needed;
 normal offline isolation must remain the default. No substitute map or modified
 screenshot is used to conceal the missing preview.
 
@@ -76,3 +76,34 @@ At acceptance, application and replay sources at `38bf18b` were unchanged from
 this successful source; the intervening commit only retained reports and partner content.
 This remains an Android emulator/local-fixture result, not physical-device,
 payment/refund, iOS, production deployment or launch-readiness proof.
+
+## First Display-Enabled Attempt: Incomplete
+
+Source `d9e59f112734729495b8306b6c2afe2fdb354f04`, manual Native CI
+[39115818814](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39115818814),
+artifact `12132148873` (142,753 bytes). Fifteen unchanged originals and their
+SHA-256 manifest are retained in `display-first-attempt/`.
+
+The isolated map-only build compiled successfully. Four actual Places requests
+returned HTTP 200 and the app selected the same two public stations. The native
+case failed in 93.2 seconds: after a parent decision's recorded acknowledgement
+and unchanged-original-trip checks, `closeDialog` timed out waiting for the panel
+to disappear. It did not reach quote calculation, application, or the new SDK-load
+and map-pixel checkpoint. There is no result, verification receipt, applied
+capture or map-display capture for this attempt. Do not infer a map load or key
+rejection from this failure; the provider-error log is empty.
+
+The panel's close control was inside its scrolling body; the newly enabled maps
+made that body substantially longer. The replay clicked without checking that
+the control was visible. The scoped repair keeps the header/close control outside
+the weighted scrolling body and requires actual visibility before touching it.
+A compact, large-text component regression scrolls between decision and refresh,
+requires the close control to remain in the same visible bounds, then closes
+without a decision or application. Compilation and source checks pass; the
+repair and map display still require execution and visual inspection.
+
+Cleanup restored and verified the original store policy with unchanged service
+version `26.40.32`. The crash archive also contains an earlier separate Google
+services SIGSEGV at 09:37:44; it is not an app crash or proof of the later dialog
+timeout's cause. No deadlines, request caps, provider responses, key restrictions
+or offline defaults were relaxed. No payment or production data write occurred.

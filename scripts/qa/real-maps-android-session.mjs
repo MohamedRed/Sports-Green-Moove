@@ -15,6 +15,8 @@ const adb = resolve(process.env.ANDROID_HOME, 'platform-tools/adb'), serial = pr
 assert.match(serial, /^emulator-\d+$/);
 const directory = process.env.SGM_LOCAL_UI_OUTPUT;
 const session = await seedLocalUiFixtures(), fixture = await seedRealMapsTripUi();
+const redact = (value) => String(value).replaceAll(session.password, '[REDACTED]')
+  .replace(/AIza[\w-]{20,}|Bearer\s+[\w.~+/-]+=*|eyJ[\w-]+\.[\w-]+\.[\w-]*/g, '[REDACTED]');
 const run = (command, args) => execFileSync(command, args, { env: process.env, cwd: root, encoding: 'utf8', timeout: 120_000 });
 let failure, result, collected = false;
 const collect = (phase) => collectLocalUiEvidence({ adb, serial, evidenceDir: directory, phase, runId: session.runId, password: session.password });
@@ -29,16 +31,15 @@ try {
     '-e', 'class', 'be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest',
     'be.sportgreenmoove.app.local.test/androidx.test.runner.AndroidJUnitRunner'],
   { env: process.env, encoding: 'utf8', timeout: 12 * 60_000, maxBuffer: 4 * 1024 * 1024 });
-  writeFileSync(resolve(directory, 'LocalRealMapsTripChangeTest-instrumentation.txt'), output.replaceAll(session.password, '[REDACTED]'), { flag: 'wx' });
+  writeFileSync(resolve(directory, 'LocalRealMapsTripChangeTest-instrumentation.txt'), redact(output), { flag: 'wx' });
   assertInstrumentationPassed(output, 1);
   collect('real-maps-application'); collected = true;
   result = await verifyRealMapsTripUi(fixture, directory, session.runId);
 } catch (error) {
-  failure = new Error(String(error.stack ?? error).replaceAll(session.password, '[REDACTED]'));
+  failure = new Error(redact(error.stack ?? error));
   try {
     const logs = run(adb, ['-s', serial, 'logcat', '-d', '-v', 'brief', 'Google Maps Android API:E', '*:S']);
-    writeFileSync(resolve(directory, 'map-display-provider-errors.txt'), logs.replace(/AIza[\w-]{20,}/g, '[REDACTED]')
-      .replaceAll(session.password, '[REDACTED]'), { mode: 0o600, flag: 'wx' });
+    writeFileSync(resolve(directory, 'map-display-provider-errors.txt'), redact(logs), { mode: 0o600, flag: 'wx' });
   } catch { console.warn('Map display provider diagnostics were unavailable.'); }
   try { collectNativeProcessFailure({ adb, serial, directory, label: 'real-maps-application', password: session.password, runId: session.runId }); }
   catch { console.warn('Additional map UI failure diagnostics were unavailable.'); }

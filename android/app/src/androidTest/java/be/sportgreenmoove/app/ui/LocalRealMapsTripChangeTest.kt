@@ -152,7 +152,7 @@ class LocalRealMapsTripChangeTest {
         runCatching { compose.onNodeWithTag("trip.change.status").assertTextEquals(text) }.isSuccess
     }
     private fun closeDialog() {
-        idle(); compose.onNodeWithContentDescription("Fermer").assertIsEnabled().performClick()
+        idle(); compose.onNodeWithTag("trip.change.close").assertIsDisplayed().assertIsEnabled().performClick()
         compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.title").fetchSemanticsNodes().isEmpty() }
     }
 }

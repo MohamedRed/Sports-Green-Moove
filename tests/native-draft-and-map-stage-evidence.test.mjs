@@ -85,6 +85,21 @@ test('the later native application has an independently matching provider join a
   assert.match(text(mapsBase + 'README.md'), /Carte indisponible/);
 });
 
+test('the display-enabled failure stays incomplete before quote or map-load checkpoints', () => {
+  const prefix = mapsBase + 'display-first-attempt/', { json } = originals(prefix, 15);
+  const provider = json('replay/real-maps-provider.json');
+  assert.deepEqual(provider.requests.map((r) => r.operation), ['autocomplete', 'place-details', 'autocomplete', 'place-details']);
+  assert(provider.requests.every((r) => r.status === 200 && r.completed === true));
+  assert.match(text(prefix + 'replay/LocalRealMapsTripChangeTest-instrumentation.txt'), /LocalRealMapsTripChangeTest.closeDialog/);
+  assert.match(text(prefix + 'replay/LocalRealMapsTripChangeTest-instrumentation.txt'), /Tests run: 1,  Failures: 1/);
+  for (const name of ['results.json', 'verified.json', 'local-real-maps-applied.png', 'local-real-map-display.png'])
+    assert.equal(existsSync(url(prefix + 'replay/' + name)), false, name);
+  assert.equal(text(prefix + 'replay/map-display-provider-errors.txt'), '');
+  assert.equal(json('replay/adb-pull-failure-cleanup.json').completed, true);
+  assert.equal(json('disposable-store-restore.json').verified, true);
+  assert.match(text(mapsBase + 'README.md'), /Do not infer a map load or key/);
+});
+
 test('private portal retains failed and successful captures while map rendering and physical scope stay open', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
   assert.deepEqual(flow.images.slice(0, 3).map((i) => i.file), ['trip-real-route-applied', 'trip-real-places-selected', 'trip-schedule-draft-restored']);
