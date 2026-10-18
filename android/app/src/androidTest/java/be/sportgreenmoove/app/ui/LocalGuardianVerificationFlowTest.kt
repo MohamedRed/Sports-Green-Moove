@@ -87,7 +87,7 @@ class LocalGuardianVerificationFlowTest {
         compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick(); waitFor(hasTestTag(SgmTestTags.HomeScreen))
     }
     private fun click(tag: String) {
-        waitFor(hasTestTag(tag)); val node = compose.onNodeWithTag(tag)
+        waitFor(hasTestTag(tag) and isEnabled()); val node = compose.onNodeWithTag(tag)
         if (tag !in setOf("guardian.confirm", "guardian.keep")) node.performScrollTo()
         node.assertIsEnabled().performClick()
     }

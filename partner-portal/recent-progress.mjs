@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le parcours du parent reste à rejouer',
+    text: 'Les quatre essais d’écran passent. Le parcours complet s’arrête avant le chargement des choix. L’attente est corrigée ; il reste à le rejouer.', flow: 'clubs' },
+  { date: '2026-10-18', title: 'Le contact d’urgence s’enregistre en local',
+    text: 'Enregistrer, modifier et supprimer un contact passe. Un parent non vérifié ou révoqué ne peut pas accéder à celui de l’enfant. L’écran et le bouton d’appel restent à ajouter.', flow: 'tracking' },
   { date: '2026-10-18', title: 'L’écran de demande du parent est ajouté',
     text: 'Les règles passent en local. Il reste à rejouer la demande, les décisions et la reprise dans l’app avant d’ajouter des captures.', flow: 'clubs' },
   { date: '2026-10-18', title: 'Le responsable peut vérifier les parents',

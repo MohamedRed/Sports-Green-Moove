@@ -91,9 +91,11 @@ test('personal emergency contacts preserve verified-parent authority without cla
   assert.match(contract, /Adults\nmanage their own contact; a child's verified parent chooses the child's contact/);
   assert.match(contract, /manager's verification role does not give them permission to\nchoose or edit/);
   assert.match(contract, /current `guardianUserIds` link is not evidence of manager verification/);
-  assert.match(contract, /not an implementation/);
+  assert.match(contract, /not a complete implementation/);
+  assert.match(contract, /not wired to a native screen yet/);
   assert.match(contract, /Do not invent a number, substitute emergency services, or place a call\nautomatically/);
   const emergency = content.blockers.find((item) => item.id === 'emergency-contact');
-  assert.match(emergency.next, /enregistrer/);
+  assert.match(emergency.next, /Ajouter les écrans/);
+  assert.match(emergency.next, /sans lancer d’appel/);
   assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });

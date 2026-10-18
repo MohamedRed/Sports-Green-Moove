@@ -34,12 +34,43 @@ verified-parent authority for this new flow. Verification needs server-owned
 records, current scoped manager authority, revocation and denial tests before
 the child's editor can be enabled. `guardian-verification.md` now records the
 isolated service checks for that authority; native review and contact integration
-are still missing. These decisions are not an implementation,
+are still missing. These decisions are not a complete implementation,
 a production permission change or a successful native handoff.
 
 Do not invent a number, substitute emergency services, or place a call
 automatically. Contact details must remain private and must not be copied into
 public team/club documents, logs or shared evidence.
+
+## Private Service Implementation
+
+On 2026-10-18, `getEmergencyContact` and `saveEmergencyContact` were added to
+source and verified through 16 isolated HTTP scenario groups. Original proof:
+`docs/release/evidence/local-emergency-contact-2026-10-18/README.md`.
+These endpoints are not deployed and are not wired to a native screen yet.
+
+An adult-role account manages only its authenticated identity. Child-role
+accounts cannot manage contacts, including mixed child/parent claims. A child
+contact is keyed to the child, not copied per parent or club. A parent supplies
+the child and verification-club IDs; the server checks their exact current
+verified tuple, declared relationship, active membership and nonarchived club
+inside every read/write transaction. A club manager cannot use their management
+role to read or edit it. A parent verified through another club must independently
+meet those same current checks; a client-supplied verified flag grants nothing.
+
+Contacts and operation receipts are server-only collections. Direct client reads,
+queries and writes are denied even for admin claims. Inputs require an explicit
+international number and bounded nonempty name; no country or number is guessed.
+Concurrent edits compare revisions. Removal retains a versioned null contact,
+preventing a stale first save from restoring a removed number. Operation IDs are
+actor-bound and payload-bound; replay never restores the old value and rechecks
+authority before returning the current revision. Operation receipts store no
+contact name or number. Revocation and relationship/membership changes participate
+in the same transaction conflict fence as contact writes.
+
+The service tests do not establish the app editor, process interruption recovery,
+account-switch privacy in the app, child/driver ride access or a dialer handoff.
+No call is placed, no contact permissions are added to public club/team records,
+and the store-review emergency action remains pending.
 
 ## Required Verification
 

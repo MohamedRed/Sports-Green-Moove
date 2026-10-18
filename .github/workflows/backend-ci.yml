@@ -88,3 +88,6 @@ jobs:
 
       - name: Test parent verification choices and authoritative state reads
         run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs
+
+      - name: Test private emergency contact ownership and revocation
+        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs

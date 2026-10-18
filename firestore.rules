@@ -97,6 +97,14 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    match /emergencyContacts/{contactId} {
+      allow read, write: if false;
+    }
+
+    match /emergencyContactOperations/{operationId} {
+      allow read, write: if false;
+    }
+
     match /guardianVerifications/{verificationId} {
       allow read: if isSelf(resource.data.parentUserId) || isClubManager(resource.data.clubId);
       allow write: if false;

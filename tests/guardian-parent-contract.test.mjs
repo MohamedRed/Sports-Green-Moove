@@ -63,6 +63,8 @@ test('parent flow code stays modular and its device replay remains explicitly lo
   assert(replay.includes('BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR'));
   assert(replay.includes('assertNull(initial.status)')); assert(replay.includes('activity.recreate()'));
   assert(replay.includes('requireNotNull(initial.childName)).assertDoesNotExist()'));
+  assert(replay.includes('waitFor(hasTestTag(tag) and isEnabled())'));
+  assert(replay.includes('compose.waitUntil(60_000)'));
   assert(read(base + 'ui/SportsGreenMooveApp.kt').includes('AppScreen.Guardians -> GuardianVerificationRoute'));
 });
 
@@ -92,4 +94,22 @@ test('retained parent service and unit proofs cannot be presented as an executed
   for (const [file, digest] of Object.entries({ ...services.sourceFiles, ...build.sourceFiles })) assert.equal(sha(read(file)), digest, file);
   for (const file of ['backend-ci.yml', 'web-integration-smoke.yml'])
     assert(read('.github/workflows/' + file).includes('npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs'));
+});
+
+test('the failed parent replay preserves ordinary component passes without inventing a successful app replay', () => {
+  const base = 'docs/release/evidence/guardian-parent-loading-failure-2026-10-18/';
+  for (const [file, digest] of Object.entries(JSON.parse(read(base + 'artifact-sha256.json'))))
+    assert.equal(createHash('sha256').update(read(file.startsWith(base) ? file : base + file)).digest('hex'), digest, file);
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(read(base + 'ordinary-tests.xml')).testsuite;
+  assert.equal(Number(suite['@_tests']), 129); assert.equal(Number(suite['@_skipped']), 32);
+  assert.equal(Number(suite['@_failures']), 0); assert.equal(Number(suite['@_errors']), 0);
+  const cases = suite.testcase.filter((item) => item['@_classname'] === 'be.sportgreenmoove.app.ui.GuardianVerificationFlowTest');
+  assert.equal(cases.length, 4);
+  assert(cases.every((item) => !Object.hasOwn(item, 'skipped') && !Object.hasOwn(item, 'failure')));
+  const transcript = read(base + 'local-instrumentation.txt');
+  assert(transcript.includes("Tag: 'guardian.child'")); assert(transcript.includes('[Disabled]'));
+  assert(transcript.includes('FAILURES!!!')); assert(transcript.includes('assertIsEnabled'));
+  const cleanup = JSON.parse(read(base + 'adb-pull-failure-cleanup.json'));
+  assert.equal(cleanup.runId, 'b2bd4c4e01584c9678b8c087a2d328db');
+  assert.equal(cleanup.phase, 'failure-cleanup'); assert.equal(cleanup.completed, false); assert.equal(cleanup.status, 1);
 });
