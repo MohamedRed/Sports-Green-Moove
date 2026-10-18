@@ -37,7 +37,9 @@ test('sixteen unit cases and a compiled component suite never substitute actual 
   }
   assert.equal(count, 16);
   for (const [path, hash] of Object.entries(report.sourceFiles)) {
-    assert.equal(sha(read(path)), hash, path); assert(text(path).split('\n').length < 300, path);
+    const original = path.endsWith('/TeamEnrollmentFlowTest.kt')
+      ? 'docs/release/evidence/team-screen-export-2026-10-18/TeamEnrollmentFlowTest.before.kt' : path;
+    assert.equal(sha(read(original)), hash, path); assert(text(path).split('\n').length < 300, path);
   }
   const fixture = text('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt');
   assert.equal((fixture.match(/@Test fun/g) ?? []).length, 4); assert(fixture.includes('TeamEnrollmentUiFixture'));
@@ -72,4 +74,29 @@ test('both CI paths replay discovery and validate the current native-source scop
   const script = text('scripts/run-android-ui-tests-and-collect-screenshots.sh');
   assert(script.includes('adb pull /sdcard/Download/sgm-team-enrollment'));
   for (const file of ['team-requested.png', 'team-requested-window.png', 'team-approved-narrow.png', 'team-approved-narrow-window.png']) assert(script.includes(file));
+});
+test('four executed team screen cases stay separate from the failed capture export and successful local replay', () => {
+  const sub = 'docs/release/evidence/team-screen-export-2026-10-18/';
+  const hashes = json(sub + 'artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 5);
+  for (const [file, hash] of Object.entries(hashes)) assert.equal(sha(read(sub + file)), hash, file);
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(text(sub + 'ordinary-tests.xml')).testsuite;
+  assert.equal(Number(suite['@_tests']), 143); assert.equal(Number(suite['@_skipped']), 33);
+  assert.equal(Number(suite['@_failures']), 0); assert.equal(Number(suite['@_errors']), 0);
+  const cases = suite.testcase.filter((item) => item['@_classname'] === 'be.sportgreenmoove.app.ui.TeamEnrollmentFlowTest');
+  assert.equal(cases.length, 4); assert(cases.every((item) => !('failure' in item) && !('error' in item) && !('skipped' in item)));
+  assert.deepEqual(json(sub + 'native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 0, componentEvidence: 1, localReplay: 0 });
+  const replay = json(sub + 'local-replay.json');
+  assert.equal(replay.projectId, 'demo-sgm-local-qa'); assert.equal(replay.testCount, 35); assert.equal(replay.nativeCaseCount, 37);
+  assert.equal(replay.steps.length, 35); assert(replay.steps.every((step) => step.status === 'passed'));
+  assert.equal(json(sub + 'disposable-store-restore.json').verified, true);
+});
+test('team capture export uses safe direct argv paths and verifies original bytes instead of trusting blank stdout', () => {
+  const fixture = text('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt');
+  const original = text('docs/release/evidence/team-screen-export-2026-10-18/TeamEnrollmentFlowTest.before.kt');
+  assert(original.includes('cp \'${File(source, file).absolutePath}\' \'$target\''));
+  assert(fixture.includes('Regex("[A-Za-z0-9/_.-]+").matches(original.absolutePath)'));
+  assert(fixture.includes('cp ${original.absolutePath} $target')); assert(!fixture.includes('cp \'${'));
+  for (const guard of ['original.isFile && original.length() > 0', 'MessageDigest.getInstance("SHA-256").digest(original.readBytes())',
+    'sha256sum $target', 'observed.size == 2 && observed[0] == expected && observed[1] == target']) assert(fixture.includes(guard), guard);
 });

@@ -18,6 +18,7 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import java.io.File
+import java.security.MessageDigest
 
 class TeamEnrollmentFlowTest {
     @get:Rule val compose = createComposeRule()
@@ -87,9 +88,16 @@ class TeamEnrollmentFlowTest {
         val source = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
         val window = name.removeSuffix(".png") + "-window.png"; check(device.takeScreenshot(File(source, window)))
         for (file in listOf(name, window)) {
+            val original = File(source, file)
             val target = "/sdcard/Download/sgm-team-enrollment/$file"
+            check(original.isFile && original.length() > 0)
+            check(Regex("[A-Za-z0-9/_.-]+").matches(original.absolutePath))
             check(device.executeShellCommand("mkdir -p /sdcard/Download/sgm-team-enrollment").isBlank())
-            check(device.executeShellCommand("cp '${File(source, file).absolutePath}' '$target'").isBlank())
+            // UiAutomation executes argv directly; shell quotes would become literal path characters.
+            check(device.executeShellCommand("cp ${original.absolutePath} $target").isBlank())
+            val expected = MessageDigest.getInstance("SHA-256").digest(original.readBytes()).joinToString("") { "%02x".format(it) }
+            val observed = device.executeShellCommand("sha256sum $target").trim().split(Regex("\\s+"))
+            check(observed.size == 2 && observed[0] == expected && observed[1] == target) { "Team capture export was not verified: $file" }
         }
     }
 }

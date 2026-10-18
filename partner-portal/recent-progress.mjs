@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les 35 parcours locaux passent',
+    text: 'Le nouvel essai va jusqu’au bout. L’ensemble reste non validé car les captures des nouveaux écrans d’inscription manquent encore.', flow: 'publication' },
+  { date: '2026-10-18', title: 'Les premiers écrans d’inscription passent',
+    text: 'Quatre essais d’écran passent avec des réponses simulées. Leurs captures n’ont pas été récupérées ; l’export est corrigé et reste à rejouer.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Les listes continuent sans perdre de choix',
     text: 'Huit essais locaux passent après correction. Les choix d’équipe, les demandes et les adhésions se retrouvent au-delà des vingt premières lignes.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Les écrans d’inscription à une équipe sont ajoutés',
