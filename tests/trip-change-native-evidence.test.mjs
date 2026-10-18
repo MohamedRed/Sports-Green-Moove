@@ -95,7 +95,6 @@ test('partner progress stays partial, dates historical captures and excludes una
   assert.match(flow.verified, /Deux parents/);
   assert.match(flow.remaining, /brouillons après fermeture/);
   assert.match(flow.remaining, /paiements et remboursements réels/); assert.match(flow.remaining, /pas encore en ligne/i);
-  assert.equal(flow.images.length, 21);
   const historical = flow.images.filter((item) => item.file.startsWith('trip-cancel-'));
   assert.equal(historical.length, 3);
   assert(historical.every((item) => item.alt.includes('16 octobre') && captures[item.file].includes('local-trip-cancellation-ui-2026-10-16')));

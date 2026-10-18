@@ -76,3 +76,14 @@ test('a loaded raster does not retroactively prove marker framing', () => {
   assertFramedRealMapDisplay({ ...prior, anchorsFramed: true });
   assert.throws(() => assertFramedRealMapDisplay({ ...prior, anchorsFramed: false }));
 });
+
+test('all trip editor and review replays require the pinned close control to be visible', () => {
+  const root = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
+  for (const name of ['TripDraftPersistenceFlowTest', 'LocalTripChangeFlowTest', 'LocalTripChangeInputsFlowTest',
+    'LocalTripChangeScheduleFlowTest', 'LocalTripConsentRecoveryTest', 'LocalTripScheduleDraftRestartTest',
+    'LocalTripDraftRestartTest', 'LocalTripConsentRestartTest', 'LocalTripHistoryAssertions', 'TripHistoryFlowTest']) {
+    const replay = source(root + name + '.kt');
+    assert.match(replay, /onNodeWithTag\("trip.change.close"(?:, useUnmergedTree = true)?\).assertIsDisplayed\(\).assertIsEnabled\(\).performClick\(\)/, name);
+    assert(!replay.includes('onNodeWithContentDescription("Fermer")'), name);
+  }
+});

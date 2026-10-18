@@ -133,7 +133,7 @@ class LocalTripScheduleDraftRestartTest {
     private fun assertTime(field: String, value: ZonedDateTime) = compose.onNodeWithTag("trip.change.$field.time").performScrollTo()
         .assertTextEquals("${value.format(DateTimeFormatter.ofPattern("HH:mm"))} · Bruxelles")
     private fun closeEditor() {
-        compose.onNodeWithContentDescription("Fermer").assertIsEnabled().performClick()
+        compose.onNodeWithTag("trip.change.close").assertIsDisplayed().assertIsEnabled().performClick()
         compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.title").fetchSemanticsNodes().isEmpty() }
     }
     private fun stage(name: String, action: (JSONObject) -> Unit) {

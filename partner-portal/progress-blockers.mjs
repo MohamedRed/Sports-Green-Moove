@@ -1,7 +1,7 @@
 export const blockers = [
   { id: 'test-device-stability', title: 'Stabiliser les essais',
-    text: 'Les brouillons passent, mais cinq autres essais s’arrêtent avant la saisie.',
-    next: 'Débloquer la saisie et vérifier à nouveau la copie des résultats.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },
+    text: 'Des essais sont encore interrompus. La saisie et la copie des résultats restent aussi à stabiliser.',
+    next: 'Stabiliser le téléphone de test, la saisie et la récupération des captures, puis rejouer l’ensemble.', source: 'docs/release/evidence/real-maps-native-2026-10-18/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },
@@ -30,7 +30,7 @@ export const blockers = [
     text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
     next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: 'docs/release/evidence/local-ui-collection-2026-10-16/README.md' },
   { id: 'trip-management', title: 'Modifier un trajet',
-    text: 'Les deux accords et l’application passent dans l’app en local. La carte s’affiche, mais un repère est coupé.',
+    text: 'Le conducteur applique le parcours après les deux accords, en local. La carte s’affiche, mais un repère est coupé.',
     next: 'Vérifier le cadrage et les autres brouillons, puis rejouer sur téléphone. Terminer les paiements concernés et les remboursements.', source: 'docs/release/evidence/real-maps-native-2026-10-18/README.md' },
   { id: 'shared-testing', title: 'Tester entre plusieurs téléphones',
     text: 'Les essais en local continuent. L’espace de test partagé reste bloqué par l’accès à la facturation.',

@@ -116,10 +116,25 @@ test('actual loaded map tiles and application do not hide the separately observe
   assert.match(text(mapsBase + 'README.md'), /One departure marker head is clipped/);
 });
 
+test('package-update interruption cannot accept fitted-map or application completion', () => {
+  const prefix = mapsBase + 'framing-interrupted/', { json } = originals(prefix, 15);
+  const provider = json('replay/real-maps-provider.json');
+  assert.equal(provider.requests.length, 4); assert(provider.requests.every((r) => r.status === 200 && r.completed));
+  assert.match(text(prefix + 'replay/LocalRealMapsTripChangeTest-instrumentation.txt'), /shortMsg=Process crashed/);
+  const exit = text(prefix + 'replay/real-maps-application-exit-info.txt');
+  assert.match(exit, /reason=16 \(PACKAGE UPDATED\)/); assert.match(exit, /stop com.google.android.gms due to installPackageLI/);
+  for (const name of ['results.json', 'verified.json', 'local-real-maps-applied.png', 'local-real-map-display.png'])
+    assert.equal(existsSync(url(prefix + 'replay/' + name)), false, name);
+  assert.equal(json('disposable-store-restore.json').verified, true);
+  assert.match(text(mapsBase + 'README.md'), /same-version package reinstallation/);
+});
+
 test('private portal retains failed and successful captures while map framing and physical scope stay open', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.deepEqual(flow.images.slice(0, 3).map((i) => i.file), ['trip-real-route-applied', 'trip-real-places-selected', 'trip-schedule-draft-restored']);
-  assert.match(flow.images[0].alt, /appliqué après les deux accords/); assert.match(flow.remaining, /cadrage de la carte/);
+  assert.equal(flow.images.length, 22); assert.equal(new Set(flow.images.map((i) => i.file)).size, 22);
+  assert.deepEqual(flow.images.slice(0, 4).map((i) => i.file), ['trip-real-map-visible', 'trip-real-route-applied', 'trip-real-places-selected', 'trip-schedule-draft-restored']);
+  assert.match(flow.images[0].alt, /repère de départ à recadrer/); assert.match(flow.images[1].alt, /appliqué après les deux accords/);
+  assert.match(flow.remaining, /cadrage de la carte/);
   // Current map claims belong to the newer native proof, not historical consent/cancellation tests.
   const display = mapsBase + 'completed-display/replay/';
   const run = JSON.parse(text(display + 'results.json')), verified = JSON.parse(text(display + 'verified.json'));
@@ -134,5 +149,8 @@ test('private portal retains failed and successful captures while map framing an
   }
   assert.equal(captures['trip-real-route-applied'], mapsBase + 'completed-application/replay/local-real-maps-applied.png');
   assert(content.updates.some((u) => u.title === 'La date et l’arrivée reviennent dans le brouillon'));
-  assert.match(content.blockers.find((b) => b.id === 'test-device-stability').text, /cinq autres essais/);
+  assert.match(content.blockers.find((b) => b.id === 'test-device-stability').text, /encore interrompus/);
+  const displayPng = bytes(captures['trip-real-map-visible']);
+  assert.equal(displayPng.readUInt32BE(16), 1080); assert.equal(displayPng.readUInt32BE(20), 2400);
+  assert.equal(captures['trip-real-map-visible'], display + 'local-real-map-display.png');
 });

@@ -52,12 +52,14 @@ test('new code is modular and smoke coverage includes both sides of the change c
   for (const path of ['data/TripChangeModels.kt', 'domain/TripChangeInput.kt', 'services/TripChangeGateway.kt',
     'services/TripChangeWire.kt', 'services/TripChangeMapping.kt', 'services/FirebaseAndroidTripChangeGateway.kt',
     'ui/TripChangeDraft.kt', 'ui/TripChangeState.kt', 'ui/TripChangeDialog.kt', 'ui/TripChangeEditorForm.kt',
-    'ui/TripChangeReviewContent.kt', 'ui/TripsRoute.kt', 'ui/ReservationManagementRoute.kt']) assert(read(base + path).split('\n').length < 300, path);
+    'ui/TripChangeReviewContent.kt', 'ui/TripsRoute.kt', 'ui/ReservationManagementRoute.kt', 'ui/GoogleMapsRoutePreview.kt',
+    'ui/FitRouteMapCamera.kt', 'ui/RouteMapViewport.kt']) assert(read(base + path).split('\n').length < 300, path);
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   for (const pattern of ['"tests/trip-change-native.test.mjs"', '"android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"',
     '"android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"',
     '"android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"',
-    '"android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"']) assert.equal(workflow.split(pattern).length - 1, 2);
+    '"android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Trip*Test.kt"',
+    '"android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTrip*.kt"']) assert.equal(workflow.split(pattern).length - 1, 2);
   assert(workflow.includes('run: node --test tests/trip-cancellation-native.test.mjs tests/trip-change-native.test.mjs'));
   assert(read('scripts/run-android-ui-tests-and-collect-screenshots.sh').includes('adb pull /sdcard/Download/sgm-trip-changes'));
 });

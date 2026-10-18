@@ -111,7 +111,7 @@ class LocalTripDraftRestartTest {
             .joinToString("") { "%02x".format(it) }
     }
     private fun closeEditor() {
-        compose.onNodeWithContentDescription("Fermer").assertIsEnabled().performClick()
+        compose.onNodeWithTag("trip.change.close").assertIsDisplayed().assertIsEnabled().performClick()
         compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.title").fetchSemanticsNodes().isEmpty() }
     }
     private fun stage(name: String, action: (JSONObject) -> Unit) {

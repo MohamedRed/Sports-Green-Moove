@@ -135,7 +135,7 @@ class LocalTripChangeScheduleFlowTest {
     private fun idleReview() = compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.busy").fetchSemanticsNodes().isEmpty() }
     private fun closeDialog() {
         idleReview()
-        compose.onNodeWithContentDescription("Fermer").assertIsEnabled().performClick()
+        compose.onNodeWithTag("trip.change.close").assertIsDisplayed().assertIsEnabled().performClick()
         compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.title").fetchSemanticsNodes().isEmpty() }
     }
     private fun expectStatus(label: String) = compose.waitUntil(60_000) {

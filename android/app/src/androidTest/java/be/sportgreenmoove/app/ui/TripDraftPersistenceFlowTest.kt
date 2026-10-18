@@ -41,7 +41,7 @@ class TripDraftPersistenceFlowTest {
         enterTripFormText(compose, "trip.change.price", "4,")
         enterTripFormText(compose, "trip.change.origin.input", "Rue encore à choisir")
         compose.onNodeWithTag("trip.change.propose").performScrollTo().assertIsNotEnabled()
-        compose.onNodeWithContentDescription("Fermer").performScrollTo().performClick()
+        compose.onNodeWithTag("trip.change.close").assertIsDisplayed().assertIsEnabled().performClick()
         compose.waitUntil { compose.onAllNodesWithTag("trip.change.price").fetchSemanticsNodes().isEmpty() }
         compose.runOnIdle { visible = true }; waitFor("trip.change.price")
         compose.onNodeWithTag("trip.change.price").performScrollTo().assertTextContains("4,")

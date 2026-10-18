@@ -142,3 +142,48 @@ or user pan. The superseded zoom heuristic is removed. The three viewport unit
 tests and native test compilation pass; an actual fitted-map replay and visual
 inspection remain required. No substitute imagery, relaxed raster thresholds,
 provider retries, request-cap increase or cloud restriction changes are used.
+
+## Fitted-Map Replay: Interrupted Before Verification
+
+Source `0001ac1d2f7ae3f4d4c8d5017f9029bca5467a9a`, manual Native CI
+[39118554642](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39118554642),
+artifact `12133711287` (136,797 bytes). Fifteen unchanged originals and their
+SHA-256 manifest are retained in `framing-interrupted/`.
+
+Four Places calls completed with HTTP 200 and the selected-address capture was
+collected. Instrumentation then reported `shortMsg=Process crashed.` The app's
+actual exit record at 10:22:51.582Z says `reason=16 (PACKAGE UPDATED)` and
+`stop com.google.android.gms due to installPackageLI`. The archive also contains
+Google services failures, not a recorded application camera exception. This is
+an interrupted attempt, not a completed framing test or evidence that the
+camera repair passed or failed. There is no route quote, result, verification
+receipt, applied screenshot or framed-map capture.
+
+Cleanup restored and verified the store policy with service version `26.40.32`.
+Unchanged version numbers do not exclude a same-version package reinstallation;
+the package-update exit record must not be overridden by that cleanup receipt.
+The user approved continuing on a privately connected hosted Android phone with
+isolated data and the existing subscription. No phone result is accepted yet.
+
+## Ordinary Regression Rechecks
+
+The separate routine run
+[39117061358](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39117061358)
+at source `113c219184f498a23ac68faa15b8100301bf2453` recorded 121 component cases:
+31 skipped, one failed, zero errors. The new compact/large-text pinned-close
+case passed in 7.118 seconds; its original full-window screenshot was reviewed
+with the close control visible above the scrolled decisions. The draft case
+failed because its old helper tried to scroll the now-pinned header. Related
+helpers now explicitly require the close control to be displayed and enabled
+before clicking; their body/draft assertions remain unchanged. Compilation is
+verified, but the revised helpers still need actual execution. That broader run
+also failed service-version restoration and is not accepted as a clean suite.
+
+The earlier routine run
+[39115804771](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39115804771)
+recorded 120 component cases with 31 skips and no failures/errors, but its final
+schedule-draft evidence copy exited 1 with no signal/errorCode or explicit
+diagnostic. No retry or alternative copy is used to claim that run passed.
+These routine component builds already include the Android map-display key;
+only their separate `.local` replay is provider-disabled by default. Neither
+routine job is proof that all SDK traffic is offline.

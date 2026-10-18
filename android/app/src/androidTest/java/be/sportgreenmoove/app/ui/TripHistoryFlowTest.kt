@@ -54,7 +54,7 @@ class TripHistoryFlowTest {
             compose.onNodeWithTag("trip.change.status").assertTextEquals(tripChangeStatusLabel(entry.status))
             for (action in listOf("accept", "decline", "withdraw", "calculate", "apply", "propose"))
                 compose.onNodeWithTag("trip.change.$action").assertDoesNotExist()
-            compose.onNodeWithContentDescription("Fermer").performClick()
+            compose.onNodeWithTag("trip.change.close").assertIsDisplayed().assertIsEnabled().performClick()
             waitFor("trip.history.title")
         }
         assertEquals(2, gateway.reads)

@@ -30,7 +30,7 @@ internal class LocalTripHistoryAssertions(private val compose: ComposeTestRule) 
             compose.onNodeWithTag("trip.change.status").performScrollTo()
             captureLocalUi(compose, "local-trip-history-$kind.png", dialog = true)
         }
-        compose.onNodeWithContentDescription("Fermer", useUnmergedTree = true).assertIsEnabled().performClick()
+        compose.onNodeWithTag("trip.change.close", useUnmergedTree = true).assertIsDisplayed().assertIsEnabled().performClick()
         ready()
         compose.onNodeWithContentDescription("Fermer l’historique", useUnmergedTree = true).assertIsEnabled().performClick()
         compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.history.title").fetchSemanticsNodes().isEmpty() }

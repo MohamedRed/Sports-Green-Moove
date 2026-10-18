@@ -230,7 +230,8 @@ test('completed real draft restart is accepted only as its own stage inside a fa
   const failure = suite.testcase.find((c) => c.failure);
   assert.equal(failure.name, 'agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement'); assert.match(failure.failure, /PixelCopy/);
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.equal(flow.images[3].file, 'trip-draft-restored'); assert.match(flow.images[3].alt, /essai local du 18 octobre/);
+  const restored = flow.images.filter((image) => image.file === 'trip-draft-restored');
+  assert.equal(restored.length, 1); assert.match(restored[0].alt, /essai local du 18 octobre/);
   assert.equal(captures['trip-draft-restored'], base + 'local-trip-draft-restored.png');
   assert(!Object.values(captures).some((p) => p.endsWith('/local-trip-draft-before.png')));
   assert.match(flow.remaining, /brouillons après fermeture sur téléphone/);
