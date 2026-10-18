@@ -26,7 +26,7 @@ test('completed local consent adds reviewed images without promoting failed or p
   assert.match(flow.verified, /Deux parents confirment séparément/);
   assert.match(blocker.next, /rejouer sur téléphone/);
   assert.match(blocker.next, /brouillons/);
-  assert.equal(blocker.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
+  assert.equal(blocker.source, 'docs/release/evidence/real-maps-local-2026-10-18/README.md');
   assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-18');
   assert(flow.ui.groups.includes('trip-consent-process-restart-ui'));
   assert.equal(flow.source, blocker.source);

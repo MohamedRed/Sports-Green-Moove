@@ -117,7 +117,7 @@ test('history wiring stays separate from approval/application and requires new n
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/trip-history-evidence.test.mjs"').length - 1, 2);
   assert(workflow.includes('node scripts/qa/run-local-trip-history.mjs'));
-  assert.match(content.blockers.find((b) => b.id === 'trip-management').text, /historique/);
+  assert(content.flows.find((f) => f.id === 'publication').ui.groups.includes('trip-consent-declined-restart-ui'));
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');
   assert.match(read(base + 'README.md'), /Completed Native Replay/);
   for (const path of ['functions/src/services/tripChangeHistory.ts', 'functions/src/services/tripHistoryAccess.ts',

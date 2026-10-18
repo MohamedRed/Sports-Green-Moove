@@ -75,7 +75,8 @@ test('ordinary conditional skips cannot stand in for the actual two-stage local 
 test('only reviewed after and driver captures enter the partial partner flow while remaining release scope stays open', () => {
   const flow = content.flows.find((item) => item.id === 'publication'); assert.equal(flow.status, 'partial');
   const current = 'docs/release/evidence/local-trip-history-2026-10-18/';
-  assert.equal(flow.source, current + 'README.md'); assert.equal(flow.ui.source, current + 'completed-native/results.json');
+  assert.equal(flow.source, 'docs/release/evidence/real-maps-local-2026-10-18/README.md');
+  assert.equal(flow.ui.source, current + 'completed-native/results.json');
   assert(flow.ui.groups.includes('trip-consent-process-restart-ui')); assert.match(flow.verified, /Deux parents confirment/);
   assert.deepEqual(flow.images.slice(6, 8).map((item) => item.file), ['trip-consent-restored-parent', 'trip-consent-restored-driver']);
   for (const [id, name] of [['trip-consent-restored-parent', 'after'], ['trip-consent-restored-driver', 'driver']]) {

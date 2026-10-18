@@ -69,7 +69,7 @@ test('private progress separates simulated editing screens from full native repl
   const flow = content.flows.find((item) => item.id === 'publication');
   const current = 'docs/release/evidence/local-trip-change-native-2026-10-17/';
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/real-maps-local-2026-10-18/README.md');
   assert.equal(flow.local.source, current + 'services.json'); assert(flow.local.groups.includes('trip-change-application'));
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert.match(flow.remaining, /brouillons après fermeture/);

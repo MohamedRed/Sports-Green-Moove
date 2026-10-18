@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le nouveau parcours s’applique après les deux accords',
+    text: 'L’essai local passe avec de vraies adresses, sans paiement. Le parcours depuis les écrans de l’app reste à vérifier.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les 33 essais locaux prévus passent',
     text: 'Deux passages réussis : réservations, messages, réponses des parents et reprise des brouillons. Les mises à jour du téléphone d’essai restent à stabiliser.', flow: 'publication' },
   { date: '2026-10-18', title: 'Le brouillon revient après fermeture complète',

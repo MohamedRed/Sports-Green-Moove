@@ -80,7 +80,7 @@ test('ordinary skips remain separate from the actual local cases and neither suc
 
 test('three earlier captures remain historical alongside newer evidence without hiding release gaps', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.equal(flow.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/real-maps-local-2026-10-18/README.md');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert.equal(flow.ui.groups.length, 9);
   for (const kind of recoveryKinds) assert(flow.ui.groups.includes(`trip-consent-${kind}-restart-ui`));

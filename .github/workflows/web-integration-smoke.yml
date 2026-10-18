@@ -78,6 +78,7 @@ on:
       - "tests/partner-portal.browser.mjs"
       - "scripts/qa/**"
       - "tests/local-emulator-config.test.mjs"
+      - "tests/real-maps-local.test.mjs"
       - "tests/local-ui-config.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
@@ -254,6 +255,7 @@ on:
       - "tests/partner-portal.browser.mjs"
       - "scripts/qa/**"
       - "tests/local-emulator-config.test.mjs"
+      - "tests/real-maps-local.test.mjs"
       - "tests/local-ui-config.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
@@ -412,6 +414,9 @@ jobs:
 
       - name: Validate local test isolation
         run: npm run test:local-flow-isolation
+
+      - name: Validate explicit real-map test boundaries without provider calls
+        run: node --test tests/real-maps-local.test.mjs
 
       - name: Validate bounded local response-loss injection
         run: node --test tests/local-chat-response-loss.test.mjs

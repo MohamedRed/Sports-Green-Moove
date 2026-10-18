@@ -71,3 +71,10 @@ pause prevented updates. The subsequent `c3ac913` replay also completed 33 group
 and retained typed carrier-loader observations, but failed the same version
 invariant. Moving compilation before setup has not yet executed on a device;
 it is not accepted as an update-prevention repair without a fresh complete run.
+
+Subsequent [retained rechecks](../release/evidence/native-runtime-recheck-2026-10-18/README.md)
+record one complete successful 33-group job (`b292317`) with the same `26.40.32`
+version at setup/cleanup, followed by another unchanged-version cleanup (`22b7b03`).
+The latter job failed during primary evidence copying before the new schedule
+draft restart stage. This separates the observed stable runtime from the still
+unresolved transfer failure; it is not a general update-prevention guarantee.
