@@ -1,0 +1,24 @@
+{
+  "scope": "sanitized-native-process-restart-excerpt-not-flow-verification",
+  "sourceCommit": "fa8e7c79830e457d0f267bc95b3782c8012b8ddc",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39157444338",
+  "sourcePath": "outputs/androidTest-results/connected/debug/emulator-5554 - 15/logcat-be.sportgreenmoove.app.ui.TripChangeFlowTest-largeTextReviewKeepsCloseVisibleAfterScrollingToTheDecision.txt",
+  "sourceSha256": "2c3b91380f5e6a0e0cb512f6371bdeed888b0fea71a458cd9438348ab9dd835b",
+  "testProcessId": 5003,
+  "selectedLines": [
+    {
+      "line": 1,
+      "text": "10-18 19:21:37.200  5003  5020 I TestRunner: started: largeTextReviewKeepsCloseVisibleAfterScrollingToTheDecision(be.sportgreenmoove.app.ui.TripChangeFlowTest)"
+    },
+    {
+      "line": 512,
+      "text": "10-18 19:21:41.037  5003  7673 I DynamiteLoaderV2Impl: Module config changed, forcing restart due to module googlecertificates"
+    },
+    {
+      "line": 513,
+      "text": "10-18 19:21:41.037  5003  7673 I Process : Sending signal. PID: 5003 SIG: 9"
+    }
+  ],
+  "contactReplayExecuted": false,
+  "restoreReceiptEmpty": true
+}

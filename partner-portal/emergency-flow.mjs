@@ -4,7 +4,7 @@ export function createEmergencyFlow() {
   return { id: 'emergency-contact', title: 'Contact d’urgence', status: 'partial', checkedAt: '2026-10-18',
     summary: 'Le contact revient après réouverture en local. Le téléphone reste à vérifier.',
     verified: 'L’app affiche le contact enregistré puis rechargé. L’essai s’arrête en attendant le téléphone. Les six essais d’écran simulés passent séparément.',
-    remaining: 'Rejouer avec les contacts enregistrés et ouvrir le téléphone sans appeler. Terminer l’accès de l’enfant, puis tester sur téléphone.',
+    remaining: 'L’attente du test est revue. Rejouer l’enregistrement et le téléphone sans appeler. Terminer l’accès de l’enfant, puis tester sur téléphone.',
     ui: { source: source + 'contact-component-results.json', groups: [
       'saveReloadAndCancelledRemovalKeepTheConfirmedContact', 'lostReplyClearsTheFormAndExplicitRefreshDoesNotSubmitAgain',
       'aChangedNumberNeedsAnotherTapAndAnUnavailableDialerKeepsThatNumberVisible',

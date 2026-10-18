@@ -8,7 +8,6 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
-import androidx.test.uiautomator.Until
 import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.data.EmergencyContactTarget
@@ -56,9 +55,9 @@ class LocalEmergencyContactFlowTest {
             val directCall = instrumentation.addMonitor(IntentFilter(Intent.ACTION_CALL).apply { addDataScheme("tel") }, null, false)
             try {
                 click("emergency.dial")
-                val appeared = device.wait(Until.hasObject(By.pkg(dialerPackage)), 60_000)
-                try { recordEmergencyDialerAttempt(context, device, session.getString("runId"), resolved, appeared, dial.hits, directCall.hits) }
-                finally { check(appeared) { "Resolved phone package did not appear; see emergency-dialer-attempt.json and its capture" } }
+                awaitLocalExternalUi(compose, 60_000, { device.hasObject(By.pkg(dialerPackage)) }) { appeared ->
+                    recordEmergencyDialerAttempt(context, device, session.getString("runId"), resolved, appeared, dial.hits, directCall.hits)
+                }
                 assertEquals(dialerPackage, device.currentPackageName)
                 val digits = phone.filter(Char::isDigit)
                 check(device.findObjects(By.text(Pattern.compile(".*555.*"))).any { it.text.orEmpty().filter(Char::isDigit) == digits })

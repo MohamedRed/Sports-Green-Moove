@@ -22,6 +22,7 @@ on:
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
       - "tests/local-ui-config.test.mjs"
       - "tests/emergency-contact-native.test.mjs"
+      - "tests/emergency-contact-scheduler.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
       - "tests/trip-change-ui.test.mjs"
@@ -66,6 +67,7 @@ on:
       - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
       - "tests/local-ui-config.test.mjs"
       - "tests/emergency-contact-native.test.mjs"
+      - "tests/emergency-contact-scheduler.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
       - "tests/trip-change-ui.test.mjs"
@@ -113,7 +115,7 @@ jobs:
         uses: ./.github/actions/native-test-setup
 
       - name: Validate disposable Android isolation
-        run: node --test tests/disposable-android.test.mjs tests/disposable-store-pause.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs tests/adb-sync-failure-diagnostics.test.mjs tests/guardian-parent-contract.test.mjs tests/emergency-contact-native.test.mjs
+        run: node --test tests/disposable-android.test.mjs tests/disposable-store-pause.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs tests/adb-sync-failure-diagnostics.test.mjs tests/guardian-parent-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
 
       - name: Validate dual-transport network prerequisites
         run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/trip-schedule-completed-evidence.test.mjs tests/trip-consent-restart.test.mjs tests/trip-draft-restart.test.mjs tests/trip-consent-recovery.test.mjs tests/trip-consent-recovery-completed-evidence.test.mjs tests/trip-consent-restart-completed-evidence.test.mjs tests/native-suite-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs

@@ -90,4 +90,4 @@ jobs:
         run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs
 
       - name: Test private emergency contact ownership and revocation
-        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs
+        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs

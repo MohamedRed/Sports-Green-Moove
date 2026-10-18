@@ -59,11 +59,14 @@ test('instrumented contact actions remain emulator-only with no direct call or f
   const peer = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyPeer.kt');
   assert(peer.includes('"action" to "revoke"')); assert(!peer.includes('"action" to "verify"'));
 });
-test('dialer timeout retains a distinct attempt diagnostic before the unchanged failure assertion', () => {
+test('dialer waiting advances queued effects without changing the package predicate or deadline', () => {
   const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt');
-  assert(native.includes('device.wait(Until.hasObject(By.pkg(dialerPackage)), 60_000)'));
-  assert(native.indexOf('recordEmergencyDialerAttempt(') < native.indexOf('check(appeared)'));
-  assert(native.indexOf('check(appeared)') < native.indexOf('writeEmergencyDeviceEvidence('));
+  assert(native.includes('awaitLocalExternalUi(compose, 60_000, { device.hasObject(By.pkg(dialerPackage)) })'));
+  assert(!native.includes('device.wait(Until.hasObject'));
+  const wait = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt');
+  assert(wait.includes('compose.waitUntil(timeoutMillis)')); assert(wait.includes('check(appeared)'));
+  assert(wait.includes('diagnostic.exceptionOrNull()?.let(failure::addSuppressed)')); assert(wait.includes('throw failure'));
+  assert(wait.includes('diagnostic.getOrThrow()'));
   const diagnostic = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyDialerDiagnostic.kt');
   for (const field of ['read-only-local-dialer-attempt-diagnostic-not-flow-verification', 'resolvedComponent', 'observedPackage',
     'dialIntentCount', 'directCallIntentCount', 'device.takeScreenshot', 'knownAppFeedback']) assert(diagnostic.includes(field), field);

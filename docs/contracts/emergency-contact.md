@@ -138,6 +138,16 @@ same 60-second assertion. This diagnostic does not substitute a phone app,
 launch from the shell, place a call, weaken an assertion or grant permissions.
 If diagnostics fail too, the missing-phone assertion still remains a failure.
 
+The later diagnostic run `39157444338` did not reach that attempt: a system
+module update killed the ordinary trip-change test process, then the emulator
+went offline. Its empty restoration output is not accepted as a success receipt.
+Separately, three executed unit regressions reproduce the contact state's queued
+callback behavior. The native phone wait now polls through Compose's scheduler
+with the same package predicate and 60,000 ms deadline; original timeout failures
+are preserved if diagnostics also fail. Three native synchronization regressions
+compile but have not run. `local-contact-scheduler-2026-10-18` retains that exact
+scope and the separate interruption evidence. Actual handoff remains unverified.
+
 ## Required Verification
 
 - The agreed destination must be displayed accurately and backed by the relevant
