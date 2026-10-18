@@ -1,0 +1,62 @@
+name: Approved Real Maps UI
+
+on:
+  workflow_call:
+    secrets:
+      GOOGLE_MAPS_API_KEY:
+        required: true
+      SGM_GOOGLE_MAPS_ANDROID_API_KEY:
+        required: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  isolated-real-maps-ui:
+    name: Isolated real-map UI
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install isolated test dependencies
+        run: npm ci
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+      - name: Enable KVM group permissions
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run explicitly approved isolated map integration
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+          SGM_REAL_MAPS_SERVER_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
+          SGM_PAUSE_TEST_PHONE_STORE: "true"
+        with:
+          api-level: 35
+          target: google_apis_playstore
+          arch: x86_64
+          profile: pixel_6
+          script: bash scripts/run-real-maps-android-ui.sh
+      - name: Upload real-map UI evidence even after failure
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-approved-real-maps-ui
+          path: android/app/build/outputs/real-maps-ui/**
+          if-no-files-found: ignore

@@ -2,9 +2,18 @@ name: Native CI
 
 on:
   workflow_dispatch:
+    inputs:
+      real_maps_ui:
+        description: "Run the approved isolated real-map UI integration (five server requests)"
+        type: boolean
+        default: false
   pull_request:
     paths:
       - ".github/workflows/native-ci.yml"
+      - ".github/workflows/native-real-maps-ui.yml"
+      - ".github/actions/native-test-setup/**"
+      - "scripts/run-real-maps-android-ui.sh"
+      - "tests/real-maps-ui.test.mjs"
       - "android/**"
       - "ios/**"
       - "package.json"
@@ -44,6 +53,10 @@ on:
       - main
     paths:
       - ".github/workflows/native-ci.yml"
+      - ".github/workflows/native-real-maps-ui.yml"
+      - ".github/actions/native-test-setup/**"
+      - "scripts/run-real-maps-android-ui.sh"
+      - "tests/real-maps-ui.test.mjs"
       - "android/**"
       - "ios/**"
       - "package.json"
@@ -94,17 +107,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Set up Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: "22"
-          cache: npm
-
-      - name: Install configuration test dependencies
-        run: npm ci
-
-      - name: Validate native UI flow identifiers
-        run: npm run test:native-ui-coverage
+      - name: Set up native configuration tests
+        uses: ./.github/actions/native-test-setup
 
       - name: Validate disposable Android isolation
         run: node --test tests/disposable-android.test.mjs tests/disposable-store-pause.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs
@@ -112,27 +116,25 @@ jobs:
       - name: Validate dual-transport network prerequisites
         run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/trip-schedule-completed-evidence.test.mjs tests/trip-consent-restart.test.mjs tests/trip-draft-restart.test.mjs tests/trip-consent-recovery.test.mjs tests/trip-consent-recovery-completed-evidence.test.mjs tests/trip-consent-restart-completed-evidence.test.mjs tests/native-suite-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs
 
+      - name: Validate real-map UI isolation without provider calls
+        run: node --test tests/real-maps-ui.test.mjs
+
   android-native-unit:
     name: Android native unit tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     permissions:
       contents: read
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
       - name: Set up JDK
         uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "17"
-
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
-
       - name: Install Android SDK packages
         run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
 
@@ -141,7 +143,8 @@ jobs:
         run: ./gradlew :app:testDebugUnitTest --no-daemon --stacktrace
 
   android-native-ui:
-    name: Android native UI tests
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && 'Offline UI matrix (not requested)' || 'Android native UI tests' }}
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.real_maps_ui }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
 
@@ -200,6 +203,16 @@ jobs:
             android/app/build/outputs/store-review-screenshots/**
             android/app/build/outputs/local-ui-evidence/**
           if-no-files-found: ignore
+
+  android-real-maps-ui:
+    name: Android approved real-map UI integration
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/native-real-maps-ui.yml
+    secrets:
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+      SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
 
   ios-native-checks:
     name: iOS native checks

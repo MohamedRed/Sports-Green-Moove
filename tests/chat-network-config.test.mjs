@@ -272,8 +272,10 @@ test('conversation booking statuses match the backend contract without dropping 
 test('CI installs the parser before checking the cross-platform booking contract', () => {
   const workflow = read('.github/workflows/native-ci.yml');
   const job = workflow.slice(workflow.indexOf('  native-ui-coverage:'), workflow.indexOf('  android-native-unit:'));
-  assert(job.indexOf('run: npm ci') > 0);
-  assert(job.indexOf('run: npm ci') < job.indexOf('tests/chat-network-config.test.mjs'));
+  const setup = read('.github/actions/native-test-setup/action.yml');
+  assert.match(setup, /run: npm ci/);
+  assert(job.indexOf('uses: ./.github/actions/native-test-setup') > 0);
+  assert(job.indexOf('uses: ./.github/actions/native-test-setup') < job.indexOf('tests/chat-network-config.test.mjs'));
   const smoke = read('.github/workflows/web-integration-smoke.yml');
   for (const path of ['.github/workflows/native-ci.yml',
     'android/app/src/main/java/be/sportgreenmoove/app/data/ConversationDirectoryModels.kt',
