@@ -75,12 +75,19 @@ suite status records ordinary=1 and localReplay=1; there is no complete
 
 ## Still Pending
 
+A [subsequent completed 33-group local replay](../local-replay-33-2026-10-18/README.md)
+includes this draft stage and passing ordinary components. Its separate runtime
+verification still fails because the enabled system-service version changed;
+the broader CI job remains failed. This does not rewrite the failed attempts
+retained above or establish a reliable pause of updates.
+
 Other draft field variants and physical phones need native verification. The
-strengthened store-background policy also needs
-its own actual execution/cleanup evidence; it is not proven by older force-stop
-receipts. See the [test-phone contract](../../../contracts/disposable-store-pause.md).
+strengthened store-background policy has now executed, but its runtime invariant
+failed in that subsequent replay; older force-stop receipts do not prove it.
+See the [test-phone contract](../../../contracts/disposable-store-pause.md).
 
 No physical-phone, iOS, live route, application, payment/refund, emergency-action
 or final release acceptance is claimed. The active overall user-flow goal remains
 incomplete. The gallery uses the completed history/time-label run plus the
-individually verified draft restart stage; it does not claim the latest full run passed.
+individually verified draft restart stage. The newest progress entry separately
+reports the completed 33-group replay and its failed runtime-stability check.

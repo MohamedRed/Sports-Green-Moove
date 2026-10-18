@@ -124,6 +124,8 @@ on:
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/local-replay-33-evidence.test.mjs"
+      - "docs/release/evidence/local-replay-33-2026-10-18/**"
       - "tests/default-selection-evidence.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
@@ -298,6 +300,8 @@ on:
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/local-replay-33-evidence.test.mjs"
+      - "docs/release/evidence/local-replay-33-2026-10-18/**"
       - "tests/default-selection-evidence.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
@@ -396,7 +400,7 @@ jobs:
         run: node --test tests/trip-date-evidence.test.mjs
 
       - name: Validate scoped trip history evidence
-        run: node --test tests/trip-history-evidence.test.mjs
+        run: node --test tests/trip-history-evidence.test.mjs tests/local-replay-33-evidence.test.mjs
 
       - name: Test isolated trip history access and paging
         env:

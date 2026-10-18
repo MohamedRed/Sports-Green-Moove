@@ -93,14 +93,14 @@ test('new raw evidence is byte-pinned and the ordinary component pass stays sepa
   assert.match(text('README.md'), /failed full/); assert.match(text('README.md'), /remains unresolved/);
 });
 
-test('the private update shows only the verified restart stage and keeps the latest interruption explicit', () => {
+test('the private update retains verified restart captures and keeps earlier interruptions explicit', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial'); assert.match(flow.remaining, /clavier/);
   assert.match(flow.remaining, /Répéter les essais de coupure/);
   assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
   const issue = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(issue.source, 'docs/release/evidence/local-trip-drafts-2026-10-18/README.md');
-  assert.match(issue.text, /dernier essai s’arrête/); assert.match(issue.text, /précédents/);
+  assert.equal(issue.source, 'docs/release/evidence/local-replay-33-2026-10-18/README.md');
+  assert.match(issue.text, /reprise passent dans le dernier essai local/); assert.match(issue.text, /précédents/);
   const image = flow.images.find((item) => item.file === 'chat-restart-recheck-reply');
   assert.match(image.alt, /revérifié en local/);
   assert.equal(captures[image.file], base + 'local-chat-restart-reply.png');
