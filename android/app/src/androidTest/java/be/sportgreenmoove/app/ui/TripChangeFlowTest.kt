@@ -21,6 +21,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 import java.io.File
+import kotlinx.coroutines.CompletableDeferred
 
 @SdkSuppress(minSdkVersion = 29)
 class TripChangeFlowTest {
@@ -38,6 +39,7 @@ class TripChangeFlowTest {
         var dropProposalAcknowledgement = false
         val decisions = mutableListOf<TripChangeDecisionRequest>()
         var applications = 0
+        var decisionGate: CompletableDeferred<Unit>? = null
         override suspend fun previewTripChange(tripId: String) = TripChangePreview(tripId, revision, terms, 3, 2)
         override suspend fun reviewTripChange(tripId: String, proposalId: String) = current
         override suspend fun proposeTripChange(request: TripChangeProposalRequest): TripChangeReview {
@@ -52,6 +54,7 @@ class TripChangeFlowTest {
             return current
         }
         override suspend fun respondTripChange(request: TripChangeDecisionRequest): TripChangeReview {
+            decisionGate?.await()
             decisions += request
             current = current.copy(decision = request.decision, decisionRequestId = request.requestId, canRespond = false,
                 acceptedParentCount = if (request.decision == TripChangeDecision.Accept) 1 else 0,
@@ -113,6 +116,21 @@ class TripChangeFlowTest {
         compose.onNodeWithTag("trip.change.refresh").performScrollTo().performClick(); waitFor("trip.change.status")
         compose.onNodeWithTag("trip.change.status").performScrollTo().assertTextEquals("Accords des parents en attente")
         compose.onNodeWithTag("trip.change.propose").assertDoesNotExist(); assertEquals(1, gateway.proposals)
+    }
+    @Test fun firstAgreementWaitsForRecordedReplyEvenThoughPendingStatusDoesNotChange() {
+        val gate = CompletableDeferred<Unit>()
+        val gateway = Gateway().apply { decisionGate = gate }
+        host(gateway, AppRole.Parent); waitFor("trip.change.status")
+        compose.onNodeWithTag("trip.change.accept").performScrollTo().performClick()
+        waitFor("trip.change.busy")
+        compose.onNodeWithTag("trip.change.status").assertTextEquals("Accords des parents en attente")
+        compose.onNodeWithTag("trip.change.consents").assertTextEquals("Accords reçus : 0 / 2")
+        compose.onNodeWithTag("trip.change.decision").assertDoesNotExist()
+        assertTrue(gateway.decisions.isEmpty())
+        compose.runOnIdle { gate.complete(Unit) }
+        awaitRecordedTripAgreement(compose, acceptedParentCount = 1, parentCount = 2)
+        compose.onNodeWithTag("trip.change.status").assertTextEquals("Accords des parents en attente")
+        assertEquals(1, gateway.decisions.size)
     }
     @Test fun refusalKeepsTheInitialTripWithoutCancellingTheBooking() {
         val gateway = Gateway(); host(gateway, AppRole.Parent); waitFor("trip.change.status")

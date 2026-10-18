@@ -130,5 +130,15 @@ test('real-map UI is manual only, separate from the offline matrix, and keeps ev
   assert.match(ui, /args.getString\("realMapsApproved"\) != null/); assert.match(ui, /ActivityScenario.launch\(MainActivity::class.java\)/);
   assert.match(ui, /enterTripFormText/); assert.match(ui, /trip.change.\$tag.suggestion./);
   assert(!ui.includes('Fake') && !ui.includes('quoteTripChange('));
+  const agreement = ui.indexOf('awaitRecordedTripAgreement(compose, acceptedParentCount = index + 1, parentCount = 2)');
+  const clicked = ui.indexOf('compose.onNodeWithTag("trip.change.accept").performScrollTo().assertIsEnabled().performClick()');
+  assert(clicked >= 0 && agreement > clicked);
+  assert(agreement < ui.indexOf('expectStatus(if (index == 0)'));
+  const waiting = source('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeDecisionAwait.kt');
+  assert(waiting.indexOf('trip.change.decision') < waiting.indexOf('trip.change.consents'));
+  assert.match(waiting, /trip.change.busy/); assert.match(waiting, /Votre accord est enregistré/);
+  const regression = source('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeFlowTest.kt');
+  assert.match(regression, /firstAgreementWaitsForRecordedReplyEvenThoughPendingStatusDoesNotChange/);
+  assert.match(regression, /decisionGate\?\.await\(\)/);
   assert.match(source('.github/workflows/web-integration-smoke.yml'), /node --test tests\/real-maps-local.test.mjs tests\/real-maps-ui.test.mjs/);
 });
