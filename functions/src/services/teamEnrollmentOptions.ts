@@ -5,10 +5,10 @@ import { chatDocumentIdSchema } from "../domain/chatReference.js";
 import { isActiveGuardianClubMember } from "../domain/guardianVerification.js";
 import { membershipDocumentId } from "../domain/memberships.js";
 import { firestore } from "../lib/firebase.js";
-import { membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
+import { membershipCursorSchema, membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
 import { loadTeamEnrollmentSubject, requireEnrollmentRequester, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
 
-const cursor = z.string().min(1).max(1600).optional();
+const cursor = membershipCursorSchema.optional();
 export const teamEnrollmentOptionsSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("clubs"), cursor }).strict(),
   z.object({ kind: z.literal("teams"), clubId: chatDocumentIdSchema, cursor }).strict(),

@@ -9,6 +9,7 @@ on:
         default: false
   pull_request:
     paths:
+      - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
@@ -55,6 +56,7 @@ on:
     branches:
       - main
     paths:
+      - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
@@ -118,6 +120,9 @@ jobs:
 
       - name: Validate team enrollment unit and compiled-screen scope
         run: node --test tests/team-enrollment-native-contract.test.mjs
+
+      - name: Validate membership cursor regression and client decoder evidence
+        run: node --test tests/membership-cursor-contract.test.mjs
 
       - name: Validate disposable Android isolation
         run: node --test tests/disposable-android.test.mjs tests/disposable-store-pause.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs tests/adb-sync-failure-diagnostics.test.mjs tests/guardian-parent-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs

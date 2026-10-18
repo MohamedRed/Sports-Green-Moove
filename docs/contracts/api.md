@@ -56,6 +56,15 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 See [team conversations](team-conversations.md) for lifecycle, identity reuse and
 withdrawal policy. These endpoints do not enable team messages or change roles.
 
+Membership, guardian and team directory cursors share a version-one opaque
+base64url contract with a 16,384-character limit. The embedded Firestore document
+ID is distinct from an individual user/club/team ID and can include the canonical
+membership prefix. It must be valid UTF-8 and at most 1,500 bytes. The actor/list
+scope remains exact; a wider input bound is not broader read authority. Clients
+retain the entire token or reject it, never truncate it or convert an invalid
+token to an empty page. The server and current browser/Android sources must be
+released together. Chat/reservation/trip-history cursor formats are unchanged.
+
 ## Provider Webhooks
 
 | Webhook | Path | Behavior |

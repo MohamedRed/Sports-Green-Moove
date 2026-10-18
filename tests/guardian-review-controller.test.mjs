@@ -10,7 +10,8 @@ const compile = (value) => ts.transpileModule(value, { compilerOptions: {
 const url = (value) => `data:text/javascript;base64,${Buffer.from(value).toString('base64')}`;
 const labels = url(compile(source('guardianReviewTypes.ts')));
 const { GuardianReviewController } = await import(url(compile(source('GuardianReviewController.ts')).replace('"./guardianReviewTypes"', JSON.stringify(labels))));
-const { guardianReview, guardianPage, guardianClub, guardianStatus } = await import(url(compile(source('guardianReviewWire.ts'))));
+const pageToken = url(compile(source('membershipPageToken.ts')));
+const { guardianReview, guardianPage, guardianClub, guardianStatus } = await import(url(compile(source('guardianReviewWire.ts')).replace('"./membershipPageToken"', JSON.stringify(pageToken))));
 const item = () => ({ id: 'a'.repeat(64), clubId: 'club', clubName: 'Club QA', childId: 'child', childName: 'Enfant QA',
   parentUserId: 'parent', parentName: 'Parent QA', status: 'requested', revision: 1, allowedActions: ['verify', 'refuse'] });
 const page = (items, nextCursor = null) => ({ items, nextCursor });

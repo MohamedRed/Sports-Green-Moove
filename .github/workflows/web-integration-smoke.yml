@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/membership-cursor-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/MembershipPageToken.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/MembershipPageTokenTest.kt"
       - "tests/team-enrollment-native-contract.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TeamEnrollmentModels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*TeamEnrollment*.kt"
@@ -236,6 +240,10 @@ on:
     branches:
       - main
     paths:
+      - "tests/membership-cursor-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/MembershipPageToken.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/MembershipPageTokenTest.kt"
       - "tests/team-enrollment-native-contract.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/data/TeamEnrollmentModels.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*TeamEnrollment*.kt"
@@ -560,6 +568,9 @@ jobs:
 
       - name: Test scoped team and verified child choices
         run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs
+
+      - name: Test shared membership cursor continuation and authorization
+        run: npm run test:membership-cursors && node --test tests/membership-cursor-contract.test.mjs
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

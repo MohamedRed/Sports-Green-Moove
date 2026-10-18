@@ -3,6 +3,7 @@ import { z } from "zod";
 import { chatDocumentIdSchema } from "../domain/chatReference.js";
 import { requestTeamEnrollmentSchema, teamEnrollmentTargetSchema, transitionTeamEnrollmentSchema } from "../domain/teamEnrollment.js";
 import { requireAuth } from "../lib/https.js";
+import { membershipCursorSchema } from "../lib/membershipPageCursor.js";
 import { parseCallableData } from "../lib/validation.js";
 import { requestTeamEnrollmentRecord, transitionTeamEnrollmentRecord } from "../services/teamEnrollment.js";
 import { clubTeamEnrollmentPage, teamEnrollmentView } from "../services/teamEnrollmentViews.js";
@@ -21,6 +22,6 @@ export const transitionTeamEnrollment = onCall(async (request) => {
 });
 export const listTeamEnrollments = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid), input = parseCallableData(z.object({ teamId: chatDocumentIdSchema,
-    cursor: z.string().min(1).max(1600).optional() }).strict(), request.data);
+    cursor: membershipCursorSchema.optional() }).strict(), request.data);
   return clubTeamEnrollmentPage(uid, request.auth?.token, input.teamId, input.cursor);
 });

@@ -4,8 +4,7 @@ import be.sportgreenmoove.app.data.*
 
 internal object GuardianVerificationWire {
     private fun map(value: Any?) = value as? Map<*, *> ?: error("Réponse de vérification invalide.")
-    fun cursor(value: Any?): String? = if (value == null) null else (value as? String)?.takeIf { it.isNotEmpty() && it.length <= 2048 }
-        ?: error("Page de vérifications invalide.")
+    fun cursor(value: Any?): String? = MembershipPageToken.decode(value)
     private fun name(value: Any?): String? = if (value == null) null else (value as? String)?.takeIf { it.isNotBlank() }
         ?: error("Identité de vérification invalide.")
     private fun revision(value: Any?): Long {

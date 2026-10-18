@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les listes continuent sans perdre de choix',
+    text: 'Huit essais locaux passent après correction. Les choix d’équipe, les demandes et les adhésions se retrouvent au-delà des vingt premières lignes.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Les écrans d’inscription à une équipe sont ajoutés',
     text: 'Choisir une équipe, vérifier la demande, confirmer ou retirer : les écrans sont ajoutés. Les choix passent douze essais locaux ; les écrans restent à rejouer.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Le contact ouvre le téléphone',

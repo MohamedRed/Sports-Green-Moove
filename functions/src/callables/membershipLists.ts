@@ -3,13 +3,14 @@ import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { chatDocumentIdSchema } from "../domain/chatReference.js";
 import { canReviewMembership, isActiveClubManager, membershipReviewSchema, membershipVersion } from "../domain/membershipReview.js";
+import { membershipDocumentId } from "../domain/memberships.js";
 import { firestore } from "../lib/firebase.js";
 import { hasRole, requireAnyRole, requireAuth } from "../lib/https.js";
 import { requireMembershipReviewer } from "../lib/membershipReviewAccess.js";
-import { membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
+import { membershipCursorSchema, membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
 import { parseCallableData } from "../lib/validation.js";
 
-const pageInput = z.object({ cursor: z.string().min(1).max(2048).optional() }).strict();
+const pageInput = z.object({ cursor: membershipCursorSchema.optional() }).strict();
 export const listMembershipReviewClubs = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   requireAnyRole(request.auth?.token, ["admin", "clubManager"]);
@@ -47,7 +48,8 @@ export const listClubMemberships = onCall(async (request) => {
   const items = [];
   for (const doc of scanned) {
     const parsed = membershipReviewSchema.safeParse(doc.data());
-    if (!parsed.success || !doc.updateTime) throw new HttpsError("failed-precondition", "Membership requires repair.");
+    if (!parsed.success || !doc.updateTime || doc.id !== membershipDocumentId(parsed.data.userId, parsed.data.clubId))
+      throw new HttpsError("failed-precondition", "Membership requires repair.");
     const member = parsed.data;
     const user = await firestore.collection(member.role === "child" ? "children" : "users").doc(member.userId).get();
     const displayName = user.get("displayName");

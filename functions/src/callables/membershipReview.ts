@@ -1,14 +1,15 @@
 import { Timestamp } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
-import { chatDocumentIdSchema } from "../domain/chatReference.js";
+import { firestoreDocumentIdSchema } from "../domain/firestoreDocumentId.js";
+import { membershipDocumentId } from "../domain/memberships.js";
 import { canReviewMembership, membershipReviewSchema, membershipVersion, reviewDecisionSchema } from "../domain/membershipReview.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAnyRole, requireAuth } from "../lib/https.js";
 import { requireMembershipReviewer } from "../lib/membershipReviewAccess.js";
 import { parseCallableData } from "../lib/validation.js";
 
-const input = z.object({ membershipId: chatDocumentIdSchema, decision: reviewDecisionSchema,
+const input = z.object({ membershipId: firestoreDocumentIdSchema, decision: reviewDecisionSchema,
   expectedVersion: z.string().regex(/^-?\d+\.\d{1,9}$/).max(32) }).strict();
 export const reviewClubMembership = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
@@ -22,6 +23,7 @@ export const reviewClubMembership = onCall(async (request) => {
     const parsed = membershipReviewSchema.safeParse(snapshot.data());
     if (!parsed.success || !snapshot.updateTime) throw new HttpsError("failed-precondition", "Membership requires repair.");
     const member = parsed.data;
+    if (snapshot.id !== membershipDocumentId(member.userId, member.clubId)) throw new HttpsError("failed-precondition", "Membership identity requires repair.");
     await requireMembershipReviewer(uid, request.auth?.token, member.clubId, transaction);
     const clubRef = firestore.collection("clubs").doc(member.clubId);
     const club = await transaction.get(clubRef);

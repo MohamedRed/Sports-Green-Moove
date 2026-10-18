@@ -1,5 +1,6 @@
 import { httpsCallable } from "firebase/functions";
 import { auth, functions } from "./firebase";
+import { membershipPageToken } from "./membershipPageToken";
 import type { MembershipDecision, MembershipReviewGateway, ReviewClub, ReviewMembership, ReviewPage } from "./membershipReviewTypes";
 
 function record(value: unknown): Record<string, unknown> {
@@ -12,10 +13,10 @@ function string(value: unknown): string {
 }
 function page<T>(value: unknown, decode: (item: Record<string, unknown>) => T): ReviewPage<T> {
   const data = record(value);
-  if (!Array.isArray(data.items) || !(data.nextCursor === null || typeof data.nextCursor === "string" && data.nextCursor.length)) {
+  if (!Array.isArray(data.items) || data.items.length > 20) {
     throw new Error("Page d'adhésions invalide.");
   }
-  return { items: data.items.map((item) => decode(record(item))), nextCursor: data.nextCursor as string | null };
+  return { items: data.items.map((item) => decode(record(item))), nextCursor: membershipPageToken(data.nextCursor) };
 }
 function membership(data: Record<string, unknown>): ReviewMembership {
   if (typeof data.active !== "boolean" || !(data.name === null || typeof data.name === "string") ||

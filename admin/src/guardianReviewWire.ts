@@ -1,5 +1,6 @@
 import type { ReviewPage, ReviewClub } from "./membershipReviewTypes";
 import type { GuardianReview, GuardianStatus, GuardianDecision } from "./guardianReviewTypes";
+import { membershipPageToken } from "./membershipPageToken";
 
 export function guardianRecord(value: unknown): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Réponse de vérification invalide.");
@@ -15,12 +16,11 @@ export function guardianStatus(value: unknown): GuardianStatus {
 }
 export function guardianPage<T>(value: unknown, decode: (item: Record<string, unknown>) => T): ReviewPage<T> {
   const data = guardianRecord(value);
-  if (!Array.isArray(data.items) || data.items.length > 20 || !(data.nextCursor === null ||
-      typeof data.nextCursor === "string" && data.nextCursor.length > 0 && data.nextCursor.length <= 2048)) {
+  if (!Array.isArray(data.items) || data.items.length > 20) {
     throw new Error("Page de vérifications invalide.");
   }
   const items = data.items.map((item) => decode(guardianRecord(item)));
-  return { items, nextCursor: data.nextCursor as string | null };
+  return { items, nextCursor: membershipPageToken(data.nextCursor) };
 }
 export function guardianClub(item: Record<string, unknown>): ReviewClub {
   return { id: text(item.id), name: text(item.name) };

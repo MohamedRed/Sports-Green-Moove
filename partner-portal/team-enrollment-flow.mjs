@@ -1,16 +1,20 @@
-const source = 'docs/release/evidence/local-team-enrollment-native-2026-10-18/';
+const source = 'docs/release/evidence/membership-cursor-2026-10-18/';
 
 export function createTeamEnrollmentFlow() {
   return { id: 'team-enrollment', title: 'Inscription à une équipe', status: 'partial', checkedAt: '2026-10-18',
-    summary: 'Les choix d’équipe et d’enfant passent en local. Les écrans sont ajoutés, mais restent à rejouer.',
-    verified: 'Douze essais locaux vérifient les choix proposés. Un enfant n’est proposé que si le parent est actuellement vérifié.',
+    summary: 'Les listes continuent sans perdre de choix. Les écrans sont ajoutés, mais restent à rejouer.',
+    verified: 'Huit essais locaux passent, y compris avec de longues listes. Les comptes et les clubs restent séparés.',
     remaining: 'Rejouer les écrans. Ajouter l’historique des demandes, la réponse du club et la conversation, puis tester sur téléphone.',
-    local: { source: source + 'choices.json', groups: [
-      'club-choices-use-only-current-canonical-active-memberships',
-      'declared-children-appear-only-after-separate-current-manager-verification',
-      'link-membership-and-verification-loss-remove-child-choices-before-any-write',
-      'choice-cursors-are-bound-to-account-kind-club-and-server-team-identity'],
-    checks: ['Seuls les clubs autorisés sont proposés.', 'Le parent doit être vérifié pour choisir son enfant.',
-      'La perte des droits retire l’enfant des choix.', 'Les listes restent séparées entre comptes et équipes.'] },
+    local: { source: source + 'services-verified.json', groups: [
+      'team-club-choices-resume-canonical-multibyte-memberships-with-cursors-over-two-kilobytes',
+      'parent-guardian-club-choices-use-the-same-lossless-opaque-cursor-contract',
+      'both-manager-club-directories-resume-long-canonical-membership-ids',
+      'manager-membership-pages-preserve-composite-document-ids-without-losing-a-row',
+      'parent-and-manager-guardian-pages-preserve-history-and-current-account-scopes',
+      'manager-team-pages-use-the-shared-cursor-without-changing-any-enrollment',
+      'foreign-account-list-and-club-cursors-remain-denied-after-increasing-size-support',
+      'long-membership-decisions-still-require-current-manager-version-and-canonical-identity'],
+    checks: ['Les choix restent accessibles après les vingt premiers.', 'Aucune ligne perdue ou ajoutée deux fois.',
+      'Un autre compte ou club ne peut pas reprendre la liste.', 'Une adhésion est acceptée une seule fois.'] },
     images: [], source: source + 'README.md' };
 }

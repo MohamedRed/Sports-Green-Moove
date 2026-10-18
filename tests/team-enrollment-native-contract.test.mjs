@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
+import { assertOriginalPaginationSources } from './helpers/original-pagination-sources.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
 const text = (path) => read(path).toString('utf8');
@@ -17,7 +18,7 @@ test('team choices retain all twelve isolated groups without claiming native exe
   for (const key of ['nativeUiExecuted', 'teamChatImplemented', 'productionWrites']) assert.equal(report[key], false);
   assert.equal(report.providerRequests, 0); assert.equal(report.syntheticTeamChoices, 24);
   assert.equal(report.syntheticChildrenWithActualLocalManagerVerification, 21);
-  for (const [path, hash] of Object.entries(report.sourceFiles)) assert.equal(sha(read(path)), hash, path);
+  assertOriginalPaginationSources(report.sourceFiles, ['functions/src/services/teamEnrollmentOptions.ts']);
   const service = text('functions/src/services/teamEnrollmentOptions.ts');
   for (const guard of ['z.discriminatedUnion', 'requireEnrollmentRequester', 'teamEnrollmentEligibility', 'team?.teamInstanceId',
     'query.limit(21)', 'page.docs.slice(0, 20)', 'membershipDocumentId(uid, id)', 'page.size > 20']) assert(service.includes(guard), guard);

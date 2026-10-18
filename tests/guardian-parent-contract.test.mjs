@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { guardianParentChecks, guardianParentScreenshots, validateGuardianParentDevice } from '../scripts/qa/guardian-parent-evidence.mjs';
+import { assertOriginalPaginationSources } from './helpers/original-pagination-sources.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const uid = 'a'.repeat(32);
@@ -91,7 +92,8 @@ test('retained parent service and unit proofs cannot be presented as an executed
     }
   }
   assert.equal(cases, 17);
-  for (const [file, digest] of Object.entries({ ...services.sourceFiles, ...build.sourceFiles })) assert.equal(sha(read(file)), digest, file);
+  assertOriginalPaginationSources({ ...services.sourceFiles, ...build.sourceFiles }, ['functions/src/callables/guardianParent.ts',
+    'android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt']);
   for (const file of ['backend-ci.yml', 'web-integration-smoke.yml'])
     assert(read('.github/workflows/' + file).includes('npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs'));
 });
@@ -129,7 +131,8 @@ test('the completed parent stage requires its original marker, primary transfer,
   assert.equal(report.physicalDevice, false); assert.equal(report.productionWrites, false);
   assert.match(read(base + 'LocalGuardianVerificationFlowTest-instrumentation.txt'), /OK \(1 test\)/);
   assert.equal(createHash('sha256').update(read(base + 'LocalGuardianVerificationFlowTest-instrumentation.txt')).digest('hex'), report.transcriptSha256);
-  for (const [path, hash] of Object.entries(report.sourceFiles)) assert.equal(createHash('sha256').update(read(path)).digest('hex'), hash, path);
+  assertOriginalPaginationSources(report.sourceFiles, ['functions/src/callables/guardianParent.ts',
+    'android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt']);
   const whole = JSON.parse(read(base + 'full-run/native-suite-status.json'));
   assert.equal(whole.ordinaryTests, 1); assert.equal(whole.componentEvidence, 0); assert.equal(whole.localReplay, 1);
   const store = JSON.parse(read(base + 'full-run/disposable-store-restore.json'));

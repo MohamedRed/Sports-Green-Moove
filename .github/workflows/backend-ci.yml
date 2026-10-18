@@ -97,3 +97,6 @@ jobs:
 
       - name: Test scoped team and verified child choices
         run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs
+
+      - name: Test shared membership cursor continuation and authorization
+        run: npm run test:membership-cursors && node --test tests/membership-cursor-contract.test.mjs

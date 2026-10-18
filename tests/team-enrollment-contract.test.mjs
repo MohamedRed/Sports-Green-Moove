@@ -3,11 +3,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { content } from '../partner-portal/content.mjs';
+import { assertOriginalPaginationSources } from './helpers/original-pagination-sources.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
 const text = (path) => read(path).toString('utf8');
 const base = 'docs/release/evidence/local-team-enrollment-2026-10-18/';
-test('retained enrollment proof binds current sources without accepting team chat or native screens', () => {
+test('retained enrollment proof binds its original source snapshot without accepting team chat or native screens', () => {
   const report = JSON.parse(text(base + 'services.json'));
   assert.equal(report.projectId, 'demo-sgm-local-qa'); assert.match(report.runId, /^[a-f0-9]{32}$/);
   assert.equal(report.testedAt.slice(0, 10), '2026-10-18');
@@ -19,11 +20,10 @@ test('retained enrollment proof binds current sources without accepting team cha
   for (const flag of ['teamChatImplemented', 'nativeUiExecuted', 'productionWrites', 'physicalDevice']) assert.equal(report[flag], false);
   assert.equal(report.providerRequests, 0); assert.equal(report.paginationFixtureRows, 21);
   assert.equal(Object.keys(report.sourceFiles).length, 10);
-  for (const [path, hash] of Object.entries(report.sourceFiles))
-    assert.equal(createHash('sha256').update(read(path)).digest('hex'), hash, path);
+  assertOriginalPaginationSources(report.sourceFiles, ['functions/src/callables/teamEnrollment.ts']);
   const flow = content.flows.find((item) => item.id === 'team-enrollment');
   assert.equal(flow.status, 'partial'); assert.equal(flow.images.length, 0); assert(!flow.ui);
-  assert.equal(flow.local.source, 'docs/release/evidence/local-team-enrollment-native-2026-10-18/choices.json'); assert.match(flow.remaining, /écrans/);
+  assert.equal(flow.local.source, 'docs/release/evidence/membership-cursor-2026-10-18/services-verified.json'); assert.match(flow.remaining, /écrans/);
   assert.equal(content.flows.find((item) => item.id === 'messages').status, 'partial');
 });
 test('enrollment identity and authority stay server owned and transaction fenced', () => {

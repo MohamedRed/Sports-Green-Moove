@@ -24,7 +24,7 @@ export const blockers = [
     text: 'La coupure et la reprise passent dans le dernier essai local. Certains essais précédents s’arrêtent avant la coupure.',
     next: 'Stabiliser la préparation des coupures et les captures, puis rejouer l’ensemble.', source: 'docs/release/evidence/local-replay-33-2026-10-18/README.md' },
   { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
-    text: 'Les règles et les choix d’équipe passent en local. Les échanges entre membres d’une même équipe et parents des enfants inscrits restent à construire et à tester.',
+    text: 'Les règles et les longues listes passent en local. Les échanges entre membres d’une même équipe et parents des enfants inscrits restent à construire et à tester.',
     next: 'Rejouer les écrans et ajouter la réponse du responsable du club aux inscriptions par équipe. Terminer les échanges, puis rejouer sur téléphone.', source: 'docs/release/evidence/local-team-enrollment-native-2026-10-18/README.md' },
   { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
     text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',

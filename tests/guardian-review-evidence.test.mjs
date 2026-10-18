@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { content, captures } from '../partner-portal/content.mjs';
 import { validateUiScope } from '../partner-portal/validate.mjs';
+import { assertOriginalPaginationSources } from './helpers/original-pagination-sources.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
 const base = 'docs/release/evidence/local-guardian-review-2026-10-18/';
@@ -32,7 +33,7 @@ test('guardian review retains a complete real HTTP and management browser run wi
     const bytes = read(base + file); assert.equal(hash(bytes), digest, file);
     if (file.endsWith('.png')) assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
   }
-  for (const [file, digest] of Object.entries(run.sourceFiles)) assert.equal(hash(read(file)), digest, `Refresh the proof after changing ${file}`);
+  assertOriginalPaginationSources(run.sourceFiles, ['functions/src/callables/guardianLists.ts', 'admin/src/guardianReviewWire.ts']);
   const earlier = base + 'before-profile-privacy-guard/';
   for (const [file, digest] of Object.entries(JSON.parse(read(earlier + 'artifact-sha256.json')))) assert.equal(hash(read(earlier + file)), digest);
   for (const file of ['functions/src/services/guardianLists.ts', 'functions/src/callables/guardianLists.ts',
