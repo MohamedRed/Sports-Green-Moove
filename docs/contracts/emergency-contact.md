@@ -46,8 +46,8 @@ public team/club documents, logs or shared evidence.
 On 2026-10-18, `getEmergencyContact` and `saveEmergencyContact` were added to
 source and verified through 16 isolated HTTP scenario groups. Original proof:
 `docs/release/evidence/local-emergency-contact-2026-10-18/README.md`.
-These endpoints are not deployed. Android editor source is now wired, with
-execution still pending as described below.
+These endpoints are not deployed. Android editor source is now wired; its initial
+execution still pending at that point is now superseded by the scoped replay below.
 
 An adult-role account manages only its authenticated identity. Child-role
 accounts cannot manage contacts, including mixed child/parent claims. A child
@@ -146,7 +146,25 @@ callback behavior. The native phone wait now polls through Compose's scheduler
 with the same package predicate and 60,000 ms deadline; original timeout failures
 are preserved if diagnostics also fail. Three native synchronization regressions
 compile but have not run. `local-contact-scheduler-2026-10-18` retains that exact
-scope and the separate interruption evidence. Actual handoff remains unverified.
+scope and the separate interruption evidence. Actual handoff was unverified at
+that snapshot; the later result follows.
+
+## Connected Replay Passed
+
+Run `39159125951` at `6cc965f7b2df816ba004ec7e65e0285cd15efd0d`
+passed all nine contact checks using the local SDK, including the actual phone
+dialer window and return, without placing a call. Original evidence and seven
+reviewed result screenshots are retained in
+`local-contact-dialer-pass-2026-10-18`. The preverified parent fixture and actual
+manager revocation, three independently checked operations, scoped cleanup and
+primary transfer receipt are explicit. Three native synchronization regressions
+also actually passed in that run's ordinary suite.
+
+The full replay failed later copying another stage's evidence. This does not
+accept the entire 35-group run. The passed contact stage enters through settings,
+not an active ride; the child's own read-only account path, full process death,
+physical device and store-review action remain pending. No production deployment
+or release-manifest acceptance follows from this scoped pass.
 
 ## Required Verification
 

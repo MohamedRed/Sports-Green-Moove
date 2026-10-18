@@ -13,9 +13,9 @@ club membership or editable profile fields. Included parents can read and send
 messages and receive the same unread/read state as directly assigned members.
 
 Current conversation sources support bookings and ride sessions only. Team
-conversation entry, authoritative team membership and its lifecycle, message
-authorization, and the corresponding app flow remain to be implemented and
-verified together. Club membership alone must not grant team-message access.
+conversation entry, message authorization, and the corresponding app flow remain
+to be implemented and verified together. The isolated enrollment service below
+does not yet grant message access. Club membership alone must not grant it.
 
 ## Ownership Boundary
 
@@ -24,8 +24,10 @@ team update at `local-team-ownership-2026-10-16`: manager updates now retain the
 stored club ID and require authority over that existing club. This does not
 implement team conversation access. Direct create/delete and administrator
 capabilities keep their prior policy, so identity reuse and the complete
-enrollment/guardian lifecycle still need server-owned handling before chat is
-wired. See the dated release evidence for the unchanged red/green reports.
+enrollment/guardian lifecycle need server-owned handling before chat is wired.
+The enrollment identity fence below now handles server-created team and child
+identities; chat still does not consume it. See the dated release evidence for
+the unchanged red/green reports.
 
 ## Required Verification
 
@@ -75,10 +77,52 @@ their own relationship, and a manager of a different club cannot verify it.
 
 The existing client-declared `children.guardianUserIds` array does not establish
 this verification. Server-owned verification transitions and private records now
-have 20 isolated service checks; see `guardian-verification.md`. They are not
-deployed or connected to native request/review screens or team-message access.
+have 20 isolated service checks; see `guardian-verification.md`. The parent's
+native request/revoke replay is separately recorded; none is deployed or connected
+to team-message access.
 A verified link must
 not grant access to another team or club without a current approved enrollment.
 Requests, refusals and removals retain the denial and
-revocation requirements above. The team enrollment lifecycle and chat flow remain
-unimplemented and unverified; this work does not approve any production records.
+revocation requirements above. The team chat flow and native team enrollment
+screens remain unimplemented and unverified; no production record is approved.
+
+## Isolated Enrollment Service
+
+`getTeamEnrollmentView`, `requestTeamEnrollment`, `transitionTeamEnrollment` and
+`listTeamEnrollments` now have 20 isolated transport scenario groups plus six
+domain unit cases. See `local-team-enrollment-2026-10-18/README.md`. This is a
+backend-only source implementation, not a deployed or end-to-end native flow.
+
+Team identity binds the stored club and immutable server document creation time,
+including nanoseconds; child enrollment also binds the child document's server
+creation time. Editable `createdAt`, roster arrays and profile declarations do
+not establish enrollment. Deleting/recreating a team or child cannot inherit its
+old approval. A name edit preserves identity; transferring clubs does not.
+
+Requests bind the exact viewed team identity, enrollment identity, revision and
+actor-scoped operation UUID. Adult subjects are auth-bound; a child request also
+requires the exact current manager-verified parent tuple, declared link and both
+canonical active club memberships. Public/private clubs accept eligible requests;
+missing, unknown or archived states do not. Child and mixed child/parent accounts
+cannot manage enrollment. A manager needs a current active management membership
+in the record's stored club, not only a role claim or a supplied club ID.
+
+Status transitions are requested -> approved/refused/withdrawn, approved ->
+revoked/withdrawn, and closed -> newly requested. Approval rechecks eligibility
+transactionally. It does not verify guardians or change user roles. Stale or
+conflicting decisions cannot both commit; old operation replay returns current
+state without restoring an earlier approval. Removal/refusal remains possible
+after team retirement; no new grant is allowed.
+
+Only the requesting account withdraws its request; another verified parent may
+read an eligible child's enrollment but cannot withdraw the first parent's
+decision. Adult withdrawal remains available after club membership loss. A child
+enrollment withdrawal after approval requires the requester's current authority;
+manager revocation remains available. This conservative withdrawal policy does
+not create or remove the child's separate guardian verification.
+
+Records and operation history are private server-only collections, including for
+admin clients. Views fail closed on malformed stored identity/version. Manager
+pages scan at most 20 records plus one lookahead; cursors bind account and current
+team identity. Missing labels remain null, and stale child authority hides labels.
+No message access, notifications, public roster or production migration is added.

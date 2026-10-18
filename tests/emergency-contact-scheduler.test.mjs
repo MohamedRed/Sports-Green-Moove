@@ -52,11 +52,12 @@ test('a separate system-module restart never becomes contact or restoration succ
   assert.deepEqual(json(prefix + 'native-suite-status.json'), {
     scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 1, componentEvidence: 0, localReplay: 1 });
 });
-test('current private updates retain the prior observations and do not claim a passing handoff', () => {
+test('current private updates retain the prior observations without claiming whole-run or physical success', () => {
   const flow = content.flows.find((item) => item.id === 'emergency-contact'); assert.equal(flow.status, 'partial');
-  assert.match(flow.remaining, /sans appeler/); assert.equal(flow.images.filter((item) => item.file.startsWith('emergency-native-')).length, 4);
+  assert.match(flow.remaining, /sans appeler/); assert.equal(flow.images.filter((item) => item.file.startsWith('emergency-passed-')).length, 7);
   assert(content.updates.some((item) => item.title === 'Le contact revient dans l’app'));
-  assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source, base + 'README.md');
+  assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source,
+    'docs/release/evidence/local-contact-dialer-pass-2026-10-18/README.md');
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 test('synchronization proof and regressions are covered by web and native configuration gates', () => {

@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le contact ouvre le téléphone',
+    text: 'Le numéro enregistré apparaît sans lancer d’appel. Enregistrement, réouverture, retrait, suppression et changement de compte passent en local. Sept captures sont ajoutées.', flow: 'emergency-contact' },
+  { date: '2026-10-18', title: 'Les règles d’inscription à une équipe passent',
+    text: 'Vingt essais locaux passent. Le responsable du club décide ; le parent est vérifié séparément. Les écrans et la conversation restent à ajouter.', flow: 'team-enrollment' },
+  { date: '2026-10-18', title: 'L’essai complet reste incomplet',
+    text: 'Le contact passe cette fois. Plus loin, la copie d’autres résultats échoue ; l’ensemble n’est pas validé.', flow: 'publication' },
   { date: '2026-10-18', title: 'L’attente du test du contact est revue',
     text: 'Trois essais locaux passent. Le test laisse maintenant l’app continuer pendant l’attente. L’ouverture du téléphone reste à rejouer.', flow: 'emergency-contact' },
   { date: '2026-10-18', title: 'Une mise à jour interrompt le nouvel essai',

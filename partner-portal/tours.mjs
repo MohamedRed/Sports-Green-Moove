@@ -3,12 +3,15 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'emergency-contact': [
-    image('emergency-native-saved', 'Enregistrer son contact', 'L’app affiche le contact fictif comme enregistré. L’essai s’arrête plus tard, à l’ouverture du téléphone.'),
-    image('emergency-native-restored', 'Rouvrir l’écran', 'Le même contact revient après réouverture de l’écran, avant l’arrêt de l’essai local.'),
-    image('emergency-native-child', 'Choisir le contact de l’enfant', 'Le parent de test dispose déjà d’un lien vérifié. Le contact de l’enfant apparaît comme enregistré.'),
-    image('emergency-native-revoked', 'Retirer la vérification', 'Après le retrait, l’app masque le contact. L’ouverture du téléphone reste non validée.'),
+    image('emergency-passed-saved', 'Enregistrer son contact', 'Le contact fictif est enregistré dans l’essai local.'),
+    image('emergency-passed-restored', 'Rouvrir l’écran', 'Le même contact revient après réouverture.'),
+    image('emergency-passed-child', 'Choisir le contact de l’enfant', 'Le parent de test dispose déjà d’un lien vérifié et enregistre le contact.'),
+    image('emergency-passed-revoked', 'Retirer le droit parent', 'Après le retrait, l’app masque le contact et bloque son utilisation.'),
+    image('emergency-passed-dialer', 'Ouvrir le téléphone', 'Le numéro enregistré apparaît. Aucun appel n’est lancé.'),
+    image('emergency-passed-removed', 'Supprimer le contact', 'Après confirmation, le numéro disparaît.'),
+    image('emergency-passed-account', 'Changer de compte', 'Le contact du compte précédent n’apparaît pas.'),
     image('emergency-editor-narrow', 'Choisir son contact', 'L’écran garde les champs et les actions accessibles avec du texte agrandi, dans l’essai simulé.'),
-    image('emergency-editor-changed', 'Si le téléphone ne s’ouvre pas', 'Le nouveau numéro reste visible avec le message d’erreur. L’ouverture réelle du téléphone reste à tester.'),
+    image('emergency-editor-changed', 'Si le téléphone ne s’ouvre pas', 'Dans cet essai simulé distinct, le nouveau numéro reste visible avec le message d’erreur.'),
   ],
   'auth-validation': [
     image('login-empty', 'Renseigner l’adresse e-mail', 'Le formulaire signale une adresse manquante.'),

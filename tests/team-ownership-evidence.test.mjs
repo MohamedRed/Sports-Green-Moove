@@ -78,7 +78,7 @@ test('the selected manager approval policy is recorded without claiming team cha
   assert.match(contract, /club manager to\nverify parent-child authorisation as a separate decision from team enrollment/);
   assert.match(contract, /parents cannot approve\ntheir own relationship/);
   assert.match(contract, /client-declared `children.guardianUserIds` array does not establish\nthis verification/);
-  assert.match(contract, /team enrollment lifecycle and chat flow remain\nunimplemented and unverified/);
+  assert.match(contract, /team chat flow and native team enrollment\nscreens remain unimplemented and unverified/);
   assert(!contract.includes('Approval Policy Pending'));
   const group = content.blockers.find((item) => item.id === 'group-conversation');
   assert.match(group.next, /responsable du club/); assert(!group.next.includes('Choisir qui'));
@@ -96,7 +96,7 @@ test('personal emergency contacts preserve verified-parent authority without cla
   assert.match(contract, /execution still pending/);
   assert.match(contract, /Do not invent a number, substitute emergency services, or place a call\nautomatically/);
   const emergency = content.blockers.find((item) => item.id === 'emergency-contact');
-  assert.match(emergency.next, /Rejouer l’enregistrement et le téléphone/);
+  assert.match(emergency.next, /Terminer l’accès de l’enfant et l’entrée depuis un trajet/);
   assert.match(emergency.next, /sans lancer d’appel/);
   assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });

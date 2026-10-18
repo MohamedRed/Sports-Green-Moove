@@ -171,6 +171,18 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
       await page.screenshot({ path: `${output}/phone-${id}-${width}.png`, fullPage: true });
+      if (id === 'emergency-contact') {
+        for (let step = 1; step < flow.tour.length; step++) {
+          await page.getByRole('link', { name: 'Suivant', exact: true }).click();
+          await page.getByRole('heading', { name: flow.tour[step].title, exact: true }).waitFor();
+          await waitForImage();
+          const expected = flow.images.find((item) => item.file === flow.tour[step].image);
+          assert.equal(await page.locator('.media-stage img').getAttribute('alt'), expected.alt);
+          assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
+          if (flow.tour[step].image === 'emergency-passed-dialer')
+            await page.screenshot({ path: `${output}/contact-dialer-${width}.png`, fullPage: false });
+        }
+      }
     }
   }
   await page.goto(`${base}/#parcours/signout/visite/1`);

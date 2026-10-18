@@ -47,6 +47,8 @@ test('six contact component passes and reviewed captures do not impersonate an a
   assert(selected.steps.every((step) => step.status === 'passed'));
   const emergency = content.flows.find((flow) => flow.id === 'emergency-contact'); assert.equal(emergency.status, 'partial');
   assert.equal(emergency.images.filter((image) => image.file.startsWith('emergency-editor-')).length, 2);
-  assert.match(emergency.verified, /simulés/); assert.match(emergency.remaining, /sans appeler/);
+  assert(emergency.images.filter((image) => image.file.startsWith('emergency-editor-')).every((image) => image.alt.includes('simulé')));
+  assert.notEqual(emergency.ui.source, base + 'contact-component-results.json');
+  assert.match(emergency.remaining, /sans appeler/);
   assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
 });

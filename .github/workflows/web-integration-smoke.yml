@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/team-enrollment-contract.test.mjs"
+      - "tests/emergency-contact-completed-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
       - "tests/booking-ui-loss.test.mjs"
@@ -227,6 +229,8 @@ on:
     branches:
       - main
     paths:
+      - "tests/team-enrollment-contract.test.mjs"
+      - "tests/emergency-contact-completed-evidence.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
       - "tests/booking-ui-loss.test.mjs"
@@ -536,6 +540,9 @@ jobs:
 
       - name: Test private emergency contact ownership and revocation
         run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
+
+      - name: Test authoritative team enrollment without granting conversation access
+        run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

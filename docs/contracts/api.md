@@ -43,7 +43,19 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `createRidePaymentIntent` | booking parent | Server-priced PaymentSheet config for an approved booking. |
 | `issueRewardPayout` | admin | Payout request and ledger entry. |
 
-## Webhooks
+## Team Enrollment (Source, Not Deployed)
+
+| Callable | Access | Behavior |
+| --- | --- | --- |
+| `getTeamEnrollmentView` | eligible adult, verified parent or owned history | Auth-bound self/child view; no writes. Exact team and enrollment identities, revision and allowed actions. |
+| `requestTeamEnrollment` | eligible adult or currently verified parent | Requests, never approves. Requires viewed `expectedTeamInstanceId`, `expectedEnrollmentId`, `expectedRevision` and UUID `requestId`. |
+| `transitionTeamEnrollment` | scoped manager; requesting account for withdrawal | Versioned approve/refuse/revoke/withdraw by exact enrollment ID. Current eligibility required for approval; payload-bound idempotency never restores stale state. |
+| `listTeamEnrollments` | current stored-club manager | At most 20 scanned rows per page, with account/team-identity-bound cursor; nullable authorized labels and allowed actions. |
+
+See [team conversations](team-conversations.md) for lifecycle, identity reuse and
+withdrawal policy. These endpoints do not enable team messages or change roles.
+
+## Provider Webhooks
 
 | Webhook | Path | Behavior |
 | --- | --- | --- |

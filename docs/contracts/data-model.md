@@ -132,3 +132,12 @@ declared `children.guardianUserIds` array is not approval. These new service
 records do not migrate existing children or grant team-chat/emergency-contact
 permissions by themselves. Native request/review and consumer integration remain
 pending. See [parent-child verification](guardian-verification.md).
+
+`teamEnrollments` and `teamEnrollmentEvents` are private server-only collections.
+Canonical enrollment IDs bind team ID, stored club, full server document creation
+time and subject identity; child subjects additionally bind the child's server
+creation time. Records keep typed subject provenance, requester, versioned status,
+actors and timestamps. Events carry payload fingerprints and no display names or
+emails. Client reads/queries/writes remain denied, including for admin claims.
+No team roster migration, chat entitlement or public profile field is added.
+See [team enrollment](team-conversations.md#isolated-enrollment-service).

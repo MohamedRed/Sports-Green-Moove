@@ -1,4 +1,11 @@
 export const captures = {
+  'emergency-passed-saved': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-self-saved.png',
+  'emergency-passed-restored': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-self-restored.png',
+  'emergency-passed-child': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-child-saved.png',
+  'emergency-passed-revoked': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-child-revoked.png',
+  'emergency-passed-dialer': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-dialer-opened.png',
+  'emergency-passed-removed': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-self-removed.png',
+  'emergency-passed-account': 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-other-account.png',
   'emergency-native-saved': 'docs/release/evidence/local-contact-dialer-failure-2026-10-18/emergency-self-saved.png',
   'emergency-native-restored': 'docs/release/evidence/local-contact-dialer-failure-2026-10-18/emergency-self-restored.png',
   'emergency-native-child': 'docs/release/evidence/local-contact-dialer-failure-2026-10-18/emergency-child-saved.png',
