@@ -172,7 +172,7 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   }
   assert(source(path + 'requests-baseline-failed.xml').includes('tests="4" skipped="0" failures="4" errors="0"'));
   const flow = content.flows.find((item) => item.id === 'search');
-  assert.equal(flow.source, 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/browserstack-parent-search-2026-10-18/README.md');
   assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /recherche complète/);
   assert.match(flow.remaining, /vraie déconnexion/);
@@ -183,8 +183,9 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
   assert.match(run.search.limitation, /host identity\/navigation changes, not real provider matching/);
   assert(flow.ui.groups.includes('search-session-ui') && flow.ui.groups.includes('search-input-ui'));
-  assert.equal(flow.images.length, 5);
-  assert.match(flow.verified, /simulé/);
+  assert.equal(flow.images.length, 8);
+  assert.equal(flow.ui.checkedAt, '2026-10-16');
+  assert.match(flow.verified, /essai local du 16 octobre/);
   assert(!Object.values(captures).some((path) => path.endsWith('local-search-edited-place.png')));
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
 });

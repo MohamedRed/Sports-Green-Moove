@@ -91,6 +91,7 @@ on:
       - "tests/real-map-display.test.mjs"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/browserstack-isolated-booking-evidence.test.mjs"
+      - "tests/browserstack-parent-search-evidence.test.mjs"
       - "tests/native-draft-and-map-stage-evidence.test.mjs"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
@@ -284,6 +285,7 @@ on:
       - "tests/real-map-display.test.mjs"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/browserstack-isolated-booking-evidence.test.mjs"
+      - "tests/browserstack-parent-search-evidence.test.mjs"
       - "tests/native-draft-and-map-stage-evidence.test.mjs"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
@@ -448,7 +450,7 @@ jobs:
         run: npm run test:local-flow-isolation
 
       - name: Validate isolated private phone tunnel policy
-        run: node --test tests/browserstack-isolated-tunnel.test.mjs tests/browserstack-isolated-booking-evidence.test.mjs
+        run: node --test tests/browserstack-isolated-tunnel.test.mjs tests/browserstack-isolated-booking-evidence.test.mjs tests/browserstack-parent-search-evidence.test.mjs
 
       - name: Validate explicit real-map test boundaries without provider calls
         run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs

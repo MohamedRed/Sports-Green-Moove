@@ -1,4 +1,8 @@
 export const captures = {
+  'phone-session-restored': 'docs/release/evidence/browserstack-parent-search-2026-10-18/phone-session-restored.png',
+  'phone-child-two-seats-consent': 'docs/release/evidence/browserstack-parent-search-2026-10-18/phone-child-two-seats-consent.png',
+  'phone-child-consent-reset': 'docs/release/evidence/browserstack-parent-search-2026-10-18/phone-child-consent-reset.png',
+  'phone-child-incomplete-search': 'docs/release/evidence/browserstack-parent-search-2026-10-18/phone-child-incomplete-search.png',
   'phone-booking-requested': 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/phone-booking-requested.png',
   'phone-booking-approved': 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/phone-booking-approved.png',
   'phone-booking-cancelled': 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/phone-booking-cancelled.png',

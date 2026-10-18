@@ -107,3 +107,26 @@ test('retained ordinary failures identify callback cleanup during off-main recom
   const fit = source('android/app/src/main/java/be/sportgreenmoove/app/ui/FitRouteMapCamera.kt');
   assert.match(fit, /withContext\(NonCancellable \+ Dispatchers.Main.immediate\)/);
 });
+
+test('current ordinary replay executes all nine cleanup regressions but does not promote failed evidence collection', () => {
+  const base = 'docs/release/evidence/real-maps-native-2026-10-18/cleanup-main-thread/';
+  const parse = (file) => new XMLParser({ ignoreAttributes: false, isArray: (name) => name === 'testcase' })
+    .parse(source(base + file)).testsuite;
+  const old = parse('ordinary-ui.xml');
+  const current = parse('current-ci/native-results.xml');
+  assert.equal(current['@_tests'], '121'); assert.equal(current['@_failures'], '0');
+  assert.equal(current['@_errors'], '0'); assert.equal(current['@_skipped'], '31');
+  const regressions = old.testcase.filter((entry) => String(entry.failure).includes('Not on the main thread'));
+  assert.equal(regressions.length, 9);
+  for (const failed of regressions) {
+    const passed = current.testcase.filter((entry) => entry['@_name'] === failed['@_name'] && entry['@_classname'] === failed['@_classname']);
+    assert.equal(passed.length, 1);
+    for (const field of ['failure', 'error', 'skipped']) assert(!Object.hasOwn(passed[0], field));
+  }
+  const hashes = JSON.parse(source(base + 'current-ci/artifact-sha256.json'));
+  for (const [name, hash] of Object.entries(hashes))
+    assert.equal(createHash('sha256').update(source(base + 'current-ci/' + name)).digest('hex'), hash);
+  const receipt = JSON.parse(source(base + 'current-ci/adb-pull-trip-change-parent-confirmation.json'));
+  assert.equal(receipt.completed, false); assert.equal(receipt.status, 1);
+  assert.equal(receipt.phase, 'trip-change-parent-confirmation');
+});

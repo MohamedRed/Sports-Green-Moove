@@ -76,7 +76,7 @@ try {
   const booking = content.flows.find((flow) => flow.id === 'booking');
   const checkedAt = new Intl.DateTimeFormat('fr-BE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
     .format(new Date(booking.checkedAt));
-  await page.getByText(`Essai local du ${checkedAt}`, { exact: true }).waitFor();
+  await page.getByText(`${booking.phone ? 'Essai sur téléphone' : 'Essai local'} du ${checkedAt}`, { exact: true }).waitFor();
   await page.getByRole('img', { name: booking.images[0].alt, exact: true }).waitFor();
   assert.equal(await page.locator('video').count(), 0);
   assert.equal(await page.locator('.media-navigation').count(), 1);
@@ -110,6 +110,18 @@ try {
     await page.getByRole('link', { name: 'Voir toutes les preuves', exact: true }).waitFor();
     if (flow.tour.at(-1).image) {
       assert(await page.locator('.media-stage img').evaluate((img) => img.complete && img.naturalWidth > 0));
+    }
+  }
+  for (const width of [1440, 390, 320]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const id of ['navigation', 'search']) {
+      await page.goto(`${base}/#parcours/${id}/visite/1`);
+      const flow = content.flows.find((item) => item.id === id);
+      await page.getByRole('heading', { name: flow.tour[0].title, exact: true }).waitFor();
+      assert(await page.locator('.media-stage img').evaluate((img) => img.complete && img.naturalWidth > 0));
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+      assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
+      await page.screenshot({ path: `${output}/phone-${id}-${width}.png`, fullPage: true });
     }
   }
   await page.goto(`${base}/#parcours/signout/visite/1`);

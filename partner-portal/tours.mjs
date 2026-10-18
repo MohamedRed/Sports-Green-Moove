@@ -13,10 +13,14 @@ export const tours = {
     clip('signed-out-relaunch', 'Relancer l’app', 'Après fermeture et relancement, la connexion est à nouveau demandée.'),
   ],
   navigation: [
+    image('phone-session-restored', 'Rouvrir l’app', 'Sur téléphone, le parent retrouve l’accueil sans se reconnecter après fermeture complète.'),
     image('local-home', 'Consulter l’accueil', 'Le trajet de test apparaît dans l’accueil.'),
     image('local-calendar', 'Consulter le calendrier', 'Le calendrier affiche le mois de l’essai et permet de changer de mois.'),
   ],
   search: [
+    image('phone-child-two-seats-consent', 'Choisir l’enfant et les places', 'Sur téléphone, l’enfant de test et deux places sont sélectionnés. La réservation complète reste à tester.'),
+    image('phone-child-consent-reset', 'Changer de choix', 'Le consentement est remis à zéro quand le choix d’enfant change.'),
+    image('phone-child-incomplete-search', 'Renseigner les adresses', 'Sans départ ni destination choisis, la recherche est bloquée et aucune réservation n’est créée.'),
     image('search-options-retained', 'Retrouver ses choix', 'Les options restent sélectionnées au retour dans la recherche simulée.'),
     image('search-options-invalidated', 'Modifier sa recherche', 'Les anciens résultats sont retirés après modification. Une recherche complète reste à vérifier.'),
   ],

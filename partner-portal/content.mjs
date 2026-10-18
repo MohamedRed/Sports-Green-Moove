@@ -1,5 +1,6 @@
 import { tours } from './tours.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
+import { createNavigationFlow, createSearchFlow } from './parent-phone-flows.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
@@ -8,8 +9,6 @@ const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
-const searchUiReport = 'docs/release/evidence/local-search-ui-2026-10-15/README.md';
-const optionsUiReport = 'docs/release/evidence/local-search-options-ui-2026-10-16/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
 const teamOwnershipReport = 'docs/release/evidence/local-team-ownership-2026-10-16/README.md';
 const chatReport = 'docs/release/evidence/local-dual-transport-2026-10-17/README.md';
@@ -138,22 +137,8 @@ export const content = {
       remaining: 'Tester séparément le redémarrage pendant un trajet.',
       images: [shot('signed-out', 'Écran de connexion après relancement')],
       clips: ['signout-action', 'signed-out-relaunch'], recording: 'signout', source: replay },
-    { id: 'navigation', title: 'Accueil et navigation parent', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'Le calendrier affiche le trajet de test et les bons mois.',
-      verified: 'Connexion parent, trajet dans le calendrier, changement de mois et aperçu des messages vérifiés dans l’app en local.',
-      remaining: 'Rejouer entre téléphones et améliorer l’affichage pendant le chargement.',
-      ui: ui(['parent-app-ui']),
-      images: [shot('local-home', 'Accueil avec le trajet de test en local'), shot('local-calendar', 'Calendrier du mois courant en local')],
-      clips: ['home-to-trips'], recording: 'navigation', source: uiReport },
-    { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-16',
-      summary: 'Essai local simulé : choix conservés, anciens résultats retirés après modification.',
-      verified: 'Les options restent sélectionnées au retour dans l’essai simulé. La demande reprend le bon enfant et deux places. Modifier un choix impose une nouvelle recherche.',
-      remaining: 'Rejouer une vraie déconnexion et la recherche complète, avec classement, places restantes et reprise après coupure. Simplifier le choix de date.',
-      ui: { source: 'docs/release/evidence/local-search-options-ui-2026-10-16/results.json', groups: ['search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui'] },
-      images: [shot('search-options-retained', 'Choix conservés dans l’essai local simulé'),
-        shot('search-options-invalidated', 'Anciens résultats retirés après modification, en local'),
-        shot('search-account-cleared', 'Compte simulé : recherche vidée lors de l’essai du 15 octobre'),
-        shot('local-search-empty', 'Recherche sans résultat lors de l’essai du 15 octobre'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')], source: optionsUiReport },
+    createNavigationFlow(),
+    createSearchFlow(),
     { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-18',
       summary: 'Le parcours s’applique après les deux accords. La carte s’affiche ; son cadrage reste à vérifier.',
       verified: 'Deux parents confirment séparément ; le conducteur applique le nouveau parcours dans l’app en local. Les cartes s’affichent. La date et l’arrivée du brouillon reviennent aussi après fermeture.',

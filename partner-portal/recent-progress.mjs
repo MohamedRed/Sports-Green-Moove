@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les choix de recherche passent sur téléphone',
+    text: 'Enfant et deux places sélectionnés ; changer de choix efface le consentement. Sans adresses, aucune réservation n’est créée. Trois captures sont ajoutées.', flow: 'search' },
+  { date: '2026-10-18', title: 'Le parent reste connecté après fermeture',
+    text: 'Sur téléphone, l’accueil revient sans nouvelle connexion. La capture est ajoutée.', flow: 'navigation' },
+  { date: '2026-10-18', title: 'Le nouvel essai complet reste incomplet',
+    text: 'Les écrans passent, puis la copie des preuves s’arrête. Cet essai n’est pas validé ; les captures précédentes restent disponibles.', flow: 'publication' },
   { date: '2026-10-18', title: 'Une réservation passe sur téléphone',
     text: 'Le parent demande une place, retrouve l’accord puis annule. La place est rendue disponible. Trois captures sont ajoutées, avec des données de test et sans paiement.', flow: 'booking' },
   { date: '2026-10-18', title: 'Le suivi est plus simple à parcourir',

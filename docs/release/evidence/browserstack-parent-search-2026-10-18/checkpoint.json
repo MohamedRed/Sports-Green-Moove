@@ -1,0 +1,24 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "5070540bdf1f5f01ef679661a5acb050",
+  "recordedAt": "2026-10-18T11:45:10.771Z",
+  "parentUserId": "v9AX5g4c5Tmf2JFLokjQ2cf7H6E6",
+  "parentEmail": "phone-child-20261018@example.test",
+  "parentRoles": [
+    "parent"
+  ],
+  "children": [
+    {
+      "id": "sgm-qa-phone-child-20261018",
+      "displayName": "Lina QA telephone",
+      "guardianUserIds": [
+        "v9AX5g4c5Tmf2JFLokjQ2cf7H6E6"
+      ]
+    }
+  ],
+  "bookingCount": 0,
+  "requestReceiptCount": 0,
+  "scope": "persisted-negative-search-checkpoint-not-guardian-consent-or-completed-booking-proof",
+  "paymentExercised": false,
+  "productionDataWritten": false
+}
