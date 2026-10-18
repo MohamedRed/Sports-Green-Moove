@@ -5,8 +5,9 @@ import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.data.BookingIntentSnapshot
+import be.sportgreenmoove.app.domain.tripDateLabel
+import be.sportgreenmoove.app.domain.tripTimeLabel
 import com.google.firebase.Timestamp
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.Date
 import java.util.Locale
@@ -14,8 +15,8 @@ import java.util.Locale
 internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
     val departure = dateValue(data["departureAt"])
     val seats = (data["seatsAvailable"] as? Number)?.toInt() ?: 0
-    val dateLabel = departure?.let(::formatDateLabel) ?: "DATE À CONFIRMER"
-    val timeLabel = departure?.let(::formatTimeLabel) ?: "--h--"
+    val dateLabel = departure?.toInstant()?.let(::tripDateLabel) ?: "DATE À CONFIRMER"
+    val timeLabel = departure?.toInstant()?.let(::tripTimeLabel) ?: "--h--"
     val distanceKm = (data["distanceKm"] as? Number)?.toDouble()
 
     return TripSummary(
@@ -87,15 +88,6 @@ private fun dateValue(value: Any?): Date? =
         is String -> runCatching { Date.from(Instant.parse(value)) }.getOrNull()
         else -> null
     }
-
-private fun formatDateLabel(date: Date): String =
-    SimpleDateFormat("EEE dd MMM", BelgianFrenchLocale)
-        .format(date)
-        .replace(".", "")
-        .uppercase(BelgianFrenchLocale)
-
-private fun formatTimeLabel(date: Date): String =
-    SimpleDateFormat("HH'h'mm", BelgianFrenchLocale).format(date)
 
 private fun priceLabel(cents: Int): String =
     if (cents == 0) {

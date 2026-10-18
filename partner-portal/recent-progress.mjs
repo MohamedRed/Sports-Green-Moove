@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les horaires sont corrigés dans les calculs',
+    text: 'Les vérifications locales passent, même autour de minuit et des changements d’heure. Il reste à rejouer le parcours dans l’app. Pas encore en ligne.', flow: 'publication' },
   { date: '2026-10-17', title: 'Les réponses restent après fermeture',
     text: 'L’attente et l’accord partiel sont retrouvés. Refus et retrait gardent les réservations. Les 32 essais locaux passent ; trois captures sont ajoutées. Les horaires affichés restent à aligner.', flow: 'publication' },
   { date: '2026-10-17', title: 'Les autres réponses restent à vérifier après fermeture',

@@ -5,8 +5,8 @@ import FirebaseFirestore
 
 func mapTrip(id: String, data: [String: Any]) -> TripSummary {
     let departure = dateValue(data["departureAt"])
-    let dateLabel = departure.map(formatDateLabel) ?? "DATE À CONFIRMER"
-    let timeLabel = departure.map(formatTimeLabel) ?? "--h--"
+    let dateLabel = departure.map(tripDateLabel) ?? "DATE À CONFIRMER"
+    let timeLabel = departure.map(tripTimeLabel) ?? "--h--"
     let seats = intValue(data["seatsAvailable"]) ?? 0
     let distance = data["distanceKm"] as? Double
 
@@ -75,8 +75,8 @@ func mapPayableBooking(id: String, booking: [String: Any], trip: [String: Any]) 
         tripId: tripId,
         title: trip["title"] as? String ?? "\(trip["category"] as? String ?? "Trajet") sportif",
         club: trip["clubName"] as? String ?? trip["clubId"] as? String ?? "Club",
-        dateLabel: departure.map(formatDateLabel) ?? "DATE À CONFIRMER",
-        timeLabel: departure.map(formatTimeLabel) ?? "--h--",
+        dateLabel: departure.map(tripDateLabel) ?? "DATE À CONFIRMER",
+        timeLabel: departure.map(tripTimeLabel) ?? "--h--",
         seats: seats,
         amountCents: amountCents,
         amountLabel: priceLabel(amountCents),
@@ -89,20 +89,6 @@ private func dateValue(_ value: Any?) -> Date? {
     if let date = value as? Date { return date }
     if let text = value as? String { return ISO8601DateFormatter().date(from: text) }
     return nil
-}
-
-private func formatDateLabel(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "fr_BE")
-    formatter.dateFormat = "EEE dd MMM"
-    return formatter.string(from: date).replacingOccurrences(of: ".", with: "").uppercased()
-}
-
-private func formatTimeLabel(_ date: Date) -> String {
-    let formatter = DateFormatter()
-    formatter.locale = Locale(identifier: "fr_BE")
-    formatter.dateFormat = "HH'h'mm"
-    return formatter.string(from: date)
 }
 
 private func priceLabel(_ cents: Int) -> String {

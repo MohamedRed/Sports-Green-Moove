@@ -68,6 +68,12 @@ entry states across a new app process. See the
 [completed recovery evidence](../release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md).
 Declined/withdrawn entry checks do not establish proposal-history retrieval.
 
+The 18 October [date regression checks](../release/evidence/local-trip-dates-2026-10-18/README.md)
+reproduce and correct server/device-default timezone labels. Unit checks pass
+across three default timezones. The next native replay additionally compares
+the direct trip summary and both parents' reservation times against an independent
+Belgian-time expectation. Compilation is not a completed on-screen replay.
+
 Not yet proven: a complete multi-account native change-application replay,
 consistent Belgian-time labels in trip/booking cards, durable pending edits across
 process death, review history after a decline/withdrawal, real address/map

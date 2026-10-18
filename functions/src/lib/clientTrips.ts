@@ -46,16 +46,20 @@ type RideSessionSnapshot = {
   } | undefined>;
 };
 
+const tripTimeZone = "Europe/Brussels";
+
 function formatDateParts(value: string): { dateLabel: string; timeLabel: string; departureLabel: string; status: ClientTripStatus } {
   const departure = new Date(value);
   if (Number.isNaN(departure.getTime())) {
     return { dateLabel: "DATE À CONFIRMER", timeLabel: "--h--", departureLabel: "DATE À CONFIRMER", status: "upcoming" };
   }
 
-  const day = departure.toLocaleDateString("fr-BE", { weekday: "short", day: "2-digit", month: "short" }).replace(".", "");
+  const day = departure.toLocaleDateString("fr-BE", {
+    weekday: "short", day: "2-digit", month: "short", timeZone: tripTimeZone,
+  }).replace(".", "");
   const dateLabel = day.toUpperCase();
   const timeLabel = departure
-    .toLocaleTimeString("fr-BE", { hour: "2-digit", minute: "2-digit", hour12: false })
+    .toLocaleTimeString("fr-BE", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: tripTimeZone })
     .replace(":", "h");
   const status: ClientTripStatus = departure.getTime() < Date.now() ? "past" : "upcoming";
 

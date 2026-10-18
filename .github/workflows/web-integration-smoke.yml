@@ -88,6 +88,9 @@ on:
       - "tests/trip-consent-restart.test.mjs"
       - "tests/trip-consent-recovery.test.mjs"
       - "tests/trip-consent-recovery-completed-evidence.test.mjs"
+      - "tests/trip-date-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripDateLabels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripCalendar.kt"
       - "docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/**"
       - "tests/trip-consent-restart-completed-evidence.test.mjs"
       - "docs/release/evidence/local-trip-consent-restart-native-2026-10-17/**"
@@ -250,6 +253,9 @@ on:
       - "tests/trip-consent-restart.test.mjs"
       - "tests/trip-consent-recovery.test.mjs"
       - "tests/trip-consent-recovery-completed-evidence.test.mjs"
+      - "tests/trip-date-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripDateLabels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripCalendar.kt"
       - "docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/**"
       - "tests/trip-consent-restart-completed-evidence.test.mjs"
       - "docs/release/evidence/local-trip-consent-restart-native-2026-10-17/**"
@@ -358,6 +364,15 @@ jobs:
 
       - name: Test Functions
         run: npm test --workspace functions
+
+      - name: Test Belgian trip dates across server timezones
+        run: |
+          for timezone in UTC America/Los_Angeles Asia/Tokyo; do
+            TZ="$timezone" npm test --workspace functions -- src/__tests__/client-trip-dates.test.ts
+          done
+
+      - name: Validate Belgian trip date regression evidence
+        run: node --test tests/trip-date-evidence.test.mjs
 
       - name: Build Functions
         run: npm run build --workspace functions

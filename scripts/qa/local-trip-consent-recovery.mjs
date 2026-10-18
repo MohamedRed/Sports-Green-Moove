@@ -49,7 +49,9 @@ async function snapshot(fixtures) {
 export async function replayTripConsentRecovery({ instrument, collect, adb, serial, directory, runId }) {
   const fixtures = await seed();
   const argumentsByKind = recoveryKinds.map((kind) => ({ kind, tripId: fixtures[kind].tripId,
-    bookingId: fixtures[kind].bookingIds[0], secondBookingId: fixtures[kind].bookingIds[1] }));
+    bookingId: fixtures[kind].bookingIds[0], secondBookingId: fixtures[kind].bookingIds[1],
+    expectedTimeLabel: new Intl.DateTimeFormat('fr-BE', { timeZone: 'Europe/Brussels', hour: '2-digit',
+      minute: '2-digit', hourCycle: 'h23' }).format(new Date(fixtures[kind].before.departureAt)).replace(':', 'h') }));
   const args = ['-e', 'consentRecoveryFixtures', Buffer.from(JSON.stringify(argumentsByKind)).toString('base64url'),
     '-e', 'consentRecoverySecondEmail', secondEmail];
   instrument(['LocalTripConsentRecoveryTest#prepareRecoveryStates'], 1, args);

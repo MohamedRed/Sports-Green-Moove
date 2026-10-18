@@ -39,8 +39,8 @@ export const excerpts = {
 };
 
 export const content = {
-  updatedAt: '2026-10-17',
-  lastVerifiedAt: '2026-10-17',
+  updatedAt: '2026-10-18',
+  lastVerifiedAt: '2026-10-18',
   releaseNote: 'Tests en cours.',
   updates: [
     ...recentProgress,
@@ -154,7 +154,7 @@ export const content = {
     { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-17',
       summary: 'Demandes en attente, accord, refus et retrait passent après fermeture, en local.',
       verified: 'Deux parents confirment séparément. Après fermeture, attente et accord partiel sont retrouvés dans les bons comptes. Refus et retrait conservent les réservations initiales, en local.',
-      remaining: 'Aligner les horaires des réservations. Rejouer sur téléphone. Tester le changement de parcours et l’application. Revoir l’historique et les brouillons après fermeture. Terminer les paiements et remboursements réels. Pas encore en ligne.',
+      remaining: 'Revoir les horaires dans l’app. Rejouer sur téléphone. Tester le changement de parcours et l’application. Revoir l’historique et les brouillons après fermeture. Terminer les paiements et remboursements réels. Pas encore en ligne.',
       local: local(['publication', 'trip-cancellation', 'trip-details-ownership', 'trip-change-parent-confirmation', 'trip-change-application'], ['Le conducteur publie ; le parent retrouve le trajet.', 'L’annulation ferme les réservations et prévient les parents.', 'Répéter une demande ne crée aucun doublon.', 'Deux parents confirment séparément les détails proposés.', 'Un refus conserve le trajet initial et ses réservations.', 'Après accord, les nouveaux horaire, parcours et prix sont enregistrés.', 'Une réponse perdue est retrouvée sans recréer la proposition.', 'Un supplément ou remboursement non réglé bloque le départ.', 'Aucun paiement ni remboursement réel dans ces essais.'], 'docs/release/evidence/local-trip-change-native-2026-10-17/services.json'),
       ui: { source: 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/results.json', groups: ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui', 'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui'] },
       images: [shot('trip-consent-recovery-pending', 'Demande sans réponse après fermeture, essai local du 17 octobre'),

@@ -40,6 +40,7 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.domain.tripFallsInMonth
+import be.sportgreenmoove.app.domain.BelgianTripZone
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -56,7 +57,7 @@ fun TripsScreen(
     management: TripManagementActions? = null,
 ) {
     var selectedTab by remember { mutableStateOf("upcoming") }
-    var monthIso by rememberSaveable { mutableStateOf(YearMonth.now().toString()) }
+    var monthIso by rememberSaveable { mutableStateOf(YearMonth.now(BelgianTripZone).toString()) }
     val month = YearMonth.parse(monthIso)
     val visibleTrips = trips.filter { trip ->
         tripFallsInMonth(trip.departureAtIso, month) && when (selectedTab) {

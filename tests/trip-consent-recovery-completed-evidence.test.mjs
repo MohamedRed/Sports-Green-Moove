@@ -94,7 +94,8 @@ test('three reviewed captures replace no historical proof and keep Belgian-time,
     .equals(bytes(base + 'completed/local-trip-consent-recovery-withdrawn.png')));
   assert.equal(Object.values(captures).filter((p) => p.startsWith(base)).length, 3);
   const timeGap = content.blockers.find((b) => b.id === 'booking-time-display');
-  assert.equal(timeGap.source, base + 'README.md'); assert.match(timeGap.text, /11h50.*13h50/);
+  assert.equal(timeGap.source, 'docs/release/evidence/local-trip-dates-2026-10-18/README.md');
+  assert.match(timeGap.text, /11h50.*13h50/); assert.match(timeGap.next, /Rejouer dans l’app/);
   for (const scope of [/horaires/, /sur téléphone/, /application/, /historique/, /brouillons/, /paiements et remboursements réels/])
     assert.match(flow.remaining, scope);
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');

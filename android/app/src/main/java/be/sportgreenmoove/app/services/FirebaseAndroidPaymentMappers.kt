@@ -1,8 +1,9 @@
 package be.sportgreenmoove.app.services
 
 import be.sportgreenmoove.app.data.PayableBookingSummary
+import be.sportgreenmoove.app.domain.tripDateLabel
+import be.sportgreenmoove.app.domain.tripTimeLabel
 import com.google.firebase.Timestamp
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.Date
 import java.util.Locale
@@ -23,8 +24,8 @@ internal fun mapPayableBooking(
         tripId = booking["tripId"] as? String ?: return null,
         title = trip["title"] as? String ?: "${trip["category"] as? String ?: "Trajet"} sportif",
         club = trip["clubName"] as? String ?: trip["clubId"] as? String ?: "Club",
-        dateLabel = departure?.let(::paymentDateLabel) ?: "DATE À CONFIRMER",
-        timeLabel = departure?.let(::paymentTimeLabel) ?: "--h--",
+        dateLabel = departure?.toInstant()?.let(::tripDateLabel) ?: "DATE À CONFIRMER",
+        timeLabel = departure?.toInstant()?.let(::tripTimeLabel) ?: "--h--",
         seats = seats,
         amountCents = amountCents,
         amountLabel = paymentPriceLabel(amountCents),
@@ -39,15 +40,6 @@ private fun paymentDateValue(value: Any?): Date? =
         is String -> runCatching { Date.from(Instant.parse(value)) }.getOrNull()
         else -> null
     }
-
-private fun paymentDateLabel(date: Date): String =
-    SimpleDateFormat("EEE dd MMM", PaymentBelgianFrenchLocale)
-        .format(date)
-        .replace(".", "")
-        .uppercase(PaymentBelgianFrenchLocale)
-
-private fun paymentTimeLabel(date: Date): String =
-    SimpleDateFormat("HH'h'mm", PaymentBelgianFrenchLocale).format(date)
 
 private fun paymentPriceLabel(cents: Int): String =
     "%.2f EUR".format(PaymentBelgianFrenchLocale, cents.toDouble() / 100.0)

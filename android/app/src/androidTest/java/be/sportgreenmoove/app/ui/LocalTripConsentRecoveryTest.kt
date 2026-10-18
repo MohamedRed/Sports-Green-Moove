@@ -129,6 +129,10 @@ class LocalTripConsentRecoveryTest {
 
     private fun verifyParent(fixture: JSONObject, second: Boolean, capture: Boolean) {
         val booking = fixture.getString(if (second) "secondBookingId" else "bookingId")
+        val expectedTime = fixture.getString("expectedTimeLabel")
+        assertEquals(expectedTime, trip(fixture).timeLabel)
+        compose.onNodeWithTag("reservation.card.$booking").performScrollTo()
+            .assert(hasAnyDescendant(hasText(" · $expectedTime", substring = true)))
         if (isOpen(fixture)) {
             assertEquals(proposals.getValue(fixture.getString("kind")), trip(fixture).pendingChangeId)
             openParent(booking)
