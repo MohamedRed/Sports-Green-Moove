@@ -116,6 +116,33 @@ try {
   await page.locator('.tour-progress').waitFor({ state: 'detached' });
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
+    for (const flow of content.flows.filter((item) => item.images.some((image) => image.landscape))) {
+      await page.goto(`${base}/#parcours`);
+      await page.locator('dialog').waitFor({ state: 'hidden' });
+      await page.goto(`${base}/#parcours/${flow.id}`);
+      await page.getByRole('dialog').waitFor();
+      let current = 0;
+      for (const [index, image] of flow.images.entries()) {
+        if (!image.landscape) continue;
+        const target = index + (flow.ui ? 0 : (flow.clips || []).length);
+        while (current < target) { await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click(); current++; }
+        await page.getByRole('img', { name: image.alt, exact: true }).waitFor();
+        await page.waitForFunction(() => {
+          const image = document.querySelector('.media-stage img');
+          return image?.complete && image.naturalWidth > 0;
+        });
+        assert(await page.locator('.media-stage').evaluate((stage) => {
+          const frame = stage.getBoundingClientRect(), image = stage.querySelector('img').getBoundingClientRect();
+          const caption = stage.nextElementSibling.getBoundingClientRect();
+          return image.left >= frame.left - 1 && image.right <= frame.right + 1 &&
+            image.top >= frame.top - 1 && image.bottom <= frame.bottom + 1 && caption.top >= image.bottom;
+        }), `Landscape evidence overlaps its caption: ${flow.id}/${image.file} at ${width}px`);
+        if (flow.id === 'clubs' && index === 0) await page.screenshot({ path: `${output}/landscape-${width}.png`, fullPage: false });
+      }
+    }
+  }
+  for (const width of [1440, 768, 390, 320]) {
+    await page.setViewportSize({ width, height: 1000 });
     await page.goto(`${base}/#parcours/clubs/visite/1`);
     await page.getByText(`Étape 1 sur ${content.flows.find((flow) => flow.id === 'clubs').tour.length}`, { exact: true }).waitFor();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
