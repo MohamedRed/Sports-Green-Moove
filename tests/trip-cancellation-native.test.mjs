@@ -33,7 +33,7 @@ test('new local app replay is independently verified before success and OS disco
   const runner = read('scripts/qa/local-android-session.mjs');
   assert.match(runner, /instrument\(\['LocalTripCancellationFlowTest'\], 1,/);
   assert.match(runner, /const tripCancellation = await verifyTripCancellationUi\(cancellationFixture\)/);
-  assert.match(runner, /testCount: 32/);
+  assert.match(runner, /testCount: 33/);
   assert(runner.indexOf('verifyTripCancellationUi(cancellationFixture)') < runner.indexOf('replayWithNetworkCleanup(adb'));
   assert(runner.indexOf('verifyTripCancellationUi(cancellationFixture)') < runner.indexOf('result = { projectId'));
   const fixture = read('scripts/qa/local-trip-cancellation-ui.mjs');

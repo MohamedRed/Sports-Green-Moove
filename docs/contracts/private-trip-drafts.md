@@ -38,3 +38,16 @@ save/read failures and proposal idempotency. Three instrumented cases compile,
 covering large-text close/reopen, real preferences/codec and corrupted records.
 Their execution remains pending in the next native CI run; this is not proof
 of force-stop/process-death recovery on a physical phone or release acceptance.
+
+The full isolated replay additionally requires `trip-draft-process-restart-ui`:
+two real app instrumentation stages around the existing guarded local-app
+force-stop, without clearing data. The driver types a raw price and two unresolved
+addresses, checks a second trip stays empty, then must recover the same draft in
+a different process without another login. Native private-store checks require
+no pending proposal and no confirmed coordinates; both stages compare the draft
+hash. Independent host snapshots require the full trip, booking and notification
+records to remain unchanged and no proposal, quote, balance or ride to exist.
+Only same-run completed receipts and two non-empty real captures permit the new
+group to pass. The full replay now requires 33 groups; older 32-group originals
+remain unchanged and do not prove the new draft stage. Both stages compile;
+actual execution and visual review are still pending.

@@ -7,7 +7,8 @@ import { collectNativeProcessFailure } from './native-process-failure-evidence.m
 
 const remote = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.';
 const phases = new Set(['confirmed-restart', 'response-loss', 'booking-response-loss', 'booking-ui-response-loss',
-  'trip-change-parent-confirmation', 'trip-change-inputs', 'trip-change-schedule', 'trip-consent-restart', 'trip-consent-recovery', 'network-recovery', 'failure-cleanup']);
+  'trip-change-parent-confirmation', 'trip-change-inputs', 'trip-change-schedule', 'trip-consent-restart', 'trip-consent-recovery',
+  'trip-draft-restart', 'network-recovery', 'failure-cleanup']);
 const text = (value) => Buffer.isBuffer(value) ? value.toString('utf8') : typeof value === 'string' ? value : '';
 
 export class EvidenceCollectionError extends Error {

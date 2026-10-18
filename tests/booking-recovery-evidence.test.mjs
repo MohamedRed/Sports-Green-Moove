@@ -103,7 +103,7 @@ test('CI requires fresh transport, storage and guarded native process stages', (
     'node --test tests/booking-recovery-evidence.test.mjs', 'tests/booking-request-rules.test.ts']) assert(workflow.includes(command));
   assert(workflow.includes('name: booking-recovery-results'));
   const native = read('scripts/qa/local-android-session.mjs');
-  assert(native.includes('await replayNativeBookingLoss')); assert(native.includes('testCount: 32'));
+  assert(native.includes('await replayNativeBookingLoss')); assert(native.includes('testCount: 33'));
   const check = read('scripts/qa/local-native-booking-loss.mjs');
   for (const text of ['prepareUnconfirmedBooking', 'recoverUnconfirmedBooking', 'stopDisposableBookingProcess',
     'assert.equal(records.size, 1)', 'assert.notEqual(before.processId, after.processId)']) assert(check.includes(text));
