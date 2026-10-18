@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'La préparation de l’essai est revue',
+    text: 'Le nouvel essai s’arrête avant l’ouverture de l’app : l’appareil installe une mise à jour. L’app sera maintenant préparée avant de démarrer l’appareil. Le parcours d’équipe reste à vérifier.', flow: 'team-enrollment' },
+  { date: '2026-10-18', title: 'Le nouvel essai complet reste ouvert',
+    text: 'Les autres vérifications passent. Les essais dans l’app ne démarrent pas cette fois ; les captures précédentes restent disponibles.', flow: 'publication' },
   { date: '2026-10-18', title: 'L’essai dans l’app reste à faire',
     text: 'L’appareil d’essai perd sa connexion avant le nouveau parcours d’équipe. Les six essais avec les données de test passent ; les captures précédentes restent disponibles.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Le dernier essai complet est interrompu',

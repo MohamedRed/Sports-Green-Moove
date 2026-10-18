@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/native-build-before-boot.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
@@ -244,6 +245,7 @@ on:
     branches:
       - main
     paths:
+      - "tests/native-build-before-boot.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
@@ -581,7 +583,7 @@ jobs:
         run: npm run test:membership-cursors && node --test tests/membership-cursor-contract.test.mjs
 
       - name: Test native team fixture lifecycle and fail-closed evidence contract
-        run: npm run test:team-native-fixtures && node --test tests/team-enrollment-sdk.test.mjs tests/adb-host-health.test.mjs
+        run: npm run test:team-native-fixtures && node --test tests/team-enrollment-sdk.test.mjs tests/adb-host-health.test.mjs tests/native-build-before-boot.test.mjs
 
       - name: Test transaction query conflict propagation
         run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs

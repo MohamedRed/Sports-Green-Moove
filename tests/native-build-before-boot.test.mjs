@@ -1,0 +1,50 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import YAML from 'yaml';
+import { createHash } from 'node:crypto';
+
+const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+test('APK compilation finishes before device boot with the same inputs as the guarded replay build', () => {
+  const workflow = YAML.parse(read('.github/workflows/native-ci.yml'));
+  const steps = workflow.jobs['android-native-ui'].steps;
+  const buildIndex = steps.findIndex((step) => step.name === 'Compile app and tests before starting the disposable device');
+  const bootIndex = steps.findIndex((step) => step.uses === 'reactivecircus/android-emulator-runner@v2');
+  assert(buildIndex > steps.findIndex((step) => step.uses === 'android-actions/setup-android@v4'));
+  assert(buildIndex < bootIndex); assert.equal(steps[buildIndex]['continue-on-error'], undefined);
+  assert.equal(steps[bootIndex].if, undefined);
+  assert.equal(steps[buildIndex].env.SGM_GOOGLE_MAPS_ANDROID_API_KEY, steps[bootIndex].env.SGM_GOOGLE_MAPS_ANDROID_API_KEY);
+  assert.equal(steps[bootIndex].env.SGM_PAUSE_TEST_PHONE_STORE, 'true');
+  const targets = (source) => source.match(/:app:[A-Za-z]+/g);
+  const guardedBuild = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
+  assert.deepEqual(targets(steps[buildIndex].run), [':app:assembleDebug', ':app:assembleDebugAndroidTest']);
+  assert.deepEqual(targets(steps[buildIndex].run), targets(guardedBuild).slice(0, 2));
+  assert(steps[buildIndex].run.includes('--no-daemon --stacktrace'));
+  assert(guardedBuild.indexOf('if [[ "$build_status" -ne 0 ]]') < guardedBuild.indexOf('configure-disposable-android.mjs'));
+  assert(!steps[buildIndex].run.includes('adb'));
+});
+test('both native and web gates cover build-before-boot ordering without changing the device image or permissions', () => {
+  for (const name of ['native-ci.yml', 'web-integration-smoke.yml']) {
+    const source = read('.github/workflows/' + name);
+    assert.equal(source.split('"tests/native-build-before-boot.test.mjs"').length - 1, 2);
+    assert(source.includes('node --test') && source.includes('tests/native-build-before-boot.test.mjs'));
+  }
+  const boot = YAML.parse(read('.github/workflows/native-ci.yml')).jobs['android-native-ui'].steps
+    .find((step) => step.uses === 'reactivecircus/android-emulator-runner@v2');
+  assert.equal(boot.with.target, 'google_apis_playstore'); assert.equal(boot.with['api-level'], 35);
+  assert.equal(boot.with.script, 'bash scripts/run-android-ui-tests-and-collect-screenshots.sh');
+  assert(!read('scripts/qa/disposable-store-pause.mjs').includes('no_install_apps'));
+});
+test('the original pre-suite active-install failure remains bound rather than relabelled as a replay pass', () => {
+  const base = 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/build-before-pause-failure/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 3);
+  for (const [path, expected] of Object.entries(hashes))
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + path, import.meta.url))).digest('hex'), expected);
+  assert.equal(read(base + 'disposable-device-setup.json'), '');
+  assert.deepEqual(JSON.parse(read(base + 'native-build-status.json')),
+    { scope: 'native-build-before-device-policy-not-flow-verification', status: 0 });
+  const log = read(base + 'native-job.log');
+  assert(log.includes('BUILD SUCCESSFUL in 6m 13s'));
+  assert(log.includes('A store installation is already active; do not interrupt it or start the app replay'));
+  assert(!log.includes('Finished 178 tests')); assert(!log.includes('Ordinary tests: 0'));
+});
