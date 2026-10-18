@@ -131,3 +131,20 @@ test('the complete native run preserves all 35 local groups and passes every pri
     ordinaryTests: 0, componentEvidence: 0, localReplay: 0 });
   const restore = json(sub + 'disposable-store-restore.json'); assert.equal(restore.restored, true); assert.equal(restore.verified, true);
 });
+test('the later interrupted ordinary run remains failed even though its team cases and separate local replay pass', () => {
+  const sub = 'docs/release/evidence/team-screen-export-2026-10-18/later-update-interruption/';
+  const hashes = json(sub + 'artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 6);
+  for (const [path, hash] of Object.entries(hashes)) assert.equal(sha(read(sub + path)), hash, path);
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(text(sub + 'ordinary-tests.xml')).testsuite;
+  assert.equal(Number(suite['@_tests']), 135); assert.equal(Number(suite['@_skipped']), 33); assert.equal(Number(suite['@_failures']), 1);
+  const team = suite.testcase.filter((item) => item['@_classname'] === 'be.sportgreenmoove.app.ui.TeamEnrollmentFlowTest');
+  assert.equal(team.length, 4); assert(team.every((item) => !('failure' in item) && !('error' in item) && !('skipped' in item)));
+  const setup = json(sub + 'disposable-device-setup.json'); assert.equal(setup.mapsRuntime.playServicesVersion, '24.23.35');
+  const journal = json(sub + 'OrdinaryUiSuite-install-sessions.txt');
+  assert(journal.sections.flatMap((section) => section.sessions).some((item) => item.appPackageName === 'com.google.android.gms' && item.mSessionApplied === true));
+  assert.equal(json(sub + 'disposable-store-restore.json').verified, false);
+  assert.deepEqual(json(sub + 'native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 1, componentEvidence: 0, localReplay: 0 });
+  const replay = json(sub + 'local-replay.json'); assert.equal(replay.testCount, 35); assert.equal(replay.steps.length, 35);
+  assert(replay.steps.every((step) => step.status === 'passed'));
+});

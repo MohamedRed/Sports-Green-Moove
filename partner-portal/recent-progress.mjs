@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le nouvel essai s’interrompt',
+    text: 'Une mise à jour a modifié l’appareil d’essai. Les quatre essais d’inscription passent encore, mais l’ensemble n’est pas validé. Les captures du précédent essai réussi restent disponibles.', flow: 'publication' },
   { date: '2026-10-18', title: 'Deux captures de l’inscription sont ajoutées',
     text: 'Demande en attente et texte agrandi : les quatre essais d’écran passent avec des réponses simulées. Les captures sont récupérées.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Les parcours et leurs captures passent ensemble',

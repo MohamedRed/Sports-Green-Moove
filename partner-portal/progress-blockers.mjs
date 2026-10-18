@@ -1,7 +1,7 @@
 export const blockers = [
-  { id: 'test-device-stability', title: 'Rejouer l’ensemble sur téléphone',
-    text: 'Les 35 parcours locaux passent avec les essais d’écran et la récupération des captures.',
-    next: 'Continuer les parcours à terminer, puis rejouer sur téléphone.', source: 'docs/release/evidence/team-screen-export-2026-10-18/completed/README.md' },
+  { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
+    text: 'Les 35 parcours locaux passent dans le précédent essai. Le suivant s’interrompt pendant une mise à jour.',
+    next: 'Stabiliser l’appareil et reprendre l’ensemble, puis rejouer sur téléphone.', source: 'docs/release/evidence/team-screen-export-2026-10-18/later-update-interruption/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },
