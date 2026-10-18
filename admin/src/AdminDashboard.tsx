@@ -8,6 +8,7 @@ import { useCollection, usePayoutCandidates } from "./useCollections";
 import { Wordmark } from "./Wordmark";
 import { MembershipReviewPanel } from "./MembershipReviewPanel";
 import { GuardianReviewPanel } from "./GuardianReviewPanel";
+import { TeamReviewPanel } from "./TeamReviewPanel";
 import type { FirestoreRecord, Metric, PayoutCandidate, RoleMap } from "./types";
 
 type Props = {
@@ -15,10 +16,10 @@ type Props = {
   userEmail: string;
   projectLabel: string;
   onSignOut: () => void;
-  canReviewGuardians: boolean;
+  canReviewClubRequests: boolean;
 };
 
-export function AdminDashboard({ uid, userEmail, projectLabel, onSignOut, canReviewGuardians }: Props) {
+export function AdminDashboard({ uid, userEmail, projectLabel, onSignOut, canReviewClubRequests }: Props) {
   const users = useCollection("users");
   const clubs = useCollection("clubs");
   const teams = useCollection("teams");
@@ -63,7 +64,8 @@ export function AdminDashboard({ uid, userEmail, projectLabel, onSignOut, canRev
         <DataWarning states={[users, clubs, teams, memberships, trips, bookings, rideSessions, reports, ledger, stripeAccounts]} />
         <UsersTable users={users.items} />
         <MembershipReviewPanel uid={uid} />
-        {canReviewGuardians && <GuardianReviewPanel uid={uid} />}
+        {canReviewClubRequests && <GuardianReviewPanel uid={uid} />}
+        {canReviewClubRequests && <TeamReviewPanel uid={uid} />}
         <ClubOperationsTables clubs={clubs.items} teams={teams.items} memberships={memberships.items} />
         <TripsTable trips={trips.items} bookings={bookings.items} />
         <RideSessionsTable rideSessions={rideSessions.items} />

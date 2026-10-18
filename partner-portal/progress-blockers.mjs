@@ -25,7 +25,7 @@ export const blockers = [
     next: 'Stabiliser la préparation des coupures et les captures, puis rejouer l’ensemble.', source: 'docs/release/evidence/local-replay-33-2026-10-18/README.md' },
   { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
     text: 'Les demandes d’équipe passent les essais locaux. Les échanges entre membres d’une même équipe et parents des enfants inscrits restent à construire et à tester.',
-    next: 'Jouer le nouveau parcours dans l’app. Ajouter l’historique, l’écran de réponse du responsable du club et les échanges, puis rejouer sur téléphone.', source: 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/README.md' },
+    next: 'L’écran du responsable du club passe en local. Rejouer avec le parent dans l’app, ajouter l’historique et les échanges, puis tester sur téléphone.', source: 'docs/release/evidence/local-team-review-2026-10-18/README.md' },
   { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
     text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
     next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: 'docs/release/evidence/local-ui-collection-2026-10-16/README.md' },

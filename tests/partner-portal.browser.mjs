@@ -203,6 +203,22 @@ try {
     await page.getByRole('heading', { name: 'Ce qui a été vérifié', exact: true }).waitFor();
     assert.equal(await page.locator('.local-results li').count(), 4);
   }
+  for (const width of [1440, 768, 390, 320]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto(`${base}/#parcours`); await page.goto(`${base}/#parcours/team-review`);
+    await page.getByRole('dialog').getByRole('heading', { name: 'Réponse du club', exact: true }).waitFor();
+    const flow = content.flows.find((item) => item.id === 'team-review');
+    for (const [index, image] of flow.images.entries()) {
+      await waitForImage();
+      assert.equal(await page.locator('.media-stage img').getAttribute('alt'), image.alt);
+      assert.equal(await page.locator('.media-stage.is-landscape').count(), image.landscape ? 1 : 0);
+      assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+      await page.screenshot({ path: `${output}/team-review-${index + 1}-${width}.png`, fullPage: false });
+      if (index + 1 < flow.images.length) await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click();
+    }
+    assert(await page.getByRole('button', { name: 'Preuve suivante', exact: true }).isDisabled());
+  }
   await page.goto(`${base}/#parcours/signout/visite/1`);
   await page.locator('video').evaluate((element) => element.play());
   await page.waitForFunction(() => document.querySelector('video').currentTime > .3);

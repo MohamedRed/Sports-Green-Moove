@@ -15,6 +15,7 @@ export { listGuardianParentOptions, getMyGuardianVerification } from "./callable
 export { getEmergencyContact, saveEmergencyContact } from "./callables/emergencyContact.js";
 export { getTeamEnrollmentView, requestTeamEnrollment, transitionTeamEnrollment, listTeamEnrollments } from "./callables/teamEnrollment.js";
 export { listTeamEnrollmentOptions } from "./callables/teamEnrollmentOptions.js";
+export { listTeamEnrollmentReviewTeams } from "./callables/teamEnrollmentReview.js";
 export { getInbox, sendChatMessage, getChatConversation, markChatMessagesRead } from "./callables/messages.js";
 export { listChatConversations, listChatBookingOptions } from "./callables/chatDirectory.js";
 export {

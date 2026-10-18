@@ -23,7 +23,7 @@ export function App() {
   }
 
   return <AdminDashboard key={auth.user.uid} uid={auth.user.uid} userEmail={auth.user.email ?? auth.user.uid} projectLabel={firebaseProjectLabel}
-    canReviewGuardians={auth.roleKeys.includes("clubManager")} onSignOut={signOutAdmin} />;
+    canReviewClubRequests={auth.roleKeys.includes("clubManager")} onSignOut={signOutAdmin} />;
 }
 
 function LoginPanel() {

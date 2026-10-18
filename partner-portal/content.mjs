@@ -3,6 +3,7 @@ import { createBookingFlow } from './booking-flow.mjs';
 import { createNavigationFlow, createSearchFlow } from './parent-phone-flows.mjs';
 import { createEmergencyFlow } from './emergency-flow.mjs';
 import { createTeamEnrollmentFlow } from './team-enrollment-flow.mjs';
+import { createTeamReviewFlow } from './team-review-flow.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
@@ -201,6 +202,7 @@ export const content = {
         shot('chat-history', 'Ancien échange retrouvé dans l’app, essai du 15 octobre'),
         shot('chat-landscape', 'Brouillon conservé en paysage, essai du 15 octobre')], source: chatReport },
     createTeamEnrollmentFlow(),
+    createTeamReviewFlow(),
     { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-18',
       summary: 'La demande, la réponse et le retrait du lien parent-enfant passent dans l’app, en local.',
       verified: 'Le parent demande la vérification, retrouve l’accord après réouverture de l’écran et voit son retrait. L’autre compte ne retrouve pas ces données. Les captures sont ajoutées.',

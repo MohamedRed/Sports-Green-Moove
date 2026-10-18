@@ -4,7 +4,7 @@ export function createTeamEnrollmentFlow() {
   return { id: 'team-enrollment', title: 'Inscription à une équipe', status: 'partial', checkedAt: '2026-10-18',
     summary: 'Les demandes passent avec les données de test. Le nouveau parcours dans l’app reste à lancer.',
     verified: 'Six essais locaux passent. Les quatre essais d’écran précédents restent simulés.',
-    remaining: 'Rejouer les demandes dans l’app. Ajouter l’historique, la réponse du responsable à l’écran et la conversation, puis tester sur téléphone.',
+    remaining: 'Rejouer les demandes dans l’app. Ajouter l’historique et la conversation, puis tester avec le responsable du club et sur téléphone.',
     ui: { source: 'docs/release/evidence/team-screen-export-2026-10-18/completed/component-results.json', groups: [
       'anUncertainReplyHasNoActionUntilTheUserReadsAgain', 'aReviewedRequestNeedsConfirmationAndNeverApprovesItself',
       'theParentSelectsAVerifiedChildWithoutChangingTheTeamOrAnotherSubject',

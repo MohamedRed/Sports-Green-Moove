@@ -103,3 +103,6 @@ jobs:
 
       - name: Test native team fixture lifecycle and fail-closed evidence contract
         run: npm run test:team-native-fixtures && node --test tests/team-enrollment-sdk.test.mjs
+
+      - name: Test manager team review scope and real service lifecycle
+        run: npm run test:team-review && node --test tests/team-review-controller.test.mjs tests/team-review-wire.test.mjs tests/team-review-evidence.test.mjs

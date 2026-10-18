@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le club peut répondre aux inscriptions',
+    text: 'Approuver, refuser et retirer passent dans l’espace du club en local. Une réponse perdue ne crée pas de doublon. Six captures sont ajoutées.', flow: 'team-review' },
   { date: '2026-10-18', title: 'La préparation de l’essai est revue',
     text: 'Le nouvel essai s’arrête avant l’ouverture de l’app : l’appareil installe une mise à jour. L’app sera maintenant préparée avant de démarrer l’appareil. Le parcours d’équipe reste à vérifier.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Le nouvel essai complet reste ouvert',

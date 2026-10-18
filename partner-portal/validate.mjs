@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
+import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -102,6 +103,9 @@ export function validate(root) {
 
 export function validateUiScope(run) {
   switch (run.scope) {
+    case 'local-team-manager-review-not-physical-or-parent-native-ui':
+      validateTeamReviewReport(run);
+      break;
     case 'isolated-guardian-review-http-not-native-ui':
       assert.equal(run.projectId, 'demo-sgm-local-qa');
       assert.equal(run.productionWrites, false); assert.equal(run.physicalDevice, false);
