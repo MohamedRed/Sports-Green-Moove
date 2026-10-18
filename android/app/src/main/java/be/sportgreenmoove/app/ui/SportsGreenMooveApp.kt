@@ -64,6 +64,8 @@ fun SportsGreenMooveApp() {
     }
     val paymentSheet = rememberSportsGreenMoovePaymentSheetController(
         scope = scope,
+        sessionUid = session?.uid,
+        gateway = providers.stripe,
         refreshAppData = { refreshAppData() },
         setError = { errorMessage = it },
         setNotice = { noticeMessage = it },

@@ -8,7 +8,12 @@ final class AppState {
     var overlay: AppOverlay?
     var selectedRole: AppRole = .parent
     var darkTheme = false
-    var session: AuthSession?
+    var session: AuthSession? {
+        didSet { if session?.uid != oldValue?.uid { pendingRidePayment = nil } }
+    }
+    var pendingRidePayment: RidePaymentTarget?
+    var ridePaymentBusy = false
+    var ridePaymentState: RidePaymentState = .pending
     var trips: [TripSummary] = []
     var children: [ChildSummary] = []
     var clubSummaries: [ClubSummary] = []

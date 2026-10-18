@@ -43,6 +43,13 @@ collect_component_evidence() {
   fi
 
   if [[ "$test_status" -eq 0 ]]; then
+    adb pull /sdcard/Download/sgm-payment-confirmation "$output_dir" || return 1
+    for name in payment-pending-narrow.png payment-pending-narrow-window.png payment-review.png payment-review-window.png; do
+      if [[ ! -s "$output_dir/sgm-payment-confirmation/$name" ]]; then
+        echo "Missing payment confirmation component capture: $name" >&2
+        return 1
+      fi
+    done
     adb pull /sdcard/Download/sgm-session-restoration "$output_dir" || return 1
     for name in session-restoration-error.png session-restoration-narrow.png; do
       if [[ ! -s "$output_dir/sgm-session-restoration/$name" ]]; then

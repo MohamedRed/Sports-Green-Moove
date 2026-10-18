@@ -155,4 +155,7 @@ struct UnconfiguredStripePaymentsGateway: StripePaymentsGateway {
         _ = bookingId
         throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
     }
+    func ridePaymentStatus(bookingId: String, paymentIntentId: String) async throws -> RidePaymentState {
+        throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
+    }
 }

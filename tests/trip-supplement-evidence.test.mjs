@@ -63,9 +63,11 @@ test('CI requires the new actual service scenario, invoice contracts and protect
 
 test('private progress calls the payments simulated and retains older screen evidence and unfinished refunds', () => {
   const flow = content.flows.find((item) => item.id === 'payments');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-16');
-  assert.equal(flow.source, base + 'README.md'); assert.equal(flow.local.source, base + 'services.json');
-  assert.deepEqual(flow.local.groups, ['trip-change-supplement']); assert.match(flow.summary, /simulés/);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-18');
+  const latest = 'docs/release/evidence/local-payment-confirmation-2026-10-18/';
+  assert.equal(flow.source, latest + 'README.md'); assert.equal(flow.local.source, latest + 'services.json');
+  assert.deepEqual(flow.local.groups, ['ride-payment-confirmation']); assert.match(flow.summary, /essais locaux/);
+  assert(read(latest + 'README.md').includes('../local-trip-supplement-2026-10-16/README.md'));
   assert.match(flow.images[0].alt, /11 octobre/); assert.match(flow.remaining, /écrans/);
   assert.match(flow.remaining, /remboursements/); assert.match(flow.remaining, /paiements réels sur téléphone/);
   assert(content.updates.some((item) => item.flow === 'payments' && /suppléments/.test(item.title)));

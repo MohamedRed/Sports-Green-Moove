@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'La confirmation du paiement passe les essais locaux',
+    text: 'Une confirmation tardive reste en attente. Vérifier ne relance pas de paiement. Les paiements réels restent à tester.', flow: 'payments' },
   { date: '2026-10-18', title: 'Les deux repères sont visibles sur la carte',
     text: 'Le nouvel essai local passe : adresses choisies, deux accords, puis parcours appliqué. Les captures sont ajoutées. À rejouer sur téléphone.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les choix de recherche passent sur téléphone',

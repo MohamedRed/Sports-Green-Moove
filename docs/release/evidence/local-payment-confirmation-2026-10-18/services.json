@@ -1,0 +1,65 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d7dd675fde98227a73c2b4ca2d486617",
+  "testedAt": "2026-10-18T13:56:38.897Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "steps": [
+    {
+      "id": "ride-payment-confirmation",
+      "status": "passed"
+    }
+  ],
+  "checks": [
+    {
+      "id": "delayed-confirmation-pending",
+      "status": "passed"
+    },
+    {
+      "id": "signed-out-denied",
+      "status": "passed"
+    },
+    {
+      "id": "wrong-role-denied",
+      "status": "passed"
+    },
+    {
+      "id": "other-parent-denied",
+      "status": "passed"
+    },
+    {
+      "id": "extra-ownership-input-denied",
+      "status": "passed"
+    },
+    {
+      "id": "paid-flag-without-receipt-unconfirmed",
+      "status": "passed"
+    },
+    {
+      "id": "synthetic-event-recorded-once",
+      "status": "passed"
+    },
+    {
+      "id": "mismatched-ledger-unconfirmed",
+      "status": "passed"
+    },
+    {
+      "id": "refund-affected-record-unconfirmed",
+      "status": "passed"
+    },
+    {
+      "id": "unrelated-intent-unconfirmed",
+      "status": "passed"
+    },
+    {
+      "id": "repeated-status-reads-have-no-writes-or-secret-response",
+      "status": "passed"
+    }
+  ],
+  "providerResponsesSynthetic": true,
+  "providerRequests": 0,
+  "nativeUi": false,
+  "physicalDevice": false,
+  "livePayment": false,
+  "refundIssued": false,
+  "productionDeployed": false
+}

@@ -69,6 +69,7 @@ interface StripePaymentsGateway {
     suspend fun createStripeAccount(email: String): StripeConnectAccount
     suspend fun createStripeAccountLink(returnUrl: String, refreshUrl: String): StripeConnectAccountLink
     suspend fun prepareRidePayment(bookingId: String): PaymentSheetConfig
+    suspend fun ridePaymentStatus(bookingId: String, paymentIntentId: String): be.sportgreenmoove.app.domain.RidePaymentState
 }
 
 class ProviderConfigurationException(message: String) : IllegalStateException(message)
@@ -247,5 +248,7 @@ class UnconfiguredStripePaymentsGateway : StripePaymentsGateway {
     }
 
     override suspend fun prepareRidePayment(bookingId: String): PaymentSheetConfig =
+        throw ProviderConfigurationException("Stripe Android n'est pas configuré.")
+    override suspend fun ridePaymentStatus(bookingId: String, paymentIntentId: String): be.sportgreenmoove.app.domain.RidePaymentState =
         throw ProviderConfigurationException("Stripe Android n'est pas configuré.")
 }

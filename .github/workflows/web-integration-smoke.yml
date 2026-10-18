@@ -90,6 +90,11 @@ on:
       - "tests/real-maps-ui.test.mjs"
       - "tests/real-map-display.test.mjs"
       - "tests/real-map-framing-evidence.test.mjs"
+      - "tests/payment-confirmation-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/RidePaymentVerification.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Payment*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Payment*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/browserstack-isolated-booking-evidence.test.mjs"
       - "tests/browserstack-parent-search-evidence.test.mjs"
@@ -285,6 +290,11 @@ on:
       - "tests/real-maps-ui.test.mjs"
       - "tests/real-map-display.test.mjs"
       - "tests/real-map-framing-evidence.test.mjs"
+      - "tests/payment-confirmation-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/RidePaymentVerification.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Payment*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Payment*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/browserstack-isolated-booking-evidence.test.mjs"
       - "tests/browserstack-parent-search-evidence.test.mjs"
@@ -455,7 +465,7 @@ jobs:
         run: node --test tests/browserstack-isolated-tunnel.test.mjs tests/browserstack-isolated-booking-evidence.test.mjs tests/browserstack-parent-search-evidence.test.mjs
 
       - name: Validate explicit real-map test boundaries without provider calls
-        run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs tests/real-map-framing-evidence.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs
+        run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs tests/real-map-framing-evidence.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs tests/payment-confirmation-contract.test.mjs
 
       - name: Validate bounded local response-loss injection
         run: node --test tests/local-chat-response-loss.test.mjs

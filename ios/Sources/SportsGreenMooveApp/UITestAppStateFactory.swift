@@ -225,5 +225,6 @@ private struct UITestStripeGateway: StripePaymentsGateway {
     func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig {
         PaymentSheetConfig(bookingId: bookingId, paymentIntentId: "pi_ui", clientSecret: "pi_ui_secret", publishableKey: "pk_test_ui", amountCents: 400, currency: "eur")
     }
+    func ridePaymentStatus(bookingId: String, paymentIntentId: String) async throws -> RidePaymentState { .pending }
 }
 #endif

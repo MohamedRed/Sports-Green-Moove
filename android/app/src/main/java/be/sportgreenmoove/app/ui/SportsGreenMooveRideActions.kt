@@ -3,12 +3,10 @@ package be.sportgreenmoove.app.ui
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
-import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidProviderSet
-import be.sportgreenmoove.app.services.StripePaymentSheetController
 import be.sportgreenmoove.app.services.endTrackedRide
 import be.sportgreenmoove.app.services.startAccessibleRideTracking
 import be.sportgreenmoove.app.services.startTrackedRide
@@ -32,30 +30,6 @@ fun TripSummary.distanceMetersFromLabel(): Int {
         ?.toDoubleOrNull()
         ?: return 0
     return (km * 1000).toInt()
-}
-
-fun launchPayment(
-    scope: CoroutineScope,
-    providers: AndroidProviderSet,
-    paymentSheet: StripePaymentSheetController,
-    booking: PayableBookingSummary,
-    setLoading: (Boolean) -> Unit,
-    setError: (String?) -> Unit,
-) {
-    scope.launch {
-        setLoading(true)
-        setError(null)
-        runCatching {
-            if (!providers.stripe.isConfigured) {
-                error("Stripe Android n'est pas configuré.")
-            }
-            val config = providers.stripe.prepareRidePayment(booking.bookingId)
-            paymentSheet.present(config)
-        }.onFailure {
-            setError(UserFacingErrorPolicy.messageFor(it))
-        }
-        setLoading(false)
-    }
 }
 
 fun launchTripAction(

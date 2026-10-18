@@ -132,4 +132,5 @@ let routePreview = MapRoutePreview(
 check(MapRoutePolyline.points(for: routePreview) == [routePreview.start, routePreview.end], "Missing polyline should use route endpoints")
 
 checkTripDateLabels()
+try checkRidePaymentVerification()
 print("SportsGreenMooveNativeChecks passed")

@@ -48,6 +48,7 @@ protocol StripePaymentsGateway: Sendable {
     func createStripeAccount(email: String) async throws -> StripeConnectAccount
     func createStripeAccountLink(returnUrl: String, refreshUrl: String) async throws -> StripeConnectAccountLink
     func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig
+    func ridePaymentStatus(bookingId: String, paymentIntentId: String) async throws -> RidePaymentState
 }
 
 struct ProviderConfigurationError: LocalizedError, Sendable {

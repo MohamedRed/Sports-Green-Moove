@@ -24,6 +24,7 @@ export { getTripCancellation, cancelTrip } from "./callables/tripCancellation.js
 export { getTripChangePreview, proposeTripChanges, getTripChangeReview, respondToTripChanges, withdrawTripChanges } from "./callables/tripChanges.js";
 export { getTripChangeApplicationQuote, applyTripChanges, resolveTripChangeProposal } from "./callables/tripChanges.js";
 export { getTripChangePaymentStatus, createTripChangePaymentIntent } from "./callables/tripChangePayments.js";
+export { getRidePaymentStatus } from "./callables/ridePaymentStatus.js";
 export { getTripChangeHistory } from "./callables/tripChangeHistory.js";
 export { radarWebhook, stripeWebhook } from "./webhooks.js";
 export { stripeConnectReturn, stripeConnectRefresh } from "./stripeOnboardingCallbacks.js";

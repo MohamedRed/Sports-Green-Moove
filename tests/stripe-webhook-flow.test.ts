@@ -3,6 +3,7 @@ import type { Firestore } from "firebase-admin/firestore";
 import type Stripe from "stripe";
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { createStripeWebhookFixtures, ridePaymentIntent, rewardPayoutTransfer, stripeEvent } from "./helpers/stripe-webhook-fixtures.js";
+import { registerRidePaymentStatusChecks } from "./helpers/ride-payment-status-checks.js";
 
 const PROJECT_ID = "sports-green-moove-rules-test";
 const COLLECTIONS = ["bookings", "trips", "rewardLedger", "reports", "stripeAccounts", "tripCancellations", "notifications", "rideSessions",
@@ -32,6 +33,8 @@ beforeEach(async () => {
 afterEach(async () => {
   await clearCollections();
 });
+
+registerRidePaymentStatusChecks(() => ({ firestore, seedRidePaymentContext, reconcileStripeEvent }));
 
 describe("Stripe webhook reconciliation flow", () => {
   it("preserves immutable invoice and ledger bytes across later events and changed net paid money", async () => {

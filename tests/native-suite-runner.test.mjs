@@ -14,10 +14,11 @@ function fixture(t) {
   const executable = (path, content) => writeFileSync(join(root, path), '#!/bin/bash\n' + content, { mode: 0o700 });
   executable('android/gradlew', 'if [[ "$*" == *:app:assembleDebugAndroidTest* ]]; then echo build >> "$CALL_LOG"; exit "$BUILD_STATUS"; fi\necho ordinary >> "$CALL_LOG"\nexit "$ORDINARY_STATUS"\n');
   executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
-  executable('bin/adb', 'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nexit 0\n');
+  executable('bin/adb', 'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-payment-confirmation && "$CAPTURE_FAILURE" == payments ]]; then exit 9; fi\nexit 0\n');
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
   const screens = {
+    'sgm-payment-confirmation': ['payment-pending-narrow.png', 'payment-pending-narrow-window.png', 'payment-review.png', 'payment-review-window.png'],
     'sgm-session-restoration': ['session-restoration-error.png', 'session-restoration-narrow.png'],
     'sgm-booking-review': ['booking-review-required.png', 'booking-review-narrow.png'],
     'sgm-booking-feedback': ['booking-feedback-sending-narrow.png', 'booking-feedback-confirmed-narrow.png', 'booking-feedback-width-probe.json'],
@@ -46,6 +47,7 @@ for (const [name, env, exit, statuses] of [
   ['ordinary failure still executes the isolated replay', { ORDINARY_STATUS: '7' }, 7, [7, 0, 0]],
   ['capture failure cannot suppress the replay or produce a green job', { CAPTURE_FAILURE: '1' }, 1, [0, 1, 0]],
   ['stale store files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'store' }, 1, [0, 1, 0]],
+  ['stale payment component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'payments' }, 1, [0, 1, 0]],
   ['isolated replay failure is never overwritten by ordinary success', { REPLAY_STATUS: '11' }, 11, [0, 0, 11]],
   ['both failures retain both outcomes and return the first', { ORDINARY_STATUS: '7', REPLAY_STATUS: '11' }, 7, [7, 0, 11]],
 ]) test(name, (t) => {

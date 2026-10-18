@@ -10,6 +10,7 @@ on:
       - "firestore.rules"
       - "admin/**"
       - "functions/**"
+      - "scripts/qa/**"
       - "package-lock.json"
       - "package.json"
       - "storage.rules"
@@ -25,6 +26,7 @@ on:
       - "firestore.rules"
       - "admin/**"
       - "functions/**"
+      - "scripts/qa/**"
       - "package-lock.json"
       - "package.json"
       - "storage.rules"
@@ -74,3 +76,6 @@ jobs:
 
       - name: Test Stripe webhook flow
         run: npm run test:stripe-webhook-flow
+
+      - name: Test isolated payment confirmation access and read-only status
+        run: node scripts/qa/run-local-payment-status.mjs
