@@ -62,14 +62,14 @@ cases. The isolated callable suite independently checks caller-only metadata,
 affected-reservation links, exclusion of later bookings, and explicit quote
 expiry. Screen execution and captures must be recorded separately from compilation.
 
-The completed 28-group isolated native replay proves two-parent consent and
-single-parent confirmed-price consent across a new app process. A separate
-four-state recovery matrix was implemented but its first native preparation
-stopped before the process boundary; see the
-[interruption report](../release/evidence/local-consent-restart-interruption-2026-10-17/README.md).
+The completed 32-group isolated native replay proves two-parent consent,
+confirmed-price consent and the separate pending/partial/declined/withdrawn
+entry states across a new app process. See the
+[completed recovery evidence](../release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md).
+Declined/withdrawn entry checks do not establish proposal-history retrieval.
 
-Not yet proven: pending/partial/refused/withdrawn proposal recovery, a complete
-multi-account native change-application replay, durable pending edits across
+Not yet proven: a complete multi-account native change-application replay,
+consistent Belgian-time labels in trip/booking cards, durable pending edits across
 process death, review history after a decline/withdrawal, real address/map
 usability, live payment/refund settlement,
 push delivery and physical-device behavior. Production Functions and app builds

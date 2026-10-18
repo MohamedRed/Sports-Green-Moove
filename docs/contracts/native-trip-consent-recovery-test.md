@@ -1,12 +1,11 @@
 # Four-State Consent Recovery After Process Death
 
-Status: implemented and locally compiled/contract-tested; the first runtime run
-stopped during preparation because the test acted before the proposal operation
-finished refreshing. Its original failure is retained in the
+The [completed 32-group replay](../release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md)
+now verifies this recovery scope. The first interrupted native preparation and its
+test-readiness correction remain in the
 [interruption report](../release/evidence/local-consent-restart-interruption-2026-10-17/README.md).
-The corrected test still needs a completed native run. The partner portal keeps
-the last completed 28-group proof.
-Adding a test or passing its validator is not user-flow evidence.
+Completion is based on actual native receipts and independent saved-record checks,
+not compilation or a passing validator alone.
 
 The existing isolated runner now requires 32 groups: all previous 28 plus pending,
 partially accepted, declined and withdrawn proposal recovery. Two separately

@@ -24,8 +24,9 @@ test('completed local consent adds reviewed images without promoting failed or p
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
   assert.equal(flow.status, 'partial');
   assert.match(blocker.text, /deux parents confirment séparément/);
-  assert.match(blocker.next, /réponses en attente ou refusées après fermeture et sur téléphone/);
-  assert.equal(blocker.source, 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/README.md');
+  assert.match(blocker.next, /rejouer sur téléphone/);
+  assert.match(blocker.next, /historique et les brouillons/);
+  assert.equal(blocker.source, 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/README.md');
   assert(flow.ui.groups.includes('trip-consent-process-restart-ui'));
   assert.equal(flow.source, blocker.source);
   const current = Object.values(captures).filter((path) => path.includes('local-trip-consent-native-2026-10-17'));

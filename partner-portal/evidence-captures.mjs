@@ -1,4 +1,7 @@
 export const captures = {
+  'trip-consent-recovery-pending': 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/local-trip-consent-recovery-pending.png',
+  'trip-consent-recovery-partial': 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/local-trip-consent-recovery-partial.png',
+  'trip-consent-recovery-closed': 'docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/completed/local-trip-consent-recovery-declined.png',
   'trip-consent-restored-parent': 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/completed/local-trip-consent-restart-after.png',
   'trip-consent-restored-driver': 'docs/release/evidence/local-trip-consent-restart-native-2026-10-17/completed/local-trip-consent-restart-driver.png',
   'trip-date-arrival-confirmed': 'docs/release/evidence/local-trip-change-schedule-native-2026-10-17/completed/local-trip-change-date-arrival-confirmed.png',

@@ -40,8 +40,8 @@ not a full replay. The completed historical replay contains 28 groups; the curre
 runner requires 32 after adding the [four-state recovery matrix](native-trip-consent-recovery-test.md).
 
 Scope is confirmed single-parent price consent only. Pending/partially accepted,
-refused and withdrawn proposal recovery are implemented as separate required tests
-but are not yet proven by a completed run. Unsent drafts, route computation,
+refused and withdrawn recovery are now separately verified by the completed
+32-group matrix replay. Terminal history remains distinct. Unsent drafts, route computation,
 application, real payment/refund and physical-device scenarios remain separate.
 No screenshot or success claim is published before an actual completed run and
 visual review. No production code, provider substitute or fallback is added.
