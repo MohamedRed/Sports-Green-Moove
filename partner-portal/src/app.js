@@ -1,9 +1,11 @@
 import { overview, flowRows, nextSteps, detail, date } from './render.js';
 import { createGallery } from './media.js';
+import { createTour } from './tour.js';
 
 let data;
 let selectedClip;
 let dialogFlow;
+let renderedRoute;
 const dialog = document.getElementById('flow-dialog');
 const query = document.getElementById('query');
 const filter = document.getElementById('status');
@@ -19,7 +21,7 @@ function filterFlows() {
 
 function route() {
   if (!data) return;
-  const [view = 'apercu', flowId] = location.hash.slice(1).split('/');
+  const [view = 'apercu', flowId, mode, step] = location.hash.slice(1).split('/');
   const current = ['apercu', 'parcours', 'suite'].includes(view) ? view : 'apercu';
   document.querySelectorAll('.view').forEach((section) => { section.hidden = section.id !== `view-${current}`; });
   document.querySelectorAll('[data-view]').forEach((tab) => {
@@ -28,10 +30,16 @@ function route() {
   });
   const flow = view === 'parcours' && flowId ? data.flows.find((f) => f.id === flowId) : null;
   if (flow) {
-    if (dialogFlow !== flow.id || selectedClip) {
+    if (renderedRoute !== location.hash || selectedClip) {
       dialog.querySelector('video')?.pause();
       document.getElementById('flow-detail').innerHTML = detail(flow);
-      createGallery(flow, selectedClip);
+      const guided = mode === 'visite' && flow.tour;
+      if (guided) createTour(flow, step);
+      else createGallery(flow, selectedClip);
+      dialog.querySelectorAll('.detail-modes a').forEach((link, index) => {
+        if (index === (guided ? 0 : 1)) link.setAttribute('aria-current', 'page');
+      });
+      renderedRoute = location.hash;
       selectedClip = undefined;
       dialogFlow = flow.id;
     }
@@ -39,6 +47,7 @@ function route() {
   } else if (dialog.open) {
     const lastFlow = dialogFlow;
     dialogFlow = undefined;
+    renderedRoute = undefined;
     dialog.close();
     document.querySelector(`#flow-list [data-flow="${lastFlow}"]`)?.focus({ preventScroll: true });
   }
@@ -67,7 +76,7 @@ document.addEventListener('click', (event) => {
   const target = event.target.closest('[data-flow]');
   if (!target) return;
   selectedClip = target.dataset.clip;
-  const next = `#parcours/${target.dataset.flow}`;
+  const next = `#parcours/${target.dataset.flow}${target.dataset.tour ? '/visite/1' : ''}`;
   if (location.hash === next) route();
   else location.hash = next;
 });

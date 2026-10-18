@@ -1,16 +1,6 @@
-export const statuses = {
-  verified: 'Testé', partial: 'Test partiel', blocked: 'Bloqué',
-  untested: 'À tester', deferred: 'Plus tard',
-};
-
-export const escape = (value) => String(value).replace(/[&<>"']/g, (c) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-}[c]));
-export const date = (value) => new Intl.DateTimeFormat('fr-BE', {
-  day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
-}).format(new Date(`${value}T12:00:00Z`));
-export const icon = (name) => `<img src="icons/${name}.svg" alt="" width="18" height="18">`;
-export const status = (value) => `<span class="status ${escape(value)}">${escape(statuses[value])}</span>`;
+import { escape, date, icon, status } from './ui.js';
+import { visualOverview, flowPreview } from './visuals.js';
+export { escape, date, icon, status, statuses } from './ui.js';
 const link = (hash, label) => `<a class="text-link" href="#${hash}">${escape(label)}${icon('arrow-up-right')}</a>`;
 
 export function overview(data) {
@@ -23,6 +13,7 @@ export function overview(data) {
       <div><strong>${partial}</strong><span>en partie testés</span></div>
       <div><strong>${remaining}</strong><span>en attente</span></div>
     </div>
+    ${visualOverview(data)}
     <div class="section-heading"><h2>Vidéos</h2>${link('parcours', 'Tous les parcours')}</div>
     <div class="demos">
       ${demo('signout', 'signout-action', 'Déconnexion corrigée', '13 s')}
@@ -44,7 +35,7 @@ function demo(id, clip, title, duration) {
 export function flowRows(flows) {
   if (!flows.length) return '<p class="empty-result">Aucun parcours ne correspond à votre recherche.</p>';
   return flows.map((f) => `<button class="flow-row" type="button" data-flow="${f.id}">
-    <span><h3>${escape(f.title)}</h3><p>${escape(f.summary)}</p></span>
+    ${flowPreview(f)}<span><h3>${escape(f.title)}</h3><p>${escape(f.summary)}</p></span>
     <span class="flow-meta">${status(f.status)}${f.checkedAt ? `<time datetime="${f.checkedAt}">${date(f.checkedAt)}</time>` : ''}</span>
     ${icon('arrow-up-right')}</button>`).join('');
 }
@@ -58,6 +49,7 @@ export function nextSteps(data) {
 export function detail(flow) {
   return `<div class="detail-heading">${status(flow.status)}<h2 id="detail-title">${escape(flow.title)}</h2>
       ${flow.checkedAt ? `<p class="date">${flow.local || flow.ui ? 'Essai local' : 'Test'} du ${date(flow.checkedAt)}</p>` : ''}</div>
+    ${flow.tour ? `<nav class="detail-modes" aria-label="Présentation du parcours"><a href="#parcours/${flow.id}/visite/1">Visite guidée</a><a href="#parcours/${flow.id}">Toutes les preuves</a></nav>` : ''}
     <div class="detail-layout">
     <section class="detail-media" aria-label="Résultats, vidéos et captures"><div id="media-content"></div></section>
     <section class="detail-copy">

@@ -18,6 +18,14 @@ directory to the public Firebase application host.
 
 ## Content And Evidence
 
+`tours.mjs` defines guided steps using only each flow’s reviewed images or clips.
+The overview features six tours; all available captures also appear as previews in
+the flow list. Guided steps have shareable `#parcours/<id>/visite/<step>` links and
+preserve original capture captions, dates and remaining scope. These are recorded
+walkthroughs, not an interactive connection to the running native app. The hosted
+native preview must be refreshed and its private test access verified separately
+before it can represent current flows. Galleries show media before service results.
+
 `content.mjs` is the curated, French-language source; `recent-progress.mjs` holds
 the newest progress entries and `progress-blockers.mjs` the remaining work. Its `captures` allowlist adds
 reviewed device-only screenshots from dated evidence directories without another

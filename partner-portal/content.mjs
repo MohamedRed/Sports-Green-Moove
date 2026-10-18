@@ -1,3 +1,4 @@
+import { tours, featuredTours } from './tours.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
@@ -41,6 +42,7 @@ export const excerpts = {
 
 export const content = {
   updatedAt: '2026-10-18',
+  featuredTours,
   lastVerifiedAt: '2026-10-18',
   releaseNote: 'Tests en cours.',
   updates: [
@@ -292,3 +294,5 @@ export const content = {
       remaining: 'Activer cette connexion, puis tester l’accès au compte.', images: [], source: 'docs/release/evidence-manifest.json' },
   ],
 };
+
+for (const flow of content.flows) if (tours[flow.id]) flow.tour = tours[flow.id];

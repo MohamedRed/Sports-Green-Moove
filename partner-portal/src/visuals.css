@@ -1,0 +1,34 @@
+.visual-overview { margin-bottom: 48px; }
+.visual-intro { max-width: 640px; color: var(--text-secondary); margin: -8px 0 28px; }
+.tour-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+.tour-card { display: flex; flex-direction: column; padding: 0; border: 0; border-radius: 0; text-align: left; background: transparent; }
+.tour-card:hover { background: transparent; }
+.flow-preview { display: flex; align-items: center; justify-content: center; min-width: 0; height: 105px; background: var(--bg-surface); overflow: hidden; }
+.flow-preview img { height: 100%; width: 100%; min-height: 0; object-fit: contain; }
+.no-preview { color: var(--text-muted); font-size: 11px; }
+.tour-card .flow-preview { width: 100%; height: 240px; padding: 16px; }
+.tour-card:hover .flow-preview { background: var(--bg-green); }
+.tour-card-copy { display: grid; gap: 8px; padding: 16px 0; width: 100%; }
+.tour-card-copy strong { font-size: 18px; line-height: 1.4; }
+.tour-card-copy > span:last-child { display: flex; align-items: center; justify-content: space-between; color: var(--text-secondary); font-size: 13px; }
+.detail-modes { display: flex; gap: 24px; padding: 0 32px 22px; font-size: 14px; }
+.detail-modes a { color: var(--text-secondary); text-decoration: none; padding-bottom: 5px; }
+.detail-modes a[aria-current] { color: var(--c-green-dark); font-weight: 700; text-decoration: underline; }
+.tour-progress { color: var(--text-secondary); font-size: 13px; margin-bottom: 18px; }
+.tour-instruction { margin-top: 22px; }
+.tour-instruction h3 { font-size: 20px; margin-bottom: 10px; }
+.tour-instruction p { color: var(--text-secondary); font-size: 14px; }
+.tour-navigation { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; }
+.tour-navigation a { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }
+.tour-next { color: var(--c-green-dark); font-weight: 700; }
+@media (max-width: 800px) {
+  .tour-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .detail-modes { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 520px) {
+  .tour-grid { gap: 24px 16px; }
+  .tour-card .flow-preview { height: 190px; padding: 12px 8px; }
+  .tour-card-copy strong { font-size: 15px; }
+  .detail-modes { padding: 0 20px 20px; gap: 18px; font-size: 13px; }
+  .visual-intro { font-size: 14px; }
+}

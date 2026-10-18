@@ -28,6 +28,15 @@ export function validate(root) {
     }
     for (const clip of f.clips || []) assert(excerpts[clip]);
     if (f.recording) assert(videos[f.recording]);
+    if (f.tour) {
+      assert(f.tour.length >= 2, `Tour ${f.id} needs at least two evidence steps`);
+      for (const step of f.tour) {
+        assert(Boolean(step.image) !== Boolean(step.clip), 'Each step needs one evidence item');
+        assert(step.image ? f.images.some((image) => image.file === step.image) : f.clips?.includes(step.clip),
+          `Tour ${f.id} references evidence outside its flow`);
+        assert(step.title?.trim() && step.text?.trim());
+      }
+    }
     if (f.local) {
       assert.equal(f.status, 'partial', 'Local service checks cannot complete a phone flow');
       const run = JSON.parse(readFileSync(resolve(root, f.local.source), 'utf8'));
@@ -50,6 +59,7 @@ export function validate(root) {
       for (const group of f.ui.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven UI check ${group}`);
     }
   }
+  for (const id of content.featuredTours) assert(content.flows.some((f) => f.id === id && f.tour));
   for (const u of content.updates) { assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt); }
   for (const b of content.blockers) assert(existsSync(resolve(root, b.source)));
   for (const a of Object.values(assets)) {
