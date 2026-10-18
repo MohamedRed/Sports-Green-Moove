@@ -66,6 +66,7 @@ test('retained service evidence is an actual isolated run, not a real or physica
 
 test('the reviewed payment captures are scoped passing components inside an explicitly failed ordinary suite', () => {
   const base = 'docs/release/evidence/local-payment-layout-2026-10-18/';
+  assert.match(read(base + '.gitattributes'), /general-ui.xml -text whitespace=cr-at-eol/);
   const hashes = JSON.parse(read(base + 'artifact-sha256.json'));
   for (const [name, expected] of Object.entries(hashes)) {
     const bytes = readFileSync(new URL('../' + base + name, import.meta.url));
