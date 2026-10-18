@@ -21,6 +21,11 @@ bind checkout/status responses to the original owner, booking and frozen amount.
 Swift model checks and the local Swift package build pass; this is not an iOS
 device or provider-SDK validation.
 
+The final domain check also rejects unknown/missing payment states instead of
+treating them as pending. An unrelated intent returns `review` before reading
+its receipt. Session changes clear old payment feedback on both clients. These
+defensive checks do not add provider requests or widen release evidence.
+
 Android component layout tests have been added for 320dp/large text, disabled
 repeat actions and an inconsistent-record message. Their connected run and
 visual review are still pending in this snapshot. No new screenshot is claimed.

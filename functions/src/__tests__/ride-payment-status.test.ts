@@ -21,6 +21,11 @@ describe("read-only ride payment reconciliation status", () => {
     const { booking } = fixture();
     expect(recordedRidePaymentState("booking", "pi_owned", { ...booking, paymentStatus: "processing" }, undefined, undefined, undefined)).toBe("pending");
   });
+  it("does not silently treat an unknown or missing server status as pending", () => {
+    const { booking } = fixture();
+    for (const paymentStatus of [undefined, "unknown", "not_required"])
+      expect(recordedRidePaymentState("booking", "pi_owned", { ...booking, paymentStatus }, undefined, undefined, undefined)).toBe("review");
+  });
   it.each(["failed", "canceled"])("reports only a server-recorded %s outcome", (paymentStatus) => {
     const { booking } = fixture();
     expect(recordedRidePaymentState("booking", "pi_owned", { ...booking, paymentStatus }, undefined, undefined, undefined)).toBe(paymentStatus);

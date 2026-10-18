@@ -12,7 +12,8 @@ export function recordedRidePaymentState(
   if (booking.paymentStatus !== "paid") {
     if (receiptData != null || payerLedger != null || driverLedger != null) return "review";
     if (booking.paymentStatus === "failed" || booking.paymentStatus === "canceled") return booking.paymentStatus;
-    return "pending";
+    return ["processing", "requires_action", "requires_capture", "requires_confirmation", "requires_payment_method", "succeeded"]
+      .includes(booking.paymentStatus as string) ? "pending" : "review";
   }
   const result = paymentReceiptSchema.safeParse(receiptData);
   if (!result.success) return "review";

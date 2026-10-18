@@ -15,6 +15,7 @@ export const getRidePaymentStatus = onCall(async (request) => {
   return firestore.runTransaction(async (transaction) => {
     const booking = (await transaction.get(firestore.collection("bookings").doc(bookingId))).data();
     if (!booking || (booking.parentUserId ?? booking.requesterUserId) !== uid) throw new HttpsError("permission-denied", "This payment is not accessible.");
+    if (booking.paymentIntentId !== paymentIntentId) return { bookingId, paymentIntentId, state: "review" };
     // Derive ledger paths only from authenticated, server-owned booking fields.
     const driverId = chatDocumentIdSchema.safeParse(booking.driverUserId);
     if (!driverId.success) return { bookingId, paymentIntentId, state: "review" };

@@ -9,7 +9,13 @@ final class AppState {
     var selectedRole: AppRole = .parent
     var darkTheme = false
     var session: AuthSession? {
-        didSet { if session?.uid != oldValue?.uid { pendingRidePayment = nil } }
+        didSet {
+            if session?.uid != oldValue?.uid {
+                pendingRidePayment = nil
+                noticeMessage = nil
+                errorMessage = nil
+            }
+        }
     }
     var pendingRidePayment: RidePaymentTarget?
     var ridePaymentBusy = false

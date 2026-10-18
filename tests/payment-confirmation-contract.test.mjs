@@ -12,6 +12,7 @@ test('payment status is an owning-parent read without provider requests or finan
     '.strict()', 'runTransaction', 'ridePaymentReceipts', 'rewardLedger', 'recordedRidePaymentState']) assert(source.includes(text), text);
   assert(!/transaction\.(set|update|create|delete)\(/.test(source));
   assert(!/stripeConnect|providerSecrets|clientSecret|publishableKey/.test(source));
+  assert(source.indexOf('booking.paymentIntentId !== paymentIntentId') < source.indexOf('firestore.collection("ridePaymentReceipts")'));
   assert(read('functions/src/index.ts').includes('export { getRidePaymentStatus }'));
   assert(read('tests/stripe-webhook-flow.test.ts').includes('registerRidePaymentStatusChecks'));
 });
@@ -23,6 +24,7 @@ test('native checkout completion delegates to an explicit server reconciliation 
   assert(swift.includes('stripe.ridePaymentStatus(bookingId: target.bookingId, paymentIntentId: target.paymentIntentId)'));
   assert(coordinator.includes('if (currentUid() != target.ownerUid) return'));
   assert(swift.includes('guard session?.uid == target.ownerUid else { return }'));
+  assert.match(read(ios + 'AppState.swift'), /didSet\s*\{[\s\S]*pendingRidePayment = nil\s+noticeMessage = nil\s+errorMessage = nil/);
   assert(coordinator.includes('if (state == RidePaymentState.Recorded) refresh()'));
   assert(swift.includes('if state == .recorded { await refreshAppData() }'));
   assert(!read(android + 'ui/PaymentSheetResultHandler.kt').includes('Paiement confirmé.'));
