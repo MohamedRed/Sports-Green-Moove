@@ -9,6 +9,7 @@ on:
         default: false
   pull_request:
     paths:
+      - "tests/team-enrollment-sdk.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
       - ".github/workflows/native-ci.yml"
@@ -56,6 +57,7 @@ on:
     branches:
       - main
     paths:
+      - "tests/team-enrollment-sdk.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
       - ".github/workflows/native-ci.yml"
@@ -120,6 +122,9 @@ jobs:
 
       - name: Validate team enrollment unit and compiled-screen scope
         run: node --test tests/team-enrollment-native-contract.test.mjs
+
+      - name: Validate SDK-connected team replay evidence requirements
+        run: node --test tests/team-enrollment-sdk.test.mjs
 
       - name: Validate membership cursor regression and client decoder evidence
         run: node --test tests/membership-cursor-contract.test.mjs

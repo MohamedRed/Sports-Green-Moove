@@ -95,7 +95,7 @@ test('native calendar and time controls gate the real two-account schedule flow 
   assert(runner.includes("instrument(['LocalTripChangeScheduleFlowTest'], 1"));
   assert(runner.indexOf("collectEvidence('trip-change-schedule')") < runner.indexOf('await verifyTripScheduleUi'));
   assert(runner.indexOf('await verifyTripScheduleUi') < runner.indexOf('replayWithNetworkCleanup(adb'));
-  assert(runner.includes('testCount: 35')); assert(runner.includes("'trip-change-schedule-ui'"));
+  assert(runner.includes('testCount: 36')); assert(runner.includes("'trip-change-schedule-ui'"));
   assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'trip-change-schedule'"));
   for (const workflow of ['native-ci.yml', 'web-integration-smoke.yml']) {
     assert.equal(read('.github/workflows/' + workflow).split('"tests/trip-change-schedule-ui.test.mjs"').length - 1, 2);

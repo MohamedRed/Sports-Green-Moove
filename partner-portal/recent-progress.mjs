@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les demandes d’équipe passent avec les données de test',
+    text: 'Six essais locaux passent : demande, refus, accord, retrait et perte des droits. Le nouveau parcours dans l’app est préparé ; il reste à le lancer.', flow: 'team-enrollment' },
   { date: '2026-10-18', title: 'Le nouvel essai s’interrompt',
     text: 'Une mise à jour a modifié l’appareil d’essai. Les quatre essais d’inscription passent encore, mais l’ensemble n’est pas validé. Les captures du précédent essai réussi restent disponibles.', flow: 'publication' },
   { date: '2026-10-18', title: 'Deux captures de l’inscription sont ajoutées',

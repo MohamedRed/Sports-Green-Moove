@@ -100,3 +100,6 @@ jobs:
 
       - name: Test shared membership cursor continuation and authorization
         run: npm run test:membership-cursors && node --test tests/membership-cursor-contract.test.mjs
+
+      - name: Test native team fixture lifecycle and fail-closed evidence contract
+        run: npm run test:team-native-fixtures && node --test tests/team-enrollment-sdk.test.mjs

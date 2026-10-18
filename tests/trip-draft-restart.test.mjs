@@ -126,7 +126,7 @@ test('the complete draft group also requires actual schedule pickers and a secon
   assert(host.includes('assertScheduleDraftRestart(before, stopped, after, fixture, runId)'));
   const runner = read('scripts/qa/local-android-session.mjs');
   assert(runner.indexOf('await replayScheduleDraftRestart') < runner.indexOf('const steps ='));
-  assert(runner.includes('tripDraftRestart, tripScheduleDraftRestart')); assert(runner.includes('testCount: 35, nativeCaseCount: 37'));
+  assert(runner.includes('tripDraftRestart, tripScheduleDraftRestart')); assert(runner.includes('testCount: 36, nativeCaseCount: 38'));
   assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'trip-schedule-draft-restart'"));
   for (const path of ['scripts/qa/local-trip-schedule-draft-restart.mjs', 'scripts/qa/trip-schedule-draft-evidence.mjs',
     'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripScheduleDraftRestartTest.kt']) assert(read(path).split('\n').length < 300);
@@ -155,7 +155,7 @@ test('draft replay drives actual app fields, checks private storage and unchange
 });
 
 test('new draft group is required in the full replay and both CI guard entry points', () => {
-  const runner = read('scripts/qa/local-android-session.mjs'); assert(runner.includes('testCount: 35'));
+  const runner = read('scripts/qa/local-android-session.mjs'); assert(runner.includes('testCount: 36'));
   assert(runner.includes("'trip-draft-process-restart-ui'")); assert(runner.includes('await replayTripDraftRestart'));
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml'])
     assert.equal(read('.github/workflows/' + name).split('"tests/trip-draft-restart.test.mjs"').length - 1, 2);

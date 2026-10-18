@@ -38,7 +38,7 @@ test('later cleanup or failed evidence transfer cannot stand in for the primary 
 });
 test('the new replay is additive and verifies backend effects before successful cleanup and reporting', () => {
   const runner = read('scripts/qa/local-android-session.mjs'), replay = read('scripts/qa/local-emergency-contact-ui.mjs');
-  assert(runner.includes("collectEvidence('emergency-contact')")); assert(runner.includes('testCount: 35, nativeCaseCount: 37'));
+  assert(runner.includes("collectEvidence('emergency-contact')")); assert(runner.includes('testCount: 36, nativeCaseCount: 38'));
   assert(runner.indexOf('await replayGuardianParentUi') < runner.indexOf('await replayEmergencyContactUi'));
   assert(runner.indexOf('await replayEmergencyContactUi') < runner.indexOf("instrument(['LocalAppFlowTest'"));
   assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'emergency-contact'"));

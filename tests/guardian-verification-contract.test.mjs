@@ -59,6 +59,6 @@ test('both CI paths rerun isolated authority and the private website retains inc
   assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
   assert(content.updates.some((entry) => entry.flow === 'clubs' && entry.title === 'La vérification des parents passe les essais locaux'));
   const group = content.blockers.find((entry) => entry.id === 'group-conversation');
-  assert.equal(group.source, 'docs/release/evidence/local-team-enrollment-native-2026-10-18/README.md');
-  assert.match(group.next, /inscriptions par équipe/);
+  assert.equal(group.source, 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/README.md');
+  assert.match(group.next, /responsable du club/);
 });
