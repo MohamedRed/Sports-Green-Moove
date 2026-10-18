@@ -18,6 +18,7 @@ fun GroupsRoute(
     providers: AndroidProviderSet,
     onBack: () -> Unit,
     onClubsLoaded: (List<ClubSummary>) -> Unit,
+    onGuardianVerification: (() -> Unit)? = null,
 ) {
     val state = remember(sessionUid, providers) {
         GroupsState(providers.firebase::listClubSummaries, providers.firebase::requestClubMembership, onClubsLoaded)
@@ -35,5 +36,6 @@ fun GroupsRoute(
         onDismissNotice = state::dismissNotice,
         onRefresh = { scope.launch { state.reload() } },
         onJoinClub = { club -> scope.launch { state.join(club.id) } },
+        onGuardianVerification = onGuardianVerification,
     )
 }

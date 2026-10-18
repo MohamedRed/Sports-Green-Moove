@@ -164,7 +164,7 @@ test('native matrix uses real actions and same-session reopen while host compare
   assert(!/call\('(propose|respond|withdraw|apply)TripChange/.test(host));
   const runner = read('scripts/qa/local-android-session.mjs');
   for (const kind of recoveryKinds) assert(runner.includes(`'trip-consent-${kind}-restart-ui'`));
-  assert(runner.includes('testCount: 33')); assert(runner.includes('await replayTripConsentRecovery'));
+  assert(runner.includes('testCount: 34')); assert(runner.includes('await replayTripConsentRecovery'));
   assert(runner.indexOf('await replayTripConsentRecovery') < runner.indexOf('replayWithNetworkCleanup(adb'));
   for (const workflow of ['native-ci.yml', 'web-integration-smoke.yml'])
     assert.equal(read('.github/workflows/' + workflow).split('"tests/trip-consent-recovery.test.mjs"').length - 1, 2);

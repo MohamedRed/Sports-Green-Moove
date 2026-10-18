@@ -112,7 +112,7 @@ test('native actions restore confirmed consent without a login, injected UI or r
   assert(!/proposeTripChanges|respondToTripChanges|applyTripChanges/.test(host));
   const runner = read('scripts/qa/local-android-session.mjs');
   assert(runner.indexOf('await replayTripConsentRestart') < runner.indexOf('replayWithNetworkCleanup(adb'));
-  assert(runner.includes('testCount: 33')); assert(runner.includes("'trip-consent-process-restart-ui'"));
+  assert(runner.includes('testCount: 34')); assert(runner.includes("'trip-consent-process-restart-ui'"));
   for (const workflow of ['native-ci.yml', 'web-integration-smoke.yml']) {
     assert.equal(read('.github/workflows/' + workflow).split('"tests/trip-consent-restart.test.mjs"').length - 1, 2);
   }

@@ -13,6 +13,12 @@ mkdirSync(output, { recursive: true });
 const errors = [];
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  const waitForImage = async () => {
+    await page.waitForFunction(() => {
+      const image = document.querySelector('.media-stage img');
+      return image?.complete && image.naturalWidth > 0;
+    });
+  };
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('response', (response) => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
   await page.goto(base);
@@ -127,10 +133,7 @@ try {
         const target = index + (flow.ui ? 0 : (flow.clips || []).length);
         while (current < target) { await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click(); current++; }
         await page.getByRole('img', { name: image.alt, exact: true }).waitFor();
-        await page.waitForFunction(() => {
-          const image = document.querySelector('.media-stage img');
-          return image?.complete && image.naturalWidth > 0;
-        });
+        await waitForImage();
         assert(await page.locator('.media-stage').evaluate((stage) => {
           const frame = stage.getBoundingClientRect(), image = stage.querySelector('img').getBoundingClientRect();
           const caption = stage.nextElementSibling.getBoundingClientRect();
@@ -153,6 +156,7 @@ try {
     await page.goto(`${base}/#parcours/${flow.id}/visite/${flow.tour.length}`);
     await page.getByRole('link', { name: 'Voir toutes les preuves', exact: true }).waitFor();
     if (flow.tour.at(-1).image) {
+      await waitForImage();
       assert(await page.locator('.media-stage img').evaluate((img) => img.complete && img.naturalWidth > 0));
     }
   }
@@ -162,6 +166,7 @@ try {
       await page.goto(`${base}/#parcours/${id}/visite/1`);
       const flow = content.flows.find((item) => item.id === id);
       await page.getByRole('heading', { name: flow.tour[0].title, exact: true }).waitFor();
+      await waitForImage();
       assert(await page.locator('.media-stage img').evaluate((img) => img.complete && img.naturalWidth > 0));
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));

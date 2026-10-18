@@ -12,6 +12,7 @@ fun AppScreen.toTopLevel(): AppScreen =
 
 private val profileChildScreens = setOf(
     AppScreen.Groups,
+    AppScreen.Guardians,
     AppScreen.Impact,
     AppScreen.Rewards,
     AppScreen.Options,
@@ -35,6 +36,7 @@ enum class AppScreen {
     Profile,
     Search,
     Groups,
+    Guardians,
     Impact,
     Rewards,
     Options,

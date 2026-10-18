@@ -86,7 +86,8 @@ class ActiveRideStartupTest {
     }
 }
 
-private class RecordingFirebaseGateway : FirebaseGateway, TripChangeGateway by be.sportgreenmoove.app.ui.UnusedTripChanges {
+private class RecordingFirebaseGateway : FirebaseGateway, TripChangeGateway by be.sportgreenmoove.app.ui.UnusedTripChanges,
+    GuardianVerificationGateway by UnconfiguredGuardianVerificationGateway() {
     val events = mutableListOf<String>()
     override val isConfigured = true
     override suspend fun previewTripCancellation(tripId: String): be.sportgreenmoove.app.data.TripCancellationPreview = error("Unused cancellation preview in this fixture")

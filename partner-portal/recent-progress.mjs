@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'L’écran de demande du parent est ajouté',
+    text: 'Les règles passent en local. Il reste à rejouer la demande, les décisions et la reprise dans l’app avant d’ajouter des captures.', flow: 'clubs' },
   { date: '2026-10-18', title: 'Le responsable peut vérifier les parents',
     text: 'Confirmer, refuser ou retirer un lien parent-enfant passe dans l’espace de gestion local. Les captures sont ajoutées. La demande depuis l’app reste à faire.', flow: 'clubs' },
   { date: '2026-10-18', title: 'Le dernier essai local est allé jusqu’au bout',

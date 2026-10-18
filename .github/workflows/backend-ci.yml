@@ -85,3 +85,6 @@ jobs:
 
       - name: Test guardian review permissions, pagination and decision state
         run: npm run test:guardian-review && node --test tests/guardian-review-controller.test.mjs tests/guardian-review-evidence.test.mjs
+
+      - name: Test parent verification choices and authoritative state reads
+        run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs

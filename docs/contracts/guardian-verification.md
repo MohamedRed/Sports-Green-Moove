@@ -68,13 +68,44 @@ fresh read; a confirmed decision with a failed refresh is labelled separately.
 Account changes discard old screen results. A replayed result displays its actual
 current status rather than assuming the original decision is still in effect.
 
+## Parent Requests
+
+`listGuardianParentOptions` accepts `kind` (`children` or `clubs`) and an optional
+cursor. It requires parent, uses only the authenticated UID, and returns up to
+20 scanned entries per page with an explicit continuation. Children are the
+currently declared links, not manager-verified relationships. Club choices are
+canonical, active memberships in non-archived clubs. Missing names remain null,
+not invented identities. Cursors bind UID and choice kind; filtered empty pages
+can still have a next cursor. No new composite indexes are used.
+
+`getMyGuardianVerification` accepts only the club and child IDs. It reads the
+canonical tuple and current eligibility in one transaction. An eligible absent
+record has explicit null status/revision zero. Absence from a partial list is
+never treated as revision zero. An existing owned request remains readable for
+withdrawal after membership/link loss; this does not reveal a child's current
+name after its link is removed or re-enable grant actions. Corrupt records fail
+closed. Reads never write a request or audit event.
+
+The Android Groups screen links to the parent request screen for accounts with
+the parent role. History, children and clubs have explicit paging. A selected
+pair or history row is freshly read before its request/withdraw confirmation.
+The displayed revision and a UUID bind each submission; the SDK also rereads
+before writing and the service transaction remains the final race fence. No
+optimistic verification, automatic write retry or client approval action exists.
+Unknown replies clear actionable state and require a fresh read. Account changes
+close the old state and the SDK checks the explicit owner UID before/after calls.
+Reopening the app reads history/current state instead of restoring capabilities
+from a cached screen. This does not grant team-chat or emergency-contact access.
+
 ## Integration Still Required
 
-The service/rules and management review have isolated evidence, not a deployed or
-native parent flow. The parent's native request/withdraw/reopen screens,
-child/team enrollment, team conversation access and personal emergency contacts
-still require implementation and user-flow testing. No production deployment or
-physical-device verification is implied by the management browser tests.
+The service/rules and management review have isolated evidence. The Android
+parent screens have unit/build checks and a real local-SDK app replay wired into
+the native suite; do not call that replay passed without its device marker,
+successful primary copy receipt and independently checked audit records.
+The iOS parent screen, child/team enrollment, team conversation access and
+personal emergency contacts still require implementation/user-flow testing.
+No production deployment or physical-device verification is implied.
 
 Existing booking/search guardian behavior is unchanged. No existing child or
 membership record is migrated, promoted or rewritten. Future consumers must

@@ -11,6 +11,7 @@ export { listMembershipReviewClubs, listClubMemberships } from "./callables/memb
 export { reviewClubMembership } from "./callables/membershipReview.js";
 export { transitionGuardianVerification } from "./callables/guardianVerification.js";
 export { listGuardianReviewClubs, listMyGuardianVerifications, listClubGuardianVerifications } from "./callables/guardianLists.js";
+export { listGuardianParentOptions, getMyGuardianVerification } from "./callables/guardianParent.js";
 export { getInbox, sendChatMessage, getChatConversation, markChatMessagesRead } from "./callables/messages.js";
 export { listChatConversations, listChatBookingOptions } from "./callables/chatDirectory.js";
 export {

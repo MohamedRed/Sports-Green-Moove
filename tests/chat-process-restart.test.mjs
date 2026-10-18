@@ -168,7 +168,7 @@ test('the additional cold-start stages retain all prior cases and require UI plu
   assert(runner.indexOf('const chatNetwork = await verifyChatNetworkUi') > network);
   assert(runner.indexOf("writeFileSync(resolve(evidenceDir, 'results.json')") > network);
   assert.match(runner, /const chatRestart = await verifyChatRestartUi/);
-  assert.match(runner, /testCount: 33/); assert.match(runner, /'chat-confirmed-process-restart-ui'/);
+  assert.match(runner, /testCount: 34/); assert.match(runner, /'chat-confirmed-process-restart-ui'/);
   const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatProcessRestartTest.kt');
   assert.match(native, /createLocalAppComposeRule\(\)/);
   assert.match(native, /assertNotEquals\("A new app process is required"/);

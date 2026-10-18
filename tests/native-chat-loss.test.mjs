@@ -87,7 +87,7 @@ test('the SDK case is mandatory before OS network disruption and preserves earli
   const runner = read('scripts/qa/local-android-session.mjs');
   assert(runner.indexOf('await replayChatLossUi(') > runner.indexOf('await verifyChatRestartUi('));
   assert(runner.indexOf('await replayChatLossUi(') < runner.indexOf('replayWithNetworkCleanup(adb'));
-  assert.match(runner, /testCount: 33/); assert.match(runner, /'chat-post-commit-response-loss-ui'/);
+  assert.match(runner, /testCount: 34/); assert.match(runner, /'chat-post-commit-response-loss-ui'/);
   const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatResponseLossTest.kt');
   for (const text of ['SGM_USE_FIREBASE_EMULATOR', 'disposableEmulator', 'ro.kernel.qemu', 'demo-sgm-local-qa',
     'FirebaseAndroidConversationGateway(firestore, functions, auth)', 'ConversationRoute(', 'firestore.disableNetwork().await()',
