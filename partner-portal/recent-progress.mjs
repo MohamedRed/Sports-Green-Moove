@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Les deux repères sont visibles sur la carte',
+    text: 'Le nouvel essai local passe : adresses choisies, deux accords, puis parcours appliqué. Les captures sont ajoutées. À rejouer sur téléphone.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les choix de recherche passent sur téléphone',
     text: 'Enfant et deux places sélectionnés ; changer de choix efface le consentement. Sans adresses, aucune réservation n’est créée. Trois captures sont ajoutées.', flow: 'search' },
   { date: '2026-10-18', title: 'Le parent reste connecté après fermeture',

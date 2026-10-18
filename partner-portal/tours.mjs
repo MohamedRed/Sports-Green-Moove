@@ -25,8 +25,11 @@ export const tours = {
     image('search-options-invalidated', 'Modifier sa recherche', 'Les anciens résultats sont retirés après modification. Une recherche complète reste à vérifier.'),
   ],
   publication: [
-    image('trip-consent-first', 'Recueillir un premier accord', 'Un parent confirme le changement. Le second accord reste attendu.'),
-    image('trip-consent-confirmed', 'Recueillir les deux accords', 'Les deux confirmations sont enregistrées dans cet essai local.'),
+    image('trip-framed-places-selected', 'Choisir les nouvelles adresses', 'Les deux adresses sont retrouvées dans le nouvel essai local.'),
+    image('trip-consent-first', 'Recueillir un premier accord', 'Dans l’essai du 17 octobre, un parent confirme le changement. Le second accord reste attendu.'),
+    image('trip-consent-confirmed', 'Recueillir les deux accords', 'Les deux confirmations sont visibles dans l’essai du 17 octobre. Elles passent aussi dans le nouvel essai.'),
+    image('trip-framed-map-visible', 'Vérifier la carte', 'Les deux repères sont entièrement visibles dans le nouvel essai local du 18 octobre.'),
+    image('trip-framed-route-applied', 'Appliquer le nouveau parcours', 'Après les deux accords, le conducteur applique le parcours. À rejouer sur téléphone, sans paiement dans cet essai.'),
     image('trip-consent-refused', 'Si un parent refuse', 'Autre cas testé : le refus conserve la réservation et le trajet initial.'),
     image('trip-consent-withdrawn', 'Si le conducteur retire sa proposition', 'Autre cas testé : le changement est retiré sans annuler les réservations.'),
   ],

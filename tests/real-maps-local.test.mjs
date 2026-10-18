@@ -112,7 +112,8 @@ test('actual five-request map evidence proves local application, not native UI o
   const flow = content.flows.find((f) => f.id === 'publication');
   assert.equal(flow.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md'); assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /paiements et remboursements réels/);
-  assert(flow.images.filter((image) => /nouveau parcours.*appliqué/i.test(image.alt)).every((image) => image.file === 'trip-real-route-applied'));
+  assert(flow.images.filter((image) => /nouveau parcours.*appliqué/i.test(image.alt))
+    .every((image) => ['trip-real-route-applied', 'trip-framed-route-applied'].includes(image.file)));
 });
 
 test('runtime originals distinguish an older complete matrix from the newer failed copy', () => {

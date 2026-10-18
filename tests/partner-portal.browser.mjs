@@ -87,12 +87,12 @@ try {
   await page.goto(`${base}/#parcours`);
   assert.equal(await page.locator('.flow-row[data-tour]').count(), content.flows.filter((flow) => flow.tour).length);
   await page.locator('.flow-row[data-flow="publication"]').click();
-  await page.getByText('Étape 1 sur 4', { exact: true }).waitFor();
+  await page.getByText(`Étape 1 sur ${content.flows.find((f) => f.id === 'publication').tour.length}`, { exact: true }).waitFor();
   await page.getByRole('link', { name: 'Suivant', exact: true }).click();
-  await page.getByRole('heading', { name: 'Recueillir les deux accords', exact: true }).waitFor();
+  await page.getByRole('heading', { name: 'Recueillir un premier accord', exact: true }).waitFor();
   assert.equal(new URL(page.url()).hash, '#parcours/publication/visite/2');
   await page.goBack();
-  await page.getByText('Étape 1 sur 4', { exact: true }).waitFor();
+  await page.getByText(`Étape 1 sur ${content.flows.find((f) => f.id === 'publication').tour.length}`, { exact: true }).waitFor();
   await page.goto(`${base}/#parcours/messages/visite/3`);
   await page.getByRole('heading', { name: 'Échanger avec le conducteur', exact: true }).waitFor();
   await page.getByRole('link', { name: 'Toutes les preuves', exact: true }).click();

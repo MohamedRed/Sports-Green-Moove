@@ -129,18 +129,20 @@ test('package-update interruption cannot accept fitted-map or application comple
   assert.match(text(mapsBase + 'README.md'), /same-version package reinstallation/);
 });
 
-test('private portal retains failed and successful captures while map framing and physical scope stay open', () => {
+test('private portal adds the fitted map without promoting the historical clipped map or physical scope', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.equal(flow.images.length, 22); assert.equal(new Set(flow.images.map((i) => i.file)).size, 22);
-  assert.deepEqual(flow.images.slice(0, 4).map((i) => i.file), ['trip-real-map-visible', 'trip-real-route-applied', 'trip-real-places-selected', 'trip-schedule-draft-restored']);
-  assert.match(flow.images[0].alt, /repère de départ à recadrer/); assert.match(flow.images[1].alt, /appliqué après les deux accords/);
-  assert.match(flow.remaining, /cadrage de la carte/);
-  // Current map claims belong to the newer native proof, not historical consent/cancellation tests.
+  assert.equal(flow.images.length, 25); assert.equal(new Set(flow.images.map((i) => i.file)).size, 25);
+  assert.deepEqual(flow.images.slice(0, 4).map((i) => i.file), ['trip-framed-map-visible', 'trip-framed-route-applied', 'trip-framed-places-selected', 'trip-real-map-visible']);
+  assert.match(flow.images[0].alt, /Deux repères entièrement visibles/); assert.match(flow.images[1].alt, /appliqué après les deux accords/);
+  assert.match(flow.images.find((i) => i.file === 'trip-real-map-visible').alt, /Ancien essai.*coupé/);
+  // The original loaded raster remains weaker than the separately retained fitted-map proof.
   const display = mapsBase + 'completed-display/replay/';
   const run = JSON.parse(text(display + 'results.json')), verified = JSON.parse(text(display + 'verified.json'));
   assertRealMapsUiProviderEvidence(run, JSON.parse(text(display + 'real-maps-provider.json')), verified.runId);
   verifyRealMapDisplayFiles(run.native.mapDisplay, fileURLToPath(url(display)));
-  assert.match(flow.verified, /Les cartes s’affichent/); assert.match(content.blockers.find((b) => b.id === 'trip-management').text, /repère est coupé/);
+  assert.match(flow.verified, /Les cartes s’affichent/);
+  assert.throws(() => assertFramedRealMapDisplay(run.native.mapDisplay));
+  assert.match(content.blockers.find((b) => b.id === 'trip-management').text, /deux repères.*entièrement visibles/);
   assert.match(flow.remaining, /sur téléphone/); assert.match(flow.remaining, /paiements et remboursements réels/);
   assert.equal(captures['trip-real-places-selected'], mapsBase + 'first-attempt/replay/local-real-maps-selected.png');
   assert.equal(captures['trip-schedule-draft-restored'], draftBase + 'originals/local-trip-schedule-draft-restored.png');

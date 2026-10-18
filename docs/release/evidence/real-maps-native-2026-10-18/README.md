@@ -212,3 +212,31 @@ and does not verify this correction.
 
 References: [GoogleMap thread contract](https://developers.google.com/android/reference/com/google/android/gms/maps/GoogleMap),
 [Kotlin cancellation cleanup](https://kotlinlang.org/docs/cancellation-and-timeouts.html#run-non-cancellable-block).
+
+## Completed Fitted-Map Replay
+
+The fresh manual run [39125211691](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39125211691)
+passed at source `ff20fffa07d5da5f020e7b7b9252afe50bf1631a`. The thirteen original
+files from artifact `12135474645`, independent acceptance record and hashes are
+retained in [completed-framing](completed-framing/README.md).
+
+The single native case passed in 68.197 seconds. All five provider requests
+returned 200; the actual selected stations, coordinates, 7,512-metre/580-second
+route, saved polyline hash, both parent agreements and applied booking revisions
+match. SDK loading, nonblank raster, padded anchor projection, primary transfer
+and store-policy restoration passed. The complete dispatched map job succeeded.
+
+Human review of the original display and exact 910 x 656 crop confirms both
+complete marker heads are inside the proposed map, with Wavre and
+Ottignies-Louvain-la-Neuve visible. The old clipped display remains historical,
+not relabelled or replaced. The separate applied capture shows both agreements
+and applied state; it is not used alone as framing proof.
+
+The callback-cleanup correction is also exercised by all nine earlier affected
+component cases in routine run `39122871928`; its byte-exact passing ordinary XML
+and later failed primary transfer are retained in
+[cleanup-main-thread/current-ci](cleanup-main-thread/current-ci/README.md).
+That separate routine job remains failed. A new routine matrix is still being
+verified independently; neither map success nor component success substitutes
+for its complete result. Physical-phone, iOS, tracking, payments/refunds,
+production deployment and final release requirements remain open.
