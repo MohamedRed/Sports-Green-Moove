@@ -69,7 +69,7 @@ test('reviewed local consent images are backed by completion and cannot promote 
   const flow = content.flows.find((item) => item.id === 'publication');
   assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert.deepEqual(flow.ui.groups, ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui', 'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui']);
-  assert.match(flow.verified, /Deux parents/); assert.match(flow.remaining, /affichage de la carte/);
+  assert.match(flow.verified, /Deux parents/);
   assert.match(flow.remaining, /paiements et remboursements réels/);
   const images = [['trip-consent-first', 'first-parent'], ['trip-consent-confirmed', 'both-parents'],
     ['trip-consent-refused', 'parent-refused'], ['trip-consent-withdrawn', 'withdrawn']];

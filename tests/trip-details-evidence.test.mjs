@@ -81,11 +81,10 @@ test('raw reports remain byte exact and the portal keeps full editing and real s
   assert.equal(flow.local.source, current + 'services.json');
   assert(flow.local.groups.includes('trip-details-ownership'));
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
-  assert.match(flow.remaining, /affichage de la carte/); assert.match(flow.remaining, /remboursements réels/);
+  assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas encore en ligne/i);
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
   assert.match(blocker.next, /rejouer sur téléphone/); assert.match(blocker.next, /brouillons/);
-  assert.match(blocker.text, /parcours.*accords.*app en local/); assert.match(blocker.text, /carte ne s’affiche pas/);
   assert.match(blocker.next, /paiements concernés/);
   assert(!blocker.next.includes('Choisir entre'));
   assert(content.updates.some((item) => item.date === '2026-10-16' && item.flow === 'publication' && /détails réservés/.test(item.title)));

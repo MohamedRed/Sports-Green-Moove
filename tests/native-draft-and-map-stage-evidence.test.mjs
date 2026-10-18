@@ -120,6 +120,12 @@ test('private portal retains failed and successful captures while map framing an
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
   assert.deepEqual(flow.images.slice(0, 3).map((i) => i.file), ['trip-real-route-applied', 'trip-real-places-selected', 'trip-schedule-draft-restored']);
   assert.match(flow.images[0].alt, /appliqué après les deux accords/); assert.match(flow.remaining, /cadrage de la carte/);
+  // Current map claims belong to the newer native proof, not historical consent/cancellation tests.
+  const display = mapsBase + 'completed-display/replay/';
+  const run = JSON.parse(text(display + 'results.json')), verified = JSON.parse(text(display + 'verified.json'));
+  assertRealMapsUiProviderEvidence(run, JSON.parse(text(display + 'real-maps-provider.json')), verified.runId);
+  verifyRealMapDisplayFiles(run.native.mapDisplay, fileURLToPath(url(display)));
+  assert.match(flow.verified, /Les cartes s’affichent/); assert.match(content.blockers.find((b) => b.id === 'trip-management').text, /repère est coupé/);
   assert.match(flow.remaining, /sur téléphone/); assert.match(flow.remaining, /paiements et remboursements réels/);
   assert.equal(captures['trip-real-places-selected'], mapsBase + 'first-attempt/replay/local-real-maps-selected.png');
   assert.equal(captures['trip-schedule-draft-restored'], draftBase + 'originals/local-trip-schedule-draft-restored.png');

@@ -86,7 +86,7 @@ test('CI runs cancellation checks and the private portal separates local app pro
   assert.equal(flow.status, 'partial'); assert.equal(flow.local.source, detailsBase + 'services.json');
   assert(flow.local.groups.includes('trip-cancellation'));
   assert.equal(flow.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md');
-  assert.match(flow.remaining, /affichage de la carte/); assert.match(flow.remaining, /remboursements réels/);
+  assert.match(flow.remaining, /remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas encore en ligne/i);
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert(flow.ui.groups.includes('trip-change-parent-confirmation-ui'));

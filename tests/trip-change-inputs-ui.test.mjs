@@ -165,7 +165,6 @@ test('reviewed time and unavailable-route captures require the independently ver
   const flow = content.flows.find((item) => item.id === 'publication'); assert.equal(flow.status, 'partial');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert(flow.ui.groups.includes('trip-change-inputs-ui'));
-  assert.match(flow.remaining, /affichage de la carte/);
   assert.match(flow.remaining, /sur téléphone/); assert.match(flow.remaining, /paiements et remboursements réels/);
   for (const [id, name] of [['trip-time-confirmed', 'local-trip-change-time-confirmed.png'], ['trip-route-unavailable', 'local-trip-change-route-unavailable.png']]) {
     assert.equal(captures[id], completedBase + name); assert(stage.captureFiles.includes(name));

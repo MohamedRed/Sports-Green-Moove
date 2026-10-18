@@ -94,7 +94,6 @@ test('partner progress stays partial, dates historical captures and excludes una
   assert.deepEqual(flow.ui.groups, ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui', 'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui']);
   assert.match(flow.verified, /Deux parents/);
   assert.match(flow.remaining, /brouillons après fermeture/);
-  assert.match(flow.remaining, /affichage de la carte/);
   assert.match(flow.remaining, /paiements et remboursements réels/); assert.match(flow.remaining, /pas encore en ligne/i);
   assert.equal(flow.images.length, 21);
   const historical = flow.images.filter((item) => item.file.startsWith('trip-cancel-'));
