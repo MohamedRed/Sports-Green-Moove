@@ -1,4 +1,5 @@
 export const captures = {
+  'trip-real-route-applied': 'docs/release/evidence/real-maps-native-2026-10-18/completed-application/replay/local-real-maps-applied.png',
   'trip-real-places-selected': 'docs/release/evidence/real-maps-native-2026-10-18/first-attempt/replay/local-real-maps-selected.png',
   'trip-schedule-draft-restored': 'docs/release/evidence/local-schedule-draft-native-2026-10-18/originals/local-trip-schedule-draft-restored.png',
   'trip-draft-restored': 'docs/release/evidence/local-trip-drafts-2026-10-18/restart-native/local-trip-draft-restored.png',

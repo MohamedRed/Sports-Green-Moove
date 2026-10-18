@@ -1,0 +1,59 @@
+{
+  "requests": [
+    {
+      "operation": "autocomplete",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "place-details",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "autocomplete",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "place-details",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "compute-route",
+      "status": 200,
+      "completed": true
+    }
+  ],
+  "facts": [
+    {
+      "operation": "autocomplete"
+    },
+    {
+      "operation": "place-details",
+      "placeId": "ChIJ6-fuiHZ9wUcRpFNMSdpAfTM",
+      "location": {
+        "latitude": 50.71606070000001,
+        "longitude": 4.6055674
+      }
+    },
+    {
+      "operation": "autocomplete"
+    },
+    {
+      "operation": "place-details",
+      "placeId": "ChIJA76xCep_wUcRIgzsJATgLZ4",
+      "location": {
+        "latitude": 50.669494099999994,
+        "longitude": 4.6157188
+      }
+    },
+    {
+      "operation": "compute-route",
+      "distanceMeters": 7512,
+      "duration": "560s",
+      "polylineSha256": "e8453752addcb81ec7ce996e633ec4a83d9f3ef9eef8b56c6dc461a44ca2890b"
+    }
+  ]
+}

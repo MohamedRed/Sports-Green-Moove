@@ -80,12 +80,12 @@ test('ordinary skips remain separate from the actual local cases and neither suc
 
 test('three earlier captures remain historical alongside newer evidence without hiding release gaps', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.equal(flow.source, 'docs/release/evidence/real-maps-local-2026-10-18/README.md');
+  assert.equal(flow.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
   assert.equal(flow.ui.groups.length, 9);
   for (const kind of recoveryKinds) assert(flow.ui.groups.includes(`trip-consent-${kind}-restart-ui`));
   const ids = ['trip-consent-recovery-pending', 'trip-consent-recovery-partial', 'trip-consent-recovery-closed'];
-  assert.deepEqual(flow.images.slice(5, 8).map((i) => i.file), ids); assert.equal(flow.images.length, 20);
+  assert.deepEqual(flow.images.slice(6, 9).map((i) => i.file), ids); assert.equal(flow.images.length, 21);
   for (const [index, name] of ['pending', 'partial', 'declined'].entries()) {
     assert.equal(captures[ids[index]], base + `completed/local-trip-consent-recovery-${name}.png`);
     const png = bytes(captures[ids[index]]); assert.equal(png.readUInt32BE(16), 1080);
@@ -97,7 +97,7 @@ test('three earlier captures remain historical alongside newer evidence without 
   const timeGap = content.blockers.find((b) => b.id === 'booking-time-display');
   assert.equal(timeGap.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
   assert.match(timeGap.text, /corrigé.*essai local/); assert.match(timeGap.next, /Rejouer sur téléphone/);
-  for (const scope of [/sur téléphone/, /application/, /brouillons/, /paiements et remboursements réels/])
+  for (const scope of [/sur téléphone/, /carte/, /brouillons/, /paiements et remboursements réels/])
     assert.match(flow.remaining, scope);
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');
   const manifest = JSON.parse(text('docs/release/evidence-manifest.json'));

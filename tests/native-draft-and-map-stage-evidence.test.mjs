@@ -4,6 +4,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { assertScheduleDraftRestart } from '../scripts/qa/trip-schedule-draft-evidence.mjs';
+import { assertRealMapsUiProviderEvidence } from '../scripts/qa/real-maps-ui-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 
 const url = (path) => new URL('../' + path.split('/').map(encodeURIComponent).join('/'), import.meta.url);
@@ -66,16 +67,35 @@ test('first real-map app attempt proves only address selection and retains its f
   assert.match(text(mapsBase + 'README.md'), /not of applying the route/);
 });
 
-test('private portal adds only the two reviewed scoped captures without converting app route application into a pass', () => {
+test('the later native application has an independently matching provider join and successful cleanup', () => {
+  const prefix = mapsBase + 'completed-application/', { json } = originals(prefix, 10);
+  const run = json('replay/results.json'), verified = json('replay/verified.json'), provider = json('replay/real-maps-provider.json');
+  assert.equal(run.runId, 'd718aaf86712d23ecf4f388c5079cbce');
+  assert.equal(run.testedAt, '2026-10-18T09:10:02.158Z');
+  assertRealMapsUiProviderEvidence(run, provider, verified.runId);
+  assert.equal(verified.status, 'passed'); assert.equal(verified.approvedRequestLimit, 5);
+  assert.equal(verified.testedAt, '2026-10-18T09:10:03.550Z'); assert.equal(verified.physicalDevice, false);
+  assert.equal(verified.productionDataWritten, false); assert.equal(verified.paymentExercised, false);
+  assert.equal(json('replay/adb-pull-real-maps-application.json').completed, true);
+  assert.match(text(prefix + 'replay/LocalRealMapsTripChangeTest-instrumentation.txt'), /OK \(1 test\)/);
+  const setup = json('disposable-device-setup.json'), restore = json('disposable-store-restore.json');
+  assert.equal(restore.verified, true); assert.equal(restore.restored, true);
+  assert.equal(setup.mapsRuntime.playServicesVersion, restore.observed.mapsRuntime.playServicesVersion);
+  assert.match(text(mapsBase + 'README.md'), /Map rendering remains unverified and unavailable/);
+  assert.match(text(mapsBase + 'README.md'), /Carte indisponible/);
+});
+
+test('private portal retains failed and successful captures while map rendering and physical scope stay open', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.deepEqual(flow.images.slice(0, 2).map((i) => i.file), ['trip-real-places-selected', 'trip-schedule-draft-restored']);
-  assert.match(flow.images[0].alt, /sans application/); assert.match(flow.remaining, /depuis les écrans/);
+  assert.deepEqual(flow.images.slice(0, 3).map((i) => i.file), ['trip-real-route-applied', 'trip-real-places-selected', 'trip-schedule-draft-restored']);
+  assert.match(flow.images[0].alt, /appliqué après les deux accords/); assert.match(flow.remaining, /affichage de la carte/);
+  assert.match(flow.remaining, /sur téléphone/); assert.match(flow.remaining, /paiements et remboursements réels/);
   assert.equal(captures['trip-real-places-selected'], mapsBase + 'first-attempt/replay/local-real-maps-selected.png');
   assert.equal(captures['trip-schedule-draft-restored'], draftBase + 'originals/local-trip-schedule-draft-restored.png');
-  for (const id of ['trip-real-places-selected', 'trip-schedule-draft-restored']) {
+  for (const id of ['trip-real-route-applied', 'trip-real-places-selected', 'trip-schedule-draft-restored']) {
     const png = bytes(captures[id]); assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2140);
   }
-  assert(!Object.values(captures).some((p) => p.endsWith('local-real-maps-applied.png')));
+  assert.equal(captures['trip-real-route-applied'], mapsBase + 'completed-application/replay/local-real-maps-applied.png');
   assert(content.updates.some((u) => u.title === 'La date et l’arrivée reviennent dans le brouillon'));
   assert.match(content.blockers.find((b) => b.id === 'test-device-stability').text, /cinq autres essais/);
 });

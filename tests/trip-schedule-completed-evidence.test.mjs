@@ -80,14 +80,14 @@ test('only the reviewed schedule image is added and the private page retains the
   const name = 'local-trip-change-date-arrival-confirmed.png', id = 'trip-date-arrival-confirmed';
   const flow = content.flows.find((item) => item.id === 'publication');
   assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
-  assert(flow.ui.groups.includes('trip-change-schedule-ui')); assert.equal(flow.source, 'docs/release/evidence/real-maps-local-2026-10-18/README.md');
+  assert(flow.ui.groups.includes('trip-change-schedule-ui')); assert.equal(flow.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md');
   assert.equal(captures[id], base + 'completed/' + name); assert.deepEqual(json('trip-change-schedule-ui-stage.json').captureFiles, [name]);
   assert(flow.images.some((item) => item.file === id && /essai local du 17 octobre/.test(item.alt)));
   const png = bytes(captures[id]); assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
   assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2140);
   assert(flow.images.some((item) => /Nouvelle date et arrivée souhaitée/.test(item.alt)));
-  assert.match(flow.remaining, /changement de parcours/);
-  for (const scope of [/application/, /après fermeture/, /sur téléphone/, /paiements et remboursements réels/]) assert.match(flow.remaining, scope);
+  assert.match(flow.remaining, /carte/);
+  for (const scope of [/après fermeture/, /sur téléphone/, /paiements et remboursements réels/]) assert.match(flow.remaining, scope);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
   assert(content.updates.some((item) => item.title === 'La date et l’arrivée souhaitée sont confirmées' && item.date === '2026-10-17'));
   const manifest = JSON.parse(text('docs/release/evidence-manifest.json'));
