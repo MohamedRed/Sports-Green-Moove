@@ -12,7 +12,7 @@ function fixture(t) {
   cpSync(new URL('../scripts/run-android-ui-tests-and-collect-screenshots.sh', import.meta.url), join(root, 'scripts/run.sh'));
   const log = join(root, 'calls');
   const executable = (path, content) => writeFileSync(join(root, path), '#!/bin/bash\n' + content, { mode: 0o700 });
-  executable('android/gradlew', 'echo ordinary >> "$CALL_LOG"\nexit "$ORDINARY_STATUS"\n');
+  executable('android/gradlew', 'if [[ "$*" == *:app:assembleDebugAndroidTest* ]]; then echo build >> "$CALL_LOG"; exit "$BUILD_STATUS"; fi\necho ordinary >> "$CALL_LOG"\nexit "$ORDINARY_STATUS"\n');
   executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
   executable('bin/adb', 'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nexit 0\n');
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
@@ -32,10 +32,11 @@ function fixture(t) {
   return (env) => {
     const result = spawnSync('bash', [join(root, 'scripts/run.sh')], { encoding: 'utf8', env: { ...process.env,
       PATH: join(root, 'bin') + ':' + process.env.PATH, CALL_LOG: log, ORDINARY_STATUS: '0', REPLAY_STATUS: '0',
-      SETUP_STATUS: '0', RESTORE_STATUS: '0', CAPTURE_FAILURE: '0', ...env } });
+      BUILD_STATUS: '0', SETUP_STATUS: '0', RESTORE_STATUS: '0', CAPTURE_FAILURE: '0', ...env } });
     assert.equal(result.error, undefined);
     const statusFile = join(out, 'native-suite-status.json');
     return { ...result, calls: readFileSync(log, 'utf8').trim().split('\n'),
+      build: JSON.parse(readFileSync(join(out, 'native-build-status.json'), 'utf8')),
       statuses: existsSync(statusFile) ? JSON.parse(readFileSync(statusFile, 'utf8')) : null };
   };
 }
@@ -49,21 +50,28 @@ for (const [name, env, exit, statuses] of [
   ['both failures retain both outcomes and return the first', { ORDINARY_STATUS: '7', REPLAY_STATUS: '11' }, 7, [7, 0, 11]],
 ]) test(name, (t) => {
   const result = fixture(t)(env);
-  assert.equal(result.status, exit, result.stderr); assert.deepEqual(result.calls, ['setup', 'ordinary', 'replay', 'restore']);
+  assert.equal(result.status, exit, result.stderr); assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'replay', 'restore']);
+  assert.deepEqual(result.build, { scope: 'native-build-before-device-policy-not-flow-verification', status: 0 });
   assert.equal(result.statuses.scope, 'native-suite-exit-status-not-flow-verification');
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
 });
 
 test('an unsafe or unavailable device stops both suites before app execution', (t) => {
   const result = fixture(t)({ SETUP_STATUS: '3' });
-  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['setup']); assert.equal(result.statuses, null);
+  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['build', 'setup']); assert.equal(result.statuses, null);
 });
 
 test('store cleanup failure cannot produce a green suite or overwrite an earlier failure', (t) => {
   const success = fixture(t)({ RESTORE_STATUS: '13' });
-  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['setup', 'ordinary', 'replay', 'restore']);
+  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['build', 'setup', 'ordinary', 'replay', 'restore']);
   const failure = fixture(t)({ RESTORE_STATUS: '13', REPLAY_STATUS: '11' });
-  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['setup', 'ordinary', 'replay', 'restore']);
+  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['build', 'setup', 'ordinary', 'replay', 'restore']);
+});
+
+test('compilation failure preserves its status and never mutates or runs the disposable phone', (t) => {
+  const result = fixture(t)({ BUILD_STATUS: '17' });
+  assert.equal(result.status, 17); assert.deepEqual(result.calls, ['build']); assert.equal(result.statuses, null);
+  assert.deepEqual(result.build, { scope: 'native-build-before-device-policy-not-flow-verification', status: 17 });
 });
 
 test('both CI entry points retain independent-suite verification and upload its status metadata', () => {

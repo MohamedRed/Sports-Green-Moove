@@ -7,6 +7,12 @@ output_dir="$android_dir/app/build/outputs/store-review-screenshots"
 remote_dir="/sdcard/Download/sgm-store-review"
 
 mkdir -p "$output_dir" || exit 1
+"$android_dir/gradlew" -p "$android_dir" :app:assembleDebug :app:assembleDebugAndroidTest --no-daemon --stacktrace
+build_status=$?
+printf '{"scope":"native-build-before-device-policy-not-flow-verification","status":%s}\n' \
+  "$build_status" > "$output_dir/native-build-status.json"
+if [[ "$build_status" -ne 0 ]]; then exit "$build_status"; fi
+
 device_receipt="$output_dir/disposable-device-setup.json"
 node "$repo_root/scripts/qa/configure-disposable-android.mjs" > "$device_receipt" || exit 1
 restore_test_store() {

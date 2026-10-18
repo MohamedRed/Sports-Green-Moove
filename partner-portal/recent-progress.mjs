@@ -1,6 +1,6 @@
 export const recentProgress = [
   { date: '2026-10-18', title: 'Les 33 essais locaux prévus passent',
-    text: 'Réservations, messages, réponses des parents et reprise des brouillons passent. Les mises à jour du téléphone d’essai restent à stabiliser.', flow: 'publication' },
+    text: 'Deux passages réussis : réservations, messages, réponses des parents et reprise des brouillons. Les mises à jour du téléphone d’essai restent à stabiliser.', flow: 'publication' },
   { date: '2026-10-18', title: 'Le brouillon revient après fermeture complète',
     text: 'Le prix et les adresses inachevés sont retrouvés dans l’essai local. Rien n’est envoyé aux parents. Une capture est ajoutée.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les anciens refus et retraits se rouvrent',

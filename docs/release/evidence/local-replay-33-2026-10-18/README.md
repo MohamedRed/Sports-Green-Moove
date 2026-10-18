@@ -57,6 +57,35 @@ The next source change adds read-only current carrier-loader observations and
 moves website report uploads after checks. Those changes are not present in this
 run and their device execution is not established by these receipts.
 
+## Carrier Observation Recheck
+
+[Run 39088788416](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39088788416)
+on `c3ac91335c97205ea8cb7c5d5da523d89ed4a92c` completed another 33-group
+local replay, run `69ac15a98198753c9fb69dfb186a229b`, at
+`2026-10-18T02:23:19.872Z`. Artifact `12122620906` is 15,424,705 bytes.
+`carrier-recheck/` retains 87 exact originals and their hash manifest: the same
+report categories as above plus the two new carrier-loader snapshots. All 25
+instrumentation transcripts and all 11 evidence copies pass; the ordinary report
+has 116 cases, 88 passed, 28 conditional skips and no failures/errors.
+
+Both current loader observations report one phone, `configChangeSent: [true]`,
+`fromSystemUnlocked: [false]`, and `serviceBoundForNoSimConfig: [false]`.
+The default data subscription is valid in this successful connection-loss case.
+This establishes actual execution of the new read-only collector, but does not
+identify which default-selection gate failed in earlier runs. Loader state is
+not substituted for the strict app/network observations.
+
+The broader job again **failed** at cleanup: restricted background modes held
+and restoration succeeded, but services changed from `24.23.35` to `26.40.32`.
+The existing website report-upload ordering change also executed successfully in
+[Web Integration Smoke 39088788444](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39088788444);
+this is not a payment, production or physical-device result.
+
+The next runner change compiles the ordinary app/test APKs before recording the
+device policy and runtime baseline. It does not stop a system update, change the
+invariant during app testing, ignore cleanup failures or modify any historical
+result. Device execution of that new preparation order is pending.
+
 ## Remaining Scope
 
 This is a completed local replay, not all product flows or a launch approval.

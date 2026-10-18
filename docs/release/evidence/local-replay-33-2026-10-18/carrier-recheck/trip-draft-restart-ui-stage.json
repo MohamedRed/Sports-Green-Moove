@@ -1,0 +1,113 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "69ac15a98198753c9fb69dfb186a229b",
+  "testedAt": "2026-10-18T02:22:12.816Z",
+  "recordType": "native-private-trip-draft-stage-not-full-run-result",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 1,
+  "nativeCaseCount": 2,
+  "steps": [
+    {
+      "id": "trip-draft-process-restart-ui",
+      "status": "passed"
+    }
+  ],
+  "tripId": "nCRbbsWvefJfYsSuXOL5",
+  "otherTripId": "IZEzkICMhXmSuH45S9li",
+  "bookingIds": [
+    "2hIEiKFHcimSpg2MgOvN",
+    "jAHlaEQr3BBtSym21Ktw"
+  ],
+  "native": {
+    "before": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "69ac15a98198753c9fb69dfb186a229b",
+      "scope": "native-ui-private-trip-draft-restart",
+      "stage": "before",
+      "completed": true,
+      "actorUserId": "sgm-qa-driver",
+      "tripId": "nCRbbsWvefJfYsSuXOL5",
+      "otherTripId": "IZEzkICMhXmSuH45S9li",
+      "processId": 11676,
+      "draftHash": "224ee0f02e48e9cfec48ef0f505500d37c5d42a2d26875058d6888ea2297b46c",
+      "unfinishedFieldsSaved": true,
+      "otherTripIsolated": true
+    },
+    "stopped": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "69ac15a98198753c9fb69dfb186a229b",
+      "scope": "disposable-local-app-force-stop",
+      "appId": "be.sportgreenmoove.app.local",
+      "preparedProcessId": 11676,
+      "observedBeforePid": null,
+      "forceStopIssued": true,
+      "noProcessAfterStop": true
+    },
+    "after": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "69ac15a98198753c9fb69dfb186a229b",
+      "scope": "native-ui-private-trip-draft-restart",
+      "stage": "after",
+      "completed": true,
+      "actorUserId": "sgm-qa-driver",
+      "tripId": "nCRbbsWvefJfYsSuXOL5",
+      "otherTripId": "IZEzkICMhXmSuH45S9li",
+      "processId": 11805,
+      "draftHash": "224ee0f02e48e9cfec48ef0f505500d37c5d42a2d26875058d6888ea2297b46c",
+      "sessionRestoredWithoutLogin": true,
+      "unfinishedFieldsRestored": true,
+      "otherTripIsolated": true,
+      "submissionDisabled": true
+    }
+  },
+  "baseline": {
+    "hashes": {
+      "trips": "722b7ce2e2d0b8ad4e46240c5d75c1605f7833ba24873be6d7ac9cb934e5a717",
+      "bookings": "6b014eced780d7077141c92bf652ab39504623d79385112fdf46886bed6a2fc1",
+      "notifications": "41ec3dc65907edcf04ce0a8257012c5ef090b95744496371080f80b50d094edd"
+    },
+    "emptyCollections": {
+      "tripChanges": true,
+      "tripChangeQuotes": true,
+      "tripChangeBalances": true,
+      "rideSessions": true
+    }
+  },
+  "checkpoint": {
+    "hashes": {
+      "trips": "722b7ce2e2d0b8ad4e46240c5d75c1605f7833ba24873be6d7ac9cb934e5a717",
+      "bookings": "6b014eced780d7077141c92bf652ab39504623d79385112fdf46886bed6a2fc1",
+      "notifications": "41ec3dc65907edcf04ce0a8257012c5ef090b95744496371080f80b50d094edd"
+    },
+    "emptyCollections": {
+      "tripChanges": true,
+      "tripChangeQuotes": true,
+      "tripChangeBalances": true,
+      "rideSessions": true
+    }
+  },
+  "persisted": {
+    "hashes": {
+      "trips": "722b7ce2e2d0b8ad4e46240c5d75c1605f7833ba24873be6d7ac9cb934e5a717",
+      "bookings": "6b014eced780d7077141c92bf652ab39504623d79385112fdf46886bed6a2fc1",
+      "notifications": "41ec3dc65907edcf04ce0a8257012c5ef090b95744496371080f80b50d094edd"
+    },
+    "emptyCollections": {
+      "tripChanges": true,
+      "tripChangeQuotes": true,
+      "tripChangeBalances": true,
+      "rideSessions": true
+    }
+  },
+  "captureFiles": [
+    "local-trip-draft-before.png",
+    "local-trip-draft-restored.png"
+  ],
+  "recordsUnchanged": true,
+  "automaticProposalCreated": false,
+  "unresolvedAddressesRestoredAsConfirmed": false,
+  "fullAppReplay": false,
+  "paymentExercised": false,
+  "routeProviderExercised": false,
+  "limitation": "Driver raw price and unresolved addresses across a guarded new local app process; second trip stays empty. No physical-device, iOS, cross-device sync, route/application or payment proof."
+}

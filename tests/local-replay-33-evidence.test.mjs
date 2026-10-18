@@ -78,3 +78,38 @@ test('private updates describe a local pass and keep runtime, physical and payme
   assert.equal(workflow.split('"tests/local-replay-33-evidence.test.mjs"').length - 1, 2);
   assert(workflow.includes('node --test tests/trip-history-evidence.test.mjs tests/local-replay-33-evidence.test.mjs'));
 });
+
+test('the actual carrier recheck passes both suites but preserves a second failed runtime verification', () => {
+  const prefix = base + 'carrier-recheck/';
+  const read = (name) => JSON.parse(text(prefix + name));
+  const hashes = read('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 87);
+  for (const [name, hash] of Object.entries(hashes)) {
+    const raw = bytes(prefix + name); assert.equal(createHash('sha256').update(raw).digest('hex'), hash, name);
+    assert.doesNotMatch(raw.toString(), /AIza[\w-]{20,}|Bearer\s+[\w.-]+|"password"\s*:/);
+  }
+  const run = read('results.json'); assert.equal(run.runId, '69ac15a98198753c9fb69dfb186a229b');
+  assert.equal(run.testedAt, '2026-10-18T02:23:19.872Z'); assert.equal(run.testCount, 33);
+  assert.equal(run.steps.length, 33); assert(run.steps.every((s) => s.status === 'passed'));
+  const transcripts = Object.keys(hashes).filter((n) => n.endsWith('-instrumentation.txt')); assert.equal(transcripts.length, 25);
+  for (const name of transcripts) assertInstrumentationPassed(text(prefix + name), name.startsWith('LocalAppFlowTest-') ? 9 : 1);
+  const copies = Object.keys(hashes).filter((n) => n.startsWith('adb-pull-')); assert.equal(copies.length, 11);
+  for (const name of copies) { assert.equal(read(name).runId, run.runId); assert.equal(read(name).completed, true); }
+  for (const phase of ['before', 'after']) {
+    const carrier = read(`chat-carrier-${phase}.json`);
+    assert.equal(carrier.runId, run.runId); assert.equal(carrier.phase, phase);
+    assert.equal(carrier.source, 'current-carrier-loader-state-not-default-selection-readiness');
+    assert.equal(carrier.phoneCount, 1); assert.deepEqual(carrier.configChangeSent, [true]);
+    assert.deepEqual(carrier.fromSystemUnlocked, [false]); assert.deepEqual(carrier.serviceBoundForNoSimConfig, [false]);
+    assert.equal(read(`chat-subscriptions-${phase}.json`).defaultSubscriptionValid.defaultDataSubId, true);
+  }
+  const network = read('local-chat-network-ui.json'); assertChatNetworkReceipt(network); assertTransportRequestSetup(network);
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true })
+    .parse(text(prefix + 'general-ui.xml')).testsuite;
+  assert.equal(suite.tests, 116); assert.equal(suite.skipped, 28); assert.equal(suite.failures, 0); assert.equal(suite.errors, 0);
+  assert.deepEqual(read('native-suite-status.json'), {
+    scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 0, componentEvidence: 0, localReplay: 0 });
+  const cleanup = read('disposable-store-restore.json'); assert.equal(cleanup.restored, true); assert.equal(cleanup.verified, false);
+  assert.deepEqual(cleanup.observed.background, { RUN_IN_BACKGROUND: 'ignore', RUN_ANY_IN_BACKGROUND: 'deny' });
+  assert.match(text(prefix + 'store-runtime-mismatch.txt'), /Maps runtime changed during the test/);
+  assert.match(text(base + 'README.md'), /c3ac91335c97205ea8cb7c5d5da523d89ed4a92c/);
+});
