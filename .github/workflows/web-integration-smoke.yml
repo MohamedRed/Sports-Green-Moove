@@ -82,6 +82,7 @@ on:
       - "tests/local-emulator-config.test.mjs"
       - "tests/real-maps-local.test.mjs"
       - "tests/real-maps-ui.test.mjs"
+      - "tests/native-draft-and-map-stage-evidence.test.mjs"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
       - "scripts/run-real-maps-android-ui.sh"
@@ -265,6 +266,7 @@ on:
       - "tests/local-emulator-config.test.mjs"
       - "tests/real-maps-local.test.mjs"
       - "tests/real-maps-ui.test.mjs"
+      - "tests/native-draft-and-map-stage-evidence.test.mjs"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
       - "scripts/run-real-maps-android-ui.sh"
@@ -428,7 +430,7 @@ jobs:
         run: npm run test:local-flow-isolation
 
       - name: Validate explicit real-map test boundaries without provider calls
-        run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs
+        run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs
 
       - name: Validate bounded local response-loss injection
         run: node --test tests/local-chat-response-loss.test.mjs
