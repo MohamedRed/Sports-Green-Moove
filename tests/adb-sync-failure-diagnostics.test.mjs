@@ -2,13 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { collectAdbSyncFailureDiagnostics, listingSummary, summarizeDirectoryStat, summarizeSyncListing } from '../scripts/qa/adb-sync-failure-diagnostics.mjs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentation-result.mjs';
 
 const runId = 'a'.repeat(32), password = 'isolated-qa-password-not-a-real-credential';
+const repositoryRoot = fileURLToPath(new URL('../', import.meta.url));
+const readRepoFile = (path) => readFileSync(resolve(repositoryRoot, path));
 function fixture(t) {
   const directory = mkdtempSync(join(tmpdir(), 'sgm-sync-diagnostic-'));
   const previous = process.env.SGM_LOCAL_DISPOSABLE_EMULATOR;
@@ -91,7 +94,7 @@ test('a retained named diagnostic cannot be repeated or overwrite its original o
 });
 
 test('passing ordinary tests and a later cleanup transfer cannot repair the retained failed primary copy', () => {
-  const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
+  const read = readRepoFile;
   const base = 'docs/release/evidence/native-transfer-interruption-2026-10-18/';
   const hashes = JSON.parse(read(base + 'artifact-sha256.json'));
   for (const [name, hash] of Object.entries(hashes)) assert.equal(createHash('sha256').update(read(base + name)).digest('hex'), hash, name);
@@ -112,7 +115,7 @@ test('passing ordinary tests and a later cleanup transfer cannot repair the reta
   assert.equal(json('disposable-store-restore.json').verified, true);
   assert.deepEqual(json('native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
     ordinaryTests: 0, componentEvidence: 0, localReplay: 1 });
-  for (const name of ['results.json', 'trip-change-ui-stage.json']) assert.equal(existsSync(new URL('../' + base + name, import.meta.url)), false);
+  for (const name of ['results.json', 'trip-change-ui-stage.json']) assert.equal(existsSync(resolve(repositoryRoot, base, name)), false);
 });
 
 test('both CI paths cover failure-only diagnostics and keep success/replay outcomes independent', () => {
@@ -126,4 +129,31 @@ test('both CI paths cover failure-only diagnostics and keep success/replay outco
   assert(collector.indexOf('collectAdbSyncFailureDiagnostics({') > collector.indexOf('if (!receipt.completed)'));
   assert(collector.includes('throw new EvidenceCollectionError(phase, status, signal, receiptPath)'));
   assert.equal((collector.match(/spawn\(adb,/g) ?? []).length, 1);
+});
+
+test('a later complete matrix retains independently successful primary copies and original device transcripts', () => {
+  const read = readRepoFile;
+  const base = 'docs/release/evidence/native-replay-completed-2026-10-18/';
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json'));
+  assert.equal(Object.keys(hashes).length, 43);
+  for (const [name, expected] of Object.entries(hashes)) assert.equal(createHash('sha256').update(read(base + name)).digest('hex'), expected, name);
+  const result = JSON.parse(read(base + 'results.json'));
+  assert.equal(result.runId, 'a3a5f34d7657adbba4973414bc4f9663');
+  assert.equal(result.testCount, 33); assert.equal(result.nativeCaseCount, 35); assert.equal(result.steps.length, 33);
+  assert(result.steps.every((item) => item.status === 'passed'));
+  const transcripts = Object.keys(hashes).filter((name) => name.endsWith('-instrumentation.txt'));
+  assert.equal(transcripts.length, 27);
+  for (const name of transcripts) assertInstrumentationPassed(read(base + name).toString(), name.startsWith('LocalAppFlowTest-') ? 9 : 1);
+  const receipts = Object.keys(hashes).filter((name) => name.startsWith('adb-pull-'));
+  assert.equal(receipts.length, 12); assert(receipts.every((name) => !name.includes('cleanup')));
+  for (const name of receipts) {
+    const receipt = JSON.parse(read(base + name));
+    assert.equal(receipt.runId, result.runId); assert.equal(receipt.status, 0); assert.equal(receipt.completed, true);
+  }
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true }).parse(read(base + 'general-ui.xml')).testsuite;
+  assert.equal(suite.tests, 124); assert.equal(suite.failures, 0); assert.equal(suite.errors, 0); assert.equal(suite.skipped, 31);
+  assert.deepEqual(JSON.parse(read(base + 'native-suite-status.json')), {
+    scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 0, componentEvidence: 0, localReplay: 0,
+  });
+  assert.equal(JSON.parse(read(base + 'disposable-store-restore.json')).verified, true);
 });

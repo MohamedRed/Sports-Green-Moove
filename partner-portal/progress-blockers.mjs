@@ -1,7 +1,7 @@
 export const blockers = [
   { id: 'test-device-stability', title: 'Stabiliser les essais',
-    text: 'Les écrans passent dans le dernier essai local. La copie des résultats bloque la suite.',
-    next: 'Expliquer la copie interrompue et les anciens blocages, puis rejouer l’ensemble.', source: 'docs/release/evidence/native-transfer-interruption-2026-10-18/README.md' },
+    text: 'Le dernier essai local passe jusqu’au bout. Les interruptions des essais précédents restent à expliquer.',
+    next: 'Confirmer la stabilité sur d’autres essais et sur téléphone.', source: 'docs/release/evidence/native-replay-completed-2026-10-18/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },

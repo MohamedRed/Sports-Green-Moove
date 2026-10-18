@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-18', title: 'Le dernier essai local est allé jusqu’au bout',
+    text: 'Les écrans, les 33 essais prévus et la récupération des résultats passent ensemble. Les vérifications sur téléphone et les parcours à terminer restent ouverts.', flow: 'publication' },
   { date: '2026-10-18', title: 'Les écrans passent, la copie bloque encore',
     text: 'Les essais d’écran passent en local. Le nouvel essai s’arrête ensuite pendant la copie des résultats ; il reste non validé.', flow: 'publication' },
   { date: '2026-10-18', title: 'Deux captures de paiement sont ajoutées',
