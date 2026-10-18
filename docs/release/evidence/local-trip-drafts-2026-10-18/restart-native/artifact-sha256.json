@@ -1,0 +1,18 @@
+{
+  "general-ui.xml": "93e84376e20381349c37957660e9d02e90bedd03a03e69d2a6c7c1897673da32",
+  "native-suite-status.json": "5f34b44c527e2f1d8fcec4986576ce19525f9a48919f13456a15fc6ff49cb90f",
+  "disposable-device-setup.json": "4791b03a03797cb7cc05d0d8df2e3b9c1b11e7b64d1a80edff8392d8268ee9c0",
+  "disposable-store-restore.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "trip-draft-restart-ui-stage.json": "6306abe519d6f33d30039f0a0ef97b736f62fce7778d49d29f5f8ab2be4a4f27",
+  "trip-draft-restart-checkpoint.json": "282e319b2ba2bda0551b1d803cb7188db4ecb7b1752599d6688f56e8a76ce663",
+  "local-trip-draft-before.json": "651079bfd88bbff55a864685801806eea53661aabce98744dc4c7d65976fc7ba",
+  "local-trip-draft-after.json": "485be1275ec6e078b958909c1175979b9e58258af9427df8a520d995b48eb763",
+  "local-trip-draft-stop.json": "875314d3edd399973796be7c5e871e879b7f121dbadca2c90ef6e38cfe4c5610",
+  "local-trip-draft-before.png": "e077c5361e83058ca15d31b0b407ca30600537018a5206d0d2711e2a90f42a81",
+  "local-trip-draft-restored.png": "e077c5361e83058ca15d31b0b407ca30600537018a5206d0d2711e2a90f42a81",
+  "LocalTripDraftRestartTest#prepareUnfinishedTripDraft-instrumentation.txt": "4ee8f61ba38740410c0e7344ad68c35636e5fddb32f04f602cbab6a3d75a6624",
+  "LocalTripDraftRestartTest#recoverUnfinishedTripDraftInNewProcess-instrumentation.txt": "07db1b4d8262621b8bc3ad90e30ac43e138f1fa603ff423fb00091614c5709ed",
+  "adb-pull-trip-draft-restart.json": "9b5ef3119eab3af6b1f1ac0429d77d08e66fc4bed3eb1e70b7e94338e98f289e",
+  "LocalChatNetworkFlowTest-instrumentation.txt": "45e545d676388686f3c29ad94ad1719777f2bac501ad6262e0ad48e72eb2dd7e",
+  "local-chat-network-ui.json": "da9ef27b5920e4c723375e8781e75089bd6b50d6bf1f1ec7c9810d1f952b39c2"
+}

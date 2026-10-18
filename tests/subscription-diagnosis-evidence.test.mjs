@@ -102,8 +102,8 @@ test('private progress keeps local scope and instability explicit, with unchange
   assert.equal(flow.status, 'partial');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(blocker.source, 'docs/release/evidence/local-schedule-preparation-2026-10-17/README.md');
-  assert.match(blocker.text, /Neuf essais/); assert.match(blocker.text, /précédents/);
+  assert.equal(blocker.source, 'docs/release/evidence/local-trip-drafts-2026-10-18/README.md');
+  assert.match(blocker.text, /dernier essai s’arrête/); assert.match(blocker.text, /précédents/);
   assert(content.updates.some((item) => item.title === 'Le nouvel essai complet passe'));
   const report = text('README.md');
   assert.match(report, /146730fba6e39a517922d91ac670627e50a23b8f/);

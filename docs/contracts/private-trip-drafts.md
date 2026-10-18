@@ -36,8 +36,8 @@ Eleven new JVM cases pass, alongside all 245 Android unit cases. They check raw
 unfinished inputs, account/trip isolation, new-state recovery, stale revisions,
 save/read failures and proposal idempotency. Three instrumented cases compile,
 covering large-text close/reopen, real preferences/codec and corrupted records.
-Their execution remains pending in the next native CI run; this is not proof
-of force-stop/process-death recovery on a physical phone or release acceptance.
+Those three component cases passed in run 39085527859, without accepting that
+broader failed run or any physical-phone requirement.
 
 The full isolated replay additionally requires `trip-draft-process-restart-ui`:
 two real app instrumentation stages around the existing guarded local-app
@@ -49,5 +49,8 @@ hash. Independent host snapshots require the full trip, booking and notification
 records to remain unchanged and no proposal, quote, balance or ride to exist.
 Only same-run completed receipts and two non-empty real captures permit the new
 group to pass. The full replay now requires 33 groups; older 32-group originals
-remain unchanged and do not prove the new draft stage. Both stages compile;
-actual execution and visual review are still pending.
+remain unchanged and do not prove the new draft stage. Both actual stages passed
+in run 39085977464 and the restored image was reviewed; the broader run still
+failed in separate capture/network-preparation checks. See the
+[scoped evidence](../release/evidence/local-trip-drafts-2026-10-18/README.md).
+Other draft variants, physical phones and iOS remain unproven.

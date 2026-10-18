@@ -8,5 +8,9 @@ assert.equal(receipt.scope, 'disposable-emulator-without-home-navigation');
 if (receipt.storePause !== null) {
   const { serial, shell } = disposableAndroidShell();
   assert.equal(serial, receipt.serial, 'Restore refuses a different test phone');
-  console.log(JSON.stringify(restoreDisposableStore(shell, receipt.storePause)));
+  try { console.log(JSON.stringify(restoreDisposableStore(shell, receipt.storePause))); }
+  catch (failure) {
+    if (failure.receipt) console.log(JSON.stringify(failure.receipt));
+    throw failure;
+  }
 }

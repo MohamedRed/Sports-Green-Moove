@@ -4,11 +4,13 @@ import { readFileSync } from 'node:fs';
 import { pauseDisposableStore, restoreDisposableStore, storeStateCommand } from '../scripts/qa/disposable-store-pause.mjs';
 import { playServicesVersionCommand } from '../scripts/qa/android-maps-prerequisites.mjs';
 import { configureDisposableAndroid } from '../scripts/qa/configure-disposable-android.mjs';
+import { readStoreBackgroundMode, storeBackgroundRestrictions } from '../scripts/qa/disposable-store-background.mjs';
 
 function device(options = {}) {
   const calls = [];
   let stopped = options.wasStopped ?? false;
   let mutated = false;
+  const background = { RUN_IN_BACKGROUND: options.backgroundMode ?? 'allow', RUN_ANY_IN_BACKGROUND: options.backgroundMode ?? 'allow' };
   const shell = (...args) => {
     const command = args.join(' '); calls.push(command);
     if (command === 'getprop ro.build.version.sdk') return options.sdk ?? '35';
@@ -19,23 +21,34 @@ function device(options = {}) {
       `  User 0: installed=true stopped=${stopped} enabled=0` + (options.bareUserHeader ? '\n  User 0:\n' : '') +
       (options.duplicateState ? '\n  User 0: installed=true stopped=false enabled=0' : '');
     if (command === 'dumpsys package installs') return options.installs ?? 'Active install sessions:\nHistorical install sessions:\n';
+    if (args[0] === 'cmd' && args[1] === 'appops') {
+      const operation = args[6];
+      if (args[2] === 'get') return options.backgroundMalformed ? 'unavailable' : `${operation}: ${background[operation]}`;
+      if (args[2] === 'set') { if (!options.policyIgnored) background[operation] = args[7]; return ''; }
+    }
     if (command === 'am force-stop --user 0 com.android.vending') { mutated = true; stopped = !options.stopIgnored; return ''; }
     if (command === 'pm unstop --user 0 com.android.vending') { stopped = false; return ''; }
     throw new Error('Unexpected device command: ' + command);
   };
-  return { shell, calls, stopped: () => stopped, resumeUnexpectedly: () => { stopped = false; } };
+  return { shell, calls, background, stopped: () => stopped, resumeUnexpectedly: () => { stopped = false; } };
 }
 
 test('approved store-only stop preserves enabled maps/location and restores original state', () => {
+  assert.deepEqual(storeBackgroundRestrictions, { RUN_IN_BACKGROUND: 'ignore', RUN_ANY_IN_BACKGROUND: 'deny' });
   const mock = device();
   const receipt = pauseDisposableStore(mock.shell);
   assert.equal(mock.stopped(), true); assert.equal(receipt.wasStopped, false);
+  assert.deepEqual(mock.background, storeBackgroundRestrictions);
   assert.deepEqual(restoreDisposableStore(mock.shell, receipt), {
-    restored: true, storeStayedStopped: true, mapsRuntimeUnchanged: true, locationEnabled: true,
+    method: 'restricted-store-background', restored: true, verified: true,
+    observed: { storeStopped: true, background: storeBackgroundRestrictions, mapsRuntime: receipt.mapsRuntime,
+      locationEnabled: true, noActiveStoreInstall: true },
   });
+  assert.deepEqual(mock.background, receipt.originalBackground);
   assert.equal(mock.stopped(), false);
   assert.deepEqual(mock.calls.filter((line) => /force-stop|unstop|disable|enable |settings put|svc /.test(line)),
     ['am force-stop --user 0 com.android.vending', 'pm unstop --user 0 com.android.vending']);
+  assert(mock.calls.filter((line) => line.startsWith('cmd appops set')).every((line) => line.includes('--user 0 com.android.vending RUN_')));
 });
 
 test('already-stopped store remains stopped after cleanup', () => {
@@ -54,6 +67,7 @@ test('bare AOSP permission/changed-package user headings are not a second packag
 
 test('unsafe or incompatible preconditions refuse mutation without retrying', () => {
   for (const options of [{ sdk: '34' }, { location: 'false' }, { stateMalformed: true }, { installs: 'unavailable' },
+    { backgroundMalformed: true },
     { installs: 'Active install sessions:\n  Session 123:\n    installInitiatingPackageName=com.android.vending mCommitted=true\nHistorical install sessions:\n' }]) {
     const mock = device(options); assert.throws(() => pauseDisposableStore(mock.shell));
     assert(!mock.calls.some((line) => /force-stop|unstop/.test(line)));
@@ -66,13 +80,37 @@ test('failed pause or changed runtime rolls back without hiding the failure', ()
     assert.equal(mock.stopped(), false);
     assert.equal(mock.calls.filter((line) => line.startsWith('am force-stop')).length, 1);
     assert.equal(mock.calls.filter((line) => line.startsWith('pm unstop')).length, 1);
+    assert.deepEqual(mock.background, { RUN_IN_BACKGROUND: 'allow', RUN_ANY_IN_BACKGROUND: 'allow' });
   }
 });
 
-test('unexpected store resumption fails verification rather than pretending isolation held', () => {
+test('a store service waking does not release the independently verified background restriction', () => {
   const mock = device(); const receipt = pauseDisposableStore(mock.shell); mock.resumeUnexpectedly();
-  assert.throws(() => restoreDisposableStore(mock.shell, receipt), /resumed unexpectedly/);
+  assert.deepEqual(mock.background, storeBackgroundRestrictions);
+  const result = restoreDisposableStore(mock.shell, receipt);
+  assert.equal(result.verified, true); assert.equal(result.observed.storeStopped, false);
   assert.equal(mock.stopped(), false);
+});
+
+test('lost background policy fails verification, preserves a typed failure receipt and still restores both operations', () => {
+  const mock = device(); const receipt = pauseDisposableStore(mock.shell);
+  mock.background.RUN_ANY_IN_BACKGROUND = 'allow';
+  assert.throws(() => restoreDisposableStore(mock.shell, receipt), (error) => {
+    assert.equal(error.receipt.verified, false); assert.equal(error.receipt.restored, true); return true;
+  });
+  assert.deepEqual(mock.background, receipt.originalBackground); assert.equal(mock.stopped(), false);
+  const ignored = device({ policyIgnored: true }); assert.throws(() => pauseDisposableStore(ignored.shell));
+  assert(!ignored.calls.some((line) => line.startsWith('am force-stop')));
+});
+
+test('background-mode reads accept only declared OS defaults or exact package operations, never UID-wide policy', () => {
+  assert.equal(readStoreBackgroundMode(() => 'No operations.\nDefault mode: allow', 'RUN_IN_BACKGROUND'), 'allow');
+  assert.equal(readStoreBackgroundMode(() => 'RUN_IN_BACKGROUND: ignore; time=+12s', 'RUN_IN_BACKGROUND'), 'ignore');
+  for (const output of ['No operations.', 'RUN_IN_BACKGROUND: unknown', 'Uid mode: RUN_IN_BACKGROUND: allow\nRUN_IN_BACKGROUND: ignore',
+    'RUN_IN_BACKGROUND: allow\nRUN_IN_BACKGROUND: deny']) assert.throws(() => readStoreBackgroundMode(() => output, 'RUN_IN_BACKGROUND'));
+  const mock = device({ wasStopped: true, backgroundMode: 'ignore' }); const receipt = pauseDisposableStore(mock.shell);
+  mock.resumeUnexpectedly(); restoreDisposableStore(mock.shell, receipt);
+  assert.equal(mock.stopped(), true); assert.deepEqual(mock.background, receipt.originalBackground);
 });
 
 test('setup refuses physical and unapproved targets before any store operation', () => {

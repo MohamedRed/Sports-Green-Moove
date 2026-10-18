@@ -76,8 +76,8 @@ test('only reviewed after and driver captures enter the partial partner flow whi
   const flow = content.flows.find((item) => item.id === 'publication'); assert.equal(flow.status, 'partial');
   const current = 'docs/release/evidence/local-trip-history-2026-10-18/';
   assert.equal(flow.source, current + 'README.md'); assert.equal(flow.ui.source, current + 'completed-native/results.json');
-  assert(flow.ui.groups.includes('trip-consent-process-restart-ui')); assert.match(flow.verified, /accord/);
-  assert.deepEqual(flow.images.slice(5, 7).map((item) => item.file), ['trip-consent-restored-parent', 'trip-consent-restored-driver']);
+  assert(flow.ui.groups.includes('trip-consent-process-restart-ui')); assert.match(flow.verified, /Deux parents confirment/);
+  assert.deepEqual(flow.images.slice(6, 8).map((item) => item.file), ['trip-consent-restored-parent', 'trip-consent-restored-driver']);
   for (const [id, name] of [['trip-consent-restored-parent', 'after'], ['trip-consent-restored-driver', 'driver']]) {
     assert.equal(captures[id], base + `completed/local-trip-consent-restart-${name}.png`);
     const png = bytes(captures[id]); assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');

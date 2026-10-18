@@ -8,28 +8,35 @@ The pause additionally requires the approved Android 15 image, enabled store and
 Play services, a supported Maps runtime, enabled location and a readable installer
 state without an active store installation. No active installation is cancelled.
 
-The implementation force-stops only `com.android.vending` for user 0, verifies
-its stopped state and rechecks Maps/location. It neither disables the store nor
-changes Play services, maps, location, networking, verification/security settings,
-app data or any personal phone/browser. Android 15's stopped-state behavior is
-documented by [Android Developers](https://developer.android.com/about/versions/15/behavior-changes-all#enhanced-stop-states).
-This is a scoped background-store pause, not a guarantee against every other
-system update mechanism or crash.
+The store alone receives Android's documented background restrictions:
+`RUN_IN_BACKGROUND=ignore` and `RUN_ANY_IN_BACKGROUND=deny`, followed by one
+force-stop. [Android Developers](https://developer.android.com/topic/performance/background-optimization)
+documents those controls for background services/broadcasts and restricted jobs.
+Both original operation modes are read first; unknown output or a UID-wide
+override stops setup rather than guessing or changing other packages' policy.
+The store remains enabled. No Play services, maps, location, networking,
+verification/security settings, app data, personal phone or browser is changed.
+Store/home-screen interactions are excluded; this is not a guarantee against
+other system update mechanisms, crashes or foreground store activity.
 
 Setup writes a sanitized receipt. After both independent suites and evidence
-collection, an EXIT cleanup verifies that the store stayed stopped, restores the
-original stopped state on the same emulator using the Android 15
+collection, EXIT cleanup verifies both background restrictions still hold,
+no store install is active, Maps remains enabled at its original version and
+location remains enabled. It restores both original background modes and the
+original stopped state on the same emulator using Android 15's
 [`pm unstop` command](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/android15-release/services/core/java/com/android/server/pm/PackageManagerShellCommand.java),
-and rechecks the unchanged Maps version and enabled location. An already-stopped
-store remains stopped. A failed pause rolls back its own mutation; cleanup errors
+without requiring its process to have remained stopped: waking a service must
+not lift the independently enforced background restriction. An originally stopped
+store is stopped again on cleanup. A failed pause rolls back its own mutation; cleanup errors
 fail an otherwise green suite without overwriting an earlier suite failure.
+Typed cleanup observations are retained even when verification fails.
 Hard runner termination destroys this CI emulator; no persistent personal device
 has its state changed. Home-screen/store navigation remains outside this suite.
 
-Eight mock-device tests and nine native-suite-shell tests check these contracts.
+Ten mock-device tests and nine native-suite-shell tests check these contracts.
 These are configuration/cleanup tests, not proof that a new device replay has run
-or that the previous package-update interruption can no longer occur. The first
-actual paused-store execution remains pending.
+or that the previous package-update interruption can no longer occur. Actual
+execution of the background-restriction implementation remains pending.
 
 The first native attempt (39084958578, source `0f5603c`) stopped at preflight,
 before either app suite, because the diagnostic matched two `User 0:` lines.
@@ -37,3 +44,14 @@ AOSP emits bare user headings for permission/changed-package sections in additio
 to the actual package-state row. Parsing now excludes only those bare headings,
 still requires exactly one concrete installed/stopped row, and rejects duplicate
 concrete states. A new regression covers both forms; no state check was bypassed.
+
+Run 39085238967 (`155bbaf`) applied the earlier force-stop-only method, but the
+store's stopped flag was cleared at cleanup. This neither identifies what cleared
+it nor proves an update occurred. The method did not establish a sustained
+background pause; the job remains failed. Its 32 local groups and three draft
+component cases passed, while one separate large-text component capture failed
+in PixelCopy. Run 39085527859 (`57512fa`) passed ordinary/component tests but
+failed the local network-preparation probe before an offline send. These are
+separate failures; neither establishes their shared cause. The new policy
+replaces the force-stop-only implementation, rather than retrying or silently
+accepting resumed background execution. It still needs real execution evidence.

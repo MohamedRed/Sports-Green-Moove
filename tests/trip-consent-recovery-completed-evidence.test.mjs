@@ -85,7 +85,7 @@ test('three earlier captures remain historical alongside newer evidence without 
   assert.equal(flow.ui.groups.length, 9);
   for (const kind of recoveryKinds) assert(flow.ui.groups.includes(`trip-consent-${kind}-restart-ui`));
   const ids = ['trip-consent-recovery-pending', 'trip-consent-recovery-partial', 'trip-consent-recovery-closed'];
-  assert.deepEqual(flow.images.slice(2, 5).map((i) => i.file), ids); assert.equal(flow.images.length, 17);
+  assert.deepEqual(flow.images.slice(3, 6).map((i) => i.file), ids); assert.equal(flow.images.length, 18);
   for (const [index, name] of ['pending', 'partial', 'declined'].entries()) {
     assert.equal(captures[ids[index]], base + `completed/local-trip-consent-recovery-${name}.png`);
     const png = bytes(captures[ids[index]]); assert.equal(png.readUInt32BE(16), 1080);

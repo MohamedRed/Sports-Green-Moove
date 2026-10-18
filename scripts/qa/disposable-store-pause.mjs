@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { androidMapsPrerequisites } from './android-maps-prerequisites.mjs';
 import { installationState } from './native-package-diagnostics.mjs';
+import { readStoreBackground, setStoreBackground, storeBackgroundRestrictions } from './disposable-store-background.mjs';
 
 export const storeStateCommand = 'dumpsys package com.android.vending | sed \'/Hidden system packages:/,$d\' | grep -E "^[[:space:]]*User 0:"';
 const store = 'com.android.vending';
@@ -27,39 +28,59 @@ function noStoreInstall(shell) {
   'A store installation is already active; do not interrupt it or start the app replay');
 }
 
+function restoreStoppedState(shell, wasStopped) {
+  shell(wasStopped ? 'am' : 'pm', wasStopped ? 'force-stop' : 'unstop', '--user', '0', store);
+  assert.equal(stopped(shell), wasStopped, 'Store original stopped state was not restored');
+}
+
 export function pauseDisposableStore(shell) {
   assert.equal(shell('getprop', 'ro.build.version.sdk'), '35', 'Store pause requires the approved Android 15 test image');
   const mapsRuntime = androidMapsPrerequisites(shell);
   locationEnabled(shell);
   const wasStopped = stopped(shell);
   noStoreInstall(shell);
+  const originalBackground = readStoreBackground(shell);
   try {
+    setStoreBackground(shell, storeBackgroundRestrictions);
     shell('am', 'force-stop', '--user', '0', store);
     assert.equal(stopped(shell), true, 'Store pause was not applied');
     noStoreInstall(shell);
     assert.deepEqual(androidMapsPrerequisites(shell), mapsRuntime, 'Maps runtime changed during store pause');
     locationEnabled(shell);
   } catch (failure) {
-    if (!wasStopped) {
-      try { shell('pm', 'unstop', '--user', '0', store); assert.equal(stopped(shell), false); }
-      catch (cleanup) { throw new AggregateError([failure, cleanup], 'Store pause and restore failed'); }
-    }
-    throw failure;
+    const errors = [failure];
+    for (const restore of [() => setStoreBackground(shell, originalBackground), () => restoreStoppedState(shell, wasStopped)])
+      try { restore(); } catch (cleanup) { errors.push(cleanup); }
+    throw new AggregateError(errors, 'Store pause failed; original settings restoration attempted');
   }
-  return { method: 'force-stop-store-only', wasStopped, mapsRuntime, locationEnabled: true };
+  return { method: 'restricted-store-background', wasStopped, originalBackground, mapsRuntime, locationEnabled: true };
 }
 
 export function restoreDisposableStore(shell, receipt) {
-  assert.equal(receipt?.method, 'force-stop-store-only');
+  assert.equal(receipt?.method, 'restricted-store-background');
   assert.equal(typeof receipt.wasStopped, 'boolean');
   assert.equal(shell('getprop', 'ro.build.version.sdk'), '35');
-  const stayedStopped = stopped(shell);
-  if (!receipt.wasStopped) {
-    shell('pm', 'unstop', '--user', '0', store);
-    assert.equal(stopped(shell), false, 'Store original state was not restored');
+  const observed = {}, errors = [];
+  const inspect = (name, check) => {
+    try { observed[name] = check(); } catch (failure) { errors.push(failure); }
+  };
+  inspect('storeStopped', () => stopped(shell));
+  inspect('background', () => {
+    const value = readStoreBackground(shell);
+    assert.deepEqual(value, storeBackgroundRestrictions, 'The store background restriction changed during the test');
+    return value;
+  });
+  inspect('mapsRuntime', () => {
+    const value = androidMapsPrerequisites(shell);
+    assert.deepEqual(value, receipt.mapsRuntime, 'Maps runtime changed during the test'); return value;
+  });
+  inspect('locationEnabled', () => locationEnabled(shell));
+  inspect('noActiveStoreInstall', () => { noStoreInstall(shell); return true; });
+  let restored = true;
+  for (const restore of [() => setStoreBackground(shell, receipt.originalBackground), () => restoreStoppedState(shell, receipt.wasStopped)]) {
+    try { restore(); } catch (failure) { restored = false; errors.push(failure); }
   }
-  assert.equal(stayedStopped, true, 'The store resumed unexpectedly during the test');
-  assert.deepEqual(androidMapsPrerequisites(shell), receipt.mapsRuntime, 'Maps runtime changed during the test');
-  locationEnabled(shell);
-  return { restored: true, storeStayedStopped: true, mapsRuntimeUnchanged: true, locationEnabled: true };
+  const result = { method: receipt.method, restored, verified: errors.length === 0, observed };
+  if (errors.length) throw Object.assign(new AggregateError(errors, 'Store background verification or restoration failed'), { receipt: result });
+  return result;
 }

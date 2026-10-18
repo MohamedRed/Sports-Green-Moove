@@ -86,7 +86,12 @@ the direct trip summary and both parents' reservation times against an independe
 Belgian-time expectation. It passes those on-screen assertions.
 
 Not yet proven: a complete multi-account native change-application replay,
-durable pending edits across process death, real address/map
+other draft variants across process death, real address/map
 usability, live payment/refund settlement,
 push delivery and physical-device behavior. Production Functions and app builds
 have not been deployed by this change. This is not full release acceptance.
+
+The approved private draft has separate successful native recovery evidence for
+a raw price and two unresolved addresses across a new app process, with a second
+trip remaining empty and unchanged shared records. The broader new run remains
+failed; see [draft evidence](../release/evidence/local-trip-drafts-2026-10-18/README.md).

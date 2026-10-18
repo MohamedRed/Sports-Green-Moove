@@ -88,14 +88,15 @@ not a successful time fix replay or evidence that every app crash is explained.
 
 ## Still Open
 
-The owner approved retaining private unfinished drafts and pausing app-store
-updates only on the disposable test phone. Those implementations and their
-unit/configuration checks are separate from this completed run. Their next
-native execution remains pending. This completed source did not pause the store;
+The approved private draft subsequently passed its own guarded restart stage in
+source `f4ada94`; see the [separate evidence](../local-trip-drafts-2026-10-18/README.md).
+That newer full run remains failed at separate capture/network-preparation checks.
+The strengthened approved store-background pause still needs runtime proof.
+These are separate from this completed history run. This completed source did not pause the store;
 it cannot prove the update interruption is permanently fixed. No store, maps or
 location service was disabled in this run and no browser was restarted.
 
-Unsent drafts across process death, successful
+Other draft variants, successful
 route/application flows, real payments/refunds, emergency action and physical
 tracking/safety evidence remain unproven. No production deployment or release
 completion is claimed.
