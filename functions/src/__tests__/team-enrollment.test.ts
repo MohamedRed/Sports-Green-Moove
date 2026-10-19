@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { Timestamp } from "firebase-admin/firestore";
 import { nextTeamEnrollmentStatus, requestTeamEnrollmentSchema, teamEnrollmentFingerprint, teamEnrollmentId,
-  teamEnrollmentOperationId, teamEnrollmentRecordSchema, teamInstanceId, transitionTeamEnrollmentSchema } from "../domain/teamEnrollment.js";
+  teamEnrollmentOperationId, teamEnrollmentRecordSchema, teamInstanceId, timestampAtOrAfter, transitionTeamEnrollmentSchema } from "../domain/teamEnrollment.js";
 
 describe("server-owned team enrollment", () => {
   const first = new Timestamp(100, 1), second = new Timestamp(100, 2);
@@ -13,6 +13,15 @@ describe("server-owned team enrollment", () => {
     expect(instance).not.toBe(teamInstanceId("team", "other-club", first));
     expect(instance).not.toBe(teamInstanceId("team", "club", second));
     expect(instance).not.toBe(teamInstanceId("other-team", "club", first));
+  });
+  it("compares exact server timestamps without trusting stored date fields or losing nanoseconds", () => {
+    expect(timestampAtOrAfter(first, first)).toBe(true);
+    expect(timestampAtOrAfter(second, first)).toBe(true);
+    expect(timestampAtOrAfter(first, second)).toBe(false);
+    expect(timestampAtOrAfter(new Timestamp(101, 0), second)).toBe(true);
+    for (const value of [undefined, null, new Date(100_000), { seconds: 100, nanoseconds: 2 }, "100"])
+      expect(timestampAtOrAfter(value, first)).toBe(false);
+    expect(timestampAtOrAfter(first, undefined)).toBe(false);
   });
   it("keeps recreated child profiles and member identities in separate enrollment namespaces", () => {
     expect(teamEnrollmentId(instance, "child", "same", first)).not.toBe(teamEnrollmentId(instance, "child", "same", second));

@@ -5,7 +5,7 @@ import { guardianVerificationId, guardianVerificationSchema, isActiveGuardianClu
 import { isActiveClubManager } from "../domain/membershipReview.js";
 import { membershipDocumentId } from "../domain/memberships.js";
 import { isGuardianOfChild } from "../domain/searchAccess.js";
-import { teamEnrollmentId, teamEnrollmentRecordSchema, teamInstanceId, type TeamEnrollmentRecord } from "../domain/teamEnrollment.js";
+import { teamEnrollmentId, teamEnrollmentRecordSchema, teamInstanceId, timestampAtOrAfter, type TeamEnrollmentRecord } from "../domain/teamEnrollment.js";
 import { firestore } from "../lib/firebase.js";
 import { hasRole, requireAnyRole, requireRole } from "../lib/https.js";
 
@@ -16,6 +16,9 @@ export function teamContext(snapshot: DocumentSnapshot) {
     throw new HttpsError("failed-precondition", "The team identity requires review.");
   return { teamId: snapshot.id, clubId: clubId as string, teamCreatedAt: snapshot.createTime,
     teamInstanceId: teamInstanceId(snapshot.id, clubId, snapshot.createTime), open: active !== false && status !== "archived" && status !== "inactive" };
+}
+export function teamBelongsToCurrentClub(context: ReturnType<typeof teamContext>, club: DocumentSnapshot | undefined): boolean {
+  return Boolean(club?.exists && club.id === context.clubId && timestampAtOrAfter(context.teamCreatedAt, club.createTime));
 }
 export function readTeamEnrollment(snapshot: DocumentSnapshot) {
   if (!snapshot.exists) return undefined;
@@ -45,7 +48,7 @@ export async function loadTeamEnrollmentSubject(transaction: Transaction, uid: s
 export async function teamEnrollmentEligibility(transaction: Transaction, uid: string, context: ReturnType<typeof teamContext>, subject: EnrollmentSubject) {
   const [club, membership] = await transaction.getAll(firestore.collection("clubs").doc(context.clubId),
     firestore.collection("memberships").doc(membershipDocumentId(uid, context.clubId)));
-  if (!context.open || !club.exists || !["public", "private"].includes(club.get("status")) ||
+  if (!context.open || !teamBelongsToCurrentClub(context, club) || !["public", "private"].includes(club.get("status")) ||
       !isActiveGuardianClubMember(membership.data(), uid, context.clubId)) return false;
   if (subject.subjectKind === "member") return subject.subjectId === uid && subject.childCreatedAt === null;
   const childId = subject.subjectId;
@@ -58,5 +61,5 @@ export async function teamEnrollmentEligibility(transaction: Transaction, uid: s
   const record = parsed.data, created = child.createTime;
   return record.clubId === context.clubId && record.childId === childId && record.parentUserId === uid &&
     record.status === "verified" && record.lastActorUserId !== uid &&
-    (record.updatedAt.seconds > created.seconds || record.updatedAt.seconds === created.seconds && record.updatedAt.nanoseconds >= created.nanoseconds);
+    timestampAtOrAfter(record.updatedAt, created) && timestampAtOrAfter(record.updatedAt, club.createTime);
 }

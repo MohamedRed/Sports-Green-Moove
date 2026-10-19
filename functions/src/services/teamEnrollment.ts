@@ -3,7 +3,7 @@ import { HttpsError } from "firebase-functions/v2/https";
 import { nextTeamEnrollmentStatus, teamEnrollmentFingerprint, teamEnrollmentId, teamEnrollmentOperationId,
   type TeamEnrollmentRecord, type TeamEnrollmentRequest, type TeamEnrollmentTransition } from "../domain/teamEnrollment.js";
 import { firestore } from "../lib/firebase.js";
-import { loadTeamEnrollmentSubject, readTeamEnrollment, requireEnrollmentRequester, requireTeamEnrollmentManager, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
+import { loadTeamEnrollmentSubject, readTeamEnrollment, requireEnrollmentRequester, requireTeamEnrollmentManager, teamBelongsToCurrentClub, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
 
 function receipt(id: string, record: TeamEnrollmentRecord, replayed: boolean) {
   return { enrollmentId: id, teamId: record.teamId, teamInstanceId: record.teamInstanceId, status: record.status, revision: record.revision, replayed };
@@ -52,13 +52,21 @@ export async function transitionTeamEnrollmentRecord(uid: string, token: unknown
       firestore.collection("teamEnrollmentEvents").doc(teamEnrollmentOperationId(uid, input.requestId)));
     const current = readTeamEnrollment(snapshot);
     if (!current) throw new HttpsError("permission-denied", "An authorized enrollment is required.");
+    let managerTeam: ReturnType<typeof teamContext> | undefined;
     if (input.action === "withdraw") {
       requireEnrollmentRequester(token, current.subjectKind === "child");
       if (current.requesterUserId !== uid) throw new HttpsError("permission-denied", "Only the requesting account can withdraw its enrollment request.");
-    } else await requireTeamEnrollmentManager(transaction, uid, token, current.clubId);
+    } else {
+      await requireTeamEnrollmentManager(transaction, uid, token, current.clubId);
+      const [team, club] = await transaction.getAll(firestore.collection("teams").doc(current.teamId),
+        firestore.collection("clubs").doc(current.clubId));
+      managerTeam = teamContext(team);
+      if (managerTeam.teamInstanceId !== current.teamInstanceId || !teamBelongsToCurrentClub(managerTeam, club))
+        throw new HttpsError("permission-denied", "The team does not belong to the current club identity.");
+    }
     if (input.action === "approve" || input.action === "withdraw" && current.subjectKind === "child" && current.status === "approved") {
-      const team = teamContext(await transaction.get(firestore.collection("teams").doc(current.teamId)));
-      if (team.teamInstanceId !== current.teamInstanceId || !await teamEnrollmentEligibility(transaction, current.requesterUserId,
+      const team = input.action === "approve" ? managerTeam : teamContext(await transaction.get(firestore.collection("teams").doc(current.teamId)));
+      if (!team || team.teamInstanceId !== current.teamInstanceId || !await teamEnrollmentEligibility(transaction, current.requesterUserId,
         team, current)) throw new HttpsError("permission-denied", "The current team enrollment eligibility no longer holds.");
     }
     const previous = replay(uid, input.enrollmentId, input, event, current);

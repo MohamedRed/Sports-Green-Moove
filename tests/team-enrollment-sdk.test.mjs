@@ -96,7 +96,7 @@ test('backend, native and web smoke gates enforce the new evidence contract and 
   for (const file of ['LocalTeamEnrollmentFlowTest.kt', 'LocalTeamEnrollmentPeer.kt'])
     assert.equal(smoke.split('"android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file + '"').length - 1, 2);
 });
-test('six executed service groups bind the current fixture sources and retain explicit non-native scope', () => {
+test('six executed service groups bind their original fixture sources and retain explicit non-native scope', () => {
   const report = JSON.parse(read('docs/release/evidence/local-team-enrollment-sdk-2026-10-18/fixtures.json'));
   assert.equal(report.projectId, 'demo-sgm-local-qa'); assert.equal(report.scope, 'local-emulated-services-not-phone-ui');
   assert.equal(report.coverage, 'team-native-fixture-lifecycle-not-native-execution');
@@ -105,7 +105,7 @@ test('six executed service groups bind the current fixture sources and retain ex
   for (const field of ['nativeUiExecuted', 'physicalDevice', 'productionWrites', 'roleEscalation']) assert.equal(report[field], false);
   assert.equal(report.providerRequests, 0); assert.equal(report.isolatedFixtureCleanupVerified, true);
   assert.equal(Object.keys(report.sourceFiles).length, 13);
-  for (const [path, expected] of Object.entries(report.sourceFiles)) assert.equal(createHash('sha256').update(readFileSync(new URL('../' + path, import.meta.url))).digest('hex'), expected, path);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), report.sourceFiles);
 });
 test('the compiled emulator-profile replay and 16 original unit passes cannot imply native team execution', () => {
   const base = 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/';

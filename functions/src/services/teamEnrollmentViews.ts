@@ -3,7 +3,7 @@ import { HttpsError } from "firebase-functions/v2/https";
 import { nextTeamEnrollmentStatus, teamEnrollmentId, type TeamEnrollmentRecord, type TeamEnrollmentTarget } from "../domain/teamEnrollment.js";
 import { firestore } from "../lib/firebase.js";
 import { membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
-import { loadTeamEnrollmentSubject, readTeamEnrollment, requireEnrollmentRequester, requireTeamEnrollmentManager, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
+import { loadTeamEnrollmentSubject, readTeamEnrollment, requireEnrollmentRequester, requireTeamEnrollmentManager, teamBelongsToCurrentClub, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
 
 function label(value: unknown): string | null {
   return typeof value === "string" && value.trim() && value.length <= 120 && !/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/u.test(value)
@@ -37,6 +37,8 @@ export async function clubTeamEnrollmentPage(uid: string, token: unknown, teamId
   return firestore.runTransaction(async (transaction) => {
     const team = await transaction.get(firestore.collection("teams").doc(teamId)), context = teamContext(team);
     await requireTeamEnrollmentManager(transaction, uid, token, context.clubId);
+    const club = await transaction.get(firestore.collection("clubs").doc(context.clubId));
+    if (!teamBelongsToCurrentClub(context, club)) throw new HttpsError("permission-denied", "The team does not belong to the current club identity.");
     const scope = JSON.stringify([uid, "team-enrollment-review", context.teamInstanceId]);
     let query = firestore.collection("teamEnrollments").where("teamInstanceId", "==", context.teamInstanceId).orderBy(FieldPath.documentId());
     if (cursor) query = query.startAfter(parseMembershipPageCursor(cursor, scope));

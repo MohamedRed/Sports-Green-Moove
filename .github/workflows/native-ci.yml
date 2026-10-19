@@ -18,6 +18,7 @@ on:
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
+      - "tests/team-club-identity.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
       - "tests/team-enrollment-history-contract.test.mjs"
@@ -104,6 +105,7 @@ on:
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
+      - "tests/team-club-identity.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
       - "tests/team-enrollment-history-contract.test.mjs"
@@ -204,7 +206,7 @@ jobs:
         uses: ./.github/actions/native-test-setup
 
       - name: Validate team enrollment unit and compiled-screen scope
-        run: node --test tests/team-enrollment-native-contract.test.mjs
+        run: node --test tests/team-enrollment-native-contract.test.mjs tests/team-club-identity.test.mjs
 
       - name: Validate owned enrollment history source and dated evidence boundaries
         run: node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs

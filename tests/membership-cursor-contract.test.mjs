@@ -4,6 +4,8 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import ts from 'typescript';
+import { fileURLToPath } from 'node:url';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
 const text = (path) => read(path).toString('utf8');
@@ -43,7 +45,7 @@ test('eight actual authenticated groups cover all shared-cursor directories and 
   assert.equal(report.syntheticRequestedGuardianRows, 21); assert.equal(report.syntheticTeamEnrollmentRows, 21);
   for (const key of ['nativeUiExecuted', 'productionWrites', 'livePushProven']) assert.equal(report[key], false);
   assert.equal(report.providerRequests, 0);
-  for (const [path, hash] of Object.entries(report.sourceFiles)) assert.equal(sha(read(path)), hash, path);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), report.sourceFiles);
 });
 test('four Android decoder cases are actual local unit passes, not native or SDK-connected phone evidence', () => {
   const report = json(base + 'decoder-checks.json'); assert.equal(report.unitCaseCount, 4);
@@ -51,7 +53,7 @@ test('four Android decoder cases are actual local unit passes, not native or SDK
   const suite = new XMLParser({ ignoreAttributes: false }).parse(text(base + 'android-token-unit-tests.xml')).testsuite;
   assert.equal(Number(suite['@_tests']), 4);
   for (const field of ['errors', 'failures', 'skipped']) assert.equal(Number(suite['@_' + field]), 0);
-  for (const [path, hash] of Object.entries(report.sourceFiles)) assert.equal(sha(read(path)), hash, path);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), report.sourceFiles);
   for (const [path, hash] of Object.entries(report.artifacts)) assert.equal(sha(read(base + path)), hash, path);
 });
 test('every affected server input uses the shared bounded schema while browser and Android consumers agree', () => {

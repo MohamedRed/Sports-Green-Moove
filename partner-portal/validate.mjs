@@ -12,6 +12,7 @@ import { validateNativeStartupReport, validateRetainedNativeStartup } from '../s
 import { remoteRideStopScope, validateRemoteRideStopReport, validateRetainedRemoteRideStop } from '../scripts/qa/remote-ride-stop-evidence.mjs';
 import { validateRetainedVehicleMapServices } from '../scripts/qa/vehicle-map-evidence.mjs';
 import { validateRetainedVehicleMapDisplay } from '../scripts/qa/vehicle-map-retained-evidence.mjs';
+import { validateRetainedTeamClubIdentity } from '../scripts/qa/team-club-identity-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -53,6 +54,7 @@ export function validate(root) {
       assert.equal(run.scope, 'local-emulated-services-not-phone-ui');
       assert.equal(run.projectId, 'demo-sgm-local-qa');
       if (f.local.groups.includes('vehicle-map-points')) validateRetainedVehicleMapServices(root, f.local.source);
+      if (run.coverage === 'team-club-identity-not-chat-or-native-ui') validateRetainedTeamClubIdentity(root, f.local.source);
       if (Object.hasOwn(f.local, 'checkedAt')) {
         assertDate(f.local.checkedAt); assert(f.local.checkedAt <= f.checkedAt);
         assert.equal(run.testedAt.slice(0, 10), f.local.checkedAt);

@@ -8,7 +8,11 @@ import { requiredUserFlowChecks } from "../scripts/release-evidence-requirements
 const smoke = readFileSync(new URL("../.github/workflows/web-integration-smoke.yml", import.meta.url), "utf8");
 const steps = smoke.split(/^      - name: /m).slice(1);
 const reports = steps.filter((step) => step.includes("uses: actions/upload-artifact@"));
-assert.equal(reports.length, 5, "Keep every existing evidence artifact.");
+assert.equal(reports.length, 6, "Keep every existing evidence artifact and the new club identity proof.");
+assert.deepEqual(reports.map((report) => report.match(/^          name: (.+)$/m)?.[1]).sort(), [
+  'team-club-identity-results', 'trip-history-results', 'booking-recovery-results',
+  'booking-display-results', 'booking-consistency-results', 'trip-contention-results',
+].sort());
 assert(steps.indexOf(reports[0]) > steps.findLastIndex((step) => /^        run: /m.test(step)),
   "Report uploads must not stop later tests or builds when the artifact service is unavailable.");
 for (const report of reports) {

@@ -51,7 +51,7 @@ test('partial runs, absent cleanup or wider restart, tracking, chat and release 
 test('the private portal preserves the nine original phone views alongside six separately bound history views', () => {
   const flow = content.flows.find((item) => item.id === 'team-enrollment');
   assert.equal(flow.status, 'partial'); assert.equal(flow.phone.source, base + 'results.json');
-  assert.equal(flow.images.length, 15); assert.equal(flow.tour.length, 15); assert.equal(flow.local.checkedAt, '2026-10-18');
+  assert.equal(flow.images.length, 15); assert.equal(flow.tour.length, 15); assert.equal(flow.local.checkedAt, '2026-10-19');
   const original = flow.images.filter((image) => captures[image.file].startsWith(base));
   assert.equal(original.length, 9);
   assert.equal(flow.tour.filter((step) => original.some((image) => image.file === step.image)).length, 9);

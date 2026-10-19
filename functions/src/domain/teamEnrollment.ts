@@ -24,6 +24,10 @@ export type TeamEnrollmentTarget = z.infer<typeof teamEnrollmentTargetSchema>;
 export type TeamEnrollmentRequest = z.infer<typeof requestTeamEnrollmentSchema>;
 export type TeamEnrollmentTransition = z.infer<typeof transitionTeamEnrollmentSchema>;
 const digest = (value: unknown) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
+export function timestampAtOrAfter(value: unknown, minimum: unknown): boolean {
+  return value instanceof Timestamp && minimum instanceof Timestamp && (value.seconds > minimum.seconds ||
+    value.seconds === minimum.seconds && value.nanoseconds >= minimum.nanoseconds);
+}
 export const teamInstanceId = (teamId: string, clubId: string, createdAt: Timestamp) =>
   digest([teamId, clubId, createdAt.seconds, createdAt.nanoseconds]);
 export const teamEnrollmentId = (instance: string, kind: TeamEnrollmentRecord["subjectKind"], subjectId: string, childCreatedAt: Timestamp | null) =>

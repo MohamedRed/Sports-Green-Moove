@@ -1,4 +1,4 @@
-import { FieldPath } from "firebase-admin/firestore";
+import { FieldPath, type DocumentSnapshot } from "firebase-admin/firestore";
 import { HttpsError } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { chatDocumentIdSchema } from "../domain/chatReference.js";
@@ -6,7 +6,7 @@ import { isActiveGuardianClubMember } from "../domain/guardianVerification.js";
 import { membershipDocumentId } from "../domain/memberships.js";
 import { firestore } from "../lib/firebase.js";
 import { membershipCursorSchema, membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
-import { loadTeamEnrollmentSubject, requireEnrollmentRequester, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
+import { loadTeamEnrollmentSubject, requireEnrollmentRequester, teamBelongsToCurrentClub, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
 
 const cursor = membershipCursorSchema.optional();
 export const teamEnrollmentOptionsSchema = z.discriminatedUnion("kind", [
@@ -24,14 +24,18 @@ export async function teamEnrollmentOptions(uid: string, token: unknown, input: 
   return firestore.runTransaction(async (transaction) => {
     const team = input.kind === "children" ? teamContext(await transaction.get(firestore.collection("teams").doc(input.teamId))) : null;
     const clubId = input.kind === "teams" ? input.clubId : team?.clubId;
+    let currentClub: DocumentSnapshot | undefined;
     if (clubId) {
       const [club, member] = await transaction.getAll(firestore.collection("clubs").doc(clubId),
         firestore.collection("memberships").doc(membershipDocumentId(uid, clubId)));
+      currentClub = club;
       if (!club.exists || !["public", "private"].includes(club.get("status")) || team?.open === false ||
+          team !== null && !teamBelongsToCurrentClub(team, club) ||
           !isActiveGuardianClubMember(member.data(), uid, clubId))
         throw new HttpsError("permission-denied", "Current club eligibility is required for team choices.");
     }
-    const scope = JSON.stringify([uid, "team-enrollment-options", input.kind, team?.teamInstanceId ?? clubId ?? null]);
+    const scope = JSON.stringify([uid, "team-enrollment-options", input.kind, team?.teamInstanceId ?? clubId ?? null,
+      currentClub?.createTime ? [currentClub.createTime.seconds, currentClub.createTime.nanoseconds] : null]);
     let query = input.kind === "clubs" ? firestore.collection("memberships").where("userId", "==", uid).orderBy(FieldPath.documentId())
       : input.kind === "teams" ? firestore.collection("teams").where("clubId", "==", clubId).orderBy(FieldPath.documentId())
       : firestore.collection("children").where("guardianUserIds", "array-contains", uid).orderBy(FieldPath.documentId());
@@ -47,7 +51,7 @@ export async function teamEnrollmentOptions(uid: string, token: unknown, input: 
       } else if (input.kind === "teams") {
         const context = teamContext(snapshot);
         if (context.clubId !== clubId) throw new HttpsError("failed-precondition", "The team choice requires review.");
-        if (context.open) items.push({ id: snapshot.id, name: name(snapshot.get("name")) });
+        if (context.open && teamBelongsToCurrentClub(context, currentClub)) items.push({ id: snapshot.id, name: name(snapshot.get("name")) });
       } else {
         const subject = await loadTeamEnrollmentSubject(transaction, uid, snapshot.id);
         if (await teamEnrollmentEligibility(transaction, uid, team!, subject)) items.push({ id: snapshot.id, name: name(snapshot.get("displayName")) });

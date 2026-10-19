@@ -10,6 +10,7 @@ on:
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
+      - "tests/team-club-identity.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
       - "tests/team-enrollment-history-contract.test.mjs"
       - "tests/retained-source-evidence.test.mjs"
@@ -297,6 +298,7 @@ on:
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
+      - "tests/team-club-identity.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
       - "tests/team-enrollment-history-contract.test.mjs"
       - "tests/retained-source-evidence.test.mjs"
@@ -682,6 +684,12 @@ jobs:
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
 
+      - name: Test team enrollment across club recreation with verified disposal
+        id: team_club_identity
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-team-club-identity/results.json
+        run: npm run test:team-club-identity && node --test tests/team-club-identity.test.mjs
+
       - name: Verify observation freshness through isolated authenticated location calls
         run: npm run test:location-freshness && node --test tests/location-freshness-evidence.test.mjs
 
@@ -831,6 +839,14 @@ jobs:
 
       - name: Build Website
         run: npm run build --workspace website
+
+      - name: Upload club identity trial and disposal evidence
+        if: always() && steps.team_club_identity.outcome != 'skipped'
+        uses: actions/upload-artifact@v7
+        with:
+          name: team-club-identity-results
+          path: ${{ runner.temp }}/sgm-team-club-identity/**
+          if-no-files-found: error
 
       - name: Upload isolated trip history results
         if: always()

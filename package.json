@@ -71,6 +71,7 @@
     "test:vehicle-map-services": "node scripts/qa/run-local-vehicle-map-services.mjs",
     "test:emergency-contact-fixture": "node scripts/qa/run-local-emergency-fixture.mjs",
     "test:team-enrollment": "node scripts/qa/run-local-team-enrollment.mjs",
+    "test:team-club-identity": "node scripts/qa/run-local-team-club-identity.mjs",
     "test:team-enrollment-history": "node scripts/qa/run-local-team-history.mjs",
     "test:team-history-phone-fixture": "node scripts/qa/run-local-team-history-fixture.mjs",
     "test:team-options": "node scripts/qa/run-local-team-options.mjs",

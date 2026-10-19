@@ -40,7 +40,9 @@ test('both manager-capable entries and the transport preserve session and club s
   const gateway = read('admin/src/teamReviewGateway.ts'); assert.equal(gateway.split('currentUser?.uid !== uid').length - 1, 2);
   assert(gateway.includes('listTeamEnrollmentReviewTeams')); assert(gateway.includes('teamDecisionStatus'));
   const service = read('functions/src/services/teamEnrollmentReview.ts');
-  assert(service.includes('await requireTeamEnrollmentManager')); assert(service.includes('[uid, "team-enrollment-review-teams", clubId]'));
+  assert(service.includes('await requireTeamEnrollmentManager'));
+  assert(service.includes('[uid, "team-enrollment-review-teams", clubId, [club.createTime.seconds, club.createTime.nanoseconds]]'));
+  assert(service.includes('teamBelongsToCurrentClub'));
   assert(service.includes('query.limit(21)')); assert(service.includes('scanned.at(-1)!.id'));
   assert.doesNotMatch(service, /transaction\.(set|create|update|delete)\(/);
   const fixture = read('scripts/qa/local-team-review-fixture.mjs');

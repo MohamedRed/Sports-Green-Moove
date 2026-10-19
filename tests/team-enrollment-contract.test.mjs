@@ -24,14 +24,16 @@ test('retained enrollment proof binds its original source snapshot without accep
   const flow = content.flows.find((item) => item.id === 'team-enrollment');
   assert.equal(flow.status, 'partial'); assert.equal(flow.images.length, 15);
   assert.equal(flow.ui.source, 'docs/release/evidence/local-team-enrollment-native-2026-10-19/team-enrollment-results.json');
-  assert.equal(flow.local.source, 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/fixtures.json'); assert.match(flow.remaining, /fermeture complète/);
+  assert.equal(flow.local.source, 'docs/release/evidence/team-club-identity-2026-10-19/passed/results.json'); assert.match(flow.remaining, /fermeture complète/);
   assert.equal(content.flows.find((item) => item.id === 'messages').status, 'partial');
 });
 test('enrollment identity and authority stay server owned and transaction fenced', () => {
   const authority = text('functions/src/services/teamEnrollmentAuthority.ts');
   for (const guard of ['snapshot.createTime', 'child.createTime', 'isActiveClubManager', 'isActiveGuardianClubMember',
     'guardianVerificationId(context.clubId, childId, uid)', 'record.lastActorUserId !== uid',
-    'record.updatedAt.nanoseconds >= created.nanoseconds', '["public", "private"]', 'readTeamEnrollment']) assert(authority.includes(guard), guard);
+    'timestampAtOrAfter(record.updatedAt, created)', 'timestampAtOrAfter(record.updatedAt, club.createTime)',
+    '["public", "private"]', 'readTeamEnrollment']) assert(authority.includes(guard), guard);
+  assert(text('functions/src/domain/teamEnrollment.ts').includes('value.nanoseconds >= minimum.nanoseconds'));
   const service = text('functions/src/services/teamEnrollment.ts');
   assert.equal((service.match(/firestore.runTransaction/g) ?? []).length, 2);
   for (const guard of ['id !== input.expectedEnrollmentId', 'team.teamInstanceId !== input.expectedTeamInstanceId',

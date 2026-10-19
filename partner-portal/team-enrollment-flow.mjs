@@ -1,4 +1,4 @@
-const source = 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/';
+import { teamClubIdentityGroups } from '../scripts/qa/team-club-identity-evidence.mjs';
 const native = 'docs/release/evidence/local-team-enrollment-native-2026-10-19/';
 const phone = 'docs/release/evidence/phone-team-enrollment-2026-10-19/';
 
@@ -10,14 +10,13 @@ export function createTeamEnrollmentFlow() {
     ui: { source: native + 'team-enrollment-results.json', groups: ['team-enrollment-ui'] },
     phone: { source: phone + 'results.json' },
     historyPhone: { source: 'docs/release/evidence/phone-team-history-2026-10-19/results.json' },
-    local: { source: source + 'fixtures.json', checkedAt: '2026-10-18', groups: [
-      'fixture-parent-is-verified-by-two-actual-authenticated-transitions', 'reading-enrollment-views-does-not-create-an-enrollment',
-      'owned-member-refusal-new-request-approval-and-withdrawal-have-five-events',
-      'guardian-loss-denies-stale-child-withdrawal-without-an-enrollment-event',
-      'exact-records-audit-actors-claims-and-unrelated-fixtures-stay-protected',
-      'scoped-fixture-cleanup-restores-the-exact-prior-records-and-claims'],
-    checks: ['Les demandes du parent et de l’enfant sont enregistrées.', 'Refus, nouvelle demande, accord et retrait passent en local.',
-      'Un parent révoqué ne peut pas retirer une inscription approuvée.', 'Les données de test sont nettoyées sans changer les autres comptes.'] },
+    local: { source: 'docs/release/evidence/team-club-identity-2026-10-19/passed/results.json', checkedAt: '2026-10-19',
+      groups: [...teamClubIdentityGroups], checks: [
+        'Un club recréé ne reprend pas les anciennes inscriptions d’équipe.',
+        'Les parents doivent être vérifiés à nouveau pour ce club.',
+        'Les anciennes pages ne rouvrent pas les accès.',
+        'Une nouvelle validation permet une nouvelle inscription.',
+      ] },
     images: [{ file: 'team-history-list', alt: 'Les demandes restent accessibles après la perte d’accès au club, essai sur téléphone du 19 octobre' },
       { file: 'team-history-page-2', alt: 'La liste continue au-delà des vingt premières demandes, essai sur téléphone du 19 octobre' },
       { file: 'team-history-confirmation', alt: 'Le retrait exige une confirmation, essai sur téléphone du 19 octobre' },
@@ -33,5 +32,5 @@ export function createTeamEnrollmentFlow() {
       { file: 'team-phone-child-requested', alt: 'Demande pour l’enfant en attente du club, essai sur téléphone du 19 octobre' },
       { file: 'team-phone-manager-child-approved', alt: 'Le club a approuvé l’enfant sans rouvrir l’inscription retirée du parent, essai du 19 octobre', landscape: true },
       { file: 'team-phone-child-approved', alt: 'Inscription de l’enfant approuvée sur le téléphone de son parent vérifié, essai du 19 octobre' }],
-    source: phone + 'README.md' };
+    source: 'docs/release/evidence/team-club-identity-2026-10-19/README.md' };
 }
