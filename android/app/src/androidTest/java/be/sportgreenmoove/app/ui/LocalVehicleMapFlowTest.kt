@@ -66,11 +66,11 @@ class LocalVehicleMapFlowTest {
                     compose.waitUntil(60_000) {
                         val loaded = compose.onAllNodes(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "Carte chargée"),
                             useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty()
-                        val marker = vehicleMarkerBounds(device)
+                        val marker = freshVehicleMarkerBounds(device)
                         loaded && marker != null && (index == 0 || hypot((marker.centerX() - firstX).toDouble(),
                             (marker.centerY() - firstY).toDouble()) >= 24.0)
                     }
-                    val marker = requireNotNull(vehicleMarkerBounds(device))
+                    val marker = requireNotNull(freshVehicleMarkerBounds(device))
                     if (index == 0) { firstX = marker.centerX(); firstY = marker.centerY() }
                     else movement = hypot((marker.centerX() - firstX).toDouble(), (marker.centerY() - firstY).toDouble())
                     displays.put(captureVehicleMarkerDisplay(compose, device, if (index == 0) "first" else "moved"))

@@ -74,7 +74,7 @@ test('native trial drives the actual app, separate authenticated peer and two na
   const source = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalVehicleMapFlowTest.kt');
   for (const required of ['ActivityScenario.launch(MainActivity::class.java)', 'peer.point(lat, lng)',
     'runtime.firebase.getActiveRide()', 'captureVehicleMarkerDisplay(compose, device', 'FirebaseFirestore.getInstance().terminate()',
-    'vehicleMarkerBounds(device)', 'point.capturedAt', 'assertFalse(ride.stale)']) assert(source.includes(required));
+    'freshVehicleMarkerBounds(device)', 'point.capturedAt', 'assertFalse(ride.stale)']) assert(source.includes(required));
   assert(source.includes('assumeTrue(args.getString("vehicleMapApproved") != null)'));
   const capture = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/VehicleMarkerDisplayEvidence.kt');
   assert(capture.includes('instrumentation.uiAutomation.takeScreenshot()'));
@@ -98,7 +98,9 @@ test('both route markers expose explicit accessible names, independently from th
   assert(failure.includes('.put("afterCacheClear", snapshot())'));
   assert(failure.includes('region.contains(bounds)'));
   assert(!failure.includes('node.text'));
-  assert(!capture.includes('uiAutomation.clearCache()'));
+  assert(capture.indexOf('uiAutomation.clearCache()') < capture.indexOf('device.findObjects(By.desc("Position du véhicule"))'));
+  assert(capture.includes('check(InstrumentationRegistry.getInstrumentation().uiAutomation.clearCache())'));
+  assert(!capture.includes('internal fun vehicleMarkerBounds('));
 });
 test('the original accessible-anchor failure remains failed after the labels are corrected', () => {
   const root = new URL('../docs/release/evidence/vehicle-map-ui-anchor-failure-2026-10-19/', import.meta.url);
@@ -134,6 +136,35 @@ test('the corrected-label trial retains its timeout without inventing a cache di
   assert.equal(failure.phase, 'first-point');
   assert.deepEqual(failure.routeMarkerCounts, { 'Départ du trajet': 0, 'Arrivée du trajet': 0 });
   assert.equal(failure.beforeCacheClear, undefined); assert.equal(failure.mapStateCounts, undefined);
+  assert.equal(JSON.parse(bytes('disposable-store-restore.json')).verified, true);
+  for (const name of ['replay/local-vehicle-map-device.json', 'replay/vehicle-map-app-results.json', 'replay/vehicle-map-results.json'])
+    assert.equal(existsSync(new URL(name, root)), false);
+  for (const [file, hash] of Object.entries(JSON.parse(bytes('artifact-sha256.json'))))
+    assert.equal(createHash('sha256').update(bytes(file)).digest('hex'), hash, file);
+});
+test('the diagnostic proves a loaded map with stale marker observations, without promoting the failed case', () => {
+  const root = new URL('../docs/release/evidence/vehicle-map-ui-cache-diagnostic-2026-10-19/', import.meta.url);
+  const bytes = (file) => readFileSync(new URL(file, root));
+  const run = JSON.parse(bytes('run.json'));
+  assert.equal(run.databaseId, 39323641593); assert.equal(run.headSha, 'd9267f367f7789ccc6cba655354fcda9e3a56937');
+  assert.equal(run.conclusion, 'failure');
+  const diagnostic = JSON.parse(bytes('replay/local-vehicle-map-failure.json'));
+  assert.equal(diagnostic.phase, 'first-point'); assert.equal(diagnostic.mapNodeCount, 1);
+  assert.deepEqual(diagnostic.mapStateCounts, { 'Carte chargée': 1, 'Chargement de la carte': 0 });
+  assert.equal(diagnostic.accessibilityCacheCleared, true);
+  const labels = ['Départ du trajet', 'Arrivée du trajet', 'Position du véhicule'];
+  for (const [name, count] of [['beforeCacheClear', 0], ['afterCacheClear', 1]]) {
+    const snapshot = diagnostic[name]; assert.equal(snapshot.ownedWindow, true);
+    assert.deepEqual(snapshot.routeMarkerCounts, Object.fromEntries(labels.map((label) => [label, count])));
+    for (const label of labels) assert.equal(snapshot.mapNodes.filter((node) => node.description === label).length, count);
+  }
+  const region = diagnostic.mapBounds;
+  for (const node of diagnostic.afterCacheClear.mapNodes.filter((node) => labels.includes(node.description))) {
+    assert.equal(node.visible, true);
+    assert(node.bounds.left >= region.left && node.bounds.top >= region.top &&
+      node.bounds.right <= region.right && node.bounds.bottom <= region.bottom);
+  }
+  assert(bytes('replay/LocalVehicleMapFlowTest-instrumentation.txt').toString().includes('Tests run: 1,  Failures: 1'));
   assert.equal(JSON.parse(bytes('disposable-store-restore.json')).verified, true);
   for (const name of ['replay/local-vehicle-map-device.json', 'replay/vehicle-map-app-results.json', 'replay/vehicle-map-results.json'])
     assert.equal(existsSync(new URL(name, root)), false);

@@ -15,8 +15,11 @@ import java.security.MessageDigest
 import kotlin.math.ceil
 import kotlin.math.floor
 
-internal fun vehicleMarkerBounds(device: UiDevice): Rect? {
-    val markers = device.findObjects(By.descContains("Position du véhicule"))
+internal fun freshVehicleMarkerBounds(device: UiDevice): Rect? {
+    check(InstrumentationRegistry.getInstrumentation().uiAutomation.clearCache()) {
+        "The map accessibility snapshot must be refreshed before observing its markers"
+    }
+    val markers = device.findObjects(By.desc("Position du véhicule"))
     if (markers.size != 1) return null
     return markers.single().visibleBounds.takeIf { it.width() in 12..200 && it.height() in 12..240 }
 }
@@ -36,7 +39,7 @@ internal fun captureVehicleMarkerDisplay(compose: ComposeTestRule, device: UiDev
     val bounds = map.boundsInRoot
     val region = Rect(floor(bounds.left).toInt() + location[0], floor(bounds.top).toInt() + location[1],
         ceil(bounds.right).toInt() + location[0], ceil(bounds.bottom).toInt() + location[1])
-    val marker = checkNotNull(vehicleMarkerBounds(device)) { "The actual SDK vehicle marker is required" }
+    val marker = checkNotNull(freshVehicleMarkerBounds(device)) { "The actual SDK vehicle marker is required" }
     check(region.contains(marker)) { "The whole vehicle marker must fit inside the visible map" }
     val departure = routeMarkerBounds(device, "Départ du trajet")
     val arrival = routeMarkerBounds(device, "Arrivée du trajet")

@@ -1,0 +1,251 @@
+{
+  "scope": "failed-map-trial-not-positive-evidence",
+  "phase": "first-point",
+  "mapNodeCount": 1,
+  "mapBounds": {
+    "left": 53,
+    "top": 328,
+    "right": 1027,
+    "bottom": 984
+  },
+  "mapStateCounts": {
+    "Carte chargée": 1,
+    "Chargement de la carte": 0
+  },
+  "beforeCacheClear": {
+    "ownedWindow": true,
+    "routeMarkerCounts": {
+      "Départ du trajet": 0,
+      "Arrivée du trajet": 0,
+      "Position du véhicule": 0
+    },
+    "mapNodes": [
+      {
+        "class": "android.view.View",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.view.View",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "androidx.compose.ui.viewinterop.ViewFactoryHolder",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.FrameLayout",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.FrameLayout",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.view.View",
+        "description": "Carte du trajet",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.RelativeLayout",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.RelativeLayout",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.ImageView",
+        "visible": true,
+        "bounds": {
+          "left": 66,
+          "top": 913,
+          "right": 224,
+          "bottom": 971
+        }
+      }
+    ]
+  },
+  "accessibilityCacheCleared": true,
+  "afterCacheClear": {
+    "ownedWindow": true,
+    "routeMarkerCounts": {
+      "Départ du trajet": 1,
+      "Arrivée du trajet": 1,
+      "Position du véhicule": 1
+    },
+    "mapNodes": [
+      {
+        "class": "android.view.View",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.view.View",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "androidx.compose.ui.viewinterop.ViewFactoryHolder",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.FrameLayout",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.FrameLayout",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.view.View",
+        "description": "Carte du trajet",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.view.View",
+        "description": "Position du véhicule",
+        "visible": true,
+        "bounds": {
+          "left": 628,
+          "top": 652,
+          "right": 704,
+          "bottom": 757
+        }
+      },
+      {
+        "class": "android.view.View",
+        "description": "Départ du trajet",
+        "visible": true,
+        "bounds": {
+          "left": 755,
+          "top": 753,
+          "right": 831,
+          "bottom": 858
+        }
+      },
+      {
+        "class": "android.view.View",
+        "description": "Arrivée du trajet",
+        "visible": true,
+        "bounds": {
+          "left": 249,
+          "top": 349,
+          "right": 325,
+          "bottom": 454
+        }
+      },
+      {
+        "class": "android.widget.RelativeLayout",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.RelativeLayout",
+        "visible": true,
+        "bounds": {
+          "left": 53,
+          "top": 328,
+          "right": 1027,
+          "bottom": 984
+        }
+      },
+      {
+        "class": "android.widget.ImageView",
+        "visible": true,
+        "bounds": {
+          "left": 66,
+          "top": 913,
+          "right": 224,
+          "bottom": 971
+        }
+      }
+    ]
+  }
+}

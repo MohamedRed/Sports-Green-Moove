@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'La vérification du déplacement reprend',
+    text: 'La carte est visible. Le test est corrigé ; le nouvel essai doit encore confirmer le déplacement.', flow: 'ride-observation' },
   { date: '2026-10-19', title: 'Le déplacement reste à vérifier',
     text: 'La carte est visible, mais le nouvel essai bloque encore. Une capture est ajoutée ; la cause reste à préciser.', flow: 'ride-observation' },
   { date: '2026-10-19', title: 'La carte et le véhicule sont visibles',
