@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
 import { Timestamp } from 'firebase-admin/firestore';
-import { auth, db } from './local-flow-client.mjs';
-import { emergencyContactId } from '../../functions/lib/domain/emergencyContact.js';
+import { auth, call, db, signIn } from './local-flow-client.mjs';
+import { emergencyChildInstanceId, emergencyContactId } from '../../functions/lib/domain/emergencyContact.js';
 import { guardianOperationId, guardianVerificationId } from '../../functions/lib/domain/guardianVerification.js';
 
 const parentId = 'sgm-qa-parent', childId = 'sgm-qa-emergency-child', clubId = 'sgm-qa-club-green-wavre';
 const verificationId = guardianVerificationId(clubId, childId, parentId);
-const contactIds = [emergencyContactId('self', parentId), emergencyContactId('child', childId)];
 const rows = async (name) => (await db.collection(name).orderBy('__name__').get()).docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 async function protectedState() {
   const state = {};
@@ -25,18 +25,30 @@ export async function seedEmergencyNativeFixture() {
   const batch = db.batch();
   batch.create(db.collection('children').doc(childId), { displayName: 'Enfant urgence QA', firstName: 'Enfant',
     guardianUserIds: [parentId], clubId, createdAt: now, updatedAt: now });
-  batch.create(db.collection('guardianVerifications').doc(verificationId), { childId, parentUserId: parentId, clubId,
-    status: 'verified', revision: 2, lastActorUserId: 'sgm-qa-club-manager', createdAt: now, updatedAt: now });
   await batch.commit();
-  return { verificationId, before, seeded: await protectedState() };
+  const childInstanceId = emergencyChildInstanceId(childId, (await db.collection('children').doc(childId).get()).createTime);
+  const fixture = { verificationId, before, childId, clubId, childInstanceId,
+    contactIds: [emergencyContactId('self', parentId), emergencyContactId('child', childId, childInstanceId)] };
+  try {
+    for (const [email, action, expectedRevision] of [['p@example.test', 'request', 0], ['c@example.test', 'verify', 1]])
+      await call('transitionGuardianVerification', await signIn(email), { childId, clubId, parentUserId: parentId,
+        action, expectedRevision, requestId: randomUUID() });
+    return { ...fixture, seeded: await protectedState() };
+  } catch (failure) {
+    try { await cleanupEmergencyNativeFixture(fixture); }
+    catch (cleanup) { throw new AggregateError([failure, cleanup], 'Emergency preparation and cleanup failed'); }
+    throw failure;
+  }
 }
 
 export async function verifyEmergencyNativeFixture(fixture, marker) {
+  const { contactIds } = fixture;
   const own = await db.collection('emergencyContacts').doc(contactIds[0]).get();
   assert.equal(own.get('kind'), 'self'); assert.equal(own.get('subjectId'), parentId);
   assert.equal(own.get('revision'), 2); assert.equal(own.get('contact'), null); assert.equal(own.get('lastActorUserId'), parentId);
   const child = await db.collection('emergencyContacts').doc(contactIds[1]).get();
   assert.equal(child.get('kind'), 'child'); assert.equal(child.get('subjectId'), childId); assert.equal(child.get('revision'), 1);
+  assert.equal(child.get('childInstanceId'), fixture.childInstanceId);
   assert.deepEqual(child.get('contact'), { name: 'Contact enfant QA', phone: '+12025550124' });
   assert.equal(child.get('lastActorUserId'), parentId); assert.equal((await db.collection('emergencyContacts').get()).size, 2);
   const operations = await rows('emergencyContactOperations'); assert.equal(operations.length, 3);
@@ -46,7 +58,7 @@ export async function verifyEmergencyNativeFixture(fixture, marker) {
   const record = await db.collection('guardianVerifications').doc(verificationId).get();
   assert.equal(record.get('status'), 'revoked'); assert.equal(record.get('revision'), 3);
   assert.equal(record.get('lastActorUserId'), 'sgm-qa-club-manager');
-  const events = await rows('guardianVerificationEvents'), previousEvents = fixture.before.guardianVerificationEvents;
+  const events = await rows('guardianVerificationEvents'), previousEvents = fixture.seeded.guardianVerificationEvents;
   const added = events.filter((event) => !previousEvents.some((before) => before.id === event.id)); assert.equal(added.length, 1);
   const event = added[0]; assert.equal(event.id, guardianOperationId('sgm-qa-club-manager', marker.managerRevokeRequestId));
   assert.equal(event.verificationId, verificationId); assert.equal(event.actorUserId, 'sgm-qa-club-manager');
@@ -59,6 +71,7 @@ export async function verifyEmergencyNativeFixture(fixture, marker) {
 }
 
 export async function cleanupEmergencyNativeFixture(fixture) {
+  const { contactIds } = fixture;
   const batch = db.batch();
   batch.delete(db.collection('children').doc(childId)); batch.delete(db.collection('guardianVerifications').doc(verificationId));
   for (const id of contactIds) batch.delete(db.collection('emergencyContacts').doc(id));

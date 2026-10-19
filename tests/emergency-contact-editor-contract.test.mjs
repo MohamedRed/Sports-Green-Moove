@@ -3,18 +3,21 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
+import { fileURLToPath } from 'node:url';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 
 const base = 'android/app/src/main/java/be/sportgreenmoove/app/';
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 test('the contact gateway binds ownership around every SDK operation and requires current child identity', () => {
   const source = read(base + 'services/FirebaseAndroidEmergencyContactGateway.kt');
   assert.equal(source.split('requireSession(uid)').length - 1, 2);
-  for (const guard of ['auth.currentUser?.uid != uid', 'guardians.guardianView(uid, target.clubId, target.childId)',
-    'it.parentUserId == uid', 'it.childId == target.childId', 'it.clubId == target.clubId',
-    'it.status == GuardianVerificationStatus.Verified', 'it.childName != null', 'it.clubName != null']) assert(source.includes(guard));
+  assert(source.includes('auth.currentUser?.uid != uid'));
+  assert(!source.includes('guardians.guardianView('), 'Child labels and immutable identity must come from the same contact transaction');
   assert(source.includes('"getEmergencyContact"')); assert(source.includes('"saveEmergencyContact"'));
   const wire = read(base + 'services/EmergencyContactWire.kt');
   assert(wire.includes('check(it.containsKey("contact"))')); assert(wire.includes('version > operation.expectedRevision'));
+  for (const guard of ['value["clubId"] == target.clubId', 'instance(value["childInstanceId"])',
+    'label(it["childName"])', 'label(it["clubName"])', 'instance(operation.expectedChildInstanceId)']) assert(wire.includes(guard), guard);
 });
 test('the only phone action is a validated dialer intent without direct-call permission or substituted destinations', () => {
   const dialer = read(base + 'services/AndroidEmergencyDialer.kt');
@@ -78,8 +81,7 @@ test('retained editor snapshot proves 23 unit cases and compilation only without
   const historical = provenance.historicalSourceFiles;
   assert.deepEqual(Object.keys(historical).sort(), ['android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt',
     'android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt']);
-  for (const [path, hash] of Object.entries(report.sourceFiles)) {
-    const exactSource = Object.hasOwn(historical, path) ? evidence + historical[path] : path;
-    assert.equal(createHash('sha256').update(read(exactSource)).digest('hex'), hash, path);
-  }
+  for (const [path, snapshot] of Object.entries(historical))
+    assert.equal(createHash('sha256').update(read(evidence + snapshot)).digest('hex'), report.sourceFiles[path], path);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), report.sourceFiles);
 });

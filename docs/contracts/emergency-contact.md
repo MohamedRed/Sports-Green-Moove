@@ -192,3 +192,20 @@ or release-manifest acceptance follows from this scoped pass.
 Only verified actionable evidence can restore the manifest item's accepted
 state. Physical tracking and the six safety-audit event requirements remain
 separate and unchanged.
+
+## Immutable Child Identity Correction
+
+The 19 October isolated reproduction showed that recreating a child document
+under the same ID could reuse an old verified tuple and private contact. Evidence
+and correction scope are retained in
+`../release/evidence/emergency-child-identity-2026-10-19/README.md`.
+
+Child contact IDs now include immutable server creation identity. Each child write
+must carry `expectedChildInstanceId` from its displayed contact view; receipts
+bind the same identity and requested club. Current authority must postdate both
+child and club creation. Names, authority and contact identity are read in one
+transaction. Adult contact contracts remain unchanged. Unbound legacy child
+records fail explicitly pending an approved migration; no old-data fallback or
+automatic migration is provided. Backend and Android changes must ship together.
+No production deployment, new dialer/phone proof or store-review acceptance follows
+from the eleven identity, sixteen baseline and five fixture service checks.

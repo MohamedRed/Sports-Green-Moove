@@ -103,3 +103,26 @@ test('the original narrow-dialog capture failure stays failed and cannot be repl
   for (const [file, expected] of Object.entries(JSON.parse(text(path + 'artifact-sha256.json'))))
     assert.equal(createHash('sha256').update(readFileSync(new URL('../' + path + file, import.meta.url))).digest('hex'), expected);
 });
+test('the corrected dialog retains its original passing component artifacts without claiming newer emergency coverage', () => {
+  const path = 'docs/release/evidence/team-history-dialog-pass-2026-10-19/';
+  const report = JSON.parse(text(path + 'results.json'));
+  assert.equal(report.scope, 'completed-history-components-not-phone-or-release-proof');
+  assert.equal(report.sourceCommit, 'b20d5ce3656e94b97cd7e105a95aefba38e8b795');
+  assert.equal(report.dialogCaptureSucceeded, true); assert.equal(report.explicitFakeGateway, true);
+  for (const key of ['physicalDevice', 'productionWrites', 'emergencyIdentityCorrectionIncluded']) assert.equal(report[key], false);
+  assertRetainedSourceFiles(root, report.sourceFiles);
+  const suite = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true }).parse(text(path + 'ordinary-tests.xml')).testsuite;
+  assert.equal(suite.tests, 154); assert.equal(suite.skipped, 34);
+  assert.equal(suite.failures, 0); assert.equal(suite.errors, 0);
+  const cases = suite.testcase.filter((item) => item.classname.endsWith('TeamEnrollmentHistoryFlowTest'));
+  assert.equal(cases.length, 4); assert(cases.every((item) => !item.failure && !item.error && !item.skipped));
+  assert.deepEqual(report.historyCases.map((item) => item.id).sort(), cases.map((item) => item.name).sort());
+  assert(report.historyCases.every((item) => item.status === 'passed'));
+  assert.deepEqual(JSON.parse(text(path + 'native-suite-status.json')),
+    { scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 0, componentEvidence: 0, localReplay: 0 });
+  const cleanup = JSON.parse(text(path + 'disposable-store-restore.json'));
+  assert.equal(cleanup.restored, true); assert.equal(cleanup.verified, true);
+  assert.equal(cleanup.installAdmin.authorizationRemoved, true); assert.equal(cleanup.installAdmin.componentRemoved, true);
+  for (const [file, expected] of Object.entries(JSON.parse(text(path + 'artifact-sha256.json'))))
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + path + file, import.meta.url))).digest('hex'), expected);
+});

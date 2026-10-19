@@ -18,14 +18,30 @@ export const emergencyWriteSchema = emergencyReadSchema.extend({
   contact: personalContactSchema.nullable(),
   expectedRevision: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER - 1),
   requestId: z.uuid(),
-}).strict();
+  expectedChildInstanceId: z.string().regex(/^[a-f0-9]{64}$/).optional(),
+}).strict().superRefine((input, context) => {
+  if ((input.target.kind === "child") !== (input.expectedChildInstanceId !== undefined))
+    context.addIssue({ code: "custom", path: ["expectedChildInstanceId"], message: "The write must bind its exact child identity, or omit it for self." });
+});
 export type EmergencyTarget = z.infer<typeof emergencyTargetSchema>;
 export type EmergencyWrite = z.infer<typeof emergencyWriteSchema>;
 export const emergencyContactRecordSchema = z.object({
   kind: z.enum(["self", "child"]), subjectId: chatDocumentIdSchema,
   contact: personalContactSchema.nullable(), revision: z.number().int().positive().max(Number.MAX_SAFE_INTEGER),
   lastActorUserId: chatDocumentIdSchema, createdAt: z.instanceof(Timestamp), updatedAt: z.instanceof(Timestamp),
-}).strict();
+  childInstanceId: z.string().regex(/^[a-f0-9]{64}$/).optional(),
+}).strict().refine((record) => (record.kind === "child") === (record.childInstanceId !== undefined));
 export const emergencyDigest = (value: unknown) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
-export const emergencyContactId = (kind: EmergencyTarget["kind"], subjectId: string) => emergencyDigest([kind, subjectId]);
+export function emergencyChildInstanceId(childId: string, createdAt: Timestamp) {
+  return emergencyDigest([childId, createdAt.seconds, createdAt.nanoseconds]);
+}
+export function emergencyContactId(kind: EmergencyTarget["kind"], subjectId: string, childInstanceId?: string) {
+  if (kind === "self") {
+    if (childInstanceId !== undefined) throw new Error("A self contact cannot bind a child identity.");
+    return emergencyDigest([kind, subjectId]);
+  }
+  if (!childInstanceId || !/^[a-f0-9]{64}$/.test(childInstanceId)) throw new Error("An immutable child identity is required.");
+  return emergencyDigest([kind, subjectId, childInstanceId]);
+}
+export const legacyChildEmergencyContactId = (childId: string) => emergencyDigest(["child", childId]);
 export const emergencyOperationId = (uid: string, requestId: string) => emergencyDigest([uid, requestId]);

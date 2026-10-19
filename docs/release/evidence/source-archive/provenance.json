@@ -146,7 +146,8 @@
       "reports": [
         "team-screen-export-2026-10-18/completed/component-results.json",
         "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
-        "team-history-dialog-failure-2026-10-19/results.json"
+        "team-history-dialog-failure-2026-10-19/results.json",
+        "team-history-dialog-pass-2026-10-19/results.json"
       ]
     },
     "e3f417debd53d591a2d03029c9d6e69ff1e2efe124e77d393945002567093df1": {
@@ -578,6 +579,350 @@
       "recordedFrom": "verified-worktree",
       "reports": [
         "local-ui-shutdown-2026-10-19/services.json"
+      ]
+    },
+    "78b908560e7a0d11f7224d5dea87b1ddc0bac5855a359af02f778fbc989f1f5f": {
+      "sourcePath": "functions/src/domain/emergencyContact.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/before.json",
+        "local-emergency-contact-2026-10-18/services.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "2ae6bd92bfe3f7fa899b6b58ea1a058839394ff592924e3bbeabc8fe4f3c15bf": {
+      "sourcePath": "functions/src/services/emergencyContactAuthority.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/before.json",
+        "local-emergency-contact-2026-10-18/services.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "3c11bfe0cc071dec62a95c73e8a5c93e254c1fb8e428c8813f1d7df1d874d03f": {
+      "sourcePath": "functions/src/services/emergencyContact.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/before.json",
+        "local-emergency-contact-2026-10-18/services.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "0f1ebdd08ea78605bc02b8de233fc56cd2ff261c89137c518a89e2b9e64be05f": {
+      "sourcePath": "scripts/qa/local-emergency-identity-probe.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/before.json"
+      ]
+    },
+    "d413bc995b97a1c2a46cd5a9cbe5d5d977ea51f2fc2f95afb02656cdc380484b": {
+      "sourcePath": "functions/src/callables/emergencyContact.ts",
+      "recoveredFromGitCommit": "507de8d364b21ee40327ae18fa26071fae94f09d",
+      "reports": [
+        "local-emergency-contact-2026-10-18/services.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json"
+      ]
+    },
+    "a6e78a25abced2ec048b13491691edffa3f11301d1cac3de0e53d8a0af3037fb": {
+      "sourcePath": "firestore.rules",
+      "recoveredFromGitCommit": "507de8d364b21ee40327ae18fa26071fae94f09d",
+      "reports": [
+        "local-emergency-contact-2026-10-18/services.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json"
+      ]
+    },
+    "46e05ad44ba611461022138e398e30cceee2e5c8f4b2dd4c6f58cd68650a8839": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "576c57b345a8bfa7572f364df71e85630df8e7c1da03b3ef1ee009be1d5e72ee": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactGateway.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "cd2089875faa31eb8c989cc1d309703bd550b0bccff4802892e2df85150ca52b": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "360ed1bba41bcd1185e32339820932c5538b21696779a05265927f2aabc96361": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "52a691dace3ba9b91e713f0c7f7fcf05a89e89a7464854fc0ed4d26d4d2bb075": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidEmergencyDialer.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "62f3c7618664035744fe4fe1d70c6e50205aa90ce7985c315da2c210d069d49c": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "9daad857a59c6c5918d22032eba009aee235e2e46b18e8368f3b091dce93a473": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-scheduler-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "359ab39ed86524bb3e1af76942bb2b016e27854e1408afdab480d378430daf35": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "ca885dde23332f83ce9fda8d6c77bae107f3d03fa2b9a8d98097f445b22a9343": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactDialogs.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "2781f7db08deb1eb20ebde86da70699270c670274088c7c18152b588a8a81b00": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "27137868a56f00534975be256dc36fb7ff30ca562499e7217a258ab52a4e4de0": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsScreen.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "dde40205d87be0c3e4c0e271b65c7c3e2baf5803faa1a34a784d87b1a78e4c60": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "41ff30b37e89929a61664e8ff159360af97325573146dd8a2499d55df041c23d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "1b37259b47c007bcfaaaba15d762be6bafefbd5790d19b9a9730bbe620b9e2db": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "80150b2e5a606ac57a674b0dc3c3685b63e51c6377e9ced180ea4495250948e0": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/EmergencyContactFlowTest.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "0e1d15aacce5c0df07d26ede7695d8ba33ad92a77245d14ca488da8e20bbe44c": {
+      "sourcePath": "android/app/build.gradle.kts",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json"
+      ]
+    },
+    "02de553d7855e6df3772c99db41b0ab3e74d567620a662c830aeacc5ef4d8ea3": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContactSchedulerTest.kt",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json"
+      ]
+    },
+    "672cb09ce9f38e0b96c0f9e9d63917fa8ccf857a0209a936663f6679323cf007": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ExternalUiSynchronizationTest.kt",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json"
+      ]
+    },
+    "5cbb386efc1dcf47240f4e2d9a1e3a0da7d730bb199c9468699b99ea766fda74": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "772610752b6c8437053a884a4cd5b4cf01e14ee5ff5f526e62eb3196a4fe0e8c": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "c0c3716209d799ceb3ce0d1648d522be73fd85a512d5ab4caa5e4fccb96030ae": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalComposeRule.kt",
+      "recoveredFromGitCommit": "6d86b8f952d785d2e16064cc36fed324603b04bf",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "4648a7b2fde7a7a0141c521d749ca49da6da3e74965f78a71af72cf50283075c": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyPeer.kt",
+      "recoveredFromGitCommit": "f3da854499b422b82ce726be504aaef4915c71a4",
+      "reports": [
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "75f27e4cbea166444448149f4c696216c5ed4ee8da022021c10254f1d531bc91": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyEvidence.kt",
+      "recoveredFromGitCommit": "f3da854499b422b82ce726be504aaef4915c71a4",
+      "reports": [
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "ae3bd07e6a6965aac8e0fc5adca0858317ecbb30e3dd92fd07e2c98a02dd5941": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyDialerDiagnostic.kt",
+      "recoveredFromGitCommit": "fa8e7c79830e457d0f267bc95b3782c8012b8ddc",
+      "reports": [
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "1d26580eb363e4786862f30eecf3e3849609537315ba8a6d35de774a7ddb3c63": {
+      "sourcePath": "functions/src/domain/emergencyContact.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/services.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json",
+        "emergency-child-identity-2026-10-19/fixture-services.json",
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865": {
+      "sourcePath": "functions/src/services/emergencyContactAuthority.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/services.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json",
+        "emergency-child-identity-2026-10-19/fixture-services.json"
+      ]
+    },
+    "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c": {
+      "sourcePath": "functions/src/services/emergencyContact.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/services.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json",
+        "emergency-child-identity-2026-10-19/fixture-services.json"
+      ]
+    },
+    "a1ad0ad524ec10f110c4e52b7882edfa58901f6e2e72c858cc1e86187f1c7442": {
+      "sourcePath": "scripts/qa/local-emergency-identity-suite.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/services.json"
+      ]
+    },
+    "40d23dde5dec549de9e92687a12e8f43c94f5c03e084f2708c85be4f184f97b4": {
+      "sourcePath": "scripts/qa/local-emergency-fixture-suite.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/fixture-services.json"
+      ]
+    },
+    "8552967b5b622719b6dc9b43c7e9da46d10c6c01ac37f817f369d36f85a304d1": {
+      "sourcePath": "scripts/qa/local-emergency-native-fixture.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/fixture-services.json"
+      ]
+    },
+    "a82aaae58bd025d9761ed6743c05e123220240c6df2ff65d2a10e56c052b1d46": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "ecf9c80773fd25966447f8301c83a73420c2479e20910e4bd608e5164703d915": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "a250a8b60d67a354e0517b14586459bbe70264bc2f04d719e78a49f30effa42c": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "fbf56ea2382ab561dca8308d7049eb3f978f8cdffcbad888651eb603949ca685": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "9144f856144308713f4dd9aed76bd154116879d03185dacec2e39c116777dcca": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/services/EmergencyContactWireTest.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "ddd28ff8592cdf15a5ac8131626130173de2b280860ff402d05f995e2bf7958c": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContactStateTest.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "f489d247383ae4758abdc3a9bea73c688db0c61e2bbb854133da18808994f251": {
+      "sourcePath": "functions/src/__tests__/emergency-contact.test.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "aba64fba09a24d815940b3480a80ec607f272786c40d2b07fdac0504a3a18c5d": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryFlowTest.kt",
+      "recoveredFromGitCommit": "b20d5ce3656e94b97cd7e105a95aefba38e8b795",
+      "reports": [
+        "team-history-dialog-pass-2026-10-19/results.json"
+      ]
+    },
+    "f5b3d8325b447cb64a4977d31b7238375ef97ee73cfa4d32ecc9248be54cdd0b": {
+      "sourcePath": "scripts/run-android-ui-tests-and-collect-screenshots.sh",
+      "recoveredFromGitCommit": "b20d5ce3656e94b97cd7e105a95aefba38e8b795",
+      "reports": [
+        "team-history-dialog-pass-2026-10-19/results.json"
       ]
     }
   }

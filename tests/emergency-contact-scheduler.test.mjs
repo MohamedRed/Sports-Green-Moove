@@ -4,6 +4,8 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { content } from '../partner-portal/content.mjs';
+import { fileURLToPath } from 'node:url';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
 const text = (path) => read(path).toString('utf8');
@@ -20,11 +22,9 @@ test('the scheduling reproduction retains three actual unit passes without inven
   assert.equal(Number(suite['@_tests']), 3);
   for (const field of ['failures', 'errors', 'skipped']) assert.equal(Number(suite['@_' + field]), 0);
   assert.deepEqual(suite.testcase.map((item) => item['@_name']), report.unitCases);
-  for (const [file, hash] of Object.entries(report.sourceFiles)) {
-    const source = file === 'android/app/build.gradle.kts'
-      ? 'docs/release/evidence/disposable-installation-guard-2026-10-18/prior-source/android-app-build.gradle.kts.txt' : file;
-    assert.equal(createHash('sha256').update(read(source)).digest('hex'), hash, file);
-  }
+  assert.equal(createHash('sha256').update(read('docs/release/evidence/disposable-installation-guard-2026-10-18/prior-source/android-app-build.gradle.kts.txt')).digest('hex'),
+    report.sourceFiles['android/app/build.gradle.kts']);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), report.sourceFiles);
 });
 test('the external wait preserves callback progress, original failures and the exact phone readiness boundary', () => {
   const native = text('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt');

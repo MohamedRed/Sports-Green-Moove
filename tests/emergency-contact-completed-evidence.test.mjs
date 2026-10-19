@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { content } from '../partner-portal/content.mjs';
 import { validateEmergencyDevice } from '../scripts/qa/emergency-contact-evidence.mjs';
+import { fileURLToPath } from 'node:url';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
 const text = (path) => read(path).toString('utf8');
@@ -25,7 +27,7 @@ test('a real scoped contact pass retains its original primary transfer, transcri
   assert.equal(report.privateOperationsVerified, 3); assert.equal(report.protectedRecordsUnchanged, true);
   assert.equal(report.isolatedFixtureCleanupVerified, true);
   for (const flag of ['physicalDevice', 'productionWrites', 'childOwnAccountDialImplemented']) assert.equal(report[flag], false);
-  for (const [file, hash] of Object.entries(report.sourceFiles)) assert.equal(sha(read(file)), hash, file);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), report.sourceFiles);
   assert.equal(Object.keys(report.sourceFiles).length, 19);
   const hashes = json(base + 'artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 17);
   for (const [file, hash] of Object.entries(hashes)) {

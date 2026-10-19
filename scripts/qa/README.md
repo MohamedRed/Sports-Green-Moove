@@ -14,6 +14,13 @@ configuration and the generated `SGM_QA_PASSWORD`. Do not point the older native
 device shell helpers at production or publish their raw credential-entry captures.
 The local API suite does not install an APK or verify phone UI behavior.
 
+`test:emergency-contact-identity` exercises exact server-created child identities,
+fresh manager authority, stale forms/replays, races and fail-closed legacy data.
+`test:emergency-contact-fixture` separately prepares actual parent/manager
+verification, performs the three intended contact service operations and verifies
+protected cleanup. Both require fresh isolated runtimes and accept no phone or
+release proof. The native contact fixture no longer prepopulates verification.
+
 `start-local-ui.mjs` supervises its own POSIX process group asynchronously.
 Ctrl-C/SIGTERM are forwarded to that group; shutdown must verify its exit before
 the private session file and copied runtime are removed. It never signals an

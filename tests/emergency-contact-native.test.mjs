@@ -44,9 +44,12 @@ test('the new replay is additive and verifies backend effects before successful 
   assert(read('scripts/qa/collect-local-ui-evidence.mjs').includes("'emergency-contact'"));
   assert(replay.indexOf('await verifyEmergencyNativeFixture') < replay.indexOf('await cleanupEmergencyNativeFixture'));
   assert(replay.indexOf('if (failure) throw failure') < replay.indexOf("'emergency-contact-results.json'"));
-  assert(replay.includes('assertInstrumentationPassed')); assert(replay.includes('verificationPreseeded: true'));
+  assert(replay.includes('assertInstrumentationPassed')); assert(replay.includes('verificationPreseeded: false'));
+  assert(replay.includes('authenticated-local-sdk-request-verify-revoke'));
   assert(replay.includes('childOwnAccountDialImplemented: false'));
   const fixture = read('scripts/qa/local-emergency-native-fixture.mjs');
+  assert(fixture.includes("['p@example.test', 'request', 0], ['c@example.test', 'verify', 1]"));
+  assert(fixture.includes("call('transitionGuardianVerification'"));
   for (const guard of ['assert.equal(operations.length, 3)', 'assert.deepEqual(await protectedState(), fixture.before)',
     "assert.equal(record.get('status'), 'revoked')", 'marker.managerRevokeRequestId']) assert(fixture.includes(guard), guard);
 });

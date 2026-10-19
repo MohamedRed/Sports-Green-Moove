@@ -5,7 +5,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { Timestamp } from 'firebase-admin/firestore';
 import { auth, call, db, denied, signIn } from './local-flow-client.mjs';
-import { emergencyContactId } from '../../functions/lib/domain/emergencyContact.js';
+import { emergencyChildInstanceId, emergencyContactId } from '../../functions/lib/domain/emergencyContact.js';
 import { fetchLocalQa } from './local-http-request.mjs';
 
 execFileSync(process.execPath, [resolve(import.meta.dirname, 'seed-firebase-emulator.mjs')],
@@ -20,14 +20,16 @@ const other = await actor('emergency-other-parent', ['parent']), admin = await a
 const child = await actor('emergency-child', ['child', 'parent']);
 const clubId = 'sgm-qa-club-green-wavre', childId = 'sgm-qa-child-lina';
 const self = { kind: 'self' }, target = { kind: 'child', childId, clubId };
+const childInstanceId = emergencyChildInstanceId(childId, (await db.collection('children').doc(childId).get()).createTime);
 const contact = { name: 'Contact fictif QA', phone: '+12025550123' };
 const changed = { name: 'Second contact fictif QA', phone: '+12025550124' };
 const read = (actor = parent, scope = self) => call('getEmergencyContact', actor, { target: scope });
-const input = (scope, revision, value = contact) => ({ target: scope, expectedRevision: revision, contact: value, requestId: randomUUID() });
+const input = (scope, revision, value = contact) => ({ target: scope, expectedRevision: revision, contact: value, requestId: randomUUID(),
+  ...(scope.kind === 'child' ? { expectedChildInstanceId: childInstanceId } : {}) });
 const save = (actor, data) => call('saveEmergencyContact', actor, data);
 const transition = (actor, action, revision) => call('transitionGuardianVerification', actor,
   { clubId, childId, parentUserId: parent.uid, action, expectedRevision: revision, requestId: randomUUID() });
-const contactRef = db.collection('emergencyContacts').doc(emergencyContactId('child', childId));
+const contactRef = db.collection('emergencyContacts').doc(emergencyContactId('child', childId, childInstanceId));
 const selfRef = db.collection('emergencyContacts').doc(emergencyContactId('self', parent.uid));
 const checks = [], check = async (id, action) => { await action(); checks.push({ id, status: 'passed' }); };
 await check('signed-out-child-and-admin-only-accounts-cannot-manage-contacts', async () => {

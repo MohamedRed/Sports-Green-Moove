@@ -85,7 +85,7 @@ test('portal has no production app hosting rewrite or client-side auth substitut
 test('local results are backed by successful evidence and are not presented as phone recordings', async () => {
   const { localResults, detail, date } = await import('../partner-portal/src/render.js');
   const flows = content.flows.filter((flow) => flow.local);
-  assert.equal(flows.length, 10);
+  assert.equal(flows.length, 11);
   for (const flow of flows) {
     assert.equal(flow.status, 'partial');
     assert.match(detail(flow), flow.phone ? /Essai sur téléphone du/ : /Essai local du/);

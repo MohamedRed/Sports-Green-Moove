@@ -52,7 +52,7 @@ class EmergencyContactStateTest {
     }
     @Test fun aRevokedChildReadClearsPreviouslyVisiblePrivateDetails() = runBlocking {
         val target = EmergencyContactTarget.Child("child", "club")
-        val gateway = ContactFixture().apply { current = EmergencyContactView("parent", target, contact, 2, "Enfant QA", "Club QA") }
+        val gateway = ContactFixture().apply { current = EmergencyContactView("parent", target, contact, 2, "Enfant QA", "Club QA", "a".repeat(64)) }
         val state = EmergencyContactState("parent", gateway, target); state.refresh()
         gateway.failRead = true; state.refresh(); assertNull(state.view)
         assertEquals("", state.phone); assertEquals("", state.name); assertNotNull(state.error)
@@ -105,13 +105,44 @@ class EmergencyContactStateTest {
         val gateway = ContactFixture().apply { current = current.copy(contact = contact, revision = 1) }; val state = ready(gateway)
         gateway.current = EmergencyContactView("parent", EmergencyContactTarget.Child("child", "club"), null, 0)
         state.select(gateway.current.target); assertNull(state.view); assertEquals("", state.phone); assertNotNull(state.error)
-        gateway.current = gateway.current.copy(childName = "Enfant QA", clubName = "Club QA"); state.refresh()
+        gateway.current = gateway.current.copy(childName = "Enfant QA", clubName = "Club QA", childInstanceId = "a".repeat(64)); state.refresh()
         assertEquals("Enfant QA", state.view?.childName); assertNull(state.view?.contact)
     }
     @Test fun aLateLaunchResultCannotRestoreAnotherAccountsNotice() = runBlocking {
         val gateway = ContactFixture().apply { current = current.copy(contact = contact, revision = 1) }; val state = ready(gateway)
         state.dial { state.close(); EmergencyDialerResult.Opened }
         assertNull(state.notice); assertNull(state.view); assertEquals("", state.phone)
+    }
+    @Test fun childSavesCarryOnlyTheIdentityFromTheDisplayedRead() = runBlocking {
+        val child = EmergencyContactTarget.Child("child", "club")
+        val gateway = ContactFixture().apply { current = EmergencyContactView("parent", child, null, 0, "Enfant QA", "Club QA", "a".repeat(64)) }
+        val state = EmergencyContactState("parent", gateway, child); state.refresh(); edit(state); state.save()
+        assertEquals("a".repeat(64), gateway.writes.single().expectedChildInstanceId)
+        assertEquals("a".repeat(64), state.view?.childInstanceId); assertEquals(contact, state.view?.contact)
+    }
+    @Test fun aRecreatedChildWithTheSameContactAndVersionNeedsAnotherTapBeforeDialing() = runBlocking {
+        val child = EmergencyContactTarget.Child("child", "club")
+        val gateway = ContactFixture().apply { current = EmergencyContactView("parent", child, contact, 1, "Enfant QA", "Club QA", "a".repeat(64)) }
+        val state = EmergencyContactState("parent", gateway, child); state.refresh()
+        gateway.current = gateway.current.copy(childInstanceId = "b".repeat(64), childName = "Autre enfant QA")
+        state.dial { error("Do not open a destination for a different profile") }
+        assertTrue(requireNotNull(state.notice).contains("a changé")); assertEquals("b".repeat(64), state.view?.childInstanceId)
+        var opens = 0; state.dial { opens++; EmergencyDialerResult.Opened }; assertEquals(1, opens)
+    }
+    @Test fun acknowledgedSaveCannotPopulateTheEditorFromARecreatedChildReadback() = runBlocking {
+        val child = EmergencyContactTarget.Child("child", "club")
+        val first = EmergencyContactView("parent", child, null, 0, "Enfant QA", "Club QA", "a".repeat(64))
+        var reads = 0; var writes = 0
+        val gateway = object : EmergencyContactGateway {
+            override suspend fun readEmergencyContact(uid: String, target: EmergencyContactTarget) =
+                if (reads++ == 0) first else first.copy(contact = contact, revision = 1, childInstanceId = "b".repeat(64))
+            override suspend fun saveEmergencyContact(uid: String, operation: EmergencyContactOperation): EmergencyContactReceipt {
+                writes++; return EmergencyContactReceipt(1)
+            }
+        }
+        val state = EmergencyContactState("parent", gateway, child); state.refresh(); edit(state); state.save()
+        assertEquals(1, writes); assertNull(state.view); assertEquals("", state.phone)
+        assertTrue(requireNotNull(state.error).startsWith("Modification enregistrée.")); assertFalse(state.canDial)
     }
     private val contact = PersonalEmergencyContact("Contact QA", "+12025550123")
     private fun state(gateway: ContactFixture) = EmergencyContactState("parent", gateway, EmergencyContactTarget.Self)

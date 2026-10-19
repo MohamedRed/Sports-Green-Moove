@@ -50,11 +50,11 @@ internal class EmergencyContactState(private val uid: String, private val gatewa
         val ticket = ++generation; clearPrivate(); busy = true
         var acknowledged = false
         try {
-            val receipt = gateway.saveEmergencyContact(uid, EmergencyContactOperation(target, contact, expected.revision, requestId()))
+            val receipt = gateway.saveEmergencyContact(uid, EmergencyContactOperation(target, contact, expected.revision, requestId(), expected.childInstanceId))
             currentCoroutineContext().ensureActive(); if (!current(ticket)) return
             check(receipt.revision > expected.revision); acknowledged = true
             val latest = gateway.readEmergencyContact(uid, target)
-            check(latest.revision >= receipt.revision)
+            check(latest.revision >= receipt.revision && latest.childInstanceId == expected.childInstanceId)
             accept(latest, ticket)
             if (current(ticket)) notice = if (contact == null) "Contact supprimé." else "Contact enregistré."
         } catch (cancelled: CancellationException) { throw cancelled }
@@ -69,7 +69,7 @@ internal class EmergencyContactState(private val uid: String, private val gatewa
         try {
             val latest = gateway.readEmergencyContact(uid, target); accept(latest, ticket)
             if (!current(ticket)) return
-            if (latest.revision != expected.revision || latest.contact != expected.contact) {
+            if (latest.revision != expected.revision || latest.contact != expected.contact || latest.childInstanceId != expected.childInstanceId) {
                 notice = "Le contact a changé. Vérifiez-le avant d’ouvrir le téléphone."; return
             }
             val launched = launch(requireNotNull(latest.contact)); if (!current(ticket)) return
@@ -87,7 +87,9 @@ internal class EmergencyContactState(private val uid: String, private val gatewa
         currentCoroutineContext().ensureActive()
         check(result.ownerUid == uid && result.target == target && result.revision in 0..9_007_199_254_740_991L &&
             (result.contact == null || result.revision > 0))
-        if (result.target is EmergencyContactTarget.Child) check(!result.childName.isNullOrBlank() && !result.clubName.isNullOrBlank())
+        if (result.target is EmergencyContactTarget.Child) check(!result.childName.isNullOrBlank() && !result.clubName.isNullOrBlank() &&
+            result.childInstanceId?.matches(Regex("[a-f0-9]{64}")) == true)
+        else check(result.childInstanceId == null)
         if (!current(ticket)) return
         view = result; name = result.contact?.name ?: ""; phone = result.contact?.phone ?: ""
     }

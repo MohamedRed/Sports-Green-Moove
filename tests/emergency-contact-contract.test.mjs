@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 test('contact ownership and guardian authority are authenticated and checked in each transaction', () => {
@@ -23,7 +25,8 @@ test('contacts use private collections, revisioned removal and payload-bound ope
   assert.match(rules, /match \/emergencyContacts\/\{contactId\} \{\s+allow read, write: if false;/);
   assert.match(rules, /match \/emergencyContactOperations\/\{operationId\} \{\s+allow read, write: if false;/);
   assert(service.includes('(current?.revision ?? 0) !== input.expectedRevision'));
-  assert(service.includes('emergencyDigest([input.target, input.expectedRevision, input.contact])'));
+  assert(service.includes('emergencyDigest([input.target, input.expectedRevision, input.contact,'));
+  assert(service.includes('...(identity.childInstanceId ? [identity.childInstanceId] : [])'));
   assert.match(service, /transaction\.create\(operationRef, \{ actorUserId: uid, contactId, fingerprint, revision, createdAt: now \}\)/);
   assert.doesNotMatch(service, /transaction\.delete|console\.|logger\./);
 });
@@ -46,7 +49,6 @@ test('retained original contact service proof cannot imply a native emergency ac
   assert.equal(result.checks.length, 16); assert(result.checks.every((item) => item.status === 'passed'));
   for (const key of ['productionWrites', 'physicalDevice', 'nativeUiExecuted', 'dialerOpened']) assert.equal(result[key], false);
   assert.equal(result.providerRequests, 0);
-  for (const [path, hash] of Object.entries(result.sourceFiles))
-    assert.equal(createHash('sha256').update(read(path)).digest('hex'), hash, path);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), result.sourceFiles);
   assert(!raw.includes('+12025550123')); assert(!raw.includes('Contact fictif QA'));
 });

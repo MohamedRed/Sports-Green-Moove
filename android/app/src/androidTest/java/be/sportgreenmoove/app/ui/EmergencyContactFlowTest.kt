@@ -124,7 +124,8 @@ private class EmergencyUiFixture : EmergencyContactGateway, GuardianVerification
     override suspend fun readEmergencyContact(uid: String, target: EmergencyContactTarget): EmergencyContactView {
         if (failRead) error("Explicit denied-read fixture")
         return current.copy(target = target, childName = if (target is EmergencyContactTarget.Child) verification.childName else null,
-            clubName = if (target is EmergencyContactTarget.Child) verification.clubName else null)
+            clubName = if (target is EmergencyContactTarget.Child) verification.clubName else null,
+            childInstanceId = if (target is EmergencyContactTarget.Child) "d".repeat(64) else null)
     }
     override suspend fun saveEmergencyContact(uid: String, operation: EmergencyContactOperation): EmergencyContactReceipt {
         check(operation.expectedRevision == current.revision); writes++

@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Un profil recréé ne reprend plus l’ancien contact',
+    text: 'En local, l’ancien contact ne revient plus sur un profil enfant recréé. Le nouveau contrôle reste à tester dans l’app.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Les anciennes demandes restent accessibles',
     text: 'Sur téléphone, la liste continue, le retrait se confirme et reste enregistré au retour. Sans autorisation parentale, la demande de l’enfant devient non modifiable. Six captures sont ajoutées.', flow: 'team-enrollment' },
   { date: '2026-10-19', title: 'L’essai local complet passe',

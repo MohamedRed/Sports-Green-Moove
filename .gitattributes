@@ -58,3 +58,5 @@ docs/release/evidence/source-archive/*.txt -text -whitespace
 docs/release/evidence/team-enrollment-history-2026-10-19/*.xml -text -whitespace
 docs/release/evidence/team-history-dialog-failure-2026-10-19/*.xml -text -whitespace
 docs/release/evidence/local-ui-shutdown-2026-10-19/*.tap -text -whitespace
+docs/release/evidence/emergency-child-identity-2026-10-19/*.xml -text -whitespace
+docs/release/evidence/team-history-dialog-pass-2026-10-19/*.xml -text -whitespace
