@@ -91,3 +91,9 @@ docs/release/evidence/native-startup-copy-failure-2026-10-19/*.txt -text -whites
 docs/release/evidence/native-startup-display-review-2026-10-19/*.txt -text -whitespace
 docs/release/evidence/native-startup-window-review-2026-10-19/*.txt -text -whitespace
 docs/release/evidence/native-startup-pass-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/ci-d2b00e7-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/remote-ride-stop-before-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/remote-ride-stop-input-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/remote-ride-stop-resume-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/remote-ride-stop-pass-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/remote-ride-stop-pass-2026-10-19/*.xml -text -whitespace
