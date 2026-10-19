@@ -9,6 +9,7 @@ export function readInstallBlocked(shell) {
 }
 export function setInstallBlocked(shell, blocked) {
   assert.equal(typeof blocked, 'boolean');
+  if (readInstallBlocked(shell) === blocked) return;
   const output = shell('am', 'broadcast', '--user', '0', '--receiver-foreground', '--include-stopped-packages',
     '-n', 'be.sportgreenmoove.qa.installguard/.InstallationPolicyReceiver',
     '-a', 'be.sportgreenmoove.qa.installguard.SET_BLOCKED', '--ez', 'blocked', String(blocked));

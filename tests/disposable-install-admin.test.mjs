@@ -8,6 +8,8 @@ import { prepareDisposableInstallAdmin, removeDisposableInstallAdmin, assertDisp
 import { restoreDisposableAndroid } from '../scripts/qa/restore-disposable-android.mjs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
+import { validateDisposableInstallationReceipts } from '../scripts/qa/disposable-installation-evidence.mjs';
+import { accountCountCommand, policyReadinessMarker, waitForDisposablePolicyReadiness } from '../scripts/qa/disposable-policy-readiness.mjs';
 
 function phone(t, options = {}) {
   const temp = mkdtempSync(join(tmpdir(), 'sgm-test-admin-unit-'));
@@ -20,6 +22,8 @@ function phone(t, options = {}) {
     if (cmd === 'getprop ro.kernel.qemu') return state.qemu ?? '1';
     if (cmd === 'getprop ro.build.version.sdk') return state.sdk ?? '35';
     if (cmd === 'am get-current-user') return state.user ?? '0';
+    if (cmd === accountCountCommand) return state.accounts ?? 'Accounts: 0';
+    if (args[0] === 'logcat') return state.policyPending ? '' : policyReadinessMarker;
     if (cmd === 'pm get-user-restriction --user 0 no_install_apps') return state.malformed ?? String(state.blocked);
     if (cmd === 'dpm list-owners') return state.owner === 'none' ? 'no owners' :
       `1 owner:\nUser  0: admin=${state.owner === 'ours' ? installAdminComponent : 'other.owner/.Admin'},DeviceOwner`;
@@ -50,7 +54,7 @@ function phone(t, options = {}) {
 }
 test('approved setup proves real policy authority and removes its own test-only administration afterward', (t) => {
   const device = phone(t), receipt = prepareDisposableInstallAdmin(device, { approved: true, apk: device.apk });
-  assert.deepEqual(receipt, { packageName: installAdminPackage, originalBlocked: false });
+  assert.deepEqual(receipt, { packageName: installAdminPackage, originalBlocked: false, policyReady: true, noAccounts: true });
   assert.equal(device.state.owner, 'ours'); assert.equal(device.state.installed, true); assert.equal(device.state.blocked, false);
   assert.deepEqual(device.mutations.filter((line) => line.startsWith('am broadcast')).map((line) => line.split(' ').at(-1)), ['true', 'false']);
   assert(device.mutations.some((line) => line.includes('set-device-owner --device-owner-only --user 0')));
@@ -67,7 +71,8 @@ test('no approval, absent build, physical device, other user, owner, existing he
   assert.throws(() => prepareDisposableInstallAdmin(absent, { approved: true, apk: absent.apk + '.missing' }));
   assert.deepEqual(absent.calls, []);
   for (const options of [{ qemu: '0' }, { sdk: '34' }, { user: '10' }, { owner: 'other' }, { installed: true }, { blocked: true },
-    { malformed: 'unknown' }, { installs: 'Active install sessions:\n  Session 12:\n    mDestroyed=false\nHistorical install sessions:\n' }]) {
+    { malformed: 'unknown' }, { accounts: 'Accounts: 1' }, { accounts: 'unavailable' },
+    { installs: 'Active install sessions:\n  Session 12:\n    mDestroyed=false\nHistorical install sessions:\n' }]) {
     const device = phone(t, options);
     assert.throws(() => prepareDisposableInstallAdmin(device, { approved: true, apk: device.apk }));
     assert.deepEqual(device.mutations, [], JSON.stringify(options));
@@ -76,7 +81,12 @@ test('no approval, absent build, physical device, other user, owner, existing he
 test('denied authority, rejected commands and ignored policy writes roll back instead of retrying without protection', (t) => {
   for (const options of [{ ownerDenied: true }, { bridgeRefused: true }, { ignored: true }]) {
     const device = phone(t, options);
-    assert.throws(() => prepareDisposableInstallAdmin(device, { approved: true, apk: device.apk }), /cleanup attempted/);
+    assert.throws(() => prepareDisposableInstallAdmin(device, { approved: true, apk: device.apk }), (error) => {
+      assert.match(error.message, /cleanup attempted/);
+      assert.equal(error.receipt.scope, 'failed-disposable-admin-setup-not-flow-proof');
+      assert.equal(error.receipt.cleanup.authorizationRemoved, true);
+      assert.equal(error.receipt.cleanup.componentRemoved, true); return true;
+    });
     assert.equal(device.state.owner, 'none'); assert.equal(device.state.installed, false); assert.equal(device.state.blocked, false);
     assert.equal(device.mutations.filter((line) => line.startsWith('install ')).length, 1);
     assert.equal(device.mutations.filter((line) => line.startsWith('dpm set-device-owner')).length, 1);
@@ -152,4 +162,57 @@ test('the original admin trial proves cleanup, not a completed instrumentation r
   const suite = new XMLParser({ ignoreAttributes: false }).parse(read('ordinary-tests.xml').toString('utf8')).testsuite;
   assert.equal(Number(suite['@_tests']), 0);
   assert(read('ordinary-tests.xml').toString('utf8').includes('no tests were started'));
+});
+
+test('installation-policy evidence requires observed protection and verified removal, without claiming user-flow success', () => {
+  const maps = { playStoreEnabled: true, playServicesEnabled: true, playServicesVersion: '24.23.35' };
+  const receipts = [{ scope: 'disposable-emulator-without-home-navigation', serial: 'emulator-5554',
+    mapsRuntime: maps, installAdmin: { packageName: installAdminPackage, originalBlocked: false, policyReady: true, noAccounts: true },
+    storePause: { method: 'restricted-store-background', mapsRuntime: maps, locationEnabled: true, installationPolicy: { originalBlocked: false } } },
+  { scope: 'disposable-test-phone', installationsBlocked: true, mapsRuntimeUnchanged: true },
+  { method: 'restricted-store-background', restored: true, verified: true,
+    observed: { installationsBlocked: true, background: { RUN_IN_BACKGROUND: 'ignore', RUN_ANY_IN_BACKGROUND: 'deny' },
+      mapsRuntime: maps, locationEnabled: true, noActiveStoreInstall: true },
+    installAdmin: { authorizationRemoved: true, componentRemoved: true, originalPolicyRestored: true } }];
+  assert.deepEqual(validateDisposableInstallationReceipts(...receipts), {
+    scope: 'disposable-installation-policy-only-not-flow-or-release-proof', status: 'passed' });
+  for (const alter of [
+    (r) => { r[0].serial = 'physical-device'; }, (r) => { r[0].installAdmin.originalBlocked = true; },
+    (r) => { r[1].installationsBlocked = false; }, (r) => { r[2].verified = false; },
+    (r) => { r[2].observed.installationsBlocked = false; }, (r) => { r[2].observed.mapsRuntime = { ...maps, playServicesVersion: '26.40.32' }; },
+    (r) => { r[2].installAdmin.authorizationRemoved = false; }, (r) => { r[2].installAdmin.componentRemoved = false; },
+    (r) => { r[2].installAdmin.originalPolicyRestored = false; },
+  ]) { const changed = structuredClone(receipts); alter(changed); assert.throws(() => validateDisposableInstallationReceipts(...changed)); }
+});
+
+test('an unfinished boot policy scan is awaited read-only before the one provisioning attempt', (t) => {
+  const device = phone(t, { policyPending: true }); let time = 0;
+  const receipt = prepareDisposableInstallAdmin(device, { approved: true, apk: device.apk,
+    readiness: { now: () => time, sleep: (ms) => { time += ms; device.state.policyPending = time < 2000; }, timeoutMs: 5000 } });
+  assert.equal(receipt.policyReady, true); assert.equal(time, 2000);
+  assert.equal(device.calls.filter((line) => line.startsWith('logcat ')).length, 3);
+  assert.equal(device.mutations.filter((line) => line.startsWith('dpm set-device-owner')).length, 1);
+  removeDisposableInstallAdmin(device, receipt);
+});
+test('unknown boot readiness times out without installing a helper or attempting device ownership', (t) => {
+  const device = phone(t, { policyPending: true }); let time = 0;
+  assert.throws(() => prepareDisposableInstallAdmin(device, { approved: true, apk: device.apk,
+    readiness: { now: () => time, sleep: (ms) => { time += ms; }, timeoutMs: 2000 } }), /boot validation has not finished/);
+  assert.deepEqual(device.mutations, []);
+  assert.equal(device.calls.filter((line) => line.startsWith('logcat ')).length, 3);
+});
+test('account-count diagnostics exclude private account fields and unknown formats never imply an empty device', () => {
+  for (const output of ['', 'Error: unavailable', 'Accounts: 2', 'Accounts: 0\nAccounts: 1'])
+    assert.throws(() => waitForDisposablePolicyReadiness(() => output, { timeoutMs: 0 }));
+  assert(accountCountCommand.includes("grep -E '^[[:space:]]*Accounts: [0-9]+[[:space:]]*$'"));
+});
+
+test('the first boot-readiness refusal keeps its original pre-suite failure rather than becoming a flow pass', () => {
+  const base = 'docs/release/evidence/disposable-installation-guard-2026-10-18/policy-readiness-failure/';
+  const read = (path) => readFileSync(new URL('../' + base + path, import.meta.url));
+  const hashes = JSON.parse(read('artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 3);
+  for (const [path, expected] of Object.entries(hashes)) assert.equal(createHash('sha256').update(read(path)).digest('hex'), expected);
+  assert.equal(read('disposable-device-setup.json').length, 0);
+  assert.equal(JSON.parse(read('native-build-status.json')).status, 0);
+  assert(read('native-job.log').toString('utf8').includes('there are already some accounts on the device'));
 });

@@ -1,5 +1,23 @@
 # Disposable Test Phone Installation Guard
 
+## Boot Readiness Refusal
+
+[Run 39227739767](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39227739767)
+at `23e040e3cb274cbd1602e5d195e454394c0670ed` compiled the corrected runner but
+stopped before reaching it: device-owner provisioning returned the accounts-not-empty
+error. The three original artifacts/hashes are retained in
+`policy-readiness-failure/`. Setup output is empty and no flow was executed.
+That message alone does not establish that the disposable image had accounts:
+Android 15 returns the same failure while its boot account-compatibility cache
+is not ready. The source confirms that a null cache is treated as incompatible.
+
+Preparation now pauses the store first, waits read-only for the boot calculation
+to finish, and requires explicit zero account counts before its first owner
+attempt. Counts are filtered on-device; no account identity/authentication data is
+retained and no account is removed. Actual account conflicts and unknown readiness
+still stop the run. Failed setup now also emits typed cleanup receipts. A new
+native run is required; the original refusal is not rewritten as a passed trial.
+
 ## Approved Administration Trial
 
 The user approved temporary device administration on the disposable test phone

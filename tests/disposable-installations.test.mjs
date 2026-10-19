@@ -62,6 +62,10 @@ test('missing restriction support and ignored writes fail closed without an infe
     assert.throws(() => readInstallBlocked(device({ malformed }).shell));
   assert.throws(() => setInstallBlocked(device({ ignored: true }).shell, false), /not applied/);
 });
+test('restoring an already-original policy is a verified no-op, not an unnecessary privileged write', () => {
+  const phone = device({ blocked: false }); setInstallBlocked(phone.shell, false);
+  assert.equal(phone.blocked(), false); assert(!phone.calls.some((line) => line.startsWith('am broadcast')));
+});
 test('all instrumentation entry points use the guarded AndroidX runner and the explicit opt-in', () => {
   const runner = 'be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner';
   assert(read('android/app/build.gradle.kts').includes(`testInstrumentationRunner = "${runner}"`));

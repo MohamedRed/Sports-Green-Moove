@@ -145,6 +145,16 @@ checks and a sanitized stage label on failure. Android's
 uses `Runtime.exec(command)`, not an interactive shell: do not append exit-marker
 commands, pipes or command separators to a `UiAutomation` request.
 
+Before attempting device ownership once, setup waits read-only (at most 90 seconds)
+for Android's boot account-compatibility calculation to finish and verifies zero
+accounts. Account counts are filtered on-device; names and authentication records
+are not collected. An unfinished calculation can return the same provisioning
+error as a real account conflict. Existing accounts, an unavailable count or an
+unready policy service stop setup: no account is removed, no device is reset and
+provisioning is not retried. The store is already paused while waiting. Setup
+failures retain typed cleanup receipts without becoming successful trials.
+See [DevicePolicyManagerService](https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r1/services/devicepolicy/java/com/android/server/devicepolicy/DevicePolicyManagerService.java).
+
 Android 15 checks `DISALLOW_INSTALL_APPS` before admitting even ADB installation
 sessions, so keeping that restriction enabled while asking Gradle to install its
 test APK would prevent the test setup itself. The sequence above is intentional:

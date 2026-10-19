@@ -23,19 +23,25 @@ export function configureDisposableAndroid(env = process.env, execute = execFile
     .includes(`package:${launcher}`), 'Launcher isolation was not applied');
   let installAdmin, storePause;
   try {
-    installAdmin = blockInstallations ? prepareDisposableInstallAdmin(device, { approved: true }) : null;
     storePause = env.SGM_PAUSE_TEST_PHONE_STORE === 'true' ? pauseDisposableStore(shell, { blockInstallations }) : null;
+    installAdmin = blockInstallations ? prepareDisposableInstallAdmin(device, { approved: true }) : null;
     assert.deepEqual(androidMapsPrerequisites(shell), mapsRuntime, 'Maps runtime changed during test-device setup');
     return { serial, launcher, launcherDisabled: true, mapsRuntime, storePause, installAdmin,
       scope: 'disposable-emulator-without-home-navigation' };
   } catch (failure) {
     const errors = [failure];
-    if (storePause) try { restoreDisposableStore(shell, storePause); } catch (cleanup) { errors.push(cleanup); }
-    if (installAdmin) try { removeDisposableInstallAdmin(device, installAdmin); } catch (cleanup) { errors.push(cleanup); }
-    throw new AggregateError(errors, 'Disposable test-device preparation failed; cleanup attempted');
+    let storeCleanup = null, adminCleanup = failure.receipt?.cleanup ?? null;
+    if (storePause) try { storeCleanup = restoreDisposableStore(shell, storePause); }
+    catch (cleanup) { storeCleanup = cleanup.receipt ?? null; errors.push(cleanup); }
+    if (installAdmin) try { adminCleanup = removeDisposableInstallAdmin(device, installAdmin); }
+    catch (cleanup) { errors.push(cleanup); }
+    throw Object.assign(new AggregateError(errors, 'Disposable test-device preparation failed; cleanup attempted'), {
+      receipt: { scope: 'failed-disposable-device-setup-not-flow-proof', serial, storeCleanup, adminCleanup },
+    });
   }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  console.log(JSON.stringify(configureDisposableAndroid()));
+  try { console.log(JSON.stringify(configureDisposableAndroid())); }
+  catch (failure) { if (failure.receipt) console.log(JSON.stringify(failure.receipt)); throw failure; }
 }

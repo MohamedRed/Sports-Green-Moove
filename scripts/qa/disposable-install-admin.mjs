@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { readInstallBlocked, setInstallBlocked, assertNoActiveInstall } from './disposable-installations.mjs';
+import { waitForDisposablePolicyReadiness } from './disposable-policy-readiness.mjs';
 
 export const installAdminPackage = 'be.sportgreenmoove.qa.installguard';
 export const installAdminComponent = `${installAdminPackage}/.GuardAdminReceiver`;
@@ -29,7 +30,7 @@ export function removeDisposableInstallAdmin({ shell, command }, receipt) {
   assert.equal(readInstallBlocked(shell), receipt.originalBlocked, 'Original installation policy was not restored');
   return { authorizationRemoved: true, componentRemoved: true, originalPolicyRestored: true };
 }
-export function prepareDisposableInstallAdmin(device, { approved, apk = installAdminApk } = {}) {
+export function prepareDisposableInstallAdmin(device, { approved, apk = installAdminApk, readiness } = {}) {
   assert.equal(approved, true, 'Temporary test-phone administration requires explicit approval');
   assert(existsSync(apk), 'Build the disposable test administrator before starting the phone');
   const { shell, command } = device;
@@ -40,7 +41,9 @@ export function prepareDisposableInstallAdmin(device, { approved, apk = installA
   assert.equal(shell(...packageCommand), '', 'Do not reuse an existing installation guard');
   assert.equal(readInstallBlocked(shell), false, 'Do not clear an existing installation restriction');
   assertNoActiveInstall(shell);
-  const receipt = { packageName: installAdminPackage, originalBlocked: false };
+  waitForDisposablePolicyReadiness(shell, readiness);
+  assertNoActiveInstall(shell);
+  const receipt = { packageName: installAdminPackage, originalBlocked: false, policyReady: true, noAccounts: true };
   let installAttempted = false;
   try {
     installAttempted = true;
@@ -53,7 +56,10 @@ export function prepareDisposableInstallAdmin(device, { approved, apk = installA
     return receipt;
   } catch (failure) {
     const errors = [failure];
-    if (installAttempted) try { removeDisposableInstallAdmin(device, receipt); } catch (cleanup) { errors.push(cleanup); }
-    throw new AggregateError(errors, 'Temporary test administration setup failed; cleanup attempted');
+    let cleanup = null;
+    if (installAttempted) try { cleanup = removeDisposableInstallAdmin(device, receipt); } catch (error) { errors.push(error); }
+    throw Object.assign(new AggregateError(errors, 'Temporary test administration setup failed; cleanup attempted'), {
+      receipt: { scope: 'failed-disposable-admin-setup-not-flow-proof', installAttempted, cleanup },
+    });
   }
 }
