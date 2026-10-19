@@ -8,7 +8,7 @@ export const recentProgress = [
   { date: '2026-10-19', title: 'La carte et le véhicule sont visibles',
     text: 'Le nouvel essai ouvre la carte, puis s’arrête avant de vérifier le déplacement. Les repères sont corrigés ; le déplacement reste à rejouer.', flow: 'ride-observation' },
   { date: '2026-10-19', title: 'Le nouvel essai complet passe',
-    text: 'Réservations, messages, accords des parents et reprise du suivi passent en local. La carte et les essais sur téléphone restent à terminer.', flow: 'publication' },
+    text: 'Réservations, messages, accords des parents et reprise du suivi passent en local. Les essais sur téléphone restent ouverts.', flow: 'publication' },
   { date: '2026-10-19', title: 'Les essais locaux se ferment proprement',
     text: 'Après interruption, les services s’arrêtent et les données temporaires sont effacées. L’essai complet dans l’app reste à terminer.', flow: 'publication' },
   { date: '2026-10-19', title: 'Les positions impossibles sont refusées',
