@@ -14,9 +14,10 @@ internal val emergencyNativeChecks = listOf("adult-save-reload", "activity-recre
     "revoked-parent-dial-denied", "fresh-read-dialer-handoff-without-direct-call", "return-from-dialer",
     "cancelled-removal-no-write", "confirmed-removal-versioned", "account-isolation")
 
-internal fun captureEmergencyDialer(context: Context, device: UiDevice) {
+internal fun captureEmergencyDialer(context: Context, device: UiDevice, filename: String = "emergency-dialer-opened.png") {
+    check(Regex("[a-z0-9-]+\\.png").matches(filename))
     val directory = File(context.getExternalFilesDir(null), "local-ui-evidence"); check(directory.isDirectory || directory.mkdirs())
-    val file = File(directory, "emergency-dialer-opened.png"); check(device.takeScreenshot(file))
+    val file = File(directory, filename); check(!file.exists()); check(device.takeScreenshot(file))
     val bitmap = BitmapFactory.decodeFile(file.path) ?: error("Native dialer capture missing")
     try {
         check(bitmap.height > bitmap.width)

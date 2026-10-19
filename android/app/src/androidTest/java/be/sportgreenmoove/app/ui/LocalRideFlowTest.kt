@@ -48,6 +48,16 @@ class LocalRideFlowTest {
                 location.emit()
                 compose.onNodeWithTag(SgmTestTags.HomeRideAction).performClick()
                 waitFor(SgmTestTags.ActiveRideScreen)
+                val expectedRide = runBlocking { runtime.firebase.getActiveRide() } ?: error("Expected active fixture ride")
+                val contacts = LocalRideEmergencyUi(compose, runtime, session.getString("runId")) { locationServiceRunning(context) }
+                val driverContact = contacts.verify("driver", "+12025550125", "+12025550126", expectedRide)
+                logout(); login(session.getString("parent"), session.getString("password"))
+                openActiveRide()
+                val parentContact = contacts.verify("parent", "+12025550126", "+12025550125", expectedRide)
+                logout(); login(session.getString("driver"), session.getString("password"))
+                location.emit(); openActiveRide()
+                val resumedTracking = contacts.assertTracking("driver", "resumed")
+                writeRideEmergencyEvidence(context, session.getString("runId"), listOf(driverContact, parentContact), resumedTracking)
                 compose.onNodeWithTag(SgmTestTags.ActiveRideEndAction).assertIsNotEnabled()
                 repeat(2) { index ->
                     compose.onAllNodesWithTag(SgmTestTags.ActiveRideDropoffAction)[index].assertIsNotEnabled()
@@ -119,6 +129,13 @@ class LocalRideFlowTest {
         compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
         compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
         waitFor(SgmTestTags.AuthEmailAction)
+    }
+
+    private fun openActiveRide() {
+        compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
+        compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.ActiveRideResumeAction).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).performScrollTo().assertIsEnabled().performClick()
+        waitFor(SgmTestTags.ActiveRideScreen)
     }
 
     private fun waitFor(tag: String) {

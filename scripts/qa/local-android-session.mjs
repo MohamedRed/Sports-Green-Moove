@@ -92,7 +92,8 @@ try {
   }
   run(adb, ['-s', serial, 'shell', 'appops', 'set', 'be.sportgreenmoove.app.local', 'android:mock_location', 'allow']);
   instrument(['LocalRideFlowTest'], 1);
-  const ride = await verifyLocalRideUi();
+  collectEvidence('ride-emergency');
+  const ride = await verifyLocalRideUi(evidenceDir, session.runId);
   instrument(['LocalChatFlowTest'], 1);
   const chat = await verifyLocalChatUi();
   const directoryFixture = await seedChatDirectoryUiFixtures();

@@ -14,6 +14,21 @@ configuration and the generated `SGM_QA_PASSWORD`. Do not point the older native
 device shell helpers at production or publish their raw credential-entry captures.
 The local API suite does not install an APK or verify phone UI behavior.
 
+The expanded `LocalRideFlowTest` checks active-ride emergency entry for the driver
+and parent before its existing completion/review assertions. Both contacts are
+chosen and removed through the app, with actual dial-only handoffs and return to
+the same ride. `ride-emergency-evidence.mjs` requires two ordered actors and eight
+original captures, including the action screens and actual dialer windows. The
+host requires the primary `ride-emergency` copy, the original successful test
+transcript and four independently stored own-only operations. Two null revisions
+are retained; records are not falsely reported as deleted. Compilation/typed unit
+fixtures never count as this journey's execution, phone proof or store acceptance.
+`test:ride-emergency-fixture` separately uses actual isolated parent/driver
+callables to exercise that same stored-state verifier. It also rejects a foreign
+actor, contact data in a private operation and an extra operation, then verifies
+restored original fixture state. Its report explicitly denies native/ride/dialer
+execution and cannot replace the pending app trial.
+
 `test:emergency-contact-identity` exercises exact server-created child identities,
 fresh manager authority, stale forms/replays, races and fail-closed legacy data.
 `test:emergency-contact-fixture` separately prepares actual parent/manager

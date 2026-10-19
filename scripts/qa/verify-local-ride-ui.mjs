@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { db } from './local-flow-client.mjs';
+import { verifyRideEmergencyUi } from './verify-ride-emergency-ui.mjs';
 
-export async function verifyLocalRideUi() {
+export async function verifyLocalRideUi(directory, runId) {
   const rides = await db.collection('rideSessions').get();
   assert.equal(rides.size, 1, 'UI flow must create one real local ride');
   const snapshot = rides.docs[0];
@@ -27,5 +28,6 @@ export async function verifyLocalRideUi() {
   const ratings = await db.collection('ratings').where('rideSessionId', '==', snapshot.id).get();
   assert.equal(ratings.size, 1);
   assert.equal(ratings.docs[0].data().score, 5);
-  return { rideSessionId: snapshot.id, bookingCount: ride.bookingIds.length, auditEventCount: audit.size, ratingCount: ratings.size };
+  const emergency = await verifyRideEmergencyUi(directory, runId, { rideSessionId: snapshot.id, tripId: ride.tripId });
+  return { rideSessionId: snapshot.id, bookingCount: ride.bookingIds.length, auditEventCount: audit.size, ratingCount: ratings.size, emergency };
 }

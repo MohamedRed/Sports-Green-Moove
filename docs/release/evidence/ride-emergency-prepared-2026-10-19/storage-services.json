@@ -1,0 +1,42 @@
+{
+  "scope": "actual-contact-storage-verifier-not-native-ride-or-dialer",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6a0febf2621f36b3e424eab8fb4fc14d",
+  "testedAt": "2026-10-19T14:15:57.647Z",
+  "checks": [
+    {
+      "id": "two-actual-actors-produce-exact-private-removal-state",
+      "status": "passed"
+    },
+    {
+      "id": "foreign-actor-refused",
+      "status": "passed"
+    },
+    {
+      "id": "private-contact-payload-refused",
+      "status": "passed"
+    },
+    {
+      "id": "unexpected-extra-operation-refused",
+      "status": "passed"
+    },
+    {
+      "id": "original-state-restored-after-negative-verifier-cases",
+      "status": "passed"
+    }
+  ],
+  "actualActors": 2,
+  "privateOperationsVerified": 4,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "dialerOpened": false,
+  "rideJourneyExecuted": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/local-ride-emergency-fixture.mjs": "d39b0cf80b2ffaad864d5d5ac5bc3609aeed7d9dec408d20fad8ce96a4fbc7d6",
+    "scripts/qa/verify-ride-emergency-ui.mjs": "65f0f193bb62c397d7b63abc9d5898cac66086d4a2bd4ab6771ccbbbe0a4203d",
+    "functions/src/domain/emergencyContact.ts": "1d26580eb363e4786862f30eecf3e3849609537315ba8a6d35de774a7ddb3c63",
+    "functions/src/services/emergencyContact.ts": "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c"
+  }
+}

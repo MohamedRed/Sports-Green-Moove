@@ -6,6 +6,7 @@ import { XMLParser } from 'fast-xml-parser';
 import { fileURLToPath } from 'node:url';
 import { validateTeamNativeDevice, teamNativeChecks, teamNativeScreenshots } from '../scripts/qa/team-native-evidence.mjs';
 import { validateRetainedTeamEnrollment, validateTeamEnrollmentReport } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const completed = 'docs/release/evidence/local-team-enrollment-native-2026-10-19/';
@@ -121,10 +122,9 @@ test('the compiled emulator-profile replay and 16 original unit passes cannot im
     }
   }
   assert.equal(count, 16); assert.equal(report.unitCaseCount, count); assert(read(base + 'local-build.log').includes('BUILD SUCCESSFUL'));
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), report.sourceFiles);
   for (const [path, expected] of Object.entries(report.sourceFiles)) {
-    const source = path === 'scripts/qa/local-android-session.mjs'
-      ? 'docs/release/evidence/disposable-installation-guard-2026-10-18/prior-source/local-android-session.mjs.txt' : path;
-    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + source, import.meta.url))).digest('hex'), expected, path);
+    assert.equal(typeof expected, 'string');
     assert(read(path).split('\n').length < 300, path);
   }
 });

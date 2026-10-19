@@ -218,3 +218,34 @@ and separate manager verification, not a preseeded approval. It enters settings,
 not an active ride; child-profile recreation is still service/unit evidence,
 not an executed UI scenario. Physical-device, child-own-account and store-review
 requirements remain open. The later preparation failure is retained separately.
+
+## Active-Ride Verification Prepared
+
+`LocalRideFlowTest` now exercises the actual active-ride contact entry for the
+driver and parent before its existing passenger/completion/review checks. Each
+actor chooses a distinct fictional self contact through the app, opens the real
+dialer without calling, removes that contact and navigates back to the same ride.
+The parent must not inherit the driver's contact or see driver-only passenger/end
+controls. The driver then resumes that same ride before completing the original
+pickup/dropoff, ledger and rating journey. No original lifecycle check is removed.
+
+The same test case emits an eight-image, two-actor marker only after both contact
+journeys. The host requires the original successful instrumentation transcript,
+the primary `ride-emergency` transfer and four actor-bound private operations,
+with two retained null-contact revisions. Ride completion/audits/ledgers/rating
+must independently pass before a scoped contact result can be written. Cleanup
+copies cannot substitute for primary evidence. The full runner still counts the
+same native case, rather than inventing two extra executed tests.
+
+This change adds verification code, not an accepted UI outcome. Compilation and
+typed contract tests do not prove that this new journey has executed. Current
+published contact captures remain the settings-only 685c508 trial until new
+native evidence is obtained and reviewed. No physical-device or store-review
+requirement is accepted by this prepared test.
+
+Account-switch observations additionally require the driver's native tracking
+service to remain active around the contact handoff, to be absent for the parent,
+and to resume for the same driver before completing the ride. Bounded read-only
+observations are retained before a failed assertion; no account action is retried
+and no service is started/stopped by the test to manufacture that result. These
+service-presence checks are not physical GPS or native location-delivery proof.

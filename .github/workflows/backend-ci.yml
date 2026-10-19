@@ -101,7 +101,7 @@ jobs:
       - name: Test private emergency contact ownership and revocation
         run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
       - name: Test immutable child contact identity and independently verified fixtures
-        run: npm run test:emergency-contact-identity && npm run test:emergency-contact-fixture && node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs
+        run: npm run test:emergency-contact-identity && npm run test:emergency-contact-fixture && npm run test:ride-emergency-fixture && node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs
 
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs

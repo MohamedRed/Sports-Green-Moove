@@ -61,6 +61,7 @@
     "test:guardian-parent": "node scripts/qa/run-local-guardian-parent.mjs",
     "test:emergency-contact": "node scripts/qa/run-local-emergency-contact.mjs",
     "test:emergency-contact-identity": "node scripts/qa/run-local-emergency-identity.mjs",
+    "test:ride-emergency-fixture": "node scripts/qa/run-local-ride-emergency-fixture.mjs",
     "test:emergency-contact-fixture": "node scripts/qa/run-local-emergency-fixture.mjs",
     "test:team-enrollment": "node scripts/qa/run-local-team-enrollment.mjs",
     "test:team-enrollment-history": "node scripts/qa/run-local-team-history.mjs",
