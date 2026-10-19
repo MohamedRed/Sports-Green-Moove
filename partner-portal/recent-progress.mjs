@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le véhicule se déplace sur la carte',
+    text: 'L’essai local passe côté parent : deux positions de test, sans déplacer la carte. Deux captures sont ajoutées. Le suivi sur téléphone reste à tester.', flow: 'ride-observation' },
   { date: '2026-10-19', title: 'La vérification du déplacement reprend',
     text: 'La carte est visible. Le test est corrigé ; le nouvel essai doit encore confirmer le déplacement.', flow: 'ride-observation' },
   { date: '2026-10-19', title: 'Le déplacement reste à vérifier',

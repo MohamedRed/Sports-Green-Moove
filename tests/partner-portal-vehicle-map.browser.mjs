@@ -16,15 +16,18 @@ export async function verifyVehicleCoordinateChecks({ browser, base, output }) {
       await dialog.getByRole('heading', { name: flow.title, exact: true }).waitFor();
       for (let image = 0; image < flow.images.length; image++) {
         const item = flow.images[image];
-        if (item.file === 'vehicle-map-unverified') {
+        if (['vehicle-map-first', 'vehicle-map-moved', 'vehicle-map-unverified'].includes(item.file)) {
           await dialog.getByRole('img', { name: item.alt, exact: true }).waitFor();
           await page.waitForFunction(() => {
             const image = document.querySelector('.media-stage img');
             return image?.complete && image.naturalWidth > 0;
           });
           assert(await dialog.getByText(item.alt, { exact: true }).isVisible());
-          assert.match(item.alt, /arrêté avant de vérifier le déplacement/);
-          await page.screenshot({ path: `${output}/vehicle-map-unverified-${width}.png`, fullPage: false });
+          if (item.file === 'vehicle-map-unverified') assert.match(item.alt, /arrêté avant de vérifier le déplacement/);
+          else assert.match(item.alt, /position de test/i);
+          assert(await dialog.getByRole('img', { name: item.alt, exact: true })
+            .evaluate((image) => image.naturalWidth === 1080 && image.naturalHeight === 2400));
+          await page.screenshot({ path: `${output}/${item.file}-${width}.png`, fullPage: false });
         }
         await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click();
       }

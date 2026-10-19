@@ -32,6 +32,7 @@ on:
       - ".github/workflows/native-vehicle-map-ui.yml"
       - "scripts/run-vehicle-map-android-ui.sh"
       - "tests/vehicle-map-display.test.mjs"
+      - "tests/vehicle-map-retained-evidence.test.mjs"
       - ".github/actions/native-test-setup/**"
       - "scripts/run-real-maps-android-ui.sh"
       - "tests/real-map*.test.mjs"
@@ -117,6 +118,7 @@ on:
       - ".github/workflows/native-vehicle-map-ui.yml"
       - "scripts/run-vehicle-map-android-ui.sh"
       - "tests/vehicle-map-display.test.mjs"
+      - "tests/vehicle-map-retained-evidence.test.mjs"
       - ".github/actions/native-test-setup/**"
       - "scripts/run-real-maps-android-ui.sh"
       - "tests/real-map*.test.mjs"
@@ -214,7 +216,7 @@ jobs:
       - name: Validate selected ride observation and independent disposable trials
         run: node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
       - name: Validate vehicle coordinate projection and independent component layout scope
-        run: node --test tests/vehicle-map-contract.test.mjs tests/vehicle-map-display.test.mjs
+        run: node --test tests/vehicle-map-contract.test.mjs tests/vehicle-map-display.test.mjs tests/vehicle-map-retained-evidence.test.mjs
 
       - name: Validate SDK-connected team replay evidence requirements
         run: node --test tests/team-enrollment-sdk.test.mjs

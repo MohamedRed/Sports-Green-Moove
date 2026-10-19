@@ -57,6 +57,7 @@ on:
       - ".github/workflows/native-vehicle-map-ui.yml"
       - "scripts/run-vehicle-map-android-ui.sh"
       - "tests/vehicle-map-display.test.mjs"
+      - "tests/vehicle-map-retained-evidence.test.mjs"
       - "admin/**"
       - "docs/contracts/**"
       - "functions/**"
@@ -343,6 +344,7 @@ on:
       - ".github/workflows/native-vehicle-map-ui.yml"
       - "scripts/run-vehicle-map-android-ui.sh"
       - "tests/vehicle-map-display.test.mjs"
+      - "tests/vehicle-map-retained-evidence.test.mjs"
       - "admin/**"
       - "docs/contracts/**"
       - "functions/**"
@@ -697,7 +699,7 @@ jobs:
       - name: Verify authorized vehicle coordinates and invalid geographic input rejection
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-vehicle-map-services.json
-        run: npm run test:vehicle-map-services && node --test tests/vehicle-map-contract.test.mjs tests/vehicle-map-display.test.mjs
+        run: npm run test:vehicle-map-services && node --test tests/vehicle-map-contract.test.mjs tests/vehicle-map-display.test.mjs tests/vehicle-map-retained-evidence.test.mjs
 
       - name: Test owned enrollment history after eligibility and identity loss
         run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs

@@ -11,6 +11,7 @@ import { validateRideObservationReport, validateRetainedRideObservation } from '
 import { validateNativeStartupReport, validateRetainedNativeStartup } from '../scripts/qa/native-startup-retained-evidence.mjs';
 import { remoteRideStopScope, validateRemoteRideStopReport, validateRetainedRemoteRideStop } from '../scripts/qa/remote-ride-stop-evidence.mjs';
 import { validateRetainedVehicleMapServices } from '../scripts/qa/vehicle-map-evidence.mjs';
+import { validateRetainedVehicleMapDisplay } from '../scripts/qa/vehicle-map-retained-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -83,6 +84,17 @@ export function validate(root) {
       } else assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
       assert(f.ui.groups.length);
       for (const group of f.ui.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven UI check ${group}`);
+    }
+    if (f.mapUi) {
+      assert.equal(f.id, 'ride-observation'); assert.equal(f.status, 'partial');
+      assert(resolve(root, f.mapUi.source).startsWith(resolve(root, 'docs/release/evidence') + sep));
+      const report = validateRetainedVehicleMapDisplay(root, f.mapUi.source);
+      assert.equal(report.testedAt.slice(0, 10), f.checkedAt);
+      assert.deepEqual(f.mapUi.images, ['vehicle-map-first', 'vehicle-map-moved']);
+      for (const [index, id] of f.mapUi.images.entries()) {
+        assert(f.images.some((image) => image.file === id));
+        assert.equal(resolve(root, captures[id]), resolve(root, f.mapUi.source, '..', report.displays[index].screenFile));
+      }
     }
     if (f.phone) {
       assert.equal(f.status, 'partial', 'A bounded phone flow does not complete every release requirement');

@@ -44,10 +44,10 @@ test('an altered native transcript, marker, receipt or capture cannot be promote
 });
 test('the portal keeps observation separate from untested physical tracking with all eight reviewed states', () => {
   const flow = content.flows.find((item) => item.id === 'ride-observation');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, source); assert.equal(flow.images.length, 9);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, source); assert.equal(flow.images.length, 11);
   assert.equal(flow.images.at(-1).file, 'vehicle-map-unverified');
   assert.match(flow.images.at(-1).alt, /arrêté avant de vérifier le déplacement/);
-  assert.equal(flow.tour.length, 8); assert.match(flow.remaining, /carte.*vraies positions.*téléphone/);
+  assert.equal(flow.tour.length, 10); assert.match(flow.remaining, /vraies positions.*téléphone/);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
   assert.doesNotMatch(JSON.stringify(flow), /BrowserStack|Firebase|Android|SDK|emulator/i);
 });

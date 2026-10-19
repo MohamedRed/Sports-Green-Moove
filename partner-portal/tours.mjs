@@ -31,6 +31,8 @@ export const tours = {
     image('emergency-editor-changed', 'Si le téléphone ne s’ouvre pas', 'Dans cet essai simulé distinct, le nouveau numéro reste visible avec le message d’erreur.'),
   ],
   'ride-observation': [
+    image('vehicle-map-first', 'Voir le véhicule sur la carte', 'Une première position de test apparaît côté parent.'),
+    image('vehicle-map-moved', 'Recevoir la position suivante', 'Le véhicule bouge ; la carte et les repères du trajet restent fixes.'),
     image('ride-observation-fresh', 'Recevoir une position', 'Une position de test arrive sur le trajet ouvert côté parent.'),
     image('ride-observation-fresh-landscape', 'Tourner l’écran', 'Le parent reste sur le même trajet.'),
     image('ride-observation-stale', 'Attendre sans nouveau point', 'Après plus de 90 secondes, la position passe à vérifier.'),

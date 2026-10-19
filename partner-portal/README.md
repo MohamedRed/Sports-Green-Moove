@@ -61,6 +61,11 @@ shown before older service-check lists. A screen test does not accept GPS,
 background tracking, push delivery, live-provider or physical-device requirements.
 Never publish black/blank captures from rendering-disabled test device images.
 
+The parent ride's separate `mapUi` record binds two reviewed map captures to the
+actual native movement report, retained source, unchanged-camera assertions and
+verified disposal. Its synthetic driver coordinates do not accept physical GPS,
+child positions or ETA requirements; the flow remains partial.
+
 Browser assets use a content-derived directory so HTML, styles and JavaScript
 modules cannot accidentally reuse an older bundle after deployment. Publishing
 also checks that the generated bundle matches the current source.
