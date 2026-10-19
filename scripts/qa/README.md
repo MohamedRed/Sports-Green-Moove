@@ -169,6 +169,14 @@ never disables maps/location/Play services, pauses a personal device, interrupts
 an already-active installation, removes updates, or accepts physical-device
 evidence. The explicit policy is not enabled in production app code.
 
+A failed initial store pause retains its exact stage, original policy, observed
+stopped/background values and separate restoration outcomes in the outer failed
+device receipt. Read-only bounded process events retain only user 0 public store
+process names/PIDs/types/timestamps, not hosting payloads or other applications.
+An unavailable diagnostic cannot hide the initial error. No stop attempt is
+retried; successful restoration cannot turn failed preparation into a successful
+app trial. See `docs/release/evidence/store-pause-preparation-failure-2026-10-19/`.
+
 The user separately approved temporary test-device administration on 19 October.
 `SGM_TEST_PHONE_ADMIN_APPROVED=true` is also required. The standalone
 `qa-install-guard` debug module is compiled before boot, has `testOnly=true`, no

@@ -1,0 +1,49 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4090845Z file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/configure-disposable-android.mjs:38
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4092856Z     throw Object.assign(new AggregateError(errors, 'Disposable test-device preparation failed; cleanup attempted'), {
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4094701Z                         ^
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4095069Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4095617Z AggregateError: Disposable test-device preparation failed; cleanup attempted
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4096669Z     at configureDisposableAndroid (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/configure-disposable-android.mjs:38:25)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4097819Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/configure-disposable-android.mjs:45:36
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4098706Z     at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4099723Z     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4100473Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4100997Z   receipt: {
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4101700Z     scope: 'failed-disposable-device-setup-not-flow-proof',
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4102295Z     serial: 'emulator-5554',
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4111353Z     storeCleanup: null,
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4111881Z     adminCleanup: null
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4112213Z   },
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4112502Z   [errors]: [
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4113046Z     AggregateError: Store pause failed; original settings restoration attempted
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4114025Z         at pauseDisposableStore (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/disposable-store-pause.mjs:62:11)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4115279Z         at configureDisposableAndroid (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/configure-disposable-android.mjs:26:62)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4116470Z         at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/configure-disposable-android.mjs:45:36
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4117225Z         at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4117899Z         at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4118602Z         at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4119279Z       [errors]: [
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4119750Z         AssertionError [ERR_ASSERTION]: Store pause was not applied
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4120159Z         
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4120476Z         false !== true
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4120764Z         
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4121749Z             at pauseDisposableStore (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/disposable-store-pause.mjs:54:12)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4123258Z             at configureDisposableAndroid (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/configure-disposable-android.mjs:26:62)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4124433Z             at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/configure-disposable-android.mjs:45:36
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4125217Z             at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4125986Z             at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4126898Z             at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4127614Z           generatedMessage: false,
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4128214Z           code: 'ERR_ASSERTION',
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4128593Z           actual: false,
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4128930Z           expected: true,
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4129284Z           operator: 'strictEqual',
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4129647Z           diff: 'simple'
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4129933Z         }
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4130182Z       ]
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4130400Z     }
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4130635Z   ]
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4130887Z }
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4131220Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4131418Z Node.js v22.23.3
+Android native UI tests	Run Android Compose UI tests	2026-10-19T13:46:16.4176222Z ##[error]The process '/usr/bin/sh' failed with exit code 1

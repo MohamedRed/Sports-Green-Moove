@@ -116,7 +116,52 @@ test('failed pause or changed runtime rolls back without hiding the failure', ()
     assert.deepEqual(mock.background, { RUN_IN_BACKGROUND: 'allow', RUN_ANY_IN_BACKGROUND: 'allow' });
   }
 });
+test('failed initial stop retains its actual false observation and successful rollback without claiming verification', () => {
+  const mock = device({ stopIgnored: true });
+  assert.throws(() => pauseDisposableStore(mock.shell), (error) => {
+    assert.equal(error.errors[0].message.split('\n')[0], 'Store pause was not applied');
+    assert.equal(error.receipt.stage, 'stopped-verification'); assert.equal(error.receipt.observed.storeStopped, false);
+    assert.deepEqual(error.receipt.observed.background, storeBackgroundRestrictions);
+    assert.equal(error.receipt.original.wasStopped, false);
+    assert.deepEqual(error.receipt.restoration, { background: true, stopped: true });
+    assert.equal(error.receipt.restored, true); assert.equal(error.receipt.verified, false);
+    assert.equal(error.receipt.diagnostics.status, 'unavailable'); return true;
+  });
+  assert.equal(mock.calls.filter((line) => line.startsWith('am force-stop')).length, 1);
+});
 
+test('a failed rollback remains separate from the original stop failure', () => {
+  const mock = device({ stopIgnored: true });
+  const shell = (...args) => {
+    if (args.join(' ') === 'cmd appops set --user 0 com.android.vending RUN_ANY_IN_BACKGROUND allow') throw Error('restore failed');
+    return mock.shell(...args);
+  };
+  assert.throws(() => pauseDisposableStore(shell), (error) => {
+    assert.equal(error.errors.length, 2); assert.equal(error.receipt.observed.storeStopped, false);
+    assert.deepEqual(error.receipt.restoration, { background: false, stopped: true });
+    assert.equal(error.receipt.restored, false); assert.equal(error.receipt.verified, false); return true;
+  });
+});
+test('outer device setup retains the failed store observation rather than losing it as null cleanup', () => {
+  const mock = device({ stopIgnored: true });
+  const execute = (_command, args) => {
+    if (args[0] === 'devices') return 'List of devices attached\nemulator-5554\tdevice\n';
+    const shell = args.slice(3), command = shell.join(' ');
+    if (command === 'getprop ro.kernel.qemu') return '1';
+    if (command === 'pm path com.google.android.apps.nexuslauncher') return 'package:/system/launcher.apk';
+    if (command === 'pm disable-user --user 0 com.google.android.apps.nexuslauncher') return 'disabled-user';
+    if (command === 'pm list packages -d --user 0 com.google.android.apps.nexuslauncher') return 'package:com.google.android.apps.nexuslauncher';
+    return mock.shell(...shell);
+  };
+  assert.throws(() => configureDisposableAndroid({ SGM_LOCAL_DISPOSABLE_EMULATOR: 'true', SGM_PAUSE_TEST_PHONE_STORE: 'true' }, execute), (error) => {
+    assert.equal(error.receipt.scope, 'failed-disposable-device-setup-not-flow-proof');
+    assert.equal(error.receipt.storePauseFailure.scope, 'failed-store-pause-not-flow-proof');
+    assert.equal(error.receipt.storePauseFailure.observed.storeStopped, false);
+    assert.equal(error.receipt.storePauseFailure.restored, true);
+    assert.equal(error.receipt.storePauseFailure.verified, false);
+    assert.equal(error.receipt.storeCleanup, null); assert.equal(error.receipt.adminCleanup, null); return true;
+  });
+});
 test('a store service waking does not release the independently verified background restriction', () => {
   const mock = device(); const receipt = pauseDisposableStore(mock.shell); mock.resumeUnexpectedly();
   assert.deepEqual(mock.background, storeBackgroundRestrictions);

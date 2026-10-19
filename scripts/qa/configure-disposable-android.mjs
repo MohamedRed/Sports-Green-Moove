@@ -36,7 +36,8 @@ export function configureDisposableAndroid(env = process.env, execute = execFile
     if (installAdmin) try { adminCleanup = removeDisposableInstallAdmin(device, installAdmin); }
     catch (cleanup) { errors.push(cleanup); }
     throw Object.assign(new AggregateError(errors, 'Disposable test-device preparation failed; cleanup attempted'), {
-      receipt: { scope: 'failed-disposable-device-setup-not-flow-proof', serial, storeCleanup, adminCleanup },
+      receipt: { scope: 'failed-disposable-device-setup-not-flow-proof', serial, storeCleanup, adminCleanup,
+        ...(failure.receipt?.scope === 'failed-store-pause-not-flow-proof' ? { storePauseFailure: failure.receipt } : {}) },
     });
   }
 }

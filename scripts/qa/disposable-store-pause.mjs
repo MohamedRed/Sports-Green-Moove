@@ -3,6 +3,7 @@ import { androidMapsPrerequisites } from './android-maps-prerequisites.mjs';
 import { installationState } from './native-package-diagnostics.mjs';
 import { readStoreBackground, setStoreBackground, storeBackgroundRestrictions } from './disposable-store-background.mjs';
 import { assertNoActiveInstall, readInstallBlocked, setInstallBlocked } from './disposable-installations.mjs';
+import { readStoreProcessDiagnostics } from './disposable-store-diagnostics.mjs';
 
 export const storeStateCommand = 'dumpsys package com.android.vending | sed \'/Hidden system packages:/,$d\' | grep -E "^[[:space:]]*User 0:"';
 const store = 'com.android.vending';
@@ -48,18 +49,32 @@ export function pauseDisposableStore(shell, { blockInstallations = false } = {})
     assertNoActiveInstall(shell);
     installationPolicy = { originalBlocked };
   }
+  const observed = {}, restoration = { background: false, stopped: false };
+  let stage = 'background-policy';
   try {
     setStoreBackground(shell, storeBackgroundRestrictions);
+    observed.background = readStoreBackground(shell);
+    stage = 'force-stop';
     shell('am', 'force-stop', '--user', '0', store);
-    assert.equal(stopped(shell), true, 'Store pause was not applied');
+    stage = 'stopped-verification';
+    observed.storeStopped = stopped(shell);
+    assert.equal(observed.storeStopped, true, 'Store pause was not applied');
+    stage = 'active-install-verification';
     noStoreInstall(shell);
+    stage = 'maps-runtime-verification';
     assert.deepEqual(androidMapsPrerequisites(shell), mapsRuntime, 'Maps runtime changed during store pause');
+    stage = 'location-verification';
     locationEnabled(shell);
   } catch (failure) {
-    const errors = [failure];
-    for (const restore of [() => setStoreBackground(shell, originalBackground), () => restoreStoppedState(shell, wasStopped)])
-      try { restore(); } catch (cleanup) { errors.push(cleanup); }
-    throw new AggregateError(errors, 'Store pause failed; original settings restoration attempted');
+    const errors = [failure], diagnostics = readStoreProcessDiagnostics(shell);
+    for (const [name, restore] of [['background', () => setStoreBackground(shell, originalBackground)],
+      ['stopped', () => restoreStoppedState(shell, wasStopped)]])
+      try { restore(); restoration[name] = true; } catch (cleanup) { errors.push(cleanup); }
+    throw Object.assign(new AggregateError(errors, 'Store pause failed; original settings restoration attempted'), {
+      receipt: { scope: 'failed-store-pause-not-flow-proof', stage, original: { wasStopped, background: originalBackground,
+        mapsRuntime, locationEnabled: true, ...(installationPolicy ? { installationPolicy } : {}) },
+      observed, diagnostics, restoration, restored: Object.values(restoration).every(Boolean), verified: false },
+    });
   }
   return { method: 'restricted-store-background', wasStopped, originalBackground, mapsRuntime, locationEnabled: true,
     ...(installationPolicy ? { installationPolicy } : {}) };

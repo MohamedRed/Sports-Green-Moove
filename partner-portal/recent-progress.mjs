@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le dernier essai s’arrête avant l’app',
+    text: 'Le réglage temporaire du téléphone n’a pas été confirmé. L’essai s’arrête sans valider de nouveau parcours.', flow: 'publication' },
   { date: '2026-10-19', title: 'Un profil recréé ne reprend plus l’ancien contact',
     text: 'En local, l’ancien contact ne revient plus sur un profil enfant recréé. Le nouveau contrôle reste à tester dans l’app.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Les anciennes demandes restent accessibles',

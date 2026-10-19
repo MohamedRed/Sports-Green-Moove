@@ -933,7 +933,8 @@
       "sourcePath": "scripts/run-android-ui-tests-and-collect-screenshots.sh",
       "recoveredFromGitCommit": "b20d5ce3656e94b97cd7e105a95aefba38e8b795",
       "reports": [
-        "team-history-dialog-pass-2026-10-19/results.json"
+        "team-history-dialog-pass-2026-10-19/results.json",
+        "store-pause-preparation-failure-2026-10-19/results.json"
       ]
     },
     "fbbc041423ce95eb430171a4f1e86cbd1673856b0bdf47d0dcdb9fb97fc1fd7f": {
@@ -948,6 +949,20 @@
       "recordedFrom": "interrupted-preparation-worktree",
       "reports": [
         "phone-emergency-preparation-2026-10-19/session-results.json"
+      ]
+    },
+    "eb482cb513c51131ea84ea111db3a2df7459a50ad5567d8fe760e41f249510b4": {
+      "sourcePath": "scripts/qa/disposable-store-pause.mjs",
+      "recoveredFromGitCommit": "707dd744cf31c4678e0c4792339148414cac56a8",
+      "reports": [
+        "store-pause-preparation-failure-2026-10-19/results.json"
+      ]
+    },
+    "8ac5f7729679a855a4a0a259e4c39846d3f3de007ade7dadcdb4904e500f3c0e": {
+      "sourcePath": "scripts/qa/configure-disposable-android.mjs",
+      "recoveredFromGitCommit": "707dd744cf31c4678e0c4792339148414cac56a8",
+      "reports": [
+        "store-pause-preparation-failure-2026-10-19/results.json"
       ]
     }
   }
