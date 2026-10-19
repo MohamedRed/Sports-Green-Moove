@@ -1280,7 +1280,8 @@
       "recordedFrom": "actual-local-callable-worktree",
       "reports": [
         "location-freshness-2026-10-19/services.json",
-        "location-freshness-2026-10-19/initial-unclosed-client.json"
+        "location-freshness-2026-10-19/initial-unclosed-client.json",
+        "location-order-2026-10-19/before-failure.json"
       ]
     },
     "c47e9dc454b7f71ab06b380464b2c6171058a539c8fe5a4c728ec0fe853fec6a": {
@@ -1310,6 +1311,87 @@
       "recoveredFromGitCommit": "a7dae8a99809ef64b17b0b189014d11411358fc0",
       "reports": [
         "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "4f14132bd657daf8d0868f5030b039b18a0ba1be637f7b1257cf95662b68c365": {
+      "sourcePath": "functions/src/lib/liveTrips.ts",
+      "recoveredFromGitCommit": "64f9173f6bd82564b74d08e162dc9c6d2fa4d04a",
+      "reports": [
+        "location-order-2026-10-19/before-failure.json"
+      ]
+    },
+    "df5601c6fa78f1ff421db47ce0dfbc59ce58cd25831ce1811aff5716edecdef5": {
+      "sourcePath": "functions/src/services/radarReconciliation.ts",
+      "recoveredFromGitCommit": "64f9173f6bd82564b74d08e162dc9c6d2fa4d04a",
+      "reports": [
+        "location-order-2026-10-19/before-failure.json"
+      ]
+    },
+    "50cf14c23e4bcccd4ee8a9918ee18f62f0faea1874d1da7ea9b1ca0b0c713f2d": {
+      "sourcePath": "scripts/qa/local-location-order.mjs",
+      "recordedFrom": "original-negative-local-replay",
+      "reports": [
+        "location-order-2026-10-19/before-failure.json"
+      ]
+    },
+    "76957e46f6287a88fa7afe001c5953c885e3a6c2934e7d2dd9d8db4bef2f2c47": {
+      "sourcePath": "scripts/qa/local-location-order.mjs",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json",
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "38cc3b0e46bdeac7e5efe7cd0c0396ee0db1f4d5e236162a6f5763d88f8a5580": {
+      "sourcePath": "functions/src/lib/liveTrips.ts",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json"
+      ]
+    },
+    "d4a293f240751d0dbac95e8fe6879b58a15ec3b8fc35db87a5fe7535f72d08a9": {
+      "sourcePath": "functions/src/domain/liveLocationOrder.ts",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json",
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "56c129a9d575f702e51157220cd4ce4a116a02746b12ab70852b8f8df1f13c2b": {
+      "sourcePath": "functions/src/callables/locations.ts",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json",
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "f38972a973285af35d8e04fff75acd4471dfc6d9a67e9016f426265a466268f2": {
+      "sourcePath": "functions/src/services/radarReconciliation.ts",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json",
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "ca042cc141af97b5382129510042cdd6b7fa62a9d2761f33685a5304819345ad": {
+      "sourcePath": "functions/src/__tests__/live-location-order.test.ts",
+      "recordedFrom": "338-passing-functions-unit-run",
+      "reports": [
+        "location-order-2026-10-19/results.json"
+      ]
+    },
+    "a09c4d700f9b2cc966b7215afae16dfa373c3b4c2e55c65053093e1002d67cea": {
+      "sourcePath": "functions/src/lib/liveTrips.ts",
+      "recordedFrom": "completed-transaction-reevaluation-verification",
+      "reports": [
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "896df0b6e793820b295c457831fc1a4e2f8290336142e2f326c453043de7c08f": {
+      "sourcePath": "functions/src/__tests__/live-trips-write.test.ts",
+      "recordedFrom": "completed-transaction-reevaluation-verification",
+      "reports": [
+        "location-order-reevaluation-2026-10-19/results.json"
       ]
     }
   }

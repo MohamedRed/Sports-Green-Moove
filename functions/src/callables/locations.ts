@@ -31,8 +31,9 @@ export const writeLocationBatch = onCall(async (request) => {
     }
   }
 
-  await Promise.all(updates.map((update) => writeLiveLocation(update)));
-  return { written: updates.length };
+  const results = await Promise.all(updates.map((update) => writeLiveLocation(update)));
+  const written = results.filter(Boolean).length;
+  return { written, ignored: results.length - written };
 });
 
 async function loadRideSessions(rideSessionIds: string[]): Promise<Map<string, LocationAccessRideSession>> {

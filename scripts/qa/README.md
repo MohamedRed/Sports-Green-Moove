@@ -20,6 +20,12 @@ refused parent driver uploads and a recent point retaining its real observation
 age. It closes the administrative database client before writing a successful
 report. These data checks do not prove phone UI refresh, GPS or provider delivery.
 
+`test:location-order` reproduces delayed and duplicate native uploads and twelve
+concurrent requests, verifies parent access, and exercises the shared location
+writer plus delayed-event audit reconciliation. Its ten groups preserve separate
+vehicle/child registers and count only committed points. Direct administrative
+writer checks are not child-device authorization or signed-webhook evidence.
+
 The expanded `LocalRideFlowTest` checks active-ride emergency entry for the driver
 and parent before its existing completion/review assertions. Both contacts are
 chosen and removed through the app, with actual dial-only handoffs and return to

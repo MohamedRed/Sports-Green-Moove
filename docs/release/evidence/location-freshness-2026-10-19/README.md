@@ -43,3 +43,9 @@ not an accepted run. The workflow budget is now 30 minutes to accommodate its
 expanded isolated suites while preserving every assertion, rule check, build and
 cleanup artifact. No retry, disabled check or successful outcome is substituted;
 the complete new-head workflow must still execute.
+
+A subsequent, separate ordering repair and ten-group local replay are retained
+in `../location-order-2026-10-19`. They prevent older observations from replacing
+newer stored points; the original freshness evidence above is unchanged. That
+additional data proof does not close continuous UI, ETA ordering, provider
+delivery, clock differences or physical-device requirements.

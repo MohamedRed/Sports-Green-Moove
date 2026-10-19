@@ -81,6 +81,7 @@ on:
       - "tests/ride-emergency-completed-evidence.test.mjs"
       - "tests/ride-location-ownership.test.mjs"
       - "tests/location-freshness-evidence.test.mjs"
+      - "tests/location-order-evidence.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*Emergency*.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt"
@@ -343,6 +344,7 @@ on:
       - "tests/ride-emergency-completed-evidence.test.mjs"
       - "tests/ride-location-ownership.test.mjs"
       - "tests/location-freshness-evidence.test.mjs"
+      - "tests/location-order-evidence.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*Emergency*.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt"
@@ -634,6 +636,9 @@ jobs:
 
       - name: Verify observation freshness through isolated authenticated location calls
         run: npm run test:location-freshness && node --test tests/location-freshness-evidence.test.mjs
+
+      - name: Verify atomic observation ordering through concurrent location calls
+        run: npm run test:location-order && node --test tests/location-order-evidence.test.mjs
 
       - name: Test owned enrollment history after eligibility and identity loss
         run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs

@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Les positions ne reviennent plus en arrière',
+    text: 'Un ancien point reçu en retard ne remplace plus le plus récent. Dix contrôles locaux passent ; l’affichage en direct reste à terminer.', flow: 'tracking' },
   { date: '2026-10-19', title: 'Le contact s’ouvre pendant le trajet',
     text: 'Conducteur puis parent ouvrent leur numéro, sans appel, et reviennent au même trajet. L’essai local passe ; huit captures sont ajoutées.', flow: 'ride-emergency' },
   { date: '2026-10-19', title: 'Une position ancienne garde son âge',
