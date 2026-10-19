@@ -13,7 +13,7 @@ export const blockers = [
     next: 'Rejouer sur téléphone avant publication. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-history-2026-10-18/README.md' },
   { id: 'emergency-contact', title: 'Tester le contact d’urgence',
     text: 'Le numéro enregistré ouvre le téléphone en local, sans appeler. Les essais de suppression et de changement de compte passent aussi.',
-    next: 'Terminer l’accès de l’enfant et l’entrée depuis un trajet. Rejouer sur téléphone sans lancer d’appel.', source: 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/README.md' },
+    next: 'Terminer l’accès de l’enfant et l’entrée depuis un trajet. Rejouer sur téléphone sans lancer d’appel.', source: 'docs/release/evidence/local-contact-identity-pass-2026-10-19/README.md' },
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
     text: 'Le renvoi depuis la recherche retrouve une seule demande en local.',
     next: 'Rejouer après réouverture, depuis les autres écrans et sur téléphone. Terminer les confirmations des parents.', source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },

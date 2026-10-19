@@ -209,3 +209,12 @@ records fail explicitly pending an approved migration; no old-data fallback or
 automatic migration is provided. Backend and Android changes must ship together.
 No production deployment, new dialer/phone proof or store-review acceptance follows
 from the eleven identity, sixteen baseline and five fixture service checks.
+
+The subsequent local Android replay at 685c508 passed the nine contact checks with
+this protocol. `local-contact-identity-pass-2026-10-19` retains the actual dialer,
+seven reviewed captures, primary transcript/export, three independently verified
+operations and successful cleanup. The fixture now uses an actual parent request
+and separate manager verification, not a preseeded approval. It enters settings,
+not an active ride; child-profile recreation is still service/unit evidence,
+not an executed UI scenario. Physical-device, child-own-account and store-review
+requirements remain open. The later preparation failure is retained separately.

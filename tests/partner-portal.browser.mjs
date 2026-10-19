@@ -179,7 +179,7 @@ try {
           const expected = flow.images.find((item) => item.file === flow.tour[step].image);
           assert.equal(await page.locator('.media-stage img').getAttribute('alt'), expected.alt);
           assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
-          if (flow.tour[step].image === 'emergency-passed-dialer')
+          if (flow.tour[step].image === 'emergency-current-dialer')
             await page.screenshot({ path: `${output}/contact-dialer-${width}.png`, fullPage: false });
         }
       }

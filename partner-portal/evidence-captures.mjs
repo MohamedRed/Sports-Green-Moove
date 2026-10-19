@@ -1,4 +1,11 @@
 export const captures = {
+  'emergency-current-saved': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-self-saved.png',
+  'emergency-current-restored': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-self-restored.png',
+  'emergency-current-child': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-child-saved.png',
+  'emergency-current-revoked': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-child-revoked.png',
+  'emergency-current-dialer': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-dialer-opened.png',
+  'emergency-current-removed': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-self-removed.png',
+  'emergency-current-account': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-other-account.png',
   'team-history-list': 'docs/release/evidence/phone-team-history-2026-10-19/history-list.png',
   'team-history-page-2': 'docs/release/evidence/phone-team-history-2026-10-19/history-page-2.png',
   'team-history-confirmation': 'docs/release/evidence/phone-team-history-2026-10-19/history-confirmation.png',

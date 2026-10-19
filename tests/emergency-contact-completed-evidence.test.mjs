@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { content } from '../partner-portal/content.mjs';
+import { captures } from '../partner-portal/evidence-captures.mjs';
 import { validateEmergencyDevice } from '../scripts/qa/emergency-contact-evidence.mjs';
 import { fileURLToPath } from 'node:url';
 import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
@@ -50,8 +51,38 @@ test('executed synchronization regressions and successful restoration do not con
   const restore = json(base + 'disposable-store-restore.json'); assert.equal(restore.restored, true); assert.equal(restore.verified, true);
   assert.equal(restore.observed.mapsRuntime.playServicesEnabled, true); assert.equal(restore.observed.locationEnabled, true);
   const flow = content.flows.find((item) => item.id === 'emergency-contact');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, base + 'emergency-contact-results.json');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-contact-results.json');
   assert.match(flow.remaining, /enfant/); assert.match(flow.remaining, /trajet/);
-  assert.equal(flow.images.filter((item) => item.file.startsWith('emergency-passed-')).length, 7);
+  assert.equal(flow.images.filter((item) => item.file.startsWith('emergency-current-')).length, 7);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+});
+test('the corrected protocol executes nine contact checks with independent parent verification and primary evidence', () => {
+  const path = 'docs/release/evidence/local-contact-identity-pass-2026-10-19/';
+  const report = json(path + 'emergency-contact-results.json'), sources = json(path + 'source-bindings.json');
+  assert.equal(report.runId, '8c355152996e0efebf03d9b084ea39b4'); assert.equal(report.testedAt.slice(0, 10), '2026-10-19');
+  validateEmergencyDevice(json(path + 'emergency-contact-device.json'), json(path + 'adb-pull-emergency-contact.json'), report.runId, (file) => read(path + file));
+  assert.equal(report.verificationPreseeded, false); assert.equal(report.managerDecisionMethod, 'authenticated-local-sdk-request-verify-revoke');
+  for (const key of ['protectedRecordsUnchanged', 'isolatedFixtureCleanupVerified', 'dialerOpened']) assert.equal(report[key], true);
+  assert.equal(report.privateOperationsVerified, 3); assert.equal(report.checks.length, 9);
+  assert(report.checks.every((item) => item.status === 'passed')); assert.equal(report.directCallIntentCount, 0);
+  assert.equal(sha(read(path + 'LocalEmergencyContactFlowTest-instrumentation.txt')), report.transcriptSha256);
+  assert.match(text(path + 'LocalEmergencyContactFlowTest-instrumentation.txt'), /OK \(1 test\)/);
+  assert.equal(sources.sourceCommit, '685c5080f5391ba7ada966ba81e3a012183f03f6'); assert.equal(sources.sourceCiNativePassed, true);
+  for (const key of ['childProfileRecreationUiExecuted', 'activeRideEntryExecuted', 'physicalDevice', 'storeReviewAccepted', 'productionWrites']) assert.equal(sources[key], false);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), report.sourceFiles);
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), sources.sourceFiles);
+  const restored = json(path + 'disposable-store-restore.json'); assert.equal(restored.restored, true); assert.equal(restored.verified, true);
+  assert.equal(restored.installAdmin.authorizationRemoved, true); assert.equal(restored.installAdmin.componentRemoved, true);
+  assert.deepEqual(json(path + 'native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 0, componentEvidence: 0, localReplay: 0 });
+  for (const [file, hash] of Object.entries(json(path + 'artifact-sha256.json'))) {
+    const raw = read(path + file); assert.equal(sha(raw), hash, file);
+    if (!file.endsWith('.png')) assert.doesNotMatch(raw.toString(), /AIza[\w-]{20,}|Bearer\s+[\w.-]+|"password"\s*:/);
+  }
+  const files = { saved: 'emergency-self-saved.png', restored: 'emergency-self-restored.png', child: 'emergency-child-saved.png',
+    revoked: 'emergency-child-revoked.png', dialer: 'emergency-dialer-opened.png', removed: 'emergency-self-removed.png', account: 'emergency-other-account.png' };
+  for (const [id, file] of Object.entries(files)) {
+    assert.equal(captures['emergency-current-' + id], path + file);
+    assert.equal(captures['emergency-passed-' + id], base + file);
+  }
 });

@@ -95,7 +95,7 @@ test('the actual failed contact replay preserves observations without inventing 
     scope: 'native-suite-exit-status-not-flow-verification', ordinaryTests: 0, componentEvidence: 0, localReplay: 1 });
   const flow = content.flows.find((item) => item.id === 'emergency-contact'); assert.equal(flow.status, 'partial');
   assert.match(flow.verified, /passent en local/); assert.match(flow.remaining, /sans appeler/);
-  assert.equal(flow.images.filter((image) => image.file.startsWith('emergency-passed-')).length, 7);
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-contact-dialer-pass-2026-10-18/emergency-contact-results.json');
+  assert.equal(flow.images.filter((image) => image.file.startsWith('emergency-current-')).length, 7);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-contact-results.json');
   assert(content.updates.some((item) => item.title === 'Les 34 parcours locaux vont jusqu’au bout'));
 });
