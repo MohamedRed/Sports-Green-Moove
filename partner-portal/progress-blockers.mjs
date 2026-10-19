@@ -1,4 +1,7 @@
 export const blockers = [
+  { id: 'dependency-security', title: 'Terminer les contrôles de sécurité',
+    text: 'Un premier défaut est corrigé et testé. D’autres alertes restent à examiner.',
+    next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/proxy-trust-security-2026-10-19/README.md' },
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
     text: 'Les inscriptions passent entre le téléphone et le club. Le dernier essai complet s’arrête plus tôt, pendant la préparation de l’appareil.',
     next: 'Fiabiliser la préparation et terminer l’essai complet, puis rejouer les autres parcours sur téléphone.', source: 'docs/release/evidence/disposable-installation-guard-2026-10-18/preparation-failure-21190ff/README.md' },

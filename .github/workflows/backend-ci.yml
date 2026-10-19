@@ -62,6 +62,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Test runtime proxy trust against forwarded-address spoofing
+        run: node --test tests/proxy-trust-security.test.mjs
+
       - name: Test functions
         run: npm run test --workspace functions
 

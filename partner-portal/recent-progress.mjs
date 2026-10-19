@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Un contrôle de sécurité est corrigé',
+    text: 'Quatre essais passent après correction. Les autres alertes restent à examiner avant la mise en ligne.', flow: 'publication' },
   { date: '2026-10-19', title: 'Le parent et le club passent ensemble sur téléphone',
     text: 'Demande, refus, nouvel accord et retrait passent. Le parent inscrit aussi son enfant et retrouve l’accord du club. Les captures sont ajoutées.', flow: 'team-enrollment' },
   { date: '2026-10-19', title: 'Les réponses du club reviennent dans l’app',
