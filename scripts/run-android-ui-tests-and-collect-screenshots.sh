@@ -153,6 +153,10 @@ node "$repo_root/scripts/qa/run-local-native-startup-ui.mjs" || startup_status=$
 printf '{"scope":"native-startup-command-status-not-flow-verification","status":%s}\n' \
   "$startup_status" > "$output_dir/native-startup-suite-status.json"
 remote_stop_status=0
+emergency_identity_status=0
+node "$repo_root/scripts/qa/run-local-emergency-identity-ui.mjs" || emergency_identity_status=$?
+printf '{"scope":"emergency-identity-command-status-not-flow-verification","status":%s}\n' \
+  "$emergency_identity_status" > "$output_dir/emergency-identity-suite-status.json"
 node "$repo_root/scripts/qa/run-local-remote-ride-stop-ui.mjs" || remote_stop_status=$?
 printf '{"scope":"remote-ride-stop-command-status-not-flow-verification","status":%s}\n' \
   "$remote_stop_status" > "$output_dir/remote-ride-stop-suite-status.json"
@@ -164,4 +168,5 @@ if [[ "$capture_status" -ne 0 ]]; then exit "$capture_status"; fi
 if [[ "$replay_status" -ne 0 ]]; then exit "$replay_status"; fi
 if [[ "$observation_status" -ne 0 ]]; then exit "$observation_status"; fi
 if [[ "$startup_status" -ne 0 ]]; then exit "$startup_status"; fi
+if [[ "$emergency_identity_status" -ne 0 ]]; then exit "$emergency_identity_status"; fi
 exit "$remote_stop_status"

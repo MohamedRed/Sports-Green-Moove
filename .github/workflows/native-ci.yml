@@ -47,6 +47,7 @@ on:
       - "tests/local-ui-config.test.mjs"
       - "tests/emergency-contact-native.test.mjs"
       - "tests/emergency-contact-identity.test.mjs"
+      - "tests/emergency-identity-ui.test.mjs"
       - "tests/manual-emergency-checkpoints.test.mjs"
       - "tests/ride-emergency-evidence.test.mjs"
       - "tests/ride-emergency-completed-evidence.test.mjs"
@@ -134,6 +135,7 @@ on:
       - "tests/local-ui-config.test.mjs"
       - "tests/emergency-contact-native.test.mjs"
       - "tests/emergency-contact-identity.test.mjs"
+      - "tests/emergency-identity-ui.test.mjs"
       - "tests/manual-emergency-checkpoints.test.mjs"
       - "tests/ride-emergency-evidence.test.mjs"
       - "tests/ride-emergency-completed-evidence.test.mjs"
@@ -207,6 +209,9 @@ jobs:
 
       - name: Validate team enrollment unit and compiled-screen scope
         run: node --test tests/team-enrollment-native-contract.test.mjs tests/team-club-identity.test.mjs
+
+      - name: Validate recreated child contact UI proof contract
+        run: node --test tests/emergency-identity-ui.test.mjs
 
       - name: Validate owned enrollment history source and dated evidence boundaries
         run: node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs

@@ -31,6 +31,7 @@ function fixture(t) {
     '*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;',
     '*run-local-ride-observation-ui.mjs) echo observation >> "$CALL_LOG"; exit "${OBSERVATION_STATUS:-0}";;',
     '*run-local-native-startup-ui.mjs) echo startup >> "$CALL_LOG"; exit "${STARTUP_STATUS:-0}";;',
+    '*run-local-emergency-identity-ui.mjs) echo emergency-identity >> "$CALL_LOG"; exit "${EMERGENCY_IDENTITY_STATUS:-0}";;',
     '*run-local-remote-ride-stop-ui.mjs) echo remote-stop >> "$CALL_LOG"; exit "${REMOTE_STOP_STATUS:-0}";;',
     '*) exit 99;;', 'esac', '',
   ].join('\n'));
@@ -81,13 +82,16 @@ for (const [name, env, exit, statuses] of [
   ['an earlier replay failure is preserved when the ride observation also fails', { REPLAY_STATUS: '11', OBSERVATION_STATUS: '29' }, 11, [0, 0, 11]],
   ['the independent native startup failure cannot produce a green suite', { STARTUP_STATUS: '31' }, 31, [0, 0, 0]],
   ['a startup failure cannot overwrite the earlier observation failure', { OBSERVATION_STATUS: '29', STARTUP_STATUS: '31' }, 29, [0, 0, 0]],
+  ['child identity failure cannot produce a green suite', { EMERGENCY_IDENTITY_STATUS: '41' }, 41, [0, 0, 0]],
+  ['child identity failure does not overwrite startup failure', { STARTUP_STATUS: '31', EMERGENCY_IDENTITY_STATUS: '41' }, 31, [0, 0, 0]],
+  ['remote stop failure does not overwrite child identity failure', { EMERGENCY_IDENTITY_STATUS: '41', REMOTE_STOP_STATUS: '37' }, 41, [0, 0, 0]],
   ['remote stop failure cannot produce a green suite', { REMOTE_STOP_STATUS: '37' }, 37, [0, 0, 0]],
   ['remote stop failure cannot overwrite startup failure', { STARTUP_STATUS: '31', REMOTE_STOP_STATUS: '37' }, 31, [0, 0, 0]],
 ]) test(name, (t) => {
   const result = fixture(t)(env);
   assert.equal(result.status, exit, result.stderr);
   assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', ...(env.ORDINARY_STATUS ? ['diagnostic'] : []),
-    ...(env.CAPTURE_FAILURE ? ['host-health'] : []), 'replay', ...(env.REPLAY_STATUS ? ['host-health'] : []), 'observation', 'startup', 'remote-stop', 'restore']);
+    ...(env.CAPTURE_FAILURE ? ['host-health'] : []), 'replay', ...(env.REPLAY_STATUS ? ['host-health'] : []), 'observation', 'startup', 'emergency-identity', 'remote-stop', 'restore']);
   assert.deepEqual(result.build, { scope: 'native-build-before-device-policy-not-flow-verification', status: 0 });
   assert.equal(result.statuses.scope, 'native-suite-exit-status-not-flow-verification');
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
@@ -100,7 +104,7 @@ test('failed suites retain partial payment and other component captures without 
   for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history']) {
     assert(result.adbCalls.some((call) => call.startsWith('pull /sdcard/Download/' + name + ' ') && call.endsWith('/partial-components')));
   }
-  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'observation', 'startup', 'remote-stop', 'restore']);
+  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'observation', 'startup', 'emergency-identity', 'remote-stop', 'restore']);
   assert.equal(result.statuses.ordinaryTests, 7);
 });
 
@@ -108,7 +112,7 @@ test('unavailable process diagnostics never suppress the original failure or the
   const result = fixture(t)({ ORDINARY_STATUS: '7', DIAGNOSTIC_STATUS: '9' });
   assert.equal(result.status, 7);
   assert.match(result.stdout, /original test failure is preserved/);
-  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'observation', 'startup', 'remote-stop', 'restore']);
+  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'observation', 'startup', 'emergency-identity', 'remote-stop', 'restore']);
   assert.equal(result.statuses.ordinaryTests, 7);
 });
 
@@ -126,15 +130,15 @@ test('an unverified installation guard stops further replay and still runs resto
 
 test('store cleanup failure cannot produce a green suite or overwrite an earlier failure', (t) => {
   const success = fixture(t)({ RESTORE_STATUS: '13' });
-  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['build', 'setup', 'ordinary', 'replay', 'observation', 'startup', 'remote-stop', 'restore']);
+  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['build', 'setup', 'ordinary', 'replay', 'observation', 'startup', 'emergency-identity', 'remote-stop', 'restore']);
   const failure = fixture(t)({ RESTORE_STATUS: '13', REPLAY_STATUS: '11' });
-  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['build', 'setup', 'ordinary', 'replay', 'host-health', 'observation', 'startup', 'remote-stop', 'restore']);
+  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['build', 'setup', 'ordinary', 'replay', 'host-health', 'observation', 'startup', 'emergency-identity', 'remote-stop', 'restore']);
 });
 
 test('unavailable host observations never suppress either suite failure or store restoration', (t) => {
   const result = fixture(t)({ CAPTURE_FAILURE: 'store', REPLAY_STATUS: '11', HOST_HEALTH_STATUS: '19' });
   assert.equal(result.status, 1); assert.deepEqual(result.calls,
-    ['build', 'setup', 'ordinary', 'host-health', 'replay', 'host-health', 'observation', 'startup', 'remote-stop', 'restore']);
+    ['build', 'setup', 'ordinary', 'host-health', 'replay', 'host-health', 'observation', 'startup', 'emergency-identity', 'remote-stop', 'restore']);
   assert.equal(result.statuses.componentEvidence, 1); assert.equal(result.statuses.localReplay, 11);
   assert.match(result.stdout, /original component failure is preserved/);
   assert.match(result.stdout, /original replay failure is preserved/);
