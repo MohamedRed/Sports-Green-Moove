@@ -117,6 +117,7 @@ private fun RideLiveCard(ride: LiveRideSnapshot) {
         }
         RideInfoLine(SgmIcon.Location, "Véhicule", ride.vehicleLastUpdateLabel, SgmTestTags.ActiveRideVehicleUpdate)
         RideInfoLine(SgmIcon.Profile, "Enfant", ride.childLastUpdateLabel ?: "Non disponible")
+        RideInfoLine(SgmIcon.Location, "Arrivée estimée", ride.etaLabel)
         if (ride.stale) {
             Text(
                 "Position à vérifier avant confirmation.",

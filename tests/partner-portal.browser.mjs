@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url';
 import { content } from '../partner-portal/content.mjs';
 import { partitionUpdates } from '../partner-portal/src/render.js';
 import { verifyRemoteRideStopGallery } from './partner-portal-remote-stop.browser.mjs';
+import { verifyVehicleCoordinateChecks } from './partner-portal-vehicle-map.browser.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE_PATH;
 const { chromium } = modulePath ? await import(pathToFileURL(modulePath).href) : await import('playwright');
@@ -240,6 +241,7 @@ try {
   assert.equal(await page.locator('video').count(), 0);
   assert.deepEqual(errors, []);
   await verifyRemoteRideStopGallery({ browser, base, output });
+  await verifyVehicleCoordinateChecks({ browser, base, output });
   console.log('Portal browser checks passed: desktop/mobile, filters, deep links, dialogs, short-video playback, media navigation, no overflow or failed assets.');
 } finally {
   await browser.close();

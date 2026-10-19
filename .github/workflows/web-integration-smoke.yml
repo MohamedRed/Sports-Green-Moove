@@ -86,6 +86,8 @@ on:
       - "tests/ride-observation-contract.test.mjs"
       - "tests/native-startup-contract.test.mjs"
       - "tests/remote-ride-stop-contract.test.mjs"
+      - "tests/vehicle-map-contract.test.mjs"
+      - "tests/partner-portal-vehicle-map.browser.mjs"
       - "tests/remote-ride-stop-evidence.test.mjs"
       - "tests/partner-portal-remote-ride-stop.test.mjs"
       - "tests/partner-portal-remote-stop.browser.mjs"
@@ -363,6 +365,8 @@ on:
       - "tests/ride-observation-contract.test.mjs"
       - "tests/native-startup-contract.test.mjs"
       - "tests/remote-ride-stop-contract.test.mjs"
+      - "tests/vehicle-map-contract.test.mjs"
+      - "tests/partner-portal-vehicle-map.browser.mjs"
       - "tests/remote-ride-stop-evidence.test.mjs"
       - "tests/partner-portal-remote-ride-stop.test.mjs"
       - "tests/partner-portal-remote-stop.browser.mjs"
@@ -676,6 +680,10 @@ jobs:
         run: node --test tests/partner-portal-native-startup.test.mjs
       - name: Validate service-owned remote completion and isolated cleanup
         run: node --test tests/remote-ride-stop-contract.test.mjs tests/remote-ride-stop-evidence.test.mjs tests/partner-portal-remote-ride-stop.test.mjs tests/isolated-ride-records.test.mjs
+      - name: Verify authorized vehicle coordinates and invalid geographic input rejection
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-vehicle-map-services.json
+        run: npm run test:vehicle-map-services && node --test tests/vehicle-map-contract.test.mjs
 
       - name: Test owned enrollment history after eligibility and identity loss
         run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs

@@ -10,6 +10,7 @@ on:
       - "firestore.rules"
       - "admin/**"
       - "functions/**"
+      - "tests/vehicle-map-contract.test.mjs"
       - "scripts/qa/**"
       - "package-lock.json"
       - "package.json"
@@ -26,6 +27,7 @@ on:
       - "firestore.rules"
       - "admin/**"
       - "functions/**"
+      - "tests/vehicle-map-contract.test.mjs"
       - "scripts/qa/**"
       - "package-lock.json"
       - "package.json"
@@ -114,6 +116,10 @@ jobs:
 
       - name: Verify selected ride observer authorization and remote lifecycle responses
         run: npm run test:ride-observation-services && node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
+      - name: Verify authorized vehicle coordinates and invalid geographic input rejection
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-vehicle-map-services.json
+        run: npm run test:vehicle-map-services && node --test tests/vehicle-map-contract.test.mjs
       - name: Validate native startup acknowledgement and temporary mock policy contracts
         run: node --test tests/native-startup-contract.test.mjs tests/native-startup-evidence.test.mjs tests/local-mock-location-permission.test.mjs tests/local-emulator-log-evidence.test.mjs tests/local-emulator-lifecycle.test.mjs tests/isolated-ride-records.test.mjs
 

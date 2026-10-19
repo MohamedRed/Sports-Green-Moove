@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Les positions impossibles sont refusées',
+    text: 'Le défaut est corrigé et les contrôles passent en local. L’affichage du véhicule sur la carte reste à tester.', flow: 'ride-observation' },
   { date: '2026-10-19', title: 'La fin du trajet arrête le suivi en arrière-plan',
     text: 'L’essai local passe : le suivi s’arrête avant le retour dans l’app. Les autres données sont préservées, puis l’environnement d’essai est effacé.', flow: 'remote-ride-stop' },
   { date: '2026-10-19', title: 'La reprise du suivi passe en local',

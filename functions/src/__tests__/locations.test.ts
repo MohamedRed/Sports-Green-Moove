@@ -56,6 +56,16 @@ describe("native location fallback", () => {
   it("rejects invalid JSON-encoded location batches", () => {
     expect(() => parseLocationBatchRequest({ updatesJson: "not-json" })).toThrow();
   });
+  it("rejects out-of-range coordinates through both native and JSON batch forms", () => {
+    const point = { rideSessionId: "ride-1", role: "driver", lat: 50.715, lng: 4.612, accuracyM: 8, capturedAt: 1760000000000 };
+    for (const patch of [{ lat: 91 }, { lat: -91 }, { lng: 181 }, { lng: -181 }]) {
+      const updates = [{ ...point, ...patch }];
+      expect(() => parseLocationBatchRequest({ updates })).toThrow();
+      expect(() => parseLocationBatchRequest({ updatesJson: JSON.stringify(updates) })).toThrow();
+    }
+    for (const [lat, lng] of [[0, 0], [90, 180], [-90, -180]])
+      expect(parseLocationBatchRequest({ updates: [{ ...point, lat, lng }] }).updates[0]).toMatchObject({ lat, lng });
+  });
 
   it("omits undefined optional fields before writing live trip locations", () => {
     const payload = liveLocationPayload({

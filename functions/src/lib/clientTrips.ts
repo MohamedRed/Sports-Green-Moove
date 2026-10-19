@@ -8,8 +8,14 @@ import type {
   Trip,
 } from "../domain/types.js";
 import { bookingIntentSnapshot } from "../domain/bookingIntent.js";
+import { vehicleMapPoint } from "../domain/vehicleMapPoint.js";
 
 type LiveTripLocation = {
+  lat?: number;
+  lng?: number;
+  role?: string;
+  userId?: string;
+  rideSessionId?: string;
   uploadedAt?: number;
   capturedAt?: number;
   source?: LocationSource;
@@ -135,6 +141,7 @@ export function toClientRideSnapshot(
 
   return {
     rideSessionId,
+    vehiclePoint: vehicleMapPoint(vehicle, rideSessionId, ride?.driverUserId, status, now),
     ...(ride?.driverUserId ? { driverUserId: ride.driverUserId } : {}),
     ...(ride?.tripId ?? live?.meta?.tripId ? { tripId: ride?.tripId ?? live?.meta?.tripId } : {}),
     status: status === "active" ? "Actif" : status,

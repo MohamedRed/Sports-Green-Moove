@@ -168,6 +168,7 @@ data class LiveRideSnapshot(
     val stale: Boolean,
     val passengers: List<RidePassengerStatus> = emptyList(),
     val observation: RideObservation? = null,
+    val vehiclePoint: VehicleMapPoint? = null,
 )
 
 data class RidePassengerStatus(

@@ -114,6 +114,7 @@ export type ClientBookingRequestSummary = {
 };
 
 export type ClientRideSnapshot = {
+  vehiclePoint: import("./vehicleMapPoint.js").VehicleMapPoint | null;
   rideSessionId: string;
   tripId?: string;
   driverUserId?: string;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { shouldReplaceLiveLocation } from "../domain/liveLocationOrder.js";
+import { hasValidLocationCapture, shouldReplaceLiveLocation } from "../domain/liveLocationOrder.js";
 import type { LocationUpdate } from "../domain/types.js";
 
 const now = 1_792_424_000_000;
@@ -9,6 +9,19 @@ const point = (capturedAt: number, source: LocationUpdate["source"] = "nativeFal
 });
 
 describe("live location observation ordering", () => {
+  it("rejects impossible coordinates regardless of provider or otherwise valid capture time", () => {
+    for (const source of ["radar", "nativeFallback", "manual"] as const) {
+      for (const patch of [{ lat: 91 }, { lng: -181 }, { lat: NaN }, { lng: Infinity }]) {
+        const incoming = { ...point(now, source), ...patch };
+        expect(hasValidLocationCapture(incoming, now)).toBe(false);
+        expect(shouldReplaceLiveLocation(null, incoming, now)).toBe(false);
+        expect(shouldReplaceLiveLocation(point(now - 20_000), incoming, now)).toBe(false);
+      }
+    }
+  });
+  it("allows valid coordinates to recover a stored record with impossible coordinates", () => {
+    expect(shouldReplaceLiveLocation({ ...point(now), lat: 91 }, point(now - 20_000), now)).toBe(true);
+  });
   it("accepts a first valid point without inventing an observation time", () => {
     expect(shouldReplaceLiveLocation(null, point(now - 30_000), now)).toBe(true);
   });

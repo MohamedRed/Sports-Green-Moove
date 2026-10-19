@@ -68,6 +68,7 @@
     "test:ride-observation-services": "node scripts/qa/run-local-ride-observation-services.mjs",
     "test:native-tracking-startup": "node scripts/qa/run-local-native-startup-ui.mjs",
     "test:remote-ride-stop": "node scripts/qa/run-local-remote-ride-stop-ui.mjs",
+    "test:vehicle-map-services": "node scripts/qa/run-local-vehicle-map-services.mjs",
     "test:emergency-contact-fixture": "node scripts/qa/run-local-emergency-fixture.mjs",
     "test:team-enrollment": "node scripts/qa/run-local-team-enrollment.mjs",
     "test:team-enrollment-history": "node scripts/qa/run-local-team-history.mjs",

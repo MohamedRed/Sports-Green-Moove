@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,7 +25,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.IntSize
@@ -35,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.R
 import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.MapRoutePreview
+import be.sportgreenmoove.app.data.VehicleMapPoint
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmType
@@ -75,14 +74,13 @@ fun GoogleMapsRoutePreviewCard(
                 body = "Le trajet actif ne contient pas encore de coordonnées départ-arrivée.",
             )
 
-            else -> NativeGoogleMap(preview = preview)
+            else -> NativeGoogleMap(preview = preview, vehiclePoint = ride.vehiclePoint, vehicleStale = ride.stale)
         }
-        RoutePreviewOverlay(ride)
     }
 }
-
 @Composable
-internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true, modifier: Modifier = Modifier) {
+internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true, modifier: Modifier = Modifier,
+    vehiclePoint: VehicleMapPoint? = null, vehicleStale: Boolean = true) {
     var viewport by remember { mutableStateOf(IntSize.Zero) }
     var loaded by remember(preview, viewport) { mutableStateOf(false) }
     val paddingPixels = with(LocalDensity.current) { 48.dp.roundToPx() }
@@ -91,6 +89,7 @@ internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true
     }
     val start = LatLng(preview.start.lat, preview.start.lng)
     val end = LatLng(preview.end.lat, preview.end.lng)
+    val anchors = listOfNotNull(start, end, vehiclePoint?.let { LatLng(it.lat, it.lng) })
     val cameraState = rememberCameraPositionState()
 
     Box(modifier.fillMaxWidth().height(250.dp).semantics {
@@ -111,10 +110,11 @@ internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true
                 zoomControlsEnabled = false,
             ),
         ) {
-            FitRouteMapCamera(cameraState, points, listOf(start, end), viewport, paddingPixels) { loaded = it }
+            FitRouteMapCamera(cameraState, points, anchors, viewport, paddingPixels) { loaded = it }
             if (showRoute) Polyline(points = points, color = SgmColor.Green, width = 10f)
             Marker(state = MarkerState(position = start), title = "Départ")
             Marker(state = MarkerState(position = end), title = "Arrivée")
+            vehiclePoint?.let { VehicleMapMarker(it, vehicleStale) }
         }
     }
 }
@@ -138,28 +138,6 @@ private fun RoutePreviewState(title: String, body: String) {
             body,
             style = SgmType.BodySM.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.68f), fontSize = 13.sp),
             textAlign = TextAlign.Center,
-        )
-    }
-}
-
-@Composable
-private fun BoxScope.RoutePreviewOverlay(ride: LiveRideSnapshot) {
-    Column(
-        modifier = Modifier
-            .align(Alignment.BottomStart)
-            .padding(14.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(SgmColor.HeroStart.copy(alpha = 0.86f))
-            .padding(horizontal = 14.dp, vertical = 10.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-        Text(
-            "SUIVI EN DIRECT",
-            style = SgmType.Eyebrow.copy(color = SgmColor.GreenLight, fontSize = 11.sp, letterSpacing = 0.14.em),
-        )
-        Text(
-            ride.etaLabel,
-            style = SgmType.BodySM.copy(color = SgmColor.TextOnGreen, fontSize = 13.sp, fontWeight = FontWeight.Bold),
         )
     }
 }

@@ -42,7 +42,8 @@ test('native display proof waits for real SDK load and captures the real screen 
   const map = source('android/app/src/main/java/be/sportgreenmoove/app/ui/GoogleMapsRoutePreview.kt');
   assert.match(map, /stateDescription = if \(loaded\)/);
   assert.match(map, /onSizeChanged \{ viewport = it \}/);
-  assert.match(map, /FitRouteMapCamera\(cameraState, points, listOf\(start, end\), viewport, paddingPixels\)/);
+  assert.match(map, /FitRouteMapCamera\(cameraState, points, anchors, viewport, paddingPixels\)/);
+  assert.match(map, /val anchors = listOfNotNull\(start, end, vehiclePoint\?\.let/);
   assert(!map.includes('routeZoom('));
   const fit = source('android/app/src/main/java/be/sportgreenmoove/app/ui/FitRouteMapCamera.kt');
   assert.match(fit, /\(points \+ anchors\).forEach\(::include\)/);

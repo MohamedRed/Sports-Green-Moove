@@ -20,13 +20,17 @@ describe("atomic live-location receipts", () => {
     expect(await writeLiveLocation(update)).toBe(true);
   });
   it.each([update.capturedAt, update.capturedAt + 1])("acknowledges a valid retained point at %s without inventing a commit", async (capturedAt) => {
-    transaction({ capturedAt }, false);
+    transaction({ ...update, capturedAt }, false);
     expect(await writeLiveLocationOutcome(update)).toBe("retained");
     expect(await writeLiveLocation(update)).toBe(false);
   });
   it.each([0, -1, 1.5, now + 1])("does not acknowledge invalid or future capture %s as a duplicate", async (capturedAt) => {
     transaction(update, false);
     expect(await writeLiveLocationOutcome({ ...update, capturedAt })).toBe("invalid");
+  });
+  it.each([{ lat: 91 }, { lng: -181 }])("does not acknowledge invalid coordinates as a retained point", async (patch) => {
+    transaction(update, false);
+    expect(await writeLiveLocationOutcome({ ...update, ...patch })).toBe("invalid");
   });
   it("reevaluates validity inside the contended transaction before acknowledging", async () => {
     vi.spyOn(Date, "now").mockReturnValueOnce(now).mockReturnValueOnce(now - 2000);
