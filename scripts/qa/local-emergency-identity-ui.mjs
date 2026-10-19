@@ -61,6 +61,7 @@ catch (error) { failure = failure ? new AggregateError([failure, error], 'Trial 
 if (failure) throw failure;
 const paths = ['scripts/qa/local-emergency-identity-ui.mjs', 'scripts/qa/run-local-emergency-identity-ui.mjs',
   'scripts/qa/run-isolated-ride-ui.mjs', 'scripts/qa/emergency-identity-fixture.mjs', 'scripts/qa/emergency-identity-exchange.mjs',
+  'scripts/qa/emergency-identity-profile-isolation.mjs', 'functions/src/callables/adminUsers.ts',
   'scripts/qa/emergency-identity-ui-evidence.mjs', 'scripts/qa/local-emergency-native-fixture.mjs',
   'functions/src/domain/emergencyContact.ts', 'functions/src/services/emergencyContactAuthority.ts',
   'functions/src/services/emergencyContact.ts', 'functions/src/services/guardianVerification.ts',

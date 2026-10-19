@@ -2,7 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import { parseDocument } from 'yaml';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 import { emergencyIdentityUiChecks, emergencyIdentityUiImages, validateEmergencyIdentityDevice } from '../scripts/qa/emergency-identity-ui-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
@@ -14,6 +16,30 @@ const marker = () => ({ projectId: 'demo-sgm-local-qa', runId, scope: 'local-rec
   directCallIntentCount: 0, screenshots: Object.fromEntries(emergencyIdentityUiImages.map((name) => [name, sha])) });
 const receipt = () => ({ projectId: 'demo-sgm-local-qa', runId, phase: 'emergency-identity',
   scope: 'local-adb-file-sync-command-not-flow-verification', completed: true, status: 0, signal: null, errorCode: null });
+test('the retained fixture probes prove local calls and disposal, never native or physical execution', () => {
+  const base = 'docs/release/evidence/emergency-identity-ui-prepared-2026-10-19/';
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const hashes = JSON.parse(read(base + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 9);
+  for (const [file, hash] of Object.entries(hashes))
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + file, import.meta.url))).digest('hex'), hash, file);
+  for (const file of ['fixture-services.json', 'fixture-final.json', 'login-after.json']) {
+    const report = JSON.parse(read(base + file));
+    assert.equal(report.projectId, 'demo-sgm-local-qa'); assert.equal(report.nativeUiExecuted, false);
+    assert.equal(report.physicalDevice, false); assert.equal(report.productionWrites, false); assert.equal(report.providerRequests, 0);
+    assert.deepEqual(report.isolation, { baselineRecordsPreserved: true, claimsUnchanged: true, baselineCollectionCount: 15,
+      contactCount: 2, contactOperationCount: 2, guardianEventCount: 5, oldContactPreserved: true });
+    assertRetainedSourceFiles(root, report.sourceFiles);
+  }
+  const final = JSON.parse(read(base + 'fixture-final.json'));
+  for (const key of ['adminClientClosed', 'isolatedEnvironmentDestroyed', 'emulatorCliExitedSuccessfully']) assert.equal(final[key], true);
+  assert.deepEqual(final.emulatorEndpoints, { host: '127.0.0.1', ports: [9099, 8080, 9000, 5001], closed: true });
+  assertRetainedSourceFiles(root, JSON.parse(read(base + 'login-before-sources.json')));
+  assert(read(base + 'login-before.txt').includes('AssertionError [ERR_ASSERTION]: users'));
+  assert(read(base + 'login-before.txt').includes('exited with code 1'));
+  const login = JSON.parse(read(base + 'login-after.json'));
+  for (const key of ['adminClientClosed', 'isolatedEnvironmentDestroyed', 'emulatorCliExitedSuccessfully']) assert.equal(login[key], true);
+  assert.deepEqual(login.emulatorEndpoints, final.emulatorEndpoints);
+});
 test('recreated child UI proof requires five checks, four exact images and its primary transfer', () => {
   validateEmergencyIdentityDevice(marker(), receipt(), runId, () => bytes);
   for (const patch of [{ physicalDevice: true }, { projectId: 'live' }, { runId: '2'.repeat(32) },

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { validateRetainedTeamClubIdentity, validateTeamClubIdentity, teamClubIdentityGroups } from '../scripts/qa/team-club-identity-evidence.mjs';
 import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 import { content } from '../partner-portal/content.mjs';
@@ -10,6 +11,29 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const base = 'docs/release/evidence/team-club-identity-2026-10-19/';
 const read = (file) => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const json = (file) => JSON.parse(read(base + file));
+test('the CI fixture failure remains failed while eight service and ten actual browser checks bind the corrected sources', () => {
+  const path = 'docs/release/evidence/team-review-club-order-2026-10-19/';
+  for (const [file, hash] of Object.entries(JSON.parse(read(path + 'artifact-sha256.json'))))
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + path + file, import.meta.url))).digest('hex'), hash, file);
+  const before = JSON.parse(read(path + 'before-ci.json')); assert.equal(before.conclusion, 'failure');
+  assert.equal(before.databaseId, 39330318532); assert.equal(before.headSha, '2f0753f39cc0f4f7d60580e52a4676e23ea9e034');
+  assert(read(path + 'before-ci.txt').includes('0 !== 20'));
+  const passed = JSON.parse(read(path + 'passed.json'));
+  assert.equal(passed.testCount, 8); assert(passed.checks.every((item) => item.status === 'passed'));
+  assert.equal(passed.browser.checks.length, 10); assert(passed.browser.checks.every((item) => item.status === 'passed'));
+  assert.equal(passed.fixtureCleanupVerified, true); assert.equal(passed.productionWrites, false);
+  assert.equal(passed.physicalDevice, false); assert.equal(passed.providerRequests, 0); assert.equal(passed.browser.externalRequests, 0);
+  assertRetainedSourceFiles(root, passed.sourceFiles);
+});
+test('manager review fixtures create their club before sibling teams and restore siblings before the core baseline', () => {
+  const fixture = read('scripts/qa/local-team-review-fixture.mjs');
+  assert(fixture.indexOf('created.core = await seedTeamNativeFixture()') < fixture.indexOf("db.collection('teams').doc("));
+  assert(fixture.indexOf('created.core.seeded = await teamNativeProtectedState()') < fixture.indexOf('for (const uid of created.users)'));
+  const cleanup = fixture.slice(fixture.indexOf('export async function cleanupTeamReviewFixture'));
+  assert(cleanup.indexOf('await extra.commit()') < cleanup.indexOf('await cleanupTeamNativeFixture'));
+  assert(cleanup.indexOf('await auth.deleteUser(uid)') < cleanup.indexOf('await cleanupTeamNativeFixture'));
+  assert(!fixture.includes('created.core.before ='));
+});
 test('the original five failed authorization groups remain failed and separate from setup and later passing trials', () => {
   const before = json('before/attempt.json');
   assert.equal(before.runId, 'fc686f70025e238a94af092317b06a09'); assert.equal(before.testCount, 8);

@@ -87,6 +87,7 @@ on:
       - "tests/emergency-contact-native.test.mjs"
       - "tests/emergency-contact-identity.test.mjs"
       - "tests/emergency-identity-ui.test.mjs"
+      - "tests/emergency-identity-profile-isolation.test.mjs"
       - "tests/manual-emergency-checkpoints.test.mjs"
       - "tests/ride-emergency-evidence.test.mjs"
       - "tests/ride-emergency-completed-evidence.test.mjs"
@@ -376,6 +377,7 @@ on:
       - "tests/emergency-contact-native.test.mjs"
       - "tests/emergency-contact-identity.test.mjs"
       - "tests/emergency-identity-ui.test.mjs"
+      - "tests/emergency-identity-profile-isolation.test.mjs"
       - "tests/manual-emergency-checkpoints.test.mjs"
       - "tests/ride-emergency-evidence.test.mjs"
       - "tests/ride-emergency-completed-evidence.test.mjs"
@@ -693,7 +695,9 @@ jobs:
         run: npm run test:team-club-identity && node --test tests/team-club-identity.test.mjs
 
       - name: Validate recreated child contact UI evidence contract
-        run: node --test tests/emergency-identity-ui.test.mjs
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/emergency-identity-fixture.json
+        run: node scripts/qa/run-emergency-identity-fixture.mjs && node --test tests/emergency-identity-ui.test.mjs tests/emergency-identity-profile-isolation.test.mjs
 
       - name: Verify observation freshness through isolated authenticated location calls
         run: npm run test:location-freshness && node --test tests/location-freshness-evidence.test.mjs

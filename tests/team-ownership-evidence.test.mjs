@@ -100,7 +100,7 @@ test('personal emergency contacts preserve verified-parent authority without cla
   assert.match(emergency.next, /Terminer l’accès de l’enfant/);
   assert.match(emergency.next, /sur téléphone/);
   assert.match(emergency.text, /Conducteur et parent.*depuis un trajet en local/);
-  assert.equal(emergency.source, 'docs/release/evidence/ride-emergency-pass-2026-10-19/README.md');
+  assert.equal(emergency.source, 'docs/release/evidence/emergency-identity-ui-prepared-2026-10-19/README.md');
   assert.match(emergency.next, /sans lancer d’appel/);
   assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });

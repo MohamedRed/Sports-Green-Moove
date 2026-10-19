@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { Timestamp } from 'firebase-admin/firestore';
 import { auth, call, db, signIn } from './local-flow-client.mjs';
-import { seedTeamNativeFixture, teamUi, verifyTeamNativeFixture, cleanupTeamNativeFixture } from './local-team-native-fixture.mjs';
+import { seedTeamNativeFixture, teamUi, teamNativeProtectedState, verifyTeamNativeFixture, cleanupTeamNativeFixture } from './local-team-native-fixture.mjs';
 
 const collections = ['users', 'children', 'clubs', 'memberships', 'teams', 'bookings', 'notifications',
   'guardianVerifications', 'guardianVerificationEvents', 'teamEnrollments', 'teamEnrollmentEvents'];
@@ -22,6 +22,7 @@ export async function prepareTeamReviewFixture() {
       expectedEnrollmentId: view.id, expectedRevision: view.revision, requestId: randomUUID() });
   };
   try {
+    created.core = await seedTeamNativeFixture();
     for (let index = 0; index < 24; index++) {
       const ref = db.collection('teams').doc(`sgm-qa-team-ui-choice-${String(index).padStart(2, '0')}`);
       await ref.create({ clubId: teamUi.clubId, name: `Équipe QA ${index}`, status: index === 23 ? 'archived' : 'active', privateNote: 'not-for-review' });
@@ -33,7 +34,7 @@ export async function prepareTeamReviewFixture() {
       await auth.setCustomUserClaims(uid, { roleKeys: ['parent'] });
       await db.collection('users').doc(uid).create({ displayName: `Membre équipe QA ${index}`, updatedAt: Timestamp.now() });
     }
-    created.core = await seedTeamNativeFixture();
+    created.core.seeded = await teamNativeProtectedState();
     for (const uid of created.users) {
       const ref = db.collection('memberships').doc(`${uid}_${teamUi.clubId}`);
       await ref.create({ userId: uid, clubId: teamUi.clubId, role: 'member', status: 'active', active: true }); created.memberships.push(ref);
@@ -71,11 +72,11 @@ export async function cleanupTeamReviewFixture(fixture) {
   const batch = db.batch(); for (const ref of fixture.created.memberships) batch.delete(ref);
   if (fixture.created.core) batch.update(db.collection('clubs').doc(teamUi.clubId), { memberCount: 3 });
   await batch.commit();
-  if (fixture.created.core) await cleanupTeamNativeFixture(fixture.created.core);
   const extra = db.batch(); for (const ref of fixture.created.teams) extra.delete(ref);
   for (const uid of fixture.created.users) {
     assert.match(uid, /^sgm-qa-team-review-parent-\d{2}$/); extra.delete(db.collection('users').doc(uid));
   }
   await extra.commit(); for (const uid of fixture.created.users) await auth.deleteUser(uid);
+  if (fixture.created.core) await cleanupTeamNativeFixture(fixture.created.core);
   assert.deepEqual(await teamReviewSnapshot(), fixture.before);
 }

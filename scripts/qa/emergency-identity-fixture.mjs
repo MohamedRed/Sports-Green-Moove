@@ -4,6 +4,7 @@ import { getDatabase } from 'firebase-admin/database';
 import { auth, call, db, signIn } from './local-flow-client.mjs';
 import { emergencyChildInstanceId, emergencyContactId } from '../../functions/lib/domain/emergencyContact.js';
 import { seedEmergencyNativeFixture } from './local-emergency-native-fixture.mjs';
+import { assertEmergencyIdentityProfiles } from './emergency-identity-profile-isolation.mjs';
 
 const names = ['users', 'children', 'clubs', 'memberships', 'teams', 'trips', 'bookings', 'rideSessions', 'messages',
   'chatInboxes', 'notifications', 'co2Ledger', 'rewardLedger', 'guardianVerifications', 'guardianVerificationEvents'];
@@ -57,7 +58,11 @@ export async function verifyEmergencyIdentityStoredState(fixture) {
   const exclude = (name, rows) => rows.filter((row) => !(name === 'children' && row.id === fixture.childId ||
     name === 'guardianVerifications' && row.id === fixture.verificationId ||
     name === 'guardianVerificationEvents' && row.data.verificationId === fixture.verificationId));
-  for (const name of names) assert.deepEqual(exclude(name, await rows(name)), exclude(name, fixture.baseline[name]), name);
+  for (const name of names) {
+    const current = await rows(name);
+    if (name === 'users') assertEmergencyIdentityProfiles(fixture.baseline[name], current);
+    else assert.deepEqual(exclude(name, current), exclude(name, fixture.baseline[name]), name);
+  }
   const events = (await rows('guardianVerificationEvents')).filter((row) => row.data.verificationId === fixture.verificationId);
   assert.equal(events.length, 5);
   assert.deepEqual(events.map((row) => row.data.revision).sort(), [1, 2, 3, 4, 5]);

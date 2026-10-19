@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Nouvel essai pour le contact enfant',
+    text: 'L’ancien formulaire est refusé côté données. L’essai dans l’app est lancé ; ses captures restent à vérifier.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Les autorisations d’équipe restent dans le bon club',
     text: 'Un club recréé ne reprend plus les anciens accords. Dix essais locaux passent ; les conversations d’équipe restent à faire.', flow: 'team-enrollment' },
   { date: '2026-10-19', title: 'Le véhicule se déplace sur la carte',

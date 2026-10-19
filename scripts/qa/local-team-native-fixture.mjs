@@ -18,6 +18,7 @@ async function protectedState() {
     ({ uid, claims: (await auth.getUser(uid)).customClaims })));
   return state;
 }
+export { protectedState as teamNativeProtectedState };
 function assertProtectedState(actual, expected, excluded = []) {
   const loginIds = [teamUi.parentId, 'sgm-qa-driver'];
   const stableProfiles = (profiles) => profiles.map((row) => {
