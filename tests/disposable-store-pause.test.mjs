@@ -10,10 +10,15 @@ function device(options = {}) {
   const calls = [];
   let stopped = options.wasStopped ?? false;
   let mutated = false;
+  let installBlocked = options.installBlocked ?? false;
   const background = { RUN_IN_BACKGROUND: options.backgroundMode ?? 'allow', RUN_ANY_IN_BACKGROUND: options.backgroundMode ?? 'allow' };
   const shell = (...args) => {
     const command = args.join(' '); calls.push(command);
     if (command === 'getprop ro.build.version.sdk') return options.sdk ?? '35';
+    if (command === 'pm get-user-restriction --user 0 no_install_apps') return String(installBlocked);
+    if (command.startsWith('pm set-user-restriction --user 0 no_install_apps ')) {
+      installBlocked = args.at(-1) === '1'; return '';
+    }
     if (command.startsWith('pm list packages -e --user 0 ')) return `package:${args.at(-1)}`;
     if (command === playServicesVersionCommand) return `versionName=${mutated && options.versionChanged ? '26.0.0' : '25.39.33'}`;
     if (command === 'cmd location is-location-enabled --user 0') return options.location ?? 'true';
@@ -30,7 +35,8 @@ function device(options = {}) {
     if (command === 'pm unstop --user 0 com.android.vending') { stopped = false; return ''; }
     throw new Error('Unexpected device command: ' + command);
   };
-  return { shell, calls, background, stopped: () => stopped, resumeUnexpectedly: () => { stopped = false; } };
+  return { shell, calls, background, stopped: () => stopped, resumeUnexpectedly: () => { stopped = false; },
+    installBlocked: () => installBlocked, activateInstallGuard: () => { installBlocked = true; } };
 }
 
 test('approved store-only stop preserves enabled maps/location and restores original state', () => {
@@ -55,6 +61,32 @@ test('already-stopped store remains stopped after cleanup', () => {
   const mock = device({ wasStopped: true }); const receipt = pauseDisposableStore(mock.shell);
   restoreDisposableStore(mock.shell, receipt);
   assert.equal(mock.stopped(), true); assert(!mock.calls.some((line) => line.startsWith('pm unstop')));
+});
+
+test('the approved installation guard records the actual baseline and restores it after a guarded run', () => {
+  const mock = device();
+  const receipt = pauseDisposableStore(mock.shell, { blockInstallations: true });
+  assert.deepEqual(receipt.installationPolicy, { originalBlocked: false });
+  assert.equal(mock.installBlocked(), false, 'Gradle must install its test APKs before the runner locks installations');
+  mock.activateInstallGuard();
+  const result = restoreDisposableStore(mock.shell, receipt);
+  assert.equal(result.verified, true); assert.equal(result.restored, true);
+  assert.equal(result.observed.installationsBlocked, true); assert.equal(mock.installBlocked(), false);
+});
+
+test('an unactivated guard fails verification but still restores the exact original policy', () => {
+  const mock = device(); const receipt = pauseDisposableStore(mock.shell, { blockInstallations: true });
+  assert.throws(() => restoreDisposableStore(mock.shell, receipt), (error) => {
+    assert.equal(error.receipt.verified, false); assert.equal(error.receipt.restored, true); return true;
+  });
+  assert.equal(mock.installBlocked(), false); assert.equal(mock.stopped(), false);
+});
+
+test('the approved preparation never clears a pre-existing install prohibition', () => {
+  const mock = device({ installBlocked: true });
+  assert.throws(() => pauseDisposableStore(mock.shell, { blockInstallations: true }), /existing installation restriction/);
+  assert.equal(mock.installBlocked(), true);
+  assert(!mock.calls.some((line) => /force-stop|set-user-restriction|appops set/.test(line)));
 });
 
 test('bare AOSP permission/changed-package user headings are not a second package state', () => {

@@ -32,6 +32,7 @@ import { replayScheduleDraftRestart } from './local-trip-schedule-draft-restart.
 import { replayGuardianParentUi } from './local-guardian-parent-ui.mjs';
 import { replayEmergencyContactUi } from './local-emergency-contact-ui.mjs';
 import { replayTeamEnrollmentUi } from './local-team-enrollment-ui.mjs';
+import { disposableTestRunner, installationGuardArguments, installDisposableTestApks } from './install-disposable-test-apks.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -42,16 +43,15 @@ const run = (command, args) => execFileSync(command, args, { cwd: root, env: pro
 const android = resolve(root, 'android');
 run(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
   '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2']);
-run(adb, ['-s', serial, 'install', '-r', resolve(android, 'app/build/outputs/apk/debug/app-debug.apk')]);
-run(adb, ['-s', serial, 'install', '-r', resolve(android, 'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk')]);
+installDisposableTestApks({ adb, serial, android, run });
 run(process.execPath, [resolve(import.meta.dirname, 'install-local-ui-session.mjs'), serial, process.env.SGM_LOCAL_UI_SESSION_FILE]);
 
 function instrument(classes, expected, extraArguments = []) {
   run(adb, ['-s', serial, 'logcat', '-b', 'crash', '-c']);
   const output = execFileSync(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '240000',
-    ...extraArguments,
+    ...installationGuardArguments(), ...extraArguments,
     '-e', 'class', classes.map((name) => `be.sportgreenmoove.app.ui.${name}`).join(','),
-    'be.sportgreenmoove.app.local.test/androidx.test.runner.AndroidJUnitRunner'],
+    `be.sportgreenmoove.app.local.test/${disposableTestRunner}`],
   { env: process.env, encoding: 'utf8', timeout: 12 * 60_000, maxBuffer: 4 * 1024 * 1024 });
   console.log(output.replaceAll(session.password, '[REDACTED]'));
   writeFileSync(resolve(evidenceDir, `${classes.join('-')}-instrumentation.txt`), output.replaceAll(session.password, '[REDACTED]'));

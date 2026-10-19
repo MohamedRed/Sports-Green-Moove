@@ -25,9 +25,15 @@ restore_test_store() {
 trap restore_test_store EXIT
 
 set +e
-"$android_dir/gradlew" -p "$android_dir" :app:connectedDebugAndroidTest --no-daemon --stacktrace
+ordinary_command=("$android_dir/gradlew" -p "$android_dir" :app:connectedDebugAndroidTest --no-daemon --stacktrace)
+if [[ "${SGM_BLOCK_TEST_PHONE_INSTALLS:-false}" == "true" ]]; then
+  ordinary_command+=("-Pandroid.testInstrumentationRunnerArguments.sgmBlockInstallations=true")
+fi
+"${ordinary_command[@]}"
 test_status=$?
 set -e
+
+node "$repo_root/scripts/qa/verify-disposable-installations.mjs" "$device_receipt" > "$output_dir/disposable-installations-verified.json"
 
 if [[ "$test_status" -ne 0 ]]; then
   if ! node "$repo_root/scripts/qa/collect-ordinary-android-failure.mjs" "$output_dir/ordinary-failure"; then

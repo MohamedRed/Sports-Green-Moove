@@ -101,6 +101,29 @@ retrying failed cases or suppressing system errors. Rendering and Play services
 remain enabled. Home-screen/cross-app navigation is not covered by this setup;
 use a separate unmodified device for those scenarios. Never use personal AVD data.
 
+For the approved Android 15 CI device only, `SGM_BLOCK_TEST_PHONE_INSTALLS=true`
+also requires `SGM_PAUSE_TEST_PHONE_STORE=true`. Setup records the actual
+`no_install_apps` baseline and refuses a pre-existing prohibition rather than
+clearing it. The test-only `DisposableAndroidJUnitRunner` extends AndroidX and
+locks installations before starting any test. Host verification checks that the
+lock is active and the map runtime is unchanged. The isolated replay builds
+while locked, opens one synchronous window for its two test APKs, then re-locks
+before loading its private QA session or running instrumentation. A failed
+installation still attempts re-locking; a failed lock prevents the replay.
+
+The final host cleanup verifies the guard and restores the original installation
+restriction plus the original store background/stopped state, including after
+failed tests. A missing guard or unsuccessful restoration fails the job. This
+never disables maps/location/Play services, pauses a personal device, interrupts
+an already-active installation, removes updates, or accepts physical-device
+evidence. The explicit policy is not enabled in production app code.
+
+Android 15 checks `DISALLOW_INSTALL_APPS` before admitting even ADB installation
+sessions, so keeping that restriction enabled while asking Gradle to install its
+test APK would prevent the test setup itself. The sequence above is intentional:
+[PackageInstallerService](https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r1/services/core/java/com/android/server/pm/PackageInstallerService.java),
+[PackageManagerShellCommand](https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r1/services/core/java/com/android/server/pm/PackageManagerShellCommand.java).
+
 The ride case needs a Google APIs image with functioning Play services. It grants
 permissions only to `.local`, then injects a synthetic location through the
 official fused-location mock API. Mock positions affect the entire emulator:

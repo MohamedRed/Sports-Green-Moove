@@ -103,7 +103,9 @@ test('the compiled emulator-profile replay and 16 original unit passes cannot im
   }
   assert.equal(count, 16); assert.equal(report.unitCaseCount, count); assert(read(base + 'local-build.log').includes('BUILD SUCCESSFUL'));
   for (const [path, expected] of Object.entries(report.sourceFiles)) {
-    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + path, import.meta.url))).digest('hex'), expected, path);
+    const source = path === 'scripts/qa/local-android-session.mjs'
+      ? 'docs/release/evidence/disposable-installation-guard-2026-10-18/prior-source/local-android-session.mjs.txt' : path;
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + source, import.meta.url))).digest('hex'), expected, path);
     assert(read(path).split('\n').length < 300, path);
   }
 });

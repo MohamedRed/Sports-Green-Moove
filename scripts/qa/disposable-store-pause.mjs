@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { androidMapsPrerequisites } from './android-maps-prerequisites.mjs';
 import { installationState } from './native-package-diagnostics.mjs';
 import { readStoreBackground, setStoreBackground, storeBackgroundRestrictions } from './disposable-store-background.mjs';
+import { assertNoActiveInstall, readInstallBlocked, setInstallBlocked } from './disposable-installations.mjs';
 
 export const storeStateCommand = 'dumpsys package com.android.vending | sed \'/Hidden system packages:/,$d\' | grep -E "^[[:space:]]*User 0:"';
 const store = 'com.android.vending';
@@ -33,13 +34,20 @@ function restoreStoppedState(shell, wasStopped) {
   assert.equal(stopped(shell), wasStopped, 'Store original stopped state was not restored');
 }
 
-export function pauseDisposableStore(shell) {
+export function pauseDisposableStore(shell, { blockInstallations = false } = {}) {
   assert.equal(shell('getprop', 'ro.build.version.sdk'), '35', 'Store pause requires the approved Android 15 test image');
   const mapsRuntime = androidMapsPrerequisites(shell);
   locationEnabled(shell);
   const wasStopped = stopped(shell);
   noStoreInstall(shell);
   const originalBackground = readStoreBackground(shell);
+  let installationPolicy;
+  if (blockInstallations) {
+    const originalBlocked = readInstallBlocked(shell);
+    assert.equal(originalBlocked, false, 'Do not clear an existing installation restriction to prepare tests');
+    assertNoActiveInstall(shell);
+    installationPolicy = { originalBlocked };
+  }
   try {
     setStoreBackground(shell, storeBackgroundRestrictions);
     shell('am', 'force-stop', '--user', '0', store);
@@ -53,7 +61,8 @@ export function pauseDisposableStore(shell) {
       try { restore(); } catch (cleanup) { errors.push(cleanup); }
     throw new AggregateError(errors, 'Store pause failed; original settings restoration attempted');
   }
-  return { method: 'restricted-store-background', wasStopped, originalBackground, mapsRuntime, locationEnabled: true };
+  return { method: 'restricted-store-background', wasStopped, originalBackground, mapsRuntime, locationEnabled: true,
+    ...(installationPolicy ? { installationPolicy } : {}) };
 }
 
 export function restoreDisposableStore(shell, receipt) {
@@ -76,8 +85,17 @@ export function restoreDisposableStore(shell, receipt) {
   });
   inspect('locationEnabled', () => locationEnabled(shell));
   inspect('noActiveStoreInstall', () => { noStoreInstall(shell); return true; });
+  if (receipt.installationPolicy) {
+    assert.equal(receipt.installationPolicy.originalBlocked, false);
+    inspect('installationsBlocked', () => {
+      assert.equal(readInstallBlocked(shell), true, 'The installation guard changed during the replay');
+      assertNoActiveInstall(shell); return true;
+    });
+  }
   let restored = true;
-  for (const restore of [() => setStoreBackground(shell, receipt.originalBackground), () => restoreStoppedState(shell, receipt.wasStopped)]) {
+  for (const restore of [
+    ...(receipt.installationPolicy ? [() => setInstallBlocked(shell, receipt.installationPolicy.originalBlocked)] : []),
+    () => setStoreBackground(shell, receipt.originalBackground), () => restoreStoppedState(shell, receipt.wasStopped)]) {
     try { restore(); } catch (failure) { restored = false; errors.push(failure); }
   }
   const result = { method: receipt.method, restored, verified: errors.length === 0, observed };

@@ -17,7 +17,7 @@ function fixture(t) {
     writeFileSync(join(root, path), '#!/bin/bash\n' + teamCopy + content, { mode: 0o700 });
   };
   executable('android/gradlew', 'if [[ "$*" == *:app:assembleDebugAndroidTest* ]]; then echo build >> "$CALL_LOG"; exit "$BUILD_STATUS"; fi\necho ordinary >> "$CALL_LOG"\nexit "$ORDINARY_STATUS"\n');
-  executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*collect-ordinary-android-failure.mjs) echo diagnostic >> "$CALL_LOG"; exit "$DIAGNOSTIC_STATUS";;\n*adb-host-health.mjs) echo host-health >> "$CALL_LOG"; exit "$HOST_HEALTH_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
+  executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*verify-disposable-installations.mjs) exit "${INSTALL_GUARD_STATUS:-0}";;\n*collect-ordinary-android-failure.mjs) echo diagnostic >> "$CALL_LOG"; exit "$DIAGNOSTIC_STATUS";;\n*adb-host-health.mjs) echo host-health >> "$CALL_LOG"; exit "$HOST_HEALTH_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
   executable('bin/adb', 'printf "%s\\n" "$*" >> "$ADB_CALL_LOG"\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-payment-confirmation && "$CAPTURE_FAILURE" == payments ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-emergency-contact && "$CAPTURE_FAILURE" == emergency ]]; then exit 9; fi\nexit 0\n');
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
@@ -91,6 +91,13 @@ test('unavailable process diagnostics never suppress the original failure or the
 test('an unsafe or unavailable device stops both suites before app execution', (t) => {
   const result = fixture(t)({ SETUP_STATUS: '3' });
   assert.equal(result.status, 1); assert.deepEqual(result.calls, ['build', 'setup']); assert.equal(result.statuses, null);
+});
+
+test('an unverified installation guard stops further replay and still runs restoration', (t) => {
+  const result = fixture(t)({ INSTALL_GUARD_STATUS: '23' });
+  assert.equal(result.status, 23); assert.equal(result.statuses, null);
+  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'restore']);
+  assert.deepEqual(result.adbCalls, []);
 });
 
 test('store cleanup failure cannot produce a green suite or overwrite an earlier failure', (t) => {

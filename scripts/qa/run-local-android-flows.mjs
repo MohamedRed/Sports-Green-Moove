@@ -21,6 +21,11 @@ try {
   runtime.env.SGM_LOCAL_UI_SESSION_FILE = resolve(runtime.temp, 'ui-session.json');
   runtime.env.SGM_LOCAL_UI_OUTPUT = output;
   runtime.env.SGM_LOCAL_DISPOSABLE_EMULATOR = 'true';
+  if (process.env.SGM_BLOCK_TEST_PHONE_INSTALLS === 'true') {
+    assert.equal(process.env.SGM_PAUSE_TEST_PHONE_STORE, 'true');
+    runtime.env.SGM_BLOCK_TEST_PHONE_INSTALLS = 'true';
+    runtime.env.SGM_PAUSE_TEST_PHONE_STORE = 'true';
+  }
   runEmulatorEntry(runtime, 'local-android-session.mjs');
 }
 finally { runtime.cleanup(); }

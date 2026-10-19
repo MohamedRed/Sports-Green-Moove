@@ -47,6 +47,7 @@ jobs:
           SGM_REAL_MAPS_SERVER_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
           SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
           SGM_PAUSE_TEST_PHONE_STORE: "true"
+          SGM_BLOCK_TEST_PHONE_INSTALLS: "true"
         with:
           api-level: 35
           target: google_apis_playstore

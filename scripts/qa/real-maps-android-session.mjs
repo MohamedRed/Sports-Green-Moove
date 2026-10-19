@@ -8,6 +8,7 @@ import { assertInstrumentationPassed } from './android-instrumentation-result.mj
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { finishDisposableCleanup } from './disposable-device-cleanup.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
+import { disposableTestRunner, installationGuardArguments, installDisposableTestApks } from './install-disposable-test-apks.mjs';
 
 assert.equal(process.env.SGM_REAL_MAPS_UI, 'approved-five-requests');
 const root = resolve(import.meta.dirname, '../..'), android = resolve(root, 'android');
@@ -21,15 +22,15 @@ const run = (command, args) => execFileSync(command, args, { env: process.env, c
 let failure, result, collected = false;
 const collect = (phase) => collectLocalUiEvidence({ adb, serial, evidenceDir: directory, phase, runId: session.runId, password: session.password });
 try {
-  for (const apk of ['apk/debug/app-debug.apk', 'apk/androidTest/debug/app-debug-androidTest.apk'])
-    run(adb, ['-s', serial, 'install', '-r', resolve(android, 'app/build/outputs', apk)]);
+  installDisposableTestApks({ adb, serial, android, run });
   run(process.execPath, [resolve(import.meta.dirname, 'install-local-ui-session.mjs'), serial, process.env.SGM_LOCAL_UI_SESSION_FILE]);
   const output = execFileSync(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '240000',
+    ...installationGuardArguments(),
     '-e', 'realMapsApproved', session.runId, '-e', 'realMapsTripId', fixture.tripId,
     '-e', 'realMapsFirstBooking', fixture.bookingIds[0], '-e', 'realMapsSecondBooking', fixture.bookingIds[1],
     '-e', 'realMapsSecondParentEmail', fixture.secondParent.email,
     '-e', 'class', 'be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest',
-    'be.sportgreenmoove.app.local.test/androidx.test.runner.AndroidJUnitRunner'],
+    `be.sportgreenmoove.app.local.test/${disposableTestRunner}`],
   { env: process.env, encoding: 'utf8', timeout: 12 * 60_000, maxBuffer: 4 * 1024 * 1024 });
   writeFileSync(resolve(directory, 'LocalRealMapsTripChangeTest-instrumentation.txt'), redact(output), { flag: 'wx' });
   assertInstrumentationPassed(output, 1);

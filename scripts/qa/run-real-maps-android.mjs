@@ -8,6 +8,7 @@ import { startRealMapsBroker } from './real-maps-broker.mjs';
 import { attachRealMapsBroker, runMapUiEmulators } from './real-maps-runtime.mjs';
 import { assertRealMapsUiProviderEvidence } from './real-maps-ui-evidence.mjs';
 import { assertFramedRealMapDisplay } from './real-map-display-evidence.mjs';
+import { setInstallBlocked } from './disposable-installations.mjs';
 
 assert.deepEqual(process.argv.slice(2), ['--approved-isolated-real-maps']);
 const { serial, shell } = disposableAndroidShell();
@@ -24,6 +25,12 @@ try {
   Object.assign(runtime.env, { SGM_LOCAL_ANDROID_SERIAL: serial, SGM_LOCAL_DISPOSABLE_EMULATOR: 'true',
     SGM_LOCAL_UI_SESSION_FILE: resolve(runtime.temp, 'ui-session.json'), SGM_LOCAL_UI_OUTPUT: output,
     SGM_REAL_MAPS_UI: 'approved-five-requests' });
+  if (process.env.SGM_BLOCK_TEST_PHONE_INSTALLS === 'true') {
+    assert.equal(process.env.SGM_PAUSE_TEST_PHONE_STORE, 'true');
+    runtime.env.SGM_BLOCK_TEST_PHONE_INSTALLS = 'true';
+    runtime.env.SGM_PAUSE_TEST_PHONE_STORE = 'true';
+    setInstallBlocked(shell, true);
+  }
   await runMapUiEmulators(runtime);
   const result = JSON.parse(readFileSync(resolve(output, 'results.json'), 'utf8'));
   assertRealMapsUiProviderEvidence(result, broker.receipts(), runtime.env.SGM_LOCAL_RUN_ID);
