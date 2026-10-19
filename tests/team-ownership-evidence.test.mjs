@@ -97,7 +97,10 @@ test('personal emergency contacts preserve verified-parent authority without cla
   assert.match(contract, /execution still pending/);
   assert.match(contract, /Do not invent a number, substitute emergency services, or place a call\nautomatically/);
   const emergency = content.blockers.find((item) => item.id === 'emergency-contact');
-  assert.match(emergency.next, /Terminer l’accès de l’enfant et l’entrée depuis un trajet/);
+  assert.match(emergency.next, /Terminer l’accès de l’enfant/);
+  assert.match(emergency.next, /sur téléphone/);
+  assert.match(emergency.text, /Conducteur et parent.*depuis un trajet en local/);
+  assert.equal(emergency.source, 'docs/release/evidence/ride-emergency-pass-2026-10-19/README.md');
   assert.match(emergency.next, /sans lancer d’appel/);
   assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });
