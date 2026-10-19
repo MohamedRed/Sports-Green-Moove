@@ -25,6 +25,7 @@ on:
       - "scripts/run-real-maps-android-ui.sh"
       - "tests/real-map*.test.mjs"
       - "android/**"
+      - "functions/**"
       - "ios/**"
       - "package.json"
       - "package-lock.json"
@@ -36,6 +37,7 @@ on:
       - "tests/manual-emergency-checkpoints.test.mjs"
       - "tests/ride-emergency-evidence.test.mjs"
       - "tests/ride-location-ownership.test.mjs"
+      - "tests/location-freshness-evidence.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
@@ -88,6 +90,7 @@ on:
       - "scripts/run-real-maps-android-ui.sh"
       - "tests/real-map*.test.mjs"
       - "android/**"
+      - "functions/**"
       - "ios/**"
       - "package.json"
       - "package-lock.json"
@@ -99,6 +102,7 @@ on:
       - "tests/manual-emergency-checkpoints.test.mjs"
       - "tests/ride-emergency-evidence.test.mjs"
       - "tests/ride-location-ownership.test.mjs"
+      - "tests/location-freshness-evidence.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
@@ -158,7 +162,7 @@ jobs:
       - name: Test owned local service process supervision
         run: node --test tests/supervised-local-process.test.mjs
       - name: Validate immutable child emergency contact contracts and evidence
-        run: node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs
+        run: node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/location-freshness-evidence.test.mjs
 
       - name: Validate SDK-connected team replay evidence requirements
         run: node --test tests/team-enrollment-sdk.test.mjs

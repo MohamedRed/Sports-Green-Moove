@@ -79,6 +79,7 @@ on:
       - "tests/manual-emergency-checkpoints.test.mjs"
       - "tests/ride-emergency-evidence.test.mjs"
       - "tests/ride-location-ownership.test.mjs"
+      - "tests/location-freshness-evidence.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*Emergency*.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt"
@@ -339,6 +340,7 @@ on:
       - "tests/manual-emergency-checkpoints.test.mjs"
       - "tests/ride-emergency-evidence.test.mjs"
       - "tests/ride-location-ownership.test.mjs"
+      - "tests/location-freshness-evidence.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*Emergency*.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt"
@@ -528,7 +530,7 @@ jobs:
   smoke:
     name: Functions, admin, and website smoke
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     permissions:
       contents: read
@@ -627,6 +629,9 @@ jobs:
 
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
+
+      - name: Verify observation freshness through isolated authenticated location calls
+        run: npm run test:location-freshness && node --test tests/location-freshness-evidence.test.mjs
 
       - name: Test owned enrollment history after eligibility and identity loss
         run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs

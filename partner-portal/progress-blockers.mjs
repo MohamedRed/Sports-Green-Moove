@@ -1,4 +1,7 @@
 export const blockers = [
+  { id: 'tracking-live-display', title: 'Terminer le suivi en direct',
+    text: 'Les contrôles de données passent. L’actualisation de l’écran et les positions sur la carte restent à terminer et à tester.',
+    next: 'Terminer l’affichage, puis vérifier le suivi et les alertes sur téléphone.', source: 'docs/release/evidence/location-freshness-2026-10-19/README.md' },
   { id: 'tracking-account', title: 'Arrêter le suivi à la déconnexion',
     text: 'Après passage du conducteur au parent, le suivi du conducteur reste actif dans le nouvel essai local.',
     next: 'Rejouer la correction, puis vérifier la reprise du trajet côté conducteur.', source: 'docs/release/evidence/ride-emergency-account-failure-2026-10-19/README.md' },

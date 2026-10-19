@@ -57,11 +57,13 @@ describe("client trip summaries", () => {
       {
         vehicle: {
           source: "nativeFallback",
+          capturedAt: now - 30_000,
           uploadedAt: now - 30_000,
         },
         children: {
           "child-1": {
             source: "radar",
+            capturedAt: now - 45_000,
             uploadedAt: now - 45_000,
           },
         },
@@ -108,10 +110,11 @@ describe("client trip summaries", () => {
   it("marks active rides stale until a fresh vehicle update exists", () => {
     const now = 1_760_000_000_000;
 
-    expect(toClientRideSnapshot("ride-1", "active", null, now).stale).toBe(true);
+    expect(toClientRideSnapshot("ride-1", "active", null, null, now).stale).toBe(true);
     expect(toClientRideSnapshot("ride-1", "active", {
       vehicle: {
         source: "radar",
+        capturedAt: now - 91_000,
         uploadedAt: now - 91_000,
       },
     }, null, now).stale).toBe(true);

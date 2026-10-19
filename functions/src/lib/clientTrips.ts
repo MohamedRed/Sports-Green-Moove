@@ -182,7 +182,8 @@ function latestChildLocation(children: LiveTripSnapshot["children"]): LiveTripLo
 
 function locationLabel(location: LiveTripLocation | undefined, now: number, fallback: string): string {
   if (!location) return fallback;
-  return `${sourceLabel(location.source)} · ${elapsedLabel(ageMs(location, now) ?? 0)}`;
+  const age = ageMs(location, now);
+  return age == null ? "Position à vérifier" : `${sourceLabel(location.source)} · ${elapsedLabel(age)}`;
 }
 
 function sourceLabel(source: LocationSource | undefined): string {
@@ -202,13 +203,14 @@ function etaLabel(etaSeconds: number | undefined): string {
 
 function ageMs(location: LiveTripLocation | undefined, now: number): number | null {
   if (!location) return null;
-  const timestamp = location.uploadedAt ?? location.capturedAt;
-  if (typeof timestamp !== "number" || !Number.isFinite(timestamp)) return null;
-  return Math.max(0, now - timestamp);
+  const timestamp = location.capturedAt;
+  if (typeof timestamp !== "number" || !Number.isSafeInteger(timestamp) || timestamp <= 0 || timestamp > now) return null;
+  return now - timestamp;
 }
 
 function locationTime(location: LiveTripLocation): number {
-  return location.uploadedAt ?? location.capturedAt ?? 0;
+  const timestamp = location.capturedAt;
+  return typeof timestamp === "number" && Number.isSafeInteger(timestamp) && timestamp > 0 ? timestamp : 0;
 }
 
 function elapsedLabel(ms: number): string {

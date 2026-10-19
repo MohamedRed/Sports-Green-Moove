@@ -14,6 +14,12 @@ configuration and the generated `SGM_QA_PASSWORD`. Do not point the older native
 device shell helpers at production or publish their raw credential-entry captures.
 The local API suite does not install an APK or verify phone UI behavior.
 
+`test:location-freshness` separately runs actual isolated driver/parent callables.
+It verifies server-bound receipt time, delayed capture age in the parent response,
+refused parent driver uploads and a recent point retaining its real observation
+age. It closes the administrative database client before writing a successful
+report. These data checks do not prove phone UI refresh, GPS or provider delivery.
+
 The expanded `LocalRideFlowTest` checks active-ride emergency entry for the driver
 and parent before its existing completion/review assertions. Both contacts are
 chosen and removed through the app, with actual dial-only handoffs and return to
