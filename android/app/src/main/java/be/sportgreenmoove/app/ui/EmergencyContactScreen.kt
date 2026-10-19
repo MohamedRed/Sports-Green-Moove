@@ -17,7 +17,7 @@ internal fun EmergencyContactScreen(state: EmergencyContactState, canChooseChild
     onRefresh: () -> Unit, onSelf: () -> Unit, onChildren: () -> Unit, onSave: () -> Unit,
     onRemove: (EmergencyContactView) -> Unit, onDial: () -> Unit) {
     V2Screen(testTag = "emergency.screen") {
-        V2TopBar("CONTACT D’URGENCE", onBack = onBack, trailing = {
+        V2TopBar("CONTACT D’URGENCE", onBack = onBack, titleLines = 2, trailing = {
             EmergencyRefreshButton(state.busy, onRefresh)
         })
         Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {

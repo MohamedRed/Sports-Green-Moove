@@ -6,7 +6,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.*
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
@@ -23,6 +25,9 @@ class ChildRideEmergencyFlowTest {
     @get:Rule val compose = createComposeRule()
     @Test fun childContactIsReadOnlyAndFitsANarrowLargeTextScreen() {
         val fixture = ChildEmergencyUiFixture(); host(fixture, narrow = true)
+        val titles = mutableListOf<TextLayoutResult>()
+        compose.onNodeWithText("CONTACT D’URGENCE").performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(titles) }
+        assertFalse("The complete emergency title must fit", titles.single().hasVisualOverflow)
         for (tag in listOf("emergency.name", "emergency.phone", "emergency.save", "emergency.remove", "emergency.children"))
             compose.onNodeWithTag(tag).assertDoesNotExist()
         for (tag in listOf("emergency.child-ride.phone", "emergency.child-ride.dial")) {

@@ -321,3 +321,23 @@ identity trial. Focused identity, observation, startup and remote-stop scenarios
 now have a separate required job, independent of the original full matrix. Each
 case retains its status; later cases still execute after failure and restoration
 cannot overwrite an earlier failure. No original matrix scenario is removed.
+
+The first executed focused lane at `f23512c` reached the initial child selection,
+then timed out before recreation. The original failure and verified restoration
+are retained in `emergency-selection-race-2026-10-19`. Source inspection found a
+busy-read race that let the picker close and persist a target that the editor
+had not accepted. Target selection is now synchronous and explicitly accepted
+before persistence/closure; busy picker choices are disabled. A controlled
+delayed-reply component regression is prepared. No timeout is increased, scenario
+skipped or contact fallback introduced. Corrected native execution is still
+required; later passing safety cases do not accept the failed identity trial.
+
+The same source's main Android job passed all five new child contact component
+cases with in-memory replies. `child-contact-components-2026-10-19` retains their
+original JUnit and captures separately from actual child sign-in or phone proof.
+Visual review found an ellipsized narrow heading despite passing action bounds.
+Emergency headers now opt into two lines at the same font size; the shared header
+uses zero extra letter spacing. Child and parent narrow tests additionally inspect
+text-layout overflow. Their corrected captures still need a new run. Only two
+reviewed simulated outcomes are published, with explicit scope; the defective
+narrow capture is retained but not published as a finished interface.

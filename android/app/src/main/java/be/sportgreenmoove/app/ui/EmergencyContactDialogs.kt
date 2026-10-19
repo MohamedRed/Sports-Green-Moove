@@ -12,18 +12,18 @@ import be.sportgreenmoove.app.data.*
 import be.sportgreenmoove.app.design.Sgm
 
 @Composable
-internal fun EmergencyChildDialog(page: GuardianPageState<GuardianVerification>, onChoose: (GuardianVerification) -> Unit,
+internal fun EmergencyChildDialog(page: GuardianPageState<GuardianVerification>, selectionBusy: Boolean, onChoose: (GuardianVerification) -> Unit,
     onMore: () -> Unit, onRetry: () -> Unit, onClose: () -> Unit) {
     val verified = page.items.filter { it.status == GuardianVerificationStatus.Verified }
     AlertDialog(onDismissRequest = onClose, containerColor = Sgm.colors.bgCard, titleContentColor = Sgm.colors.textPrimary,
         textContentColor = Sgm.colors.textPrimary, title = { Text("Choisir un enfant") }, text = {
             Column(Modifier.fillMaxWidth().heightIn(max = 400.dp).verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                if (page.busy) Text("Chargement...")
+                if (page.busy || selectionBusy) Text("Chargement...")
                 page.error?.let { Text(it); TextButton(onClick = onRetry, enabled = !page.busy) { Text("Actualiser", color = Sgm.colors.textPrimary) } }
                 if (page.loaded && verified.isEmpty() && !page.hasMore) Text("Aucun lien vérifié disponible.")
                 verified.forEach { item ->
-                    OutlinedButton(onClick = { onChoose(item) }, enabled = !page.busy && item.childName != null && item.clubName != null,
+                    OutlinedButton(onClick = { onChoose(item) }, enabled = !page.busy && !selectionBusy && item.childName != null && item.clubName != null,
                         modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("emergency.child.${item.id}")) {
                         Column(Modifier.fillMaxWidth()) {
                             Text(item.childName ?: "Nom de l’enfant indisponible", color = Sgm.colors.textPrimary)

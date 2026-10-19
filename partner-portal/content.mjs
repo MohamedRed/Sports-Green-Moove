@@ -2,6 +2,7 @@ import { tours } from './tours.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { createNavigationFlow, createSearchFlow } from './parent-phone-flows.mjs';
 import { createEmergencyFlow } from './emergency-flow.mjs';
+import { createChildEmergencyFlow } from './child-emergency-flow.mjs';
 import { createTrackingFlow } from './tracking-flow.mjs';
 import { createRideEmergencyFlow } from './ride-emergency-flow.mjs';
 import { createRideObservationFlow } from './ride-observation-flow.mjs';
@@ -239,6 +240,7 @@ export const content = {
         shot('payment-review', 'Paiement à vérifier, essai local du 18 octobre'),
         shot('payments', 'Écran de paiement vide lors de l’essai du 11 octobre')], source: 'docs/release/evidence/local-payment-confirmation-2026-10-18/README.md' },
     createEmergencyFlow(),
+    createChildEmergencyFlow(),
     createRideEmergencyFlow(),
     createRideObservationFlow(),
     createNativeStartupFlow(),

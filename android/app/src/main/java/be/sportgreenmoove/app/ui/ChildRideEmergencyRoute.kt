@@ -29,7 +29,7 @@ internal fun ChildRideEmergencyRoute(uid: String, rideId: String, gateway: Emerg
         }
     }
     V2Screen(testTag = "emergency.child-ride.screen") {
-        V2TopBar("CONTACT D’URGENCE", onBack, trailing = {
+        V2TopBar("CONTACT D’URGENCE", onBack, titleLines = 2, trailing = {
             EmergencyRefreshButton(state.busy) { scope.launch { state.refresh() } }
         })
         Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {

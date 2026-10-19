@@ -17,13 +17,13 @@ internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: Em
     guardians: GuardianVerificationGateway, onBack: () -> Unit,
     launchDialer: ((PersonalEmergencyContact) -> EmergencyDialerResult)? = null, rideSessionId: String? = null) {
     if (AppRole.Child in roles) {
-        if (rideSessionId == null) V2Screen { V2TopBar("CONTACT D’URGENCE", onBack); Text("Contact indisponible hors trajet.") }
+        if (rideSessionId == null) V2Screen { V2TopBar("CONTACT D’URGENCE", onBack, titleLines = 2); Text("Contact indisponible hors trajet.") }
         else ChildRideEmergencyRoute(uid, rideSessionId, gateway, onBack, launchDialer)
         return
     }
     val canManage = AppRole.Child !in roles && roles.any { it in setOf(AppRole.Parent, AppRole.Driver, AppRole.ClubManager) }
     if (!canManage) {
-        V2Screen { V2TopBar("CONTACT D’URGENCE", onBack); Text("Accès indisponible.") }; return
+        V2Screen { V2TopBar("CONTACT D’URGENCE", onBack, titleLines = 2); Text("Accès indisponible.") }; return
     }
     var savedScope by rememberSaveable(uid) { mutableStateOf(arrayListOf<String>()) }
     val state = remember(uid, gateway) {
@@ -42,8 +42,12 @@ internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: Em
     var removal by remember(state) { mutableStateOf<EmergencyContactView?>(null) }
     fun navigation(action: () -> Unit) { if (state.dirty) discard = action else action() }
     fun select(target: EmergencyContactTarget) {
-        navigation { savedScope = if (target is EmergencyContactTarget.Child) arrayListOf(target.childId, target.clubId) else arrayListOf()
-            picker = false; scope.launch { state.select(target) } }
+        navigation {
+            if (state.select(target)) {
+                savedScope = if (target is EmergencyContactTarget.Child) arrayListOf(target.childId, target.clubId) else arrayListOf()
+                picker = false; scope.launch { state.refresh() }
+            }
+        }
     }
     DisposableEffect(state, children) { onDispose { state.close(); children.close() } }
     LaunchedEffect(state, children, owner) {
@@ -63,7 +67,8 @@ internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: Em
                 else if (launchDialer != null) launchDialer(contact) else openEmergencyDialer(context, contact)
             } }
         })
-    if (picker) EmergencyChildDialog(children, onChoose = { item -> select(EmergencyContactTarget.Child(item.childId, item.clubId)) },
+    if (picker) EmergencyChildDialog(children, selectionBusy = state.busy,
+        onChoose = { item -> select(EmergencyContactTarget.Child(item.childId, item.clubId)) },
         onMore = { scope.launch { children.more() } }, onRetry = { scope.launch { children.reload() } }, onClose = { picker = false })
     discard?.let { action -> EmergencyConfirmation("Quitter sans enregistrer ?", "Les modifications non enregistrées seront effacées.",
         "Continuer", { discard = null }, { discard = null; action() }) }

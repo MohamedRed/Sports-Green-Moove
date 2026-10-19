@@ -43,9 +43,9 @@ test('settings and active rides open the same private editor and preserve the re
   assert(route.includes('rememberSaveable(uid)')); assert(route.includes('finally { state.leaveForeground() }'));
   assert(route.includes('Lifecycle.State.STARTED')); assert(route.includes('state.close(); children.close()'));
 });
-test('the six component cases and four captures are required but do not imply actual device or service execution', () => {
+test('the seven prepared component cases and four captures do not imply actual device or service execution', () => {
   const tests = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/EmergencyContactFlowTest.kt');
-  assert.equal((tests.match(/@Test fun/g) ?? []).length, 6);
+  assert.equal((tests.match(/@Test fun/g) ?? []).length, 7);
   assert(tests.includes('EmergencyUiFixture')); assert(tests.includes('launchDialer ='));
   assert(tests.includes('waitFor(hasTestTag(tag) and isEnabled())'));
   assert(tests.includes('Box(Modifier.width(320.dp)')); assert(tests.includes('fontScale = 1.3f'));
@@ -54,6 +54,51 @@ test('the six component cases and four captures are required but do not imply ac
   for (const file of ['emergency-editor-narrow.png', 'emergency-editor-narrow-window.png', 'emergency-editor-changed.png', 'emergency-editor-changed-window.png'])
     assert(shell.includes(file), file);
   assert(read('tests/native-suite-runner.test.mjs').includes('stale contact component files cannot hide a failed fresh copy'));
+});
+test('child selection is accepted before persistence and a busy picker cannot silently discard the choice', () => {
+  const state = read(base + 'ui/EmergencyContactState.kt');
+  assert(state.includes('fun select(next: EmergencyContactTarget): Boolean'));
+  assert(state.includes('if (closed || busy) return false'));
+  const route = read(base + 'ui/EmergencyContactRoute.kt');
+  const selection = route.slice(route.indexOf('fun select(target:'), route.indexOf('DisposableEffect(state, children)'));
+  assert(selection.indexOf('if (state.select(target))') < selection.indexOf('savedScope ='));
+  assert(selection.indexOf('savedScope =') < selection.indexOf('picker = false'));
+  assert(selection.includes('scope.launch { state.refresh() }'));
+  assert(route.includes('selectionBusy = state.busy'));
+  assert(read(base + 'ui/EmergencyContactDialogs.kt').includes('enabled = !page.busy && !selectionBusy'));
+  const component = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/EmergencyContactFlowTest.kt');
+  for (const text of ['historyGate = CompletableDeferred()', 'firstReadGate = CompletableDeferred()',
+    'compose.onNodeWithTag(child).assertIsNotEnabled()', 'fixture.firstReadGate!!.complete(Unit)',
+    'hasTestTag("emergency.subject") and hasText("Enfant fictif QA")']) assert(component.includes(text));
+});
+test('the original child selection timeout stays negative with independent policy restoration', () => {
+  const path = 'docs/release/evidence/emergency-selection-race-2026-10-19/';
+  const failed = read(path + 'failed/LocalEmergencyIdentityFlowTest-instrumentation.txt');
+  assert(failed.includes('LocalEmergencyIdentityFlowTest.kt:60'));
+  assert(failed.includes('Condition still not satisfied after 60000 ms'));
+  assert(failed.includes('Tests run: 1,  Failures: 1')); assert(!failed.includes('OK (1 test)'));
+  assert.equal(JSON.parse(read(path + 'failed/emergency-identity-suite-status.json')).status, 1);
+  const restored = JSON.parse(read(path + 'failed/disposable-store-restore.json'));
+  for (const key of ['restored', 'verified']) assert.equal(restored[key], true);
+  for (const key of ['authorizationRemoved', 'componentRemoved', 'originalPolicyRestored']) assert.equal(restored.installAdmin[key], true);
+  assertRetainedSourceFiles(fileURLToPath(new URL('..', import.meta.url)), JSON.parse(read(path + 'failed/source-files.json')));
+  for (const [file, hash] of Object.entries(JSON.parse(read(path + 'artifact-sha256.json'))))
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + path + file, import.meta.url))).digest('hex'), hash);
+});
+test('the executed selection regressions and successful compilation cannot imply a corrected native pass', () => {
+  const path = 'docs/release/evidence/emergency-selection-race-2026-10-19/regression/';
+  const scope = JSON.parse(read(path + 'scope.json'));
+  assert.equal(scope.scope, 'local-unit-regressions-and-compilation-not-native-execution');
+  assert.equal(scope.unitCaseCount, 23); assert.equal(scope.preparedComponentCaseCount, 7);
+  for (const key of ['nativeRegressionExecuted', 'correctedIdentityUiVerified', 'physicalDevice']) assert.equal(scope[key], false);
+  const parser = new XMLParser({ ignoreAttributes: false });
+  for (const [file, count] of [['EmergencyContactSelectionTest', 3], ['EmergencyContactStateTest', 20]]) {
+    const suite = parser.parse(read(path + file + '.xml')).testsuite;
+    assert.equal(Number(suite['@_tests']), count); assert.equal(suite.testcase.length, count);
+    for (const key of ['errors', 'failures', 'skipped']) assert.equal(Number(suite['@_' + key]), 0);
+  }
+  assert(read(path + 'build-transcript.txt').includes('BUILD SUCCESSFUL'));
+  assertRetainedSourceFiles(fileURLToPath(new URL('..', import.meta.url)), scope.sourceFiles);
 });
 test('new contact code and the app root remain below the modularity limit', () => {
   const paths = ['data/EmergencyContactModels.kt', 'services/EmergencyContactGateway.kt', 'services/EmergencyContactWire.kt',

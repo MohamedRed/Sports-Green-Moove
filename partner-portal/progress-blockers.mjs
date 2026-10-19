@@ -1,4 +1,7 @@
 export const blockers = [
+  { id: 'child-contact-heading', title: 'Revoir le titre du contact enfant',
+    text: 'Le titre est coupé sur petit écran dans les captures de l’essai simulé.',
+    next: 'Vérifier le titre sur deux lignes avec du grand texte.', source: 'docs/release/evidence/child-contact-components-2026-10-19/README.md' },
   { id: 'tracking-capture', title: 'Revoir l’affichage du trajet',
     text: 'La reprise fonctionne en local. Le bas de l’écran manque sur deux captures.',
     next: 'Vérifier le rendu sur téléphone et corriger l’affichage si le défaut se confirme.', source: 'docs/release/evidence/native-startup-pass-2026-10-19/README.md' },
@@ -22,7 +25,7 @@ export const blockers = [
     next: 'Rejouer sur téléphone avant publication. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-history-2026-10-18/README.md' },
   { id: 'emergency-contact', title: 'Tester le contact d’urgence',
     text: 'Conducteur et parent ouvrent leur contact depuis un trajet en local, sans appeler.',
-    next: 'Terminer l’accès de l’enfant dans l’app. Rejouer le profil recréé, puis vérifier sur téléphone sans appeler.', source: 'docs/release/evidence/child-emergency-services-2026-10-19/README.md' },
+    next: 'Terminer l’accès de l’enfant dans l’app. Rejouer le choix d’un enfant et le profil recréé, puis vérifier sur téléphone sans appeler.', source: 'docs/release/evidence/emergency-selection-race-2026-10-19/README.md' },
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
     text: 'Le renvoi depuis la recherche retrouve une seule demande en local.',
     next: 'Rejouer après réouverture, depuis les autres écrans et sur téléphone. Terminer les confirmations des parents.', source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },

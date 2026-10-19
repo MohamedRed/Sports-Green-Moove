@@ -6,7 +6,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.*
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
@@ -14,6 +16,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
 import be.sportgreenmoove.app.data.*
 import be.sportgreenmoove.app.services.*
+import kotlinx.coroutines.CompletableDeferred
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -21,6 +24,22 @@ import java.io.File
 
 class EmergencyContactFlowTest {
     @get:Rule val compose = createComposeRule()
+    @Test fun aLateInitialReadKeepsTheChildPickerOpenUntilTheSelectionCanBeAccepted() {
+        val fixture = EmergencyUiFixture().apply { historyGate = CompletableDeferred(); firstReadGate = CompletableDeferred() }
+        compose.setSgmUiTestContent { content(fixture) }
+        click("emergency.children")
+        compose.onNodeWithText("Choisir un enfant").assertIsDisplayed()
+        compose.runOnIdle { fixture.historyGate!!.complete(Unit) }
+        val child = "emergency.child.${fixture.verification.id}"
+        waitFor(hasTestTag(child)); waitFor(hasTestTag("emergency.loading"))
+        compose.onNodeWithTag(child).assertIsNotEnabled()
+        compose.onNodeWithText("Choisir un enfant").assertIsDisplayed()
+        compose.runOnIdle { fixture.firstReadGate!!.complete(Unit) }
+        click(child)
+        waitFor(hasTestTag("emergency.subject") and hasText("Enfant fictif QA"))
+        compose.onNodeWithText("Choisir un enfant").assertDoesNotExist()
+        compose.onNodeWithTag("emergency.empty").assertExists(); assertEquals(0, fixture.writes)
+    }
     @Test fun saveReloadAndCancelledRemovalKeepTheConfirmedContact() {
         val fixture = EmergencyUiFixture(); host(fixture)
         edit("Contact fictif QA", "+12025550123"); click("emergency.save")
@@ -67,6 +86,9 @@ class EmergencyContactFlowTest {
     @Test fun fieldsActionsAndRemovalConfirmationFitANarrowScreenWithLargeText() {
         val fixture = EmergencyUiFixture().apply { current = current.copy(contact = contact.copy(name = "Alexandre de la Croix Saint-Lambert QA"), revision = 1) }
         host(fixture, narrow = true)
+        val titles = mutableListOf<TextLayoutResult>()
+        compose.onNodeWithText("CONTACT D’URGENCE").performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(titles) }
+        assertFalse("The complete emergency title must fit", titles.single().hasVisualOverflow)
         waitFor(hasTestTag("emergency.phone"))
         for (tag in listOf("emergency.name", "emergency.phone", "emergency.save", "emergency.dial", "emergency.remove")) {
             val bounds = compose.onNodeWithTag(tag).performScrollTo().fetchSemanticsNode().boundsInRoot
@@ -122,8 +144,14 @@ private class EmergencyUiFixture : EmergencyContactGateway, GuardianVerification
     val verification = GuardianVerification("e".repeat(64), "club", "child", "parent", "Club fictif QA", "Enfant fictif QA",
         GuardianVerificationStatus.Verified, 2, listOf(GuardianParentAction.Withdraw))
     var writes = 0; var opens = 0; var loseReply = false; var failRead = false
-    override suspend fun guardianHistory(uid: String, cursor: String?) = GuardianPage(listOf(verification), null)
+    var historyGate: CompletableDeferred<Unit>? = null
+    var firstReadGate: CompletableDeferred<Unit>? = null
+    private var reads = 0
+    override suspend fun guardianHistory(uid: String, cursor: String?): GuardianPage<GuardianVerification> {
+        historyGate?.await(); return GuardianPage(listOf(verification), null)
+    }
     override suspend fun readEmergencyContact(uid: String, target: EmergencyContactTarget): EmergencyContactView {
+        if (reads++ == 0) firstReadGate?.await()
         if (failRead) error("Explicit denied-read fixture")
         return current.copy(target = target, childName = if (target is EmergencyContactTarget.Child) verification.childName else null,
             clubName = if (target is EmergencyContactTarget.Child) verification.clubName else null,

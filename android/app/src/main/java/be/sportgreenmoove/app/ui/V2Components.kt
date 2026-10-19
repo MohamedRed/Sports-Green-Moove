@@ -86,7 +86,7 @@ fun V2Screen(testTag: String? = null, content: @Composable ColumnScope.() -> Uni
 }
 
 @Composable
-fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable (() -> Unit)? = null) {
+fun V2TopBar(title: String, onBack: (() -> Unit)? = null, titleLines: Int = 1, trailing: @Composable (() -> Unit)? = null) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -98,9 +98,9 @@ fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable 
             testTag = SgmTestTags.BackAction, description = "Retour")
         Text(
             title,
-            style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.08.em),
+            style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.sp),
             modifier = Modifier.weight(1f),
-            maxLines = 1,
+            maxLines = titleLines,
             overflow = TextOverflow.Ellipsis,
         )
         trailing?.invoke() ?: V2ThemeButton()

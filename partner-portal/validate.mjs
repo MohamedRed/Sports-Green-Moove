@@ -13,6 +13,7 @@ import { remoteRideStopScope, validateRemoteRideStopReport, validateRetainedRemo
 import { validateRetainedVehicleMapServices } from '../scripts/qa/vehicle-map-evidence.mjs';
 import { validateRetainedVehicleMapDisplay } from '../scripts/qa/vehicle-map-retained-evidence.mjs';
 import { validateRetainedTeamClubIdentity } from '../scripts/qa/team-club-identity-evidence.mjs';
+import { validateChildContactComponents, validateRetainedChildContactComponents } from '../scripts/qa/child-emergency-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -67,6 +68,9 @@ export function validate(root) {
       assert.equal(f.status, 'partial', 'Local UI checks do not complete physical-device requirements');
       const run = JSON.parse(readFileSync(resolve(root, f.ui.source), 'utf8'));
       validateUiScope(run);
+      if (f.id === 'child-emergency' || run.scope === 'executed-local-child-contact-components-not-child-signin-or-dialer') {
+        assert.equal(f.id, 'child-emergency'); validateRetainedChildContactComponents(root, f.ui.source);
+      }
       if (f.id === 'team-enrollment') validateRetainedTeamEnrollment(root, f.ui.source);
       if (f.id === 'ride-emergency' || run.scope === 'local-active-ride-contact-with-sdk-and-dialer-not-physical') {
         assert.equal(f.id, 'ride-emergency'); validateRetainedRideEmergency(root, f.ui.source);
@@ -142,6 +146,9 @@ export function validate(root) {
 
 export function validateUiScope(run) {
   switch (run.scope) {
+    case 'executed-local-child-contact-components-not-child-signin-or-dialer':
+      validateChildContactComponents(run);
+      break;
     case remoteRideStopScope:
       validateRemoteRideStopReport(run);
       break;

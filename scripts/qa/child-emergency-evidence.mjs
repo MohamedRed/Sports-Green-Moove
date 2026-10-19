@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { resolve, isAbsolute } from 'node:path';
+import { resolve, isAbsolute, dirname, basename } from 'node:path';
+import { XMLParser } from 'fast-xml-parser';
 import { assertRetainedSourceFiles } from './retained-source-evidence.mjs';
 
 export const childEmergencyGroups = [
@@ -61,5 +62,33 @@ export function validateRetainedChildEmergency(root) {
     assert(!isAbsolute(file) && !file.split('/').includes('..'));
     assert.equal(createHash('sha256').update(read(file)).digest('hex'), hash, file);
   }
+  return report;
+}
+export function validateChildContactComponents(report) {
+  assert.equal(report.scope, 'executed-local-child-contact-components-not-child-signin-or-dialer');
+  assert.equal(report.projectId, 'demo-sgm-local-qa'); assert.equal(report.componentCaseCount, 5);
+  assert.deepEqual(report.steps, [{ id: 'child-contact-components', status: 'passed' }]);
+  assert.equal(report.caseNames.length, 5); assert.equal(new Set(report.caseNames).size, 5);
+  for (const key of ['mockedGateway', 'mockedDialer']) assert.equal(report[key], true);
+  for (const key of ['actualChildSignIn', 'connectedBackend', 'dialerOpened', 'physicalDevice', 'productionWrites',
+    'fullNativeCiVerified', 'visualCompletenessVerified']) assert.equal(report[key], false);
+  assert.deepEqual(report.knownVisualDefects, ['child-emergency-readonly-narrow.png', 'child-emergency-readonly-narrow-window.png']);
+  assert.equal(Object.keys(report.screenshots).length, 6); assert.match(report.sourceCommit, /^[a-f0-9]{40}$/);
+}
+export function validateRetainedChildContactComponents(root, source) {
+  const directory = dirname(resolve(root, source)), read = (file) => readFileSync(resolve(directory, file));
+  const json = (file) => JSON.parse(read(file)), sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
+  const report = json(basename(source)); validateChildContactComponents(report);
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(read('ordinary-tests.xml')).testsuite;
+  assert.equal(report.testedAt, suite['@_timestamp'] + 'Z');
+  const cases = suite.testcase.filter((entry) => entry['@_classname'] === 'be.sportgreenmoove.app.ui.ChildRideEmergencyFlowTest');
+  assert.equal(cases.length, 5); assert.deepEqual(cases.map((entry) => entry['@_name']).sort(), report.caseNames);
+  for (const entry of cases) for (const key of ['failure', 'error', 'skipped']) assert(!Object.hasOwn(entry, key));
+  assertRetainedSourceFiles(root, report.sourceFiles);
+  for (const [file, hash] of Object.entries({ ...json('artifact-sha256.json'), ...report.screenshots })) {
+    assert.equal(basename(file), file); assert.equal(sha(read(file)), hash, file);
+  }
+  const restored = json('disposable-store-restore.json'); assert.equal(restored.verified, true); assert.equal(restored.restored, true);
+  for (const key of ['authorizationRemoved', 'componentRemoved', 'originalPolicyRestored']) assert.equal(restored.installAdmin[key], true);
   return report;
 }

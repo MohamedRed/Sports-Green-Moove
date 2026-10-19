@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le choix d’un enfant reste à rejouer',
+    text: 'Un défaut de chargement peut fermer la liste trop tôt. La correction est préparée ; elle reste à vérifier dans l’app.', flow: 'emergency-contact' },
+  { date: '2026-10-19', title: 'Les premiers écrans du contact enfant passent',
+    text: 'Cinq essais d’écran simulés passent. Deux captures sont ajoutées ; le titre corrigé et la connexion réelle restent à tester.', flow: 'child-emergency' },
   { date: '2026-10-19', title: 'Le contact enfant reste protégé',
     text: 'Seize contrôles d’accès passent en local, avec un compte enfant préparé pour l’essai. Son parcours complet dans l’app reste à tester.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Le nouvel écran attend son essai',

@@ -104,7 +104,8 @@ class EmergencyContactStateTest {
     @Test fun aChildTargetNeedsItsOwnCurrentIdentityAndCannotKeepThePreviousAdultsContact() = runBlocking {
         val gateway = ContactFixture().apply { current = current.copy(contact = contact, revision = 1) }; val state = ready(gateway)
         gateway.current = EmergencyContactView("parent", EmergencyContactTarget.Child("child", "club"), null, 0)
-        state.select(gateway.current.target); assertNull(state.view); assertEquals("", state.phone); assertNotNull(state.error)
+        assertTrue(state.select(gateway.current.target)); state.refresh()
+        assertNull(state.view); assertEquals("", state.phone); assertNotNull(state.error)
         gateway.current = gateway.current.copy(childName = "Enfant QA", clubName = "Club QA", childInstanceId = "a".repeat(64)); state.refresh()
         assertEquals("Enfant QA", state.view?.childName); assertNull(state.view?.contact)
     }

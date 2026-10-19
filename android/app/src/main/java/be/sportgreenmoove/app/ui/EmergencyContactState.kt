@@ -28,9 +28,9 @@ internal class EmergencyContactState(private val uid: String, private val gatewa
     fun editName(value: String) { if (!closed && !busy && view != null && value.length <= 100) { name = value; notice = null } }
     fun editPhone(value: String) { if (!closed && !busy && view != null && value.length <= 16) { phone = value; notice = null } }
 
-    suspend fun select(next: EmergencyContactTarget) {
-        if (closed || busy) return
-        target = next; clearPrivate(); refresh()
+    fun select(next: EmergencyContactTarget): Boolean {
+        if (closed || busy) return false
+        target = next; clearPrivate(); return true
     }
     suspend fun refresh() {
         if (closed || busy) return
