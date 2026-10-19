@@ -193,8 +193,8 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
 test('current conversation evidence retains the full replay and the dated historical captures', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const run = JSON.parse(source(flow.ui.source));
-  assert.equal(run.testCount, 24);
-  assert.equal(run.steps.length, 24);
+  assert.equal(run.testCount, 36);
+  assert.equal(run.steps.length, 36);
   const previous = JSON.parse(source('docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/results.json'));
   assert.equal(previous.testCount, 20); assert.equal(previous.steps.length, 21);
   assert(run.steps.every((step) => step.status === 'passed'));

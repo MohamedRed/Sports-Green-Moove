@@ -18,7 +18,6 @@ const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
 const validation = 'docs/release/evidence/browserstack-2026-10-15/README.md';
 const localReport = 'docs/release/evidence/local-2026-10-15/README.md';
 const membershipReport = 'docs/release/evidence/local-membership-review-2026-10-16/README.md';
-const chatReport = 'docs/release/evidence/local-dual-transport-2026-10-17/README.md';
 const rideUiReport = 'docs/release/evidence/local-ride-ui-2026-10-15/README.md';
 const rideUi = (groups) => ({ source: 'docs/release/evidence/local-ride-ui-2026-10-15/results.json', groups });
 const uiReport = 'docs/release/evidence/local-ui-2026-10-15/README.md';
@@ -179,19 +178,19 @@ export const content = {
         shot('trip-cancel-parent', 'Deux réservations annulées côté parent, essai local du 16 octobre')],
       source: 'docs/release/evidence/real-maps-native-2026-10-18/README.md' },
     createBookingFlow(local, shot),
-    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-17',
-      summary: 'Le clavier passe dans le dernier essai. La stabilité reste à vérifier.',
-      verified: 'Le brouillon, le renvoi sans doublon et la réponse passent dans les essais réussis. L’échange reprend après relancement. Le clavier passe aussi ce nouvel essai.',
+    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-19',
+      summary: 'Les messages reprennent après une coupure, en local.',
+      verified: 'Le nouvel essai retrouve le brouillon, le renvoi sans doublon et la réponse après coupure. L’échange reprend aussi après fermeture. Les captures gardent leur date d’origine.',
       remaining: 'Rejouer le clavier. Répéter les essais de coupure. Restent les groupes, les échanges entre téléphones, les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
-      local: local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
+      local: { ...local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
         'Après une confirmation perdue, deux renvois gardent un seul message et une seule notification.',
         'La lecture est enregistrée sans effacer un message reçu plus tard.',
         'Une personne extérieure ne peut pas ouvrir la conversation ni y répondre.',
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
-      ], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json'),
-      ui: { source: 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
+      ], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json'), checkedAt: '2026-10-17' },
+      ui: { source: 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
       images: [shot('chat-network-current-draft', 'Brouillon conservé pendant la coupure, essai local du 17 octobre'),
         shot('chat-network-current-reply', 'Message renvoyé et réponse reçue, essai local du 17 octobre'),
         shot('chat-restart-recheck-reply', 'Échange après relancement revérifié en local le 16 octobre'),
@@ -205,7 +204,7 @@ export const content = {
         shot('chat-empty', 'Conversation avant le premier message, essai du 15 octobre'),
         shot('chat-received', 'Premier message et réponse du conducteur, essai du 15 octobre'),
         shot('chat-history', 'Ancien échange retrouvé dans l’app, essai du 15 octobre'),
-        shot('chat-landscape', 'Brouillon conservé en paysage, essai du 15 octobre')], source: chatReport },
+        shot('chat-landscape', 'Brouillon conservé en paysage, essai du 15 octobre')], source: 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/README.md' },
     createTeamEnrollmentFlow(),
     createTeamReviewFlow(),
     { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-18',

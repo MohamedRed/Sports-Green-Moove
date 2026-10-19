@@ -76,8 +76,8 @@ test('the ordinary component suite preserves six conversation cases and passes w
 
 test('the updated portal uses only the completed replay and retains remaining group, phone and draft scope', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/local-dual-transport-2026-10-17/README.md');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/README.md');
+  assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json');
   for (const name of ['confirmed', 'rejected-retry']) assert.equal(captures['chat-loss-' + name], directory + 'accepted-run/local-chat-loss-' + name + '.png');
   assert.match(flow.remaining, /groupes/); assert.match(flow.remaining, /téléphones/); assert.match(flow.remaining, /brouillons après fermeture/);
   assert.match(read(directory + 'README.md'), /One passing run does not establish why/);

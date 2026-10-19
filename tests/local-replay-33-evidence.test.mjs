@@ -70,8 +70,8 @@ test('the successful network and draft receipts retain strict observations rathe
 test('private updates retain historical failures and distinguish the latest pass from physical and payment proof', () => {
   assert(content.updates.some((u) => u.date === '2026-10-18' && u.title === 'Les 33 essais locaux prévus passent'));
   const blocker = content.blockers.find((b) => b.id === 'test-device-stability');
-  assert.equal(blocker.source, 'docs/release/evidence/ci-df9e245-2026-10-19/README.md');
-  assert.match(blocker.next, /sur téléphone/); assert.match(blocker.text, /dernier essai complet.*pas démarré/);
+  assert.equal(blocker.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/README.md');
+  assert.match(blocker.next, /sur téléphone/); assert.match(blocker.text, /nouvel essai complet passe/);
   assert(content.updates.some((u) => u.title === 'L’essai complet reste à stabiliser'));
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');

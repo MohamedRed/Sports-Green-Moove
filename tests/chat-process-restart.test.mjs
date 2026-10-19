@@ -239,7 +239,7 @@ test('published restart evidence requires the full nineteen-case replay and unch
   }
   assert.equal(count, 19);
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json'); assert.equal(flow.status, 'partial');
+  assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json'); assert.equal(flow.status, 'partial');
   assert(flow.ui.groups.includes('chat-confirmed-process-restart-ui'));
   assert.match(flow.remaining, /brouillons après fermeture/); assert.match(flow.remaining, /téléphones/);
   assert(flow.images.some((image) => image.file === 'chat-restart-reply'));

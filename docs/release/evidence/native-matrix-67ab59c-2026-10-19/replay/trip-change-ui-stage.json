@@ -1,0 +1,79 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "50c523d9964eedfab26927ba88f9fad1",
+  "testedAt": "2026-10-19T19:59:58.543Z",
+  "recordType": "native-trip-change-stage-not-full-run-result",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 1,
+  "steps": [
+    {
+      "id": "trip-change-parent-confirmation-ui",
+      "status": "passed"
+    }
+  ],
+  "method": "native-app-three-account-ui-with-independent-persisted-checks",
+  "records": [
+    {
+      "tripId": "TgD95nk20P57UaqsIeZ2",
+      "proposalId": "6ecc02b03bf858761499a258bd38803f4c286b66261cca6b96df78134bff55ab",
+      "status": "confirmed",
+      "parentCount": 2,
+      "decisionCount": 2,
+      "bookingCount": 2,
+      "originalPriceCents": 250,
+      "proposedPriceCents": 400,
+      "notificationCount": 5
+    },
+    {
+      "tripId": "GBbKdl7t1w7mJpHbq21p",
+      "proposalId": "1cfe31078c279aa88b67948d4c82faec9bce195741c0ed7ac0966cab67f101c5",
+      "status": "declined",
+      "parentCount": 2,
+      "decisionCount": 1,
+      "bookingCount": 2,
+      "originalPriceCents": 250,
+      "proposedPriceCents": 400,
+      "notificationCount": 5
+    },
+    {
+      "tripId": "5HlF7zAk4simlZLc6FFk",
+      "proposalId": "7bbb173fee9e2dd232db2d4901fba11574f6ac9df7cab99b586a52de3dd2b9e3",
+      "status": "withdrawn",
+      "parentCount": 2,
+      "decisionCount": 0,
+      "bookingCount": 2,
+      "originalPriceCents": 250,
+      "proposedPriceCents": 400,
+      "notificationCount": 5
+    }
+  ],
+  "native": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "50c523d9964eedfab26927ba88f9fad1",
+    "scope": "native-three-account-trip-consent-ui",
+    "completed": true,
+    "confirmedTripId": "TgD95nk20P57UaqsIeZ2",
+    "declinedTripId": "GBbKdl7t1w7mJpHbq21p",
+    "withdrawnTripId": "5HlF7zAk4simlZLc6FFk",
+    "firstParentPending": true,
+    "secondParentConfirmed": true,
+    "refusalVisible": true,
+    "withdrawalVisible": true,
+    "routeRequiredBeforeApplication": true
+  },
+  "captureFiles": [
+    "local-trip-change-first-parent.png",
+    "local-trip-change-both-parents.png",
+    "local-trip-change-parent-refused.png",
+    "local-trip-change-withdrawn.png"
+  ],
+  "tripAndBookingsUnchanged": true,
+  "parentViewsScoped": true,
+  "outsiderDenied": true,
+  "unappliedTripStartDenied": true,
+  "applicationExercised": false,
+  "routeProviderExercised": false,
+  "paymentExercised": false,
+  "fullAppReplay": false,
+  "limitation": "Price proposals, consent, refusal and withdrawal only; no route calculation, application, payment or physical-device proof."
+}

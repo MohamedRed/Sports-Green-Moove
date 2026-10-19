@@ -100,10 +100,10 @@ test('SDK process recovery still produces one booking and cannot become a physic
 test('private progress keeps local scope and instability explicit, with unchanged historical captures', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial');
-  assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
+  assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(blocker.source, 'docs/release/evidence/native-matrix-36-2026-10-19/README.md');
-  assert.match(blocker.text, /reprise passent dans le nouvel essai local/); assert.match(blocker.text, /essais précédents se sont arrêtés avant la coupure/);
+  assert.equal(blocker.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/README.md');
+  assert.match(blocker.text, /reprise passent à nouveau en local/); assert.match(blocker.text, /échecs précédents restent documentés/);
   assert(content.updates.some((item) => item.title === 'Le nouvel essai complet passe'));
   const report = text('README.md');
   assert.match(report, /146730fba6e39a517922d91ac670627e50a23b8f/);

@@ -57,8 +57,9 @@ test('strict version-2 observations, request release and saved messages all rema
 
 test('reviewed captures use this run while physical, stability and draft-restart scope stays open', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-17');
-  assert.equal(flow.source, base + 'README.md'); assert.equal(flow.ui.source, base + 'completed/results.json');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-19');
+  const current = 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/';
+  assert.equal(flow.source, current + 'README.md'); assert.equal(flow.ui.source, current + 'replay/results.json');
   for (const [id, name] of [['chat-network-current-draft', 'local-chat-network-unconfirmed.png'],
     ['chat-network-current-reply', 'local-chat-network-received.png']]) {
     assert.equal(captures[id], base + 'completed/' + name);
@@ -98,8 +99,8 @@ test('the repeat keyboard failure is retained without replacing the completed re
     assert.match(item.failure, /ConversationTestInteractions\.awaitKeyboard|TripFormTestInputKt\.enterTripFormText/);
   }
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.match(flow.summary, /clavier/); assert.match(flow.remaining, /clavier/);
-  assert.equal(flow.ui.source, base + 'completed/results.json');
+  assert.match(flow.remaining, /clavier/);
+  assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json');
   assert(content.updates.some((item) => item.title === 'Le nouvel essai bloque au clavier'));
   const report = readFileSync(new URL('../' + base + 'README.md', import.meta.url), 'utf8');
   assert.match(report, /39031056051/); assert.match(report, /replay did not start/);

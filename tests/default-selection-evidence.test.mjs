@@ -85,11 +85,12 @@ test('fresh handover, offline and restored app evidence remain independently req
 test('current captures and dates cannot promote this comparison to physical or stable readiness', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const latest = 'docs/release/evidence/local-dual-transport-2026-10-17/';
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-17');
-  assert.equal(flow.ui.source, latest + 'completed/results.json'); assert.equal(flow.source, latest + 'README.md');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-19');
+  const current = 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/';
+  assert.equal(flow.ui.source, current + 'replay/results.json'); assert.equal(flow.source, current + 'README.md');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(blocker.source, 'docs/release/evidence/native-matrix-36-2026-10-19/README.md');
-  assert.match(blocker.text, /reprise passent dans le nouvel essai local/); assert.match(blocker.text, /essais précédents se sont arrêtés avant la coupure/);
+  assert.equal(blocker.source, current + 'README.md');
+  assert.match(blocker.text, /reprise passent à nouveau en local/); assert.match(blocker.text, /échecs précédents restent documentés/);
   for (const [id, file] of [['chat-network-current-draft', 'local-chat-network-unconfirmed.png'],
     ['chat-network-current-reply', 'local-chat-network-received.png']]) {
     assert.equal(captures[id], latest + 'completed/' + file);
@@ -131,6 +132,6 @@ test('the subsequent recheck stays failed with no inferred controller readiness 
   assert(content.updates.some((update) => update.title === 'La préparation bloque encore un essai'));
   const current = content.flows.find((flow) => flow.id === 'messages');
   assert.equal(current.status, 'partial');
-  assert.match(current.summary, /clavier/);
+  assert.match(current.remaining, /clavier/);
   assert.match(current.remaining, /Répéter les essais de coupure/);
 });

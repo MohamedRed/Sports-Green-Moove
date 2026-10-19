@@ -1,0 +1,77 @@
+{
+  "scope": "local-remote-completion-service-stop-not-physical-background-gps",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e8c6bc6175d83d15d256fb2d2e4d2be3",
+  "rideSessionId": "qdrDsMkPyVFZW79BG5oh",
+  "bookingId": "8YvQbwcb7EJRlaSSjEa0",
+  "childId": "sgm-qa-child-lina",
+  "backgroundStopBeforeResume": true,
+  "driverStillSignedInAtStop": true,
+  "peerCompletionAcknowledged": true,
+  "mockModeRestored": true,
+  "firestoreClientTerminated": true,
+  "screenshots": {
+    "local-native-startup-remote-started.png": "506fb5b196e3daa6a0e985207e60dcb5088f84abf63962612fa871806ab7394d",
+    "local-native-startup-remote-ended.png": "ac9be1ee923e80d5feba023a5a096a9012686d80a2dd7e0ffccb3cf29596f863"
+  },
+  "physicalDevice": false,
+  "providerTrackingVerified": false,
+  "physicalBackgroundGpsVerified": false,
+  "testedAt": "2026-10-19T20:09:36.263Z",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "steps": [
+    {
+      "id": "remote-ride-stop",
+      "status": "passed"
+    }
+  ],
+  "nativeUiExecuted": true,
+  "primaryEvidencePhase": "remote-ride-stop",
+  "transcriptSha256": "29e2217e7e7d1c8ac1dc6e4d699a2b98309841985daac194a92935076f300618",
+  "cleanupMode": "destroy-owned-local-environment",
+  "mockPermissionRestored": true,
+  "adminClientClosed": true,
+  "localPackagesRemoved": true,
+  "completion": {
+    "auditEventCount": 2,
+    "bookingCount": 1,
+    "co2LedgerCount": 1,
+    "completionVerified": true,
+    "claimsUnchanged": true
+  },
+  "isolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 3,
+      "co2Ledger": 1,
+      "rewardLedger": 0
+    },
+    "zeroDistanceImpactVerified": true,
+    "otherLiveRidesPreserved": true
+  },
+  "productionWrites": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "sourceFiles": {
+    "scripts/qa/local-remote-ride-stop-ui.mjs": "c78d23daaf7d769474c74b29112cc2d3627ac3f85749222e637da66347aafa3d",
+    "scripts/qa/run-local-remote-ride-stop-ui.mjs": "46031a273ddae7c277dbc41765715207730e47b2e798d100cbf518bfa3b24766",
+    "scripts/qa/run-isolated-ride-ui.mjs": "0b5d70496cb7a1c89fe1e41d1ea2f419310f5480c7de32094b365a14c8fcea17",
+    "scripts/qa/local-ride-observation-fixture.mjs": "391c1af064759144d819e41bbcb162cd0d82c0c6e9723597a36726347597d57b",
+    "scripts/qa/isolated-ride-records.mjs": "7207af93cc20ab3bc96bc072065e59281da0156d2e8840917e47d35c4d3710cf",
+    "scripts/qa/local-mock-location-permission.mjs": "fcfe624d6285ece51395015b05643083f11827a54733dbe741258529a4ebe6f3",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt": "d27bca807230858abe4a71b4c3dd4a9ab40751aba3d598894d3df00270ae2d5f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationLease.kt": "24cfffe087de539f953a88988ca20432361fc216fe1af08457e4dd5c1a4b99d0",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLifecycle.kt": "af661945f9567333ee2671c69bb837a72122dd68856eba4d2f36679e9db7363b",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLifecycleWatch.kt": "d1b6b0e7851ee11f54ce72e738d70ebb9529cb51f1d61f87abe504538d12a3d5",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNativeLocationStartup.kt": "c969343bed48178342abcc1c32f0a5b6e6fb07819bd74a3d021ddbea70cd6bcf",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt": "f707294479c37bd33d5c44f3f7e8ff0b0b5ad2031bfa879c3734175585e8030e",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideCompletionPeer.kt": "e82f57d696970482f98503d76d57a4ded041f9c4b9d1dc552d5ec9a4ef9bee79",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocation.kt": "6126c59e05da1b716da41dfa9b2fa2a911137f47fb543d75464276a673867fdf",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocationFeed.kt": "a7c880bd8b1994130d989c896a8b3e0f8004e00d5f4fd286f048f1f74820b33c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeStartupCapture.kt": "ae2e8d73b470edb4543cf8dfb0f14ad011cde3a2d93363dcb06469506ace7967"
+  }
+}

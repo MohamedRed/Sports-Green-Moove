@@ -72,7 +72,7 @@ test('original bytes, truthful partial copy and current smoke coverage remain ma
   assert.match(report, /39032094118/); assert.match(report, /39032609510/);
   assert.match(report, /does not prove the new focus wait caused/);
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.match(flow.summary, /stabilité reste à vérifier/);
+  assert.equal(flow.status, 'partial'); assert.match(flow.remaining, /Répéter les essais de coupure/);
   assert.match(flow.remaining, /Rejouer le clavier/); assert.match(flow.remaining, /coupures réelles/);
   const keyboard = content.updates.find((item) => item.flow === 'messages' &&
     item.date === '2026-10-17' && item.title === 'Les essais du clavier passent');
