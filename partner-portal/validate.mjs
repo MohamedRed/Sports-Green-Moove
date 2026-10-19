@@ -66,7 +66,7 @@ export function validate(root) {
       for (const group of f.ui.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven UI check ${group}`);
     }
     if (f.phone) {
-      assert.equal(f.status, 'partial', 'A bounded parent phone flow does not complete all booking requirements');
+      assert.equal(f.status, 'partial', 'A bounded phone flow does not complete every release requirement');
       validatePhoneEvidence(root, f.phone, f.checkedAt);
     }
   }

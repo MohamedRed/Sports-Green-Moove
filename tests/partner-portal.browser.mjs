@@ -162,7 +162,7 @@ try {
   }
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
-    for (const id of ['navigation', 'search', 'emergency-contact']) {
+    for (const id of ['navigation', 'search', 'emergency-contact', 'team-enrollment']) {
       await page.goto(`${base}/#parcours/${id}/visite/1`);
       const flow = content.flows.find((item) => item.id === id);
       await page.getByRole('heading', { name: flow.tour[0].title, exact: true }).waitFor();
@@ -171,7 +171,7 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
       await page.screenshot({ path: `${output}/phone-${id}-${width}.png`, fullPage: true });
-      if (id === 'emergency-contact') {
+      if (id === 'emergency-contact' || id === 'team-enrollment') {
         for (let step = 1; step < flow.tour.length; step++) {
           await page.getByRole('link', { name: 'Suivant', exact: true }).click();
           await page.getByRole('heading', { name: flow.tour[step].title, exact: true }).waitFor();
@@ -194,6 +194,7 @@ try {
     for (const [index, image] of flow.images.entries()) {
       await waitForImage();
       assert.equal(await page.locator('.media-stage img').getAttribute('alt'), image.alt);
+      assert.equal(await page.locator('.media-stage.is-landscape').count(), image.landscape ? 1 : 0);
       assert.match(image.alt, /19 octobre/);
       assert.doesNotMatch(image.alt, /simulé/);
       assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));

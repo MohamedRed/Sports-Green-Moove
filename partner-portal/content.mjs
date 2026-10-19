@@ -206,7 +206,7 @@ export const content = {
     { id: 'clubs', title: 'Clubs et adhésion', status: 'partial', checkedAt: '2026-10-18',
       summary: 'La demande, la réponse et le retrait du lien parent-enfant passent dans l’app, en local.',
       verified: 'Le parent demande la vérification, retrouve l’accord après réouverture de l’écran et voit son retrait. L’autre compte ne retrouve pas ces données. Les captures sont ajoutées.',
-      remaining: 'Tester la fermeture complète de l’app et rejouer sur téléphone. Restent les inscriptions des enfants par équipe et leurs groupes. Pas encore en ligne.',
+      remaining: 'Tester la fermeture complète de l’app et les droits des parents sur téléphone. Terminer les conversations d’équipe des enfants. Pas encore en ligne.',
       local: { ...local(['club-request', 'membership-review', 'team-ownership'], ['La demande est enregistrée sans doublon.', 'Un responsable extérieur au club ne peut pas décider.', 'Deux décisions simultanées ne comptent pas deux fois.', 'Un ancien choix est refusé après une nouvelle demande.', 'Un responsable ne peut pas déplacer ni modifier l’équipe d’un autre club.'], 'docs/release/evidence/local-team-ownership-2026-10-16/services.json'), checkedAt: '2026-10-16' },
       ui: { source: 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-results.json', groups: ['guardian-parent-ui'] },
       images: [shot('guardian-parent-requested', 'Demande de vérification en attente, essai local du 18 octobre'),

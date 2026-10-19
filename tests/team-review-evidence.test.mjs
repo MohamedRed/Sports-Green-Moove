@@ -56,12 +56,12 @@ test('backend and web smoke run the real manager service lifecycle and scoped fr
 test('the private portal keeps separate manager-browser and parent-native proof partial', () => {
   const flow = content.flows.find((item) => item.id === 'team-review'); assert.equal(flow.status, 'partial');
   assert.equal(flow.ui.source, base + 'results.json'); assert.deepEqual(flow.ui.groups, ['team-manager-review-ui']);
-  assert.equal(flow.images.length, 6); assert(flow.images[0].landscape);
-  for (const image of flow.images) assert(captures[image.file].startsWith(base));
-  assert.match(flow.remaining, /parent dans l’app/); assert.match(flow.remaining, /mise en ligne/);
+  assert.equal(flow.images.length, 8); assert(flow.images[0].landscape);
+  for (const image of flow.images) assert(captures[image.file].startsWith(base) || captures[image.file].startsWith('docs/release/evidence/phone-team-enrollment-2026-10-19/'));
+  assert.match(flow.remaining, /fermeture complète/); assert.match(flow.remaining, /mise en ligne/);
   assert.doesNotMatch(JSON.stringify(flow), /Firebase|BrowserStack|Playwright|SDK|Terraform/);
   validateUiScope(report()); assert.throws(() => validateUiScope({ ...report(), physicalDevice: true }));
   const parent = content.flows.find((item) => item.id === 'team-enrollment'); assert.equal(parent.status, 'partial');
-  assert.equal(parent.images.length, 5); assert.equal(parent.checkedAt, '2026-10-19');
-  assert(parent.images.every((image) => /19 octobre/.test(image.alt))); assert.match(parent.remaining, /dans l’app/);
+  assert.equal(parent.images.length, 9); assert.equal(parent.checkedAt, '2026-10-19');
+  assert(parent.images.every((image) => /19 octobre/.test(image.alt))); assert.match(parent.remaining, /fermeture complète/);
 });

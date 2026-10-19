@@ -1,7 +1,7 @@
 export const blockers = [
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
-    text: 'Le réglage temporaire est retiré correctement. Le dernier essai s’arrête encore pendant la récupération des captures.',
-    next: 'Terminer l’essai complet, puis rejouer sur téléphone.', source: 'docs/release/evidence/disposable-installation-guard-2026-10-18/verified-2026-10-19/README.md' },
+    text: 'Les inscriptions passent entre le téléphone et le club. Le dernier essai complet s’arrête plus tôt, pendant la préparation de l’appareil.',
+    next: 'Fiabiliser la préparation et terminer l’essai complet, puis rejouer les autres parcours sur téléphone.', source: 'docs/release/evidence/disposable-installation-guard-2026-10-18/preparation-failure-21190ff/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },
@@ -25,7 +25,7 @@ export const blockers = [
     next: 'Stabiliser la préparation des coupures et les captures, puis rejouer l’ensemble.', source: 'docs/release/evidence/local-replay-33-2026-10-18/README.md' },
   { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
     text: 'Les demandes d’équipe passent les essais locaux. Les échanges entre membres d’une même équipe et parents des enfants inscrits restent à construire et à tester.',
-    next: 'L’écran du responsable du club passe en local. Rejouer avec le parent dans l’app, ajouter l’historique et les échanges, puis tester sur téléphone.', source: 'docs/release/evidence/local-team-review-2026-10-18/README.md' },
+    next: 'Le parent et le responsable du club passent ensemble sur téléphone. Ajouter l’historique et les échanges, puis tester les accès à la conversation.', source: 'docs/release/evidence/phone-team-enrollment-2026-10-19/README.md' },
   { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
     text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
     next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: 'docs/release/evidence/local-ui-collection-2026-10-16/README.md' },

@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le parent et le club passent ensemble sur téléphone',
+    text: 'Demande, refus, nouvel accord et retrait passent. Le parent inscrit aussi son enfant et retrouve l’accord du club. Les captures sont ajoutées.', flow: 'team-enrollment' },
+  { date: '2026-10-19', title: 'Les réponses du club reviennent dans l’app',
+    text: 'Le responsable répond depuis son espace. Les inscriptions du parent et de l’enfant restent distinctes sur le téléphone.', flow: 'team-review' },
+  { date: '2026-10-19', title: 'Le dernier essai complet ne démarre pas',
+    text: 'La préparation de l’appareil s’arrête avant les écrans. Le parcours d’inscription sur téléphone a été testé séparément.', flow: 'publication' },
   { date: '2026-10-19', title: 'L’inscription à une équipe passe dans l’app',
     text: 'Demande, refus, accord, retrait et changement de compte passent avec les données de test. Cinq captures sont ajoutées, dont l’inscription d’un enfant.', flow: 'team-enrollment' },
   { date: '2026-10-19', title: 'L’essai complet reste à terminer',

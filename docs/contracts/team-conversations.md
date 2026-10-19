@@ -83,9 +83,11 @@ to team-message access.
 A verified link must
 not grant access to another team or club without a current approved enrollment.
 Requests, refusals and removals retain the denial and
-revocation requirements above. The team chat flow remains unimplemented. Native
-team enrollment screens now have source, but no connected end-to-end native
-result is accepted; no production record is approved.
+revocation requirements above. The team chat flow remains unimplemented. On
+19 October, the parent app on an isolated Android phone and the actual club
+management website passed seven enrollment checkpoints together, including the
+child's request/approval. See `phone-team-enrollment-2026-10-19/README.md`.
+No connected team-conversation result is accepted; no production record is approved.
 
 ## Android Enrollment Screen Source
 
@@ -93,22 +95,31 @@ The app now has a Groups entry for eligible adults to select a club/team, reques
 their own enrollment or choose a currently verified child, review current status
 and confirm a request/withdrawal. Selection uses the paged
 `listTeamEnrollmentOptions` callable, not editable profile/roster arrays. Four
-component cases compile; execution and visual review remain pending. Sixteen
-unit cases and 12 isolated directory groups are retained in
+component cases now have separately executed and reviewed evidence in
+`team-screen-export-2026-10-18/completed/`. Sixteen unit cases and 12 isolated
+directory groups are retained in
 `local-team-enrollment-native-2026-10-18/README.md`.
 
-This is not a completed native flow. Manager-facing team decisions, owned-request
-history after lost eligibility/retired teams and the full SDK-connected replay
-remain pending. Backgrounding clears private choices and selection; no automatic
-resubmission occurs after an unknown write. Team conversation access is unchanged.
+The connected native case passed ten checks with an SDK manager peer; its original
+report, successful primary transfer and five captures are in
+`local-team-enrollment-native-2026-10-19/`. The separate physical-phone/management
+journey above used UI actions for both sides and independently checked seven
+stored transitions. Its parental link was prepared through authenticated fixture
+transitions, not through that manager's parental-verification screen.
+
+This is still not a completed team flow. Owned-request history after lost
+eligibility/retired teams, full process restart, physical parental revocation,
+other devices/platforms and group chat remain open. Backgrounding clears private
+choices and selection; no automatic resubmission occurs after an unknown write.
+Team conversation access is unchanged and the new client/services are not deployed.
 
 ## Isolated Enrollment Service
 
 `getTeamEnrollmentView`, `requestTeamEnrollment`, `transitionTeamEnrollment` and
 `listTeamEnrollments` now have 20 isolated transport scenario groups plus six
 domain unit cases. See `local-team-enrollment-2026-10-18/README.md`. This is a
-backend-only evidence, not a deployed or end-to-end native flow. The Android
-screen source above does not promote these service checks to native evidence.
+backend-only evidence, not a deployed or end-to-end native flow. The separately
+executed screen/phone results above do not change the scope of these service checks.
 
 Team identity binds the stored club and immutable server document creation time,
 including nanoseconds; child enrollment also binds the child document's server

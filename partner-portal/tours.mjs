@@ -2,6 +2,17 @@ const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
+  'team-enrollment': [
+    image('team-phone-requested', 'Demander son inscription', 'Le parent confirme sa demande sur le téléphone.'),
+    image('team-phone-refused', 'Retrouver le refus du club', 'Le responsable refuse depuis son espace. Le parent retrouve sa réponse.'),
+    image('team-phone-requested-again', 'Faire une nouvelle demande', 'Le parent redemande son inscription après le refus.'),
+    image('team-phone-manager-approved', 'Le club donne son accord', 'Le responsable confirme l’inscription dans son espace.'),
+    image('team-phone-approved', 'Voir l’accord sur téléphone', 'Le parent relit son inscription et retrouve l’accord.'),
+    image('team-phone-withdrawn', 'Retirer son inscription', 'Le parent confirme le retrait. Le club retrouve ce nouvel état.'),
+    image('team-phone-child-requested', 'Demander pour son enfant', 'Le parent vérifié confirme une demande distincte pour son enfant.'),
+    image('team-phone-manager-child-approved', 'Le club approuve l’enfant', 'L’accord de l’enfant ne rouvre pas l’inscription retirée du parent.'),
+    image('team-phone-child-approved', 'Retrouver l’accord pour l’enfant', 'Le parent retrouve l’inscription approuvée de son enfant sur le téléphone.'),
+  ],
   'emergency-contact': [
     image('emergency-passed-saved', 'Enregistrer son contact', 'Le contact fictif est enregistré dans l’essai local.'),
     image('emergency-passed-restored', 'Rouvrir l’écran', 'Le même contact revient après réouverture.'),

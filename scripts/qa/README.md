@@ -14,6 +14,20 @@ configuration and the generated `SGM_QA_PASSWORD`. Do not point the older native
 device shell helpers at production or publish their raw credential-entry captures.
 The local API suite does not install an APK or verify phone UI behavior.
 
+For an approved manual phone/manager team replay, keep `start-local-ui.mjs`
+running and launch `manual-team-phone-session.mjs <private-session-path>
+<fresh-output-directory>` in an interactive terminal with stdin kept open.
+It seeds only its isolated fixture. Enter the seven names from
+`manual-team-phone-checkpoints.mjs` after observing each actual UI result;
+the CLI independently checks stored records/events and accepts each phase once,
+in order. It does not request or decide enrollments on behalf of either UI.
+Use `finish` after all seven checkpoints or `stop` for an incomplete run; both
+clean the fixture. EOF also cleans up but cannot complete the run. Do not use
+force-kill as normal teardown. Stop the phone/tunnel and owned services separately,
+then verify that the private session file and listening ports are gone. Captures,
+physical UI observations and resource cleanup need their own evidence; a passing
+persisted report cannot prove them. See `phone-team-enrollment-2026-10-19/`.
+
 Only sanitized result JSON belongs in release evidence. Keep emulators' runtime
 logs and ephemeral credentials out of Git. Local evidence never automatically
 accepts a physical-device or live-payment release-manifest requirement.
