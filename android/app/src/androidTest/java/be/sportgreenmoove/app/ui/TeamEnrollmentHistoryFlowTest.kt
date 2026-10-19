@@ -53,7 +53,7 @@ class TeamEnrollmentHistoryFlowTest {
         assertTrue(bounds.left >= frame.left && bounds.right <= frame.right)
         click(tag); compose.onNodeWithTag("team-history.subject").assertTextEquals("Enfant indisponible").assertIsDisplayed()
         compose.onNodeWithTag("team-history.withdraw").assertDoesNotExist()
-        compose.onNodeWithTag("team-history.close").assertIsDisplayed(); capture("team-history-redacted-child.png")
+        compose.onNodeWithTag("team-history.close").assertIsDisplayed(); capture("team-history-redacted-child.png", dialog = true)
         assertTrue(fixture.writes.isEmpty())
     }
     private fun host(fixture: HistoryUiFixture, narrow: Boolean = false) {
@@ -75,8 +75,9 @@ class TeamEnrollmentHistoryFlowTest {
         node.performClick()
     }
     private fun waitFor(matcher: SemanticsMatcher) { compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() } }
-    private fun capture(name: String) {
-        captureLocalUi(compose, name)
+    private fun capture(name: String, dialog: Boolean = false) {
+        // The short dialog has its own wide Compose window; the device companion stays portrait.
+        captureLocalUi(compose, name, dialog = dialog, landscape = dialog)
         val instrumentation = InstrumentationRegistry.getInstrumentation(); val device = UiDevice.getInstance(instrumentation)
         val source = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
         val window = name.removeSuffix(".png") + "-window.png"; check(device.takeScreenshot(File(source, window)))

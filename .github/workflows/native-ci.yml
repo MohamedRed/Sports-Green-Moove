@@ -17,6 +17,8 @@ on:
       - "tests/team-enrollment-history-contract.test.mjs"
       - "tests/retained-source-evidence.test.mjs"
       - "tests/manual-team-history-checkpoints.test.mjs"
+      - "tests/supervised-local-process.test.mjs"
+      - "tests/fixtures/supervised-service.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
@@ -73,6 +75,8 @@ on:
       - "tests/team-enrollment-history-contract.test.mjs"
       - "tests/retained-source-evidence.test.mjs"
       - "tests/manual-team-history-checkpoints.test.mjs"
+      - "tests/supervised-local-process.test.mjs"
+      - "tests/fixtures/supervised-service.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
@@ -141,6 +145,8 @@ jobs:
 
       - name: Validate owned enrollment history source and dated evidence boundaries
         run: node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
+      - name: Test owned local service process supervision
+        run: node --test tests/supervised-local-process.test.mjs
 
       - name: Validate SDK-connected team replay evidence requirements
         run: node --test tests/team-enrollment-sdk.test.mjs

@@ -14,6 +14,15 @@ configuration and the generated `SGM_QA_PASSWORD`. Do not point the older native
 device shell helpers at production or publish their raw credential-entry captures.
 The local API suite does not install an APK or verify phone UI behavior.
 
+`start-local-ui.mjs` supervises its own POSIX process group asynchronously.
+Ctrl-C/SIGTERM are forwarded to that group; shutdown must verify its exit before
+the private session file and copied runtime are removed. It never signals an
+existing service or kills a personal process. A nonzero service failure is not
+converted to a passing interruption. With a fresh absolute `SGM_LOCAL_FLOW_OUTPUT`,
+`npm run test:local-ui-shutdown` starts two actual isolated sessions, one per
+signal, and verifies exit codes, stopping events, removed credentials and refused
+service ports. This is service-lifecycle evidence, not phone-flow evidence.
+
 For an approved manual phone/manager team replay, keep `start-local-ui.mjs`
 running and launch `manual-team-phone-session.mjs <private-session-path>
 <fresh-output-directory>` in an interactive terminal with stdin kept open.

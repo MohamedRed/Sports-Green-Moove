@@ -51,8 +51,12 @@ export function prepareLocalRuntime() {
 }
 
 export function runEmulatorEntry(runtime, name) {
+  runtime.run(process.execPath, emulatorEntryArguments(runtime, name), runtime.temp);
+}
+
+export function emulatorEntryArguments(runtime, name) {
   const entry = resolve(root, 'scripts/qa', name);
-  runtime.run(process.execPath, [resolve(root, 'node_modules/firebase-tools/lib/bin/firebase.js'),
+  return [resolve(root, 'node_modules/firebase-tools/lib/bin/firebase.js'),
     'emulators:exec', '--project', projectId, '--config', resolve(runtime.temp, 'firebase.json'),
-    '--only', 'auth,firestore,database,functions', `"${process.execPath}" "${entry}"`], runtime.temp);
+    '--only', 'auth,firestore,database,functions', `"${process.execPath}" "${entry}"`];
 }

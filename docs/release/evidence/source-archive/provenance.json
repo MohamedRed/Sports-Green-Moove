@@ -145,7 +145,8 @@
       "recoveredFromGitCommit": "dc739d66eb3b3c109cb449927ed01e1340c4a0ba",
       "reports": [
         "team-screen-export-2026-10-18/completed/component-results.json",
-        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json"
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "team-history-dialog-failure-2026-10-19/results.json"
       ]
     },
     "e3f417debd53d591a2d03029c9d6e69ff1e2efe124e77d393945002567093df1": {
@@ -542,6 +543,41 @@
       "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
       "reports": [
         "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "5522d6832f0a520066ea03636662cbca8893719bda8bec50a8acdd132f586b37": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryFlowTest.kt",
+      "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+      "reports": [
+        "team-history-dialog-failure-2026-10-19/results.json"
+      ]
+    },
+    "22b52e9381fafab3dd00127c8f3dce6ad0db49c155a5856152646ee6acef673a": {
+      "sourcePath": "scripts/qa/start-local-ui.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "local-ui-shutdown-2026-10-19/services.json"
+      ]
+    },
+    "bdb77406aeeacd7ddd303ad64d2f626bdff144f8bf9253c385594a2c873c3f5b": {
+      "sourcePath": "scripts/qa/local-runtime.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "local-ui-shutdown-2026-10-19/services.json"
+      ]
+    },
+    "e201505102c06666abac29879a5c682fe67cf31cc50b0e7138cfdb94bd95bbaa": {
+      "sourcePath": "scripts/qa/supervised-local-process.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "local-ui-shutdown-2026-10-19/services.json"
+      ]
+    },
+    "3db8deda7bb3ed9771d73dbf4fbfc3e608ad28b6deab1540e7633f6557e02311": {
+      "sourcePath": "scripts/qa/check-local-ui-shutdown.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "local-ui-shutdown-2026-10-19/services.json"
       ]
     }
   }
