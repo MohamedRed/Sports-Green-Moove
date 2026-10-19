@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le contact s’ouvre pendant le trajet',
+    text: 'Conducteur puis parent ouvrent leur numéro, sans appel, et reviennent au même trajet. L’essai local passe ; huit captures sont ajoutées.', flow: 'ride-emergency' },
   { date: '2026-10-19', title: 'Une position ancienne garde son âge',
     text: 'Cinq contrôles locaux passent, dont une position reçue en retard. Le suivi en direct dans l’app et sur téléphone reste à vérifier.', flow: 'tracking' },
   { date: '2026-10-19', title: 'Le suivi continue après déconnexion',

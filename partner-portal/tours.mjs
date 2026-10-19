@@ -30,6 +30,16 @@ export const tours = {
     image('emergency-editor-narrow', 'Choisir son contact', 'L’écran garde les champs et les actions accessibles avec du texte agrandi, dans l’essai simulé.'),
     image('emergency-editor-changed', 'Si le téléphone ne s’ouvre pas', 'Dans cet essai simulé distinct, le nouveau numéro reste visible avec le message d’erreur.'),
   ],
+  'ride-emergency': [
+    image('ride-emergency-driver-entry', 'Depuis le trajet conducteur', 'Le contact est accessible sans quitter le trajet.'),
+    image('ride-emergency-driver-saved', 'Choisir son contact', 'Le conducteur enregistre son numéro fictif.'),
+    image('ride-emergency-driver-dialer', 'Ouvrir le téléphone', 'Le bon numéro apparaît. Aucun appel n’est lancé.'),
+    image('ride-emergency-driver-returned', 'Revenir au trajet', 'Le conducteur retrouve le même trajet et ses passagers.'),
+    image('ride-emergency-parent-entry', 'Passer au compte parent', 'Le parent retrouve le trajet, sans les commandes conducteur.'),
+    image('ride-emergency-parent-saved', 'Choisir un autre contact', 'Le parent enregistre son propre numéro fictif.'),
+    image('ride-emergency-parent-dialer', 'Ouvrir le téléphone côté parent', 'Seul le numéro du parent apparaît. Aucun appel n’est lancé.'),
+    image('ride-emergency-parent-returned', 'Retrouver le trajet côté parent', 'Le parent revient au même trajet, sans modifier les passagers.'),
+  ],
   'auth-validation': [
     image('login-empty', 'Renseigner l’adresse e-mail', 'Le formulaire signale une adresse manquante.'),
     image('signup-name', 'Renseigner le nom', 'La création du compte demande un nom.'),

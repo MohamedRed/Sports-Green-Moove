@@ -268,3 +268,14 @@ starts/completes another provider trip. Live provider resumption, physical GPS,
 background/restart and SDK callback timing remain separate unverified release
 requirements; unit passes do not close them. The repaired native journey must
 execute before any new positive portal or store evidence can be accepted.
+
+The subsequent a7dae8a Native CI run completed the expanded original ride case:
+both actual dial-only handoffs and same-ride returns, parent native-service
+absence, driver resumption, original pickup/dropoff/completion/ledger/rating
+checks, primary transfer and four independent private operations all passed.
+Eight reviewed original captures and the full successful 36-group/38-case run are
+retained in `ride-emergency-pass-2026-10-19`. The source context binds a7dae8a,
+not later heads or physical/provider readiness. Temporary administration and its
+component were verified removed. The earlier failed run remains unchanged.
+Child-own-account access, recreated-child app replay, physical tracking and store
+acceptance remain open; the isolated map was explicitly unavailable.

@@ -1,4 +1,8 @@
 export const captures = {
+  ...Object.fromEntries(['driver', 'parent'].flatMap((role) => ['entry', 'saved', 'dialer', 'returned'].map((phase) => [
+    `ride-emergency-${role}-${phase}`,
+    `docs/release/evidence/ride-emergency-pass-2026-10-19/local-ride-emergency-${role}-${phase}.png`,
+  ]))),
   'emergency-current-saved': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-self-saved.png',
   'emergency-current-restored': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-self-restored.png',
   'emergency-current-child': 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-child-saved.png',
