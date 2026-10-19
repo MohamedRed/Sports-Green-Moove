@@ -6,6 +6,8 @@ import { join } from 'node:path';
 import { prepareDisposableInstallAdmin, removeDisposableInstallAdmin, assertDisposableInstallAdmin,
   installAdminPackage, installAdminComponent } from '../scripts/qa/disposable-install-admin.mjs';
 import { restoreDisposableAndroid } from '../scripts/qa/restore-disposable-android.mjs';
+import { createHash } from 'node:crypto';
+import { XMLParser } from 'fast-xml-parser';
 
 function phone(t, options = {}) {
   const temp = mkdtempSync(join(tmpdir(), 'sgm-test-admin-unit-'));
@@ -133,4 +135,21 @@ test('the helper is test-only, without network/destructive capabilities, and pro
   assert(read('android/qa-install-guard/build.gradle.kts').includes('withBuildType("release")'));
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml'])
     assert(read('.github/workflows/' + name).includes('tests/disposable-install-admin.test.mjs'));
+});
+
+test('the original admin trial proves cleanup, not a completed instrumentation replay', () => {
+  const base = 'docs/release/evidence/disposable-installation-guard-2026-10-18/admin-startup-failure/';
+  const read = (path) => readFileSync(new URL('../' + base + path, import.meta.url));
+  const hashes = JSON.parse(read('artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 6);
+  for (const [path, expected] of Object.entries(hashes)) assert.equal(createHash('sha256').update(read(path)).digest('hex'), expected);
+  const setup = JSON.parse(read('disposable-device-setup.json')), after = JSON.parse(read('disposable-store-restore.json'));
+  assert.equal(setup.installAdmin.packageName, installAdminPackage);
+  assert.equal(setup.installAdmin.originalBlocked, false);
+  assert.equal(after.restored, true); assert.equal(after.verified, false);
+  assert.deepEqual(after.installAdmin, { authorizationRemoved: true, componentRemoved: true, originalPolicyRestored: true });
+  assert.deepEqual(after.observed.mapsRuntime, setup.mapsRuntime); assert.equal(after.observed.locationEnabled, true);
+  assert.equal(read('disposable-installations-verified.json').length, 0);
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(read('ordinary-tests.xml').toString('utf8')).testsuite;
+  assert.equal(Number(suite['@_tests']), 0);
+  assert(read('ordinary-tests.xml').toString('utf8').includes('no tests were started'));
 });

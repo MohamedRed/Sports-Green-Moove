@@ -1,5 +1,25 @@
 # Disposable Test Phone Installation Guard
 
+## Approved Administration Trial
+
+The user approved temporary device administration on the disposable test phone
+only on 19 October. In
+[run 39226441823](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39226441823)
+at `9d4435b0f2ba25aa41f49f599d9ac59fbf05e522`, setup installed the test-only helper,
+confirmed its device-owner authority and performed the checked block/unblock
+round trip. Final cleanup verified removal of both the administrator and helper,
+and restoration of the original installation flag. Maps/location stayed enabled
+and the map runtime version was unchanged.
+
+The instrumentation runner still stopped before any user-flow test. The original
+JUnit reports zero cases, the guard verification file is empty and cleanup says
+`verified: false`, despite successful restoration. All six original artifacts and
+hashes are retained in `admin-startup-failure/`; this trial is not a successful
+user-flow replay. The runner had appended a shell exit marker to a `UiAutomation`
+command, but Android executes that string with `Runtime.exec`, not a shell.
+Commands now execute individually, using their typed outputs, and sanitized
+failure-stage labels are retained. The corrected runner needs its own native run.
+
 ## Previous Failure
 
 `previous-failure/` preserves five unmodified artifacts from

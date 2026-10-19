@@ -139,6 +139,12 @@ without needing a working application receiver. Both the owner list and package
 inventory must return to empty and the installation flag to its original value.
 See the official [test-only admin removal command](https://developer.android.com/tools/adb#dpm).
 
+Instrumentation commands are sent as individual executables, with typed response
+checks and a sanitized stage label on failure. Android's
+[UiAutomationConnection](https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r1/core/java/android/app/UiAutomationConnection.java)
+uses `Runtime.exec(command)`, not an interactive shell: do not append exit-marker
+commands, pipes or command separators to a `UiAutomation` request.
+
 Android 15 checks `DISALLOW_INSTALL_APPS` before admitting even ADB installation
 sessions, so keeping that restriction enabled while asking Gradle to install its
 test APK would prevent the test setup itself. The sequence above is intentional:

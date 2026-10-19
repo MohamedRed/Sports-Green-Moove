@@ -69,6 +69,10 @@ test('all instrumentation entry points use the guarded AndroidX runner and the e
   assert(source.includes(': AndroidJUnitRunner()'));
   assert(source.indexOf('am broadcast') < source.indexOf('super.onStart()'));
   assert(!source.includes('pm set-user-restriction'));
+  assert(source.includes('uiAutomation.executeShellCommand(command)'));
+  assert(source.includes("require(command.none"));
+  assert(!source.includes('SGM_COMMAND_EXIT'));
+  assert(source.includes('no tests were started'));
   assert(source.includes('getprop ro.kernel.qemu') && source.includes('am get-current-user'));
   assert(source.includes('finish(Activity.RESULT_CANCELED'));
   for (const entry of ['local-android-session.mjs', 'real-maps-android-session.mjs']) {
