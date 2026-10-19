@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'La reprise du suivi passe en local',
+    text: 'Reprise, refus d’une position invalide et arrêt à la déconnexion passent. Deux captures sont ajoutées ; l’affichage complet reste à vérifier.', flow: 'native-startup' },
   { date: '2026-10-19', title: 'Le trajet s’actualise côté parent',
     text: 'Alerte de position ancienne, reprise, prise en charge, dépose et fin passent dans l’app en local. Huit captures sont ajoutées. La carte et les essais sur téléphone restent à faire.', flow: 'ride-observation' },
   { date: '2026-10-19', title: 'Les positions ne reviennent plus en arrière',

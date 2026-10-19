@@ -4,6 +4,10 @@ function observationTime(value: unknown, now: number): number | null {
   return typeof value === "number" && Number.isSafeInteger(value) && value > 0 && value <= now ? value : null;
 }
 
+export function hasValidLocationCapture(incoming: LocationUpdate, now: number): boolean {
+  return observationTime(incoming.capturedAt, now) != null;
+}
+
 export function shouldReplaceLiveLocation(current: unknown, incoming: LocationUpdate, now: number): boolean {
   const nextTime = observationTime(incoming.capturedAt, now);
   if (nextTime == null) return false;

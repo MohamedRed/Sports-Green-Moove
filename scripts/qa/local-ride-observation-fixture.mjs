@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { getDatabase } from 'firebase-admin/database';
 import { auth, call, db, document, signIn, tripInput, viewedBooking } from './local-flow-client.mjs';
+import { assertIsolatedRideRecordChanges } from './isolated-ride-records.mjs';
 
 const names = ['trips', 'bookings', 'rideSessions', 'notifications', 'co2Ledger', 'rewardLedger'];
 async function state() {
@@ -9,6 +10,7 @@ async function state() {
 }
 export async function seedRideObservationFixture() {
   const before = await state();
+  const beforeLive = (await getDatabase().ref('liveTrips').get()).val();
   const claims = (await auth.getUser('sgm-qa-driver')).customClaims;
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
   const { tripId } = await call('createTrip', driver, { ...tripInput(), title: 'Trajet suivi continu QA', priceCents: 0 });
@@ -17,7 +19,14 @@ export async function seedRideObservationFixture() {
   }));
   await call('approveBooking', driver, { bookingId });
   const { ride } = await call('startRide', driver, { tripId, bookingIds: [bookingId] });
-  return { before, claims, tripId, bookingId, rideSessionId: ride.rideSessionId, childId: 'sgm-qa-child-lina' };
+  return { before, beforeLive, claims, tripId, bookingId, rideSessionId: ride.rideSessionId, childId: 'sgm-qa-child-lina' };
+}
+export async function verifyReadOnlyRideFixtureIsolation(fixture) {
+  const report = assertIsolatedRideRecordChanges(fixture.before, await state(), fixture);
+  const live = { ...((await getDatabase().ref('liveTrips').get()).val() ?? {}) };
+  delete live[fixture.rideSessionId];
+  assert.deepEqual(live, fixture.beforeLive ?? {}, 'Only the selected live ride may change');
+  return { ...report, otherLiveRidesPreserved: true };
 }
 export async function verifyRideObservationFixture(fixture, marker) {
   assert.equal(marker.rideSessionId, fixture.rideSessionId); assert.equal(marker.bookingId, fixture.bookingId);

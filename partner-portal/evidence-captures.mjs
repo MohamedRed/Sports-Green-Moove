@@ -1,4 +1,7 @@
 export const captures = {
+  ...Object.fromEntries(['started', 'signed-out'].map((phase) => [
+    `native-startup-${phase}`, `docs/release/evidence/native-startup-pass-2026-10-19/local-native-startup-${phase}.png`,
+  ])),
   ...Object.fromEntries(['fresh', 'fresh-landscape', 'stale', 'recovered', 'pickup', 'resumed', 'ended', 'history'].map((phase) => [
     `ride-observation-${phase}`, `docs/release/evidence/ride-observation-native-2026-10-19/local-ride-observation-${phase}.png`,
   ])),

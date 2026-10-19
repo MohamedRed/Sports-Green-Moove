@@ -79,3 +79,15 @@ docs/release/evidence/ride-observation-native-2026-10-19/*.txt -text -whitespace
 docs/release/evidence/ride-observation-native-2026-10-19/*.xml -text -whitespace
 docs/release/evidence/ride-observation-landscape-failure-2026-10-19/*.txt -text -whitespace
 docs/release/evidence/ride-observation-connection-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-cleanup-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-stream-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-termination-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-listener-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-replay-anr-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-acquisition-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-checks-2026-10-19/**/*.xml -text -whitespace
+docs/release/evidence/native-startup-checks-2026-10-19/*.xml -text -whitespace
+docs/release/evidence/native-startup-copy-failure-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-display-review-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-window-review-2026-10-19/*.txt -text -whitespace
+docs/release/evidence/native-startup-pass-2026-10-19/*.txt -text -whitespace

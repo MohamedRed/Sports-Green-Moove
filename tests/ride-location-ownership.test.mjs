@@ -46,7 +46,8 @@ test('sign-out invalidates pending starts and ends local sensing even for the sa
   const shutdown = service('NativeTrackingAuthorization');
   assert(shutdown.indexOf('NativeTrackingAuthorization.revoke()') < shutdown.indexOf('context.stopService'));
   assert(shutdown.includes('Radar.stopTracking()')); assert(!shutdown.includes('completeTrip(')); assert(!shutdown.includes('cancelTrip('));
-  const gateway = service('FirebaseAndroidGateway').split('override suspend fun writeNativeLocationFallback')[1];
+  assert(service('FirebaseAndroidGateway').includes('nativeLocationStartup.start(rideSessionId, role)'));
+  const gateway = service('FirebaseAndroidNativeLocationStartup');
   assert(gateway.indexOf('val authRevision =') < gateway.indexOf('getCurrentLocation('));
   assert.equal((gateway.match(/requireOwner\(\)/g) ?? []).length, 3);
   assert(gateway.includes('role.locationRole(), ownerUid, authRevision'));

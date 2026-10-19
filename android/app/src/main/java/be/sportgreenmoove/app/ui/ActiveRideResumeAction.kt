@@ -17,6 +17,7 @@ internal fun launchActiveRideResume(scope: CoroutineScope, providers: AndroidPro
     permissionGate.runWhenReady {
         scope.launch {
             if (currentUid() != ownerUid) return@launch
+            setError(null)
             runCatching {
                 val resumed = providers.resumeOwnedRideTracking(expected.rideSessionId, ownerUid, role)
                 if (currentUid() == ownerUid) { setRide(resumed); setScreen(AppScreen.Ride) }

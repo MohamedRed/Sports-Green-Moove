@@ -5,6 +5,7 @@ import { createEmergencyFlow } from './emergency-flow.mjs';
 import { createTrackingFlow } from './tracking-flow.mjs';
 import { createRideEmergencyFlow } from './ride-emergency-flow.mjs';
 import { createRideObservationFlow } from './ride-observation-flow.mjs';
+import { createNativeStartupFlow } from './native-startup-flow.mjs';
 import { createTeamEnrollmentFlow } from './team-enrollment-flow.mjs';
 import { createTeamReviewFlow } from './team-review-flow.mjs';
 export { captures } from './evidence-captures.mjs';
@@ -240,6 +241,7 @@ export const content = {
     createEmergencyFlow(),
     createRideEmergencyFlow(),
     createRideObservationFlow(),
+    createNativeStartupFlow(),
     createTrackingFlow(),
     { id: 'ride-lifecycle', title: 'Déroulement du trajet', status: 'partial', checkedAt: '2026-10-15',
       summary: 'Le trajet se termine dans l’app et apparaît dans l’historique du parent, en local.',

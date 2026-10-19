@@ -25,14 +25,17 @@ async function runChecks() {
   const point = (capturedAt, lng = 4.612) => ({ rideSessionId: ride.rideSessionId, role: 'driver',
     lat: 50.715, lng, accuracyM: 8, capturedAt });
   const submit = (updates) => call('writeLocationBatch', driver, { updates });
+  const retained = (updates) => ({ written: 0, ignored: updates.length, receipts: updates.map((update) => ({
+    status: 'retained', rideSessionId: update.rideSessionId, role: update.role, capturedAt: update.capturedAt,
+  })) });
   assert.equal((await submit([point(base)])).written, 1);
   const first = (await vehicle.get()).val();
   const oldResult = await submit([point(base - 90_000, 4.5)]);
   observed = { expectedCapturedAt: base, afterDelayedPoint: (await vehicle.get()).val() };
   assert.deepEqual(observed.afterDelayedPoint, first, 'A delayed upload must not replace a newer stored observation');
-  assert.deepEqual(oldResult, { written: 0, ignored: 1 });
+  assert.deepEqual(oldResult, retained([point(base - 90_000, 4.5)]));
   record('delayed-native-point-cannot-replace-newer-observation');
-  assert.deepEqual(await submit([point(base, 4.4)]), { written: 0, ignored: 1 });
+  assert.deepEqual(await submit([point(base, 4.4)]), retained([point(base, 4.4)]));
   assert.deepEqual((await vehicle.get()).val(), first);
   record('same-time-duplicate-does-not-change-location-or-receipt-time');
 
@@ -57,7 +60,7 @@ async function runChecks() {
   assert.equal(await writeLiveLocation(serverPoint(base + 100, 'radar')), true);
   const radar = (await vehicle.get()).val();
   assert.equal(radar.capturedAt, base + 100); assert.equal(radar.source, 'radar');
-  assert.deepEqual(await submit([point(base + 99)]), { written: 0, ignored: 1 });
+  assert.deepEqual(await submit([point(base + 99)]), retained([point(base + 99)]));
   assert.deepEqual((await vehicle.get()).val(), radar);
   record('native-and-webhook-writer-share-one-monotonic-register');
 
@@ -87,7 +90,7 @@ async function runChecks() {
   }
   assert.deepEqual((await vehicle.get()).val(), radar);
   record('invalid-or-future-provider-times-cannot-poison-current-register');
-  assert.deepEqual(await submit([point(base), point(base + 1), point(base + 2)]), { written: 0, ignored: 3 });
+  assert.deepEqual(await submit([point(base), point(base + 1), point(base + 2)]), retained([point(base), point(base + 1), point(base + 2)]));
   assert.deepEqual((await vehicle.get()).val(), radar);
   record('older-batch-counts-only-committed-points-as-written');
   const sourcePaths = ['scripts/qa/local-location-order.mjs', 'functions/src/lib/liveTrips.ts',

@@ -1,7 +1,6 @@
 package be.sportgreenmoove.app.services
 
 import android.content.Context
-import android.os.Build
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.ChildSummary
@@ -19,8 +18,6 @@ import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripPublishDraft
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripSummary
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
@@ -32,7 +29,7 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     private val appContext = context.applicationContext
     private val firestore = FirebaseFirestore.getInstance()
     private val functions = FirebaseFunctions.getInstance()
-    private val locationClient = LocationServices.getFusedLocationProviderClient(appContext)
+    private val nativeLocationStartup = FirebaseAndroidNativeLocationStartup(appContext, functions)
     private val groupsGateway = FirebaseAndroidGroupsGateway(firestore)
     private val ledgerGateway = FirebaseAndroidLedgerGateway(firestore)
     private val tripGateway = FirebaseAndroidTripGateway(firestore)
@@ -252,34 +249,7 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     }
 
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
-        require(role in setOf(AppRole.Driver, AppRole.Child))
-        val ownerUid = requireNotNull(com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid)
-        val authRevision = NativeTrackingAuthorization.currentRevision()
-        fun requireOwner() = check(com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid == ownerUid &&
-            NativeTrackingAuthorization.currentRevision() == authRevision) {
-            "La session de suivi a changé."
-        }
-        val location = try {
-            locationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null).await()
-        } catch (error: SecurityException) {
-            throw ProviderConfigurationException("Autorisation localisation requise pour le suivi de course.")
-        } ?: throw ProviderConfigurationException("Position GPS indisponible pour le suivi de course.")
-
-        requireOwner()
-        val result = functions
-            .getHttpsCallable("writeLocationBatch")
-            .call(mapOf("updates" to listOf(nativeLocationPayload(rideSessionId, role.locationRole(), location))))
-            .await()
-        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse localisation invalide.")
-        val written = (payload["written"] as? Number)?.toInt() ?: 0
-        if (written <= 0) throw ProviderConfigurationException("Aucun point GPS écrit.")
-        requireOwner()
-        val serviceIntent = ActiveRideLocationService.intent(appContext, rideSessionId, role.locationRole(), ownerUid, authRevision)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            appContext.startForegroundService(serviceIntent)
-        } else {
-            appContext.startService(serviceIntent)
-        }
+        nativeLocationStartup.start(rideSessionId, role)
     }
 
     override fun stopNativeLocationFallback(rideSessionId: String) {

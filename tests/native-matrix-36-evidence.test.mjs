@@ -84,7 +84,7 @@ test('administration cleanup and the original maps and location invariants pass 
 
 test('the portal keeps reliability and physical limits open while publishing this completed local matrix', () => {
   assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source,
-    'docs/release/evidence/store-pause-preparation-failure-2026-10-19/README.md');
+    'docs/release/evidence/native-startup-replay-anr-2026-10-19/README.md');
   assert.equal(content.blockers.find((item) => item.id === 'chat-send-stability').source, base + 'README.md');
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
   assert.equal(content.flows.find((item) => item.id === 'messages').status, 'partial');

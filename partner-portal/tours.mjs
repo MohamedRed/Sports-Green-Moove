@@ -40,6 +40,10 @@ export const tours = {
     image('ride-observation-ended', 'Recevoir la fin du trajet', 'Le parent ne voit plus de course active.'),
     image('ride-observation-history', 'Retrouver le trajet terminé', 'Le trajet apparaît dans les trajets passés.'),
   ],
+  'native-startup': [
+    image('native-startup-started', 'Reprendre un trajet', 'Une position déjà reçue permet de reprendre le suivi, en local.'),
+    image('native-startup-signed-out', 'Se déconnecter', 'Le suivi s’arrête et l’écran de connexion revient.'),
+  ],
   'ride-emergency': [
     image('ride-emergency-driver-entry', 'Depuis le trajet conducteur', 'Le contact est accessible sans quitter le trajet.'),
     image('ride-emergency-driver-saved', 'Choisir son contact', 'Le conducteur enregistre son numéro fictif.'),

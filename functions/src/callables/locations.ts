@@ -5,7 +5,7 @@ import { nativeFallbackUpdateForAuth } from "../domain/locations.js";
 import type { LocationUpdate } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { hasRole, requireAuth } from "../lib/https.js";
-import { writeLiveLocation } from "../lib/liveTrips.js";
+import { writeLiveLocationOutcome } from "../lib/liveTrips.js";
 import { parseCallableData } from "../lib/validation.js";
 
 export const writeLocationBatch = onCall(async (request) => {
@@ -31,9 +31,11 @@ export const writeLocationBatch = onCall(async (request) => {
     }
   }
 
-  const results = await Promise.all(updates.map((update) => writeLiveLocation(update)));
-  const written = results.filter(Boolean).length;
-  return { written, ignored: results.length - written };
+  const results = await Promise.all(updates.map((update) => writeLiveLocationOutcome(update)));
+  const written = results.filter((outcome) => outcome === "written").length;
+  const receipts = results.map((status, index) => ({ status, rideSessionId: updates[index].rideSessionId,
+    role: updates[index].role, capturedAt: updates[index].capturedAt }));
+  return { written, ignored: results.length - written, receipts };
 });
 
 async function loadRideSessions(rideSessionIds: string[]): Promise<Map<string, LocationAccessRideSession>> {

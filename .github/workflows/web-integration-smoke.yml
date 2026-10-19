@@ -59,6 +59,7 @@ on:
       - "scripts/build-partner-portal.mjs"
       - "tests/partner-portal.test.mjs"
       - "tests/partner-portal-team-history.test.mjs"
+      - "tests/partner-portal-native-startup.test.mjs"
       - "tests/partner-portal-ui.test.mjs"
       - "tests/partner-portal.browser.mjs"
       - "tests/partner-component-scope.test.mjs"
@@ -83,6 +84,12 @@ on:
       - "tests/location-freshness-evidence.test.mjs"
       - "tests/location-order-evidence.test.mjs"
       - "tests/ride-observation-contract.test.mjs"
+      - "tests/native-startup-contract.test.mjs"
+      - "tests/native-startup-evidence.test.mjs"
+      - "tests/local-mock-location-permission.test.mjs"
+      - "tests/local-emulator-log-evidence.test.mjs"
+      - "tests/local-emulator-lifecycle.test.mjs"
+      - "tests/isolated-ride-records.test.mjs"
       - "tests/ride-observation-evidence.test.mjs"
       - "tests/disposable-local-app-reset.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
@@ -325,6 +332,7 @@ on:
       - "scripts/build-partner-portal.mjs"
       - "tests/partner-portal.test.mjs"
       - "tests/partner-portal-team-history.test.mjs"
+      - "tests/partner-portal-native-startup.test.mjs"
       - "tests/partner-portal-ui.test.mjs"
       - "tests/partner-portal.browser.mjs"
       - "tests/partner-component-scope.test.mjs"
@@ -349,6 +357,12 @@ on:
       - "tests/location-freshness-evidence.test.mjs"
       - "tests/location-order-evidence.test.mjs"
       - "tests/ride-observation-contract.test.mjs"
+      - "tests/native-startup-contract.test.mjs"
+      - "tests/native-startup-evidence.test.mjs"
+      - "tests/local-mock-location-permission.test.mjs"
+      - "tests/local-emulator-log-evidence.test.mjs"
+      - "tests/local-emulator-lifecycle.test.mjs"
+      - "tests/isolated-ride-records.test.mjs"
       - "tests/ride-observation-evidence.test.mjs"
       - "tests/disposable-local-app-reset.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
@@ -648,6 +662,10 @@ jobs:
 
       - name: Verify selected ride observer authorization and remote lifecycle responses
         run: npm run test:ride-observation-services && node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
+      - name: Validate native startup acknowledgement and temporary mock policy contracts
+        run: node --test tests/native-startup-contract.test.mjs tests/native-startup-evidence.test.mjs tests/local-mock-location-permission.test.mjs tests/local-emulator-log-evidence.test.mjs tests/local-emulator-lifecycle.test.mjs tests/isolated-ride-records.test.mjs
+      - name: Validate reviewed native startup tour scope
+        run: node --test tests/partner-portal-native-startup.test.mjs
 
       - name: Test owned enrollment history after eligibility and identity loss
         run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs

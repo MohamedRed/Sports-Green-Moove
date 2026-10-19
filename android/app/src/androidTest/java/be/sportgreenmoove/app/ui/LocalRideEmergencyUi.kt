@@ -115,6 +115,7 @@ internal class LocalRideEmergencyUi(private val compose: ComposeTestRule, privat
         check(current.status == expected.status && current.passengers.sortedBy { it.bookingId } == expected.passengers.sortedBy { it.bookingId })
     }
     private fun assertRidePermissions(role: String) {
+        waitFor(hasTestTag(SgmTestTags.ActiveRideVehicleUpdate))
         if (role == "driver") {
             check(compose.onAllNodesWithTag(SgmTestTags.ActiveRidePickupAction).fetchSemanticsNodes().size == 2)
             compose.onAllNodesWithTag(SgmTestTags.ActiveRidePickupAction)[0].performScrollTo().assertIsEnabled()

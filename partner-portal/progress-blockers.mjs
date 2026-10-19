@@ -1,4 +1,7 @@
 export const blockers = [
+  { id: 'tracking-capture', title: 'Revoir l’affichage du trajet',
+    text: 'La reprise fonctionne en local. Le bas de l’écran manque sur deux captures.',
+    next: 'Vérifier le rendu sur téléphone et corriger l’affichage si le défaut se confirme.', source: 'docs/release/evidence/native-startup-pass-2026-10-19/README.md' },
   { id: 'tracking-live-display', title: 'Terminer la carte et le suivi réel',
     text: 'Le trajet s’actualise côté parent dans l’essai local. Les positions sur la carte restent à afficher.',
     next: 'Terminer la carte, puis tester les vraies positions et les alertes sur téléphone.', source: 'docs/release/evidence/ride-observation-native-2026-10-19/README.md' },
@@ -9,8 +12,8 @@ export const blockers = [
     text: 'Un premier défaut est corrigé et testé. D’autres alertes restent à examiner.',
     next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/proxy-trust-security-2026-10-19/README.md' },
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
-    text: 'Un essai précédent s’arrête avant l’app : le réglage temporaire du téléphone n’a pas été confirmé. Un essai complet précédent passe.',
-    next: 'Comprendre cet arrêt, puis reprendre les essais dans l’app et sur téléphone.', source: 'docs/release/evidence/store-pause-preparation-failure-2026-10-19/README.md' },
+    text: 'Le dernier essai complet s’arrête au redémarrage de l’app. La reprise du suivi passe séparément.',
+    next: 'Comprendre cet arrêt, terminer un nouvel essai complet, puis reprendre les essais sur téléphone.', source: 'docs/release/evidence/native-startup-replay-anr-2026-10-19/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },

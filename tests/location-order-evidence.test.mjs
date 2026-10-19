@@ -77,7 +77,9 @@ test('retained artifacts cannot turn local administrative checks into physical, 
 
 test('the current writer is atomic and reports actual commits without losing event reconciliation', () => {
   const writer = text('functions/src/lib/liveTrips.ts');
-  assert(writer.includes('.transaction(')); assert(writer.includes('shouldReplaceLiveLocation(current, update, Date.now())'));
+  assert(writer.includes('.transaction(')); assert(writer.includes('shouldReplaceLiveLocation(current, update, now)'));
+  assert(writer.indexOf('const now = Date.now()') > writer.indexOf('.transaction('));
+  assert(writer.includes('hasValidLocationCapture(update, now)'));
   assert(writer.includes('return result.committed')); assert(!writer.includes('.set(liveLocationPayload'));
   assert(text('functions/src/callables/locations.ts').includes('ignored: results.length - written'));
   const reconciler = text('functions/src/services/radarReconciliation.ts');
@@ -114,7 +116,7 @@ test('a reproduced transaction-clock race stays negative and the final writer re
   assert.equal(Number(writerCases['@_tests']), 3); assert.equal(Number(writerCases['@_failures']), 0);
   assert.equal(reevaluation.after.unitCases, 341); assert.equal(reevaluation.after.failures, 0);
   assertRetainedSourceFiles(root, reevaluation.after.sourceFiles);
-  assert.equal(createHash('sha256').update(text('functions/src/lib/liveTrips.ts')).digest('hex'),
+  assert.equal(createHash('sha256').update(text('docs/release/evidence/source-archive/' + reevaluation.after.sourceFiles['functions/src/lib/liveTrips.ts'] + '.txt')).digest('hex'),
     reevaluation.after.sourceFiles['functions/src/lib/liveTrips.ts']);
   assert.notEqual(reevaluation.before.sourceFiles['functions/src/lib/liveTrips.ts'], reevaluation.after.sourceFiles['functions/src/lib/liveTrips.ts']);
 });
