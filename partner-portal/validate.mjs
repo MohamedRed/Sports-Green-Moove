@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
+import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
 
@@ -68,6 +69,10 @@ export function validate(root) {
     if (f.phone) {
       assert.equal(f.status, 'partial', 'A bounded phone flow does not complete every release requirement');
       validatePhoneEvidence(root, f.phone, f.checkedAt);
+    }
+    if (f.historyPhone) {
+      assert.equal(f.status, 'partial');
+      assert.equal(validateHistoryPhoneArtifacts(root, f.historyPhone.source).testedAt.slice(0, 10), f.checkedAt);
     }
   }
   for (const u of content.updates) { assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt); }

@@ -1,4 +1,10 @@
 export const captures = {
+  'team-history-list': 'docs/release/evidence/phone-team-history-2026-10-19/history-list.png',
+  'team-history-page-2': 'docs/release/evidence/phone-team-history-2026-10-19/history-page-2.png',
+  'team-history-confirmation': 'docs/release/evidence/phone-team-history-2026-10-19/history-confirmation.png',
+  'team-history-withdrawn': 'docs/release/evidence/phone-team-history-2026-10-19/history-withdrawn.png',
+  'team-history-child': 'docs/release/evidence/phone-team-history-2026-10-19/history-child-read-only.png',
+  'team-history-refreshed': 'docs/release/evidence/phone-team-history-2026-10-19/history-refreshed.png',
   'team-review-requests': 'docs/release/evidence/local-team-review-2026-10-18/team-review-requests-1440.png',
   'team-review-confirmation': 'docs/release/evidence/local-team-review-2026-10-18/team-review-confirmation-320.png',
   'team-review-recovered': 'docs/release/evidence/local-team-review-2026-10-18/team-review-approval-recovered-320.png',

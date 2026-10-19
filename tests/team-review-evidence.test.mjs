@@ -62,6 +62,6 @@ test('the private portal keeps separate manager-browser and parent-native proof 
   assert.doesNotMatch(JSON.stringify(flow), /Firebase|BrowserStack|Playwright|SDK|Terraform/);
   validateUiScope(report()); assert.throws(() => validateUiScope({ ...report(), physicalDevice: true }));
   const parent = content.flows.find((item) => item.id === 'team-enrollment'); assert.equal(parent.status, 'partial');
-  assert.equal(parent.images.length, 9); assert.equal(parent.checkedAt, '2026-10-19');
+  assert.equal(parent.images.length, 15); assert.equal(parent.checkedAt, '2026-10-19');
   assert(parent.images.every((image) => /19 octobre/.test(image.alt))); assert.match(parent.remaining, /fermeture complète/);
 });

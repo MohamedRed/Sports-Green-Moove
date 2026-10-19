@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Les anciennes demandes restent accessibles',
+    text: 'Sur téléphone, la liste continue, le retrait se confirme et reste enregistré au retour. Sans autorisation parentale, la demande de l’enfant devient non modifiable. Six captures sont ajoutées.', flow: 'team-enrollment' },
   { date: '2026-10-19', title: 'L’essai local complet passe',
     text: 'Les écrans, les essais prévus et la récupération des captures passent ensemble. Les autres essais sur téléphone restent ouverts.', flow: 'publication' },
   { date: '2026-10-19', title: 'Les écrans passent ; la reprise réseau reste bloquée',

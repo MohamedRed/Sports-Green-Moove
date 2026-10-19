@@ -3,6 +3,12 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'team-enrollment': [
+    image('team-history-list', 'Retrouver ses demandes', 'L’historique reste accessible même sans accès au club.'),
+    image('team-history-page-2', 'Continuer la liste', 'Les demandes au-delà des vingt premières sont aussi retrouvées.'),
+    image('team-history-confirmation', 'Confirmer le retrait', 'Revenir garde l’inscription. Confirmer enregistre le retrait.'),
+    image('team-history-withdrawn', 'Voir le retrait enregistré', 'L’inscription personnelle est retirée une seule fois.'),
+    image('team-history-child', 'Protéger la demande de l’enfant', 'Sans autorisation parentale, le nom est masqué et aucune modification n’est proposée.'),
+    image('team-history-refreshed', 'Revenir plus tard', 'Après réouverture et actualisation, le retrait est toujours enregistré.'),
     image('team-phone-requested', 'Demander son inscription', 'Le parent confirme sa demande sur le téléphone.'),
     image('team-phone-refused', 'Retrouver le refus du club', 'Le responsable refuse depuis son espace. Le parent retrouve sa réponse.'),
     image('team-phone-requested-again', 'Faire une nouvelle demande', 'Le parent redemande son inscription après le refus.'),

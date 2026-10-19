@@ -36,7 +36,7 @@ for (const [name, clip] of Object.entries(excerpts)) {
 for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'signout', 125]]) {
   ffmpeg('-ss', String(at), '-i', resolve(root, videos[video]), '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
 }
-const fingerprints = Object.fromEntries([...new Set(content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.phone ? [f.phone.source] : [])]))].map((source) => [source,
+const fingerprints = Object.fromEntries([...new Set(content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.phone ? [f.phone.source] : []), ...(f.historyPhone ? [f.historyPhone.source] : [])]))].map((source) => [source,
   createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex')]));
 const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };
 writeFileSync(resolve(out, 'data.json'), `${JSON.stringify(data, null, 2)}\n`);

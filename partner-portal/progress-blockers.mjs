@@ -28,7 +28,7 @@ export const blockers = [
     next: 'Comparer les connexions au départ, puis répéter la coupure et la reprise.', source: 'docs/release/evidence/native-matrix-36-2026-10-19/README.md' },
   { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
     text: 'Les demandes d’équipe passent les essais locaux. Les échanges entre membres d’une même équipe et parents des enfants inscrits restent à construire et à tester.',
-    next: 'Le parent et le responsable du club passent ensemble sur téléphone. Ajouter l’historique et les échanges, puis tester les accès à la conversation.', source: 'docs/release/evidence/phone-team-enrollment-2026-10-19/README.md' },
+    next: 'L’historique passe sur téléphone. Ajouter les échanges d’équipe avec les membres et parents validés par le responsable du club.', source: 'docs/release/evidence/phone-team-history-2026-10-19/README.md' },
   { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
     text: 'Les brouillons des messages restent dans le bon compte en local. Le plantage d’un ancien essai reste à expliquer.',
     next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: 'docs/release/evidence/local-ui-collection-2026-10-16/README.md' },

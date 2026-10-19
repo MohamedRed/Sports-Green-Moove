@@ -59,6 +59,6 @@ test('both CI paths rerun isolated authority and the private website retains inc
   assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
   assert(content.updates.some((entry) => entry.flow === 'clubs' && entry.title === 'La vérification des parents passe les essais locaux'));
   const group = content.blockers.find((entry) => entry.id === 'group-conversation');
-  assert.equal(group.source, 'docs/release/evidence/phone-team-enrollment-2026-10-19/README.md');
+  assert.equal(group.source, 'docs/release/evidence/phone-team-history-2026-10-19/README.md');
   assert.match(group.next, /responsable du club/);
 });

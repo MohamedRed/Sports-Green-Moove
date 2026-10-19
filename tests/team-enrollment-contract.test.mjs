@@ -22,7 +22,7 @@ test('retained enrollment proof binds its original source snapshot without accep
   assert.equal(Object.keys(report.sourceFiles).length, 10);
   assertOriginalPaginationSources(report.sourceFiles, ['functions/src/callables/teamEnrollment.ts']);
   const flow = content.flows.find((item) => item.id === 'team-enrollment');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.images.length, 9);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.images.length, 15);
   assert.equal(flow.ui.source, 'docs/release/evidence/local-team-enrollment-native-2026-10-19/team-enrollment-results.json');
   assert.equal(flow.local.source, 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/fixtures.json'); assert.match(flow.remaining, /fermeture complète/);
   assert.equal(content.flows.find((item) => item.id === 'messages').status, 'partial');
