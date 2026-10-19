@@ -64,6 +64,8 @@ describe("Stripe webhook reconciliation flow", () => {
     expect((await firestore.doc(path).get()).get("amountCents")).toBe(501);
     expect((await firestore.doc("bookings/booking-1").get()).data()).toEqual(before);
   });
+  // Real emulator transaction contention can outlast the five-second unit default.
+  // Both operations must settle before afterEach removes their shared fixture.
   it.each(["payment-first", "cancellation-first", "concurrent"])("preserves a closed booking and pending refund across %s", async (order) => {
     await seedRidePaymentContext({ status: "approved" });
     await firestore.doc("trips/trip-1").update({ driverUserId: "driver-1", status: "published", seatsTotal: 4, seatsAvailable: 2 });
@@ -85,7 +87,7 @@ describe("Stripe webhook reconciliation flow", () => {
     expect((await firestore.doc("trips/trip-1").get()).data()).toMatchObject({ status: "cancelled", seatsAvailable: 4 });
     expect((await firestore.collection("rewardLedger").get()).size).toBe(2);
     expect((await firestore.collection("notifications").get()).size).toBe(1);
-  });
+  }, 30_000);
 
   it.each([undefined, "notRequired", "pending"])("keeps a cancelled booking closed and flags a late payment for refund: %s", async (refundStatus) => {
     await seedRidePaymentContext({ status: "cancelled", ...(refundStatus ? { refundStatus } : {}) });
