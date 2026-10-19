@@ -20,6 +20,8 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -39,6 +41,7 @@ class ActiveRideLocationService : Service() {
     }
 
     private var locationCallback: LocationCallback? = null
+    private var lifecycleWatch: ListenerRegistration? = null
 
     private fun callbackFor(lease: RideLocationLease) = object : LocationCallback() {
         override fun onLocationResult(result: LocationResult) {
@@ -72,8 +75,12 @@ class ActiveRideLocationService : Service() {
         startForeground(NOTIFICATION_ID, buildNotification())
         if (previous !== lease) {
             scope.coroutineContext.cancelChildren()
+            stopLifecycleWatch()
             stopLocationUpdates()
             startLocationUpdates(lease)
+            lifecycleWatch = watchRideLifecycle(FirebaseFirestore.getInstance(), lease) { decision ->
+                if (ownership.accepts(lease) && decision == RideLifecycleDecision.STOP) stopTracking()
+            }
         }
         return START_NOT_STICKY
     }
@@ -83,6 +90,7 @@ class ActiveRideLocationService : Service() {
     override fun onDestroy() {
         auth.removeAuthStateListener(authListener)
         ownership.clear()
+        stopLifecycleWatch()
         stopLocationUpdates()
         scope.cancel()
         super.onDestroy()
@@ -90,10 +98,16 @@ class ActiveRideLocationService : Service() {
 
     private fun stopTracking() {
         ownership.clear()
+        stopLifecycleWatch()
         stopLocationUpdates()
         scope.coroutineContext.cancelChildren()
         stopForeground(STOP_FOREGROUND_REMOVE)
         stopSelf()
+    }
+
+    private fun stopLifecycleWatch() {
+        lifecycleWatch?.remove()
+        lifecycleWatch = null
     }
 
     private fun ensureChannel() {

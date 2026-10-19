@@ -152,6 +152,10 @@ startup_status=0
 node "$repo_root/scripts/qa/run-local-native-startup-ui.mjs" || startup_status=$?
 printf '{"scope":"native-startup-command-status-not-flow-verification","status":%s}\n' \
   "$startup_status" > "$output_dir/native-startup-suite-status.json"
+remote_stop_status=0
+node "$repo_root/scripts/qa/run-local-remote-ride-stop-ui.mjs" || remote_stop_status=$?
+printf '{"scope":"remote-ride-stop-command-status-not-flow-verification","status":%s}\n' \
+  "$remote_stop_status" > "$output_dir/remote-ride-stop-suite-status.json"
 printf 'Ordinary tests: %s; component evidence: %s; local replay: %s; ride observation: %s\n' "$test_status" "$capture_status" "$replay_status" "$observation_status"
 printf '{"scope":"native-suite-exit-status-not-flow-verification","ordinaryTests":%s,"componentEvidence":%s,"localReplay":%s}\n' \
   "$test_status" "$capture_status" "$replay_status" > "$output_dir/native-suite-status.json"
@@ -159,4 +163,5 @@ if [[ "$test_status" -ne 0 ]]; then exit "$test_status"; fi
 if [[ "$capture_status" -ne 0 ]]; then exit "$capture_status"; fi
 if [[ "$replay_status" -ne 0 ]]; then exit "$replay_status"; fi
 if [[ "$observation_status" -ne 0 ]]; then exit "$observation_status"; fi
-exit "$startup_status"
+if [[ "$startup_status" -ne 0 ]]; then exit "$startup_status"; fi
+exit "$remote_stop_status"

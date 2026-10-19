@@ -30,8 +30,10 @@ try {
       .filter((key) => process.env[key]).map((key) => [key, process.env[key]]));
     env.SGM_LOCAL_UI_SESSION_FILE = session;
     const child = spawn(process.execPath, [resolve(root, 'scripts/qa/start-local-ui.mjs')], { cwd: root, env, stdio: ['ignore', 'pipe', 'pipe'] });
-    const stoppingEvents = [];
+    const stoppingEvents = [], diagnosticLines = [];
+    let metadata;
     const observe = (line) => {
+      diagnosticLines.push(line); if (diagnosticLines.length > 150) diagnosticLines.shift();
       const service = line.match(/Stopping (Functions|Database|Firestore|Authentication) Emulator/);
       if (service) stoppingEvents.push(service[1]);
     };
@@ -45,7 +47,7 @@ try {
         assert(Date.now() < deadline, 'Local UI session did not become ready'); await delay(100);
       }
       assert.equal(statSync(session).mode & 0o077, 0);
-      const metadata = JSON.parse(readFileSync(session)); assert.equal(metadata.projectId, 'demo-sgm-local-qa');
+      metadata = JSON.parse(readFileSync(session)); assert.equal(metadata.projectId, 'demo-sgm-local-qa');
       assert.match(metadata.runId, /^[a-f0-9]{32}$/);
       assert(child.kill(stopSignal), 'The live owned supervisor must receive the requested signal');
       const [code, signal] = await closed;
@@ -56,6 +58,12 @@ try {
       for (const service of ['Functions', 'Database', 'Firestore', 'Authentication']) assert(stoppingEvents.includes(service), service);
       checks.push({ signal: stopSignal, runId: metadata.runId, exitCode: code, supervisorExitedAfterCleanup: true,
         privateSessionFileRemoved: true, loopbackPortsRefused: ports, servicesStopped: [...new Set(stoppingEvents)].sort() });
+    } catch (error) {
+      let diagnostic = diagnosticLines.join('\n');
+      if (metadata?.password) diagnostic = diagnostic.replaceAll(metadata.password, '[REDACTED]');
+      diagnostic = diagnostic.replace(/AIza[\w-]{20,}|Bearer\s+[\w.~+/-]+=*|eyJ[\w-]+\.[\w-]+\.[\w-]*/g, '[REDACTED]');
+      console.error(`Original ${stopSignal} supervisor diagnostics (outcome unchanged):\n${diagnostic}`);
+      throw error;
     } finally {
       if (child.exitCode === null && child.signalCode === null) { child.kill('SIGTERM'); await closed; }
       for (const log of logs) log.close();

@@ -29,10 +29,11 @@ test('native startup proof requires its original case, primary copy and complete
     'setLocalMockPermission(shell, originalMockMode)', 'await verifyReadOnlyRideFixtureIsolation(fixture)', 'resetDisposableLocalApps(adb, serial)']) assert(replay.includes(fragment));
   assert(replay.indexOf('if (failure) throw failure') < replay.indexOf("'native-startup-app-results.json'"));
   assert(!replay.includes('isolatedFixtureCleanupVerified'));
-  const owner = text('scripts/qa/run-local-native-startup-ui.mjs');
+  assert(text('scripts/qa/run-local-native-startup-ui.mjs').includes("await runIsolatedRideUi('native-startup')"));
+  const owner = text('scripts/qa/run-isolated-ride-ui.mjs');
   for (const fragment of ['runtime.cleanup()', '!existsSync(runtime.temp)', 'await assertLocalEndpointsClosed(ports)'])
-    assert(owner.indexOf(fragment) < owner.indexOf("'native-startup-results.json'"));
-  assert(owner.indexOf('if (failure) throw failure') < owner.indexOf("'native-startup-results.json'"));
+    assert(owner.indexOf(fragment) < owner.indexOf('`${name}-results.json`'));
+  assert(owner.indexOf('if (failure) throw failure') < owner.indexOf('`${name}-results.json`'));
   assert(!replay.includes('process.exit('));
   const suite = text('scripts/run-android-ui-tests-and-collect-screenshots.sh');
   assert(suite.indexOf('run-local-ride-observation-ui.mjs') < suite.indexOf('run-local-native-startup-ui.mjs'));

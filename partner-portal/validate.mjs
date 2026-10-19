@@ -9,6 +9,7 @@ import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-re
 import { validateRideEmergencyReport, validateRetainedRideEmergency } from '../scripts/qa/ride-emergency-retained-evidence.mjs';
 import { validateRideObservationReport, validateRetainedRideObservation } from '../scripts/qa/ride-observation-retained-evidence.mjs';
 import { validateNativeStartupReport, validateRetainedNativeStartup } from '../scripts/qa/native-startup-retained-evidence.mjs';
+import { remoteRideStopScope, validateRemoteRideStopReport, validateRetainedRemoteRideStop } from '../scripts/qa/remote-ride-stop-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -71,6 +72,9 @@ export function validate(root) {
       if (f.id === 'native-startup' || run.scope === 'local-fused-mock-startup-not-physical-gps') {
         assert.equal(f.id, 'native-startup'); validateRetainedNativeStartup(root, f.ui.source);
       }
+      if (f.id === 'remote-ride-stop' || run.scope === remoteRideStopScope) {
+        assert.equal(f.id, 'remote-ride-stop'); validateRetainedRemoteRideStop(root, f.ui.source);
+      }
       if (Object.hasOwn(f.ui, 'checkedAt')) {
         assertDate(f.ui.checkedAt); assert(f.ui.checkedAt <= f.checkedAt);
         assert.equal(run.testedAt.slice(0, 10), f.ui.checkedAt);
@@ -122,6 +126,9 @@ export function validate(root) {
 
 export function validateUiScope(run) {
   switch (run.scope) {
+    case remoteRideStopScope:
+      validateRemoteRideStopReport(run);
+      break;
     case 'local-fused-mock-startup-not-physical-gps':
       validateNativeStartupReport(run);
       break;

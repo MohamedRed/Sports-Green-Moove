@@ -16,3 +16,18 @@ export function assertIsolatedRideRecordChanges(before, after, fixture) {
   }
   return { baselineRecordsPreserved: true, createdRecordCounts: counts };
 }
+
+export function assertCompletedRideRecordChanges(before, after, fixture) {
+  const previousIds = new Set(before.co2Ledger.map((row) => row.id));
+  const created = after.co2Ledger.filter((row) => !previousIds.has(row.id));
+  assert.equal(created.length, 1, 'A completed zero-distance trial must create exactly one impact record');
+  const impact = created[0];
+  assert.equal(impact.id, `rideCompletion_${encodeURIComponent(fixture.rideSessionId)}`);
+  assert.equal(impact.type, 'rideCompletion');
+  assert.equal(impact.sourceId, fixture.rideSessionId); assert.equal(impact.rideSessionId, fixture.rideSessionId);
+  assert.equal(impact.userId, 'sgm-qa-driver'); assert.equal(impact.driverUserId, 'sgm-qa-driver');
+  assert.equal(impact.distanceMeters, 0); assert.equal(impact.co2SavedKg, 0);
+  const report = assertIsolatedRideRecordChanges(before, { ...after,
+    co2Ledger: after.co2Ledger.filter((row) => row !== impact) }, fixture);
+  return { ...report, createdRecordCounts: { ...report.createdRecordCounts, co2Ledger: 1 }, zeroDistanceImpactVerified: true };
+}

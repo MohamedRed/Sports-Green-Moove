@@ -74,7 +74,7 @@ catch (error) { failure = failure ? new AggregateError([failure, error], 'Trial 
 try { resetDisposableLocalApps(adb, serial); }
 catch (error) { failure = failure ? new AggregateError([failure, error], 'Trial and local package cleanup failed') : error; }
 if (failure) throw failure;
-const paths = ['scripts/qa/local-native-startup-ui.mjs', 'scripts/qa/run-local-native-startup-ui.mjs',
+const paths = ['scripts/qa/local-native-startup-ui.mjs', 'scripts/qa/run-local-native-startup-ui.mjs', 'scripts/qa/run-isolated-ride-ui.mjs',
   'scripts/qa/local-emulator-lifecycle.mjs', 'scripts/qa/isolated-ride-records.mjs',
   'scripts/qa/local-ride-observation-fixture.mjs', 'scripts/qa/local-mock-location-permission.mjs', 'functions/src/lib/liveTrips.ts',
   'functions/src/domain/liveLocationOrder.ts', 'functions/src/callables/locations.ts',

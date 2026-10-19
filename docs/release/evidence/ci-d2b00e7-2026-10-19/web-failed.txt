@@ -1,0 +1,34 @@
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	﻿2026-10-19T18:39:00.9615298Z ##[group]Run npm run test:local-ui-shutdown
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9615707Z [36;1mnpm run test:local-ui-shutdown[0m
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9674292Z shell: /usr/bin/bash -e {0}
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9674514Z env:
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9674696Z   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9675012Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9675395Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9675691Z   MAVEN_ARGS: -ntp
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9675945Z   SGM_LOCAL_FLOW_OUTPUT: /home/runner/work/_temp/sgm-local-ui-shutdown.json
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:00.9676230Z ##[endgroup]
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:01.0518790Z 
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:01.0519941Z > sports-green-moove@0.1.0 test:local-ui-shutdown
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:01.0521076Z > node scripts/qa/check-local-ui-shutdown.mjs
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:01.0523150Z 
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2396558Z node:internal/modules/run_main:123
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2396944Z     triggerUncaughtException(
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2397227Z     ^
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2397331Z 
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2397592Z AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2398075Z 
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2398170Z 1 !== 143
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2398301Z 
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2398739Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/check-local-ui-shutdown.mjs:52:14
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2399349Z     at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2399705Z   generatedMessage: true,
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2399914Z   code: 'ERR_ASSERTION',
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2400098Z   actual: 1,
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2400267Z   expected: 143,
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2400454Z   operator: 'strictEqual',
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2400638Z   diff: 'simple'
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2400794Z }
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2400879Z 
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2400949Z Node.js v22.23.3
+Functions, admin, and website smoke	Verify actual isolated UI service interruption cleanup	2026-10-19T18:39:39.2484715Z ##[error]Process completed with exit code 1.

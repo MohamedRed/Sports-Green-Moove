@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { getDatabase } from 'firebase-admin/database';
 import { auth, call, db, document, signIn, tripInput, viewedBooking } from './local-flow-client.mjs';
-import { assertIsolatedRideRecordChanges } from './isolated-ride-records.mjs';
+import { assertIsolatedRideRecordChanges, assertCompletedRideRecordChanges } from './isolated-ride-records.mjs';
 
 const names = ['trips', 'bookings', 'rideSessions', 'notifications', 'co2Ledger', 'rewardLedger'];
 async function state() {
@@ -23,6 +23,13 @@ export async function seedRideObservationFixture() {
 }
 export async function verifyReadOnlyRideFixtureIsolation(fixture) {
   const report = assertIsolatedRideRecordChanges(fixture.before, await state(), fixture);
+  return verifyOtherLiveRides(fixture, report);
+}
+export async function verifyCompletedRideFixtureIsolation(fixture) {
+  const report = assertCompletedRideRecordChanges(fixture.before, await state(), fixture);
+  return verifyOtherLiveRides(fixture, report);
+}
+async function verifyOtherLiveRides(fixture, report) {
   const live = { ...((await getDatabase().ref('liveTrips').get()).val() ?? {}) };
   delete live[fixture.rideSessionId];
   assert.deepEqual(live, fixture.beforeLive ?? {}, 'Only the selected live ride may change');

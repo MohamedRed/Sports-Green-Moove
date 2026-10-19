@@ -3,6 +3,7 @@ import { mkdirSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { content } from '../partner-portal/content.mjs';
 import { partitionUpdates } from '../partner-portal/src/render.js';
+import { verifyRemoteRideStopGallery } from './partner-portal-remote-stop.browser.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE_PATH;
 const { chromium } = modulePath ? await import(pathToFileURL(modulePath).href) : await import('playwright');
@@ -192,6 +193,7 @@ try {
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto(`${base}/#parcours`);
+    await page.getByRole('dialog').waitFor({ state: 'hidden' });
     await page.goto(`${base}/#parcours/team-enrollment`);
     await page.getByRole('dialog').getByRole('heading', { name: 'Inscription à une équipe', exact: true }).waitFor();
     const flow = content.flows.find((item) => item.id === 'team-enrollment');
@@ -211,7 +213,9 @@ try {
   }
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
-    await page.goto(`${base}/#parcours`); await page.goto(`${base}/#parcours/team-review`);
+    await page.goto(`${base}/#parcours`);
+    await page.getByRole('dialog').waitFor({ state: 'hidden' });
+    await page.goto(`${base}/#parcours/team-review`);
     await page.getByRole('dialog').getByRole('heading', { name: 'Réponse du club', exact: true }).waitFor();
     const flow = content.flows.find((item) => item.id === 'team-review');
     for (const [index, image] of flow.images.entries()) {
@@ -235,6 +239,7 @@ try {
   await page.getByRole('heading', { name: 'Pas encore de vidéo' }).waitFor();
   assert.equal(await page.locator('video').count(), 0);
   assert.deepEqual(errors, []);
+  await verifyRemoteRideStopGallery({ browser, base, output });
   console.log('Portal browser checks passed: desktop/mobile, filters, deep links, dialogs, short-video playback, media navigation, no overflow or failed assets.');
 } finally {
   await browser.close();

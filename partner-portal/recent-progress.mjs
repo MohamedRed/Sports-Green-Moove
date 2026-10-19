@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'La fin du trajet arrête le suivi en arrière-plan',
+    text: 'L’essai local passe : le suivi s’arrête avant le retour dans l’app. Les autres données sont préservées, puis l’environnement d’essai est effacé.', flow: 'remote-ride-stop' },
   { date: '2026-10-19', title: 'La reprise du suivi passe en local',
     text: 'Reprise, refus d’une position invalide et arrêt à la déconnexion passent. Deux captures sont ajoutées ; l’affichage complet reste à vérifier.', flow: 'native-startup' },
   { date: '2026-10-19', title: 'Le trajet s’actualise côté parent',

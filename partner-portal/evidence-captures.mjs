@@ -1,4 +1,5 @@
 export const captures = {
+  'remote-ride-stop-started': 'docs/release/evidence/remote-ride-stop-pass-2026-10-19/local-native-startup-remote-started.png',
   ...Object.fromEntries(['started', 'signed-out'].map((phase) => [
     `native-startup-${phase}`, `docs/release/evidence/native-startup-pass-2026-10-19/local-native-startup-${phase}.png`,
   ])),
