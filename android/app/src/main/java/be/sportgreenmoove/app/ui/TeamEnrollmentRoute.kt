@@ -19,6 +19,13 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun TeamEnrollmentRoute(uid: String, gateway: TeamEnrollmentGateway, canChooseChild: Boolean, onBack: () -> Unit) {
+    var history by remember(uid, gateway, canChooseChild) { mutableStateOf(false) }
+    if (history) TeamEnrollmentHistoryRoute(uid, gateway) { history = false }
+    else TeamEnrollmentRequestRoute(uid, gateway, canChooseChild, onBack) { history = true }
+}
+
+@Composable
+private fun TeamEnrollmentRequestRoute(uid: String, gateway: TeamEnrollmentGateway, canChooseChild: Boolean, onBack: () -> Unit, onHistory: () -> Unit) {
     val state = remember(uid, gateway, canChooseChild) { TeamEnrollmentState(uid, gateway, canChooseChild) }
     val scope = rememberCoroutineScope(); val owner = LocalLifecycleOwner.current
     var picker by remember(state) { mutableStateOf<TeamEnrollmentOptionKind?>(null) }
@@ -31,7 +38,7 @@ internal fun TeamEnrollmentRoute(uid: String, gateway: TeamEnrollmentGateway, ca
         }
     }
     LaunchedEffect(state.view) { confirmation = null }
-    TeamEnrollmentScreen(state, onBack, onRefresh = { picker = null; confirmation = null; scope.launch { state.refresh() } },
+    TeamEnrollmentScreen(state, onBack, onHistory, onRefresh = { picker = null; confirmation = null; scope.launch { state.refresh() } },
         onPick = { picker = it }, onChildMode = { scope.launch { state.chooseChildMode(it) } }, onReview = { scope.launch { state.review() } },
         onAction = { view, action -> confirmation = view to action })
     picker?.let { kind ->

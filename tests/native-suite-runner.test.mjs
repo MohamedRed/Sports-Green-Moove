@@ -13,7 +13,11 @@ function fixture(t) {
   const log = join(root, 'calls');
   const adbLog = join(root, 'adb-calls');
   const executable = (path, content) => {
-    const teamCopy = path === 'bin/adb' ? 'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-team-enrollment && "$CAPTURE_FAILURE" == teams ]]; then exit 9; fi\n' : '';
+    const teamCopy = path === 'bin/adb' ? [
+      'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-team-enrollment && "$CAPTURE_FAILURE" == teams ]]; then exit 9; fi',
+      'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-team-history && "$CAPTURE_FAILURE" == history ]]; then exit 9; fi',
+      '',
+    ].join('\n') : '';
     writeFileSync(join(root, path), '#!/bin/bash\n' + teamCopy + content, { mode: 0o700 });
   };
   executable('android/gradlew', 'if [[ "$*" == *:app:assembleDebugAndroidTest* ]]; then echo build >> "$CALL_LOG"; exit "$BUILD_STATUS"; fi\necho ordinary >> "$CALL_LOG"\nexit "$ORDINARY_STATUS"\n');
@@ -22,6 +26,7 @@ function fixture(t) {
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
   const screens = {
+    'sgm-team-history': ['team-history-paging.png', 'team-history-paging-window.png', 'team-history-redacted-child.png', 'team-history-redacted-child-window.png'],
     'sgm-team-enrollment': ['team-requested.png', 'team-requested-window.png', 'team-approved-narrow.png', 'team-approved-narrow-window.png'],
     'sgm-emergency-contact': ['emergency-editor-narrow.png', 'emergency-editor-narrow-window.png', 'emergency-editor-changed.png', 'emergency-editor-changed-window.png'],
     'sgm-payment-confirmation': ['payment-pending-narrow.png', 'payment-pending-narrow-window.png', 'payment-review.png', 'payment-review-window.png'],
@@ -57,6 +62,7 @@ for (const [name, env, exit, statuses] of [
   ['stale payment component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'payments' }, 1, [0, 1, 0]],
   ['stale contact component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'emergency' }, 1, [0, 1, 0]],
   ['stale team component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'teams' }, 1, [0, 1, 0]],
+  ['stale owned-history component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'history' }, 1, [0, 1, 0]],
   ['isolated replay failure is never overwritten by ordinary success', { REPLAY_STATUS: '11' }, 11, [0, 0, 11]],
   ['both failures retain both outcomes and return the first', { ORDINARY_STATUS: '7', REPLAY_STATUS: '11' }, 7, [7, 0, 11]],
 ]) test(name, (t) => {
@@ -73,7 +79,7 @@ test('failed suites retain partial payment and other component captures without 
   const result = fixture(t)({ ORDINARY_STATUS: '7', CAPTURE_FAILURE: 'payments' });
   assert.equal(result.status, 7);
   assert.match(result.stdout, /Could not collect partial component screenshots: sgm-payment-confirmation/);
-  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment']) {
+  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history']) {
     assert(result.adbCalls.some((call) => call.startsWith('pull /sdcard/Download/' + name + ' ') && call.endsWith('/partial-components')));
   }
   assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);

@@ -4,11 +4,14 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { assertOriginalPaginationSources } from './helpers/original-pagination-sources.mjs';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
+import { fileURLToPath } from 'node:url';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
 const text = (path) => read(path).toString('utf8');
 const json = (path) => JSON.parse(text(path));
 const sha = (raw) => createHash('sha256').update(raw).digest('hex');
+const root = fileURLToPath(new URL('../', import.meta.url));
 const base = 'docs/release/evidence/local-team-enrollment-native-2026-10-18/';
 test('team choices retain all twelve isolated groups without claiming native execution or enrollment approval', () => {
   const report = json(base + 'choices.json'); assert.equal(report.projectId, 'demo-sgm-local-qa');
@@ -36,11 +39,8 @@ test('sixteen unit cases and a compiled component suite never substitute actual 
     count += Number(suite['@_tests']);
   }
   assert.equal(count, 16);
-  for (const [path, hash] of Object.entries(report.sourceFiles)) {
-    const original = path.endsWith('/TeamEnrollmentFlowTest.kt')
-      ? 'docs/release/evidence/team-screen-export-2026-10-18/TeamEnrollmentFlowTest.before.kt' : path;
-    assert.equal(sha(read(original)), hash, path); assert(text(path).split('\n').length < 300, path);
-  }
+  assertRetainedSourceFiles(root, report.sourceFiles);
+  for (const path of Object.keys(report.sourceFiles)) assert(text(path).split('\n').length < 300, path);
   const fixture = text('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt');
   assert.equal((fixture.match(/@Test fun/g) ?? []).length, 4); assert(fixture.includes('TeamEnrollmentUiFixture'));
   assert(fixture.includes('fontScale = 1.3f')); assert(fixture.includes('Modifier.width(320.dp)'));
@@ -109,7 +109,7 @@ test('the completed replay binds actual XML cases and original captures without 
   for (const flag of ['applicationBackendConnected', 'fullAppReplay', 'physicalDevice', 'realProviderOutcomesVerified']) assert.equal(report[flag], false);
   assert.equal(Object.keys(report.artifacts).length, 8);
   for (const [path, hash] of Object.entries(report.artifacts)) assert.equal(sha(read(sub + path)), hash, path);
-  for (const [path, hash] of Object.entries(report.sourceFiles)) assert.equal(sha(read(path)), hash, path);
+  assertRetainedSourceFiles(root, report.sourceFiles);
   const suite = new XMLParser({ ignoreAttributes: false }).parse(text(sub + 'ordinary-tests.xml')).testsuite;
   assert.equal(Number(suite['@_tests']), 143); assert.equal(Number(suite['@_skipped']), 33);
   for (const field of ['failures', 'errors']) assert.equal(Number(suite['@_' + field]), 0);

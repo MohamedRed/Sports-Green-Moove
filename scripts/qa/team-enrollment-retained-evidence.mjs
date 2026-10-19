@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
 import { teamNativeChecks, validateTeamNativeDevice } from './team-native-evidence.mjs';
+import { assertRetainedSourceFiles } from './retained-source-evidence.mjs';
 
 export function validateRetainedTeamEnrollment(root, path) {
   const directory = dirname(resolve(root, path));
@@ -20,8 +21,7 @@ export function validateRetainedTeamEnrollment(root, path) {
   assert.match(transcript.toString('utf8'), /sgm_installations_blocked=true/);
   assert.equal(hash(transcript), run.transcriptSha256);
   assert.equal(Object.keys(run.sourceFiles).length, 20);
-  for (const [file, expected] of Object.entries(run.sourceFiles))
-    assert.equal(hash(readFileSync(resolve(root, file))), expected, file);
+  assertRetainedSourceFiles(root, run.sourceFiles);
   const artifacts = JSON.parse(load('artifact-sha256.json'));
   assert.equal(Object.keys(artifacts).length, 9);
   for (const [file, expected] of Object.entries(artifacts)) assert.equal(hash(load(file)), expected, file);

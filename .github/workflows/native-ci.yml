@@ -14,6 +14,9 @@ on:
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
+      - "tests/team-enrollment-history-contract.test.mjs"
+      - "tests/retained-source-evidence.test.mjs"
+      - "tests/manual-team-history-checkpoints.test.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
@@ -67,6 +70,9 @@ on:
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
       - "tests/team-enrollment-native-contract.test.mjs"
+      - "tests/team-enrollment-history-contract.test.mjs"
+      - "tests/retained-source-evidence.test.mjs"
+      - "tests/manual-team-history-checkpoints.test.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/actions/native-test-setup/**"
@@ -132,6 +138,9 @@ jobs:
 
       - name: Validate team enrollment unit and compiled-screen scope
         run: node --test tests/team-enrollment-native-contract.test.mjs
+
+      - name: Validate owned enrollment history source and dated evidence boundaries
+        run: node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
 
       - name: Validate SDK-connected team replay evidence requirements
         run: node --test tests/team-enrollment-sdk.test.mjs

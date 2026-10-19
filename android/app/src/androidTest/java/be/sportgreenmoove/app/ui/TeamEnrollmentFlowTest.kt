@@ -103,6 +103,9 @@ class TeamEnrollmentFlowTest {
 }
 
 internal class TeamEnrollmentUiFixture : TeamEnrollmentGateway {
+    override suspend fun ownedTeamEnrollments(uid: String, cursor: String?): GuardianPage<TeamEnrollmentView> = error("History is not part of this request fixture")
+    override suspend fun ownedTeamEnrollmentView(uid: String, enrollmentId: String): TeamEnrollmentView = error("History is not part of this request fixture")
+    override suspend fun withdrawOwnedTeamEnrollment(uid: String, expected: TeamEnrollmentView, requestId: String): TeamEnrollmentReceipt = error("History is not part of this request fixture")
     var current = TeamEnrollmentView("a".repeat(64), "team", "club", "b".repeat(64), "Equipe fictive QA", "parent", null,
         "Parent fictif QA", null, 0, true, listOf(TeamEnrollmentAction.Request))
     val writes = mutableListOf<TeamEnrollmentView>(); var loseReply = false

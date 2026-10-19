@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto';
 import { validateTeamReviewReport, teamReviewCaptures } from '../scripts/qa/team-review-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 import { validateUiScope } from '../partner-portal/validate.mjs';
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
+import { fileURLToPath } from 'node:url';
 
 const base = 'docs/release/evidence/local-team-review-2026-10-18/';
 const bytes = (path) => readFileSync(new URL('../' + path, import.meta.url));
@@ -20,10 +22,8 @@ test('actual management proof binds eight service groups, ten browser groups and
     assert.equal(png.readUInt32BE(16), expectedWidth); assert.equal(png.readUInt32BE(20), 1100);
   }
   assert.equal(Object.keys(run.sourceFiles).length, 30);
-  for (const [path, expected] of Object.entries(run.sourceFiles)) {
-    assert.equal(createHash('sha256').update(bytes(path)).digest('hex'), expected, path);
-    assert(read(path).split('\n').length < 300, path);
-  }
+  assertRetainedSourceFiles(fileURLToPath(new URL('../', import.meta.url)), run.sourceFiles);
+  for (const path of Object.keys(run.sourceFiles)) assert(read(path).split('\n').length < 300, path);
   assert.doesNotMatch(read(base + 'results.json'), /AIza[\w-]{20,}|Bearer\s+[\w.-]+|"password"\s*:/);
 });
 test('missing steps, cleanup, authority, browser work or stronger release claims never satisfy management proof', () => {

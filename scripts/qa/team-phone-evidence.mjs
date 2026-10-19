@@ -5,6 +5,7 @@ import { dirname, resolve } from 'node:path';
 import { imageSize } from 'image-size';
 import { assertIsolatedTunnelSettings } from './browserstack-local-policy.mjs';
 import { teamPhonePhases, verifyManualTeamCheckpoint } from './manual-team-phone-checkpoints.mjs';
+import { assertRetainedSourceFiles } from './retained-source-evidence.mjs';
 
 export const teamPhoneScope = 'physical-android-team-parent-and-management-ui-with-isolated-services';
 export const teamPhoneCaptures = [...teamPhonePhases.map(([phase]) => `phone-${phase}.jpg`),
@@ -58,7 +59,7 @@ export function validateTeamPhoneArtifacts(root, source) {
   assertTeamPhoneReport(run, session, receipts.map(json), json('connection-policy.json'), json('teardown.json'));
   const hash = (raw) => createHash('sha256').update(raw).digest('hex');
   assert.equal(Object.keys(session.sourceFiles).length, 12);
-  for (const [file, expected] of Object.entries(session.sourceFiles)) assert.equal(hash(readFileSync(resolve(root, file))), expected, file);
+  assertRetainedSourceFiles(root, session.sourceFiles);
   const hashes = json('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 25);
   for (const [file, expected] of Object.entries(hashes)) {
     assert(!/[\\/]/.test(file)); assert.equal(hash(bytes(file)), expected, file);

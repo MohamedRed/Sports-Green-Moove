@@ -9,6 +9,9 @@ on:
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
+      - "tests/team-enrollment-history-contract.test.mjs"
+      - "tests/retained-source-evidence.test.mjs"
+      - "tests/manual-team-history-checkpoints.test.mjs"
       - "tests/proxy-trust-security.test.mjs"
       - "tests/native-network-precondition-evidence.test.mjs"
       - "tests/native-matrix-36-evidence.test.mjs"
@@ -258,6 +261,9 @@ on:
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
+      - "tests/team-enrollment-history-contract.test.mjs"
+      - "tests/retained-source-evidence.test.mjs"
+      - "tests/manual-team-history-checkpoints.test.mjs"
       - "tests/proxy-trust-security.test.mjs"
       - "tests/native-network-precondition-evidence.test.mjs"
       - "tests/native-matrix-36-evidence.test.mjs"
@@ -603,6 +609,9 @@ jobs:
 
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
+
+      - name: Test owned enrollment history after eligibility and identity loss
+        run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
 
       - name: Test scoped team and verified child choices
         run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs

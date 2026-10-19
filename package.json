@@ -60,6 +60,8 @@
     "test:guardian-parent": "node scripts/qa/run-local-guardian-parent.mjs",
     "test:emergency-contact": "node scripts/qa/run-local-emergency-contact.mjs",
     "test:team-enrollment": "node scripts/qa/run-local-team-enrollment.mjs",
+    "test:team-enrollment-history": "node scripts/qa/run-local-team-history.mjs",
+    "test:team-history-phone-fixture": "node scripts/qa/run-local-team-history-fixture.mjs",
     "test:team-options": "node scripts/qa/run-local-team-options.mjs",
     "test:membership-cursors": "node scripts/qa/run-local-membership-cursors.mjs",
     "test:team-native-fixtures": "node scripts/qa/run-local-team-native-fixtures.mjs",

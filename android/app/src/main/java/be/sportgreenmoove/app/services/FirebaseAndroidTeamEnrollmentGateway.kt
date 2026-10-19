@@ -34,4 +34,24 @@ internal class FirebaseAndroidTeamEnrollmentGateway(private val functions: Fireb
         return TeamEnrollmentWire.receipt(call(uid, if (action == TeamEnrollmentAction.Request) "requestTeamEnrollment" else "transitionTeamEnrollment",
             TeamEnrollmentWire.payload(current, action, requestId)), current)
     }
+    override suspend fun ownedTeamEnrollments(uid: String, cursor: String?): GuardianPage<TeamEnrollmentView> =
+        GuardianVerificationWire.page(call(uid, "listOwnedTeamEnrollments",
+            cursor?.let { mapOf("cursor" to requireNotNull(GuardianVerificationWire.cursor(it))) } ?: emptyMap())) {
+            TeamEnrollmentHistoryWire.item(it, uid)
+        }
+    override suspend fun ownedTeamEnrollmentView(uid: String, enrollmentId: String): TeamEnrollmentView =
+        TeamEnrollmentHistoryWire.view(call(uid, "getOwnedTeamEnrollmentView",
+            mapOf("enrollmentId" to TripChangeWire.hash(enrollmentId))), uid, enrollmentId)
+    override suspend fun withdrawOwnedTeamEnrollment(uid: String, expected: TeamEnrollmentView, requestId: String): TeamEnrollmentReceipt {
+        val current = ownedTeamEnrollmentView(uid, expected.id)
+        check(current.id == expected.id && current.teamId == expected.teamId && current.clubId == expected.clubId &&
+            current.teamInstanceId == expected.teamInstanceId && current.subjectId == expected.subjectId && current.childId == expected.childId &&
+            current.revision == expected.revision && current.status == expected.status && TeamEnrollmentAction.Withdraw in current.allowedActions) {
+            "La demande a changé. Actualisez."
+        }
+        return TeamEnrollmentWire.receipt(call(uid, "transitionTeamEnrollment",
+            TeamEnrollmentWire.payload(current, TeamEnrollmentAction.Withdraw, requestId)), current).also {
+            check(it.status == TeamEnrollmentStatus.Withdrawn)
+        }
+    }
 }

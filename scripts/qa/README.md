@@ -32,6 +32,17 @@ Only sanitized result JSON belongs in release evidence. Keep emulators' runtime
 logs and ephemeral credentials out of Git. Local evidence never automatically
 accepts a physical-device or live-payment release-manifest requirement.
 
+For owned enrollment history use `manual-team-history-session.mjs` with the same
+private session/output arguments and an interactive stdin. Its fixture creates
+26 real isolated enrollment requests, approves two through a separate manager
+SDK session, then revokes parental verification and deactivates only the fixture
+club membership. These preparation decisions are not phone UI actions. Observe
+each of the five `historyPhonePhases` before submitting its checkpoint. Only the
+adult withdrawal is performed during the UI replay; reading history must not
+write. `finish`, `stop` and EOF perform scoped fixture cleanup and verify that
+unrelated records and global roles are unchanged. `test:team-history-phone-fixture`
+exercises the fixture/checkpoints/cleanup through services only, not a phone.
+
 The service suite requires 19 groups. `chat-post-commit-response-loss` forwards a
 real authenticated local send, independently verifies its saved message and
 recipient notification, then drops the HTTP reply before any response headers.

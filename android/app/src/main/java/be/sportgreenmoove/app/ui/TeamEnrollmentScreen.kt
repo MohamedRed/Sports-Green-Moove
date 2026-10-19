@@ -14,13 +14,17 @@ import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-internal fun TeamEnrollmentScreen(state: TeamEnrollmentState, onBack: () -> Unit, onRefresh: () -> Unit,
+internal fun TeamEnrollmentScreen(state: TeamEnrollmentState, onBack: () -> Unit, onHistory: () -> Unit, onRefresh: () -> Unit,
     onPick: (TeamEnrollmentOptionKind) -> Unit, onChildMode: (Boolean) -> Unit, onReview: () -> Unit,
     onAction: (TeamEnrollmentView, TeamEnrollmentAction) -> Unit) {
     BackHandler(onBack = onBack)
     V2Screen(testTag = "team-enrollment.screen") {
         V2TopBar("ÉQUIPES", onBack = onBack, trailing = { GroupsRefreshButton(state.busy, onRefresh) })
         Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            TextButton(onClick = onHistory, enabled = !state.busy, modifier = Modifier.testTag("team-enrollment.history")) {
+                Text("Mes demandes", color = Sgm.colors.textPrimary)
+                Spacer(Modifier.width(8.dp)); SgmLineIcon(SgmIcon.ArrowRight, Sgm.colors.textPrimary, Modifier.size(18.dp))
+            }
             if (state.busy) Text("Chargement...", color = Sgm.colors.textSecondary, modifier = Modifier.testTag("team-enrollment.loading"))
             state.error?.let { Text(it, color = Sgm.colors.textPrimary, modifier = Modifier.testTag("team-enrollment.error")) }
             state.notice?.let { Text(it, color = Sgm.colors.textPrimary, modifier = Modifier.testTag("team-enrollment.notice")) }
