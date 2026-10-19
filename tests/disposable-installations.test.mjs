@@ -17,8 +17,9 @@ function device(options = {}) {
     if (command === 'getprop ro.kernel.qemu') return options.qemu ?? '1';
     if (command === 'am get-current-user') return options.user ?? '0';
     if (command === 'pm get-user-restriction --user 0 no_install_apps') return options.malformed ?? String(blocked);
-    if (command.startsWith('pm set-user-restriction --user 0 no_install_apps ')) {
-      if (!options.ignored) blocked = args.at(-1) === '1'; return '';
+    if (command.startsWith('am broadcast --user 0 --receiver-foreground ')) {
+      if (!options.ignored) blocked = args.at(-1) === 'true';
+      return `Broadcast completed: result=-1, data="SGM_INSTALL_BLOCKED=${args.at(-1)}"`;
     }
     if (command.startsWith('pm list packages -e --user 0 ')) return `package:${args.at(-1)}`;
     if (command === playServicesVersionCommand) return 'versionName=' + version;
@@ -33,8 +34,7 @@ test('a narrowly scoped two-APK window is re-locked before any replay starts', (
   const phone = device(); let installs = 0;
   withTestApkInstallWindow(phone.shell, () => { assert.equal(phone.blocked(), false); installs += 2; });
   assert.equal(installs, 2); assert.equal(phone.blocked(), true);
-  assert.deepEqual(phone.calls.filter((value) => value.includes('set-user-restriction')), [
-    'pm set-user-restriction --user 0 no_install_apps 0', 'pm set-user-restriction --user 0 no_install_apps 1']);
+  assert.deepEqual(phone.calls.filter((value) => value.startsWith('am broadcast')).map((value) => value.split(' ').at(-1)), ['false', 'true']);
 });
 test('an interrupted APK install preserves its failure and still re-locks installations', () => {
   const phone = device(), original = new Error('test APK installation failed');
@@ -54,7 +54,7 @@ test('physical, other-user, incompatible, unguarded or active-install devices re
     const phone = device(options); let installed = false;
     assert.throws(() => withTestApkInstallWindow(phone.shell, () => { installed = true; }));
     assert.equal(installed, false);
-    assert(!phone.calls.some((line) => /force-stop|set-user-restriction/.test(line)));
+    assert(!phone.calls.some((line) => /force-stop|am broadcast/.test(line)));
   }
 });
 test('missing restriction support and ignored writes fail closed without an inferred default', () => {
@@ -67,7 +67,8 @@ test('all instrumentation entry points use the guarded AndroidX runner and the e
   assert(read('android/app/build.gradle.kts').includes(`testInstrumentationRunner = "${runner}"`));
   const source = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DisposableAndroidJUnitRunner.kt');
   assert(source.includes(': AndroidJUnitRunner()'));
-  assert(source.indexOf('pm set-user-restriction') < source.indexOf('super.onStart()'));
+  assert(source.indexOf('am broadcast') < source.indexOf('super.onStart()'));
+  assert(!source.includes('pm set-user-restriction'));
   assert(source.includes('getprop ro.kernel.qemu') && source.includes('am get-current-user'));
   assert(source.includes('finish(Activity.RESULT_CANCELED'));
   for (const entry of ['local-android-session.mjs', 'real-maps-android-session.mjs']) {
@@ -86,6 +87,7 @@ test('only disposable workflows opt in, and both native/web gates exercise the p
     const source = read('.github/workflows/' + name);
     assert(source.includes('SGM_BLOCK_TEST_PHONE_INSTALLS: "true"'));
     assert(source.includes('SGM_LOCAL_DISPOSABLE_EMULATOR: "true"'));
+    assert(source.includes('SGM_TEST_PHONE_ADMIN_APPROVED: "true"'));
   }
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml'])
     assert(read('.github/workflows/' + name).includes('node --test tests/disposable-installations.test.mjs'));

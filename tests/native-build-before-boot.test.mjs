@@ -15,10 +15,10 @@ test('APK compilation finishes before device boot with the same inputs as the gu
   assert.equal(steps[bootIndex].if, undefined);
   assert.equal(steps[buildIndex].env.SGM_GOOGLE_MAPS_ANDROID_API_KEY, steps[bootIndex].env.SGM_GOOGLE_MAPS_ANDROID_API_KEY);
   assert.equal(steps[bootIndex].env.SGM_PAUSE_TEST_PHONE_STORE, 'true');
-  const targets = (source) => source.match(/:app:[A-Za-z]+/g);
+  const targets = (source) => source.match(/:(?:app|qa-install-guard):[A-Za-z]+/g);
   const guardedBuild = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
-  assert.deepEqual(targets(steps[buildIndex].run), [':app:assembleDebug', ':app:assembleDebugAndroidTest']);
-  assert.deepEqual(targets(steps[buildIndex].run), targets(guardedBuild).slice(0, 2));
+  assert.deepEqual(targets(steps[buildIndex].run), [':app:assembleDebug', ':app:assembleDebugAndroidTest', ':qa-install-guard:assembleDebug']);
+  assert.deepEqual(targets(steps[buildIndex].run), targets(guardedBuild).slice(0, 3));
   assert(steps[buildIndex].run.includes('--no-daemon --stacktrace'));
   assert(guardedBuild.indexOf('if [[ "$build_status" -ne 0 ]]') < guardedBuild.indexOf('configure-disposable-android.mjs'));
   assert(!steps[buildIndex].run.includes('adb'));

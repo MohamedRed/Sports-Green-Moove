@@ -9,7 +9,10 @@ export function readInstallBlocked(shell) {
 }
 export function setInstallBlocked(shell, blocked) {
   assert.equal(typeof blocked, 'boolean');
-  shell('pm', 'set-user-restriction', '--user', '0', 'no_install_apps', blocked ? '1' : '0');
+  const output = shell('am', 'broadcast', '--user', '0', '--receiver-foreground', '--include-stopped-packages',
+    '-n', 'be.sportgreenmoove.qa.installguard/.InstallationPolicyReceiver',
+    '-a', 'be.sportgreenmoove.qa.installguard.SET_BLOCKED', '--ez', 'blocked', String(blocked));
+  assert(output.includes(`Broadcast completed: result=-1, data="SGM_INSTALL_BLOCKED=${blocked}"`), 'The approved test administrator did not confirm the policy');
   assert.equal(readInstallBlocked(shell), blocked, 'Installation restriction was not applied');
 }
 export function assertNoActiveInstall(shell) {

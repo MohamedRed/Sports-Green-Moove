@@ -118,6 +118,27 @@ never disables maps/location/Play services, pauses a personal device, interrupts
 an already-active installation, removes updates, or accepts physical-device
 evidence. The explicit policy is not enabled in production app code.
 
+The user separately approved temporary test-device administration on 19 October.
+`SGM_TEST_PHONE_ADMIN_APPROVED=true` is also required. The standalone
+`qa-install-guard` debug module is compiled before boot, has `testOnly=true`, no
+network permission or activity, and has no release variant. Setup refuses a
+physical/other-user device, an existing owner/profile owner or helper, an existing
+installation prohibition, or an active installation. It installs its own helper,
+requests device-owner-only mode, confirms that it is the only owner, and proves a
+block/unblock round trip before app tests can start. It never resets the device
+or replaces another administrator. Its single policy receiver accepts only the
+installation restriction and requires the platform `DUMP` permission held by the
+test shell. Ordinary app callers cannot use this receiver.
+
+The app test runner and host use that receiver instead of the unsupported raw
+`pm set-user-restriction` write. The first actual guarded run showed that the
+production-style test image does not grant `MANAGE_USERS` to its shell. The
+normal final cleanup always removes the test-only active admin and uninstalls
+its helper, even if test or store verification fails; removal clears its policy
+without needing a working application receiver. Both the owner list and package
+inventory must return to empty and the installation flag to its original value.
+See the official [test-only admin removal command](https://developer.android.com/tools/adb#dpm).
+
 Android 15 checks `DISALLOW_INSTALL_APPS` before admitting even ADB installation
 sessions, so keeping that restriction enabled while asking Gradle to install its
 test APK would prevent the test setup itself. The sequence above is intentional:

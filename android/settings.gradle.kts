@@ -16,4 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "SportsGreenMoove"
 include(":app")
+include(":qa-install-guard")
 

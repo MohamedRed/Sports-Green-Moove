@@ -7,7 +7,7 @@ output_dir="$android_dir/app/build/outputs/store-review-screenshots"
 remote_dir="/sdcard/Download/sgm-store-review"
 
 mkdir -p "$output_dir" || exit 1
-"$android_dir/gradlew" -p "$android_dir" :app:assembleDebug :app:assembleDebugAndroidTest --no-daemon --stacktrace
+"$android_dir/gradlew" -p "$android_dir" :app:assembleDebug :app:assembleDebugAndroidTest :qa-install-guard:assembleDebug --no-daemon --stacktrace
 build_status=$?
 printf '{"scope":"native-build-before-device-policy-not-flow-verification","status":%s}\n' \
   "$build_status" > "$output_dir/native-build-status.json"

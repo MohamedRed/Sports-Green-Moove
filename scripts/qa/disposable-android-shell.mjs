@@ -17,5 +17,5 @@ export function disposableAndroidShell(env = process.env, execute = execFileSync
   assert.equal(serials.length, 1, 'Exactly one disposable emulator must be connected');
   const serial = serials[0];
   assert.equal(run(['-s', serial, 'shell', 'getprop', 'ro.kernel.qemu']), '1', 'Emulator identity required');
-  return { serial, shell: (...args) => run(['-s', serial, 'shell', ...args]) };
+  return { serial, shell: (...args) => run(['-s', serial, 'shell', ...args]), command: (...args) => run(['-s', serial, ...args]) };
 }

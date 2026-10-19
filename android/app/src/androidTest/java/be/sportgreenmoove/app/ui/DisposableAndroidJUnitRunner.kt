@@ -23,7 +23,10 @@ class DisposableAndroidJUnitRunner : AndroidJUnitRunner() {
                 check(shell("getprop ro.build.version.sdk") == "35")
                 check(shell("am get-current-user") == "0")
                 check(shell("pm get-user-restriction --user 0 no_install_apps") in setOf("true", "false"))
-                shell("pm set-user-restriction --user 0 no_install_apps 1")
+                val confirmation = shell("am broadcast --user 0 --receiver-foreground --include-stopped-packages " +
+                    "-n be.sportgreenmoove.qa.installguard/.InstallationPolicyReceiver " +
+                    "-a be.sportgreenmoove.qa.installguard.SET_BLOCKED --ez blocked true")
+                check(confirmation.contains("Broadcast completed: result=-1, data=\"SGM_INSTALL_BLOCKED=true\""))
                 check(shell("pm get-user-restriction --user 0 no_install_apps") == "true")
                 sendStatus(0, Bundle().apply { putString("sgm_installations_blocked", "true") })
             } catch (_: Exception) {

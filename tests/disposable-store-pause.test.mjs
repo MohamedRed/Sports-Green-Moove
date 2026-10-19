@@ -16,8 +16,9 @@ function device(options = {}) {
     const command = args.join(' '); calls.push(command);
     if (command === 'getprop ro.build.version.sdk') return options.sdk ?? '35';
     if (command === 'pm get-user-restriction --user 0 no_install_apps') return String(installBlocked);
-    if (command.startsWith('pm set-user-restriction --user 0 no_install_apps ')) {
-      installBlocked = args.at(-1) === '1'; return '';
+    if (command.startsWith('am broadcast --user 0 --receiver-foreground ')) {
+      installBlocked = args.at(-1) === 'true';
+      return `Broadcast completed: result=-1, data="SGM_INSTALL_BLOCKED=${installBlocked}"`;
     }
     if (command.startsWith('pm list packages -e --user 0 ')) return `package:${args.at(-1)}`;
     if (command === playServicesVersionCommand) return `versionName=${mutated && options.versionChanged ? '26.0.0' : '25.39.33'}`;

@@ -5,7 +5,7 @@ android_dir="$repo_root/android"
 output_dir="$android_dir/app/build/outputs/real-maps-ui"
 mkdir -p "$output_dir"
 
-env -u SGM_REAL_MAPS_SERVER_KEY "$android_dir/gradlew" -p "$android_dir" :app:assembleDebug :app:assembleDebugAndroidTest \
+env -u SGM_REAL_MAPS_SERVER_KEY "$android_dir/gradlew" -p "$android_dir" :app:assembleDebug :app:assembleDebugAndroidTest :qa-install-guard:assembleDebug \
   -PSGM_USE_FIREBASE_EMULATOR=true -PSGM_LOCAL_REAL_MAPS_UI=true --no-daemon --max-workers=2
 
 device_receipt="$output_dir/disposable-device-setup.json"
