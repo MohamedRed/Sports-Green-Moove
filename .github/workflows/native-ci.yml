@@ -7,6 +7,10 @@ on:
         description: "Run the approved isolated real-map UI integration (five server requests)"
         type: boolean
         default: false
+      vehicle_map_ui:
+        description: "Run the approved isolated vehicle-marker display test (SDK tiles only)"
+        type: boolean
+        default: false
   pull_request:
     paths:
       - "tests/native-build-before-boot.test.mjs"
@@ -23,6 +27,9 @@ on:
       - "tests/fixtures/supervised-service.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
+      - ".github/workflows/native-vehicle-map-ui.yml"
+      - "scripts/run-vehicle-map-android-ui.sh"
+      - "tests/vehicle-map-display.test.mjs"
       - ".github/actions/native-test-setup/**"
       - "scripts/run-real-maps-android-ui.sh"
       - "tests/real-map*.test.mjs"
@@ -103,6 +110,9 @@ on:
       - "tests/fixtures/supervised-service.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
+      - ".github/workflows/native-vehicle-map-ui.yml"
+      - "scripts/run-vehicle-map-android-ui.sh"
+      - "tests/vehicle-map-display.test.mjs"
       - ".github/actions/native-test-setup/**"
       - "scripts/run-real-maps-android-ui.sh"
       - "tests/real-map*.test.mjs"
@@ -178,6 +188,9 @@ jobs:
       contents: read
 
     steps:
+      - name: Reject conflicting manual map selections
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: test '${{ inputs.real_maps_ui }}-${{ inputs.vehicle_map_ui }}' != 'true-true'
       - name: Checkout
         uses: actions/checkout@v6
 
@@ -197,7 +210,7 @@ jobs:
       - name: Validate selected ride observation and independent disposable trials
         run: node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
       - name: Validate vehicle coordinate projection and independent component layout scope
-        run: node --test tests/vehicle-map-contract.test.mjs
+        run: node --test tests/vehicle-map-contract.test.mjs tests/vehicle-map-display.test.mjs
 
       - name: Validate SDK-connected team replay evidence requirements
         run: node --test tests/team-enrollment-sdk.test.mjs
@@ -245,7 +258,7 @@ jobs:
 
   android-native-ui:
     name: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && 'Offline UI matrix (not requested)' || 'Android native UI tests' }}
-    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.real_maps_ui }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui) }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
 
@@ -314,12 +327,21 @@ jobs:
 
   android-real-maps-ui:
     name: Android approved real-map UI integration
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && !inputs.vehicle_map_ui }}
     permissions:
       contents: read
     uses: ./.github/workflows/native-real-maps-ui.yml
     secrets:
       GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+      SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+
+  android-vehicle-map-ui:
+    name: Android approved vehicle-map UI
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.vehicle_map_ui && !inputs.real_maps_ui }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/native-vehicle-map-ui.yml
+    secrets:
       SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
 
   ios-native-checks:

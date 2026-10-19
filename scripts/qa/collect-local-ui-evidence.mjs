@@ -7,7 +7,7 @@ import { collectNativeProcessFailure } from './native-process-failure-evidence.m
 import { collectAdbSyncFailureDiagnostics } from './adb-sync-failure-diagnostics.mjs';
 
 const remote = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.';
-const phases = new Set(['vehicle-map-layout', 'remote-ride-stop', 'native-startup', 'ride-observation', 'ride-emergency', 'team-enrollment', 'emergency-contact', 'guardian-parent-verification', 'confirmed-restart', 'response-loss', 'booking-response-loss', 'booking-ui-response-loss',
+const phases = new Set(['vehicle-map', 'vehicle-map-layout', 'remote-ride-stop', 'native-startup', 'ride-observation', 'ride-emergency', 'team-enrollment', 'emergency-contact', 'guardian-parent-verification', 'confirmed-restart', 'response-loss', 'booking-response-loss', 'booking-ui-response-loss',
   'trip-change-parent-confirmation', 'trip-change-inputs', 'trip-change-schedule', 'trip-consent-restart', 'trip-consent-recovery',
   'trip-draft-restart', 'trip-schedule-draft-restart', 'real-maps-application', 'network-recovery', 'failure-cleanup']);
 const text = (value) => Buffer.isBuffer(value) ? value.toString('utf8') : typeof value === 'string' ? value : '';

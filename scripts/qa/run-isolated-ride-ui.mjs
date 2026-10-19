@@ -8,7 +8,8 @@ import { retainLocalEmulatorLogs } from './local-emulator-log-evidence.mjs';
 import { assertLocalEndpointsClosed } from './local-emulator-lifecycle.mjs';
 
 export async function runIsolatedRideUi(name) {
-  const entries = { 'native-startup': 'local-native-startup-ui.mjs', 'remote-ride-stop': 'local-remote-ride-stop-ui.mjs' };
+  const entries = { 'native-startup': 'local-native-startup-ui.mjs', 'remote-ride-stop': 'local-remote-ride-stop-ui.mjs',
+    'vehicle-map': 'local-vehicle-map-ui.mjs' };
   assert(Object.hasOwn(entries, name));
   assert.equal(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
   const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-tools/adb` : 'adb';
@@ -29,6 +30,10 @@ export async function runIsolatedRideUi(name) {
     assert(isAbsolute(output) && !existsSync(output), 'Use a fresh evidence directory');
     Object.assign(runtime.env, { SGM_LOCAL_ANDROID_SERIAL: serial, SGM_LOCAL_UI_SESSION_FILE: resolve(runtime.temp, 'ui-session.json'),
       SGM_LOCAL_UI_OUTPUT: output, SGM_LOCAL_DISPOSABLE_EMULATOR: 'true' });
+    if (name === 'vehicle-map') {
+      assert.equal(process.env.SGM_VEHICLE_MAP_UI, 'approved-sdk-map');
+      runtime.env.SGM_VEHICLE_MAP_UI = 'approved-sdk-map';
+    }
     if (process.env.SGM_BLOCK_TEST_PHONE_INSTALLS === 'true') {
       assert.equal(process.env.SGM_PAUSE_TEST_PHONE_STORE, 'true');
       Object.assign(runtime.env, { SGM_BLOCK_TEST_PHONE_INSTALLS: 'true', SGM_PAUSE_TEST_PHONE_STORE: 'true' });

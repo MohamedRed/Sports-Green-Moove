@@ -14,9 +14,9 @@ internal class LocalRideObservationPeer private constructor(private val app: Fir
     private val functions: FirebaseFunctions, private val rideId: String) : Closeable {
     val uid: String get() = requireNotNull(auth.currentUser?.uid)
     val operations = mutableMapOf<String, Int>()
-    suspend fun point() {
+    suspend fun point(lat: Double = 50.715, lng: Double = 4.612) {
         val result = call("writeLocationBatch", mapOf("updates" to listOf(mapOf("rideSessionId" to rideId, "role" to "driver",
-            "lat" to 50.715, "lng" to 4.612, "accuracyM" to 8, "capturedAt" to System.currentTimeMillis()))))
+            "lat" to lat, "lng" to lng, "accuracyM" to 8, "capturedAt" to System.currentTimeMillis()))))
         check((result["written"] as Number).toInt() == 1)
     }
     suspend fun pickup(bookingId: String, childId: String) {
