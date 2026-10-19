@@ -1,0 +1,5 @@
+
+> sports-green-moove@0.1.0 test:local-ui-shutdown
+> node scripts/qa/check-local-ui-shutdown.mjs
+
+Both actual isolated-service signals completed cleanup without manual process/file removal.

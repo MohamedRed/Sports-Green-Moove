@@ -41,15 +41,21 @@ export function prepareDisposableInstallAdmin(device, { approved, apk = installA
   assert.equal(shell(...packageCommand), '', 'Do not reuse an existing installation guard');
   assert.equal(readInstallBlocked(shell), false, 'Do not clear an existing installation restriction');
   assertNoActiveInstall(shell);
-  waitForDisposablePolicyReadiness(shell, readiness);
-  assertNoActiveInstall(shell);
-  const receipt = { packageName: installAdminPackage, originalBlocked: false, policyReady: true, noAccounts: true };
+  const receipt = { packageName: installAdminPackage, originalBlocked: false, policyReady: false, noAccounts: false };
   let installAttempted = false;
+  let stage = 'policy-readiness';
   try {
+    waitForDisposablePolicyReadiness(shell, readiness);
+    receipt.policyReady = true; receipt.noAccounts = true;
+    stage = 'active-install-verification';
+    assertNoActiveInstall(shell);
+    stage = 'helper-installation';
     installAttempted = true;
     assert.equal(command('install', '-t', apk).split(/\r?\n/).at(-1), 'Success');
+    stage = 'device-owner-provisioning';
     shell('dpm', 'set-device-owner', '--device-owner-only', '--user', '0', installAdminComponent);
     assertDisposableInstallAdmin(shell);
+    stage = 'installation-policy-verification';
     // Validate the actual authority before app installation/instrumentation, not just a readable flag.
     setInstallBlocked(shell, true); setInstallBlocked(shell, false);
     assertNoActiveInstall(shell);
@@ -58,8 +64,8 @@ export function prepareDisposableInstallAdmin(device, { approved, apk = installA
     const errors = [failure];
     let cleanup = null;
     if (installAttempted) try { cleanup = removeDisposableInstallAdmin(device, receipt); } catch (error) { errors.push(error); }
-    throw Object.assign(new AggregateError(errors, 'Temporary test administration setup failed; cleanup attempted'), {
-      receipt: { scope: 'failed-disposable-admin-setup-not-flow-proof', installAttempted, cleanup },
+    throw Object.assign(installAttempted ? new AggregateError(errors, 'Temporary test administration setup failed; cleanup attempted') : failure, {
+      receipt: { scope: 'failed-disposable-admin-setup-not-flow-proof', stage, installAttempted, cleanup, verified: false },
     });
   }
 }

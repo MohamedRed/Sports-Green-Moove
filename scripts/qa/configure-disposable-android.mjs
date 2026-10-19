@@ -8,7 +8,8 @@ import { prepareDisposableInstallAdmin, removeDisposableInstallAdmin } from './d
 
 const launcher = 'com.google.android.apps.nexuslauncher';
 
-export function configureDisposableAndroid(env = process.env, execute = execFileSync) {
+export function configureDisposableAndroid(env = process.env, execute = execFileSync,
+  { prepareAdmin = prepareDisposableInstallAdmin } = {}) {
   assert(env.SGM_PAUSE_TEST_PHONE_STORE === undefined || ['true', 'false'].includes(env.SGM_PAUSE_TEST_PHONE_STORE), 'Invalid store pause selection');
   assert(env.SGM_BLOCK_TEST_PHONE_INSTALLS === undefined || ['true', 'false'].includes(env.SGM_BLOCK_TEST_PHONE_INSTALLS));
   const blockInstallations = env.SGM_BLOCK_TEST_PHONE_INSTALLS === 'true';
@@ -24,7 +25,7 @@ export function configureDisposableAndroid(env = process.env, execute = execFile
   let installAdmin, storePause;
   try {
     storePause = env.SGM_PAUSE_TEST_PHONE_STORE === 'true' ? pauseDisposableStore(shell, { blockInstallations }) : null;
-    installAdmin = blockInstallations ? prepareDisposableInstallAdmin(device, { approved: true }) : null;
+    installAdmin = blockInstallations ? prepareAdmin(device, { approved: true }) : null;
     assert.deepEqual(androidMapsPrerequisites(shell), mapsRuntime, 'Maps runtime changed during test-device setup');
     return { serial, launcher, launcherDisabled: true, mapsRuntime, storePause, installAdmin,
       scope: 'disposable-emulator-without-home-navigation' };
@@ -37,6 +38,7 @@ export function configureDisposableAndroid(env = process.env, execute = execFile
     catch (cleanup) { errors.push(cleanup); }
     throw Object.assign(new AggregateError(errors, 'Disposable test-device preparation failed; cleanup attempted'), {
       receipt: { scope: 'failed-disposable-device-setup-not-flow-proof', serial, storeCleanup, adminCleanup,
+        ...(failure.receipt?.scope === 'failed-disposable-admin-setup-not-flow-proof' ? { adminSetupFailure: failure.receipt } : {}),
         ...(failure.receipt?.scope === 'failed-store-pause-not-flow-proof' ? { storePauseFailure: failure.receipt } : {}) },
     });
   }

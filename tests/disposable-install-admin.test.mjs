@@ -197,7 +197,12 @@ test('an unfinished boot policy scan is awaited read-only before the one provisi
 test('unknown boot readiness times out without installing a helper or attempting device ownership', (t) => {
   const device = phone(t, { policyPending: true }); let time = 0;
   assert.throws(() => prepareDisposableInstallAdmin(device, { approved: true, apk: device.apk,
-    readiness: { now: () => time, sleep: (ms) => { time += ms; }, timeoutMs: 2000 } }), /boot validation has not finished/);
+    readiness: { now: () => time, sleep: (ms) => { time += ms; }, timeoutMs: 2000 } }), (error) => {
+      assert.match(error.message, /boot validation has not finished/);
+      assert.deepEqual(error.receipt, { scope: 'failed-disposable-admin-setup-not-flow-proof',
+        stage: 'policy-readiness', installAttempted: false, cleanup: null, verified: false });
+      return true;
+    });
   assert.deepEqual(device.mutations, []);
   assert.equal(device.calls.filter((line) => line.startsWith('logcat ')).length, 3);
 });

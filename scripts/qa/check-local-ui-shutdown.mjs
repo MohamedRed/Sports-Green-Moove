@@ -71,7 +71,7 @@ try {
   }
 } finally { rmSync(directory, { recursive: true, force: true }); }
 const files = ['scripts/qa/start-local-ui.mjs', 'scripts/qa/local-runtime.mjs', 'scripts/qa/supervised-local-process.mjs',
-  'scripts/qa/check-local-ui-shutdown.mjs'];
+  'scripts/qa/check-local-ui-shutdown.mjs', 'scripts/qa/local-entry-command.mjs', 'scripts/qa/local-ui-session.mjs'];
 writeFileSync(output, JSON.stringify({ scope: 'actual-isolated-service-shutdown-not-phone-or-release-proof',
   testedAt: new Date().toISOString(), completed: true, checks, productionWrites: false,
   sourceFiles: Object.fromEntries(files.map((file) => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')])) }, null, 2) + '\n',

@@ -18,6 +18,8 @@ on:
       - "tests/retained-source-evidence.test.mjs"
       - "tests/manual-team-history-checkpoints.test.mjs"
       - "tests/supervised-local-process.test.mjs"
+      - "tests/local-entry-command.test.mjs"
+      - "tests/fixtures/signal-entry.mjs"
       - "tests/fixtures/supervised-service.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
@@ -96,6 +98,8 @@ on:
       - "tests/retained-source-evidence.test.mjs"
       - "tests/manual-team-history-checkpoints.test.mjs"
       - "tests/supervised-local-process.test.mjs"
+      - "tests/local-entry-command.test.mjs"
+      - "tests/fixtures/signal-entry.mjs"
       - "tests/fixtures/supervised-service.mjs"
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
@@ -186,7 +190,7 @@ jobs:
       - name: Validate owned enrollment history source and dated evidence boundaries
         run: node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
       - name: Test owned local service process supervision
-        run: node --test tests/supervised-local-process.test.mjs
+        run: node --test tests/supervised-local-process.test.mjs tests/local-entry-command.test.mjs
       - name: Validate immutable child emergency contact contracts and evidence
         run: node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/location-freshness-evidence.test.mjs tests/ride-emergency-completed-evidence.test.mjs
 

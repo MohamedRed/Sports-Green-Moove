@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { projectId } from './local-emulator-config.mjs';
+import { localEntryCommand } from './local-entry-command.mjs';
 
 export const root = resolve(import.meta.dirname, '../..');
 
@@ -58,5 +59,5 @@ export function emulatorEntryArguments(runtime, name) {
   const entry = resolve(root, 'scripts/qa', name);
   return [resolve(root, 'node_modules/firebase-tools/lib/bin/firebase.js'),
     'emulators:exec', '--project', projectId, '--config', resolve(runtime.temp, 'firebase.json'),
-    '--only', 'auth,firestore,database,functions', `"${process.execPath}" "${entry}"`];
+    '--only', 'auth,firestore,database,functions', localEntryCommand(process.execPath, entry)];
 }

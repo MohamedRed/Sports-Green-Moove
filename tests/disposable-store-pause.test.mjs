@@ -6,6 +6,35 @@ import { playServicesVersionCommand } from '../scripts/qa/android-maps-prerequis
 import { configureDisposableAndroid } from '../scripts/qa/configure-disposable-android.mjs';
 import { readStoreBackgroundMode, storeBackgroundRestrictions } from '../scripts/qa/disposable-store-background.mjs';
 
+test('a pre-install admin readiness failure survives outer cleanup without claiming a prepared device', () => {
+  const mock = device(), commands = []; let attempted = false;
+  const execute = (_command, args) => {
+    if (args[0] === 'devices') return 'List of devices attached\nemulator-5554\tdevice\n';
+    const shell = args.slice(3), command = shell.join(' '); commands.push(command);
+    if (command === 'getprop ro.kernel.qemu') return '1';
+    if (command === 'pm path com.google.android.apps.nexuslauncher') return 'package:/system/launcher.apk';
+    if (command === 'pm disable-user --user 0 com.google.android.apps.nexuslauncher') return 'disabled-user';
+    if (command === 'pm list packages -d --user 0 com.google.android.apps.nexuslauncher') return 'package:com.google.android.apps.nexuslauncher';
+    return mock.shell(...shell);
+  };
+  assert.throws(() => configureDisposableAndroid({ SGM_LOCAL_DISPOSABLE_EMULATOR: 'true', SGM_PAUSE_TEST_PHONE_STORE: 'true',
+    SGM_BLOCK_TEST_PHONE_INSTALLS: 'true', SGM_TEST_PHONE_ADMIN_APPROVED: 'true' }, execute, {
+      prepareAdmin: (_device, { approved }) => {
+        assert.equal(approved, true); attempted = true;
+        throw Object.assign(new Error('Policy observation unavailable'), { receipt: {
+          scope: 'failed-disposable-admin-setup-not-flow-proof', stage: 'policy-readiness',
+          installAttempted: false, cleanup: null, verified: false } });
+      },
+    }), (error) => {
+    assert.deepEqual(error.receipt.adminSetupFailure, { scope: 'failed-disposable-admin-setup-not-flow-proof',
+      stage: 'policy-readiness', installAttempted: false, cleanup: null, verified: false });
+    assert.equal(error.receipt.adminCleanup, null); assert.equal(error.receipt.storeCleanup.restored, true);
+    assert.equal(error.receipt.storeCleanup.verified, false); return true;
+  });
+  assert.equal(attempted, true);
+  assert(!commands.some((command) => /install -t|set-device-owner/.test(command)));
+});
+
 function device(options = {}) {
   const calls = [];
   let stopped = options.wasStopped ?? false;
