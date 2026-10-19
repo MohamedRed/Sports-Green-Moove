@@ -99,8 +99,8 @@ test('the private update retains verified restart captures and keeps earlier int
   assert.match(flow.remaining, /Répéter les essais de coupure/);
   assert.equal(flow.ui.source, 'docs/release/evidence/local-dual-transport-2026-10-17/completed/results.json');
   const issue = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(issue.source, 'docs/release/evidence/local-replay-33-2026-10-18/README.md');
-  assert.match(issue.text, /reprise passent dans le dernier essai local/); assert.match(issue.text, /précédents/);
+  assert.equal(issue.source, 'docs/release/evidence/native-network-precondition-2026-10-19/README.md');
+  assert.match(issue.text, /reprise passent lors d’essais précédents/); assert.match(issue.text, /dernier essai s’arrête avant la coupure/);
   const image = flow.images.find((item) => item.file === 'chat-restart-recheck-reply');
   assert.match(image.alt, /revérifié en local/);
   assert.equal(captures[image.file], base + 'local-chat-restart-reply.png');

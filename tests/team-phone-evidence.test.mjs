@@ -58,14 +58,13 @@ test('the private portal offers an actual nine-image tour while keeping older lo
   const manager = content.flows.find((item) => item.id === 'team-review');
   assert.equal(manager.phone.source, flow.phone.source); assert.equal(manager.ui.checkedAt, '2026-10-18');
 });
-test('latest native preparation failure remains separate from the completed phone journey and older guard pass', () => {
+test('earlier native preparation failure remains separate from the completed phone journey and guard pass', () => {
   const prefix = 'docs/release/evidence/disposable-installation-guard-2026-10-18/preparation-failure-21190ff/';
   const hashes = JSON.parse(bytes(prefix + 'artifact-sha256.json')); assert.equal(Object.keys(hashes).length, 3);
   for (const [file, expected] of Object.entries(hashes)) assert.equal(createHash('sha256').update(bytes(prefix + file)).digest('hex'), expected);
   assert.deepEqual(JSON.parse(bytes(prefix + 'disposable-device-setup.json')),
     { scope: 'failed-disposable-device-setup-not-flow-proof', serial: 'emulator-5554', storeCleanup: null, adminCleanup: null });
   assert.match(bytes(prefix + 'native-failed.log').toString('utf8'), /Store pause was not applied/);
-  assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source, prefix + 'README.md');
 });
 test('backend and web smoke validate the manual phone checkpoint and artifact contracts', () => {
   for (const name of ['backend-ci.yml', 'web-integration-smoke.yml'])

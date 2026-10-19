@@ -10,6 +10,7 @@ on:
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
       - "tests/proxy-trust-security.test.mjs"
+      - "tests/native-network-precondition-evidence.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt"
       - "tests/membership-cursor-contract.test.mjs"
@@ -256,6 +257,7 @@ on:
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
       - "tests/proxy-trust-security.test.mjs"
+      - "tests/native-network-precondition-evidence.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt"
       - "tests/membership-cursor-contract.test.mjs"
@@ -573,6 +575,9 @@ jobs:
 
       - name: Test runtime proxy trust against forwarded-address spoofing
         run: node --test tests/proxy-trust-security.test.mjs
+
+      - name: Validate failed network preparation evidence and temporary administration cleanup
+        run: node --test tests/native-network-precondition-evidence.test.mjs
 
       - name: Validate guardian verification contracts and retained scope
         run: node --test tests/guardian-verification-contract.test.mjs

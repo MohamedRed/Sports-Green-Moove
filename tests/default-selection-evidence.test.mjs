@@ -88,8 +88,8 @@ test('current captures and dates cannot promote this comparison to physical or s
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-17');
   assert.equal(flow.ui.source, latest + 'completed/results.json'); assert.equal(flow.source, latest + 'README.md');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(blocker.source, 'docs/release/evidence/local-replay-33-2026-10-18/README.md');
-  assert.match(blocker.text, /reprise passent dans le dernier essai local/); assert.match(blocker.text, /précédents/);
+  assert.equal(blocker.source, 'docs/release/evidence/native-network-precondition-2026-10-19/README.md');
+  assert.match(blocker.text, /reprise passent lors d’essais précédents/); assert.match(blocker.text, /dernier essai s’arrête avant la coupure/);
   for (const [id, file] of [['chat-network-current-draft', 'local-chat-network-unconfirmed.png'],
     ['chat-network-current-reply', 'local-chat-network-received.png']]) {
     assert.equal(captures[id], latest + 'completed/' + file);
