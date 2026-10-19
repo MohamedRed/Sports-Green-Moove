@@ -4,7 +4,7 @@ export const blockers = [
     next: 'Vérifier le rendu sur téléphone et corriger l’affichage si le défaut se confirme.', source: 'docs/release/evidence/native-startup-pass-2026-10-19/README.md' },
   { id: 'tracking-live-display', title: 'Terminer la carte et le suivi réel',
     text: 'La carte et le véhicule sont visibles. L’essai s’arrête avant de vérifier le déplacement.',
-    next: 'Rejouer le déplacement après correction des repères, puis l’arrivée estimée et les positions sur téléphone.', source: 'docs/release/evidence/vehicle-map-ui-anchor-failure-2026-10-19/README.md' },
+    next: 'Identifier le blocage, puis tester le déplacement, l’arrivée estimée et les positions sur téléphone.', source: 'docs/release/evidence/vehicle-map-ui-observation-failure-2026-10-19/README.md' },
   { id: 'tracking-account', title: 'Rejouer le changement de compte sur téléphone',
     text: 'L’arrêt du suivi et la reprise conducteur passent dans le nouvel essai local.',
     next: 'Confirmer ces changements de compte sur téléphone, pendant un trajet.', source: 'docs/release/evidence/ride-emergency-pass-2026-10-19/README.md' },

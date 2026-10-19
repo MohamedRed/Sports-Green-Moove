@@ -83,7 +83,7 @@ class LocalVehicleMapFlowTest {
             compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick(); waitFor(SgmTestTags.AuthEmailInput)
             assertNull(FirebaseAuth.getInstance().currentUser)
           } catch (failure: Throwable) {
-              try { captureVehicleMapFailure(phase) } catch (diagnostic: Throwable) { failure.addSuppressed(diagnostic) }
+              try { captureVehicleMapFailure(compose, phase) } catch (diagnostic: Throwable) { failure.addSuppressed(diagnostic) }
               throw failure
           }
         }

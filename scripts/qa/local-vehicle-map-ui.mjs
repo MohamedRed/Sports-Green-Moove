@@ -64,7 +64,7 @@ for (const cleanup of [() => deleteApp(getApp()), () => resetDisposableLocalApps
 if (failure) throw failure;
 const files = ['scripts/qa/local-vehicle-map-ui.mjs', 'scripts/qa/run-local-vehicle-map-ui.mjs',
   'scripts/qa/run-isolated-ride-ui.mjs', 'scripts/qa/vehicle-map-display-evidence.mjs',
-  ...['LocalVehicleMapFlowTest.kt', 'VehicleMarkerDisplayEvidence.kt', 'LocalRideObservationPeer.kt']
+  ...['LocalVehicleMapFlowTest.kt', 'VehicleMarkerDisplayEvidence.kt', 'VehicleMapFailureEvidence.kt', 'LocalRideObservationPeer.kt']
     .map((name) => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + name),
   ...['GoogleMapsRoutePreview.kt', 'VehicleMapMarker.kt', 'FitRouteMapCamera.kt']
     .map((name) => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + name),

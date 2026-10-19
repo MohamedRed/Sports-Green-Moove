@@ -16,6 +16,8 @@ export function createRideObservationFlow() {
       ['stale', 'Alerte après plus de 90 secondes sans nouvelle position'], ['recovered', 'Alerte retirée à réception d’une nouvelle position de test'],
       ['pickup', 'Prise en charge visible sans quitter le trajet'], ['resumed', 'Dépose visible au retour dans l’app'],
       ['ended', 'Fin du trajet reçue côté parent'], ['history', 'Trajet terminé retrouvé dans l’historique'],
-    ].map(([id, alt]) => ({ file: 'ride-observation-' + id, alt: alt + ', essai local du 19 octobre' })),
+    ].map(([id, alt]) => ({ file: 'ride-observation-' + id, alt: alt + ', essai local du 19 octobre' })).concat([
+      { file: 'vehicle-map-unverified', alt: 'Carte visible ; essai arrêté avant de vérifier le déplacement, le 19 octobre' },
+    ]),
     source: 'docs/release/evidence/vehicle-map-services-2026-10-19/README.md' };
 }

@@ -21,27 +21,6 @@ internal fun vehicleMarkerBounds(device: UiDevice): Rect? {
     return markers.single().visibleBounds.takeIf { it.width() in 12..200 && it.height() in 12..240 }
 }
 
-internal fun captureVehicleMapFailure(phase: String) {
-    check(phase in setOf("login", "open-ride", "first-point", "moved-point", "sign-out"))
-    val instrumentation = InstrumentationRegistry.getInstrumentation()
-    val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
-    check(directory.isDirectory || directory.mkdirs())
-    File(directory, "local-vehicle-map-failure.json").writeText(JSONObject()
-        .put("scope", "failed-map-trial-not-positive-evidence").put("phase", phase)
-        .put("routeMarkerCounts", JSONObject().apply {
-            val device = UiDevice.getInstance(instrumentation)
-            for (label in listOf("Départ du trajet", "Arrivée du trajet")) {
-                put(label, device.findObjects(By.desc(label)).size)
-            }
-        }).toString(2))
-    val screen = checkNotNull(instrumentation.uiAutomation.takeScreenshot())
-    try {
-        File(directory, "local-vehicle-map-failed.png").outputStream().use {
-            check(screen.compress(Bitmap.CompressFormat.PNG, 100, it))
-        }
-    } finally { screen.recycle() }
-}
-
 private fun routeMarkerBounds(device: UiDevice, title: String): Rect {
     val markers = device.findObjects(By.desc(title))
     check(markers.size == 1) { "Expected one route anchor named $title, found ${markers.size}" }

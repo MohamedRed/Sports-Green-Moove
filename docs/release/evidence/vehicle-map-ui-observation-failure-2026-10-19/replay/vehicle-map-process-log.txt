@@ -1,0 +1,8 @@
+--------- beginning of system
+I/ActivityManager(  539): Start proc 5527:be.sportgreenmoove.app.local.test/u0a211 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+I/ActivityManager(  539): Force stopping be.sportgreenmoove.app.local appid=10210 user=0: finished inst
+E/ActivityManager(  539): Unable to freeze binder for 4775: -11
+I/ActivityManager(  539): Killing 4775:be.sportgreenmoove.app.local/u0a210 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  539): pid 539 system sent binder code 18 with flags 1 to frozen apps and got error -32
+W/ActivityManager(  539): Error shutting down UiAutomationConnection
+W/ActivityManager(  539): setHasOverlayUi called on unknown pid: 4775

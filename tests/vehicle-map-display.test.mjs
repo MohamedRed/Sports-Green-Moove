@@ -91,7 +91,14 @@ test('both route markers expose explicit accessible names, independently from th
   assert(!capture.includes('By.descContains(title)'));
   assert(capture.includes('check(markers.size == 1)'));
   assert(capture.includes('region.contains(departure) && region.contains(arrival)'));
-  assert(capture.includes('.put("routeMarkerCounts", JSONObject()'));
+  const failure = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/VehicleMapFailureEvidence.kt');
+  assert(failure.includes('.put("routeMarkerCounts", markerCounts)'));
+  assert(failure.includes('.put("beforeCacheClear", snapshot())'));
+  assert(failure.indexOf('beforeCacheClear') < failure.indexOf('uiAutomation.clearCache()'));
+  assert(failure.includes('.put("afterCacheClear", snapshot())'));
+  assert(failure.includes('region.contains(bounds)'));
+  assert(!failure.includes('node.text'));
+  assert(!capture.includes('uiAutomation.clearCache()'));
 });
 test('the original accessible-anchor failure remains failed after the labels are corrected', () => {
   const root = new URL('../docs/release/evidence/vehicle-map-ui-anchor-failure-2026-10-19/', import.meta.url);
@@ -112,6 +119,24 @@ test('the original accessible-anchor failure remains failed after the labels are
   assert(before.includes('Marker(state = MarkerState(position = start), title = "Départ")'));
   for (const file of ['replay/local-vehicle-map-device.json', 'replay/vehicle-map-app-results.json', 'replay/vehicle-map-results.json'])
     assert.equal(existsSync(new URL(file, root)), false);
+  for (const [file, hash] of Object.entries(JSON.parse(bytes('artifact-sha256.json'))))
+    assert.equal(createHash('sha256').update(bytes(file)).digest('hex'), hash, file);
+});
+test('the corrected-label trial retains its timeout without inventing a cache diagnosis or movement proof', () => {
+  const root = new URL('../docs/release/evidence/vehicle-map-ui-observation-failure-2026-10-19/', import.meta.url);
+  const bytes = (file) => readFileSync(new URL(file, root));
+  const run = JSON.parse(bytes('run.json'));
+  assert.equal(run.databaseId, 39321354471); assert.equal(run.headSha, 'ac35db93e43523e565654b318ba164afd68e7ad4');
+  assert.equal(run.conclusion, 'failure');
+  const transcript = bytes('replay/LocalVehicleMapFlowTest-instrumentation.txt').toString();
+  assert(transcript.includes('ComposeTimeoutException')); assert(transcript.includes('Tests run: 1,  Failures: 1'));
+  const failure = JSON.parse(bytes('replay/local-vehicle-map-failure.json'));
+  assert.equal(failure.phase, 'first-point');
+  assert.deepEqual(failure.routeMarkerCounts, { 'Départ du trajet': 0, 'Arrivée du trajet': 0 });
+  assert.equal(failure.beforeCacheClear, undefined); assert.equal(failure.mapStateCounts, undefined);
+  assert.equal(JSON.parse(bytes('disposable-store-restore.json')).verified, true);
+  for (const name of ['replay/local-vehicle-map-device.json', 'replay/vehicle-map-app-results.json', 'replay/vehicle-map-results.json'])
+    assert.equal(existsSync(new URL(name, root)), false);
   for (const [file, hash] of Object.entries(JSON.parse(bytes('artifact-sha256.json'))))
     assert.equal(createHash('sha256').update(bytes(file)).digest('hex'), hash, file);
 });

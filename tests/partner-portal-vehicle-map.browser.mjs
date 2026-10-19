@@ -14,8 +14,20 @@ export async function verifyVehicleCoordinateChecks({ browser, base, output }) {
       await page.goto(base + '/#parcours/ride-observation');
       const dialog = page.getByRole('dialog');
       await dialog.getByRole('heading', { name: flow.title, exact: true }).waitFor();
-      for (let image = 0; image < flow.images.length; image++)
+      for (let image = 0; image < flow.images.length; image++) {
+        const item = flow.images[image];
+        if (item.file === 'vehicle-map-unverified') {
+          await dialog.getByRole('img', { name: item.alt, exact: true }).waitFor();
+          await page.waitForFunction(() => {
+            const image = document.querySelector('.media-stage img');
+            return image?.complete && image.naturalWidth > 0;
+          });
+          assert(await dialog.getByText(item.alt, { exact: true }).isVisible());
+          assert.match(item.alt, /arrêté avant de vérifier le déplacement/);
+          await page.screenshot({ path: `${output}/vehicle-map-unverified-${width}.png`, fullPage: false });
+        }
         await page.getByRole('button', { name: 'Preuve suivante', exact: true }).click();
+      }
       await page.getByRole('heading', { name: 'Ce qui a été vérifié', exact: true }).waitFor();
       assert.deepEqual(await page.locator('.local-results li').allTextContents(), flow.local.checks);
       assert(await page.getByRole('button', { name: 'Preuve suivante', exact: true }).isDisabled());
