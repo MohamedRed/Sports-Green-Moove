@@ -21,6 +21,16 @@ verification, performs the three intended contact service operations and verifie
 protected cleanup. Both require fresh isolated runtimes and accept no phone or
 release proof. The native contact fixture no longer prepopulates verification.
 
+`manual-emergency-session.mjs <private-session-path> <fresh-output-directory>`
+holds that isolated fixture with interactive stdin. Submit the eight names in
+`manual-emergency-checkpoints.mjs` only after observing the corresponding phone
+result. After `child-saved`, `revoke-parent` performs a separately authenticated
+manager service decision, not a manager UI action. This helper never saves or
+removes a contact for the app. Ordered checkpoints independently verify exact
+contacts/identity/revisions/operations; they cannot prove phone screens, dialer
+handoff or absence of a call. `finish` requires all phases and protected-state
+verification. `stop`, EOF and failure clean the fixture without claiming success.
+
 `start-local-ui.mjs` supervises its own POSIX process group asynchronously.
 Ctrl-C/SIGTERM are forwarded to that group; shutdown must verify its exit before
 the private session file and copied runtime are removed. It never signals an

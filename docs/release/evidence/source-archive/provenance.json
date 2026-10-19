@@ -669,7 +669,8 @@
       "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
       "reports": [
         "local-emergency-editor-2026-10-18/build-checks.json",
-        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "62f3c7618664035744fe4fe1d70c6e50205aa90ce7985c315da2c210d069d49c": {
@@ -693,7 +694,8 @@
       "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
       "reports": [
         "local-emergency-editor-2026-10-18/build-checks.json",
-        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "ca885dde23332f83ce9fda8d6c77bae107f3d03fa2b9a8d98097f445b22a9343": {
@@ -709,7 +711,8 @@
       "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
       "reports": [
         "local-emergency-editor-2026-10-18/build-checks.json",
-        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "27137868a56f00534975be256dc36fb7ff30ca562499e7217a258ab52a4e4de0": {
@@ -820,7 +823,8 @@
         "emergency-child-identity-2026-10-19/services.json",
         "emergency-child-identity-2026-10-19/baseline-services.json",
         "emergency-child-identity-2026-10-19/fixture-services.json",
-        "emergency-child-identity-2026-10-19/unit-sources.json"
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865": {
@@ -829,7 +833,8 @@
       "reports": [
         "emergency-child-identity-2026-10-19/services.json",
         "emergency-child-identity-2026-10-19/baseline-services.json",
-        "emergency-child-identity-2026-10-19/fixture-services.json"
+        "emergency-child-identity-2026-10-19/fixture-services.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c": {
@@ -838,7 +843,8 @@
       "reports": [
         "emergency-child-identity-2026-10-19/services.json",
         "emergency-child-identity-2026-10-19/baseline-services.json",
-        "emergency-child-identity-2026-10-19/fixture-services.json"
+        "emergency-child-identity-2026-10-19/fixture-services.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "a1ad0ad524ec10f110c4e52b7882edfa58901f6e2e72c858cc1e86187f1c7442": {
@@ -859,35 +865,40 @@
       "sourcePath": "scripts/qa/local-emergency-native-fixture.mjs",
       "recordedFrom": "verified-worktree",
       "reports": [
-        "emergency-child-identity-2026-10-19/fixture-services.json"
+        "emergency-child-identity-2026-10-19/fixture-services.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "a82aaae58bd025d9761ed6743c05e123220240c6df2ff65d2a10e56c052b1d46": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt",
       "recordedFrom": "verified-worktree",
       "reports": [
-        "emergency-child-identity-2026-10-19/unit-sources.json"
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "ecf9c80773fd25966447f8301c83a73420c2479e20910e4bd608e5164703d915": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt",
       "recordedFrom": "verified-worktree",
       "reports": [
-        "emergency-child-identity-2026-10-19/unit-sources.json"
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "a250a8b60d67a354e0517b14586459bbe70264bc2f04d719e78a49f30effa42c": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt",
       "recordedFrom": "verified-worktree",
       "reports": [
-        "emergency-child-identity-2026-10-19/unit-sources.json"
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "fbf56ea2382ab561dca8308d7049eb3f978f8cdffcbad888651eb603949ca685": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt",
       "recordedFrom": "verified-worktree",
       "reports": [
-        "emergency-child-identity-2026-10-19/unit-sources.json"
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     },
     "9144f856144308713f4dd9aed76bd154116879d03185dacec2e39c116777dcca": {
@@ -923,6 +934,20 @@
       "recoveredFromGitCommit": "b20d5ce3656e94b97cd7e105a95aefba38e8b795",
       "reports": [
         "team-history-dialog-pass-2026-10-19/results.json"
+      ]
+    },
+    "fbbc041423ce95eb430171a4f1e86cbd1673856b0bdf47d0dcdb9fb97fc1fd7f": {
+      "sourcePath": "scripts/qa/manual-emergency-session.mjs",
+      "recordedFrom": "interrupted-preparation-worktree",
+      "reports": [
+        "phone-emergency-preparation-2026-10-19/session-results.json"
+      ]
+    },
+    "3a0ae1d8de6ba1a8b9ef0f3a1a843d52fcd6e285bf9bcef92ae907d5c9b06e99": {
+      "sourcePath": "scripts/qa/manual-emergency-checkpoints.mjs",
+      "recordedFrom": "interrupted-preparation-worktree",
+      "reports": [
+        "phone-emergency-preparation-2026-10-19/session-results.json"
       ]
     }
   }

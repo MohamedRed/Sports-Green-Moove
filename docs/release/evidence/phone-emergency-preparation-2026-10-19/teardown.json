@@ -1,0 +1,25 @@
+{
+  "scope": "interrupted-preparation-resource-cleanup-not-phone-flow",
+  "recordedAt": "2026-10-19T13:38:56.423Z",
+  "ports": {
+    "4199": "refused",
+    "5001": "refused",
+    "8080": "refused",
+    "9000": "refused",
+    "9099": "refused",
+    "45454": "refused"
+  },
+  "privateSessionRemoved": true,
+  "fixtureCleanupVerified": true,
+  "phoneReleasedThroughUi": true,
+  "helperOwnedProcessIds": [
+    54911,
+    54921,
+    54936
+  ],
+  "helperProcessesExited": true,
+  "chromeRestarted": false,
+  "phoneCredentialsEntered": false,
+  "uiCheckpointsPassed": 0,
+  "productionWrites": false
+}
