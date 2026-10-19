@@ -66,6 +66,7 @@ internal fun mapRide(data: Map<*, *>): LiveRideSnapshot =
         childLastUpdateLabel = data["childLastUpdateLabel"] as? String,
         etaLabel = data["etaLabel"] as? String ?: "ETA à calculer",
         stale = data["stale"] as? Boolean ?: true,
+        observation = mapRideObservation(data["observation"]),
         passengers = (data["passengers"] as? List<*>)
             ?.mapNotNull { it as? Map<*, *> }
             ?.map(::mapRidePassenger)

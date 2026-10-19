@@ -4,6 +4,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 
 object SgmTestTags {
+    const val ActiveRideVehicleUpdate = "active-ride.vehicle-update"
+    const val TripsScreen = "trips.screen"
     const val GroupsRefreshAction = "groups.refresh.action"
     const val BackAction = "navigation.back.action"
     const val AuthScreen = "auth.screen"

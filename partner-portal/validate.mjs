@@ -7,6 +7,7 @@ import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
 import { validateRideEmergencyReport, validateRetainedRideEmergency } from '../scripts/qa/ride-emergency-retained-evidence.mjs';
+import { validateRideObservationReport, validateRetainedRideObservation } from '../scripts/qa/ride-observation-retained-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -63,6 +64,9 @@ export function validate(root) {
       if (f.id === 'ride-emergency' || run.scope === 'local-active-ride-contact-with-sdk-and-dialer-not-physical') {
         assert.equal(f.id, 'ride-emergency'); validateRetainedRideEmergency(root, f.ui.source);
       }
+      if (f.id === 'ride-observation' || run.scope === 'local-ride-live-sdk-not-physical-gps') {
+        assert.equal(f.id, 'ride-observation'); validateRetainedRideObservation(root, f.ui.source);
+      }
       if (Object.hasOwn(f.ui, 'checkedAt')) {
         assertDate(f.ui.checkedAt); assert(f.ui.checkedAt <= f.checkedAt);
         assert.equal(run.testedAt.slice(0, 10), f.ui.checkedAt);
@@ -114,6 +118,9 @@ export function validate(root) {
 
 export function validateUiScope(run) {
   switch (run.scope) {
+    case 'local-ride-live-sdk-not-physical-gps':
+      validateRideObservationReport(run);
+      break;
     case 'local-active-ride-contact-with-sdk-and-dialer-not-physical':
       validateRideEmergencyReport(run);
       break;

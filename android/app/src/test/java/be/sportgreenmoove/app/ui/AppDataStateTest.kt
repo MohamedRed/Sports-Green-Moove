@@ -105,6 +105,37 @@ class AppDataStateTest {
         override suspend fun listChildren() = listOf(ChildSummary("child", "Enfant QA", "U8 QA", false))
     }
     private fun providers(firebase: FirebaseGateway) = AndroidProviderSet(UnconfiguredAuthGateway(), firebase)
+    @Test fun anOldObserverCannotPublishIntoANewAccountEvenForTheSameRideId() {
+        val state = AppDataState()
+        val ride = LiveRideSnapshot("same-ride", status = "Actif", vehicleLastUpdateLabel = "old", childLastUpdateLabel = null,
+            etaLabel = "ETA à calculer", stale = false)
+        state.activeRide.value = ride
+        val oldSink = state.rideObserverSink(ride.rideSessionId)
+        state.clear(); state.activeRide.value = ride.copy(vehicleLastUpdateLabel = "new account")
+        oldSink(ride); assertEquals("new account", state.activeRide.value?.vehicleLastUpdateLabel)
+    }
+    @Test fun aSlowAppRefreshCannotUndoALiveRideUpdate() = runBlocking {
+        val response = CompletableDeferred<LiveRideSnapshot?>()
+        val ride = LiveRideSnapshot("same-ride", status = "Actif", vehicleLastUpdateLabel = "old", childLastUpdateLabel = null,
+            etaLabel = "ETA à calculer", stale = false)
+        val firebase = object : FirebaseGateway by gateway({ emptyList() }) {
+            override suspend fun getActiveRide() = response.await()
+        }
+        val state = AppDataState(); state.activeRide.value = ride
+        val refresh = launch(start = CoroutineStart.UNDISPATCHED) { state.refresh(providers(firebase), AppRole.Parent) }
+        state.rideObserverSink(ride.rideSessionId)(ride.copy(vehicleLastUpdateLabel = "live"))
+        response.complete(ride); refresh.join(); assertEquals("live", state.activeRide.value?.vehicleLastUpdateLabel)
+    }
+    @Test fun completionHistoryRefreshCannotJumpToAnotherActiveRide() = runBlocking {
+        var rideReads = 0
+        val firebase = object : FirebaseGateway by gateway({ listOf(trip("completed").copy(status = be.sportgreenmoove.app.data.TripStatus.Past)) }) {
+            override suspend fun getActiveRide(): LiveRideSnapshot? { rideReads++; error("Do not discover another ride during completion") }
+        }
+        val state = AppDataState()
+        state.refresh(providers(firebase), AppRole.Parent, includeActiveRide = false)
+        assertEquals(0, rideReads); assertEquals(null, state.activeRide.value)
+        assertEquals(be.sportgreenmoove.app.data.TripStatus.Past, state.trips.value.single().status)
+    }
     private fun trip(id: String) = TripSummary(id = id, title = id, club = "Club QA", category = "U8 QA",
         departureLabel = "17 octobre · 16h00", dateLabel = "17 octobre", timeLabel = "16h00", distanceLabel = "1 km",
         seatsAvailable = 1, priceLabel = "Gratuit", reasons = emptyList())

@@ -30,6 +30,16 @@ export const tours = {
     image('emergency-editor-narrow', 'Choisir son contact', 'L’écran garde les champs et les actions accessibles avec du texte agrandi, dans l’essai simulé.'),
     image('emergency-editor-changed', 'Si le téléphone ne s’ouvre pas', 'Dans cet essai simulé distinct, le nouveau numéro reste visible avec le message d’erreur.'),
   ],
+  'ride-observation': [
+    image('ride-observation-fresh', 'Recevoir une position', 'Une position de test arrive sur le trajet ouvert côté parent.'),
+    image('ride-observation-fresh-landscape', 'Tourner l’écran', 'Le parent reste sur le même trajet.'),
+    image('ride-observation-stale', 'Attendre sans nouveau point', 'Après plus de 90 secondes, la position passe à vérifier.'),
+    image('ride-observation-recovered', 'Recevoir le point suivant', 'Une nouvelle position de test enlève l’alerte.'),
+    image('ride-observation-pickup', 'Voir la prise en charge', 'Le statut change sans quitter le trajet.'),
+    image('ride-observation-resumed', 'Revenir dans l’app', 'La dépose est visible au retour.'),
+    image('ride-observation-ended', 'Recevoir la fin du trajet', 'Le parent ne voit plus de course active.'),
+    image('ride-observation-history', 'Retrouver le trajet terminé', 'Le trajet apparaît dans les trajets passés.'),
+  ],
   'ride-emergency': [
     image('ride-emergency-driver-entry', 'Depuis le trajet conducteur', 'Le contact est accessible sans quitter le trajet.'),
     image('ride-emergency-driver-saved', 'Choisir son contact', 'Le conducteur enregistre son numéro fictif.'),

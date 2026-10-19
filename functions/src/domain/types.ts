@@ -123,6 +123,14 @@ export type ClientRideSnapshot = {
   etaLabel: string;
   stale: boolean;
   passengers: ClientRidePassengerStatus[];
+  observation: {
+    vehicleAgeMs: number | null;
+    childAgeMs: number | null;
+    vehicleHasPoint: boolean;
+    childHasPoint: boolean;
+    vehicleSource: LocationSource | null;
+    childSource: LocationSource | null;
+  };
 };
 
 export type ClientRidePassengerStatus = {

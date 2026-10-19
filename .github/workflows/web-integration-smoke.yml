@@ -82,6 +82,9 @@ on:
       - "tests/ride-location-ownership.test.mjs"
       - "tests/location-freshness-evidence.test.mjs"
       - "tests/location-order-evidence.test.mjs"
+      - "tests/ride-observation-contract.test.mjs"
+      - "tests/ride-observation-evidence.test.mjs"
+      - "tests/disposable-local-app-reset.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*Emergency*.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt"
@@ -345,6 +348,9 @@ on:
       - "tests/ride-location-ownership.test.mjs"
       - "tests/location-freshness-evidence.test.mjs"
       - "tests/location-order-evidence.test.mjs"
+      - "tests/ride-observation-contract.test.mjs"
+      - "tests/ride-observation-evidence.test.mjs"
+      - "tests/disposable-local-app-reset.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*Emergency*.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt"
@@ -639,6 +645,9 @@ jobs:
 
       - name: Verify atomic observation ordering through concurrent location calls
         run: npm run test:location-order && node --test tests/location-order-evidence.test.mjs
+
+      - name: Verify selected ride observer authorization and remote lifecycle responses
+        run: npm run test:ride-observation-services && node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
 
       - name: Test owned enrollment history after eligibility and identity loss
         run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs

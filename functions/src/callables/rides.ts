@@ -13,13 +13,15 @@ import { firestore, realtimeDb } from "../lib/firebase.js";
 import { hasRole, requireAuth } from "../lib/https.js";
 import { toClientRideSnapshot } from "../lib/clientTrips.js";
 import { parseCallableData } from "../lib/validation.js";
+import { chatDocumentIdSchema } from "../domain/chatReference.js";
 
 export { markDropoff, markPickup } from "./ridePassengers.js";
 export { startRide } from "./rideStart.js";
 
 export const getActiveRide = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
-  const activeRide = await loadAccessibleActiveRide(uid, request.auth?.token);
+  const data = parseCallableData(z.object({ rideSessionId: chatDocumentIdSchema.optional() }).strict(), request.data);
+  const activeRide = await loadAccessibleActiveRide(uid, request.auth?.token, data.rideSessionId);
   if (!activeRide) return { ride: null };
   const { id, ride } = activeRide;
   const status = ride.status ?? "active";

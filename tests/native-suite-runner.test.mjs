@@ -21,7 +21,7 @@ function fixture(t) {
     writeFileSync(join(root, path), '#!/bin/bash\n' + teamCopy + content, { mode: 0o700 });
   };
   executable('android/gradlew', 'if [[ "$*" == *:app:assembleDebugAndroidTest* ]]; then echo build >> "$CALL_LOG"; exit "$BUILD_STATUS"; fi\necho ordinary >> "$CALL_LOG"\nexit "$ORDINARY_STATUS"\n');
-  executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*verify-disposable-installations.mjs) exit "${INSTALL_GUARD_STATUS:-0}";;\n*collect-ordinary-android-failure.mjs) echo diagnostic >> "$CALL_LOG"; exit "$DIAGNOSTIC_STATUS";;\n*adb-host-health.mjs) echo host-health >> "$CALL_LOG"; exit "$HOST_HEALTH_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*) exit 99;;\nesac\n');
+  executable('bin/node', 'case "$1" in\n*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;\n*verify-disposable-installations.mjs) exit "${INSTALL_GUARD_STATUS:-0}";;\n*collect-ordinary-android-failure.mjs) echo diagnostic >> "$CALL_LOG"; exit "$DIAGNOSTIC_STATUS";;\n*adb-host-health.mjs) echo host-health >> "$CALL_LOG"; exit "$HOST_HEALTH_STATUS";;\n*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;\n*run-local-android-flows.mjs) echo replay >> "$CALL_LOG"; exit "$REPLAY_STATUS";;\n*run-local-ride-observation-ui.mjs) echo observation >> "$CALL_LOG"; exit "${OBSERVATION_STATUS:-0}";;\n*) exit 99;;\nesac\n');
   executable('bin/adb', 'printf "%s\\n" "$*" >> "$ADB_CALL_LOG"\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-payment-confirmation && "$CAPTURE_FAILURE" == payments ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-emergency-contact && "$CAPTURE_FAILURE" == emergency ]]; then exit 9; fi\nexit 0\n');
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
@@ -65,11 +65,13 @@ for (const [name, env, exit, statuses] of [
   ['stale owned-history component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'history' }, 1, [0, 1, 0]],
   ['isolated replay failure is never overwritten by ordinary success', { REPLAY_STATUS: '11' }, 11, [0, 0, 11]],
   ['both failures retain both outcomes and return the first', { ORDINARY_STATUS: '7', REPLAY_STATUS: '11' }, 7, [7, 0, 11]],
+  ['the independent ride observation failure cannot produce a green suite', { OBSERVATION_STATUS: '29' }, 29, [0, 0, 0]],
+  ['an earlier replay failure is preserved when the ride observation also fails', { REPLAY_STATUS: '11', OBSERVATION_STATUS: '29' }, 11, [0, 0, 11]],
 ]) test(name, (t) => {
   const result = fixture(t)(env);
   assert.equal(result.status, exit, result.stderr);
   assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', ...(env.ORDINARY_STATUS ? ['diagnostic'] : []),
-    ...(env.CAPTURE_FAILURE ? ['host-health'] : []), 'replay', ...(env.REPLAY_STATUS ? ['host-health'] : []), 'restore']);
+    ...(env.CAPTURE_FAILURE ? ['host-health'] : []), 'replay', ...(env.REPLAY_STATUS ? ['host-health'] : []), 'observation', 'restore']);
   assert.deepEqual(result.build, { scope: 'native-build-before-device-policy-not-flow-verification', status: 0 });
   assert.equal(result.statuses.scope, 'native-suite-exit-status-not-flow-verification');
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
@@ -82,7 +84,7 @@ test('failed suites retain partial payment and other component captures without 
   for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history']) {
     assert(result.adbCalls.some((call) => call.startsWith('pull /sdcard/Download/' + name + ' ') && call.endsWith('/partial-components')));
   }
-  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
+  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'observation', 'restore']);
   assert.equal(result.statuses.ordinaryTests, 7);
 });
 
@@ -90,7 +92,7 @@ test('unavailable process diagnostics never suppress the original failure or the
   const result = fixture(t)({ ORDINARY_STATUS: '7', DIAGNOSTIC_STATUS: '9' });
   assert.equal(result.status, 7);
   assert.match(result.stdout, /original test failure is preserved/);
-  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
+  assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'observation', 'restore']);
   assert.equal(result.statuses.ordinaryTests, 7);
 });
 
@@ -108,15 +110,15 @@ test('an unverified installation guard stops further replay and still runs resto
 
 test('store cleanup failure cannot produce a green suite or overwrite an earlier failure', (t) => {
   const success = fixture(t)({ RESTORE_STATUS: '13' });
-  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['build', 'setup', 'ordinary', 'replay', 'restore']);
+  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['build', 'setup', 'ordinary', 'replay', 'observation', 'restore']);
   const failure = fixture(t)({ RESTORE_STATUS: '13', REPLAY_STATUS: '11' });
-  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['build', 'setup', 'ordinary', 'replay', 'host-health', 'restore']);
+  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['build', 'setup', 'ordinary', 'replay', 'host-health', 'observation', 'restore']);
 });
 
 test('unavailable host observations never suppress either suite failure or store restoration', (t) => {
   const result = fixture(t)({ CAPTURE_FAILURE: 'store', REPLAY_STATUS: '11', HOST_HEALTH_STATUS: '19' });
   assert.equal(result.status, 1); assert.deepEqual(result.calls,
-    ['build', 'setup', 'ordinary', 'host-health', 'replay', 'host-health', 'restore']);
+    ['build', 'setup', 'ordinary', 'host-health', 'replay', 'host-health', 'observation', 'restore']);
   assert.equal(result.statuses.componentEvidence, 1); assert.equal(result.statuses.localReplay, 11);
   assert.match(result.stdout, /original component failure is preserved/);
   assert.match(result.stdout, /original replay failure is preserved/);

@@ -4,6 +4,7 @@ import { createNavigationFlow, createSearchFlow } from './parent-phone-flows.mjs
 import { createEmergencyFlow } from './emergency-flow.mjs';
 import { createTrackingFlow } from './tracking-flow.mjs';
 import { createRideEmergencyFlow } from './ride-emergency-flow.mjs';
+import { createRideObservationFlow } from './ride-observation-flow.mjs';
 import { createTeamEnrollmentFlow } from './team-enrollment-flow.mjs';
 import { createTeamReviewFlow } from './team-review-flow.mjs';
 export { captures } from './evidence-captures.mjs';
@@ -238,6 +239,7 @@ export const content = {
         shot('payments', 'Écran de paiement vide lors de l’essai du 11 octobre')], source: 'docs/release/evidence/local-payment-confirmation-2026-10-18/README.md' },
     createEmergencyFlow(),
     createRideEmergencyFlow(),
+    createRideObservationFlow(),
     createTrackingFlow(),
     { id: 'ride-lifecycle', title: 'Déroulement du trajet', status: 'partial', checkedAt: '2026-10-15',
       summary: 'Le trajet se termine dans l’app et apparaît dans l’historique du parent, en local.',

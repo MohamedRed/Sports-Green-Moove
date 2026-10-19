@@ -26,6 +26,7 @@ data class AndroidProviderSet(
     val conversations: ConversationGateway = UnconfiguredConversationGateway(),
     val reservations: ReservationGateway = UnconfiguredReservationGateway(),
     val emergencyContacts: EmergencyContactGateway = UnconfiguredEmergencyContactGateway(),
+    val rides: RideObservationGateway = UnconfiguredRideObservationGateway(),
 ) {
     val isConfigured: Boolean = auth.isConfigured && firebase.isConfigured
 }
@@ -54,6 +55,7 @@ object AndroidRuntime {
                 conversations = FirebaseAndroidConversationGateway(),
                 reservations = FirebaseAndroidReservationGateway(),
                 emergencyContacts = FirebaseAndroidEmergencyContactGateway(),
+                rides = FirebaseAndroidRideObservationGateway(FirebaseAndroidEmulatorConfig.database()),
                 googleAuth = FirebaseAndroidGoogleSocialAuthGateway(context.applicationContext),
                 facebookAuth = FirebaseAndroidFacebookSocialAuthGateway(context.applicationContext),
                 radar = FirebaseAndroidRadarTrackingGateway(
@@ -68,16 +70,22 @@ object AndroidRuntime {
 
 private object FirebaseAndroidEmulatorConfig {
     private var configured = false
+    private var localDatabase: FirebaseDatabase? = null
+
+    fun database(): FirebaseDatabase = if (BuildConfig.SGM_USE_FIREBASE_EMULATOR) {
+        checkNotNull(localDatabase) { "Local database must be configured before use" }
+    } else FirebaseDatabase.getInstance()
 
     fun configureIfRequested() {
         if (!BuildConfig.SGM_USE_FIREBASE_EMULATOR || configured) return
-        configured = true
         val host = BuildConfig.SGM_FIREBASE_EMULATOR_HOST
         if (BuildConfig.DEBUG) Log.d("SGM.FirebaseEmulator", "Configuring Firebase emulators at $host")
         FirebaseAuth.getInstance().useEmulator(host, 9099)
         FirebaseFirestore.getInstance().useEmulator(host, 8080)
         FirebaseFunctions.getInstance().useEmulator(host, 5001)
-        FirebaseDatabase.getInstance().useEmulator(host, 9000)
+        // Keep the configured instance across activity recreation; do not resolve it again by URL.
+        localDatabase = FirebaseDatabase.getInstance().also { it.useEmulator(host, 9000) }
+        configured = true
     }
 }
 

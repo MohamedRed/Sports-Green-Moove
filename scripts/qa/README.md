@@ -26,6 +26,15 @@ writer plus delayed-event audit reconciliation. Its ten groups preserve separate
 vehicle/child registers and count only committed points. Direct administrative
 writer checks are not child-device authorization or signed-webhook evidence.
 
+`test:ride-observation-services` checks authorized selected-id snapshots, structured
+capture ages and remote lifecycle responses across two active rides.
+`test:ride-observation-ui` independently tests the actual parent app with an
+authenticated driver SDK peer, synthetic points, real elapsed aging, rotation,
+background/resume and completion/history. Its fresh local-app reset is explicit
+and limited to the two `.local` test packages; it never retries a failed install.
+The original full multi-user replay remains mandatory and unchanged. Native CI
+requires both replays plus the ordinary tests, capture collection and restoration.
+
 The expanded `LocalRideFlowTest` checks active-ride emergency entry for the driver
 and parent before its existing completion/review assertions. Both contacts are
 chosen and removed through the app, with actual dial-only handoffs and return to

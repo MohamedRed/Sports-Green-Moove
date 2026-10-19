@@ -164,7 +164,7 @@ try {
   }
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 1000 });
-    for (const id of ['navigation', 'search', 'emergency-contact', 'ride-emergency', 'team-enrollment']) {
+    for (const id of ['navigation', 'search', 'emergency-contact', 'ride-emergency', 'ride-observation', 'team-enrollment']) {
       await page.goto(`${base}/#parcours/${id}/visite/1`);
       const flow = content.flows.find((item) => item.id === id);
       await page.getByRole('heading', { name: flow.tour[0].title, exact: true }).waitFor();
@@ -173,7 +173,7 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
       await page.screenshot({ path: `${output}/phone-${id}-${width}.png`, fullPage: true });
-      if (id === 'emergency-contact' || id === 'ride-emergency' || id === 'team-enrollment') {
+      if (id === 'emergency-contact' || id === 'ride-emergency' || id === 'ride-observation' || id === 'team-enrollment') {
         for (let step = 1; step < flow.tour.length; step++) {
           await page.getByRole('link', { name: 'Suivant', exact: true }).click();
           await page.getByRole('heading', { name: flow.tour[step].title, exact: true }).waitFor();
@@ -183,8 +183,8 @@ try {
           assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
           if (flow.tour[step].image === 'emergency-current-dialer')
             await page.screenshot({ path: `${output}/contact-dialer-${width}.png`, fullPage: false });
-          if (id === 'ride-emergency')
-            await page.screenshot({ path: `${output}/ride-emergency-${step + 1}-${width}.png`, fullPage: false });
+          if (id === 'ride-emergency' || id === 'ride-observation')
+            await page.screenshot({ path: `${output}/${id}-${step + 1}-${width}.png`, fullPage: false });
         }
       }
     }

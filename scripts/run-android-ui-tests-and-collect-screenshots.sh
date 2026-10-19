@@ -144,9 +144,14 @@ if [[ "$replay_status" -ne 0 ]]; then
   fi
 fi
 
-printf 'Ordinary tests: %s; component evidence: %s; local replay: %s\n' "$test_status" "$capture_status" "$replay_status"
+observation_status=0
+node "$repo_root/scripts/qa/run-local-ride-observation-ui.mjs" || observation_status=$?
+printf '{"scope":"ride-observation-native-command-status-not-flow-verification","status":%s}\n' \
+  "$observation_status" > "$output_dir/ride-observation-suite-status.json"
+printf 'Ordinary tests: %s; component evidence: %s; local replay: %s; ride observation: %s\n' "$test_status" "$capture_status" "$replay_status" "$observation_status"
 printf '{"scope":"native-suite-exit-status-not-flow-verification","ordinaryTests":%s,"componentEvidence":%s,"localReplay":%s}\n' \
   "$test_status" "$capture_status" "$replay_status" > "$output_dir/native-suite-status.json"
 if [[ "$test_status" -ne 0 ]]; then exit "$test_status"; fi
 if [[ "$capture_status" -ne 0 ]]; then exit "$capture_status"; fi
-exit "$replay_status"
+if [[ "$replay_status" -ne 0 ]]; then exit "$replay_status"; fi
+exit "$observation_status"

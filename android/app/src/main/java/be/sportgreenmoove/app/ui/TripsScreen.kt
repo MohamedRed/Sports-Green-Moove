@@ -70,6 +70,7 @@ fun TripsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .sgmTestTag(SgmTestTags.TripsScreen)
             .background(Sgm.colors.bgApp)
             .verticalScroll(rememberScrollState())
             .padding(bottom = 20.dp),

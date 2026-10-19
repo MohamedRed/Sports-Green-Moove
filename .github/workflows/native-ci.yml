@@ -39,6 +39,9 @@ on:
       - "tests/ride-emergency-completed-evidence.test.mjs"
       - "tests/ride-location-ownership.test.mjs"
       - "tests/location-freshness-evidence.test.mjs"
+      - "tests/ride-observation-contract.test.mjs"
+      - "tests/ride-observation-evidence.test.mjs"
+      - "tests/disposable-local-app-reset.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
@@ -105,6 +108,9 @@ on:
       - "tests/ride-emergency-completed-evidence.test.mjs"
       - "tests/ride-location-ownership.test.mjs"
       - "tests/location-freshness-evidence.test.mjs"
+      - "tests/ride-observation-contract.test.mjs"
+      - "tests/ride-observation-evidence.test.mjs"
+      - "tests/disposable-local-app-reset.test.mjs"
       - "tests/emergency-contact-scheduler.test.mjs"
       - "tests/local-evidence-collection.test.mjs"
       - "tests/conversation-test-input.test.mjs"
@@ -165,6 +171,9 @@ jobs:
         run: node --test tests/supervised-local-process.test.mjs
       - name: Validate immutable child emergency contact contracts and evidence
         run: node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/location-freshness-evidence.test.mjs tests/ride-emergency-completed-evidence.test.mjs
+
+      - name: Validate selected ride observation and independent disposable trials
+        run: node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
 
       - name: Validate SDK-connected team replay evidence requirements
         run: node --test tests/team-enrollment-sdk.test.mjs

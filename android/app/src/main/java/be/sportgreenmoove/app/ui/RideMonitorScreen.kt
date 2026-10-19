@@ -40,11 +40,14 @@ fun RideMonitorScreen(
     onDropoff: (RidePassengerStatus) -> Unit,
     onEndRide: () -> Unit,
     onEmergencyContact: () -> Unit,
+    observation: ActiveRideObservationState? = null,
 ) {
     V2Screen(testTag = SgmTestTags.ActiveRideScreen) {
         V2TopBar("COURSE ACTIVE", onBack = onBack)
         if (activeRide == null) {
             RideEmptyState(onBack)
+        } else if (observation != null && observation.phase != RideObservationPhase.Live) {
+            RideObservationNotice(observation)
         } else {
             GoogleMapsRoutePreviewCard(ride = activeRide, preview = routePreview)
             RideLiveCard(activeRide)
@@ -112,7 +115,7 @@ private fun RideLiveCard(ride: LiveRideSnapshot) {
             }
             RideStatusPill(if (ride.stale) "À VÉRIFIER" else "LIVE", warning = ride.stale)
         }
-        RideInfoLine(SgmIcon.Location, "Véhicule", ride.vehicleLastUpdateLabel)
+        RideInfoLine(SgmIcon.Location, "Véhicule", ride.vehicleLastUpdateLabel, SgmTestTags.ActiveRideVehicleUpdate)
         RideInfoLine(SgmIcon.Profile, "Enfant", ride.childLastUpdateLabel ?: "Non disponible")
         if (ride.stale) {
             Text(
@@ -132,11 +135,12 @@ private fun RideEmergencyAction(onOpen: () -> Unit) {
 }
 
 @Composable
-private fun RideInfoLine(icon: SgmIcon, label: String, value: String) {
+private fun RideInfoLine(icon: SgmIcon, label: String, value: String, tag: String? = null) {
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         SgmLineIcon(icon, tint = Sgm.colors.textMuted, modifier = Modifier.size(14.dp))
         Text(label, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.weight(1f))
-        Text(value, style = SgmType.BodyXS.copy(color = Sgm.colors.textPrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold))
+        Text(value, style = SgmType.BodyXS.copy(color = Sgm.colors.textPrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+            textAlign = TextAlign.End, modifier = Modifier.weight(2f).sgmOptionalTestTag(tag))
     }
 }
 

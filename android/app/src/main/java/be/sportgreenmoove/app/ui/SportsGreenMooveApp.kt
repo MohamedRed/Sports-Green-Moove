@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,7 +33,6 @@ fun SportsGreenMooveApp() {
     var contactReturn by rememberSaveable { mutableStateOf(AppScreen.Options) }
     val messagesState = rememberSaveableStateHolder()
     var role by remember { mutableStateOf(AppRole.Parent) }
-    var lastRoleSelectionSessionUid by remember { mutableStateOf<String?>(null) }
     var session by remember { mutableStateOf<AuthSession?>(null) }
     val appData = remember { AppDataState() }
     var trips by appData.trips
@@ -119,7 +117,6 @@ fun SportsGreenMooveApp() {
         session?.uid?.let { messagesState.removeState(it) }
         signOutProviders(providers)
         session = null
-        lastRoleSelectionSessionUid = null
         role = AppRole.Parent
         appData.clear()
         loading = false
@@ -134,23 +131,13 @@ fun SportsGreenMooveApp() {
             runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
         }
     }
-    LaunchedEffect(session?.uid, session?.roles) {
-        val currentSession = session
-        if (currentSession == null) {
-            lastRoleSelectionSessionUid = null
-        } else {
-            val sessionChanged = currentSession.uid != lastRoleSelectionSessionUid
-            val selectedRole = selectActiveMobileRole(
-                currentRole = role,
-                availableRoles = currentSession.roles,
-                sessionChanged = sessionChanged,
-            )
-            lastRoleSelectionSessionUid = currentSession.uid
-            if (selectedRole != role) {
-                role = selectedRole
-                runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
-            }
-        }
+    ObserveMobileRoleSelection(session, role) { selected ->
+        role = selected
+        runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
+    }
+    val rideObservation = rememberActiveRideObservation(providers.rides, session?.uid, activeRide, appData) { uid ->
+        scope.launch { if (session?.uid == uid) runCatching { appData.refresh(providers, role, includeActiveRide = false) }
+            .onFailure { if (session?.uid == uid) errorMessage = UserFacingErrorPolicy.messageFor(it) } }
     }
     SgmTheme(darkTheme = darkTheme) {
         AppSystemBars(darkBackground = darkTheme)
@@ -281,7 +268,8 @@ fun SportsGreenMooveApp() {
                         AppScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = AppScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         AppScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
-                            canManageRide = canManageRide(role, session, activeRide),
+                            canManageRide = canManageRide(role, session, activeRide) && rideObservation.phase == RideObservationPhase.Live,
+                            observation = rideObservation,
                             routePreview = activeRideTrip?.mapPreview,
                             onBack = { screen = AppScreen.Trips },
                             onPickup = { updatePassengerStatus(it, pickup = true) },

@@ -1,6 +1,7 @@
 import { Timestamp } from "firebase-admin/firestore";
 import { canReadRide } from "../domain/access.js";
 import { roleKeysFromToken } from "../domain/roles.js";
+import { HttpsError } from "firebase-functions/v2/https";
 import { firestore } from "./firebase.js";
 
 export type RidePassengerDocument = {
@@ -30,8 +31,16 @@ export type RideSessionDocument = {
 export async function loadAccessibleActiveRide(
   uid: string,
   token: unknown,
+  rideSessionId?: string,
 ): Promise<{ id: string; ride: RideSessionDocument } | null> {
   const roleKeys = roleKeysFromToken(token);
+  if (rideSessionId) {
+    const snapshot = await firestore.collection("rideSessions").doc(rideSessionId).get();
+    if (!snapshot.exists) return null;
+    const ride = snapshot.data() as RideSessionDocument;
+    if (!canReadRide(uid, roleKeys, ride)) throw new HttpsError("permission-denied", "Ride access is no longer authorized.");
+    return ride.status === "active" ? { id: snapshot.id, ride } : null;
+  }
   const queries = [
     firestore.collection("rideSessions")
       .where("driverUserId", "==", uid)

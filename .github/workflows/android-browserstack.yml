@@ -3,6 +3,16 @@ name: Android BrowserStack Real-Device UI
 on:
   workflow_dispatch:
     inputs:
+      credentials_rotated:
+        description: Confirm the previously exposed access key has been rotated and the stored secret updated.
+        required: true
+        default: false
+        type: boolean
+      live_backend_ready:
+        description: Confirm the backend required by this APK has been deployed and verified before external distribution.
+        required: true
+        default: false
+        type: boolean
       execution_mode:
         description: BrowserStack mode to run. Use app_live_upload for App Live-only subscriptions; app_automate_espresso requires App Automate.
         required: false
@@ -34,6 +44,8 @@ env:
 jobs:
   browserstack-android-ui:
     name: BrowserStack Android ${{ github.event.inputs.execution_mode || 'app_live_upload' }}
+    # Native CI still builds/tests pushes. External distribution requires these explicit release gates.
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.credentials_rotated && inputs.live_backend_ready }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
 

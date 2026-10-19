@@ -143,6 +143,11 @@ export function toClientRideSnapshot(
     etaLabel: etaLabel(live?.meta?.radar?.etaSeconds),
     stale: vehicleAgeMs == null || vehicleAgeMs > 90_000,
     passengers: ridePassengers(ride),
+    observation: {
+      vehicleAgeMs, childAgeMs: ageMs(child ?? undefined, now),
+      vehicleHasPoint: Boolean(vehicle), childHasPoint: Boolean(child),
+      vehicleSource: vehicle?.source ?? null, childSource: child?.source ?? null,
+    },
   };
 }
 

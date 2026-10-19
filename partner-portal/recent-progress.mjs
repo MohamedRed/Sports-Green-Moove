@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le trajet s’actualise côté parent',
+    text: 'Alerte de position ancienne, reprise, prise en charge, dépose et fin passent dans l’app en local. Huit captures sont ajoutées. La carte et les essais sur téléphone restent à faire.', flow: 'ride-observation' },
   { date: '2026-10-19', title: 'Les positions ne reviennent plus en arrière',
     text: 'Un ancien point reçu en retard ne remplace plus le plus récent. Dix contrôles locaux passent ; l’affichage en direct reste à terminer.', flow: 'tracking' },
   { date: '2026-10-19', title: 'Le contact s’ouvre pendant le trajet',

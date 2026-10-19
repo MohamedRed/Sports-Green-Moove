@@ -1,4 +1,7 @@
 export const captures = {
+  ...Object.fromEntries(['fresh', 'fresh-landscape', 'stale', 'recovered', 'pickup', 'resumed', 'ended', 'history'].map((phase) => [
+    `ride-observation-${phase}`, `docs/release/evidence/ride-observation-native-2026-10-19/local-ride-observation-${phase}.png`,
+  ])),
   ...Object.fromEntries(['driver', 'parent'].flatMap((role) => ['entry', 'saved', 'dialer', 'returned'].map((phase) => [
     `ride-emergency-${role}-${phase}`,
     `docs/release/evidence/ride-emergency-pass-2026-10-19/local-ride-emergency-${role}-${phase}.png`,

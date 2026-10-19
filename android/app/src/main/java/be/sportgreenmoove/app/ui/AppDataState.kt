@@ -17,6 +17,8 @@ import be.sportgreenmoove.app.services.AndroidProviderSet
 internal class AppDataState {
     private var generation = 0L
     private var clubsGeneration = 0L
+    private var accountGeneration = 0L
+    private var rideGeneration = 0L
     private class SupersededRefresh : RuntimeException()
     val trips = mutableStateOf(emptyList<TripSummary>())
     val children = mutableStateOf(emptyList<ChildSummary>())
@@ -27,7 +29,7 @@ internal class AppDataState {
     val driverBookingRequests = mutableStateOf(emptyList<BookingRequestSummary>())
     val ledgerSummaries = mutableStateOf(NativeLedgerSummaries())
 
-    suspend fun refresh(providers: AndroidProviderSet, role: AppRole) {
+    suspend fun refresh(providers: AndroidProviderSet, role: AppRole, includeActiveRide: Boolean = true) {
         val request = ++generation
         suspend fun <T> load(action: suspend () -> T): T {
             val result = action()
@@ -39,7 +41,8 @@ internal class AppDataState {
             val nextChildren = if (role == AppRole.Parent) load { providers.firebase.listChildren() } else emptyList()
             val clubsRequest = clubsGeneration
             val nextClubs = load { providers.firebase.listClubSummaries() }
-            val nextRide = load { providers.firebase.getActiveRide() }
+            val rideRequest = rideGeneration
+            val nextRide = if (includeActiveRide) load { providers.firebase.getActiveRide() } else null
             val nextPayable = load { providers.firebase.getPayableBookings() }
             val nextLedgers = NativeLedgerSummaries(
                 impact = load { providers.firebase.getImpactSummary() },
@@ -50,9 +53,11 @@ internal class AppDataState {
                 trips.value = nextTrips
                 children.value = nextChildren
                 if (clubsRequest == clubsGeneration) clubs.value = nextClubs
-                activeRide.value = nextRide
-                activeRideTrip.value = nextRide?.tripId?.let { id ->
-                    activeRideTrip.value?.takeIf { it.id == id } ?: nextTrips.firstOrNull { it.id == id }
+                if (includeActiveRide && rideRequest == rideGeneration) {
+                    activeRide.value = nextRide
+                    activeRideTrip.value = nextRide?.tripId?.let { id ->
+                        activeRideTrip.value?.takeIf { it.id == id } ?: nextTrips.firstOrNull { it.id == id }
+                    }
                 }
                 payableBookings.value = nextPayable
                 ledgerSummaries.value = nextLedgers
@@ -66,9 +71,25 @@ internal class AppDataState {
 
     fun replaceClubs(value: List<ClubSummary>) { clubsGeneration += 1; clubs.value = value }
 
+    fun rideObserverSink(rideId: String?): (LiveRideSnapshot?) -> Unit {
+        val account = accountGeneration
+        return { ride ->
+            if (rideId != null && account == accountGeneration && activeRide.value?.rideSessionId == rideId) {
+                require(ride == null || ride.rideSessionId == rideId)
+                rideGeneration += 1
+                Snapshot.withMutableSnapshot {
+                    activeRide.value = ride
+                    if (ride == null) activeRideTrip.value = null
+                }
+            }
+        }
+    }
+
     fun clear() {
         generation += 1
         clubsGeneration += 1
+        accountGeneration += 1
+        rideGeneration += 1
         Snapshot.withMutableSnapshot {
             trips.value = emptyList()
             children.value = emptyList()

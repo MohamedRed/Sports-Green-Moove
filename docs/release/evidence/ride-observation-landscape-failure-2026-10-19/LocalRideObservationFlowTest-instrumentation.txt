@@ -1,0 +1,21 @@
+
+be.sportgreenmoove.app.ui.LocalRideObservationFlowTest:
+Error in parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide(be.sportgreenmoove.app.ui.LocalRideObservationFlowTest):
+java.lang.AssertionError: Assert failed: The component with TestTag = 'active-ride.vehicle-update' is not displayed!
+	at androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)
+	at be.sportgreenmoove.app.ui.LocalRideObservationFlowTest.waitFor(LocalRideObservationFlowTest.kt:115)
+	at be.sportgreenmoove.app.ui.LocalRideObservationFlowTest.parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide(LocalRideObservationFlowTest.kt:74)
+
+
+Time: 47.826
+There was 1 failure:
+1) parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide(be.sportgreenmoove.app.ui.LocalRideObservationFlowTest)
+java.lang.AssertionError: Assert failed: The component with TestTag = 'active-ride.vehicle-update' is not displayed!
+	at androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)
+	at be.sportgreenmoove.app.ui.LocalRideObservationFlowTest.waitFor(LocalRideObservationFlowTest.kt:115)
+	at be.sportgreenmoove.app.ui.LocalRideObservationFlowTest.parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide(LocalRideObservationFlowTest.kt:74)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
