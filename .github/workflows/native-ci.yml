@@ -15,6 +15,7 @@ on:
     paths:
       - "tests/native-build-before-boot.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
+      - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
@@ -99,6 +100,7 @@ on:
     paths:
       - "tests/native-build-before-boot.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
+      - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/membership-cursor-contract.test.mjs"
@@ -233,7 +235,7 @@ jobs:
         run: node --test tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs
 
       - name: Validate initial network observation before test-only transport requests
-        run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs
+        run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs
 
   android-native-unit:
     name: Android native unit tests

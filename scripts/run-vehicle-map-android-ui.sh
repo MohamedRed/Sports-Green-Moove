@@ -15,4 +15,5 @@ restore_test_device() {
   exit "$restore_status"
 }
 trap restore_test_device EXIT
+node "$repo_root/scripts/qa/activate-disposable-installations.mjs" "$device_receipt" > "$output_dir/disposable-installations-activated.json"
 node "$repo_root/scripts/qa/run-local-vehicle-map-ui.mjs"

@@ -7,6 +7,7 @@ on:
       - "tests/team-review*.mjs"
       - "tests/native-build-before-boot.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
+      - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
@@ -292,6 +293,7 @@ on:
       - "tests/team-review*.mjs"
       - "tests/native-build-before-boot.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
+      - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
@@ -656,7 +658,7 @@ jobs:
         run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs
 
       - name: Validate initial network observation before test-only transport requests
-        run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs
+        run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs
 
       - name: Validate guardian verification contracts and retained scope
         run: node --test tests/guardian-verification-contract.test.mjs

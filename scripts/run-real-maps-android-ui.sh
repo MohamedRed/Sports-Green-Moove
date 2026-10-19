@@ -18,4 +18,5 @@ restore_test_store() {
   exit "$restore_status"
 }
 trap restore_test_store EXIT
+env -u SGM_REAL_MAPS_SERVER_KEY node "$repo_root/scripts/qa/activate-disposable-installations.mjs" "$device_receipt" > "$output_dir/disposable-installations-activated.json"
 SGM_REAL_MAPS_UI_OUTPUT="$output_dir/replay" node "$repo_root/scripts/qa/run-real-maps-android.mjs" --approved-isolated-real-maps
