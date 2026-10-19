@@ -61,7 +61,7 @@ test('current private updates retain the prior observations without claiming who
   assert.match(flow.remaining, /sans appeler/); assert.equal(flow.images.filter((item) => item.file.startsWith('emergency-passed-')).length, 7);
   assert(content.updates.some((item) => item.title === 'Le contact revient dans l’app'));
   assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source,
-    'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/build-before-pause-failure/README.md');
+    'docs/release/evidence/disposable-installation-guard-2026-10-18/verified-2026-10-19/README.md');
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 test('synchronization proof and regressions are covered by web and native configuration gates', () => {

@@ -1,5 +1,12 @@
 # Disposable Test Phone Installation Guard
 
+## Activation And Cleanup Verified
+
+The fresh run at `f95c8f7` now verifies the block during instrumentation and complete
+administrator/helper removal, with maps/location preserved. Original receipts and
+the later failed primary transfer are in `verified-2026-10-19/`. The team phase
+passed; the whole matrix did not. Historical failed attempts below remain unchanged.
+
 ## Boot Readiness Refusal
 
 [Run 39227739767](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39227739767)
@@ -77,7 +84,8 @@ The guard's current unit checks cover the explicit emulator/user/image boundarie
 missing OS support, ignored policy writes, failed APK installation, runtime
 mutation, restoration, and early stop before replay. The test APK also compiles
 locally. Actual on-device activation and cleanup still require a fresh native CI
-run; no physical-device or whole-run success is accepted by this source archive.
+run. That scoped proof is now retained above; no physical-device or whole-run
+success is accepted by this source archive.
 
 The runtime and cleanup design and primary Android 15 source links are documented
 in `scripts/qa/README.md`. No production, billing, Terraform, map-provider or

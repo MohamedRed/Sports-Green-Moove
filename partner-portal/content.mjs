@@ -43,8 +43,8 @@ export const excerpts = {
 };
 
 export const content = {
-  updatedAt: '2026-10-18',
-  lastVerifiedAt: '2026-10-18',
+  updatedAt: '2026-10-19',
+  lastVerifiedAt: '2026-10-19',
   releaseNote: 'Tests en cours.',
   updates: [
     ...recentProgress,

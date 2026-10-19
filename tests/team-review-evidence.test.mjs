@@ -53,7 +53,7 @@ test('backend and web smoke run the real manager service lifecycle and scoped fr
   }
   assert.equal(read('.github/workflows/web-integration-smoke.yml').split('"tests/team-review*.mjs"').length - 1, 2);
 });
-test('the private portal separates actual manager decisions from simulated or pending parent-native evidence', () => {
+test('the private portal keeps separate manager-browser and parent-native proof partial', () => {
   const flow = content.flows.find((item) => item.id === 'team-review'); assert.equal(flow.status, 'partial');
   assert.equal(flow.ui.source, base + 'results.json'); assert.deepEqual(flow.ui.groups, ['team-manager-review-ui']);
   assert.equal(flow.images.length, 6); assert(flow.images[0].landscape);
@@ -62,5 +62,6 @@ test('the private portal separates actual manager decisions from simulated or pe
   assert.doesNotMatch(JSON.stringify(flow), /Firebase|BrowserStack|Playwright|SDK|Terraform/);
   validateUiScope(report()); assert.throws(() => validateUiScope({ ...report(), physicalDevice: true }));
   const parent = content.flows.find((item) => item.id === 'team-enrollment'); assert.equal(parent.status, 'partial');
-  assert(parent.images.every((image) => /simulé/.test(image.alt))); assert.match(parent.remaining, /dans l’app/);
+  assert.equal(parent.images.length, 5); assert.equal(parent.checkedAt, '2026-10-19');
+  assert(parent.images.every((image) => /19 octobre/.test(image.alt))); assert.match(parent.remaining, /dans l’app/);
 });

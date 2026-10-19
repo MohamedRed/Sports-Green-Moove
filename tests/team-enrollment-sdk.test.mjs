@@ -3,9 +3,28 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
+import { fileURLToPath } from 'node:url';
 import { validateTeamNativeDevice, teamNativeChecks, teamNativeScreenshots } from '../scripts/qa/team-native-evidence.mjs';
+import { validateRetainedTeamEnrollment, validateTeamEnrollmentReport } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+const completed = 'docs/release/evidence/local-team-enrollment-native-2026-10-19/';
+test('the actual connected native team case binds ten checks, cleanup, primary transfer and five original images', () => {
+  const root = fileURLToPath(new URL('..', import.meta.url));
+  const run = validateRetainedTeamEnrollment(root, completed + 'team-enrollment-results.json');
+  assert.equal(run.testedAt, '2026-10-19T09:40:28.710Z');
+  assert.equal(run.runId, 'c91da6904b2122529e7f55f4da9f0cd5');
+  assert.equal(Object.keys(run.screenshots).length, 5);
+  assert.doesNotMatch(read(completed + 'team-enrollment-results.json'), /AIza[\w-]{20,}|Bearer\s+[\w.-]+|"password"\s*:/);
+});
+test('scoped team evidence refuses missing cleanup, preapproved guardians and stronger unsupported claims', () => {
+  const run = JSON.parse(read(completed + 'team-enrollment-results.json'));
+  for (const patch of [{ physicalDevice: true }, { productionWrites: true }, { fullProcessRestartProven: true },
+    { teamChatImplemented: true }, { isolatedFixtureCleanupVerified: false }, { protectedRecordsUnchanged: false },
+    { guardianVerificationPreseeded: true }, { managerDecisionMethod: 'management-browser' }, { checks: run.checks.slice(1) },
+    { enrollmentEventCount: 7 }, { guardianEventCount: 0 }, { nativeCaseCount: 0 }])
+    assert.throws(() => validateTeamEnrollmentReport({ ...run, ...patch }));
+});
 const runId = 'a'.repeat(32), bytes = Buffer.alloc(24);
 Buffer.from('89504e470d0a1a0a', 'hex').copy(bytes); bytes.writeUInt32BE(320, 16); bytes.writeUInt32BE(720, 20);
 const hash = createHash('sha256').update(bytes).digest('hex');

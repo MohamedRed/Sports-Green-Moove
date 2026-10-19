@@ -194,7 +194,8 @@ try {
     for (const [index, image] of flow.images.entries()) {
       await waitForImage();
       assert.equal(await page.locator('.media-stage img').getAttribute('alt'), image.alt);
-      assert.match(image.alt, /simulé/);
+      assert.match(image.alt, /19 octobre/);
+      assert.doesNotMatch(image.alt, /simulé/);
       assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       await page.screenshot({ path: `${output}/team-${index + 1}-${width}.png`, fullPage: false });

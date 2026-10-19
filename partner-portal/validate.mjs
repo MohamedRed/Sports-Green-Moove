@@ -4,6 +4,7 @@ import { resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
+import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -56,6 +57,7 @@ export function validate(root) {
       assert.equal(f.status, 'partial', 'Local UI checks do not complete physical-device requirements');
       const run = JSON.parse(readFileSync(resolve(root, f.ui.source), 'utf8'));
       validateUiScope(run);
+      if (f.id === 'team-enrollment') validateRetainedTeamEnrollment(root, f.ui.source);
       if (Object.hasOwn(f.ui, 'checkedAt')) {
         assertDate(f.ui.checkedAt); assert(f.ui.checkedAt <= f.checkedAt);
         assert.equal(run.testedAt.slice(0, 10), f.ui.checkedAt);

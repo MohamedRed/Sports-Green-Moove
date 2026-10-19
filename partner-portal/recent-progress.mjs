@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'L’inscription à une équipe passe dans l’app',
+    text: 'Demande, refus, accord, retrait et changement de compte passent avec les données de test. Cinq captures sont ajoutées, dont l’inscription d’un enfant.', flow: 'team-enrollment' },
+  { date: '2026-10-19', title: 'L’essai complet reste à terminer',
+    text: 'Le réglage temporaire est retiré après l’essai. Les inscriptions passent ; la récupération de captures bloque plus loin.', flow: 'publication' },
   { date: '2026-10-18', title: 'Le club peut répondre aux inscriptions',
     text: 'Approuver, refuser et retirer passent dans l’espace du club en local. Une réponse perdue ne crée pas de doublon. Six captures sont ajoutées.', flow: 'team-review' },
   { date: '2026-10-18', title: 'La préparation de l’essai est revue',

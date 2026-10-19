@@ -1,7 +1,7 @@
 export const blockers = [
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
-    text: 'Les 35 parcours locaux passent dans un précédent essai. Une mise à jour empêche le dernier essai de démarrer ; la préparation est revue.',
-    next: 'Vérifier le nouveau démarrage et reprendre l’ensemble, puis rejouer sur téléphone.', source: 'docs/release/evidence/local-team-enrollment-sdk-2026-10-18/build-before-pause-failure/README.md' },
+    text: 'Le réglage temporaire est retiré correctement. Le dernier essai s’arrête encore pendant la récupération des captures.',
+    next: 'Terminer l’essai complet, puis rejouer sur téléphone.', source: 'docs/release/evidence/disposable-installation-guard-2026-10-18/verified-2026-10-19/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },

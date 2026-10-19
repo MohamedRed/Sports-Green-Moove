@@ -3,11 +3,37 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { readInstallBlocked, setInstallBlocked, withTestApkInstallWindow } from '../scripts/qa/disposable-installations.mjs';
 import { installationGuardArguments } from '../scripts/qa/install-disposable-test-apks.mjs';
+import { validateDisposableInstallationReceipts } from '../scripts/qa/disposable-installation-evidence.mjs';
 import { playServicesVersionCommand } from '../scripts/qa/android-maps-prerequisites.mjs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+test('actual guard activation and administrator removal do not turn the interrupted replay into a pass', () => {
+  const base = 'docs/release/evidence/disposable-installation-guard-2026-10-18/verified-2026-10-19/';
+  const json = (file) => JSON.parse(read(base + file));
+  const setup = json('disposable-device-setup.json'), locked = json('disposable-installations-verified.json');
+  const restored = json('disposable-store-restore.json');
+  assert.deepEqual(validateDisposableInstallationReceipts(setup, locked, restored),
+    { scope: 'disposable-installation-policy-only-not-flow-or-release-proof', status: 'passed' });
+  const hashes = json('artifact-sha256.json'); assert.equal(Object.keys(hashes).length, 9);
+  for (const [file, expected] of Object.entries(hashes))
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + base + file, import.meta.url))).digest('hex'), expected, file);
+  const suite = new XMLParser({ ignoreAttributes: false }).parse(read(base + 'ordinary-tests.xml')).testsuite;
+  assert.equal(Number(suite['@_tests']), 144); assert.equal(Number(suite['@_skipped']), 34);
+  assert.equal(Number(suite['@_failures']), 0); assert.equal(Number(suite['@_errors']), 0);
+  assert.deepEqual(json('native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 0, componentEvidence: 0, localReplay: 1 });
+  const primary = json('adb-pull-trip-consent-recovery.json');
+  assert.equal(primary.phase, 'trip-consent-recovery'); assert.equal(primary.status, 1); assert.equal(primary.completed, false);
+  const observations = json('adb-sync-trip-consent-recovery-diagnostics.json').observations;
+  for (const id of ['directory-stat', 'shell-listing', 'sync-listing'])
+    assert.match(observations.find((item) => item.id === id).stderr, /device offline/);
+  for (const patch of [{ verified: false }, { restored: false },
+    { installAdmin: { ...restored.installAdmin, authorizationRemoved: false } },
+    { observed: { ...restored.observed, locationEnabled: false } }])
+    assert.throws(() => validateDisposableInstallationReceipts(setup, locked, { ...restored, ...patch }));
+});
 function device(options = {}) {
   let blocked = options.blocked ?? true, version = '24.23.35';
   const calls = [];
