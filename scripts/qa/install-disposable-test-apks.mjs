@@ -2,8 +2,9 @@ import assert from 'node:assert/strict';
 import { resolve } from 'node:path';
 import { disposableAndroidShell } from './disposable-android-shell.mjs';
 import { withTestApkInstallWindow } from './disposable-installations.mjs';
-import { preparePinnedApks } from './preinstalled-disposable-apks.mjs';
+import { preparePinnedApks, usePreinstalledTestApks } from './preinstalled-disposable-apks.mjs';
 import { resetDisposableLocalApps } from './reset-disposable-local-apps.mjs';
+export { usePreinstalledTestApks };
 
 export const disposableTestRunner = 'be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner';
 export const disposableApkSourceFiles = ['scripts/qa/install-disposable-test-apks.mjs',
@@ -31,7 +32,7 @@ export function installDisposableTestApks({ adb, serial, android, run, env = pro
 
 export function prepareDisposableTestApks(options) {
   const env = options.env ?? process.env;
-  if (env.SGM_PREINSTALLED_TEST_APKS_RECEIPT !== undefined) return preparePinnedApks({ ...options, env });
+  if (usePreinstalledTestApks(env)) return preparePinnedApks({ ...options, env });
   resetDisposableLocalApps(options.adb, options.serial);
   installDisposableTestApks({ ...options, env });
   return { method: 'fresh-install-for-replay' };

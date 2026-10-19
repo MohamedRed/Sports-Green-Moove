@@ -18,6 +18,13 @@ export function requireFocusedDeviceApproval(env) {
     'SGM_BLOCK_TEST_PHONE_INSTALLS', 'SGM_TEST_PHONE_ADMIN_APPROVED']) assert.equal(env[key], 'true', key);
   assert(focusedCases.includes(env.SGM_FOCUSED_UI_CASE), 'Select exactly one approved focused case');
 }
+export function usePreinstalledTestApks(env = process.env) {
+  if (env.SGM_FOCUSED_UI_CASE === undefined && env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) return false;
+  requireFocusedDeviceApproval(env);
+  assert(env.SGM_PREINSTALLED_TEST_APKS_RECEIPT && isAbsolute(env.SGM_PREINSTALLED_TEST_APKS_RECEIPT),
+    'A focused case requires its absolute preinstalled-device receipt; legacy installation is forbidden');
+  return true;
+}
 export function pinnedApkHashes(android) {
   return Object.fromEntries(Object.entries(pinnedPackages).map(([name, path]) => [name,
     createHash('sha256').update(readFileSync(resolve(android, 'app/build/outputs', path))).digest('hex')]));

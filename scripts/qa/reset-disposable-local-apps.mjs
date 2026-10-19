@@ -12,9 +12,13 @@ export function resetDisposableLocalApps(adb, serial, execute = execFileSync) {
     assert(match, 'Only the two explicitly disposable local packages may be reset');
     return match[1];
   }));
-  for (const name of allowed.filter((name) => installed.has(name))) {
-    assert.equal(execute(adb, ['-s', serial, 'uninstall', name], options).trim(), 'Success', 'Disposable reset must be confirmed');
-  }
-  assert.equal(execute(adb, ['-s', serial, 'shell', 'pm', 'list', 'packages', '--user', '0', 'be.sportgreenmoove.app.local'], options).trim(), '',
-    'Both disposable local packages must be absent after cleanup');
+  const errors = [];
+  for (const name of allowed.filter((name) => installed.has(name)))
+    try { assert.equal(execute(adb, ['-s', serial, 'uninstall', name], options).trim(), 'Success', 'Disposable reset must be confirmed'); }
+    catch (failure) { errors.push(failure); }
+  try {
+    assert.equal(execute(adb, ['-s', serial, 'shell', 'pm', 'list', 'packages', '--user', '0', 'be.sportgreenmoove.app.local'], options).trim(), '',
+      'Both disposable local packages must be absent after cleanup');
+  } catch (failure) { errors.push(failure); }
+  if (errors.length) throw new AggregateError(errors, 'Disposable local package cleanup failed; both removals attempted');
 }

@@ -90,7 +90,7 @@ test('all four dedicated jobs and cleanup remain mandatory under the existing re
 test('all four flows explicitly choose pinned APK preparation and still uninstall at completion', () => {
   for (const phase of focusedCases) {
     const source = read(`scripts/qa/local-${phase}-ui.mjs`);
-    assert(source.includes('if (process.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) {'));
+    assert(source.includes('if (!usePreinstalledTestApks()) {'));
     assert(source.includes('apkPreparation = prepareDisposableTestApks({ adb, serial, android, run })'));
     assert.equal(source.split('resetDisposableLocalApps(adb, serial)').length - 1, 1);
     assert(source.includes('...disposableApkSourceFiles')); assert(source.includes('localPackagesRemoved: true'));

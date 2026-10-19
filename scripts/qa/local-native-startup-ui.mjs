@@ -10,7 +10,7 @@ import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
 import { auth, document } from './local-flow-client.mjs';
 import { seedRideObservationFixture, verifyReadOnlyRideFixtureIsolation } from './local-ride-observation-fixture.mjs';
 import { resetDisposableLocalApps } from './reset-disposable-local-apps.mjs';
-import { prepareDisposableTestApks, installationGuardArguments, disposableTestRunner, disposableApkSourceFiles } from './install-disposable-test-apks.mjs';
+import { prepareDisposableTestApks, usePreinstalledTestApks, installationGuardArguments, disposableTestRunner, disposableApkSourceFiles } from './install-disposable-test-apks.mjs';
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
@@ -26,7 +26,7 @@ mkdirSync(directory, { recursive: true });
 let session, fixture, marker, transcript, failure, originalMockMode, isolation, apkPreparation;
 try {
   session = await seedLocalUiFixtures(); fixture = await seedRideObservationFixture();
-  if (process.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) {
+  if (!usePreinstalledTestApks()) {
     const build = await execute(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
       '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2'], { env: process.env, cwd: root, timeout: 20 * 60_000, maxBuffer: 4 * 1024 * 1024 });
     process.stdout.write(build.stdout); process.stderr.write(build.stderr);

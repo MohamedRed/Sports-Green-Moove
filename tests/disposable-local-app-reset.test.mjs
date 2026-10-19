@@ -44,3 +44,13 @@ test('unknown packages, physical devices and unsuccessful removals stop the tria
     run(output, settings, (f) => assert.throws(() => resetDisposableLocalApps('adb', 'emulator-5572', f.execute)));
   }
 });
+test('failure to remove the first package cannot skip the second removal or final inventory', () => {
+  run('package:be.sportgreenmoove.app.local\npackage:be.sportgreenmoove.app.local.test\n', { result: 'Failure' }, (f) => {
+    assert.throws(() => resetDisposableLocalApps('adb', 'emulator-5572', f.execute), (error) => {
+      assert(error instanceof AggregateError); assert.equal(error.errors.length, 3); return true;
+    });
+    assert.deepEqual(f.commands.filter((args) => args[2] === 'uninstall').map((args) => args[3]),
+      ['be.sportgreenmoove.app.local.test', 'be.sportgreenmoove.app.local']);
+    assert.equal(f.commands.filter((args) => args.includes('packages')).length, 2);
+  });
+});

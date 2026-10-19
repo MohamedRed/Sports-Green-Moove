@@ -7,6 +7,7 @@ import { prepareContinuousDevice, restoreContinuousDevice } from '../scripts/qa/
 import { assertContinuousDevice, assertPinnedApks, pinnedApkHashes, pinnedPackages,
   preparePinnedApks } from '../scripts/qa/preinstalled-disposable-apks.mjs';
 import { pauseDisposableStore } from '../scripts/qa/disposable-store-pause.mjs';
+import { prepareDisposableTestApks, usePreinstalledTestApks } from '../scripts/qa/install-disposable-test-apks.mjs';
 import { continuousFixture, approvalKeys, assertNoGuardedInstallOrUnlock } from './fixtures/continuous-disposable-device.mjs';
 
 const scope = 'single-case-continuous-installation-guard-not-flow-proof';
@@ -15,6 +16,17 @@ const consume = (f, env = f.env) => preparePinnedApks({ android: f.android, seri
 const clearCount = (f) => f.events.filter(({ command }) => command.startsWith('pm clear ')).length;
 const restore = (f, receipt) => restoreContinuousDevice(f.device, receipt, f.execute, f.deps);
 const caught = (action) => { let error; try { action(); } catch (failure) { error = failure; } assert(error); return error; };
+
+test('focused dispatch never selects legacy installation when its receipt or approval is lost', (t) => {
+  const f = continuousFixture(t);
+  assert.equal(usePreinstalledTestApks({}), false); assert.equal(usePreinstalledTestApks(f.env), true);
+  for (const env of [{ ...f.env, SGM_PREINSTALLED_TEST_APKS_RECEIPT: undefined },
+    { ...f.env, SGM_FOCUSED_UI_CASE: undefined }, { ...f.env, SGM_TEST_PHONE_ADMIN_APPROVED: undefined },
+    { ...f.env, SGM_PREINSTALLED_TEST_APKS_RECEIPT: '' }]) {
+    assert.throws(() => prepareDisposableTestApks({ env, device: f.device }), { code: 'ERR_ASSERTION' });
+  }
+  assert.equal(f.events.length, 0);
+});
 
 test('setup pins both actual APK byte hashes and activates the guard only after both installs', (t) => {
   const f = continuousFixture(t), receipt = f.prepareAndSave();
