@@ -2,16 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { resetDisposableLocalApps } from '../scripts/qa/reset-disposable-local-apps.mjs';
 
-function fixture(output, { qemu = '1', result = 'Success' } = {}) {
+function fixture(output, { qemu = '1', result = 'Success', removalEffective = true } = {}) {
   const commands = [];
+  const installed = new Set(output.trim().split('\n').filter(Boolean));
   const execute = (_command, args) => {
     commands.push(args);
     const key = args.slice(2).join(' ');
     if (key === 'wait-for-device') return '';
     if (key === 'get-state') return 'device';
     if (key === 'shell getprop ro.kernel.qemu') return qemu;
-    if (key.startsWith('shell pm list packages')) return output;
-    if (key.startsWith('uninstall ')) return result;
+    if (key.startsWith('shell pm list packages')) return [...installed].join('\n');
+    if (key.startsWith('uninstall ')) {
+      if (result === 'Success' && removalEffective) installed.delete('package:' + args[3]);
+      return result;
+    }
     throw Error('Unexpected command ' + key);
   };
   return { commands, execute };
@@ -31,11 +35,12 @@ test('a new independent trial explicitly removes only its two local packages bef
   });
 });
 test('a fresh device does not fabricate an uninstall or change unrelated settings', () => {
-  run('', {}, (f) => { resetDisposableLocalApps('adb', 'emulator-5572', f.execute); assert.equal(f.commands.length, 4); });
+  run('', {}, (f) => { resetDisposableLocalApps('adb', 'emulator-5572', f.execute); assert.equal(f.commands.length, 5); });
 });
 test('unknown packages, physical devices and unsuccessful removals stop the trial', () => {
   for (const [output, settings] of [['package:be.sportgreenmoove.app.local.other', {}], ['', { qemu: '0' }],
-    ['package:be.sportgreenmoove.app.local', { result: 'Failure' }]]) {
+    ['package:be.sportgreenmoove.app.local', { result: 'Failure' }],
+    ['package:be.sportgreenmoove.app.local', { removalEffective: false }]]) {
     run(output, settings, (f) => assert.throws(() => resetDisposableLocalApps('adb', 'emulator-5572', f.execute)));
   }
 });

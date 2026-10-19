@@ -10,7 +10,7 @@ import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
 import { auth, document } from './local-flow-client.mjs';
 import { seedRideObservationFixture, verifyReadOnlyRideFixtureIsolation } from './local-ride-observation-fixture.mjs';
 import { resetDisposableLocalApps } from './reset-disposable-local-apps.mjs';
-import { installDisposableTestApks, installationGuardArguments, disposableTestRunner } from './install-disposable-test-apks.mjs';
+import { prepareDisposableTestApks, installationGuardArguments, disposableTestRunner, disposableApkSourceFiles } from './install-disposable-test-apks.mjs';
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
@@ -23,13 +23,15 @@ const execute = promisify(execFile), directory = process.env.SGM_LOCAL_UI_OUTPUT
 const run = (cmd, args) => execFileSync(cmd, args, { cwd: root, env: process.env, stdio: 'inherit', timeout: 120_000 });
 const shell = (...args) => execFileSync(adb, ['-s', serial, 'shell', ...args], { encoding: 'utf8', timeout: 30_000 });
 mkdirSync(directory, { recursive: true });
-let session, fixture, marker, transcript, failure, originalMockMode, isolation;
+let session, fixture, marker, transcript, failure, originalMockMode, isolation, apkPreparation;
 try {
   session = await seedLocalUiFixtures(); fixture = await seedRideObservationFixture();
-  const build = await execute(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
-    '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2'], { env: process.env, cwd: root, timeout: 20 * 60_000, maxBuffer: 4 * 1024 * 1024 });
-  process.stdout.write(build.stdout); process.stderr.write(build.stderr);
-  resetDisposableLocalApps(adb, serial); installDisposableTestApks({ adb, serial, android, run });
+  if (process.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) {
+    const build = await execute(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
+      '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2'], { env: process.env, cwd: root, timeout: 20 * 60_000, maxBuffer: 4 * 1024 * 1024 });
+    process.stdout.write(build.stdout); process.stderr.write(build.stderr);
+  }
+  apkPreparation = prepareDisposableTestApks({ adb, serial, android, run });
   run(process.execPath, [resolve(import.meta.dirname, 'install-local-ui-session.mjs'), serial, process.env.SGM_LOCAL_UI_SESSION_FILE]);
   for (const permission of ['ACCESS_COARSE_LOCATION', 'ACCESS_FINE_LOCATION', 'ACCESS_BACKGROUND_LOCATION', 'POST_NOTIFICATIONS'])
     shell('pm', 'grant', 'be.sportgreenmoove.app.local', `android.permission.${permission}`);
@@ -74,7 +76,7 @@ catch (error) { failure = failure ? new AggregateError([failure, error], 'Trial 
 try { resetDisposableLocalApps(adb, serial); }
 catch (error) { failure = failure ? new AggregateError([failure, error], 'Trial and local package cleanup failed') : error; }
 if (failure) throw failure;
-const paths = ['scripts/qa/local-native-startup-ui.mjs', 'scripts/qa/run-local-native-startup-ui.mjs', 'scripts/qa/run-isolated-ride-ui.mjs',
+const paths = [...disposableApkSourceFiles, 'scripts/qa/local-native-startup-ui.mjs', 'scripts/qa/run-local-native-startup-ui.mjs', 'scripts/qa/run-isolated-ride-ui.mjs',
   'scripts/qa/local-emulator-lifecycle.mjs', 'scripts/qa/isolated-ride-records.mjs',
   'scripts/qa/local-ride-observation-fixture.mjs', 'scripts/qa/local-mock-location-permission.mjs', 'functions/src/lib/liveTrips.ts',
   'functions/src/domain/liveLocationOrder.ts', 'functions/src/callables/locations.ts',
@@ -85,7 +87,7 @@ paths.push('android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideResume
   ...['FirebaseAndroidRuntime.kt', 'FirebaseAndroidRideObservationGateway.kt', 'NativeTrackingAuthorization.kt']
     .map((file) => 'android/app/src/main/java/be/sportgreenmoove/app/services/' + file));
 writeFileSync(resolve(directory, 'native-startup-app-results.json'), JSON.stringify({ ...marker, testedAt: new Date().toISOString(),
-  testCount: 1, nativeCaseCount: 1, steps: [{ id: 'native-tracking-startup', status: 'passed' }], nativeUiExecuted: true,
+  testCount: 1, nativeCaseCount: 1, steps: [{ id: 'native-tracking-startup', status: 'passed' }], nativeUiExecuted: true, apkPreparation,
   primaryEvidencePhase: 'native-startup', transcriptSha256: createHash('sha256').update(transcript).digest('hex'),
   cleanupMode: 'destroy-owned-local-environment',
   mockPermissionRestored: true, adminClientClosed: true, localPackagesRemoved: true,

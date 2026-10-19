@@ -15,4 +15,6 @@ export function resetDisposableLocalApps(adb, serial, execute = execFileSync) {
   for (const name of allowed.filter((name) => installed.has(name))) {
     assert.equal(execute(adb, ['-s', serial, 'uninstall', name], options).trim(), 'Success', 'Disposable reset must be confirmed');
   }
+  assert.equal(execute(adb, ['-s', serial, 'shell', 'pm', 'list', 'packages', '--user', '0', 'be.sportgreenmoove.app.local'], options).trim(), '',
+    'Both disposable local packages must be absent after cleanup');
 }

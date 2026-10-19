@@ -8,7 +8,7 @@ import { deleteApp, getApp } from 'firebase-admin/app';
 import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
 import { seedRideObservationFixture, verifyRideObservationFixture, cleanupRideObservationFixture } from './local-ride-observation-fixture.mjs';
-import { installDisposableTestApks, installationGuardArguments, disposableTestRunner } from './install-disposable-test-apks.mjs';
+import { prepareDisposableTestApks, installationGuardArguments, disposableTestRunner, disposableApkSourceFiles } from './install-disposable-test-apks.mjs';
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { resetDisposableLocalApps } from './reset-disposable-local-apps.mjs';
@@ -20,15 +20,16 @@ const execute = promisify(execFile);
 const run = (cmd, args) => execFileSync(cmd, args, { cwd: root, env: process.env, stdio: 'inherit', timeout: 20 * 60_000 });
 const directory = process.env.SGM_LOCAL_UI_OUTPUT;
 mkdirSync(directory, { recursive: true });
-let session, fixture, failure, marker, stored, transcript;
+let session, fixture, failure, marker, stored, transcript, apkPreparation;
 try {
   session = await seedLocalUiFixtures();
   fixture = await seedRideObservationFixture();
-  const build = await execute(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest', '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2'],
-    { env: process.env, cwd: root, timeout: 20 * 60_000, maxBuffer: 4 * 1024 * 1024 });
-  process.stdout.write(build.stdout); process.stderr.write(build.stderr);
-  resetDisposableLocalApps(adb, serial);
-  installDisposableTestApks({ adb, serial, android, run });
+  if (process.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) {
+    const build = await execute(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest', '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2'],
+      { env: process.env, cwd: root, timeout: 20 * 60_000, maxBuffer: 4 * 1024 * 1024 });
+    process.stdout.write(build.stdout); process.stderr.write(build.stderr);
+  }
+  apkPreparation = prepareDisposableTestApks({ adb, serial, android, run });
   run(process.execPath, [resolve(import.meta.dirname, 'install-local-ui-session.mjs'), serial, process.env.SGM_LOCAL_UI_SESSION_FILE]);
   ({ stdout: transcript } = await execute(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '240000',
     ...installationGuardArguments(), '-e', 'class', 'be.sportgreenmoove.app.ui.LocalRideObservationFlowTest',
@@ -68,9 +69,13 @@ try {
 try {
   if (fixture) await cleanupRideObservationFixture(fixture);
 } catch (error) { failure = failure ? new AggregateError([failure, error], 'Ride observation replay and cleanup failed') : error; }
-finally { await deleteApp(getApp()); }
+try { await deleteApp(getApp()); }
+catch (error) { failure = failure ? new AggregateError([failure, error], 'Ride observation and admin shutdown failed') : error; }
+try { resetDisposableLocalApps(adb, serial); }
+catch (error) { failure = failure ? new AggregateError([failure, error], 'Ride observation and package cleanup failed') : error; }
 if (failure) throw failure;
-const paths = ['scripts/qa/local-ride-observation-ui.mjs', 'scripts/qa/local-ride-observation-fixture.mjs',
+const paths = [...disposableApkSourceFiles, 'scripts/qa/run-local-ride-observation-ui.mjs',
+  'scripts/qa/local-ride-observation-ui.mjs', 'scripts/qa/local-ride-observation-fixture.mjs',
   'functions/src/callables/rides.ts', 'functions/src/lib/activeRideLookup.ts', 'functions/src/lib/clientTrips.ts',
   ...['data/RideObservation.kt', 'services/FirebaseAndroidRideObservationGateway.kt', 'services/RideObservationWire.kt',
     'ui/ActiveRideObservationState.kt', 'ui/ActiveRideObservationEffect.kt', 'ui/AppDataState.kt', 'ui/SportsGreenMooveApp.kt',
@@ -83,7 +88,7 @@ writeFileSync(resolve(directory, 'ride-observation-results.json'), JSON.stringif
   screenshots: marker.screenshots, staleWaitElapsedMs: marker.staleWaitElapsedMs, stored,
   transcriptSha256: createHash('sha256').update(transcript).digest('hex'), primaryEvidencePhase: 'ride-observation',
   fixture: Object.fromEntries(['tripId', 'bookingId', 'rideSessionId', 'childId'].map((key) => [key, fixture[key]])),
-  isolatedFixtureCleanupVerified: true, adminClientClosed: true,
+  isolatedFixtureCleanupVerified: true, adminClientClosed: true, localPackagesRemoved: true, apkPreparation,
   nativeUiExecuted: true, storeReviewAccepted: false, safetyAuditAccepted: false, realNetworkLossVerified: false,
   physicalDevice: false, productionWrites: false, mapMovementVerified: false, providerTrackingVerified: false,
   sourceFiles: Object.fromEntries(paths.map((file) => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]))

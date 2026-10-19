@@ -77,11 +77,8 @@ test('host verification checks identities, unchanged baseline, claims, old conta
 });
 test('the additional trial cannot hide any preceding command failure and is enforced by smoke and native checks', () => {
   const shell = read('scripts/run-focused-android-ui.sh');
-  assert(shell.includes('run-local-emergency-identity-ui.mjs'));
-  assert(shell.includes('if [[ "$emergency_identity_status" -ne 0 ]]; then exit "$emergency_identity_status"; fi'));
-  for (const name of ['observation', 'startup'])
-    assert(shell.includes(`if [[ "$${name}_status" -ne 0 ]]; then exit "$${name}_status"; fi`));
-  assert(shell.includes('exit "$remote_stop_status"'));
+  assert(shell.includes('emergency-identity|ride-observation|native-startup|remote-ride-stop'));
+  assert(shell.includes('run-local-$phase-ui.mjs')); assert(shell.includes('exit "$flow_status"'));
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml']) {
     const workflow = parseDocument(read('.github/workflows/' + name)).toJSON();
     for (const event of ['push', 'pull_request']) assert(workflow.on[event].paths.includes('tests/emergency-identity-ui.test.mjs'));

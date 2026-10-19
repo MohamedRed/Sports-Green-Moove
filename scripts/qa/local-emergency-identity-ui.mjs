@@ -9,7 +9,7 @@ import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
 import { prepareEmergencyIdentityFixture, recreateEmergencyIdentity, verifyEmergencyIdentityParent,
   verifyEmergencyIdentityStoredState } from './emergency-identity-fixture.mjs';
 import { resetDisposableLocalApps } from './reset-disposable-local-apps.mjs';
-import { installDisposableTestApks, installationGuardArguments, disposableTestRunner } from './install-disposable-test-apks.mjs';
+import { prepareDisposableTestApks, installationGuardArguments, disposableTestRunner, disposableApkSourceFiles } from './install-disposable-test-apks.mjs';
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
@@ -22,13 +22,15 @@ const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-too
 const execute = promisify(execFile), directory = process.env.SGM_LOCAL_UI_OUTPUT;
 const run = (cmd, args) => execFileSync(cmd, args, { cwd: root, env: process.env, stdio: 'inherit', timeout: 120_000 });
 mkdirSync(directory, { recursive: true });
-let session, fixture, marker, transcript, failure, isolation;
+let session, fixture, marker, transcript, failure, isolation, apkPreparation;
 try {
   session = await seedLocalUiFixtures(); fixture = await prepareEmergencyIdentityFixture();
-  const build = await execute(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
-    '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2'], { env: process.env, cwd: root, timeout: 20 * 60_000, maxBuffer: 4 * 1024 * 1024 });
-  process.stdout.write(build.stdout); process.stderr.write(build.stderr);
-  resetDisposableLocalApps(adb, serial); installDisposableTestApks({ adb, serial, android, run });
+  if (process.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) {
+    const build = await execute(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
+      '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2'], { env: process.env, cwd: root, timeout: 20 * 60_000, maxBuffer: 4 * 1024 * 1024 });
+    process.stdout.write(build.stdout); process.stderr.write(build.stderr);
+  }
+  apkPreparation = prepareDisposableTestApks({ adb, serial, android, run });
   run(process.execPath, [resolve(import.meta.dirname, 'install-local-ui-session.mjs'), serial, process.env.SGM_LOCAL_UI_SESSION_FILE]);
   transcript = await runEmergencyIdentityExchange({ adb, serial, runId: session.runId,
     args: ['shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '360000', ...installationGuardArguments(), '-e', 'class',
@@ -59,7 +61,7 @@ catch (error) { failure = failure ? new AggregateError([failure, error], 'Trial 
 try { resetDisposableLocalApps(adb, serial); }
 catch (error) { failure = failure ? new AggregateError([failure, error], 'Trial and local package cleanup failed') : error; }
 if (failure) throw failure;
-const paths = ['scripts/qa/local-emergency-identity-ui.mjs', 'scripts/qa/run-local-emergency-identity-ui.mjs',
+const paths = [...disposableApkSourceFiles, 'scripts/qa/local-emergency-identity-ui.mjs', 'scripts/qa/run-local-emergency-identity-ui.mjs',
   'scripts/qa/run-isolated-ride-ui.mjs', 'scripts/qa/emergency-identity-fixture.mjs', 'scripts/qa/emergency-identity-exchange.mjs',
   'scripts/qa/emergency-identity-profile-isolation.mjs', 'functions/src/callables/adminUsers.ts',
   'scripts/qa/emergency-identity-ui-evidence.mjs', 'scripts/qa/local-emergency-native-fixture.mjs',
@@ -69,7 +71,7 @@ const paths = ['scripts/qa/local-emergency-identity-ui.mjs', 'scripts/qa/run-loc
     .map((file) => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
   ...['LocalEmergencyIdentityFlowTest.kt', 'LocalComposeRule.kt'].map((file) => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 writeFileSync(resolve(directory, 'emergency-identity-app-results.json'), JSON.stringify({ ...marker, testedAt: new Date().toISOString(),
-  testCount: 1, nativeCaseCount: 1, steps: [{ id: 'recreated-child-emergency-contact-ui', status: 'passed' }], nativeUiExecuted: true,
+  testCount: 1, nativeCaseCount: 1, steps: [{ id: 'recreated-child-emergency-contact-ui', status: 'passed' }], nativeUiExecuted: true, apkPreparation,
   primaryEvidencePhase: 'emergency-identity', transcriptSha256: createHash('sha256').update(transcript).digest('hex'),
   cleanupMode: 'destroy-owned-local-environment', adminClientClosed: true, localPackagesRemoved: true, fixtureIsolation: isolation,
   productionWrites: false, safetyAuditAccepted: false, storeReviewAccepted: false, childOwnAccountDialImplemented: false,

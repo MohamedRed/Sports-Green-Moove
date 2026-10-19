@@ -36,9 +36,8 @@ test('native startup proof requires its original case, primary copy and complete
   assert(owner.indexOf('if (failure) throw failure') < owner.indexOf('`${name}-results.json`'));
   assert(!replay.includes('process.exit('));
   const suite = text('scripts/run-focused-android-ui.sh');
-  assert(suite.indexOf('run-local-ride-observation-ui.mjs') < suite.indexOf('run-local-native-startup-ui.mjs'));
-  assert(suite.includes('if [[ "$observation_status" -ne 0 ]]; then exit "$observation_status"; fi'));
-  assert(suite.includes('if [[ "$startup_status" -ne 0 ]]; then exit "$startup_status"; fi'));
+  assert(suite.includes('emergency-identity|ride-observation|native-startup|remote-ride-stop'));
+  assert(suite.includes('run-local-$phase-ui.mjs')); assert(suite.includes('exit "$flow_status"'));
 });
 test('the synthetic sensor keeps one capture identity and must stop without suppressing errors', () => {
   const feed = text('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocationFeed.kt');

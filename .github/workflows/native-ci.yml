@@ -34,6 +34,8 @@ on:
       - ".github/workflows/native-focused-ui.yml"
       - "scripts/run-focused-android-ui.sh"
       - "tests/native-focused-runner.test.mjs"
+      - "tests/continuous-disposable-device.test.mjs"
+      - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
       - "tests/vehicle-map-display.test.mjs"
       - "tests/vehicle-map-retained-evidence.test.mjs"
@@ -126,6 +128,8 @@ on:
       - ".github/workflows/native-focused-ui.yml"
       - "scripts/run-focused-android-ui.sh"
       - "tests/native-focused-runner.test.mjs"
+      - "tests/continuous-disposable-device.test.mjs"
+      - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
       - "tests/vehicle-map-display.test.mjs"
       - "tests/vehicle-map-retained-evidence.test.mjs"
@@ -252,7 +256,7 @@ jobs:
         run: node --test tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs
 
       - name: Validate initial network observation before test-only transport requests
-        run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs
+        run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs tests/continuous-disposable-device.test.mjs
 
   android-native-unit:
     name: Android native unit tests

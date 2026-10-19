@@ -38,12 +38,10 @@ test('no positive report survives failed instrumentation, isolation, mock restor
   assert(owner.indexOf('runtime.cleanup()') < owner.indexOf('`${name}-results.json`'));
   assert(owner.indexOf('if (failure) throw failure') < owner.indexOf('`${name}-results.json`'));
 });
-test('the full suite retains every previous failure and executes the new case last', () => {
+test('remote stop has a dedicated case without replacing preceding independent cases', () => {
   const suite = text('scripts/run-focused-android-ui.sh');
-  assert(suite.indexOf('run-local-native-startup-ui.mjs') < suite.indexOf('run-local-remote-ride-stop-ui.mjs'));
-  for (const name of ['emergency_identity', 'observation', 'startup'])
-    assert(suite.includes(`if [[ "$${name}_status" -ne 0 ]]; then exit "$${name}_status"; fi`));
-  assert(suite.includes('exit "$remote_stop_status"'));
+  assert(suite.includes('emergency-identity|ride-observation|native-startup|remote-ride-stop'));
+  assert(suite.includes('run-local-$phase-ui.mjs')); assert(suite.includes('exit "$flow_status"'));
   const workflow = parseDocument(text('.github/workflows/web-integration-smoke.yml')).toJSON();
   for (const trigger of ['push', 'pull_request']) assert(workflow.on[trigger].paths.includes('tests/remote-ride-stop-contract.test.mjs'));
   assert(workflow.jobs.smoke.steps.some((step) => step.run?.includes('tests/remote-ride-stop-contract.test.mjs')));

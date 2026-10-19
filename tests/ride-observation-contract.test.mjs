@@ -65,8 +65,8 @@ test('the independent native replay cannot replace the original full suite or tu
   assert(suite.includes('run-local-android-flows.mjs'));
   assert(suite.includes('exit "$replay_status"'));
   const focused = text('scripts/run-focused-android-ui.sh');
-  assert(focused.includes('run-local-ride-observation-ui.mjs'));
-  assert(focused.includes('if [[ "$observation_status" -ne 0 ]]; then exit "$observation_status"; fi'));
+  assert(focused.includes('emergency-identity|ride-observation|native-startup|remote-ride-stop'));
+  assert(focused.includes('run-local-$phase-ui.mjs')); assert(focused.includes('exit "$flow_status"'));
   const host = text('scripts/qa/local-ride-observation-ui.mjs');
   for (const fragment of ['assertInstrumentationPassed(transcript, 1)', "phase: 'ride-observation'", 'verifyRideObservationFixture',
     'cleanupRideObservationFixture', 'resetDisposableLocalApps', 'parentSignedOut']) assert(host.includes(fragment));

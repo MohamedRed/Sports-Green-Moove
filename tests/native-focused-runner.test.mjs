@@ -5,85 +5,98 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { parseDocument } from 'yaml';
+import { focusedCases } from '../scripts/qa/preinstalled-disposable-apks.mjs';
 
-const phases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop'];
-function run(t, overrides = {}) {
+const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+function run(t, phase, overrides = {}) {
   const root = mkdtempSync(join(tmpdir(), 'sgm-focused-status-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   for (const dir of ['scripts', 'bin']) mkdirSync(join(root, dir));
   cpSync(new URL('../scripts/run-focused-android-ui.sh', import.meta.url), join(root, 'scripts/run.sh'));
   const commands = [
-    '*configure-disposable-android.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;',
-    '*activate-disposable-installations.mjs) echo activate >> "$CALL_LOG"; echo "{}"; exit "$ACTIVATE_STATUS";;',
-    '*restore-disposable-store.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;',
-    ...phases.map((phase, i) => `*run-local-${phase}-ui.mjs) echo ${phase} >> "$CALL_LOG"; exit "$FLOW_${i}";;`),
+    '*configure-continuous-disposable.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;',
+    '*restore-continuous-disposable.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;',
+    ...focusedCases.map((name) => `*run-local-${name}-ui.mjs) test -f "$SGM_PREINSTALLED_TEST_APKS_RECEIPT" || exit 97; test "$SGM_FOCUSED_UI_CASE" = ${name} || exit 98; echo ${name} >> "$CALL_LOG"; exit "$FLOW_STATUS";;`),
   ];
   writeFileSync(join(root, 'bin/node'), '#!/bin/bash\ncase "$1" in\n' + commands.join('\n') + '\n*) exit 99;;\nesac\n', { mode: 0o700 });
   const log = join(root, 'calls');
-  const result = spawnSync('bash', [join(root, 'scripts/run.sh')], { encoding: 'utf8', env: { ...process.env,
-    PATH: join(root, 'bin') + ':' + process.env.PATH, CALL_LOG: log,
-    SETUP_STATUS: '0', ACTIVATE_STATUS: '0', RESTORE_STATUS: '0', FLOW_0: '0', FLOW_1: '0', FLOW_2: '0', FLOW_3: '0', ...overrides } });
+  const result = spawnSync('bash', [join(root, 'scripts/run.sh'), ...(phase == null ? [] : [phase])], {
+    encoding: 'utf8', env: { ...process.env, PATH: join(root, 'bin') + ':' + process.env.PATH,
+      CALL_LOG: log, SETUP_STATUS: '0', RESTORE_STATUS: '0', FLOW_STATUS: '0', ...overrides },
+  });
   assert.equal(result.error, undefined);
-  const output = join(root, 'android/app/build/outputs/focused-safety-ui');
-  return { ...result, calls: readFileSync(log, 'utf8').trim().split('\n'), statuses: phases.map((phase) => {
-    const name = phase === 'ride-observation' ? 'ride-observation' : phase;
-    const path = join(output, name + '-suite-status.json');
-    return existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')).status : null;
-  }) };
+  const output = join(root, 'android/app/build/outputs/focused-safety-ui', phase ?? '');
+  const path = join(output, phase + '-suite-status.json');
+  return { ...result, calls: existsSync(log) ? readFileSync(log, 'utf8').trim().split('\n') : [],
+    outcome: existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : null };
 }
-
-for (const [name, env, status, statuses] of [
-  ['all focused cases run', {}, 0, [0, 0, 0, 0]],
-  ['identity failure retains every later case', { FLOW_0: '41' }, 41, [41, 0, 0, 0]],
-  ['observation failure is required', { FLOW_1: '29' }, 29, [0, 29, 0, 0]],
-  ['startup failure is required', { FLOW_2: '31' }, 31, [0, 0, 31, 0]],
-  ['remote stop failure is required', { FLOW_3: '37' }, 37, [0, 0, 0, 37]],
-  ['observation and startup retain both outcomes', { FLOW_1: '29', FLOW_2: '31' }, 29, [0, 29, 31, 0]],
-  ['identity and startup retain both outcomes', { FLOW_0: '41', FLOW_2: '31' }, 41, [41, 0, 31, 0]],
-  ['identity and stop retain both outcomes', { FLOW_0: '41', FLOW_3: '37' }, 41, [41, 0, 0, 37]],
-  ['startup and stop retain both outcomes', { FLOW_2: '31', FLOW_3: '37' }, 31, [0, 0, 31, 37]],
-  ['all failures remain visible', { FLOW_0: '41', FLOW_1: '29', FLOW_2: '31', FLOW_3: '37' }, 41, [41, 29, 31, 37]],
-  ['restoration failure fails a passing suite', { RESTORE_STATUS: '13' }, 13, [0, 0, 0, 0]],
-  ['restoration cannot overwrite a scenario failure', { FLOW_1: '29', RESTORE_STATUS: '13' }, 29, [0, 29, 0, 0]],
-]) test(name, (t) => {
-  const result = run(t, env);
-  assert.equal(result.status, status, result.stderr);
-  assert.deepEqual(result.calls, ['setup', 'activate', ...phases, 'restore']);
-  assert.deepEqual(result.statuses, statuses);
+for (const phase of focusedCases) {
+  for (const [name, env, expected] of [
+    ['passes', {}, 0], ['retains its failure', { FLOW_STATUS: '41' }, 41],
+    ['requires cleanup', { RESTORE_STATUS: '13' }, 13],
+    ['retains failure when cleanup also fails', { FLOW_STATUS: '41', RESTORE_STATUS: '13' }, 41],
+  ]) test(phase + ' ' + name + ' on a dedicated phone', (t) => {
+    const result = run(t, phase, env);
+    assert.equal(result.status, expected, result.stderr);
+    assert.deepEqual(result.calls, ['setup', phase, 'restore']);
+    assert.deepEqual(result.outcome, { scope: phase + '-command-status-not-flow-verification', status: Number(env.FLOW_STATUS ?? 0) });
+  });
+}
+test('unsafe setup executes no flow and owns its rollback', (t) => {
+  const result = run(t, 'emergency-identity', { SETUP_STATUS: '3' });
+  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['setup']); assert.equal(result.outcome, null);
 });
-
-test('unsafe setup never executes the app', (t) => {
-  const result = run(t, { SETUP_STATUS: '3' });
-  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['setup']);
-  assert.deepEqual(result.statuses, [null, null, null, null]);
+test('missing, unknown or compound case selection changes no phone', (t) => {
+  for (const phase of [undefined, 'all', 'emergency-identity; echo unsafe']) {
+    const result = run(t, phase); assert.equal(result.status, 2); assert.deepEqual(result.calls, []);
+  }
 });
-test('failed activation restores the disposable phone without running flows', (t) => {
-  const result = run(t, { ACTIVATE_STATUS: '23' });
-  assert.equal(result.status, 23); assert.deepEqual(result.calls, ['setup', 'activate', 'restore']);
+test('every independent case remains scheduled when another case fails', (t) => {
+  const results = focusedCases.map((phase, index) => run(t, phase, { FLOW_STATUS: String(index === 0 ? 41 : 0) }));
+  assert.deepEqual(results.map((result) => result.status), [41, 0, 0, 0]);
+  assert.deepEqual(results.map((result) => result.calls), focusedCases.map((phase) => ['setup', phase, 'restore']));
 });
-
-test('the focused lane supplements the full matrix and is a required release check', () => {
-  const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+test('all four dedicated jobs and cleanup remain mandatory under the existing release gate', () => {
   const native = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   const focused = parseDocument(read('.github/workflows/native-focused-ui.yml')).toJSON();
   assert.equal(native.jobs['android-focused-safety-ui'].uses, './.github/workflows/native-focused-ui.yml');
   assert(Object.values(native.jobs).some((job) => job.steps?.some((step) => JSON.stringify(step).includes('run-android-ui-tests-and-collect-screenshots.sh'))));
-  const job = focused.jobs['focused-safety-ui'];
-  assert.equal(job.name, 'Isolated safety flows');
-  assert(job.steps.some((step) => step.with?.script === 'bash scripts/run-focused-android-ui.sh'));
-  assert(job.steps.some((step) => step.if === '${{ always() }}' && step.with?.name === 'android-focused-safety-ui-results'));
+  const job = focused.jobs['focused-case'], gate = focused.jobs['focused-safety-ui'];
+  assert.equal(job.strategy['fail-fast'], false); assert.deepEqual(job.strategy.matrix.case, focusedCases);
+  assert(job.steps.some((step) => step.with?.script === 'bash scripts/run-focused-android-ui.sh ${{ matrix.case }}'));
+  assert(job.steps.some((step) => step.if === '${{ always() }}' && step.with?.name === 'android-focused-safety-ui-${{ matrix.case }}'));
   const build = job.steps.findIndex((step) => step.name === 'Compile isolated app before starting the device');
   const device = job.steps.findIndex((step) => step.uses === 'reactivecircus/android-emulator-runner@v2');
-  assert(build >= 0 && build < device);
-  assert(job.steps[build].run.includes('-PSGM_USE_FIREBASE_EMULATOR=true'));
+  assert(build >= 0 && build < device); assert(job.steps[build].run.includes('-PSGM_USE_FIREBASE_EMULATOR=true'));
   for (const key of ['SGM_LOCAL_DISPOSABLE_EMULATOR', 'SGM_PAUSE_TEST_PHONE_STORE', 'SGM_BLOCK_TEST_PHONE_INSTALLS', 'SGM_TEST_PHONE_ADMIN_APPROVED'])
     assert.equal(job.steps[device].env[key], 'true');
+  assert.equal(gate.name, 'Isolated safety flows'); assert.equal(gate.if, '${{ always() }}'); assert.equal(gate.needs, 'focused-case');
+  assert.equal(gate.steps[0].env.FOCUSED_RESULT, '${{ needs.focused-case.result }}');
+  for (const result of ['success', 'failure', 'cancelled', 'skipped', '']) {
+    const status = spawnSync('bash', ['-c', gate.steps[0].run], { env: { ...process.env, FOCUSED_RESULT: result } }).status;
+    assert.equal(status, result === 'success' ? 0 : 1);
+  }
   assert(read('scripts/release-evidence-requirements.mjs').includes('Android focused safety UI tests / Isolated safety flows'));
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml']) {
     const workflow = parseDocument(read('.github/workflows/' + name)).toJSON();
     for (const trigger of ['push', 'pull_request'])
-      for (const path of ['scripts/run-focused-android-ui.sh', '.github/workflows/native-focused-ui.yml', 'tests/native-focused-runner.test.mjs'])
+      for (const path of ['scripts/run-focused-android-ui.sh', '.github/workflows/native-focused-ui.yml',
+        'tests/native-focused-runner.test.mjs', 'tests/continuous-disposable-device.test.mjs'])
         assert(workflow.on[trigger].paths.includes(path), name + ': ' + path);
-    assert(Object.values(workflow.jobs).some((job) => job.steps?.some((step) => step.run?.includes('tests/native-focused-runner.test.mjs'))));
+    for (const path of ['tests/native-focused-runner.test.mjs', 'tests/continuous-disposable-device.test.mjs'])
+      assert(Object.values(workflow.jobs).some((entry) => entry.steps?.some((step) => step.run?.includes(path))));
+  }
+});
+test('all four flows explicitly choose pinned APK preparation and still uninstall at completion', () => {
+  for (const phase of focusedCases) {
+    const source = read(`scripts/qa/local-${phase}-ui.mjs`);
+    assert(source.includes('if (process.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) {'));
+    assert(source.includes('apkPreparation = prepareDisposableTestApks({ adb, serial, android, run })'));
+    assert.equal(source.split('resetDisposableLocalApps(adb, serial)').length - 1, 1);
+    assert(source.includes('...disposableApkSourceFiles')); assert(source.includes('localPackagesRemoved: true'));
+  }
+  for (const file of ['run-isolated-ride-ui.mjs', 'run-local-ride-observation-ui.mjs']) {
+    const source = read('scripts/qa/' + file);
+    for (const key of ['SGM_PREINSTALLED_TEST_APKS_RECEIPT', 'SGM_FOCUSED_UI_CASE', 'SGM_TEST_PHONE_ADMIN_APPROVED']) assert(source.includes(key));
   }
 });

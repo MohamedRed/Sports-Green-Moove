@@ -34,6 +34,7 @@ function restoreStoppedState(shell, wasStopped) {
   shell(wasStopped ? 'am' : 'pm', wasStopped ? 'force-stop' : 'unstop', '--user', '0', store);
   assert.equal(stopped(shell), wasStopped, 'Store original stopped state was not restored');
 }
+export { stopped as readStoreStopped, restoreStoppedState as restoreStoreStopped };
 
 export function pauseDisposableStore(shell, { blockInstallations = false } = {}) {
   assert.equal(shell('getprop', 'ro.build.version.sdk'), '35', 'Store pause requires the approved Android 15 test image');

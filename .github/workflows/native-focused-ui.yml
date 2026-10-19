@@ -4,10 +4,14 @@ on:
   workflow_call:
 
 jobs:
-  focused-safety-ui:
-    name: Isolated safety flows
+  focused-case:
+    name: Isolated ${{ matrix.case }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        case: [emergency-identity, ride-observation, native-startup, remote-ride-stop]
     permissions:
       contents: read
     steps:
@@ -29,7 +33,7 @@ jobs:
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
-      - name: Run every focused isolated safety flow
+      - name: Run one isolated safety flow on its own phone
         uses: reactivecircus/android-emulator-runner@v2
         env:
           SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
@@ -41,13 +45,26 @@ jobs:
           target: google_apis_playstore
           arch: x86_64
           profile: pixel_6
-          script: bash scripts/run-focused-android-ui.sh
+          script: bash scripts/run-focused-android-ui.sh ${{ matrix.case }}
       - name: Retain focused outcomes and independent cleanup
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
         with:
-          name: android-focused-safety-ui-results
+          name: android-focused-safety-ui-${{ matrix.case }}
           path: |
             android/app/build/outputs/focused-safety-ui/**
             android/app/build/outputs/local-ui-evidence/**
           if-no-files-found: ignore
+  focused-safety-ui:
+    name: Isolated safety flows
+    if: ${{ always() }}
+    needs: focused-case
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Require every independent case and its cleanup to pass
+        env:
+          FOCUSED_RESULT: ${{ needs.focused-case.result }}
+        run: test "$FOCUSED_RESULT" = success

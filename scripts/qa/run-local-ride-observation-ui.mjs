@@ -24,5 +24,7 @@ try {
     assert.equal(process.env.SGM_PAUSE_TEST_PHONE_STORE, 'true');
     Object.assign(runtime.env, { SGM_BLOCK_TEST_PHONE_INSTALLS: 'true', SGM_PAUSE_TEST_PHONE_STORE: 'true' });
   }
+  for (const key of ['SGM_PREINSTALLED_TEST_APKS_RECEIPT', 'SGM_FOCUSED_UI_CASE', 'SGM_TEST_PHONE_ADMIN_APPROVED'])
+    if (process.env[key] !== undefined) runtime.env[key] = process.env[key];
   runEmulatorEntry(runtime, 'local-ride-observation-ui.mjs');
 } finally { runtime.cleanup(); }
