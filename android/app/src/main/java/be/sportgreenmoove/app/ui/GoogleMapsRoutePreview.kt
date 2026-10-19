@@ -112,8 +112,8 @@ internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true
         ) {
             FitRouteMapCamera(cameraState, points, anchors, viewport, paddingPixels) { loaded = it }
             if (showRoute) Polyline(points = points, color = SgmColor.Green, width = 10f)
-            Marker(state = MarkerState(position = start), title = "Départ")
-            Marker(state = MarkerState(position = end), title = "Arrivée")
+            Marker(state = MarkerState(position = start), title = "Départ", contentDescription = "Départ du trajet")
+            Marker(state = MarkerState(position = end), title = "Arrivée", contentDescription = "Arrivée du trajet")
             vehiclePoint?.let { VehicleMapMarker(it, vehicleStale) }
         }
     }

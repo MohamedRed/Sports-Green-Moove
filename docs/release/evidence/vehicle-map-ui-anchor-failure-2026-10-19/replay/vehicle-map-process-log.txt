@@ -1,0 +1,5 @@
+--------- beginning of system
+I/ActivityManager(  537): Start proc 5650:be.sportgreenmoove.app.local.test/u0a211 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+I/ActivityManager(  537): Force stopping be.sportgreenmoove.app.local appid=10210 user=0: finished inst
+E/ActivityManager(  537): Unable to freeze binder for 4879: -11
+I/ActivityManager(  537): Killing 4879:be.sportgreenmoove.app.local/u0a210 (adj 0): stop be.sportgreenmoove.app.local due to finished inst

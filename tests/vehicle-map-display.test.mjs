@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync, rmSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
@@ -79,5 +79,39 @@ test('native trial drives the actual app, separate authenticated peer and two na
   const capture = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/VehicleMarkerDisplayEvidence.kt');
   assert(capture.includes('instrumentation.uiAutomation.takeScreenshot()'));
   assert(capture.includes('screen.getPixel(x, y)')); assert(capture.includes('region.contains(marker)'));
-  assert(capture.includes('routeMarkerBounds(device, "Départ")'));
+  assert(capture.includes('routeMarkerBounds(device, "Départ du trajet")'));
+});
+test('both route markers expose explicit accessible names, independently from their info-window titles', () => {
+  const source = read('android/app/src/main/java/be/sportgreenmoove/app/ui/GoogleMapsRoutePreview.kt');
+  for (const [title, description] of [['Départ', 'Départ du trajet'], ['Arrivée', 'Arrivée du trajet']]) {
+    assert(source.includes(`title = "${title}", contentDescription = "${description}"`));
+  }
+  const capture = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/VehicleMarkerDisplayEvidence.kt');
+  assert(capture.includes('device.findObjects(By.desc(title))'));
+  assert(!capture.includes('By.descContains(title)'));
+  assert(capture.includes('check(markers.size == 1)'));
+  assert(capture.includes('region.contains(departure) && region.contains(arrival)'));
+  assert(capture.includes('.put("routeMarkerCounts", JSONObject()'));
+});
+test('the original accessible-anchor failure remains failed after the labels are corrected', () => {
+  const root = new URL('../docs/release/evidence/vehicle-map-ui-anchor-failure-2026-10-19/', import.meta.url);
+  const bytes = (file) => readFileSync(new URL(file, root));
+  const run = JSON.parse(bytes('run.json'));
+  assert.equal(run.databaseId, 39319579304);
+  assert.equal(run.headSha, '17960e930e5a3cf89270fe52bddd1a6fdefc6171');
+  assert.equal(run.conclusion, 'failure');
+  const transcript = bytes('replay/LocalVehicleMapFlowTest-instrumentation.txt').toString();
+  assert(transcript.includes('A single actual route anchor is required'));
+  assert(transcript.includes('Tests run: 1,  Failures: 1'));
+  assert.equal(JSON.parse(bytes('replay/local-vehicle-map-failure.json')).phase, 'first-point');
+  assert.equal(JSON.parse(bytes('disposable-installations-activated.json')).installationsBlocked, true);
+  const cleanup = JSON.parse(bytes('disposable-store-restore.json'));
+  assert.equal(cleanup.restored, true); assert.equal(cleanup.verified, true);
+  assert.deepEqual(cleanup.installAdmin, { authorizationRemoved: true, componentRemoved: true, originalPolicyRestored: true });
+  const before = bytes('GoogleMapsRoutePreview-before.kt').toString();
+  assert(before.includes('Marker(state = MarkerState(position = start), title = "Départ")'));
+  for (const file of ['replay/local-vehicle-map-device.json', 'replay/vehicle-map-app-results.json', 'replay/vehicle-map-results.json'])
+    assert.equal(existsSync(new URL(file, root)), false);
+  for (const [file, hash] of Object.entries(JSON.parse(bytes('artifact-sha256.json'))))
+    assert.equal(createHash('sha256').update(bytes(file)).digest('hex'), hash, file);
 });

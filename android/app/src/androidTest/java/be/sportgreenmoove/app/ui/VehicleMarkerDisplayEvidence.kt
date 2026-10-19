@@ -27,7 +27,13 @@ internal fun captureVehicleMapFailure(phase: String) {
     val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
     check(directory.isDirectory || directory.mkdirs())
     File(directory, "local-vehicle-map-failure.json").writeText(JSONObject()
-        .put("scope", "failed-map-trial-not-positive-evidence").put("phase", phase).toString(2))
+        .put("scope", "failed-map-trial-not-positive-evidence").put("phase", phase)
+        .put("routeMarkerCounts", JSONObject().apply {
+            val device = UiDevice.getInstance(instrumentation)
+            for (label in listOf("Départ du trajet", "Arrivée du trajet")) {
+                put(label, device.findObjects(By.desc(label)).size)
+            }
+        }).toString(2))
     val screen = checkNotNull(instrumentation.uiAutomation.takeScreenshot())
     try {
         File(directory, "local-vehicle-map-failed.png").outputStream().use {
@@ -37,8 +43,8 @@ internal fun captureVehicleMapFailure(phase: String) {
 }
 
 private fun routeMarkerBounds(device: UiDevice, title: String): Rect {
-    val markers = device.findObjects(By.descContains(title))
-    check(markers.size == 1) { "A single actual route anchor is required" }
+    val markers = device.findObjects(By.desc(title))
+    check(markers.size == 1) { "Expected one route anchor named $title, found ${markers.size}" }
     return markers.single().visibleBounds.also { check(it.width() in 12..200 && it.height() in 12..240) }
 }
 
@@ -53,7 +59,8 @@ internal fun captureVehicleMarkerDisplay(compose: ComposeTestRule, device: UiDev
         ceil(bounds.right).toInt() + location[0], ceil(bounds.bottom).toInt() + location[1])
     val marker = checkNotNull(vehicleMarkerBounds(device)) { "The actual SDK vehicle marker is required" }
     check(region.contains(marker)) { "The whole vehicle marker must fit inside the visible map" }
-    val departure = routeMarkerBounds(device, "Départ"); val arrival = routeMarkerBounds(device, "Arrivée")
+    val departure = routeMarkerBounds(device, "Départ du trajet")
+    val arrival = routeMarkerBounds(device, "Arrivée du trajet")
     check(region.contains(departure) && region.contains(arrival)) { "The route anchors must remain visible" }
     val instrumentation = InstrumentationRegistry.getInstrumentation()
     val screen = checkNotNull(instrumentation.uiAutomation.takeScreenshot())
