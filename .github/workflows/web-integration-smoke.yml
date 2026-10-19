@@ -11,6 +11,7 @@ on:
       - "tests/team-phone-evidence.test.mjs"
       - "tests/proxy-trust-security.test.mjs"
       - "tests/native-network-precondition-evidence.test.mjs"
+      - "tests/native-matrix-36-evidence.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt"
       - "tests/membership-cursor-contract.test.mjs"
@@ -190,6 +191,7 @@ on:
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
       - "tests/dual-transport-config.test.mjs"
+      - "tests/network-start-observation.test.mjs"
       - "tests/dual-transport-evidence.test.mjs"
       - "tests/dual-transport-completed-evidence.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
@@ -258,6 +260,7 @@ on:
       - "tests/team-phone-evidence.test.mjs"
       - "tests/proxy-trust-security.test.mjs"
       - "tests/native-network-precondition-evidence.test.mjs"
+      - "tests/native-matrix-36-evidence.test.mjs"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt"
       - "tests/membership-cursor-contract.test.mjs"
@@ -437,6 +440,7 @@ on:
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
       - "tests/dual-transport-config.test.mjs"
+      - "tests/network-start-observation.test.mjs"
       - "tests/dual-transport-evidence.test.mjs"
       - "tests/dual-transport-completed-evidence.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
@@ -576,8 +580,11 @@ jobs:
       - name: Test runtime proxy trust against forwarded-address spoofing
         run: node --test tests/proxy-trust-security.test.mjs
 
-      - name: Validate failed network preparation evidence and temporary administration cleanup
-        run: node --test tests/native-network-precondition-evidence.test.mjs
+      - name: Validate network run evidence and temporary administration cleanup
+        run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs
+
+      - name: Validate initial network observation before test-only transport requests
+        run: node --test tests/network-start-observation.test.mjs
 
       - name: Validate guardian verification contracts and retained scope
         run: node --test tests/guardian-verification-contract.test.mjs

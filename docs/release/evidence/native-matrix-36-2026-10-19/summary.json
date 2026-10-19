@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "888f618ed71c8b1b061f069a9eb4168aaf7339c6",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39240865623",
+  "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+  "testedAt": "2026-10-19T11:23:00.125Z",
+  "scope": "completed-native-matrix-with-local-isolated-services-not-physical-release",
+  "sourceMatrixPassed": true,
+  "ordinaryExecuted": 110,
+  "ordinarySkipped": 34,
+  "localStepCount": 36,
+  "nativeCaseCount": 38,
+  "primaryTransferCount": 15,
+  "administrationRemoved": true,
+  "physicalDevice": false,
+  "livePayments": false,
+  "productionDeployed": false,
+  "newInitialObservationExecuted": false
+}

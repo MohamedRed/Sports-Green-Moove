@@ -64,7 +64,7 @@ test('network control refuses non-demo, non-local and non-disposable targets', (
 
 test('app replay requires actual unconfirmed send, retry and cross-account draft assertions', () => {
   const replay = native('LocalChatNetworkFlowTest');
-  assert.match(replay, /val control = LocalEmulatorNetwork\(context, device, session\)[\s\S]*control.use \{/);
+  assert.match(replay, /val control = LocalEmulatorNetwork\(context, device, session\) \{ initial ->[\s\S]*control.use \{/);
   assert.match(replay, /control.offline\(\)/);
   assert.match(replay, /assertFalse\(.*control.backendReachable\(\)\)/);
   assert.match(replay, /waitForText\("Envoi non confirmé\. Réessayez\."/);
@@ -159,7 +159,9 @@ test('cellular preparation is local-only, guarded, bounded and explicitly releas
   const control = native('LocalEmulatorNetwork');
   const request = native('LocalRequestedTransport');
   assert(control.indexOf('cellular.start()') > control.indexOf('getprop ro.kernel.qemu'));
-  assert.match(control, /check\(initialWifi && initialData\)/);
+  assert.match(control, /snapshot\("initial"\)\.put\("wifiEnabled", initialWifi\)\.put\("mobileDataEnabled", initialData\)/);
+  assert.match(control, /requireLocalNetworkStart\(initial, recordStart\)/);
+  assert.match(native('LocalNetworkStartObservation'), /check\(wifi && data\)/);
   assert.match(request, /addTransportType\(transport\)[\s\S]*NET_CAPABILITY_INTERNET/);
   assert.match(request, /unregisterNetworkCallback\(callback\)\s*registered = false/);
   assert(!/bindProcessToNetwork|NET_CAPABILITY_VALIDATED|settings put global|gsm data/.test(control + request));

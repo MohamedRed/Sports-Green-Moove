@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
+import android.os.UserManager
 import android.provider.Settings
 import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
@@ -20,6 +21,7 @@ internal class LocalEmulatorNetwork(
     context: Context,
     private val device: UiDevice,
     session: JSONObject,
+    recordStart: (JSONObject) -> Unit,
 ) : Closeable {
     private val connectivity = context.getSystemService(ConnectivityManager::class.java)
     private val wifi = context.applicationContext.getSystemService(WifiManager::class.java)
@@ -42,9 +44,11 @@ internal class LocalEmulatorNetwork(
         check(device.executeShellCommand("getprop ro.kernel.qemu").trim() == "1")
         initialWifi = wifi.isWifiEnabled
         initialData = telephony.isDataEnabled
-        check(initialWifi && initialData) { "The handover scenario requires both test radios enabled" }
-        check(connected()) { "The disposable device must start connected" }
-        check(backendReachable()) { "The isolated backend must start reachable" }
+        val initial = snapshot("initial").put("wifiEnabled", initialWifi).put("mobileDataEnabled", initialData)
+            .put("userUnlocked", context.getSystemService(UserManager::class.java).isUserUnlocked)
+            .put("deviceProvisionedSetting", Settings.Global.getString(resolver, Settings.Global.DEVICE_PROVISIONED) ?: JSONObject.NULL)
+            .put("userSetupCompleteSetting", Settings.Secure.getString(resolver, "user_setup_complete") ?: JSONObject.NULL)
+        requireLocalNetworkStart(initial, recordStart)
         try {
             wireless.start()
             cellular.start()

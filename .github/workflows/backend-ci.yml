@@ -65,8 +65,11 @@ jobs:
       - name: Test runtime proxy trust against forwarded-address spoofing
         run: node --test tests/proxy-trust-security.test.mjs
 
-      - name: Validate failed network preparation evidence and temporary administration cleanup
-        run: node --test tests/native-network-precondition-evidence.test.mjs
+      - name: Validate network run evidence and temporary administration cleanup
+        run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs
+
+      - name: Validate initial network observation before test-only transport requests
+        run: node --test tests/network-start-observation.test.mjs
 
       - name: Test functions
         run: npm run test --workspace functions

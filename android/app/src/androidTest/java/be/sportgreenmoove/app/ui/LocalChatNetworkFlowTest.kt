@@ -51,6 +51,7 @@ class LocalChatNetworkFlowTest {
         result.put("setupMethod", "requested-wifi-and-cellular-networks")
         result.put("transportSetupVersion", 2)
         result.put("handoverObservationVersion", 1)
+        result.put("initialNetworkObservationVersion", 1)
         var phase = "login"
         var networkControl: LocalEmulatorNetwork? = null
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
@@ -67,7 +68,11 @@ class LocalChatNetworkFlowTest {
                 waitForText("Aucun message.")
                 captureLocalUi(compose, "local-chat-network-empty.png")
                 typeDraft(body)
-                val control = LocalEmulatorNetwork(context, device, session)
+                phase = "network-preconditions"
+                val control = LocalEmulatorNetwork(context, device, session) { initial ->
+                    result.put("initialNetwork", initial)
+                    writeResult(context, result)
+                }
                 networkControl = control
                 control.use {
                     phase = "network-preparation"

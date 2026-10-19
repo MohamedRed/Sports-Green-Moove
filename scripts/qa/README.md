@@ -175,6 +175,20 @@ test APK would prevent the test setup itself. The sequence above is intentional:
 [PackageInstallerService](https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r1/services/core/java/com/android/server/pm/PackageInstallerService.java),
 [PackageManagerShellCommand](https://android.googlesource.com/platform/frameworks/base/+/android-15.0.0_r1/services/core/java/com/android/server/pm/PackageManagerShellCommand.java).
 
+The network replay records `initialNetwork` before checking its original radio,
+connection and backend prerequisites, and before either transport request starts.
+The observation includes the actual Wi-Fi/data flags, SIM/default-data summary,
+context-user unlock state and the two platform setup settings. No subscriber,
+phone or authentication identifiers are collected. These settings are read only:
+the observer does not complete setup, enable a radio or retry the scenario.
+Constructor failures now use `network-preconditions`, not `booking-picker`.
+`network-start-evidence.mjs` requires the versioned initial observation for newly
+completed replays, in addition to the unchanged handover/offline/recovery checks.
+Historical successful receipts retain their original dated validation contracts.
+Six Android instrumentation cases cover record-before-refusal, recording errors
+and mutation isolation; local Node contracts run with
+`node --test tests/network-start-observation.test.mjs`.
+
 The ride case needs a Google APIs image with functioning Play services. It grants
 permissions only to `.local`, then injects a synthetic location through the
 official fused-location mock API. Mock positions affect the entire emulator:

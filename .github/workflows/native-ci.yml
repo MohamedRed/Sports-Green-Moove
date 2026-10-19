@@ -51,6 +51,7 @@ on:
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
       - "tests/dual-transport-config.test.mjs"
+      - "tests/network-start-observation.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/chat-process-restart.test.mjs"
@@ -103,6 +104,7 @@ on:
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
       - "tests/dual-transport-config.test.mjs"
+      - "tests/network-start-observation.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/chat-process-restart.test.mjs"
@@ -148,6 +150,9 @@ jobs:
 
       - name: Validate real-map UI isolation without provider calls
         run: node --test tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs
+
+      - name: Validate initial network observation before test-only transport requests
+        run: node --test tests/network-start-observation.test.mjs
 
   android-native-unit:
     name: Android native unit tests

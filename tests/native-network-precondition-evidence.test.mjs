@@ -56,9 +56,10 @@ test('registered modem state does not establish a usable SIM or default data sub
   }
 });
 
-test('the portal and smoke coverage point to the latest failed matrix without changing the phone proof', () => {
+test('the portal preserves the failed matrix behind the later pass without changing the phone proof', () => {
   for (const id of ['test-device-stability', 'chat-send-stability'])
-    assert.equal(content.blockers.find((item) => item.id === id).source, base + 'README.md');
+    assert.equal(content.blockers.find((item) => item.id === id).source, 'docs/release/evidence/native-matrix-36-2026-10-19/README.md');
+  assert.match(bytes('docs/release/evidence/native-matrix-36-2026-10-19/README.md').toString('utf8'), /native-network-precondition-2026-10-19/);
   assert.equal(content.flows.find((item) => item.id === 'team-enrollment').phone.source,
     'docs/release/evidence/phone-team-enrollment-2026-10-19/results.json');
   for (const name of ['backend-ci.yml', 'web-integration-smoke.yml'])

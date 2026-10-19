@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'L’essai local complet passe',
+    text: 'Les écrans, les essais prévus et la récupération des captures passent ensemble. Les autres essais sur téléphone restent ouverts.', flow: 'publication' },
   { date: '2026-10-19', title: 'Les écrans passent ; la reprise réseau reste bloquée',
     text: 'Les captures sont récupérées. L’essai de coupure bloque avant de commencer. Le réglage temporaire est bien retiré.', flow: 'publication' },
   { date: '2026-10-19', title: 'Un contrôle de sécurité est corrigé',
