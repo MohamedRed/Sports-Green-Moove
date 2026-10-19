@@ -15,7 +15,12 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: EmergencyContactGateway,
     guardians: GuardianVerificationGateway, onBack: () -> Unit,
-    launchDialer: ((PersonalEmergencyContact) -> EmergencyDialerResult)? = null) {
+    launchDialer: ((PersonalEmergencyContact) -> EmergencyDialerResult)? = null, rideSessionId: String? = null) {
+    if (AppRole.Child in roles) {
+        if (rideSessionId == null) V2Screen { V2TopBar("CONTACT D’URGENCE", onBack); Text("Contact indisponible hors trajet.") }
+        else ChildRideEmergencyRoute(uid, rideSessionId, gateway, onBack, launchDialer)
+        return
+    }
     val canManage = AppRole.Child !in roles && roles.any { it in setOf(AppRole.Parent, AppRole.Driver, AppRole.ClubManager) }
     if (!canManage) {
         V2Screen { V2TopBar("CONTACT D’URGENCE", onBack); Text("Accès indisponible.") }; return

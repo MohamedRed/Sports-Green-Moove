@@ -61,7 +61,7 @@ internal fun EmergencyContactButton(label: String, tag: String, enabled: Boolean
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun EmergencyRefreshButton(loading: Boolean, onRefresh: () -> Unit) {
+internal fun EmergencyRefreshButton(loading: Boolean, onRefresh: () -> Unit) {
     TooltipBox(positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Above),
         tooltip = { PlainTooltip { Text("Actualiser") } }, state = rememberTooltipState()) {
         V2CircleIconButton(SgmIcon.Refresh, onRefresh, size = 44, enabled = !loading,

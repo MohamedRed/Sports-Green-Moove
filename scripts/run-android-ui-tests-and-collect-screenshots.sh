@@ -50,7 +50,7 @@ collect_component_evidence() {
 
   if [[ "$test_status" -ne 0 ]]; then
     mkdir -p "$output_dir/partial-components" || return 1
-    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history; do
+    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components; do
       if adb shell test -d "/sdcard/Download/$directory"; then
         if ! adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"; then
           echo "::warning::Could not collect partial component screenshots: $directory"
@@ -60,6 +60,15 @@ collect_component_evidence() {
   fi
 
   if [[ "$test_status" -eq 0 ]]; then
+    adb pull /sdcard/Download/sgm-child-emergency-components "$output_dir" || return 1
+    for stem in child-emergency-readonly-narrow child-emergency-access-denied child-emergency-landscape-changed; do
+      for suffix in .png -window.png; do
+        if [[ ! -s "$output_dir/sgm-child-emergency-components/$stem$suffix" ]]; then
+          echo "Missing child contact component capture: $stem$suffix" >&2
+          return 1
+        fi
+      done
+    done
     adb pull /sdcard/Download/sgm-team-history "$output_dir" || return 1
     for name in team-history-paging.png team-history-paging-window.png team-history-redacted-child.png team-history-redacted-child-window.png; do
       if [[ ! -s "$output_dir/sgm-team-history/$name" ]]; then
@@ -144,29 +153,9 @@ if [[ "$replay_status" -ne 0 ]]; then
   fi
 fi
 
-observation_status=0
-node "$repo_root/scripts/qa/run-local-ride-observation-ui.mjs" || observation_status=$?
-printf '{"scope":"ride-observation-native-command-status-not-flow-verification","status":%s}\n' \
-  "$observation_status" > "$output_dir/ride-observation-suite-status.json"
-startup_status=0
-node "$repo_root/scripts/qa/run-local-native-startup-ui.mjs" || startup_status=$?
-printf '{"scope":"native-startup-command-status-not-flow-verification","status":%s}\n' \
-  "$startup_status" > "$output_dir/native-startup-suite-status.json"
-remote_stop_status=0
-emergency_identity_status=0
-node "$repo_root/scripts/qa/run-local-emergency-identity-ui.mjs" || emergency_identity_status=$?
-printf '{"scope":"emergency-identity-command-status-not-flow-verification","status":%s}\n' \
-  "$emergency_identity_status" > "$output_dir/emergency-identity-suite-status.json"
-node "$repo_root/scripts/qa/run-local-remote-ride-stop-ui.mjs" || remote_stop_status=$?
-printf '{"scope":"remote-ride-stop-command-status-not-flow-verification","status":%s}\n' \
-  "$remote_stop_status" > "$output_dir/remote-ride-stop-suite-status.json"
-printf 'Ordinary tests: %s; component evidence: %s; local replay: %s; ride observation: %s\n' "$test_status" "$capture_status" "$replay_status" "$observation_status"
+printf 'Ordinary tests: %s; component evidence: %s; local replay: %s\n' "$test_status" "$capture_status" "$replay_status"
 printf '{"scope":"native-suite-exit-status-not-flow-verification","ordinaryTests":%s,"componentEvidence":%s,"localReplay":%s}\n' \
   "$test_status" "$capture_status" "$replay_status" > "$output_dir/native-suite-status.json"
 if [[ "$test_status" -ne 0 ]]; then exit "$test_status"; fi
 if [[ "$capture_status" -ne 0 ]]; then exit "$capture_status"; fi
-if [[ "$replay_status" -ne 0 ]]; then exit "$replay_status"; fi
-if [[ "$observation_status" -ne 0 ]]; then exit "$observation_status"; fi
-if [[ "$startup_status" -ne 0 ]]; then exit "$startup_status"; fi
-if [[ "$emergency_identity_status" -ne 0 ]]; then exit "$emergency_identity_status"; fi
-exit "$remote_stop_status"
+exit "$replay_status"

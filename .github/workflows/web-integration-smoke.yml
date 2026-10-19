@@ -83,6 +83,7 @@ on:
       - "tests/guardian-review-evidence.test.mjs"
       - "tests/guardian-parent-contract.test.mjs"
       - "tests/emergency-contact-contract.test.mjs"
+      - "tests/child-emergency-contract.test.mjs"
       - "tests/emergency-contact-editor-contract.test.mjs"
       - "tests/emergency-contact-native.test.mjs"
       - "tests/emergency-contact-identity.test.mjs"
@@ -207,6 +208,9 @@ on:
       - "tests/trip-consent-restart-completed-evidence.test.mjs"
       - "docs/release/evidence/local-trip-consent-restart-native-2026-10-17/**"
       - "tests/native-suite-runner.test.mjs"
+      - "tests/native-focused-runner.test.mjs"
+      - "scripts/run-focused-android-ui.sh"
+      - ".github/workflows/native-focused-ui.yml"
       - "tests/native-process-failure-evidence.test.mjs"
       - "tests/adb-sync-failure-diagnostics.test.mjs"
       - "tests/local-http-request.test.mjs"
@@ -373,6 +377,7 @@ on:
       - "tests/guardian-review-evidence.test.mjs"
       - "tests/guardian-parent-contract.test.mjs"
       - "tests/emergency-contact-contract.test.mjs"
+      - "tests/child-emergency-contract.test.mjs"
       - "tests/emergency-contact-editor-contract.test.mjs"
       - "tests/emergency-contact-native.test.mjs"
       - "tests/emergency-contact-identity.test.mjs"
@@ -497,6 +502,9 @@ on:
       - "tests/trip-consent-restart-completed-evidence.test.mjs"
       - "docs/release/evidence/local-trip-consent-restart-native-2026-10-17/**"
       - "tests/native-suite-runner.test.mjs"
+      - "tests/native-focused-runner.test.mjs"
+      - "scripts/run-focused-android-ui.sh"
+      - ".github/workflows/native-focused-ui.yml"
       - "tests/native-process-failure-evidence.test.mjs"
       - "tests/adb-sync-failure-diagnostics.test.mjs"
       - "tests/local-http-request.test.mjs"
@@ -640,6 +648,8 @@ jobs:
 
       - name: Validate local test isolation
         run: npm run test:local-flow-isolation
+      - name: Validate independent focused safety lane
+        run: node --test tests/native-focused-runner.test.mjs
 
       - name: Validate approved disposable-phone installation policy
         run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs
@@ -682,6 +692,10 @@ jobs:
 
       - name: Test private emergency contact ownership and revocation
         run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
+      - name: Test child emergency reading with preseeded private account links
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-emergency-services.json
+        run: npm run test:child-emergency && node --test tests/child-emergency-contract.test.mjs
       - name: Test immutable child contact identity and independently verified fixtures
         run: npm run test:emergency-contact-identity && npm run test:emergency-contact-fixture && npm run test:ride-emergency-fixture && node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/ride-emergency-completed-evidence.test.mjs
 

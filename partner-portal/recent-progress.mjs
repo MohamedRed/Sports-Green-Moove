@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le contact enfant reste protégé',
+    text: 'Seize contrôles d’accès passent en local, avec un compte enfant préparé pour l’essai. Son parcours complet dans l’app reste à tester.', flow: 'emergency-contact' },
+  { date: '2026-10-19', title: 'Le nouvel écran attend son essai',
+    text: 'La préparation du téléphone s’arrête avant l’ouverture. Ses réglages sont rétablis ; aucune nouvelle capture n’est validée.', flow: 'emergency-contact' },
+  { date: '2026-10-19', title: 'L’essai du profil recréé n’est pas terminé',
+    text: 'La série a manqué de temps avant cette étape. L’essai est séparé pour pouvoir aller au bout.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Nouvel essai pour le contact enfant',
     text: 'L’ancien formulaire est refusé côté données. L’essai dans l’app est lancé ; ses captures restent à vérifier.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Les autorisations d’équipe restent dans le bon club',

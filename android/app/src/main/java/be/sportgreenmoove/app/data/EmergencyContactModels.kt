@@ -21,4 +21,6 @@ data class EmergencyContactView(val ownerUid: String, val target: EmergencyConta
 data class EmergencyContactOperation(val target: EmergencyContactTarget, val contact: PersonalEmergencyContact?,
     val expectedRevision: Long, val requestId: String, val expectedChildInstanceId: String? = null)
 data class EmergencyContactReceipt(val revision: Long)
+data class ChildRideEmergencyContactView(val ownerUid: String, val rideSessionId: String, val childId: String,
+    val childInstanceId: String, val childName: String, val contact: PersonalEmergencyContact?, val revision: Long)
 enum class EmergencyDialerResult { Opened, Unavailable, Denied, Cancelled }

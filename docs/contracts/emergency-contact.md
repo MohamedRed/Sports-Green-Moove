@@ -279,3 +279,45 @@ not later heads or physical/provider readiness. Temporary administration and its
 component were verified removed. The earlier failed run remains unchanged.
 Child-own-account access, recreated-child app replay, physical tracking and store
 acceptance remain open; the isolated map was explicitly unavailable.
+
+## Child Read-Only Service And Prepared Screen
+
+The subsequent source adds `getChildRideEmergencyContact` and a read-only Android
+screen scoped to an active ride. The contact writer's exact verification club is
+retained on new child saves and rechecked with their current parent role, scoped
+membership, manager-verified relationship and immutable child/club identity on
+every read. Missing provenance fails explicitly; no migration or legacy fallback
+is introduced. Adults' contact protocol and existing parent reads stay unchanged.
+
+A login UID is not a child profile ID. The endpoint requires a private,
+server-owned `childAccountLinks` entry binding the authenticated account to the
+current immutable child profile. Direct client reads/writes are denied. Missing,
+revoked, stale, mismatched or self-confirmed links fail closed. The account-link
+approval/provisioning workflow is deliberately not implemented: the owner has not
+yet chosen who confirms it. No privileged role or link is created in production.
+
+Sixteen actual local service groups with a preseeded link and independent profile
+ID passed; original evidence is in `child-emergency-services-2026-10-19`.
+Eleven JVM cases passed. The five prepared component cases compiled, but local
+device preparation failed before instrumentation; temporary administration was
+verified removed. There is no new child screen/dialer or physical-device proof.
+
+The screen cannot edit contacts, rechecks authority before a dial-only handoff,
+requires another tap after contact/version/profile changes and clears private
+values on background/account disposal. No number, dialer or authority fallback is
+added. A successful component callback must not be described as a real phone app.
+
+Full child sign-in and ride discovery still need the approved account-link
+workflow: existing ride discovery/stream identity assumptions have not been
+rewritten. Access when the child refuses location also remains a product decision;
+the existing location gate is not silently removed. Source compilation and local
+service checks do not close these end-to-end gaps or accept store-review evidence.
+
+## Independent Native Safety Lane
+
+The long native job at `b72a3f6` (run `39331392905`) exhausted its 35-minute
+budget before the recreated-child scenario ran. It is cancelled, not a passing
+identity trial. Focused identity, observation, startup and remote-stop scenarios
+now have a separate required job, independent of the original full matrix. Each
+case retains its status; later cases still execute after failure and restoration
+cannot overwrite an earlier failure. No original matrix scenario is removed.

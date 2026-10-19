@@ -63,6 +63,7 @@ export async function writeEmergencyContact(uid: string, token: unknown, input: 
     if (!current && input.contact === null) throw new HttpsError("failed-precondition", "There is no saved contact to remove.");
     const now = Timestamp.now(), revision = input.expectedRevision + 1;
     transaction.set(ref, { kind: input.target.kind, ...identityFields(identity), contact: input.contact, revision,
+      ...(input.target.kind === "child" ? { guardianClubId: identity.clubId } : {}),
       lastActorUserId: uid, createdAt: current?.createdAt ?? now, updatedAt: now });
     transaction.create(operationRef, { actorUserId: uid, contactId, fingerprint, revision, createdAt: now });
     return { kind: input.target.kind, ...receiptFields(identity), revision, replayed: false };

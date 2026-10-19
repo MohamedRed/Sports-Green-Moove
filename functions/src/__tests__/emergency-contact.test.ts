@@ -1,9 +1,25 @@
 import { describe, expect, it } from "vitest";
 import { Timestamp } from "firebase-admin/firestore";
+import { childAccountLinkSchema } from "../domain/childAccountLink.js";
 import { emergencyChildInstanceId, emergencyContactId, emergencyContactRecordSchema, emergencyDigest,
-  emergencyReadSchema, emergencyWriteSchema, legacyChildEmergencyContactId, personalContactSchema } from "../domain/emergencyContact.js";
+  childRideEmergencyReadSchema, emergencyReadSchema, emergencyWriteSchema, legacyChildEmergencyContactId, personalContactSchema } from "../domain/emergencyContact.js";
 
 describe("private emergency contact inputs", () => {
+  it("requires a strict server-owned child account link with an immutable profile identity", () => {
+    const link = { accountUserId: "account", childId: "profile", childInstanceId: "a".repeat(64),
+      status: "verified", verifiedAt: Timestamp.now(), verifiedByUserId: "approver" };
+    expect(childAccountLinkSchema.safeParse(link).success).toBe(true);
+    expect(childAccountLinkSchema.safeParse({ ...link, status: "revoked" }).success).toBe(true);
+    for (const patch of [{ childId: "a/b" }, { childInstanceId: "a".repeat(63) }, { status: "pending" },
+      { verifiedAt: new Date() }, { verifiedByUserId: "" }, { trusted: true }])
+      expect(childAccountLinkSchema.safeParse({ ...link, ...patch }).success).toBe(false);
+  });
+  it("lets the child select a ride but never another child identity or contact provenance", () => {
+    expect(childRideEmergencyReadSchema.safeParse({ rideSessionId: "ride" }).success).toBe(true);
+    for (const input of [{ rideSessionId: "a/b" }, { rideSessionId: "ride", childId: "other" },
+      { rideSessionId: "ride", parentUserId: "parent" }, { rideSessionId: "ride", guardianClubId: "club" }])
+      expect(childRideEmergencyReadSchema.safeParse(input).success).toBe(false);
+  });
   it("requires explicit international syntax without guessing a country or number", () => {
     expect(personalContactSchema.parse({ name: " Contact QA ", phone: "+12025550123" }).name).toBe("Contact QA");
     for (const phone of ["112", "0470000000", "+0123456789", "+12025550123;123", "+12025550123\n", "+1 202 555 0123"])

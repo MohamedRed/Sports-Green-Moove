@@ -31,6 +31,9 @@ on:
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/workflows/native-vehicle-map-ui.yml"
+      - ".github/workflows/native-focused-ui.yml"
+      - "scripts/run-focused-android-ui.sh"
+      - "tests/native-focused-runner.test.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
       - "tests/vehicle-map-display.test.mjs"
       - "tests/vehicle-map-retained-evidence.test.mjs"
@@ -120,6 +123,9 @@ on:
       - ".github/workflows/native-ci.yml"
       - ".github/workflows/native-real-maps-ui.yml"
       - ".github/workflows/native-vehicle-map-ui.yml"
+      - ".github/workflows/native-focused-ui.yml"
+      - "scripts/run-focused-android-ui.sh"
+      - "tests/native-focused-runner.test.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
       - "tests/vehicle-map-display.test.mjs"
       - "tests/vehicle-map-retained-evidence.test.mjs"
@@ -240,7 +246,7 @@ jobs:
         run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-android.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs tests/adb-sync-failure-diagnostics.test.mjs tests/guardian-parent-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
 
       - name: Validate dual-transport network prerequisites
-        run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/trip-schedule-completed-evidence.test.mjs tests/trip-consent-restart.test.mjs tests/trip-draft-restart.test.mjs tests/trip-consent-recovery.test.mjs tests/trip-consent-recovery-completed-evidence.test.mjs tests/trip-consent-restart-completed-evidence.test.mjs tests/native-suite-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs
+        run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/trip-schedule-completed-evidence.test.mjs tests/trip-consent-restart.test.mjs tests/trip-draft-restart.test.mjs tests/trip-consent-recovery.test.mjs tests/trip-consent-recovery-completed-evidence.test.mjs tests/trip-consent-restart-completed-evidence.test.mjs tests/native-suite-runner.test.mjs tests/native-focused-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs
 
       - name: Validate real-map UI isolation without provider calls
         run: node --test tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs
@@ -339,6 +345,11 @@ jobs:
             android/app/build/outputs/store-review-screenshots/**
             android/app/build/outputs/local-ui-evidence/**
           if-no-files-found: ignore
+
+  android-focused-safety-ui:
+    name: Android focused safety UI tests
+    if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui) }}
+    uses: ./.github/workflows/native-focused-ui.yml
 
   android-real-maps-ui:
     name: Android approved real-map UI integration

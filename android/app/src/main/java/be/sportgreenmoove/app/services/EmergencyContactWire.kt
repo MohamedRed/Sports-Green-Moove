@@ -3,6 +3,16 @@ package be.sportgreenmoove.app.services
 import be.sportgreenmoove.app.data.*
 
 internal object EmergencyContactWire {
+    fun childRideView(value: Any?, uid: String, rideSessionId: String): ChildRideEmergencyContactView = map(value).let {
+        check(it["accountUserId"] == uid && it["rideSessionId"] == rideSessionId && it.containsKey("contact"))
+        val childId = TripChangeWire.id(it["subjectId"] as? String ?: error("Profil enfant manquant."))
+        val contact = it["contact"]?.let { raw -> map(raw).let { fields ->
+            PersonalEmergencyContact(fields["name"] as? String ?: error("Nom du contact manquant."),
+                fields["phone"] as? String ?: error("Numéro du contact manquant."))
+        } }
+        val version = revision(it["revision"]); check(contact == null || version > 0)
+        ChildRideEmergencyContactView(uid, rideSessionId, childId, instance(it["childInstanceId"]), label(it["childName"]), contact, version)
+    }
     private fun map(value: Any?) = value as? Map<*, *> ?: error("Réponse de contact invalide.")
     private fun revision(value: Any?): Long {
         val number = (value as? Number)?.toDouble() ?: error("Version du contact manquante.")

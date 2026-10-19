@@ -98,6 +98,11 @@ export const requiredUserFlowChecks = [
     acceptableConclusions: ["SUCCESS"],
   },
   {
+    workflowName: "Native CI",
+    name: "Android focused safety UI tests / Isolated safety flows",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
     workflowName: "Backend CI",
     name: "Functions and Firebase rules",
     acceptableConclusions: ["SUCCESS"],

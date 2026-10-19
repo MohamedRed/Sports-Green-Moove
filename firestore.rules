@@ -55,6 +55,10 @@ service cloud.firestore {
       ];
     }
 
+    match /childAccountLinks/{accountUserId} {
+      allow read, write: if false;
+    }
+
     match /users/{userId} {
       allow read: if isSelf(userId) || isAdmin();
       allow create: if isSelf(userId) && !hasAnyKey(userProtectedFields());

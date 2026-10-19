@@ -56,6 +56,8 @@ class EmergencyContactSchedulerTest {
 }
 
 private class CallbackContactFixture(private val initial: EmergencyContactView) : EmergencyContactGateway {
+    override suspend fun readChildRideEmergencyContact(uid: String, rideSessionId: String): ChildRideEmergencyContactView =
+        error("This fixture does not implement child ride reads")
     var reply: CompletableDeferred<EmergencyContactView>? = null
     override suspend fun readEmergencyContact(uid: String, target: EmergencyContactTarget) = reply?.await() ?: initial
     override suspend fun saveEmergencyContact(uid: String, operation: EmergencyContactOperation): EmergencyContactReceipt =

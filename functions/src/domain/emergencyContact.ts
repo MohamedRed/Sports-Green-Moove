@@ -14,6 +14,7 @@ export const emergencyTargetSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("child"), childId: chatDocumentIdSchema, clubId: chatDocumentIdSchema }).strict(),
 ]);
 export const emergencyReadSchema = z.object({ target: emergencyTargetSchema }).strict();
+export const childRideEmergencyReadSchema = z.object({ rideSessionId: chatDocumentIdSchema }).strict();
 export const emergencyWriteSchema = emergencyReadSchema.extend({
   contact: personalContactSchema.nullable(),
   expectedRevision: z.number().int().min(0).max(Number.MAX_SAFE_INTEGER - 1),
@@ -30,7 +31,9 @@ export const emergencyContactRecordSchema = z.object({
   contact: personalContactSchema.nullable(), revision: z.number().int().positive().max(Number.MAX_SAFE_INTEGER),
   lastActorUserId: chatDocumentIdSchema, createdAt: z.instanceof(Timestamp), updatedAt: z.instanceof(Timestamp),
   childInstanceId: z.string().regex(/^[a-f0-9]{64}$/).optional(),
-}).strict().refine((record) => (record.kind === "child") === (record.childInstanceId !== undefined));
+  guardianClubId: chatDocumentIdSchema.optional(),
+}).strict().refine((record) => (record.kind === "child") === (record.childInstanceId !== undefined) &&
+  (record.kind === "child" || record.guardianClubId === undefined));
 export const emergencyDigest = (value: unknown) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
 export function emergencyChildInstanceId(childId: string, createdAt: Timestamp) {
   return emergencyDigest([childId, createdAt.seconds, createdAt.nanoseconds]);

@@ -76,10 +76,10 @@ test('host verification checks identities, unchanged baseline, claims, old conta
   assert(owner.indexOf('runtime.cleanup()') < owner.indexOf('`${name}-results.json`'));
 });
 test('the additional trial cannot hide any preceding command failure and is enforced by smoke and native checks', () => {
-  const shell = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
+  const shell = read('scripts/run-focused-android-ui.sh');
   assert(shell.includes('run-local-emergency-identity-ui.mjs'));
   assert(shell.includes('if [[ "$emergency_identity_status" -ne 0 ]]; then exit "$emergency_identity_status"; fi'));
-  for (const name of ['test', 'capture', 'replay', 'observation', 'startup'])
+  for (const name of ['observation', 'startup'])
     assert(shell.includes(`if [[ "$${name}_status" -ne 0 ]]; then exit "$${name}_status"; fi`));
   assert(shell.includes('exit "$remote_stop_status"'));
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml']) {
