@@ -41,7 +41,7 @@ class ActiveRideStartupTest {
         )
 
         assertEquals("ride-session-1", result.ride.rideSessionId)
-        assertEquals("Suivi Radar et secours GPS Firebase activés.", result.notice)
+        assertEquals("Suivi du trajet activé.", result.notice)
         assertEquals(listOf("startRide:trip-1:booking-1", "nativeFallback:ride-session-1:Driver"), firebase.events)
         assertEquals(listOf("startRadar:ride-session-1:Driver"), radar.events)
     }
@@ -59,7 +59,7 @@ class ActiveRideStartupTest {
         val result = providers.startAccessibleRideTracking(role = AppRole.Child)
 
         assertEquals("ride-session-1", result.ride.rideSessionId)
-        assertEquals("Secours GPS Firebase activé.", result.notice)
+        assertEquals("Suivi GPS activé.", result.notice)
         assertEquals(listOf("activeRide", "nativeFallback:ride-session-1:Child"), firebase.events)
         assertTrue(radar.events.isEmpty())
     }

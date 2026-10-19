@@ -43,7 +43,8 @@
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt",
       "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
       "reports": [
-        "local-team-enrollment-native-2026-10-18/build-checks.json"
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "ride-emergency-account-failure-2026-10-19/results.json"
       ]
     },
     "bab73fcf3a7c766ca4e22e0d26cc15d962f9006e9f23ca21efc9679e1a0bd68a": {
@@ -102,7 +103,8 @@
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt",
       "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
       "reports": [
-        "local-team-enrollment-native-2026-10-18/build-checks.json"
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "ride-emergency-account-failure-2026-10-19/results.json"
       ]
     },
     "037280748687ac0644421a8fe7b1069619c3e3ae0b04a0995e7cc89f20f9170d": {
@@ -685,7 +687,8 @@
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt",
       "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
       "reports": [
-        "local-emergency-editor-2026-10-18/build-checks.json"
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "ride-emergency-account-failure-2026-10-19/results.json"
       ]
     },
     "9daad857a59c6c5918d22032eba009aee235e2e46b18e8368f3b091dce93a473": {
@@ -1076,6 +1079,118 @@
       "recordedFrom": "prepared-verification-worktree",
       "reports": [
         "ride-emergency-prepared-2026-10-19/storage-services.json"
+      ]
+    },
+    "08897531ecc1a2e79978db1f39b51a25d721902b64b1e405a58489a2096c2080": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideFlowTest.kt",
+      "recoveredFromGitCommit": "7dc5a99ab425858bad2f138d989437b2235528a7",
+      "reports": [
+        "ride-emergency-account-failure-2026-10-19/results.json"
+      ]
+    },
+    "937d93dec513dc57f0a35496aad91fdb19554c8f529968edd09b689a56356b9c": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideEmergencyUi.kt",
+      "recoveredFromGitCommit": "7dc5a99ab425858bad2f138d989437b2235528a7",
+      "reports": [
+        "ride-emergency-account-failure-2026-10-19/results.json"
+      ]
+    },
+    "e497b0dc1c43a6a1c8ce1b307aa3320675b0f94906d1b1e9def7593182a85348": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt",
+      "recoveredFromGitCommit": "7dc5a99ab425858bad2f138d989437b2235528a7",
+      "reports": [
+        "ride-emergency-account-failure-2026-10-19/results.json"
+      ]
+    },
+    "24cfffe087de539f953a88988ca20432361fc216fe1af08457e4dd5c1a4b99d0": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationLease.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "143e1ca640021f1d136bbef870af3f70ca09371f78c7c0b056517e24be4e8b41": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "fbc86cd72de3516340ba14d38e157fb69d6c6d30ef1a4def674b528aa57ebe79": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/NativeTrackingAuthorization.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "1d5e06ac2748615a959c6299571cd8a0df93c8ba8bb4a5e29cac72feda48f97f": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideResume.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "be6d983a4a5daee790802f2e3cddf30986bb5e000a23a182785b028f94fab039": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "8cc1577dd4f9526c668841d197e584a4183dbc91116357a4aac716a5ca30ca74": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "5188f20acfa6a4cba7149de8f3a23b1abff41a2d5b735c3a2577adc5e2618177": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideStartup.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "dd7d45ef624a0c81c18124e3864b308b0856cd02f78a44408ae39079087eef50": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideResumeAction.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "df50b02bf4b3c15a073fd165ee219f7c05f913648e5c641152a2076bf7a9620d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/AppSessionShutdown.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "e80081750b18c9f7465b28dfe90e1c02cde075f5199dc8b0ffc18a1713e90b4d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "f594cf481f229b7f71f8b8db62e37387551f0b779cf170633791e8f2c9677c82": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/services/ActiveRideLocationLeaseTest.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "6f86e85119a75221276bba2c004fcf6c44bab433f7c4a09ff4adf57abffc3ab1": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/services/ActiveRideResumeTest.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "2811eab76aa0ee42792596142e7c901073fc0a0751ddeb7cd637f64020dd75c2": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/ui/AppSessionShutdownTest.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
       ]
     }
   }

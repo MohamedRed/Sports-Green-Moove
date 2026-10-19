@@ -69,7 +69,8 @@ try {
   assert.equal(await page.locator('dialog').count(), 1);
   assert.equal(await page.getByRole('dialog').isVisible(), false);
   await page.getByRole('searchbox').fill('deconnexion');
-  assert.equal(await page.locator('.flow-row').count(), 1);
+  assert.equal(await page.locator('.flow-row').count(), 2);
+  assert.deepEqual(await page.locator('.flow-row').evaluateAll((rows) => rows.map((row) => row.dataset.flow).sort()), ['signout', 'tracking']);
   await page.getByRole('searchbox').fill('aucun-correspondant');
   await page.getByText('Aucun parcours ne correspond').waitFor();
   await page.getByRole('searchbox').fill('');

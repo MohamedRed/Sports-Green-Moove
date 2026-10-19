@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le suivi continue après déconnexion',
+    text: 'Le nouvel essai trouve le suivi du conducteur encore actif dans le compte parent. La correction est préparée ; elle reste à rejouer dans l’app.', flow: 'tracking' },
   { date: '2026-10-19', title: 'Le contact d’urgence repasse dans l’app',
     text: 'Enregistrement, réouverture, retrait de l’autorisation et suppression passent en local. Sept nouvelles captures sont ajoutées, sans appel.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Le dernier essai s’arrête avant l’app',

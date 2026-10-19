@@ -1,9 +1,12 @@
 export const blockers = [
+  { id: 'tracking-account', title: 'Arrêter le suivi à la déconnexion',
+    text: 'Après passage du conducteur au parent, le suivi du conducteur reste actif dans le nouvel essai local.',
+    next: 'Rejouer la correction, puis vérifier la reprise du trajet côté conducteur.', source: 'docs/release/evidence/ride-emergency-account-failure-2026-10-19/README.md' },
   { id: 'dependency-security', title: 'Terminer les contrôles de sécurité',
     text: 'Un premier défaut est corrigé et testé. D’autres alertes restent à examiner.',
     next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/proxy-trust-security-2026-10-19/README.md' },
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
-    text: 'Le dernier essai s’arrête avant l’app : le réglage temporaire du téléphone n’a pas été confirmé. Un essai complet précédent passe.',
+    text: 'Un essai précédent s’arrête avant l’app : le réglage temporaire du téléphone n’a pas été confirmé. Un essai complet précédent passe.',
     next: 'Comprendre cet arrêt, puis reprendre les essais dans l’app et sur téléphone.', source: 'docs/release/evidence/store-pause-preparation-failure-2026-10-19/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',

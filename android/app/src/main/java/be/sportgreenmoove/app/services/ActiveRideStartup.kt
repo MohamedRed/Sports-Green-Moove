@@ -41,9 +41,9 @@ private suspend fun AndroidProviderSet.startTrackingForRide(
     firebase.writeNativeLocationFallback(ride.rideSessionId, role)
 
     val notice = if (radarStarted) {
-        "Suivi Radar et secours GPS Firebase activés."
+        "Suivi du trajet activé."
     } else {
-        "Secours GPS Firebase activé."
+        "Suivi GPS activé."
     }
     return ActiveRideStartResult(ride = ride, notice = notice)
 }

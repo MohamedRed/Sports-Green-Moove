@@ -49,7 +49,7 @@ object AndroidRuntime {
         } else {
             FirebaseAndroidEmulatorConfig.configureIfRequested()
             AndroidProviderSet(
-                auth = FirebaseAndroidAuthGateway(),
+                auth = FirebaseAndroidAuthGateway(context.applicationContext),
                 firebase = FirebaseAndroidBackendGateway(context.applicationContext),
                 conversations = FirebaseAndroidConversationGateway(),
                 reservations = FirebaseAndroidReservationGateway(),
@@ -81,7 +81,7 @@ private object FirebaseAndroidEmulatorConfig {
     }
 }
 
-private class FirebaseAndroidAuthGateway : AuthGateway {
+private class FirebaseAndroidAuthGateway(private val context: Context) : AuthGateway {
     private val auth = FirebaseAuth.getInstance()
     private val functions = FirebaseFunctions.getInstance()
     override val isConfigured: Boolean = true
@@ -102,7 +102,7 @@ private class FirebaseAndroidAuthGateway : AuthGateway {
     }
 
     override fun signOut() {
-        auth.signOut()
+        try { stopDeviceLocationForSignOut(context) } finally { auth.signOut() }
     }
 
     private suspend fun initializeUserProfile(user: FirebaseUser, displayName: String? = null): AuthSession {

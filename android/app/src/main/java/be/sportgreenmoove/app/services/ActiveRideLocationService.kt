@@ -19,10 +19,12 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -30,17 +32,22 @@ class ActiveRideLocationService : Service() {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private val functions by lazy { FirebaseFunctions.getInstance() }
     private lateinit var locationClient: FusedLocationProviderClient
-    private var activeRideSessionId: String? = null
-    private var activeRole: String = ROLE_DRIVER
+    private val auth by lazy { FirebaseAuth.getInstance() }
+    private val ownership = ActiveRideLocationLease({ auth.currentUser?.uid }, NativeTrackingAuthorization::currentRevision)
+    private val authListener = FirebaseAuth.AuthStateListener {
+        if (ownership.ownerChanged()) stopTracking()
+    }
 
-    private val locationCallback = object : LocationCallback() {
+    private var locationCallback: LocationCallback? = null
+
+    private fun callbackFor(lease: RideLocationLease) = object : LocationCallback() {
         override fun onLocationResult(result: LocationResult) {
-            val rideSessionId = activeRideSessionId ?: return
+            if (!ownership.accepts(lease)) return
             val locations = result.locations
             if (locations.isEmpty()) return
             scope.launch {
                 runCatching {
-                    uploadBatch(rideSessionId = rideSessionId, role = activeRole, locations = locations)
+                    if (ownership.accepts(lease)) uploadBatch(lease, locations)
                 }
             }
         }
@@ -50,28 +57,43 @@ class ActiveRideLocationService : Service() {
         super.onCreate()
         locationClient = LocationServices.getFusedLocationProviderClient(this)
         ensureChannel()
+        auth.addAuthStateListener(authListener)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val rideSessionId = intent?.getStringExtra(EXTRA_RIDE_SESSION_ID)
-        if (rideSessionId.isNullOrBlank()) {
-            stopSelf(startId)
+        val previous = ownership.snapshot()
+        val lease = ownership.bind(intent?.getStringExtra(EXTRA_OWNER_UID),
+            intent?.getStringExtra(EXTRA_RIDE_SESSION_ID), intent?.getStringExtra(EXTRA_ROLE),
+            intent?.getLongExtra(EXTRA_AUTH_REVISION, -1) ?: -1)
+        if (lease == null) {
+            stopTracking()
             return START_NOT_STICKY
         }
-
-        activeRideSessionId = rideSessionId
-        activeRole = intent.getStringExtra(EXTRA_ROLE) ?: ROLE_DRIVER
         startForeground(NOTIFICATION_ID, buildNotification())
-        startLocationUpdates()
-        return START_STICKY
+        if (previous !== lease) {
+            scope.coroutineContext.cancelChildren()
+            stopLocationUpdates()
+            startLocationUpdates(lease)
+        }
+        return START_NOT_STICKY
     }
 
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onDestroy() {
-        locationClient.removeLocationUpdates(locationCallback)
+        auth.removeAuthStateListener(authListener)
+        ownership.clear()
+        stopLocationUpdates()
         scope.cancel()
         super.onDestroy()
+    }
+
+    private fun stopTracking() {
+        ownership.clear()
+        stopLocationUpdates()
+        scope.coroutineContext.cancelChildren()
+        stopForeground(STOP_FOREGROUND_REMOVE)
+        stopSelf()
     }
 
     private fun ensureChannel() {
@@ -101,21 +123,29 @@ class ActiveRideLocationService : Service() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun startLocationUpdates() {
+    private fun startLocationUpdates(lease: RideLocationLease) {
         val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, UPDATE_INTERVAL_MS)
             .setMinUpdateIntervalMillis(MIN_UPDATE_INTERVAL_MS)
             .build()
-        locationClient.requestLocationUpdates(request, locationCallback, Looper.getMainLooper())
+        val callback = callbackFor(lease)
+        locationCallback = callback
+        locationClient.requestLocationUpdates(request, callback, Looper.getMainLooper())
     }
 
-    private suspend fun uploadBatch(rideSessionId: String, role: String, locations: List<Location>) {
+    private fun stopLocationUpdates() {
+        locationCallback?.let { locationClient.removeLocationUpdates(it) }
+        locationCallback = null
+    }
+
+    private suspend fun uploadBatch(lease: RideLocationLease, locations: List<Location>) {
         val updates = locations.map { location ->
             nativeLocationPayload(
-                rideSessionId = rideSessionId,
-                role = role,
+                rideSessionId = lease.rideSessionId,
+                role = lease.role,
                 location = location,
             )
         }
+        if (!ownership.accepts(lease)) return
         functions.getHttpsCallable("writeLocationBatch")
             .call(mapOf("updates" to updates))
             .await()
@@ -124,15 +154,18 @@ class ActiveRideLocationService : Service() {
     companion object {
         private const val EXTRA_RIDE_SESSION_ID = "rideSessionId"
         private const val EXTRA_ROLE = "role"
-        private const val ROLE_DRIVER = "driver"
+        private const val EXTRA_OWNER_UID = "ownerUid"
+        private const val EXTRA_AUTH_REVISION = "authRevision"
         private const val CHANNEL_ID = "active-ride-location"
         private const val NOTIFICATION_ID = 42
         private const val UPDATE_INTERVAL_MS = 15_000L
         private const val MIN_UPDATE_INTERVAL_MS = 10_000L
 
-        fun intent(context: Context, rideSessionId: String, role: String): Intent =
+        fun intent(context: Context, rideSessionId: String, role: String, ownerUid: String, authRevision: Long): Intent =
             Intent(context, ActiveRideLocationService::class.java)
                 .putExtra(EXTRA_RIDE_SESSION_ID, rideSessionId)
                 .putExtra(EXTRA_ROLE, role)
+                .putExtra(EXTRA_OWNER_UID, ownerUid)
+                .putExtra(EXTRA_AUTH_REVISION, authRevision)
     }
 }

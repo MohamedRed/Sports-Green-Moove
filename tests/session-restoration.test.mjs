@@ -22,7 +22,10 @@ test('startup failures are gated before onboarding and cannot silently become si
   assert(app.indexOf('restoration.phase != SessionRestorationPhase.Ready') < app.indexOf('if (session == null)'));
   assert(app.includes('SessionRestorationScreen(restoration, ::logout)'));
   assert(app.includes('onLogout = ::logout'));
-  assert.equal((app.match(/providers\.auth\.signOut\(\)/g) ?? []).length, 1);
+  assert.equal((app.match(/signOutProviders\(providers\)/g) ?? []).length, 1);
+  const shutdown = read(ui + 'AppSessionShutdown.kt');
+  assert.equal((shutdown.match(/providers\.auth\.signOut\(\)/g) ?? []).length, 1);
+  assert(shutdown.includes('finally { providers.auth.signOut() }'));
   assert(state.includes('catch (cancelled: CancellationException)'));
   assert(state.includes('currentCoroutineContext().ensureActive()'));
   assert(state.includes('if (closed || phase != SessionRestorationPhase.Pending) return'));

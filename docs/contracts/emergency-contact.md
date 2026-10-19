@@ -249,3 +249,22 @@ and to resume for the same driver before completing the ride. Bounded read-only
 observations are retained before a failed assertion; no account action is retried
 and no service is started/stopped by the test to manufacture that result. These
 service-presence checks are not physical GPS or native location-delivery proof.
+
+The first actual expanded run (7dc5a99) failed the parent-entry observation: the
+driver service remained running after UI sign-out/sign-in. Its original negative
+observation and four driver captures are retained under
+`ride-emergency-account-failure-2026-10-19`; cleanup verified removal of temporary
+administration. No position delivery to the parent is inferred from service
+presence. No full contact/ride outcome or store-review item passed that run.
+
+The repair binds native starts, per-session callbacks and queued uploads to a
+current account and sign-out revision. Sign-out revokes pending native starts,
+stops local sensing and requests the existing tracking SDK's local stop without
+completing/cancelling the ride. Service destruction removes its auth observer and
+location callback. Null restart intents or unknown roles cannot default to driver.
+Opening an owned existing ride explicitly renews native tracking behind the
+permission gate; parents only view it. Resume neither creates a new ride nor
+starts/completes another provider trip. Live provider resumption, physical GPS,
+background/restart and SDK callback timing remain separate unverified release
+requirements; unit passes do not close them. The repaired native journey must
+execute before any new positive portal or store evidence can be accepted.

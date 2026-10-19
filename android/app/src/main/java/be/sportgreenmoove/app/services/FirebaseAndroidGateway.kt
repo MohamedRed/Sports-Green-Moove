@@ -252,12 +252,20 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     }
 
     override suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole) {
+        require(role in setOf(AppRole.Driver, AppRole.Child))
+        val ownerUid = requireNotNull(com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid)
+        val authRevision = NativeTrackingAuthorization.currentRevision()
+        fun requireOwner() = check(com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid == ownerUid &&
+            NativeTrackingAuthorization.currentRevision() == authRevision) {
+            "La session de suivi a changé."
+        }
         val location = try {
             locationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null).await()
         } catch (error: SecurityException) {
             throw ProviderConfigurationException("Autorisation localisation requise pour le suivi de course.")
         } ?: throw ProviderConfigurationException("Position GPS indisponible pour le suivi de course.")
 
+        requireOwner()
         val result = functions
             .getHttpsCallable("writeLocationBatch")
             .call(mapOf("updates" to listOf(nativeLocationPayload(rideSessionId, role.locationRole(), location))))
@@ -265,7 +273,8 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
         val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse localisation invalide.")
         val written = (payload["written"] as? Number)?.toInt() ?: 0
         if (written <= 0) throw ProviderConfigurationException("Aucun point GPS écrit.")
-        val serviceIntent = ActiveRideLocationService.intent(appContext, rideSessionId, role.locationRole())
+        requireOwner()
+        val serviceIntent = ActiveRideLocationService.intent(appContext, rideSessionId, role.locationRole(), ownerUid, authRevision)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             appContext.startForegroundService(serviceIntent)
         } else {
@@ -274,6 +283,6 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     }
 
     override fun stopNativeLocationFallback(rideSessionId: String) {
-        appContext.stopService(ActiveRideLocationService.intent(appContext, rideSessionId, AppRole.Driver.locationRole()))
+        appContext.stopService(android.content.Intent(appContext, ActiveRideLocationService::class.java))
     }
 }

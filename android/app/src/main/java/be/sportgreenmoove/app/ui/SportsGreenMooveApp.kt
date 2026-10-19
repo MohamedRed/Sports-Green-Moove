@@ -117,9 +117,7 @@ fun SportsGreenMooveApp() {
     fun logout() {
         searchController.close()
         session?.uid?.let { messagesState.removeState(it) }
-        providers.googleAuth.signOut()
-        providers.facebookAuth.signOut()
-        providers.auth.signOut()
+        signOutProviders(providers)
         session = null
         lastRoleSelectionSessionUid = null
         role = AppRole.Parent
@@ -211,7 +209,8 @@ fun SportsGreenMooveApp() {
                             pendingCount = driverBookingRequests.count { it.status == "requested" },
                             onTripAction = ::runTripAction,
                             onOpenSearch = { screen = AppScreen.Search },
-                            onOpenRide = { screen = AppScreen.Ride },
+                            onOpenRide = { launchActiveRideResume(scope, providers, role, activeRide, activeRidePermissionGate,
+                                { session?.uid }, { activeRide = it }, { screen = it }, { errorMessage = it }) },
                             reservationContent = {
                                 ReservationManagementRoute(requireNotNull(session).uid, role, providers.reservations, providers.firebase) { refreshAppData() }
                             },
