@@ -105,6 +105,8 @@ test('the partner gallery separates simulated child screens and uses the newly v
   assert.equal(report.scope, correctedChildContactScope); assert.equal(report.headingLayoutVerified, true);
   assert.equal(report.mainNativeJobPassed, false); assert.equal(report.parentComponentCaseCount, 7);
   assert.equal(report.remainingMainFailure, 'network-test-preparation');
+  for (const extension of ['xml', 'txt']) assert(read('.gitattributes').includes(
+    'docs/release/evidence/child-contact-heading-pass-2026-10-19/*.' + extension + ' -text -whitespace'));
   assert(!content.blockers.some((item) => item.id === 'child-contact-heading'));
   for (const image of flow.images) {
     assert.match(image.alt, /simulé/);
