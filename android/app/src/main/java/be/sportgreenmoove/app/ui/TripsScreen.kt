@@ -28,6 +28,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -114,7 +117,7 @@ private fun TripsHeader(onSearch: () -> Unit) {
             style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.08.em),
             modifier = Modifier.weight(1f),
         )
-        CircleIconButton(icon = SgmIcon.Search, onClick = onSearch, size = 36)
+        CircleIconButton(icon = SgmIcon.Search, label = "Rechercher un trajet", onClick = onSearch, size = 36)
         V2ThemeButton()
     }
 }
@@ -127,14 +130,14 @@ private fun TripsMonthNav(month: YearMonth, onPrevious: () -> Unit, onNext: () -
             .padding(start = 20.dp, end = 20.dp, bottom = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        CircleIconButton(icon = SgmIcon.ChevronLeft, onClick = onPrevious, size = 32, testTag = "trips.month.previous")
+        CircleIconButton(icon = SgmIcon.ChevronLeft, label = "Mois précédent", onClick = onPrevious, size = 32, testTag = "trips.month.previous")
         Text(
             month.format(DateTimeFormatter.ofPattern("MMMM yyyy", Locale.forLanguageTag("fr-BE"))).uppercase(Locale.forLanguageTag("fr-BE")),
             style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 18.sp, letterSpacing = 0.10.em),
             modifier = Modifier.weight(1f),
             textAlign = TextAlign.Center,
         )
-        CircleIconButton(icon = SgmIcon.ChevronRight, onClick = onNext, size = 32, testTag = "trips.month.next")
+        CircleIconButton(icon = SgmIcon.ChevronRight, label = "Mois suivant", onClick = onNext, size = 32, testTag = "trips.month.next")
     }
 }
 
@@ -180,7 +183,7 @@ private fun TripsTab(id: String, label: String, selected: String, onSelected: (S
 }
 
 @Composable
-private fun CircleIconButton(icon: SgmIcon, onClick: () -> Unit, size: Int, testTag: String? = null) {
+private fun CircleIconButton(icon: SgmIcon, label: String, onClick: () -> Unit, size: Int, testTag: String? = null) {
     Box(
         modifier = Modifier
             .sgmOptionalTestTag(testTag)
@@ -188,7 +191,8 @@ private fun CircleIconButton(icon: SgmIcon, onClick: () -> Unit, size: Int, test
             .clip(CircleShape)
             .background(Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), CircleShape)
-            .clickable(onClick = onClick),
+            .semantics { contentDescription = label }
+            .clickable(role = Role.Button, onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         SgmLineIcon(icon = icon, tint = Sgm.colors.textSecondary, modifier = Modifier.size(16.dp))

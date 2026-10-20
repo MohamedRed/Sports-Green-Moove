@@ -44,7 +44,8 @@ internal fun PlaceSearchField(
                 variant = V2ButtonVariant.Secondary, testTag = "$testTag.suggest")
         }
         selected?.let {
-            Text(it.formattedAddress, style = SgmType.BodyXS.copy(color = SgmColor.Green, fontSize = 12.sp, fontWeight = FontWeight.Bold))
+            Text(it.formattedAddress, modifier = Modifier.sgmTestTag("$testTag.resolved"),
+                style = SgmType.BodyXS.copy(color = SgmColor.Green, fontSize = 12.sp, fontWeight = FontWeight.Bold))
         }
         suggestions.take(4).forEach { suggestion ->
             SuggestionRow(suggestion, "$testTag.option.${suggestion.placeId}") { onSelect(suggestion) }

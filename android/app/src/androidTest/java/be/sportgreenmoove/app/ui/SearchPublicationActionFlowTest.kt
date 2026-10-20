@@ -6,6 +6,11 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.assert
+import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.Role
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.TripMatchSummary
 import org.junit.Assert.assertEquals
@@ -15,6 +20,17 @@ import org.junit.Test
 
 class SearchPublicationActionFlowTest {
     @get:Rule val compose = createComposeRule()
+
+    @Test
+    fun tripSearchAndMonthButtonsExposeNamedButtonActions() {
+        var searchOpened = false
+        compose.setSgmUiTestContent { TripsScreen(emptyList(), null, 0, {}, { searchOpened = true }, {}, {}) }
+        val button = SemanticsMatcher.expectValue(SemanticsProperties.Role, Role.Button)
+        for (label in listOf("Mois suivant", "Mois précédent"))
+            compose.onNodeWithContentDescription(label).assert(button).performClick()
+        compose.onNodeWithContentDescription("Rechercher un trajet").assert(button).performClick()
+        assertTrue(searchOpened)
+    }
 
     @Test
     fun searchActionsDispatchSelectedRideData() {

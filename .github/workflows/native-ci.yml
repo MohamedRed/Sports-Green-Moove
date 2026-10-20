@@ -41,6 +41,7 @@ on:
       - "tests/session-restoration-retained-evidence.test.mjs"
       - "tests/session-disconnect.test.mjs"
       - "tests/session-disconnect-retained-evidence.test.mjs"
+      - "tests/parent-search-booking-preparation.test.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
@@ -142,6 +143,7 @@ on:
       - "tests/session-restoration-retained-evidence.test.mjs"
       - "tests/session-disconnect.test.mjs"
       - "tests/session-disconnect-retained-evidence.test.mjs"
+      - "tests/parent-search-booking-preparation.test.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
@@ -264,6 +266,8 @@ jobs:
         run: node --test tests/independent-native-evidence.test.mjs tests/continuous-device-evidence.test.mjs
       - name: Test bounded restoration faults and unchanged fixture records
         run: node --test tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
+      - name: Validate guarded full-search preparation and accessible trip controls
+        run: node --test tests/parent-search-booking-preparation.test.mjs
       - name: Validate disposable Android isolation
         run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-android.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs tests/adb-sync-failure-diagnostics.test.mjs tests/guardian-parent-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
 
