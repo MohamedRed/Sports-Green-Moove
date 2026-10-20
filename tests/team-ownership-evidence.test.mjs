@@ -87,7 +87,7 @@ test('the selected manager approval policy is recorded without claiming team cha
   assert(content.updates.some((item) => item.title === 'Le club validera les inscriptions aux équipes' && item.date === '2026-10-17'));
 });
 
-test('personal emergency contacts preserve verified-parent authority without claiming a working emergency action', () => {
+test('personal contacts preserve verified-parent authority without accepting child-account or physical handoff', () => {
   const contract = read('docs/contracts/emergency-contact.md');
   assert.match(contract, /Adults\nmanage their own contact; a child's verified parent chooses the child's contact/);
   assert.match(contract, /manager's verification role does not give them permission to\nchoose or edit/);
@@ -100,7 +100,7 @@ test('personal emergency contacts preserve verified-parent authority without cla
   assert.match(emergency.next, /Terminer l’accès de l’enfant/);
   assert.match(emergency.next, /sur téléphone/);
   assert.match(emergency.text, /Conducteur et parent.*depuis un trajet en local/);
-  assert.equal(emergency.source, 'docs/release/evidence/emergency-selection-race-2026-10-19/README.md');
+  assert.equal(emergency.source, content.nativeVerification.source);
   assert.match(emergency.next, /sans appeler/);
   assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });

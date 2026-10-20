@@ -30,6 +30,12 @@ export const tours = {
     image('emergency-editor-narrow', 'Choisir son contact', 'L’écran garde les champs et les actions accessibles avec du texte agrandi, dans l’essai simulé.'),
     image('emergency-editor-changed', 'Si le téléphone ne s’ouvre pas', 'Dans cet essai simulé distinct, le nouveau numéro reste visible avec le message d’erreur.'),
   ],
+  'emergency-profile': [
+    image('emergency-profile-original', 'Le contact du profil initial', 'Le parent a choisi cet enfant et enregistré son contact fictif.'),
+    image('emergency-profile-denied', 'Refuser l’ancien formulaire', 'Le profil est recréé pour l’essai. L’ancien formulaire ne peut plus enregistrer.'),
+    image('emergency-profile-empty', 'Ne pas reprendre l’ancien numéro', 'Un nouvel accord est donné pour l’essai. Le nouveau profil ne récupère pas l’ancien contact.'),
+    image('emergency-profile-restored', 'Retrouver le nouveau contact', 'Le parent enregistre un nouveau numéro fictif. Il revient après réouverture de l’écran.'),
+  ],
   'ride-observation': [
     image('vehicle-map-first', 'Voir le véhicule sur la carte', 'Une première position de test apparaît côté parent.'),
     image('vehicle-map-moved', 'Recevoir la position suivante', 'Le véhicule bouge ; la carte et les repères du trajet restent fixes.'),

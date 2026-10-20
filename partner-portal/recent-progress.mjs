@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-20', title: 'Le nouveau profil garde son propre contact',
+    text: 'L’ancien formulaire est refusé. Après un nouvel accord, le nouveau contact revient à la réouverture. Quatre captures et une visite sont ajoutées.', flow: 'emergency-profile' },
+  { date: '2026-10-20', title: 'Le nouvel essai complet passe',
+    text: 'Réservations, messages, accords des parents et suivi repassent en local. Les quatre essais de sécurité passent aussi.', flow: 'publication' },
+  { date: '2026-10-20', title: 'La coupure et la reprise des messages passent',
+    text: 'Le brouillon est conservé pendant la coupure, puis envoyé sans doublon au retour de la connexion. Les échecs précédents restent documentés.', flow: 'messages' },
   { date: '2026-10-19', title: 'Le contact enfant est lisible sur petit écran',
     text: 'Le titre corrigé passe avec du grand texte. Trois captures d’essais simulés sont disponibles ; la connexion de l’enfant reste à tester.', flow: 'child-emergency' },
   { date: '2026-10-19', title: 'La sélection de l’enfant passe avec un chargement retardé',

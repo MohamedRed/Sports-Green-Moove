@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import { resolve, sep } from 'node:path';
+import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
@@ -14,12 +14,22 @@ import { validateRetainedVehicleMapServices } from '../scripts/qa/vehicle-map-ev
 import { validateRetainedVehicleMapDisplay } from '../scripts/qa/vehicle-map-retained-evidence.mjs';
 import { validateRetainedTeamClubIdentity } from '../scripts/qa/team-club-identity-evidence.mjs';
 import { validateChildContactComponents, validateRetainedChildContactComponents, correctedChildContactScope } from '../scripts/qa/child-emergency-evidence.mjs';
+import { validateEmergencyIdentityReport, validateRetainedEmergencyIdentity, emergencyIdentityScope } from '../scripts/qa/emergency-identity-retained-evidence.mjs';
+import { validateIndependentNativeEvidence } from '../scripts/qa/independent-native-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
   assertDate(content.updatedAt);
   assertDate(content.lastVerifiedAt);
   assert(content.lastVerifiedAt <= content.updatedAt);
+  const nativeDirectory = dirname(content.nativeVerification.manifest);
+  assert(nativeDirectory.startsWith('docs/release/evidence/'));
+  assert.equal(content.nativeVerification.source, nativeDirectory + '/README.md');
+  assert.equal(content.nativeVerification.checksums, nativeDirectory + '/artifact-sha256.json');
+  validateIndependentNativeEvidence(root, nativeDirectory);
+  const currentMatrix = JSON.parse(readFileSync(resolve(root, nativeDirectory, 'replay/results.json')));
+  assert.equal(currentMatrix.testedAt.slice(0, 10), content.nativeVerification.checkedAt);
+  assert(content.nativeVerification.checkedAt <= content.lastVerifiedAt);
   const statuses = ['verified', 'partial', 'blocked', 'untested', 'deferred'];
   const ids = new Set();
   for (const f of content.flows) {
@@ -68,6 +78,9 @@ export function validate(root) {
       assert.equal(f.status, 'partial', 'Local UI checks do not complete physical-device requirements');
       const run = JSON.parse(readFileSync(resolve(root, f.ui.source), 'utf8'));
       validateUiScope(run);
+      if (f.id === 'emergency-profile' || run.scope === emergencyIdentityScope) {
+        assert.equal(f.id, 'emergency-profile'); validateRetainedEmergencyIdentity(root, f.ui.source);
+      }
       if (f.id === 'child-emergency' || run.scope === 'executed-local-child-contact-components-not-child-signin-or-dialer') {
         assert.equal(f.id, 'child-emergency'); validateRetainedChildContactComponents(root, f.ui.source);
       }
@@ -146,6 +159,9 @@ export function validate(root) {
 
 export function validateUiScope(run) {
   switch (run.scope) {
+    case emergencyIdentityScope:
+      validateEmergencyIdentityReport(run);
+      break;
     case 'executed-local-child-contact-components-not-child-signin-or-dialer':
     case correctedChildContactScope:
       validateChildContactComponents(run);

@@ -5,7 +5,7 @@ export function createEmergencyFlow() {
   return { id: 'emergency-contact', title: 'Contact d’urgence', status: 'partial', checkedAt: '2026-10-19',
     summary: 'Le contact du parent et celui de son enfant ont été testés en local.',
     verified: 'Enregistrement, réouverture, retrait du droit parent, suppression et changement de compte passent en local dans l’app. Le numéro fictif ouvre le téléphone sans appel.',
-    remaining: 'À rejouer : choix d’un enfant, profil recréé, puis l’accès de l’enfant en trajet et les essais sur téléphone, sans appeler.',
+    remaining: 'Terminer l’accès de l’enfant pendant son trajet, puis rejouer sur téléphone, sans appeler.',
     ui: { source: source + 'emergency-contact-results.json', checkedAt: '2026-10-19', groups: ['emergency-contact-ui'] },
     local: { source: identity + 'services.json', checkedAt: '2026-10-19', groups: [
       'recreated-child-denies-obsolete-verification-read-edit-removal-and-committed-replay',

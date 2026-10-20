@@ -75,6 +75,13 @@ status. Update `updatedAt` when content changes and `lastVerifiedAt` only when a
 new verification actually occurred. Evidence source hashes are included in the
 generated JSON for traceability. Never add credentials or unreviewed media.
 
+`native-verification.mjs` binds the latest full local replay and independent
+safety trials to their scoped retained evidence. Validation checks CI source,
+required jobs, native markers, transfers, APK preparation and cleanup separately.
+Current reliability blockers reference this record; historical reports keep their
+original dates and failures. The separate recreated-profile gallery and tour
+never imply child-own-account access or physical-device readiness.
+
 ## Validate And Preview
 
 From the repository root (Node 22 and FFmpeg required):

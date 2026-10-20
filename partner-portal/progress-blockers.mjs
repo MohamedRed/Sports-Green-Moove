@@ -1,3 +1,5 @@
+import { nativeVerification } from './native-verification.mjs';
+
 export const blockers = [
   { id: 'tracking-capture', title: 'Revoir l’affichage du trajet',
     text: 'La reprise fonctionne en local. Le bas de l’écran manque sur deux captures.',
@@ -12,8 +14,8 @@ export const blockers = [
     text: 'Un premier défaut est corrigé et testé. D’autres alertes restent à examiner.',
     next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/proxy-trust-security-2026-10-19/README.md' },
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
-    text: 'Les écrans passent. Le dernier essai complet s’arrête pendant la préparation de la connexion.',
-    next: 'Débloquer cet essai, vérifier les essais séparés, puis reprendre les essais sur téléphone.', source: 'docs/release/evidence/child-contact-heading-pass-2026-10-19/README.md' },
+    text: 'Le nouvel essai complet et les quatre essais séparés passent. Les interruptions précédentes restent documentées.',
+    next: 'Répéter les essais, puis reprendre les essais sur téléphone.', source: nativeVerification.source },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },
@@ -22,7 +24,7 @@ export const blockers = [
     next: 'Rejouer sur téléphone avant publication. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-history-2026-10-18/README.md' },
   { id: 'emergency-contact', title: 'Tester le contact d’urgence',
     text: 'Conducteur et parent ouvrent leur contact depuis un trajet en local, sans appeler.',
-    next: 'Terminer l’accès de l’enfant dans l’app. Rejouer le choix d’un enfant et le profil recréé, puis vérifier sur téléphone sans appeler.', source: 'docs/release/evidence/emergency-selection-race-2026-10-19/README.md' },
+    next: 'Le choix d’un enfant et le profil recréé passent. Terminer l’accès de l’enfant, puis vérifier sur téléphone sans appeler.', source: nativeVerification.source },
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
     text: 'Le renvoi depuis la recherche retrouve une seule demande en local.',
     next: 'Rejouer après réouverture, depuis les autres écrans et sur téléphone. Terminer les confirmations des parents.', source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },
@@ -33,8 +35,8 @@ export const blockers = [
     text: 'Les quatre essais locaux simulés passent.',
     next: 'Rejouer la rotation et la reconnexion après une coupure.', source: 'docs/release/evidence/local-session-restoration-2026-10-16/README.md' },
   { id: 'chat-send-stability', title: 'Vérifier la reprise sur plusieurs essais',
-    text: 'Les précédents essais passent. Le dernier bloque avant de couper la connexion.',
-    next: 'Débloquer la préparation, puis rejouer la coupure et les échanges sur téléphone.', source: 'docs/release/evidence/child-contact-heading-pass-2026-10-19/README.md' },
+    text: 'La coupure, le brouillon et la reprise passent à nouveau en local. Les échecs précédents restent documentés.',
+    next: 'Répéter les coupures, puis vérifier les échanges sur téléphone.', source: nativeVerification.source },
   { id: 'group-conversation', title: 'Démarrer une conversation de groupe',
     text: 'Les demandes d’équipe passent les essais locaux. Les échanges entre membres d’une même équipe et parents des enfants inscrits restent à construire et à tester.',
     next: 'L’historique passe sur téléphone. Ajouter les échanges d’équipe avec les membres et parents validés par le responsable du club.', source: 'docs/release/evidence/phone-team-history-2026-10-19/README.md' },

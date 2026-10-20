@@ -1,4 +1,8 @@
 export const captures = {
+  'emergency-profile-original': 'docs/release/evidence/native-independent-61dc4cb-2026-10-20/emergency-identity/emergency-identity-original.png',
+  'emergency-profile-denied': 'docs/release/evidence/native-independent-61dc4cb-2026-10-20/emergency-identity/emergency-identity-stale-denied.png',
+  'emergency-profile-empty': 'docs/release/evidence/native-independent-61dc4cb-2026-10-20/emergency-identity/emergency-identity-fresh-empty.png',
+  'emergency-profile-restored': 'docs/release/evidence/native-independent-61dc4cb-2026-10-20/emergency-identity/emergency-identity-fresh-restored.png',
   'child-contact-narrow': 'docs/release/evidence/child-contact-heading-pass-2026-10-19/child-emergency-readonly-narrow-window.png',
   'child-contact-denied': 'docs/release/evidence/child-contact-heading-pass-2026-10-19/child-emergency-access-denied-window.png',
   'child-contact-changed': 'docs/release/evidence/child-contact-heading-pass-2026-10-19/child-emergency-landscape-changed-window.png',

@@ -1,6 +1,24 @@
 # Emergency Contact
 
-## Current Audit
+## Latest Verified Boundary
+
+On 2026-10-20, source `61dc4cb` passed the complete 36-group/38-case local replay
+and four independent safety trials. `native-independent-61dc4cb-2026-10-20`
+retains their original markers, transcripts, source bindings and verified cleanup.
+The recreated-child parent journey now executes all five checks, including the
+refused old form, fresh manager verification without inherited contact, and a
+new contact surviving Activity recreation. It opens no phone app and is not the
+child's own authenticated journey. Only its four reviewed captures enter the
+separate partial profile gallery.
+
+Five child and seven parent component cases also executed with in-memory
+replies; the corrected narrow heading was reviewed independently. Child account
+link approval/provisioning and normal child sign-in/ride discovery remain open,
+as do physical tracking and store-review acceptance. No production deployment is
+inferred. Dated preparation notes below preserve earlier snapshots, not current
+claims that these now-executed local cases are still only compiled.
+
+## Historical Audit
 
 Source audit on 2026-10-17 at `e1177c13d8cd016a691ffb0307e110af038177af`:
 

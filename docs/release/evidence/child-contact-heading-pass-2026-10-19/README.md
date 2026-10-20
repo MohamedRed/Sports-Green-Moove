@@ -5,8 +5,8 @@ Source `f041cde408192e086ba37b5c10ad9be3770bb4c9`, Native CI run
 all seven parent contact components executed without failure, error or skip.
 The latter include the deliberately delayed initial-contact reply and history
 reply that must keep the child picker open and disabled until selection is safe.
-The original JUnit contains 167 executed cases and 41 intentional profile skips;
-the skips do not count as child or parent component passes.
+The original JUnit contains 167 entries: 126 executed cases and 41 intentional
+profile skips. The skips do not count as child or parent component passes.
 
 Both narrow large-text cases inspect real text-layout overflow. All three child
 window captures were visually reviewed: the title is complete, contact and

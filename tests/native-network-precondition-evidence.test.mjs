@@ -58,9 +58,9 @@ test('registered modem state does not establish a usable SIM or default data sub
 
 test('the portal preserves the failed matrix behind the later pass without changing the phone proof', () => {
   assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source,
-    'docs/release/evidence/child-contact-heading-pass-2026-10-19/README.md');
+    content.nativeVerification.source);
   assert.equal(content.blockers.find((item) => item.id === 'chat-send-stability').source,
-    'docs/release/evidence/child-contact-heading-pass-2026-10-19/README.md');
+    content.nativeVerification.source);
   assert.match(bytes('docs/release/evidence/native-matrix-36-2026-10-19/README.md').toString('utf8'), /native-network-precondition-2026-10-19/);
   assert.equal(content.flows.find((item) => item.id === 'team-enrollment').phone.source,
     'docs/release/evidence/phone-team-enrollment-2026-10-19/results.json');
