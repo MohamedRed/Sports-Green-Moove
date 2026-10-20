@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-20', title: 'Trois autres alertes de sécurité corrigées',
+    text: 'Dix essais passent après correction. Les autres alertes restent à examiner ; la correction n’est pas encore en ligne.', flow: 'publication' },
   { date: '2026-10-20', title: 'Le nouveau profil garde son propre contact',
     text: 'L’ancien formulaire est refusé. Après un nouvel accord, le nouveau contact revient à la réouverture. Quatre captures et une visite sont ajoutées.', flow: 'emergency-profile' },
   { date: '2026-10-20', title: 'Le nouvel essai complet passe',

@@ -67,6 +67,9 @@ jobs:
       - name: Test runtime proxy trust against forwarded-address spoofing
         run: node --test tests/proxy-trust-security.test.mjs
 
+      - name: Test runtime multipart parser against malformed inputs
+        run: node --test tests/multipart-security.test.mjs
+
       - name: Validate network run evidence and temporary administration cleanup
         run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs
 

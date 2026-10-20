@@ -1,0 +1,238 @@
+TAP version 13
+# Subtest: the Admin-resolved multipart parser preserves normal fields and files
+ok 1 - the Admin-resolved multipart parser preserves normal fields and files
+  ---
+  duration_ms: 43.500709
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved Dicer accepts a __proto__ part header without a parser crash
+not ok 2 - the Admin-resolved Dicer accepts a __proto__ part header without a parser crash
+  ---
+  duration_ms: 35.48
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/multipart-security.test.mjs:34:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   message: 'this.header[h].push is not a function',
+    +   name: 'TypeError'
+    + }
+    - undefined
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual:
+    name: 'TypeError'
+    message: 'this.header[h].push is not a function'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:37:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: the Admin-resolved Dicer accepts a constructor part header without a parser crash
+not ok 3 - the Admin-resolved Dicer accepts a constructor part header without a parser crash
+  ---
+  duration_ms: 34.691584
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/multipart-security.test.mjs:34:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   message: 'this.header[h].push is not a function',
+    +   name: 'TypeError'
+    + }
+    - undefined
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual:
+    name: 'TypeError'
+    message: 'this.header[h].push is not a function'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:37:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the Admin-resolved Dicer completes a 70-byte boundary without blocking
+ok 4 - the Admin-resolved Dicer completes a 70-byte boundary without blocking
+  ---
+  duration_ms: 34.668416
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved Dicer completes a 251-byte boundary without blocking
+ok 5 - the Admin-resolved Dicer completes a 251-byte boundary without blocking
+  ---
+  duration_ms: 34.67575
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved Dicer completes a 252-byte boundary without blocking
+not ok 6 - the Admin-resolved Dicer completes a 252-byte boundary without blocking
+  ---
+  duration_ms: 5002.194416
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/multipart-security.test.mjs:43:3'
+  failureType: 'testCodeFailure'
+  error: 'ifError got unwanted exception: spawnSync /Users/mrr/.hermes/node/bin/node ETIMEDOUT'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+  error: 'spawnSync /Users/mrr/.hermes/node/bin/node ETIMEDOUT'
+  stack: |-
+    Object.spawnSync (node:internal/child_process:1120:20)
+    spawnSync (node:child_process:902:24)
+    probe (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:14:17)
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:45:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'ifError'
+  stack: |-
+    probe (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:18:10)
+    Object.spawnSync (node:internal/child_process:1120:20)
+    spawnSync (node:child_process:902:24)
+    probe (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:14:17)
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:45:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the Admin-resolved parser never delivers bare CR in a multipart name
+not ok 7 - the Admin-resolved parser never delivers bare CR in a multipart name
+  ---
+  duration_ms: 107.691333
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/multipart-security.test.mjs:54:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /[\r\n]/. Input:
+    
+    'bad\rname'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'bad\rname'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:60:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the Admin-resolved parser never delivers bare CR in a multipart filename
+not ok 8 - the Admin-resolved parser never delivers bare CR in a multipart filename
+  ---
+  duration_ms: 39.50675
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/multipart-security.test.mjs:54:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /[\r\n]/. Input:
+    
+    'bad\rfile.txt'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'bad\rfile.txt'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:61:49)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the Admin-resolved parser never delivers bare LF in a multipart name
+not ok 9 - the Admin-resolved parser never delivers bare LF in a multipart name
+  ---
+  duration_ms: 37.096625
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/multipart-security.test.mjs:54:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /[\r\n]/. Input:
+    
+    'bad\nname'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    bad
+    name
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:60:16)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the Admin-resolved parser never delivers bare LF in a multipart filename
+not ok 10 - the Admin-resolved parser never delivers bare LF in a multipart filename
+  ---
+  duration_ms: 37.175792
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/multipart-security.test.mjs:54:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /[\r\n]/. Input:
+    
+    'bad\nfile.txt'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    bad
+    file.txt
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/multipart-security.test.mjs:61:49)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 3
+# fail 7
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5461.382167
