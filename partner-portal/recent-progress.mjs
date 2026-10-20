@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-19', title: 'Le contact enfant est lisible sur petit écran',
+    text: 'Le titre corrigé passe avec du grand texte. Trois captures d’essais simulés sont disponibles ; la connexion de l’enfant reste à tester.', flow: 'child-emergency' },
+  { date: '2026-10-19', title: 'La sélection de l’enfant passe avec un chargement retardé',
+    text: 'Les sept essais d’écran passent. Le parcours complet avec un profil recréé reste à terminer.', flow: 'emergency-contact' },
+  { date: '2026-10-19', title: 'La coupure des messages reste à rejouer',
+    text: 'Les écrans passent. La connexion de test ne se prépare pas dans le dernier essai complet ; la coupure n’est pas encore testée.', flow: 'messages' },
   { date: '2026-10-19', title: 'Le choix d’un enfant reste à rejouer',
     text: 'Un défaut de chargement peut fermer la liste trop tôt. La correction est préparée ; elle reste à vérifier dans l’app.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Les premiers écrans du contact enfant passent',

@@ -13,7 +13,7 @@ import { remoteRideStopScope, validateRemoteRideStopReport, validateRetainedRemo
 import { validateRetainedVehicleMapServices } from '../scripts/qa/vehicle-map-evidence.mjs';
 import { validateRetainedVehicleMapDisplay } from '../scripts/qa/vehicle-map-retained-evidence.mjs';
 import { validateRetainedTeamClubIdentity } from '../scripts/qa/team-club-identity-evidence.mjs';
-import { validateChildContactComponents, validateRetainedChildContactComponents } from '../scripts/qa/child-emergency-evidence.mjs';
+import { validateChildContactComponents, validateRetainedChildContactComponents, correctedChildContactScope } from '../scripts/qa/child-emergency-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -147,6 +147,7 @@ export function validate(root) {
 export function validateUiScope(run) {
   switch (run.scope) {
     case 'executed-local-child-contact-components-not-child-signin-or-dialer':
+    case correctedChildContactScope:
       validateChildContactComponents(run);
       break;
     case remoteRideStopScope:

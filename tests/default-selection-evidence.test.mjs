@@ -89,8 +89,8 @@ test('current captures and dates cannot promote this comparison to physical or s
   const current = 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/';
   assert.equal(flow.ui.source, current + 'replay/results.json'); assert.equal(flow.source, current + 'README.md');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');
-  assert.equal(blocker.source, current + 'README.md');
-  assert.match(blocker.text, /reprise passent à nouveau en local/); assert.match(blocker.text, /échecs précédents restent documentés/);
+  assert.equal(blocker.source, 'docs/release/evidence/child-contact-heading-pass-2026-10-19/README.md');
+  assert.match(blocker.text, /précédents essais passent/); assert.match(blocker.text, /dernier bloque avant de couper/);
   for (const [id, file] of [['chat-network-current-draft', 'local-chat-network-unconfirmed.png'],
     ['chat-network-current-reply', 'local-chat-network-received.png']]) {
     assert.equal(captures[id], latest + 'completed/' + file);

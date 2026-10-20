@@ -5,7 +5,8 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { parseDocument } from 'yaml';
-import { validateChildEmergencyServices, validateRetainedChildEmergency, validateChildContactComponents } from '../scripts/qa/child-emergency-evidence.mjs';
+import { validateChildEmergencyServices, validateRetainedChildEmergency, validateChildContactComponents,
+  validateRetainedChildContactComponents, correctedChildContactScope } from '../scripts/qa/child-emergency-evidence.mjs';
 import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 
@@ -93,14 +94,18 @@ test('full emergency headings wrap without shrinking and both narrow cases inspe
     assert(source.includes('SemanticsActions.GetTextLayoutResult')); assert(source.includes('titles.single().hasVisualOverflow'));
   }
 });
-test('the partner gallery separates simulated child screens and cannot publish its defective narrow capture', () => {
+test('the partner gallery separates simulated child screens and uses the newly verified narrow heading', () => {
   const flow = content.flows.find((item) => item.id === 'child-emergency');
   assert.equal(flow.status, 'partial'); assert.equal(flow.phone, undefined);
   assert.match(flow.summary, /simulées/); assert.match(flow.remaining, /connexion de l’enfant/);
-  assert.match(flow.remaining, /ouverture réelle du téléphone/); assert.equal(flow.images.length, 2);
-  assert.deepEqual(flow.images.map((item) => item.file), ['child-contact-denied', 'child-contact-changed']);
+  assert.match(flow.remaining, /ouverture réelle du téléphone/); assert.equal(flow.images.length, 3);
+  assert.deepEqual(flow.images.map((item) => item.file), ['child-contact-narrow', 'child-contact-denied', 'child-contact-changed']);
   const report = JSON.parse(read(flow.ui.source));
-  validateChildContactComponents(report);
+  validateRetainedChildContactComponents(root, flow.ui.source);
+  assert.equal(report.scope, correctedChildContactScope); assert.equal(report.headingLayoutVerified, true);
+  assert.equal(report.mainNativeJobPassed, false); assert.equal(report.parentComponentCaseCount, 7);
+  assert.equal(report.remainingMainFailure, 'network-test-preparation');
+  assert(!content.blockers.some((item) => item.id === 'child-contact-heading'));
   for (const image of flow.images) {
     assert.match(image.alt, /simulé/);
     const file = captures[image.file].split('/').at(-1);
@@ -108,4 +113,7 @@ test('the partner gallery separates simulated child screens and cannot publish i
   }
   for (const key of ['actualChildSignIn', 'connectedBackend', 'dialerOpened', 'physicalDevice', 'fullNativeCiVerified', 'visualCompletenessVerified'])
     assert.throws(() => validateChildContactComponents({ ...report, [key]: true }));
+  for (const patch of [{ headingLayoutVerified: false }, { mainNativeJobPassed: true }, { parentComponentCaseCount: 6 },
+    { knownVisualDefects: ['child-emergency-readonly-narrow.png'] }, { reviewedWindows: [] }])
+    assert.throws(() => validateChildContactComponents({ ...report, ...patch }));
 });

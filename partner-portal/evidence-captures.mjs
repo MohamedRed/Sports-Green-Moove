@@ -1,6 +1,7 @@
 export const captures = {
-  'child-contact-denied': 'docs/release/evidence/child-contact-components-2026-10-19/child-emergency-access-denied-window.png',
-  'child-contact-changed': 'docs/release/evidence/child-contact-components-2026-10-19/child-emergency-landscape-changed-window.png',
+  'child-contact-narrow': 'docs/release/evidence/child-contact-heading-pass-2026-10-19/child-emergency-readonly-narrow-window.png',
+  'child-contact-denied': 'docs/release/evidence/child-contact-heading-pass-2026-10-19/child-emergency-access-denied-window.png',
+  'child-contact-changed': 'docs/release/evidence/child-contact-heading-pass-2026-10-19/child-emergency-landscape-changed-window.png',
   'vehicle-map-first': 'docs/release/evidence/vehicle-map-display-pass-2026-10-19/replay/local-vehicle-map-first.png',
   'vehicle-map-moved': 'docs/release/evidence/vehicle-map-display-pass-2026-10-19/replay/local-vehicle-map-moved.png',
   'vehicle-map-unverified': 'docs/release/evidence/vehicle-map-ui-observation-failure-2026-10-19/replay/local-vehicle-map-failed.png',

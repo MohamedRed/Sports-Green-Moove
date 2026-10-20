@@ -64,15 +64,24 @@ export function validateRetainedChildEmergency(root) {
   }
   return report;
 }
+export const correctedChildContactScope = 'executed-corrected-child-contact-components-not-child-signin-or-dialer';
 export function validateChildContactComponents(report) {
-  assert.equal(report.scope, 'executed-local-child-contact-components-not-child-signin-or-dialer');
+  const corrected = report.scope === correctedChildContactScope;
+  assert(corrected || report.scope === 'executed-local-child-contact-components-not-child-signin-or-dialer');
   assert.equal(report.projectId, 'demo-sgm-local-qa'); assert.equal(report.componentCaseCount, 5);
   assert.deepEqual(report.steps, [{ id: 'child-contact-components', status: 'passed' }]);
   assert.equal(report.caseNames.length, 5); assert.equal(new Set(report.caseNames).size, 5);
   for (const key of ['mockedGateway', 'mockedDialer']) assert.equal(report[key], true);
   for (const key of ['actualChildSignIn', 'connectedBackend', 'dialerOpened', 'physicalDevice', 'productionWrites',
     'fullNativeCiVerified', 'visualCompletenessVerified']) assert.equal(report[key], false);
-  assert.deepEqual(report.knownVisualDefects, ['child-emergency-readonly-narrow.png', 'child-emergency-readonly-narrow-window.png']);
+  assert.deepEqual(report.knownVisualDefects, corrected ? [] : ['child-emergency-readonly-narrow.png', 'child-emergency-readonly-narrow-window.png']);
+  if (corrected) {
+    assert.equal(report.headingLayoutVerified, true); assert.equal(report.parentComponentCaseCount, 7);
+    assert.equal(report.parentCaseNames.length, 7); assert.equal(new Set(report.parentCaseNames).size, 7);
+    assert.equal(report.mainNativeJobPassed, false); assert.equal(report.remainingMainFailure, 'network-test-preparation');
+    assert.deepEqual(report.reviewedWindows, ['child-emergency-access-denied-window.png',
+      'child-emergency-landscape-changed-window.png', 'child-emergency-readonly-narrow-window.png']);
+  }
   assert.equal(Object.keys(report.screenshots).length, 6); assert.match(report.sourceCommit, /^[a-f0-9]{40}$/);
 }
 export function validateRetainedChildContactComponents(root, source) {
@@ -84,6 +93,14 @@ export function validateRetainedChildContactComponents(root, source) {
   const cases = suite.testcase.filter((entry) => entry['@_classname'] === 'be.sportgreenmoove.app.ui.ChildRideEmergencyFlowTest');
   assert.equal(cases.length, 5); assert.deepEqual(cases.map((entry) => entry['@_name']).sort(), report.caseNames);
   for (const entry of cases) for (const key of ['failure', 'error', 'skipped']) assert(!Object.hasOwn(entry, key));
+  if (report.scope === correctedChildContactScope) {
+    const parent = suite.testcase.filter((entry) => entry['@_classname'] === 'be.sportgreenmoove.app.ui.EmergencyContactFlowTest');
+    assert.equal(parent.length, 7); assert.deepEqual(parent.map((entry) => entry['@_name']).sort(), report.parentCaseNames);
+    assert(report.parentCaseNames.includes('aLateInitialReadKeepsTheChildPickerOpenUntilTheSelectionCanBeAccepted'));
+    for (const entry of parent) for (const key of ['failure', 'error', 'skipped']) assert(!Object.hasOwn(entry, key));
+    const statuses = json('native-suite-status.json'); assert.equal(statuses.ordinaryTests, 0);
+    assert.equal(statuses.componentEvidence, 0); assert.equal(statuses.localReplay, 1);
+  }
   assertRetainedSourceFiles(root, report.sourceFiles);
   for (const [file, hash] of Object.entries({ ...json('artifact-sha256.json'), ...report.screenshots })) {
     assert.equal(basename(file), file); assert.equal(sha(read(file)), hash, file);
