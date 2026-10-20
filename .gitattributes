@@ -51,6 +51,9 @@ docs/release/evidence/disposable-installation-guard-2026-10-18/**/*.log -text -w
 docs/release/evidence/local-team-enrollment-native-2026-10-19/**/*.txt -text -whitespace
 docs/release/evidence/proxy-trust-security-2026-10-19/*.tap -text -whitespace
 docs/release/evidence/multipart-security-2026-10-20/*.tap -text -whitespace
+docs/release/evidence/session-restoration-native-2026-10-20/*.txt -text -whitespace
+docs/release/evidence/session-restoration-native-2026-10-20/*.json -text -whitespace
+docs/release/evidence/session-restoration-native-2026-10-20/*.claimed -text -whitespace
 docs/release/evidence/native-network-precondition-2026-10-19/*.xml -text -whitespace
 docs/release/evidence/native-network-precondition-2026-10-19/*.txt -text -whitespace
 docs/release/evidence/native-matrix-36-2026-10-19/**/*.txt -text -whitespace

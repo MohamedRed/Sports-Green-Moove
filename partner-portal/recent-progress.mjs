@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-20', title: 'La reconnexion après une erreur passe en local',
+    text: 'L’erreur reste visible après rotation. Réessayer retrouve le même parent. Une visite en quatre captures est ajoutée.', flow: 'session-restoration' },
   { date: '2026-10-20', title: 'Trois autres alertes de sécurité corrigées',
     text: 'Dix essais passent après correction. Les autres alertes restent à examiner ; la correction n’est pas encore en ligne.', flow: 'publication' },
   { date: '2026-10-20', title: 'Le nouveau profil garde son propre contact',

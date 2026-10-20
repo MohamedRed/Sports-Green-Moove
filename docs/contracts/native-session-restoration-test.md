@@ -35,8 +35,12 @@ the guard is never opened for a reinstall. The existing aggregate check now
 requires all five cases. The ordinary full native matrix is not removed or
 shortened, and older four-case evidence keeps its original historical scope.
 
-Preparation and compilation are not execution evidence. The corrected case still
-requires a terminal successful native result, verified cleanup, retained original
-artifacts and visual review before the partner portal can claim it passed.
+Preparation and compilation alone are not execution evidence. Acceptance requires
+a terminal successful native result, verified cleanup, retained original artifacts
+and visual review before the partner portal can claim it passed.
 It does not accept physical-device, physical network-loss, provider, payment,
 store-review or safety-audit requirements. No application backend is deployed.
+
+The [20 October native trial](../release/evidence/session-restoration-native-2026-10-20/README.md)
+now supplies this scoped execution and cleanup evidence. It does not complete the
+remaining physical-device, actual outage or full-app Disconnect branches.

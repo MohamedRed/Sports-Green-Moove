@@ -97,7 +97,9 @@ test('four executed recovery cases and reviewed captures stay distinct from fail
   assert.match(read(base + 'service-failure-excerpt.txt'), /23\/24 groups passed/);
   const cancellationFollowup = content.blockers.find((item) => item.id === 'cancellation-race');
   assert(read(cancellationFollowup.source).includes(base + 'README.md'));
-  assert.match(content.blockers.find((item) => item.id === 'session-restoration').text, /simulés/);
+  const restorationFollowup = content.blockers.find((item) => item.id === 'session-restoration');
+  assert.match(restorationFollowup.text, /dans l’app en local/);
+  assert.match(restorationFollowup.next, /vraie coupure/);
   assert(!/getSubscriberId|getImei|line1Number/.test(read(ui + 'SessionRestorationState.kt')));
 });
 

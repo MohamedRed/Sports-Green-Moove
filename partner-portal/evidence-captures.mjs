@@ -1,4 +1,7 @@
 export const captures = {
+  ...Object.fromEntries(['error', 'rotated-error', 'recovered', 'restored'].map(id => [
+    'session-recovery-' + id, 'docs/release/evidence/session-restoration-native-2026-10-20/local-session-restoration-' + id + '.png',
+  ])),
   'emergency-profile-original': 'docs/release/evidence/native-independent-61dc4cb-2026-10-20/emergency-identity/emergency-identity-original.png',
   'emergency-profile-denied': 'docs/release/evidence/native-independent-61dc4cb-2026-10-20/emergency-identity/emergency-identity-stale-denied.png',
   'emergency-profile-empty': 'docs/release/evidence/native-independent-61dc4cb-2026-10-20/emergency-identity/emergency-identity-fresh-empty.png',
