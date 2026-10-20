@@ -1,6 +1,9 @@
 # Full Parent Search And Two-Seat Booking Trial
 
-Preparation only. `LocalParentSearchBookingTest` is not executed by the ordinary
+One approved local trial passed on 2026-10-20, with six provider calls and three
+independent saved-state checkpoints. Original evidence and limits are in
+`../release/evidence/parent-search-booking-native-2026-10-20/README.md`.
+`LocalParentSearchBookingTest` is not executed by the ordinary
 offline suite: without the explicit `searchBookingApproved` instrumentation
 argument it skips before opening the app or making a provider request. It also
 requires the local debug package, demo project, a disposable emulator, the exact
@@ -38,7 +41,7 @@ ephemeral run ID and a future fixture departure. A compiled test is not a pass.
 ## Provider Boundary
 
 The user approved one new trial with at most eight provider HTTP requests on
-2026-10-20. No map call has been executed for this new trial yet. The existing
+2026-10-20. The completed trial used six calls, with no retries. The existing
 route-edit broker still allows only five Places/Compute Routes calls and rejects
 Route Matrix. Do not relax it silently or run this case with fake providers.
 
@@ -53,7 +56,8 @@ validation or transport failure stops further calls; all workers share one
 broker allowance. The host runner now reads the saved state at requested,
 approved and cancelled checkpoints before acknowledging each phone action; it
 does not create, approve or cancel any booking. Offline negative tests and
-compilation do not prove the trial passed. Execution and review remain pending.
+compilation alone do not prove a pass. The dated original run and four reviewed
+captures now prove this local trial; physical-device execution remains pending.
 Do not reset the allowance or restart a partially spent trial without approval.
 The server credential must stay outside the APK and evidence.
 Do not widen existing key restrictions or enable payments/social services.
@@ -76,6 +80,6 @@ must stay partial until reviewed original evidence proves this whole chain.
 
 The trip search icon and both month arrows now expose French accessible names
 and a button role. The ordinary component regression exercises those named
-actions without provider access. Its compilation passes; native execution and
-visual review are still pending. This is not a screen-reader-device audit or
+actions without provider access. The retained ordinary XML from `b158a75` proves
+that named-action regression passed. This is not a screen-reader-device audit or
 proof of the full booking trial. Geometry and visible copy are unchanged.

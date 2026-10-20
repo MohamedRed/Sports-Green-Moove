@@ -89,6 +89,8 @@ export const tours = {
     image('local-calendar', 'Consulter le calendrier', 'Le calendrier affiche le mois de l’essai et permet de changer de mois.'),
   ],
   search: [
+    image('search-booking-choices', 'Choisir les adresses et les passagers', 'Dans le nouvel essai local, le parent choisit Wavre, Bruxelles-Central, Lina et deux places.'),
+    image('search-booking-requested', 'Trouver puis demander le trajet', 'Un trajet correspond. Le parent envoie une seule demande pour deux places. À rejouer sur téléphone.'),
     image('phone-child-two-seats-consent', 'Choisir l’enfant et les places', 'Sur téléphone, l’enfant de test et deux places sont sélectionnés. La réservation complète reste à tester.'),
     image('phone-child-consent-reset', 'Changer de choix', 'Le consentement est remis à zéro quand le choix d’enfant change.'),
     image('phone-child-incomplete-search', 'Renseigner les adresses', 'Sans départ ni destination choisis, la recherche est bloquée et aucune réservation n’est créée.'),
@@ -105,6 +107,9 @@ export const tours = {
     image('trip-consent-withdrawn', 'Si le conducteur retire sa proposition', 'Autre cas testé : le changement est retiré sans annuler les réservations.'),
   ],
   booking: [
+    image('search-booking-requested', 'Demander deux places', 'Dans le nouvel essai local, la demande part de la recherche pour l’enfant choisi.'),
+    image('search-booking-driver-approved', 'Le conducteur accepte', 'Le conducteur ouvre sa réservation et confirme son accord dans l’app. Deux places sont réservées.'),
+    image('search-booking-cancelled', 'Le parent annule', 'Le parent retrouve l’accord puis confirme l’annulation. Les deux places redeviennent disponibles, sans paiement.'),
     image('phone-booking-requested', 'Demander une place', 'Sur téléphone, le parent retrouve sa demande. Cet essai utilise des données de test et un trajet gratuit.'),
     image('phone-booking-approved', 'Retrouver l’accord', 'Après actualisation, la réservation est approuvée. L’acceptation depuis le téléphone du conducteur reste à tester.'),
     image('phone-booking-cancelled', 'Annuler la réservation', 'Le parent confirme l’annulation depuis son téléphone. La place est à nouveau disponible. Aucun paiement.'),

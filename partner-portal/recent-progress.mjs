@@ -1,4 +1,10 @@
 export const recentProgress = [
+  { date: '2026-10-20', title: 'Deux places pour un enfant, de la recherche à l’annulation',
+    text: 'En local, le parent demande deux places, le conducteur accepte dans l’app puis le parent annule. Les deux places sont rendues. Quatre captures sont ajoutées.', flow: 'booking' },
+  { date: '2026-10-20', title: 'La recherche complète trouve un trajet',
+    text: 'Adresses choisies, enfant et deux places : une seule demande est envoyée en local. À rejouer sur téléphone.', flow: 'search' },
+  { date: '2026-10-20', title: 'L’essai complet est interrompu',
+    text: 'Le test de modification du trajet passe, puis la récupération des captures échoue. L’ensemble reste à terminer.', flow: 'publication' },
   { date: '2026-10-20', title: 'Le dernier essai complet passe',
     text: 'Réservations, messages et accords des parents repassent en local. Les six essais séparés passent aussi.', flow: 'publication' },
   { date: '2026-10-20', title: 'Se déconnecter depuis l’erreur fonctionne en local',

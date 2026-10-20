@@ -51,13 +51,14 @@ test('nine retained files stay byte exact and the three original screenshots are
 
 test('private site dates phone and old local results separately without closing booking or release scope', () => {
   const flow = content.flows.find((f) => f.id === 'booking');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-18');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.phone.checkedAt, '2026-10-18');
   assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.ui.checkedAt, '2026-10-17');
-  assert.equal(flow.phone.source, base + 'results.json'); assert.equal(flow.source, base + 'README.md');
-  assert.deepEqual(flow.images.slice(0, 3).map((image) => image.file), ['phone-booking-requested', 'phone-booking-approved', 'phone-booking-cancelled']);
-  assert.deepEqual(flow.tour.map((step) => step.image), flow.images.slice(0, 3).map((image) => image.file));
-  for (const [index, id] of flow.images.slice(0, 3).map((image) => image.file).entries()) assert.equal(captures[id], base + run.captures[index]);
-  assert.match(detail(flow), /Essai sur téléphone/);
+  assert.equal(flow.phone.source, base + 'results.json');
+  const historical = flow.images.filter(image => image.file.startsWith('phone-booking-')).map(image => image.file);
+  assert.deepEqual(historical, ['phone-booking-requested', 'phone-booking-approved', 'phone-booking-cancelled']);
+  assert.deepEqual(flow.tour.filter(step => step.image.startsWith('phone-booking-')).map(step => step.image), historical);
+  for (const [index, id] of historical.entries()) assert.equal(captures[id], base + run.captures[index]);
+  assert.match(detail(flow), /Essai local du 20 octobre 2026/);
   for (const remaining of [/conducteur/, /enfants/, /plusieurs places/, /deux téléphones/, /réponses perdues/, /remboursements/, /Pas encore en ligne/]) assert.match(flow.remaining, remaining);
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');
 });

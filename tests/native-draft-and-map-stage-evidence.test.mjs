@@ -152,7 +152,7 @@ test('private portal adds the fitted map without promoting the historical clippe
   assert.equal(captures['trip-real-route-applied'], mapsBase + 'completed-application/replay/local-real-maps-applied.png');
   assert(content.updates.some((u) => u.title === 'La date et l’arrivée reviennent dans le brouillon'));
   assert(content.updates.some((u) => u.title === 'Les 35 parcours locaux passent' && u.date === '2026-10-18'));
-  assert.match(content.blockers.find((b) => b.id === 'test-device-stability').text, /dernier essai complet.*passent/);
+  assert.match(content.blockers.find((b) => b.id === 'test-device-stability').text, /s’interrompt.*captures/);
   assert.match(content.blockers.find((b) => b.id === 'test-device-stability').next, /reprendre les essais.*sur téléphone/);
   const displayPng = bytes(captures['trip-real-map-visible']);
   assert.equal(displayPng.readUInt32BE(16), 1080); assert.equal(displayPng.readUInt32BE(20), 2400);

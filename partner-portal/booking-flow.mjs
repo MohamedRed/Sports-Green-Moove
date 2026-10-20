@@ -1,12 +1,16 @@
 export function createBookingFlow(local, shot) {
-  return { id: 'booking', title: 'Réservations', status: 'partial', checkedAt: '2026-10-18',
-    summary: 'Sur téléphone, le parent demande une place, voit l’accord puis annule sa réservation.',
-    verified: 'Avec des données de test, une seule demande est enregistrée. Le parent voit l’accord après actualisation, puis annule. La place est rendue disponible. Aucun paiement.',
-    remaining: 'Tester l’acceptation dans l’app du conducteur, les enfants, plusieurs places et deux téléphones. Rejouer les réponses perdues et la réouverture. Restent les confirmations des parents et les remboursements. Pas encore en ligne.',
+  return { id: 'booking', title: 'Réservations', status: 'partial', checkedAt: '2026-10-20',
+    summary: 'Deux places pour un enfant : demande, accord du conducteur et annulation passent en local.',
+    verified: 'Le parent réserve depuis la recherche. Le conducteur accepte dans l’app ; le parent retrouve l’accord puis annule. Les deux places sont restituées, sans paiement.',
+    remaining: 'Rejouer sur téléphone l’accord du conducteur, les enfants et plusieurs places, puis entre deux téléphones. Vérifier les réponses perdues et la réouverture. Restent les confirmations des parents et les remboursements. Pas encore en ligne.',
+    searchBookingUi: { source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json' },
     local: local(['booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking', 'reservation-decisions', 'trip-capacity-ownership'], ['Une demande de deux places garde le bon nombre de places.', 'L’annulation restitue les places une seule fois.', 'Le refus ne retire aucune place.', 'Une personne extérieure ne peut pas modifier la réservation.', 'Un passager déjà pris en charge ne peut pas annuler.', 'Le conducteur ne peut pas modifier directement le nombre de places réservées.'], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json', '2026-10-17'),
     ui: { source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/results.json', checkedAt: '2026-10-17', groups: ['booking-response-loss-search-ui'] },
-    phone: { source: 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/results.json' },
-    images: [shot('phone-booking-requested', 'Demande d’une place sur téléphone, avec données de test, le 18 octobre'),
+    phone: { source: 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/results.json', checkedAt: '2026-10-18' },
+    images: [shot('search-booking-requested', 'Demande de deux places pour Lina, essai local du 20 octobre'),
+      shot('search-booking-driver-approved', 'Accord dans le compte conducteur, essai local du 20 octobre'),
+      shot('search-booking-cancelled', 'Annulation par le parent et deux places restituées, essai local du 20 octobre'),
+      shot('phone-booking-requested', 'Demande d’une place sur téléphone, avec données de test, le 18 octobre'),
       shot('phone-booking-approved', 'Accord retrouvé après actualisation sur téléphone, le 18 octobre'),
       shot('phone-booking-cancelled', 'Réservation annulée depuis le téléphone, sans paiement, le 18 octobre'),
       shot('booking-retry-unconfirmed', 'Réponse perdue : le parent peut réessayer, essai local du 17 octobre'),
@@ -16,5 +20,5 @@ export function createBookingFlow(local, shot) {
       shot('local-approved', 'Demande acceptée lors de l’essai du 15 octobre'),
       shot('booking-review-required', 'Trajet modifié : nouvelle recherche demandée, essai local simulé du 17 octobre'),
       shot('booking-review-narrow', 'Même message en texte agrandi, essai local simulé du 17 octobre')],
-    source: 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/README.md' };
+    source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/README.md' };
 }

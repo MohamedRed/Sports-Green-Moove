@@ -1,4 +1,7 @@
 export const captures = {
+  ...Object.fromEntries(['choices', 'requested', 'driver-approved', 'cancelled'].map(id => [
+    'search-booking-' + id, 'docs/release/evidence/parent-search-booking-native-2026-10-20/local-parent-search-booking-' + id + '.png',
+  ])),
   ...Object.fromEntries(['error', 'signed-out', 'reopened'].map(id => [
     'session-disconnect-' + id, 'docs/release/evidence/session-disconnect-native-2026-10-20/local-session-disconnect-' + id + '.png',
   ])),

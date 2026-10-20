@@ -36,6 +36,12 @@ source and remaining scope. An empty screen
 does not establish completion. Existing release manifests remain authoritative for
 final release approval; this portal does not accept new release evidence itself.
 
+`searchBookingUi` binds the 20 October local search/two-seat booking chain to
+real-provider receipts, three independent saved-state checkpoints and device
+restoration. Only four reviewed originals are published. Older physical-phone
+evidence keeps an explicit `phone.checkedAt`; a newer local trial must not appear
+as a refreshed physical-phone result in the gallery heading.
+
 The builder copies only allowlisted media. Historical screenshots are cropped to
 the device, not altered inside the app. Four 13-16 second excerpts are trimmed at
 real speed from the October 13 replay exports; no transition or outcome is

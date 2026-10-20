@@ -38,8 +38,8 @@ test('preparation neither widens the existing paid-request guard nor promotes pa
   const guard = read('scripts/qa/real-maps-fetch.mjs');
   assert(guard.includes('realMapsRequestLimit = 5')); assert(!guard.includes('computeRouteMatrix'));
   const protocol = read('docs/contracts/native-parent-search-booking-test.md');
-  for (const required of ['Preparation only', 'nine potentially billable', 'independent restoration',
-    'No map call has been executed', 'at most eight provider HTTP requests', 'not two physical phones']) assert(protocol.includes(required), required);
+  for (const required of ['One approved local trial passed', 'nine potentially billable', 'independent restoration',
+    'used six calls, with no retries', 'at most eight provider HTTP requests', 'not two physical phones']) assert(protocol.includes(required), required);
   for (const id of ['search', 'booking']) assert.equal(content.flows.find(flow => flow.id === id).status, 'partial');
 });
 test('native and web integration gates retain the offline preparation contract without enabling provider execution', () => {

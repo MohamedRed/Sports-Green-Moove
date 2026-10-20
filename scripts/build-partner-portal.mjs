@@ -38,7 +38,7 @@ for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'sig
 }
 const fingerprints = Object.fromEntries([...new Set([content.nativeVerification.source, content.nativeVerification.manifest,
   content.nativeVerification.checksums, ...Object.values(content.nativeVerification.recheck),
-  ...content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.mapUi ? [f.mapUi.source] : []), ...(f.phone ? [f.phone.source] : []), ...(f.historyPhone ? [f.historyPhone.source] : [])])])].map((source) => [source,
+  ...content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.mapUi ? [f.mapUi.source] : []), ...(f.phone ? [f.phone.source] : []), ...(f.historyPhone ? [f.historyPhone.source] : []), ...(f.searchBookingUi ? [f.searchBookingUi.source] : [])])])].map((source) => [source,
   createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex')]));
 const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };
 writeFileSync(resolve(out, 'data.json'), `${JSON.stringify(data, null, 2)}\n`);

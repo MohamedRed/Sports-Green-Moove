@@ -104,3 +104,12 @@ original transcripts, primary-copy receipts, final report and independent device
 restoration are retained in `native-recheck-588fb21-2026-10-20/`. This later pass
 does not explain or erase the earlier transport/acquisition failures, or verify
 the subsequently prepared real-provider search/booking trial.
+
+Later observations: the `b158a75` run `39426320715` fails at a mandatory primary
+capture transfer after the native trip-change input test passes. Its selected
+original negative receipts, raw transcript, ordinary XML and independent device
+restoration remain in `native-copy-failure-b158a75-2026-10-20/`. A subsequent
+separate approved search/two-seat booking trial at `7d93569` passes with six real
+map calls and three independent saved-state checkpoints; see
+`parent-search-booking-native-2026-10-20/`. That targeted success does not accept
+the failed complete replay, physical tracking, payments or release readiness.

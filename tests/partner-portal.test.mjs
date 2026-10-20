@@ -88,7 +88,8 @@ test('local results are backed by successful evidence and are not presented as p
   assert.equal(flows.length, 12);
   for (const flow of flows) {
     assert.equal(flow.status, 'partial');
-    assert.match(detail(flow), flow.phone ? /Essai sur téléphone du/ : /Essai local du/);
+    const currentPhone = flow.phone && (flow.phone.checkedAt ?? flow.checkedAt) === flow.checkedAt;
+    assert.match(detail(flow), currentPhone ? /Essai sur téléphone du/ : /Essai local du/);
     if (flow.phone) assert(localResults(flow).includes(`Essai local du ${date(flow.local.checkedAt || flow.checkedAt)}`));
     assert(localResults(flow).includes(flow.local.checks[0]));
     assert(!flow.recording);
@@ -172,7 +173,9 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   }
   assert(source(path + 'requests-baseline-failed.xml').includes('tests="4" skipped="0" failures="4" errors="0"'));
   const flow = content.flows.find((item) => item.id === 'search');
-  assert.equal(flow.source, 'docs/release/evidence/browserstack-parent-search-2026-10-18/README.md');
+  assert.equal(flow.phone.source, 'docs/release/evidence/browserstack-parent-search-2026-10-18/results.json');
+  assert.equal(flow.phone.checkedAt, '2026-10-18');
+  assert.equal(flow.searchBookingUi.source, 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json');
   assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /recherche complète/);
   assert.match(flow.remaining, /vraie déconnexion/);
@@ -183,9 +186,10 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
   assert.match(run.search.limitation, /host identity\/navigation changes, not real provider matching/);
   assert(flow.ui.groups.includes('search-session-ui') && flow.ui.groups.includes('search-input-ui'));
-  assert.equal(flow.images.length, 8);
+  assert.equal(flow.images.filter(image => !image.file.startsWith('search-booking-')).length, 8);
+  assert.deepEqual(flow.images.slice(0, 2).map(image => image.file), ['search-booking-choices', 'search-booking-requested']);
   assert.equal(flow.ui.checkedAt, '2026-10-16');
-  assert.match(flow.verified, /essai local du 16 octobre/);
+  assert(flow.images.some(image => /essai local simulé du 16 octobre/.test(image.alt)));
   assert(!Object.values(captures).some((path) => path.endsWith('local-search-edited-place.png')));
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
 });

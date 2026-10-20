@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 
 const setupScope = 'single-case-continuous-installation-guard-not-flow-proof';
 const reportScopes = {
+  'parent-search-booking': 'local-parent-search-two-seat-booking-not-physical-or-payment',
   'emergency-identity': 'local-recreated-child-contact-ui-not-own-child-account',
   'ride-observation': 'local-ride-live-sdk-not-physical-gps',
   'native-startup': 'local-fused-mock-startup-not-physical-gps',

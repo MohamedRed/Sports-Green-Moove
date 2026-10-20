@@ -48,7 +48,7 @@ test('options screen and native seat claims require the completed fourteen-case 
   }
   const flow = content.flows.find((item) => item.id === 'search');
   assert.equal(flow.ui.checkedAt, run.testedAt.slice(0, 10));
-  assert.equal(flow.checkedAt, '2026-10-18');
+  assert.equal(flow.phone.checkedAt, '2026-10-18');
   assert.equal(flow.status, 'partial');
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });

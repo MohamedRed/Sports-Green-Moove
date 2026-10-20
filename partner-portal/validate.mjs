@@ -20,6 +20,7 @@ import { validateNativeRecheck } from '../scripts/qa/native-recheck-evidence.mjs
 import { sessionRestorationScope, validateSessionRestorationReport, validateRetainedSessionRestoration } from '../scripts/qa/session-restoration-retained-evidence.mjs';
 import { sessionDisconnectScope } from '../scripts/qa/session-disconnect-evidence.mjs';
 import { validateSessionDisconnectReport, validateRetainedSessionDisconnect } from '../scripts/qa/session-disconnect-retained-evidence.mjs';
+import { validateRetainedSearchBooking } from '../scripts/qa/search-booking-retained-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -131,7 +132,13 @@ export function validate(root) {
     }
     if (f.phone) {
       assert.equal(f.status, 'partial', 'A bounded phone flow does not complete every release requirement');
-      validatePhoneEvidence(root, f.phone, f.checkedAt);
+      const date = f.phone.checkedAt ?? f.checkedAt;
+      assertDate(date); assert(date <= f.checkedAt);
+      validatePhoneEvidence(root, f.phone, date);
+    }
+    if (f.searchBookingUi) {
+      assert(['search', 'booking'].includes(f.id)); assert.equal(f.status, 'partial');
+      assert.equal(validateRetainedSearchBooking(root, f.searchBookingUi.source).testedAt.slice(0, 10), f.checkedAt);
     }
     if (f.historyPhone) {
       assert.equal(f.status, 'partial');

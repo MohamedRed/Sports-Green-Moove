@@ -55,7 +55,7 @@ test('phone validation rejects expanded local access and a different capture seq
 
 test('website keeps old local test dates and calls the new phone search incomplete', () => {
   const search = content.flows.find((flow) => flow.id === 'search');
-  assert.equal(search.status, 'partial'); assert.equal(search.checkedAt, '2026-10-18');
+  assert.equal(search.status, 'partial'); assert.equal(search.phone.checkedAt, '2026-10-18');
   assert.equal(search.ui.checkedAt, '2026-10-16');
   assert.match(search.remaining, /Terminer la recherche complète et une réservation de deux places/);
   const navigation = content.flows.find((flow) => flow.id === 'navigation');
