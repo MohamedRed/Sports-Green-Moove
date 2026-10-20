@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "scripts/security/rotate-browserstack-key.mjs"
+      - "tests/browserstack-key-rotation.test.mjs"
+      - ".github/workflows/android-browserstack.yml"
       - "tests/team-review*.mjs"
       - "tests/native-build-before-boot.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
@@ -326,6 +329,9 @@ on:
     branches:
       - main
     paths:
+      - "scripts/security/rotate-browserstack-key.mjs"
+      - "tests/browserstack-key-rotation.test.mjs"
+      - ".github/workflows/android-browserstack.yml"
       - "tests/team-review*.mjs"
       - "tests/native-build-before-boot.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
@@ -720,6 +726,8 @@ jobs:
 
       - name: Validate isolated private phone tunnel policy
         run: node --test tests/browserstack-isolated-tunnel.test.mjs tests/browserstack-isolated-booking-evidence.test.mjs tests/browserstack-parent-search-evidence.test.mjs
+      - name: Validate encrypted credential rotation without provider requests
+        run: node --test tests/browserstack-key-rotation.test.mjs
 
       - name: Validate explicit real-map test boundaries without provider calls
         run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs tests/real-map-framing-evidence.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs tests/payment-confirmation-contract.test.mjs

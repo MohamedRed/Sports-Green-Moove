@@ -3,6 +3,16 @@ name: Android BrowserStack Real-Device UI
 on:
   workflow_dispatch:
     inputs:
+      rotate_access_key:
+        description: Rotate the exposed key once and return only an encrypted handoff. Does not start devices.
+        type: boolean
+        default: false
+      rotation_public_key:
+        description: Dedicated RSA public PEM for the local recipient (3072 bits or greater).
+        type: string
+      rotation_request_id:
+        description: Unique UUID identifying this single rotation request.
+        type: string
       credentials_rotated:
         description: Confirm the previously exposed access key has been rotated and the stored secret updated.
         required: true
@@ -37,15 +47,51 @@ on:
       - "android/**"
       - "scripts/run-browserstack-espresso-build.py"
       - "scripts/upload-browserstack-app-live.py"
+      - "scripts/security/rotate-browserstack-key.mjs"
+      - "tests/browserstack-key-rotation.test.mjs"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  rotate-access-key:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.rotate_access_key && github.ref == 'refs/heads/codex/implement-plan' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: browserstack-key-rotation
+      cancel-in-progress: false
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Test secure rotation contract without provider requests
+        run: node --test tests/browserstack-key-rotation.test.mjs
+      - name: Rotate once and encrypt directly in memory
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          ROTATION_PUBLIC_KEY: ${{ inputs.rotation_public_key }}
+          ROTATION_REQUEST_ID: ${{ inputs.rotation_request_id }}
+        run: node scripts/security/rotate-browserstack-key.mjs
+      - name: Retain encrypted handoff even if verification fails
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: browserstack-key-rotation-${{ inputs.rotation_request_id }}
+          path: |
+            browserstack-key.encrypted.json
+            browserstack-key-rotation-receipt.json
+          if-no-files-found: error
+          retention-days: 1
+
   browserstack-android-ui:
     name: BrowserStack Android ${{ github.event.inputs.execution_mode || 'app_live_upload' }}
     # Native CI still builds/tests pushes. External distribution requires these explicit release gates.
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.credentials_rotated && inputs.live_backend_ready }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.rotate_access_key && inputs.credentials_rotated && inputs.live_backend_ready }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
