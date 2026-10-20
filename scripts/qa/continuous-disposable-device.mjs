@@ -8,7 +8,7 @@ import { assertNoActiveInstall, readInstallBlocked, setInstallBlocked } from './
 import { readStoreBackground, setStoreBackground, storeBackgroundRestrictions } from './disposable-store-background.mjs';
 import { readStoreStopped, restoreStoreStopped } from './disposable-store-pause.mjs';
 import { resetDisposableLocalApps } from './reset-disposable-local-apps.mjs';
-import { pinnedPackages, pinnedApkHashes, assertPinnedApks, requireFocusedDeviceApproval, assertContinuousDevice } from './preinstalled-disposable-apks.mjs';
+import { pinnedPackages, pinnedApkHashes, assertPinnedApks, requireFocusedDeviceApproval, assertContinuousDevice, focusedCases } from './preinstalled-disposable-apks.mjs';
 
 const launcher = 'com.google.android.apps.nexuslauncher';
 const root = resolve(import.meta.dirname, '../..');
@@ -21,7 +21,8 @@ export function prepareContinuousDevice(env = process.env, execute = execFileSyn
   assert.equal(shell('am', 'get-current-user'), '0');
   assert.equal(readInstallBlocked(shell), false);
   assertNoActiveInstall(shell);
-  for (const name of Object.keys(pinnedPackages)) assert.equal(shell('pm', 'path', name), '', 'A fresh phone cannot reuse a prior test app');
+  assert.equal(shell('pm', 'list', 'packages', '--user', '0', 'be.sportgreenmoove.app.local'), '',
+    'A fresh phone cannot reuse a prior test app');
   const receipt = { scope: 'single-case-continuous-installation-guard-not-flow-proof', case: env.SGM_FOCUSED_UI_CASE,
     serial, mapsRuntime: androidMapsPrerequisites(shell), originalBackground: readStoreBackground(shell),
     originalStoreStopped: readStoreStopped(shell), apkHashes: hashes(resolve(root, 'android')), installAdmin: null };
@@ -58,6 +59,11 @@ export function prepareContinuousDevice(env = process.env, execute = execFileSyn
         cleanup, ...(failure.receipt ? { nestedFailure: failure.receipt } : {}), verified: false },
     });
   }
+}
+export function continuousSetupFailureReceipt(failure, env = process.env) {
+  if (failure.receipt) return failure.receipt;
+  return { scope: 'failed-single-case-device-preflight-not-flow-proof', stage: 'read-only-preflight',
+    case: focusedCases.includes(env.SGM_FOCUSED_UI_CASE) ? env.SGM_FOCUSED_UI_CASE : null, verified: false };
 }
 function restoreLauncher(shell) {
   shell('pm', 'enable', '--user', '0', launcher);

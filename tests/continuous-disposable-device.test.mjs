@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { prepareContinuousDevice, restoreContinuousDevice } from '../scripts/qa/continuous-disposable-device.mjs';
+import { prepareContinuousDevice, restoreContinuousDevice, continuousSetupFailureReceipt } from '../scripts/qa/continuous-disposable-device.mjs';
 import { assertContinuousDevice, assertPinnedApks, pinnedApkHashes, pinnedPackages,
   preparePinnedApks } from '../scripts/qa/preinstalled-disposable-apks.mjs';
 import { pauseDisposableStore } from '../scripts/qa/disposable-store-pause.mjs';
@@ -35,7 +35,20 @@ test('setup pins both actual APK byte hashes and activates the guard only after 
   const installs = f.events.filter(({ kind }) => kind === 'command');
   assert.equal(installs.length, 2); assert(installs.every(({ blocked }) => !blocked));
   assert.equal(f.state.blocked, true); assert.equal(f.state.owner, true);
+  assert(f.events.some(({ command }) => command === 'pm list packages --user 0 be.sportgreenmoove.app.local'));
+  const firstInstall = f.events.findIndex(({ kind }) => kind === 'command');
+  assert(!f.events.slice(0, firstInstall).some(({ command }) => command.startsWith('pm path ')));
   assertNoGuardedInstallOrUnlock(f.events);
+});
+
+test('read-only preflight failure has a negative receipt without fabricating cleanup or leaking its error', () => {
+  const receipt = continuousSetupFailureReceipt(new Error('private-value-not-to-retain'), { SGM_FOCUSED_UI_CASE: 'remote-ride-stop' });
+  assert.deepEqual(receipt, { scope: 'failed-single-case-device-preflight-not-flow-proof',
+    stage: 'read-only-preflight', case: 'remote-ride-stop', verified: false });
+  assert(!JSON.stringify(receipt).includes('private-value'));
+  assert.equal(continuousSetupFailureReceipt(new Error('secret'), { SGM_FOCUSED_UI_CASE: 'secret' }).case, null);
+  const original = { scope: 'failed-single-case-device-preparation-not-flow-proof', cleanup: { adminRemoved: false }, verified: false };
+  assert.equal(continuousSetupFailureReceipt({ receipt: original }), original);
 });
 
 test('preinstalled preparation binds receipt bytes, clears exactly its two apps, and keeps the guard', (t) => {

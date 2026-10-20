@@ -47,6 +47,8 @@ export function continuousFixture(t, options = {}) {
     if (command === playServicesVersionCommand) return `versionName=${state.version}`;
     if (command === 'cmd location is-location-enabled --user 0') return state.location;
     if (command === storeStateCommand) return `User 0: installed=true stopped=${state.stopped}`;
+    if (command === 'pm list packages --user 0 be.sportgreenmoove.app.local')
+      return [...state.installed].map((name) => `package:${name}`).join('\n');
     if (command.startsWith('pm list packages ')) {
       const name = args.at(-1), enabled = name !== launcher || state.launcher;
       return enabled === (args.includes('-e')) ? `package:${name}` : '';
@@ -60,8 +62,10 @@ export function continuousFixture(t, options = {}) {
     }
     if (command.startsWith('am force-stop ')) { state.stopped = !options.storeWakes; return ''; }
     if (command.startsWith('pm unstop ')) { state.stopped = false; return ''; }
-    if (command.startsWith('pm path ')) return state.installed.has(args[2])
-      ? (state.paths?.[args[2]] ?? `package:${packagePath(args[2])}`) : '';
+    if (command.startsWith('pm path ')) {
+      assert(state.installed.has(args[2]), 'Android pm path exits nonzero for an absent package');
+      return state.paths?.[args[2]] ?? `package:${packagePath(args[2])}`;
+    }
     if (command.startsWith('sha256sum ')) {
       const name = Object.keys(pinnedPackages).find((key) => packagePath(key) === args[1]);
       assert(name, 'Only pinned APK digests may be requested');
