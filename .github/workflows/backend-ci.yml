@@ -72,6 +72,8 @@ jobs:
 
       - name: Test bounded restoration faults and unchanged fixture records
         run: node --test tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
+      - name: Validate dated full native replay recheck
+        run: node --test tests/native-recheck-evidence.test.mjs
 
       - name: Validate network run evidence and temporary administration cleanup
         run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs

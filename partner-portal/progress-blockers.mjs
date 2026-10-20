@@ -14,7 +14,7 @@ export const blockers = [
     text: 'Trois autres alertes sont corrigées et testées en local. D’autres restent à examiner.',
     next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/multipart-security-2026-10-20/README.md' },
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
-    text: 'Un essai complet précédent et quatre essais séparés passent. Le dernier essai s’arrête avant l’ouverture de l’app.',
+    text: 'Le dernier essai complet et les six essais séparés passent. Les interruptions précédentes restent documentées.',
     next: 'Répéter les essais, puis reprendre les essais sur téléphone.', source: nativeVerification.source },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',

@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-20', title: 'Le dernier essai complet passe',
+    text: 'Réservations, messages et accords des parents repassent en local. Les six essais séparés passent aussi.', flow: 'publication' },
   { date: '2026-10-20', title: 'Se déconnecter depuis l’erreur fonctionne en local',
     text: 'Le parent retrouve la connexion et reste déconnecté après fermeture complète. Trois captures sont ajoutées.', flow: 'session-disconnect' },
   { date: '2026-10-20', title: 'Le dernier essai complet ne démarre pas',

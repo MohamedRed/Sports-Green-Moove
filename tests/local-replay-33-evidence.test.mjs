@@ -71,8 +71,8 @@ test('private updates retain historical failures and distinguish the latest pass
   assert(content.updates.some((u) => u.date === '2026-10-18' && u.title === 'Les 33 essais locaux prévus passent'));
   const blocker = content.blockers.find((b) => b.id === 'test-device-stability');
   assert.equal(blocker.source, content.nativeVerification.source);
-  assert.match(blocker.next, /sur téléphone/); assert.match(blocker.text, /essai complet précédent.*passent/);
-  assert.match(blocker.text, /dernier essai s’arrête avant l’ouverture/);
+  assert.match(blocker.next, /sur téléphone/); assert.match(blocker.text, /dernier essai complet.*passent/);
+  assert(content.updates.some(item => item.title === 'Le dernier essai complet ne démarre pas'));
   assert(content.updates.some((u) => u.title === 'L’essai complet reste à stabiliser'));
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');

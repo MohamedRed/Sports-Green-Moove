@@ -153,7 +153,8 @@
         "ride-emergency-pass-2026-10-19/ride-emergency-results.json",
         "ride-observation-native-2026-10-19/ride-observation-results.json",
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "e3f417debd53d591a2d03029c9d6e69ff1e2efe124e77d393945002567093df1": {
@@ -329,7 +330,8 @@
       "sourcePath": "functions/src/services/guardianVerification.ts",
       "recoveredFromGitCommit": "fc74d93ac734ce7bf73548f03aeee6abc4adbfbb",
       "reports": [
-        "local-team-review-2026-10-18/results.json"
+        "local-team-review-2026-10-18/results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "53252c2bc6e2463d7904f281637d87dd975e6c597068232f214cc554033dbae4": {
@@ -817,7 +819,8 @@
       "reports": [
         "local-contact-scheduler-2026-10-18/build-checks.json",
         "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
-        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "4648a7b2fde7a7a0141c521d749ca49da6da3e74965f78a71af72cf50283075c": {
@@ -866,7 +869,8 @@
         "emergency-child-identity-2026-10-19/baseline-services.json",
         "emergency-child-identity-2026-10-19/fixture-services.json",
         "phone-emergency-preparation-2026-10-19/session-results.json",
-        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c": {
@@ -902,7 +906,8 @@
       "reports": [
         "emergency-child-identity-2026-10-19/fixture-services.json",
         "phone-emergency-preparation-2026-10-19/session-results.json",
-        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "a82aaae58bd025d9761ed6743c05e123220240c6df2ff65d2a10e56c052b1d46": {
@@ -1122,7 +1127,8 @@
       "recordedFrom": "compiled-repair-worktree",
       "reports": [
         "ride-location-ownership-repair-2026-10-19/results.json",
-        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "143e1ca640021f1d136bbef870af3f70ca09371f78c7c0b056517e24be4e8b41": {
@@ -1138,7 +1144,8 @@
       "recordedFrom": "compiled-repair-worktree",
       "reports": [
         "ride-location-ownership-repair-2026-10-19/results.json",
-        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "1d5e06ac2748615a959c6299571cd8a0df93c8ba8bb4a5e29cac72feda48f97f": {
@@ -1411,7 +1418,8 @@
       "recordedFrom": "completed-ride-observation-callables",
       "reports": [
         "ride-observation-services-2026-10-19/services.json",
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "95d00e584373f011bebf1641871ed143de76ed056716e80eb6a64d08de5ea075": {
@@ -1419,7 +1427,8 @@
       "recordedFrom": "completed-ride-observation-callables",
       "reports": [
         "ride-observation-services-2026-10-19/services.json",
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "c98096c6def0c490d904ba272e2aeead8ff37a39e0f173f64cd27d8fdaeec96e": {
@@ -1455,35 +1464,40 @@
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/data/RideObservation.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "a72df20683fc21b5de4a98adbfca7d19ccd4816711e6c83fdef1f2a0d1abe01b": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideObservationGateway.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "902d42a1f1bbd0f2a4e0b41d5bfb1dee71aed1507fec8138e4808f0c1b307821": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/RideObservationWire.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "0575530896872f5c73480f1b2f15d3646e33cb561aa973f0a57a68fd4d0b2a87": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideObservationState.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "42cccedc52914608b9ac1599aedca2c6a233b0f6cfbbff3a642c49f2428770e3": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideObservationEffect.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "a69e89ffb8dc0fa0583d9a291f2d9437cd4f1e85680d44238983b820ceaab4bb": {
@@ -1492,7 +1506,8 @@
       "reports": [
         "ride-observation-native-2026-10-19/ride-observation-results.json",
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "2acb67e8a44df6f945fb76b4b1d9c22c0a825c3fee989579f5712306b33ed41f": {
@@ -1506,7 +1521,8 @@
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/RideObservationGateway.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "19f8cb998c19406fee4cd6c85b1c02305b3660741181e78edf93f34bb01c534a": {
@@ -1515,7 +1531,8 @@
       "reports": [
         "ride-observation-native-2026-10-19/ride-observation-results.json",
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "26957960b70d86730f7513c86ed1ae30fd664f3b2ab305a065b313b1beb7bd69": {
@@ -1529,14 +1546,16 @@
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/MobileRoleSelectionEffect.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "85dc1b9ee619617eeb38e8200bac6a15430adc6d77815f7aed43fa1640113742": {
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/domain/RideObservationAge.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "472e93d1ad832b3555e3a017232d88b1d03e98205218bd9400d8c10af9223ac2": {
@@ -1550,7 +1569,8 @@
       "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TripsScreen.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "3c6b4e0739031d8645c75cfbc48b029f9647990cc1eb7f9191a308e35495f847": {
@@ -1564,7 +1584,8 @@
       "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationFlowTest.kt",
       "recordedFrom": "completed-independent-local-ride-observation",
       "reports": [
-        "ride-observation-native-2026-10-19/ride-observation-results.json"
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "73a8c6404584e9b07d3ef9f36b6558e8993cec19222819feb1f80f1496d141ad": {
@@ -1572,7 +1593,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "1cd4f9688f449818950dcdf19ccf3251e4774f22e76621ed4d8c536230b0dfbf": {
@@ -1587,7 +1609,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "e9b2481a6a423aee1f1e1c4c8cac84c62f0d407f0d5de1b7ed5d1c81c28e27c8": {
@@ -1595,7 +1618,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "2ababe4bce84097651e4c08c27b8194e3d3e159031c14c91da4cf17045550c53": {
@@ -1603,7 +1627,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "4699ff1c33472c67cbc494fafa599f8c1098b2b38126be8e9df5c900e5c38072": {
@@ -1611,7 +1636,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "a035333bc0d3e96b718e14405957c5d1c41d92c8513749ee4120d6dd685f8dfc": {
@@ -1619,7 +1645,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "8ce818e2ede793f0ef8282e56769dad84067fe944c5df04cb9b83197122c9c94": {
@@ -1627,7 +1654,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "139b0cbdd24bf641e100eead197ae6b63763844d23c2c3d88efc0fbb2402bdc2": {
@@ -1649,7 +1677,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "93c936777798af9b0c68b7aef65639fa10c6003715c7d81ec6f6f26a94676f79": {
@@ -1694,7 +1723,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6": {
@@ -1710,7 +1740,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "5b00f22d4ff59abc0f345371b579c68b8b7fd3273d5225a97553689cd7042733": {
@@ -1734,7 +1765,8 @@
       "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
       "reports": [
         "session-restoration-native-2026-10-20/session-restoration-results.json",
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "5fd3ae2abdbbaefd097d07b551727ff4d19d4f302350bd146811c30691b4ab94": {
@@ -1748,21 +1780,24 @@
       "sourcePath": "scripts/qa/preinstalled-disposable-apks.mjs",
       "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
       "reports": [
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "dc173bb701636bf40fb2784cf5fdfca13b4303c5f1a77192f02445fd7f7bcf70": {
       "sourcePath": "scripts/run-focused-android-ui.sh",
       "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
       "reports": [
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "e5e21deebd6e1a29bc0c13a21d8f692592e745313ce799304b243b8530761273": {
       "sourcePath": ".github/workflows/native-focused-ui.yml",
       "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
       "reports": [
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "22e9251f8c3fc8a9a265223f219e85226641db51df7c4f0c2f37564835fb1fde": {
@@ -1797,7 +1832,8 @@
       "sourcePath": "scripts/qa/run-isolated-ride-ui.mjs",
       "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
       "reports": [
-        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     },
     "d645a105add5387a09189654507cc59b3b3fbc728f754924518e9f024a67a99e": {
@@ -1805,6 +1841,307 @@
       "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
       "reports": [
         "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "e13a76feee09a427a395bbcce3b81986aa066d044ed385383c60d5b37eb49970": {
+      "sourcePath": "scripts/qa/local-emergency-identity-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "4ad7ba34cb26b026c30b1090aa541b5c188544f970ea59de41c3145ce06a3a26": {
+      "sourcePath": "scripts/qa/run-local-emergency-identity-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "1da49a5eca1e2916f39f9a55dbf3d564e9819a065f01c8bb851e6cff4711d5e5": {
+      "sourcePath": "scripts/qa/emergency-identity-fixture.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "98ef6c2001526597890cb546d2e956c2200037a9cb39b3490dcab19af7875820": {
+      "sourcePath": "scripts/qa/emergency-identity-exchange.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "6606701f995b9052247ab13fcc05ac2ddbd20f4d39ff0117e1e5604e48f24350": {
+      "sourcePath": "scripts/qa/emergency-identity-profile-isolation.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d699a3f02a8b24ad11667cf3a94068f10f25c0d009a44731b868f029055a00f2": {
+      "sourcePath": "scripts/qa/emergency-identity-ui-evidence.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "40ca89ad41521f32931573668996c84471cff84bdf01cdf6fda7d380788aa0ef": {
+      "sourcePath": "functions/src/domain/emergencyContact.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "6b64809a0107757ed356a817c1db31b80b8f52b1b7bdb1cd2107a692642b9a9a": {
+      "sourcePath": "functions/src/services/emergencyContact.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "1a0b108cd70f7dee2558cdf79d8765ea2a16b7f900ee3163ad47f4265e4049dd": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "09965b0b16250983e8808a5a3c2144fe53748327345c4714f08ea87146f08632": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "ef47ccc47bbc779a52c8c3573d8d03a22ef9f314c3e20414f3251911255526c2": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "a2659e8ffd6a73c082932e27dc889ee56ba6be3e2baa1fd3c8b4bd6e46510350": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactDialogs.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "102340a2512dc1a764bf55eedb2b529b46d5d5268f32ce63cfea9cd3afef08b3": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyIdentityFlowTest.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "352edeca6c298d20f8f64114c3c4d6c39981633e5412f9a91df79e08096b660e": {
+      "sourcePath": "scripts/qa/run-local-ride-observation-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "bf03ef5353f59d6627b0fe883fb5cf9fa7ebf745dd6300a0a18c141f03b18050": {
+      "sourcePath": "scripts/qa/local-ride-observation-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "391c1af064759144d819e41bbcb162cd0d82c0c6e9723597a36726347597d57b": {
+      "sourcePath": "scripts/qa/local-ride-observation-fixture.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d31a5a78220bcc7aecac4e667341d3755ba334418cd1232a0b8885f5d1a08ccd": {
+      "sourcePath": "functions/src/lib/clientTrips.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "9dda3c2c64fe4eaf68df4a43396eed58d78faae7046059f097b468cd648b8edc": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideMappers.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "9e3a3bfad54f28bfadaf6729cdc2999e71791bb3fc508f1446888cc4e7529ff2": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "1ecc4df2678ba8cf2b76e4ba10eb68db1800b54a3aa438b93a3c543130bae519": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationPeer.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "334bad8314113f114d6b85c006f65cb0ff9f68fb638dcc8442ea1dffb82931c8": {
+      "sourcePath": "scripts/qa/local-native-startup-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "99a6ebbb5983348724b75ebc505201b701050487eee9751f972a839e7dbc3f17": {
+      "sourcePath": "scripts/qa/run-local-native-startup-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "7207af93cc20ab3bc96bc072065e59281da0156d2e8840917e47d35c4d3710cf": {
+      "sourcePath": "scripts/qa/isolated-ride-records.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "fcfe624d6285ece51395015b05643083f11827a54733dbe741258529a4ebe6f3": {
+      "sourcePath": "scripts/qa/local-mock-location-permission.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "3c34120f897ddb06b6e03df6db3bc1be9231bdc781714a0c7d916ffb5d86552a": {
+      "sourcePath": "functions/src/lib/liveTrips.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "8fa5936cabbb0aa0fb70c4294ca402ba4eccd3341b020197ee798ccc9bebb0f5": {
+      "sourcePath": "functions/src/domain/liveLocationOrder.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "67439e178bd4ddd62e8f4799180d2a3a5abfc806a4e10a0e908777a4a7e869e7": {
+      "sourcePath": "functions/src/callables/locations.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "68d7931931f5811057e3da894e3c6f1031c5bf87787d19b6392b67dafd207bd9": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "c969343bed48178342abcc1c32f0a5b6e6fb07819bd74a3d021ddbea70cd6bcf": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNativeLocationStartup.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "f9669bf5f21a773786bdd679576ca5d4c373da67ba72ce8cf9382ad53ef73e2d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/NativeLocationAcknowledgement.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d27bca807230858abe4a71b4c3dd4a9ab40751aba3d598894d3df00270ae2d5f": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "3c46f076e7c0418fbf3efab377d6d133abe39d83c6a9f63fbb082221c20d7af0": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/NativeLocationPayloads.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "fdd7e6d52267427af0cdf48172af12704d8a3bcb2c237b4ee3b4521982b70a04": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeTrackingStartupTest.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "6126c59e05da1b716da41dfa9b2fa2a911137f47fb543d75464276a673867fdf": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocation.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "a7c880bd8b1994130d989c896a8b3e0f8004e00d5f4fd286f048f1f74820b33c": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocationFeed.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "ae2e8d73b470edb4543cf8dfb0f14ad011cde3a2d93363dcb06469506ace7967": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeStartupCapture.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "634cabe8fa71bcacba1c8e7061245ddbbbf1b68d63fc106021d78d21650d1cb3": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideResumeAction.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "b8f9c7362c211c8f37065ca651f4d7fb3f78afc9e562cdcdeef56a874fa97a4b": {
+      "sourcePath": "scripts/qa/local-remote-ride-stop-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "46031a273ddae7c277dbc41765715207730e47b2e798d100cbf518bfa3b24766": {
+      "sourcePath": "scripts/qa/run-local-remote-ride-stop-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "af661945f9567333ee2671c69bb837a72122dd68856eba4d2f36679e9db7363b": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLifecycle.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d1b6b0e7851ee11f54ce72e738d70ebb9529cb51f1d61f87abe504538d12a3d5": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLifecycleWatch.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "f707294479c37bd33d5c44f3f7e8ff0b0b5ad2031bfa879c3734175585e8030e": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "e82f57d696970482f98503d76d57a4ded041f9c4b9d1dc552d5ec9a4ef9bee79": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideCompletionPeer.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
       ]
     }
   }

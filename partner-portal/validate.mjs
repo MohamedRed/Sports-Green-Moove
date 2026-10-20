@@ -16,6 +16,7 @@ import { validateRetainedTeamClubIdentity } from '../scripts/qa/team-club-identi
 import { validateChildContactComponents, validateRetainedChildContactComponents, correctedChildContactScope } from '../scripts/qa/child-emergency-evidence.mjs';
 import { validateEmergencyIdentityReport, validateRetainedEmergencyIdentity, emergencyIdentityScope } from '../scripts/qa/emergency-identity-retained-evidence.mjs';
 import { validateIndependentNativeEvidence } from '../scripts/qa/independent-native-evidence.mjs';
+import { validateNativeRecheck } from '../scripts/qa/native-recheck-evidence.mjs';
 import { sessionRestorationScope, validateSessionRestorationReport, validateRetainedSessionRestoration } from '../scripts/qa/session-restoration-retained-evidence.mjs';
 import { sessionDisconnectScope } from '../scripts/qa/session-disconnect-evidence.mjs';
 import { validateSessionDisconnectReport, validateRetainedSessionDisconnect } from '../scripts/qa/session-disconnect-retained-evidence.mjs';
@@ -30,6 +31,10 @@ export function validate(root) {
   assert.equal(content.nativeVerification.source, nativeDirectory + '/README.md');
   assert.equal(content.nativeVerification.checksums, nativeDirectory + '/artifact-sha256.json');
   validateIndependentNativeEvidence(root, nativeDirectory);
+  const recheck = content.nativeVerification.recheck, recheckDirectory = dirname(recheck.manifest);
+  assert.equal(recheck.source, recheckDirectory + '/README.md');
+  assert.equal(recheck.checksums, recheckDirectory + '/artifact-sha256.json');
+  validateNativeRecheck(root, recheckDirectory);
   const currentMatrix = JSON.parse(readFileSync(resolve(root, nativeDirectory, 'replay/results.json')));
   assert.equal(currentMatrix.testedAt.slice(0, 10), content.nativeVerification.checkedAt);
   assert(content.nativeVerification.checkedAt <= content.lastVerifiedAt);

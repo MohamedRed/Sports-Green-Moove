@@ -97,3 +97,10 @@ before the test script, ordinary suite or local replay began. This remains a
 failed full job, not an app-flow failure with a proven root cause. Neither an
 automatic retry nor a production workaround was added. The new disconnect proof
 is retained separately in `session-disconnect-native-2026-10-20/`.
+
+The subsequent `588fb21` recheck, run `39422026774`, completed successfully:
+the ordinary suite, full local replay and all six focused CI jobs passed. Its
+original transcripts, primary-copy receipts, final report and independent device
+restoration are retained in `native-recheck-588fb21-2026-10-20/`. This later pass
+does not explain or erase the earlier transport/acquisition failures, or verify
+the subsequently prepared real-provider search/booking trial.
