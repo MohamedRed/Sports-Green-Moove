@@ -8,6 +8,7 @@ const reportScopes = {
   'native-startup': 'local-fused-mock-startup-not-physical-gps',
   'remote-ride-stop': 'local-remote-completion-service-stop-not-physical-background-gps',
   'session-restoration': 'local-session-restoration-ui-not-physical-network-loss',
+  'session-disconnect': 'local-session-disconnect-process-restart-not-physical-network-loss',
 };
 const packages = ['be.sportgreenmoove.app.local', 'be.sportgreenmoove.app.local.test'];
 const backgroundModes = ['allow', 'ignore', 'deny', 'default', 'foreground'];

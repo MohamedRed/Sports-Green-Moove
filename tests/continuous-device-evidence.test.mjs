@@ -9,6 +9,7 @@ const scopes = {
   'native-startup': 'local-fused-mock-startup-not-physical-gps',
   'remote-ride-stop': 'local-remote-completion-service-stop-not-physical-background-gps',
   'session-restoration': 'local-session-restoration-ui-not-physical-network-loss',
+  'session-disconnect': 'local-session-disconnect-process-restart-not-physical-network-loss',
 };
 const digest = (value) => createHash('sha256').update(value).digest('hex');
 const app = 'be.sportgreenmoove.app.local', runner = `${app}.test`;

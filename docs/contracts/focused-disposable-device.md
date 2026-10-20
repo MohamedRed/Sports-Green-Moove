@@ -4,9 +4,10 @@ Approved on 2026-10-19: one fresh disposable emulator per focused safety trial,
 with our app and instrumentation installed before blocking installations. This
 does not authorize changing personal devices, production data or provider plans.
 
-The focused workflow runs five independent matrix jobs with fail-fast disabled:
+The focused workflow runs six independent matrix jobs with fail-fast disabled:
 recreated child contact, parent observation, native startup, remote completion
-and failed session restoration with rotation and explicit retry.
+failed session restoration with rotation and explicit retry, and explicit
+disconnect after a restoration failure across a stopped/new app process.
 The existing required `Isolated safety flows` check succeeds only when every
 case, including its cleanup, succeeds. Missing, cancelled and failed cases fail
 that gate. The ordinary full native suite remains separate and unchanged.

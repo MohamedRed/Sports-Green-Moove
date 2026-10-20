@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        case: [emergency-identity, ride-observation, native-startup, remote-ride-stop, session-restoration]
+        case: [emergency-identity, ride-observation, native-startup, remote-ride-stop, session-restoration, session-disconnect]
     permissions:
       contents: read
     steps:
