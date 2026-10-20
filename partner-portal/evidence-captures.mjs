@@ -1,4 +1,7 @@
 export const captures = {
+  ...Object.fromEntries(['error', 'signed-out', 'reopened'].map(id => [
+    'session-disconnect-' + id, 'docs/release/evidence/session-disconnect-native-2026-10-20/local-session-disconnect-' + id + '.png',
+  ])),
   ...Object.fromEntries(['error', 'rotated-error', 'recovered', 'restored'].map(id => [
     'session-recovery-' + id, 'docs/release/evidence/session-restoration-native-2026-10-20/local-session-restoration-' + id + '.png',
   ])),

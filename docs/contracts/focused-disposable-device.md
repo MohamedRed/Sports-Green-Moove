@@ -5,7 +5,7 @@ with our app and instrumentation installed before blocking installations. This
 does not authorize changing personal devices, production data or provider plans.
 
 The focused workflow runs six independent matrix jobs with fail-fast disabled:
-recreated child contact, parent observation, native startup, remote completion
+recreated child contact, parent observation, native startup, remote completion,
 failed session restoration with rotation and explicit retry, and explicit
 disconnect after a restoration failure across a stopped/new app process.
 The existing required `Isolated safety flows` check succeeds only when every

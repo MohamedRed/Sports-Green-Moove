@@ -75,11 +75,13 @@ for (const [label, mutate] of [
   const bundle = copiedBundle(t); mutate(bundle); bundle.rebind();
   assert.throws(() => validateRetainedSessionRestoration(bundle.root, source));
 });
-test('the partner tour publishes only four reviewed captures and retains actual-outage and disconnect gaps', () => {
+test('the recovery tour keeps four original captures and the separately verified disconnect flow stays local-only', () => {
   const flow = content.flows.find(item => item.id === 'session-restoration');
   assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, source);
   assert.equal(flow.images.length, 4); assert.equal(flow.tour.length, 4);
   assert.deepEqual(flow.images.map(item => captures[item.file].split('/').at(-1)), publishedSessionRestorationCaptures);
   assert.deepEqual(flow.images.map(item => item.landscape), [false, true, true, false]);
-  assert.match(flow.remaining, /vraie coupure/); assert.match(flow.remaining, /Se déconnecter/);
+  assert.match(flow.remaining, /vraie coupure/);
+  const disconnect = content.flows.find(item => item.id === 'session-disconnect');
+  assert.equal(disconnect.status, 'partial'); assert.match(disconnect.remaining, /vraie coupure/);
 });

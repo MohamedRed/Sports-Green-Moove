@@ -5,6 +5,7 @@ import { createEmergencyFlow } from './emergency-flow.mjs';
 import { createChildEmergencyFlow } from './child-emergency-flow.mjs';
 import { createEmergencyProfileFlow } from './emergency-profile-flow.mjs';
 import { createSessionRestorationFlow } from './session-restoration-flow.mjs';
+import { createSessionDisconnectFlow } from './session-disconnect-flow.mjs';
 import { nativeVerification } from './native-verification.mjs';
 export { assets, videos, excerpts } from './portal-media.mjs';
 import { createTrackingFlow } from './tracking-flow.mjs';
@@ -130,6 +131,7 @@ export const content = {
       images: [shot('signed-out', 'Écran de connexion après relancement')],
       clips: ['signout-action', 'signed-out-relaunch'], recording: 'signout', source: replay },
     createSessionRestorationFlow(),
+    createSessionDisconnectFlow(),
     createNavigationFlow(),
     createSearchFlow(),
     { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-18',

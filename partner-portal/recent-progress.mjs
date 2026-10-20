@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-20', title: 'Se déconnecter depuis l’erreur fonctionne en local',
+    text: 'Le parent retrouve la connexion et reste déconnecté après fermeture complète. Trois captures sont ajoutées.', flow: 'session-disconnect' },
+  { date: '2026-10-20', title: 'Le dernier essai complet ne démarre pas',
+    text: 'L’appareil perd sa liaison avant d’ouvrir l’app. Les six essais séparés passent, mais l’ensemble reste à rejouer.', flow: 'publication' },
   { date: '2026-10-20', title: 'La reconnexion après une erreur passe en local',
     text: 'L’erreur reste visible après rotation. Réessayer retrouve le même parent. Une visite en quatre captures est ajoutée.', flow: 'session-restoration' },
   { date: '2026-10-20', title: 'Trois autres alertes de sécurité corrigées',

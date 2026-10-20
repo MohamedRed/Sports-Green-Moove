@@ -35,3 +35,9 @@ requires actual terminal native execution, original artifact verification and
 visual review. This is not physical network-loss, child-account, active-ride
 tracking, provider, payment, store-review or safety-audit evidence. Previous
 four/five-case reports retain their own original source and scope.
+
+The first executed trial passed on 20 October 2026: two original native
+transcripts, a different app process, three reviewed captures, unchanged local
+records and independent cleanup are retained in
+`docs/release/evidence/session-disconnect-native-2026-10-20/`. This closes the
+local Disconnect branch only; the real-outage and physical-device gaps remain.

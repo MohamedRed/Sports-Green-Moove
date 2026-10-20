@@ -2,6 +2,11 @@ const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
+  'session-disconnect': [
+    image('session-disconnect-error', 'Depuis l’erreur', 'L’app propose de réessayer ou de se déconnecter.'),
+    image('session-disconnect-signed-out', 'Se déconnecter', 'Le parent choisit Se déconnecter et retrouve la connexion.'),
+    image('session-disconnect-reopened', 'Relancer l’app', 'Après fermeture complète, la connexion est toujours demandée.'),
+  ],
   'session-restoration': [
     image('session-recovery-error', 'Voir l’erreur', 'L’essai provoque une erreur au démarrage. L’app propose de réessayer ou de se déconnecter.'),
     image('session-recovery-rotated-error', 'Tourner l’écran', 'Le message et les deux choix restent accessibles en paysage.'),

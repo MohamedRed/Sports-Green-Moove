@@ -17,6 +17,8 @@ import { validateChildContactComponents, validateRetainedChildContactComponents,
 import { validateEmergencyIdentityReport, validateRetainedEmergencyIdentity, emergencyIdentityScope } from '../scripts/qa/emergency-identity-retained-evidence.mjs';
 import { validateIndependentNativeEvidence } from '../scripts/qa/independent-native-evidence.mjs';
 import { sessionRestorationScope, validateSessionRestorationReport, validateRetainedSessionRestoration } from '../scripts/qa/session-restoration-retained-evidence.mjs';
+import { sessionDisconnectScope } from '../scripts/qa/session-disconnect-evidence.mjs';
+import { validateSessionDisconnectReport, validateRetainedSessionDisconnect } from '../scripts/qa/session-disconnect-retained-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -79,6 +81,9 @@ export function validate(root) {
       assert.equal(f.status, 'partial', 'Local UI checks do not complete physical-device requirements');
       const run = JSON.parse(readFileSync(resolve(root, f.ui.source), 'utf8'));
       validateUiScope(run);
+      if (f.id === 'session-disconnect' || run.scope === sessionDisconnectScope) {
+        assert.equal(f.id, 'session-disconnect'); validateRetainedSessionDisconnect(root, f.ui.source);
+      }
       if (f.id === 'session-restoration' || run.scope === sessionRestorationScope) {
         assert.equal(f.id, 'session-restoration'); validateRetainedSessionRestoration(root, f.ui.source);
       }
@@ -163,6 +168,9 @@ export function validate(root) {
 
 export function validateUiScope(run) {
   switch (run.scope) {
+    case sessionDisconnectScope:
+      validateSessionDisconnectReport(run);
+      break;
     case sessionRestorationScope:
       validateSessionRestorationReport(run);
       break;

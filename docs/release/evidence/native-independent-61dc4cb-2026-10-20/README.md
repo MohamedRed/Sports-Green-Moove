@@ -76,3 +76,24 @@ Earlier failures remain unchanged under `emergency-selection-race-2026-10-19`
 and `child-contact-heading-pass-2026-10-19`. Raw bytes are protected by Git
 attributes and the checksum manifest; archived source hashes bind all four host
 reports to their executed code.
+
+## Later Attempts On 20 October
+
+The success above remains the original `61dc4cb` snapshot, not a claim that every
+subsequent replay passed. At `a9b716a`, run `39417800031` passed the trip-change
+native method but failed its mandatory primary evidence transfer. Read-only
+diagnostics recorded `adb: device offline` and an adbd transport disconnect; the
+cleanup-time copy of 90 files cannot promote that failed primary copy to success.
+One independent emergency-identity job also failed dependency acquisition before
+device preparation; the same-head restoration job compiled and passed. No source
+regression or exact acquisition/transport cause was established by those logs.
+
+At `62eef1c`, [run 39420260518](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39420260518)
+completed with all six independent cases successful, including explicit session
+disconnect across two app processes. The ordinary UI job `118619147543` compiled
+successfully, booted its emulator and then lost the adb shell connection with
+`error: closed` while disabling animations. The action terminated the device
+before the test script, ordinary suite or local replay began. This remains a
+failed full job, not an app-flow failure with a proven root cause. Neither an
+automatic retry nor a production workaround was added. The new disconnect proof
+is retained separately in `session-disconnect-native-2026-10-20/`.
