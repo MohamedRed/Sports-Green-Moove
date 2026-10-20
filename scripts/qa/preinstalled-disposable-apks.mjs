@@ -13,10 +13,14 @@ export const pinnedPackages = {
   'be.sportgreenmoove.app.local.test': 'apk/androidTest/debug/app-debug-androidTest.apk',
 };
 export const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect'];
+export function isApprovedDeviceCase(env) {
+  return focusedCases.includes(env.SGM_FOCUSED_UI_CASE) ||
+    (env.SGM_FOCUSED_UI_CASE === 'parent-search-booking' && env.SGM_SEARCH_BOOKING_APPROVAL === 'one-trial-max-eight-requests');
+}
 export function requireFocusedDeviceApproval(env) {
   for (const key of ['SGM_LOCAL_DISPOSABLE_EMULATOR', 'SGM_PAUSE_TEST_PHONE_STORE',
     'SGM_BLOCK_TEST_PHONE_INSTALLS', 'SGM_TEST_PHONE_ADMIN_APPROVED']) assert.equal(env[key], 'true', key);
-  assert(focusedCases.includes(env.SGM_FOCUSED_UI_CASE), 'Select exactly one approved focused case');
+  assert(isApprovedDeviceCase(env), 'Select exactly one approved focused or explicitly approved manual case');
 }
 export function usePreinstalledTestApks(env = process.env) {
   if (env.SGM_FOCUSED_UI_CASE === undefined && env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) return false;
@@ -42,7 +46,7 @@ export function assertPinnedApks(shell, hashes) {
 }
 export function assertContinuousDevice(device, receipt) {
   assert.equal(receipt.scope, 'single-case-continuous-installation-guard-not-flow-proof');
-  assert(focusedCases.includes(receipt.case));
+  assert(focusedCases.includes(receipt.case) || receipt.case === 'parent-search-booking');
   assert.equal(receipt.installAdmin?.packageName, installAdminPackage);
   assert.equal(receipt.installAdmin.originalBlocked, false);
   assert.equal(receipt.installAdmin.policyReady, true); assert.equal(receipt.installAdmin.noAccounts, true);

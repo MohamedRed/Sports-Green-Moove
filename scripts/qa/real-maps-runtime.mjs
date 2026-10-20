@@ -4,15 +4,18 @@ import { resolve } from 'node:path';
 import { spawn } from 'node:child_process';
 import { root } from './local-runtime.mjs';
 import { projectId } from './local-emulator-config.mjs';
+import { searchMapsPolicy } from './search-maps-policy.mjs';
 
 export function attachRealMapsBroker(runtime, broker) {
   assert.equal(runtime.env.GCLOUD_PROJECT, projectId);
   assert.match(broker.origin, /^http:\/\/127\.0\.0\.1:\d+$/);
   assert.match(broker.token, /^[a-f0-9]{64}$/);
+  const policy = broker.policy;
+  assert(policy === 'approved-route-edit-five-requests' || policy === searchMapsPolicy);
   const lib = resolve(runtime.temp, 'functions/lib');
-  for (const file of ['real-maps-function-bridge.mjs', 'real-maps-fetch.mjs'])
+  for (const file of ['real-maps-function-bridge.mjs', 'real-maps-fetch.mjs', 'search-maps-policy.mjs'])
     cpSync(resolve(root, 'scripts/qa', file), resolve(lib, file));
-  writeFileSync(resolve(lib, 'real-maps-bridge-config.json'), JSON.stringify({ origin: broker.origin, token: broker.token }), { mode: 0o600, flag: 'wx' });
+  writeFileSync(resolve(lib, 'real-maps-bridge-config.json'), JSON.stringify({ origin: broker.origin, token: broker.token, policy }), { mode: 0o600, flag: 'wx' });
   const entry = resolve(lib, 'index.js'), original = readFileSync(entry, 'utf8');
   const guard = "import './local-egress-guard.mjs';\n";
   assert(original.startsWith(guard), 'The offline network guard must run before the explicit map bridge');

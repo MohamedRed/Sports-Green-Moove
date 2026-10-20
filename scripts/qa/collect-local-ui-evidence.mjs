@@ -9,7 +9,7 @@ import { collectAdbSyncFailureDiagnostics } from './adb-sync-failure-diagnostics
 const remote = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.';
 const phases = new Set(['session-disconnect', 'session-restoration', 'emergency-identity', 'vehicle-map', 'vehicle-map-layout', 'remote-ride-stop', 'native-startup', 'ride-observation', 'ride-emergency', 'team-enrollment', 'emergency-contact', 'guardian-parent-verification', 'confirmed-restart', 'response-loss', 'booking-response-loss', 'booking-ui-response-loss',
   'child-emergency-components', 'trip-change-parent-confirmation', 'trip-change-inputs', 'trip-change-schedule', 'trip-consent-restart', 'trip-consent-recovery',
-  'trip-draft-restart', 'trip-schedule-draft-restart', 'real-maps-application', 'network-recovery', 'failure-cleanup']);
+  'trip-draft-restart', 'trip-schedule-draft-restart', 'real-maps-application', 'network-recovery', 'failure-cleanup', 'parent-search-booking']);
 const text = (value) => Buffer.isBuffer(value) ? value.toString('utf8') : typeof value === 'string' ? value : '';
 
 export class EvidenceCollectionError extends Error {

@@ -221,6 +221,12 @@ on:
       - "tests/session-disconnect.test.mjs"
       - "tests/session-disconnect-retained-evidence.test.mjs"
       - "tests/parent-search-booking-preparation.test.mjs"
+      - "tests/search-maps-budget.test.mjs"
+      - "tests/search-booking-runner.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchBookingCheckpoint.kt"
+      - "tests/search-maps-bridge.test.mjs"
+      - ".github/workflows/native-search-booking-ui.yml"
+      - "scripts/run-search-booking-android-ui.sh"
       - "tests/native-recheck-evidence.test.mjs"
       - "tests/partner-portal-session-restoration.browser.mjs"
       - "tests/independent-native-evidence.test.mjs"
@@ -529,6 +535,12 @@ on:
       - "tests/session-disconnect.test.mjs"
       - "tests/session-disconnect-retained-evidence.test.mjs"
       - "tests/parent-search-booking-preparation.test.mjs"
+      - "tests/search-maps-budget.test.mjs"
+      - "tests/search-booking-runner.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchBookingCheckpoint.kt"
+      - "tests/search-maps-bridge.test.mjs"
+      - ".github/workflows/native-search-booking-ui.yml"
+      - "scripts/run-search-booking-android-ui.sh"
       - "tests/native-recheck-evidence.test.mjs"
       - "tests/partner-portal-session-restoration.browser.mjs"
       - "tests/independent-native-evidence.test.mjs"
@@ -685,7 +697,7 @@ jobs:
       - name: Test bounded restoration faults and unchanged fixture records
         run: node --test tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
       - name: Validate guarded full-search preparation and accessible trip controls
-        run: node --test tests/parent-search-booking-preparation.test.mjs
+        run: node --test tests/parent-search-booking-preparation.test.mjs tests/search-maps-budget.test.mjs tests/search-booking-runner.test.mjs tests/search-maps-bridge.test.mjs
       - name: Validate dated full native replay recheck
         run: node --test tests/native-recheck-evidence.test.mjs
 

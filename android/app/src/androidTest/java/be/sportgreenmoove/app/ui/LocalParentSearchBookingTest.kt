@@ -101,11 +101,13 @@ class LocalParentSearchBookingTest {
                 bookingId = requested.bookingId
                 assertBooking(requested, "requested")
                 assertEquals(4, available(tripId)); capture("requested")
+                verifySearchBookingCheckpoint(session, tripId, requested.bookingId, "requested")
                 logout(); login("driver"); reservations()
                 val id = checkNotNull(bookingId)
                 decide(id, ReservationDecision.Approve, "Approuvée")
                 assertBooking(booking(tripId, AppRole.Driver), "approved")
                 assertEquals(2, available(tripId)); capture("driver-approved")
+                verifySearchBookingCheckpoint(session, tripId, id, "approved")
                 logout(); login("parent"); reservations()
                 expectStatus(id, "Approuvée")
                 assertBooking(booking(tripId, AppRole.Parent), "approved")
@@ -113,6 +115,7 @@ class LocalParentSearchBookingTest {
                 decide(id, ReservationDecision.Cancel, "Annulée")
                 assertBooking(booking(tripId, AppRole.Parent), "cancelled")
                 assertEquals(4, available(tripId)); capture("cancelled")
+                verifySearchBookingCheckpoint(session, tripId, id, "cancelled")
                 logout()
             }
         } catch (error: Throwable) { failure = error }

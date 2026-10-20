@@ -37,16 +37,35 @@ ephemeral run ID and a future fixture departure. A compiled test is not a pass.
 
 ## Provider Boundary
 
-No map call has been authorized or executed for this new trial yet. The existing
+The user approved one new trial with at most eight provider HTTP requests on
+2026-10-20. No map call has been executed for this new trial yet. The existing
 route-edit broker still allows only five Places/Compute Routes calls and rejects
 Route Matrix. Do not relax it silently or run this case with fake providers.
 
 This search needs two suggestions, two place-details calls, one 3-by-3 route
-matrix and one final route for one candidate. The proposed ceiling is eight
+matrix and one final route for one candidate. The approved ceiling is eight
 requests without retries; a matrix request contains nine potentially billable
-elements. The new explicit approval and bounded broker/host runner must be ready
-before execution. The server credential must stay outside the APK and evidence.
+elements. `search-maps-policy.mjs` and `search-maps-fetch.mjs` define a separate
+explicit policy: the six expected calls must follow the selected place IDs and
+resolved coordinates, one future fixture and exact response field masks. Eight
+is a ceiling, not permission to repeat failed requests. Any provider, response
+validation or transport failure stops further calls; all workers share one
+broker allowance. The host runner now reads the saved state at requested,
+approved and cancelled checkpoints before acknowledging each phone action; it
+does not create, approve or cancel any booking. Offline negative tests and
+compilation do not prove the trial passed. Execution and review remain pending.
+Do not reset the allowance or restart a partially spent trial without approval.
+The server credential must stay outside the APK and evidence.
 Do not widen existing key restrictions or enable payments/social services.
+
+The manual `parent_search_booking` selection in Native CI invokes the separate
+`native-search-booking-ui.yml` job. It excludes the ordinary replay and the
+six-case safety matrix; routine pushes/PRs cannot invoke it. The app and both
+test/admin APKs compile before the fresh phone starts. Only the runtime broker
+receives the server map secret. Re-running a paid workflow attempt is rejected.
+Retain the allowance, provider requests, checkpoint states, raw instrumentation,
+primary file-transfer receipt, source hashes, final record isolation, runtime
+disposal and independent phone restoration even when the flow fails.
 
 The scenario is one local app execution across two accounts on one disposable
 emulator, not two physical phones, physical tracking, real payments, guardian

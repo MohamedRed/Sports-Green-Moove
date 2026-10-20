@@ -115,7 +115,7 @@ test('real-map UI is manual only, separate from the offline matrix, and keeps ev
   const workflow = source('.github/workflows/native-ci.yml'), job = source('.github/workflows/native-real-maps-ui.yml');
   assert.match(workflow, /real_maps_ui:[\s\S]*?type: boolean\s+default: false/);
   assert.match(workflow, /github.event_name == 'workflow_dispatch' && inputs.real_maps_ui/);
-  assert.match(workflow, /github.event_name != 'workflow_dispatch' \|\| \(!inputs.real_maps_ui && !inputs.vehicle_map_ui\)/);
+  assert.match(workflow, /github.event_name != 'workflow_dispatch' \|\| \(!inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking\)/);
   assert.match(workflow, /'Offline UI matrix \(not requested\)' \|\| 'Android native UI tests'/);
   assert.match(job, /workflow_call:/); assert(!job.includes('workflow_dispatch:') && !job.includes('pull_request:'));
   assert.match(job, /SGM_REAL_MAPS_SERVER_KEY: \$\{\{ secrets.GOOGLE_MAPS_API_KEY \}\}/);

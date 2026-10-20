@@ -11,6 +11,10 @@ on:
         description: "Run the approved isolated vehicle-marker display test (SDK tiles only)"
         type: boolean
         default: false
+      parent_search_booking:
+        description: "Use the one approved isolated search/booking trial, maximum eight server map requests"
+        type: boolean
+        default: false
   pull_request:
     paths:
       - "tests/native-build-before-boot.test.mjs"
@@ -42,6 +46,11 @@ on:
       - "tests/session-disconnect.test.mjs"
       - "tests/session-disconnect-retained-evidence.test.mjs"
       - "tests/parent-search-booking-preparation.test.mjs"
+      - "tests/search-maps-budget.test.mjs"
+      - "tests/search-booking-runner.test.mjs"
+      - "tests/search-maps-bridge.test.mjs"
+      - ".github/workflows/native-search-booking-ui.yml"
+      - "scripts/run-search-booking-android-ui.sh"
       - "tests/native-recheck-evidence.test.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
@@ -145,6 +154,11 @@ on:
       - "tests/session-disconnect.test.mjs"
       - "tests/session-disconnect-retained-evidence.test.mjs"
       - "tests/parent-search-booking-preparation.test.mjs"
+      - "tests/search-maps-budget.test.mjs"
+      - "tests/search-booking-runner.test.mjs"
+      - "tests/search-maps-bridge.test.mjs"
+      - ".github/workflows/native-search-booking-ui.yml"
+      - "scripts/run-search-booking-android-ui.sh"
       - "tests/native-recheck-evidence.test.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
@@ -230,7 +244,9 @@ jobs:
     steps:
       - name: Reject conflicting manual map selections
         if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: test '${{ inputs.real_maps_ui }}-${{ inputs.vehicle_map_ui }}' != 'true-true'
+        run: |
+          selections='${{ inputs.real_maps_ui }}-${{ inputs.vehicle_map_ui }}-${{ inputs.parent_search_booking }}'
+          case "$selections" in *true*true*) exit 2 ;; esac
       - name: Checkout
         uses: actions/checkout@v6
 
@@ -269,7 +285,7 @@ jobs:
       - name: Test bounded restoration faults and unchanged fixture records
         run: node --test tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
       - name: Validate guarded full-search preparation and accessible trip controls
-        run: node --test tests/parent-search-booking-preparation.test.mjs
+        run: node --test tests/parent-search-booking-preparation.test.mjs tests/search-maps-budget.test.mjs tests/search-booking-runner.test.mjs tests/search-maps-bridge.test.mjs
       - name: Validate dated full native replay recheck
         run: node --test tests/native-recheck-evidence.test.mjs
       - name: Validate disposable Android isolation
@@ -309,7 +325,7 @@ jobs:
 
   android-native-ui:
     name: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && 'Offline UI matrix (not requested)' || 'Android native UI tests' }}
-    if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui) }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking) }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
 
@@ -378,12 +394,12 @@ jobs:
 
   android-focused-safety-ui:
     name: Android focused safety UI tests
-    if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui) }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking) }}
     uses: ./.github/workflows/native-focused-ui.yml
 
   android-real-maps-ui:
     name: Android approved real-map UI integration
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && !inputs.vehicle_map_ui }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking }}
     permissions:
       contents: read
     uses: ./.github/workflows/native-real-maps-ui.yml
@@ -393,12 +409,21 @@ jobs:
 
   android-vehicle-map-ui:
     name: Android approved vehicle-map UI
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.vehicle_map_ui && !inputs.real_maps_ui }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.vehicle_map_ui && !inputs.real_maps_ui && !inputs.parent_search_booking }}
     permissions:
       contents: read
     uses: ./.github/workflows/native-vehicle-map-ui.yml
     secrets:
       SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+
+  android-parent-search-booking:
+    name: Android approved parent search and booking
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.parent_search_booking && !inputs.real_maps_ui && !inputs.vehicle_map_ui }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/native-search-booking-ui.yml
+    secrets:
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
 
   ios-native-checks:
     name: iOS native checks
