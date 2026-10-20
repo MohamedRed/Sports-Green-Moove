@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -u
 case "${1:-}" in
-  emergency-identity|ride-observation|native-startup|remote-ride-stop) phase="$1" ;;
+  emergency-identity|ride-observation|native-startup|remote-ride-stop|session-restoration) phase="$1" ;;
   *) printf 'Select one focused case on its own fresh disposable phone.\n' >&2; exit 2 ;;
 esac
 export SGM_FOCUSED_UI_CASE="$phase"

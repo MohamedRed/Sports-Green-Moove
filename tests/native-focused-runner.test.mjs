@@ -53,10 +53,11 @@ test('missing, unknown or compound case selection changes no phone', (t) => {
 });
 test('every independent case remains scheduled when another case fails', (t) => {
   const results = focusedCases.map((phase, index) => run(t, phase, { FLOW_STATUS: String(index === 0 ? 41 : 0) }));
-  assert.deepEqual(results.map((result) => result.status), [41, 0, 0, 0]);
+  assert.deepEqual(results.map((result) => result.status), focusedCases.map((_, index) => index === 0 ? 41 : 0));
   assert.deepEqual(results.map((result) => result.calls), focusedCases.map((phase) => ['setup', phase, 'restore']));
 });
-test('all four dedicated jobs and cleanup remain mandatory under the existing release gate', () => {
+test('all five dedicated jobs and cleanup remain mandatory under the existing release gate', () => {
+  assert.deepEqual(focusedCases, ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration']);
   const native = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   const focused = parseDocument(read('.github/workflows/native-focused-ui.yml')).toJSON();
   assert.equal(native.jobs['android-focused-safety-ui'].uses, './.github/workflows/native-focused-ui.yml');
@@ -81,13 +82,15 @@ test('all four dedicated jobs and cleanup remain mandatory under the existing re
     const workflow = parseDocument(read('.github/workflows/' + name)).toJSON();
     for (const trigger of ['push', 'pull_request'])
       for (const path of ['scripts/run-focused-android-ui.sh', '.github/workflows/native-focused-ui.yml',
-        'tests/native-focused-runner.test.mjs', 'tests/continuous-disposable-device.test.mjs'])
+        'tests/native-focused-runner.test.mjs', 'tests/continuous-disposable-device.test.mjs',
+        'tests/session-restoration-fault-proxy.test.mjs', 'tests/session-restoration-records.test.mjs'])
         assert(workflow.on[trigger].paths.includes(path), name + ': ' + path);
-    for (const path of ['tests/native-focused-runner.test.mjs', 'tests/continuous-disposable-device.test.mjs'])
+    for (const path of ['tests/native-focused-runner.test.mjs', 'tests/continuous-disposable-device.test.mjs',
+      'tests/session-restoration-fault-proxy.test.mjs', 'tests/session-restoration-records.test.mjs'])
       assert(Object.values(workflow.jobs).some((entry) => entry.steps?.some((step) => step.run?.includes(path))));
   }
 });
-test('all four flows explicitly choose pinned APK preparation and still uninstall at completion', () => {
+test('all focused flows explicitly choose pinned APK preparation and still uninstall at completion', () => {
   for (const phase of focusedCases) {
     const source = read(`scripts/qa/local-${phase}-ui.mjs`);
     assert(source.includes('if (!usePreinstalledTestApks()) {'));

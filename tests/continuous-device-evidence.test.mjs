@@ -8,6 +8,7 @@ const scopes = {
   'ride-observation': 'local-ride-live-sdk-not-physical-gps',
   'native-startup': 'local-fused-mock-startup-not-physical-gps',
   'remote-ride-stop': 'local-remote-completion-service-stop-not-physical-background-gps',
+  'session-restoration': 'local-session-restoration-ui-not-physical-network-loss',
 };
 const digest = (value) => createHash('sha256').update(value).digest('hex');
 const app = 'be.sportgreenmoove.app.local', runner = `${app}.test`;
@@ -48,7 +49,7 @@ function setPath(target, path, value) {
   else parent[key] = value;
 }
 
-test('all four synthetic receipt shapes validate without accepting user flows', () => {
+test('all focused synthetic receipt shapes validate without accepting user flows', () => {
   for (const caseName of Object.keys(scopes)) {
     const f = fixture(caseName), before = { ...structuredClone(f), setupBytes: Buffer.from(f.setupBytes) };
     assert.deepEqual(validateContinuousDeviceEvidence(f), {
