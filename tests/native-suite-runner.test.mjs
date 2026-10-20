@@ -17,6 +17,7 @@ function fixture(t) {
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-team-enrollment && "$CAPTURE_FAILURE" == teams ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-team-history && "$CAPTURE_FAILURE" == history ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-child-emergency-components && "$CAPTURE_FAILURE" == child ]]; then exit 9; fi',
+      'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-neutral-text && "$CAPTURE_FAILURE" == neutral ]]; then exit 9; fi',
       '',
     ].join('\n') : '';
     writeFileSync(join(root, path), '#!/bin/bash\n' + teamCopy + content, { mode: 0o700 });
@@ -36,6 +37,8 @@ function fixture(t) {
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
   const screens = {
+    'sgm-neutral-text': ['search', 'trips'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
+      ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`)))),
     'sgm-child-emergency-components': ['child-emergency-readonly-narrow', 'child-emergency-access-denied', 'child-emergency-landscape-changed']
       .flatMap((name) => [name + '.png', name + '-window.png']),
     'sgm-team-history': ['team-history-paging.png', 'team-history-paging-window.png', 'team-history-redacted-child.png', 'team-history-redacted-child-window.png'],
@@ -76,6 +79,7 @@ for (const [name, env, exit, statuses] of [
   ['stale team component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'teams' }, 1, [0, 1, 0]],
   ['stale owned-history component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'history' }, 1, [0, 1, 0]],
   ['stale child contact files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'child' }, 1, [0, 1, 0]],
+  ['stale neutral text files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'neutral' }, 1, [0, 1, 0]],
   ['isolated replay failure is never overwritten by ordinary success', { REPLAY_STATUS: '11' }, 11, [0, 0, 11]],
   ['both failures retain both outcomes and return the first', { ORDINARY_STATUS: '7', REPLAY_STATUS: '11' }, 7, [7, 0, 11]],
 ]) test(name, (t) => {
@@ -92,7 +96,7 @@ test('failed suites retain partial payment and other component captures without 
   const result = fixture(t)({ ORDINARY_STATUS: '7', CAPTURE_FAILURE: 'payments' });
   assert.equal(result.status, 7);
   assert.match(result.stdout, /Could not collect partial component screenshots: sgm-payment-confirmation/);
-  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history']) {
+  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history', 'sgm-neutral-text']) {
     assert(result.adbCalls.some((call) => call.startsWith('pull /sdcard/Download/' + name + ' ') && call.endsWith('/partial-components')));
   }
   assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);

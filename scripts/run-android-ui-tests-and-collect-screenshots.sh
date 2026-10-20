@@ -50,7 +50,7 @@ collect_component_evidence() {
 
   if [[ "$test_status" -ne 0 ]]; then
     mkdir -p "$output_dir/partial-components" || return 1
-    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components; do
+    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components sgm-neutral-text; do
       if adb shell test -d "/sdcard/Download/$directory"; then
         if ! adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"; then
           echo "::warning::Could not collect partial component screenshots: $directory"
@@ -60,6 +60,19 @@ collect_component_evidence() {
   fi
 
   if [[ "$test_status" -eq 0 ]]; then
+    adb pull /sdcard/Download/sgm-neutral-text "$output_dir" || return 1
+    for screen in search trips; do
+      for theme in light dark; do
+        for format in phone wide; do
+          for suffix in .png -window.png .json; do
+            if [[ ! -s "$output_dir/sgm-neutral-text/$screen-$theme-$format$suffix" ]]; then
+              echo "Missing neutral text evidence: $screen-$theme-$format$suffix" >&2
+              return 1
+            fi
+          done
+        done
+      done
+    done
     adb pull /sdcard/Download/sgm-child-emergency-components "$output_dir" || return 1
     for stem in child-emergency-readonly-narrow child-emergency-access-denied child-emergency-landscape-changed; do
       for suffix in .png -window.png; do

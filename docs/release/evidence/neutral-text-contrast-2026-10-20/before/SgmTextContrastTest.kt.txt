@@ -1,0 +1,37 @@
+package be.sportgreenmoove.app.design
+
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.graphics.compositeOver
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
+import kotlin.math.max
+import kotlin.math.min
+
+@RunWith(Parameterized::class)
+class SgmTextContrastTest(private val label: String, private val foregroundArgb: Int, private val backgroundArgb: Int) {
+    @Test fun normalTextMeetsMinimumContrast() {
+        val background = Color(backgroundArgb)
+        assertEquals("Neutral surface must be opaque", 1f, background.alpha)
+        val first = Color(foregroundArgb).compositeOver(background).luminance().toDouble()
+        val second = background.luminance().toDouble()
+        val ratio = (max(first, second) + 0.05) / (min(first, second) + 0.05)
+        assertTrue("$label: $ratio is below 4.5:1", ratio >= 4.5)
+    }
+
+    companion object {
+        @JvmStatic @Parameterized.Parameters(name = "{0}") fun cases(): Collection<Array<Any>> =
+            listOf("light" to SgmLightColors, "dark" to SgmDarkColors).flatMap { (mode, palette) ->
+                val surfaces = mapOf("app" to palette.bgApp, "surface" to palette.bgSurface,
+                    "card" to palette.bgCard, "elevated" to palette.bgElevated, "input" to palette.bgInput)
+                mapOf("primary" to palette.textPrimary, "secondary" to palette.textSecondary,
+                    "muted" to palette.textMuted).flatMap { (role, color) ->
+                    surfaces.map { (surface, background) -> arrayOf<Any>("$mode-$role-$surface", color.toArgb(), background.toArgb()) }
+                }
+            }
+    }
+}

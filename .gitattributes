@@ -137,3 +137,6 @@ docs/release/evidence/native-copy-failure-b158a75-2026-10-20/*.json -text -white
 docs/release/evidence/parent-search-booking-native-2026-10-20/*.txt -text -whitespace
 docs/release/evidence/parent-search-booking-native-2026-10-20/*.json -text -whitespace
 docs/release/evidence/parent-search-booking-native-2026-10-20/*.claimed -text -whitespace
+docs/release/evidence/neutral-text-contrast-2026-10-20/**/*.xml -text -whitespace
+docs/release/evidence/neutral-text-contrast-2026-10-20/**/*.txt -text -whitespace
+docs/release/evidence/neutral-text-contrast-2026-10-20/**/*.json -text -whitespace
