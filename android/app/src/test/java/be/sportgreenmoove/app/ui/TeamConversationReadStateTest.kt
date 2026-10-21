@@ -30,6 +30,29 @@ class TeamConversationReadStateTest {
         state.markVisibleRead(listOf("one")); assertTrue(state.messages.isEmpty()); assertNull(state.title); assertNotNull(state.error)
         state.markVisibleRead(listOf("two")); assertEquals(1, gateway.calls.size)
     }
+    @Test fun anUnknownReadReplyIsReconciledByFreshServerFlagsWithoutAnotherWrite() = runBlocking {
+        val gateway = Fixture().apply { loseReadReply = true }; val state = TeamConversationState("parent", target, gateway); state.refresh()
+        state.markVisibleRead(listOf("one")); assertNotNull(state.readError)
+        assertTrue(state.messages.single { it.id == "one" }.needsRead)
+        state.refresh(); assertNull(state.readError); assertFalse(state.messages.single { it.id == "one" }.needsRead)
+        state.markVisibleRead(listOf("one")); assertEquals(1, gateway.calls.size)
+    }
+    @Test fun aPartialPageCannotClearUnconfirmedReadsThatItDoesNotConfirm() = runBlocking {
+        val gateway = Fixture().apply { failRead = true }; val state = TeamConversationState("parent", target, gateway); state.refresh()
+        state.markVisibleRead(listOf("one", "two")); assertNotNull(state.readError)
+        gateway.serverReads.add("one"); gateway.returnedIds = setOf("one", "mine", "already")
+        state.refresh(); assertNotNull(state.readError); assertTrue(state.messages.single { it.id == "two" }.needsRead)
+        gateway.serverReads.add("two"); gateway.returnedIds = null; state.refresh()
+        assertNull(state.readError); assertEquals(1, gateway.calls.size)
+    }
+    @Test fun aLateLostReplyCannotRestoreAnErrorAfterTheServerHasAlreadyConfirmedTheRead() = runBlocking {
+        val gateway = Fixture().apply { hold = CompletableDeferred(); loseReadReply = true }
+        val state = TeamConversationState("parent", target, gateway); state.refresh()
+        val read = launch(start = CoroutineStart.UNDISPATCHED) { state.markVisibleRead(listOf("one")) }
+        gateway.serverReads.add("one"); state.refresh(); gateway.hold!!.complete(Unit); read.join()
+        assertNull(state.readError); assertFalse(state.messages.single { it.id == "one" }.needsRead)
+        assertEquals(1, gateway.calls.size)
+    }
     @Test fun aLateReadCannotAcknowledgeANewAdmissionWindow() = runBlocking {
         val gateway = Fixture().apply { hold = CompletableDeferred() }; val state = TeamConversationState("parent", target, gateway); state.refresh()
         val read = launch(start = CoroutineStart.UNDISPATCHED) { state.markVisibleRead(listOf("one")) }
@@ -46,17 +69,20 @@ class TeamConversationReadStateTest {
     }
     private class Fixture : TeamConversationGateway {
         var version = "b".repeat(64); var hold: CompletableDeferred<Unit>? = null; var failRead = false; var rejectRead = false
+        var loseReadReply = false; var returnedIds: Set<String>? = null; val serverReads = mutableSetOf<String>()
         val calls = mutableListOf<List<String>>(); val versions = mutableListOf<String>()
         override suspend fun choices(uid: String, clubId: String?, cursor: String?) = GuardianPage<TeamChatChoice>(emptyList(), null)
         override suspend fun messages(uid: String, target: TeamConversationTarget, cursor: String?) = TeamConversationPage("Équipe QA", version,
-            listOf(ConversationMessage("one", "Premier message QA", false, 4, needsRead = true),
-                ConversationMessage("two", "Second message QA", false, 3, needsRead = true),
-                ConversationMessage("mine", "Mon message QA", true, 2), ConversationMessage("already", "Déjà lu QA", false, 1)), null)
+            listOf(ConversationMessage("one", "Premier message QA", false, 4, needsRead = "one" !in serverReads),
+                ConversationMessage("two", "Second message QA", false, 3, needsRead = "two" !in serverReads),
+                ConversationMessage("mine", "Mon message QA", true, 2), ConversationMessage("already", "Déjà lu QA", false, 1))
+                .filter { returnedIds == null || it.id in returnedIds!! }, null)
         override suspend fun send(uid: String, target: TeamConversationTarget, body: String, requestId: String): String = error("No send in read tests")
         override suspend fun markRead(uid: String, target: TeamConversationTarget, accessVersion: String, messageIds: List<String>) {
             calls += messageIds; versions += accessVersion; hold?.await()
             if (rejectRead) throw TeamConversationReadRejectedException(IllegalStateException("Explicit revoked-authority fixture"))
             check(!failRead) { "Explicit unavailable-read fixture" }
+            if (loseReadReply) { serverReads.addAll(messageIds); error("Explicit committed-read/lost-reply fixture") }
         }
     }
 }

@@ -21,13 +21,15 @@ for (const [key, value] of [['completed', true], ['physicalDevice', true], ['not
     }));
   });
 
-test('the subsequent focused layout failure retains original bytes and restoration without accepting images', () => {
-  const folder = new URL('../docs/release/evidence/team-read-layout-attempt-2026-10-21/', import.meta.url);
+for (const [directory, jobId, artifactId] of [['team-read-layout-attempt-2026-10-21', 119463312769, 12379876312],
+  ['team-read-layout-diagnostics-2026-10-21', 119473367031, 12379404206]])
+test(`${directory} retains original failed execution and restoration without accepting images`, () => {
+  const folder = new URL('../docs/release/evidence/' + directory + '/', import.meta.url);
   const read = file => readFileSync(new URL(file, folder)), json = file => JSON.parse(read(file));
   const hash = bytes => createHash('sha256').update(bytes).digest('hex');
   const job = json('job.json'), artifact = json('artifact.json');
-  assert.equal(job.id, 119463312769); assert.equal(job.conclusion, 'failure');
-  assert.equal(artifact.id, 12379876312); assert.equal(artifact.workflow_run.id, job.run_id);
+  assert.equal(job.id, jobId); assert.equal(job.conclusion, 'failure');
+  assert.equal(artifact.id, artifactId); assert.equal(artifact.workflow_run.id, job.run_id);
   assert.equal(artifact.digest, 'sha256:' + hash(read('original-artifact.zip')));
   assert.equal(artifact.size_in_bytes, read('original-artifact.zip').length);
   assert.match(read('instrumentation.txt').toString(), /Tests run: 3,  Failures: 2/);

@@ -73,8 +73,15 @@ class TeamConversationReadFlowTest {
     private fun assertTextFits(node: SemanticsNodeInteraction) {
         val results = mutableListOf<TextLayoutResult>()
         node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(results) }
-        assertTrue("The visible text must expose its layout result: ${node.fetchSemanticsNode().boundsInRoot}", results.isNotEmpty())
-        assertTrue("Text layout overflow: ${results.map { "text=${it.layoutInput.text}, size=${it.size}, constraints=${it.layoutInput.constraints}, widthOverflow=${it.didOverflowWidth}, heightOverflow=${it.didOverflowHeight}" }}",
-            results.none { it.hasVisualOverflow })
+        assertEquals("One unmerged text layout is required", 1, results.size)
+        val layout = results.single()
+        // String-text semantics rebuild a wider paragraph; inspect painted lines against the measured text box.
+        assertFalse("No text may be truncated", layout.multiParagraph.didExceedMaxLines)
+        assertEquals(layout.layoutInput.text.length, layout.getLineEnd(layout.lineCount - 1))
+        for (line in 0 until layout.lineCount) {
+            assertFalse("No line may be ellipsized", layout.isLineEllipsized(line))
+            assertTrue("The complete line must fit horizontally", layout.getLineLeft(line) >= 0 && layout.getLineRight(line) <= layout.size.width)
+            assertTrue("The complete line must fit vertically", layout.getLineTop(line) >= 0 && layout.getLineBottom(line) <= layout.size.height)
+        }
     }
 }
