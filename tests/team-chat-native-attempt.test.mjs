@@ -7,7 +7,7 @@ test('startup ANR remains negative evidence with restoration and runtime verific
   assert.equal(run.nativeSuiteCompleted, false); assert.deepEqual(run.flowCheckpointsVerified, []);
   const flow = content.flows.find(item => item.id === 'team-conversation');
   assert.equal(flow.status, 'partial'); assert.equal(flow.attempt.source, 'docs/release/evidence/team-chat-native-peer-2026-10-21/results.json');
-  assert.match(flow.summary, /reste à terminer/);
+  assert.match(flow.remaining, /notifications/);
 });
 test('partial SDK exchange retains its failed case and never accepts all checkpoints or persisted-state proof', () => {
   const run = validateTeamChatNativeAttempt(process.cwd(), content.flows.find(item => item.id === 'team-conversation').attempt.source);

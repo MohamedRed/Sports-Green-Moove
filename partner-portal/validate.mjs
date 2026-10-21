@@ -6,6 +6,7 @@ import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
 import { validateTeamChatNativeAttempt } from '../scripts/qa/team-chat-native-attempt.mjs';
+import { validateRetainedTeamChatConnected } from '../scripts/qa/team-chat-connected-retained.mjs';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
@@ -150,6 +151,14 @@ export function validate(root) {
     if (f.searchBookingUi) {
       assert(['search', 'booking'].includes(f.id)); assert.equal(f.status, 'partial');
       assert.equal(validateRetainedSearchBooking(root, f.searchBookingUi.source).testedAt.slice(0, 10), f.checkedAt);
+    }
+    if (f.connected) {
+      assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
+      const connected = validateRetainedTeamChatConnected(root, f.connected.source);
+      assert.equal(connected.testedAt.slice(0, 10), f.checkedAt);
+      assert.deepEqual(f.images.filter(image => image.file.startsWith('team-chat-connected-')).map(image => image.file).sort(),
+        Object.keys(connected.publishedCaptures).sort());
+      for (const [id, file] of Object.entries(connected.publishedCaptures)) assert.equal(captures[id], dirname(f.connected.source) + '/' + file);
     }
     if (f.attempt) {
       assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');

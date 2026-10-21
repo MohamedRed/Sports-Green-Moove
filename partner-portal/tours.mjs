@@ -3,8 +3,10 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'team-conversation': [
-    image('team-chat-native-parent', 'Ouvrir son équipe', 'Le parent retrouve la conversation de son équipe dans cet essai local partiel.'),
-    image('team-chat-native-exchange', 'Recevoir et répondre', 'Le conducteur envoie un message. Le parent le reçoit et répond dans l’app ; la suite de l’essai reste à terminer.'),
+    image('team-chat-connected-parent', 'Ouvrir son équipe', 'Le parent retrouve son équipe, sans les messages envoyés avant son arrivée.'),
+    image('team-chat-connected-exchange', 'Recevoir et répondre', 'Le conducteur écrit. Le parent reçoit le message et répond dans l’app, en local.'),
+    image('team-chat-connected-revoked', 'Retirer l’accès', 'Le club retire son accord. Au retour dans l’app, le parent ne voit plus la conversation ni la saisie.'),
+    image('team-chat-connected-driver', 'Changer de compte', 'Le conducteur retrouve l’échange et répond. Le brouillon privé du parent n’apparaît pas.'),
   ],
   'session-disconnect': [
     image('session-disconnect-error', 'Depuis l’erreur', 'L’app propose de réessayer ou de se déconnecter.'),

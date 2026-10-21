@@ -40,8 +40,9 @@ const fingerprints = Object.fromEntries([...new Set([content.nativeVerification.
   content.nativeVerification.checksums, ...Object.values(content.nativeVerification.recheck),
   ...content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.mapUi ? [f.mapUi.source] : []), ...(f.phone ? [f.phone.source] : []), ...(f.historyPhone ? [f.historyPhone.source] : []), ...(f.searchBookingUi ? [f.searchBookingUi.source] : [])])])].map((source) => [source,
   createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex')]));
-for (const flow of content.flows) if (flow.attempt) fingerprints[flow.attempt.source] =
-  createHash('sha256').update(readFileSync(resolve(root, flow.attempt.source))).digest('hex');
+for (const flow of content.flows) for (const record of [flow.attempt, flow.connected].filter(Boolean)) {
+  fingerprints[record.source] = createHash('sha256').update(readFileSync(resolve(root, record.source))).digest('hex');
+}
 const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };
 writeFileSync(resolve(out, 'data.json'), `${JSON.stringify(data, null, 2)}\n`);
 console.log(`Partner portal built: ${content.flows.length} flows, ${Object.keys(excerpts).length} short clips. No production app changes.`);

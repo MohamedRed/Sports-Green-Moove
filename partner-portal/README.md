@@ -82,6 +82,12 @@ reviewed exchange windows are published, but the nine-case marker and independen
 stored-state verifier were not reached. The two-step tour shows only that partial
 exchange; the older simulated captures remain in the full gallery. No revocation,
 account-isolation, physical-device or push result is promoted from that attempt.
+The separate `connected` record retains a later completed native case, nine
+checkpoints and independent saved-state verification. Its four reviewed windows
+now form the tour: parent opening, exchange, revoked access and driver account.
+The draft window is retained but excluded because its header redraw is incomplete.
+Previous component and failed-attempt images remain in the full gallery. The flow
+stays partial: physical phones, push, unread state and full process restart remain.
 
 The parent ride's separate `mapUi` record binds two reviewed map captures to the
 actual native movement report, retained source, unchanged-camera assertions and
