@@ -48,9 +48,11 @@ export async function superviseLocalProcess({ command, args, cwd, env, signal, s
     const unexpectedDescendants = groupAlive(child.pid);
     if (unexpectedDescendants) signalGroup(child.pid, 'SIGTERM');
     await requireGroupExit(child.pid, stopGraceMs);
-    assert(signal.aborted || !unexpectedDescendants, 'Local launcher exited with live descendants; explicit cleanup was required');
-    const interruptedExit = signal.aborted && (['SIGINT', 'SIGTERM'].includes(result.signal) || [130, 143].includes(result.code));
-    assert(result.code === 0 || interruptedExit, 'Local service exited unsuccessfully');
+    try {
+      assert(signal.aborted || !unexpectedDescendants, 'Local launcher exited with live descendants; explicit cleanup was required');
+      const interruptedExit = signal.aborted && (['SIGINT', 'SIGTERM'].includes(result.signal) || [130, 143].includes(result.code));
+      assert(result.code === 0 || interruptedExit, 'Local service exited unsuccessfully');
+    } catch (error) { error.groupExitVerified = true; throw error; }
     return { ...result, stopped: signal.aborted, spawned: true, groupExitVerified: true };
   } finally {
     clearTimeout(stopTimer); signal.removeEventListener('abort', stop);

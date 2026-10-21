@@ -30,14 +30,43 @@ use it to accept map rendering, provider routing or tracking.
 
 ## Connect Privately
 
-Use the signed official BrowserStack Local desktop helper and enter the existing
-key privately in its own console. Before connecting, choose No proxy, enable
-advanced flags and use `--only` with exactly `isolatedLocalAllowlist` from
-`scripts/qa/browserstack-local-policy.mjs`, plus `--timeout 10`. Never use
-`--force-local`: it overrides the allowlist. Do not enable folder access, verbose
-logs, API logs, MITM proxy or extra hosts. Read back the active console's Only
-Allow and all these switches, and validate with `assertIsolatedTunnelSettings`.
+Use the signed official vendor binary with the scoped macOS launcher:
+
+```bash
+node scripts/qa/start-scoped-browserstack-local.mjs /private/tmp/sgm-browserstack-local-vendor/BrowserStackLocal
+```
+
+The launcher verifies the publisher, creates an owner-only temporary directory
+and a 0600 named pipe, and prints only that pipe path and the public restrictions.
+An authorized operator transfers the existing key as one in-memory line into
+that private pipe, without printing it or entering it in a terminal. The worker
+passes a key-only YAML document through a second owner-only named pipe to the
+vendor's `--config-file`; no regular plaintext credential file, command argument or
+environment variable is created by the launcher. Raw provider output is suppressed.
+The credential input has a three-minute deadline, the private vendor transfer
+has a fifteen-second deadline, and there is no automatic authentication retry.
+The signed v8.9 binary rejected `/dev/fd/3`; a fictional-key probe confirmed the
+named-pipe configuration reaches credential validation. This is not a successful
+connection or phone-flow result.
+
+All non-secret restrictions are fixed command arguments before authentication:
+`--only` is exactly `isolatedLocalAllowlist` from
+`scripts/qa/browserstack-local-policy.mjs`, with `--timeout 10`, request logging
+disabled and the local configuration dashboard disabled. No folder, proxy,
+MITM, extra-host, force-local or daemon flag is allowed. A process-start receipt
+is not connection proof: require the phone toolbar's active local connection.
+Stop only this launcher's process group with SIGINT after the trial and require
+its cleanup acknowledgement; do not kill other local helpers.
 Only ports 5001, 8080, 9000 and 9099 on `127.0.0.1` and `localhost` are approved.
+The 21 October scoped launch reached App Live's active local-testing toolbar,
+installed the pinned isolated team-chat APK and signed in the synthetic parent.
+Its first independent conversation checkpoint failed because the new controller
+assumed ascending service order. No team-chat phone flow was accepted. The
+controller now validates exact sequence, actor, admission boundary and message
+identity independent of page order. A fresh end-to-end phone trial is still required.
+The phone session ended, owned helper group stopped, both handoff directories
+were removed, the private fixture session was removed and all four ports refused
+connections. No temporary device administrator or installation blocker was used.
 
 The local console's initial Connect action can start a tunnel immediately.
 Its approved allowlist must already be configured before authentication; do not
@@ -74,6 +103,21 @@ Retain the native device screenshots at each observed state before advancing.
 The screenshot control opens a macOS Save As dialog; completing that dialog is
 part of saving, and a pending dialog is not a failed download to retry.
 Keep original PNGs unchanged. Do not record or retain password entry.
+
+For team-draft testing, start the ordered independent record controller after
+the owned backend is ready, using a fresh output directory:
+
+```bash
+node scripts/qa/manual-team-draft-phone-session.mjs /private/tmp/sgm-phone-session-FRESH.json /private/tmp/sgm-team-draft-records-FRESH
+```
+
+Capture actual phone states before entering `before`, `unsent`, `reopened`,
+`sent`, `cleared`, `other-account`, then `finish`. Only the app sends the parent
+message. This controller seeds through authenticated isolated service actions,
+reads the separate driver's view and checks stored records; it cannot prove
+phone UI, process death, notifications or environment destruction. Its final
+report remains incomplete on any error or early stop. Independently stop and
+verify destruction of its owned local environment even after a controller error.
 
 For the parent one-seat/free-booking scenario, collect an independent checkpoint:
 

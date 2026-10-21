@@ -30,10 +30,14 @@ for (const signal of ['SIGINT', 'SIGTERM']) test(`${signal} stops the owned laun
 test('normal success and nonzero failure remain different outcomes', async () => {
   const result = await run('success', new AbortController().signal);
   assert.equal(result.code, 0); assert.equal(result.stopped, false);
-  await assert.rejects(run('failure', new AbortController().signal), /unsuccessfully/);
+  await assert.rejects(run('failure', new AbortController().signal), error => {
+    assert.match(error.message, /unsuccessfully/); assert.equal(error.groupExitVerified, true); return true;
+  });
 });
 test('a spawn error is surfaced rather than accepted as an intentional stop', async () => {
-  await assert.rejects(run('success', new AbortController().signal, undefined, '/missing-sgm-supervised-service'), { code: 'ENOENT' });
+  await assert.rejects(run('success', new AbortController().signal, undefined, '/missing-sgm-supervised-service'), error => {
+    assert.equal(error.code, 'ENOENT'); assert.notEqual(error.groupExitVerified, true); return true;
+  });
 });
 test('a stop requested before startup never spawns a service', async () => {
   const controller = new AbortController(); controller.abort('SIGTERM');
