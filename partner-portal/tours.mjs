@@ -3,10 +3,12 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'team-conversation': [
-    image('team-chat-connected-parent', 'Ouvrir son équipe', 'Le parent retrouve son équipe, sans les messages envoyés avant son arrivée.'),
-    image('team-chat-connected-exchange', 'Recevoir et répondre', 'Le conducteur écrit. Le parent reçoit le message et répond dans l’app, en local.'),
-    image('team-chat-connected-revoked', 'Retirer l’accès', 'Le club retire son accord. Au retour dans l’app, le parent ne voit plus la conversation ni la saisie.'),
-    image('team-chat-connected-driver', 'Changer de compte', 'Le conducteur retrouve l’échange et répond. Le brouillon privé du parent n’apparaît pas.'),
+    image('team-access-verified-initial', 'Ouvrir son équipe', 'Le parent retrouve l’équipe de son premier enfant, sans les anciens messages.'),
+    image('team-access-verified-remaining', 'Garder le second accès', 'Le premier accord est retiré. Le second enfant conserve l’accès, avec son propre historique.'),
+    image('team-access-verified-revoked', 'Retirer le dernier accord', 'Sans accord valide, la conversation et la saisie disparaissent.'),
+    image('team-access-verified-renewed', 'Revenir après un nouvel accord', 'L’équipe se rouvre, sans retrouver les messages antérieurs à ce nouvel accord.'),
+    image('team-access-verified-other', 'Répondre dans une autre équipe', 'Après un accord séparé, le parent reçoit un message et répond dans la seconde équipe.'),
+    image('team-access-verified-isolated', 'Retrouver la première équipe', 'Ses messages restent séparés de ceux de la seconde équipe. Le champ de saisie est vide.'),
   ],
   'session-disconnect': [
     image('session-disconnect-error', 'Depuis l’erreur', 'L’app propose de réessayer ou de se déconnecter.'),

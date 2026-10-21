@@ -11,7 +11,8 @@ test('partial access captures never accept the failed case, parent reply or inde
   for (const [id, file] of Object.entries(run.publishedCaptures)) {
     assert(flow.images.some(image => image.file === id)); assert(captures[id].endsWith('/' + file));
   }
-  assert.match(flow.remaining, /seconde équipe/);
+  assert(flow.nativeAccess.source.includes('team-access-native-2026-10-21'));
+  assert.equal(run.otherTeamParentReplyVerified, false);
 });
 for (const key of ['nativeCaseCompleted', 'allElevenCheckpointsAccepted', 'independentStoredStateVerified',
   'otherTeamParentReplyVerified', 'returnToOriginalTeamVerified', 'sendFailureCauseVerified', 'physicalDevice', 'notificationsVerified']) {

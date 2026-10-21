@@ -79,12 +79,12 @@ exchange or notification delivery. Its visual allowlist excludes a partial root
 redraw and uses the complete original window for that checkpoint.
 Its later `attempt` retains a failed connected native case with SDK peers: two
 reviewed exchange windows are published, but the nine-case marker and independent
-stored-state verifier were not reached. The two-step tour shows only that partial
+stored-state verifier were not reached. Its historical two-step tour showed only that partial
 exchange; the older simulated captures remain in the full gallery. No revocation,
 account-isolation, physical-device or push result is promoted from that attempt.
 The separate `connected` record retains a later completed native case, nine
 checkpoints and independent saved-state verification. Its four reviewed windows
-now form the tour: parent opening, exchange, revoked access and driver account.
+formed the previous tour: parent opening, exchange, revoked access and driver account.
 The draft window is retained but excluded because its header redraw is incomplete.
 Previous component and failed-attempt images remain in the full gallery. The flow
 stays partial: physical phones, push, unread state and full process restart remain.
@@ -94,8 +94,18 @@ or cross-team discovery; the latest update and remaining work state that boundar
 The subsequent `accessAttempt` binds four reviewed original windows to a failed
 native case that reaches renewal and a separate-team opening, then times out on
 the parent reply. Its completed marker and independent state verifier were not
-reached. The earlier four-step tour stays unchanged; the new partial captures are
-in the full gallery. No reply delivery or completed cross-team return is accepted.
+reached. Its four partial captures remain in the full gallery. No reply delivery
+or completed cross-team return is accepted from that failed attempt.
+The separate completed `nativeAccess` record now binds eleven actual native
+checkpoints, seven independently verified messages and verified cleanup. Its six
+reviewed windows form the current tour, including the other-team reply and return
+to the original team. The guardian renewal itself uses SDK peers, not management
+screens. Physical devices, push, unread state and full process restart stay open.
+
+The session restoration flow preserves its four reviewed 20 October captures.
+Its separate `restorationRecheck` records the 21 October authentication transport
+failure before application UI. No new screenshot, restoration completion or
+production defect is accepted from that failure; disposable cleanup is verified.
 
 The parent ride's separate `mapUi` record binds two reviewed map captures to the
 actual native movement report, retained source, unchanged-camera assertions and

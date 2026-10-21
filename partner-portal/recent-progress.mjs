@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Deux enfants, deux équipes : le parcours passe dans l’app',
+    text: 'Accords retirés puis renouvelés, réponse dans la seconde équipe et retour sans mélange : l’essai local passe. Six captures et une visite sont ajoutées.', flow: 'team-conversation' },
+  { date: '2026-10-21', title: 'Le nouvel essai de reconnexion ne démarre pas',
+    text: 'La liaison aux données de test échoue avant l’ouverture. Aucune nouvelle capture validée ; les précédentes gardent leur date.', flow: 'session-restoration' },
   { date: '2026-10-21', title: 'Les accords des deux enfants se mettent à jour',
     text: 'Un accès reste, les deux sont retirés, puis un nouvel accord revient : quatre captures ajoutées. L’essai bloque sur la réponse dans la seconde équipe.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Deux enfants, deux équipes : les accès restent séparés',

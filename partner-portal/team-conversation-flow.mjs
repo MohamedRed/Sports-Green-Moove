@@ -4,15 +4,17 @@ const partial = 'docs/release/evidence/team-chat-native-peer-2026-10-21/';
 const connected = 'docs/release/evidence/team-chat-connected-2026-10-21/';
 const accessChanges = 'docs/release/evidence/team-chat-access-2026-10-21/';
 const accessAttempt = 'docs/release/evidence/team-access-native-send-2026-10-21/';
+const nativeAccess = 'docs/release/evidence/team-access-native-2026-10-21/';
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
-    summary: 'Les accès des deux enfants avancent dans l’app. La seconde équipe reste à terminer.',
-    verified: 'Les accès via deux enfants passent côté données et en partie dans l’app. Quatre captures montrent les retraits et le retour sans anciens messages.',
-    remaining: 'Terminer la réponse dans la seconde équipe et le retour à la première. Vérifier notifications, messages non lus, fermeture complète et échanges entre téléphones.',
+    summary: 'Deux enfants, deux équipes : les accès et les messages restent séparés, en local.',
+    verified: 'Retraits et nouvel accord actualisent l’historique. Le parent répond dans la seconde équipe, puis retrouve la première sans mélange. Six captures montrent le parcours.',
+    remaining: 'Vérifier notifications, messages non lus, brouillons après fermeture complète et échanges entre téléphones.',
     connected: { source: connected + 'team-conversation-results.json' },
     accessChanges: { source: accessChanges + 'results.json' },
     accessAttempt: { source: accessAttempt + 'results.json' },
+    nativeAccess: { source: nativeAccess + 'team-access-results.json' },
     attempt: { source: partial + 'results.json' },
     ui: { source: screens + 'results.json', groups: ['team-chat-entry-and-narrow-layout',
       'team-chat-authorization-failure-hides-thread', 'team-chat-unconfirmed-send-reuses-one-intent'] },
@@ -27,6 +29,12 @@ export function createTeamConversationFlow() {
       'Les comptes enfants restent exclus.', 'Le retrait bloque aussi l’envoi et les anciennes pages.',
       'Une réinscription ne rouvre pas l’ancien historique.'] },
     images: [
+      { file: 'team-access-verified-initial', alt: 'Équipe du premier enfant ouverte dans l’essai local réussi du 21 octobre' },
+      { file: 'team-access-verified-remaining', alt: 'Accès maintenu via le second enfant, avec son historique, essai local réussi du 21 octobre' },
+      { file: 'team-access-verified-revoked', alt: 'Dernier accord retiré : conversation masquée, essai local réussi du 21 octobre' },
+      { file: 'team-access-verified-renewed', alt: 'Nouvel accord : seuls les nouveaux messages reviennent, essai local réussi du 21 octobre' },
+      { file: 'team-access-verified-other', alt: 'Message reçu et réponse dans la seconde équipe, essai local réussi du 21 octobre' },
+      { file: 'team-access-verified-isolated', alt: 'Retour à la première équipe, sans messages de la seconde, essai local réussi du 21 octobre' },
       { file: 'team-access-attempt-initial', alt: 'Accès initial par le premier enfant, essai local partiel du 21 octobre' },
       { file: 'team-access-attempt-remaining', alt: 'Accès conservé via le second enfant, avec son propre historique, essai local partiel du 21 octobre' },
       { file: 'team-access-attempt-revoked', alt: 'Les deux accords retirés masquent la conversation, essai local partiel du 21 octobre' },
@@ -41,5 +49,5 @@ export function createTeamConversationFlow() {
       { file: 'team-chat-unconfirmed', alt: 'Envoi non confirmé, message conservé pour réessayer, essai local simulé du 21 octobre' },
       { file: 'team-chat-confirmed', alt: 'Une seule réponse après le renvoi, essai local simulé du 21 octobre' },
       { file: 'team-chat-denied', alt: 'Conversation et saisie masquées après une erreur de vérification, essai local simulé du 21 octobre' },
-    ], source: accessAttempt + 'README.md' };
+    ], source: nativeAccess + 'README.md' };
 }

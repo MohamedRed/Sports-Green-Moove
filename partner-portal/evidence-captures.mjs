@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['initial', 'remaining', 'revoked', 'renewed', 'other', 'isolated'].map(id => ['team-access-verified-' + id,
+    'docs/release/evidence/team-access-native-2026-10-21/team-access-' + id + '-window.png'])),
   ...Object.fromEntries(['initial', 'remaining', 'revoked', 'renewed'].map(id => ['team-access-attempt-' + id,
     'docs/release/evidence/team-access-native-send-2026-10-21/team-access-' + id + '-window.png'])),
   ...Object.fromEntries(['parent', 'exchange', 'revoked', 'driver'].map(id => ['team-chat-connected-' + id,

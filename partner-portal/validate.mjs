@@ -5,10 +5,8 @@ import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
-import { validateTeamChatNativeAttempt } from '../scripts/qa/team-chat-native-attempt.mjs';
-import { validateRetainedTeamChatConnected } from '../scripts/qa/team-chat-connected-retained.mjs';
-import { validateRetainedTeamChatAccess } from '../scripts/qa/team-chat-access-evidence.mjs';
-import { validateRetainedTeamAccessAttempt } from '../scripts/qa/team-access-native-attempt.mjs';
+import { validateTeamConversationRecords } from './team-conversation-evidence.mjs';
+import { validateSessionRestorationRecheck } from '../scripts/qa/session-restoration-recheck.mjs';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
@@ -154,35 +152,10 @@ export function validate(root) {
       assert(['search', 'booking'].includes(f.id)); assert.equal(f.status, 'partial');
       assert.equal(validateRetainedSearchBooking(root, f.searchBookingUi.source).testedAt.slice(0, 10), f.checkedAt);
     }
-    if (f.accessAttempt) {
-      assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
-      const run = validateRetainedTeamAccessAttempt(root, f.accessAttempt.source);
-      assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
-      for (const [id, file] of Object.entries(run.publishedCaptures)) {
-        assert(f.images.some(image => image.file === id)); assert.equal(captures[id], dirname(f.accessAttempt.source) + '/' + file);
-      }
-    }
-    if (f.accessChanges) {
-      assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
-      assert.equal(validateRetainedTeamChatAccess(root, f.accessChanges.source).testedAt.slice(0, 10), f.checkedAt);
-    }
-    if (f.connected) {
-      assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
-      const connected = validateRetainedTeamChatConnected(root, f.connected.source);
-      assert.equal(connected.testedAt.slice(0, 10), f.checkedAt);
-      assert.deepEqual(f.images.filter(image => image.file.startsWith('team-chat-connected-')).map(image => image.file).sort(),
-        Object.keys(connected.publishedCaptures).sort());
-      for (const [id, file] of Object.entries(connected.publishedCaptures)) assert.equal(captures[id], dirname(f.connected.source) + '/' + file);
-    }
-    if (f.attempt) {
-      assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
-      const attempt = validateTeamChatNativeAttempt(root, f.attempt.source);
-      assert.equal(attempt.testedAt.slice(0, 10), f.checkedAt);
-      if (attempt.publishedCaptures) {
-        const ids = Object.keys(attempt.publishedCaptures);
-        assert.deepEqual(f.images.filter(image => image.file.startsWith('team-chat-native-')).map(image => image.file).sort(), ids.sort());
-        for (const [id, file] of Object.entries(attempt.publishedCaptures)) assert.equal(captures[id], dirname(f.attempt.source) + '/' + file);
-      }
+    validateTeamConversationRecords(root, f, captures);
+    if (f.restorationRecheck) {
+      assert.equal(f.id, 'session-restoration'); assert.equal(f.status, 'partial');
+      assert.equal(validateSessionRestorationRecheck(root, f.restorationRecheck.source).testedAt.slice(0, 10), f.checkedAt);
     }
     if (f.historyPhone) {
       assert.equal(f.status, 'partial');

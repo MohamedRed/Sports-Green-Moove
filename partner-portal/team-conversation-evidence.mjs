@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import { dirname } from 'node:path';
+import { validateTeamChatNativeAttempt } from '../scripts/qa/team-chat-native-attempt.mjs';
+import { validateRetainedTeamChatConnected } from '../scripts/qa/team-chat-connected-retained.mjs';
+import { validateRetainedTeamChatAccess } from '../scripts/qa/team-chat-access-evidence.mjs';
+import { validateRetainedTeamAccessAttempt } from '../scripts/qa/team-access-native-attempt.mjs';
+import { validateRetainedTeamAccessNative } from '../scripts/qa/team-access-native-retained.mjs';
+
+export function validateTeamConversationRecords(root, flow, captures) {
+  const records = [
+    [flow.attempt, validateTeamChatNativeAttempt, 'team-chat-native-'],
+    [flow.connected, validateRetainedTeamChatConnected, 'team-chat-connected-'],
+    [flow.accessChanges, validateRetainedTeamChatAccess, null],
+    [flow.accessAttempt, validateRetainedTeamAccessAttempt, 'team-access-attempt-'],
+    [flow.nativeAccess, validateRetainedTeamAccessNative, 'team-access-verified-'],
+  ];
+  for (const [record, validate, prefix] of records) {
+    if (!record) continue;
+    assert.equal(flow.id, 'team-conversation'); assert.equal(flow.status, 'partial');
+    const run = validate(root, record.source); assert.equal(run.testedAt.slice(0, 10), flow.checkedAt);
+    if (prefix) {
+      assert.deepEqual(flow.images.filter(image => image.file.startsWith(prefix)).map(image => image.file).sort(),
+        Object.keys(run.publishedCaptures).sort());
+      for (const [id, file] of Object.entries(run.publishedCaptures)) assert.equal(captures[id], dirname(record.source) + '/' + file);
+    }
+  }
+}

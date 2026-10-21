@@ -12,8 +12,8 @@ test('executed multi-child and cross-team services retain all eleven checkpoints
   assert.equal(run.observed.teams.reduce((sum, row) => sum + row.committedMessages, 0), 59);
   const flow = content.flows.find(item => item.id === 'team-conversation');
   assert.equal(flow.accessChanges.source, source); assert.equal(flow.status, 'partial');
-  assert.match(flow.verified, /côté données/); assert.match(flow.remaining, /seconde équipe/);
-  assert.equal(flow.images.length, 14);
+  assert.match(flow.verified, /seconde équipe/); assert.match(flow.remaining, /notifications/);
+  assert.equal(flow.images.length, 20);
 });
 const changes = [
   x => x.completed = false, x => x.steps.pop(), x => x.steps[0].status = 'failed',
