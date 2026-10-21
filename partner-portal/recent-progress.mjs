@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Chaque compte garde ses messages non lus',
+    text: 'Douze contrôles locaux passent côté données : lire un message ne le marque pas chez les autres, ni dans une autre équipe. La vérification dans l’app est en cours.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Le numéroteur reste à débloquer',
     text: 'Même résultat sur un second téléphone : le numéroteur se ferme sans passer par notre app. Une aide est demandée ; aucun appel effectué.', flow: 'emergency-contact' },
   { date: '2026-10-21', title: 'Le brouillon revient sur téléphone',

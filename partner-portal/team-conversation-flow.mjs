@@ -12,6 +12,7 @@ export function createTeamConversationFlow() {
     verified: 'Sur téléphone : brouillon retrouvé, un seul envoi, puis effacement. Un second brouillon reste privé au parent. Les accès et les messages de deux équipes restent séparés, en local.',
     remaining: 'Vérifier les notifications, les messages non lus et les échanges entre téléphones.',
     connected: { source: connected + 'team-conversation-results.json' },
+    readServices: { source: 'docs/release/evidence/team-read-services-2026-10-21/services.json' },
     accessChanges: { source: accessChanges + 'results.json' },
     accessAttempt: { source: accessAttempt + 'results.json' },
     nativeAccess: { source: nativeAccess + 'team-access-results.json' },

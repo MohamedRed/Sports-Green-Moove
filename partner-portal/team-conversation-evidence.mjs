@@ -11,12 +11,14 @@ import { validateRetainedTeamDraft } from '../scripts/qa/team-draft-native-retai
 import { validateTeamDraftErrorCaptureAttempt } from '../scripts/qa/team-draft-error-capture-attempt.mjs';
 import { validateTeamDraftErrorComponents } from '../scripts/qa/team-draft-error-components.mjs';
 import { validateTeamDraftPhone } from '../scripts/qa/team-draft-phone-evidence.mjs';
+import { validateRetainedTeamReads } from '../scripts/qa/team-read-retained-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
   const records = [
     [flow.attempt, validateTeamChatNativeAttempt, 'team-chat-native-'],
     [flow.connected, validateRetainedTeamChatConnected, 'team-chat-connected-'],
     [flow.accessChanges, validateRetainedTeamChatAccess, null],
+    [flow.readServices, validateRetainedTeamReads, null],
     [flow.accessAttempt, validateRetainedTeamAccessAttempt, 'team-access-attempt-'],
     [flow.nativeAccess, validateRetainedTeamAccessNative, 'team-access-verified-'],
     [flow.draftAttempt, validateTeamDraftNativeAttempt, null],

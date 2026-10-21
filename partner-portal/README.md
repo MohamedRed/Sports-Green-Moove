@@ -1,5 +1,10 @@
 # Partner Progress Portal
 
+The 21 October unread-state update is service-only: twelve isolated scenarios
+and sixteen native units pass, with original logs, XML and source bytes retained.
+No new app capture or physical unread/notification outcome is accepted. The
+prepared app cases run separately; the existing reviewed galleries are unchanged.
+
 The later 21 October system-dialer preflight is blocked on a distinct physical
 phone before app sign-in or backend setup. Its Home export is retained only,
 not a new app capture. A no-app-access support request has form confirmation,
