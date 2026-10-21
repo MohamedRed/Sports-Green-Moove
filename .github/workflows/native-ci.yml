@@ -288,7 +288,7 @@ jobs:
         run: node --test tests/vehicle-map-contract.test.mjs tests/vehicle-map-display.test.mjs tests/vehicle-map-retained-evidence.test.mjs
 
       - name: Validate SDK-connected team replay evidence requirements
-        run: node --test tests/team-enrollment-sdk.test.mjs tests/team-chat-connected-contract.test.mjs tests/team-chat-native-access.test.mjs
+        run: node --test tests/team-enrollment-sdk.test.mjs tests/team-chat-connected-contract.test.mjs tests/team-chat-native-access.test.mjs tests/team-chat-draft-restart.test.mjs
 
       - name: Validate sanitized host transport observations
         run: node --test tests/adb-host-health.test.mjs tests/native-build-before-boot.test.mjs

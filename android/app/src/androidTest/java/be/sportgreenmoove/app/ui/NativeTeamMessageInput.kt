@@ -14,6 +14,14 @@ import org.json.JSONObject
 import java.io.File
 
 internal fun sendNativeTeamMessage(compose: ComposeTestRule, body: String) {
+    sendNativeTeamMessageWithInput(compose, body, typeBody = true)
+}
+
+internal fun sendRestoredNativeTeamMessage(compose: ComposeTestRule, body: String) {
+    sendNativeTeamMessageWithInput(compose, body, typeBody = false)
+}
+
+private fun sendNativeTeamMessageWithInput(compose: ComposeTestRule, body: String, typeBody: Boolean) {
     val input = compose.onNodeWithTag(SgmTestTags.ChatMessageInput)
     val window = InputWindowReadiness(compose, input)
     val root = checkNotNull(input.fetchSemanticsNode().root as? ViewRootForTest).view.rootView
@@ -28,12 +36,15 @@ internal fun sendNativeTeamMessage(compose: ComposeTestRule, body: String) {
     fun text() = input.fetchSemanticsNode().config[SemanticsProperties.EditableText].text
     compose.runOnUiThread { ViewCompat.setWindowInsetsAnimationCallback(root, callback) }
     try {
-        window.awaitFocus(15_000); check(text().isEmpty())
+        window.awaitFocus(15_000)
+        if (typeBody) check(text().isEmpty()) else check(text() == body)
         input.assertIsEnabled().performClick().assertIsFocused()
         compose.waitUntil(15_000) { compose.runOnUiThread {
             ViewCompat.getRootWindowInsets(root)?.isVisible(WindowInsetsCompat.Type.ime()) == true && animations.isEmpty()
         } }
-        compose.waitForIdle(); input.performTextInput(body); input.assertTextEquals(body)
+        compose.waitForIdle()
+        if (typeBody) input.performTextInput(body)
+        input.assertTextEquals(body)
         val button = compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsEnabled().assertIsDisplayed()
         val bounds = button.fetchSemanticsNode().boundsInWindow
         val visible = Rect(); val origin = IntArray(2); val local = IntArray(2)

@@ -28,6 +28,16 @@ stay diagnostics; previous failed artifacts remain unchanged. Run
 integration contracts. This does not establish the cause of earlier transport or
 portrait-return failures, or replace physical network-loss testing.
 
+The independent `team-draft` focused lane prepares an unsent parent message,
+verifies that no shared message was created, force-stops only the local app, and
+requires the draft in a second actual process. One explicit UI send must be read
+by a separate driver SDK client. A second verified stop and third process must
+show an empty composer; changing to the driver account must not recover the
+parent draft. Three instrumentation transcripts, two process-stop receipts,
+original captures and independent message/operation counts are mandatory. This
+adds no automatic send or retry and does not replace the other focused lanes.
+The lane and its schema contracts are not themselves proof that recovery works.
+
 `test:location-freshness` separately runs actual isolated driver/parent callables.
 It verifies server-bound receipt time, delayed capture age in the parent response,
 refused parent driver uploads and a recent point retaining its real observation

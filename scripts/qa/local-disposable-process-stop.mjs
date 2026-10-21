@@ -7,7 +7,8 @@ import { waitForDisposableDevice } from './disposable-device-cleanup.mjs';
 const appId = 'be.sportgreenmoove.app.local';
 const options = { encoding: 'utf8', timeout: 30_000 };
 const preparations = new Set(['local-chat-restart-before.json', 'local-trip-consent-restart-before.json', 'local-trip-consent-recovery-before.json',
-  'local-trip-draft-before.json', 'local-trip-schedule-draft-before.json', 'local-session-disconnect-before.json']);
+  'local-trip-draft-before.json', 'local-trip-schedule-draft-before.json', 'local-session-disconnect-before.json',
+  'local-team-draft-before.json', 'local-team-draft-sent-before.json']);
 
 export function stopDisposableAppProcess({ adb, serial, runId, outputDir, beforeName, validateBefore },
   { execute = execFileSync, spawn = spawnSync, write = writeFileSync } = {}) {
