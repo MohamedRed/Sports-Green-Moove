@@ -797,13 +797,6 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
         run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs
-      - name: Retain booking notification and cleanup results
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v7
-        with:
-          name: web-booking-notices
-          path: ${{ runner.temp }}/booking-notices.json
-          if-no-files-found: ignore
       - name: Validate physical guardian revocation and new team admission evidence
         run: node --test tests/team-chat-authority-phone-evidence.test.mjs
 
@@ -1005,6 +998,14 @@ jobs:
 
       - name: Build Website
         run: npm run build --workspace website
+
+      - name: Retain booking notification and cleanup results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: web-booking-notices
+          path: ${{ runner.temp }}/booking-notices.json
+          if-no-files-found: ignore
 
       - name: Upload club identity trial and disposal evidence
         if: always() && steps.team_club_identity.outcome != 'skipped'
