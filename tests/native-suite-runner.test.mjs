@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-function fixture(t, { missingTeamDraftCapture } = {}) {
+function fixture(t, { missingChatCapture } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'sgm-suite-status-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   for (const dir of ['scripts', 'android', 'bin']) mkdirSync(join(root, dir));
@@ -43,7 +43,7 @@ function fixture(t, { missingTeamDraftCapture } = {}) {
         'team-read-count-narrow', 'team-read-visible', 'team-read-error', 'team-read-retry', 'team-read-revoked']
         .flatMap(stem => ['.png', '-window.png', '.json'].map(suffix => stem + suffix)),
       ...['team-draft-read-error', 'team-draft-write-error'].flatMap(stem => ['.png', '-window.png'].map(suffix => stem + suffix)),
-    ].filter(name => name !== missingTeamDraftCapture),
+    ].filter(name => name !== missingChatCapture),
     'sgm-neutral-text': ['search', 'trips'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
       ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`)))),
     'sgm-child-emergency-components': ['child-emergency-readonly-narrow', 'child-emergency-access-denied', 'child-emergency-landscape-changed']
@@ -113,13 +113,24 @@ test('failed suites retain partial payment and other component captures without 
 
 for (const stem of ['team-draft-read-error', 'team-draft-write-error']) for (const suffix of ['.png', '-window.png'])
   test(`a missing ${stem}${suffix} fails capture verification without suppressing replay or cleanup`, (t) => {
-    const result = fixture(t, { missingTeamDraftCapture: stem + suffix })({});
+    const result = fixture(t, { missingChatCapture: stem + suffix })({});
     assert.equal(result.status, 1);
     assert.match(result.stderr, new RegExp('Missing team draft error component evidence: ' + stem));
     assert.equal(result.statuses.ordinaryTests, 0); assert.equal(result.statuses.componentEvidence, 1);
     assert.equal(result.statuses.localReplay, 0);
     assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
   });
+
+for (const stem of ['team-read-count-narrow', 'team-read-visible', 'team-read-error', 'team-read-retry', 'team-read-revoked'])
+  for (const suffix of ['.png', '-window.png', '.json'])
+    test(`missing read component ${stem}${suffix} fails evidence collection and still restores the device`, t => {
+      const result = fixture(t, { missingChatCapture: stem + suffix })({});
+      assert.equal(result.status, 1);
+      assert.match(result.stderr, new RegExp('Missing team chat component evidence: ' + stem));
+      assert.equal(result.statuses.ordinaryTests, 0); assert.equal(result.statuses.componentEvidence, 1);
+      assert.equal(result.statuses.localReplay, 0);
+      assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
+    });
 
 test('unavailable process diagnostics never suppress the original failure or the independent replay', (t) => {
   const result = fixture(t)({ ORDINARY_STATUS: '7', DIAGNOSTIC_STATUS: '9' });

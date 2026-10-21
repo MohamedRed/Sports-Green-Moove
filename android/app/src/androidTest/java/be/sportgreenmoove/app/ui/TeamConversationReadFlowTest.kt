@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.*
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
@@ -20,7 +22,10 @@ class TeamConversationReadFlowTest {
     private val scope = "local-team-chat-read-component-with-fake-gateway-not-connected-or-physical"
     @Test fun narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread() {
         val fixture = TeamConversationReadUiFixture(); host(fixture, narrow = true); directory()
-        compose.onNodeWithTag("team-chat.unread.team").assertTextEquals("99+ non lus")
+        val counter = compose.onNodeWithTag("team-chat.unread.team", useUnmergedTree = true)
+        counter.assertIsDisplayed().assertTextEquals("99+ non lus")
+        compose.onNodeWithTag("team-chat.choice.team").assertTextContains("99+ non lus")
+        assertTextFits(counter); assertTextFits(compose.onNodeWithText(fixture.title, useUnmergedTree = true))
         captureTeamChatComponent(compose, "team-read-count-narrow", scope, landscape = false)
         click("team-chat.choice.team"); waitFor(hasText("Message équipe QA 0"))
         compose.waitUntil(30_000) { fixture.readIds.isNotEmpty() }
@@ -38,8 +43,9 @@ class TeamConversationReadFlowTest {
             compose.onNodeWithTag("team-chat.read-retry").assertDoesNotExist()
             device.pressBack(); waitFor(hasTestTag("team-chat.choice.team"))
             val remaining = fixture.count - fixture.readIds.size
-            if (remaining == 0) compose.onNodeWithTag("team-chat.unread.team").assertDoesNotExist()
-            else compose.onNodeWithTag("team-chat.unread.team").assertTextEquals(if (remaining == 1) "1 non lu" else "$remaining non lus")
+            val counter = compose.onNodeWithTag("team-chat.unread.team", useUnmergedTree = true)
+            if (remaining == 0) counter.assertDoesNotExist()
+            else { counter.assertIsDisplayed().assertTextEquals(if (remaining == 1) "1 non lu" else "$remaining non lus"); assertTextFits(counter) }
             captureTeamChatComponent(compose, "team-read-retry", scope, landscape = true)
         } finally { device.setOrientationNatural() }
     }
@@ -64,4 +70,9 @@ class TeamConversationReadFlowTest {
     private fun directory() { click("team-chat.tab"); click("team-chat.choice.club"); waitFor(hasTestTag("team-chat.choice.team")) }
     private fun click(tag: String) { waitFor(hasTestTag(tag) and isEnabled()); compose.onNodeWithTag(tag).performClick() }
     private fun waitFor(matcher: SemanticsMatcher) { compose.waitUntil(30_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() } }
+    private fun assertTextFits(node: SemanticsNodeInteraction) {
+        val results = mutableListOf<TextLayoutResult>()
+        node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(results) }
+        assertTrue(results.isNotEmpty()); assertTrue(results.none { it.hasVisualOverflow })
+    }
 }

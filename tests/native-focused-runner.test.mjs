@@ -56,8 +56,8 @@ test('every independent case remains scheduled when another case fails', (t) => 
   assert.deepEqual(results.map((result) => result.status), focusedCases.map((_, index) => index === 0 ? 41 : 0));
   assert.deepEqual(results.map((result) => result.calls), focusedCases.map((phase) => ['setup', phase, 'restore']));
 });
-test('all nine dedicated jobs and cleanup remain mandatory under the existing release gate', () => {
-  assert.deepEqual(focusedCases, ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft']);
+test('all dedicated jobs and cleanup remain mandatory under the existing release gate', () => {
+  assert.deepEqual(focusedCases, ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft', 'team-read-components']);
   const native = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   const focused = parseDocument(read('.github/workflows/native-focused-ui.yml')).toJSON();
   assert.equal(native.jobs['android-focused-safety-ui'].uses, './.github/workflows/native-focused-ui.yml');
@@ -92,6 +92,16 @@ test('all nine dedicated jobs and cleanup remain mandatory under the existing re
 });
 test('all focused flows explicitly choose pinned APK preparation and still uninstall at completion', () => {
   for (const phase of focusedCases) {
+    if (phase === 'team-read-components') {
+      const entry = read('scripts/qa/run-local-team-read-components-ui.mjs');
+      assert(entry.includes("'--reads', '--focused-shell-restores'"));
+      assert(entry.includes('SGM_PREINSTALLED_TEST_APKS_RECEIPT'));
+      const runner = read('scripts/qa/run-team-chat-components.mjs');
+      assert(runner.includes('if (!shellRestores) try {\n  restored = restoreContinuousDevice'));
+      assert(runner.includes("cleanupOwner: 'focused-shell-independent-restoration-receipt-required'"));
+      assert(runner.includes('apkPreparation = prepareDisposableTestApks({ adb, serial, android, run })'));
+      continue;
+    }
     const source = read(`scripts/qa/local-${phase}-ui.mjs`);
     assert(source.includes('if (!usePreinstalledTestApks()) {'));
     assert(source.includes('apkPreparation = prepareDisposableTestApks({ adb, serial, android, run })'));

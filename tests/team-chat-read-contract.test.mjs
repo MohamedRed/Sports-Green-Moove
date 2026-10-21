@@ -62,6 +62,11 @@ test('service scenarios and new native captures are mandatory without claiming n
   const collector = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
   for (const stem of ['team-read-count-narrow', 'team-read-visible', 'team-read-error', 'team-read-retry', 'team-read-revoked'])
     assert(collector.includes(stem));
+  const components = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationReadFlowTest.kt');
+  assert(components.includes('"team-chat.unread.team", useUnmergedTree = true'));
+  assert(components.includes('assertTextContains("99+ non lus")'));
+  assert(components.includes('results.none { it.hasVisualOverflow }'));
+  assert(read('.github/workflows/native-focused-ui.yml').includes('team-read-components]'));
   const connected = read('scripts/qa/team-chat-native-records.mjs');
   assert(connected.includes('teamReadReceiptId(uid, messageId)'));
   assert(connected.includes("root.collection('readReceipts').get()).size, 3"));

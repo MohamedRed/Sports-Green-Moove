@@ -11,8 +11,11 @@ import { assertInstrumentationPassed } from './android-instrumentation-result.mj
 import { assertLocalApkIdentity } from './local-apk-identity.mjs';
 import { assertContinuousDevice } from './preinstalled-disposable-apks.mjs';
 
-const [receiptPath, directory, mode] = process.argv.slice(2);
+const [receiptPath, directory, mode, cleanupOwner] = process.argv.slice(2);
 assert(mode === undefined || mode === '--reads');
+assert(cleanupOwner === undefined || cleanupOwner === '--focused-shell-restores');
+const shellRestores = cleanupOwner === '--focused-shell-restores';
+assert(!shellRestores || mode === '--reads');
 const reads = mode === '--reads';
 const componentClass = reads ? 'TeamConversationReadFlowTest' : 'TeamConversationFlowTest';
 const markerScope = reads ? 'local-team-chat-read-component-with-fake-gateway-not-connected-or-physical'
@@ -22,12 +25,14 @@ const setup = JSON.parse(readFileSync(receiptPath));
 const root = resolve(import.meta.dirname, '../..'), android = resolve(root, 'android');
 const device = disposableAndroidShell(), { serial } = device;
 assert.equal(setup.serial, serial); assert.equal(setup.scope, 'single-case-continuous-installation-guard-not-flow-proof');
-assert.equal(setup.case, 'team-chat-components'); assert.equal(process.env.SGM_FOCUSED_UI_CASE, setup.case);
+assert.equal(setup.case, shellRestores ? 'team-read-components' : 'team-chat-components');
+assert.equal(process.env.SGM_FOCUSED_UI_CASE, setup.case);
 assert.equal(process.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT, receiptPath);
 const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-tools/adb` : 'adb';
 const run = (cmd, args) => execFileSync(cmd, args, { encoding: 'utf8', timeout: 120_000, stdio: 'pipe' });
 const runId = randomBytes(16).toString('hex'), redaction = randomBytes(24).toString('hex');
 const sources = ['scripts/qa/run-team-chat-components.mjs', 'scripts/qa/collect-local-ui-evidence.mjs',
+  ...(shellRestores ? ['scripts/qa/run-local-team-read-components-ui.mjs'] : []),
   'scripts/qa/local-apk-identity.mjs', ...disposableApkSourceFiles,
   'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationFlowTest.kt',
   'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationReadFlowTest.kt',
@@ -73,7 +78,7 @@ try {
   try { collectLocalUiEvidence({ adb, serial, evidenceDir: directory, phase: 'failure-cleanup', runId, password: redaction }); }
   catch { console.warn('Partial captures unavailable; original component failure preserved.'); }
 }
-try {
+if (!shellRestores) try {
   restored = restoreContinuousDevice(device, setup);
   writeFileSync(resolve(directory, 'device-restored.json'), JSON.stringify(restored, null, 2) + '\n');
   assert.equal(restored.restored, true); assert.equal(restored.verified, true);
@@ -91,6 +96,8 @@ writeFileSync(resolve(directory, 'results.json'), JSON.stringify({ projectId: 'd
   steps: (reads ? ['team-read-count-and-visible-rows-only', 'team-read-error-and-explicit-retry-landscape', 'team-read-authority-rejection-hides-thread']
     : ['team-chat-entry-and-narrow-layout', 'team-chat-authorization-failure-hides-thread',
       'team-chat-unconfirmed-send-reuses-one-intent']).map(id => ({ id, status: 'passed' })),
-  physicalDevice: false, productionWrites: false, devicePolicyRestored: true, localPackagesRemoved: true,
+  physicalDevice: false, productionWrites: false,
+  ...(shellRestores ? { cleanupOwner: 'focused-shell-independent-restoration-receipt-required' }
+    : { devicePolicyRestored: true, localPackagesRemoved: true }),
   transcriptSha256: sha(Buffer.from(transcript)), screenshots, sourceFiles, apkHashes, apkPreparation }, null, 2) + '\n', { flag: 'wx' });
 console.log('Three team-chat component cases passed; connected native exchange and notifications remain unverified.');
