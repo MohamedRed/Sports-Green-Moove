@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { createDecipheriv, createHash, generateKeyPairSync, privateDecrypt, constants } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import test from 'node:test';
 import { rotateKey, rotationSettings } from '../scripts/security/rotate-browserstack-key.mjs';
 
@@ -126,7 +127,11 @@ test('the later replacement rejects the exposed key, updates the secret and reta
   assert.equal(apk.sourceCommit, receipt.sha); assert.equal(apk.deviceSessionStarted, false);
   assert.equal(apk.acceptedFlowEvidence, false); assert.equal(apk.buildSucceeded, true);
   const hashes = JSON.parse(readFileSync(new URL('artifact-sha256.json', base)));
+  const tracked = new Set(execFileSync('git', ['ls-files', '-z'], {
+    cwd: new URL('../', import.meta.url), encoding: 'utf8',
+  }).split('\0'));
   for (const [file, digest] of Object.entries(hashes)) {
+    assert(tracked.has('docs/release/evidence/browserstack-key-rotation-2026-10-21/' + file), `Uncommitted evidence file: ${file}`);
     assert(!/[\\/]/.test(file)); assert.equal(createHash('sha256').update(readFileSync(new URL(file, base))).digest('hex'), digest);
   }
   const guide = readFileSync(new URL('../docs/release/browserstack-isolated-phone-test.md', import.meta.url), 'utf8');
