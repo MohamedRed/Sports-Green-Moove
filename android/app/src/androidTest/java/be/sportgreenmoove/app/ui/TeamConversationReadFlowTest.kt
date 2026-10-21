@@ -25,8 +25,8 @@ class TeamConversationReadFlowTest {
         val counter = compose.onNodeWithTag("team-chat.unread.team", useUnmergedTree = true)
         counter.assertIsDisplayed().assertTextEquals("99+ non lus")
         compose.onNodeWithTag("team-chat.choice.team").assertTextContains("99+ non lus")
-        assertTextFits(counter); assertTextFits(compose.onNodeWithText(fixture.title, useUnmergedTree = true))
         captureTeamChatComponent(compose, "team-read-count-narrow", scope, landscape = false)
+        assertTextFits(counter); assertTextFits(compose.onNodeWithText(fixture.title, useUnmergedTree = true))
         click("team-chat.choice.team"); waitFor(hasText("Message équipe QA 0"))
         compose.waitUntil(30_000) { fixture.readIds.isNotEmpty() }
         compose.runOnIdle { assertTrue(fixture.readIds.size < fixture.count); assertTrue(fixture.readIds.all { it.startsWith("peer-") }) }
@@ -44,9 +44,9 @@ class TeamConversationReadFlowTest {
             device.pressBack(); waitFor(hasTestTag("team-chat.choice.team"))
             val remaining = fixture.count - fixture.readIds.size
             val counter = compose.onNodeWithTag("team-chat.unread.team", useUnmergedTree = true)
+            captureTeamChatComponent(compose, "team-read-retry", scope, landscape = true)
             if (remaining == 0) counter.assertDoesNotExist()
             else { counter.assertIsDisplayed().assertTextEquals(if (remaining == 1) "1 non lu" else "$remaining non lus"); assertTextFits(counter) }
-            captureTeamChatComponent(compose, "team-read-retry", scope, landscape = true)
         } finally { device.setOrientationNatural() }
     }
     @Test fun aReadAuthorityRejectionRemovesPrivateContentAndTheComposer() {
@@ -73,6 +73,8 @@ class TeamConversationReadFlowTest {
     private fun assertTextFits(node: SemanticsNodeInteraction) {
         val results = mutableListOf<TextLayoutResult>()
         node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(results) }
-        assertTrue(results.isNotEmpty()); assertTrue(results.none { it.hasVisualOverflow })
+        assertTrue("The visible text must expose its layout result: ${node.fetchSemanticsNode().boundsInRoot}", results.isNotEmpty())
+        assertTrue("Text layout overflow: ${results.map { "text=${it.layoutInput.text}, size=${it.size}, constraints=${it.layoutInput.constraints}, widthOverflow=${it.didOverflowWidth}, heightOverflow=${it.didOverflowHeight}" }}",
+            results.none { it.hasVisualOverflow })
     }
 }
