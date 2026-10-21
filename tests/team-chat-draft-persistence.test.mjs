@@ -16,6 +16,7 @@ test('the failed storage-error capture remains distinct from the successful conn
   assert.equal(attempt.correctedNativeUiVerified, false); assert.deepEqual(attempt.publishedCaptures, []);
   assert.match(flow.remaining, /erreur de sauvegarde/); assert.equal(flow.status, 'partial');
   assert.equal(validateRetainedTeamDraft(process.cwd(), flow.draftRestart.source).fullProcessRestartProven, true);
+  assert(read('.gitattributes').includes('docs/release/evidence/team-draft-error-capture-2026-10-21/*.xml -text -whitespace'));
 });
 test('draft error components use a full-height narrow portrait host without weakening capture guards', () => {
   const component = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationDraftFlowTest.kt');
