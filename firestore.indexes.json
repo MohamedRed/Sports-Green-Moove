@@ -1,6 +1,14 @@
 {
   "indexes": [
     {
+      "collectionGroup": "teamEnrollments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "teamInstanceId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "bookings",
       "queryScope": "COLLECTION",
       "fields": [

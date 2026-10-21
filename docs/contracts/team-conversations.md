@@ -12,10 +12,11 @@ relationship and the child's active enrollment in the specific team, not from
 club membership or editable profile fields. Included parents can read and send
 messages and receive the same unread/read state as directly assigned members.
 
-Current conversation sources support bookings and ride sessions only. Team
-conversation entry, message authorization, and the corresponding app flow remain
-to be implemented and verified together. The isolated enrollment service below
-does not yet grant message access. Club membership alone must not grant it.
+Existing conversation sources still support bookings and ride sessions only.
+Separate team-message callables now have isolated server evidence described
+below. Team conversation entry and the corresponding app flow remain unfinished.
+The enrollment service alone does not grant message access. Club membership
+alone must not grant it.
 
 ## Ownership Boundary
 
@@ -26,7 +27,7 @@ implement team conversation access. Direct create/delete and administrator
 capabilities keep their prior policy, so identity reuse and the complete
 enrollment/guardian lifecycle need server-owned handling before chat is wired.
 The enrollment identity fence below now handles server-created team and child
-identities; chat still does not consume it. See the dated release evidence for
+identities; the separate team-message service now consumes it. See dated evidence for
 the unchanged red/green reports.
 
 ## Required Verification
@@ -78,16 +79,16 @@ their own relationship, and a manager of a different club cannot verify it.
 The existing client-declared `children.guardianUserIds` array does not establish
 this verification. Server-owned verification transitions and private records now
 have 20 isolated service checks; see `guardian-verification.md`. The parent's
-native request/revoke replay is separately recorded; none is deployed or connected
-to team-message access.
+native request/revoke replay is separately recorded. The new isolated team-message
+service consumes this verification; none is deployed to production.
 A verified link must
 not grant access to another team or club without a current approved enrollment.
 Requests, refusals and removals retain the denial and
-revocation requirements above. The team chat flow remains unimplemented. On
+revocation requirements above. The team chat app flow remains unimplemented. On
 19 October, the parent app on an isolated Android phone and the actual club
 management website passed seven enrollment checkpoints together, including the
 child's request/approval. See `phone-team-enrollment-2026-10-19/README.md`.
-No connected team-conversation result is accepted; no production record is approved.
+No connected team-conversation app result is accepted; no production record is approved.
 
 ## Android Enrollment Screen Source
 
@@ -111,7 +112,7 @@ This is still not a completed team flow. Owned-request history after lost
 eligibility/retired teams, full process restart, physical parental revocation,
 other devices/platforms and group chat remain open. Backgrounding clears private
 choices and selection; no automatic resubmission occurs after an unknown write.
-Team conversation access is unchanged and the new client/services are not deployed.
+Booking/ride conversation access is unchanged; new team services are not deployed.
 
 ## Isolated Enrollment Service
 
@@ -153,4 +154,45 @@ Records and operation history are private server-only collections, including for
 admin clients. Views fail closed on malformed stored identity/version. Manager
 pages scan at most 20 records plus one lookahead; cursors bind account and current
 team identity. Missing labels remain null, and stale child authority hides labels.
-No message access, notifications, public roster or production migration is added.
+Enrollment APIs alone add no message access, notifications, public roster or
+production migration. The separate team-message service below checks current
+enrollment and guardian authority on every request.
+
+## Team Message Service, 21 October 2026
+
+The owner confirmed adults/verified parents only and history after arrival.
+`getTeamChatMessages` and `sendTeamChatMessage` now recheck team, club, current
+role profile, child-login association, active club membership and manager-approved
+team enrollment within the same transaction as the message read/write. A club
+manager does not gain chat access without approved team enrollment. Legacy
+`membership.teamIds` grants no permission. A recreated team or child cannot
+inherit its predecessor's rights. Eighteen isolated callable scenarios are
+retained in `team-conversation-services-2026-10-21/README.md`.
+
+For each eligible path, the admission boundary is the latest team approval,
+current club-membership update, and, for a parent, guardian verification and
+child club-membership update. If several currently eligible paths exist, the
+earliest of their boundaries applies. Required timestamps must be present;
+missing or inconsistent metadata is rejected, not replaced by a guessed date.
+Each parent needs independent verification and club membership, regardless of
+which parent requested the child's enrollment.
+
+Messages use server commit timestamps. Every page retains the admission filter,
+including tampered cursors. Cursors bind account, immutable team instance and
+current authority versions; they are not credentials. Direct client reads and
+writes are forbidden. History pages contain at most 50 messages. Authority
+evaluation supports at most 200 approved enrollment records per team and rejects
+larger teams rather than silently excluding participants. The query index is
+declared in the existing Firebase index manifest; no new project is provisioned.
+
+Every send requires a UUID. Transactional receipts bind it to sender, team
+instance and body. Concurrent retries write once; changed content is rejected.
+Old receipts cannot recover inaccessible pre-admission history. Authorization is
+checked before returning any receipt. Child-login associations fail closed,
+including incomplete association metadata or mixed child/adult roles.
+
+Android/iOS entry, discovery, drafts, presentation, foreground refresh, unread/read
+state and notifications remain unimplemented. These server endpoints do not prove
+a working app flow or real-phone exchanges. The multi-child/alternative-grant,
+cross-team discovery and notification requirements above remain to be verified
+alongside that app flow. Existing booking/ride conversations are unchanged.

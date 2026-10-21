@@ -15,6 +15,7 @@ import { createNativeStartupFlow } from './native-startup-flow.mjs';
 import { createRemoteRideStopFlow } from './remote-ride-stop-flow.mjs';
 import { createTeamEnrollmentFlow } from './team-enrollment-flow.mjs';
 import { createTeamReviewFlow } from './team-review-flow.mjs';
+import { createTeamConversationFlow } from './team-conversation-flow.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
@@ -167,6 +168,7 @@ export const content = {
         shot('trip-cancel-parent', 'Deux réservations annulées côté parent, essai local du 16 octobre')],
       source: 'docs/release/evidence/real-maps-native-2026-10-18/README.md' },
     createBookingFlow(local, shot),
+    createTeamConversationFlow(),
     { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-19',
       summary: 'Les messages reprennent après une coupure, en local.',
       verified: 'Le nouvel essai retrouve le brouillon, le renvoi sans doublon et la réponse après coupure. L’échange reprend aussi après fermeture. Les captures gardent leur date d’origine.',

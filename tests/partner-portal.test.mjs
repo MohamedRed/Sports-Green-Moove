@@ -85,7 +85,7 @@ test('portal has no production app hosting rewrite or client-side auth substitut
 test('local results are backed by successful evidence and are not presented as phone recordings', async () => {
   const { localResults, detail, date } = await import('../partner-portal/src/render.js');
   const flows = content.flows.filter((flow) => flow.local);
-  assert.equal(flows.length, 12);
+  assert.equal(flows.length, 13);
   for (const flow of flows) {
     assert.equal(flow.status, 'partial');
     const currentPhone = flow.phone && (flow.phone.checkedAt ?? flow.checkedAt) === flow.checkedAt;
@@ -135,7 +135,8 @@ test('app screenshots require a completed scoped run and retain product gaps', (
   const group = content.blockers.find((item) => item.id === 'group-conversation');
   assert.match(group.text, /membres d’une même équipe/);
   assert.match(group.text, /parents des enfants inscrits/);
-  assert.match(group.text, /construire et à tester/);
+  assert.equal(content.flows.find((item) => item.id === 'team-conversation').status, 'partial');
+  assert.match(group.next, /écrans de conversation/);
 });
 
 test('ride integrity claims use the new eleven-group evidence without promoting phone readiness', () => {

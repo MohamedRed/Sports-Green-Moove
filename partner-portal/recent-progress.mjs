@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Les règles de la conversation d’équipe passent en local',
+    text: 'Adultes et parents vérifiés uniquement, sans ancien historique à l’arrivée. Le retrait coupe l’accès. Les écrans et notifications restent à ajouter.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les contacts passent sur téléphone réel',
     text: 'Parent, enfant, retour après fermeture et suppression : huit captures sont ajoutées. L’ouverture du téléphone reste à vérifier.', flow: 'emergency-contact' },
   { date: '2026-10-20', title: 'L’accès aux essais sur téléphone est rétabli',

@@ -71,6 +71,7 @@
     "test:remote-ride-stop": "node scripts/qa/run-local-remote-ride-stop-ui.mjs",
     "test:vehicle-map-services": "node scripts/qa/run-local-vehicle-map-services.mjs",
     "test:emergency-contact-fixture": "node scripts/qa/run-local-emergency-fixture.mjs",
+    "test:team-conversation": "node scripts/qa/run-local-team-conversation.mjs",
     "test:team-enrollment": "node scripts/qa/run-local-team-enrollment.mjs",
     "test:team-club-identity": "node scripts/qa/run-local-team-club-identity.mjs",
     "test:team-enrollment-history": "node scripts/qa/run-local-team-history.mjs",

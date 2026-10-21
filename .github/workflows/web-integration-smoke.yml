@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/team-conversation-contract.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "scripts/security/rotate-browserstack-key.mjs"
       - "tests/browserstack-key-rotation.test.mjs"
@@ -330,6 +331,7 @@ on:
     branches:
       - main
     paths:
+      - "tests/team-conversation-contract.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "scripts/security/rotate-browserstack-key.mjs"
       - "tests/browserstack-key-rotation.test.mjs"
@@ -759,6 +761,11 @@ jobs:
 
       - name: Validate guardian verification contracts and retained scope
         run: node --test tests/guardian-verification-contract.test.mjs
+
+      - name: Test team-only adult conversations and admission-scoped history
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-conversation-services.json
+        run: npm run test:team-conversation && node --test tests/team-conversation-contract.test.mjs
 
       - name: Test isolated guardian verification authority and lifecycle
         run: npm run test:guardian-verification

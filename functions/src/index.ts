@@ -19,6 +19,7 @@ export { listTeamEnrollmentReviewTeams } from "./callables/teamEnrollmentReview.
 export { listOwnedTeamEnrollments, getOwnedTeamEnrollmentView } from "./callables/teamEnrollmentHistory.js";
 export { getInbox, sendChatMessage, getChatConversation, markChatMessagesRead } from "./callables/messages.js";
 export { listChatConversations, listChatBookingOptions } from "./callables/chatDirectory.js";
+export { sendTeamChatMessage, getTeamChatMessages } from "./callables/teamConversation.js";
 export {
   createRidePaymentIntent,
   createStripeAccount,
