@@ -1,12 +1,15 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { validateTeamReadComponentAttempt } from '../scripts/qa/team-read-component-attempt.mjs';
 
 const source = 'docs/release/evidence/team-read-component-attempt-2026-10-21/results.json';
 test('two selector failures and one passing component retain the broader failed job and independent cleanup', () => {
   const run = validateTeamReadComponentAttempt(process.cwd(), source);
   assert.equal(run.componentCases.filter(row => row.status === 'passed').length, 1);
+  const attributes = execFileSync('git', ['check-attr', 'text', '--', source.replace('results.json', 'suite.xml')], { encoding: 'utf8' });
+  assert(attributes.endsWith(': text: unset\n'));
 });
 for (const [key, value] of [['completed', true], ['physicalDevice', true], ['notificationsVerified', true],
   ['publishedCaptures', ['team-read-count-narrow.png']]])
