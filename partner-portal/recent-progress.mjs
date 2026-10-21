@@ -1,4 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Réessayer retrouve le compte, même après rotation',
+    text: 'Le nouvel essai de reconnexion passe en local. Quatre captures montrent l’erreur, le retour à l’accueil et le même compte en portrait.', flow: 'session-restoration' },
+  { date: '2026-10-21', title: 'L’essai du suivi s’arrête avant l’ouverture',
+    text: 'Le téléphone de test s’arrête pendant sa préparation. Aucun nouveau résultat de suivi ; les captures précédentes restent disponibles.', flow: 'ride-observation' },
   { date: '2026-10-21', title: 'Deux enfants, deux équipes : le parcours passe dans l’app',
     text: 'Accords retirés puis renouvelés, réponse dans la seconde équipe et retour sans mélange : l’essai local passe. Six captures et une visite sont ajoutées.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Le nouvel essai de reconnexion ne démarre pas',

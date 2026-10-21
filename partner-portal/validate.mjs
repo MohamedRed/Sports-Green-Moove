@@ -7,6 +7,7 @@ import { validateRetainedTeamConversation } from '../scripts/qa/team-conversatio
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
 import { validateTeamConversationRecords } from './team-conversation-evidence.mjs';
 import { validateSessionRestorationRecheck } from '../scripts/qa/session-restoration-recheck.mjs';
+import { validateSessionRestorationRecovery } from '../scripts/qa/session-restoration-recovery.mjs';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
@@ -156,6 +157,13 @@ export function validate(root) {
     if (f.restorationRecheck) {
       assert.equal(f.id, 'session-restoration'); assert.equal(f.status, 'partial');
       assert.equal(validateSessionRestorationRecheck(root, f.restorationRecheck.source).testedAt.slice(0, 10), f.checkedAt);
+    }
+    if (f.restorationRecovery) {
+      assert.equal(f.id, 'session-restoration'); assert.equal(f.status, 'partial');
+      const run = validateSessionRestorationRecovery(root, f.restorationRecovery.source);
+      assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
+      assert.deepEqual(f.images.filter(image => image.file.startsWith('session-recheck-')).map(image => image.file).sort(), Object.keys(run.publishedCaptures).sort());
+      for (const [id, file] of Object.entries(run.publishedCaptures)) assert.equal(captures[id], dirname(f.restorationRecovery.source) + '/' + file);
     }
     if (f.historyPhone) {
       assert.equal(f.status, 'partial');

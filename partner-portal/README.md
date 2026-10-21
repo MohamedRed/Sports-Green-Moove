@@ -106,6 +106,11 @@ The session restoration flow preserves its four reviewed 20 October captures.
 Its separate `restorationRecheck` records the 21 October authentication transport
 failure before application UI. No new screenshot, restoration completion or
 production defect is accepted from that failure; disposable cleanup is verified.
+Its later `restorationRecovery` binds the completed 21 October case, exact SDK
+requests, stored-state verification and independent disposal to the original ZIP.
+Four new reviewed originals form the current tour; the older four stay dated in
+the gallery. This does not establish either prior failure's root cause, whole-CI
+success or physical network-loss recovery.
 
 The parent ride's separate `mapUi` record binds two reviewed map captures to the
 actual native movement report, retained source, unchanged-camera assertions and

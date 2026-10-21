@@ -7,6 +7,7 @@ test('current transport failure is not promoted to an executed restoration UI or
   const report = validateSessionRestorationRecheck(process.cwd(), flow.restorationRecheck.source);
   assert.equal(report.caseCompleted, false); assert.equal(report.appUiReached, false);
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-21');
-  assert.equal(flow.ui.checkedAt, '2026-10-20'); assert(flow.images.every(image => image.alt.includes('20 octobre')));
-  assert.match(flow.remaining, /Reprendre/);
+  assert.equal(flow.ui.checkedAt, '2026-10-20');
+  assert(flow.images.filter(image => image.file.startsWith('session-recovery-')).every(image => image.alt.includes('20 octobre')));
+  assert.match(flow.remaining, /interruptions précédentes/); assert(flow.restorationRecovery);
 });

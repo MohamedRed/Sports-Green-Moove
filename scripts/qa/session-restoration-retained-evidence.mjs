@@ -49,7 +49,7 @@ export function validateSessionRestorationProxy(report, proxy) {
   ]);
 }
 
-export function validateRetainedSessionRestoration(root, source) {
+export function validateSessionRestorationDeviceBundle(root, source) {
   const directory = dirname(resolve(root, source)), read = file => readFileSync(resolve(directory, file));
   const json = file => JSON.parse(read(file)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
   const report = JSON.parse(readFileSync(resolve(root, source)));
@@ -76,6 +76,14 @@ export function validateRetainedSessionRestoration(root, source) {
     assert(bytes.length > 24); assert(bytes.readUInt32BE(16) >= 300);
     assert.equal(bytes.readUInt32BE(16) > bytes.readUInt32BE(20), /rotated-error|recovered/.test(file));
   }
+  assertRetainedSourceFiles(root, report.sourceFiles);
+  return report;
+}
+
+export function validateRetainedSessionRestoration(root, source) {
+  const report = validateSessionRestorationDeviceBundle(root, source);
+  const directory = dirname(resolve(root, source)), read = file => readFileSync(resolve(directory, file));
+  const json = file => JSON.parse(read(file)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
   const context = json('retained-context.json'), ci = json('native-ci-run.json'), artifact = json('artifact-metadata.json');
   assert.equal(context.runId, report.runId);
   assert.equal(context.scope, 'single-local-session-restoration-native-trial-not-complete-release');
@@ -99,7 +107,6 @@ export function validateRetainedSessionRestoration(root, source) {
   assert.equal(artifact.id, context.artifactId); assert.equal(artifact.id, 12261907492);
   assert.equal(artifact.name, 'android-focused-safety-ui-session-restoration');
   assert.match(artifact.digest, /^sha256:[a-f0-9]{64}$/);
-  assertRetainedSourceFiles(root, report.sourceFiles);
   const hashes = json('artifact-sha256.json');
   assert.deepEqual(Object.keys(hashes).sort(), [...sessionRestorationCaptures, 'local-session-restoration-device.json',
     'session-restoration-app-results.json', 'session-restoration-results.json', 'session-restoration-proxy.json',

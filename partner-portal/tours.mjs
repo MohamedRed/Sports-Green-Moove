@@ -16,10 +16,10 @@ export const tours = {
     image('session-disconnect-reopened', 'Relancer l’app', 'Après fermeture complète, la connexion est toujours demandée.'),
   ],
   'session-restoration': [
-    image('session-recovery-error', 'Voir l’erreur', 'L’essai provoque une erreur au démarrage. L’app propose de réessayer ou de se déconnecter.'),
-    image('session-recovery-rotated-error', 'Tourner l’écran', 'Le message et les deux choix restent accessibles en paysage.'),
-    image('session-recovery-recovered', 'Réessayer', 'Une fois le service de test rétabli, le parent retrouve son accueil.'),
-    image('session-recovery-restored', 'Revenir en portrait', 'Le même compte reste connecté au retour.'),
+    image('session-recheck-error', 'Voir l’erreur', 'L’essai provoque une erreur au démarrage. L’app propose de réessayer ou de se déconnecter.'),
+    image('session-recheck-rotated-error', 'Tourner l’écran', 'Le message et les deux choix restent accessibles en paysage.'),
+    image('session-recheck-recovered', 'Réessayer', 'Une fois le service de test rétabli, le parent retrouve son accueil.'),
+    image('session-recheck-restored', 'Revenir en portrait', 'Le même compte reste connecté au retour.'),
   ],
   'team-enrollment': [
     image('team-history-list', 'Retrouver ses demandes', 'L’historique reste accessible même sans accès au club.'),
