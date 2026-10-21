@@ -136,7 +136,8 @@ test('app screenshots require a completed scoped run and retain product gaps', (
   assert.match(group.text, /membres adultes d’une même équipe/);
   assert.match(group.text, /parents vérifiés/);
   assert.equal(content.flows.find((item) => item.id === 'team-conversation').status, 'partial');
-  assert.match(group.next, /notifications.*messages non lus.*échanges entre téléphones/);
+  assert.match(group.next, /notifications.*échanges entre téléphones/);
+  assert(content.flows.find(item => item.id === 'team-conversation').readPhone);
 });
 
 test('ride integrity claims use the new eleven-group evidence without promoting phone readiness', () => {

@@ -8,10 +8,11 @@ const nativeAccess = 'docs/release/evidence/team-access-native-2026-10-21/';
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
-    summary: 'En local, les lectures et le compteur passent. Sur téléphone, le brouillon reste privé.',
-    verified: 'Sur téléphone : brouillon retrouvé, un seul envoi, puis effacement. En local : lectures, accès et messages séparés entre comptes et équipes.',
-    remaining: 'Vérifier les notifications, les messages non lus sur téléphone et les échanges entre téléphones.',
-    latestEvidence: 'local',
+    summary: 'Sur téléphone, chacun retrouve ses lectures et son brouillon privé.',
+    verified: 'Le compteur suit les nouveaux messages et disparaît après lecture. Les lectures restent séparées entre les comptes, même après reconnexion.',
+    remaining: 'Vérifier les notifications et les échanges entre téléphones.',
+    latestEvidence: 'phone',
+    readPhone: { source: 'docs/release/evidence/team-read-phone-2026-10-21/results.json' },
     connected: { source: connected + 'team-conversation-results.json' },
     readServices: { source: 'docs/release/evidence/team-read-services-2026-10-21/services.json' },
     readConnected: { source: 'docs/release/evidence/team-read-connected-2026-10-21/team-conversation-results.json' },
@@ -40,6 +41,17 @@ export function createTeamConversationFlow() {
       'Les comptes enfants restent exclus.', 'Le retrait bloque aussi l’envoi et les anciennes pages.',
       'Une réinscription ne rouvre pas l’ancien historique.'] },
     images: [
+      ...[
+        ['initial-unread', 'Un message non lu pour le parent'],
+        ['parent-read', 'Le parent ouvre le message reçu après son admission'],
+        ['new-unread', 'Un nouveau message fait revenir le compteur'],
+        ['parent-read-again', 'Le parent retrouve les deux messages reçus'],
+        ['parent-sent', 'La réponse est envoyée une seule fois'],
+        ['driver-unread', 'Le conducteur retrouve un message non lu'],
+        ['driver-read', 'Le conducteur ouvre la réponse du parent'],
+        ['parent-returned', 'Retour au parent : aucun message ne redevient non lu'],
+      ].map(([id, alt]) => ({ file: 'team-read-phone-' + id,
+        alt: alt + ', essai sur téléphone du 21 octobre' })),
       ...[
         ['count', 'Compteur lisible sur petit écran avec texte agrandi', false],
         ['visible', 'Conversation ouverte, seuls les messages affichés sont lus', false],
@@ -85,5 +97,5 @@ export function createTeamConversationFlow() {
       { file: 'team-chat-unconfirmed', alt: 'Envoi non confirmé, message conservé pour réessayer, essai local simulé du 21 octobre' },
       { file: 'team-chat-confirmed', alt: 'Une seule réponse après le renvoi, essai local simulé du 21 octobre' },
       { file: 'team-chat-denied', alt: 'Conversation et saisie masquées après une erreur de vérification, essai local simulé du 21 octobre' },
-    ], source: 'docs/release/evidence/team-read-components-2026-10-21/README.md' };
+    ], source: 'docs/release/evidence/team-read-phone-2026-10-21/README.md' };
 }

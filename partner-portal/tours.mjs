@@ -3,6 +3,14 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'team-conversation': [
+    image('team-read-phone-initial-unread', 'Voir le message non lu', 'Avec des données de test, le parent retrouve un message à lire sur le téléphone.'),
+    image('team-read-phone-parent-read', 'Ouvrir la conversation', 'Le message est lu. L’historique antérieur à l’arrivée du parent reste masqué.'),
+    image('team-read-phone-new-unread', 'Recevoir un nouveau message', 'Après actualisation, le compteur revient à un message non lu.'),
+    image('team-read-phone-parent-read-again', 'Lire le nouveau message', 'Le parent retrouve les deux messages reçus depuis son arrivée.'),
+    image('team-read-phone-parent-sent', 'Répondre une seule fois', 'La réponse est envoyée. Elle n’ajoute pas de message non lu à son auteur.'),
+    image('team-read-phone-driver-unread', 'Passer au conducteur', 'Sur le même téléphone, l’autre compte retrouve un message non lu.'),
+    image('team-read-phone-driver-read', 'Lire la réponse', 'Le conducteur ouvre le message du parent. Sa lecture est enregistrée séparément.'),
+    image('team-read-phone-parent-returned', 'Revenir au parent', 'Après reconnexion, les messages déjà lus ne redeviennent pas non lus.'),
     image('team-read-verified-count', 'Retrouver le compteur', 'Dans un essai local simulé, le nom d’équipe et le compteur restent lisibles sur petit écran, avec texte agrandi.'),
     image('team-read-verified-visible', 'Lire les messages visibles', 'Seuls les messages affichés sont marqués comme lus.'),
     image('team-read-verified-error', 'Voir l’erreur de lecture', 'Une lecture non confirmée reste à réessayer.'),

@@ -191,6 +191,7 @@ on:
       - "tests/scoped-browserstack-local.test.mjs"
       - "tests/manual-team-draft-views.test.mjs"
       - "tests/manual-team-read-checkpoints.test.mjs"
+      - "tests/team-chat-read-phone-evidence.test.mjs"
       - "tests/browserstack-isolated-booking-evidence.test.mjs"
       - "tests/browserstack-parent-search-evidence.test.mjs"
       - "tests/native-draft-and-map-stage-evidence.test.mjs"
@@ -528,6 +529,7 @@ on:
       - "tests/scoped-browserstack-local.test.mjs"
       - "tests/manual-team-draft-views.test.mjs"
       - "tests/manual-team-read-checkpoints.test.mjs"
+      - "tests/team-chat-read-phone-evidence.test.mjs"
       - "tests/browserstack-isolated-booking-evidence.test.mjs"
       - "tests/browserstack-parent-search-evidence.test.mjs"
       - "tests/native-draft-and-map-stage-evidence.test.mjs"
@@ -801,7 +803,7 @@ jobs:
       - name: Verify isolated team read state and retained evidence
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-reads.json
-        run: npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs tests/team-chat-read-evidence.test.mjs tests/team-chat-read-connected-evidence.test.mjs tests/team-chat-read-component-attempt.test.mjs tests/team-chat-read-components-evidence.test.mjs
+        run: npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs tests/team-chat-read-evidence.test.mjs tests/team-chat-read-connected-evidence.test.mjs tests/team-chat-read-component-attempt.test.mjs tests/team-chat-read-components-evidence.test.mjs tests/team-chat-read-phone-evidence.test.mjs
 
       - name: Test isolated guardian verification authority and lifecycle
         run: npm run test:guardian-verification

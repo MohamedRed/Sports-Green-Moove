@@ -1,0 +1,104 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "59d574153c71057d48777f57fe502944",
+  "scope": "manual-team-read-record-checkpoints-not-ui-or-release-proof",
+  "testedAt": "2026-10-21T21:47:21.467Z",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "initial-unread",
+      "messageCount": 2,
+      "receiptCount": 0,
+      "parentUnreadCount": 1,
+      "driverUnreadCount": 0,
+      "otherParentUnreadCount": 1,
+      "identitiesAndPrivateReceiptsVerified": true,
+      "historyBeforeAdmissionExcluded": true
+    },
+    {
+      "phase": "parent-read",
+      "messageCount": 2,
+      "receiptCount": 1,
+      "parentUnreadCount": 0,
+      "driverUnreadCount": 0,
+      "otherParentUnreadCount": 1,
+      "identitiesAndPrivateReceiptsVerified": true,
+      "historyBeforeAdmissionExcluded": true
+    },
+    {
+      "phase": "new-unread",
+      "messageCount": 3,
+      "receiptCount": 1,
+      "parentUnreadCount": 1,
+      "driverUnreadCount": 0,
+      "otherParentUnreadCount": 2,
+      "identitiesAndPrivateReceiptsVerified": true,
+      "historyBeforeAdmissionExcluded": true
+    },
+    {
+      "phase": "parent-read-again",
+      "messageCount": 3,
+      "receiptCount": 2,
+      "parentUnreadCount": 0,
+      "driverUnreadCount": 0,
+      "otherParentUnreadCount": 2,
+      "identitiesAndPrivateReceiptsVerified": true,
+      "historyBeforeAdmissionExcluded": true
+    },
+    {
+      "phase": "parent-sent",
+      "messageCount": 4,
+      "receiptCount": 2,
+      "parentUnreadCount": 0,
+      "driverUnreadCount": 1,
+      "otherParentUnreadCount": 3,
+      "identitiesAndPrivateReceiptsVerified": true,
+      "historyBeforeAdmissionExcluded": true
+    },
+    {
+      "phase": "driver-unread",
+      "messageCount": 4,
+      "receiptCount": 2,
+      "parentUnreadCount": 0,
+      "driverUnreadCount": 1,
+      "otherParentUnreadCount": 3,
+      "identitiesAndPrivateReceiptsVerified": true,
+      "historyBeforeAdmissionExcluded": true
+    },
+    {
+      "phase": "driver-read",
+      "messageCount": 4,
+      "receiptCount": 3,
+      "parentUnreadCount": 0,
+      "driverUnreadCount": 0,
+      "otherParentUnreadCount": 3,
+      "identitiesAndPrivateReceiptsVerified": true,
+      "historyBeforeAdmissionExcluded": true
+    },
+    {
+      "phase": "parent-returned",
+      "messageCount": 4,
+      "receiptCount": 3,
+      "parentUnreadCount": 0,
+      "driverUnreadCount": 0,
+      "otherParentUnreadCount": 3,
+      "identitiesAndPrivateReceiptsVerified": true,
+      "historyBeforeAdmissionExcluded": true
+    }
+  ],
+  "sourceFiles": {
+    "scripts/qa/manual-team-read-phone-session.mjs": "5a1eb0c320fc1033ac0c578630cd467d68bb68d2b6f783d227c27a6bfd585cbc",
+    "scripts/qa/manual-team-read-checkpoints.mjs": "d3618a3aacd63ef4a8dd68f407cd0f5546db06acf17431d1b6aefdfb56743b36",
+    "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+    "functions/src/services/teamConversationRead.ts": "11656304858210fdf621db3ed8a25b5aa213314e9f17460e55df648378ef20d3",
+    "functions/src/services/teamConversation.ts": "b8476cb9f1d9d62ee951d6807219061d0e9266f96fb2250b5e1d275eb616caf8",
+    "functions/src/services/teamConversationAuthority.ts": "e8b52e882fa874ac6d89d38a58f9fb60c6330d73b694a444f52347f85a534e8e",
+    "functions/src/services/teamConversationOptions.ts": "7b726d5c7d592e9a419d10538dc8a38a23196e137946775d75189a78d11bc4c6"
+  },
+  "adminClientClosed": true,
+  "cleanupMode": "destroy-owned-local-environment-after-session",
+  "fixtureEnvironmentDestroyed": false,
+  "productionWrites": false,
+  "physicalUiProvenByThisReport": false,
+  "notificationsVerified": false
+}

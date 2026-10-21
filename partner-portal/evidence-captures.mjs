@@ -1,4 +1,7 @@
 export const captures = {
+  ...Object.fromEntries(['initial-unread', 'parent-read', 'new-unread', 'parent-read-again', 'parent-sent',
+    'driver-unread', 'driver-read', 'parent-returned'].map(id => ['team-read-phone-' + id,
+    'docs/release/evidence/team-read-phone-2026-10-21/' + id + '-device.jpg'])),
   ...Object.fromEntries([['count', 'count-narrow'], ['visible', 'visible-window'], ['error', 'error'],
     ['retry', 'retry'], ['revoked', 'revoked']].map(([id, file]) => ['team-read-verified-' + id,
       'docs/release/evidence/team-read-components-2026-10-21/team-read-' + file + '.png'])),

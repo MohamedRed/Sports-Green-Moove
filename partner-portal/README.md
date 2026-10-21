@@ -1,5 +1,14 @@
 # Partner Progress Portal
 
+The later 21 October physical unread trial passes eight observed stages with
+eight independent record checks. It uses sequential parent/driver/parent accounts
+on one phone and isolated services. Eight reviewed browser-stream device rectangles
+open the tour; unchanged full browser contexts are retained. Native PNG export
+was unavailable, and the streamed captures are not described as native exports.
+The initial shutdown left a CLI config directory; verified follow-up disposal
+and closed ports are retained. Notifications, two-phone exchange and full CI
+remain incomplete. Earlier local and draft records keep their original scope.
+
 The 21 October unread work now has twelve isolated service scenarios, nineteen
 local JVM cases, one connected native exchange trial and three executed simulated
 native components. Five reviewed originals open the updated tour and gallery.
