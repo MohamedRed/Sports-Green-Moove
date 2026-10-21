@@ -70,7 +70,7 @@ const paths = [...disposableApkSourceFiles, 'scripts/qa/local-team-conversation-
     .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
   'android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamConversationGateway.kt',
   'android/app/src/main/java/be/sportgreenmoove/app/services/TeamConversationWire.kt',
-  ...['LocalTeamConversationFlowTest.kt', 'LocalTeamChatPeer.kt', 'LocalTeamChatUi.kt', 'LocalComposeRule.kt']
+  ...['LocalTeamConversationFlowTest.kt', 'LocalTeamChatPeer.kt', 'LocalTeamChatUi.kt', 'NativeTeamMessageInput.kt', 'InputWindowReadiness.kt', 'LocalComposeRule.kt']
     .map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 writeFileSync(resolve(directory, 'team-conversation-app-results.json'), JSON.stringify({ ...marker, testedAt: new Date().toISOString(),
   testCount: 1, nativeCaseCount: 1, steps: [{ id: 'team-conversation-connected-native-ui', status: 'passed' }], nativeUiExecuted: true,

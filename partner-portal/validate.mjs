@@ -8,6 +8,7 @@ import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatCompone
 import { validateTeamChatNativeAttempt } from '../scripts/qa/team-chat-native-attempt.mjs';
 import { validateRetainedTeamChatConnected } from '../scripts/qa/team-chat-connected-retained.mjs';
 import { validateRetainedTeamChatAccess } from '../scripts/qa/team-chat-access-evidence.mjs';
+import { validateRetainedTeamAccessAttempt } from '../scripts/qa/team-access-native-attempt.mjs';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
@@ -152,6 +153,14 @@ export function validate(root) {
     if (f.searchBookingUi) {
       assert(['search', 'booking'].includes(f.id)); assert.equal(f.status, 'partial');
       assert.equal(validateRetainedSearchBooking(root, f.searchBookingUi.source).testedAt.slice(0, 10), f.checkedAt);
+    }
+    if (f.accessAttempt) {
+      assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
+      const run = validateRetainedTeamAccessAttempt(root, f.accessAttempt.source);
+      assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
+      for (const [id, file] of Object.entries(run.publishedCaptures)) {
+        assert(f.images.some(image => image.file === id)); assert.equal(captures[id], dirname(f.accessAttempt.source) + '/' + file);
+      }
     }
     if (f.accessChanges) {
       assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');

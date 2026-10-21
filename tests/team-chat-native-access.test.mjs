@@ -44,3 +44,14 @@ test('actual parent UI observes foreground grant changes, isolated teams and ind
   for (const marker of ["'teamEnrollmentEvents'", "'guardianVerificationEvents'", 'verifyTeamChatProtectedBaseline(f)',
     'messageOperations: 7', 'f.otherParent', 'marker.messages.afterRenewal', 'marker.messages.otherReply']) assert(records.includes(marker), marker);
 });
+test('native team input waits for the focused window and settled keyboard before its one physical send tap', () => {
+  const source = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NativeTeamMessageInput.kt');
+  for (const marker of ['window.awaitFocus(15_000)', 'input.assertIsEnabled().performClick().assertIsFocused()',
+    'animations.isEmpty()', 'WindowInsetsCompat.Type.ime()', 'input.assertTextEquals(body)',
+    'bounds.bottom + origin[1] - local[1] <= visible.bottom + 2', 'ViewCompat.setWindowInsetsAnimationCallback(root, null)',
+    'throw failure', 'team-send-failure-window.png']) assert(source.includes(marker), marker);
+  assert.equal(source.split('button.performClick()').length - 1, 1);
+  assert(!/Thread.sleep|performSemanticsAction|pressBack|\.hide\(/.test(source));
+  assert(source.indexOf('animations.isEmpty()') < source.indexOf('button.performClick()'));
+  assert(source.indexOf('input.assertTextEquals(body)') < source.indexOf('button.performClick()'));
+});

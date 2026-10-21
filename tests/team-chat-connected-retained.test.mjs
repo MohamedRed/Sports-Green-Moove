@@ -15,7 +15,7 @@ test('completed connected case binds nine checkpoints, independent records and r
   assert.equal(Object.keys(run.publishedCaptures).length, 4);
   const flow = content.flows.find(item => item.id === 'team-conversation');
   assert.equal(flow.connected.source, source); assert.equal(flow.status, 'partial');
-  assert(flow.attempt.source.includes('native-peer')); assert.equal(flow.images.length, 10);
+  assert(flow.attempt.source.includes('native-peer')); assert.equal(flow.images.length, 14);
   assert.deepEqual(tours[flow.id].map(item => item.image), Object.keys(run.publishedCaptures));
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
   assert.match(flow.remaining, /notifications/); assert.match(flow.remaining, /téléphones/);

@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Les accords des deux enfants se mettent à jour',
+    text: 'Un accès reste, les deux sont retirés, puis un nouvel accord revient : quatre captures ajoutées. L’essai bloque sur la réponse dans la seconde équipe.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Deux enfants, deux équipes : les accès restent séparés',
     text: 'Onze contrôles locaux passent côté données : accords retirés ou renouvelés, demandes en attente et historique propre à chaque équipe. Ces cas restent à rejouer dans l’app.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'L’échange d’équipe passe avec les deux comptes',

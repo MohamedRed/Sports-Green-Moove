@@ -91,6 +91,11 @@ stays partial: physical phones, push, unread state and full process restart rema
 Its `accessChanges` record adds eleven service-only scenarios for multiple children
 and cross-team access. These add no new media and do not accept native multi-child
 or cross-team discovery; the latest update and remaining work state that boundary.
+The subsequent `accessAttempt` binds four reviewed original windows to a failed
+native case that reaches renewal and a separate-team opening, then times out on
+the parent reply. Its completed marker and independent state verifier were not
+reached. The earlier four-step tour stays unchanged; the new partial captures are
+in the full gallery. No reply delivery or completed cross-team return is accepted.
 
 The parent ride's separate `mapUi` record binds two reviewed map captures to the
 actual native movement report, retained source, unchanged-camera assertions and

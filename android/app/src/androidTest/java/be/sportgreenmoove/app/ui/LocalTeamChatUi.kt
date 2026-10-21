@@ -47,8 +47,7 @@ internal class LocalTeamChatUi(private val compose: ComposeTestRule) {
     fun inputText() = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode()
         .config[SemanticsProperties.EditableText].text
     fun send(body: String) {
-        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextInput(body); click(SgmTestTags.ChatSendAction)
-        compose.waitUntil(60_000) { inputText().isEmpty() }; waitFor(hasText(body))
+        sendNativeTeamMessage(compose, body)
     }
     fun capture(stem: String) {
         captureLocalUi(compose, "$stem.png")
