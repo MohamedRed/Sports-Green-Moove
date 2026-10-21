@@ -28,8 +28,9 @@ test('two pre-UI failures and compiled signature correction cannot become succes
   const flow = content.flows.find(item => item.id === 'team-conversation');
   const run = validateTeamDraftNativeAttempt(process.cwd(), flow.draftAttempt.source);
   assert.equal(flow.status, 'partial'); assert.equal(run.executedUserFlowCases, 0);
-  assert.deepEqual(run.publishedCaptures, []); assert.equal(flow.images.length, 22);
-  assert.match(flow.remaining, /brouillons après fermeture complète/);
+  assert.deepEqual(run.publishedCaptures, []); assert.equal(flow.images.length, 27);
+  assert(flow.draftRestart.source.includes('team-draft-native-2026-10-21'));
+  assert.match(flow.remaining, /notifications.*téléphones/);
 });
 for (const key of ['nativeCaseCompleted', 'draftRecoveryVerified', 'parentMessageSent', 'fullProcessRestartProven', 'physicalDevice'])
   test(`the failed attempt cannot promote ${key}`, () => {

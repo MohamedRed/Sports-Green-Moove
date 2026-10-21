@@ -7,6 +7,7 @@ import { validateRetainedTeamAccessAttempt } from '../scripts/qa/team-access-nat
 import { validateRetainedTeamAccessNative } from '../scripts/qa/team-access-native-retained.mjs';
 import { validateTeamDraftNativeAttempt } from '../scripts/qa/team-draft-native-attempt.mjs';
 import { validateTeamDraftLoss } from '../scripts/qa/team-draft-loss-evidence.mjs';
+import { validateRetainedTeamDraft } from '../scripts/qa/team-draft-native-retained.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
   const records = [
@@ -17,6 +18,7 @@ export function validateTeamConversationRecords(root, flow, captures) {
     [flow.nativeAccess, validateRetainedTeamAccessNative, 'team-access-verified-'],
     [flow.draftAttempt, validateTeamDraftNativeAttempt, null],
     [flow.draftRegression, validateTeamDraftLoss, 'team-draft-loss-'],
+    [flow.draftRestart, validateRetainedTeamDraft, 'team-draft-verified-'],
   ];
   for (const [record, validate, prefix] of records) {
     if (!record) continue;

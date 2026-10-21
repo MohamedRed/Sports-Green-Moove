@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['before', 'reopened', 'sent', 'cleared', 'other-account'].map(id => ['team-draft-verified-' + id,
+    'docs/release/evidence/team-draft-native-2026-10-21/team-draft-' + id + (id === 'reopened' ? '.png' : '-window.png')])),
   ...Object.fromEntries(['fresh', 'stale', 'recovered', 'pickup', 'resumed', 'ended', 'history'].map(id => [
     'ride-recheck-' + id, 'docs/release/evidence/ride-observation-native-2026-10-21/local-ride-observation-' + id + '.png',
   ])),

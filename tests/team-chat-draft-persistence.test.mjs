@@ -3,18 +3,60 @@ import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import { parseDocument } from 'yaml';
 import { validateTeamDraftLoss } from '../scripts/qa/team-draft-loss-evidence.mjs';
+import { validateRetainedTeamDraft, teamDraftStages } from '../scripts/qa/team-draft-native-retained.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const ui = 'android/app/src/main/java/be/sportgreenmoove/app/ui/';
-test('the observed draft loss stays failed and distinct from the unverified correction', () => {
+test('the unchanged native case proves unsent recovery, one explicit send and empty composer across three processes', () => {
+  const flow = content.flows.find(item => item.id === 'team-conversation');
+  const run = validateRetainedTeamDraft(process.cwd(), flow.draftRestart.source);
+  assert.equal(run.nativeCaseCount, 3); assert.equal(Object.keys(run.transcripts).length, 3);
+  assert.equal(run.unsentCheckpoint.messageCount, 2); assert.equal(run.fixtureIsolation.messageCount, 3);
+  assert.equal(run.fixtureIsolation.exactlyOneExplicitParentSend, true);
+  assert.equal(new Set([run.firstProcessId, run.secondProcessId, run.processId]).size, 3);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.tour.length, 11);
+  assert.deepEqual(flow.tour.slice(0, 5).map(step => step.image), teamDraftStages.map(id => 'team-draft-verified-' + id));
+  for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
+  assert(captures['team-draft-verified-reopened'].endsWith('/team-draft-reopened.png'));
+});
+for (const [file, mutate] of [
+  ['team-draft-results.json', x => { x.physicalDevice = true; }],
+  ['team-draft-results.json', x => { x.notificationsVerified = true; }],
+  ['team-draft-results.json', x => { x.safetyAuditAccepted = true; }],
+  ['team-draft-results.json', x => { x.productionWrites = true; }],
+  ['team-draft-results.json', x => { x.isolatedEnvironmentDestroyed = false; }],
+  ['team-draft-results.json', x => { x.fixtureIsolation.messageCount = 4; }],
+  ['local-team-draft-stop.json', x => { x.noProcessAfterStop = false; }],
+  ['local-team-draft-sent-stop.json', x => { x.forceStopIssued = false; }],
+  ['team-draft-device.json', x => { x.processId = x.secondProcessId; }],
+  ['team-draft-unsent-checkpoint.json', x => { x.messageCount = 3; }],
+  ['disposable-device-restore.json', x => { x.restoration.installAdmin.authorizationRemoved = false; }],
+  ['job.json', x => { x.conclusion = 'failure'; }],
+  ['artifact.json', x => { x.workflow_run.head_sha = 'f'.repeat(40); }],
+  ['visual-review.json', x => { x.published['team-draft-verified-reopened'] = 'team-draft-reopened-window.png'; }],
+]) test(`completed draft proof rejects contradictory ${file}: ${mutate}`, () => {
+  const source = content.flows.find(item => item.id === 'team-conversation').draftRestart.source;
+  assert.throws(() => validateRetainedTeamDraft(process.cwd(), source, path => {
+    const bytes = readFileSync(path); if (!path.endsWith('/' + file)) return bytes;
+    const value = JSON.parse(bytes); mutate(value); return Buffer.from(JSON.stringify(value));
+  }));
+});
+test('a missing native transcript or modified original capture cannot be promoted to complete draft proof', () => {
+  const source = content.flows.find(item => item.id === 'team-conversation').draftRestart.source;
+  for (const file of ['LocalTeamDraftRestartTest#recoverAndSendPrivateDraftInNewProcess-instrumentation.txt', 'team-draft-reopened.png'])
+    assert.throws(() => validateRetainedTeamDraft(process.cwd(), source, path =>
+      path.endsWith('/' + file) ? Buffer.from('not proof') : readFileSync(path)));
+});
+test('the observed draft loss stays failed and distinct from the later verified correction', () => {
   const flow = content.flows.find(item => item.id === 'team-conversation');
   const run = validateTeamDraftLoss(process.cwd(), flow.draftRegression.source);
   assert.equal(flow.status, 'partial'); assert.equal(run.draftLossObserved, true);
   assert.equal(run.fullFlowVerified, false); assert.equal(run.parentSendReached, false);
-  assert.match(flow.remaining, /Valider la correction/);
+  assert.match(flow.remaining, /notifications.*téléphones/);
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
-  assert(flow.tour.every(step => step.image.startsWith('team-access-verified-')));
+  assert(flow.tour.slice(0, 5).every(step => step.image.startsWith('team-draft-verified-')));
+  assert(flow.tour.slice(5).every(step => step.image.startsWith('team-access-verified-')));
 });
 for (const key of ['draftRestored', 'parentSendReached', 'thirdProcessReached', 'fullFlowVerified', 'postFailureStoredStateVerified', 'physicalDevice'])
   test(`the failed draft artifact cannot accept ${key}`, () => {

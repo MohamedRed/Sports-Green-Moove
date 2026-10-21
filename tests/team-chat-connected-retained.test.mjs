@@ -15,9 +15,10 @@ test('completed connected case binds nine checkpoints, independent records and r
   assert.equal(Object.keys(run.publishedCaptures).length, 4);
   const flow = content.flows.find(item => item.id === 'team-conversation');
   assert.equal(flow.connected.source, source); assert.equal(flow.status, 'partial');
-  assert(flow.attempt.source.includes('native-peer')); assert.equal(flow.images.length, 22);
+  assert(flow.attempt.source.includes('native-peer')); assert.equal(flow.images.length, 27);
   for (const id of Object.keys(run.publishedCaptures)) assert(flow.images.some(image => image.file === id));
-  assert(tours[flow.id].every(item => item.image.startsWith('team-access-verified-')));
+  assert(tours[flow.id].slice(0, 5).every(item => item.image.startsWith('team-draft-verified-')));
+  assert(tours[flow.id].slice(5).every(item => item.image.startsWith('team-access-verified-')));
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
   assert.match(flow.remaining, /notifications/); assert.match(flow.remaining, /téléphones/);
   assert.equal(run.physicalDevice, false); assert.equal(run.notificationsVerified, false);

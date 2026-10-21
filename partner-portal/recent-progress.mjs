@@ -1,6 +1,6 @@
 export const recentProgress = [
-  { date: '2026-10-21', title: 'Brouillon perdu après fermeture : correction à vérifier',
-    text: 'Deux captures montrent le problème. Une sauvegarde privée est ajoutée ; le redémarrage et l’envoi restent à valider dans l’app.', flow: 'team-conversation' },
+  { date: '2026-10-21', title: 'Le brouillon revient après fermeture complète',
+    text: 'La correction passe en local : texte retrouvé, un seul envoi et aucun retour du brouillon au redémarrage suivant. Cinq captures sont ajoutées.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Le brouillon après fermeture complète reste à vérifier',
     text: 'Un essai dédié est ajouté. Les premières tentatives s’arrêtent avant l’app ; le test est corrigé pour la prochaine exécution.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Réessayer retrouve le compte, même après rotation',

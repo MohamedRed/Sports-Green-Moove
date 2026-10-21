@@ -14,8 +14,8 @@ test('completed native multi-child trial binds eleven checkpoints, seven message
   assert.equal(run.fixtureIsolation.committedMessages, 7);
   const flow = content.flows.find(item => item.id === 'team-conversation');
   assert.equal(flow.nativeAccess.source, source); assert.equal(flow.status, 'partial');
-  assert.equal(flow.images.length, 22); assert(flow.accessAttempt.source.includes('native-send'));
-  assert.deepEqual(tours[flow.id].map(item => item.image), Object.keys(run.publishedCaptures));
+  assert.equal(flow.images.length, 27); assert(flow.accessAttempt.source.includes('native-send'));
+  assert.deepEqual(tours[flow.id].slice(5).map(item => item.image), Object.keys(run.publishedCaptures));
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
   assert.equal(run.guardianRenewalThroughSdkNotUi, true); assert.equal(run.notificationsVerified, false);
   assert.equal(run.physicalDevice, false); assert.equal(run.fullProcessRestartProven, false);

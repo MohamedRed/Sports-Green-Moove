@@ -1,5 +1,14 @@
 # Partner Progress Portal
 
+The corrected team-draft flow passes in three distinct native processes with
+two independently verified host stops. The private text is recovered without
+retyping, one explicit UI send is read by the driver SDK, a second restart
+does not restore the sent draft, and another account has an empty composer.
+Five reviewed originals are published; the reopened root image is used because
+the corresponding system-window capture is partial. The earlier loss and
+pre-UI failures remain separate failed records. This does not accept physical,
+push, unread-state or release-audit requirements.
+
 Private, evidence-based project updates for Sports Green-Moove. Canonical source
 lives here; publishing uses the separate Sites repository. Never deploy this
 directory to the public Firebase application host.

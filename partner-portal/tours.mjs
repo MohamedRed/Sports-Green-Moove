@@ -3,7 +3,12 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'team-conversation': [
-    image('team-access-verified-initial', 'Ouvrir son équipe', 'Le parent retrouve l’équipe de son premier enfant, sans les anciens messages.'),
+    image('team-draft-verified-before', 'Garder un message privé', 'Le parent écrit sans envoyer. Le message reste un brouillon sur cet appareil.'),
+    image('team-draft-verified-reopened', 'Fermer et rouvrir l’app', 'Après un arrêt complet, le même compte retrouve le texte dans la même équipe.'),
+    image('team-draft-verified-sent', 'Envoyer le brouillon', 'Un seul appui envoie le message. Le conducteur le reçoit et le champ se vide.'),
+    image('team-draft-verified-cleared', 'Rouvrir une seconde fois', 'Après un nouvel arrêt complet, le message reste envoyé et le brouillon ne revient pas.'),
+    image('team-draft-verified-other-account', 'Changer de compte', 'Le conducteur se connecte. Il voit le message reçu, sans reprendre le brouillon du parent.'),
+    image('team-access-verified-initial', 'Ouvrir son équipe', 'Dans un autre essai, le parent retrouve l’équipe de son premier enfant, sans les anciens messages.'),
     image('team-access-verified-remaining', 'Garder le second accès', 'Le premier accord est retiré. Le second enfant conserve l’accès, avec son propre historique.'),
     image('team-access-verified-revoked', 'Retirer le dernier accord', 'Sans accord valide, la conversation et la saisie disparaissent.'),
     image('team-access-verified-renewed', 'Revenir après un nouvel accord', 'L’équipe se rouvre, sans retrouver les messages antérieurs à ce nouvel accord.'),
