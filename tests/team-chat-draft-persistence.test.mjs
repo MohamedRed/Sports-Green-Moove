@@ -5,16 +5,33 @@ import { parseDocument } from 'yaml';
 import { validateTeamDraftLoss } from '../scripts/qa/team-draft-loss-evidence.mjs';
 import { validateRetainedTeamDraft, teamDraftStages } from '../scripts/qa/team-draft-native-retained.mjs';
 import { validateTeamDraftErrorCaptureAttempt } from '../scripts/qa/team-draft-error-capture-attempt.mjs';
+import { validateTeamDraftErrorComponents } from '../scripts/qa/team-draft-error-components.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const ui = 'android/app/src/main/java/be/sportgreenmoove/app/ui/';
+test('both actual storage-error component methods pass without accepting a physical or connected failure test', () => {
+  const flow = content.flows.find(item => item.id === 'team-conversation');
+  const run = validateTeamDraftErrorComponents(process.cwd(), flow.draftErrorRecovery.source);
+  assert.deepEqual(run.componentCases, { executed: 2, passed: 2, failed: 0 });
+  assert.equal(run.simulatedStorageFailures, true); assert.equal(flow.status, 'partial');
+  for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
+  assert(flow.images.filter(item => item.file.startsWith('team-draft-errors-')).every(item => /simulée/.test(item.alt)));
+  for (const key of ['connectedServicesVerified', 'physicalDevice', 'productionWrites', 'notificationsVerified', 'releaseReady'])
+    assert.throws(() => validateTeamDraftErrorComponents(process.cwd(), flow.draftErrorRecovery.source, path => {
+      const bytes = readFileSync(path); if (!path.endsWith('/results.json')) return bytes;
+      const changed = JSON.parse(bytes); changed[key] = true; return Buffer.from(JSON.stringify(changed));
+    }));
+  for (const file of ['instrumentation-results.xml', 'team-draft-read-error.png', 'team-draft-write-error.png'])
+    assert.throws(() => validateTeamDraftErrorComponents(process.cwd(), flow.draftErrorRecovery.source,
+      path => path.endsWith('/' + file) ? Buffer.from('invalid evidence') : readFileSync(path)));
+});
 test('the failed storage-error capture remains distinct from the successful connected draft recovery', () => {
   const flow = content.flows.find(item => item.id === 'team-conversation');
   const attempt = validateTeamDraftErrorCaptureAttempt(process.cwd(), flow.draftErrorChecks.source);
   assert.deepEqual(attempt.componentCases, { executed: 2, passed: 1, failed: 1 });
   assert.equal(attempt.correctedNativeUiVerified, false); assert.deepEqual(attempt.publishedCaptures, []);
-  assert.match(flow.remaining, /erreur de sauvegarde/); assert.equal(flow.status, 'partial');
+  assert.match(flow.remaining, /notifications.*téléphones/); assert.equal(flow.status, 'partial');
   assert.equal(validateRetainedTeamDraft(process.cwd(), flow.draftRestart.source).fullProcessRestartProven, true);
   assert(read('.gitattributes').includes('docs/release/evidence/team-draft-error-capture-2026-10-21/*.xml -text -whitespace'));
 });

@@ -257,11 +257,14 @@ after, exactly one parent operation and 158 protected records unchanged except
 allowed sign-in timestamps. Owned backend disposal and device-policy restoration
 are retained in `team-draft-native-2026-10-21/README.md`, job `119345801082`.
 
-Ten focused JVM state tests also pass. In a separate ordinary UI run, the
-read-error component case passes and the write-error case stops at its capture's
-orientation guard. Its short test host is corrected to fill the available
-height; compilation passes and executed UI verification of that correction is
-pending. See `team-draft-error-capture-2026-10-21/README.md`. These are not two
-accepted storage-error UI passes. This local draft result
+Ten focused JVM state tests also pass. The separate ordinary UI run's original
+write-error capture failure remains in `team-draft-error-capture-2026-10-21/README.md`.
+After correcting the test host to fill the available height, both unchanged
+storage-error component methods pass on `8da690b`, job `119369157123`. Read retry
+restores the original body with zero sends; write failure keeps typed text and
+blocks sending until one explicit retry succeeds. Two reviewed error-state
+captures are retained in `team-draft-error-components-2026-10-21/README.md`.
+The errors are simulated in the component storage implementation, not real
+service-connected storage faults. This local draft result
 does not close physical-device restart/tracking, push delivery, unread/read state,
 other-platform, production or release-audit requirements.

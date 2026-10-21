@@ -10,7 +10,7 @@ export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
     summary: 'Deux enfants, deux équipes : les accès et les messages restent séparés, en local.',
     verified: 'Le brouillon revient après fermeture, s’envoie une seule fois et reste effacé au redémarrage suivant. Les accès et les messages de deux équipes restent séparés, en local.',
-    remaining: 'Terminer les essais d’erreur de sauvegarde, puis vérifier les notifications, les messages non lus et les échanges entre téléphones.',
+    remaining: 'Vérifier les notifications, les messages non lus et les échanges entre téléphones.',
     connected: { source: connected + 'team-conversation-results.json' },
     accessChanges: { source: accessChanges + 'results.json' },
     accessAttempt: { source: accessAttempt + 'results.json' },
@@ -19,6 +19,7 @@ export function createTeamConversationFlow() {
     draftRegression: { source: 'docs/release/evidence/team-draft-loss-2026-10-21/results.json' },
     draftRestart: { source: 'docs/release/evidence/team-draft-native-2026-10-21/team-draft-results.json' },
     draftErrorChecks: { source: 'docs/release/evidence/team-draft-error-capture-2026-10-21/results.json' },
+    draftErrorRecovery: { source: 'docs/release/evidence/team-draft-error-components-2026-10-21/results.json' },
     attempt: { source: partial + 'results.json' },
     ui: { source: screens + 'results.json', groups: ['team-chat-entry-and-narrow-layout',
       'team-chat-authorization-failure-hides-thread', 'team-chat-unconfirmed-send-reuses-one-intent'] },
@@ -33,6 +34,8 @@ export function createTeamConversationFlow() {
       'Les comptes enfants restent exclus.', 'Le retrait bloque aussi l’envoi et les anciennes pages.',
       'Une réinscription ne rouvre pas l’ancien historique.'] },
     images: [
+      { file: 'team-draft-errors-read', alt: 'Erreur de restauration avec bouton Réessayer, essai local avec panne simulée du 21 octobre' },
+      { file: 'team-draft-errors-write', alt: 'Texte conservé pendant une erreur de sauvegarde, essai local avec panne simulée du 21 octobre' },
       ...[
         ['before', 'Brouillon privé saisi avant fermeture'], ['reopened', 'Même brouillon retrouvé après arrêt complet'],
         ['sent', 'Message envoyé une seule fois, champ de saisie vidé'], ['cleared', 'Brouillon toujours effacé après un second arrêt complet'],

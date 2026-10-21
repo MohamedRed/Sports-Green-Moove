@@ -1,6 +1,8 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Le texte reste visible si la sauvegarde échoue',
+    text: 'Les deux essais locaux de panne de sauvegarde passent. Deux captures montrent le texte conservé et la restauration à réessayer.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Le brouillon revient après fermeture complète',
-    text: 'La reprise du brouillon passe en local avec cinq captures. Les essais des erreurs d’enregistrement restent à terminer.', flow: 'team-conversation' },
+    text: 'La reprise du brouillon passe en local avec cinq captures.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Le brouillon après fermeture complète reste à vérifier',
     text: 'Un essai dédié est ajouté. Les premières tentatives s’arrêtent avant l’app ; le test est corrigé pour la prochaine exécution.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Réessayer retrouve le compte, même après rotation',
