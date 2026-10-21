@@ -77,6 +77,11 @@ three simulated cases, four reviewed originals, separate six-directory/eighteen-
 message service checks and ten native units. It does not accept connected native
 exchange or notification delivery. Its visual allowlist excludes a partial root
 redraw and uses the complete original window for that checkpoint.
+Its later `attempt` retains a failed connected native case with SDK peers: two
+reviewed exchange windows are published, but the nine-case marker and independent
+stored-state verifier were not reached. The two-step tour shows only that partial
+exchange; the older simulated captures remain in the full gallery. No revocation,
+account-isolation, physical-device or push result is promoted from that attempt.
 
 The parent ride's separate `mapUi` record binds two reviewed map captures to the
 actual native movement report, retained source, unchanged-camera assertions and

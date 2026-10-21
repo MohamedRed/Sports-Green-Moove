@@ -32,44 +32,48 @@ class LocalTeamConversationFlowTest {
         context.getSharedPreferences("appearance", Context.MODE_PRIVATE).edit().putBoolean("darkTheme", false).commit()
         UiDevice.getInstance(instrumentation).setOrientationNatural()
         var peerMessageId = ""; var parentMessageId = ""; var revokeRequestId = ""
-        ActivityScenario.launch(MainActivity::class.java).use { activity ->
-            login(session, "parent"); open(fixture)
-            waitFor(hasText("Bonjour équipe QA")); compose.onNodeWithText("Message avant arrivée QA").assertDoesNotExist()
-            capture("team-chat-native-parent")
-            runBlocking { LocalTeamChatPeer.open(context, session, "driver") }.use { driver ->
-                peerMessageId = runBlocking { driver.send("Réponse conducteur QA") }
-                waitFor(hasText("Réponse conducteur QA"))
-                send("Message parent QA")
-                parentMessageId = runBlocking { driver.observeParentMessage("Message parent QA") }
-                capture("team-chat-native-exchange")
-            }
-            compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextInput("Brouillon privé parent QA")
-            activity.recreate(); waitFor(hasTestTag(SgmTestTags.ChatMessageInput) and isEnabled())
-            compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertTextContains("Brouillon privé parent QA")
-            waitFor(hasText("Message parent QA")); capture("team-chat-native-draft")
+        // Keep both SDK peers alive until the activity and all account operations have closed.
+        runBlocking { LocalTeamChatPeer.open(context, session, "driver") }.use { driver ->
             runBlocking { LocalTeamChatPeer.open(context, session, "manager") }.use { manager ->
-                activity.moveToState(Lifecycle.State.CREATED)
-                revokeRequestId = runBlocking { manager.revokeParent() }
-                activity.moveToState(Lifecycle.State.RESUMED)
-                waitFor(hasTestTag("team-chat.retry"))
-                for (body in listOf("Message parent QA", "Bonjour équipe QA", "Réponse conducteur QA", "Brouillon privé parent QA"))
-                    compose.onNodeWithText(body).assertDoesNotExist()
-                compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertDoesNotExist()
-                capture("team-chat-native-revoked")
+                ActivityScenario.launch(MainActivity::class.java).use { activity ->
+                    login(session, "parent"); open(fixture)
+                    waitFor(hasText("Bonjour équipe QA")); compose.onNodeWithText("Message avant arrivée QA").assertDoesNotExist()
+                    capture("team-chat-native-parent")
+                    peerMessageId = runBlocking { driver.send("Réponse conducteur QA") }
+                    waitFor(hasText("Réponse conducteur QA"))
+                    send("Message parent QA")
+                    parentMessageId = runBlocking { driver.observeParentMessage("Message parent QA") }
+                    capture("team-chat-native-exchange")
+                    compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextInput("Brouillon privé parent QA")
+                    activity.recreate(); waitFor(hasTestTag(SgmTestTags.ChatMessageInput) and isEnabled())
+                    compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertTextContains("Brouillon privé parent QA")
+                    waitFor(hasText("Équipe conversations QA"))
+                    compose.onNodeWithText("ÉQUIPE").assertIsDisplayed()
+                    compose.onNodeWithText("Équipe conversations QA").assertIsDisplayed()
+                    waitFor(hasText("Message parent QA")); capture("team-chat-native-draft")
+                    activity.moveToState(Lifecycle.State.CREATED)
+                    revokeRequestId = runBlocking { manager.revokeParent() }
+                    activity.moveToState(Lifecycle.State.RESUMED)
+                    waitFor(hasTestTag("team-chat.retry"))
+                    for (body in listOf("Message parent QA", "Bonjour équipe QA", "Réponse conducteur QA", "Brouillon privé parent QA"))
+                        compose.onNodeWithText(body).assertDoesNotExist()
+                    compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertDoesNotExist()
+                    capture("team-chat-native-revoked")
+                    click(SgmTestTags.BackAction); waitFor(hasTestTag("team-chat.directory"))
+                    assertFalse(findChoice(fixture.getString("teamId")))
+                    click(SgmTestTags.BottomNavProfileAction)
+                    compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
+                    login(session, "driver"); open(fixture)
+                    waitFor(hasText("Message parent QA"))
+                    compose.onNodeWithTag("team-chat.messages").performScrollToNode(hasText("Message avant arrivée QA"))
+                    compose.onNodeWithText("Message avant arrivée QA").assertIsDisplayed()
+                    compose.onNodeWithTag("team-chat.messages").performScrollToIndex(0)
+                    assertEquals("", inputText())
+                    compose.onNodeWithText("Brouillon privé parent QA").assertDoesNotExist()
+                    send("Message conducteur après changement QA")
+                    capture("team-chat-native-driver")
+                }
             }
-            click(SgmTestTags.BackAction); waitFor(hasTestTag("team-chat.directory"))
-            assertFalse(findChoice(fixture.getString("teamId")))
-            click(SgmTestTags.BottomNavProfileAction)
-            compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
-            login(session, "driver"); open(fixture)
-            waitFor(hasText("Message parent QA"))
-            compose.onNodeWithTag("team-chat.messages").performScrollToNode(hasText("Message avant arrivée QA"))
-            compose.onNodeWithText("Message avant arrivée QA").assertIsDisplayed()
-            compose.onNodeWithTag("team-chat.messages").performScrollToIndex(0)
-            assertEquals("", inputText())
-            compose.onNodeWithText("Brouillon privé parent QA").assertDoesNotExist()
-            send("Message conducteur après changement QA")
-            capture("team-chat-native-driver")
         }
         val directory = File(context.getExternalFilesDir(null), "local-ui-evidence"); val hashes = JSONObject()
         for (stem in listOf("parent", "exchange", "draft", "revoked", "driver")) for (suffix in listOf(".png", "-window.png")) {

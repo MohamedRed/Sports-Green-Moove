@@ -30,6 +30,9 @@ test('connected app case uses actual auth and SDK peers rather than a component 
     'activity.moveToState(Lifecycle.State.CREATED)', 'manager.revokeParent()', 'driver.observeParentMessage',
     'driver.send(', 'login(session, "driver")', 'assertEquals("", inputText())']) assert(native.includes(marker), marker);
   assert(!native.includes('TeamChatUiFixture')); assert(!native.includes('setSgmUiTestContent'));
+  const activity = native.indexOf('ActivityScenario.launch(MainActivity::class.java)');
+  assert(native.indexOf('LocalTeamChatPeer.open(context, session, "driver")') < activity);
+  assert(native.indexOf('LocalTeamChatPeer.open(context, session, "manager")') < activity);
   const peer = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamChatPeer.kt');
   for (const marker of ['FirebaseAndroidTeamConversationGateway(functions, auth)', 'auth.useEmulator', 'functions.useEmulator',
     'FirebaseAuth.getInstance().currentUser?.uid == "sgm-qa-parent"', 'auth.signOut(); app.delete()']) assert(peer.includes(marker), marker);

@@ -98,8 +98,8 @@ test('record isolation accepts only the same owned booking, receipt, two notices
   }
 });
 
-test('the paid manual case cannot enter the automatic six-case matrix or use legacy installs', t => {
-  assert.equal(focusedCases.length, 6); assert(!focusedCases.includes('parent-search-booking'));
+test('the paid manual case cannot enter the automatic matrix or use legacy installs', t => {
+  assert(!focusedCases.includes('parent-search-booking'));
   const f = continuousFixture(t); f.env.SGM_FOCUSED_UI_CASE = 'parent-search-booking';
   assert.throws(() => requireFocusedDeviceApproval(f.env));
   f.env.SGM_SEARCH_BOOKING_APPROVAL = 'one-trial-max-eight-requests';

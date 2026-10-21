@@ -95,7 +95,7 @@ export function validate(root) {
       if (f.id === 'team-conversation' || run.scope === teamChatComponentScope) {
         assert.equal(f.id, 'team-conversation'); validateRetainedTeamChatUi(root, f.ui.source);
         const folder = dirname(f.ui.source), review = JSON.parse(readFileSync(resolve(root, folder, 'visual-review.json')));
-        assert.deepEqual(f.images.map(image => image.file).sort(), Object.keys(review.published).sort());
+        assert.deepEqual(f.images.filter(image => Object.hasOwn(review.published, image.file)).map(image => image.file).sort(), Object.keys(review.published).sort());
         for (const [id, file] of Object.entries(review.published)) assert.equal(captures[id], folder + '/' + file);
       }
       if (f.id === 'session-disconnect' || run.scope === sessionDisconnectScope) {
@@ -153,7 +153,13 @@ export function validate(root) {
     }
     if (f.attempt) {
       assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
-      assert.equal(validateTeamChatNativeAttempt(root, f.attempt.source).testedAt.slice(0, 10), f.checkedAt);
+      const attempt = validateTeamChatNativeAttempt(root, f.attempt.source);
+      assert.equal(attempt.testedAt.slice(0, 10), f.checkedAt);
+      if (attempt.publishedCaptures) {
+        const ids = Object.keys(attempt.publishedCaptures);
+        assert.deepEqual(f.images.filter(image => image.file.startsWith('team-chat-native-')).map(image => image.file).sort(), ids.sort());
+        for (const [id, file] of Object.entries(attempt.publishedCaptures)) assert.equal(captures[id], dirname(f.attempt.source) + '/' + file);
+      }
     }
     if (f.historyPhone) {
       assert.equal(f.status, 'partial');

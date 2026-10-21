@@ -3,10 +3,12 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { basename, dirname, resolve } from 'node:path';
 import { assertRetainedSourceFiles } from './retained-source-evidence.mjs';
+import { teamChatPartialScope, validateTeamChatNativePartial } from './team-chat-native-partial.mjs';
 
 export function validateTeamChatNativeAttempt(root, source) {
   const base = dirname(resolve(root, source)), read = file => readFileSync(resolve(base, file));
   const json = file => JSON.parse(read(file)); const run = json(basename(source));
+  if (run.scope === teamChatPartialScope) return validateTeamChatNativePartial(root, source);
   assert.equal(run.scope, 'local-team-conversation-startup-anr-not-completed-flow');
   assert.equal(run.projectId, 'demo-sgm-local-qa'); assert.match(run.runId, /^[a-f0-9]{32}$/);
   for (const key of ['nativeSuiteCompleted', 'physicalDevice', 'productionWrites', 'notificationsVerified',

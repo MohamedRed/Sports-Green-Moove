@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Les premiers messages d’équipe arrivent dans l’app',
+    text: 'Le parent reçoit un message et répond. Deux captures sont ajoutées. L’essai s’arrête ensuite ; le retrait de l’accès et le changement de compte restent à terminer.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'L’échange d’équipe reste à reprendre',
     text: 'Le nouvel essai s’arrête avant l’ouverture de l’app. Les quatre captures précédentes restent disponibles.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les écrans de la conversation d’équipe passent en local',

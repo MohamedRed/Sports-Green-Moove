@@ -3,10 +3,8 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'team-conversation': [
-    image('team-chat-narrow', 'Ouvrir la conversation', 'L’écran reste lisible avec le texte agrandi, dans cet essai simulé.'),
-    image('team-chat-unconfirmed', 'Garder le message à renvoyer', 'Un autre essai simule un envoi non confirmé. La réponse reste dans la saisie.'),
-    image('team-chat-confirmed', 'Réessayer sans doublon', 'Le renvoi ajoute une seule réponse et vide la saisie, dans le même essai simulé.'),
-    image('team-chat-denied', 'Masquer l’échange en cas d’erreur', 'Un essai séparé échoue à vérifier l’accès. Les messages et la saisie disparaissent.'),
+    image('team-chat-native-parent', 'Ouvrir son équipe', 'Le parent retrouve la conversation de son équipe dans cet essai local partiel.'),
+    image('team-chat-native-exchange', 'Recevoir et répondre', 'Le conducteur envoie un message. Le parent le reçoit et répond dans l’app ; la suite de l’essai reste à terminer.'),
   ],
   'session-disconnect': [
     image('session-disconnect-error', 'Depuis l’erreur', 'L’app propose de réessayer ou de se déconnecter.'),
