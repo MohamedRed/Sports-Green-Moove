@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "requestId": "18c11a08-f048-4810-b6f5-2002028432ae",
+  "repository": "MohamedRed/Sports-Green-Moove",
+  "runId": "39518256734",
+  "sha": "dc7ad04b639c1fe87b1514dc79b86f436cdfd063",
+  "rotatedAt": "2026-10-20T23:57:11.623Z",
+  "newKeyAccepted": true,
+  "oldKeyRejected": true,
+  "newKeyStatus": 200,
+  "oldKeyStatus": 401,
+  "scope": "credential-rotation-only-no-device-session-or-app-upload",
+  "githubSecretName": "BROWSERSTACK_ACCESS_KEY",
+  "githubSecretUpdatedAt": "2026-10-20T23:57:45Z",
+  "localAuthenticationStatus": 200,
+  "plaintextCredentialPersisted": false,
+  "deviceSessionsStarted": 0
+}

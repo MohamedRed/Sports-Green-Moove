@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-20', title: 'L’accès aux essais sur téléphone est rétabli',
+    text: 'L’accès est vérifié. Les prochains parcours restent à rejouer sur téléphone.', flow: 'publication' },
   { date: '2026-10-20', title: 'Deux places pour un enfant, de la recherche à l’annulation',
     text: 'En local, le parent demande deux places, le conducteur accepte dans l’app puis le parent annule. Les deux places sont rendues. Quatre captures sont ajoutées.', flow: 'booking' },
   { date: '2026-10-20', title: 'La recherche complète trouve un trajet',

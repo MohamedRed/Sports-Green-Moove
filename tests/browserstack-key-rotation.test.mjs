@@ -79,3 +79,17 @@ test('maintenance is manual, separate from app distribution, with read-only repo
   assert.match(workflow, /retention-days: 1/);
   assert.doesNotMatch(workflow, /secrets\.GH_TOKEN|secrets\.GITHUB_TOKEN|actions: write/);
 });
+
+test('retained completion proves credential maintenance, not a new device trial', () => {
+  const receipt = JSON.parse(readFileSync(new URL(
+    '../docs/release/evidence/browserstack-key-rotation-2026-10-20/receipt.json', import.meta.url)));
+  assert.equal(receipt.newKeyStatus, 200);
+  assert.equal(receipt.oldKeyStatus, 401);
+  assert.equal(receipt.localAuthenticationStatus, 200);
+  assert.equal(receipt.githubSecretName, 'BROWSERSTACK_ACCESS_KEY');
+  assert.ok(Date.parse(receipt.githubSecretUpdatedAt) > Date.parse(receipt.rotatedAt));
+  assert.equal(receipt.plaintextCredentialPersisted, false);
+  assert.equal(receipt.deviceSessionsStarted, 0);
+  assert.equal(receipt.scope, 'credential-rotation-only-no-device-session-or-app-upload');
+  assert.ok(!Object.hasOwn(receipt, 'accessKey') && !Object.hasOwn(receipt, 'new_key'));
+});
