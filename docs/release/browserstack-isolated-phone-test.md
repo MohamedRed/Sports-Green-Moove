@@ -111,6 +111,25 @@ the owned backend is ready, using a fresh output directory:
 node scripts/qa/manual-team-draft-phone-session.mjs /private/tmp/sgm-phone-session-FRESH.json /private/tmp/sgm-team-draft-records-FRESH
 ```
 
+For team unread counts, use a fresh environment and the separate controller:
+
+```bash
+node scripts/qa/manual-team-read-phone-session.mjs /private/tmp/sgm-phone-session-FRESH.json /private/tmp/sgm-team-read-records-FRESH
+```
+
+Observe and capture `initial-unread`, open the parent thread for `parent-read`,
+then leave the thread before `publish`. This single isolated driver service send
+must not be retried on an unknown outcome. Capture `new-unread`, open the parent
+thread for `parent-read-again`, and explicitly send `Reçu sans doublon QA` from
+the phone for `parent-sent`. Switch to the driver account without opening its
+thread for `driver-unread`, then open it for `driver-read`. Return to the parent
+directory for `parent-returned` and enter `finish`. The controller never marks
+reads or sends the parent reply. It requires exact per-account counts, private
+receipt identities/timestamps, admission-limited history, one send operation per
+message and the protected baseline at every stage. Its records alone do not
+prove phone UI, notifications or simultaneous/inter-phone exchanges. Save the
+independent original phone exports separately and verify environment disposal.
+
 Capture actual phone states before entering `before`, `unsent`, `reopened`,
 `sent`, `cleared`, `other-account`, then `finish`. Only the app sends the parent
 message. This controller seeds through authenticated isolated service actions,
