@@ -26,7 +26,7 @@ export function validateRideObservationReport(report) {
   assert(Object.keys(report.sourceFiles).length >= 20);
 }
 
-export function validateRetainedRideObservation(root, source) {
+export function validateRideObservationDeviceBundle(root, source) {
   const directory = dirname(resolve(root, source)), read = (file) => readFileSync(resolve(directory, file));
   const json = (file) => JSON.parse(read(file)), sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
   const report = JSON.parse(readFileSync(resolve(root, source))); validateRideObservationReport(report);
@@ -45,16 +45,23 @@ export function validateRetainedRideObservation(root, source) {
   const transcript = read('LocalRideObservationFlowTest-instrumentation.txt');
   assertInstrumentationPassed(transcript.toString(), 1); assert.equal(sha(transcript), report.transcriptSha256);
   assertRetainedSourceFiles(root, report.sourceFiles);
-  const context = json('retained-context.json');
-  assert.equal(context.runId, report.runId); assert.equal(context.reviewedCaptureCount, 8);
-  assert.equal(context.fullNativeSuiteVerified, false); assert.equal(context.physicalDevice, false);
-  assert.equal(context.scope, 'completed-independent-local-native-observation-not-release-readiness');
   for (const file of rideObservationCaptures) {
     const bytes = read(file); assert.equal(sha(bytes), report.screenshots[file]);
     assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert(bytes.readUInt32BE(16) >= 300 && bytes.readUInt32BE(20) >= 300);
     assert.equal(bytes.readUInt32BE(16) > bytes.readUInt32BE(20), file.includes('landscape'));
   }
+  return report;
+}
+
+export function validateRetainedRideObservation(root, source) {
+  const report = validateRideObservationDeviceBundle(root, source);
+  const directory = dirname(resolve(root, source)), read = (file) => readFileSync(resolve(directory, file));
+  const json = (file) => JSON.parse(read(file)), sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
+  const context = json('retained-context.json');
+  assert.equal(context.runId, report.runId); assert.equal(context.reviewedCaptureCount, 8);
+  assert.equal(context.fullNativeSuiteVerified, false); assert.equal(context.physicalDevice, false);
+  assert.equal(context.scope, 'completed-independent-local-native-observation-not-release-readiness');
   const checks = json('checks.json');
   assert.equal(checks.androidUnitCases, 379); assert.equal(checks.functionsUnitCases, 343);
   assert.equal(checks.failures, 0); assert.equal(checks.skipped, 0);

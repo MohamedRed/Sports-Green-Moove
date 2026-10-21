@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-function fixture(t) {
+function fixture(t, { missingTeamDraftCapture } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'sgm-suite-status-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   for (const dir of ['scripts', 'android', 'bin']) mkdirSync(join(root, dir));
@@ -38,8 +38,11 @@ function fixture(t) {
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
   const screens = {
-    'sgm-team-chat-components': ['team-chat-narrow', 'team-chat-denied', 'team-chat-unconfirmed', 'team-chat-confirmed']
-      .flatMap(stem => ['.png', '-window.png', '.json'].map(suffix => stem + suffix)),
+    'sgm-team-chat-components': [
+      ...['team-chat-narrow', 'team-chat-denied', 'team-chat-unconfirmed', 'team-chat-confirmed']
+        .flatMap(stem => ['.png', '-window.png', '.json'].map(suffix => stem + suffix)),
+      ...['team-draft-read-error', 'team-draft-write-error'].flatMap(stem => ['.png', '-window.png'].map(suffix => stem + suffix)),
+    ].filter(name => name !== missingTeamDraftCapture),
     'sgm-neutral-text': ['search', 'trips'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
       ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`)))),
     'sgm-child-emergency-components': ['child-emergency-readonly-narrow', 'child-emergency-access-denied', 'child-emergency-landscape-changed']
@@ -106,6 +109,16 @@ test('failed suites retain partial payment and other component captures without 
   assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
   assert.equal(result.statuses.ordinaryTests, 7);
 });
+
+for (const stem of ['team-draft-read-error', 'team-draft-write-error']) for (const suffix of ['.png', '-window.png'])
+  test(`a missing ${stem}${suffix} fails capture verification without suppressing replay or cleanup`, (t) => {
+    const result = fixture(t, { missingTeamDraftCapture: stem + suffix })({});
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, new RegExp('Missing team draft error component evidence: ' + stem));
+    assert.equal(result.statuses.ordinaryTests, 0); assert.equal(result.statuses.componentEvidence, 1);
+    assert.equal(result.statuses.localReplay, 0);
+    assert.deepEqual(result.calls, ['build', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
+  });
 
 test('unavailable process diagnostics never suppress the original failure or the independent replay', (t) => {
   const result = fixture(t)({ ORDINARY_STATUS: '7', DIAGNOSTIC_STATUS: '9' });

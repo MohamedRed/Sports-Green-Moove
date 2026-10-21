@@ -4,6 +4,13 @@ Private, evidence-based project updates for Sports Green-Moove. Canonical source
 lives here; publishing uses the separate Sites repository. Never deploy this
 directory to the public Firebase application host.
 
+The 21 October parent-observation recheck retains the original terminal CI
+artifact, exact source bytes, transcript, eight reviewed PNGs and independent
+device-policy restoration. Seven captures are published; the partial landscape
+capture is retained only. Its local status sequence is not physical GPS,
+provider tracking or map-motion proof. Existing 19 October map and service
+records keep their own dates. The nine-step tour distinguishes both dates.
+
 ## Access
 
 - Site: https://sports-green-moove-progress.mohamed-redha.chatgpt.site

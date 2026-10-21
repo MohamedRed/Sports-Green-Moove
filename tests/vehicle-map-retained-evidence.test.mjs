@@ -72,9 +72,9 @@ test('the portal adds actual map proof separately from older status checks and p
   const flow = content.flows.find((f) => f.id === 'ride-observation');
   assert.equal(flow.status, 'partial'); assert.equal(flow.mapUi.source, source);
   assert.match(flow.ui.source, /ride-observation-native-2026-10-19/);
-  assert.equal(flow.images.length, 11); assert.equal(flow.tour.length, 10);
+  assert.equal(flow.images.length, 18); assert.equal(flow.tour.length, 9);
   for (const [index, id] of ['first', 'moved'].entries()) {
-    assert.equal(flow.images[index].file, 'vehicle-map-' + id);
+    assert(flow.images.some(image => image.file === 'vehicle-map-' + id));
     assert.equal(captures['vehicle-map-' + id], `docs/release/evidence/vehicle-map-display-pass-2026-10-19/replay/local-vehicle-map-${id}.png`);
     assert.equal(flow.tour[index].image, 'vehicle-map-' + id);
   }

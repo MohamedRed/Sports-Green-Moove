@@ -13,6 +13,7 @@ import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
 import { validateRideEmergencyReport, validateRetainedRideEmergency } from '../scripts/qa/ride-emergency-retained-evidence.mjs';
 import { validateRideObservationReport, validateRetainedRideObservation } from '../scripts/qa/ride-observation-retained-evidence.mjs';
+import { validateRideObservationRecheck } from '../scripts/qa/ride-observation-recheck-evidence.mjs';
 import { validateNativeStartupReport, validateRetainedNativeStartup } from '../scripts/qa/native-startup-retained-evidence.mjs';
 import { remoteRideStopScope, validateRemoteRideStopReport, validateRetainedRemoteRideStop } from '../scripts/qa/remote-ride-stop-evidence.mjs';
 import { validateRetainedVehicleMapServices } from '../scripts/qa/vehicle-map-evidence.mjs';
@@ -132,11 +133,20 @@ export function validate(root) {
       assert(f.ui.groups.length);
       for (const group of f.ui.groups) assert(run.steps.some((s) => s.id === group && s.status === 'passed'), `Unproven UI check ${group}`);
     }
+    if (f.observationRecheck) {
+      assert.equal(f.id, 'ride-observation'); assert.equal(f.status, 'partial');
+      const source = f.observationRecheck.source, run = validateRideObservationRecheck(root, source);
+      assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
+      assert.deepEqual(f.images.filter(image => image.file.startsWith('ride-recheck-')).map(image => image.file).sort(),
+        Object.keys(run.publishedCaptures).sort());
+      for (const [id, file] of Object.entries(run.publishedCaptures)) assert.equal(captures[id], dirname(source) + '/' + file);
+    }
     if (f.mapUi) {
       assert.equal(f.id, 'ride-observation'); assert.equal(f.status, 'partial');
       assert(resolve(root, f.mapUi.source).startsWith(resolve(root, 'docs/release/evidence') + sep));
       const report = validateRetainedVehicleMapDisplay(root, f.mapUi.source);
-      assert.equal(report.testedAt.slice(0, 10), f.checkedAt);
+      const date = f.mapUi.checkedAt ?? f.checkedAt; assertDate(date); assert(date <= f.checkedAt);
+      assert.equal(report.testedAt.slice(0, 10), date);
       assert.deepEqual(f.mapUi.images, ['vehicle-map-first', 'vehicle-map-moved']);
       for (const [index, id] of f.mapUi.images.entries()) {
         assert(f.images.some((image) => image.file === id));

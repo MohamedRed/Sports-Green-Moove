@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, cpSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { readFileSync, cpSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { validateRideObservationReport, validateRetainedRideObservation } from '../scripts/qa/ride-observation-retained-evidence.mjs';
 import { content } from '../partner-portal/content.mjs';
+import { validateRideObservationRecheck } from '../scripts/qa/ride-observation-recheck-evidence.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const source = 'docs/release/evidence/ride-observation-native-2026-10-19/ride-observation-results.json';
@@ -44,10 +45,47 @@ test('an altered native transcript, marker, receipt or capture cannot be promote
 });
 test('the portal keeps observation separate from untested physical tracking with all eight reviewed states', () => {
   const flow = content.flows.find((item) => item.id === 'ride-observation');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, source); assert.equal(flow.images.length, 11);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, source); assert.equal(flow.images.length, 18);
   assert.equal(flow.images.at(-1).file, 'vehicle-map-unverified');
   assert.match(flow.images.at(-1).alt, /arrêté avant de vérifier le déplacement/);
-  assert.equal(flow.tour.length, 10); assert.match(flow.remaining, /vraies positions.*téléphone/);
+  assert.equal(flow.tour.length, 9); assert.match(flow.remaining, /vraies positions.*téléphone/);
+  assert.equal(flow.checkedAt, '2026-10-21'); assert.equal(flow.ui.checkedAt, '2026-10-19');
+  assert.equal(flow.mapUi.checkedAt, '2026-10-19'); assert.equal(flow.local.checkedAt, '2026-10-19');
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
   assert.doesNotMatch(JSON.stringify(flow), /BrowserStack|Firebase|Android|SDK|emulator/i);
+});
+
+const recheckSource = 'docs/release/evidence/ride-observation-native-2026-10-21/ride-observation-results.json';
+test('later native observation binds terminal job, original artifact, stored results and independent restoration', () => {
+  const run = validateRideObservationRecheck(root, recheckSource);
+  assert.equal(run.staleWaitElapsedMs, 89943); assert.equal(Object.keys(run.publishedCaptures).length, 7);
+  const flow = content.flows.find(item => item.id === 'ride-observation');
+  assert.equal(flow.observationRecheck.source, recheckSource);
+  assert.deepEqual(flow.tour.slice(2).map(step => step.image), Object.keys(run.publishedCaptures));
+  assert(!flow.images.some(image => image.file === 'ride-recheck-fresh-landscape'));
+});
+test('a positive recheck cannot override raw captures, cleanup, job or bounded verification scope', () => {
+  const folder = mkdtempSync(resolve(tmpdir(), 'sgm-observation-recheck-'));
+  try {
+    const base = resolve(folder, recheckSource, '..');
+    cpSync(resolve(root, recheckSource, '..'), base, { recursive: true });
+    const archives = resolve(folder, 'docs/release/evidence/source-archive'); mkdirSync(archives, { recursive: true });
+    const report = JSON.parse(readFileSync(resolve(root, recheckSource)));
+    for (const hash of Object.values(report.sourceFiles))
+      cpSync(resolve(root, 'docs/release/evidence/source-archive', hash + '.txt'), resolve(archives, hash + '.txt'));
+    for (const file of ['local-ride-observation-stale.png', 'LocalRideObservationFlowTest-instrumentation.txt',
+      'disposable-device-restore.json', 'job.json', 'original-artifact.zip', 'artifact.json']) {
+      const original = readFileSync(resolve(base, file)); writeFileSync(resolve(base, file), 'tampered');
+      assert.throws(() => validateRideObservationRecheck(folder, recheckSource), undefined, file);
+      writeFileSync(resolve(base, file), original);
+    }
+    const contextPath = resolve(base, 'retained-context.json'), original = readFileSync(contextPath);
+    const context = JSON.parse(original);
+    for (const key of ['physicalDevice', 'mapMovementVerified', 'realNetworkLossVerified', 'providerTrackingVerified',
+      'fullNativeSuiteVerified', 'safetyAuditAccepted', 'storeReviewAccepted', 'productionWrites']) {
+      writeFileSync(contextPath, JSON.stringify({ ...context, [key]: true }));
+      assert.throws(() => validateRideObservationRecheck(folder, recheckSource), undefined, key);
+    }
+    writeFileSync(contextPath, original); validateRideObservationRecheck(folder, recheckSource);
+  } finally { rmSync(folder, { recursive: true, force: true }); }
 });

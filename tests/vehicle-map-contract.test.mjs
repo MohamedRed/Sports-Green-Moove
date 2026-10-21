@@ -47,7 +47,7 @@ test('the portal keeps actual parent screen proof separate from new coordinate-o
   const flow = content.flows.find((row) => row.id === 'ride-observation');
   assert.equal(flow.status, 'partial'); assert.equal(flow.local.groups[0], 'vehicle-map-points');
   assert.match(flow.ui.source, /ride-observation-native-2026-10-19/);
-  assert.equal(flow.images.length, 11); assert.equal(flow.tour.length, 10); assert.match(flow.remaining, /vraies positions.*téléphone/);
+  assert.equal(flow.images.length, 18); assert.equal(flow.tour.length, 9); assert.match(flow.remaining, /vraies positions.*téléphone/);
   assert.equal(flow.images.at(-1).file, 'vehicle-map-unverified');
   assert.match(flow.images.at(-1).alt, /arrêté avant de vérifier le déplacement/);
   assert.equal(content.flows.find((row) => row.id === 'tracking').status, 'untested');
