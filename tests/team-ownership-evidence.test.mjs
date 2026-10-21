@@ -70,7 +70,7 @@ test('the boundary is registered in both CI paths and does not promote group or 
   assert.match(read(base + 'README.md'), /not proof that a team ID cannot be deleted and\nrecreated/);
 });
 
-test('manager approval remains authoritative and later local native evidence cannot accept physical or notification requirements', () => {
+test('manager approval remains authoritative and newer phone reads cannot accept authority changes or notifications', () => {
   const contract = read('docs/contracts/team-conversations.md');
   assert.match(contract, /owner selected the club manager to approve people and children/);
   assert.match(contract, /team's stored club, not a client-supplied club ID/);
@@ -84,9 +84,12 @@ test('manager approval remains authoritative and later local native evidence can
   assert.match(contract, /neither simultaneous two-phone delivery\nnor physical authority-change, unread, push, tracking or release-audit proof/);
   assert(!contract.includes('Approval Policy Pending'));
   const group = content.blockers.find((item) => item.id === 'group-conversation');
-  assert.match(group.next, /notifications.*messages non lus.*échanges entre téléphones/); assert(!group.next.includes('Choisir qui'));
+  assert.match(group.next, /notifications.*échanges entre téléphones/); assert(!group.next.includes('Choisir qui'));
   const team = content.flows.find(flow => flow.id === 'team-conversation');
-  assert.equal(group.source, team.phone.source.replace(/[^/]+$/, 'README.md'));
+  assert.equal(group.source, team.readPhone.source.replace(/[^/]+$/, 'README.md'));
+  const reads = JSON.parse(read(team.readPhone.source));
+  assert.equal(reads.notificationsVerified, false); assert.equal(reads.twoPhoneFlowVerified, false);
+  assert.equal(reads.releaseEvidenceAccepted, false);
   assert.equal(team.status, 'partial');
   assert.match(contract, /team-draft-native-2026-10-21\/README.md/);
   assert(content.updates.some((item) => item.title === 'Le club validera les inscriptions aux équipes' && item.date === '2026-10-17'));

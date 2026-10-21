@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { content } from '../partner-portal/content.mjs';
 import { validateRetainedTeamDraft } from '../scripts/qa/team-draft-native-retained.mjs';
+import { validateTeamReadPhone } from '../scripts/qa/team-read-phone-evidence.mjs';
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const base = 'docs/release/evidence/local-guardian-verification-2026-10-18/';
 
@@ -62,9 +63,12 @@ test('both CI paths rerun isolated authority and the private website retains inc
   assert(content.updates.some((entry) => entry.flow === 'clubs' && entry.title === 'La vérification des parents passe les essais locaux'));
   const group = content.blockers.find((entry) => entry.id === 'group-conversation');
   const team = content.flows.find(flow => flow.id === 'team-conversation');
-  assert.equal(group.source, team.phone.source.replace(/[^/]+$/, 'README.md'));
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const reads = validateTeamReadPhone(root, team.readPhone.source);
+  assert.equal(group.source, team.readPhone.source.replace(/[^/]+$/, 'README.md'));
+  assert.equal(reads.notificationsVerified, false); assert.equal(reads.twoPhoneFlowVerified, false);
   const draft = validateRetainedTeamDraft(fileURLToPath(new URL('../', import.meta.url)), team.draftRestart.source);
   assert.equal(draft.fullProcessRestartProven, true); assert.equal(draft.physicalDevice, false);
   assert.equal(draft.notificationsVerified, false); assert.equal(team.status, 'partial');
-  assert.match(group.next, /notifications.*messages non lus.*échanges entre téléphones/);
+  assert.match(group.next, /notifications.*échanges entre téléphones/);
 });
