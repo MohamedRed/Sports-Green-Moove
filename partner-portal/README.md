@@ -1,5 +1,11 @@
 # Partner Progress Portal
 
+The later 21 October system-dialer preflight is blocked on a distinct physical
+phone before app sign-in or backend setup. Its Home export is retained only,
+not a new app capture. A no-app-access support request has form confirmation,
+not a ticket ID or email-delivery proof. The prior eight contact captures and
+their incomplete primary sequence remain unchanged; no release item is accepted.
+
 The 21 October physical team-draft trial now supplies eight reviewed native
 exports and six independent record checkpoints: recovery after provider app
 kill, one send, cleared state after another stop, and a different unsent draft

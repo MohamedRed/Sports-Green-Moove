@@ -4,7 +4,36 @@ import { readFileSync, cpSync, mkdtempSync, rmSync, writeFileSync } from 'node:f
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { verifyPhoneContactRecovery } from '../scripts/qa/emergency-phone-recovery-evidence.mjs';
-import { validateEmergencyPhoneArtifacts } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
+import { validateEmergencyPhoneArtifacts, validateEmergencyDialerPreflight } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
+import { content } from '../partner-portal/content.mjs';
+import { archivedProgress } from '../partner-portal/progress-archive.mjs';
+import { recentProgress } from '../partner-portal/recent-progress.mjs';
+
+const preflight = 'docs/release/evidence/emergency-dialer-preflight-2026-10-21/results.json';
+test('a failed system-dialer prerequisite adds no accepted app capture, handoff or release evidence', () => {
+  const run = validateEmergencyDialerPreflight(process.cwd(), preflight);
+  assert.equal(run.result, 'blocked'); assert.deepEqual(run.publishedCaptures, []);
+  const flow = content.flows.find(item => item.id === 'emergency-contact');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.dialerPreflight.source, preflight);
+  assert(flow.images.every(image => !image.file.includes('preflight')));
+  const manifest = JSON.parse(readFileSync(new URL('../docs/release/evidence-manifest.json', import.meta.url)));
+  assert.equal(manifest.storeReviewEvidence.items.find(item => item.id === 'emergency_contact_action_screenshot').status, 'pending');
+  assert.equal(archivedProgress.length, 85);
+  assert(archivedProgress.every(item => item.date <= '2026-10-18'));
+  assert.equal(recentProgress.length, 150);
+  assert.deepEqual(content.updates.slice(0, recentProgress.length), recentProgress);
+});
+for (const [file, key, value] of [['results.json', 'dialerHandoffVerified', true],
+  ['results.json', 'rootCauseConfirmed', true], ['results.json', 'storeReviewAccepted', true],
+  ['results.json', 'publishedCaptures', ['home-after-phone.png']],
+  ['support-observation.json', 'appAccessConsent', 'yes'],
+  ['support-observation.json', 'emailDeliveryVerified', true]])
+  test(`blocked dialer evidence rejects unsupported ${key}`, () => {
+    assert.throws(() => validateEmergencyDialerPreflight(process.cwd(), preflight, path => {
+      const bytes = readFileSync(path); if (!path.endsWith('/' + file)) return bytes;
+      const changed = JSON.parse(bytes); changed[key] = value; return Buffer.from(JSON.stringify(changed));
+    }));
+  });
 
 const retained = 'docs/release/evidence/emergency-phone-2026-10-21/results.json';
 test('actual retained phone evidence remains partial with separately bounded recovery checks', () => {

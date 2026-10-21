@@ -2,6 +2,15 @@
 
 ## Latest Verified Boundary
 
+The 21 October physical contact trial covers management, authority removal and
+account isolation, not a dialer handoff. A later independent system-Phone preflight
+on a distinct physical model also returns Home before any app sign-in or local
+backend connection. `emergency-dialer-preflight-2026-10-21` retains the reviewed
+Home export, sanitized read-only diagnostics and a limited support-form receipt.
+The cause remains unconfirmed; do not treat it as an app crash or infer a plan
+restriction. No app-access grant, call, device-policy or subscription change was
+made. The store action remains missing pending an actual active-ride handoff.
+
 On 2026-10-20, source `61dc4cb` passed the complete 36-group/38-case local replay
 and four independent safety trials. `native-independent-61dc4cb-2026-10-20`
 retains their original markers, transcripts, source bindings and verified cleanup.

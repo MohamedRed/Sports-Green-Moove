@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
+import { validateEmergencyDialerPreflight } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
 import { validateTeamConversationRecords } from './team-conversation-evidence.mjs';
@@ -158,6 +159,11 @@ export function validate(root) {
       const date = f.phone.checkedAt ?? f.checkedAt;
       assertDate(date); assert(date <= f.checkedAt);
       validatePhoneEvidence(root, f.phone, date);
+    }
+    if (f.dialerPreflight) {
+      assert.equal(f.id, 'emergency-contact'); assert.equal(f.status, 'partial');
+      const run = validateEmergencyDialerPreflight(root, f.dialerPreflight.source);
+      assert.equal(run.recordedAt.slice(0, 10), f.checkedAt);
     }
     if (f.searchBookingUi) {
       assert(['search', 'booking'].includes(f.id)); assert.equal(f.status, 'partial');

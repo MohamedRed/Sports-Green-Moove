@@ -5,6 +5,36 @@ import { dirname, resolve } from 'node:path';
 import { emergencyPhonePhases } from './manual-emergency-checkpoints.mjs';
 
 export const emergencyOptionsPhoneScope = 'physical-phone-emergency-options-partial-isolated-backend';
+export function validateEmergencyDialerPreflight(root, source, readFile = readFileSync) {
+  const base = dirname(resolve(root, source)), read = name => readFile(resolve(base, name));
+  const run = JSON.parse(read('results.json')), support = JSON.parse(read('support-observation.json'));
+  assert.equal(run.scope, 'physical-system-dialer-prerequisite-blocked-before-app-flow');
+  assert.equal(run.result, 'blocked'); assert.equal(run.recordedAt.slice(0, 10), '2026-10-21');
+  assert.equal(run.sourceCommit, '92f74f48c5d29c1311bcc6bbd6d602ae05bedb6e');
+  assert.equal(run.appSourceCommit, '70daee2173b5d75815d657dd4c4b847682aa67d7');
+  assert.equal(run.apkSha256, '7f78f5a0e28111501131dd58d259adc54b3ea235d7a11559b37dbd443b20a4b9');
+  assert.deepEqual(run.device, { model: 'Samsung Galaxy S24', os: 'Android 14', selection: 'No SIM' });
+  for (const key of ['systemPhoneIconAttempted', 'systemPhoneIconReturnedHome', 'captureReviewed', 'appInstalled']) assert.equal(run[key], true);
+  for (const key of ['appSignInPerformed', 'localBackendStarted', 'privateTunnelStarted', 'dialerHandoffAttemptedFromApp',
+    'dialerHandoffVerified', 'rootCauseConfirmed', 'realCallsPlaced', 'contactDataEntered', 'devicePolicyChanged',
+    'permissionsChanged', 'subscriptionChanged', 'productionWrites', 'storeReviewAccepted', 'releaseEvidenceAccepted']) assert.equal(run[key], false);
+  assert.deepEqual(run.publishedCaptures, []); assert.equal(run.capture, 'home-after-phone.png');
+  assert.equal(run.cleanup.providerUiUninstall, 'Succesfully uninstalled your app(s)!');
+  assert.equal(run.cleanup.packageInventoryVerified, false); assert.equal(run.cleanup.phoneSessionStopped, true);
+  assert.equal(run.cleanup.uploadedAppsDashboardVisible, true); assert.deepEqual(run.cleanup.loopbackPortsClosed, [5001, 8080, 9000, 9099]);
+  assert.equal(support.scope, 'operator-observed-support-form-confirmation-not-ticket-api-or-email-proof');
+  assert.equal(support.status, 'submitted-form-confirmation'); assert.equal(support.appAccessConsent, 'no');
+  assert.deepEqual(support.observedConfirmation, ['Thank you', 'You will be hearing from us soon!']); assert.equal(support.ticketId, null);
+  for (const key of ['emailDeliveryVerified', 'responseReceived', 'uploadedAppShared', 'attachmentsSent', 'planChangeRequested',
+    'callingRequested', 'permissionChangeRequested', 'credentialsSent']) assert.equal(support[key], false);
+  const png = read(run.capture); assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+  assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2340);
+  const hashes = JSON.parse(read('artifact-sha256.json'));
+  assert.deepEqual(Object.keys(hashes).sort(), ['README.md', 'diagnostic-excerpts.txt', 'home-after-phone.png', 'results.json', 'support-observation.json']);
+  for (const [name, hash] of Object.entries(hashes)) assert.equal(createHash('sha256').update(read(name)).digest('hex'), hash, name);
+  return run;
+}
+
 export function validateEmergencyPhoneArtifacts(root, source) {
   const base = dirname(resolve(root, source));
   const json = name => JSON.parse(readFileSync(resolve(base, name), 'utf8'));
