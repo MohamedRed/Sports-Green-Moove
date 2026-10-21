@@ -2,13 +2,15 @@ const base = 'docs/release/evidence/team-conversation-services-2026-10-21/';
 const screens = 'docs/release/evidence/team-chat-components-2026-10-21/';
 const partial = 'docs/release/evidence/team-chat-native-peer-2026-10-21/';
 const connected = 'docs/release/evidence/team-chat-connected-2026-10-21/';
+const accessChanges = 'docs/release/evidence/team-chat-access-2026-10-21/';
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
     summary: 'L’échange, le retrait d’accès et le changement de compte passent en local.',
-    verified: 'Le parent et le conducteur se répondent. Le brouillon revient après réouverture de l’écran, sans passer à l’autre compte. Retirer l’accord du parent masque la conversation.',
-    remaining: 'Vérifier les notifications, les messages non lus, la reprise après fermeture complète et les échanges entre téléphones.',
+    verified: 'L’échange passe dans l’app, avec brouillon privé et retrait d’accès. Les cas avec deux enfants et deux équipes passent côté données.',
+    remaining: 'Rejouer les cas avec deux enfants et deux équipes dans l’app. Vérifier les notifications, les messages non lus, la fermeture complète et les échanges entre téléphones.',
     connected: { source: connected + 'team-conversation-results.json' },
+    accessChanges: { source: accessChanges + 'results.json' },
     attempt: { source: partial + 'results.json' },
     ui: { source: screens + 'results.json', groups: ['team-chat-entry-and-narrow-layout',
       'team-chat-authorization-failure-hides-thread', 'team-chat-unconfirmed-send-reuses-one-intent'] },

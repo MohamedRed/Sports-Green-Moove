@@ -88,6 +88,9 @@ now form the tour: parent opening, exchange, revoked access and driver account.
 The draft window is retained but excluded because its header redraw is incomplete.
 Previous component and failed-attempt images remain in the full gallery. The flow
 stays partial: physical phones, push, unread state and full process restart remain.
+Its `accessChanges` record adds eleven service-only scenarios for multiple children
+and cross-team access. These add no new media and do not accept native multi-child
+or cross-team discovery; the latest update and remaining work state that boundary.
 
 The parent ride's separate `mapUi` record binds two reviewed map captures to the
 actual native movement report, retained source, unchanged-camera assertions and

@@ -7,6 +7,7 @@ import { validateRetainedTeamConversation } from '../scripts/qa/team-conversatio
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
 import { validateTeamChatNativeAttempt } from '../scripts/qa/team-chat-native-attempt.mjs';
 import { validateRetainedTeamChatConnected } from '../scripts/qa/team-chat-connected-retained.mjs';
+import { validateRetainedTeamChatAccess } from '../scripts/qa/team-chat-access-evidence.mjs';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
@@ -151,6 +152,10 @@ export function validate(root) {
     if (f.searchBookingUi) {
       assert(['search', 'booking'].includes(f.id)); assert.equal(f.status, 'partial');
       assert.equal(validateRetainedSearchBooking(root, f.searchBookingUi.source).testedAt.slice(0, 10), f.checkedAt);
+    }
+    if (f.accessChanges) {
+      assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
+      assert.equal(validateRetainedTeamChatAccess(root, f.accessChanges.source).testedAt.slice(0, 10), f.checkedAt);
     }
     if (f.connected) {
       assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');

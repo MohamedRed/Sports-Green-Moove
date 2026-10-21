@@ -73,6 +73,7 @@
     "test:emergency-contact-fixture": "node scripts/qa/run-local-emergency-fixture.mjs",
     "test:team-conversation": "node scripts/qa/run-local-team-conversation.mjs",
     "test:team-chat-options": "node scripts/qa/run-local-team-conversation.mjs --directory",
+    "test:team-chat-access-changes": "node scripts/qa/run-local-team-access-changes.mjs",
     "test:team-enrollment": "node scripts/qa/run-local-team-enrollment.mjs",
     "test:team-club-identity": "node scripts/qa/run-local-team-club-identity.mjs",
     "test:team-enrollment-history": "node scripts/qa/run-local-team-history.mjs",

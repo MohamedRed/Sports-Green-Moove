@@ -768,6 +768,10 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-conversation-services.json
         run: npm run test:team-conversation && node --test tests/team-conversation-contract.test.mjs
+      - name: Test multi-child grants and cross-team conversation isolation
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json
+        run: npm run test:team-chat-access-changes && node --test tests/team-chat-access-changes.test.mjs
       - name: Verify isolated team conversation directory
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-options.json
