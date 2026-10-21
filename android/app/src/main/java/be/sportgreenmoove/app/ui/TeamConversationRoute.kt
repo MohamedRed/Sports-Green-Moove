@@ -15,6 +15,7 @@ import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 @Composable
 internal fun TeamConversationRoute(uid: String, target: TeamConversationTarget, gateway: TeamConversationGateway, onBack: () -> Unit) {
@@ -37,6 +38,14 @@ internal fun TeamConversationRoute(uid: String, target: TeamConversationTarget, 
             } finally { state.clear() }
         }
     }
+    LaunchedEffect(state, list, owner) {
+        owner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            snapshotFlow {
+                val visible = list.layoutInfo.visibleItemsInfo.mapNotNull { it.key as? String }
+                state.messages.filter { it.needsRead && it.id in visible }.map { it.id }
+            }.distinctUntilChanged().collect { state.markVisibleRead(it) }
+        }
+    }
     val composer = draft.composer
     if (composer == null) {
         TeamConversationDraftScreen(draft.error, draft::load, onBack)
@@ -46,6 +55,7 @@ internal fun TeamConversationRoute(uid: String, target: TeamConversationTarget, 
     LaunchedEffect(composer.pendingId, state.messages) { composer.pendingId?.takeIf(::acknowledged)?.let(composer::acknowledge) }
     LaunchedEffect(state.messages.firstOrNull()?.id) { if (list.firstVisibleItemIndex <= 1) list.scrollToItem(0) }
     TeamConversationScreen(state, composer, list, onBack, onRetry = { refresh++ },
+        onRetryRead = { scope.launch { state.markVisibleRead(list.layoutInfo.visibleItemsInfo.mapNotNull { it.key as? String }) } },
         onEarlier = { scope.launch { state.earlier() } }, onSend = { scope.launch {
             composer.sendOperation({ body, id -> gateway.send(uid, target, body, id) }, ::acknowledged)
             state.refresh()

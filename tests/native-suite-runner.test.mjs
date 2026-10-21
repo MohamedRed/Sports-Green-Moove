@@ -39,7 +39,8 @@ function fixture(t, { missingTeamDraftCapture } = {}) {
   mkdirSync(out, { recursive: true });
   const screens = {
     'sgm-team-chat-components': [
-      ...['team-chat-narrow', 'team-chat-denied', 'team-chat-unconfirmed', 'team-chat-confirmed']
+      ...['team-chat-narrow', 'team-chat-denied', 'team-chat-unconfirmed', 'team-chat-confirmed',
+        'team-read-count-narrow', 'team-read-visible', 'team-read-error', 'team-read-retry', 'team-read-revoked']
         .flatMap(stem => ['.png', '-window.png', '.json'].map(suffix => stem + suffix)),
       ...['team-draft-read-error', 'team-draft-write-error'].flatMap(stem => ['.png', '-window.png'].map(suffix => stem + suffix)),
     ].filter(name => name !== missingTeamDraftCapture),

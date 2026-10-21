@@ -2,8 +2,19 @@ import assert from 'node:assert/strict';
 import { db, call, denied } from './local-flow-client.mjs';
 import { guardianVerificationId, guardianOperationId } from '../../functions/lib/domain/guardianVerification.js';
 import { verifyTeamChatProtectedBaseline } from './team-conversation-ui-fixture.mjs';
+import { teamReadReceiptId } from '../../functions/lib/domain/teamConversationRead.js';
 
 export async function verifyTeamChatNativeRecords(fixture, marker) {
+  const root = db.collection('teamConversations').doc(fixture.target.expectedTeamInstanceId);
+  for (const [uid, messageId] of [[fixture.parent.uid, fixture.initialMessageId],
+    [fixture.parent.uid, marker.peerMessageId], [fixture.driver.uid, marker.parentMessageId]]) {
+    const receipt = await root.collection('readReceipts').doc(teamReadReceiptId(uid, messageId)).get();
+    const message = await root.collection('entries').doc(messageId).get();
+    assert.equal(receipt.get('userId'), uid); assert.equal(receipt.get('messageId'), messageId);
+    assert(receipt.get('messageCreatedAt').isEqual(message.get('createdAt')));
+    assert(receipt.get('readAt').toMillis() >= message.get('createdAt').toMillis());
+  }
+  assert.equal((await root.collection('readReceipts').get()).size, 3);
   const entries = await db.collection('teamConversations').doc(fixture.target.expectedTeamInstanceId).collection('entries').orderBy('sequence').get();
   assert.equal(entries.size, 5);
   assert.deepEqual(entries.docs.map(row => [row.get('sequence'), row.get('senderUserId'), row.get('body')]), [

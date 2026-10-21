@@ -9,4 +9,7 @@ interface TeamConversationGateway {
     suspend fun choices(uid: String, clubId: String?, cursor: String?): GuardianPage<TeamChatChoice>
     suspend fun messages(uid: String, target: TeamConversationTarget, cursor: String? = null): TeamConversationPage
     suspend fun send(uid: String, target: TeamConversationTarget, body: String, requestId: String): String
+    suspend fun markRead(uid: String, target: TeamConversationTarget, accessVersion: String, messageIds: List<String>)
 }
+
+class TeamConversationReadRejectedException(cause: Throwable) : Exception(cause)

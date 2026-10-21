@@ -48,5 +48,8 @@ class TeamConversationStateTest {
                     if (cursor == null) 200 else 100)), if (cursor == null) "older" else null)
         }
         override suspend fun send(uid: String, target: TeamConversationTarget, body: String, requestId: String): String { sends++; return "id" }
+        override suspend fun markRead(uid: String, target: TeamConversationTarget, accessVersion: String, messageIds: List<String>) {
+            error("This fixture has no unread incoming rows")
+        }
     }
 }

@@ -10,6 +10,7 @@ import { firestore } from "../lib/firebase.js";
 import { membershipCursorSchema, membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
 import { requireTeamConversationAccess, requireTeamConversationAdult } from "./teamConversationAuthority.js";
 import { teamContext } from "./teamEnrollmentAuthority.js";
+import { currentTeamUnreadCount } from "./teamConversationRead.js";
 
 export const teamChatOptionsSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("clubs"), cursor: membershipCursorSchema.optional() }).strict(),
@@ -34,7 +35,7 @@ export async function teamConversationOptions(uid: string, token: unknown, input
     if (input.cursor) query = query.startAfter(parseMembershipPageCursor(input.cursor, scope));
     // Bound transaction work per page while keeping a cursor for scanned but unauthorized teams.
     const page = await transaction.get(query.limit(6)), scanned = page.docs.slice(0, 5);
-    const items: { id: string; name: string | null; teamInstanceId: string | null }[] = [];
+    const items: { id: string; name: string | null; teamInstanceId: string | null; unreadCount: number | null }[] = [];
     for (const snapshot of scanned) {
       if (input.kind === "clubs") {
         const id = snapshot.get("clubId");
@@ -42,14 +43,15 @@ export async function teamConversationOptions(uid: string, token: unknown, input
             !isActiveGuardianClubMember(snapshot.data(), uid, id)) continue;
         const club = await transaction.get(firestore.collection("clubs").doc(id));
         if (club.exists && ["public", "private"].includes(club.get("status")) && timestampAtOrAfter(snapshot.get("updatedAt"), club.createTime))
-          items.push({ id, name: teamConversationLabel(club.get("name")), teamInstanceId: null });
+          items.push({ id, name: teamConversationLabel(club.get("name")), teamInstanceId: null, unreadCount: null });
       } else {
         const team = teamContext(snapshot);
         try {
           const access = await requireTeamConversationAccess(transaction, uid, token,
             { teamId: snapshot.id, expectedTeamInstanceId: team.teamInstanceId });
           if (access.clubId !== clubId) throw new HttpsError("failed-precondition", "Team club identity changed.");
-          items.push({ id: snapshot.id, name: teamConversationLabel(access.title), teamInstanceId: access.teamInstanceId });
+          const unreadCount = await currentTeamUnreadCount(transaction, uid, access.teamInstanceId, access.availableAfter);
+          items.push({ id: snapshot.id, name: teamConversationLabel(access.title), teamInstanceId: access.teamInstanceId, unreadCount });
         } catch (error) {
           if (!(error instanceof HttpsError) || error.code !== "permission-denied") throw error;
         }

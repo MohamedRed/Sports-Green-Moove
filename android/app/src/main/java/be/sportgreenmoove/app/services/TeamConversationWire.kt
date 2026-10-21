@@ -18,9 +18,10 @@ internal object TeamConversationWire {
         val rows = payload["items"] as? List<*> ?: error("Liste d’équipes invalide.")
         check(rows.size <= 5)
         val items = rows.map { map(it).let { row ->
-            check(row.containsKey("name") && row.containsKey("teamInstanceId"))
+            check(row.containsKey("name") && row.containsKey("teamInstanceId") && row.containsKey("unreadCount"))
             TeamChatChoice(TripChangeWire.id(row["id"]), label(row["name"]),
-                if (clubId == null) { check(row["teamInstanceId"] == null); null } else TripChangeWire.hash(row["teamInstanceId"]))
+                if (clubId == null) { check(row["teamInstanceId"] == null); null } else TripChangeWire.hash(row["teamInstanceId"]),
+                if (clubId == null) { check(row["unreadCount"] == null); null } else integer(row["unreadCount"], 0, 9_007_199_254_740_991L))
         } }
         check(items.map { it.id }.distinct().size == items.size)
         GuardianPage(items, MembershipPageToken.decode(payload["nextCursor"]))
@@ -34,11 +35,13 @@ internal object TeamConversationWire {
             val sender = TripChangeWire.id(row["senderUserId"])
             val body = (row["body"] as? String)?.takeIf { it.isNotBlank() && it.length <= 1000 } ?: error("Message invalide.")
             check(row.containsKey("authorName")); integer(row["sequence"], 1, 9_007_199_254_740_991L)
+            val needsRead = row["needsRead"] as? Boolean ?: error("État de lecture manquant.")
+            check(sender != uid || !needsRead)
             ConversationMessage(id = TripChangeWire.hash(row["id"]), body = body, mine = sender == uid,
                 createdAtSeconds = integer(row["createdAtSeconds"], -62_135_596_800L, 253_402_300_799L),
                 createdAtNanos = integer(row["createdAtNanos"], 0, 999_999_999L).toInt(),
                 requestId = TripChangeWire.uuid(row["requestId"] as? String ?: error("Identité du message manquante.")),
-                authorName = label(row["authorName"]))
+                authorName = label(row["authorName"]), needsRead = needsRead)
         } }
         check(messages.map { it.id }.distinct().size == messages.size)
         val ordered = compareByDescending<ConversationMessage> { it.createdAtSeconds }.thenByDescending { it.createdAtNanos }.thenByDescending { it.id }
@@ -52,4 +55,10 @@ internal object TeamConversationWire {
     }
     fun target(value: TeamConversationTarget): Map<String, Any> = mapOf(
         "teamId" to TripChangeWire.id(value.teamId), "expectedTeamInstanceId" to TripChangeWire.hash(value.teamInstanceId))
+    fun reads(value: Any?, uid: String, target: TeamConversationTarget, accessVersion: String, ids: List<String>) {
+        val payload = map(value)
+        check(payload["currentUserId"] == uid && payload["teamInstanceId"] == target.teamInstanceId && payload["accessVersion"] == accessVersion)
+        val read = (payload["readMessageIds"] as? List<*>)?.map { TripChangeWire.hash(it) } ?: error("Lecture non confirmée.")
+        check(read == ids)
+    }
 }

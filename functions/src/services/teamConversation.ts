@@ -4,6 +4,7 @@ import { compareTimes, sendTeamMessageSchema, teamConversationLabel, teamMessage
 import { firestore } from "../lib/firebase.js";
 import { membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
 import { requireTeamConversationAccess } from "./teamConversationAuthority.js";
+import { teamMessageReadFlags } from "./teamConversationRead.js";
 
 export async function sendTeamConversationMessage(uid: string, token: unknown, input: SendTeamMessage) {
   return firestore.runTransaction(async transaction => {
@@ -68,9 +69,10 @@ export async function teamConversationPage(uid: string, token: unknown, input: T
         createdAtSeconds: value.createdAt.seconds, createdAtNanos: value.createdAt.nanoseconds };
     });
     const last = rows.at(-1), at = last?.get("createdAt");
+    const needsRead = await teamMessageReadFlags(transaction, uid, access.teamInstanceId, items);
     return { teamId: access.teamId, teamInstanceId: access.teamInstanceId, currentUserId: uid, title: teamConversationLabel(access.title),
       accessVersion: access.accessVersion,
-      historyPolicy: "after-current-admission", items, nextCursor: page.size > 50 && last && at instanceof Timestamp
+      historyPolicy: "after-current-admission", items: items.map((item, index) => ({ ...item, needsRead: needsRead[index] })), nextCursor: page.size > 50 && last && at instanceof Timestamp
         ? membershipPageCursor(scope, `${at.seconds}.${at.nanoseconds}:${last.id}`) : null };
   });
 }

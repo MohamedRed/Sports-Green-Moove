@@ -11,7 +11,12 @@ import { assertInstrumentationPassed } from './android-instrumentation-result.mj
 import { assertLocalApkIdentity } from './local-apk-identity.mjs';
 import { assertContinuousDevice } from './preinstalled-disposable-apks.mjs';
 
-const [receiptPath, directory] = process.argv.slice(2);
+const [receiptPath, directory, mode] = process.argv.slice(2);
+assert(mode === undefined || mode === '--reads');
+const reads = mode === '--reads';
+const componentClass = reads ? 'TeamConversationReadFlowTest' : 'TeamConversationFlowTest';
+const markerScope = reads ? 'local-team-chat-read-component-with-fake-gateway-not-connected-or-physical'
+  : 'local-team-chat-component-with-fake-gateway-not-connected-or-physical';
 assert(isAbsolute(receiptPath ?? '') && isAbsolute(directory ?? '') && !existsSync(directory));
 const setup = JSON.parse(readFileSync(receiptPath));
 const root = resolve(import.meta.dirname, '../..'), android = resolve(root, 'android');
@@ -25,6 +30,9 @@ const runId = randomBytes(16).toString('hex'), redaction = randomBytes(24).toStr
 const sources = ['scripts/qa/run-team-chat-components.mjs', 'scripts/qa/collect-local-ui-evidence.mjs',
   'scripts/qa/local-apk-identity.mjs', ...disposableApkSourceFiles,
   'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationFlowTest.kt',
+  'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationReadFlowTest.kt',
+  'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationReadUiFixture.kt',
+  'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamChatComponentCapture.kt',
   'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt',
   ...['TeamConversationDirectory.kt', 'TeamConversationRoute.kt', 'TeamConversationScreen.kt', 'TeamConversationState.kt',
     'ConversationComposerState.kt', 'MessagesRoute.kt', 'MessagesNavigation.kt', 'MessagesInboxRoute.kt']
@@ -40,18 +48,19 @@ try {
   apkPreparation = prepareDisposableTestApks({ adb, serial, android, run });
   assert.equal(apkPreparation.installationsRemainedBlocked, true);
   transcript = execFileSync(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '180000',
-    ...installationGuardArguments(), '-e', 'class', 'be.sportgreenmoove.app.ui.TeamConversationFlowTest',
+    ...installationGuardArguments(), '-e', 'class', `be.sportgreenmoove.app.ui.${componentClass}`,
     `be.sportgreenmoove.app.local.test/${disposableTestRunner}`], { encoding: 'utf8', timeout: 8 * 60_000, maxBuffer: 4 * 1024 * 1024 });
   writeFileSync(resolve(directory, 'instrumentation.txt'), transcript, { flag: 'wx' });
   assertInstrumentationPassed(transcript, 3);
   collectLocalUiEvidence({ adb, serial, evidenceDir: directory, phase: 'team-chat-components', runId, password: redaction });
-  const stems = ['team-chat-narrow', 'team-chat-denied', 'team-chat-unconfirmed', 'team-chat-confirmed'];
+  const stems = reads ? ['team-read-count-narrow', 'team-read-visible', 'team-read-error', 'team-read-retry', 'team-read-revoked']
+    : ['team-chat-narrow', 'team-chat-denied', 'team-chat-unconfirmed', 'team-chat-confirmed'];
   const names = stems.flatMap((name) => [name + '.png', name + '-window.png']).sort();
   assert.deepEqual(readdirSync(directory).filter((file) => file.endsWith('.png')).sort(), names);
   screenshots = Object.fromEntries(names.map((name) => [name, sha(readFileSync(resolve(directory, name)))]));
   for (const stem of stems) {
     const marker = JSON.parse(readFileSync(resolve(directory, stem + '.json')));
-    assert.equal(marker.scope, 'local-team-chat-component-with-fake-gateway-not-connected-or-physical');
+    assert.equal(marker.scope, markerScope);
     assert.equal(marker.completed, true); assert.equal(marker.case, stem);
     assert.equal(marker.imageSha256, screenshots[stem + '.png']);
     assert.equal(marker.windowSha256, screenshots[stem + '-window.png']);
@@ -76,10 +85,12 @@ try {
 }
 if (failure) throw failure;
 writeFileSync(resolve(directory, 'results.json'), JSON.stringify({ projectId: 'demo-sgm-local-qa', runId,
-  testedAt: new Date().toISOString(), scope: 'local-team-chat-components-with-fake-gateway-not-connected-or-physical',
+  testedAt: new Date().toISOString(), scope: reads ? 'local-team-chat-read-components-with-fake-gateway-not-connected-or-physical'
+    : 'local-team-chat-components-with-fake-gateway-not-connected-or-physical',
   componentCaseCount: 3, connectedBackend: false, notificationsVerified: false,
-  steps: ['team-chat-entry-and-narrow-layout', 'team-chat-authorization-failure-hides-thread',
-    'team-chat-unconfirmed-send-reuses-one-intent'].map(id => ({ id, status: 'passed' })),
+  steps: (reads ? ['team-read-count-and-visible-rows-only', 'team-read-error-and-explicit-retry-landscape', 'team-read-authority-rejection-hides-thread']
+    : ['team-chat-entry-and-narrow-layout', 'team-chat-authorization-failure-hides-thread',
+      'team-chat-unconfirmed-send-reuses-one-intent']).map(id => ({ id, status: 'passed' })),
   physicalDevice: false, productionWrites: false, devicePolicyRestored: true, localPackagesRemoved: true,
   transcriptSha256: sha(Buffer.from(transcript)), screenshots, sourceFiles, apkHashes, apkPreparation }, null, 2) + '\n', { flag: 'wx' });
 console.log('Three team-chat component cases passed; connected native exchange and notifications remain unverified.');

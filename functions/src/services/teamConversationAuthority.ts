@@ -61,6 +61,6 @@ export async function requireTeamConversationAccess(transaction: Transaction, ui
   }
   if (!admissions.length) throw new HttpsError("permission-denied", "Approved team membership or verified parent authority is required.");
   const availableAfter = earliestCurrentAdmission(admissions);
-  return { ...context, availableAfter, accessVersion: digest(identities),
+  return { ...context, availableAfter, accessVersion: digest([uid, identities]),
     title: typeof team.get("name") === "string" ? team.get("name") as string : null };
 }

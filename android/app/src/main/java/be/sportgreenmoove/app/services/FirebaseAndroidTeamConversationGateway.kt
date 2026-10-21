@@ -28,6 +28,23 @@ internal class FirebaseAndroidTeamConversationGateway(
         TeamConversationWire.page(call(uid, "getTeamChatMessages", TeamConversationWire.target(target) +
             (cursor?.let { mapOf("cursor" to requireNotNull(MembershipPageToken.decode(it))) } ?: emptyMap())), uid, target)
 
+    override suspend fun markRead(uid: String, target: TeamConversationTarget, accessVersion: String, messageIds: List<String>) {
+        require(messageIds.size in 1..50 && messageIds.distinct().size == messageIds.size)
+        val ids = messageIds.map(TripChangeWire::hash); val version = TripChangeWire.hash(accessVersion)
+        try {
+            val result = call(uid, "markTeamChatMessagesRead", TeamConversationWire.target(target) +
+                mapOf("expectedAccessVersion" to version, "messageIds" to ids))
+            try { TeamConversationWire.reads(result, uid, target, version, ids) }
+            catch (invalid: Exception) { throw TeamConversationReadRejectedException(invalid) }
+        } catch (cancelled: CancellationException) { throw cancelled }
+        catch (error: FirebaseFunctionsException) {
+            if (error.code in setOf(FirebaseFunctionsException.Code.PERMISSION_DENIED, FirebaseFunctionsException.Code.UNAUTHENTICATED,
+                    FirebaseFunctionsException.Code.NOT_FOUND, FirebaseFunctionsException.Code.FAILED_PRECONDITION,
+                    FirebaseFunctionsException.Code.INVALID_ARGUMENT)) throw TeamConversationReadRejectedException(error)
+            throw error
+        }
+    }
+
     override suspend fun send(uid: String, target: TeamConversationTarget, body: String, requestId: String): String {
         try {
             return TeamConversationWire.receipt(call(uid, "sendTeamChatMessage", TeamConversationWire.target(target) +

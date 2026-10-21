@@ -11,16 +11,11 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.uiautomator.UiDevice
 import be.sportgreenmoove.app.data.*
 import be.sportgreenmoove.app.services.*
-import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
-import java.io.File
-import java.security.MessageDigest
 
 class TeamConversationFlowTest {
     @get:Rule val compose = createComposeRule()
@@ -85,22 +80,8 @@ class TeamConversationFlowTest {
     private fun waitFor(matcher: SemanticsMatcher) {
         compose.waitUntil(30_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
     }
-    private fun capture(stem: String) {
-        captureLocalUi(compose, "$stem.png")
-        val instrumentation = InstrumentationRegistry.getInstrumentation()
-        val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
-        val window = File(directory, "$stem-window.png")
-        check(UiDevice.getInstance(instrumentation).takeScreenshot(window))
-        fun sha(file: File) = MessageDigest.getInstance("SHA-256").digest(file.readBytes()).joinToString("") { "%02x".format(it) }
-        val marker = File(directory, "$stem.json")
-        marker.writeText(JSONObject().put("scope", "local-team-chat-component-with-fake-gateway-not-connected-or-physical")
-            .put("case", stem).put("completed", true).put("capturedAtEpochMillis", System.currentTimeMillis())
-            .put("imageSha256", sha(File(directory, "$stem.png"))).put("windowSha256", sha(window)).toString(2))
-        val device = UiDevice.getInstance(instrumentation)
-        check(device.executeShellCommand("mkdir -p /sdcard/Download/sgm-team-chat-components").isBlank())
-        for (name in listOf("$stem.png", "$stem-window.png", "$stem.json"))
-            check(device.executeShellCommand("cp ${File(directory, name).absolutePath} /sdcard/Download/sgm-team-chat-components/$name").isBlank())
-    }
+    private fun capture(stem: String) = captureTeamChatComponent(compose, stem,
+        "local-team-chat-component-with-fake-gateway-not-connected-or-physical", landscape = false)
 }
 
 private class TeamChatUiFixture : TeamConversationGateway {
@@ -110,9 +91,9 @@ private class TeamChatUiFixture : TeamConversationGateway {
     override suspend fun choices(uid: String, clubId: String?, cursor: String?): GuardianPage<TeamChatChoice> {
         check(uid == "parent" && !deny)
         return when {
-            clubId == null -> GuardianPage(listOf(TeamChatChoice("club", "Club QA", null)), null)
+            clubId == null -> GuardianPage(listOf(TeamChatChoice("club", "Club QA", null, null)), null)
             cursor == null -> GuardianPage(emptyList(), "next")
-            else -> GuardianPage(listOf(TeamChatChoice("team", title, "a".repeat(64))), null)
+            else -> GuardianPage(listOf(TeamChatChoice("team", title, "a".repeat(64), 0)), null)
         }
     }
     override suspend fun messages(uid: String, target: TeamConversationTarget, cursor: String?): TeamConversationPage {
@@ -125,5 +106,8 @@ private class TeamChatUiFixture : TeamConversationGateway {
         if (loseFirstSend && attempts.size == 1) throw MessageSendException(false, IllegalStateException("Explicit uncertain-send fixture"))
         sent.putIfAbsent(requestId, ConversationMessage(requestId, body, true, 200, requestId = requestId))
         return requestId
+    }
+    override suspend fun markRead(uid: String, target: TeamConversationTarget, accessVersion: String, messageIds: List<String>) {
+        error("This simulated fixture does not contain unread messages")
     }
 }

@@ -71,6 +71,11 @@ private fun TeamConversationDirectory(uid: String, gateway: TeamConversationGate
                 Row(Modifier.fillMaxWidth().heightIn(min = 56.dp).sgmTestTag("team-chat.choice.${choice.id}")
                     .clickable(enabled = choice.name != null && !page.busy) { onOpen(choice) }.padding(vertical = 12.dp)) {
                     Text(choice.name ?: "Nom indisponible", style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary), modifier = Modifier.weight(1f))
+                    choice.unreadCount?.takeIf { it > 0 }?.let { count ->
+                        Text(if (count > 99) "99+ non lus" else if (count == 1L) "1 non lu" else "$count non lus",
+                            style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary),
+                            modifier = Modifier.padding(horizontal = 8.dp).sgmTestTag("team-chat.unread.${choice.id}"))
+                    }
                     SgmLineIcon(SgmIcon.ChevronRight, tint = Sgm.colors.textSecondary, modifier = Modifier.size(24.dp))
                 }
             }

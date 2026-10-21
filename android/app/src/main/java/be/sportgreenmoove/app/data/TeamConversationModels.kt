@@ -8,6 +8,6 @@ data class TeamConversationTarget(val teamId: String, val teamInstanceId: String
     val key: String get() = "$teamId:$teamInstanceId"
 }
 
-data class TeamChatChoice(val id: String, val name: String?, val teamInstanceId: String?)
+data class TeamChatChoice(val id: String, val name: String?, val teamInstanceId: String?, val unreadCount: Long?)
 data class TeamConversationPage(val title: String?, val accessVersion: String,
     val messages: List<ConversationMessage>, val olderCursor: String?)

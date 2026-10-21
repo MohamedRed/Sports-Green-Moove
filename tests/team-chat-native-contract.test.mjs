@@ -40,7 +40,7 @@ test('background and failed authority hide private data; uncertain sends reuse t
   for (const marker of ['repeatOnLifecycle(Lifecycle.State.STARTED)', 'finally { state.clear() }',
     'if (state.error != null) awaitCancellation()', 'composer.sendOperation', 'TeamConversationDraftState(uid, target, storage)',
     'SharedPreferencesTeamConversationDrafts(context)']) assert(route.includes(marker), marker);
-  for (const marker of ['if (version != page.accessVersion) timeline = ConversationTimeline()',
+  for (const marker of ['if (version != page.accessVersion) { timeline = ConversationTimeline(); acknowledgedReads.clear()',
     'check(page.accessVersion == expectedVersion)', 'ticket != generation', 'messages = emptyList(); title = null']) assert(state.includes(marker), marker);
   const directory = native('ui/TeamConversationDirectory.kt');
   assert(directory.includes('finally { current.close() }')); assert(directory.includes('!page.hasMore'));

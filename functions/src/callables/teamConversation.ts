@@ -5,6 +5,11 @@ import { membershipCursorSchema } from "../lib/membershipPageCursor.js";
 import { parseCallableData } from "../lib/validation.js";
 import { sendTeamConversationMessage, teamConversationPage } from "../services/teamConversation.js";
 import { teamChatOptionsSchema, teamConversationOptions } from "../services/teamConversationOptions.js";
+import { teamConversationReadSchema } from "../domain/teamConversationRead.js";
+import { markTeamConversationMessagesRead } from "../services/teamConversationRead.js";
+
+export const markTeamChatMessagesRead = onCall(async request => markTeamConversationMessagesRead(requireAuth(request.auth?.uid),
+  request.auth?.token, parseCallableData(teamConversationReadSchema, request.data)));
 
 export const listTeamChatOptions = onCall(async request => teamConversationOptions(requireAuth(request.auth?.uid),
   request.auth?.token, parseCallableData(teamChatOptionsSchema, request.data)));

@@ -26,7 +26,7 @@ internal class LocalTeamChatPeer private constructor(private val app: FirebaseAp
     suspend fun observeParentMessage(body: String, destination: TeamConversationTarget = target): String {
         currentParent(); check(uid == "sgm-qa-driver")
         val row = chat.messages(uid, destination).messages.single { it.body == body }
-        check(!row.mine); return row.id
+        check(!row.mine && row.needsRead); return row.id
     }
     suspend fun revokeParent(child: String = fixture.getString("childId")): String {
         currentParent(); check(uid == "sgm-qa-club-manager")

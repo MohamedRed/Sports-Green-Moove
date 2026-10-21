@@ -61,7 +61,7 @@ collect_component_evidence() {
 
   if [[ "$test_status" -eq 0 ]]; then
     adb pull /sdcard/Download/sgm-team-chat-components "$output_dir" || return 1
-    for stem in team-chat-narrow team-chat-denied team-chat-unconfirmed team-chat-confirmed; do
+    for stem in team-chat-narrow team-chat-denied team-chat-unconfirmed team-chat-confirmed team-read-count-narrow team-read-visible team-read-error team-read-retry team-read-revoked; do
       for suffix in .png -window.png .json; do
         if [[ ! -s "$output_dir/sgm-team-chat-components/$stem$suffix" ]]; then
           echo "Missing team chat component evidence: $stem$suffix" >&2

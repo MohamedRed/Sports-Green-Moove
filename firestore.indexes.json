@@ -1,6 +1,22 @@
 {
   "indexes": [
     {
+      "collectionGroup": "entries",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "createdAt", "order": "ASCENDING" },
+        { "fieldPath": "senderUserId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "readReceipts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "messageCreatedAt", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "teamEnrollments",
       "queryScope": "COLLECTION",
       "fields": [

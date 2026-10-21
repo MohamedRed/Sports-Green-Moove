@@ -9,6 +9,7 @@ import androidx.test.uiautomator.UiDevice
 import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.services.AndroidRuntime
+import be.sportgreenmoove.app.services.FirebaseAndroidTeamConversationGateway
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 import org.json.JSONObject
@@ -27,6 +28,17 @@ class LocalTeamConversationFlowTest {
         val session = JSONObject(File(context.filesDir, "local-qa-session.json").readText())
         check(session.getString("projectId") == "demo-sgm-local-qa"); val fixture = session.getJSONObject("teamChat")
         val providers = AndroidRuntime.create(context); providers.auth.signOut()
+        val reads = FirebaseAndroidTeamConversationGateway()
+        fun unread(uid: String): Long = runBlocking {
+            var cursor: String? = null
+            repeat(20) {
+                val page = reads.choices(uid, fixture.getString("clubId"), cursor)
+                page.items.firstOrNull { it.id == fixture.getString("teamId") &&
+                    it.teamInstanceId == fixture.getString("teamInstanceId") }?.let { return@runBlocking requireNotNull(it.unreadCount) }
+                cursor = page.nextCursor ?: error("Test team not discoverable")
+            }
+            error("Test team directory exceeded its bound")
+        }
         context.getSharedPreferences("appearance", Context.MODE_PRIVATE).edit().putBoolean("darkTheme", false).commit()
         UiDevice.getInstance(instrumentation).setOrientationNatural()
         var peerMessageId = ""; var parentMessageId = ""; var revokeRequestId = ""
@@ -34,11 +46,15 @@ class LocalTeamConversationFlowTest {
         runBlocking { LocalTeamChatPeer.open(context, session, "driver") }.use { driver ->
             runBlocking { LocalTeamChatPeer.open(context, session, "manager") }.use { manager ->
                 ActivityScenario.launch(MainActivity::class.java).use { activity ->
-                    login(session, "parent"); open(fixture)
+                    login(session, "parent")
+                    val parentUid = "sgm-qa-parent"
+                    assertEquals(1L, unread(parentUid)); open(fixture)
                     waitFor(hasText("Bonjour équipe QA")); compose.onNodeWithText("Message avant arrivée QA").assertDoesNotExist()
+                    compose.waitUntil(20_000) { unread(parentUid) == 0L }
                     capture("team-chat-native-parent")
                     peerMessageId = runBlocking { driver.send("Réponse conducteur QA") }
                     waitFor(hasText("Réponse conducteur QA"))
+                    compose.waitUntil(20_000) { unread(parentUid) == 0L }
                     send("Message parent QA")
                     parentMessageId = runBlocking { driver.observeParentMessage("Message parent QA") }
                     capture("team-chat-native-exchange")
@@ -63,6 +79,8 @@ class LocalTeamConversationFlowTest {
                     compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
                     login(session, "driver"); open(fixture)
                     waitFor(hasText("Message parent QA"))
+                    val driverUid = "sgm-qa-driver"
+                    compose.waitUntil(20_000) { unread(driverUid) == 0L }
                     compose.onNodeWithTag("team-chat.messages").performScrollToNode(hasText("Message avant arrivée QA"))
                     compose.onNodeWithText("Message avant arrivée QA").assertIsDisplayed()
                     compose.onNodeWithTag("team-chat.messages").performScrollToIndex(0)

@@ -66,6 +66,7 @@ const paths = [...disposableApkSourceFiles, 'scripts/qa/local-team-conversation-
   'scripts/qa/run-isolated-ride-ui.mjs', 'scripts/qa/team-conversation-ui-fixture.mjs', 'scripts/qa/team-chat-native-records.mjs',
   'scripts/qa/team-chat-native-evidence.mjs', 'functions/src/services/teamConversation.ts', 'functions/src/services/teamConversationAuthority.ts',
   'functions/src/services/teamConversationOptions.ts', 'functions/src/callables/teamConversation.ts',
+  'functions/src/domain/teamConversationRead.ts', 'functions/src/services/teamConversationRead.ts',
   ...['TeamConversationDirectory.kt', 'TeamConversationRoute.kt', 'TeamConversationScreen.kt', 'TeamConversationState.kt', 'ConversationComposerState.kt']
     .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
   'android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamConversationGateway.kt',
@@ -76,6 +77,6 @@ writeFileSync(resolve(directory, 'team-conversation-app-results.json'), JSON.str
   testCount: 1, nativeCaseCount: 1, steps: [{ id: 'team-conversation-connected-native-ui', status: 'passed' }], nativeUiExecuted: true,
   apkPreparation, primaryEvidencePhase: 'team-conversation', transcriptSha256: createHash('sha256').update(transcript).digest('hex'),
   cleanupMode: 'destroy-owned-local-environment', adminClientClosed: true, localPackagesRemoved: true, fixtureIsolation: isolation,
-  productionWrites: false, physicalDevice: false, notificationsVerified: false, fullProcessRestartProven: false, externalSdkTrafficVerified: false,
+  productionWrites: false, physicalDevice: false, notificationsVerified: false, unreadStateVerified: true, fullProcessRestartProven: false, externalSdkTrafficVerified: false,
   sourceFiles: Object.fromEntries(paths.map(file => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]))
 }, null, 2) + '\n', { flag: 'wx' });

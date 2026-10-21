@@ -15,7 +15,7 @@ import be.sportgreenmoove.app.design.SgmType
 
 @Composable
 internal fun TeamConversationScreen(state: TeamConversationState, composer: ConversationComposerState, list: LazyListState,
-    onBack: () -> Unit, onRetry: () -> Unit, onEarlier: () -> Unit, onSend: () -> Unit) {
+    onBack: () -> Unit, onRetry: () -> Unit, onRetryRead: () -> Unit, onEarlier: () -> Unit, onSend: () -> Unit) {
     Column(Modifier.fillMaxSize().background(Sgm.colors.bgApp).imePadding().sgmTestTag("team-chat.thread")) {
         V2TopBar("ÉQUIPE", onBack = onBack, trailing = {
             V2CircleIconButton(SgmIcon.Refresh, onRetry, size = 44, testTag = "team-chat.refresh", description = "Actualiser la conversation")
@@ -39,6 +39,12 @@ internal fun TeamConversationScreen(state: TeamConversationState, composer: Conv
                     TextButton(onClick = onEarlier, enabled = !state.loadingEarlier, modifier = Modifier.sgmTestTag("team-chat.earlier")) {
                         Text(if (state.loadingEarlier) "Chargement..." else "Messages précédents")
                     }
+                }
+            }
+            state.readError?.let { error ->
+                Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                    Text(error, modifier = Modifier.weight(1f), style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary))
+                    TextButton(onClick = onRetryRead, modifier = Modifier.sgmTestTag("team-chat.read-retry")) { Text("Réessayer") }
                 }
             }
             ConversationComposer(composer.draft, composer::edit, composer.locked, composer.sending,
