@@ -6,10 +6,50 @@ import { validateTeamDraftLoss } from '../scripts/qa/team-draft-loss-evidence.mj
 import { validateRetainedTeamDraft, teamDraftStages } from '../scripts/qa/team-draft-native-retained.mjs';
 import { validateTeamDraftErrorCaptureAttempt } from '../scripts/qa/team-draft-error-capture-attempt.mjs';
 import { validateTeamDraftErrorComponents } from '../scripts/qa/team-draft-error-components.mjs';
+import { validateTeamDraftPhone, teamDraftPhoneStages } from '../scripts/qa/team-draft-phone-evidence.mjs';
+import { validateTeamConversationRecords } from '../partner-portal/team-conversation-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const ui = 'android/app/src/main/java/be/sportgreenmoove/app/ui/';
+test('shared phone metadata on other flows does not select the team-specific record validator', () => {
+  for (const flow of content.flows.filter(item => item.id !== 'team-conversation' && item.phone))
+    assert.doesNotThrow(() => validateTeamConversationRecords(process.cwd(), flow, captures));
+});
+test('the physical phone joins eight original states, independent final records and scoped cleanup', () => {
+  const flow = content.flows.find(item => item.id === 'team-conversation');
+  const run = validateTeamDraftPhone(process.cwd(), flow.phone.source);
+  assert.equal(run.physicalDevice, true); assert.equal(run.twoPhoneFlowVerified, false);
+  assert.equal(run.secondPrivateDraftRestoredForParent, true);
+  assert.equal(flow.tour.length, 14); assert.equal(flow.status, 'partial');
+  assert.deepEqual(flow.tour.slice(0, 8).map(step => step.image), teamDraftPhoneStages.map(id => 'team-draft-phone-' + id));
+  assert(flow.tour.slice(8).every(step => step.image.startsWith('team-access-verified-')));
+  for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
+  const smoke = read('.github/workflows/web-integration-smoke.yml');
+  assert(smoke.includes('tests/team-chat-draft-persistence.test.mjs'));
+});
+for (const [file, mutate] of [
+  ...['twoPhoneFlowVerified', 'fullProcessRestartProven', 'processIdsIndependentlyVerified', 'notificationsVerified',
+    'unreadStateVerified', 'trackingVerified', 'paymentExercised', 'productionWrites', 'videoCaptured', 'releaseEvidenceAccepted']
+    .map(key => ['results.json', x => { x[key] = true; }]),
+  ['other-account.json', x => { x.persisted.messageCount = 4; }],
+  ['other-account.json', x => { x.persisted.originalClaimsUnchanged = false; }],
+  ['session-results.json', x => { x.completed = false; }],
+  ['local-cleanup.json', x => { x.privateSessionFileRemoved = false; }],
+  ['connection-policy.json', x => { x.settings.forceLocal = true; }],
+  ['phone-session-closed.json', x => { x.phoneSessionClosed = false; }],
+]) test(`physical draft evidence rejects contradictory ${file}: ${mutate}`, () => {
+  const source = content.flows.find(item => item.id === 'team-conversation').phone.source;
+  assert.throws(() => validateTeamDraftPhone(process.cwd(), source, path => {
+    const bytes = readFileSync(path); if (!path.endsWith('/' + file)) return bytes;
+    const changed = JSON.parse(bytes); mutate(changed); return Buffer.from(JSON.stringify(changed));
+  }));
+});
+test('a changed native export cannot be published as physical draft evidence', () => {
+  const source = content.flows.find(item => item.id === 'team-conversation').phone.source;
+  assert.throws(() => validateTeamDraftPhone(process.cwd(), source, path =>
+    path.endsWith('/returned-parent.png') ? Buffer.from('not original evidence') : readFileSync(path)));
+});
 test('both actual storage-error component methods pass without accepting a physical or connected failure test', () => {
   const flow = content.flows.find(item => item.id === 'team-conversation');
   const run = validateTeamDraftErrorComponents(process.cwd(), flow.draftErrorRecovery.source);
@@ -51,8 +91,8 @@ test('the unchanged native case proves unsent recovery, one explicit send and em
   assert.equal(run.unsentCheckpoint.messageCount, 2); assert.equal(run.fixtureIsolation.messageCount, 3);
   assert.equal(run.fixtureIsolation.exactlyOneExplicitParentSend, true);
   assert.equal(new Set([run.firstProcessId, run.secondProcessId, run.processId]).size, 3);
-  assert.equal(flow.status, 'partial'); assert.equal(flow.tour.length, 11);
-  assert.deepEqual(flow.tour.slice(0, 5).map(step => step.image), teamDraftStages.map(id => 'team-draft-verified-' + id));
+  assert.equal(flow.status, 'partial'); assert.equal(flow.tour.length, 14);
+  for (const id of teamDraftStages) assert(flow.images.some(image => image.file === 'team-draft-verified-' + id));
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
   assert(captures['team-draft-verified-reopened'].endsWith('/team-draft-reopened.png'));
 });
@@ -91,8 +131,8 @@ test('the observed draft loss stays failed and distinct from the later verified 
   assert.equal(run.fullFlowVerified, false); assert.equal(run.parentSendReached, false);
   assert.match(flow.remaining, /notifications.*téléphones/);
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
-  assert(flow.tour.slice(0, 5).every(step => step.image.startsWith('team-draft-verified-')));
-  assert(flow.tour.slice(5).every(step => step.image.startsWith('team-access-verified-')));
+  assert(flow.tour.slice(0, 8).every(step => step.image.startsWith('team-draft-phone-')));
+  assert(flow.tour.slice(8).every(step => step.image.startsWith('team-access-verified-')));
 });
 for (const key of ['draftRestored', 'parentSendReached', 'thirdProcessReached', 'fullFlowVerified', 'postFailureStoredStateVerified', 'physicalDevice'])
   test(`the failed draft artifact cannot accept ${key}`, () => {

@@ -79,13 +79,14 @@ test('manager approval remains authoritative and later local native evidence can
   assert.match(contract, /parents cannot approve\ntheir own relationship/);
   assert.match(contract, /client-declared `children.guardianUserIds` array does not establish\nthis verification/);
   assert.match(contract, /Connected\nAndroid exchanges, multi-child access changes and durable draft recovery now have\nlocal native evidence/);
-  assert.match(contract, /no\nproduction record or physical-phone team conversation is approved/);
-  assert.match(contract, /No physical team-chat, production deployment, unread\/read\nstate or notification delivery is accepted/);
+  assert.match(contract, /no\nproduction record is approved/);
+  assert.match(contract, /Those local records do not accept physical-phone authority\nchanges, production deployment, unread\/read state or notification delivery/);
+  assert.match(contract, /neither simultaneous two-phone delivery\nnor physical authority-change, unread, push, tracking or release-audit proof/);
   assert(!contract.includes('Approval Policy Pending'));
   const group = content.blockers.find((item) => item.id === 'group-conversation');
   assert.match(group.next, /notifications.*messages non lus.*échanges entre téléphones/); assert(!group.next.includes('Choisir qui'));
   const team = content.flows.find(flow => flow.id === 'team-conversation');
-  assert.equal(group.source, team.draftRestart.source.replace(/[^/]+$/, 'README.md'));
+  assert.equal(group.source, team.phone.source.replace(/[^/]+$/, 'README.md'));
   assert.equal(team.status, 'partial');
   assert.match(contract, /team-draft-native-2026-10-21\/README.md/);
   assert(content.updates.some((item) => item.title === 'Le club validera les inscriptions aux équipes' && item.date === '2026-10-17'));

@@ -10,6 +10,7 @@ import { validateTeamDraftLoss } from '../scripts/qa/team-draft-loss-evidence.mj
 import { validateRetainedTeamDraft } from '../scripts/qa/team-draft-native-retained.mjs';
 import { validateTeamDraftErrorCaptureAttempt } from '../scripts/qa/team-draft-error-capture-attempt.mjs';
 import { validateTeamDraftErrorComponents } from '../scripts/qa/team-draft-error-components.mjs';
+import { validateTeamDraftPhone } from '../scripts/qa/team-draft-phone-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
   const records = [
@@ -23,6 +24,7 @@ export function validateTeamConversationRecords(root, flow, captures) {
     [flow.draftRestart, validateRetainedTeamDraft, 'team-draft-verified-'],
     [flow.draftErrorChecks, validateTeamDraftErrorCaptureAttempt, null],
     [flow.draftErrorRecovery, validateTeamDraftErrorComponents, 'team-draft-errors-'],
+    [flow.id === 'team-conversation' ? flow.phone : null, validateTeamDraftPhone, 'team-draft-phone-'],
   ];
   for (const [record, validate, prefix] of records) {
     if (!record) continue;

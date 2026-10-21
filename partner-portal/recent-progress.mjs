@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Le brouillon revient sur téléphone',
+    text: 'Fermeture, envoi unique et changement de compte : l’essai passe. Huit captures montrent aussi que le second brouillon reste privé au parent.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Le texte reste visible si la sauvegarde échoue',
     text: 'Les deux essais locaux de panne de sauvegarde passent. Deux captures montrent le texte conservé et la restauration à réessayer.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Le brouillon revient après fermeture complète',

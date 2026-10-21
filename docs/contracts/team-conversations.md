@@ -15,8 +15,9 @@ messages and receive the same unread/read state as directly assigned members.
 Booking/ride conversations retain their separate sources and participant rules.
 Team-message callables have isolated server evidence described below. Connected
 Android exchanges, multi-child access changes and durable draft recovery now have
-local native evidence. Physical-phone team exchanges, iOS entry, unread/read
-state and notifications remain unfinished.
+local native evidence. A later physical trial verifies draft recovery and
+sequential parent/driver accounts on one phone. Simultaneous phone exchanges,
+iOS entry, unread/read state and notifications remain unfinished.
 The enrollment service alone does not grant message access. Club membership
 alone must not grant it.
 
@@ -92,7 +93,8 @@ management website passed seven enrollment checkpoints together, including the
 child's request/approval. See `phone-team-enrollment-2026-10-19/README.md`.
 That enrollment trial did not test a team conversation. The later local native
 conversation trials below are accepted only within their isolated scope; no
-production record or physical-phone team conversation is approved.
+production record is approved. The later one-phone draft trial does not accept
+physical-phone authority changes or simultaneous phone exchanges.
 
 ## Android Enrollment Screen Source
 
@@ -231,8 +233,8 @@ one partial redraw. Later local native exchanges and account switching are retai
 in `team-chat-connected-2026-10-21/README.md`; a separate eleven-checkpoint native
 trial covers two children, revoked/renewed authority and two-team isolation in
 `team-access-native-2026-10-21/README.md`. Manager fixture transitions use SDK calls,
-not that manager's UI. No physical team-chat, production deployment, unread/read
-state or notification delivery is accepted.
+not that manager's UI. Those local records do not accept physical-phone authority
+changes, production deployment, unread/read state or notification delivery.
 
 ## Private Draft Persistence, 21 October 2026
 
@@ -268,3 +270,24 @@ The errors are simulated in the component storage implementation, not real
 service-connected storage faults. This local draft result
 does not close physical-device restart/tracking, push delivery, unread/read state,
 other-platform, production or release-audit requirements.
+
+## Physical Draft And Account Switching, 21 October 2026
+
+`team-draft-phone-2026-10-21/README.md` retains eight unchanged native PNG exports
+and six independent record checkpoints from one actual Android phone. A verified
+parent sees only post-admission history, restores accented text after the
+provider's app-kill action without retyping, sends once and stays cleared after
+a second app-kill/reopen sequence. The driver then signs in on that same phone
+and reads the single parent message. A different unsent parent draft is absent
+from the driver account and returns only when the original parent signs back in.
+Final independent reads after that return still find exactly three messages,
+three operations, one parent send and all 158 protected records/claims preserved
+except allowed profile timestamps. The second private draft is not submitted.
+
+The provider's stop actions and home screens were observed, not independently
+queried process IDs. The prior local three-process proof remains separate.
+The app was uninstalled through the provider UI, the phone was released and
+independent cleanup proved all four local ports closed and private handoffs
+removed. No device policy was changed. There is no new video: OS screen-sharing
+permission blocked recording. This is neither simultaneous two-phone delivery
+nor physical authority-change, unread, push, tracking or release-audit proof.

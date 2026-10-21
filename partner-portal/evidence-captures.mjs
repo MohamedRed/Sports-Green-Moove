@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['initial', 'unsent', 'reopened', 'sent', 'cleared', 'private-parent', 'other-account', 'returned-parent']
+    .map(id => ['team-draft-phone-' + id, 'docs/release/evidence/team-draft-phone-2026-10-21/' + id + '.png'])),
   ...Object.fromEntries(['read', 'write'].map(id => ['team-draft-errors-' + id,
     'docs/release/evidence/team-draft-error-components-2026-10-21/team-draft-' + id + '-error.png'])),
   ...Object.fromEntries(['before', 'reopened', 'sent', 'cleared', 'other-account'].map(id => ['team-draft-verified-' + id,

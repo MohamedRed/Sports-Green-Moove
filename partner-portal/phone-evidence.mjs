@@ -6,12 +6,14 @@ import { assertParentPhoneBooking } from '../scripts/qa/browserstack-parent-book
 import { assertParentPhoneSearch, parentSearchScope } from '../scripts/qa/browserstack-parent-search-evidence.mjs';
 import { teamPhoneScope, validateTeamPhoneArtifacts } from '../scripts/qa/team-phone-evidence.mjs';
 import { emergencyOptionsPhoneScope, validateEmergencyPhoneArtifacts } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
+import { teamDraftPhoneScope, validateTeamDraftPhone } from '../scripts/qa/team-draft-phone-evidence.mjs';
 
 export function validatePhoneEvidence(root, phone, checkedAt) {
   const base = dirname(resolve(root, phone.source));
   const json = (name) => JSON.parse(readFileSync(resolve(base, name), 'utf8'));
   const run = JSON.parse(readFileSync(resolve(root, phone.source), 'utf8'));
   assert.equal(run.testedAt.slice(0, 10), checkedAt);
+  if (run.scope === teamDraftPhoneScope) return validateTeamDraftPhone(root, phone.source);
   if (run.scope === emergencyOptionsPhoneScope) return validateEmergencyPhoneArtifacts(root, phone.source);
   if (run.scope === teamPhoneScope) return validateTeamPhoneArtifacts(root, phone.source);
   const search = run.scope === parentSearchScope;

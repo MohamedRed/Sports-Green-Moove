@@ -8,8 +8,8 @@ const nativeAccess = 'docs/release/evidence/team-access-native-2026-10-21/';
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
-    summary: 'Deux enfants, deux équipes : les accès et les messages restent séparés, en local.',
-    verified: 'Le brouillon revient après fermeture, s’envoie une seule fois et reste effacé au redémarrage suivant. Les accès et les messages de deux équipes restent séparés, en local.',
+    summary: 'Sur téléphone, le brouillon revient après fermeture et reste privé entre deux comptes.',
+    verified: 'Sur téléphone : brouillon retrouvé, un seul envoi, puis effacement. Un second brouillon reste privé au parent. Les accès et les messages de deux équipes restent séparés, en local.',
     remaining: 'Vérifier les notifications, les messages non lus et les échanges entre téléphones.',
     connected: { source: connected + 'team-conversation-results.json' },
     accessChanges: { source: accessChanges + 'results.json' },
@@ -20,6 +20,7 @@ export function createTeamConversationFlow() {
     draftRestart: { source: 'docs/release/evidence/team-draft-native-2026-10-21/team-draft-results.json' },
     draftErrorChecks: { source: 'docs/release/evidence/team-draft-error-capture-2026-10-21/results.json' },
     draftErrorRecovery: { source: 'docs/release/evidence/team-draft-error-components-2026-10-21/results.json' },
+    phone: { source: 'docs/release/evidence/team-draft-phone-2026-10-21/results.json', checkedAt: '2026-10-21' },
     attempt: { source: partial + 'results.json' },
     ui: { source: screens + 'results.json', groups: ['team-chat-entry-and-narrow-layout',
       'team-chat-authorization-failure-hides-thread', 'team-chat-unconfirmed-send-reuses-one-intent'] },
@@ -34,6 +35,14 @@ export function createTeamConversationFlow() {
       'Les comptes enfants restent exclus.', 'Le retrait bloque aussi l’envoi et les anciennes pages.',
       'Une réinscription ne rouvre pas l’ancien historique.'] },
     images: [
+      ...[
+        ['initial', 'Le parent ne voit que le message postérieur à son admission'],
+        ['unsent', 'Brouillon saisi sans envoi'], ['reopened', 'Même brouillon retrouvé après fermeture'],
+        ['sent', 'Un seul envoi, puis saisie vidée'], ['cleared', 'Brouillon toujours effacé après une nouvelle fermeture'],
+        ['private-parent', 'Second brouillon privé avant changement de compte'],
+        ['other-account', 'Le conducteur reçoit le message, sans le brouillon privé du parent'],
+        ['returned-parent', 'Retour au parent : son second brouillon est conservé'],
+      ].map(([id, alt]) => ({ file: 'team-draft-phone-' + id, alt: alt + ', essai sur téléphone du 21 octobre' })),
       { file: 'team-draft-errors-read', alt: 'Erreur de restauration avec bouton Réessayer, essai local avec panne simulée du 21 octobre' },
       { file: 'team-draft-errors-write', alt: 'Texte conservé pendant une erreur de sauvegarde, essai local avec panne simulée du 21 octobre' },
       ...[
@@ -63,5 +72,5 @@ export function createTeamConversationFlow() {
       { file: 'team-chat-unconfirmed', alt: 'Envoi non confirmé, message conservé pour réessayer, essai local simulé du 21 octobre' },
       { file: 'team-chat-confirmed', alt: 'Une seule réponse après le renvoi, essai local simulé du 21 octobre' },
       { file: 'team-chat-denied', alt: 'Conversation et saisie masquées après une erreur de vérification, essai local simulé du 21 octobre' },
-    ], source: nativeAccess + 'README.md' };
+    ], source: 'docs/release/evidence/team-draft-phone-2026-10-21/README.md' };
 }

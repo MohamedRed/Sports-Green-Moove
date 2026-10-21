@@ -1,5 +1,15 @@
 # Partner Progress Portal
 
+The 21 October physical team-draft trial now supplies eight reviewed native
+exports and six independent record checkpoints: recovery after provider app
+kill, one send, cleared state after another stop, and a different unsent draft
+hidden from the driver but restored for the original parent. Accounts use one
+phone sequentially; separate service reads verify exactly one parent message
+and 158 protected records. Process IDs were not read, no video was recorded,
+and notifications, unread state, simultaneous phones and tracking stay open.
+The physical eight-step sequence precedes the six local access-change steps
+in the current tour. Earlier local originals remain in the full gallery.
+
 The corrected team-draft flow passes in three distinct native processes with
 two independently verified host stops. The private text is recovered without
 retyping, one explicit UI send is read by the driver SDK, a second restart

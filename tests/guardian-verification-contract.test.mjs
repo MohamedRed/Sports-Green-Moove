@@ -62,7 +62,7 @@ test('both CI paths rerun isolated authority and the private website retains inc
   assert(content.updates.some((entry) => entry.flow === 'clubs' && entry.title === 'La vérification des parents passe les essais locaux'));
   const group = content.blockers.find((entry) => entry.id === 'group-conversation');
   const team = content.flows.find(flow => flow.id === 'team-conversation');
-  assert.equal(group.source, team.draftRestart.source.replace(/[^/]+$/, 'README.md'));
+  assert.equal(group.source, team.phone.source.replace(/[^/]+$/, 'README.md'));
   const draft = validateRetainedTeamDraft(fileURLToPath(new URL('../', import.meta.url)), team.draftRestart.source);
   assert.equal(draft.fullProcessRestartProven, true); assert.equal(draft.physicalDevice, false);
   assert.equal(draft.notificationsVerified, false); assert.equal(team.status, 'partial');
