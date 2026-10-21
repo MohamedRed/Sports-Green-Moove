@@ -1,16 +1,12 @@
 # Partner Progress Portal
 
-The later connected unread trial passes, including three independently verified
-private receipts and separate parent/driver counts. Its originals and cleanup are
-retained without new gallery images. Two counter-component selectors fail in the
-full ordinary suite; their negative JUnit and corrected, compiled selectors are
-retained separately. A dedicated fresh-phone component lane is prepared, not yet
-accepted. Physical unread state, notifications and release status remain open.
-
-The 21 October unread-state update is service-only: twelve isolated scenarios
-and sixteen native units pass, with original logs, XML and source bytes retained.
-No new app capture or physical unread/notification outcome is accepted. The
-prepared app cases run separately; the existing reviewed galleries are unchanged.
+The 21 October unread work now has twelve isolated service scenarios, nineteen
+local JVM cases, one connected native exchange trial and three executed simulated
+native components. Five reviewed originals open the updated tour and gallery.
+The dedicated lane passes; earlier failed selector/layout attempts stay retained.
+One partial root capture is excluded in favour of its complete original window
+export. Connected receipts and simulated visuals keep separate provenance.
+Physical unread state, notifications and release status remain open.
 
 The later 21 October system-dialer preflight is blocked on a distinct physical
 phone before app sign-in or backend setup. Its Home export is retained only,
@@ -25,8 +21,8 @@ hidden from the driver but restored for the original parent. Accounts use one
 phone sequentially; separate service reads verify exactly one parent message
 and 158 protected records. Process IDs were not read, no video was recorded,
 and notifications, unread state, simultaneous phones and tracking stay open.
-The physical eight-step sequence precedes the six local access-change steps
-in the current tour. Earlier local originals remain in the full gallery.
+The five new simulated read steps precede the physical eight-step sequence and
+the six local access-change steps. Earlier originals remain in the full gallery.
 
 The corrected team-draft flow passes in three distinct native processes with
 two independently verified host stops. The private text is recovered without

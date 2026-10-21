@@ -8,13 +8,15 @@ const nativeAccess = 'docs/release/evidence/team-access-native-2026-10-21/';
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
-    summary: 'Le brouillon reste privé. En local, les lectures sont enregistrées séparément pour chaque compte.',
+    summary: 'En local, les lectures et le compteur passent. Sur téléphone, le brouillon reste privé.',
     verified: 'Sur téléphone : brouillon retrouvé, un seul envoi, puis effacement. En local : lectures, accès et messages séparés entre comptes et équipes.',
-    remaining: 'Terminer les essais d’affichage des compteurs, puis vérifier les notifications, les messages non lus sur téléphone et les échanges entre téléphones.',
+    remaining: 'Vérifier les notifications, les messages non lus sur téléphone et les échanges entre téléphones.',
+    latestEvidence: 'local',
     connected: { source: connected + 'team-conversation-results.json' },
     readServices: { source: 'docs/release/evidence/team-read-services-2026-10-21/services.json' },
     readConnected: { source: 'docs/release/evidence/team-read-connected-2026-10-21/team-conversation-results.json' },
     readAttempt: { source: 'docs/release/evidence/team-read-component-attempt-2026-10-21/results.json' },
+    readComponents: { source: 'docs/release/evidence/team-read-components-2026-10-21/results.json' },
     accessChanges: { source: accessChanges + 'results.json' },
     accessAttempt: { source: accessAttempt + 'results.json' },
     nativeAccess: { source: nativeAccess + 'team-access-results.json' },
@@ -38,6 +40,14 @@ export function createTeamConversationFlow() {
       'Les comptes enfants restent exclus.', 'Le retrait bloque aussi l’envoi et les anciennes pages.',
       'Une réinscription ne rouvre pas l’ancien historique.'] },
     images: [
+      ...[
+        ['count', 'Compteur lisible sur petit écran avec texte agrandi', false],
+        ['visible', 'Conversation ouverte, seuls les messages affichés sont lus', false],
+        ['error', 'Lecture non confirmée avec bouton Réessayer', true],
+        ['retry', 'Après Réessayer, les cinq messages non affichés restent non lus', true],
+        ['revoked', 'Conversation et saisie masquées après refus de l’accès', false],
+      ].map(([id, alt, landscape]) => ({ file: 'team-read-verified-' + id,
+        alt: alt + ', essai local simulé du 21 octobre', landscape })),
       ...[
         ['initial', 'Le parent ne voit que le message postérieur à son admission'],
         ['unsent', 'Brouillon saisi sans envoi'], ['reopened', 'Même brouillon retrouvé après fermeture'],
@@ -75,5 +85,5 @@ export function createTeamConversationFlow() {
       { file: 'team-chat-unconfirmed', alt: 'Envoi non confirmé, message conservé pour réessayer, essai local simulé du 21 octobre' },
       { file: 'team-chat-confirmed', alt: 'Une seule réponse après le renvoi, essai local simulé du 21 octobre' },
       { file: 'team-chat-denied', alt: 'Conversation et saisie masquées après une erreur de vérification, essai local simulé du 21 octobre' },
-    ], source: 'docs/release/evidence/team-draft-phone-2026-10-21/README.md' };
+    ], source: 'docs/release/evidence/team-read-components-2026-10-21/README.md' };
 }

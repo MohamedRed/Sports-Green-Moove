@@ -3,7 +3,12 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'team-conversation': [
-    image('team-draft-phone-initial', 'Ouvrir son équipe', 'Sur téléphone, le parent retrouve le message envoyé après son admission, sans l’ancien historique.'),
+    image('team-read-verified-count', 'Retrouver le compteur', 'Dans un essai local simulé, le nom d’équipe et le compteur restent lisibles sur petit écran, avec texte agrandi.'),
+    image('team-read-verified-visible', 'Lire les messages visibles', 'Seuls les messages affichés sont marqués comme lus.'),
+    image('team-read-verified-error', 'Voir l’erreur de lecture', 'Une lecture non confirmée reste à réessayer.'),
+    image('team-read-verified-retry', 'Réessayer', 'La lecture est enregistrée. Les messages non affichés restent non lus.'),
+    image('team-read-verified-revoked', 'Retirer l’accès', 'La conversation et la saisie disparaissent.'),
+    image('team-draft-phone-initial', 'Ouvrir son équipe', 'Dans un autre essai sur téléphone, le parent retrouve le message envoyé après son admission, sans l’ancien historique.'),
     image('team-draft-phone-unsent', 'Garder un brouillon', 'Le parent écrit sans envoyer.'),
     image('team-draft-phone-reopened', 'Fermer et rouvrir l’app', 'Le même parent retrouve le texte dans la même équipe, sans le retaper.'),
     image('team-draft-phone-sent', 'Envoyer une seule fois', 'Un appui envoie le message. Le champ de saisie se vide.'),

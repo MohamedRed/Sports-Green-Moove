@@ -88,7 +88,7 @@ test('local results are backed by successful evidence and are not presented as p
   assert.equal(flows.length, 13);
   for (const flow of flows) {
     assert.equal(flow.status, 'partial');
-    const currentPhone = flow.phone && (flow.phone.checkedAt ?? flow.checkedAt) === flow.checkedAt;
+    const currentPhone = flow.latestEvidence !== 'local' && flow.phone && (flow.phone.checkedAt ?? flow.checkedAt) === flow.checkedAt;
     assert.match(detail(flow), currentPhone ? /Essai sur téléphone du/ : /Essai local du/);
     if (flow.phone) assert(localResults(flow).includes(`Essai local du ${date(flow.local.checkedAt || flow.checkedAt)}`));
     assert(localResults(flow).includes(flow.local.checks[0]));

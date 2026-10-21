@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Les messages non lus passent les essais locaux',
+    text: 'Petit écran, reprise après erreur et retrait d’accès : les trois essais passent. Cinq captures et une visite mise à jour sont ajoutées.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'La lecture est enregistrée dans l’app',
     text: 'L’essai local passe : chaque compte retrouve son propre compteur après lecture. Deux contrôles d’affichage restent à rejouer avant d’ajouter les captures.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Chaque compte garde ses messages non lus',

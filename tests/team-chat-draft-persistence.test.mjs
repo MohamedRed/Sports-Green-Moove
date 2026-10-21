@@ -21,9 +21,9 @@ test('the physical phone joins eight original states, independent final records 
   const run = validateTeamDraftPhone(process.cwd(), flow.phone.source);
   assert.equal(run.physicalDevice, true); assert.equal(run.twoPhoneFlowVerified, false);
   assert.equal(run.secondPrivateDraftRestoredForParent, true);
-  assert.equal(flow.tour.length, 14); assert.equal(flow.status, 'partial');
-  assert.deepEqual(flow.tour.slice(0, 8).map(step => step.image), teamDraftPhoneStages.map(id => 'team-draft-phone-' + id));
-  assert(flow.tour.slice(8).every(step => step.image.startsWith('team-access-verified-')));
+  assert.equal(flow.tour.length, 19); assert.equal(flow.status, 'partial');
+  assert.deepEqual(flow.tour.slice(5, 13).map(step => step.image), teamDraftPhoneStages.map(id => 'team-draft-phone-' + id));
+  assert(flow.tour.slice(13).every(step => step.image.startsWith('team-access-verified-')));
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
   const smoke = read('.github/workflows/web-integration-smoke.yml');
   assert(smoke.includes('tests/team-chat-draft-persistence.test.mjs'));
@@ -91,7 +91,7 @@ test('the unchanged native case proves unsent recovery, one explicit send and em
   assert.equal(run.unsentCheckpoint.messageCount, 2); assert.equal(run.fixtureIsolation.messageCount, 3);
   assert.equal(run.fixtureIsolation.exactlyOneExplicitParentSend, true);
   assert.equal(new Set([run.firstProcessId, run.secondProcessId, run.processId]).size, 3);
-  assert.equal(flow.status, 'partial'); assert.equal(flow.tour.length, 14);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.tour.length, 19);
   for (const id of teamDraftStages) assert(flow.images.some(image => image.file === 'team-draft-verified-' + id));
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
   assert(captures['team-draft-verified-reopened'].endsWith('/team-draft-reopened.png'));
@@ -131,8 +131,8 @@ test('the observed draft loss stays failed and distinct from the later verified 
   assert.equal(run.fullFlowVerified, false); assert.equal(run.parentSendReached, false);
   assert.match(flow.remaining, /notifications.*téléphones/);
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
-  assert(flow.tour.slice(0, 8).every(step => step.image.startsWith('team-draft-phone-')));
-  assert(flow.tour.slice(8).every(step => step.image.startsWith('team-access-verified-')));
+  assert(flow.tour.slice(5, 13).every(step => step.image.startsWith('team-draft-phone-')));
+  assert(flow.tour.slice(13).every(step => step.image.startsWith('team-access-verified-')));
 });
 for (const key of ['draftRestored', 'parentSendReached', 'thirdProcessReached', 'fullFlowVerified', 'postFailureStoredStateVerified', 'physicalDevice'])
   test(`the failed draft artifact cannot accept ${key}`, () => {
