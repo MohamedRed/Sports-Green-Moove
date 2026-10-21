@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
+import { parse } from 'yaml';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const native = path => read('android/app/src/main/java/be/sportgreenmoove/app/' + path);
@@ -49,6 +50,12 @@ test('only visible foreground rows become read after an account-bound server rec
 test('service scenarios and new native captures are mandatory without claiming notifications or physical execution', () => {
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert(workflow.includes('npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs'));
+  const steps = Object.values(parse(workflow).jobs).flatMap(job => job.steps ?? []);
+  const directory = steps.find(step => step.run?.startsWith('npm run test:team-chat-options '));
+  const reads = steps.find(step => step.run?.startsWith('npm run test:team-chat-reads '));
+  assert(directory && reads); assert.notEqual(reads, directory);
+  assert.equal(directory.env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/team-chat-options.json');
+  assert.equal(reads.env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/team-chat-reads.json');
   const suite = read('scripts/qa/local-team-read-suite.mjs');
   for (const text of ['notificationsVerified: false', 'physicalDevice: false', 'nativeUiExecuted: false',
     'await verifyTeamChatProtectedBaseline(f)', 'await deleteApp(getApp())']) assert(suite.includes(text));

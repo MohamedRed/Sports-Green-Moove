@@ -795,7 +795,11 @@ jobs:
       - name: Verify isolated team conversation directory
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-options.json
-        run: npm run test:team-chat-options && npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs tests/team-chat-read-evidence.test.mjs tests/team-chat-native-contract.test.mjs tests/team-chat-ui-evidence.test.mjs tests/team-chat-connected-contract.test.mjs tests/team-chat-native-attempt.test.mjs tests/team-chat-connected-retained.test.mjs
+        run: npm run test:team-chat-options && node --test tests/team-chat-native-contract.test.mjs tests/team-chat-ui-evidence.test.mjs tests/team-chat-connected-contract.test.mjs tests/team-chat-native-attempt.test.mjs tests/team-chat-connected-retained.test.mjs
+      - name: Verify isolated team read state and retained evidence
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-reads.json
+        run: npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs tests/team-chat-read-evidence.test.mjs
 
       - name: Test isolated guardian verification authority and lifecycle
         run: npm run test:guardian-verification
