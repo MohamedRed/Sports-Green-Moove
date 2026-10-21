@@ -11,13 +11,16 @@ test('eight reviewed phone stages retain their independent reads and bounded ver
   assert.equal(flow.readPhone.source, source); assert.equal(flow.status, 'partial');
   assert.equal(flow.latestEvidence, 'phone'); assert.match(detail(flow), /Essai sur téléphone du/);
   assert.equal(run.nativePngExportObtained, false); assert.equal(run.twoPhoneFlowVerified, false);
-  assert.deepEqual(flow.tour.slice(0, 8).map(step => step.image), Object.keys(run.publishedCaptures));
+  assert.deepEqual(flow.tour.filter(step => step.image.startsWith('team-read-phone-')).map(step => step.image),
+    Object.keys(run.publishedCaptures));
   for (const [id, file] of Object.entries(run.publishedCaptures)) {
     assert.equal(captures[id], source.replace('results.json', file));
     assert.match(flow.images.find(image => image.file === id).alt, /essai sur téléphone du 21 octobre/);
   }
-  const old = flow.images.filter(image => !image.file.startsWith('team-read-phone-'));
-  assert.equal(old.length, 42); assert.equal(flow.tour.slice(8).length, 19);
+  const historyPrefixes = ['team-read-verified-', 'team-draft-', 'team-access-', 'team-chat-'];
+  const historical = value => historyPrefixes.some(prefix => value.startsWith(prefix));
+  assert.equal(flow.images.filter(image => historical(image.file)).length, 42);
+  assert.equal(flow.tour.filter(step => historical(step.image)).length, 19);
   const smoke = readFileSync('.github/workflows/web-integration-smoke.yml', 'utf8');
   assert(smoke.includes('tests/team-chat-read-phone-evidence.test.mjs'));
   const build = readFileSync('scripts/build-partner-portal.mjs', 'utf8'); assert(build.includes('flow.readPhone'));

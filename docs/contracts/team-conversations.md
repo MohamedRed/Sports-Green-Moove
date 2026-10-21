@@ -16,8 +16,9 @@ Booking/ride conversations retain their separate sources and participant rules.
 Team-message callables have isolated server evidence described below. Connected
 Android exchanges, multi-child access changes and durable draft recovery now have
 local native evidence. A later physical trial verifies draft recovery and
-sequential parent/driver accounts on one phone. Simultaneous phone exchanges,
-iOS entry, unread/read state and notifications remain unfinished.
+sequential parent/driver accounts on one phone. Later one-phone trials verify
+unread/read state and a guardian's revoked/renewed access, as described below.
+Simultaneous phone exchanges, iOS entry and notifications remain unfinished.
 The enrollment service alone does not grant message access. Club membership
 alone must not grant it.
 
@@ -291,3 +292,22 @@ independent cleanup proved all four local ports closed and private handoffs
 removed. No device policy was changed. There is no new video: OS screen-sharing
 permission blocked recording. This is neither simultaneous two-phone delivery
 nor physical authority-change, unread, push, tracking or release-audit proof.
+
+## Later Physical Read And Authority Trials, 21 October 2026
+
+`team-read-phone-2026-10-21/README.md` separately retains eight observed phone
+stages and eight persisted checks for unread counts, visible-message reads and
+sequential parent/driver account switching. Its lower-resolution streamed views
+do not replace the earlier draft trial's native exports or process evidence.
+
+`team-authority-phone-2026-10-21/README.md` retains five later phone stages:
+existing post-admission history, revoked parental authority with the open thread
+hidden, renewed authority with empty history, one later driver message and one
+explicit parent UI reply. Independent checkpoints verify denial, revisions 2/3/5,
+four exact messages/operations, the unaffected other parent and 158 protected
+records. Renewal/revocation decisions use separately authenticated services,
+not management screens. Owned phone, helper and backend cleanup are verified.
+
+This one-child trial does not prove physical multi-child authority changes,
+two-phone delivery, push notifications, other platforms, tracking, production
+deployment or release readiness. Earlier records retain their original scope.

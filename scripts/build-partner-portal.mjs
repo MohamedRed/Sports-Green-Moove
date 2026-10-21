@@ -40,7 +40,7 @@ const fingerprints = Object.fromEntries([...new Set([content.nativeVerification.
   content.nativeVerification.checksums, ...Object.values(content.nativeVerification.recheck),
   ...content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.mapUi ? [f.mapUi.source] : []), ...(f.phone ? [f.phone.source] : []), ...(f.historyPhone ? [f.historyPhone.source] : []), ...(f.searchBookingUi ? [f.searchBookingUi.source] : [])])])].map((source) => [source,
   createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex')]));
-for (const flow of content.flows) for (const record of [flow.attempt, flow.connected, flow.accessChanges, flow.readServices, flow.readConnected, flow.readAttempt, flow.readComponents, flow.readPhone, flow.accessAttempt, flow.nativeAccess, flow.draftAttempt, flow.draftRegression, flow.draftRestart, flow.draftErrorChecks, flow.draftErrorRecovery, flow.restorationRecheck, flow.restorationRecovery, flow.observationRecheck, flow.dialerPreflight].filter(Boolean)) {
+for (const flow of content.flows) for (const record of [flow.attempt, flow.connected, flow.accessChanges, flow.readServices, flow.readConnected, flow.readAttempt, flow.readComponents, flow.readPhone, flow.authorityPhone, flow.accessAttempt, flow.nativeAccess, flow.draftAttempt, flow.draftRegression, flow.draftRestart, flow.draftErrorChecks, flow.draftErrorRecovery, flow.restorationRecheck, flow.restorationRecovery, flow.observationRecheck, flow.dialerPreflight].filter(Boolean)) {
   fingerprints[record.source] = createHash('sha256').update(readFileSync(resolve(root, record.source))).digest('hex');
 }
 const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };

@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Un nouvel accord ne rouvre pas les anciens messages',
+    text: 'Retrait de l’accès, nouvel accord et réponse : l’essai passe sur téléphone. Cinq captures sont ajoutées.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les messages non lus passent sur téléphone',
     text: 'Le compteur suit les messages, puis disparaît après lecture. Parent et conducteur gardent leurs propres lectures après reconnexion. Huit captures sont ajoutées.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les messages non lus passent les essais locaux',

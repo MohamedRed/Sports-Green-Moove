@@ -1,5 +1,14 @@
 # Partner Progress Portal
 
+The later 21 October physical authority trial adds five reviewed phone stages:
+removal hides the open conversation, renewal opens empty history, and a later
+message plus one parent UI reply appear without restoring earlier messages.
+Five independent checkpoints verify exact revisions/messages and 158 protected
+records. Renewal decisions use authenticated services, not manager screens.
+The five streamed device rectangles open the tour; all earlier images remain.
+Owned phone/helper/backend cleanup is verified. Multi-child physical authority,
+simultaneous phones, notifications and full CI remain incomplete.
+
 The later 21 October physical unread trial passes eight observed stages with
 eight independent record checks. It uses sequential parent/driver/parent accounts
 on one phone and isolated services. Eight reviewed browser-stream device rectangles

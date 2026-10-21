@@ -3,6 +3,11 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'team-conversation': [
+    image('team-authority-phone-initial', 'Avant le retrait', 'Avec des données de test, le parent retrouve le message reçu après son admission.'),
+    image('team-authority-phone-revoked', 'Retirer l’accès', 'La conversation et la saisie disparaissent sur le téléphone.'),
+    image('team-authority-phone-renewed', 'Donner un nouvel accord', 'Après actualisation, la conversation se rouvre sans les anciens messages.'),
+    image('team-authority-phone-new-message', 'Recevoir un nouveau message', 'Seul le message envoyé après le nouvel accord apparaît.'),
+    image('team-authority-phone-replied', 'Répondre', 'Le parent envoie une seule réponse. Les anciens messages restent masqués.'),
     image('team-read-phone-initial-unread', 'Voir le message non lu', 'Avec des données de test, le parent retrouve un message à lire sur le téléphone.'),
     image('team-read-phone-parent-read', 'Ouvrir la conversation', 'Le message est lu. L’historique antérieur à l’arrivée du parent reste masqué.'),
     image('team-read-phone-new-unread', 'Recevoir un nouveau message', 'Après actualisation, le compteur revient à un message non lu.'),

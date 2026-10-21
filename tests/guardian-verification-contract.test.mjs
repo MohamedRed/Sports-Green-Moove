@@ -65,7 +65,7 @@ test('both CI paths rerun isolated authority and the private website retains inc
   const team = content.flows.find(flow => flow.id === 'team-conversation');
   const root = fileURLToPath(new URL('../', import.meta.url));
   const reads = validateTeamReadPhone(root, team.readPhone.source);
-  assert.equal(group.source, team.readPhone.source.replace(/[^/]+$/, 'README.md'));
+  assert.equal(group.source, team.source);
   assert.equal(reads.notificationsVerified, false); assert.equal(reads.twoPhoneFlowVerified, false);
   const draft = validateRetainedTeamDraft(fileURLToPath(new URL('../', import.meta.url)), team.draftRestart.source);
   assert.equal(draft.fullProcessRestartProven, true); assert.equal(draft.physicalDevice, false);

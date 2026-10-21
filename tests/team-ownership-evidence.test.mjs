@@ -86,7 +86,7 @@ test('manager approval remains authoritative and newer phone reads cannot accept
   const group = content.blockers.find((item) => item.id === 'group-conversation');
   assert.match(group.next, /notifications.*échanges entre téléphones/); assert(!group.next.includes('Choisir qui'));
   const team = content.flows.find(flow => flow.id === 'team-conversation');
-  assert.equal(group.source, team.readPhone.source.replace(/[^/]+$/, 'README.md'));
+  assert.equal(group.source, team.source);
   const reads = JSON.parse(read(team.readPhone.source));
   assert.equal(reads.notificationsVerified, false); assert.equal(reads.twoPhoneFlowVerified, false);
   assert.equal(reads.releaseEvidenceAccepted, false);

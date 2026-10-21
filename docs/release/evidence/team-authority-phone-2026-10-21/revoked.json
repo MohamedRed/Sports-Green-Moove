@@ -1,0 +1,59 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a14a89072818f1eaa17900a95a6f96ec",
+  "recordedAt": "2026-10-21T22:25:25.673Z",
+  "result": {
+    "phase": "revoked",
+    "parentDenied": true,
+    "guardianRevision": 3,
+    "visibleParentMessages": 0,
+    "storedMessages": 2,
+    "historicalMessagesRestored": false
+  },
+  "state": {
+    "guardian": {
+      "status": "revoked",
+      "revision": 3
+    },
+    "parentDenied": true,
+    "parentMessageIds": [],
+    "otherParentMessageIds": [
+      "1a84c613d1d5b8ea8e4e7e7091cc203c1f5b1aa37c46d538f4cce69fc552f9e3"
+    ],
+    "entries": [
+      {
+        "id": "13fea51ba154f27d96ef769fb4ca41af05c26a1bdab667f1675fd57f0f62107e",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Message avant arrivée QA",
+        "sequence": 1,
+        "clientMessageId": "c3cb2127-1146-41e5-af6b-aa63b969747d"
+      },
+      {
+        "id": "1a84c613d1d5b8ea8e4e7e7091cc203c1f5b1aa37c46d538f4cce69fc552f9e3",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Bonjour équipe QA",
+        "sequence": 2,
+        "clientMessageId": "e4e98a3a-4c51-4c82-8b38-639b96ad89ce"
+      }
+    ],
+    "parentMessageId": null,
+    "operationIds": [
+      "13fea51ba154f27d96ef769fb4ca41af05c26a1bdab667f1675fd57f0f62107e",
+      "1a84c613d1d5b8ea8e4e7e7091cc203c1f5b1aa37c46d538f4cce69fc552f9e3"
+    ],
+    "lastSequence": 2
+  },
+  "identity": {
+    "earlyMessageId": "13fea51ba154f27d96ef769fb4ca41af05c26a1bdab667f1675fd57f0f62107e",
+    "initialMessageId": "1a84c613d1d5b8ea8e4e7e7091cc203c1f5b1aa37c46d538f4cce69fc552f9e3",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver"
+  },
+  "isolation": {
+    "protectedBaselinePreserved": true,
+    "originalClaimsUnchanged": true,
+    "expectedProfileTimestampUpdatesOnly": true,
+    "protectedRecordCount": 158
+  },
+  "phoneUiProven": false
+}

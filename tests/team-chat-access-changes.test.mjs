@@ -14,7 +14,7 @@ test('executed multi-child and cross-team services retain all eleven checkpoints
   assert.equal(flow.accessChanges.source, source); assert.equal(flow.status, 'partial');
   assert.match(flow.verified, /lectures restent séparées entre les comptes/);
   assert.match(flow.remaining, /notifications/);
-  assert.equal(flow.images.length, 50);
+  assert.deepEqual(flow.images.filter(image => image.file.startsWith('team-chat-access-')), []);
 });
 const changes = [
   x => x.completed = false, x => x.steps.pop(), x => x.steps[0].status = 'failed',

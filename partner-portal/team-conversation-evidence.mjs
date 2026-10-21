@@ -16,6 +16,7 @@ import { validateRetainedConnectedTeamReads } from '../scripts/qa/team-read-conn
 import { validateTeamReadComponentAttempt } from '../scripts/qa/team-read-component-attempt.mjs';
 import { validateRetainedTeamReadComponents } from '../scripts/qa/team-read-component-evidence.mjs';
 import { validateTeamReadPhone } from '../scripts/qa/team-read-phone-evidence.mjs';
+import { validateTeamAuthorityPhone } from '../scripts/qa/team-authority-phone-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
   if (flow.readComponents) assert.equal(flow.latestEvidence, flow.readPhone ? 'phone' : 'local');
@@ -28,6 +29,7 @@ export function validateTeamConversationRecords(root, flow, captures) {
     [flow.readAttempt, validateTeamReadComponentAttempt, null],
     [flow.readComponents, validateRetainedTeamReadComponents, 'team-read-verified-'],
     [flow.readPhone, validateTeamReadPhone, 'team-read-phone-'],
+    [flow.authorityPhone, validateTeamAuthorityPhone, 'team-authority-phone-'],
     [flow.accessAttempt, validateRetainedTeamAccessAttempt, 'team-access-attempt-'],
     [flow.nativeAccess, validateRetainedTeamAccessNative, 'team-access-verified-'],
     [flow.draftAttempt, validateTeamDraftNativeAttempt, null],

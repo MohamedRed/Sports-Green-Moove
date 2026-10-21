@@ -11,7 +11,8 @@ test('three native read components retain originals, nineteen separate units and
   const flow = content.flows.find(item => item.id === 'team-conversation');
   assert.equal(flow.readComponents.source, source); assert.equal(flow.status, 'partial');
   assert.equal(flow.latestEvidence, 'phone'); assert.match(detail(flow), /Essai sur téléphone du/);
-  assert.deepEqual(flow.tour.slice(8, 13).map(step => step.image), Object.keys(run.publishedCaptures));
+  assert.deepEqual(flow.tour.filter(step => step.image.startsWith('team-read-verified-')).map(step => step.image),
+    Object.keys(run.publishedCaptures));
   for (const [id, file] of Object.entries(run.publishedCaptures)) {
     assert.equal(captures[id], 'docs/release/evidence/team-read-components-2026-10-21/' + file);
     assert.match(flow.images.find(image => image.file === id).alt, /local simulé/);

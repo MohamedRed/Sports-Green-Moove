@@ -118,6 +118,19 @@ Only sanitized result JSON belongs in release evidence. Keep emulators' runtime
 logs and ephemeral credentials out of Git. Local evidence never automatically
 accepts a physical-device or live-payment release-manifest requirement.
 
+For a one-phone team authority replay, `manual-team-authority-phone-session.mjs`
+uses the same private session/output arguments and requires interactive stdin.
+Observe `initial`, then use `revoke` and observe `revoked`. Use `renew` and
+observe `renewed`, then `publish` and observe `new-message`. Send the exact
+reply from `manual-team-authority-checkpoints.mjs` through the phone and observe
+`replied`, then `finish`. Each service mutation executes once with a fresh UUID;
+an unknown outcome aborts rather than retries. Renewal uses authenticated parent
+and manager services, not their screens. Independent checkpoints verify the
+admission boundary, unaffected parent, exact message ledger and protected records.
+They cannot prove screens, simultaneous phones, notifications or release readiness.
+Stop the phone/helper and destroy the owned backend separately, retaining cleanup
+evidence before accepting any physical result.
+
 For owned enrollment history use `manual-team-history-session.mjs` with the same
 private session/output arguments and an interactive stdin. Its fixture creates
 26 real isolated enrollment requests, approves two through a separate manager

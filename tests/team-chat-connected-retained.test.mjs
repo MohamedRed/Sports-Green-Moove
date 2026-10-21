@@ -15,10 +15,12 @@ test('completed connected case binds nine checkpoints, independent records and r
   assert.equal(Object.keys(run.publishedCaptures).length, 4);
   const flow = content.flows.find(item => item.id === 'team-conversation');
   assert.equal(flow.connected.source, source); assert.equal(flow.status, 'partial');
-  assert(flow.attempt.source.includes('native-peer')); assert.equal(flow.images.length, 50);
+  assert(flow.attempt.source.includes('native-peer'));
+  assert.deepEqual(flow.images.filter(image => image.file.startsWith('team-chat-connected-')).map(image => image.file),
+    Object.keys(run.publishedCaptures));
   for (const id of Object.keys(run.publishedCaptures)) assert(flow.images.some(image => image.file === id));
-  assert(tours[flow.id].slice(13, 21).every(item => item.image.startsWith('team-draft-phone-')));
-  assert(tours[flow.id].slice(21).every(item => item.image.startsWith('team-access-verified-')));
+  assert.equal(tours[flow.id].filter(item => item.image.startsWith('team-draft-phone-')).length, 8);
+  assert.equal(tours[flow.id].filter(item => item.image.startsWith('team-access-verified-')).length, 6);
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert(captures[id].endsWith('/' + file));
   assert.match(flow.remaining, /notifications/); assert.match(flow.remaining, /téléphones/);
   assert.equal(run.physicalDevice, false); assert.equal(run.notificationsVerified, false);
