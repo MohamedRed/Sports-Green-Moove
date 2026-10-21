@@ -1,6 +1,7 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -54,7 +55,7 @@ class TeamConversationDraftFlowTest {
     private fun host() = compose.setSgmUiTestContent {
         val density = LocalDensity.current; val scope = rememberCoroutineScope()
         CompositionLocalProvider(LocalDensity provides Density(density.density, fontScale = 1.3f)) {
-            Box(Modifier.width(320.dp)) {
+            Box(Modifier.width(320.dp).fillMaxHeight()) {
                 val composer = state.composer
                 if (composer == null) TeamConversationDraftScreen(state.error, state::load, {})
                 else ConversationComposer(composer.draft, composer::edit, composer.locked, composer.sending,

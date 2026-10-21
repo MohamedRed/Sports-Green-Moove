@@ -4,10 +4,28 @@ import { readFileSync } from 'node:fs';
 import { parseDocument } from 'yaml';
 import { validateTeamDraftLoss } from '../scripts/qa/team-draft-loss-evidence.mjs';
 import { validateRetainedTeamDraft, teamDraftStages } from '../scripts/qa/team-draft-native-retained.mjs';
+import { validateTeamDraftErrorCaptureAttempt } from '../scripts/qa/team-draft-error-capture-attempt.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const ui = 'android/app/src/main/java/be/sportgreenmoove/app/ui/';
+test('the failed storage-error capture remains distinct from the successful connected draft recovery', () => {
+  const flow = content.flows.find(item => item.id === 'team-conversation');
+  const attempt = validateTeamDraftErrorCaptureAttempt(process.cwd(), flow.draftErrorChecks.source);
+  assert.deepEqual(attempt.componentCases, { executed: 2, passed: 1, failed: 1 });
+  assert.equal(attempt.correctedNativeUiVerified, false); assert.deepEqual(attempt.publishedCaptures, []);
+  assert.match(flow.remaining, /erreur de sauvegarde/); assert.equal(flow.status, 'partial');
+  assert.equal(validateRetainedTeamDraft(process.cwd(), flow.draftRestart.source).fullProcessRestartProven, true);
+});
+test('draft error components use a full-height narrow portrait host without weakening capture guards', () => {
+  const component = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationDraftFlowTest.kt');
+  assert(component.includes('Box(Modifier.width(320.dp).fillMaxHeight())'));
+  assert(component.includes('fontScale = 1.3f'));
+  assert(component.includes('captureLocalUi(compose, "$stem.png")'));
+  const capture = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt');
+  assert(capture.includes('check((bitmap.width > bitmap.height) == landscape)'));
+  assert(capture.includes('check(colors.size > 16)'));
+});
 test('the unchanged native case proves unsent recovery, one explicit send and empty composer across three processes', () => {
   const flow = content.flows.find(item => item.id === 'team-conversation');
   const run = validateRetainedTeamDraft(process.cwd(), flow.draftRestart.source);

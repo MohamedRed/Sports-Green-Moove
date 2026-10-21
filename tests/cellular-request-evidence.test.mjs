@@ -82,7 +82,8 @@ test('the reviewed current capture and source stay partial and retain the approv
   const png = read(base + 'local-chat-network-received.png');
   assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
   assert.equal(captures['chat-network-reply'], base + 'local-chat-network-received.png');
-  assert.match(content.blockers.find((item) => item.id === 'group-conversation').text, /parents des enfants inscrits/);
+  const group = content.blockers.find((item) => item.id === 'group-conversation');
+  assert.match(group.text, /membres adultes d’une même équipe/); assert.match(group.text, /parents vérifiés/);
   const smoke = read('.github/workflows/web-integration-smoke.yml').toString();
   assert.equal(smoke.split('"tests/cellular-request-evidence.test.mjs"').length - 1, 2);
   assert(smoke.includes('tests/chat-network-evidence.test.mjs tests/cellular-request-evidence.test.mjs'));

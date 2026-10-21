@@ -2,7 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import { content } from '../partner-portal/content.mjs';
+import { validateRetainedTeamDraft } from '../scripts/qa/team-draft-native-retained.mjs';
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const base = 'docs/release/evidence/local-guardian-verification-2026-10-18/';
 
@@ -59,7 +61,10 @@ test('both CI paths rerun isolated authority and the private website retains inc
   assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
   assert(content.updates.some((entry) => entry.flow === 'clubs' && entry.title === 'La vérification des parents passe les essais locaux'));
   const group = content.blockers.find((entry) => entry.id === 'group-conversation');
-  assert.equal(group.source, 'docs/release/evidence/team-chat-components-2026-10-21/README.md');
-  assert.equal(content.flows.find(flow => flow.id === 'team-conversation').status, 'partial');
-  assert.match(group.next, /échange entre deux comptes/);
+  const team = content.flows.find(flow => flow.id === 'team-conversation');
+  assert.equal(group.source, team.draftRestart.source.replace(/[^/]+$/, 'README.md'));
+  const draft = validateRetainedTeamDraft(fileURLToPath(new URL('../', import.meta.url)), team.draftRestart.source);
+  assert.equal(draft.fullProcessRestartProven, true); assert.equal(draft.physicalDevice, false);
+  assert.equal(draft.notificationsVerified, false); assert.equal(team.status, 'partial');
+  assert.match(group.next, /notifications.*messages non lus.*échanges entre téléphones/);
 });

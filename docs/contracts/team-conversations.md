@@ -12,10 +12,11 @@ relationship and the child's active enrollment in the specific team, not from
 club membership or editable profile fields. Included parents can read and send
 messages and receive the same unread/read state as directly assigned members.
 
-Existing conversation sources still support bookings and ride sessions only.
-Separate team-message callables now have isolated server evidence described
-below. Android entry now has scoped component evidence; connected app exchanges,
-unread/read state and notifications remain unfinished.
+Booking/ride conversations retain their separate sources and participant rules.
+Team-message callables have isolated server evidence described below. Connected
+Android exchanges, multi-child access changes and durable draft recovery now have
+local native evidence. Physical-phone team exchanges, iOS entry, unread/read
+state and notifications remain unfinished.
 The enrollment service alone does not grant message access. Club membership
 alone must not grant it.
 
@@ -85,11 +86,13 @@ service consumes this verification; none is deployed to production.
 A verified link must
 not grant access to another team or club without a current approved enrollment.
 Requests, refusals and removals retain the denial and
-revocation requirements above. The connected team chat app flow remains unverified. On
-19 October, the parent app on an isolated Android phone and the actual club
+revocation requirements above. On 19 October, the parent app on an isolated
+Android phone and the actual club
 management website passed seven enrollment checkpoints together, including the
 child's request/approval. See `phone-team-enrollment-2026-10-19/README.md`.
-No connected team-conversation app result is accepted; no production record is approved.
+That enrollment trial did not test a team conversation. The later local native
+conversation trials below are accepted only within their isolated scope; no
+production record or physical-phone team conversation is approved.
 
 ## Android Enrollment Screen Source
 
@@ -110,8 +113,9 @@ stored transitions. Its parental link was prepared through authenticated fixture
 transitions, not through that manager's parental-verification screen.
 
 This is still not a completed team flow. Owned-request history after lost
-eligibility/retired teams, full process restart, physical parental revocation,
-other devices/platforms and group chat remain open. Backgrounding clears private
+eligibility/retired teams, enrollment-specific process restart, physical parental
+revocation and other devices/platforms remain open. The separate group-chat
+evidence below does not complete those enrollment requirements. Backgrounding clears private
 choices and selection; no automatic resubmission occurs after an unknown write.
 Booking/ride conversation access is unchanged; new team services are not deployed.
 
@@ -195,9 +199,10 @@ including incomplete association metadata or mixed child/adult roles.
 Android source now contains the separate entry, scoped directory, thread,
 per-account/team draft and foreground refresh described below. iOS entry,
 unread/read state and notifications remain unimplemented. These server endpoints
-do not prove a connected app flow or real-phone exchanges. The multi-child/
-alternative-grant, cross-team discovery and notification requirements above remain
-to be verified alongside that app flow. Existing booking/ride conversations are unchanged.
+alone do not prove a connected app flow or real-phone exchanges. Separate local
+native trials below cover connected exchanges, multi-child/alternative grants
+and cross-team isolation. Physical-phone, notification and unread/read-state
+requirements remain open. Existing booking/ride conversations are unchanged.
 
 ## Android Conversation Screens, 21 October 2026
 
@@ -222,6 +227,41 @@ instance; the shared booking composer retains its existing explicit-retry policy
 Three executed simulated component cases, six actual directory callable scenarios,
 an eighteen-scenario message service recheck and ten native unit cases are retained
 in `team-chat-components-2026-10-21/README.md`. The reviewed image allowlist excludes
-one partial redraw. Connected native exchanges, account/draft switching, restart,
-revocation and physical-device/system-inset behavior remain unverified. No production
-deployment, unread/read state or notification delivery is accepted.
+one partial redraw. Later local native exchanges and account switching are retained
+in `team-chat-connected-2026-10-21/README.md`; a separate eleven-checkpoint native
+trial covers two children, revoked/renewed authority and two-team isolation in
+`team-access-native-2026-10-21/README.md`. Manager fixture transitions use SDK calls,
+not that manager's UI. No physical team-chat, production deployment, unread/read
+state or notification delivery is accepted.
+
+## Private Draft Persistence, 21 October 2026
+
+A native trial reproduced unsent draft loss after a verified full process stop.
+The original failure remains in `team-draft-loss-2026-10-21/README.md`.
+The correction saves the body and pending operation UUID atomically in private,
+backup-disabled app storage, scoped to auth UID, team ID and immutable team
+instance. A malformed/read-failed record is an explicit retry error, never a
+silently empty composer. A failed save keeps typed text visible and blocks
+network send until the operation identity can be preserved. An uncertain send
+retains that identity across restart; no automatic send or outbox is added.
+Acknowledgement clears the saved draft only after durable storage succeeds.
+Booking/ride composer behavior otherwise remains unchanged.
+
+The unchanged three-method native trial passed on `eae2535`: two host-issued
+stops verify no process remains, and three distinct process IDs establish the
+two restart boundaries. The same parent recovers the unsent text without
+retyping, one UI tap sends once and a separate driver SDK reads it, the next
+process retains an empty composer, and another signed-in account has no parent
+draft. Independent storage checks prove two seeded messages before send, three
+after, exactly one parent operation and 158 protected records unchanged except
+allowed sign-in timestamps. Owned backend disposal and device-policy restoration
+are retained in `team-draft-native-2026-10-21/README.md`, job `119345801082`.
+
+Ten focused JVM state tests also pass. In a separate ordinary UI run, the
+read-error component case passes and the write-error case stops at its capture's
+orientation guard. Its short test host is corrected to fill the available
+height; compilation passes and executed UI verification of that correction is
+pending. See `team-draft-error-capture-2026-10-21/README.md`. These are not two
+accepted storage-error UI passes. This local draft result
+does not close physical-device restart/tracking, push delivery, unread/read state,
+other-platform, production or release-audit requirements.

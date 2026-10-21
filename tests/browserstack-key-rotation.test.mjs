@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { createDecipheriv, generateKeyPairSync, privateDecrypt, constants } from 'node:crypto';
+import { createDecipheriv, createHash, generateKeyPairSync, privateDecrypt, constants } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { rotateKey, rotationSettings } from '../scripts/security/rotate-browserstack-key.mjs';
@@ -92,4 +92,44 @@ test('retained completion proves credential maintenance, not a new device trial'
   assert.equal(receipt.deviceSessionsStarted, 0);
   assert.equal(receipt.scope, 'credential-rotation-only-no-device-session-or-app-upload');
   assert.ok(!Object.hasOwn(receipt, 'accessKey') && !Object.hasOwn(receipt, 'new_key'));
+});
+
+test('the later replacement rejects the exposed key, updates the secret and retains no plaintext recovery', () => {
+  const base = new URL('../docs/release/evidence/browserstack-key-rotation-2026-10-21/', import.meta.url);
+  const receipt = JSON.parse(readFileSync(new URL('receipt.json', base)));
+  assert.deepEqual(Object.keys(receipt).sort(), ['version', 'requestId', 'repository', 'runId', 'sha', 'rotatedAt',
+    'newKeyAccepted', 'oldKeyRejected', 'newKeyStatus', 'oldKeyStatus', 'scope', 'repositorySecretUpdated',
+    'secretUpdatedAt', 'independentNewKeyStatus', 'privateRecipientKeyRemoved'].sort());
+  assert.equal(receipt.requestId, '27f7d88f-3f1d-4da6-a345-319d40ca5a04');
+  assert.equal(receipt.repository, 'MohamedRed/Sports-Green-Moove'); assert.equal(receipt.runId, '39639558489');
+  assert.equal(receipt.sha, '70daee2173b5d75815d657dd4c4b847682aa67d7');
+  assert.equal(receipt.newKeyAccepted, true); assert.equal(receipt.oldKeyRejected, true);
+  assert.equal(receipt.newKeyStatus, 200); assert.equal(receipt.oldKeyStatus, 401);
+  assert.equal(receipt.independentNewKeyStatus, 200); assert.equal(receipt.repositorySecretUpdated, true);
+  assert(Date.parse(receipt.secretUpdatedAt) > Date.parse(receipt.rotatedAt));
+  assert.equal(receipt.privateRecipientKeyRemoved, true);
+  assert.equal(receipt.scope, 'credential-rotation-only-no-device-session-or-app-upload');
+  const job = JSON.parse(readFileSync(new URL('job.json', base)));
+  assert.equal(job.name, 'rotate-access-key'); assert.equal(job.run_id, Number(receipt.runId));
+  assert.equal(job.head_sha, receipt.sha); assert.equal(job.status, 'completed'); assert.equal(job.conclusion, 'success');
+  const artifact = JSON.parse(readFileSync(new URL('artifact.json', base)));
+  assert.equal(artifact.id, 12363263371); assert.equal(artifact.workflow_run.id, job.run_id);
+  assert.equal(artifact.workflow_run.head_sha, receipt.sha);
+  assert.equal(artifact.name, 'browserstack-key-rotation-' + receipt.requestId);
+  const cleanup = JSON.parse(readFileSync(new URL('cleanup.json', base)));
+  assert.deepEqual(cleanup.loopbackPortsRefused, [5001, 8080, 9000, 9099, 45454, 45690, 45691, 45954]);
+  assert.equal(cleanup.privateSessionFileRemoved, true); assert.equal(cleanup.privateRecipientKeyRemoved, true);
+  for (const key of ['deviceSessionsStarted', 'appUiCasesExecuted', 'acceptedCaptures']) assert.equal(cleanup[key], 0);
+  assert.equal(cleanup.productionAppDataTouched, false);
+  const apk = JSON.parse(readFileSync(new URL('apk-preparation.json', base)));
+  assert.equal(apk.applicationId, 'be.sportgreenmoove.app.local'); assert.equal(apk.emulatorHost, '127.0.0.1');
+  assert.equal(apk.sourceCommit, receipt.sha); assert.equal(apk.deviceSessionStarted, false);
+  assert.equal(apk.acceptedFlowEvidence, false); assert.equal(apk.buildSucceeded, true);
+  const hashes = JSON.parse(readFileSync(new URL('artifact-sha256.json', base)));
+  for (const [file, digest] of Object.entries(hashes)) {
+    assert(!/[\\/]/.test(file)); assert.equal(createHash('sha256').update(readFileSync(new URL(file, base))).digest('hex'), digest);
+  }
+  const guide = readFileSync(new URL('../docs/release/browserstack-isolated-phone-test.md', import.meta.url), 'utf8');
+  assert(guide.includes('do not\nbootstrap an unrestricted connection'));
+  assert(guide.includes('never emit a raw accessibility tree'));
 });

@@ -39,6 +39,23 @@ logs, API logs, MITM proxy or extra hosts. Read back the active console's Only
 Allow and all these switches, and validate with `assertIsolatedTunnelSettings`.
 Only ports 5001, 8080, 9000 and 9099 on `127.0.0.1` and `localhost` are approved.
 
+The local console's initial Connect action can start a tunnel immediately.
+Its approved allowlist must already be configured before authentication; do not
+bootstrap an unrestricted connection to reach its settings. If the initial
+configuration cannot be verified, stop preparation before starting the backend
+or phone. A connected status alone is not evidence of the approved scope.
+
+Credential entry is not safely masked by every accessibility implementation.
+While a credential input may still exist, never emit a raw accessibility tree,
+DOM snapshot, screenshot or selector diagnostic containing its value. Use
+non-emitting observations and redact credential text before returning any
+diagnostic; a click completing does not prove the credential form disappeared.
+Do not copy keys through an unverified clipboard operation. Retrieve existing
+credentials in memory only, hide the account value again, restore any previous
+clipboard and clear temporary credential variables after use. Replace exposed
+credentials before resuming. The 21 October replacement and cleanup are retained
+in `evidence/browserstack-key-rotation-2026-10-21/README.md`.
+
 Chrome may need the testing site's Apps on device permission to detect its local
 helper. Refresh only the relevant page after permission is enabled. Do not
 restart Chrome or alter unrelated sites. The phone toolbar must show its local
