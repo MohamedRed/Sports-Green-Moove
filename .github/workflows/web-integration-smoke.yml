@@ -158,6 +158,7 @@ on:
       - "tests/firestore-streaming-policy.test.mjs"
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
+      - "tests/booking-notice-atomicity.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReplyUnconfirmedException.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt"
@@ -499,6 +500,7 @@ on:
       - "tests/firestore-streaming-policy.test.mjs"
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
+      - "tests/booking-notice-atomicity.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReplyUnconfirmedException.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt"
@@ -791,6 +793,17 @@ jobs:
 
       - name: Validate guardian verification contracts and retained scope
         run: node --test tests/guardian-verification-contract.test.mjs
+      - name: Test atomic booking decisions and recipient notifications
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
+        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs
+      - name: Retain booking notification and cleanup results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: web-booking-notices
+          path: ${{ runner.temp }}/booking-notices.json
+          if-no-files-found: ignore
       - name: Validate physical guardian revocation and new team admission evidence
         run: node --test tests/team-chat-authority-phone-evidence.test.mjs
 

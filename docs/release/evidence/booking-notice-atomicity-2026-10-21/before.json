@@ -1,0 +1,32 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4a33946fd717d06d6f5f19896f7c495b",
+  "testedAt": "2026-10-21T22:46:44.405Z",
+  "scope": "isolated-booking-decision-and-notification-atomicity-not-phone-ui",
+  "completed": false,
+  "steps": [],
+  "observations": [],
+  "protectedRecordCount": 0,
+  "adminClientClosed": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "pushDeliveryVerified": false,
+  "paymentExercised": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "functions/src/callables/bookings.ts": "f1de643813d2c092b59468a76956b64f50d3ad42acf4222f1b58c7b89c5bb4d9",
+    "functions/src/callables/reservations.ts": "ab3464e4ca0072e90747fd77095fcf6c7fe559bad13e9d0f0cf692f78ace1e94",
+    "scripts/qa/local-booking-notices.mjs": "6dbc98e61a6aef619deb6185c677f71d9a8c16a3254ca2d67b756dbb638a4d77"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

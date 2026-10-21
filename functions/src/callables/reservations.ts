@@ -8,7 +8,7 @@ import { toClientBookingRequestSummary } from "../lib/clientBookings.js";
 import { directoryCursor, parseDirectoryCursor } from "../lib/chatDirectoryCursor.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
-import { notifyUsers } from "../lib/notifications.js";
+import { createBookingNotifications } from "../lib/bookingNotifications.js";
 import { parseCallableData } from "../lib/validation.js";
 
 const listInput = z.object({ role: z.enum(["parent", "driver"]), cursor: z.string().min(1).max(2048).optional() });
@@ -64,7 +64,7 @@ export const declineBooking = onCall(async (request) => {
   requireRole(request.auth?.token, "driver");
   const { bookingId } = parseCallableData(declineInput, request.data);
   const ref = firestore.collection("bookings").doc(bookingId);
-  const notification = await firestore.runTransaction(async (transaction) => {
+  await firestore.runTransaction(async (transaction) => {
     const snapshot = await transaction.get(ref);
     if (!snapshot.exists) throw new HttpsError("not-found", "Booking not found.");
     const parsed = reservationSchema.safeParse(snapshot.data());
@@ -80,10 +80,11 @@ export const declineBooking = onCall(async (request) => {
     }
     const now = Timestamp.now();
     transaction.update(ref, { status: "declined", declinedAt: now, declinedByUserId: uid, updatedAt: now });
-    return { parent: booking.parentUserId ?? booking.requesterUserId, title: toClientBookingRequestSummary(booking, trip).title };
-  });
-  await notifyUsers(notification.parent ? [notification.parent] : [], {
-    type: "bookingDeclined", title: "Demande refusée", body: `${notification.title} : demande refusée par le conducteur.`, sourceId: bookingId,
+    const parent = booking.parentUserId ?? booking.requesterUserId;
+    createBookingNotifications(transaction, parent ? [parent] : [], {
+      type: "bookingDeclined", title: "Demande refusée",
+      body: `${toClientBookingRequestSummary(booking, trip).title} : demande refusée par le conducteur.`, sourceId: bookingId,
+    });
   });
   return { bookingId, status: "declined" };
 });

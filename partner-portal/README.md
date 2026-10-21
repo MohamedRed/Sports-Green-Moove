@@ -1,5 +1,12 @@
 # Partner Progress Portal
 
+The 21 October booking notice work retains twelve isolated service checks for
+transactional decisions/notices, write conflicts, replay, read-state preservation,
+concurrent approval and recipient-only inbox delivery. `noticeChecks` is separate
+from the older phone/local UI records, whose dates and captures are unchanged.
+The progress entry explicitly leaves the phone replay pending; it adds no media,
+push, payment or production-deployment claim.
+
 The later 21 October physical authority trial adds five reviewed phone stages:
 removal hides the open conversation, renewal opens empty history, and a later
 message plus one parent UI reply appear without restoring earlier messages.

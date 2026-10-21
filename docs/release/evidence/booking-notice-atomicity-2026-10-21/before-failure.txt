@@ -1,0 +1,13 @@
+AssertionError [ERR_ASSERTION]: Missing expected rejection: A blocked notification write must not commit a booking decision
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async barrier (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-booking-notices.mjs:30:5)
+    at async check (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-booking-notices.mjs:11:39)
+    at async file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-booking-notices.mjs:37:3 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: undefined,
+  operator: 'rejects',
+  diff: 'simple'
+}
+

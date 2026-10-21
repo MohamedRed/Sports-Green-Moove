@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Décision et notification s’enregistrent ensemble',
+    text: 'Accord, refus et annulation : douze essais locaux passent. Le test complet et le passage sur téléphone restent à terminer.', flow: 'booking' },
   { date: '2026-10-21', title: 'Un nouvel accord ne rouvre pas les anciens messages',
     text: 'Retrait de l’accès, nouvel accord et réponse : l’essai passe sur téléphone. Cinq captures sont ajoutées.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les messages non lus passent sur téléphone',

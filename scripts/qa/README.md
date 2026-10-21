@@ -118,6 +118,13 @@ Only sanitized result JSON belongs in release evidence. Keep emulators' runtime
 logs and ephemeral credentials out of Git. Local evidence never automatically
 accepts a physical-device or live-payment release-manifest requirement.
 
+`test:booking-notices` requires a fresh absolute `SGM_LOCAL_FLOW_OUTPUT` and runs
+actual isolated booking decisions. Owned deterministic notice-write guards test
+transaction rollback, not an actual network outage. It checks all three decisions,
+replays, read-state preservation, concurrent approval, scoped inbox recipients and
+158 protected records/claims before destroying its runtime. No phone or push
+delivery is accepted by this service-only suite.
+
 For a one-phone team authority replay, `manual-team-authority-phone-session.mjs`
 uses the same private session/output arguments and requires interactive stdin.
 Observe `initial`, then use `revoke` and observe `revoked`. Use `renew` and

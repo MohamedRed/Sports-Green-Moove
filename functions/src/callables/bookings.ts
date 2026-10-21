@@ -11,7 +11,7 @@ import { roleKeysFromToken } from "../domain/roles.js";
 import type { Trip } from "../domain/types.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
-import { notifyUsers } from "../lib/notifications.js";
+import { createBookingNotifications } from "../lib/bookingNotifications.js";
 import { toClientBookingRequestSummary } from "../lib/clientBookings.js";
 import { parseCallableData } from "../lib/validation.js";
 import { cancellationBalance } from "../services/tripChangeBalanceClosure.js";
@@ -70,7 +70,7 @@ export const approveBooking = onCall(async (request) => {
   const data = parseCallableData(schema, request.data);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
-  const approval = await firestore.runTransaction(async (transaction) => {
+  await firestore.runTransaction(async (transaction) => {
     const bookingSnap = await transaction.get(bookingRef);
     if (!bookingSnap.exists) throw new HttpsError("not-found", "Booking not found.");
     const booking = bookingSnap.data() as BookingDocument;
@@ -98,17 +98,13 @@ export const approveBooking = onCall(async (request) => {
       updatedAt: Timestamp.now(),
     });
 
-    return {
-      parentUserId: booking.parentUserId ?? booking.requesterUserId,
-      tripTitle: trip.title ?? trip.category ?? "Trajet",
-    };
-  });
-
-  await notifyUsers(approval.parentUserId ? [approval.parentUserId] : [], {
-    type: "bookingApproved",
-    title: "Réservation approuvée",
-    body: `${approval.tripTitle} est approuvé par le conducteur.`,
-    sourceId: data.bookingId,
+    const parentUserId = booking.parentUserId ?? booking.requesterUserId;
+    createBookingNotifications(transaction, parentUserId ? [parentUserId] : [], {
+      type: "bookingApproved",
+      title: "Réservation approuvée",
+      body: `${trip.title ?? trip.category ?? "Trajet"} est approuvé par le conducteur.`,
+      sourceId: data.bookingId,
+    });
   });
 
   return { bookingId: data.bookingId, status: "approved" };
@@ -123,7 +119,7 @@ export const cancelBooking = onCall(async (request) => {
   const data = parseCallableData(schema, request.data);
   const bookingRef = firestore.collection("bookings").doc(data.bookingId);
 
-  const notifyUserIds = await firestore.runTransaction(async (transaction) => {
+  await firestore.runTransaction(async (transaction) => {
     const bookingSnap = await transaction.get(bookingRef);
     if (!bookingSnap.exists) throw new HttpsError("not-found", "Booking not found.");
 
@@ -168,14 +164,12 @@ export const cancelBooking = onCall(async (request) => {
       });
     }
 
-    return bookingParticipantUserIds(booking).filter((userId) => userId !== uid);
-  });
-
-  await notifyUsers(notifyUserIds, {
-    type: "bookingCancelled",
-    title: "Réservation annulée",
-    body: data.reason ?? "Une réservation a été annulée.",
-    sourceId: data.bookingId,
+    createBookingNotifications(transaction, bookingParticipantUserIds(booking).filter((userId) => userId !== uid), {
+      type: "bookingCancelled",
+      title: "Réservation annulée",
+      body: data.reason ?? "Une réservation a été annulée.",
+      sourceId: data.bookingId,
+    });
   });
 
   return { bookingId: data.bookingId, status: "cancelled" };

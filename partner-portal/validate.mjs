@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
+import { validateRetainedBookingNotices } from '../scripts/qa/booking-notice-evidence.mjs';
 import { validateEmergencyDialerPreflight } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
@@ -74,6 +75,12 @@ export function validate(root) {
           `Tour ${f.id} references evidence outside its flow`);
         assert(step.title?.trim() && step.text?.trim());
       }
+    }
+    if (f.noticeChecks) {
+      assert.equal(f.id, 'booking'); assert.equal(f.status, 'partial');
+      const run = validateRetainedBookingNotices(root, f.noticeChecks.source);
+      assert.equal(run.testedAt.slice(0, 10), f.noticeChecks.checkedAt);
+      assert(f.noticeChecks.checkedAt <= content.lastVerifiedAt);
     }
     if (f.local) {
       assert.equal(f.status, 'partial', 'Local service checks cannot complete a phone flow');

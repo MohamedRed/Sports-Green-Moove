@@ -39,7 +39,7 @@ export const blockers = [
     next: 'Répéter les coupures, puis vérifier les échanges sur téléphone.', source: nativeVerification.source },
   { id: 'group-conversation', title: 'Terminer la conversation d’équipe',
     text: 'La conversation reste réservée aux membres adultes d’une même équipe et aux parents vérifiés. Un nouvel accord ne rouvre pas les anciens messages.',
-    next: 'Vérifier les notifications et les échanges entre téléphones.', source: 'docs/release/evidence/team-authority-phone-2026-10-21/README.md' },
+    next: 'Ajouter les notifications et vérifier les échanges entre téléphones.', source: 'docs/release/evidence/team-authority-phone-2026-10-21/README.md' },
   { id: 'account-switch-stability', title: 'Vérifier le changement de compte',
     text: 'Le brouillon d’équipe reste privé entre deux comptes sur téléphone. Le plantage d’un ancien essai reste à expliquer.',
     next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: 'docs/release/evidence/local-ui-collection-2026-10-16/README.md' },
