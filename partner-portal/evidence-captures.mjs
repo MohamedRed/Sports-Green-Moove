@@ -1,4 +1,6 @@
 export const captures = {
+  'team-draft-loss-before': 'docs/release/evidence/team-draft-loss-2026-10-21/team-draft-before-window.png',
+  'team-draft-loss-reopened': 'docs/release/evidence/team-draft-loss-2026-10-21/team-draft-reopened-window.png',
   ...Object.fromEntries(['initial', 'remaining', 'revoked', 'renewed', 'other', 'isolated'].map(id => ['team-access-verified-' + id,
     'docs/release/evidence/team-access-native-2026-10-21/team-access-' + id + '-window.png'])),
   ...Object.fromEntries(['initial', 'remaining', 'revoked', 'renewed'].map(id => ['team-access-attempt-' + id,

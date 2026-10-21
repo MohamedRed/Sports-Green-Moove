@@ -69,6 +69,14 @@ collect_component_evidence() {
         fi
       done
     done
+    for stem in team-draft-read-error team-draft-write-error; do
+      for suffix in .png -window.png; do
+        if [[ ! -s "$output_dir/sgm-team-chat-components/$stem$suffix" ]]; then
+          echo "Missing team draft error component evidence: $stem$suffix" >&2
+          return 1
+        fi
+      done
+    done
     adb pull /sdcard/Download/sgm-neutral-text "$output_dir" || return 1
     for screen in search trips; do
       for theme in light dark; do

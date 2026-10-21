@@ -78,7 +78,9 @@ if (failure) throw failure;
 const sources = [...disposableApkSourceFiles, ...['local-team-draft-ui.mjs', 'run-local-team-draft-ui.mjs',
   'run-isolated-ride-ui.mjs', 'team-draft-restart-evidence.mjs', 'team-draft-native-records.mjs',
   'team-conversation-ui-fixture.mjs', 'local-disposable-process-stop.mjs'].map(file => 'scripts/qa/' + file),
-  ...['TeamConversationRoute.kt', 'TeamConversationState.kt', 'ConversationComposerState.kt'].map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
+  ...['TeamConversationRoute.kt', 'TeamConversationState.kt', 'ConversationComposerState.kt', 'TeamConversationDraftState.kt', 'TeamConversationDraftScreen.kt']
+    .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
+  ...['TeamConversationDraftStorage.kt', 'SharedPreferencesTeamConversationDrafts.kt'].map(file => 'android/app/src/main/java/be/sportgreenmoove/app/services/' + file),
   ...['LocalTeamDraftRestartTest.kt', 'LocalTeamChatUi.kt', 'LocalTeamChatPeer.kt', 'NativeTeamMessageInput.kt', 'InputWindowReadiness.kt']
     .map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 writeFileSync(resolve(directory, 'team-draft-app-results.json'), JSON.stringify({ ...marker, testedAt: new Date().toISOString(),

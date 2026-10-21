@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
+import { parseDocument } from 'yaml';
 import { validateTeamDraftBefore, validateTeamDraftRestart, teamDraftScope } from '../scripts/qa/team-draft-restart-evidence.mjs';
 import { validateTeamDraftNativeAttempt } from '../scripts/qa/team-draft-native-attempt.mjs';
 import { content } from '../partner-portal/content.mjs';
@@ -27,7 +28,7 @@ test('two pre-UI failures and compiled signature correction cannot become succes
   const flow = content.flows.find(item => item.id === 'team-conversation');
   const run = validateTeamDraftNativeAttempt(process.cwd(), flow.draftAttempt.source);
   assert.equal(flow.status, 'partial'); assert.equal(run.executedUserFlowCases, 0);
-  assert.deepEqual(run.publishedCaptures, []); assert.equal(flow.images.length, 20);
+  assert.deepEqual(run.publishedCaptures, []); assert.equal(flow.images.length, 22);
   assert.match(flow.remaining, /brouillons après fermeture complète/);
 });
 for (const key of ['nativeCaseCompleted', 'draftRecoveryVerified', 'parentMessageSent', 'fullProcessRestartProven', 'physicalDevice'])
@@ -70,6 +71,7 @@ test('native stages, stored-state checks, original assertions and failed command
   for (const workflow of ['native-ci', 'web-integration-smoke']) {
     const text = read(`.github/workflows/${workflow}.yml`);
     assert.equal(text.split('"tests/team-chat-*.test.mjs"').length - 1, 2);
-    assert(text.includes('tests/team-chat-draft-restart.test.mjs\n'));
+    assert(Object.values(parseDocument(text).toJSON().jobs).some(job => job.steps?.some(step =>
+      step.run?.split(/\s+/).includes('tests/team-chat-draft-restart.test.mjs'))));
   }
 });

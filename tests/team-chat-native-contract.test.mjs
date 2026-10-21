@@ -38,7 +38,8 @@ test('native access binds every callable to the current actor without direct doc
 test('background and failed authority hide private data; uncertain sends reuse the shared composer policy', () => {
   const route = native('ui/TeamConversationRoute.kt'), state = native('ui/TeamConversationState.kt');
   for (const marker of ['repeatOnLifecycle(Lifecycle.State.STARTED)', 'finally { state.clear() }',
-    'if (state.error != null) awaitCancellation()', 'composer.sendOperation', 'rememberSaveable(uid, target.key)']) assert(route.includes(marker), marker);
+    'if (state.error != null) awaitCancellation()', 'composer.sendOperation', 'TeamConversationDraftState(uid, target, storage)',
+    'SharedPreferencesTeamConversationDrafts(context)']) assert(route.includes(marker), marker);
   for (const marker of ['if (version != page.accessVersion) timeline = ConversationTimeline()',
     'check(page.accessVersion == expectedVersion)', 'ticket != generation', 'messages = emptyList(); title = null']) assert(state.includes(marker), marker);
   const directory = native('ui/TeamConversationDirectory.kt');

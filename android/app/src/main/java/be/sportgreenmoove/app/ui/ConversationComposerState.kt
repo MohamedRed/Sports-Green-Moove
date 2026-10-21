@@ -13,6 +13,7 @@ import java.util.UUID
 internal class ConversationComposerState(
     draftState: MutableState<String> = mutableStateOf(""),
     pendingState: MutableState<String?> = mutableStateOf(null),
+    private val persist: ((String, String?) -> Unit)? = null,
 ) {
     var draft by draftState
         private set
@@ -20,7 +21,7 @@ internal class ConversationComposerState(
         private set
     var sending by mutableStateOf(false)
         private set
-    var error by mutableStateOf<String?>(null)
+    var error by mutableStateOf<String?>(if (pendingState.value != null) "Envoi non confirmé. Réessayez." else null)
         private set
     val locked: Boolean get() = pendingId != null
 
@@ -28,10 +29,12 @@ internal class ConversationComposerState(
         if (sending || locked) return
         draft = value
         error = null
+        save(value, null)
     }
 
     fun acknowledge(requestId: String) {
         if (pendingId != requestId) return
+        if (!save("", null)) return
         draft = ""
         pendingId = null
         error = null
@@ -46,6 +49,7 @@ internal class ConversationComposerState(
         if (sending || body.isBlank() || body.length > 1000) return
         val retryingUnconfirmed = pendingId != null
         val requestId = pendingId ?: UUID.randomUUID().toString()
+        if (!save(draft, requestId)) return
         pendingId = requestId
         sending = true
         error = null
@@ -59,11 +63,22 @@ internal class ConversationComposerState(
                 acknowledged(requestId) -> acknowledge(requestId)
                 // A rejected retry cannot rule out a commit by an earlier uncertain attempt.
                 failure is MessageSendException && failure.definitelyRejected && !retryingUnconfirmed -> {
-                    pendingId = null
-                    error = "Envoi refusé. Vérifiez le message et réessayez."
+                    if (save(draft, null)) {
+                        pendingId = null
+                        error = "Envoi refusé. Vérifiez le message et réessayez."
+                    }
                 }
                 else -> error = "Envoi non confirmé. Réessayez."
             }
         } finally { sending = false }
+    }
+
+    private fun save(body: String, requestId: String?): Boolean {
+        return try { persist?.invoke(body, requestId); true }
+        catch (cancelled: CancellationException) { throw cancelled }
+        catch (_: Exception) {
+            error = "Impossible de conserver le brouillon. Réessayez."
+            false
+        }
     }
 }

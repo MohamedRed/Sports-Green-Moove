@@ -107,6 +107,12 @@ rejected two non-void test declarations. Explicit Unit declarations now produce
 three JVM void methods, bound to a separate corrected source snapshot and build.
 This compiled-signature check adds no accepted screenshots, draft recovery, send
 or restart result. The prior six-step access tour and all dated images stay intact.
+The later `draftRegression` is an actual app failure after a verified full process
+stop: the first stage and unsent-message checkpoint pass, then the reopened draft
+is empty. Two reviewed full-window originals are published only as failure evidence.
+The new private durable storage and stable pending-send identity pass focused state
+tests, but require a later successful unchanged three-process run before native
+recovery, send or restart acceptance. The access tour remains unchanged.
 
 The session restoration flow preserves its four reviewed 20 October captures.
 Its separate `restorationRecheck` records the 21 October authentication transport
