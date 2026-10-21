@@ -8,11 +8,13 @@ const nativeAccess = 'docs/release/evidence/team-access-native-2026-10-21/';
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
-    summary: 'Sur téléphone, le brouillon revient après fermeture et reste privé entre deux comptes.',
-    verified: 'Sur téléphone : brouillon retrouvé, un seul envoi, puis effacement. Un second brouillon reste privé au parent. Les accès et les messages de deux équipes restent séparés, en local.',
-    remaining: 'Vérifier les notifications, les messages non lus et les échanges entre téléphones.',
+    summary: 'Le brouillon reste privé. En local, les lectures sont enregistrées séparément pour chaque compte.',
+    verified: 'Sur téléphone : brouillon retrouvé, un seul envoi, puis effacement. En local : lectures, accès et messages séparés entre comptes et équipes.',
+    remaining: 'Terminer les essais d’affichage des compteurs, puis vérifier les notifications, les messages non lus sur téléphone et les échanges entre téléphones.',
     connected: { source: connected + 'team-conversation-results.json' },
     readServices: { source: 'docs/release/evidence/team-read-services-2026-10-21/services.json' },
+    readConnected: { source: 'docs/release/evidence/team-read-connected-2026-10-21/team-conversation-results.json' },
+    readAttempt: { source: 'docs/release/evidence/team-read-component-attempt-2026-10-21/results.json' },
     accessChanges: { source: accessChanges + 'results.json' },
     accessAttempt: { source: accessAttempt + 'results.json' },
     nativeAccess: { source: nativeAccess + 'team-access-results.json' },

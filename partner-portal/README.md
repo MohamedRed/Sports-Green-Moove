@@ -1,5 +1,12 @@
 # Partner Progress Portal
 
+The later connected unread trial passes, including three independently verified
+private receipts and separate parent/driver counts. Its originals and cleanup are
+retained without new gallery images. Two counter-component selectors fail in the
+full ordinary suite; their negative JUnit and corrected, compiled selectors are
+retained separately. A dedicated fresh-phone component lane is prepared, not yet
+accepted. Physical unread state, notifications and release status remain open.
+
 The 21 October unread-state update is service-only: twelve isolated scenarios
 and sixteen native units pass, with original logs, XML and source bytes retained.
 No new app capture or physical unread/notification outcome is accepted. The

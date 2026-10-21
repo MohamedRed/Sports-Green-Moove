@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-21', title: 'La lecture est enregistrée dans l’app',
+    text: 'L’essai local passe : chaque compte retrouve son propre compteur après lecture. Deux contrôles d’affichage restent à rejouer avant d’ajouter les captures.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Chaque compte garde ses messages non lus',
     text: 'Douze contrôles locaux passent côté données : lire un message ne le marque pas chez les autres, ni dans une autre équipe. La vérification dans l’app est en cours.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Le numéroteur reste à débloquer',

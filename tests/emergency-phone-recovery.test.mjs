@@ -20,7 +20,7 @@ test('a failed system-dialer prerequisite adds no accepted app capture, handoff 
   assert.equal(manifest.storeReviewEvidence.items.find(item => item.id === 'emergency_contact_action_screenshot').status, 'pending');
   assert.equal(archivedProgress.length, 85);
   assert(archivedProgress.every(item => item.date <= '2026-10-18'));
-  assert.equal(recentProgress.length, 151);
+  assert.equal(recentProgress.length, 152);
   assert.deepEqual(content.updates.slice(0, recentProgress.length), recentProgress);
 });
 for (const [file, key, value] of [['results.json', 'dialerHandoffVerified', true],
