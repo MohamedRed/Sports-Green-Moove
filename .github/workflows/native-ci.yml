@@ -44,6 +44,7 @@ on:
       - "tests/session-restoration-records.test.mjs"
       - "tests/session-restoration-retained-evidence.test.mjs"
       - "tests/session-restoration-recheck.test.mjs"
+      - "tests/session-transport-observations.test.mjs"
       - "tests/session-disconnect.test.mjs"
       - "tests/session-disconnect-retained-evidence.test.mjs"
       - "tests/parent-search-booking-preparation.test.mjs"
@@ -157,6 +158,7 @@ on:
       - "tests/session-restoration-records.test.mjs"
       - "tests/session-restoration-retained-evidence.test.mjs"
       - "tests/session-restoration-recheck.test.mjs"
+      - "tests/session-transport-observations.test.mjs"
       - "tests/session-disconnect.test.mjs"
       - "tests/session-disconnect-retained-evidence.test.mjs"
       - "tests/parent-search-booking-preparation.test.mjs"
@@ -293,7 +295,7 @@ jobs:
       - name: Validate independently retained Android execution and device observations
         run: node --test tests/independent-native-evidence.test.mjs tests/continuous-device-evidence.test.mjs
       - name: Test bounded restoration faults and unchanged fixture records
-        run: node --test tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-restoration-recheck.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
+        run: node --test tests/session-transport-observations.test.mjs tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-restoration-recheck.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
       - name: Validate guarded full-search preparation and accessible trip controls
         run: node --test tests/parent-search-booking-preparation.test.mjs tests/search-maps-budget.test.mjs tests/search-booking-runner.test.mjs tests/search-maps-bridge.test.mjs tests/search-booking-retained-evidence.test.mjs
       - name: Validate dated full native replay recheck

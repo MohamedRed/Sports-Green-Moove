@@ -14,6 +14,20 @@ configuration and the generated `SGM_QA_PASSWORD`. Do not point the older native
 device shell helpers at production or publish their raw credential-entry captures.
 The local API suite does not install an APK or verify phone UI behavior.
 
+The focused session-restoration case records `session-transport-observations.json`
+at sign-in, screen and orientation boundaries, and on failure before cleanup. The
+guarded disposable app records only capability flags, transport categories and
+monotonic times. A single bounded TCP connection per local auth/functions/proxy
+endpoint is observed before sign-in and on failure, without HTTP payloads, token
+logging, network changes, readiness polling or authentication retries. A connected
+socket proves neither service health nor flow completion. The host validates all
+eight ordered boundaries for a completed case while retaining the original UI,
+proxy, identity, stored-state and disposal requirements. Partial observations
+stay diagnostics; previous failed artifacts remain unchanged. Run
+`node --test tests/session-transport-observations.test.mjs` for the schema and
+integration contracts. This does not establish the cause of earlier transport or
+portrait-return failures, or replace physical network-loss testing.
+
 `test:location-freshness` separately runs actual isolated driver/parent callables.
 It verifies server-bound receipt time, delayed capture age in the parent response,
 refused parent driver uploads and a recent point retaining its real observation

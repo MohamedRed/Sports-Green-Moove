@@ -45,6 +45,7 @@ class LocalSessionRestorationTest {
         check(device.displayRotation == 0)
         check(Settings.System.getInt(context.contentResolver, Settings.System.USER_ROTATION, 0) == 0)
         val directory = File(context.getExternalFilesDir(null), "local-ui-evidence").also { check(it.isDirectory || it.mkdirs()) }
+        val transport = LocalSessionTransportDiagnostics(context, device, session, port)
         val captures = JSONObject()
         fun capture(id: String, landscape: Boolean) {
             val name = "local-session-restoration-$id.png"
@@ -55,14 +56,18 @@ class LocalSessionRestorationTest {
         var orientationRestored = false
         var failure: Throwable? = null
         try {
+            transport.checkpoint("before-sign-in")
             runtime.auth.signOut()
             runBlocking { runtime.auth.signIn(session.getString("parent"), session.getString("password")) }
+            transport.checkpoint("signed-in")
             assertEquals("sgm-qa-parent", auth.currentUser?.uid)
             functions.useEmulator(BuildConfig.SGM_FIREBASE_EMULATOR_HOST, port)
+            transport.checkpoint("launching-app")
             ActivityScenario.launch(MainActivity::class.java).use { activity ->
                 var initialActivity: MainActivity? = null
                 activity.onActivity { initialActivity = it }
                 failedScreen()
+                transport.checkpoint("initial-error")
                 assertEquals(1, control(port, session, "state").getInt("restorationAttempts"))
                 capture("error", false)
                 device.setOrientationLeft()
@@ -72,10 +77,10 @@ class LocalSessionRestorationTest {
                         compose.onAllNodesWithTag("session.restore.error").fetchSemanticsNodes().isNotEmpty()
                 }
                 activity.onActivity { assertNotSame(initialActivity, it) }
-                failedScreen(); capture("rotated-error", true)
+                failedScreen(); transport.checkpoint("rotated-error"); capture("rotated-error", true)
                 assertEquals("recover", control(port, session, "recover").getString("phase"))
                 compose.onNodeWithTag("session.restore.retry").performScrollTo().performClick()
-                readyScreen(); capture("recovered", true)
+                readyScreen(); transport.checkpoint("recovered"); capture("recovered", true)
                 assertEquals(3, control(port, session, "state").getInt("restorationAttempts"))
                 var landscapeActivity: MainActivity? = null
                 activity.onActivity { landscapeActivity = it }
@@ -86,6 +91,7 @@ class LocalSessionRestorationTest {
                         compose.onAllNodesWithTag(SgmTestTags.HomeScreen).fetchSemanticsNodes().isNotEmpty()
                 }
                 readyScreen()
+                transport.checkpoint("restored")
                 activity.onActivity { assertNotSame(landscapeActivity, it) }
                 assertEquals(4, control(port, session, "state").getInt("restorationAttempts"))
                 capture("restored", false)
@@ -94,8 +100,12 @@ class LocalSessionRestorationTest {
                 compose.onNodeWithText(session.getString("parent"), substring = true).assertIsDisplayed()
                 assertEquals("sgm-qa-parent", auth.currentUser?.uid)
                 capture("identity", false)
+                transport.checkpoint("identity-verified")
             }
-        } catch (error: Throwable) { failure = error }
+        } catch (error: Throwable) {
+            failure = error
+            try { transport.checkpoint("failure") } catch (diagnostic: Throwable) { error.addSuppressed(diagnostic) }
+        }
         finally {
             fun cleanup(action: () -> Unit) {
                 try { action() } catch (error: Throwable) {

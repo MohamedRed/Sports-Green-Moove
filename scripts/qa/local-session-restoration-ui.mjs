@@ -15,6 +15,7 @@ import { prepareDisposableTestApks, usePreinstalledTestApks, installationGuardAr
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
+import { validateSessionTransportObservations } from './session-transport-observations.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), android = resolve(root, 'android');
 const serial = process.env.SGM_LOCAL_ANDROID_SERIAL; assert.match(serial, /^emulator-\d+$/);
@@ -22,7 +23,7 @@ const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-too
 const execute = promisify(execFile), directory = process.env.SGM_LOCAL_UI_OUTPUT;
 const run = (cmd, args) => execFileSync(cmd, args, { cwd: root, env: process.env, stdio: 'inherit', timeout: 120_000 });
 mkdirSync(directory, { recursive: true });
-let session, marker, transcript, failure, isolation, apkPreparation, proxy;
+let session, marker, transcript, failure, isolation, apkPreparation, proxy, transport;
 try {
   session = await seedLocalUiFixtures();
   await call('initializeUserProfile', await signIn(session.parent));
@@ -44,6 +45,8 @@ try {
   writeFileSync(resolve(directory, 'LocalSessionRestorationTest-instrumentation.txt'), transcript, { flag: 'wx' });
   assertInstrumentationPassed(transcript, 1);
   collectLocalUiEvidence({ adb, serial, evidenceDir: directory, phase: 'session-restoration', runId: session.runId, password: session.password });
+  transport = validateSessionTransportObservations(JSON.parse(readFileSync(resolve(directory, 'session-transport-observations.json'))),
+    session.runId, { complete: true });
   marker = JSON.parse(readFileSync(resolve(directory, 'local-session-restoration-device.json')));
   assert.equal(marker.scope, 'local-session-restoration-ui-not-physical-network-loss');
   assert.equal(marker.runId, session.runId); assert.equal(marker.projectId, 'demo-sgm-local-qa');
@@ -86,16 +89,17 @@ for (const [label, cleanup] of [
 if (failure) throw failure;
 const paths = [...disposableApkSourceFiles,
   ...['local-session-restoration-ui.mjs', 'run-local-session-restoration-ui.mjs', 'session-restoration-fault-proxy.mjs',
-    'session-restoration-records.mjs', 'run-isolated-ride-ui.mjs', 'local-emulator-lifecycle.mjs', 'local-ui-fixtures.mjs']
+    'session-restoration-records.mjs', 'session-transport-observations.mjs', 'run-isolated-ride-ui.mjs', 'local-emulator-lifecycle.mjs', 'local-ui-fixtures.mjs']
     .map(file => 'scripts/qa/' + file),
   'functions/src/callables/adminUsers.ts',
   'android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt',
   ...['SessionRestoration.kt', 'SessionRestorationState.kt', 'SportsGreenMooveApp.kt', 'AppDataState.kt', 'AppSessionShutdown.kt']
     .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
-  ...['LocalSessionRestorationTest.kt', 'LocalUiCapture.kt'].map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
+  ...['LocalSessionRestorationTest.kt', 'LocalSessionTransportDiagnostics.kt', 'LocalUiCapture.kt']
+    .map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 writeFileSync(resolve(directory, 'session-restoration-app-results.json'), JSON.stringify({ ...marker,
   testedAt: new Date().toISOString(), testCount: 1, nativeCaseCount: 1, steps: [{ id: 'session-restoration', status: 'passed' }],
-  nativeUiExecuted: true, apkPreparation, primaryEvidencePhase: 'session-restoration',
+  nativeUiExecuted: true, apkPreparation, primaryEvidencePhase: 'session-restoration', transportObservations: transport,
   transcriptSha256: createHash('sha256').update(transcript).digest('hex'),
   cleanupMode: 'destroy-owned-local-environment', proxyClosed: true, adminClientClosed: true, localPackagesRemoved: true,
   fixtureIsolation: isolation, productionWrites: false, safetyAuditAccepted: false, storeReviewAccepted: false,
