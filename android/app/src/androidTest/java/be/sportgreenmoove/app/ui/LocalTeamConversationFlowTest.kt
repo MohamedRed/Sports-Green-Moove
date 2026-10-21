@@ -2,8 +2,6 @@ package be.sportgreenmoove.app.ui
 
 import android.content.Context
 import androidx.compose.ui.test.*
-import androidx.compose.ui.semantics.SemanticsProperties
-import androidx.compose.ui.semantics.getOrNull
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
@@ -23,7 +21,7 @@ import java.security.MessageDigest
 
 class LocalTeamConversationFlowTest {
     @get:Rule val compose = createLocalAppComposeRule()
-    @Test fun currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices() {
+    @Test fun currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices() = with(LocalTeamChatUi(compose)) {
         assumeTrue(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR)
         val instrumentation = InstrumentationRegistry.getInstrumentation(); val context = instrumentation.targetContext
         val session = JSONObject(File(context.filesDir, "local-qa-session.json").readText())
@@ -89,52 +87,5 @@ class LocalTeamConversationFlowTest {
             .put("runId", session.getString("runId")).put("scope", "local-native-team-conversation-with-sdk-peers-not-physical-or-push")
             .put("checks", checks).put("screenshots", hashes).put("peerMessageId", peerMessageId)
             .put("parentMessageId", parentMessageId).put("guardianRevokeRequestId", revokeRequestId).toString(2))
-    }
-    private fun login(session: JSONObject, role: String) {
-        waitFor(hasTestTag(SgmTestTags.AuthEmailAction))
-        compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performScrollTo().performTextInput(session.getString(role))
-        compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performScrollTo().performTextInput(session.getString("password"))
-        compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick(); waitFor(hasTestTag(SgmTestTags.HomeScreen))
-    }
-    private fun open(fixture: JSONObject) {
-        click(SgmTestTags.BottomNavMessagesAction); click("team-chat.tab")
-        assertTrue(findChoice(fixture.getString("clubId"))); click("team-chat.choice.${fixture.getString("clubId")}")
-        assertTrue(findChoice(fixture.getString("teamId"))); click("team-chat.choice.${fixture.getString("teamId")}")
-        waitFor(hasTestTag(SgmTestTags.ChatMessageInput) and isEnabled())
-    }
-    private fun findChoice(id: String): Boolean {
-        repeat(30) {
-            compose.waitUntil(60_000) {
-                compose.onAllNodesWithText("Chargement...").fetchSemanticsNodes().isEmpty() &&
-                    (compose.onAllNodes(SemanticsMatcher("team choices") {
-                        it.config.getOrNull(SemanticsProperties.TestTag)?.startsWith("team-chat.choice.") == true
-                    }).fetchSemanticsNodes().isNotEmpty() ||
-                        compose.onAllNodesWithTag("team-chat.choices-more").fetchSemanticsNodes().isNotEmpty() ||
-                        listOf("Aucun club disponible.", "Aucune équipe approuvée.").any { label ->
-                            compose.onAllNodesWithText(label).fetchSemanticsNodes().isNotEmpty() })
-            }
-            if (compose.onAllNodesWithTag("team-chat.choice.$id").fetchSemanticsNodes().isNotEmpty()) return true
-            if (compose.onAllNodesWithTag("team-chat.choices-more").fetchSemanticsNodes().isEmpty()) return false
-            click("team-chat.choices-more")
-        }
-        error("Team directory did not terminate")
-    }
-    private fun inputText() = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode()
-        .config[SemanticsProperties.EditableText].text
-    private fun send(body: String) {
-        compose.onNodeWithTag(SgmTestTags.ChatMessageInput).performTextInput(body); click(SgmTestTags.ChatSendAction)
-        compose.waitUntil(60_000) { inputText().isEmpty() }; waitFor(hasText(body))
-    }
-    private fun capture(stem: String) {
-        captureLocalUi(compose, "$stem.png")
-        val instrumentation = InstrumentationRegistry.getInstrumentation()
-        val file = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence/$stem-window.png")
-        check(UiDevice.getInstance(instrumentation).takeScreenshot(file))
-    }
-    private fun click(tag: String) {
-        waitFor(hasTestTag(tag) and isEnabled()); compose.onNodeWithTag(tag).performClick()
-    }
-    private fun waitFor(matcher: SemanticsMatcher) {
-        compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
     }
 }

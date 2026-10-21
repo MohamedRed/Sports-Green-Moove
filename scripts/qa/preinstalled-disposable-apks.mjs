@@ -12,7 +12,7 @@ export const pinnedPackages = {
   'be.sportgreenmoove.app.local': 'apk/debug/app-debug.apk',
   'be.sportgreenmoove.app.local.test': 'apk/androidTest/debug/app-debug-androidTest.apk',
 };
-export const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation'];
+export const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access'];
 export function isApprovedDeviceCase(env) {
   return focusedCases.includes(env.SGM_FOCUSED_UI_CASE) ||
     env.SGM_FOCUSED_UI_CASE === 'team-chat-components' ||

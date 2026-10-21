@@ -56,8 +56,8 @@ test('every independent case remains scheduled when another case fails', (t) => 
   assert.deepEqual(results.map((result) => result.status), focusedCases.map((_, index) => index === 0 ? 41 : 0));
   assert.deepEqual(results.map((result) => result.calls), focusedCases.map((phase) => ['setup', phase, 'restore']));
 });
-test('all seven dedicated jobs and cleanup remain mandatory under the existing release gate', () => {
-  assert.deepEqual(focusedCases, ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation']);
+test('all eight dedicated jobs and cleanup remain mandatory under the existing release gate', () => {
+  assert.deepEqual(focusedCases, ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access']);
   const native = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   const focused = parseDocument(read('.github/workflows/native-focused-ui.yml')).toJSON();
   assert.equal(native.jobs['android-focused-safety-ui'].uses, './.github/workflows/native-focused-ui.yml');
