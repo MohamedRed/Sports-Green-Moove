@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
 import { validateTeamDraftBefore, validateTeamDraftRestart, teamDraftScope } from '../scripts/qa/team-draft-restart-evidence.mjs';
+import { validateTeamDraftNativeAttempt } from '../scripts/qa/team-draft-native-attempt.mjs';
+import { content } from '../partner-portal/content.mjs';
 
 const runId = 'a'.repeat(32), teamInstanceId = 'b'.repeat(64);
 function fixture() {
@@ -20,6 +22,24 @@ function fixture() {
 test('three independent processes, two verified stops and actual send acknowledgement are required', () => {
   const values = fixture(); validateTeamDraftRestart(...values, runId); validateTeamDraftBefore(values[0], runId);
 });
+
+test('two pre-UI failures and compiled signature correction cannot become successful draft recovery', () => {
+  const flow = content.flows.find(item => item.id === 'team-conversation');
+  const run = validateTeamDraftNativeAttempt(process.cwd(), flow.draftAttempt.source);
+  assert.equal(flow.status, 'partial'); assert.equal(run.executedUserFlowCases, 0);
+  assert.deepEqual(run.publishedCaptures, []); assert.equal(flow.images.length, 20);
+  assert.match(flow.remaining, /brouillons après fermeture complète/);
+});
+for (const key of ['nativeCaseCompleted', 'draftRecoveryVerified', 'parentMessageSent', 'fullProcessRestartProven', 'physicalDevice'])
+  test(`the failed attempt cannot promote ${key}`, () => {
+    const source = content.flows.find(item => item.id === 'team-conversation').draftAttempt.source;
+    const read = path => {
+      const bytes = readFileSync(path);
+      if (!path.endsWith('/results.json')) return bytes;
+      const value = JSON.parse(bytes); value[key] = true; return Buffer.from(JSON.stringify(value));
+    };
+    assert.throws(() => validateTeamDraftNativeAttempt(process.cwd(), source, read));
+  });
 for (const [label, mutate] of [
   ['activity recreation', values => { values[4].processId = 202; }],
   ['wrong first process', values => { values[2].firstProcessId++; }],
@@ -39,6 +59,7 @@ for (const [label, mutate] of [
 test('native stages, stored-state checks, original assertions and failed command status stay mandatory', () => {
   const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
   const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamDraftRestartTest.kt');
+  assert.equal((native.match(/@Test fun \w+\(\): Unit =/g) ?? []).length, 3, 'Every expression-bodied JUnit stage must compile to void');
   for (const name of ['preparePrivateTeamDraft', 'recoverAndSendPrivateDraftInNewProcess', 'acknowledgedDraftStaysEmptyInThirdProcess',
     'assertNotEquals', 'driver.observeParentMessage(body)', 'sendRestoredNativeTeamMessage(compose, body)', 'otherAccountDraftEmpty']) assert(native.includes(name));
   const host = read('scripts/qa/local-team-draft-ui.mjs');

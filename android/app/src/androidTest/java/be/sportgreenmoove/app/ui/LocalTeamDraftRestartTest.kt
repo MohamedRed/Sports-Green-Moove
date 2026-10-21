@@ -23,7 +23,7 @@ class LocalTeamDraftRestartTest {
     private val body = "Brouillon équipe après fermeture QA"
     private val scope = "local-team-draft-process-restart-not-physical-or-push"
 
-    @Test fun preparePrivateTeamDraft() = with(LocalTeamChatUi(compose)) {
+    @Test fun preparePrivateTeamDraft(): Unit = with(LocalTeamChatUi(compose)) {
         val (context, session) = fixture()
         AndroidRuntime.create(context).auth.signOut()
         ActivityScenario.launch(MainActivity::class.java).use {
@@ -34,7 +34,7 @@ class LocalTeamDraftRestartTest {
         }
     }
 
-    @Test fun recoverAndSendPrivateDraftInNewProcess() = with(LocalTeamChatUi(compose)) {
+    @Test fun recoverAndSendPrivateDraftInNewProcess(): Unit = with(LocalTeamChatUi(compose)) {
         val (context, session) = fixture()
         val before = previous(context, session, "local-team-draft-before.json", "draft-prepared")
         AndroidRuntime.create(context)
@@ -57,7 +57,7 @@ class LocalTeamDraftRestartTest {
         }
     }
 
-    @Test fun acknowledgedDraftStaysEmptyInThirdProcess() = with(LocalTeamChatUi(compose)) {
+    @Test fun acknowledgedDraftStaysEmptyInThirdProcess(): Unit = with(LocalTeamChatUi(compose)) {
         val (context, session) = fixture()
         val sent = previous(context, session, "local-team-draft-sent-before.json", "draft-sent")
         assertNotEquals(sent.getInt("firstProcessId"), Process.myPid())

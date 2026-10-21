@@ -101,6 +101,12 @@ checkpoints, seven independently verified messages and verified cleanup. Its six
 reviewed windows form the current tour, including the other-team reply and return
 to the original team. The guardian renewal itself uses SDK peers, not management
 screens. Physical devices, push, unread state and full process restart stay open.
+The separate `draftAttempt` retains two pre-UI failures of the new three-process
+draft lane. The local instrumentation did not attach; the independent CI runner
+rejected two non-void test declarations. Explicit Unit declarations now produce
+three JVM void methods, bound to a separate corrected source snapshot and build.
+This compiled-signature check adds no accepted screenshots, draft recovery, send
+or restart result. The prior six-step access tour and all dated images stay intact.
 
 The session restoration flow preserves its four reviewed 20 October captures.
 Its separate `restorationRecheck` records the 21 October authentication transport

@@ -15,6 +15,7 @@ export function createTeamConversationFlow() {
     accessChanges: { source: accessChanges + 'results.json' },
     accessAttempt: { source: accessAttempt + 'results.json' },
     nativeAccess: { source: nativeAccess + 'team-access-results.json' },
+    draftAttempt: { source: 'docs/release/evidence/team-draft-pre-ui-2026-10-21/results.json' },
     attempt: { source: partial + 'results.json' },
     ui: { source: screens + 'results.json', groups: ['team-chat-entry-and-narrow-layout',
       'team-chat-authorization-failure-hides-thread', 'team-chat-unconfirmed-send-reuses-one-intent'] },

@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Le brouillon après fermeture complète reste à vérifier',
+    text: 'Un essai dédié est ajouté. Les premières tentatives s’arrêtent avant l’app ; le test est corrigé pour la prochaine exécution.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Réessayer retrouve le compte, même après rotation',
     text: 'Le nouvel essai de reconnexion passe en local. Quatre captures montrent l’erreur, le retour à l’accueil et le même compte en portrait.', flow: 'session-restoration' },
   { date: '2026-10-21', title: 'L’essai du suivi s’arrête avant l’ouverture',
