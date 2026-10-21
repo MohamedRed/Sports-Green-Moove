@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'L’échange d’équipe reste à reprendre',
+    text: 'Le nouvel essai s’arrête avant l’ouverture de l’app. Les quatre captures précédentes restent disponibles.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les écrans de la conversation d’équipe passent en local',
     text: 'Ouverture, texte agrandi, renvoi sans doublon et messages masqués en cas d’erreur d’accès : quatre captures d’essais simulés sont ajoutées. L’échange entre deux comptes reste à tester.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les règles de la conversation d’équipe passent en local',

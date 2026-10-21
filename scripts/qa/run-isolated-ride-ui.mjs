@@ -10,7 +10,8 @@ import { assertLocalEndpointsClosed } from './local-emulator-lifecycle.mjs';
 export async function runIsolatedRideUi(name) {
   const entries = { 'native-startup': 'local-native-startup-ui.mjs', 'remote-ride-stop': 'local-remote-ride-stop-ui.mjs',
     'vehicle-map': 'local-vehicle-map-ui.mjs', 'emergency-identity': 'local-emergency-identity-ui.mjs',
-    'session-restoration': 'local-session-restoration-ui.mjs', 'session-disconnect': 'local-session-disconnect-ui.mjs' };
+    'session-restoration': 'local-session-restoration-ui.mjs', 'session-disconnect': 'local-session-disconnect-ui.mjs',
+    'team-conversation': 'local-team-conversation-ui.mjs' };
   assert(Object.hasOwn(entries, name));
   assert.equal(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
   const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-tools/adb` : 'adb';

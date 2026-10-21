@@ -3,9 +3,10 @@ const screens = 'docs/release/evidence/team-chat-components-2026-10-21/';
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
-    summary: 'Les écrans passent les essais simulés. Quatre captures sont ajoutées.',
+    summary: 'Les écrans passent. L’essai entre comptes reste à reprendre.',
     verified: 'La conversation s’ouvre sur petit écran. Le renvoi n’ajoute pas de doublon. Une erreur d’accès masque les messages et la saisie, dans ces essais simulés.',
-    remaining: 'Vérifier l’échange entre deux comptes dans l’app, les notifications et les essais sur téléphone.',
+    remaining: 'Reprendre l’échange entre deux comptes : le dernier essai s’arrête avant l’ouverture. Puis vérifier les notifications et les essais sur téléphone.',
+    attempt: { source: 'docs/release/evidence/team-chat-native-startup-2026-10-21/results.json' },
     ui: { source: screens + 'results.json', groups: ['team-chat-entry-and-narrow-layout',
       'team-chat-authorization-failure-hides-thread', 'team-chat-unconfirmed-send-reuses-one-intent'] },
     local: { source: base + 'services.json', checkedAt: '2026-10-21', groups: [

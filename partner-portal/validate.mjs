@@ -5,6 +5,7 @@ import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
+import { validateTeamChatNativeAttempt } from '../scripts/qa/team-chat-native-attempt.mjs';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
@@ -149,6 +150,10 @@ export function validate(root) {
     if (f.searchBookingUi) {
       assert(['search', 'booking'].includes(f.id)); assert.equal(f.status, 'partial');
       assert.equal(validateRetainedSearchBooking(root, f.searchBookingUi.source).testedAt.slice(0, 10), f.checkedAt);
+    }
+    if (f.attempt) {
+      assert.equal(f.id, 'team-conversation'); assert.equal(f.status, 'partial');
+      assert.equal(validateTeamChatNativeAttempt(root, f.attempt.source).testedAt.slice(0, 10), f.checkedAt);
     }
     if (f.historyPhone) {
       assert.equal(f.status, 'partial');
