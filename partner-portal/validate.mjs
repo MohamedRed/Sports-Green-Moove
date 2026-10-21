@@ -4,6 +4,7 @@ import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
+import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamReviewReport } from '../scripts/qa/team-review-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
@@ -90,6 +91,12 @@ export function validate(root) {
       assert.equal(f.status, 'partial', 'Local UI checks do not complete physical-device requirements');
       const run = JSON.parse(readFileSync(resolve(root, f.ui.source), 'utf8'));
       validateUiScope(run);
+      if (f.id === 'team-conversation' || run.scope === teamChatComponentScope) {
+        assert.equal(f.id, 'team-conversation'); validateRetainedTeamChatUi(root, f.ui.source);
+        const folder = dirname(f.ui.source), review = JSON.parse(readFileSync(resolve(root, folder, 'visual-review.json')));
+        assert.deepEqual(f.images.map(image => image.file).sort(), Object.keys(review.published).sort());
+        for (const [id, file] of Object.entries(review.published)) assert.equal(captures[id], folder + '/' + file);
+      }
       if (f.id === 'session-disconnect' || run.scope === sessionDisconnectScope) {
         assert.equal(f.id, 'session-disconnect'); validateRetainedSessionDisconnect(root, f.ui.source);
       }
@@ -183,6 +190,9 @@ export function validate(root) {
 
 export function validateUiScope(run) {
   switch (run.scope) {
+    case teamChatComponentScope:
+      validateTeamChatComponents(run);
+      break;
     case sessionDisconnectScope:
       validateSessionDisconnectReport(run);
       break;

@@ -70,7 +70,7 @@ test('the boundary is registered in both CI paths and does not promote group or 
   assert.match(read(base + 'README.md'), /not proof that a team ID cannot be deleted and\nrecreated/);
 });
 
-test('the manager approval policy remains authoritative without claiming the team-chat app flow is implemented', () => {
+test('the manager approval policy remains authoritative without accepting a connected team-chat result', () => {
   const contract = read('docs/contracts/team-conversations.md');
   assert.match(contract, /owner selected the club manager to approve people and children/);
   assert.match(contract, /team's stored club, not a client-supplied club ID/);
@@ -78,12 +78,12 @@ test('the manager approval policy remains authoritative without claiming the tea
   assert.match(contract, /club manager to\nverify parent-child authorisation as a separate decision from team enrollment/);
   assert.match(contract, /parents cannot approve\ntheir own relationship/);
   assert.match(contract, /client-declared `children.guardianUserIds` array does not establish\nthis verification/);
-  assert.match(contract, /team chat app flow remains unimplemented/);
+  assert.match(contract, /connected team chat app flow remains unverified/);
   assert.match(contract, /No connected team-conversation app result is accepted/);
   assert(!contract.includes('Approval Policy Pending'));
   const group = content.blockers.find((item) => item.id === 'group-conversation');
-  assert.match(group.next, /écrans de conversation/); assert(!group.next.includes('Choisir qui'));
-  assert.equal(group.source, 'docs/release/evidence/team-conversation-services-2026-10-21/README.md');
+  assert.match(group.next, /échange entre deux comptes/); assert(!group.next.includes('Choisir qui'));
+  assert.equal(group.source, 'docs/release/evidence/team-chat-components-2026-10-21/README.md');
   assert(content.updates.some((item) => item.title === 'Le club validera les inscriptions aux équipes' && item.date === '2026-10-17'));
 });
 

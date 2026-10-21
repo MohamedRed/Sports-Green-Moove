@@ -59,7 +59,7 @@ test('both CI paths rerun isolated authority and the private website retains inc
   assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
   assert(content.updates.some((entry) => entry.flow === 'clubs' && entry.title === 'La vérification des parents passe les essais locaux'));
   const group = content.blockers.find((entry) => entry.id === 'group-conversation');
-  assert.equal(group.source, 'docs/release/evidence/team-conversation-services-2026-10-21/README.md');
+  assert.equal(group.source, 'docs/release/evidence/team-chat-components-2026-10-21/README.md');
   assert.equal(content.flows.find(flow => flow.id === 'team-conversation').status, 'partial');
-  assert.match(group.next, /écrans de conversation/);
+  assert.match(group.next, /échange entre deux comptes/);
 });

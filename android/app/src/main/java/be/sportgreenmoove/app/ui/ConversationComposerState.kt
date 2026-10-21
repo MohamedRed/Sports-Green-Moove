@@ -38,6 +38,10 @@ internal class ConversationComposerState(
     }
 
     suspend fun send(ref: ConversationRef, gateway: ConversationGateway, acknowledged: (String) -> Boolean) {
+        sendOperation({ body, requestId -> gateway.sendMessage(ref, body, requestId) }, acknowledged)
+    }
+
+    suspend fun sendOperation(send: suspend (String, String) -> String, acknowledged: (String) -> Boolean) {
         val body = draft.trim()
         if (sending || body.isBlank() || body.length > 1000) return
         val retryingUnconfirmed = pendingId != null
@@ -46,7 +50,7 @@ internal class ConversationComposerState(
         sending = true
         error = null
         try {
-            gateway.sendMessage(ref, body, requestId)
+            send(body, requestId)
             acknowledge(requestId)
         } catch (cancelled: CancellationException) { throw cancelled }
         catch (failure: Exception) {

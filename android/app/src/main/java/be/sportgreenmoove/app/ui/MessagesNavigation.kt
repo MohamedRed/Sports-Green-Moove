@@ -37,9 +37,10 @@ internal fun MessagesHeader(onNew: () -> Unit) {
 }
 
 @Composable
-internal fun MessagesTabs(inbox: InboxSummary, selected: String, onSelected: (String) -> Unit) {
+internal fun MessagesTabs(inbox: InboxSummary, selected: String, onSelected: (String) -> Unit, teamsEnabled: Boolean = false) {
     val tabs = listOf(MessageTab("notifs", "NOTIFS", inbox.notifications.count { it.unread }, null),
-        MessageTab("chats", "CHATS", 0, SgmTestTags.ChatTab), MessageTab("avis", "AVIS", inbox.reviews.size, SgmTestTags.RatingTab))
+        MessageTab("chats", "CHATS", 0, SgmTestTags.ChatTab), MessageTab("avis", "AVIS", inbox.reviews.size, SgmTestTags.RatingTab)) +
+        if (teamsEnabled) listOf(MessageTab("teams", "ÉQUIPES", 0, "team-chat.tab")) else emptyList()
     Row(Modifier.padding(start = 20.dp, end = 20.dp, bottom = 14.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
         tabs.forEach { tab -> MessageTabButton(tab, selected == tab.id, { onSelected(tab.id) }, Modifier.weight(1f)) }
     }

@@ -4,6 +4,10 @@ import { requireAuth } from "../lib/https.js";
 import { membershipCursorSchema } from "../lib/membershipPageCursor.js";
 import { parseCallableData } from "../lib/validation.js";
 import { sendTeamConversationMessage, teamConversationPage } from "../services/teamConversation.js";
+import { teamChatOptionsSchema, teamConversationOptions } from "../services/teamConversationOptions.js";
+
+export const listTeamChatOptions = onCall(async request => teamConversationOptions(requireAuth(request.auth?.uid),
+  request.auth?.token, parseCallableData(teamChatOptionsSchema, request.data)));
 
 export const sendTeamChatMessage = onCall(async request => {
   const uid = requireAuth(request.auth?.uid), input = parseCallableData(sendTeamMessageSchema, request.data);

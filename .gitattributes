@@ -140,3 +140,7 @@ docs/release/evidence/parent-search-booking-native-2026-10-20/*.claimed -text -w
 docs/release/evidence/neutral-text-contrast-2026-10-20/**/*.xml -text -whitespace
 docs/release/evidence/neutral-text-contrast-2026-10-20/**/*.txt -text -whitespace
 docs/release/evidence/neutral-text-contrast-2026-10-20/**/*.json -text -whitespace
+docs/release/evidence/team-chat-components-2026-10-21/*.txt -text -whitespace
+docs/release/evidence/team-chat-components-2026-10-21/*.log -text -whitespace
+docs/release/evidence/team-chat-components-2026-10-21/*.json -text -whitespace
+docs/release/evidence/team-chat-components-2026-10-21/*.xml -text -whitespace

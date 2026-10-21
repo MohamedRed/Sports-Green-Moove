@@ -14,7 +14,8 @@ messages and receive the same unread/read state as directly assigned members.
 
 Existing conversation sources still support bookings and ride sessions only.
 Separate team-message callables now have isolated server evidence described
-below. Team conversation entry and the corresponding app flow remain unfinished.
+below. Android entry now has scoped component evidence; connected app exchanges,
+unread/read state and notifications remain unfinished.
 The enrollment service alone does not grant message access. Club membership
 alone must not grant it.
 
@@ -84,7 +85,7 @@ service consumes this verification; none is deployed to production.
 A verified link must
 not grant access to another team or club without a current approved enrollment.
 Requests, refusals and removals retain the denial and
-revocation requirements above. The team chat app flow remains unimplemented. On
+revocation requirements above. The connected team chat app flow remains unverified. On
 19 October, the parent app on an isolated Android phone and the actual club
 management website passed seven enrollment checkpoints together, including the
 child's request/approval. See `phone-team-enrollment-2026-10-19/README.md`.
@@ -191,8 +192,36 @@ Old receipts cannot recover inaccessible pre-admission history. Authorization is
 checked before returning any receipt. Child-login associations fail closed,
 including incomplete association metadata or mixed child/adult roles.
 
-Android/iOS entry, discovery, drafts, presentation, foreground refresh, unread/read
-state and notifications remain unimplemented. These server endpoints do not prove
-a working app flow or real-phone exchanges. The multi-child/alternative-grant,
-cross-team discovery and notification requirements above remain to be verified
-alongside that app flow. Existing booking/ride conversations are unchanged.
+Android source now contains the separate entry, scoped directory, thread,
+per-account/team draft and foreground refresh described below. iOS entry,
+unread/read state and notifications remain unimplemented. These server endpoints
+do not prove a connected app flow or real-phone exchanges. The multi-child/
+alternative-grant, cross-team discovery and notification requirements above remain
+to be verified alongside that app flow. Existing booking/ride conversations are unchanged.
+
+## Android Conversation Screens, 21 October 2026
+
+Eligible adults have a Messages > Teams entry. `listTeamChatOptions` transactionally
+checks the current adult account and active club before scanning five records per
+page. Each team is independently checked using the complete conversation authority.
+An empty filtered page retains its continuation cursor. Club choices disclose only
+current active clubs; team choices disclose only approved conversation access.
+Names are nullable, never invented; missing names disable opening that row.
+
+The native adapter binds every reply to the current auth UID, immutable team
+identity and strict schema. Message pages expose the current access version,
+sanitized author labels and operation UUIDs; the same UUID is stored with each
+message and is used to acknowledge a pending send. No direct document read is added.
+
+The thread clears private messages on background or a failed authoritative read,
+refreshes every four seconds only while foreground, and resets loaded history when
+the admission version changes. This polling is the primary team transport, not a
+push-delivery claim. Drafts and uncertain send IDs are saved per account/team
+instance; the shared booking composer retains its existing explicit-retry policy.
+
+Three executed simulated component cases, six actual directory callable scenarios,
+an eighteen-scenario message service recheck and ten native unit cases are retained
+in `team-chat-components-2026-10-21/README.md`. The reviewed image allowlist excludes
+one partial redraw. Connected native exchanges, account/draft switching, restart,
+revocation and physical-device/system-inset behavior remain unverified. No production
+deployment, unread/read state or notification delivery is accepted.

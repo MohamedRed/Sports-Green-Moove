@@ -11,9 +11,11 @@ import be.sportgreenmoove.app.data.ConversationRef
 import be.sportgreenmoove.app.data.ConversationContext
 import be.sportgreenmoove.app.services.ConversationGateway
 import be.sportgreenmoove.app.services.FirebaseGateway
+import be.sportgreenmoove.app.services.TeamConversationGateway
 
 @Composable
-fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway) {
+fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway,
+    teamConversations: TeamConversationGateway? = null, teamUserId: String? = null) {
     val saved = rememberSaveableStateHolder()
     var selectedType by rememberSaveable { mutableStateOf<String?>(null) }
     var selectedId by rememberSaveable { mutableStateOf<String?>(null) }
@@ -28,6 +30,8 @@ fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway
     val type = selectedType
     val id = selectedId
     when {
+        selectedTab == "teams" && teamConversations != null && teamUserId != null ->
+            TeamConversationArea(teamUserId, teamConversations) { selectedTab = "chats" }
         type != null && id != null -> {
             val ref = ConversationRef(ConversationKind.fromSource(type), id)
             saved.SaveableStateProvider(ref.key) {
@@ -45,7 +49,8 @@ fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway
         }
         else -> saved.SaveableStateProvider("inbox") {
             MessagesInboxRoute(firebase, conversations, selectedTab, onSelected = { selectedTab = it },
-                onNew = { choosingBooking = true }, onOpen = { open(it.ref, it.title, it.tripLabel) })
+                onNew = { choosingBooking = true }, onOpen = { open(it.ref, it.title, it.tripLabel) },
+                teamsEnabled = teamConversations != null && teamUserId != null)
         }
     }
 }

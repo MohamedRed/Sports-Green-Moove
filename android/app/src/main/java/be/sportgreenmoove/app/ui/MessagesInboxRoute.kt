@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun MessagesInboxRoute(firebase: FirebaseGateway, gateway: ConversationGateway, selected: String,
-    onSelected: (String) -> Unit, onNew: () -> Unit, onOpen: (ConversationListItem) -> Unit) {
+    onSelected: (String) -> Unit, onNew: () -> Unit, onOpen: (ConversationListItem) -> Unit, teamsEnabled: Boolean = false) {
     val state = remember(firebase, gateway) { MessagesInboxState(firebase, gateway) }
     val scope = rememberCoroutineScope()
     val owner = LocalLifecycleOwner.current
@@ -37,7 +37,7 @@ internal fun MessagesInboxRoute(firebase: FirebaseGateway, gateway: Conversation
     LaunchedEffect(state, owner, refresh) { owner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) { state.observe() } }
     Column(Modifier.fillMaxSize().background(Sgm.colors.bgApp).sgmTestTag(SgmTestTags.MessagesScreen)) {
         MessagesHeader(onNew)
-        MessagesTabs(state.inbox, selected, onSelected)
+        MessagesTabs(state.inbox, selected, onSelected, teamsEnabled)
         LazyColumn(Modifier.weight(1f).sgmTestTag(SgmTestTags.ChatInboxList),
             contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             if (selected == "chats") {

@@ -11,6 +11,10 @@ export const sendTeamMessageSchema = teamConversationTargetSchema.extend({
 });
 export type TeamConversationTarget = z.infer<typeof teamConversationTargetSchema>;
 export type SendTeamMessage = z.infer<typeof sendTeamMessageSchema>;
+export function teamConversationLabel(value: unknown): string | null {
+  return typeof value === "string" && value.trim() && value.length <= 160 &&
+    !/[\u0000-\u001f\u007f-\u009f\u202a-\u202e\u2066-\u2069]/u.test(value) ? value.trim() : null;
+}
 export const teamMessageOperationId = (uid: string, requestId: string) => digest([uid, requestId]);
 export const teamMessageFingerprint = (input: SendTeamMessage) => digest([
   "team-message-v1", input.teamId, input.expectedTeamInstanceId, input.body,

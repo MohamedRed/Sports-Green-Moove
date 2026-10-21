@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Les écrans de la conversation d’équipe passent en local',
+    text: 'Ouverture, texte agrandi, renvoi sans doublon et messages masqués en cas d’erreur d’accès : quatre captures d’essais simulés sont ajoutées. L’échange entre deux comptes reste à tester.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les règles de la conversation d’équipe passent en local',
     text: 'Adultes et parents vérifiés uniquement, sans ancien historique à l’arrivée. Le retrait coupe l’accès. Les écrans et notifications restent à ajouter.', flow: 'team-conversation' },
   { date: '2026-10-21', title: 'Les contacts passent sur téléphone réel',

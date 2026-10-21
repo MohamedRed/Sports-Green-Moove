@@ -50,7 +50,7 @@ collect_component_evidence() {
 
   if [[ "$test_status" -ne 0 ]]; then
     mkdir -p "$output_dir/partial-components" || return 1
-    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components sgm-neutral-text; do
+    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components sgm-neutral-text sgm-team-chat-components; do
       if adb shell test -d "/sdcard/Download/$directory"; then
         if ! adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"; then
           echo "::warning::Could not collect partial component screenshots: $directory"
@@ -60,6 +60,15 @@ collect_component_evidence() {
   fi
 
   if [[ "$test_status" -eq 0 ]]; then
+    adb pull /sdcard/Download/sgm-team-chat-components "$output_dir" || return 1
+    for stem in team-chat-narrow team-chat-denied team-chat-unconfirmed team-chat-confirmed; do
+      for suffix in .png -window.png .json; do
+        if [[ ! -s "$output_dir/sgm-team-chat-components/$stem$suffix" ]]; then
+          echo "Missing team chat component evidence: $stem$suffix" >&2
+          return 1
+        fi
+      done
+    done
     adb pull /sdcard/Download/sgm-neutral-text "$output_dir" || return 1
     for screen in search trips; do
       for theme in light dark; do

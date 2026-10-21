@@ -9,11 +9,16 @@ import { firestore } from "../lib/firebase.js";
 import { hasRole } from "../lib/https.js";
 import { readTeamEnrollment, teamBelongsToCurrentClub, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
 
-export async function requireTeamConversationAccess(transaction: Transaction, uid: string, token: unknown, input: TeamConversationTarget) {
-  const [team, profile, childLogin] = await transaction.getAll(firestore.collection("teams").doc(input.teamId),
-    firestore.collection("users").doc(uid), firestore.collection("childAccountLinks").doc(uid));
+export async function requireTeamConversationAdult(transaction: Transaction, uid: string, token: unknown) {
+  const [profile, childLogin] = await transaction.getAll(firestore.collection("users").doc(uid),
+    firestore.collection("childAccountLinks").doc(uid));
   if (childLogin.exists || !adultTeamChatAccount(token, profile.data()))
     throw new HttpsError("permission-denied", "Team conversations are restricted to adult member accounts.");
+  return profile;
+}
+export async function requireTeamConversationAccess(transaction: Transaction, uid: string, token: unknown, input: TeamConversationTarget) {
+  const profile = await requireTeamConversationAdult(transaction, uid, token);
+  const team = await transaction.get(firestore.collection("teams").doc(input.teamId));
   const context = teamContext(team);
   const [club, membership] = await transaction.getAll(firestore.collection("clubs").doc(context.clubId),
     firestore.collection("memberships").doc(membershipDocumentId(uid, context.clubId)));

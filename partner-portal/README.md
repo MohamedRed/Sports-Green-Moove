@@ -72,6 +72,12 @@ shown before older service-check lists. A screen test does not accept GPS,
 background tracking, push delivery, live-provider or physical-device requirements.
 Never publish black/blank captures from rendering-disabled test device images.
 
+The team conversation's 21 October `ui` evidence is explicitly component-only:
+three simulated cases, four reviewed originals, separate six-directory/eighteen-
+message service checks and ten native units. It does not accept connected native
+exchange or notification delivery. Its visual allowlist excludes a partial root
+redraw and uses the complete original window for that checkpoint.
+
 The parent ride's separate `mapUi` record binds two reviewed map captures to the
 actual native movement report, retained source, unchanged-camera assertions and
 verified disposal. Its synthetic driver coordinates do not accept physical GPS,

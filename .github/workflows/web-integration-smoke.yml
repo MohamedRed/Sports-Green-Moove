@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/team-chat-*.test.mjs"
       - "tests/team-conversation-contract.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "scripts/security/rotate-browserstack-key.mjs"
@@ -331,6 +332,7 @@ on:
     branches:
       - main
     paths:
+      - "tests/team-chat-*.test.mjs"
       - "tests/team-conversation-contract.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "scripts/security/rotate-browserstack-key.mjs"
@@ -766,6 +768,10 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-conversation-services.json
         run: npm run test:team-conversation && node --test tests/team-conversation-contract.test.mjs
+      - name: Verify isolated team conversation directory
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-options.json
+        run: npm run test:team-chat-options && node --test tests/team-chat-native-contract.test.mjs tests/team-chat-ui-evidence.test.mjs
 
       - name: Test isolated guardian verification authority and lifecycle
         run: npm run test:guardian-verification

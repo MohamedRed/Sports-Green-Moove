@@ -5,6 +5,7 @@ import { prepareLocalRuntime, runEmulatorEntry } from './local-runtime.mjs';
 import { assertLocalEndpointsClosed } from './local-emulator-lifecycle.mjs';
 
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
+const mode = process.argv[2]; assert(mode === undefined || mode === '--directory', 'Select the message or directory suite');
 assert(isAbsolute(output ?? '') && !existsSync(output), 'A fresh absolute output path is required');
 const runtime = prepareLocalRuntime(), ports = [9099, 8080, 9000, 5001];
 let report, failure, endpoints;
@@ -12,10 +13,11 @@ try {
   await assertLocalEndpointsClosed(ports);
   runtime.env.SGM_LOCAL_UI_SESSION_FILE = resolve(runtime.temp, 'session.json');
   runtime.env.SGM_LOCAL_FLOW_OUTPUT = resolve(runtime.temp, 'team-conversation-results.json');
-  runEmulatorEntry(runtime, 'local-team-conversation-suite.mjs');
+  runEmulatorEntry(runtime, mode === '--directory' ? 'local-team-chat-options-suite.mjs' : 'local-team-conversation-suite.mjs');
   report = JSON.parse(readFileSync(runtime.env.SGM_LOCAL_FLOW_OUTPUT));
   assert.equal(report.runId, runtime.env.SGM_LOCAL_RUN_ID);
-  assert.equal(report.protectedBaselinePreserved, true); assert.equal(report.adminClientClosed, true);
+  assert.equal(mode === '--directory' ? report.isolation.protectedBaselinePreserved : report.protectedBaselinePreserved, true);
+  assert.equal(report.adminClientClosed, true);
 } catch (error) { failure = error; }
 finally {
   try { runtime.cleanup(); assert(!existsSync(runtime.temp)); endpoints = await assertLocalEndpointsClosed(ports); }

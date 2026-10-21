@@ -78,7 +78,7 @@ try {
   const entries = db.collection('teamConversations').doc(target.expectedTeamInstanceId).collection('entries');
   const batch = db.batch(), at = Timestamp.now();
   for (let i = 0; i < 55; i++) batch.create(entries.doc(sha(`pagination-qa-${i}`)), {
-    senderUserId: driver.uid, body: `Page QA ${i}`, sequence: 4 + i, createdAt: at,
+    senderUserId: driver.uid, clientMessageId: randomUUID(), body: `Page QA ${i}`, sequence: 4 + i, createdAt: at,
   });
   batch.update(entries.parent, { lastSequence: 58 }); await batch.commit();
   const first = await call('getTeamChatMessages', parent, target);

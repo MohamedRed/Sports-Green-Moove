@@ -15,6 +15,7 @@ export const pinnedPackages = {
 export const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect'];
 export function isApprovedDeviceCase(env) {
   return focusedCases.includes(env.SGM_FOCUSED_UI_CASE) ||
+    env.SGM_FOCUSED_UI_CASE === 'team-chat-components' ||
     (env.SGM_FOCUSED_UI_CASE === 'parent-search-booking' && env.SGM_SEARCH_BOOKING_APPROVAL === 'one-trial-max-eight-requests');
 }
 export function requireFocusedDeviceApproval(env) {
@@ -46,7 +47,7 @@ export function assertPinnedApks(shell, hashes) {
 }
 export function assertContinuousDevice(device, receipt) {
   assert.equal(receipt.scope, 'single-case-continuous-installation-guard-not-flow-proof');
-  assert(focusedCases.includes(receipt.case) || receipt.case === 'parent-search-booking');
+  assert(focusedCases.includes(receipt.case) || ['parent-search-booking', 'team-chat-components'].includes(receipt.case));
   assert.equal(receipt.installAdmin?.packageName, installAdminPackage);
   assert.equal(receipt.installAdmin.originalBlocked, false);
   assert.equal(receipt.installAdmin.policyReady, true); assert.equal(receipt.installAdmin.noAccounts, true);

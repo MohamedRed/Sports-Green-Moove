@@ -1,4 +1,8 @@
 export const captures = {
+  ...Object.fromEntries(['narrow', 'denied', 'confirmed', 'unconfirmed'].map(id => [
+    'team-chat-' + id, 'docs/release/evidence/team-chat-components-2026-10-21/team-chat-' + id +
+      (id === 'unconfirmed' ? '-window.png' : '.png'),
+  ])),
   ...Object.fromEntries(['empty', 'saved', 'restored', 'child', 'revoked', 'cancelled', 'removed', 'other-account'].map(id => [
     'emergency-phone-' + id, 'docs/release/evidence/emergency-phone-2026-10-21/' + id + '.png',
   ])),
