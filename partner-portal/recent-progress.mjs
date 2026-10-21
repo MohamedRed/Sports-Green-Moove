@@ -1,4 +1,6 @@
 export const recentProgress = [
+  { date: '2026-10-21', title: 'Les contacts passent sur téléphone réel',
+    text: 'Parent, enfant, retour après fermeture et suppression : huit captures sont ajoutées. L’ouverture du téléphone reste à vérifier.', flow: 'emergency-contact' },
   { date: '2026-10-20', title: 'L’accès aux essais sur téléphone est rétabli',
     text: 'L’accès est vérifié. Les prochains parcours restent à rejouer sur téléphone.', flow: 'publication' },
   { date: '2026-10-20', title: 'Deux places pour un enfant, de la recherche à l’annulation',

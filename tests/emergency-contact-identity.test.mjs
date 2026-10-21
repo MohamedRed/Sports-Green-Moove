@@ -77,12 +77,15 @@ test('every required original artifact remains hash-bound and all three CI paths
     assert(source.includes('npm run test:emergency-contact-identity')); assert(source.includes('npm run test:emergency-contact-fixture'));
   }
 });
-test('the private progress update stays local and does not retime old screenshots or claim a new phone run', () => {
+test('the new bounded phone run does not retime the earlier local identity evidence', () => {
   const flow = content.flows.find((item) => item.id === 'emergency-contact');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-19');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-21');
   assert.equal(flow.local.source, base + 'services.json'); assert.equal(flow.ui.checkedAt, '2026-10-19');
-  assert.equal(flow.phone, undefined); assert.equal(flow.source, base + 'README.md');
+  assert.equal(flow.local.checkedAt, '2026-10-19');
+  assert.equal(flow.phone.source, 'docs/release/evidence/emergency-phone-2026-10-21/results.json');
+  assert.equal(flow.phone.checkedAt, '2026-10-21');
+  assert.equal(flow.source, 'docs/release/evidence/emergency-phone-2026-10-21/README.md');
   assert.equal(flow.images.filter((image) => image.file.startsWith('emergency-current-') && image.alt.includes('19 octobre')).length, 7);
   assert.equal(flow.images.filter((image) => image.file.startsWith('emergency-editor-') && image.alt.includes('18 octobre')).length, 2);
-  assert.match(flow.remaining, /sur téléphone, sans appeler/); assert.match(flow.remaining, /l’accès de l’enfant/);
+  assert.match(flow.remaining, /reste à vérifier, sans appeler/); assert.match(flow.remaining, /l’accès de l’enfant/);
 });

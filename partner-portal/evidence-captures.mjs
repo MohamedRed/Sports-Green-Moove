@@ -1,4 +1,7 @@
 export const captures = {
+  ...Object.fromEntries(['empty', 'saved', 'restored', 'child', 'revoked', 'cancelled', 'removed', 'other-account'].map(id => [
+    'emergency-phone-' + id, 'docs/release/evidence/emergency-phone-2026-10-21/' + id + '.png',
+  ])),
   ...Object.fromEntries(['choices', 'requested', 'driver-approved', 'cancelled'].map(id => [
     'search-booking-' + id, 'docs/release/evidence/parent-search-booking-native-2026-10-20/local-parent-search-booking-' + id + '.png',
   ])),

@@ -43,7 +43,12 @@ evidence keeps an explicit `phone.checkedAt`; a newer local trial must not appea
 as a refreshed physical-phone result in the gallery heading.
 
 The builder copies only allowlisted media. Historical screenshots are cropped to
-the device, not altered inside the app. Four 13-16 second excerpts are trimmed at
+the device. The 21 October emergency-contact tour contains eight reviewed
+physical-phone originals backed by an explicitly incomplete primary sequence
+and separate recovery observations. It does not accept the unresolved dialer,
+child-own-login, active-ride or tracking requirements. Earlier local images stay
+in the evidence gallery with their original date. App content is not altered.
+Four 13-16 second excerpts are trimmed at
 real speed from the October 13 replay exports; no transition or outcome is
 fabricated. Those exports remain available as long recordings. The sign-out long
 export already omits troubleshooting, as documented in its original report.
