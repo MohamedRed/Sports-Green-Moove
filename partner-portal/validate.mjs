@@ -29,12 +29,14 @@ import { sessionRestorationScope, validateSessionRestorationReport, validateReta
 import { sessionDisconnectScope } from '../scripts/qa/session-disconnect-evidence.mjs';
 import { validateSessionDisconnectReport, validateRetainedSessionDisconnect } from '../scripts/qa/session-disconnect-retained-evidence.mjs';
 import { validateRetainedSearchBooking } from '../scripts/qa/search-booking-retained-evidence.mjs';
+import { validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
   assertDate(content.updatedAt);
   assertDate(content.lastVerifiedAt);
   assert(content.lastVerifiedAt <= content.updatedAt);
+  validateFlowRecheck(root, content.flowRecheck);
   const nativeDirectory = dirname(content.nativeVerification.manifest);
   assert(nativeDirectory.startsWith('docs/release/evidence/'));
   assert.equal(content.nativeVerification.source, nativeDirectory + '/README.md');

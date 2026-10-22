@@ -14,6 +14,7 @@ import { writePrivateConfigPipe } from '../scripts/qa/write-private-config-pipe.
 const fictionalKey = 'FictionalCredentialForTestOnly';
 function harness(t) {
   const child = new EventEmitter(); child.pid = 123; const kills = [], calls = [], configPipe = privatePipe(t);
+  child.stdout = new EventEmitter(); child.stderr = new EventEmitter();
   const h = { child, kills, calls, configPipe };
   child.kill = signal => { kills.push(signal); queueMicrotask(() => child.emit('close', null, signal)); };
   h.spawnImpl = (...args) => { calls.push(args); h.received = readFile(configPipe, 'utf8'); return child; };
@@ -34,7 +35,7 @@ test('the private config FIFO contains only the key; argv, env and logs cannot c
   assert.equal(result.code, 0); assert.equal(h.calls.length, 1);
   const [binary, args, options] = h.calls[0]; assert.equal(binary, '/vendor/BrowserStackLocal');
   assert(!JSON.stringify([args, options]).includes(fictionalKey));
-  assert.deepEqual(options.stdio, ['ignore', 'ignore', 'ignore']);
+  assert.deepEqual(options.stdio, ['ignore', 'pipe', 'pipe']);
   assert.equal(await h.received, `key: ${fictionalKey}\n`);
 });
 test('an already aborted launch cannot start a provider process', async t => {
@@ -64,6 +65,44 @@ test('a vendor exit before reading config cancels the private transfer', async t
     spawnImpl: () => { queueMicrotask(() => h.child.emit('close', 127, null)); return h.child; },
   }), /Private credential transfer failed/);
   assert.deepEqual(h.kills, []);
+});
+test('vendor failures retain only fixed classifications and exit status, never output or credentials', async t => {
+  const h = harness(t);
+  await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
+    signal: new AbortController().signal, env: {}, configPipe: h.configPipe, spawnImpl: h.spawnImpl,
+    onSpawn: () => {
+      h.child.stdout.emit('data', `Invalid access key ${fictionalKey}`);
+      h.child.stderr.emit('data', `Address already in use; private request body ${fictionalKey}`);
+      h.child.emit('close', 7, null);
+    },
+  }), error => {
+    assert.equal(error.vendorOutcome.code, 7); assert.equal(error.vendorOutcome.signal, null);
+    assert.deepEqual(error.vendorOutcome.diagnostics, {authenticationRejected: true, duplicateConnection: false,
+      portUnavailable: true, networkFailure: false, configurationRejected: false});
+    assert(!JSON.stringify(error).includes(fictionalKey)); assert(!String(error).includes(fictionalKey)); return true;
+  });
+  assert.equal(h.calls.length, 1); assert.equal(h.child.stdout.listenerCount('data'), 0);
+});
+test('approved startup diagnostics preserve restrictions and redact split or truncated credential output', async t => {
+  for (const truncated of [false, true]) {
+    const h = harness(t);
+    await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
+      signal: new AbortController().signal, env: {}, configPipe: h.configPipe, startupDiagnostic: true, spawnImpl: h.spawnImpl,
+      onSpawn: () => {
+        h.child.stdout.emit('data', (truncated ? 'x'.repeat(8185) : 'Startup failed: ') + fictionalKey.slice(0, 10));
+        h.child.stderr.emit('data', fictionalKey.slice(10)); h.child.emit('close', 126, null);
+      },
+    }), error => {
+      const output = error.vendorOutcome.startupOutput;
+      assert.equal(error.vendorOutcome.code, 126); assert.equal(error.vendorOutcome.startupOutputTruncated, truncated);
+      assert(!output.includes(fictionalKey)); assert(!output.includes(fictionalKey.slice(0, 7)));
+      assert(truncated || output.includes('[REDACTED]')); return true;
+    });
+    const args = h.calls[0][1]; assert.equal(args[args.indexOf('--verbose') + 1], '1');
+    assert.equal(args[args.indexOf('--only') + 1], isolatedLocalAllowlist);
+    assert(!args.includes('--enable-logging-for-api')); assert(args.includes('--disable-dashboard'));
+  }
+  assert.equal(scopedLocalArguments('/private/config.pipe')[5], '0', 'Startup verbosity never becomes the default');
 });
 test('a receipt callback failure still stops the owned provider process', async t => {
   const h = harness(t);

@@ -34,8 +34,10 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
-  updatedAt: '2026-10-21',
-  lastVerifiedAt: '2026-10-21',
+  updatedAt: '2026-10-22',
+  lastVerifiedAt: '2026-10-22',
+  flowRecheck: {source: 'docs/release/evidence/flow-recheck-2026-10-22/summary.json', checkedAt: '2026-10-22',
+    checksums: 'docs/release/evidence/flow-recheck-2026-10-22/artifact-sha256.json'},
   nativeVerification,
   releaseNote: 'Tests en cours.',
   updates: [

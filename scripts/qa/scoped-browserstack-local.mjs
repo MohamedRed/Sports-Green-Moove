@@ -10,15 +10,16 @@ export const scopedLocalSettings = Object.freeze({ onlyAllow: isolatedLocalAllow
 export const allowedHelperEnvironment = Object.freeze(['PATH', 'USER', 'LOGNAME', 'TMPDIR', 'HOME', 'XDG_CONFIG_HOME',
   '__CF_USER_TEXT_ENCODING']);
 
-export function scopedLocalArguments(configPipe) {
+export function scopedLocalArguments(configPipe, startupDiagnostic = false) {
   assert(isAbsolute(configPipe ?? ''));
+  assert.equal(typeof startupDiagnostic, 'boolean');
   assertIsolatedTunnelSettings(scopedLocalSettings);
-  return ['--config-file', configPipe, '--only', isolatedLocalAllowlist, '--verbose', '0',
+  return ['--config-file', configPipe, '--only', isolatedLocalAllowlist, '--verbose', startupDiagnostic ? '1' : '0',
     '--log-file', '/dev/null', '--disable-dashboard', '--timeout', '10'];
 }
 
 // The vendor cannot read inherited descriptors; a private FIFO keeps config bytes off disk.
-export async function runScopedLocalBinary(binary, accessKey, { signal, env, configPipe, spawnImpl = spawn, onSpawn = () => {} }) {
+export async function runScopedLocalBinary(binary, accessKey, { signal, env, configPipe, startupDiagnostic = false, spawnImpl = spawn, onSpawn = () => {} }) {
   assert(isAbsolute(binary)); assert(signal instanceof AbortSignal);
   assert.equal(typeof accessKey, 'string'); assert(/^[A-Za-z0-9]{20,256}$/.test(accessKey), 'Invalid credential shape');
   assert(Object.keys(env).every(key => allowedHelperEnvironment.includes(key)),
@@ -27,7 +28,20 @@ export async function runScopedLocalBinary(binary, accessKey, { signal, env, con
   if (signal.aborted) return { spawned: false, stopped: true, code: 0, signal: null };
   assertPrivatePipe(configPipe);
   const transfer = new AbortController();
-  const child = spawnImpl(binary, scopedLocalArguments(configPipe), { env, stdio: ['ignore', 'ignore', 'ignore'] });
+  const child = spawnImpl(binary, scopedLocalArguments(configPipe, startupDiagnostic), { env, stdio: ['ignore', 'pipe', 'pipe'] });
+  const diagnosticKey = startupDiagnostic ? accessKey : ''; let startupOutput = '', startupOutputBytes = 0;
+  const diagnostics = { authenticationRejected: false, duplicateConnection: false, portUnavailable: false,
+    networkFailure: false, configurationRejected: false };
+  const classify = chunk => {
+    const text = String(chunk).slice(0, 8192);
+    if (startupDiagnostic) { startupOutputBytes += Buffer.byteLength(String(chunk)); startupOutput = (startupOutput + text).slice(0, 8192); }
+    diagnostics.authenticationRejected ||= /invalid (?:access )?key|authentication failed|unauthori[sz]ed/i.test(text);
+    diagnostics.duplicateConnection ||= /another (?:instance|binary|connection)|already (?:running|connected)/i.test(text);
+    diagnostics.portUnavailable ||= /EADDRINUSE|address already in use|port.*(?:occupied|in use)/i.test(text);
+    diagnostics.networkFailure ||= /could not connect|unable to connect|connection (?:failed|refused)|timed? ?out|ENOTFOUND/i.test(text);
+    diagnostics.configurationRejected ||= /invalid (?:option|config)|unknown (?:option|argument)|config.*(?:invalid|error)/i.test(text);
+  };
+  child.stdout?.on('data', classify); child.stderr?.on('data', classify);
   let finished = false;
   const closed = new Promise((resolve, reject) => {
     child.once('error', () => { finished = true; transfer.abort(); reject(new Error('Scoped helper could not start')); });
@@ -44,10 +58,19 @@ export async function runScopedLocalBinary(binary, accessKey, { signal, env, con
     config.fill(0); onSpawn(child.pid);
     if (signal.aborted) stop();
     const result = await closed;
-    assert(result.code === 0 || (signal.aborted && (['SIGINT', 'SIGTERM'].includes(result.signal) || [130, 143].includes(result.code))),
-      'Scoped helper exited unsuccessfully; no device flow is verified');
+    if (!(result.code === 0 || (signal.aborted && (['SIGINT', 'SIGTERM'].includes(result.signal) || [130, 143].includes(result.code)))))
+      throw Object.assign(new Error('Scoped helper exited unsuccessfully; no device flow is verified'),
+        { vendorOutcome: { code: result.code, signal: result.signal, diagnostics,
+          ...(startupDiagnostic ? {startupOutputBytes, startupOutputTruncated: startupOutputBytes > 8192,
+            startupOutput: startupOutput.replaceAll(diagnosticKey, '[REDACTED]')
+              .replace(/Bearer\s+[^\s]+|AIza[\w-]{20,}|eyJ[\w-]+\.[\w-]+\.[\w-]*/g, '[REDACTED]')
+              .replace(/([?&](?:key|token|access_key|password)=)[^&\s]+/gi, '$1[REDACTED]')
+              .slice(0, Math.max(0, 8192 - diagnosticKey.length))} : {}) } });
     return { ...result, spawned: true, stopped: signal.aborted };
   } catch (error) {
     stop(); await closed.catch(() => {}); throw error;
-  } finally { config.fill(0); signal.removeEventListener('abort', stop); }
+  } finally {
+    config.fill(0); startupOutput = ''; signal.removeEventListener('abort', stop);
+    child.stdout?.removeListener('data', classify); child.stderr?.removeListener('data', classify);
+  }
 }

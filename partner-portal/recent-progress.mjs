@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Les 24 essais côté données passent',
+    text: 'Réservations, messages et changements de trajet passent. L’essai complet dans l’app reste interrompu ; la connexion du prochain téléphone est à débloquer.', flow: 'booking' },
   { date: '2026-10-21', title: 'Décision et notification s’enregistrent ensemble',
     text: 'Accord, refus et annulation : douze essais locaux passent. Le test complet et le passage sur téléphone restent à terminer.', flow: 'booking' },
   { date: '2026-10-21', title: 'Un nouvel accord ne rouvre pas les anciens messages',

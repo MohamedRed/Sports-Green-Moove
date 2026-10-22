@@ -1,5 +1,14 @@
 # Partner Progress Portal
 
+The 22 October review retains terminal service and native CI metadata separately.
+All 24 service groups pass in the actual remote log. The full native replay fails
+during evidence transfer with an observed offline transport; eleven focused lanes
+pass. The new booking phone attempt reaches no UI checkpoint because its private
+helper exits 126 before connecting. No new media, phone success, push or release
+acceptance is claimed. The helper retains only fixed error classifications, never
+raw vendor output by default. An approved startup-only diagnostic also exits 126
+without identifying the cause. The normal verbosity remains unchanged.
+
 The 21 October booking notice work retains twelve isolated service checks for
 transactional decisions/notices, write conflicts, replay, read-state preservation,
 concurrent approval and recipient-only inbox delivery. `noticeChecks` is separate

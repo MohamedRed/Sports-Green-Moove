@@ -159,6 +159,8 @@ on:
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
       - "tests/booking-notice-atomicity.test.mjs"
+      - "tests/manual-booking-phone-checkpoints.test.mjs"
+      - "tests/flow-recheck.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReplyUnconfirmedException.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt"
@@ -501,6 +503,8 @@ on:
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
       - "tests/booking-notice-atomicity.test.mjs"
+      - "tests/manual-booking-phone-checkpoints.test.mjs"
+      - "tests/flow-recheck.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReplyUnconfirmedException.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt"
@@ -796,7 +800,7 @@ jobs:
       - name: Test atomic booking decisions and recipient notifications
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
-        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs
+        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/manual-booking-phone-checkpoints.test.mjs tests/flow-recheck.test.mjs
       - name: Validate physical guardian revocation and new team admission evidence
         run: node --test tests/team-chat-authority-phone-evidence.test.mjs
 

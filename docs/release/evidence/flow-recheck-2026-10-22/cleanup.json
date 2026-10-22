@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-22T00:21:34.013Z",
+  "scope": "independent-owned-local-runtime-disposal-not-phone-ui-proof",
+  "removed": {
+    "privateSession": true,
+    "runtime": true,
+    "helper1": true,
+    "helper2": true
+  },
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  },
+  "phoneSessionStopped": true,
+  "phoneStateEvidence": "observed-provider-dashboard-after-Stop-Session",
+  "phonePolicyChanged": false
+}

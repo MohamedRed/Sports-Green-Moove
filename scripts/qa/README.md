@@ -118,6 +118,18 @@ Only sanitized result JSON belongs in release evidence. Keep emulators' runtime
 logs and ephemeral credentials out of Git. Local evidence never automatically
 accepts a physical-device or live-payment release-manifest requirement.
 
+`manual-booking-phone-session.mjs <private-session.json> <fresh-output-directory>`
+prepares two synthetic two-seat requests and checks six ordered records after
+actual phone observations. The controller never makes booking decisions or
+marks notices read. Its independently checked records do not themselves prove
+phone UI. The first 22 October attempt prepared the requests but completed zero
+checkpoints because the restricted helper exited 126. Its runtime was destroyed.
+The helper now emits only exit metadata and fixed error classifications; raw
+provider output is discarded by default. An explicitly approved startup-only
+diagnostic uses `--startup-diagnostic-approved`, bounds/redacts startup text, and
+keeps the same host/port restrictions without request/API logging. Normal startup
+verbosity remains zero. The approved diagnostic also exits 126 without a cause.
+
 `test:booking-notices` requires a fresh absolute `SGM_LOCAL_FLOW_OUTPUT` and runs
 actual isolated booking decisions. Owned deterministic notice-write guards test
 transaction rollback, not an actual network outage. It checks all three decisions,
