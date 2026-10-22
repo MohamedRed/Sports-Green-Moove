@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { content } from '../partner-portal/content.mjs';
+import { validateCurrentNativeBlocker } from '../scripts/qa/flow-recheck-evidence.mjs';
 
 const relative = 'docs/release/evidence/native-copy-failure-b158a75-2026-10-20/';
 const base = new URL('../' + relative, import.meta.url);
@@ -33,7 +34,8 @@ test('later failed primary copy stays negative despite a passing native action a
   assert(named && !Object.hasOwn(named, 'skipped') && !Object.hasOwn(named, 'failure'));
   const paid = suite.testcase.find(row => row['@_name'] === 'parentSearchesAndRequestsTwoSeatsThenDriverApprovesAndParentCancelsInApp');
   assert(paid && Object.hasOwn(paid, 'skipped'));
-  const overview = content.blockers.find(row => row.id === 'test-device-stability').source;
-  assert(readFileSync(new URL('../' + overview, import.meta.url), 'utf8').includes('native-copy-failure-b158a75-2026-10-20'));
+  validateCurrentNativeBlocker(process.cwd(), content);
+  const historicalOverview = content.nativeVerification.source;
+  assert(readFileSync(new URL('../' + historicalOverview, import.meta.url), 'utf8').includes('native-copy-failure-b158a75-2026-10-20'));
   assert(!read('README.md').toString().includes('root cause fixed'));
 });

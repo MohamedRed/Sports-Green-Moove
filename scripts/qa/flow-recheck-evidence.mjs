@@ -53,3 +53,15 @@ export function validateFlowRecheck(root, record) {
   }
   return report;
 }
+
+export function validateCurrentNativeBlocker(root, content) {
+  const report = validateFlowRecheck(root, content.flowRecheck);
+  const blocker = content.blockers.find(item => item.id === 'test-device-stability');
+  assert(blocker, 'The incomplete native replay must remain visible');
+  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.flowRecheck.source), 'README.md'));
+  assert.equal(report.fullNativeReplayCompleted, false);
+  assert.match(blocker.text, /captures/);
+  assert.match(blocker.text, /liaison|interromp|coupure/);
+  assert.match(blocker.next, /complet/);
+  return blocker;
+}

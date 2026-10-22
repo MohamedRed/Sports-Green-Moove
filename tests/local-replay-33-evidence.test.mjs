@@ -7,6 +7,7 @@ import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentati
 import { assertChatNetworkReceipt, assertTransportRequestSetup } from '../scripts/qa/chat-network-evidence.mjs';
 import { assertTripDraftRestart } from '../scripts/qa/trip-draft-restart-evidence.mjs';
 import { content } from '../partner-portal/content.mjs';
+import { validateCurrentNativeBlocker } from '../scripts/qa/flow-recheck-evidence.mjs';
 
 const base = 'docs/release/evidence/local-replay-33-2026-10-18/';
 const bytes = (path) => readFileSync(new URL('../' + path.split('/').map(encodeURIComponent).join('/'), import.meta.url));
@@ -69,9 +70,7 @@ test('the successful network and draft receipts retain strict observations rathe
 
 test('private updates retain historical failures and distinguish the latest pass from physical and payment proof', () => {
   assert(content.updates.some((u) => u.date === '2026-10-18' && u.title === 'Les 33 essais locaux prévus passent'));
-  const blocker = content.blockers.find((b) => b.id === 'test-device-stability');
-  assert.equal(blocker.source, content.nativeVerification.source);
-  assert.match(blocker.next, /sur téléphone/); assert.match(blocker.text, /s’interrompt.*captures/);
+  validateCurrentNativeBlocker(process.cwd(), content);
   assert(content.updates.some(item => item.title === 'Le dernier essai complet ne démarre pas'));
   assert(content.updates.some((u) => u.title === 'L’essai complet reste à stabiliser'));
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');

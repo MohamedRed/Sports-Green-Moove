@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { validateCurrentNativeBlocker } from '../scripts/qa/flow-recheck-evidence.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdirSync, cpSync, mkdtempSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -59,5 +60,5 @@ test('the portal records the later scoped pass without deleting failed history o
   assert(content.updates.some(item => item.title === 'Le dernier essai complet ne démarre pas'));
   assert.equal(content.flows.find(flow => flow.id === 'search').status, 'partial');
   assert.equal(content.flows.find(flow => flow.id === 'payments').status, 'partial');
-  assert.match(content.blockers.find(blocker => blocker.id === 'test-device-stability').next, /sur téléphone/);
+  validateCurrentNativeBlocker(root, content);
 });

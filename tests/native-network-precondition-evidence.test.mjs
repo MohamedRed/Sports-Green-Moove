@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { validateCurrentNativeBlocker } from '../scripts/qa/flow-recheck-evidence.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -57,8 +58,7 @@ test('registered modem state does not establish a usable SIM or default data sub
 });
 
 test('the portal preserves the failed matrix behind the later pass without changing the phone proof', () => {
-  assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source,
-    content.nativeVerification.source);
+  validateCurrentNativeBlocker(process.cwd(), content);
   assert.equal(content.blockers.find((item) => item.id === 'chat-send-stability').source,
     content.nativeVerification.source);
   assert.match(bytes('docs/release/evidence/native-matrix-36-2026-10-19/README.md').toString('utf8'), /native-network-precondition-2026-10-19/);

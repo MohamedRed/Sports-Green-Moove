@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { dirname, resolve } from 'node:path';
 import test from 'node:test';
 import { content } from '../partner-portal/content.mjs';
-import { validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
+import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
 
 test('terminal service success is separate from failed native replay and unstarted phone checkpoints', () => {
   const report = validateFlowRecheck(process.cwd(), content.flowRecheck);
@@ -13,6 +13,16 @@ test('terminal service success is separate from failed native replay and unstart
   assert.equal(content.flows.find(flow => flow.id === 'booking').phone.checkedAt, '2026-10-18');
   const progress = content.updates[0]; assert.equal(progress.date, '2026-10-22');
   assert.match(progress.text, /interrompu/); assert.match(progress.text, /débloquer/);
+});
+test('current native blocker follows the latest failed replay, not an immutable historical gallery', () => {
+  validateCurrentNativeBlocker(process.cwd(), content);
+  for (const patch of [{source: content.nativeVerification.source}, {text: 'Tout passe'}, {next: ''}]) {
+    const changed = structuredClone(content);
+    Object.assign(changed.blockers.find(item => item.id === 'test-device-stability'), patch);
+    assert.throws(() => validateCurrentNativeBlocker(process.cwd(), changed));
+  }
+  const missing = {...content, blockers: content.blockers.filter(item => item.id !== 'test-device-stability')};
+  assert.throws(() => validateCurrentNativeBlocker(process.cwd(), missing));
 });
 for (const [file, mutate] of [
   ['summary.json', value => value.fullNativeReplayCompleted = true],

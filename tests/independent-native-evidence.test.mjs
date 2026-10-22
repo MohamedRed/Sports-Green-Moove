@@ -7,6 +7,7 @@ import { parseDocument } from 'yaml';
 import { validateIndependentNativeEvidence, validateNativeCiProvenance } from '../scripts/qa/independent-native-evidence.mjs';
 import { validateEmergencyIdentityReport, validateRetainedEmergencyIdentity } from '../scripts/qa/emergency-identity-retained-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
+import { validateCurrentNativeBlocker } from '../scripts/qa/flow-recheck-evidence.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const base = 'docs/release/evidence/native-independent-61dc4cb-2026-10-20/';
@@ -66,11 +67,10 @@ test('the separate profile gallery publishes only its four reviewed actual local
   }
   assert(content.updates.some((item) => item.flow === flow.id && item.date === '2026-10-20'));
   assert.equal(content.nativeVerification.source, base + 'README.md');
-  for (const id of ['test-device-stability', 'chat-send-stability']) {
-    const blocker = content.blockers.find((item) => item.id === id);
-    assert.equal(blocker.source, content.nativeVerification.source); assert.match(blocker.next, /sur téléphone/);
-    assert.match(blocker.text, /précédent/);
-  }
+  validateCurrentNativeBlocker(root, content);
+  const blocker = content.blockers.find(item => item.id === 'chat-send-stability');
+  assert.equal(blocker.source, content.nativeVerification.source); assert.match(blocker.next, /sur téléphone/);
+  assert.match(blocker.text, /précédent/);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 test('raw bytes, actual new evidence tests and current source are covered by smoke and native gates', () => {

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { validateCurrentNativeBlocker } from '../scripts/qa/flow-recheck-evidence.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -83,8 +84,7 @@ test('administration cleanup and the original maps and location invariants pass 
 });
 
 test('the portal keeps reliability and physical limits open while publishing this completed local matrix', () => {
-  assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source,
-    content.nativeVerification.source);
+  validateCurrentNativeBlocker(root, content);
   assert.equal(content.blockers.find((item) => item.id === 'chat-send-stability').source,
     content.nativeVerification.source);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');

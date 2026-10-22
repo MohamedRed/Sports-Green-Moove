@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { content } from '../partner-portal/content.mjs';
 import { fileURLToPath } from 'node:url';
+import { validateCurrentNativeBlocker } from '../scripts/qa/flow-recheck-evidence.mjs';
 import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url));
@@ -60,8 +61,7 @@ test('current private updates retain the prior observations without claiming who
   const flow = content.flows.find((item) => item.id === 'emergency-contact'); assert.equal(flow.status, 'partial');
   assert.match(flow.remaining, /sans appeler/); assert.equal(flow.images.filter((item) => item.file.startsWith('emergency-current-')).length, 7);
   assert(content.updates.some((item) => item.title === 'Le contact revient dans l’app'));
-  assert.equal(content.blockers.find((item) => item.id === 'test-device-stability').source,
-    content.nativeVerification.source);
+  validateCurrentNativeBlocker(process.cwd(), content);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
 });
 test('synchronization proof and regressions are covered by web and native configuration gates', () => {
