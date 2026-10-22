@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Fermer l’app sans perdre la demande',
+    text: 'Le texte revient après un arrêt complet. Réessayer confirme la même demande, sans doublon. Six captures montrent le parcours ; la vraie coupure reste à rejouer.', flow: 'support-submission' },
   { date: '2026-10-22', title: 'Un seul appui, des tentatives répétées',
     text: 'Trois tentatives sont reçues, mais une seule demande est conservée. Le prochain essai vérifiera où le renvoi démarre.', flow: 'support-submission' },
   { date: '2026-10-22', title: 'La préparation des essais est corrigée',

@@ -1,5 +1,15 @@
 # Partner Progress Portal
 
+The later 22 October physical submission run proves a full native process stop
+and explicit Retry of the same unconfirmed request. Six reviewed stream rectangles
+open the tour; earlier failed attempts and local clips remain separate. The phone
+stays connected: a held real handler response is not real network loss. The original
+controller stops after committed; three independent read-only observations cover
+request integrity/privacy only, not all 158 baseline fixtures. PID/no-process/new-PID
+observations prove process death separately. SDK counting remains unavailable from
+two identical stale log exports. The phone session and owned backend/helper are
+stopped; app uninstall is not verified. No release acceptance or publication occurs.
+
 The second 22 October submission phone attempt retains one recorded operator send
 and three same-identity handler attempts, with one unchanged report/operation.
 The controller fails after committed and the gate expires; the attempt stays

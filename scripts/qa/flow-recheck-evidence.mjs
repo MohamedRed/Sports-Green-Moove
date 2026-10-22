@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { basename, dirname, resolve } from 'node:path';
 import { validateNativeCaptureRecheck } from './native-capture-recheck-evidence.mjs';
 import { validateNativeCopyRecheck } from './native-copy-recheck-evidence.mjs';
+import { validateSupportProcessRestartPhone } from './support-process-restart-phone-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -58,10 +59,13 @@ export function validateFlowRecheck(root, record) {
 
 export function validateCurrentNativeBlocker(root, content) {
   validateNativeCaptureRecheck(root, content.nativeCaptureRecheck);
-  const report = validateNativeCopyRecheck(root, content.nativeCopyRecheck);
+  validateNativeCopyRecheck(root, content.nativeCopyRecheck);
+  const record = content.nativeReplayRecheck, report = validateSupportProcessRestartPhone(root, record.source);
+  assert.equal(record.checkedAt, report.checkedAt);
+  assert.equal(resolve(root, record.checksums), resolve(root, dirname(record.source), 'artifact-sha256.json'));
   const blocker = content.blockers.find(item => item.id === 'test-device-stability');
   assert(blocker, 'The incomplete native replay must remain visible');
-  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeCopyRecheck.source), 'README.md'));
+  assert.equal(resolve(root, blocker.source), resolve(root, dirname(record.source), 'README.md'));
   assert.equal(report.fullCiPassed, false);
   assert.match(blocker.text, /copie.*preuves/);
   assert.match(blocker.next, /complète/);

@@ -1,0 +1,166 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "5dbbaa5cde76bfd985c0cdd1e5c7dccc",
+  "recordedAt": "2026-10-22T21:10:03.540Z",
+  "scope": "read-only-support-record-checkpoint-not-phone-network-or-process-proof",
+  "fixture": {
+    "runId": "5dbbaa5cde76bfd985c0cdd1e5c7dccc",
+    "parentUid": "sgm-qa-parent",
+    "foreignUid": "sgm-qa-driver",
+    "foreignReadDenied": true,
+    "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+    "requestId": "1d02d295-1765-48a9-88b4-95466c424aaa",
+    "originalReport": {
+      "id": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+      "subjectType": "other",
+      "subjectId": null,
+      "reason": "Support coupure QA",
+      "description": "Demande de test avant une coupure.",
+      "emergency": true,
+      "reporterUserId": "sgm-qa-parent",
+      "status": "open",
+      "publicReplyCount": 0,
+      "lastPublicReply": null,
+      "createdAt": {
+        "_seconds": 1792702865,
+        "_nanoseconds": 13000000
+      },
+      "updatedAt": {
+        "_seconds": 1792702865,
+        "_nanoseconds": 13000000
+      }
+    },
+    "originalOperation": {
+      "id": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+      "requesterUserId": "sgm-qa-parent",
+      "clientRequestId": "1d02d295-1765-48a9-88b4-95466c424aaa",
+      "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+      "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+      "createdAt": {
+        "_seconds": 1792702865,
+        "_nanoseconds": 13000000
+      }
+    }
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+        "subjectType": "other",
+        "subjectId": null,
+        "reason": "Support coupure QA",
+        "description": "Demande de test avant une coupure.",
+        "emergency": true,
+        "reporterUserId": "sgm-qa-parent",
+        "status": "open",
+        "publicReplyCount": 0,
+        "lastPublicReply": null,
+        "createdAt": {
+          "_seconds": 1792702865,
+          "_nanoseconds": 13000000
+        },
+        "updatedAt": {
+          "_seconds": 1792702865,
+          "_nanoseconds": 13000000
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+        "requesterUserId": "sgm-qa-parent",
+        "clientRequestId": "1d02d295-1765-48a9-88b4-95466c424aaa",
+        "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "createdAt": {
+          "_seconds": 1792702865,
+          "_nanoseconds": 13000000
+        }
+      }
+    ],
+    "attempts": [
+      {
+        "runId": "5dbbaa5cde76bfd985c0cdd1e5c7dccc",
+        "recordedAt": "2026-10-22T21:01:05.037Z",
+        "receipt": {
+          "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+          "clientRequestId": "1d02d295-1765-48a9-88b4-95466c424aaa",
+          "requesterUserId": "sgm-qa-parent",
+          "status": "open",
+          "reused": false
+        },
+        "committed": {
+          "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+          "operationId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+          "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+          "originalContentVerified": true
+        }
+      }
+    ],
+    "held": {
+      "runId": "5dbbaa5cde76bfd985c0cdd1e5c7dccc",
+      "recordedAt": "2026-10-22T21:01:05.037Z",
+      "receipt": {
+        "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+        "clientRequestId": "1d02d295-1765-48a9-88b4-95466c424aaa",
+        "requesterUserId": "sgm-qa-parent",
+        "status": "open",
+        "reused": false
+      },
+      "committed": {
+        "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+        "operationId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "originalContentVerified": true
+      }
+    },
+    "released": {
+      "runId": "5dbbaa5cde76bfd985c0cdd1e5c7dccc",
+      "releasedAt": "2026-10-22T21:03:38.826Z",
+      "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+      "handlerClosedBeforeReleaseAt": null,
+      "receiptUnchanged": true
+    },
+    "expired": false,
+    "requesterView": {
+      "report": {
+        "id": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+        "reason": "Support coupure QA",
+        "description": "Demande de test avant une coupure.",
+        "emergency": true,
+        "status": "open",
+        "createdAtMillis": 1792702865013,
+        "updatedAtMillis": 1792702865013,
+        "replyCount": 0,
+        "lastReply": null
+      },
+      "replies": {
+        "items": [],
+        "nextCursor": null
+      }
+    },
+    "foreignList": {
+      "items": [],
+      "nextCursor": null
+    },
+    "replies": [],
+    "notifications": []
+  },
+  "result": {
+    "phase": "reopened",
+    "reportId": "a0432416dd94c81759282682af66a56e37028c9d98d2e554bc5e4542ed3296a9",
+    "requestId": "1d02d295-1765-48a9-88b4-95466c424aaa",
+    "reportCount": 1,
+    "operationCount": 1,
+    "attemptCount": 1,
+    "urgent": true,
+    "originalContentUnchanged": true
+  },
+  "baselineScope": "saved-request-and-operation-only-after-committed-checkpoint",
+  "foreignReadDenied": true,
+  "physicalUiVerifiedByScript": false,
+  "physicalNetworkVerifiedByScript": false,
+  "processIdentityVerifiedByScript": false,
+  "flowAccepted": false,
+  "productionWrites": false
+}

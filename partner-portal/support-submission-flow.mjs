@@ -1,16 +1,24 @@
 const base = 'docs/release/evidence/support-submission-recovery-2026-10-22/';
 const phone = 'docs/release/evidence/support-recovery-phone-attempt-2026-10-22/';
 const diagnostics = 'docs/release/evidence/support-recovery-diagnostics-2026-10-22/';
+const restart = 'docs/release/evidence/support-process-restart-phone-2026-10-22/';
 export function createSupportSubmissionFlow(shot) {
   return { id: 'support-submission', title: 'Reprendre une demande de support', status: 'partial', checkedAt: '2026-10-22', latestEvidence: 'phone',
-    summary: 'La coupure garde le texte ; la reprise reste à vérifier.',
-    verified: 'Un seul appui est enregistré dans le dernier essai, mais trois tentatives sont reçues. Une seule demande est conservée, avec le texte et Urgent. L’origine du renvoi reste à identifier.',
-    remaining: 'Expliquer les renvois, puis terminer la reprise après fermeture sur téléphone réel. La vidéo locale utilise une confirmation simulée.',
+    summary: 'La demande revient après fermeture ; réessayer ne la crée pas deux fois.',
+    verified: 'Après un arrêt complet de l’app, le texte et Urgent reviennent sans nouvelle saisie. Réessayer confirme la même demande, sans doublon.',
+    remaining: 'Rejouer une vraie coupure sur téléphone réel et expliquer les renvois précédents. La vidéo locale utilise une confirmation simulée.',
     submissionRecovery: { source: base + 'summary.json', checksums: base + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     submissionPhoneAttempt: { source: phone + 'summary.json', checksums: phone + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     submissionDiagnostics: { source: diagnostics + 'summary.json', checksums: diagnostics + 'artifact-sha256.json', checkedAt: '2026-10-22' },
+    submissionRestartPhone: { source: restart + 'summary.json', checksums: restart + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     clips: ['support-submission-retry'],
-    images: [shot('support-recovery-phone-prepared', 'Demande et choix Urgent, essai sur téléphone du 22 octobre'),
+    images: [shot('support-restart-phone-prepared', 'Demande prête, nouvel essai sur téléphone du 22 octobre'),
+      shot('support-restart-phone-uncertain', 'Sans confirmation, avant fermeture complète, essai sur téléphone du 22 octobre'),
+      shot('support-restart-phone-restored', 'Texte et Urgent retrouvés sans nouvelle saisie après relancement, essai sur téléphone du 22 octobre'),
+      shot('support-restart-phone-confirmed', 'Même demande confirmée après Réessayer, essai sur téléphone du 22 octobre'),
+      shot('support-restart-phone-history', 'Une seule nouvelle demande dans l’historique, essai sur téléphone du 22 octobre'),
+      shot('support-restart-phone-details', 'Texte et Urgent conservés dans la demande d’origine, essai sur téléphone du 22 octobre'),
+      shot('support-recovery-phone-prepared', 'Demande et choix Urgent, premier essai sur téléphone du 22 octobre'),
       shot('support-recovery-phone-unconfirmed', 'Envoi non confirmé après coupure, essai sur téléphone du 22 octobre'),
       shot('support-recovery-phone-history', 'Une demande retrouvée après reconnexion, essai sur téléphone du 22 octobre'),
       shot('support-recovery-phone-details', 'Texte et choix Urgent enregistrés, essai sur téléphone du 22 octobre'),
@@ -18,13 +26,15 @@ export function createSupportSubmissionFlow(shot) {
       shot('support-submission-restored', 'Texte et choix Urgent retrouvés, essai local du 22 octobre'),
       shot('support-submission-confirmed', 'Confirmation après un nouvel essai, essai local du 22 octobre'),
       shot('support-submission-storage-error', 'Envoi bloqué si la demande ne peut pas être retrouvée, essai local du 22 octobre')],
-    source: phone + 'README.md' };
+    source: restart + 'README.md' };
 }
 export function supportSubmissionSteps(image, clip) {
-  return [image('support-recovery-phone-prepared', 'Préparer la demande', 'Sur téléphone : le texte est rempli et Urgent est activé.'),
-    image('support-recovery-phone-unconfirmed', 'La connexion coupe', 'Le texte reste visible et le bouton propose de réessayer.'),
-    image('support-recovery-phone-history', 'Retrouver la demande', 'Après reconnexion, une demande apparaît. La seconde tentative reçue reste à expliquer.'),
-    image('support-recovery-phone-details', 'Lire les détails', 'Le texte et Urgent sont conservés. La reprise après fermeture reste à terminer.'),
+  return [image('support-restart-phone-prepared', 'Préparer la demande', 'Le texte est rempli et Urgent est activé.'),
+    image('support-restart-phone-uncertain', 'Rester sans confirmation', 'La réponse est retenue pendant cet essai. Le téléphone reste connecté.'),
+    image('support-restart-phone-restored', 'Fermer puis retrouver la demande', 'Après un arrêt complet de l’app, le texte et Urgent reviennent sans les retaper.'),
+    image('support-restart-phone-confirmed', 'Réessayer une fois', 'La demande d’origine est confirmée. Aucun doublon n’est créé.'),
+    image('support-restart-phone-history', 'Retrouver la demande', 'Une seule nouvelle demande apparaît à côté de celle déjà présente avant l’essai.'),
+    image('support-restart-phone-details', 'Lire les détails', 'Le texte et le choix Urgent sont conservés.'),
     clip('support-submission-retry', 'Comparer avec l’essai local', 'Essai local de l’écran : la confirmation est simulée. Le service est vérifié séparément.'),
     image('support-submission-unconfirmed', 'Garder la demande', 'Sans confirmation, le texte et le choix Urgent restent figés.'),
     image('support-submission-restored', 'Retrouver l’envoi en attente', 'La réouverture de l’écran retrouve la même demande. Aucun envoi ne repart tout seul.'),

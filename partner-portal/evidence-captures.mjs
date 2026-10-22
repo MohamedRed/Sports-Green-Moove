@@ -1,4 +1,9 @@
 export const captures = {
+  ...Object.fromEntries([['prepared', '01-prepared'], ['uncertain', '02-unconfirmed-before-stop'],
+    ['restored', '04-draft-restored-new-process'], ['confirmed', '05-confirmed-after-explicit-retry'],
+    ['history', '06-single-matching-history-item'], ['details', '07-original-urgent-request-details']]
+    .map(([id, file]) => ['support-restart-phone-' + id,
+      'docs/release/evidence/support-process-restart-phone-2026-10-22/captures/' + file + '.png'])),
   ...Object.fromEntries([['prepared', '01-prepared'], ['unconfirmed', '05-unconfirmed-offline'],
     ['history', '07-requester-history'], ['details', '08-saved-details']].map(([id, file]) => ['support-recovery-phone-' + id,
     'docs/release/evidence/support-recovery-phone-attempt-2026-10-22/captures/' + file + '.png'])),

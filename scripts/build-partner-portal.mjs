@@ -37,6 +37,7 @@ for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'sig
   ffmpeg('-ss', String(at), '-i', resolve(root, videos[video]), '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
 }
 const fingerprints = Object.fromEntries([...new Set([content.nativeCopyRecheck.source, content.nativeCopyRecheck.checksums,
+  content.nativeReplayRecheck.source, content.nativeReplayRecheck.checksums,
   content.nativeCaptureRecheck.source, content.nativeCaptureRecheck.checksums,
   content.flowRecheck.source, content.flowRecheck.checksums, content.nativeVerification.source, content.nativeVerification.manifest,
   content.nativeVerification.checksums, ...Object.values(content.nativeVerification.recheck),
@@ -49,7 +50,7 @@ for (const flow of content.flows) for (const record of [flow.decisionPhone, flow
 for (const flow of content.flows.filter(flow => flow.supportPhone)) for (const file of [flow.supportPhone.source, flow.supportPhone.checksums])
   fingerprints[file] = createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex');
 for (const flow of content.flows)
-  for (const record of [flow.submissionPhoneAttempt, flow.submissionDiagnostics].filter(Boolean))
+  for (const record of [flow.submissionPhoneAttempt, flow.submissionDiagnostics, flow.submissionRestartPhone].filter(Boolean))
     for (const file of [record.source, record.checksums])
       fingerprints[file] = createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex');
 const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };
