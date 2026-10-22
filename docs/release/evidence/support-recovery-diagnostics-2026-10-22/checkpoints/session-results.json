@@ -1,0 +1,30 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "dd4d9ddf504d4ce6f4adb0ff01892b7c",
+  "testedAt": "2026-10-22T20:22:21.639Z",
+  "scope": "independent-support-recovery-record-checkpoints-not-phone-network-proof",
+  "completed": false,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "reportCount": 0,
+      "attemptCount": 0
+    },
+    {
+      "phase": "committed",
+      "reportId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+      "requestId": "fda4bda5-ca1b-4916-929e-bd96f33213e5",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 1,
+      "urgent": true,
+      "originalContentUnchanged": true
+    }
+  ],
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "productionWrites": false,
+  "physicalNetworkStateVerifiedByController": false,
+  "processIdentityVerified": false,
+  "fixtureEnvironmentDestroyed": false
+}

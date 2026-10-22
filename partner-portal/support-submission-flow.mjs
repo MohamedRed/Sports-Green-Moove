@@ -1,12 +1,14 @@
 const base = 'docs/release/evidence/support-submission-recovery-2026-10-22/';
 const phone = 'docs/release/evidence/support-recovery-phone-attempt-2026-10-22/';
+const diagnostics = 'docs/release/evidence/support-recovery-diagnostics-2026-10-22/';
 export function createSupportSubmissionFlow(shot) {
   return { id: 'support-submission', title: 'Reprendre une demande de support', status: 'partial', checkedAt: '2026-10-22', latestEvidence: 'phone',
     summary: 'La coupure garde le texte ; la reprise reste à vérifier.',
-    verified: 'Sur téléphone, le texte et Urgent restent visibles sans confirmation. Une seule demande est retrouvée après reconnexion. Deux tentatives ont été reçues : l’origine de la seconde reste à expliquer.',
-    remaining: 'Expliquer la seconde tentative, puis terminer la reprise après fermeture sur téléphone réel. La vidéo locale utilise une confirmation simulée.',
+    verified: 'Un seul appui est enregistré dans le dernier essai, mais trois tentatives sont reçues. Une seule demande est conservée, avec le texte et Urgent. L’origine du renvoi reste à identifier.',
+    remaining: 'Expliquer les renvois, puis terminer la reprise après fermeture sur téléphone réel. La vidéo locale utilise une confirmation simulée.',
     submissionRecovery: { source: base + 'summary.json', checksums: base + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     submissionPhoneAttempt: { source: phone + 'summary.json', checksums: phone + 'artifact-sha256.json', checkedAt: '2026-10-22' },
+    submissionDiagnostics: { source: diagnostics + 'summary.json', checksums: diagnostics + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     clips: ['support-submission-retry'],
     images: [shot('support-recovery-phone-prepared', 'Demande et choix Urgent, essai sur téléphone du 22 octobre'),
       shot('support-recovery-phone-unconfirmed', 'Envoi non confirmé après coupure, essai sur téléphone du 22 octobre'),

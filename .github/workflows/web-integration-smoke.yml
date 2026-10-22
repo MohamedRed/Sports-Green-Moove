@@ -290,6 +290,8 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/AuthTestInteractions.kt"
       - "tests/fixtures/adb-evidence-process.mjs"
       - "tests/disposable-android.test.mjs"
+      - "tests/disposable-emulator-selection.test.mjs"
+      - "tests/android-support-call-trace.test.mjs"
       - "tests/disposable-store-pause.test.mjs"
       - "tests/disposable-store-diagnostics.test.mjs"
       - "tests/disposable-installations.test.mjs"
@@ -647,6 +649,8 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/AuthTestInteractions.kt"
       - "tests/fixtures/adb-evidence-process.mjs"
       - "tests/disposable-android.test.mjs"
+      - "tests/disposable-emulator-selection.test.mjs"
+      - "tests/android-support-call-trace.test.mjs"
       - "tests/disposable-store-pause.test.mjs"
       - "tests/disposable-store-diagnostics.test.mjs"
       - "tests/disposable-installations.test.mjs"
@@ -845,6 +849,8 @@ jobs:
         run: npm run test:support-submission && node --test tests/support-submission.test.mjs
       - name: Validate private real-phone support recovery observation safeguards
         run: node --test tests/support-response-gate.test.mjs tests/manual-support-recovery-checkpoints.test.mjs tests/support-recovery-phone-evidence.test.mjs
+      - name: Validate isolated device readiness and private support call diagnostics
+        run: node --test tests/disposable-emulator-selection.test.mjs tests/android-support-call-trace.test.mjs
 
       - name: Test team-only adult conversations and admission-scoped history
         env:

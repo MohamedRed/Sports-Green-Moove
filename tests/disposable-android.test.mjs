@@ -7,7 +7,7 @@ import { androidMapsPrerequisites, playServicesVersionCommand } from '../scripts
 const launcher = 'com.google.android.apps.nexuslauncher';
 function device(overrides = {}) {
   const calls = [];
-  const responses = { devices: 'List of devices attached\nemulator-5554\tdevice\n',
+  const responses = { devices: 'List of devices attached\nemulator-5554\tdevice\n', 'wait-for-device': '', 'get-state': 'device',
     'getprop ro.kernel.qemu': '1', [`pm path ${launcher}`]: 'package:/system/launcher.apk',
     'pm list packages -e --user 0 com.android.vending': 'package:com.android.vending',
     'pm list packages -e --user 0 com.google.android.gms': 'package:com.google.android.gms',
@@ -16,7 +16,7 @@ function device(overrides = {}) {
     [`pm list packages -d --user 0 ${launcher}`]: `package:${launcher}`, ...overrides };
   return { calls, execute: (command, args) => {
     calls.push({ command, args });
-    const key = args[0] === 'devices' ? 'devices' : args.slice(3).join(' ');
+    const key = args[0] === 'devices' ? 'devices' : args[2] === 'shell' ? args.slice(3).join(' ') : args[2];
     assert(Object.hasOwn(responses, key), `Unexpected device command: ${key}`);
     return responses[key];
   } };

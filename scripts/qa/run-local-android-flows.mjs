@@ -4,15 +4,16 @@ import { resolve, isAbsolute } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { prepareLocalRuntime, runEmulatorEntry, root } from './local-runtime.mjs';
+import { selectDisposableEmulator } from './disposable-emulator-selection.mjs';
+import { waitForDisposableDevice } from './disposable-device-cleanup.mjs';
 
 assert.equal(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true',
   'Ride UI tests inject synthetic positions: explicitly select a disposable emulator with no real accounts');
 const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-tools/adb` : 'adb';
-const devices = spawnSync(adb, ['devices'], { encoding: 'utf8' });
+const devices = spawnSync(adb, ['devices'], { encoding: 'utf8', timeout: 30_000 });
 assert.equal(devices.status, 0, 'Android device inventory unavailable');
-const available = devices.stdout.split('\n').filter((line) => /^emulator-\d+\s+device\s*$/.test(line)).map((line) => line.split(/\s/)[0]);
-const serial = process.argv[2] || (available.length === 1 ? available[0] : undefined);
-assert(serial && available.includes(serial), 'Select one available disposable Android emulator');
+const serial = selectDisposableEmulator(devices.stdout, process.argv[2]);
+waitForDisposableDevice(adb, serial);
 const runtime = prepareLocalRuntime();
 try {
   const output = process.env.SGM_LOCAL_UI_OUTPUT || resolve(root, 'android/app/build/outputs/local-ui-evidence', runtime.env.SGM_LOCAL_RUN_ID);

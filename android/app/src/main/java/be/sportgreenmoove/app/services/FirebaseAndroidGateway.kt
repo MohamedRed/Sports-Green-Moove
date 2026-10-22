@@ -231,7 +231,9 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
 
     override suspend fun createReport(submission: be.sportgreenmoove.app.data.SupportSubmission): String {
         check(FirebaseAuth.getInstance().currentUser?.uid == submission.uid) { "Support account changed" }
-        val result = functions.getHttpsCallable("submitSupportReport").call(submission.payload()).await()
+        val task = functions.getHttpsCallable("submitSupportReport").call(submission.payload())
+        LocalSupportCallDiagnostics.observe(submission.requestId, task)
+        val result = task.await()
         check(FirebaseAuth.getInstance().currentUser?.uid == submission.uid) { "Support account changed" }
         val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse signalement invalide.")
         return submission.acknowledgedReport(payload)

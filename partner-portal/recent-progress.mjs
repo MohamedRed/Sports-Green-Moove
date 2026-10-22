@@ -1,6 +1,10 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Un seul appui, des tentatives répétées',
+    text: 'Trois tentatives sont reçues, mais une seule demande est conservée. Le prochain essai vérifiera où le renvoi démarre.', flow: 'support-submission' },
+  { date: '2026-10-22', title: 'La préparation des essais est corrigée',
+    text: 'Le même appareil est maintenant attendu quand sa connexion tarde. Les contrôles locaux passent ; le nouvel essai complet reste à confirmer.', flow: 'publication' },
   { date: '2026-10-22', title: 'La coupure conserve la demande sur téléphone',
     text: 'Le texte et Urgent restent visibles sans confirmation. Une seule demande est retrouvée. La seconde tentative reçue reste à expliquer ; la reprise après fermeture n’est pas encore validée.', flow: 'support-submission' },
   { date: '2026-10-22', title: 'Réessayer sans créer deux demandes',

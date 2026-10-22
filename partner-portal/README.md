@@ -1,5 +1,15 @@
 # Partner Progress Portal
 
+The second 22 October submission phone attempt retains one recorded operator send
+and three same-identity handler attempts, with one unchanged report/operation.
+The controller fails after committed and the gate expires; the attempt stays
+incomplete. The operator journal is not a device-event source. A local-only debug
+SDK-call observer compiles and passes five JVM cases but has not run on a physical
+phone. Readiness selection now waits for the same known emulator; its remote result
+is still pending. No new gallery image or flow/release acceptance is added. Cleanup
+includes confirmed uninstall, native drawer absence and session stop. The new copy
+is local only, pending private audience and exposed-token renewal.
+
 The later 22 October physical support-submission attempt is incomplete. Four
 reviewed stream rectangles show the urgent form, unconfirmed state, history and
 saved details. Independent records preserve one report/operation, but a second

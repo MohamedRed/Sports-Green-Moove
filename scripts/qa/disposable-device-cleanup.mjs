@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 
-export function waitForDisposableDevice(adb, serial, execute = execFileSync) {
-  assert.equal(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
+export function waitForDisposableDevice(adb, serial, execute = execFileSync, env = process.env) {
+  assert.equal(env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
   assert.match(serial, /^emulator-\d+$/);
   const options = { encoding: 'utf8', timeout: 30_000 };
   execute(adb, ['-s', serial, 'wait-for-device'], options);

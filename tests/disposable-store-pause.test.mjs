@@ -10,6 +10,8 @@ test('a pre-install admin readiness failure survives outer cleanup without claim
   const mock = device(), commands = []; let attempted = false;
   const execute = (_command, args) => {
     if (args[0] === 'devices') return 'List of devices attached\nemulator-5554\tdevice\n';
+    if (args[2] === 'wait-for-device') return '';
+    if (args[2] === 'get-state') return 'device';
     const shell = args.slice(3), command = shell.join(' '); commands.push(command);
     if (command === 'getprop ro.kernel.qemu') return '1';
     if (command === 'pm path com.google.android.apps.nexuslauncher') return 'package:/system/launcher.apk';
@@ -175,6 +177,8 @@ test('outer device setup retains the failed store observation rather than losing
   const mock = device({ stopIgnored: true });
   const execute = (_command, args) => {
     if (args[0] === 'devices') return 'List of devices attached\nemulator-5554\tdevice\n';
+    if (args[2] === 'wait-for-device') return '';
+    if (args[2] === 'get-state') return 'device';
     const shell = args.slice(3), command = shell.join(' ');
     if (command === 'getprop ro.kernel.qemu') return '1';
     if (command === 'pm path com.google.android.apps.nexuslauncher') return 'package:/system/launcher.apk';
