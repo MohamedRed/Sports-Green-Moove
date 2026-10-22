@@ -4,6 +4,7 @@ import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateBookingEvidence } from './booking-evidence.mjs';
+import { validateSupportPhone } from '../scripts/qa/support-phone-evidence.mjs';
 import { validateEmergencyDialerPreflight } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
@@ -156,6 +157,16 @@ export function validate(root) {
       for (const [index, id] of f.mapUi.images.entries()) {
         assert(f.images.some((image) => image.file === id));
         assert.equal(resolve(root, captures[id]), resolve(root, f.mapUi.source, '..', report.displays[index].screenFile));
+      }
+    }
+    if (f.supportPhone) {
+      assert.equal(f.id, 'support'); assert.equal(f.status, 'partial');
+      const run = validateSupportPhone(root, f.supportPhone.source);
+      assert.equal(run.testedAt.slice(0, 10), f.supportPhone.checkedAt);
+      assert.equal(f.supportPhone.checkedAt, f.checkedAt);
+      assert.equal(f.supportPhone.checksums, dirname(f.supportPhone.source) + '/artifact-sha256.json');
+      for (const [id, file] of Object.entries(run.publishedCaptures)) {
+        assert(f.images.some(image => image.file === id)); assert.equal(captures[id], dirname(f.supportPhone.source) + '/' + file);
       }
     }
     if (f.phone) {

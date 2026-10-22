@@ -1,5 +1,6 @@
 import { tours } from './tours.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
+import { createSupportFlow } from './support-flow.mjs';
 import { createNavigationFlow, createSearchFlow } from './parent-phone-flows.mjs';
 import { createEmergencyFlow } from './emergency-flow.mjs';
 import { createChildEmergencyFlow } from './child-emergency-flow.mjs';
@@ -269,13 +270,7 @@ export const content = {
       ui: rideUi(['ride-ledgers-ui']),
       local: local(['ride-audit-ledgers'], ['Le trajet terminé crée une écriture d’impact.', 'Une récompense est enregistrée.', 'Une seconde clôture est refusée.']),
       images: [shot('ride-impact', 'Impact après un trajet terminé en local'), shot('ride-rewards', 'Solde de test et récompense du trajet local')], source: rideUiReport },
-    { id: 'support', title: 'Support', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'La demande envoyée depuis l’app est prise en charge puis clôturée en local.',
-      verified: 'En local : envoi depuis l’app, prise en charge puis clôture. Le parent ne peut pas accéder à la gestion.',
-      remaining: 'Rejouer ce parcours sur téléphone et vérifier le retour reçu par le demandeur.',
-      ui: ui(['support-review-ui', 'admin-access-boundary-ui'], 'admin-ui-results.json'),
-      local: local(['support-request'], ['La demande est enregistrée avec le statut ouvert.', 'L’auteur de la demande est conservé.', 'Une description vide est refusée.', 'Un parent ne peut pas traiter la demande comme administrateur.']),
-      images: [shot('support-reviewed', 'Demande de test clôturée en local')], source: uiReport },
+    createSupportFlow(local, ui, shot),
     { id: 'appearance', title: 'Affichage et thème sombre', status: 'partial', checkedAt: '2026-10-15',
       summary: 'La connexion passe en paysage et le thème est conservé après relancement.',
       verified: 'Connexion en paysage et conservation du thème après fermeture complète vérifiées en local.',

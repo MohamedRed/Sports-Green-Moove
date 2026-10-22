@@ -1,5 +1,12 @@
 # Partner Progress Portal
 
+The 22 October support snapshot adds four reviewed physical-phone stream
+rectangles: invalid form, filled synthetic text, one submission and screen
+reopening. Five independent checkpoints verify one report and 158 protected
+records. Admin review remains service-only; requester status/response is absent,
+so the flow stays partial. The interrupted first phone attempt remains retained.
+This snapshot is prepared locally, not published while Site access is public.
+
 The new 22 October booking snapshot is prepared locally, not yet published.
 The hosted Site's access changed to public (policy revision 2); anonymous requests
 to the root and data JSON returned 200. Restoring owner-only access has been

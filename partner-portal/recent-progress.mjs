@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Une demande de support envoyée sur téléphone',
+    text: 'Le formulaire vide est refusé, puis un seul envoi est enregistré. Quatre captures sont ajoutées. Le suivi et la réponse au demandeur restent à ajouter.', flow: 'support' },
   { date: '2026-10-22', title: 'Accord, refus et annulation passent sur téléphone',
     text: 'Deux places pour un enfant : les décisions et les notifications arrivent au bon compte. L’annulation rend les places. Huit captures sont ajoutées.', flow: 'booking' },
   { date: '2026-10-22', title: 'Les 36 essais locaux se terminent',

@@ -118,6 +118,15 @@ Only sanitized result JSON belongs in release evidence. Keep emulators' runtime
 logs and ephemeral credentials out of Git. Local evidence never automatically
 accepts a physical-device or live-payment release-manifest requirement.
 
+`manual-support-phone-session.mjs <private-session-path> <fresh-output-directory>`
+requires interactive observations in order: prepared, invalid, submitted,
+reopened, reviewed. Only the phone submits the report. After reopened, `review`
+denies parent review and performs two authenticated admin service decisions
+once; this is not management UI. Observe the app before reviewed, then finish.
+Each checkpoint verifies the exact single report and protected records. The
+controller never claims requester feedback from absent notifications. Stop/EOF
+keeps the report incomplete. Destroy the owned backend/tunnel separately.
+
 `manual-booking-phone-session.mjs <private-session.json> <fresh-output-directory>`
 prepares two synthetic two-seat requests and checks six ordered records after
 actual phone observations. The controller never makes booking decisions or
