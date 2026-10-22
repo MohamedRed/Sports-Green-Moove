@@ -1,0 +1,22 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "86398f3a285a7012032289d2dc626b1f",
+  "scope": "native-ui-private-schedule-draft-restart",
+  "stage": "after",
+  "completed": true,
+  "actorUserId": "sgm-qa-driver",
+  "tripId": "3Vv4uHyOChU31nRSUrR9",
+  "otherTripId": "77EvyikINW4IyHkgMzqM",
+  "processId": 12895,
+  "draftHash": "66aaf738e810fe30d56b1bbeef2d61baa64d82b0f795cef43b011012f7952181",
+  "departureDate": "2026-10-24",
+  "departureTime": "13:00",
+  "arrivalDate": "2026-10-24",
+  "arrivalTime": "14:00",
+  "hasArrival": true,
+  "originalPlacesRetained": true,
+  "otherTripIsolated": true,
+  "proposeEnabled": true,
+  "scheduleRestored": true,
+  "sessionRestoredWithoutLogin": true
+}

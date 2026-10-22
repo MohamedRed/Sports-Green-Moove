@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
-import { validateRetainedBookingNotices } from '../scripts/qa/booking-notice-evidence.mjs';
+import { validateBookingEvidence } from './booking-evidence.mjs';
 import { validateEmergencyDialerPreflight } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
@@ -28,8 +28,7 @@ import { validateNativeRecheck } from '../scripts/qa/native-recheck-evidence.mjs
 import { sessionRestorationScope, validateSessionRestorationReport, validateRetainedSessionRestoration } from '../scripts/qa/session-restoration-retained-evidence.mjs';
 import { sessionDisconnectScope } from '../scripts/qa/session-disconnect-evidence.mjs';
 import { validateSessionDisconnectReport, validateRetainedSessionDisconnect } from '../scripts/qa/session-disconnect-retained-evidence.mjs';
-import { validateRetainedSearchBooking } from '../scripts/qa/search-booking-retained-evidence.mjs';
-import { validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
+import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -37,6 +36,7 @@ export function validate(root) {
   assertDate(content.lastVerifiedAt);
   assert(content.lastVerifiedAt <= content.updatedAt);
   validateFlowRecheck(root, content.flowRecheck);
+  validateCurrentNativeBlocker(root, content);
   const nativeDirectory = dirname(content.nativeVerification.manifest);
   assert(nativeDirectory.startsWith('docs/release/evidence/'));
   assert.equal(content.nativeVerification.source, nativeDirectory + '/README.md');
@@ -78,12 +78,7 @@ export function validate(root) {
         assert(step.title?.trim() && step.text?.trim());
       }
     }
-    if (f.noticeChecks) {
-      assert.equal(f.id, 'booking'); assert.equal(f.status, 'partial');
-      const run = validateRetainedBookingNotices(root, f.noticeChecks.source);
-      assert.equal(run.testedAt.slice(0, 10), f.noticeChecks.checkedAt);
-      assert(f.noticeChecks.checkedAt <= content.lastVerifiedAt);
-    }
+    validateBookingEvidence(root, f);
     if (f.local) {
       assert.equal(f.status, 'partial', 'Local service checks cannot complete a phone flow');
       const run = JSON.parse(readFileSync(resolve(root, f.local.source), 'utf8'));
@@ -173,10 +168,6 @@ export function validate(root) {
       assert.equal(f.id, 'emergency-contact'); assert.equal(f.status, 'partial');
       const run = validateEmergencyDialerPreflight(root, f.dialerPreflight.source);
       assert.equal(run.recordedAt.slice(0, 10), f.checkedAt);
-    }
-    if (f.searchBookingUi) {
-      assert(['search', 'booking'].includes(f.id)); assert.equal(f.status, 'partial');
-      assert.equal(validateRetainedSearchBooking(root, f.searchBookingUi.source).testedAt.slice(0, 10), f.checkedAt);
     }
     validateTeamConversationRecords(root, f, captures);
     if (f.restorationRecheck) {

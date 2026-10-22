@@ -2,6 +2,14 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 
 export const bookingPhonePhases = ['prepared', 'approved', 'declined', 'parent-inbox', 'cancelled', 'driver-inbox'];
+export function pendingBookingPhoneRequestIds(reply) {
+  assert(Array.isArray(reply?.bookings), 'Driver reservations must be an explicit list');
+  for (const row of reply.bookings) {
+    assert.equal(typeof row.bookingId, 'string'); assert(row.bookingId.length > 0);
+    assert.equal(typeof row.status, 'string'); assert(row.status.length > 0);
+  }
+  return reply.bookings.filter(row => row.status === 'requested').map(row => row.bookingId);
+}
 const noticeId = (type, bookingId, userId) => 'bookingDecision_' + createHash('sha256')
   .update(JSON.stringify([type, bookingId, userId])).digest('hex');
 

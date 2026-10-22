@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import test from 'node:test';
-import { bookingPhonePhases, verifyBookingPhoneCheckpoint } from '../scripts/qa/manual-booking-phone-checkpoints.mjs';
+import { bookingPhonePhases, pendingBookingPhoneRequestIds, verifyBookingPhoneCheckpoint } from '../scripts/qa/manual-booking-phone-checkpoints.mjs';
 
 const fixture = {parentUid: 'parent', driverUid: 'driver', bookings: [
   {bookingId: 'approval', tripId: 'trip-a'}, {bookingId: 'decline', tripId: 'trip-b'}]};
@@ -21,8 +21,18 @@ function stateFor(index) {
     seatsAvailable: statuses[position] === 'approved' ? 2 : 4})),
   inboxes: {parent: notices.filter(note => note.userId === 'parent').map(note => note.id),
     driver: notices.filter(note => note.userId === 'driver').map(note => note.id), outsider: []},
-  pendingRequestIds: fixture.bookings.filter((_, position) => statuses[position] === 'requested').map(row => row.bookingId)};
+  pendingRequestIds: pendingBookingPhoneRequestIds({bookings: fixture.bookings.map((row, position) =>
+    ({bookingId: row.bookingId, status: statuses[position]}))})};
 }
+test('the driver endpoint includes decided bookings; only requested rows form the pending queue', () => {
+  assert.deepEqual(pendingBookingPhoneRequestIds({bookings: [
+    {bookingId: 'pending', status: 'requested'}, {bookingId: 'approved', status: 'approved'},
+    {bookingId: 'declined', status: 'declined'}, {bookingId: 'cancelled', status: 'cancelled'},
+  ]}), ['pending']);
+  assert.deepEqual(pendingBookingPhoneRequestIds({bookings: []}), []);
+  for (const reply of [{}, {bookings: null}, {bookings: [{status: 'requested'}]}, {bookings: [{bookingId: 'id'}]}])
+    assert.throws(() => pendingBookingPhoneRequestIds(reply));
+});
 for (const [index, phase] of bookingPhonePhases.entries()) test('independent record contract: ' + phase, () => {
   const result = verifyBookingPhoneCheckpoint(phase, stateFor(index), fixture);
   assert.equal(result.physicalUiProvenByThisCheckpoint, false); assert.equal(result.pushDeliveryVerified, false);

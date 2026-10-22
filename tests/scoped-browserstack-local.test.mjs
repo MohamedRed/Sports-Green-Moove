@@ -86,8 +86,9 @@ test('vendor failures retain only fixed classifications and exit status, never o
 test('approved startup diagnostics preserve restrictions and redact split or truncated credential output', async t => {
   for (const truncated of [false, true]) {
     const h = harness(t);
+    const logPipe = privatePipe(t);
     await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
-      signal: new AbortController().signal, env: {}, configPipe: h.configPipe, startupDiagnostic: true, spawnImpl: h.spawnImpl,
+      signal: new AbortController().signal, env: {}, configPipe: h.configPipe, logPipe, startupDiagnostic: true, spawnImpl: h.spawnImpl,
       onSpawn: () => {
         h.child.stdout.emit('data', (truncated ? 'x'.repeat(8185) : 'Startup failed: ') + fictionalKey.slice(0, 10));
         h.child.stderr.emit('data', fictionalKey.slice(10)); h.child.emit('close', 126, null);
@@ -100,9 +101,30 @@ test('approved startup diagnostics preserve restrictions and redact split or tru
     });
     const args = h.calls[0][1]; assert.equal(args[args.indexOf('--verbose') + 1], '1');
     assert.equal(args[args.indexOf('--only') + 1], isolatedLocalAllowlist);
+    assert.equal(args[args.indexOf('--log-file') + 1], logPipe);
     assert(!args.includes('--enable-logging-for-api')); assert(args.includes('--disable-dashboard'));
   }
   assert.equal(scopedLocalArguments('/private/config.pipe')[5], '0', 'Startup verbosity never becomes the default');
+});
+test('approved log-file output is consumed from a real private FIFO and redacted before retention', async t => {
+  const h = harness(t), logPipe = privatePipe(t);
+  await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
+    signal: new AbortController().signal, env: {}, configPipe: h.configPipe, logPipe, startupDiagnostic: true, spawnImpl: h.spawnImpl,
+    onSpawn: () => { writeFile(logPipe, `Authentication failed: ${fictionalKey}\n`)
+      .then(() => h.child.emit('close', 126, null)); },
+  }), error => {
+    assert.equal(error.vendorOutcome.diagnostics.authenticationRejected, true);
+    assert.match(error.vendorOutcome.startupOutput, /Authentication failed: \[REDACTED\]/);
+    assert(!JSON.stringify(error).includes(fictionalKey)); return true;
+  });
+  assert.equal(h.calls.length, 1);
+});
+test('log capture cannot be enabled implicitly, share the credential pipe or use an ordinary file', async t => {
+  const h = harness(t), options = {signal: new AbortController().signal, env: {}, configPipe: h.configPipe, spawnImpl: h.spawnImpl};
+  for (const changes of [{logPipe: privatePipe(t)}, {startupDiagnostic: true},
+    {startupDiagnostic: true, logPipe: h.configPipe}, {startupDiagnostic: true, logPipe: import.meta.filename}])
+    await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {...options, ...changes}));
+  assert.equal(h.calls.length, 0);
 });
 test('a receipt callback failure still stops the owned provider process', async t => {
   const h = harness(t);

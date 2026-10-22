@@ -127,8 +127,17 @@ checkpoints because the restricted helper exited 126. Its runtime was destroyed.
 The helper now emits only exit metadata and fixed error classifications; raw
 provider output is discarded by default. An explicitly approved startup-only
 diagnostic uses `--startup-diagnostic-approved`, bounds/redacts startup text, and
-keeps the same host/port restrictions without request/API logging. Normal startup
-verbosity remains zero. The approved diagnostic also exits 126 without a cause.
+keeps the same host/port restrictions without request/API logging. Its separate
+vendor log uses an owned mode-600 FIFO, not a regular file: bounded startup text
+is consumed in memory, redacted before retention, and the pipe is removed after
+verified process cleanup. Normal startup verbosity remains zero. The first approved
+diagnostic exits 126 with only console startup text; it does not identify a cause.
+The later FIFO diagnostic identifies SYS_CONFLICT:1001 on ports 45690/45691.
+After approval to close the old desktop connection, normal restricted mode
+connects. The fresh booking trial then completes all six observed/checkpointed
+phases. The first controller incorrectly included approved bookings in its pending
+queue; that incomplete attempt stays retained, and the corrected selector filters
+the endpoint's returned statuses before a distinct phone/backend trial.
 
 `test:booking-notices` requires a fresh absolute `SGM_LOCAL_FLOW_OUTPUT` and runs
 actual isolated booking decisions. Owned deterministic notice-write guards test

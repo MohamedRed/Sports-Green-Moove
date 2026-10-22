@@ -4,7 +4,7 @@ import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { isAbsolute, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
 import { deleteApp, getApp } from 'firebase-admin/app';
-import { bookingPhonePhases, verifyBookingPhoneCheckpoint } from './manual-booking-phone-checkpoints.mjs';
+import { bookingPhonePhases, pendingBookingPhoneRequestIds, verifyBookingPhoneCheckpoint } from './manual-booking-phone-checkpoints.mjs';
 
 const [sessionPath, output] = process.argv.slice(2);
 assert(isAbsolute(sessionPath ?? '') && isAbsolute(output ?? ''));
@@ -46,7 +46,7 @@ try {
     }
     for (const [name, actor] of Object.entries(actors)) inboxes[name] = (await call('getInbox', actor)).inbox.notifications
       .filter(note => notices.some(row => row.id === note.id)).map(note => note.id);
-    const pendingRequestIds = (await call('listDriverBookingRequests', actors.driver)).bookings.map(row => row.bookingId);
+    const pendingRequestIds = pendingBookingPhoneRequestIds(await call('listDriverBookingRequests', actors.driver));
     const state = {bookings, trips, notices, inboxes, pendingRequestIds};
     const result = verifyBookingPhoneCheckpoint(phase, state, fixture);
     for (const [path, original] of baseline) {

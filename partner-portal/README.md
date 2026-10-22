@@ -1,6 +1,22 @@
 # Partner Progress Portal
 
-The 22 October review retains terminal service and native CI metadata separately.
+The new 22 October booking snapshot is prepared locally, not yet published.
+The hosted Site's access changed to public (policy revision 2); anonymous requests
+to the root and data JSON returned 200. Restoring owner-only access has been
+requested from the user. Do not publish this new snapshot to that public audience.
+
+The later 22 October phone trial completes six independent two-seat booking
+checkpoints with sequential driver/parent/driver accounts. Eight reviewed stream
+rectangles open its tour: approve, decline, recipient notices, parent cancellation
+and capacity restored from two to four. Requests are prepared by isolated
+services, not parent search UI. The first controller's incorrect pending-list
+assumption remains an incomplete attempt. Its corrected source, disposal and
+successful new trial are retained separately. No push, payment, simultaneous
+phones or release claim is added. The new record leaves older phone dates intact.
+The latest local replay finishes all 36 groups, while one ordinary PixelCopy
+capture still fails; the portal keeps that global verification open.
+
+The earlier 22 October review retains terminal service and native CI metadata separately.
 All 24 service groups pass in the actual remote log. The full native replay fails
 during evidence transfer with an observed offline transport; eleven focused lanes
 pass. The new booking phone attempt reaches no UI checkpoint because its private
@@ -212,10 +228,11 @@ status. Update `updatedAt` when content changes and `lastVerifiedAt` only when a
 new verification actually occurred. Evidence source hashes are included in the
 generated JSON for traceability. Never add credentials or unreviewed media.
 
-`native-verification.mjs` binds the latest full local replay and independent
+`native-verification.mjs` retains an earlier full local replay and independent
 safety trials to their scoped retained evidence. Validation checks CI source,
 required jobs, native markers, transfers, APK preparation and cleanup separately.
-Current reliability blockers reference this record; historical reports keep their
+The separate `nativeCaptureRecheck` follows the latest global capture failure;
+historical reports keep their
 original dates and failures. The separate recreated-profile gallery and tour
 never imply child-own-account access or physical-device readiness.
 

@@ -21,7 +21,7 @@ export function createSearchFlow() {
     verified: 'Wavre et Bruxelles-Central sont retrouvés. Le parent choisit Lina, deux places et son consentement ; un trajet est trouvé et une seule demande est enregistrée.',
     remaining: 'Terminer la recherche complète et une réservation de deux places pour un enfant sur téléphone. Vérifier le classement, une vraie déconnexion et la reprise après coupure. Simplifier le choix de date.',
     phone: { ...phone, checkedAt: '2026-10-18' },
-    searchBookingUi: { source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json' },
+    searchBookingUi: { source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json', checkedAt: '2026-10-20' },
     ui: { source: 'docs/release/evidence/local-search-options-ui-2026-10-16/results.json',
       groups: ['search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui'], checkedAt: '2026-10-16' },
     images: [shot('search-booking-choices', 'Adresses choisies, Lina, deux places et consentement, essai local du 20 octobre'),

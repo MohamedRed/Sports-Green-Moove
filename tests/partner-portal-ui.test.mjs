@@ -28,7 +28,7 @@ test('rendered content is escaped and native accessible controls remain present'
 });
 
 test('portal code modules remain below 300 lines', () => {
-  for (const file of ['content.mjs', 'evidence-captures.mjs', 'validate.mjs', 'build-assets.mjs', 'src/app.js', 'src/render.js', 'src/media.js', 'src/styles.css', 'tours.mjs', 'src/tour.js', 'src/visuals.js', 'src/visuals.css', 'src/ui.js']) {
+  for (const file of ['content.mjs', 'evidence-captures.mjs', 'validate.mjs', 'booking-evidence.mjs', 'build-assets.mjs', 'src/app.js', 'src/render.js', 'src/media.js', 'src/styles.css', 'tours.mjs', 'src/tour.js', 'src/visuals.js', 'src/visuals.css', 'src/ui.js']) {
     assert(source(`partner-portal/${file}`).split('\n').length < 300, `${file} needs splitting`);
   }
 });

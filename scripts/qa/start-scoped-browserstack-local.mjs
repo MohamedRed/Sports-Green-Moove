@@ -21,6 +21,8 @@ const home = resolve(temp, 'vendor-home'); mkdirSync(home, { mode: 0o700 });
 execFileSync('/usr/bin/mkfifo', ['-m', '600', pipe]);
 const configPipe = resolve(temp, 'vendor-config.yml');
 execFileSync('/usr/bin/mkfifo', ['-m', '600', configPipe]);
+const logPipe = startupDiagnostic ? resolve(temp, 'startup-log.pipe') : undefined;
+if (logPipe) execFileSync('/usr/bin/mkfifo', ['-m', '600', logPipe]);
 const controller = new AbortController();
 const interrupt = () => controller.abort('SIGINT'), terminate = () => controller.abort('SIGTERM');
 process.once('SIGINT', interrupt); process.once('SIGTERM', terminate);
@@ -32,7 +34,7 @@ try {
   Object.assign(env, { HOME: home, XDG_CONFIG_HOME: resolve(home, '.config') });
   const result = await superviseLocalProcess({ command: process.execPath,
     args: [resolve(import.meta.dirname, 'run-scoped-browserstack-local.mjs'), binary, pipe, configPipe,
-      ...(startupDiagnostic ? ['--startup-diagnostic-approved'] : [])], cwd: temp,
+      ...(startupDiagnostic ? ['--startup-diagnostic-approved', logPipe] : [])], cwd: temp,
     env, signal: controller.signal, stopGraceMs: 15_000 });
   verified = result.groupExitVerified;
   if (result.stopped) process.exitCode = controller.signal.reason === 'SIGINT' ? 130 : 143;

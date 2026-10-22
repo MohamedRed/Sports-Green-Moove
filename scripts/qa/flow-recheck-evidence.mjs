@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { basename, dirname, resolve } from 'node:path';
+import { validateNativeCaptureRecheck } from './native-capture-recheck-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -55,13 +56,12 @@ export function validateFlowRecheck(root, record) {
 }
 
 export function validateCurrentNativeBlocker(root, content) {
-  const report = validateFlowRecheck(root, content.flowRecheck);
+  const report = validateNativeCaptureRecheck(root, content.nativeCaptureRecheck);
   const blocker = content.blockers.find(item => item.id === 'test-device-stability');
   assert(blocker, 'The incomplete native replay must remain visible');
-  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.flowRecheck.source), 'README.md'));
-  assert.equal(report.fullNativeReplayCompleted, false);
-  assert.match(blocker.text, /captures/);
-  assert.match(blocker.text, /liaison|interromp|coupure/);
-  assert.match(blocker.next, /complet/);
+  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeCaptureRecheck.source), 'README.md'));
+  assert.equal(report.fullCiPassed, false);
+  assert.match(blocker.text, /36 essais/); assert.match(blocker.text, /capture.*texte agrandi/);
+  assert.match(blocker.next, /complète/);
   return blocker;
 }

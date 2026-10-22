@@ -11,7 +11,8 @@ test('terminal service success is separate from failed native replay and unstart
   assert.equal(report.serviceGroupsPassed, 24); assert.equal(report.releaseComplete, false);
   assert.equal(content.flows.find(flow => flow.id === 'booking').status, 'partial');
   assert.equal(content.flows.find(flow => flow.id === 'booking').phone.checkedAt, '2026-10-18');
-  const progress = content.updates[0]; assert.equal(progress.date, '2026-10-22');
+  const progress = content.updates.find(item => item.title === 'Les 24 essais côté données passent');
+  assert.equal(progress.date, '2026-10-22');
   assert.match(progress.text, /interrompu/); assert.match(progress.text, /débloquer/);
 });
 test('current native blocker follows the latest failed replay, not an immutable historical gallery', () => {

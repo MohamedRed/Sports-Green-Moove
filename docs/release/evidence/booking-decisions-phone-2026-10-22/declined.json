@@ -1,0 +1,208 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9a9c1b943b9415cf245f3fb79aa8d37f",
+  "recordedAt": "2026-10-22T11:42:43.074Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "bookings": [
+      {
+        "tripId": "TnCHANLVbXTgN7ek1H8O",
+        "bookingId": "GeDaHGKbs9QvIG82StQN",
+        "title": "Accord deux places QA"
+      },
+      {
+        "tripId": "fvxIwHCb9f5QNXlFtBqN",
+        "bookingId": "UuZsHIYX8R4FZL3Kz54O",
+        "title": "Refus deux places QA"
+      }
+    ]
+  },
+  "state": {
+    "bookings": [
+      {
+        "id": "GeDaHGKbs9QvIG82StQN",
+        "tripId": "TnCHANLVbXTgN7ek1H8O",
+        "parentUserId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "createdAt": {
+          "_seconds": 1792669145,
+          "_nanoseconds": 967000000
+        },
+        "childId": "sgm-qa-child-lina",
+        "childLabel": "Lina QA",
+        "approvedAt": {
+          "_seconds": 1792669313,
+          "_nanoseconds": 750000000
+        },
+        "status": "approved",
+        "updatedAt": {
+          "_seconds": 1792669313,
+          "_nanoseconds": 750000000
+        }
+      },
+      {
+        "id": "UuZsHIYX8R4FZL3Kz54O",
+        "tripId": "fvxIwHCb9f5QNXlFtBqN",
+        "parentUserId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "createdAt": {
+          "_seconds": 1792669146,
+          "_nanoseconds": 28000000
+        },
+        "childId": "sgm-qa-child-lina",
+        "childLabel": "Lina QA",
+        "declinedByUserId": "sgm-qa-driver",
+        "declinedAt": {
+          "_seconds": 1792669345,
+          "_nanoseconds": 263000000
+        },
+        "status": "declined",
+        "updatedAt": {
+          "_seconds": 1792669345,
+          "_nanoseconds": 263000000
+        }
+      }
+    ],
+    "trips": [
+      {
+        "id": "TnCHANLVbXTgN7ek1H8O",
+        "driverUserId": "sgm-qa-driver",
+        "status": "published",
+        "title": "Accord deux places QA",
+        "sport": "Football",
+        "clubName": "Green Wavre QA Club",
+        "clubId": "sgm-qa-club-green-wavre",
+        "teamId": "sgm-qa-club-green-wavre-u8",
+        "category": "U 7/8",
+        "departureAt": "2026-10-23T23:39:05.216Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "pickupRadiusM": 1500,
+        "seatsTotal": 4,
+        "baggage": "medium",
+        "returnTrip": false,
+        "priceCents": 0,
+        "driverRating": 0,
+        "driverVerified": true,
+        "supportsVehicleTracking": true,
+        "supportsChildTracking": true,
+        "co2SavedKgEstimate": 7.4,
+        "passengerInitials": [],
+        "blockedUserIds": [],
+        "createdAt": {
+          "_seconds": 1792669145,
+          "_nanoseconds": 236000000
+        },
+        "updatedAt": {
+          "_seconds": 1792669313,
+          "_nanoseconds": 750000000
+        },
+        "seatsAvailable": 2
+      },
+      {
+        "id": "fvxIwHCb9f5QNXlFtBqN",
+        "driverUserId": "sgm-qa-driver",
+        "status": "published",
+        "title": "Refus deux places QA",
+        "sport": "Football",
+        "clubName": "Green Wavre QA Club",
+        "clubId": "sgm-qa-club-green-wavre",
+        "teamId": "sgm-qa-club-green-wavre-u8",
+        "category": "U 7/8",
+        "departureAt": "2026-10-23T23:39:05.994Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "pickupRadiusM": 1500,
+        "seatsTotal": 4,
+        "seatsAvailable": 4,
+        "baggage": "medium",
+        "returnTrip": false,
+        "priceCents": 0,
+        "driverRating": 0,
+        "driverVerified": true,
+        "supportsVehicleTracking": true,
+        "supportsChildTracking": true,
+        "co2SavedKgEstimate": 7.4,
+        "passengerInitials": [],
+        "blockedUserIds": [],
+        "createdAt": {
+          "_seconds": 1792669146,
+          "_nanoseconds": 1000000
+        },
+        "updatedAt": {
+          "_seconds": 1792669146,
+          "_nanoseconds": 1000000
+        }
+      }
+    ],
+    "notices": [
+      {
+        "id": "bookingDecision_78d802cc417ac012f0c25ea858010ac388d35258463937a5fa7902781c087a77",
+        "type": "bookingApproved",
+        "title": "Réservation approuvée",
+        "body": "Accord deux places QA est approuvé par le conducteur.",
+        "sourceId": "GeDaHGKbs9QvIG82StQN",
+        "userId": "sgm-qa-parent",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792669313,
+          "_nanoseconds": 750000000
+        }
+      },
+      {
+        "id": "bookingDecision_26de14419bc1503b017e4f589f971b866502bb20171ab6c5a6479fe2d9295d5f",
+        "type": "bookingDeclined",
+        "title": "Demande refusée",
+        "body": "Refus deux places QA : demande refusée par le conducteur.",
+        "sourceId": "UuZsHIYX8R4FZL3Kz54O",
+        "userId": "sgm-qa-parent",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792669345,
+          "_nanoseconds": 319000000
+        }
+      }
+    ],
+    "inboxes": {
+      "parent": [
+        "bookingDecision_26de14419bc1503b017e4f589f971b866502bb20171ab6c5a6479fe2d9295d5f",
+        "bookingDecision_78d802cc417ac012f0c25ea858010ac388d35258463937a5fa7902781c087a77"
+      ],
+      "driver": [],
+      "outsider": []
+    },
+    "pendingRequestIds": [
+      "sgm-qa-booking-requested"
+    ]
+  },
+  "result": {
+    "phase": "declined",
+    "statuses": [
+      "approved",
+      "declined"
+    ],
+    "noticeCount": 2,
+    "recipientIsolationVerified": true,
+    "physicalUiProvenByThisCheckpoint": false,
+    "pushDeliveryVerified": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true
+}

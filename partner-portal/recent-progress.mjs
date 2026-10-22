@@ -1,6 +1,10 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Accord, refus et annulation passent sur téléphone',
+    text: 'Deux places pour un enfant : les décisions et les notifications arrivent au bon compte. L’annulation rend les places. Huit captures sont ajoutées.', flow: 'booking' },
+  { date: '2026-10-22', title: 'Les 36 essais locaux se terminent',
+    text: 'Le parcours complet va au bout. Une capture en texte agrandi échoue encore dans la vérification globale.', flow: 'publication' },
   { date: '2026-10-22', title: 'Les 24 essais côté données passent',
     text: 'Réservations, messages et changements de trajet passent. L’essai complet dans l’app reste interrompu ; la connexion du prochain téléphone est à débloquer.', flow: 'booking' },
   { date: '2026-10-21', title: 'Décision et notification s’enregistrent ensemble',

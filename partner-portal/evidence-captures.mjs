@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['prepared', 'approved', 'declined', 'parent-inbox', 'parent-capacity', 'cancelled', 'restored-capacity', 'driver-inbox']
+    .map(id => ['booking-decision-phone-' + id, 'docs/release/evidence/booking-decisions-phone-2026-10-22/' + id + '-device.jpg'])),
   ...Object.fromEntries(['initial', 'revoked', 'renewed', 'new-message', 'replied'].map(id => ['team-authority-phone-' + id,
     'docs/release/evidence/team-authority-phone-2026-10-21/' + id + '-device.jpg'])),
   ...Object.fromEntries(['initial-unread', 'parent-read', 'new-unread', 'parent-read-again', 'parent-sent',

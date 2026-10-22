@@ -57,7 +57,7 @@ export function nextSteps(data) {
 
 export function detail(flow) {
   return `<div class="detail-heading">${status(flow.status)}<h2 id="detail-title">${escape(flow.title)}</h2>
-      ${flow.checkedAt ? `<p class="date">${flow.latestEvidence === 'local' ? 'Essai local' : flow.phone && (flow.phone.checkedAt ?? flow.checkedAt) === flow.checkedAt ? 'Essai sur téléphone' : flow.local || flow.ui || flow.searchBookingUi ? 'Essai local' : 'Test'} du ${date(flow.checkedAt)}</p>` : ''}</div>
+      ${flow.checkedAt ? `<p class="date">${flow.latestEvidence === 'phone' ? 'Essai sur téléphone' : flow.latestEvidence === 'local' ? 'Essai local' : flow.phone && (flow.phone.checkedAt ?? flow.checkedAt) === flow.checkedAt ? 'Essai sur téléphone' : flow.local || flow.ui || flow.searchBookingUi ? 'Essai local' : 'Test'} du ${date(flow.checkedAt)}</p>` : ''}</div>
     ${flow.tour ? `<nav class="detail-modes" aria-label="Présentation du parcours"><a href="#parcours/${flow.id}/visite/1">Visite guidée</a><a href="#parcours/${flow.id}">Toutes les preuves</a></nav>` : ''}
     <div class="detail-layout">
     <section class="detail-media" aria-label="Résultats, vidéos et captures"><div id="media-content"></div></section>
