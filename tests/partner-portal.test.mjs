@@ -19,6 +19,17 @@ test('every flow has truthful, dated evidence and explicit remaining scope', () 
   assert.equal(content.releaseNote, 'Tests en cours.');
 });
 
+test('new public callback failure does not promote older local payment evidence or attribute an unconfirmed cause', () => {
+  const flow = content.flows.find(item => item.id === 'payments');
+  const blocker = content.blockers.find(item => item.id === 'payment-return');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-18');
+  assert.match(flow.remaining, /indisponibles le 22 octobre/);
+  assert.equal(blocker.source, 'docs/release/evidence/stripe-callback-outage-2026-10-22/README.md');
+  assert.match(blocker.next, /paiements réels/);
+  assert(content.updates.some(item => item.flow === 'payments' && /cause reste à identifier/.test(item.text)));
+  assert.doesNotMatch(blocker.text, /facturation|suspension|Stripe|Firebase|HTTP|BrowserStack/i);
+});
+
 test('completed local consent adds reviewed images without promoting failed or physical-device scope', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
   const blocker = content.blockers.find((item) => item.id === 'trip-management');

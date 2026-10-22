@@ -356,6 +356,9 @@ on:
       - "tests/admin-plan-coverage.test.mjs"
       - "tests/stripe-webhook-flow.test.ts"
       - "tests/stripe-production-readiness.test.mjs"
+      - "tests/release-gaps.test.mjs"
+      - "docs/release/evidence-manifest.json"
+      - "docs/release/evidence/stripe-callback-outage-2026-10-22/**"
       - "scripts/check-stripe-production-readiness.mjs"
       - "scripts/lib/stripe-production-readiness.mjs"
       - "scripts/lib/stripe-readiness-http.mjs"
@@ -716,6 +719,9 @@ on:
       - "tests/admin-plan-coverage.test.mjs"
       - "tests/stripe-webhook-flow.test.ts"
       - "tests/stripe-production-readiness.test.mjs"
+      - "tests/release-gaps.test.mjs"
+      - "docs/release/evidence-manifest.json"
+      - "docs/release/evidence/stripe-callback-outage-2026-10-22/**"
       - "scripts/check-stripe-production-readiness.mjs"
       - "scripts/lib/stripe-production-readiness.mjs"
       - "scripts/lib/stripe-readiness-http.mjs"
@@ -1045,7 +1051,7 @@ jobs:
         run: npm run test:stripe-webhook-flow
 
       - name: Test Stripe production readiness verification
-        run: npm run test:stripe-production-readiness
+        run: npm run test:stripe-production-readiness && npm run test:release-gaps
 
       - name: Test live smoke cleanup
         run: npm run test:live-smoke-cleanup

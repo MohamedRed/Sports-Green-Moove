@@ -1,5 +1,12 @@
 # Partner Progress Portal
 
+The 22 October public callback health recheck fails for both driver-onboarding
+return pages. The portal adds a dated payment blocker, without changing the
+older local payment proof or its date. The release manifest now requires Stripe
+reverification. The unrelated suspended billing account is not attributed to
+production. The Site bypass token was rotated with the access policy unchanged;
+publication remains held while the audience is public.
+
 The later 22 October physical submission run proves a full native process stop
 and explicit Retry of the same unconfirmed request. Six reviewed stream rectangles
 open the tour; earlier failed attempts and local clips remain separate. The phone

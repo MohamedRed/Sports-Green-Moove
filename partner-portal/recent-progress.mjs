@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Le retour du compte conducteur est bloqué',
+    text: 'Les deux pages de retour sont indisponibles. La cause reste à identifier ; aucun paiement effectué.', flow: 'payments' },
   { date: '2026-10-22', title: 'Fermer l’app sans perdre la demande',
     text: 'Le texte revient après un arrêt complet. Réessayer confirme la même demande, sans doublon. Six captures montrent le parcours ; la vraie coupure reste à rejouer.', flow: 'support-submission' },
   { date: '2026-10-22', title: 'Un seul appui, des tentatives répétées',

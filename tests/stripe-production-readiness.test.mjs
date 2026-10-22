@@ -255,4 +255,21 @@ for (const [error, kind] of [
   }
 }
 
+const outage = JSON.parse(readFileSync("docs/release/evidence/stripe-callback-outage-2026-10-22/health.json", "utf8"));
+assert.equal(outage.scope, "read-only-public-callback-health-not-payment-or-onboarding");
+assert.deepEqual(outage.observations.map(item => item.kind), ["return", "refresh"]);
+for (const item of outage.observations) {
+  assert.equal(item.httpStatus, 500); assert.equal(item.passed, false);
+  assert.equal(item.callbackMarker, null); assert.equal(item.requestContainsCredentials, false);
+  assert.equal(item.method, "GET");
+  assert.equal(item.url, `https://sports-green-moove-prod.web.app/payments/${item.kind}?health=1`);
+  let attempts = 0;
+  await assert.rejects(() => checkConnectCallback(async () => {
+    attempts++; return new Response(null, { status: item.httpStatus });
+  }, item.url, item.kind === "return" ? "SGM_STRIPE_CONNECT_RETURN_URL" : "SGM_STRIPE_CONNECT_REFRESH_URL"), /HTTP 500/);
+  assert.equal(attempts, 1, "An observed outage must fail immediately, not silently retry or pass as configured.");
+}
+for (const flag of ["productionWrites", "paymentsCreated", "providerConfigurationChanged", "rootCauseConfirmed"])
+  assert.equal(outage[flag], false, flag);
+
 console.log("Stripe production readiness checks passed.");

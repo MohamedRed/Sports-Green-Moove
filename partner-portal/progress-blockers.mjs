@@ -1,6 +1,9 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
+  { id: 'payment-return', title: 'Rétablir le retour du compte conducteur',
+    text: 'Les deux pages de retour sont indisponibles lors du contrôle du 22 octobre.',
+    next: 'Rétablir leur ouverture, puis reprendre l’inscription conducteur et les paiements réels.', source: 'docs/release/evidence/stripe-callback-outage-2026-10-22/README.md' },
   { id: 'tracking-capture', title: 'Revoir l’affichage du trajet',
     text: 'La reprise fonctionne en local. Le bas de l’écran manque sur deux captures.',
     next: 'Vérifier le rendu sur téléphone et corriger l’affichage si le défaut se confirme.', source: 'docs/release/evidence/native-startup-pass-2026-10-19/README.md' },

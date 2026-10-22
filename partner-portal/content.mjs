@@ -231,7 +231,7 @@ export const content = {
     { id: 'payments', title: 'Paiements et compte conducteur', status: 'partial', checkedAt: '2026-10-18',
       summary: 'Une confirmation tardive reste en attente dans les essais locaux.',
       verified: 'Le paiement est confirmé seulement quand son enregistrement est complet. Vérifier ne relance pas de paiement.',
-      remaining: 'Tester l’intégration des écrans, terminer les remboursements et rejouer les paiements réels sur téléphone, y compris après fermeture. Vérifier aussi l’inscription conducteur. Pas encore en ligne.',
+      remaining: 'Rétablir les pages de retour du compte conducteur, indisponibles le 22 octobre. Tester les écrans, les remboursements et les paiements réels sur téléphone, y compris après fermeture. Pas encore en ligne.',
       local: local(['ride-payment-confirmation'], ['Une confirmation tardive reste en attente.', 'Un enregistrement incomplet ne confirme pas le paiement.', 'Un autre parent ne peut pas consulter ce paiement.', 'Vérifier ne lance pas un nouveau paiement.', 'Aucun paiement ni remboursement réel dans ces essais.'], 'docs/release/evidence/local-payment-confirmation-2026-10-18/services.json'),
       ui: { source: 'docs/release/evidence/local-payment-layout-2026-10-18/results.json', groups: [
         'pendingPaymentOffersOnlyReadOnlyVerificationOnANarrowScreen', 'anInconsistentRecordRemainsExplicitlyUnconfirmed',
