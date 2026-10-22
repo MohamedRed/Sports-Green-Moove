@@ -4,14 +4,25 @@ import { validateSupportPhone } from '../scripts/qa/support-phone-evidence.mjs';
 import { validateSupportFollowup } from '../scripts/qa/support-followup-evidence.mjs';
 import { validateSupportFollowupPhone } from '../scripts/qa/support-followup-phone-evidence.mjs';
 import { validateSupportSubmissionEvidence } from '../scripts/qa/support-submission-evidence.mjs';
+import { validateSupportRecoveryPhoneEvidence } from '../scripts/qa/support-recovery-phone-evidence.mjs';
 
 export function validateSupportEvidence(root, flow, captures) {
   if (flow.submissionRecovery) {
     const record = flow.submissionRecovery, proof = validateSupportSubmissionEvidence(root, record.source);
-    assert.equal(flow.id, 'support-submission'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local');
+    assert.equal(flow.id, 'support-submission'); assert.equal(flow.status, 'partial');
+    assert.equal(flow.latestEvidence, flow.submissionPhoneAttempt ? 'phone' : 'local');
     assert.equal(record.checkedAt, proof.checkedAt); assert.equal(record.checksums, dirname(record.source) + '/artifact-sha256.json');
     for (const file of proof.images) assert.equal(captures[file.split('/').at(-1).replace('.png', '')], dirname(record.source) + '/' + file);
     assert.match(flow.remaining, /téléphone réel/); assert.match(flow.remaining, /simulée/);
+  }
+  if (flow.submissionPhoneAttempt) {
+    assert.equal(flow.id, 'support-submission'); assert.equal(flow.status, 'partial');
+    const record = flow.submissionPhoneAttempt, proof = validateSupportRecoveryPhoneEvidence(root, record.source);
+    assert.equal(record.checkedAt, proof.checkedAt); assert.equal(record.checksums, dirname(record.source) + '/artifact-sha256.json');
+    for (const [id, file] of Object.entries(proof.publishedCaptures)) {
+      assert(flow.images.some(image => image.file === id)); assert.equal(captures[id], dirname(record.source) + '/' + file);
+    }
+    assert.match(flow.remaining, /seconde tentative/); assert.match(flow.remaining, /fermeture/);
   }
   if (flow.supportPhone) {
     assert.equal(flow.id, 'support'); assert.equal(flow.status, 'partial');

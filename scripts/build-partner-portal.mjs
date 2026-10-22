@@ -48,6 +48,9 @@ for (const flow of content.flows) for (const record of [flow.decisionPhone, flow
 }
 for (const flow of content.flows.filter(flow => flow.supportPhone)) for (const file of [flow.supportPhone.source, flow.supportPhone.checksums])
   fingerprints[file] = createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex');
+for (const flow of content.flows.filter(flow => flow.submissionPhoneAttempt))
+  for (const file of [flow.submissionPhoneAttempt.source, flow.submissionPhoneAttempt.checksums])
+    fingerprints[file] = createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex');
 const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };
 writeFileSync(resolve(out, 'data.json'), `${JSON.stringify(data, null, 2)}\n`);
 console.log(`Partner portal built: ${content.flows.length} flows, ${Object.keys(excerpts).length} short clips. No production app changes.`);

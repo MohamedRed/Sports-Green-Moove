@@ -166,6 +166,9 @@ on:
       - "tests/manual-support-followup-checkpoints.test.mjs"
       - "tests/support-followup-phone-evidence.test.mjs"
       - "tests/support-submission.test.mjs"
+      - "tests/support-response-gate.test.mjs"
+      - "tests/manual-support-recovery-checkpoints.test.mjs"
+      - "tests/support-recovery-phone-evidence.test.mjs"
       - "tests/native-copy-recheck-evidence.test.mjs"
       - "tests/flow-recheck.test.mjs"
       - "tests/booking-decisions-phone-evidence.test.mjs"
@@ -521,6 +524,9 @@ on:
       - "tests/manual-support-followup-checkpoints.test.mjs"
       - "tests/support-followup-phone-evidence.test.mjs"
       - "tests/support-submission.test.mjs"
+      - "tests/support-response-gate.test.mjs"
+      - "tests/manual-support-recovery-checkpoints.test.mjs"
+      - "tests/support-recovery-phone-evidence.test.mjs"
       - "tests/native-copy-recheck-evidence.test.mjs"
       - "tests/flow-recheck.test.mjs"
       - "tests/booking-decisions-phone-evidence.test.mjs"
@@ -837,6 +843,8 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-submission.json
         run: npm run test:support-submission && node --test tests/support-submission.test.mjs
+      - name: Validate private real-phone support recovery observation safeguards
+        run: node --test tests/support-response-gate.test.mjs tests/manual-support-recovery-checkpoints.test.mjs tests/support-recovery-phone-evidence.test.mjs
 
       - name: Test team-only adult conversations and admission-scoped history
         env:

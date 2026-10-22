@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'La coupure conserve la demande sur téléphone',
+    text: 'Le texte et Urgent restent visibles sans confirmation. Une seule demande est retrouvée. La seconde tentative reçue reste à expliquer ; la reprise après fermeture n’est pas encore validée.', flow: 'support-submission' },
   { date: '2026-10-22', title: 'Réessayer sans créer deux demandes',
     text: 'Une confirmation perdue est récupérée sans doublon en local. Une courte vidéo et quatre captures montrent la reprise de l’envoi. Le nouvel essai sur téléphone réel reste à faire.', flow: 'support-submission' },
   { date: '2026-10-22', title: 'Les réponses du support passent sur téléphone',

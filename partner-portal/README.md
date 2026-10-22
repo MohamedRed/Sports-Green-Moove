@@ -1,5 +1,15 @@
 # Partner Progress Portal
 
+The later 22 October physical support-submission attempt is incomplete. Four
+reviewed stream rectangles show the urgent form, unconfirmed state, history and
+saved details. Independent records preserve one report/operation, but a second
+handler attempt has an unproven origin. The no-replay interpretation was rejected;
+neither explicit retry nor pending process restart is accepted. Four checkpoints
+preserve 158 baseline records/claims; the later verifier covers request integrity
+and foreign reads only. Network settings and owned backend/helper are restored;
+the physical session is stopped. App uninstall was requested but is not independently
+verified. No new video or release acceptance is added. This update is local only.
+
 The 22 October submission-recovery record adds twelve isolated service checks,
 two native component cases, four native screenshots and a ten-second real-time
 screen-recording excerpt. It is separate from the physical support follow-up:

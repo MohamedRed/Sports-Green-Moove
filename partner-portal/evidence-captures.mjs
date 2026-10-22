@@ -1,4 +1,7 @@
 export const captures = {
+  ...Object.fromEntries([['prepared', '01-prepared'], ['unconfirmed', '05-unconfirmed-offline'],
+    ['history', '07-requester-history'], ['details', '08-saved-details']].map(([id, file]) => ['support-recovery-phone-' + id,
+    'docs/release/evidence/support-recovery-phone-attempt-2026-10-22/captures/' + file + '.png'])),
   ...Object.fromEntries(['unconfirmed', 'restored', 'confirmed', 'storage-error'].map(name => ['support-submission-' + name,
     'docs/release/evidence/support-submission-recovery-2026-10-22/images/support-submission-' + name + '.png'])),
   ...Object.fromEntries(['prepared', 'approved', 'declined', 'parent-inbox', 'parent-capacity', 'cancelled', 'restored-capacity', 'driver-inbox']
