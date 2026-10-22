@@ -122,7 +122,7 @@ class StoreReviewScreenshotTest {
         capture("store-child-safety-disclosure.png")
 
         host.show {
-            OptionsScreen(firebase = UiFlowFirebaseGateway(), onBack = {}, onEmergencyContact = {})
+            OptionsScreen(firebase = UiFlowFirebaseGateway(), onBack = {}, onEmergencyContact = {}, onSupport = {})
         }
         compose.onNodeWithTag(SgmTestTags.PrivacySummaryDisclosure).assertIsDisplayed()
         capture("store-privacy-summary.png")

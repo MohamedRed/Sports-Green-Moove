@@ -1,5 +1,14 @@
 # Partner Progress Portal
 
+The later 22 October support follow-up snapshot retains thirteen isolated
+service checks and five actual administrator-browser checks at four widths.
+Public written replies and status are owner-readable; internal notes remain
+private. A lost acknowledgement is explicitly retried without a duplicate.
+Android/iOS wire/state checks pass; the new requester screens still need observed
+native and physical replay. The prior submission phone captures keep their scope.
+No new phone media or release acceptance is added. Publication remains on hold
+while Site access is public; the new copy is local only.
+
 The 22 October support snapshot adds four reviewed physical-phone stream
 rectangles: invalid form, filled synthetic text, one submission and screen
 reopening. Five independent checkpoints verify one report and 158 protected

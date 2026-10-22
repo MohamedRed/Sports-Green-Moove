@@ -71,6 +71,8 @@ export const createReport = onCall(async (request) => {
     ...data,
     reporterUserId: uid,
     status: "open",
+    publicReplyCount: 0,
+    lastPublicReply: null,
     createdAt: Timestamp.now(),
     updatedAt: Timestamp.now(),
   });

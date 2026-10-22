@@ -5,6 +5,7 @@ import { isAbsolute, resolve } from 'node:path';
 import { waitForDisposableDevice } from './disposable-device-cleanup.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { collectAdbSyncFailureDiagnostics } from './adb-sync-failure-diagnostics.mjs';
+import { observeAdbHostProcesses } from './adb-host-health.mjs';
 
 const remote = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/.';
 const phases = new Set(['session-disconnect', 'session-restoration', 'emergency-identity', 'vehicle-map', 'vehicle-map-layout', 'remote-ride-stop', 'native-startup', 'ride-observation', 'ride-emergency', 'team-enrollment', 'emergency-contact', 'guardian-parent-verification', 'confirmed-restart', 'response-loss', 'booking-response-loss', 'booking-ui-response-loss',
@@ -22,7 +23,8 @@ export class EvidenceCollectionError extends Error {
   }
 }
 
-export function collectLocalUiEvidence({ adb, serial, runId, evidenceDir, phase, password }, execute = execFileSync, spawn = spawnSync) {
+export function collectLocalUiEvidence({ adb, serial, runId, evidenceDir, phase, password }, execute = execFileSync,
+  spawn = spawnSync, observeHost = observeAdbHostProcesses) {
   assert.equal(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
   assert.match(serial, /^emulator-\d+$/);
   assert.match(runId, /^[a-f0-9]{32}$/);
@@ -33,6 +35,7 @@ export function collectLocalUiEvidence({ adb, serial, runId, evidenceDir, phase,
   assert(!existsSync(receiptPath), 'A named evidence copy cannot be repeated or overwrite its receipt');
   waitForDisposableDevice(adb, serial, execute);
   const version = redact(execute(adb, ['version'], { encoding: 'utf8', timeout: 30_000 }));
+  const hostBefore = observeHost();
   let status = 0, signal = null, stdout = '', stderr = '', errorCode = null;
   try {
     // Restrict tracing to file sync, not authentication or packet payloads.
@@ -50,7 +53,8 @@ export function collectLocalUiEvidence({ adb, serial, runId, evidenceDir, phase,
     errorCode = typeof error.code === 'string' ? redact(error.code) : 'PROCESS_ERROR';
     stdout = redact(error.stdout); stderr = redact(error.stderr);
   }
-  const receipt = { projectId: 'demo-sgm-local-qa', runId, phase, recordedAt: new Date().toISOString(),
+  const hostAfter = observeHost();
+  const receipt = { projectId: 'demo-sgm-local-qa', runId, phase, recordedAt: new Date().toISOString(), hostBefore, hostAfter,
     scope: 'local-adb-file-sync-command-not-flow-verification', serial, version,
     status, signal, errorCode, stdout, stderr, completed: status === 0 && signal === null && errorCode === null };
   writeFileSync(receiptPath, `${JSON.stringify(receipt, null, 2)}\n`, { mode: 0o600, flag: 'wx' });

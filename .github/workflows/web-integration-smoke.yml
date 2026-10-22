@@ -162,6 +162,7 @@ on:
       - "tests/manual-booking-phone-checkpoints.test.mjs"
       - "tests/manual-support-phone-checkpoints.test.mjs"
       - "tests/support-phone-evidence.test.mjs"
+      - "tests/support-followup.test.mjs"
       - "tests/flow-recheck.test.mjs"
       - "tests/booking-decisions-phone-evidence.test.mjs"
       - "tests/native-capture-recheck-evidence.test.mjs"
@@ -510,6 +511,7 @@ on:
       - "tests/manual-booking-phone-checkpoints.test.mjs"
       - "tests/manual-support-phone-checkpoints.test.mjs"
       - "tests/support-phone-evidence.test.mjs"
+      - "tests/support-followup.test.mjs"
       - "tests/flow-recheck.test.mjs"
       - "tests/booking-decisions-phone-evidence.test.mjs"
       - "tests/native-capture-recheck-evidence.test.mjs"
@@ -813,6 +815,10 @@ jobs:
         run: node --test tests/team-chat-authority-phone-evidence.test.mjs
       - name: Validate isolated phone support checkpoints
         run: node --test tests/manual-support-phone-checkpoints.test.mjs tests/support-phone-evidence.test.mjs
+      - name: Test private requester support replies and explicit retry
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-followup.json
+        run: npm run test:support-followup && node --test tests/support-followup.test.mjs
 
       - name: Test team-only adult conversations and admission-scoped history
         env:

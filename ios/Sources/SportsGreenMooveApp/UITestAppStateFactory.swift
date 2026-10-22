@@ -186,6 +186,12 @@ private struct UITestAuthGateway: AuthGateway {
 }
 
 private struct UITestFirebaseGateway: FirebaseGateway {
+    func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
+        try await UnconfiguredSupportGateway().supportReports(uid: uid, cursor: cursor)
+    }
+    func supportReport(uid: String, reportId: String, cursor: String?) async throws -> SupportDetail {
+        try await UnconfiguredSupportGateway().supportReport(uid: uid, reportId: reportId, cursor: cursor)
+    }
     var isConfigured: Bool { true }
     func searchTrips() async throws -> [TripSummary] { [Fixtures.trip] }
     func listChildren() async throws -> [ChildSummary] { [Fixtures.child] }

@@ -7,6 +7,7 @@ struct OptionsScreen: View {
     @State private var emergency = false
     @State private var submitting = false
     @State private var message: String?
+    @State private var showSupport = false
 
     var body: some View {
         SGMScreen(testID: UITestIdentifier.optionsScreen) {
@@ -32,7 +33,13 @@ struct OptionsScreen: View {
             ])
             SGMSectionLabel("SUPPORT")
             reportCard
+            SGMButton(title: "MES DEMANDES", action: { showSupport = true })
+                .padding(.horizontal, SGMSpace.padScreen)
         }
+        .sheet(isPresented: $showSupport) {
+            if let uid = appState.session?.uid { SupportInboxScreen(uid: uid, gateway: appState.firebase).id(uid) }
+        }
+        .onChange(of: appState.session?.uid) { _, _ in showSupport = false }
     }
 
     private var reportCard: some View {

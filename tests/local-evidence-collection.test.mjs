@@ -70,6 +70,28 @@ test('a success-looking file count with exit 1 stays failed, retains redacted di
   assert.equal(mock.read().completed, false, 'A successful cleanup copy must not overwrite the primary failure');
 });
 
+test('host process observations bracket the single copy before any recovery query, without changing its failed result', (t) => {
+  const mock = setup(t, 'failed-summary'), order = [];
+  const snapshots = [
+    { completed: true, adbProcesses: [{ pid: 50, startedAtLocal: 'Thu Oct 22 12:24:02 2026' }] },
+    { completed: true, adbProcesses: [] },
+  ];
+  let index = 0;
+  const observe = () => { order.push('observe'); return snapshots[index++]; };
+  const spawn = (...args) => { order.push('pull'); return mock.spawn(...args); };
+  assert.throws(() => collectLocalUiEvidence(mock.input, mock.execute, spawn, observe), EvidenceCollectionError);
+  assert.deepEqual(order, ['observe', 'pull', 'observe']);
+  const receipt = mock.read(); assert.deepEqual(receipt.hostBefore, snapshots[0]); assert.deepEqual(receipt.hostAfter, snapshots[1]);
+  assert.equal(receipt.completed, false); assert.equal(receipt.status, 1);
+  assert.equal(mock.calls.filter(call => call.args[2] === 'pull').length, 1);
+});
+
+test('missing host process observations cannot convert a successful copy into a failed flow', (t) => {
+  const mock = setup(t), absent = { completed: false, adbProcesses: null };
+  const receipt = collectLocalUiEvidence(mock.input, mock.execute, mock.spawn, () => absent);
+  assert.equal(receipt.completed, true); assert.equal(receipt.hostBefore.completed, false); assert.equal(receipt.hostAfter.completed, false);
+});
+
 test('signals and missing exit statuses cannot be recorded as successful copies', (t) => {
   const mock = setup(t, 'signal');
   assert.throws(() => mock.collect(), EvidenceCollectionError);

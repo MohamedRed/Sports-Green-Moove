@@ -10,7 +10,7 @@ protocol AuthGateway: Sendable {
     func signOut() throws
 }
 
-protocol FirebaseGateway: Sendable {
+protocol FirebaseGateway: SupportGateway {
     var isConfigured: Bool { get }
     func searchTrips() async throws -> [TripSummary]
     func listChildren() async throws -> [ChildSummary]

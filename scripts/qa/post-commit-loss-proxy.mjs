@@ -3,7 +3,7 @@ import http from 'node:http';
 import { once } from 'node:events';
 
 const origin = 'http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/';
-const endpoints = new Map([[`${origin}sendChatMessage`, 'messageId'], [`${origin}requestBooking`, 'bookingId']]);
+const endpoints = new Map([[`${origin}sendChatMessage`, 'messageId'], [`${origin}requestBooking`, 'bookingId'], [`${origin}respondToReport`, 'replyId']]);
 
 export async function openPostCommitLossProxy(target, afterCommit) {
   const resultKey = endpoints.get(target);

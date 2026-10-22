@@ -3,6 +3,7 @@ import { reviewReport, type ReportStatus } from "./actions";
 import { Badge, TableSection } from "./AdminTable";
 import { formatDate, statusTone, textValue } from "./format";
 import type { FirestoreRecord } from "./types";
+import { ReportReplyForm } from "./ReportReplyForm";
 
 const REVIEW_STATUSES: ReportStatus[] = ["reviewing", "closed"];
 
@@ -17,10 +18,12 @@ export function ReportsTable({ reports }: { reports: FirestoreRecord[] }) {
 
 function ReportRow({ report }: { report: FirestoreRecord }) {
   const [saving, setSaving] = useState(false);
+  const [replyBusy, setReplyBusy] = useState(false);
   const [note, setNote] = useState("");
   const [message, setMessage] = useState("");
 
   async function update(status: ReportStatus) {
+    if (saving || replyBusy) return;
     setSaving(true);
     setMessage("Enregistrement...");
     try {
@@ -35,7 +38,7 @@ function ReportRow({ report }: { report: FirestoreRecord }) {
   }
 
   return (
-    <tr>
+    <tr data-support-report={report.id}>
       <td>
         {report.id}
         <span>{textValue(report.subjectType)}</span>
@@ -50,17 +53,21 @@ function ReportRow({ report }: { report: FirestoreRecord }) {
       <td><Badge tone={statusTone(report.status)}>{textValue(report.status)}</Badge></td>
       <td>
         <textarea
+          aria-label="Note interne"
           className="review-note"
-          placeholder="Note de revue"
+          placeholder="Note interne"
           value={note}
+          disabled={saving || replyBusy}
           onChange={(event) => setNote(event.target.value)}
         />
         {REVIEW_STATUSES.map((status) => (
-          <button className="small-button" disabled={saving} key={status} onClick={() => update(status)}>
+          <button className="small-button" disabled={saving || replyBusy} key={status} onClick={() => update(status)}>
             {status === "closed" ? "Close" : "Review"}
           </button>
         ))}
         <span>{message}</span>
+        {typeof report.reporterUserId === "string" && ["booking", "rideSession", "message", "user", "other"].includes(String(report.subjectType)) &&
+          <ReportReplyForm report={report} disabled={saving} onBusy={setReplyBusy} />}
       </td>
     </tr>
   );

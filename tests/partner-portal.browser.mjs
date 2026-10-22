@@ -105,7 +105,8 @@ try {
   const booking = content.flows.find((flow) => flow.id === 'booking');
   const checkedAt = new Intl.DateTimeFormat('fr-BE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
     .format(new Date(booking.checkedAt));
-  const currentPhone = booking.phone && (booking.phone.checkedAt ?? booking.checkedAt) === booking.checkedAt;
+  const currentPhone = booking.latestEvidence === 'phone' || (booking.latestEvidence !== 'local' && booking.phone &&
+    (booking.phone.checkedAt ?? booking.checkedAt) === booking.checkedAt);
   await page.getByText(`${currentPhone ? 'Essai sur téléphone' : 'Essai local'} du ${checkedAt}`, { exact: true }).waitFor();
   await page.getByRole('img', { name: booking.images[0].alt, exact: true }).waitFor();
   assert.equal(await page.locator('video').count(), 0);

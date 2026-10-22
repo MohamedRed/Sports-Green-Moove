@@ -49,6 +49,21 @@ do not establish its cause by themselves. Missing diagnostics never mask the
 original copy failure. Successful copies do not execute these extra queries.
 There is still exactly one transfer per phase and no alternate transfer method.
 
+The 22 October `8d897da` run (`39777127630`) fails during the
+`trip-change-inputs` copy. The original receipt exits 1; immediate device queries
+report offline, then the guest daemon reports a new authorized host connection.
+The later host health snapshot sees a connected emulator, but does not establish
+why the earlier connection ended. A later connected state is not a passing copy.
+
+New receipts bracket the single copy with bounded, read-only host process
+observations before any recovery query. They retain only adb executable PIDs and
+local process-start times, plus the existing bounded daemon-log signal counts.
+They never retain arguments, environments, other executable names or raw daemon
+logs, and make no device command or server-start/restart request. Multiple adb
+processes are not labelled as a particular server. Missing observations remain
+explicitly unavailable and never change the primary transfer exit result. These
+observations are diagnostic preparation, not a claimed root cause or fix.
+
 No device restart, forced shutdown, production access, new operational fallback,
 infrastructure resource or Terraform application is introduced.
 

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { content } from '../partner-portal/content.mjs';
+import { captures, content } from '../partner-portal/content.mjs';
 
 export async function verifySessionRecoveryTours({ browser, base, output }) {
   const page = await browser.newPage(), failures = [];
@@ -18,7 +18,10 @@ export async function verifySessionRecoveryTours({ browser, base, output }) {
         });
         const image = flow.images.find(item => item.file === step.image);
         assert.equal(await page.locator('.media-stage img').getAttribute('alt'), image.alt);
-        assert.match(image.alt, /essai local du 20 octobre/);
+        const sourceDate = captures[image.file].match(/\d{4}-\d{2}-\d{2}/)?.[0];
+        assert(sourceDate, 'Session screenshot must retain its source date');
+        const dateLabel = new Intl.DateTimeFormat('fr-BE', { day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(sourceDate));
+        assert(image.alt.includes('essai local du ' + dateLabel), 'Session caption must match its own retained source date');
         assert.equal(await page.locator('.media-stage.is-landscape').count(), image.landscape ? 1 : 0);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
         assert(await page.locator('dialog').evaluate(dialog => dialog.scrollWidth <= dialog.clientWidth));

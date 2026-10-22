@@ -17,6 +17,7 @@ private val profileChildScreens = setOf(
     AppScreen.Impact,
     AppScreen.Rewards,
     AppScreen.Options,
+    AppScreen.Support,
     AppScreen.EmergencyContacts,
     AppScreen.Payments,
 )
@@ -46,6 +47,7 @@ enum class AppScreen {
     Impact,
     Rewards,
     Options,
+    Support,
     EmergencyContacts,
     Payments,
     Ride,

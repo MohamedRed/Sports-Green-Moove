@@ -27,6 +27,12 @@ struct UnconfiguredAuthGateway: AuthGateway {
 }
 
 struct UnconfiguredFirebaseGateway: FirebaseGateway {
+    func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
+        try await UnconfiguredSupportGateway().supportReports(uid: uid, cursor: cursor)
+    }
+    func supportReport(uid: String, reportId: String, cursor: String?) async throws -> SupportDetail {
+        try await UnconfiguredSupportGateway().supportReport(uid: uid, reportId: reportId, cursor: cursor)
+    }
     let isConfigured = false
 
     func searchTrips() async throws -> [TripSummary] {

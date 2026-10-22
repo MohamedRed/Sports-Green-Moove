@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { collectAdbHostHealth, summarizeAdbHost } from '../scripts/qa/adb-host-health.mjs';
+import { collectAdbHostHealth, summarizeAdbHost, summarizeAdbProcesses, observeAdbHostProcesses } from '../scripts/qa/adb-host-health.mjs';
 
 test('host observations retain only version numbers, emulator-state counts and bounded signal counts', () => {
   const result = summarizeAdbHost('Android Debug Bridge version 1.0.41\nVersion 37.0.1-12345\nInstalled as /private/secret/adb',
@@ -32,4 +32,35 @@ test('CI gates cover the observation collector and neither accept a missing log 
     "flag: 'wx'", 'timeout: 3000', 'rawLogsRetained: false']) assert(source.includes(required));
   for (const workflow of ['native-ci.yml', 'web-integration-smoke.yml'])
     assert.equal(read('.github/workflows/' + workflow).split('"tests/adb-host-health.test.mjs"').length - 1, 2);
+});
+
+test('process observations select only adb executable identity and start time, not command arguments or other processes', () => {
+  const output = ' 500 Thu Oct 22 12:24:02 2026 /sdk/platform-tools/adb\n' +
+    ' 12 Thu Oct 22 12:23:01 2026 /private/secret/node\n' +
+    ' 9 Thu Oct 22 12:22:01 2026 adb\n';
+  assert.deepEqual(summarizeAdbProcesses(output), [
+    { pid: 9, startedAtLocal: 'Thu Oct 22 12:22:01 2026' },
+    { pid: 500, startedAtLocal: 'Thu Oct 22 12:24:02 2026' },
+  ]);
+  let called = 0;
+  const result = observeAdbHostProcesses((command, args, options) => {
+    called++; assert.equal(command, '/bin/ps'); assert.deepEqual(args, ['-axo', 'pid=,lstart=,comm=']);
+    assert.equal(options.timeout, 2000); assert.equal(options.env.LC_ALL, 'C'); assert(!options.env.SGM_QA_PASSWORD);
+    return { status: 0, stdout: output, stderr: 'never retain this secret' };
+  });
+  assert.equal(called, 1); assert.equal(result.completed, true); assert.equal(result.adbProcesses.length, 2);
+  assert.equal(result.rawLogsRetained, false); assert.equal(result.deviceCommandRequested, false);
+  assert.doesNotMatch(JSON.stringify(result), /private|secret|platform-tools/);
+  assert.throws(() => summarizeAdbProcesses('invalid metadata adb'));
+  assert.throws(() => summarizeAdbProcesses('unrecognized unrelated process'));
+  assert.throws(() => summarizeAdbProcesses(''));
+});
+
+test('an unavailable or malformed process observation stays unobserved without command retries', () => {
+  for (const run of [() => ({ status: 1, stdout: 'secret', stderr: 'secret' }),
+    () => ({ status: 0, stdout: 'bad metadata adb' }), () => { throw new Error('secret'); }]) {
+    const result = observeAdbHostProcesses(run);
+    assert.equal(result.completed, false); assert.equal(result.adbProcesses, null);
+    assert.doesNotMatch(JSON.stringify(result), /secret/);
+  }
 });

@@ -133,4 +133,6 @@ check(MapRoutePolyline.points(for: routePreview) == [routePreview.start, routePr
 
 checkTripDateLabels()
 try checkRidePaymentVerification()
+try checkSupportResponses()
+await checkSupportState()
 print("SportsGreenMooveNativeChecks passed")

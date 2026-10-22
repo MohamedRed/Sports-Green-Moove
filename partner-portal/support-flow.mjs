@@ -1,8 +1,9 @@
 export function createSupportFlow(local, ui, shot) {
   return { id: 'support', title: 'Support', status: 'partial', checkedAt: '2026-10-22', latestEvidence: 'phone',
-    summary: 'La demande part depuis le téléphone. Le retour au demandeur reste à ajouter.',
-    verified: 'Description vide refusée, puis un seul envoi enregistré. La réouverture ne crée pas de doublon. Prise en charge et clôture vérifiées séparément côté gestion, sans passer par ses écrans.',
-    remaining: 'Ajouter le suivi et la réponse au demandeur, puis les tester sur téléphone. Rejouer les erreurs de connexion et la fermeture complète. Le mode urgent n’a pas été testé.',
+    summary: 'L’envoi passe sur téléphone. Le suivi et les réponses passent les essais locaux côté gestion.',
+    verified: 'Envoi unique sur téléphone, sans doublon à la réouverture. En local : réponse et statut accessibles, notes internes privées, nouvel essai après coupure sans double envoi.',
+    remaining: 'Vérifier le suivi et la réponse dans l’app sur téléphone, puis la fermeture complète et les erreurs de connexion. Le mode urgent reste à tester.',
+    supportFollowup: { source: 'docs/release/evidence/support-followup-2026-10-22/results.json', checkedAt: '2026-10-22' },
     supportPhone: { source: 'docs/release/evidence/support-phone-2026-10-22/results.json', checkedAt: '2026-10-22',
       checksums: 'docs/release/evidence/support-phone-2026-10-22/artifact-sha256.json' },
     ui: { ...ui(['support-review-ui', 'admin-access-boundary-ui'], 'admin-ui-results.json'), checkedAt: '2026-10-15' },

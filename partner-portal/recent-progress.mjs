@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Le support peut répondre par écrit',
+    text: 'La réponse et le statut passent les essais locaux. Les notes internes restent privées, même après une coupure. Le nouveau suivi reste à vérifier dans l’app sur téléphone.', flow: 'support' },
   { date: '2026-10-22', title: 'Une demande de support envoyée sur téléphone',
     text: 'Le formulaire vide est refusé, puis un seul envoi est enregistré. Quatre captures sont ajoutées. Le suivi et la réponse au demandeur restent à ajouter.', flow: 'support' },
   { date: '2026-10-22', title: 'Accord, refus et annulation passent sur téléphone',

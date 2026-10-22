@@ -149,7 +149,7 @@ class SportsGreenMooveUiFlowTest {
         host.show { RewardsScreen(summary = UiFlowFixtures.rewards, onBack = {}) }
         assertTagsExist(SgmTestTags.RewardsScreen, SgmTestTags.RewardsWithdrawAction)
 
-        host.show { OptionsScreen(firebase = firebase, onBack = {}, onEmergencyContact = {}) }
+        host.show { OptionsScreen(firebase = firebase, onBack = {}, onEmergencyContact = {}, onSupport = {}) }
         assertTagsExist(SgmTestTags.OptionsScreen, SgmTestTags.SupportReportAction)
 
         host.show {

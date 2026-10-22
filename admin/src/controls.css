@@ -87,6 +87,12 @@ textarea.review-note {
   resize: vertical;
 }
 
+.support-reply-form { display: grid; gap: 10px; min-width: 220px; max-width: 320px; }
+.support-reply-form label { display: grid; gap: 6px; }
+.support-reply-form p, .support-reply-form [role="status"] { overflow-wrap: anywhere; white-space: pre-wrap; }
+.support-reply-form select, .support-reply-form textarea { width: 100%; max-width: 100%; font: inherit; }
+.support-reply-form button { white-space: normal; }
+
 button:disabled {
   cursor: not-allowed;
   opacity: 0.55;

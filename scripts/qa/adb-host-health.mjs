@@ -34,6 +34,40 @@ function readDaemonTail() {
   finally { if (fd !== undefined) closeSync(fd); }
 }
 
+export function summarizeAdbProcesses(output) {
+  const processes = [];
+  const lines = output.split('\n').filter(line => line.trim()); assert(lines.length > 0, 'Empty process observation');
+  for (const line of lines) {
+    const match = line.match(/^\s*(\d+)\s+([A-Z][a-z]{2} [A-Z][a-z]{2}\s+\d{1,2} \d{2}:\d{2}:\d{2} \d{4})\s+(.+)$/);
+    assert(match, 'Unrecognized process metadata');
+    if (match[3].trim().split('/').at(-1) !== 'adb') continue;
+    const pid = Number(match[1]); assert(Number.isSafeInteger(pid) && pid > 0);
+    processes.push({ pid, startedAtLocal: match[2].replace(/\s+/g, ' ') });
+  }
+  return processes.sort((left, right) => left.pid - right.pid);
+}
+
+export function observeAdbHostProcesses(run = spawnSync) {
+  const result = { scope: 'host-adb-process-and-log-counts-not-server-identity-or-root-cause',
+    observedAt: new Date().toISOString(), rawLogsRetained: false, deviceCommandRequested: false,
+    daemonLog: summarizeAdbHost('', '', readDaemonTail()).daemonLog };
+  try {
+    // ps comm contains executable names, never process arguments or environments.
+    const outcome = run('/bin/ps', ['-axo', 'pid=,lstart=,comm='], {
+      encoding: 'utf8', timeout: 2000, maxBuffer: 256 * 1024,
+      env: { PATH: '/usr/bin:/bin', LC_ALL: 'C' }, stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    const completed = outcome.status === 0 && !outcome.signal && !outcome.error;
+    return { ...result, completed, status: Number.isInteger(outcome.status) ? outcome.status : null,
+      signal: typeof outcome.signal === 'string' ? outcome.signal : null,
+      errorCode: outcome.error ? 'PROCESS_OBSERVATION_UNAVAILABLE' : null,
+      adbProcesses: completed ? summarizeAdbProcesses(outcome.stdout ?? '') : null };
+  } catch {
+    return { ...result, completed: false, status: null, signal: null,
+      errorCode: 'PROCESS_OBSERVATION_UNAVAILABLE', adbProcesses: null };
+  }
+}
+
 export function collectAdbHostHealth(phase, run, daemonTail) {
   assert(['component-transfer', 'local-replay'].includes(phase));
   const observations = [];
