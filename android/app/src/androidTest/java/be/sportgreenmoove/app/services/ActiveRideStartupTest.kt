@@ -147,7 +147,7 @@ private class RecordingFirebaseGateway : FirebaseGateway, TripChangeGateway by b
     override suspend fun getRewardSummary(): RewardSummary = emptyRewardSummary()
     override suspend fun getInbox(): InboxSummary = InboxSummary()
     override suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?): String = "rating-1"
-    override suspend fun createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Boolean): String = "report-1"
+    override suspend fun createReport(submission: be.sportgreenmoove.app.data.SupportSubmission): String = "report-1"
 }
 
 private class RecordingRadarTrackingGateway(

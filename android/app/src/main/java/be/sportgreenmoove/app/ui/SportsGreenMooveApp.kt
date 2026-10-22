@@ -263,7 +263,7 @@ fun SportsGreenMooveApp() {
                             },
                             setError = { errorMessage = it },
                         )
-                        AppScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = AppScreen.Profile },
+                        AppScreen.Options -> OptionsScreen(uid = requireNotNull(session).uid, firebase = providers.firebase, onBack = { screen = AppScreen.Profile },
                             onSupport = { screen = AppScreen.Support },
                             onEmergencyContact = { contactReturn = AppScreen.Options; screen = AppScreen.EmergencyContacts })
                         AppScreen.Support -> SupportInboxRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Options }

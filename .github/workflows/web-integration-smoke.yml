@@ -165,6 +165,7 @@ on:
       - "tests/support-followup.test.mjs"
       - "tests/manual-support-followup-checkpoints.test.mjs"
       - "tests/support-followup-phone-evidence.test.mjs"
+      - "tests/support-submission.test.mjs"
       - "tests/native-copy-recheck-evidence.test.mjs"
       - "tests/flow-recheck.test.mjs"
       - "tests/booking-decisions-phone-evidence.test.mjs"
@@ -263,6 +264,7 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralText*.kt"
       - "tests/partner-portal-session-restoration.browser.mjs"
       - "tests/partner-portal-support-followup.browser.mjs"
+      - "tests/partner-portal-support-submission.browser.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-focused-android-ui.sh"
@@ -518,6 +520,7 @@ on:
       - "tests/support-followup.test.mjs"
       - "tests/manual-support-followup-checkpoints.test.mjs"
       - "tests/support-followup-phone-evidence.test.mjs"
+      - "tests/support-submission.test.mjs"
       - "tests/native-copy-recheck-evidence.test.mjs"
       - "tests/flow-recheck.test.mjs"
       - "tests/booking-decisions-phone-evidence.test.mjs"
@@ -615,6 +618,7 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralText*.kt"
       - "tests/partner-portal-session-restoration.browser.mjs"
       - "tests/partner-portal-support-followup.browser.mjs"
+      - "tests/partner-portal-support-submission.browser.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-focused-android-ui.sh"
@@ -829,6 +833,10 @@ jobs:
         run: npm run test:support-followup && node --test tests/support-followup.test.mjs tests/manual-support-followup-checkpoints.test.mjs tests/support-followup-phone-evidence.test.mjs
       - name: Validate terminal native copy failure and passing support components
         run: node --test tests/native-copy-recheck-evidence.test.mjs
+      - name: Verify requester support submission recovery and urgent flag in isolation
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-submission.json
+        run: npm run test:support-submission && node --test tests/support-submission.test.mjs
 
       - name: Test team-only adult conversations and admission-scoped history
         env:

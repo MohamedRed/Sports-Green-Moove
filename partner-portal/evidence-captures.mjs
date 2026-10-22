@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['unconfirmed', 'restored', 'confirmed', 'storage-error'].map(name => ['support-submission-' + name,
+    'docs/release/evidence/support-submission-recovery-2026-10-22/images/support-submission-' + name + '.png'])),
   ...Object.fromEntries(['prepared', 'approved', 'declined', 'parent-inbox', 'parent-capacity', 'cancelled', 'restored-capacity', 'driver-inbox']
     .map(id => ['booking-decision-phone-' + id, 'docs/release/evidence/booking-decisions-phone-2026-10-22/' + id + '-device.jpg'])),
   ...Object.fromEntries(['initial', 'revoked', 'renewed', 'new-message', 'replied'].map(id => ['team-authority-phone-' + id,

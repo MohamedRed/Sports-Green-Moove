@@ -17,8 +17,8 @@ const parent = await signIn('p@example.test'), other = await signIn('support-out
 const checks = [], baseline = new Map();
 for (const collection of await db.listCollections()) for (const row of (await collection.get()).docs) baseline.set(row.ref.path, row.data());
 const claims = await Promise.all([parent, other, admin].map(async actor => (await auth.getUser(actor.uid)).customClaims));
-const submit = async (actor = parent) => call('createReport', actor,
-  { subjectType: 'other', reason: 'Support QA', description: 'Demande isolee pour verifier la reponse.' });
+const submit = async (actor = parent) => call('submitSupportReport', actor,
+  { clientRequestId: randomUUID(), requesterUserId: actor.uid, subjectType: 'other', reason: 'Support QA', description: 'Demande isolee pour verifier la reponse.' });
 const response = (reportId, extra = {}) => ({ reportId, requestId: randomUUID(), text: 'Votre demande est prise en charge.',
   expectedStatus: 'open', expectedReplyCount: 0, status: 'reviewing', ...extra });
 const detail = reportId => call('getMySupportReport', parent, { reportId });

@@ -213,7 +213,7 @@ class SportsGreenMooveActionFlowTest {
         val firebase = UiFlowFirebaseGateway()
 
         compose.setSgmUiTestContent {
-            OptionsScreen(firebase = firebase, onBack = {}, onEmergencyContact = {}, onSupport = {})
+            OptionsScreen(uid = "ui-support-parent", firebase = firebase, onBack = {}, onEmergencyContact = {}, onSupport = {})
         }
 
         compose.onNodeWithTag(SgmTestTags.SupportReportDescriptionInput)

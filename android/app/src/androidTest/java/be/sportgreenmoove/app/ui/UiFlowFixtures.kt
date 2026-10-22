@@ -183,8 +183,8 @@ class UiFlowFirebaseGateway : FirebaseGateway, be.sportgreenmoove.app.services.T
         return "rating-1"
     }
 
-    override suspend fun createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Boolean): String {
-        createdReport = CreatedReport(subjectType, subjectId, reason, description, emergency)
+    override suspend fun createReport(submission: be.sportgreenmoove.app.data.SupportSubmission): String {
+        createdReport = CreatedReport(submission.subjectType, submission.subjectId, submission.reason, submission.description, submission.emergency)
         return "report-1"
     }
 

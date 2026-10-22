@@ -1,10 +1,12 @@
 import { supportFollowupSteps } from './support-followup-tour.mjs';
+import { supportSubmissionSteps } from './support-submission-flow.mjs';
 
 const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   support: supportFollowupSteps(image),
+  'support-submission': supportSubmissionSteps(image, clip),
   'team-conversation': [
     image('team-authority-phone-initial', 'Avant le retrait', 'Avec des données de test, le parent retrouve le message reçu après son admission.'),
     image('team-authority-phone-revoked', 'Retirer l’accès', 'La conversation et la saisie disparaissent sur le téléphone.'),

@@ -54,7 +54,7 @@ private val OptionSections = listOf(
 )
 
 @Composable
-fun OptionsScreen(firebase: FirebaseGateway, onBack: () -> Unit, onEmergencyContact: () -> Unit, onSupport: () -> Unit) {
+fun OptionsScreen(uid: String, firebase: FirebaseGateway, onBack: () -> Unit, onEmergencyContact: () -> Unit, onSupport: () -> Unit) {
     V2Screen(testTag = SgmTestTags.OptionsScreen) {
         V2TopBar("OPTIONS", onBack = onBack)
         OptionHero()
@@ -66,7 +66,7 @@ fun OptionsScreen(firebase: FirebaseGateway, onBack: () -> Unit, onEmergencyCont
             V2SectionLabel(section.title)
             OptionSectionCard(section.rows)
         }
-        OptionsReportCard(firebase)
+        OptionsReportCard(uid, firebase)
         Box(Modifier.padding(horizontal = 20.dp)) {
             GuardianActionButton("Mes demandes", "options.support-history", true, onSupport)
         }

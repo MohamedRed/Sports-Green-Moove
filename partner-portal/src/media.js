@@ -1,6 +1,7 @@
 import { escape, icon, localResults } from './render.js';
 
 const clipLabels = {
+  'support-submission-retry': 'Reprendre une demande · essai local · 10 s',
   'home-to-trips': 'De l’accueil aux trajets · 16 s',
   'parent-guard': 'Restriction du mode conducteur · 15 s',
   'signout-action': 'Déconnexion · 13 s',

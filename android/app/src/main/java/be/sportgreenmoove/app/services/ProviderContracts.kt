@@ -53,7 +53,7 @@ interface FirebaseGateway : TripCancellationGateway, TripChangeGateway, Guardian
     suspend fun getRewardSummary(): RewardSummary
     suspend fun getInbox(): InboxSummary
     suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String? = null): String
-    suspend fun createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Boolean): String
+    suspend fun createReport(submission: be.sportgreenmoove.app.data.SupportSubmission): String
     suspend fun writeNativeLocationFallback(rideSessionId: String, role: AppRole)
     fun stopNativeLocationFallback(rideSessionId: String)
 }
@@ -201,15 +201,8 @@ class UnconfiguredFirebaseGateway : FirebaseGateway, GuardianVerificationGateway
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 
-    override suspend fun createReport(
-        subjectType: String,
-        subjectId: String?,
-        reason: String,
-        description: String,
-        emergency: Boolean,
-    ): String {
-        check(subjectType.isNotBlank() && reason.length >= 2 && description.length >= 5)
-        check(subjectId == null || subjectId.isNotBlank())
+    override suspend fun createReport(submission: be.sportgreenmoove.app.data.SupportSubmission): String {
+        submission.validate()
         throw ProviderConfigurationException("Cloud Functions Android n'est pas configuré.")
     }
 

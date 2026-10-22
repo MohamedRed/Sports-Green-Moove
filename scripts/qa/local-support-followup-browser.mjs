@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
 import { mkdirSync } from 'node:fs';
 import { isAbsolute, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -8,7 +9,8 @@ import { call, db } from './local-flow-client.mjs';
 export async function checkSupportFollowupBrowser({ parent }) {
   const output = process.env.SGM_SUPPORT_UI_OUTPUT;
   assert(isAbsolute(output || '')); assert.equal(process.env.GCLOUD_PROJECT, 'demo-sgm-local-qa');
-  const { reportId } = await call('createReport', parent, { subjectType: 'other', reason: 'Support visuel QA', description: 'Demande fictive pour verifier le suivi.' });
+  const { reportId } = await call('submitSupportReport', parent, { clientRequestId: randomUUID(), requesterUserId: parent.uid,
+    subjectType: 'other', reason: 'Support visuel QA', description: 'Demande fictive pour verifier le suivi.' });
   const modulePath = process.env.PLAYWRIGHT_MODULE_PATH;
   const { chromium } = modulePath ? await import(pathToFileURL(modulePath).href) : await import('playwright');
   process.env.VITE_USE_FIREBASE_EMULATOR = 'true';

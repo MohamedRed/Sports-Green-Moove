@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Réessayer sans créer deux demandes',
+    text: 'Une confirmation perdue est récupérée sans doublon en local. Une courte vidéo et quatre captures montrent la reprise de l’envoi. Le nouvel essai sur téléphone réel reste à faire.', flow: 'support-submission' },
   { date: '2026-10-22', title: 'Les réponses du support passent sur téléphone',
     text: 'Le parent retrouve deux réponses et le statut Clôturée, même après réouverture et changement de compte. Neuf captures sont ajoutées. Le mode urgent et les coupures restent à tester.', flow: 'support' },
   { date: '2026-10-22', title: 'La copie des preuves reste à stabiliser',

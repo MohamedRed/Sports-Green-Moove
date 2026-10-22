@@ -1,17 +1,27 @@
 # Partner Progress Portal
 
+The 22 October submission-recovery record adds twelve isolated service checks,
+two native component cases, four native screenshots and a ten-second real-time
+screen-recording excerpt. It is separate from the physical support follow-up:
+the component uses simulated transport and the service is tested independently.
+The new endpoint and apps are not deployed. The new source's physical-network
+recovery, urgent escalation and app-process restart remain unverified.
+The `f819e9b0` full native run also fails during evidence transfer; its original
+metadata and failed-step log are retained. Publication remains on hold until
+the requested owner-private audience is restored.
+
 The latest 22 October support trial passes on one physical phone, with sequential
 parent/driver/parent accounts. One UI-created request and two service-prepared
 staff responses retain their status and history after provider app stop/relaunch
 and reconnection. Eight independent checkpoints preserve 158 records and claims;
-nine reviewed stream rectangles open the tour. Internal notes are absent from the
+nine reviewed images (eight stream rectangles and one full browser context) open the tour. Internal notes are absent from the
 requester projection. The original local/submission proofs remain separate.
 No video/native PNG export or process-identity proof is invented. Phone app
 uninstall, session stop, owned backend/helper teardown, credential removal and
 closed ports are verified. Urgent mode and submission connection loss remain open.
 This snapshot is local only; publishing is still held while Site access is public.
 
-The latest native gate is retained separately at source e23809a: 145 ordinary
+The earlier native gate is retained separately at source e23809a: 145 ordinary
 cases pass, 50 are skipped, and all eleven focused lanes pass. Two executed
 support component cases pass, but the full replay and its cleanup collection
 both fail during file transfer. Before/after host observations show the same
@@ -19,7 +29,7 @@ observed adb process; this is not a server-identity or root-cause conclusion.
 The portal's current blocker now points to that terminal result. Older capture
 and replay snapshots keep their own original status and source.
 
-The later 22 October support follow-up snapshot retains thirteen isolated
+The earlier 22 October local support follow-up snapshot retains thirteen isolated
 service checks and five actual administrator-browser checks at four widths.
 Public written replies and status are owner-readable; internal notes remain
 private. A lost acknowledgement is explicitly retried without a duplicate.
@@ -279,7 +289,7 @@ From the repository root (Node 22 and FFmpeg required):
 npm ci --prefix partner-portal
 node --test tests/partner-portal.test.mjs
 node scripts/build-partner-portal.mjs
-python3 -m http.server 4177 --bind 127.0.0.1 --directory partner-portal/dist
+./node_modules/.bin/vite preview --host 127.0.0.1 --port 4177 --strictPort --outDir partner-portal/dist
 ```
 
 Open http://127.0.0.1:4177. The loopback-only preview is not an authenticated
@@ -289,6 +299,8 @@ deployment; never expose it as a public tunnel. Browser QA lives in
 Playwright runtime. It tests playback, deep links, filters, dialogs and overflow
 at 320, 390, 768 and 1440 pixels. Use a separate headless browser, not the user's
 existing browser profile. Web Integration Smoke validates content contracts.
+The preview must support HTTP byte ranges for video seeking; the basic Python
+server does not. A range request for a video should return HTTP 206.
 
 ## Publish Or Update
 

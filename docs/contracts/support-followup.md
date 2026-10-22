@@ -53,7 +53,7 @@ resources or production index/function deployment was performed for this work.
 The 22 October physical Android follow-up now verifies one UI-created request,
 two written replies, status changes, reopening and sequential account isolation.
 Eight independent checkpoints preserve 158 original records and account claims;
-nine reviewed browser-stream phone rectangles are retained separately under
+nine reviewed images (eight stream rectangles and one full browser context) are retained separately under
 `support-followup-phone-2026-10-22`. The administrator publishes these responses
 through authenticated services, not its phone UI. Native PNG export and recording
 are unavailable; no replacement video or process-identity claim is invented.
@@ -65,3 +65,31 @@ APK. The full native run at `e23809a` fails during evidence transfer despite
 145 ordinary cases and eleven focused lanes passing. Before/after host process
 observations remain diagnostic, not root-cause proof or an alternate transfer.
 Urgent-mode and lost-connection submission scenarios remain unverified on phone.
+
+## Submission Recovery
+
+New Android/iOS callers use only `submitSupportReport`. Each action captures a
+UUID, verified account and immutable content before any request is sent. A server
+transaction creates one report and a private `supportSubmissionOperations` entry.
+Identical retries return the original receipt without resetting later review
+status, notes, replies or timestamps. Changed reuse, foreign requester identities
+and inconsistent saved records fail closed. The raw journal remains private.
+
+The native form stores its unresolved action in private, non-backed-up storage.
+It restores the same content when reopened, does not resend automatically, and
+locks editing until an explicit retry is acknowledged. Cancellation, late account
+results, malformed receipts and storage failure cannot silently discard or replace
+the identity. Successfully acknowledged sends clear only the matching operation.
+
+`npm run test:support-submission` covers twelve real isolated service cases,
+including post-commit response loss. Twelve JVM cases, Swift model/state checks,
+two executed Android component cases, four screenshots and a ten-second excerpt
+are retained in `support-submission-recovery-2026-10-22`. The component transport
+is simulated and separate from those services. This is not physical-network or
+app-process restart proof, urgent escalation, or a production deployment.
+
+The old `createReport` remains unchanged for installed builds. It is not an unused
+fallback: new callers never invoke it, even on failure. Deploy the new callable
+before distributing the new apps; retire the old callable only after the installed
+client compatibility window is explicitly closed. Existing historical evidence is
+not relabeled as verification of the new submission protocol.

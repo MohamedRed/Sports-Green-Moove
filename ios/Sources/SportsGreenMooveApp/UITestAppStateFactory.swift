@@ -213,7 +213,7 @@ private struct UITestFirebaseGateway: FirebaseGateway {
     func getRewardSummary() async throws -> RewardSummary { Fixtures.rewards }
     func getInbox() async throws -> InboxSummary { Fixtures.inbox }
     func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String { "rating-1" }
-    func createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Bool) async throws -> String { "report-1" }
+    func createReport(submission: SupportSubmission) async throws -> String { "report-1" }
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {}
     func stopNativeLocationFallback(rideSessionId: String) {}
 }

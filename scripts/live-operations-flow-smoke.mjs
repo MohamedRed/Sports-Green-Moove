@@ -85,7 +85,8 @@ async function verifyMembershipRequest(parent, clubId) {
 }
 
 async function verifySupportReport(parent, adminUser) {
-  const result = await callFunction("createReport", parent.idToken, {
+  const result = await callFunction("submitSupportReport", parent.idToken, {
+    clientRequestId: randomUUID(), requesterUserId: parent.uid,
     subjectType: "other",
     reason: "Smoke support",
     description: `Disposable support report ${runId}`,
@@ -110,6 +111,7 @@ async function cleanup() {
   const db = admin.firestore();
   await Promise.all([
     ...created.reportIds.map((id) => db.collection("reports").doc(id).delete().catch(() => undefined)),
+    ...created.reportIds.map((id) => db.collection("supportSubmissionOperations").doc(id).delete().catch(() => undefined)),
     ...created.membershipIds.map((id) => db.collection("memberships").doc(id).delete().catch(() => undefined)),
     ...created.clubIds.map((id) => db.collection("clubs").doc(id).delete().catch(() => undefined)),
     ...created.userDocIds.map((id) => db.collection("users").doc(id).delete().catch(() => undefined)),

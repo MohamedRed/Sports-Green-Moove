@@ -8,6 +8,7 @@ import { verifyVehicleCoordinateChecks } from './partner-portal-vehicle-map.brow
 import { verifyChildContactGallery, verifyEmergencyProfileTour } from './partner-portal-child-contact.browser.mjs';
 import { verifySessionRecoveryTours } from './partner-portal-session-restoration.browser.mjs';
 import { verifySupportFollowupTour } from './partner-portal-support-followup.browser.mjs';
+import { verifySupportSubmissionTour } from './partner-portal-support-submission.browser.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE_PATH;
 const { chromium } = modulePath ? await import(pathToFileURL(modulePath).href) : await import('playwright');
@@ -251,6 +252,7 @@ try {
   await verifyEmergencyProfileTour({ browser, base, output });
   await verifySessionRecoveryTours({ browser, base, output });
   await verifySupportFollowupTour({ browser, base, output });
+  await verifySupportSubmissionTour({ browser, base, output });
   console.log('Portal browser checks passed: desktop/mobile, filters, deep links, dialogs, short-video playback, media navigation, no overflow or failed assets.');
 } finally {
   await browser.close();

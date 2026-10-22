@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { randomUUID } from 'node:crypto';
 import { viewedBooking, auth, db, signIn, call, denied, document, tripInput } from './local-flow-client.mjs';
 
 export async function runScenarios(check, lifecycle) {
@@ -132,13 +133,15 @@ export async function runScenarios(check, lifecycle) {
     await denied('requestClubMembership', outsider, { clubId: 'sgm-qa-missing-club' }, 'NOT_FOUND');
   });
   await check('support-request', async () => {
-    const report = await call('createReport', parent, { subjectType: 'other', reason: 'Local QA', description: 'Isolated local support request' });
+    const report = await call('submitSupportReport', parent, { clientRequestId: randomUUID(), requesterUserId: parent.uid,
+      subjectType: 'other', reason: 'Local QA', description: 'Isolated local support request' });
     assert.equal(report.status, 'open');
     const stored = await document('reports', report.reportId);
     assert.equal(stored.reporterUserId, parent.uid);
     assert.equal(stored.status, 'open');
     await denied('reviewReport', parent, { reportId: report.reportId, status: 'resolved' }, 'PERMISSION_DENIED');
-    await denied('createReport', parent, { subjectType: 'other', reason: 'QA', description: '' }, 'INVALID_ARGUMENT');
+    await denied('submitSupportReport', parent, { clientRequestId: randomUUID(), requesterUserId: parent.uid,
+      subjectType: 'other', reason: 'QA', description: '' }, 'INVALID_ARGUMENT');
   });
   return { multiSeat };
 }
