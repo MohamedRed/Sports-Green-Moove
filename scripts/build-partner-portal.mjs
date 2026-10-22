@@ -37,6 +37,7 @@ for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'sig
   ffmpeg('-ss', String(at), '-i', resolve(root, videos[video]), '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
 }
 const fingerprints = Object.fromEntries([...new Set([content.nativeCopyRecheck.source, content.nativeCopyRecheck.checksums,
+  ...content.updates.flatMap(update => update.source ? [update.source] : []),
   content.nativeTerminalRecheck.source, content.nativeTerminalRecheck.checksums,
   content.nativeReplayRecheck.source, content.nativeReplayRecheck.checksums,
   content.nativeCaptureRecheck.source, content.nativeCaptureRecheck.checksums,

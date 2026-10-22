@@ -46,6 +46,11 @@ jobs:
           arch: x86_64
           profile: pixel_6
           script: bash scripts/run-focused-android-ui.sh ${{ matrix.case }}
+      - name: Finish bounded read-only emulator host observation
+        if: ${{ always() }}
+        env:
+          SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
+        run: node scripts/qa/observe-emulator-shutdown.mjs wait ${{ matrix.case }}
       - name: Retain focused outcomes and independent cleanup
         if: ${{ always() }}
         uses: actions/upload-artifact@v7

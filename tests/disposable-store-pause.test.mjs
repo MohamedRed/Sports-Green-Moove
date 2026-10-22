@@ -16,6 +16,7 @@ test('a pre-install admin readiness failure survives outer cleanup without claim
     if (command === 'getprop ro.kernel.qemu') return '1';
     if (command === 'pm path com.google.android.apps.nexuslauncher') return 'package:/system/launcher.apk';
     if (command === 'pm disable-user --user 0 com.google.android.apps.nexuslauncher') return 'disabled-user';
+    if (command === 'pm enable --user 0 com.google.android.apps.nexuslauncher') return 'enabled';
     if (command === 'pm list packages -d --user 0 com.google.android.apps.nexuslauncher') return 'package:com.google.android.apps.nexuslauncher';
     return mock.shell(...shell);
   };
@@ -31,6 +32,7 @@ test('a pre-install admin readiness failure survives outer cleanup without claim
     assert.deepEqual(error.receipt.adminSetupFailure, { scope: 'failed-disposable-admin-setup-not-flow-proof',
       stage: 'policy-readiness', installAttempted: false, cleanup: null, verified: false });
     assert.equal(error.receipt.adminCleanup, null); assert.equal(error.receipt.storeCleanup.restored, true);
+    assert.equal(error.receipt.launcherCleanup, true);
     assert.equal(error.receipt.storeCleanup.verified, false); return true;
   });
   assert.equal(attempted, true);
@@ -183,6 +185,7 @@ test('outer device setup retains the failed store observation rather than losing
     if (command === 'getprop ro.kernel.qemu') return '1';
     if (command === 'pm path com.google.android.apps.nexuslauncher') return 'package:/system/launcher.apk';
     if (command === 'pm disable-user --user 0 com.google.android.apps.nexuslauncher') return 'disabled-user';
+    if (command === 'pm enable --user 0 com.google.android.apps.nexuslauncher') return 'enabled';
     if (command === 'pm list packages -d --user 0 com.google.android.apps.nexuslauncher') return 'package:com.google.android.apps.nexuslauncher';
     return mock.shell(...shell);
   };

@@ -1,5 +1,12 @@
 # Partner Progress Portal
 
+The subsequent `3904dd80` full matrix does not start its app tests: the store
+restarts during stopped-state verification. The original receipt verifies store
+settings restoration only; launcher restoration is unverified. Ten focused cases and their aggregate pass separately. A dated
+news entry reports this preparation failure while preserving the earlier
+completed matrix. The host-process observer is only prepared, not executed in
+that source. No new media or publication is accepted.
+
 The later terminal `a6d8a630` matrix passes all 36 local flow groups, 38 native
 cases and 16 primary copies, with policy restoration verified. The separate
 ride-observation case and cleanup also complete, but its action hangs after the

@@ -188,7 +188,13 @@ export function validate(root) {
       assert.equal(validateHistoryPhoneArtifacts(root, f.historyPhone.source).testedAt.slice(0, 10), f.checkedAt);
     }
   }
-  for (const u of content.updates) { assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt); }
+  for (const u of content.updates) {
+    assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt);
+    if (u.source) {
+      const path = resolve(root, u.source);
+      assert(path.startsWith(resolve(root, 'docs/release/evidence') + sep)); assert(existsSync(path));
+    }
+  }
   for (const b of content.blockers) assert(existsSync(resolve(root, b.source)));
   for (const a of Object.values(assets)) {
     assert(!a.source.includes('/') && a.source.endsWith('.jpg'));

@@ -13,6 +13,8 @@ function device(overrides = {}) {
     'pm list packages -e --user 0 com.google.android.gms': 'package:com.google.android.gms',
     [playServicesVersionCommand]: 'Packages:\n  Package [com.google.android.gms]:\n    versionName=25.39.33 (190400-test)\n',
     [`pm disable-user --user 0 ${launcher}`]: 'new state: disabled-user',
+    [`pm list packages -e --user 0 ${launcher}`]: `package:${launcher}`,
+    [`pm enable --user 0 ${launcher}`]: 'new state: enabled',
     [`pm list packages -d --user 0 ${launcher}`]: `package:${launcher}`, ...overrides };
   return { calls, execute: (command, args) => {
     calls.push({ command, args });
@@ -86,6 +88,8 @@ test('unapproved, ambiguous, physical and incompatible targets fail before chang
 });
 test('failed isolation is not ignored or retried', () => {
   const mock = device({ [`pm list packages -d --user 0 ${launcher}`]: '' });
-  assert.throws(() => configureDisposableAndroid({ SGM_LOCAL_DISPOSABLE_EMULATOR: 'true' }, mock.execute), /not applied/);
+  assert.throws(() => configureDisposableAndroid({ SGM_LOCAL_DISPOSABLE_EMULATOR: 'true' }, mock.execute), error => {
+    assert.match(error.errors[0].message, /not applied/); assert.equal(error.receipt.launcherCleanup, true); return true;
+  });
   assert.equal(mock.calls.filter((call) => call.args.includes('disable-user')).length, 1);
 });

@@ -16,13 +16,15 @@ function run(t, phase, overrides = {}) {
   const commands = [
     '*configure-continuous-disposable.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;',
     '*restore-continuous-disposable.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;',
+    '*observe-emulator-shutdown.mjs) echo observe >> "$CALL_LOG"; exit "$OBSERVER_STATUS";;',
     ...focusedCases.map((name) => `*run-local-${name}-ui.mjs) test -f "$SGM_PREINSTALLED_TEST_APKS_RECEIPT" || exit 97; test "$SGM_FOCUSED_UI_CASE" = ${name} || exit 98; echo ${name} >> "$CALL_LOG"; exit "$FLOW_STATUS";;`),
   ];
   writeFileSync(join(root, 'bin/node'), '#!/bin/bash\ncase "$1" in\n' + commands.join('\n') + '\n*) exit 99;;\nesac\n', { mode: 0o700 });
   const log = join(root, 'calls');
   const result = spawnSync('bash', [join(root, 'scripts/run.sh'), ...(phase == null ? [] : [phase])], {
     encoding: 'utf8', env: { ...process.env, PATH: join(root, 'bin') + ':' + process.env.PATH,
-      CALL_LOG: log, SETUP_STATUS: '0', RESTORE_STATUS: '0', FLOW_STATUS: '0', ...overrides },
+      CALL_LOG: log, SETUP_STATUS: '0', RESTORE_STATUS: '0', FLOW_STATUS: '0', OBSERVER_STATUS: '0',
+      GITHUB_ACTIONS: 'false', ...overrides },
   });
   assert.equal(result.error, undefined);
   const output = join(root, 'android/app/build/outputs/focused-safety-ui', phase ?? '');
@@ -45,6 +47,14 @@ for (const phase of focusedCases) {
 test('unsafe setup executes no flow and owns its rollback', (t) => {
   const result = run(t, 'emergency-identity', { SETUP_STATUS: '3' });
   assert.equal(result.status, 1); assert.deepEqual(result.calls, ['setup']); assert.equal(result.outcome, null);
+});
+test('CI observes host shutdown only after restored policy and never replaces the original outcome', t => {
+  for (const [flow, restore, observer, expected] of [['0', '0', '0', 0], ['41', '0', '3', 41], ['0', '0', '3', 0], ['0', '13', '0', 13]]) {
+    const result = run(t, 'ride-observation', { GITHUB_ACTIONS: 'true', RUNNER_OS: 'Linux',
+      FLOW_STATUS: flow, RESTORE_STATUS: restore, OBSERVER_STATUS: observer });
+    assert.equal(result.status, expected);
+    assert.deepEqual(result.calls, ['setup', 'ride-observation', 'restore', ...(restore === '0' ? ['observe'] : [])]);
+  }
 });
 test('missing, unknown or compound case selection changes no phone', (t) => {
   for (const phase of [undefined, 'all', 'emergency-identity; echo unsafe']) {

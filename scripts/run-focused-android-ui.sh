@@ -14,6 +14,9 @@ restore_test_device() {
   suite_status=$?
   restore_status=0
   node "$repo_root/scripts/qa/restore-continuous-disposable.mjs" "$device_receipt" > "$output_dir/disposable-device-restore.json" || restore_status=$?
+  if [[ "$restore_status" -eq 0 && "${GITHUB_ACTIONS:-false}" == true && "${RUNNER_OS:-}" == Linux ]]; then
+    node "$repo_root/scripts/qa/observe-emulator-shutdown.mjs" start "$phase" || printf '::warning::Read-only CI host observation unavailable; original outcomes unchanged.\n'
+  fi
   if [[ "$suite_status" -ne 0 ]]; then exit "$suite_status"; fi
   exit "$restore_status"
 }

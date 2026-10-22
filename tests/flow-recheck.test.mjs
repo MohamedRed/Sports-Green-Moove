@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, resolve } from 'node:path';
@@ -30,6 +31,28 @@ test('completed matrix is distinct from a cancelled focused job after verified f
   const report = validateNativeTerminalRecheck(process.cwd(), content.nativeTerminalRecheck);
   assert.equal(report.localFlowGroupsPassed, 36); assert.equal(report.primaryCopiesPassed, 16);
   assert.equal(report.fullCiPassed, false); assert.equal(report.rootCauseConfirmed, false);
+});
+test('later preparation failure retains its original negative receipt without replacing historical matrix success', () => {
+  const directory = 'docs/release/evidence/native-preparation-3904dd80-2026-10-22/';
+  const bytes = file => readFileSync(directory + file), json = file => JSON.parse(bytes(file));
+  for (const [file, hash] of Object.entries(json('artifact-sha256.json')))
+    assert.equal(createHash('sha256').update(bytes(file)).digest('hex'), hash, file);
+  const report = json('summary.json'), run = json('native-run.json'), setup = json('disposable-device-setup.json');
+  assert.equal(run.headSha, report.sourceCommit); assert.equal(run.databaseId, report.runId);
+  assert.equal(run.status, 'completed'); assert.equal(run.conclusion, 'failure');
+  assert.equal(run.jobs.find(job => job.databaseId === report.matrixJobId).conclusion, 'failure');
+  const focused = run.jobs.filter(job => job.name.startsWith('Android focused safety UI tests / Isolated '));
+  assert.equal(focused.length, 11); assert(focused.every(job => job.conclusion === 'success'));
+  assert.equal(json('native-build-status.json').status, 0);
+  assert.equal(setup.scope, 'failed-disposable-device-setup-not-flow-proof');
+  assert.equal(setup.storePauseFailure.stage, 'stopped-verification');
+  assert.equal(setup.storePauseFailure.observed.storeStopped, false); assert.equal(setup.storePauseFailure.restored, true);
+  assert.equal(report.storeSettingsRestored, true); assert.equal(report.launcherRestorationVerified, false);
+  for (const field of ['matrixExecuted', 'applicationRegressionProven', 'hostObserverExecuted', 'rootCauseConfirmed',
+    'physicalDeviceAccepted', 'releaseComplete']) assert.equal(report[field], false);
+  assert.deepEqual(report.newCapturesAccepted, []);
+  const update = content.updates.find(row => row.source === directory + 'README.md');
+  assert.equal(update.date, report.checkedAt); assert.match(update.text, /avant les parcours/);
 });
 for (const [file, mutate] of [
   ['summary.json', row => row.fullCiPassed = true],

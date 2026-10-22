@@ -5,8 +5,7 @@ import { androidMapsPrerequisites } from './android-maps-prerequisites.mjs';
 import { disposableAndroidShell } from './disposable-android-shell.mjs';
 import { pauseDisposableStore, restoreDisposableStore } from './disposable-store-pause.mjs';
 import { prepareDisposableInstallAdmin, removeDisposableInstallAdmin } from './disposable-install-admin.mjs';
-
-const launcher = 'com.google.android.apps.nexuslauncher';
+import { disposableLauncher as launcher, assertDisposableLauncherEnabled, disableDisposableLauncher, restoreDisposableLauncher } from './disposable-launcher.mjs';
 
 export function configureDisposableAndroid(env = process.env, execute = execFileSync,
   { prepareAdmin = prepareDisposableInstallAdmin } = {}) {
@@ -17,27 +16,26 @@ export function configureDisposableAndroid(env = process.env, execute = execFile
   assert(!blockInstallations || env.SGM_TEST_PHONE_ADMIN_APPROVED === 'true', 'Temporary test administration requires explicit approval');
   const device = disposableAndroidShell(env, execute), { serial, shell } = device;
   const mapsRuntime = androidMapsPrerequisites(shell);
-  assert.equal(shell('pm', 'path', launcher).startsWith('package:'), true, 'Expected Google APIs launcher missing');
-  // This suite launches activities directly; exclude the independently crashing home app before execution.
-  shell('pm', 'disable-user', '--user', '0', launcher);
-  assert(shell('pm', 'list', 'packages', '-d', '--user', '0', launcher).split('\n')
-    .includes(`package:${launcher}`), 'Launcher isolation was not applied');
+  assertDisposableLauncherEnabled(shell);
   let installAdmin, storePause;
   try {
+    // This suite launches activities directly; the host restores the original enabled launcher.
+    disableDisposableLauncher(shell);
     storePause = env.SGM_PAUSE_TEST_PHONE_STORE === 'true' ? pauseDisposableStore(shell, { blockInstallations }) : null;
     installAdmin = blockInstallations ? prepareAdmin(device, { approved: true }) : null;
     assert.deepEqual(androidMapsPrerequisites(shell), mapsRuntime, 'Maps runtime changed during test-device setup');
-    return { serial, launcher, launcherDisabled: true, mapsRuntime, storePause, installAdmin,
+    return { serial, launcher, launcherDisabled: true, launcherOriginalState: 'enabled', mapsRuntime, storePause, installAdmin,
       scope: 'disposable-emulator-without-home-navigation' };
   } catch (failure) {
     const errors = [failure];
-    let storeCleanup = null, adminCleanup = failure.receipt?.cleanup ?? null;
+    let storeCleanup = null, adminCleanup = failure.receipt?.cleanup ?? null, launcherCleanup = false;
     if (storePause) try { storeCleanup = restoreDisposableStore(shell, storePause); }
     catch (cleanup) { storeCleanup = cleanup.receipt ?? null; errors.push(cleanup); }
     if (installAdmin) try { adminCleanup = removeDisposableInstallAdmin(device, installAdmin); }
     catch (cleanup) { errors.push(cleanup); }
+    try { launcherCleanup = restoreDisposableLauncher(shell); } catch (cleanup) { errors.push(cleanup); }
     throw Object.assign(new AggregateError(errors, 'Disposable test-device preparation failed; cleanup attempted'), {
-      receipt: { scope: 'failed-disposable-device-setup-not-flow-proof', serial, storeCleanup, adminCleanup,
+      receipt: { scope: 'failed-disposable-device-setup-not-flow-proof', serial, storeCleanup, adminCleanup, launcherCleanup,
         ...(failure.receipt?.scope === 'failed-disposable-admin-setup-not-flow-proof' ? { adminSetupFailure: failure.receipt } : {}),
         ...(failure.receipt?.scope === 'failed-store-pause-not-flow-proof' ? { storePauseFailure: failure.receipt } : {}) },
     });

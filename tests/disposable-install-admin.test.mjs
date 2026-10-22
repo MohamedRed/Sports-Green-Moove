@@ -115,8 +115,10 @@ test('owner confirmation rejects profile owners, additional owners and missing a
 test('admin cleanup still runs after failed store verification, retaining the original failure', () => {
   const original = Object.assign(new Error('runtime changed'), { receipt: { restored: true, verified: false } });
   let removed = false;
-  assert.throws(() => restoreDisposableAndroid({}, { storePause: {}, installAdmin: {} }, {
-    restoreStore: () => { throw original; }, removeAdmin: () => {
+  const receipt = { scope: 'disposable-emulator-without-home-navigation', serial: 'emulator-5554',
+    launcher: 'com.google.android.apps.nexuslauncher', launcherDisabled: true, launcherOriginalState: 'enabled', storePause: {}, installAdmin: {} };
+  assert.throws(() => restoreDisposableAndroid({ serial: receipt.serial }, receipt, {
+    restoreLauncher: () => true, restoreStore: () => { throw original; }, removeAdmin: () => {
       removed = true; return { authorizationRemoved: true, componentRemoved: true, originalPolicyRestored: true };
     },
   }), (error) => {
@@ -126,8 +128,10 @@ test('admin cleanup still runs after failed store verification, retaining the or
   assert.equal(removed, true);
 });
 test('failed admin cleanup cannot overwrite a failed test/store result or produce a verified receipt', () => {
-  assert.throws(() => restoreDisposableAndroid({}, { storePause: {}, installAdmin: {} }, {
-    restoreStore: () => ({ restored: true, verified: true }), removeAdmin: () => { throw new Error('remove failed'); },
+  const receipt = { scope: 'disposable-emulator-without-home-navigation', serial: 'emulator-5554',
+    launcher: 'com.google.android.apps.nexuslauncher', launcherDisabled: true, launcherOriginalState: 'enabled', storePause: {}, installAdmin: {} };
+  assert.throws(() => restoreDisposableAndroid({ serial: receipt.serial }, receipt, {
+    restoreLauncher: () => true, restoreStore: () => ({ restored: true, verified: true }), removeAdmin: () => { throw new Error('remove failed'); },
   }), (error) => { assert.equal(error.receipt.restored, false); assert.equal(error.receipt.verified, false); return true; });
 });
 test('the helper is test-only, without network/destructive capabilities, and protected from normal app broadcasts', () => {

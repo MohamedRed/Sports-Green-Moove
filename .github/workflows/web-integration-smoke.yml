@@ -15,6 +15,8 @@ on:
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
+      - "tests/emulator-host-observation.test.mjs"
+      - "tests/disposable-launcher-cleanup.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/team-club-identity.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
@@ -171,6 +173,7 @@ on:
       - "tests/support-recovery-phone-evidence.test.mjs"
       - "tests/native-copy-recheck-evidence.test.mjs"
       - "tests/flow-recheck.test.mjs"
+      - "docs/release/evidence/native-preparation-3904dd80-2026-10-22/**"
       - "docs/release/evidence/native-terminal-a6d8a630-2026-10-22/**"
       - "tests/booking-decisions-phone-evidence.test.mjs"
       - "tests/native-capture-recheck-evidence.test.mjs"
@@ -381,6 +384,8 @@ on:
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
+      - "tests/emulator-host-observation.test.mjs"
+      - "tests/disposable-launcher-cleanup.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
       - "tests/team-club-identity.test.mjs"
       - "tests/team-phone-evidence.test.mjs"
@@ -536,6 +541,7 @@ on:
       - "tests/support-recovery-phone-evidence.test.mjs"
       - "tests/native-copy-recheck-evidence.test.mjs"
       - "tests/flow-recheck.test.mjs"
+      - "docs/release/evidence/native-preparation-3904dd80-2026-10-22/**"
       - "docs/release/evidence/native-terminal-a6d8a630-2026-10-22/**"
       - "tests/booking-decisions-phone-evidence.test.mjs"
       - "tests/native-capture-recheck-evidence.test.mjs"
@@ -791,7 +797,7 @@ jobs:
       - name: Validate local test isolation
         run: npm run test:local-flow-isolation
       - name: Validate independent focused safety lane
-        run: node --test tests/native-focused-runner.test.mjs tests/continuous-disposable-device.test.mjs
+        run: node --test tests/native-focused-runner.test.mjs tests/continuous-disposable-device.test.mjs tests/emulator-host-observation.test.mjs tests/disposable-launcher-cleanup.test.mjs
       - name: Validate retained independent Android execution and device observations
         run: node --test tests/independent-native-evidence.test.mjs tests/continuous-device-evidence.test.mjs
       - name: Test bounded restoration faults and unchanged fixture records

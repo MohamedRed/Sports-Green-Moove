@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'La préparation du nouvel essai reste bloquée',
+    text: 'Les dix essais séparés passent. L’essai complet s’arrête avant les parcours.', flow: 'publication',
+    source: 'docs/release/evidence/native-preparation-3904dd80-2026-10-22/README.md' },
   { date: '2026-10-22', title: 'Les 36 parcours locaux passent à nouveau',
     text: 'Le parcours complet et les copies se terminent. Un essai séparé bloque ensuite à l’arrêt de l’appareil ; l’ensemble reste à stabiliser.', flow: 'publication' },
   { date: '2026-10-22', title: 'Le retour du compte conducteur est bloqué',
