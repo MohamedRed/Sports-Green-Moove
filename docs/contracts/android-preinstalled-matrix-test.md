@@ -5,6 +5,8 @@ booting it, `build-android-matrix-apks.mjs` builds both explicit configurations,
 staging the ordinary and isolated app/test pairs with their output metadata and
 SHA-256 digests. A stale staging directory, wrong application ID, missing output
 or failed build stops the job. No phone is booted after a failed build.
+The digest manifest and four output-metadata files are retained even after a boot
+failure; APK binaries and embedded client configuration are not uploaded.
 
 Preparation installs those four owned APKs before activating the approved
 installation guard. It verifies the installed byte digests, unchanged map runtime,

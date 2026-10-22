@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { content, assets, captures, videos, excerpts } from '../partner-portal/content.mjs';
+import { nativeRechecks } from '../partner-portal/native-rechecks.mjs';
 import { validate } from '../partner-portal/validate.mjs';
 import { buildBrowserAssets } from '../partner-portal/build-assets.mjs';
 
@@ -36,12 +37,9 @@ for (const [name, clip] of Object.entries(excerpts)) {
 for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'signout', 125]]) {
   ffmpeg('-ss', String(at), '-i', resolve(root, videos[video]), '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
 }
-const fingerprints = Object.fromEntries([...new Set([content.nativeCopyRecheck.source, content.nativeCopyRecheck.checksums,
+const fingerprints = Object.fromEntries([...new Set([...Object.values(nativeRechecks).flatMap(record => [record.source, record.checksums]),
   ...content.updates.flatMap(update => update.source ? [update.source] : []),
-  content.nativeTerminalRecheck.source, content.nativeTerminalRecheck.checksums,
-  content.nativeReplayRecheck.source, content.nativeReplayRecheck.checksums,
-  content.nativeCaptureRecheck.source, content.nativeCaptureRecheck.checksums,
-  content.flowRecheck.source, content.flowRecheck.checksums, content.nativeVerification.source, content.nativeVerification.manifest,
+  content.nativeVerification.source, content.nativeVerification.manifest,
   content.nativeVerification.checksums, ...Object.values(content.nativeVerification.recheck),
   ...content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.mapUi ? [f.mapUi.source] : []), ...(f.phone ? [f.phone.source] : []), ...(f.historyPhone ? [f.historyPhone.source] : []), ...(f.searchBookingUi ? [f.searchBookingUi.source] : [])])])].map((source) => [source,
   createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex')]));

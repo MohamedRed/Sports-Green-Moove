@@ -1,16 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync, cpSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { buildAndroidMatrixApks } from '../scripts/qa/build-android-matrix-apks.mjs';
 import { matrixPackages, ordinaryPackages, pinnedPackages, assertMatrixApkMetadata } from '../scripts/qa/android-case-apks.mjs';
 import { preparePinnedApks, usePreinstalledTestApks } from '../scripts/qa/preinstalled-disposable-apks.mjs';
-import { prepareMatrixReplay } from '../scripts/qa/prepare-matrix-replay.mjs';
+import { prepareMatrixReplay, usePreinstalledMatrixReplay } from '../scripts/qa/prepare-matrix-replay.mjs';
 import { restoreContinuousDevice } from '../scripts/qa/continuous-disposable-device.mjs';
 import { continuousFixture, assertNoGuardedInstallOrUnlock } from './fixtures/continuous-disposable-device.mjs';
 import { resetDisposableTestApps } from '../scripts/qa/reset-disposable-local-apps.mjs';
 import YAML from 'yaml';
+import { validatePreinstalledMatrixEvidence } from '../scripts/qa/native-preinstalled-matrix-evidence.mjs';
+import { nativeRechecks } from '../partner-portal/native-rechecks.mjs';
 
 const ordinary = f => preparePinnedApks({ android: f.android, serial: f.device.serial, env: f.env, device: f.device });
 const replay = f => prepareMatrixReplay({ android: f.android, serial: f.device.serial, env: f.env, device: f.device });
@@ -33,6 +35,9 @@ test('ordinary instrumentation has no class, package, annotation or sharding fil
   assert(wait > steps.findIndex(step => step.uses === 'reactivecircus/android-emulator-runner@v2'));
   assert(wait < steps.findIndex(step => step.uses === 'actions/upload-artifact@v7'));
   assert(steps[wait].if.includes('always()'));
+  const retained = steps.find(step => step.uses === 'actions/upload-artifact@v7').with.path;
+  assert(retained.includes('matrix-apks/manifest.json')); assert(retained.includes('matrix-apks/**/output-metadata.json'));
+  assert(!retained.includes('matrix-apks/**\n')); assert(!retained.includes('*.apk'));
 });
 
 test('four exact APKs install before a continuous lock across ordinary and complete replay stages', t => {
@@ -63,7 +68,12 @@ for (const [label, mutate] of [
 });
 
 test('explicit full-matrix mode never silently chooses legacy installation on a missing receipt', t => {
-  const f = fixture(t); delete f.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT;
+  const f = fixture(t); assert.equal(usePreinstalledMatrixReplay(f.env), true);
+  assert.equal(usePreinstalledMatrixReplay({}), false);
+  for (const env of [{...f.env, SGM_FOCUSED_UI_CASE: undefined}, {...f.env, SGM_FOCUSED_UI_CASE: 'native-startup'},
+    {...f.env, SGM_PREINSTALLED_TEST_APKS_RECEIPT: undefined}, {...f.env, SGM_PREINSTALLED_TEST_APKS_RECEIPT: ''},
+    {...f.env, GITHUB_ACTIONS: undefined}]) assert.throws(() => usePreinstalledMatrixReplay(env));
+  delete f.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT;
   assert.throws(() => usePreinstalledTestApks(f.env)); assert.equal(f.events.length, 0);
 });
 test('stale matrix metadata prevents device mutation and a partial four-APK install independently rolls back', t => {
@@ -148,3 +158,23 @@ for (const options of [{ failBuild: 1 }, { failBuild: 2 }, { wrongMetadata: true
     assert.equal(JSON.parse(readFileSync(resolve(f.output, 'store-review-screenshots/native-build-status.json'))).status, 1);
     assert(!existsSync(resolve(f.output, 'matrix-apks/manifest.json')));
   });
+
+test('the completed remote matrix retains all original cases, four pinned APKs, copies and restoration without full-CI acceptance', () => {
+  const report = validatePreinstalledMatrixEvidence(process.cwd(), nativeRechecks.nativeMatrixRecheck);
+  assert.equal(report.localFlowGroupsPassed, 36); assert.equal(report.nativeReplayCasesPassed, 38);
+  assert.equal(report.fullCiPassed, false); assert.equal(report.matrixHostObserverExecuted, false);
+});
+for (const [file, mutate] of [
+  ['summary.json', row => { row.fullCiPassed = true; }],
+  ['summary.json', row => { row.matrixHostObserverExecuted = true; }],
+  ['disposable-device-setup.json', row => { delete row.apkHashes['be.sportgreenmoove.app']; }],
+  ['disposable-store-restore.json', row => { row.restoration.launcher = false; }],
+  ['replay-results.json', row => { row.matrixPreparation.receiptSha256 = '0'.repeat(64); }],
+  ['ordinary-results.json', row => { row.passed = 197; }],
+]) test('the retained matrix rejects unsupported acceptance: ' + file + ' ' + mutate, t => {
+  const root = mkdtempSync(resolve(tmpdir(), 'sgm-preinstalled-retained-')); t.after(() => rmSync(root, {recursive: true, force: true}));
+  const base = dirname(nativeRechecks.nativeMatrixRecheck.source), target = resolve(root, base);
+  cpSync(resolve(process.cwd(), base), target, { recursive: true });
+  const path = resolve(target, file), row = JSON.parse(readFileSync(path)); mutate(row); writeFileSync(path, JSON.stringify(row));
+  assert.throws(() => validatePreinstalledMatrixEvidence(root, nativeRechecks.nativeMatrixRecheck));
+});

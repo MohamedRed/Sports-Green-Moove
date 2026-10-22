@@ -6,6 +6,8 @@ import { validateNativeCaptureRecheck } from './native-capture-recheck-evidence.
 import { validateNativeCopyRecheck } from './native-copy-recheck-evidence.mjs';
 import { validateSupportProcessRestartPhone } from './support-process-restart-phone-evidence.mjs';
 import { validateNativeTerminalRecheck } from './native-terminal-recheck-evidence.mjs';
+import { validateNativeBootRecheck } from './native-boot-recheck-evidence.mjs';
+import { validatePreinstalledMatrixEvidence } from './native-preinstalled-matrix-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -65,11 +67,15 @@ export function validateCurrentNativeBlocker(root, content) {
   assert.equal(record.checkedAt, report.checkedAt);
   assert.equal(resolve(root, record.checksums), resolve(root, dirname(record.source), 'artifact-sha256.json'));
   const latest = validateNativeTerminalRecheck(root, content.nativeTerminalRecheck);
+  const boot = validateNativeBootRecheck(root, content.nativeBootRecheck);
+  const matrix = validatePreinstalledMatrixEvidence(root, content.nativeMatrixRecheck);
   const blocker = content.blockers.find(item => item.id === 'test-device-stability');
   assert(blocker, 'The incomplete native replay must remain visible');
-  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeTerminalRecheck.source), 'README.md'));
+  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeMatrixRecheck.source), 'README.md'));
   assert.equal(report.fullCiPassed, false); assert.equal(latest.fullCiPassed, false);
-  assert.match(blocker.text, /36.*arrêt/);
+  assert.equal(boot.fullCiPassed, false); assert.equal(boot.matrixExecuted, false);
+  assert.equal(matrix.fullCiPassed, false); assert.equal(matrix.localFlowGroupsPassed, 36);
+  assert.match(blocker.text, /36.*captures.*séparé/);
   assert.match(blocker.next, /complète/);
   return blocker;
 }

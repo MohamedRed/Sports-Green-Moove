@@ -2,9 +2,16 @@ import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { isAbsolute } from 'node:path';
-import { requireFocusedDeviceApproval, assertContinuousDevice, assertPinnedApks, pinnedApkHashes } from './preinstalled-disposable-apks.mjs';
+import { requireFocusedDeviceApproval, assertContinuousDevice, assertPinnedApks, pinnedApkHashes, usePreinstalledTestApks } from './preinstalled-disposable-apks.mjs';
 import { matrixPackages, pinnedPackages } from './android-case-apks.mjs';
 import { disposableAndroidShell } from './disposable-android-shell.mjs';
+
+export function usePreinstalledMatrixReplay(env = process.env) {
+  if (env.SGM_FOCUSED_UI_CASE === undefined && env.SGM_PREINSTALLED_TEST_APKS_RECEIPT === undefined) return false;
+  assert.equal(env.SGM_FOCUSED_UI_CASE, 'full-matrix', 'Never ignore a partial or different preinstalled selection');
+  assert.equal(usePreinstalledTestApks(env), true);
+  return true;
+}
 
 export function prepareMatrixReplay({ android, serial, env = process.env, device = disposableAndroidShell(env) }) {
   assert.equal(env.SGM_FOCUSED_UI_CASE, 'full-matrix'); requireFocusedDeviceApproval(env);

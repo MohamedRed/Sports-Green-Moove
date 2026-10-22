@@ -33,7 +33,7 @@ import { replayGuardianParentUi } from './local-guardian-parent-ui.mjs';
 import { replayEmergencyContactUi } from './local-emergency-contact-ui.mjs';
 import { replayTeamEnrollmentUi } from './local-team-enrollment-ui.mjs';
 import { disposableTestRunner, installationGuardArguments, installDisposableTestApks } from './install-disposable-test-apks.mjs';
-import { prepareMatrixReplay } from './prepare-matrix-replay.mjs';
+import { prepareMatrixReplay, usePreinstalledMatrixReplay } from './prepare-matrix-replay.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -43,7 +43,7 @@ const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-too
 const run = (command, args) => execFileSync(command, args, { cwd: root, env: process.env, stdio: 'inherit', timeout: 20 * 60_000 });
 const android = resolve(root, 'android');
 let matrixPreparation = null;
-if (process.env.SGM_FOCUSED_UI_CASE === 'full-matrix') matrixPreparation = prepareMatrixReplay({ android, serial });
+if (usePreinstalledMatrixReplay()) matrixPreparation = prepareMatrixReplay({ android, serial });
 else {
   run(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
     '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2']);

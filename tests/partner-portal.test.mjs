@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 import { content, assets, captures, excerpts } from '../partner-portal/content.mjs';
 import { validate } from '../partner-portal/validate.mjs';
 import { assetRevision, buildBrowserAssets, assertBrowserAssetsCurrent } from '../partner-portal/build-assets.mjs';
+import { nativeRechecks } from '../partner-portal/native-rechecks.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const source = (file) => readFileSync(resolve(root, file), 'utf8');
@@ -18,15 +19,21 @@ test('every flow has truthful, dated evidence and explicit remaining scope', () 
   assert.equal(content.flows.find((f) => f.id === 'social-auth').status, 'deferred');
   assert.equal(content.releaseNote, 'Tests en cours.');
 });
+test('dated native rechecks remain modular and all their exact evidence paths are fingerprinted by the build', () => {
+  for (const [name, record] of Object.entries(nativeRechecks)) assert.deepEqual(content[name], record);
+  assert(source('scripts/build-partner-portal.mjs').includes('Object.values(nativeRechecks).flatMap(record => [record.source, record.checksums])'));
+  assert(source('partner-portal/content.mjs').split('\n').length < 300);
+});
 
-test('new public callback failure does not promote older local payment evidence or attribute an unconfirmed cause', () => {
+test('later public callback recovery does not promote older local payment evidence or attribute an unconfirmed cause', () => {
   const flow = content.flows.find(item => item.id === 'payments');
   const blocker = content.blockers.find(item => item.id === 'payment-return');
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-18');
-  assert.match(flow.remaining, /indisponibles le 22 octobre/);
-  assert.equal(blocker.source, 'docs/release/evidence/stripe-callback-outage-2026-10-22/README.md');
+  assert.match(flow.remaining, /s’ouvrent à nouveau/);
+  assert.equal(blocker.source, 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md');
   assert.match(blocker.next, /paiements réels/);
   assert(content.updates.some(item => item.flow === 'payments' && /cause reste à identifier/.test(item.text)));
+  assert(content.updates.some(item => item.flow === 'payments' && /paiements réels restent à tester/.test(item.text)));
   assert.doesNotMatch(blocker.text, /facturation|suspension|Stripe|Firebase|HTTP|BrowserStack/i);
 });
 

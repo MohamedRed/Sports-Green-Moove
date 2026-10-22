@@ -9,6 +9,7 @@ import { createEmergencyProfileFlow } from './emergency-profile-flow.mjs';
 import { createSessionRestorationFlow } from './session-restoration-flow.mjs';
 import { createSessionDisconnectFlow } from './session-disconnect-flow.mjs';
 import { nativeVerification } from './native-verification.mjs';
+import { nativeRechecks } from './native-rechecks.mjs';
 export { assets, videos, excerpts } from './portal-media.mjs';
 import { createTrackingFlow } from './tracking-flow.mjs';
 import { createRideEmergencyFlow } from './ride-emergency-flow.mjs';
@@ -38,16 +39,7 @@ const shot = (file, alt) => ({ file, alt });
 export const content = {
   updatedAt: '2026-10-22',
   lastVerifiedAt: '2026-10-22',
-  flowRecheck: {source: 'docs/release/evidence/flow-recheck-2026-10-22/summary.json', checkedAt: '2026-10-22',
-    checksums: 'docs/release/evidence/flow-recheck-2026-10-22/artifact-sha256.json'},
-  nativeCaptureRecheck: {source: 'docs/release/evidence/native-capture-recheck-24218efd-2026-10-22/summary.json', checkedAt: '2026-10-22',
-    checksums: 'docs/release/evidence/native-capture-recheck-24218efd-2026-10-22/artifact-sha256.json'},
-  nativeCopyRecheck: {source: 'docs/release/evidence/native-copy-recheck-e23809a-2026-10-22/summary.json', checkedAt: '2026-10-22',
-    checksums: 'docs/release/evidence/native-copy-recheck-e23809a-2026-10-22/artifact-sha256.json'},
-  nativeReplayRecheck: {source: 'docs/release/evidence/support-process-restart-phone-2026-10-22/summary.json', checkedAt: '2026-10-22',
-    checksums: 'docs/release/evidence/support-process-restart-phone-2026-10-22/artifact-sha256.json'},
-  nativeTerminalRecheck: {source: 'docs/release/evidence/native-terminal-a6d8a630-2026-10-22/summary.json', checkedAt: '2026-10-22',
-    checksums: 'docs/release/evidence/native-terminal-a6d8a630-2026-10-22/artifact-sha256.json'},
+  ...nativeRechecks,
   nativeVerification,
   releaseNote: 'Tests en cours.',
   updates: [
@@ -233,7 +225,7 @@ export const content = {
     { id: 'payments', title: 'Paiements et compte conducteur', status: 'partial', checkedAt: '2026-10-18',
       summary: 'Une confirmation tardive reste en attente dans les essais locaux.',
       verified: 'Le paiement est confirmé seulement quand son enregistrement est complet. Vérifier ne relance pas de paiement.',
-      remaining: 'Rétablir les pages de retour du compte conducteur, indisponibles le 22 octobre. Tester les écrans, les remboursements et les paiements réels sur téléphone, y compris après fermeture. Pas encore en ligne.',
+      remaining: 'Les pages de retour s’ouvrent à nouveau. Tester les écrans, l’inscription conducteur, les paiements réels sur téléphone et les remboursements, y compris après fermeture.',
       local: local(['ride-payment-confirmation'], ['Une confirmation tardive reste en attente.', 'Un enregistrement incomplet ne confirme pas le paiement.', 'Un autre parent ne peut pas consulter ce paiement.', 'Vérifier ne lance pas un nouveau paiement.', 'Aucun paiement ni remboursement réel dans ces essais.'], 'docs/release/evidence/local-payment-confirmation-2026-10-18/services.json'),
       ui: { source: 'docs/release/evidence/local-payment-layout-2026-10-18/results.json', groups: [
         'pendingPaymentOffersOnlyReadOnlyVerificationOnANarrowScreen', 'anInconsistentRecordRemainsExplicitlyUnconfirmed',

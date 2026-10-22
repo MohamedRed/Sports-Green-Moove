@@ -272,4 +272,24 @@ for (const item of outage.observations) {
 for (const flag of ["productionWrites", "paymentsCreated", "providerConfigurationChanged", "rootCauseConfirmed"])
   assert.equal(outage[flag], false, flag);
 
+const recoveredBase = "docs/release/evidence/stripe-callback-recovery-2026-10-22/";
+const recovered = JSON.parse(readFileSync(recoveredBase + "health.json", "utf8"));
+const provider = JSON.parse(readFileSync(recoveredBase + "provider-result.json", "utf8"));
+const providerRun = JSON.parse(readFileSync(recoveredBase + "provider-run.json", "utf8"));
+assert.equal(providerRun.headSha, "0af0155c1b888d75346b1a66f7227082bdfab274");
+assert.equal(providerRun.status, "completed"); assert.equal(providerRun.conclusion, "success");
+assert.equal(providerRun.jobs.find(job => job.databaseId === 120137652126).conclusion, "success");
+assert.equal(provider.readinessStatus, "production-configured"); assert.equal(provider.ok, true);
+assert(Object.values(provider.account).every(value => value === true)); assert.equal(provider.balance.livemode, true);
+assert.equal(provider.enabledWebhookCount, 1); assert.equal(provider.connectAccounts.reachable, true);
+assert.equal(provider.identifiersRetained, false); assert.equal(provider.credentialsRetained, false);
+assert.deepEqual(recovered.observations.map(item => item.kind), ["return", "refresh"]);
+for (const item of recovered.observations) {
+  assert.equal(item.httpStatus, 204); assert.equal(item.callbackMarker, item.kind); assert.equal(item.passed, true);
+  assert.equal(item.requestContainsCredentials, false); assert.equal(item.method, "GET");
+  assert.equal(item.url, `https://sports-green-moove-prod.web.app/payments/${item.kind}?health=1`);
+  assert.equal(provider.callbacks[item.kind].status, 204); assert.equal(provider.callbacks[item.kind].kind, item.kind);
+}
+for (const flag of ["productionWrites", "paymentsCreated", "providerConfigurationChanged", "rootCauseConfirmed"])
+  assert.equal(recovered[flag], false, flag);
 console.log("Stripe production readiness checks passed.");

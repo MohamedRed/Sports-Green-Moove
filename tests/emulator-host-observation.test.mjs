@@ -1,15 +1,26 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, writeFile, symlink, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, symlink, rm, stat } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { parseDocument } from 'yaml';
-import { parseHostStat, selectEmulatorHost, inspectEmulatorHost, probeEmulatorHost, observeEmulatorHost } from '../scripts/qa/emulator-host-observation.mjs';
+import { parseHostStat, selectEmulatorHost, inspectEmulatorHost, probeEmulatorHost, observeEmulatorHost,
+  createFreshHostObservationDirectory } from '../scripts/qa/emulator-host-observation.mjs';
 
 const rawStat = (pid, { parent = 1, state = 'S', ticks = '123456', name = 'private command (not retained)' } = {}) =>
   `${pid} (${name}) ${[state, parent, ...Array(17).fill(0), ticks, 0, 0].join(' ')}\n`;
 const settings = { port: 5554, avd: 'test' };
+test('a new full-matrix output parent is created without reusing an earlier observation directory', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'sgm-host-output-')); t.after(() => rm(root, {recursive: true, force: true}));
+  const directory = join(root, 'focused-safety-ui/full-matrix/host-shutdown');
+  await createFreshHostObservationDirectory(directory);
+  assert.equal((await stat(directory)).mode & 0o777, 0o700);
+  await writeFile(join(directory, 'started.json'), 'retained-original-unit-fixture');
+  await assert.rejects(() => createFreshHostObservationDirectory(directory), { code: 'EEXIST' });
+  assert.equal(await readFile(join(directory, 'started.json'), 'utf8'), 'retained-original-unit-fixture');
+  await assert.rejects(() => createFreshHostObservationDirectory('relative/host-shutdown'));
+});
 async function fixture(t) {
   const root = await mkdtemp(join(tmpdir(), 'sgm-host-observation-'));
   t.after(() => rm(root, { recursive: true, force: true }));

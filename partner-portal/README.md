@@ -1,5 +1,28 @@
 # Partner Progress Portal
 
+The subsequent preinstalled `0af0155c` matrix passes 197 ordinary cases (147 pass,
+50 skip), all 36 isolated groups / 38 native cases and 16 copies. Four pinned APKs,
+the continuous installation guard and independent package/launcher/policy
+restoration validate from originals. A separate focused job fails while the SDK
+image is unpacked, before its phone or app starts; the overall workflow stays
+failed. The full host observer does not start because its parent folder is missing.
+Its output fix is prepared separately, not accepted as executed here. Latest news
+and blocker follow this matrix, without changing historical gallery dates or
+publishing new media. Publication remains held while the Site is public.
+
+The later 23:03 UTC health observation and successful current-source provider job
+restore callback/configuration readiness. No production change caused by this work
+or actual onboarding/payment is claimed. Current payment copy follows the recovery;
+the older outage stays in the history. Private publication remains on hold.
+
+The later `bea9e0ee` full job compiles but fails in the device action's boot command
+before our suite script starts. Ten focused cases and their independent policy,
+app and launcher restoration pass. The read-only host observer records nine gone
+processes and one zombie; it does not establish that every host process exited or
+explain the earlier cancellation. Current news/blocker follow that terminal boot
+record. New full-matrix preparation is pushed separately, with its trial pending.
+No new media or private-site publication is accepted.
+
 The subsequent `3904dd80` full matrix does not start its app tests: the store
 restarts during stopped-state verification. The original receipt verifies store
 settings restoration only; launcher restoration is unverified. Ten focused cases and their aggregate pass separately. A dated

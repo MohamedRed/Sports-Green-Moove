@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-10-22T21:55:16.606Z",
+  "generatedAt": "2026-10-22T23:03:36.276Z",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -46,10 +46,13 @@
     },
     "stripeConnect": {
       "environment": "production",
-      "status": "verification-failed",
-      "checkedAt": "2026-10-22T21:55:16.606Z",
+      "status": "production-configured",
+      "checkedAt": "2026-10-22T23:03:36.276Z",
       "checkedBy": "Codex",
       "evidenceRefs": [
+        "evidence/stripe-callback-recovery-2026-10-22/README.md",
+        "evidence/stripe-callback-recovery-2026-10-22/health.json",
+        "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39868782103/job/120137652126",
         "evidence/stripe-callback-outage-2026-10-22/README.md",
         "evidence/stripe-callback-outage-2026-10-22/health.json",
         "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39857993823/job/120101089787",

@@ -1,11 +1,17 @@
 import assert from 'node:assert/strict';
-import { readFile, readlink, readdir } from 'node:fs/promises';
-import { basename, join } from 'node:path';
+import { readFile, readlink, readdir, mkdir } from 'node:fs/promises';
+import { basename, dirname, isAbsolute, join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 
 const engines = new Set(['qemu-system-x86_64-headless', 'qemu-system-x86_64']);
 const children = new Set(['crashpad_handler', 'netsimd']);
 const numeric = value => /^[1-9]\d{0,9}$/.test(String(value));
+
+export async function createFreshHostObservationDirectory(directory) {
+  assert(isAbsolute(directory)); assert.equal(basename(directory), 'host-shutdown');
+  await mkdir(dirname(directory), { recursive: true, mode: 0o700 });
+  await mkdir(directory, { mode: 0o700 });
+}
 
 export function parseHostStat(raw) {
   const close = raw.lastIndexOf(')'), open = raw.indexOf('(');

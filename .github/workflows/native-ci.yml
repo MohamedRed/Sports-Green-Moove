@@ -433,6 +433,8 @@ jobs:
             android/app/build/reports/androidTests/connected/**
             android/app/build/outputs/androidTest-results/connected/**
             android/app/build/outputs/store-review-screenshots/**
+            android/app/build/outputs/matrix-apks/manifest.json
+            android/app/build/outputs/matrix-apks/**/output-metadata.json
             android/app/build/outputs/local-ui-evidence/**
             android/app/build/outputs/focused-safety-ui/full-matrix/host-shutdown/**
           if-no-files-found: ignore

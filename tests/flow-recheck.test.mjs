@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, resolve } from 'node:path';
@@ -7,6 +8,7 @@ import test from 'node:test';
 import { content } from '../partner-portal/content.mjs';
 import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
 import { validateNativeTerminalRecheck } from '../scripts/qa/native-terminal-recheck-evidence.mjs';
+import { validateNativeBootRecheck } from '../scripts/qa/native-boot-recheck-evidence.mjs';
 
 test('terminal service success is separate from failed native replay and unstarted phone checkpoints', () => {
   const report = validateFlowRecheck(process.cwd(), content.flowRecheck);
@@ -17,7 +19,7 @@ test('terminal service success is separate from failed native replay and unstart
   assert.equal(progress.date, '2026-10-22');
   assert.match(progress.text, /interrompu/); assert.match(progress.text, /débloquer/);
 });
-test('current native blocker follows the latest failed replay, not an immutable historical gallery', () => {
+test('current native blocker follows the latest incomplete CI, not an immutable historical gallery', () => {
   validateCurrentNativeBlocker(process.cwd(), content);
   for (const patch of [{source: content.nativeVerification.source}, {text: 'Tout passe'}, {next: ''}]) {
     const changed = structuredClone(content);
@@ -53,6 +55,32 @@ test('later preparation failure retains its original negative receipt without re
   assert.deepEqual(report.newCapturesAccepted, []);
   const update = content.updates.find(row => row.source === directory + 'README.md');
   assert.equal(update.date, report.checkedAt); assert.match(update.text, /avant les parcours/);
+});
+test('latest boot failure and ten restored focused cases never imply a full replay or every host process gone', () => {
+  const report = validateNativeBootRecheck(process.cwd(), content.nativeBootRecheck);
+  assert.equal(report.matrixExecuted, false); assert.equal(report.focusedRestorationsVerified, 10);
+  assert.equal(report.focusedHostGone, 9); assert.equal(report.focusedHostZombie, 1);
+  assert.equal(report.allHostProcessesGone, false);
+  const update = content.updates.find(row => row.source === dirname(content.nativeBootRecheck.source) + '/README.md');
+  assert.match(update.text, /avant les parcours/);
+});
+test('the retained original boot log is tracked despite the general runtime-log ignore rule', () => {
+  const path = 'docs/release/evidence/native-boot-bea9e0ee-2026-10-22/native-job.log';
+  assert.equal(execFileSync('git', ['ls-files', '--error-unmatch', path], {encoding: 'utf8'}).trim(), path);
+});
+for (const [file, mutate] of [
+  ['summary.json', row => { row.fullCiPassed = true; }],
+  ['summary.json', row => { row.matrixExecuted = true; }],
+  ['summary.json', row => { row.allHostProcessesGone = true; }],
+  ['focused/native-startup-host.json', row => { row.finalState = 'gone'; }],
+  ['focused/team-access-restore.json', row => { row.restoration.launcher = false; }],
+  ['artifact-sha256.json', row => { delete row['native-job.log']; }],
+]) test('latest boot evidence rejects unsupported state: ' + file + ' ' + mutate, t => {
+  const root = mkdtempSync(resolve(tmpdir(), 'sgm-native-boot-')); t.after(() => rmSync(root, {recursive: true, force: true}));
+  const base = dirname(content.nativeBootRecheck.source), target = resolve(root, base);
+  cpSync(resolve(process.cwd(), base), target, { recursive: true });
+  const path = resolve(target, file), row = JSON.parse(readFileSync(path)); mutate(row); writeFileSync(path, JSON.stringify(row));
+  assert.throws(() => validateNativeBootRecheck(root, content.nativeBootRecheck));
 });
 for (const [file, mutate] of [
   ['summary.json', row => row.fullCiPassed = true],

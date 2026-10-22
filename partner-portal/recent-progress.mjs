@@ -1,6 +1,15 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Les 36 parcours locaux passent',
+    text: 'Les captures sont aussi récupérées. Un essai séparé reste à refaire : son téléphone n’a pas pu être préparé.', flow: 'publication',
+    source: 'docs/release/evidence/native-preinstalled-0af0155c-2026-10-22/README.md' },
+  { date: '2026-10-22', title: 'Les pages de retour s’ouvrent à nouveau',
+    text: 'Le retour du compte conducteur répond à nouveau. L’inscription et les paiements réels restent à tester.', flow: 'payments',
+    source: 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md' },
+  { date: '2026-10-22', title: 'Les dix essais séparés passent',
+    text: 'Le téléphone de l’essai complet bloque au démarrage, avant les parcours.', flow: 'publication',
+    source: 'docs/release/evidence/native-boot-bea9e0ee-2026-10-22/README.md' },
   { date: '2026-10-22', title: 'La préparation du nouvel essai reste bloquée',
     text: 'Les dix essais séparés passent. L’essai complet s’arrête avant les parcours.', flow: 'publication',
     source: 'docs/release/evidence/native-preparation-3904dd80-2026-10-22/README.md' },

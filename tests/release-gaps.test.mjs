@@ -40,12 +40,13 @@ assert.ok(
 );
 
 assert.deepEqual(report.providerEnvironment.missing, [], "Production launch provider secret names should be present.");
-assert.deepEqual(report.providerReadiness.missing, ["stripeConnect"],
-  "The observed callback outage must revoke the old provider-ready claim without removing configured secret names.");
+assert.deepEqual(report.providerReadiness.missing, [],
+  "The later successful live provider job restores configuration readiness only, not physical or payment acceptance.");
 const stripe = report.manifest.data.providerProductionReadiness.stripeConnect;
-assert.equal(stripe.status, "verification-failed");
-assert.equal(stripe.checkedAt, "2026-10-22T21:55:16.606Z");
+assert.equal(stripe.status, "production-configured");
+assert.equal(stripe.checkedAt, "2026-10-22T23:03:36.276Z");
 assert(stripe.evidenceRefs.includes("evidence/stripe-callback-outage-2026-10-22/health.json"));
+assert(stripe.evidenceRefs.includes("evidence/stripe-callback-recovery-2026-10-22/health.json"));
 assert.deepEqual(
   report.postponedSocialAuthEnvironment.missing,
   postponedSocialAuthEnvironmentVariables,

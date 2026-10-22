@@ -1,5 +1,6 @@
 .DS_Store
 *.log
+!docs/release/evidence/native-boot-bea9e0ee-2026-10-22/native-job.log
 
 # Environment files
 .env

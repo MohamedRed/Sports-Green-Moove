@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
-import { selectEmulatorHost, observeEmulatorHost } from './emulator-host-observation.mjs';
+import { selectEmulatorHost, observeEmulatorHost, createFreshHostObservationDirectory } from './emulator-host-observation.mjs';
 import { focusedCases } from './preinstalled-disposable-apks.mjs';
 import { matrixCases } from './android-case-apks.mjs';
 
@@ -22,7 +22,7 @@ if (mode === 'start') {
   assert.equal(env.ANDROID_SERIAL, `emulator-${port}`);
   assert.equal(env.SGM_FOCUSED_UI_CASE, phase);
   const identity = await selectEmulatorHost({ port, avd: 'test' });
-  await mkdir(directory, { mode: 0o700 });
+  await createFreshHostObservationDirectory(directory);
   await save('started', { scope, phase, startedAt: new Date().toISOString(), identity,
     maximumObservationMs: 90_000, rawArgumentsRetained: false, environmentRetained: false, deviceCommandsRequested: false });
   const childEnv = Object.fromEntries(['GITHUB_ACTIONS', 'RUNNER_OS', 'SGM_LOCAL_DISPOSABLE_EMULATOR']
