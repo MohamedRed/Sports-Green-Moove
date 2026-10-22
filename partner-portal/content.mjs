@@ -46,6 +46,8 @@ export const content = {
     checksums: 'docs/release/evidence/native-copy-recheck-e23809a-2026-10-22/artifact-sha256.json'},
   nativeReplayRecheck: {source: 'docs/release/evidence/support-process-restart-phone-2026-10-22/summary.json', checkedAt: '2026-10-22',
     checksums: 'docs/release/evidence/support-process-restart-phone-2026-10-22/artifact-sha256.json'},
+  nativeTerminalRecheck: {source: 'docs/release/evidence/native-terminal-a6d8a630-2026-10-22/summary.json', checkedAt: '2026-10-22',
+    checksums: 'docs/release/evidence/native-terminal-a6d8a630-2026-10-22/artifact-sha256.json'},
   nativeVerification,
   releaseNote: 'Tests en cours.',
   updates: [

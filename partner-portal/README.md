@@ -1,5 +1,12 @@
 # Partner Progress Portal
 
+The later terminal `a6d8a630` matrix passes all 36 local flow groups, 38 native
+cases and 16 primary copies, with policy restoration verified. The separate
+ride-observation case and cleanup also complete, but its action hangs after the
+emulator-kill acknowledgement and the job is cancelled. The latest device blocker
+follows that terminal record without turning the overall workflow green or
+explaining old transport failures. No new captures are published from this recheck.
+
 The 22 October public callback health recheck fails for both driver-onboarding
 return pages. The portal adds a dated payment blocker, without changing the
 older local payment proof or its date. The release manifest now requires Stripe

@@ -5,6 +5,7 @@ import { dirname, resolve } from 'node:path';
 import test from 'node:test';
 import { content } from '../partner-portal/content.mjs';
 import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
+import { validateNativeTerminalRecheck } from '../scripts/qa/native-terminal-recheck-evidence.mjs';
 
 test('terminal service success is separate from failed native replay and unstarted phone checkpoints', () => {
   const report = validateFlowRecheck(process.cwd(), content.flowRecheck);
@@ -24,6 +25,27 @@ test('current native blocker follows the latest failed replay, not an immutable 
   }
   const missing = {...content, blockers: content.blockers.filter(item => item.id !== 'test-device-stability')};
   assert.throws(() => validateCurrentNativeBlocker(process.cwd(), missing));
+});
+test('completed matrix is distinct from a cancelled focused job after verified fixture and policy restoration', () => {
+  const report = validateNativeTerminalRecheck(process.cwd(), content.nativeTerminalRecheck);
+  assert.equal(report.localFlowGroupsPassed, 36); assert.equal(report.primaryCopiesPassed, 16);
+  assert.equal(report.fullCiPassed, false); assert.equal(report.rootCauseConfirmed, false);
+});
+for (const [file, mutate] of [
+  ['summary.json', row => row.fullCiPassed = true],
+  ['summary.json', row => row.emulatorProcessExitVerified = true],
+  ['summary.json', row => row.earlierTransportFailureExplained = true],
+  ['native-run.json', row => row.conclusion = 'success'],
+  ['focused-results.json', row => row.isolatedFixtureCleanupVerified = false],
+  ['copies/adb-pull-trip-consent-recovery.json', row => row.completed = false],
+]) test('latest terminal record rejects unsupported state: ' + file + ' ' + mutate, t => {
+  const root = mkdtempSync(resolve(tmpdir(), 'sgm-native-terminal-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const directory = dirname(content.nativeTerminalRecheck.source), target = resolve(root, directory);
+  cpSync(resolve(process.cwd(), directory), target, { recursive: true });
+  const path = resolve(target, file), row = JSON.parse(readFileSync(path)); mutate(row);
+  writeFileSync(path, JSON.stringify(row));
+  assert.throws(() => validateNativeTerminalRecheck(root, content.nativeTerminalRecheck));
 });
 for (const [file, mutate] of [
   ['summary.json', value => value.fullNativeReplayCompleted = true],

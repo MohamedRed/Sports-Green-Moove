@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Les 36 parcours locaux passent à nouveau',
+    text: 'Le parcours complet et les copies se terminent. Un essai séparé bloque ensuite à l’arrêt de l’appareil ; l’ensemble reste à stabiliser.', flow: 'publication' },
   { date: '2026-10-22', title: 'Le retour du compte conducteur est bloqué',
     text: 'Les deux pages de retour sont indisponibles. La cause reste à identifier ; aucun paiement effectué.', flow: 'payments' },
   { date: '2026-10-22', title: 'Fermer l’app sans perdre la demande',
