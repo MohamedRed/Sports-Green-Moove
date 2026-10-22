@@ -41,6 +41,8 @@ export const content = {
     checksums: 'docs/release/evidence/flow-recheck-2026-10-22/artifact-sha256.json'},
   nativeCaptureRecheck: {source: 'docs/release/evidence/native-capture-recheck-24218efd-2026-10-22/summary.json', checkedAt: '2026-10-22',
     checksums: 'docs/release/evidence/native-capture-recheck-24218efd-2026-10-22/artifact-sha256.json'},
+  nativeCopyRecheck: {source: 'docs/release/evidence/native-copy-recheck-e23809a-2026-10-22/summary.json', checkedAt: '2026-10-22',
+    checksums: 'docs/release/evidence/native-copy-recheck-e23809a-2026-10-22/artifact-sha256.json'},
   nativeVerification,
   releaseNote: 'Tests en cours.',
   updates: [

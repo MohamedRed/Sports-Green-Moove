@@ -1,13 +1,10 @@
+import { supportFollowupSteps } from './support-followup-tour.mjs';
+
 const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
-  support: [
-    image('support-phone-invalid', 'Compléter sa demande', 'Sur téléphone, la description vide est refusée sans créer de demande.'),
-    image('support-phone-filled', 'Décrire le problème', 'Le parent remplit une demande de test. Le mode urgent reste désactivé.'),
-    image('support-phone-submitted', 'Envoyer une fois', 'La confirmation apparaît et la description se vide. Une seule demande est enregistrée.'),
-    image('support-phone-reopened', 'Rouvrir le formulaire', 'Revenir ne crée pas de doublon. Le suivi et la réponse au demandeur restent à ajouter.'),
-  ],
+  support: supportFollowupSteps(image),
   'team-conversation': [
     image('team-authority-phone-initial', 'Avant le retrait', 'Avec des données de test, le parent retrouve le message reçu après son admission.'),
     image('team-authority-phone-revoked', 'Retirer l’accès', 'La conversation et la saisie disparaissent sur le téléphone.'),

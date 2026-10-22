@@ -51,7 +51,7 @@ class SupportInboxFlowTest {
         val bounds = node.fetchSemanticsNode().boundsInRoot; val frame = compose.onNodeWithTag("support.frame").fetchSemanticsNode().boundsInRoot
         assertTrue(bounds.left >= frame.left && bounds.right <= frame.right)
         val instrumentation = InstrumentationRegistry.getInstrumentation()
-        val folder = File(instrumentation.targetContext.getExternalFilesDir(null), "support-ui-evidence").apply { mkdirs() }
+        val folder = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence").apply { mkdirs() }
         check(UiDevice.getInstance(instrumentation).takeScreenshot(File(folder, "support-requester-narrow.png")))
         assertEquals(2, gateway.reads)
     }

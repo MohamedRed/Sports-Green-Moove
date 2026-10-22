@@ -163,6 +163,9 @@ on:
       - "tests/manual-support-phone-checkpoints.test.mjs"
       - "tests/support-phone-evidence.test.mjs"
       - "tests/support-followup.test.mjs"
+      - "tests/manual-support-followup-checkpoints.test.mjs"
+      - "tests/support-followup-phone-evidence.test.mjs"
+      - "tests/native-copy-recheck-evidence.test.mjs"
       - "tests/flow-recheck.test.mjs"
       - "tests/booking-decisions-phone-evidence.test.mjs"
       - "tests/native-capture-recheck-evidence.test.mjs"
@@ -259,6 +262,7 @@ on:
       - "android/app/src/test/java/be/sportgreenmoove/app/design/SgmTextContrastTest.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralText*.kt"
       - "tests/partner-portal-session-restoration.browser.mjs"
+      - "tests/partner-portal-support-followup.browser.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-focused-android-ui.sh"
@@ -512,6 +516,9 @@ on:
       - "tests/manual-support-phone-checkpoints.test.mjs"
       - "tests/support-phone-evidence.test.mjs"
       - "tests/support-followup.test.mjs"
+      - "tests/manual-support-followup-checkpoints.test.mjs"
+      - "tests/support-followup-phone-evidence.test.mjs"
+      - "tests/native-copy-recheck-evidence.test.mjs"
       - "tests/flow-recheck.test.mjs"
       - "tests/booking-decisions-phone-evidence.test.mjs"
       - "tests/native-capture-recheck-evidence.test.mjs"
@@ -607,6 +614,7 @@ on:
       - "android/app/src/test/java/be/sportgreenmoove/app/design/SgmTextContrastTest.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralText*.kt"
       - "tests/partner-portal-session-restoration.browser.mjs"
+      - "tests/partner-portal-support-followup.browser.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-focused-android-ui.sh"
@@ -818,7 +826,9 @@ jobs:
       - name: Test private requester support replies and explicit retry
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-followup.json
-        run: npm run test:support-followup && node --test tests/support-followup.test.mjs
+        run: npm run test:support-followup && node --test tests/support-followup.test.mjs tests/manual-support-followup-checkpoints.test.mjs tests/support-followup-phone-evidence.test.mjs
+      - name: Validate terminal native copy failure and passing support components
+        run: node --test tests/native-copy-recheck-evidence.test.mjs
 
       - name: Test team-only adult conversations and admission-scoped history
         env:

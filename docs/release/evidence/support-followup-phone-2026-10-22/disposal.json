@@ -1,0 +1,29 @@
+{
+  "verifiedAt": "2026-10-22T15:12:06.779Z",
+  "runId": "e7019cb20312a44c95c79fb7954b60ad",
+  "ownedPaths": {
+    "runtime": "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-dNCeLV",
+    "helper": "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-scoped-bs-UmKyN0",
+    "credential": "/private/tmp/sgm-support-followup-phone-20261022-private.json"
+  },
+  "removed": {
+    "runtime": true,
+    "helper": true,
+    "credential": true
+  },
+  "ports": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099,
+      45690,
+      45691
+    ],
+    "closed": true
+  },
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "helperProcessGroupExitVerified": true
+}

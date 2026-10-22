@@ -44,15 +44,24 @@ resources or production index/function deployment was performed for this work.
 - `npm run test:support-followup`: 13 real isolated service scenarios.
 - Optional `--browser`: five administrator-browser checks, including actual
   post-commit acknowledgement loss and explicit retry, at widths 1440/768/390/320.
-- Android: seven JVM wire/state cases; new Compose cases compile but still need
-  execution. iOS: model/state checks and local Swift package compilation, not an
+- Android: seven JVM wire/state cases and two executed Compose cases pass.
+  Their exact ordinary-suite XML is retained with the failed full native run.
+  iOS: model/state checks and local Swift package compilation, not an
   iOS Firebase-linked build or simulator/physical UI claim.
 - Retained artifacts: `docs/release/evidence/support-followup-2026-10-22/`.
 
-The new requester screens still require observed native and physical replay.
-Local device startup failed for lack of free disk space; the newly created
-disposable virtual device was deleted. No installation policy was changed.
-The prior phone submission proof remains valid only for its older pinned app.
-The latest pushed native run at base `9a44bf4` failed; the overall gate remains
-open. New bounded host-process observations around evidence transfers improve
-diagnostics without retrying a transfer or claiming its outage is fixed.
+The 22 October physical Android follow-up now verifies one UI-created request,
+two written replies, status changes, reopening and sequential account isolation.
+Eight independent checkpoints preserve 158 original records and account claims;
+nine reviewed browser-stream phone rectangles are retained separately under
+`support-followup-phone-2026-10-22`. The administrator publishes these responses
+through authenticated services, not its phone UI. Native PNG export and recording
+are unavailable; no replacement video or process-identity claim is invented.
+The app, session, owned backend/helper and credentials are disposed with receipts.
+
+The earlier local device startup failed for disk capacity and that new virtual
+device was deleted. Historical submission-only proof remains tied to its older
+APK. The full native run at `e23809a` fails during evidence transfer despite
+145 ordinary cases and eleven focused lanes passing. Before/after host process
+observations remain diagnostic, not root-cause proof or an alternate transfer.
+Urgent-mode and lost-connection submission scenarios remain unverified on phone.

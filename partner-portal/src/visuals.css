@@ -8,9 +8,9 @@
 .tour-instruction { margin-top: 22px; }
 .tour-instruction h3 { font-size: 20px; margin-bottom: 10px; }
 .tour-instruction p { color: var(--text-secondary); font-size: 14px; }
-.tour-navigation { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; }
-.tour-navigation a { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }
-.tour-next { color: var(--c-green-dark); font-weight: 700; }
+.tour-navigation { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; }
+.tour-navigation a { display: inline-flex; flex-shrink: 0; max-width: 100%; align-items: center; gap: 6px; font-size: 14px; }
+.tour-next { margin-left: auto; color: var(--c-green-dark); font-weight: 700; }
 @media (max-width: 800px) {
   .detail-modes { padding-left: 24px; padding-right: 24px; }
 }

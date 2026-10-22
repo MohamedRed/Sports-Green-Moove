@@ -39,13 +39,14 @@ for (const [name, file, mutate] of [
     assert.throws(() => validateSupportPhone(temp, 'results.json'));
   } finally { rmSync(temp, { recursive: true, force: true }); }
 });
-test('portal keeps the historical local checks dated and the new four-step phone tour partial', () => {
+test('portal keeps historical submission/local proofs separate from the latest written-follow-up tour', () => {
   const flow = content.flows.find(row => row.id === 'support');
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-22');
   assert.equal(flow.local.checkedAt, '2026-10-15'); assert.equal(flow.ui.checkedAt, '2026-10-15');
-  assert.equal(flow.latestEvidence, 'phone'); assert.match(flow.remaining, /suivi et la réponse/);
-  assert.equal(flow.tour.length, 4);
-  for (const step of flow.tour) assert(captures[step.image].startsWith('docs/release/evidence/support-phone-2026-10-22/'));
+  assert.equal(flow.latestEvidence, 'phone'); assert.match(flow.remaining, /erreurs de connexion/);
+  assert.equal(flow.tour.length, 9);
+  for (const step of flow.tour) assert(captures[step.image].startsWith('docs/release/evidence/support-followup-phone-2026-10-22/'));
+  for (const id of ['invalid', 'filled', 'submitted', 'reopened']) assert(flow.images.some(row => row.file === 'support-phone-' + id));
   assert(flow.images.some(row => row.file === 'support-reviewed'));
   const workflow = readFileSync(resolve(root, '.github/workflows/web-integration-smoke.yml'), 'utf8');
   for (const name of ['tests/manual-support-phone-checkpoints.test.mjs', 'tests/support-phone-evidence.test.mjs'])

@@ -1,6 +1,10 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-22', title: 'Les réponses du support passent sur téléphone',
+    text: 'Le parent retrouve deux réponses et le statut Clôturée, même après réouverture et changement de compte. Neuf captures sont ajoutées. Le mode urgent et les coupures restent à tester.', flow: 'support' },
+  { date: '2026-10-22', title: 'La copie des preuves reste à stabiliser',
+    text: 'Les contrôles d’écran passent, y compris ceux du support. L’essai complet reste interrompu pendant une copie.', flow: 'publication' },
   { date: '2026-10-22', title: 'Le support peut répondre par écrit',
     text: 'La réponse et le statut passent les essais locaux. Les notes internes restent privées, même après une coupure. Le nouveau suivi reste à vérifier dans l’app sur téléphone.', flow: 'support' },
   { date: '2026-10-22', title: 'Une demande de support envoyée sur téléphone',

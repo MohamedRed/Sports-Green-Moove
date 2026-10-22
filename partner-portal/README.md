@@ -1,5 +1,24 @@
 # Partner Progress Portal
 
+The latest 22 October support trial passes on one physical phone, with sequential
+parent/driver/parent accounts. One UI-created request and two service-prepared
+staff responses retain their status and history after provider app stop/relaunch
+and reconnection. Eight independent checkpoints preserve 158 records and claims;
+nine reviewed stream rectangles open the tour. Internal notes are absent from the
+requester projection. The original local/submission proofs remain separate.
+No video/native PNG export or process-identity proof is invented. Phone app
+uninstall, session stop, owned backend/helper teardown, credential removal and
+closed ports are verified. Urgent mode and submission connection loss remain open.
+This snapshot is local only; publishing is still held while Site access is public.
+
+The latest native gate is retained separately at source e23809a: 145 ordinary
+cases pass, 50 are skipped, and all eleven focused lanes pass. Two executed
+support component cases pass, but the full replay and its cleanup collection
+both fail during file transfer. Before/after host observations show the same
+observed adb process; this is not a server-identity or root-cause conclusion.
+The portal's current blocker now points to that terminal result. Older capture
+and replay snapshots keep their own original status and source.
+
 The later 22 October support follow-up snapshot retains thirteen isolated
 service checks and five actual administrator-browser checks at four widths.
 Public written replies and status are owner-readable; internal notes remain

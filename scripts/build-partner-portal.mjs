@@ -36,12 +36,13 @@ for (const [name, clip] of Object.entries(excerpts)) {
 for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'signout', 125]]) {
   ffmpeg('-ss', String(at), '-i', resolve(root, videos[video]), '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
 }
-const fingerprints = Object.fromEntries([...new Set([content.nativeCaptureRecheck.source, content.nativeCaptureRecheck.checksums,
+const fingerprints = Object.fromEntries([...new Set([content.nativeCopyRecheck.source, content.nativeCopyRecheck.checksums,
+  content.nativeCaptureRecheck.source, content.nativeCaptureRecheck.checksums,
   content.flowRecheck.source, content.flowRecheck.checksums, content.nativeVerification.source, content.nativeVerification.manifest,
   content.nativeVerification.checksums, ...Object.values(content.nativeVerification.recheck),
   ...content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.mapUi ? [f.mapUi.source] : []), ...(f.phone ? [f.phone.source] : []), ...(f.historyPhone ? [f.historyPhone.source] : []), ...(f.searchBookingUi ? [f.searchBookingUi.source] : [])])])].map((source) => [source,
   createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex')]));
-for (const flow of content.flows) for (const record of [flow.decisionPhone, flow.attempt, flow.connected, flow.accessChanges, flow.readServices, flow.readConnected, flow.readAttempt, flow.readComponents, flow.readPhone, flow.authorityPhone, flow.noticeChecks, flow.accessAttempt, flow.nativeAccess, flow.draftAttempt, flow.draftRegression, flow.draftRestart, flow.draftErrorChecks, flow.draftErrorRecovery, flow.restorationRecheck, flow.restorationRecovery, flow.observationRecheck, flow.dialerPreflight].filter(Boolean)) {
+for (const flow of content.flows) for (const record of [flow.decisionPhone, flow.attempt, flow.connected, flow.accessChanges, flow.readServices, flow.readConnected, flow.readAttempt, flow.readComponents, flow.readPhone, flow.authorityPhone, flow.noticeChecks, flow.accessAttempt, flow.nativeAccess, flow.draftAttempt, flow.draftRegression, flow.draftRestart, flow.draftErrorChecks, flow.draftErrorRecovery, flow.restorationRecheck, flow.restorationRecovery, flow.observationRecheck, flow.dialerPreflight, flow.supportFollowup, flow.supportFollowupPhone].filter(Boolean)) {
   fingerprints[record.source] = createHash('sha256').update(readFileSync(resolve(root, record.source))).digest('hex');
   if (record.checksums) fingerprints[record.checksums] = createHash('sha256').update(readFileSync(resolve(root, record.checksums))).digest('hex');
 }
