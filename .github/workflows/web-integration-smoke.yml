@@ -12,6 +12,8 @@ on:
       - ".github/workflows/android-browserstack.yml"
       - "tests/team-review*.mjs"
       - "tests/native-build-before-boot.test.mjs"
+      - "tests/android-junit-transcript.test.mjs"
+      - "tests/android-matrix-preparation.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
@@ -381,6 +383,8 @@ on:
       - ".github/workflows/android-browserstack.yml"
       - "tests/team-review*.mjs"
       - "tests/native-build-before-boot.test.mjs"
+      - "tests/android-junit-transcript.test.mjs"
+      - "tests/android-matrix-preparation.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
@@ -798,6 +802,8 @@ jobs:
         run: npm run test:local-flow-isolation
       - name: Validate independent focused safety lane
         run: node --test tests/native-focused-runner.test.mjs tests/continuous-disposable-device.test.mjs tests/emulator-host-observation.test.mjs tests/disposable-launcher-cleanup.test.mjs
+      - name: Validate preinstalled full-matrix APKs and complete raw JUnit inventory
+        run: node --test tests/android-junit-transcript.test.mjs tests/android-matrix-preparation.test.mjs
       - name: Validate retained independent Android execution and device observations
         run: node --test tests/independent-native-evidence.test.mjs tests/continuous-device-evidence.test.mjs
       - name: Test bounded restoration faults and unchanged fixture records

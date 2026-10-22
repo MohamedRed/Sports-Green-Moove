@@ -8,6 +8,7 @@ export { usePreinstalledTestApks };
 
 export const disposableTestRunner = 'be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner';
 export const disposableApkSourceFiles = ['scripts/qa/install-disposable-test-apks.mjs',
+  'scripts/qa/android-case-apks.mjs',
   'scripts/qa/preinstalled-disposable-apks.mjs', 'scripts/qa/continuous-disposable-device.mjs',
   'scripts/qa/configure-continuous-disposable.mjs', 'scripts/qa/restore-continuous-disposable.mjs',
   'scripts/qa/reset-disposable-local-apps.mjs', 'scripts/qa/disposable-installations.mjs',

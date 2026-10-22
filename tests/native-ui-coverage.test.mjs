@@ -134,7 +134,7 @@ includes(iosUiTests, "\"publish.submit.action\"", "iOS UI tests cover publish su
 includes(iosProject, "SportsGreenMooveUITests:", "iOS project declares UI test target");
 includes(iosProject, "type: bundle.ui-testing", "iOS UI test target uses XCUITest bundle type");
 includes(nativeCi, "run-android-ui-tests-and-collect-screenshots.sh", "Native CI delegates Android UI tests to the runner script");
-includes(nativeCiAndroidRunner, "connectedDebugAndroidTest", "Native CI runner runs Android UI tests");
+includes(nativeCiAndroidRunner, "run-ordinary-android-ui.mjs", "Native CI runner runs the complete preinstalled Android UI matrix");
 includes(nativeCi, "xcodebuild test", "Native CI runs iOS UI tests");
 includes(androidGroups, "clubs: List<ClubSummary>", "Android Groups screen renders Firebase club summaries");
 includes(androidGroups, "onJoinClub: (ClubSummary) -> Unit", "Android Groups join delegates to the app Firebase action");

@@ -7,29 +7,24 @@ output_dir="$android_dir/app/build/outputs/store-review-screenshots"
 remote_dir="/sdcard/Download/sgm-store-review"
 
 mkdir -p "$output_dir" || exit 1
-"$android_dir/gradlew" -p "$android_dir" :app:assembleDebug :app:assembleDebugAndroidTest :qa-install-guard:assembleDebug --no-daemon --stacktrace
-build_status=$?
-printf '{"scope":"native-build-before-device-policy-not-flow-verification","status":%s}\n' \
-  "$build_status" > "$output_dir/native-build-status.json"
-if [[ "$build_status" -ne 0 ]]; then exit "$build_status"; fi
-
+export SGM_FOCUSED_UI_CASE=full-matrix
 device_receipt="$output_dir/disposable-device-setup.json"
-node "$repo_root/scripts/qa/configure-disposable-android.mjs" > "$device_receipt" || exit 1
+node "$repo_root/scripts/qa/configure-continuous-disposable.mjs" > "$device_receipt" || exit 1
 restore_test_store() {
   suite_status=$?
   restore_status=0
-  node "$repo_root/scripts/qa/restore-disposable-store.mjs" "$device_receipt" > "$output_dir/disposable-store-restore.json" || restore_status=$?
+  node "$repo_root/scripts/qa/restore-continuous-disposable.mjs" "$device_receipt" > "$output_dir/disposable-store-restore.json" || restore_status=$?
+  if [[ "$restore_status" -eq 0 && "${GITHUB_ACTIONS:-false}" == true && "${RUNNER_OS:-}" == Linux ]]; then
+    node "$repo_root/scripts/qa/observe-emulator-shutdown.mjs" start full-matrix || printf '::warning::Read-only CI host observation unavailable; original outcomes unchanged.\n'
+  fi
   if [[ "$suite_status" -ne 0 ]]; then exit "$suite_status"; fi
   exit "$restore_status"
 }
 trap restore_test_store EXIT
+export SGM_PREINSTALLED_TEST_APKS_RECEIPT="$device_receipt"
 
 set +e
-ordinary_command=("$android_dir/gradlew" -p "$android_dir" :app:connectedDebugAndroidTest --no-daemon --stacktrace)
-if [[ "${SGM_BLOCK_TEST_PHONE_INSTALLS:-false}" == "true" ]]; then
-  ordinary_command+=("-Pandroid.testInstrumentationRunnerArguments.sgmBlockInstallations=true")
-fi
-"${ordinary_command[@]}"
+node "$repo_root/scripts/qa/run-ordinary-android-ui.mjs"
 test_status=$?
 set -e
 

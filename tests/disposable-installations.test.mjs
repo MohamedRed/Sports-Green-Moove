@@ -126,7 +126,11 @@ test('only disposable workflows opt in, and both native/web gates exercise the p
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml'])
     assert(read('.github/workflows/' + name).includes('node --test tests/disposable-installations.test.mjs'));
   const wrapper = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
-  assert(wrapper.includes('-Pandroid.testInstrumentationRunnerArguments.sgmBlockInstallations=true'));
+  assert(wrapper.includes('run-ordinary-android-ui.mjs'));
+  assert(read('scripts/qa/run-ordinary-android-ui.mjs').includes("'-e', 'sgmBlockInstallations', 'true'"));
+  const verification = read('scripts/qa/verify-disposable-installations.mjs');
+  assert(verification.includes("process.env.SGM_FOCUSED_UI_CASE === 'full-matrix'"));
+  assert(verification.includes('assertContinuousDevice(disposableAndroidShell(), receipt)'));
   assert(wrapper.indexOf('verify-disposable-installations.mjs') < wrapper.indexOf('collect_component_evidence()'));
 });
 

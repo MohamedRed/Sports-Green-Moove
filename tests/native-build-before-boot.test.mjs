@@ -5,7 +5,7 @@ import YAML from 'yaml';
 import { createHash } from 'node:crypto';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
-test('APK compilation finishes before device boot with the same inputs as the guarded replay build', () => {
+test('both APK pairs compile and stage before device boot without an in-device rebuild', () => {
   const workflow = YAML.parse(read('.github/workflows/native-ci.yml'));
   const steps = workflow.jobs['android-native-ui'].steps;
   const buildIndex = steps.findIndex((step) => step.name === 'Compile app and tests before starting the disposable device');
@@ -17,10 +17,14 @@ test('APK compilation finishes before device boot with the same inputs as the gu
   assert.equal(steps[bootIndex].env.SGM_PAUSE_TEST_PHONE_STORE, 'true');
   const targets = (source) => source.match(/:(?:app|qa-install-guard):[A-Za-z]+/g);
   const guardedBuild = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
-  assert.deepEqual(targets(steps[buildIndex].run), [':app:assembleDebug', ':app:assembleDebugAndroidTest', ':qa-install-guard:assembleDebug']);
-  assert.deepEqual(targets(steps[buildIndex].run), targets(guardedBuild).slice(0, 3));
-  assert(steps[buildIndex].run.includes('--no-daemon --stacktrace'));
-  assert(guardedBuild.indexOf('if [[ "$build_status" -ne 0 ]]') < guardedBuild.indexOf('configure-disposable-android.mjs'));
+  assert.equal(steps[buildIndex].run, 'node scripts/qa/build-android-matrix-apks.mjs');
+  const builder = read('scripts/qa/build-android-matrix-apks.mjs');
+  assert.deepEqual(targets(builder), [':app:assembleDebug', ':app:assembleDebugAndroidTest', ':qa-install-guard:assembleDebug']);
+  assert(builder.includes('[[false, ordinaryPackages], [true, pinnedPackages]]'));
+  assert(builder.includes('-PSGM_USE_FIREBASE_EMULATOR=${isolated}'));
+  assert(!guardedBuild.includes('gradlew')); assert(!guardedBuild.includes('connectedDebugAndroidTest'));
+  assert(guardedBuild.includes('configure-continuous-disposable.mjs'));
+  assert(!read('scripts/qa/prepare-matrix-replay.mjs').includes('setInstallBlocked'));
   assert(!steps[buildIndex].run.includes('adb'));
 });
 test('both native and web gates cover build-before-boot ordering without changing the device image or permissions', () => {

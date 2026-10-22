@@ -18,6 +18,8 @@ on:
   pull_request:
     paths:
       - "tests/native-build-before-boot.test.mjs"
+      - "tests/android-junit-transcript.test.mjs"
+      - "tests/android-matrix-preparation.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
@@ -139,6 +141,8 @@ on:
       - main
     paths:
       - "tests/native-build-before-boot.test.mjs"
+      - "tests/android-junit-transcript.test.mjs"
+      - "tests/android-matrix-preparation.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
@@ -303,6 +307,9 @@ jobs:
       - name: Validate sanitized host transport observations
         run: node --test tests/adb-host-health.test.mjs tests/native-build-before-boot.test.mjs tests/emulator-host-observation.test.mjs tests/disposable-launcher-cleanup.test.mjs
 
+      - name: Validate preinstalled full-matrix APKs and complete raw JUnit inventory
+        run: node --test tests/android-junit-transcript.test.mjs tests/android-matrix-preparation.test.mjs
+
       - name: Validate membership cursor regression and client decoder evidence
         run: node --test tests/membership-cursor-contract.test.mjs
 
@@ -388,7 +395,7 @@ jobs:
       - name: Compile app and tests before starting the disposable device
         env:
           SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
-        run: ./android/gradlew -p android :app:assembleDebug :app:assembleDebugAndroidTest :qa-install-guard:assembleDebug --no-daemon --stacktrace
+        run: node scripts/qa/build-android-matrix-apks.mjs
 
       - name: Enable KVM group permissions
         run: |
@@ -411,6 +418,12 @@ jobs:
           profile: pixel_6
           script: bash scripts/run-android-ui-tests-and-collect-screenshots.sh
 
+      - name: Finish bounded read-only full-matrix host observation
+        if: ${{ always() }}
+        env:
+          SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
+        run: node scripts/qa/observe-emulator-shutdown.mjs wait full-matrix
+
       - name: Upload Android instrumentation reports
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
@@ -421,6 +434,7 @@ jobs:
             android/app/build/outputs/androidTest-results/connected/**
             android/app/build/outputs/store-review-screenshots/**
             android/app/build/outputs/local-ui-evidence/**
+            android/app/build/outputs/focused-safety-ui/full-matrix/host-shutdown/**
           if-no-files-found: ignore
 
   android-focused-safety-ui:

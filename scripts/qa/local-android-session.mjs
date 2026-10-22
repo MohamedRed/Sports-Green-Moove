@@ -33,6 +33,7 @@ import { replayGuardianParentUi } from './local-guardian-parent-ui.mjs';
 import { replayEmergencyContactUi } from './local-emergency-contact-ui.mjs';
 import { replayTeamEnrollmentUi } from './local-team-enrollment-ui.mjs';
 import { disposableTestRunner, installationGuardArguments, installDisposableTestApks } from './install-disposable-test-apks.mjs';
+import { prepareMatrixReplay } from './prepare-matrix-replay.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -41,9 +42,13 @@ assert(/^emulator-\d+$/.test(serial), 'Physical devices are not supported by thi
 const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-tools/adb` : 'adb';
 const run = (command, args) => execFileSync(command, args, { cwd: root, env: process.env, stdio: 'inherit', timeout: 20 * 60_000 });
 const android = resolve(root, 'android');
-run(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
-  '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2']);
-installDisposableTestApks({ adb, serial, android, run });
+let matrixPreparation = null;
+if (process.env.SGM_FOCUSED_UI_CASE === 'full-matrix') matrixPreparation = prepareMatrixReplay({ android, serial });
+else {
+  run(resolve(android, 'gradlew'), ['-p', android, ':app:assembleDebug', ':app:assembleDebugAndroidTest',
+    '-PSGM_USE_FIREBASE_EMULATOR=true', '--no-daemon', '--max-workers=2']);
+  installDisposableTestApks({ adb, serial, android, run });
+}
 run(process.execPath, [resolve(import.meta.dirname, 'install-local-ui-session.mjs'), serial, process.env.SGM_LOCAL_UI_SESSION_FILE]);
 
 function instrument(classes, expected, extraArguments = []) {
@@ -171,7 +176,7 @@ try {
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 36, nativeCaseCount: 38, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
+    testCount: 36, nativeCaseCount: 38, matrixPreparation, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
     guardianParent, emergencyContact, teamEnrollment,
     tripConsentRestart, tripConsentRecovery, tripDraftRestart, tripScheduleDraftRestart, membershipRefresh,
     chatNetwork, chatRestart, chatResponseLoss, bookingResponseLoss, bookingUiResponseLoss,

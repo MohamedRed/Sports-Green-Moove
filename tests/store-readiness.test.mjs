@@ -272,7 +272,7 @@ includes(files.nativeCiWorkflow, "Enable KVM group permissions", "Native CI enab
 includes(files.nativeCiWorkflow, "99-kvm4all.rules", "Native CI configures KVM group permissions on GitHub-hosted Ubuntu");
 includes(files.nativeCiWorkflow, "udevadm trigger --name-match=kvm", "Native CI applies KVM udev rules before launching the emulator");
 includes(files.nativeCiWorkflow, "run-android-ui-tests-and-collect-screenshots.sh", "Native CI delegates screenshot collection to a stable script");
-includes(files.androidUiScreenshotCollector, ":app:connectedDebugAndroidTest", "Android screenshot collector runs connected UI tests");
+includes(files.androidUiScreenshotCollector, "run-ordinary-android-ui.mjs", "Android screenshot collector runs the preinstalled connected UI matrix");
 includes(files.androidUiScreenshotCollector, "adb pull", "Android screenshot collector pulls emulator screenshots");
 includes(files.androidUiScreenshotCollector, "-size +0c", "Android screenshot collector verifies non-empty screenshots");
 includes(files.androidUiScreenshotCollector, "Expected at least 8 non-empty Android store-review screenshots", "Android screenshot collector fails when screenshot evidence is missing");

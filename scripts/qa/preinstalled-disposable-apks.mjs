@@ -7,13 +7,10 @@ import { assertDisposableInstallAdmin, installAdminPackage } from './disposable-
 import { assertNoActiveInstall, readInstallBlocked } from './disposable-installations.mjs';
 import { androidMapsPrerequisites } from './android-maps-prerequisites.mjs';
 import { readStoreBackground, storeBackgroundRestrictions } from './disposable-store-background.mjs';
-
-export const pinnedPackages = {
-  'be.sportgreenmoove.app.local': 'apk/debug/app-debug.apk',
-  'be.sportgreenmoove.app.local.test': 'apk/androidTest/debug/app-debug-androidTest.apk',
-};
-export const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft', 'team-read-components'];
+import { pinnedPackages, matrixCases, packagesForCase, focusedCases } from './android-case-apks.mjs';
+export { pinnedPackages, focusedCases };
 export function isApprovedDeviceCase(env) {
+  if (matrixCases.includes(env.SGM_FOCUSED_UI_CASE)) return env.GITHUB_ACTIONS === 'true' && env.RUNNER_OS === 'Linux';
   return focusedCases.includes(env.SGM_FOCUSED_UI_CASE) ||
     env.SGM_FOCUSED_UI_CASE === 'team-chat-components' ||
     (env.SGM_FOCUSED_UI_CASE === 'parent-search-booking' && env.SGM_SEARCH_BOOKING_APPROVAL === 'one-trial-max-eight-requests');
@@ -30,12 +27,12 @@ export function usePreinstalledTestApks(env = process.env) {
     'A focused case requires its absolute preinstalled-device receipt; legacy installation is forbidden');
   return true;
 }
-export function pinnedApkHashes(android) {
-  return Object.fromEntries(Object.entries(pinnedPackages).map(([name, path]) => [name,
+export function pinnedApkHashes(android, packages = pinnedPackages) {
+  return Object.fromEntries(Object.entries(packages).map(([name, path]) => [name,
     createHash('sha256').update(readFileSync(resolve(android, 'app/build/outputs', path))).digest('hex')]));
 }
-export function assertPinnedApks(shell, hashes) {
-  assert.deepEqual(Object.keys(hashes).sort(), Object.keys(pinnedPackages).sort());
+export function assertPinnedApks(shell, hashes, packages = pinnedPackages) {
+  assert.deepEqual(Object.keys(hashes).sort(), Object.keys(packages).sort());
   for (const [name, expected] of Object.entries(hashes)) {
     assert.match(expected, /^[a-f0-9]{64}$/);
     const match = /^package:(\/data\/app\/[A-Za-z0-9_~=.\/-]+\/base\.apk)$/.exec(shell('pm', 'path', name));
@@ -47,7 +44,7 @@ export function assertPinnedApks(shell, hashes) {
 }
 export function assertContinuousDevice(device, receipt) {
   assert.equal(receipt.scope, 'single-case-continuous-installation-guard-not-flow-proof');
-  assert(focusedCases.includes(receipt.case) || ['parent-search-booking', 'team-chat-components'].includes(receipt.case));
+  assert(focusedCases.includes(receipt.case) || ['parent-search-booking', 'team-chat-components', ...matrixCases].includes(receipt.case));
   assert.equal(receipt.installAdmin?.packageName, installAdminPackage);
   assert.equal(receipt.installAdmin.originalBlocked, false);
   assert.equal(receipt.installAdmin.policyReady, true); assert.equal(receipt.installAdmin.noAccounts, true);
@@ -64,14 +61,15 @@ export function preparePinnedApks({ android, serial, env = process.env, device =
   const path = env.SGM_PREINSTALLED_TEST_APKS_RECEIPT;
   assert(path && isAbsolute(path), 'A specific preinstalled-device receipt is required');
   const bytes = readFileSync(path), receipt = JSON.parse(bytes);
+  const packages = packagesForCase(receipt.case);
   assert.equal(receipt.case, env.SGM_FOCUSED_UI_CASE); assert.equal(serial, device.serial);
   assertContinuousDevice(device, receipt);
-  assert.deepEqual(pinnedApkHashes(android), receipt.apkHashes, 'Compiled APK changed after phone preparation');
-  assertPinnedApks(device.shell, receipt.apkHashes);
+  assert.deepEqual(pinnedApkHashes(android, packages), receipt.apkHashes, 'Compiled APK changed after phone preparation');
+  assertPinnedApks(device.shell, receipt.apkHashes, packages);
   // One receipt belongs to one case, even if a later preparation operation fails.
   writeFileSync(path + '.claimed', receipt.case + '\n', { flag: 'wx', mode: 0o600 });
-  for (const name of Object.keys(pinnedPackages)) assert.equal(device.shell('pm', 'clear', name), 'Success');
-  assertContinuousDevice(device, receipt); assertPinnedApks(device.shell, receipt.apkHashes);
+  for (const name of Object.keys(packages)) assert.equal(device.shell('pm', 'clear', name), 'Success');
+  assertContinuousDevice(device, receipt); assertPinnedApks(device.shell, receipt.apkHashes, packages);
   return { method: receipt.scope, case: receipt.case, receiptSha256: createHash('sha256').update(bytes).digest('hex'),
     apkHashes: receipt.apkHashes, installationsRemainedBlocked: true };
 }

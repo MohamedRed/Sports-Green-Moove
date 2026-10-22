@@ -5,9 +5,10 @@ import { resolve } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { selectEmulatorHost, observeEmulatorHost } from './emulator-host-observation.mjs';
 import { focusedCases } from './preinstalled-disposable-apks.mjs';
+import { matrixCases } from './android-case-apks.mjs';
 
 const [mode, phase] = process.argv.slice(2), env = process.env;
-assert(['start', 'observe', 'wait'].includes(mode) && focusedCases.includes(phase));
+assert(['start', 'observe', 'wait'].includes(mode) && [...focusedCases, ...matrixCases].includes(phase));
 assert.equal(process.platform, 'linux'); assert.equal(env.GITHUB_ACTIONS, 'true'); assert.equal(env.RUNNER_OS, 'Linux');
 assert.equal(env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
 const root = resolve(import.meta.dirname, '../..');
