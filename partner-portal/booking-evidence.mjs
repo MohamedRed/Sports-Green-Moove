@@ -3,8 +3,13 @@ import { dirname } from 'node:path';
 import { validateBookingDecisionsPhone } from '../scripts/qa/booking-decisions-phone-evidence.mjs';
 import { validateRetainedBookingNotices } from '../scripts/qa/booking-notice-evidence.mjs';
 import { validateRetainedSearchBooking } from '../scripts/qa/search-booking-retained-evidence.mjs';
+import { validateBookingRequestNoticeEvidence } from '../scripts/qa/booking-request-notice-evidence.mjs';
 
 export function validateBookingEvidence(root, flow) {
+  if (flow.requestNoticeChecks) {
+    assert.equal(flow.id, 'booking'); assert.equal(flow.status, 'partial');
+    validateBookingRequestNoticeEvidence(root, flow.requestNoticeChecks);
+  }
   for (const [record, validate, ids] of [
     [flow.decisionPhone, validateBookingDecisionsPhone, ['booking']],
     [flow.noticeChecks, validateRetainedBookingNotices, ['booking']],

@@ -182,6 +182,8 @@ on:
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
       - "tests/booking-notice-atomicity.test.mjs"
+      - "tests/booking-request-notice-evidence.test.mjs"
+      - "tests/native-schedule-copy-evidence.test.mjs"
       - "tests/manual-booking-phone-checkpoints.test.mjs"
       - "tests/manual-ride-phone-checkpoints.test.mjs"
       - "tests/ride-completion-recheck-evidence.test.mjs"
@@ -582,6 +584,8 @@ on:
       - "tests/trip-contention-evidence.test.mjs"
       - "tests/booking-consistency-evidence.test.mjs"
       - "tests/booking-notice-atomicity.test.mjs"
+      - "tests/booking-request-notice-evidence.test.mjs"
+      - "tests/native-schedule-copy-evidence.test.mjs"
       - "tests/manual-booking-phone-checkpoints.test.mjs"
       - "tests/manual-ride-phone-checkpoints.test.mjs"
       - "tests/ride-completion-recheck-evidence.test.mjs"
@@ -914,7 +918,7 @@ jobs:
       - name: Test atomic booking decisions and recipient notifications
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
-        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/manual-booking-phone-checkpoints.test.mjs tests/flow-recheck.test.mjs tests/booking-decisions-phone-evidence.test.mjs tests/native-capture-recheck-evidence.test.mjs
+        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/manual-booking-phone-checkpoints.test.mjs tests/flow-recheck.test.mjs tests/booking-decisions-phone-evidence.test.mjs tests/native-capture-recheck-evidence.test.mjs tests/booking-request-notice-evidence.test.mjs tests/native-schedule-copy-evidence.test.mjs
       - name: Check completed ride and physical-phone evidence
         run: node --test tests/manual-ride-phone-checkpoints.test.mjs tests/ride-completion-recheck-evidence.test.mjs
       - name: Check truthful notification settings and isolated observation

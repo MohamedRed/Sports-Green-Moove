@@ -20,6 +20,7 @@ import { validateNativeReplay0f91172f } from './native-replay-0f91172f-evidence.
 import { validateNotificationNativeAttempt } from './notification-native-attempt-evidence.mjs';
 import { validateNotificationNativeRecovery } from './notification-native-recovery-evidence.mjs';
 import { validateNativePaymentHeadRecheck } from './native-payment-head-evidence.mjs';
+import { validateNativeScheduleCopy } from './native-schedule-copy-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -76,8 +77,9 @@ export function validateCurrentNativeBlocker(root, content) {
   validateNotificationNativeAttempt(root, content.notificationNativeAttempt);
   validateNotificationNativeRecovery(root, content.notificationNativeRecovery);
   validateNativePaymentHeadRecheck(root, content.nativePaymentHeadRecheck);
+  validateNativeScheduleCopy(root, content.nativeScheduleCopyRecheck);
   assert.equal(content.blockers.find(row => row.id === 'notification-native-replay')?.source,
-    content.nativePaymentHeadRecheck.source.replace('summary.json', 'README.md'));
+    content.nativeScheduleCopyRecheck.source.replace('summary.json', 'README.md'));
   validateNativeReplay0f91172f(root, content.completedNativeReplayRecheck);
   validateNativeCopyCe282274(root, content.latestNativeCopyRecheck, content.blockers);
   validateNativeCaptureRecheck(root, content.nativeCaptureRecheck);

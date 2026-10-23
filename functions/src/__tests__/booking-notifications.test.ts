@@ -12,8 +12,11 @@ describe("booking notification identities", () => {
       bookingNotificationId("bookingApproved", "booking", "driver"),
       bookingNotificationId("bookingApproved", "other", "parent"),
       bookingNotificationId("bookingDeclined", "booking", "parent"),
-      bookingNotificationId("bookingCancelled", "booking", "parent")];
-    expect(new Set(ids).size).toBe(5);
+      bookingNotificationId("bookingCancelled", "booking", "parent"),
+      bookingNotificationId("bookingRequested", "booking", "driver")];
+    expect(new Set(ids).size).toBe(6);
+    expect(bookingNotificationId("bookingRequested", "booking", "driver"))
+      .toBe(bookingNotificationId("bookingRequested", "booking", "driver"));
   });
   it("does not confuse embedded separators or document-path characters", () => {
     expect(bookingNotificationId("bookingApproved", "a:b", "c"))

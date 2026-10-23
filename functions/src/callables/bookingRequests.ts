@@ -10,6 +10,7 @@ import { firestore } from "../lib/firebase.js";
 import { requireAuth, requireRole } from "../lib/https.js";
 import { toClientTripSummary } from "../lib/clientTrips.js";
 import { parseCallableData } from "../lib/validation.js";
+import { createBookingNotifications } from "../lib/bookingNotifications.js";
 
 function requireBookableTrip(trip: Trip, uid: string, seats: number) {
   if (trip.status !== "published" || trip.activeRideSessionId || trip.pendingChangeId)
@@ -77,6 +78,8 @@ export const requestBooking = onCall(async (request) => {
       status: "requested" as const, trip: toClientTripSummary(trip) };
     transaction.create(receiptRef, { uid, clientRequestId: data.clientRequestId, fingerprint,
       state: "committed", response, createdAt: now });
+    createBookingNotifications(transaction, [trip.driverUserId], { type: "bookingRequested", sourceId: bookingRef.id,
+      title: "Nouvelle demande de réservation", body: "Une nouvelle demande de réservation attend votre réponse." });
     return { ...response, currentBookingStatus: "requested", reused: false };
   });
 });

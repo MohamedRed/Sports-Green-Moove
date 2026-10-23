@@ -1,4 +1,6 @@
 export const nativeRechecks = {
+  nativeScheduleCopyRecheck: {source: 'docs/release/evidence/native-copy-3413b579-2026-10-23/summary.json', checkedAt: '2026-10-23',
+    checksums: 'docs/release/evidence/native-copy-3413b579-2026-10-23/artifact-sha256.json'},
   nativePaymentHeadRecheck: {source: 'docs/release/evidence/native-replay-a2f273fb-2026-10-23/summary.json', checkedAt: '2026-10-23',
     checksums: 'docs/release/evidence/native-replay-a2f273fb-2026-10-23/artifact-sha256.json'},
   notificationNativeRecovery: {source: 'docs/release/evidence/notification-native-recovery-2026-10-23/summary.json', checkedAt: '2026-10-23',

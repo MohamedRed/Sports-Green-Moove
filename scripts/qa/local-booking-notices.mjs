@@ -5,11 +5,12 @@ import { resolve } from 'node:path';
 import { deleteApp, getApp } from 'firebase-admin/app';
 import { call, db, denied, document, signIn, tripInput, viewedBooking } from './local-flow-client.mjs';
 import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
+import { checkBookingRequestNotices } from './local-booking-request-notices.mjs';
 
 const steps = [], observations = [];
 const noticeId = (type, bookingId, userId) => 'bookingDecision_' + createHash('sha256').update(JSON.stringify([type, bookingId, userId])).digest('hex');
 const check = async (id, action) => { await action(); steps.push({id, status: 'passed'}); };
-let failure, protectedRecordCount = 0;
+let failure, protectedRecordCount = 0, requestNoticeRecords = null;
 try {
   await seedLocalUiFixtures();
   const driver = await signIn('d@example.test'), parent = await signIn('p@example.test'), outsider = await signIn('outsider@example.test');
@@ -24,7 +25,9 @@ try {
   };
   const a = await pending('Notification accord QA'), b = await pending('Notification refus QA');
   const state = async booking => ({booking: await document('bookings', booking.bookingId), trip: await document('trips', booking.tripId)});
-  const notes = async booking => (await db.collection('notifications').where('sourceId', '==', booking.bookingId).get()).docs;
+  // Request delivery is checked separately; these assertions count decision notices.
+  const notes = async booking => (await db.collection('notifications').where('sourceId', '==', booking.bookingId).get()).docs
+    .filter(row => row.get('type') !== 'bookingRequested');
   async function barrier(booking, type, actor, status, seats, callable) {
     const ref = db.collection('notifications').doc(noticeId(type, booking.bookingId, actor.uid));
     const guard = {isolatedQaWriteBarrier: true}; await ref.create(guard);
@@ -95,6 +98,9 @@ try {
     const notifications = await notes(c); assert.equal(notifications.length, 1);
     assert.equal(notifications[0].id, noticeId('bookingApproved', c.bookingId, parent.uid));
   });
+  const requests = await checkBookingRequestNotices(parent, driver, outsider);
+  requestNoticeRecords = requests.persisted;
+  steps.push(...requests.steps); observations.push(...requests.observations);
   await check('unrelated-records-and-original-claims-remain-unchanged', async () => {
     for (const [path, original] of baseline) assert.deepEqual((await db.doc(path).get()).data(), original, path);
     assert.deepEqual(await Promise.all([driver, parent, outsider].map(async actor => (await auth.getUser(actor.uid)).customClaims)), originalClaims);
@@ -104,10 +110,11 @@ try {
 finally {
   await deleteApp(getApp());
   const paths = ['functions/src/callables/bookings.ts', 'functions/src/callables/reservations.ts',
-    'functions/src/domain/bookingNotifications.ts', 'functions/src/lib/bookingNotifications.ts', 'scripts/qa/local-booking-notices.mjs'];
+    'functions/src/callables/bookingRequests.ts', 'functions/src/domain/bookingNotifications.ts',
+    'functions/src/lib/bookingNotifications.ts', 'scripts/qa/local-booking-notices.mjs', 'scripts/qa/local-booking-request-notices.mjs'];
   writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT, JSON.stringify({projectId: 'demo-sgm-local-qa', runId: process.env.SGM_LOCAL_RUN_ID,
-    testedAt: new Date().toISOString(), scope: 'isolated-booking-decision-and-notification-atomicity-not-phone-ui',
-    completed: !failure, steps, observations, protectedRecordCount, adminClientClosed: true,
+    testedAt: new Date().toISOString(), scope: 'isolated-booking-request-decision-and-notification-atomicity-not-phone-ui',
+    completed: !failure, steps, observations, requestNoticeRecords, protectedRecordCount, adminClientClosed: true,
     physicalDevice: false, nativeUiExecuted: false, pushDeliveryVerified: false, paymentExercised: false, productionWrites: false,
     sourceFiles: Object.fromEntries(paths.map(path => [path, createHash('sha256').update(readFileSync(resolve(import.meta.dirname, '../..', path))).digest('hex')]))},
     null, 2) + '\n', {flag: 'wx'});

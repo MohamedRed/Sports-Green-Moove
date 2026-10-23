@@ -7,6 +7,8 @@ export function createBookingFlow(local, shot) {
       checksums: 'docs/release/evidence/booking-decisions-phone-2026-10-22/artifact-sha256.json' },
     searchBookingUi: { source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json', checkedAt: '2026-10-20' },
     noticeChecks: { source: 'docs/release/evidence/booking-notice-atomicity-2026-10-21/after.json', checkedAt: '2026-10-21' },
+    requestNoticeChecks: { source: 'docs/release/evidence/booking-request-notices-2026-10-23/services.json', checkedAt: '2026-10-23',
+      checksums: 'docs/release/evidence/booking-request-notices-2026-10-23/artifact-sha256.json' },
     local: local(['booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking', 'reservation-decisions', 'trip-capacity-ownership'], ['Une demande de deux places garde le bon nombre de places.', 'L’annulation restitue les places une seule fois.', 'Le refus ne retire aucune place.', 'Une personne extérieure ne peut pas modifier la réservation.', 'Un passager déjà pris en charge ne peut pas annuler.', 'Le conducteur ne peut pas modifier directement le nombre de places réservées.'], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json', '2026-10-17'),
     ui: { source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/results.json', checkedAt: '2026-10-17', groups: ['booking-response-loss-search-ui'] },
     phone: { source: 'docs/release/evidence/browserstack-isolated-booking-2026-10-18/results.json', checkedAt: '2026-10-18' },

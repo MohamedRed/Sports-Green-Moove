@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Une alerte pour chaque nouvelle demande',
+    text: 'Le conducteur voit la nouvelle demande en local, une seule fois. L’alerte reste lue après un renvoi. À vérifier sur téléphone.', flow: 'booking',
+    source: 'docs/release/evidence/booking-request-notices-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'Les dix essais séparés passent',
+    text: 'Le démarrage du suivi passe à nouveau. L’essai complet bloque encore sur la récupération des captures, après le changement d’horaire.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/native-copy-3413b579-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'La réservation passe, la suite reste interrompue',
     text: 'La réservation corrigée et les 159 contrôles d’écran passent. La récupération des captures bloque ensuite ; un essai séparé perd la localisation.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
     source: 'docs/release/evidence/native-replay-a2f273fb-2026-10-23/README.md' },

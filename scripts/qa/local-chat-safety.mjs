@@ -9,6 +9,9 @@ export async function checkChatDeliverySafety() {
   const { tripId } = await call('createTrip', driver, tripInput());
   const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, { tripId, seats: 1 }));
   const ref = { sourceType: 'booking', sourceId: bookingId };
+  const requests = await db.collection('notifications').where('sourceId', '==', bookingId).where('type', '==', 'bookingRequested').get();
+  assert.equal(requests.size, 1); assert.equal(requests.docs[0].get('userId'), driver.uid);
+  assert.equal(requests.docs[0].get('read'), false);
   const clientMessageId = randomUUID();
   const input = { bookingId, body: 'Rendez-vous devant le stade.', clientMessageId };
   const attempts = await Promise.all([0, 1, 2].map(() => call('sendChatMessage', parent, input)));
@@ -16,7 +19,7 @@ export async function checkChatDeliverySafety() {
   const firstId = attempts[0].messageId;
   assert.equal((await db.collection('messages').where('sourceId', '==', bookingId).get()).size, 1);
   const notes = await db.collection('notifications').where('userId', '==', driver.uid)
-    .where('sourceId', '==', bookingId).get();
+    .where('sourceId', '==', bookingId).where('type', '==', 'chatMessage').get();
   assert.equal(notes.size, 1, 'A retried send must not duplicate its recipient notification');
   assert.equal(notes.docs[0].data().messageId, firstId);
   await denied('sendChatMessage', parent, { ...input, body: 'Un autre contenu.' }, 'ALREADY_EXISTS');
@@ -34,6 +37,8 @@ export async function checkChatDeliverySafety() {
   await call('markChatMessagesRead', driver, { ...ref, messageIds: [firstId] });
   assert((await document('messages', firstId)).readByUserIds.includes(driver.uid));
   assert.equal((await notes.docs[0].ref.get()).data().read, true);
+  assert.equal((await requests.docs[0].ref.get()).get('read'), false,
+    'Reading a chat message must not acknowledge its separate booking-request notice');
   assert.equal((await call('getInbox', driver)).inbox.chats.find((item) => item.sourceId === bookingId).unreadCount, 0);
   const reply = await call('sendChatMessage', driver, { bookingId, body: 'Je vous attends au stade.', clientMessageId });
   assert.notEqual(reply.messageId, firstId, 'Request IDs are scoped to the sender');

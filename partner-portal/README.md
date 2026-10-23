@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The later 3413b579 native replay passes all ten focused jobs, including startup,
+and 159 ordinary cases. Its main job fails the schedule primary copy; three
+diagnostics observe the device offline and a transport reconnect. The 102-file
+cleanup copy stays separate. Restoration/host exit pass, without establishing
+the transport or earlier startup cause. Current blocker follows this new run.
+
+The booking-request notice check adds an in-app driver event in the same booking/
+receipt transaction. Eight request checks plus twelve decision checks pass with
+158 protected fixtures. The exact new unit file is reproduced against 3413b579
+for the red result; the current handler passes the backend suite. The broader
+service replay distinguishes chat messages from booking alerts and checks that
+chat reads leave the request unread. This is not connected app UI, push, a phone
+trial or a production deployment. Existing 22 October booking media stays dated.
+
 The a2f273fb replay executes the identity-scoped driver approval and its new
 component successfully (159 ordinary passes, 52 skips, no ordinary failure).
 The full job later fails its primary trip-change-inputs copy; the cleanup copy

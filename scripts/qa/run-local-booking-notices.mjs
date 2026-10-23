@@ -14,7 +14,7 @@ try {
   runtime.env.SGM_LOCAL_UI_SESSION_FILE = resolve(runtime.temp, 'session.json'); runtime.env.SGM_LOCAL_FLOW_OUTPUT = reportPath;
   runEmulatorEntry(runtime, 'local-booking-notices.mjs');
   report = JSON.parse(readFileSync(reportPath)); assert.equal(report.runId, runtime.env.SGM_LOCAL_RUN_ID);
-  assert.equal(report.completed, true); assert.equal(report.steps.length, 12); assert.equal(report.adminClientClosed, true);
+  assert.equal(report.completed, true); assert.equal(report.steps.length, 20); assert.equal(report.adminClientClosed, true);
 } catch (error) {
   failure = error; if (!report && existsSync(reportPath)) report = JSON.parse(readFileSync(reportPath));
 } finally {
