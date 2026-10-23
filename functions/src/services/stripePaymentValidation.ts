@@ -1,4 +1,5 @@
 import type Stripe from "stripe";
+import { verifiedIntentFee } from "../domain/paymentFees.js";
 
 export type RidePaymentBookingSnapshot = {
   id: string;
@@ -13,7 +14,7 @@ export type RidePaymentBookingSnapshot = {
   refundStatus?: string;
   paymentPriceCents?: number;
   amountPaidCents?: number;
-  paymentAttempt?: { id: string; intentId?: string };
+  paymentAttempt?: { id: string; intentId?: string; platformFeeCents?: number };
 };
 
 export type RidePaymentTripSnapshot = {
@@ -80,6 +81,10 @@ export function validateSucceededRidePaymentIntent(
   }
   if (expectedAmount == null || intent.amount !== expectedAmount) {
     return rejected("amountMismatch", "PaymentIntent amount does not match server-priced booking amount.");
+  }
+  if (booking.paymentAttempt?.platformFeeCents !== undefined &&
+      verifiedIntentFee(intent) !== booking.paymentAttempt.platformFeeCents) {
+    return rejected("feeMismatch", "PaymentIntent fees do not match the frozen payment attempt.");
   }
 
   return { ok: true, amountCents: expectedAmount, parentUserId };

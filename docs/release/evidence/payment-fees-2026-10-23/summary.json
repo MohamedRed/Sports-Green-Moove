@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-23",
+  "scope": "isolated-initial-payment-fee-freezing-not-live-provider-or-phone",
+  "baselineCommit": "412f22f7f00fd836f394b06cf5804ed196bc02f0",
+  "sourceWasUncommittedDuringTests": true,
+  "initialCases": 10,
+  "initialFailed": 9,
+  "initialPassed": 1,
+  "paymentPreparationCasesPassed": 18,
+  "financialCasesPassed": 78,
+  "backendUnitCasesPassed": 434,
+  "newFeeUnitCasesPassed": 40,
+  "rootCasesPassed": 1850,
+  "nativeTestApkCompiled": true,
+  "nativeApprovalRegressionExecuted": false,
+  "providerGatewaySimulated": true,
+  "realPayments": false,
+  "realRefunds": false,
+  "physicalPaymentsAccepted": false,
+  "productionWrites": false,
+  "newMediaPublished": false,
+  "releaseComplete": false,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      8080,
+      4400,
+      4500
+    ],
+    "closed": true
+  },
+  "redScope": "The initial ten-case file had nine failing new expectations. The later eighteen-case file adds concurrency, retrieval, legacy identity variants and webhook settlement checks; the original red file was not separately frozen."
+}

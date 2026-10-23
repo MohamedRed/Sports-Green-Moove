@@ -2,8 +2,8 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   { id: 'notification-native-replay', title: 'Terminer le nouvel essai complet',
-    text: 'La lecture des alertes passe, mais la collecte finale bloque. Une capture de modification de trajet échoue aussi.',
-    next: 'Rejouer la collecte corrigée et comprendre l’échec de cette capture.', source: 'docs/release/evidence/notification-native-attempt-2026-10-23/README.md' },
+    text: 'La lecture après fermeture passe en local. L’essai s’arrête ensuite sur la vérification d’une réservation.',
+    next: 'Rejouer la vérification corrigée, centrée sur la réservation concernée.', source: 'docs/release/evidence/notification-native-recovery-2026-10-23/README.md' },
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
     text: 'Un essai précédent passe, captures comprises. La cause de la coupure reste inconnue.',
     next: 'Comprendre cette coupure pour fiabiliser les prochains essais.', source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },

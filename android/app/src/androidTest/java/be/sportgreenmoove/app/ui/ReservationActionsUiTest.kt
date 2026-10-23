@@ -66,4 +66,36 @@ class ReservationActionsUiTest {
             compose.onNodeWithTag(decisionTag(decision, UiFlowFixtures.bookingRequest.bookingId)).assertIsNotEnabled()
         }
     }
+    @Test fun approvingOneBookingDoesNotDependOnOtherApprovedBookings() {
+        val pending = UiFlowFixtures.reservation.copy(booking = UiFlowFixtures.bookingRequest.copy(bookingId = "chosen-booking", status = "requested"),
+            allowedActions = setOf(ReservationDecision.Approve))
+        val approved = (1..3).map { index -> pending.copy(booking = pending.booking.copy(bookingId = "other-$index", status = "approved"),
+            allowedActions = emptySet()) }
+        var rows = approved + pending
+        val writes = mutableListOf<String>()
+        val gateway = object : ReservationGateway {
+            override suspend fun list(role: AppRole, cursor: String?) = ReservationPage(rows, null)
+            override suspend fun decide(bookingId: String, decision: ReservationDecision) {
+                assertEquals("chosen-booking", bookingId); assertEquals(ReservationDecision.Approve, decision)
+                writes += bookingId
+                rows = rows.map { row -> if (row.booking.bookingId == bookingId)
+                    row.copy(booking = row.booking.copy(status = "approved"), allowedActions = emptySet()) else row }
+            }
+        }
+        compose.setSgmUiTestContent {
+            Column(Modifier.width(320.dp).verticalScroll(rememberScrollState())) {
+                ReservationManagementRoute("driver-qa", AppRole.Driver, gateway, UiFlowFirebaseGateway()) {}
+            }
+        }
+        val action = decisionTag(ReservationDecision.Approve, "chosen-booking")
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag(action).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag(action).performScrollTo().performClick()
+        compose.onNodeWithTag("bookings.confirm").performClick()
+        compose.waitUntil(10_000) {
+            runCatching { compose.onNodeWithTag("reservation.status.chosen-booking").assertTextEquals("Approuvée") }.isSuccess
+        }
+        compose.onNodeWithTag(action).assertDoesNotExist()
+        for (index in 1..3) compose.onNodeWithTag("reservation.status.other-$index").assertTextEquals("Approuvée")
+        assertEquals(listOf("chosen-booking"), writes)
+    }
 }

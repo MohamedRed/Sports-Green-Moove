@@ -16,8 +16,9 @@ test('a history-only event cannot hide a newer overview entry for another flow',
 });
 test('the current overview shows the later interrupted replay without deleting earlier passing or failed results', () => {
   const result = partitionUpdates(content.updates);
-  assert(result.recent.some(row => row.source?.includes('notification-native-attempt-2026-10-23')));
-  assert(result.recent.some(row => row.source?.includes('notification-read-phone-2026-10-23')));
+  assert(result.recent.some(row => row.source?.includes('notification-native-recovery-2026-10-23')));
+  assert(result.previous.some(row => row.source?.includes('notification-native-attempt-2026-10-23')));
+  assert(result.previous.some(row => row.source?.includes('notification-read-phone-2026-10-23')));
   assert(!result.recent.some(row => row.source?.includes('native-replay-0f91172f')));
   assert(result.previous.some(row => row.source?.includes('native-replay-0f91172f')));
   assert(!result.recent.some(row => row.source?.includes('native-copy-ce282274')));

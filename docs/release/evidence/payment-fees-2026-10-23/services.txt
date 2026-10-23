@@ -1,0 +1,31 @@
+
+> sports-green-moove@0.1.0 test:stripe-webhook-flow
+> firebase emulators:exec --project sports-green-moove-rules-test --only firestore "vitest run tests/stripe-webhook-flow.test.ts tests/reward-payout-flow.test.ts tests/admin-payout-request.test.ts tests/ride-payment-preparation-flow.test.ts --no-file-parallelism"
+
+i  emulators: Starting emulators: firestore
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: vitest run tests/stripe-webhook-flow.test.ts tests/reward-payout-flow.test.ts tests/admin-payout-request.test.ts tests/ride-payment-preparation-flow.test.ts --no-file-parallelism
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove
+
+ ✓ tests/reward-payout-flow.test.ts (25 tests) 10263ms
+   ✓ isolated reward payout accounting > does not send the same balance twice while the first transfer is still unresolved  961ms
+   ✓ isolated reward payout accounting > serializes two same-source calls with the same provider identity and a single debit  3293ms
+   ✓ isolated reward payout accounting > serializes concurrent cumulative reversals and retains full credit after stale events  3550ms
+ ✓ tests/stripe-webhook-flow.test.ts (25 tests) 5925ms
+   ✓ Stripe webhook reconciliation flow > preserves a closed booking and pending refund across concurrent  2816ms
+ ✓ tests/ride-payment-preparation-flow.test.ts (18 tests) 1548ms
+ ✓ tests/admin-payout-request.test.ts (10 tests) 4ms
+
+ Test Files  4 passed (4)
+      Tests  78 passed (78)
+   Start at  21:41:50
+   Duration  19.23s (transform 250ms, setup 0ms, collect 585ms, tests 17.74s, environment 0ms, prepare 167ms)
+
+✔  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

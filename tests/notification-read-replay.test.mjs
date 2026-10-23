@@ -62,3 +62,9 @@ test('date-bearing native status assertions explicitly use suffix substring matc
   assert.match(ui, /assertTextContains\(" · \$status", substring = true\)/);
   assert(!/assertTextContains\(" · [^"\n]+"\)/.test(ui));
 });
+test('the subsequent driver case verifies its own booking instead of counting approvals from other fixtures', () => {
+  const driver = readFileSync('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalDriverFlowTest.kt', 'utf8');
+  assert(driver.includes('reservation.status.sgm-qa-booking-requested'));
+  assert(driver.includes('assertTextEquals("Approuvée")'));
+  assert(!driver.includes('onAllNodesWithText("Approuvée")'));
+});

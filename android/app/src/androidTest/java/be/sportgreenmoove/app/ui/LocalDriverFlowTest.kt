@@ -2,8 +2,8 @@ package be.sportgreenmoove.app.ui
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.onAllNodesWithTag
-import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -50,7 +50,9 @@ class LocalDriverFlowTest {
             compose.onNodeWithTag("bookings.confirm").assertIsDisplayed().performClick()
             compose.waitUntil(60_000) {
                 compose.onAllNodesWithTag(approve).fetchSemanticsNodes().isEmpty() &&
-                    compose.onAllNodesWithText("Approuvée").fetchSemanticsNodes().size == 2
+                    runCatching {
+                        compose.onNodeWithTag("reservation.status.sgm-qa-booking-requested").assertTextEquals("Approuvée")
+                    }.isSuccess
             }
             captureLocalUi(compose, "local-driver-booking-approved.png")
             compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()

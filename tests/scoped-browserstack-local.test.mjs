@@ -169,8 +169,9 @@ function privatePipe(t) {
   return path;
 }
 test('actual private FIFO transfer finishes without a prefetched blocking read', async t => {
-  const path = privatePipe(t), reading = readPrivateCredentialPipe(path, new AbortController().signal);
-  await writeFile(path, fictionalKey + '\n'); assert.equal(await reading, fictionalKey);
+  const path = privatePipe(t);
+  const [value] = await Promise.all([readPrivateCredentialPipe(path, new AbortController().signal), writeFile(path, fictionalKey + '\n')]);
+  assert.equal(value, fictionalKey);
 });
 test('an idle credential pipe can be cancelled without leaving a blocked filesystem read', async t => {
   const path = privatePipe(t), controller = new AbortController();
@@ -188,7 +189,10 @@ test('publicly readable pipes and oversized or multiline input are rejected', as
   const path = privatePipe(t); chmodSync(path, 0o644);
   await assert.rejects(readPrivateCredentialPipe(path, new AbortController().signal)); chmodSync(path, 0o600);
   for (const text of ['x'.repeat(258), 'first\nsecond\n']) {
-    const pending = readPrivateCredentialPipe(path, new AbortController().signal);
-    await writeFile(path, text); await assert.rejects(pending);
+    await Promise.all([
+      assert.rejects(readPrivateCredentialPipe(path, new AbortController().signal),
+        {message: text.length === 258 ? 'Private credential input is too long' : 'One private credential line is required'}),
+      writeFile(path, text),
+    ]);
   }
 });

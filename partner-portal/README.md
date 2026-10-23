@@ -2,6 +2,24 @@
 
 ## Current Publication Policy
 
+The later `412f22f7` trial completes both connected notification stages, primary
+collection and independent checks across 176 records and a measured process stop.
+Its ordinary cases pass 158/52 skipped/zero failed and all focused lanes pass.
+The later nine-case driver batch times out on a global approval-count predicate;
+its exact post-failure stored state is not retained. The identity-scoped correction
+and a component with unrelated approved bookings compile but still need replay.
+Current news/blocker follow that result; older collection failures stay historical.
+No additional gallery media or physical-device acceptance is added.
+
+The later payment-fee check passes eighteen isolated preparation cases, all 78
+financial cases and 434 backend units. Fees are frozen before the first provider
+request and checked on response/webhook; known legacy identities reconcile using
+verified historical fees. Invalid rates and unknown fee-less attempts fail closed.
+The initial red file had nine failed new expectations among ten; that exact test
+file was not frozen. Transactions run locally with a synthetic auth context and
+provider/secret test doubles. No actual money, phone, sign-in transport, deployment
+or new payment media is accepted, and existing gallery dates remain unchanged.
+
 The 23 October notification-read physical trial adds four reviewed originals:
 parent unread/read, driver isolation and parent return. Four independent snapshots
 protect 167 records/claims; only the selected notification's read fields change.

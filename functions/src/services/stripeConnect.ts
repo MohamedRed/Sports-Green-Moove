@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { paymentFeeBasisPoints, paymentFeeCents } from "../domain/paymentFees.js";
 
 const apiVersion = "2026-02-25.clover";
 
@@ -93,8 +94,7 @@ export async function createConnectedAccountLink(
 }
 
 export function platformFeeAmountCents(amountCents: number): number {
-  const bps = Number(process.env.PLATFORM_FEE_BPS ?? "0");
-  return Math.max(0, Math.round((amountCents * bps) / 10000));
+  return paymentFeeCents(amountCents, paymentFeeBasisPoints(process.env.PLATFORM_FEE_BPS));
 }
 
 export type RidePaymentIntentContext = {
@@ -113,6 +113,8 @@ export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentCon
   params: Stripe.PaymentIntentCreateParams;
   idempotencyKey: string;
 } {
+  if (!Number.isSafeInteger(context.amountCents) || context.amountCents <= 0)
+    throw new Error("Payment invoice must be a positive safe integer.");
   const applicationFeeAmount = context.platformFeeCents ?? platformFeeAmountCents(context.amountCents);
   if (!Number.isSafeInteger(applicationFeeAmount) || applicationFeeAmount < 0 || applicationFeeAmount > context.amountCents)
     throw new Error("Payment fee must be an integer within the invoice amount.");

@@ -63,7 +63,8 @@ describe("Stripe ride payments", () => {
       expect(entries[0]).toMatchObject({ userId: "parent-1", type: "ridePayment", amountCents: -1000 });
       expect(entries[1]).toMatchObject({ userId: "driver-1", type: "driverEarning", amountCents: 900 });
     } finally {
-      process.env.PLATFORM_FEE_BPS = previousFee;
+      if (previousFee === undefined) delete process.env.PLATFORM_FEE_BPS;
+      else process.env.PLATFORM_FEE_BPS = previousFee;
     }
   });
 

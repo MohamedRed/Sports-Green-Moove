@@ -1,6 +1,15 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Les frais ne changent plus lors d’une reprise',
+    text: 'Le paiement garde ses conditions après interruption, dans les essais locaux. Aucun argent réel n’a été débité.', flow: 'payments',
+    source: 'docs/release/evidence/payment-fees-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'La lecture revient après fermeture, en local',
+    text: 'Après fermeture complète, l’alerte reste lue dans l’essai local. Ce redémarrage reste à vérifier sur téléphone.', flow: 'notification-settings',
+    source: 'docs/release/evidence/notification-native-recovery-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'L’essai complet bloque encore sur une réservation',
+    text: 'La collecte passe. La vérification vise maintenant la bonne réservation ; elle reste à rejouer.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/notification-native-recovery-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Les alertes lues restent lues',
     text: 'Lecture, changement de compte et retour passent sur téléphone. Quatre captures ajoutées. L’envoi des alertes au téléphone reste à ajouter.', flow: 'notification-settings',
     source: 'docs/release/evidence/notification-read-phone-2026-10-23/README.md' },

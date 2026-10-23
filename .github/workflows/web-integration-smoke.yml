@@ -386,6 +386,8 @@ on:
       - "tests/stripe-webhook-flow.test.ts"
       - "tests/reward-payout-flow.test.ts"
       - "tests/admin-payout-request.test.ts"
+      - "tests/ride-payment-preparation-flow.test.ts"
+      - "tests/payment-fee-evidence.test.mjs"
       - "tests/payout-accounting-evidence.test.mjs"
       - "tests/stripe-production-readiness.test.mjs"
       - "tests/release-gaps.test.mjs"
@@ -781,6 +783,8 @@ on:
       - "tests/stripe-webhook-flow.test.ts"
       - "tests/reward-payout-flow.test.ts"
       - "tests/admin-payout-request.test.ts"
+      - "tests/ride-payment-preparation-flow.test.ts"
+      - "tests/payment-fee-evidence.test.mjs"
       - "tests/payout-accounting-evidence.test.mjs"
       - "tests/stripe-production-readiness.test.mjs"
       - "tests/release-gaps.test.mjs"
@@ -912,7 +916,7 @@ jobs:
       - name: Check truthful notification settings and isolated observation
         run: node --test tests/notification-settings-contract.test.mjs tests/notification-settings-phone-evidence.test.mjs
       - name: Test private idempotent notification acknowledgements
-        run: npm run test:notification-reads && node --test tests/notification-read-evidence.test.mjs tests/notification-read-replay.test.mjs tests/notification-read-phone-evidence.test.mjs tests/notification-read-native-attempt.test.mjs tests/notification-connected-services-evidence.test.mjs tests/partner-portal-news.test.mjs
+        run: npm run test:notification-reads && node --test tests/notification-read-evidence.test.mjs tests/notification-read-replay.test.mjs tests/notification-read-phone-evidence.test.mjs tests/notification-read-native-attempt.test.mjs tests/notification-read-native-recovery.test.mjs tests/notification-connected-services-evidence.test.mjs tests/partner-portal-news.test.mjs
       - name: Test actual authenticated notification calls and unchanged isolated records
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/notification-read-services.json
@@ -1131,7 +1135,7 @@ jobs:
         run: npm run test:admin-plan-coverage
 
       - name: Test Stripe webhook flow
-        run: npm run test:stripe-webhook-flow
+        run: npm run test:stripe-webhook-flow && node --test tests/payment-fee-evidence.test.mjs
       - name: Validate isolated payout evidence and its verification limits
         run: node --test tests/payout-accounting-evidence.test.mjs
 

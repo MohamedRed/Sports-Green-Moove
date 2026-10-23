@@ -1,4 +1,6 @@
 export const nativeRechecks = {
+  notificationNativeRecovery: {source: 'docs/release/evidence/notification-native-recovery-2026-10-23/summary.json', checkedAt: '2026-10-23',
+    checksums: 'docs/release/evidence/notification-native-recovery-2026-10-23/artifact-sha256.json'},
   notificationNativeAttempt: {source: 'docs/release/evidence/notification-native-attempt-2026-10-23/summary.json', checkedAt: '2026-10-23',
     checksums: 'docs/release/evidence/notification-native-attempt-2026-10-23/artifact-sha256.json'},
   completedNativeReplayRecheck: {source: 'docs/release/evidence/native-replay-0f91172f-2026-10-23/summary.json', checkedAt: '2026-10-23',

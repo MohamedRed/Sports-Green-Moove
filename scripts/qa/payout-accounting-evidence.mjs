@@ -2,9 +2,11 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { dirname, resolve, sep } from 'node:path';
 import { readFileSync } from 'node:fs';
+import { validatePaymentFeeEvidence } from './payment-fee-evidence.mjs';
 
 export function validatePayoutAccountingEvidence(root, content) {
   const flow = content.flows.find(item => item.id === 'payments');
+  validatePaymentFeeEvidence(root, flow.feeEvidence);
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-18');
   assert.equal(flow.accountingEvidence.checkedAt, '2026-10-23');
   const folder = dirname(resolve(root, flow.accountingEvidence.source));

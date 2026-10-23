@@ -26,6 +26,20 @@ The callable returns the native PaymentSheet setup data:
 - `amountCents`
 - `currency`
 
+Before contacting the provider, the server freezes `platformFeeCents` alongside
+the amount, destination and payment attempt identity. Lost-response retries use
+that same invoice even if `PLATFORM_FEE_BPS` changes. Malformed rates are rejected
+before writing an attempt; only an absent rate retains the documented zero policy.
+Whole basis points must be between 0 and 10000, and cent rounding uses integer
+arithmetic. Provider fee metadata and the actual application fee must agree with
+the frozen invoice before returning a client configuration or settling a webhook.
+
+A legacy attempt with a known provider identity is retrieved and its verified
+historical fee is recorded; current configuration cannot reprice it. Conflicting
+identities or an old fee-less attempt with no known provider identity require
+explicit reconciliation and never create a replacement charge. The same-key,
+same-parameters requirement follows the [provider idempotency contract](https://docs.stripe.com/api/idempotent_requests).
+
 iOS and Android request this config by `bookingId`, initialize the Stripe SDK with the returned publishable key, and present native PaymentSheet with the returned PaymentIntent client secret.
 
 iOS and Android list approved, unpaid, non-free parent bookings from Firestore

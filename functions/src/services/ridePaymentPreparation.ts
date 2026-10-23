@@ -6,10 +6,14 @@ import type Stripe from "stripe";
 import { firestore } from "../lib/firebase.js";
 import { ridePaymentAmountCents, validateSucceededRidePaymentIntent } from "./stripePaymentValidation.js";
 import type { RidePaymentIntentContext } from "./stripeConnect.js";
+import { platformFeeAmountCents } from "./stripeConnect.js";
+import { verifiedIntentFee } from "../domain/paymentFees.js";
 
-const attemptSchema = z.object({ id: z.uuid(), unitPriceCents: z.number().int().positive(), amountCents: z.number().int().positive(),
+const attemptSchema = z.object({ id: z.uuid(), unitPriceCents: z.number().int().positive().safe(), amountCents: z.number().int().positive().safe(),
   currency: z.literal("eur"), status: z.enum(["creating", "created"]), intentId: z.string().min(1).optional(),
-  destinationStripeAccountId: z.string().min(1), termsRevision: z.string().nullable(), createdAt: z.instanceof(Timestamp) }).strict();
+  platformFeeCents: z.number().int().nonnegative().safe().optional(),
+  destinationStripeAccountId: z.string().min(1), termsRevision: z.string().nullable(), createdAt: z.instanceof(Timestamp) }).strict()
+  .refine(attempt => attempt.platformFeeCents === undefined || attempt.platformFeeCents <= attempt.amountCents);
 export type PreparedRidePayment = RidePaymentIntentContext & { attemptId: string; existingIntentId?: string };
 
 export async function prepareRidePayment(bookingId: string, uid: string): Promise<PreparedRidePayment> {
@@ -34,29 +38,43 @@ export async function prepareRidePayment(bookingId: string, uid: string): Promis
     const account = await transaction.get(firestore.collection("stripeAccounts").doc(booking.driverUserId));
     const destination = account.data()?.stripeAccountId;
     if (typeof destination !== "string" || !destination) throw new HttpsError("failed-precondition", "Driver Stripe account is required before paid rides.");
+    const legacyIntent = typeof booking.paymentIntentId === "string" && booking.paymentIntentId ? booking.paymentIntentId : undefined;
     const old = booking.paymentAttempt === undefined ? null : attemptSchema.safeParse(booking.paymentAttempt);
     if (old && !old.success) throw new HttpsError("failed-precondition", "Payment attempt must be reconciled.");
     const prior = old?.success ? old.data : null;
-    if (prior && !prior.intentId && Date.now() - prior.createdAt.toMillis() > 23 * 3600_000)
+    if (prior?.intentId && legacyIntent && prior.intentId !== legacyIntent)
+      throw new HttpsError("failed-precondition", "Conflicting provider payment identities require reconciliation.");
+    if (prior && prior.platformFeeCents === undefined && !prior.intentId && !legacyIntent)
+      throw new HttpsError("failed-precondition", "An unknown legacy payment requires provider reconciliation before reuse.");
+    if (prior && !prior.intentId && !legacyIntent && Date.now() - prior.createdAt.toMillis() > 23 * 3600_000)
       throw new HttpsError("failed-precondition", "An old unconfirmed payment attempt requires provider reconciliation before reuse.");
     const termsRevision = booking.tripTermsRevision ?? null;
     if (prior && (prior.amountCents !== amountCents || prior.unitPriceCents !== unitPriceCents ||
         prior.destinationStripeAccountId !== destination || prior.termsRevision !== termsRevision))
       throw new HttpsError("failed-precondition", "Payment terms changed during an existing attempt.");
-    const legacyIntent = typeof booking.paymentIntentId === "string" && booking.paymentIntentId ? booking.paymentIntentId : undefined;
     if (!prior && legacyIntent && (booking.amountCents !== amountCents || booking.currency !== "eur"))
       throw new HttpsError("failed-precondition", "Existing payment amount must be reconciled before reuse.");
+    let newFee: number | undefined;
+    if (!prior && !legacyIntent) {
+      try { newFee = platformFeeAmountCents(amountCents); }
+      catch { throw new HttpsError("failed-precondition", "Payment fee configuration must be corrected before creating a payment."); }
+    }
     const attempt = prior ?? { id: attemptId, unitPriceCents, amountCents, currency: "eur" as const, status: "creating" as const,
+      ...(newFee === undefined ? {} : {platformFeeCents: newFee}),
       destinationStripeAccountId: destination, termsRevision, createdAt: Timestamp.now(), ...(legacyIntent ? { intentId: legacyIntent } : {}) };
     if (!prior) transaction.update(ref, { paymentAttempt: attempt, paymentPriceCents: unitPriceCents,
       amountCents, currency: "eur", updatedAt: Timestamp.now() });
     return { bookingId, tripId: booking.tripId, payerUserId: uid, driverUserId: booking.driverUserId,
       amountCents, currency: "eur" as const, destinationStripeAccountId: destination,
-      attemptId: attempt.id, existingIntentId: attempt.intentId, paymentAttemptId: attempt.id };
+      attemptId: attempt.id, existingIntentId: attempt.intentId ?? legacyIntent, paymentAttemptId: attempt.id,
+      ...(attempt.platformFeeCents === undefined ? {} : {platformFeeCents: attempt.platformFeeCents}) };
   });
 }
 
 export async function finishRidePayment(prepared: PreparedRidePayment, intent: Stripe.PaymentIntent) {
+  const fee = verifiedIntentFee(intent);
+  if (fee === null || (prepared.platformFeeCents !== undefined && prepared.platformFeeCents !== fee))
+    throw new HttpsError("failed-precondition", "Payment provider returned mismatched invoice fees.");
   const validation = validateSucceededRidePaymentIntent(intent, { id: prepared.bookingId, tripId: prepared.tripId,
     parentUserId: prepared.payerUserId, driverUserId: prepared.driverUserId, seats: 1,
     paymentPriceCents: prepared.amountCents, paymentIntentId: prepared.existingIntentId,
@@ -71,16 +89,18 @@ export async function finishRidePayment(prepared: PreparedRidePayment, intent: S
         (booking.parentUserId ?? booking.requesterUserId) !== prepared.payerUserId)
       throw new HttpsError("failed-precondition", "Payment attempt no longer belongs to this booking.");
     const attempt = attemptSchema.parse(booking.paymentAttempt), now = Timestamp.now();
+    if (attempt.platformFeeCents !== undefined && attempt.platformFeeCents !== fee)
+      throw new HttpsError("failed-precondition", "Payment fees changed during provider preparation.");
     const history = firestore.collection("ridePaymentAttempts").doc(prepared.attemptId);
     transaction.set(history, { bookingId: prepared.bookingId, tripId: prepared.tripId, payerUserId: prepared.payerUserId,
-      ...attempt, intentId: intent.id, status: intent.status, updatedAt: now });
+      ...attempt, platformFeeCents: fee, intentId: intent.id, status: intent.status, updatedAt: now });
     if (booking.paymentStatus === "paid") return booking.status !== "approved";
     if (booking.paymentStatus === "canceled" && !cancelled) return true;
     if (cancelled) {
       transaction.update(ref, { paymentStatus: "canceled", paymentAttempt: FieldValue.delete(), paymentIntentId: FieldValue.delete(), updatedAt: now });
       return true;
     }
-    transaction.update(ref, { paymentAttempt: { ...attempt, status: "created", intentId: intent.id }, paymentIntentId: intent.id,
+    transaction.update(ref, { paymentAttempt: { ...attempt, platformFeeCents: fee, status: "created", intentId: intent.id }, paymentIntentId: intent.id,
       paymentStatus: intent.status, stripeAccountId: prepared.destinationStripeAccountId, updatedAt: now });
     return booking.status !== "approved";
   });
