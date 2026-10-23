@@ -35,7 +35,7 @@ class LocalNotificationReadFlowTest {
                 captureLocalUi(compose, "local-notification-read-unread.png")
                 compose.onNodeWithTag("notification.read.$selectedId").performClick()
                 compose.waitUntil(60_000) { runCatching {
-                    compose.onNodeWithTag("notification.status.$selectedId").assertTextContains(" · Lue")
+                    compose.onNodeWithTag("notification.status.$selectedId").assertTextContains(" · Lue", substring = true)
                 }.isSuccess }
                 compose.onNodeWithTag("notification.read.$selectedId").assertDoesNotExist()
                 result.put("selectedReadConfirmed", true)
@@ -105,7 +105,7 @@ class LocalNotificationReadFlowTest {
     private fun assertState(id: String, status: String) {
         compose.waitUntil(60_000) { runCatching {
             compose.onNodeWithTag(SgmTestTags.ChatInboxList).performScrollToNode(hasTestTag("notification.$id"))
-            compose.onNodeWithTag("notification.status.$id").assertTextContains(" · $status")
+            compose.onNodeWithTag("notification.status.$id").assertTextContains(" · $status", substring = true)
         }.isSuccess }
         compose.onNodeWithTag("notification.$id").assertIsDisplayed()
     }

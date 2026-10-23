@@ -73,6 +73,12 @@ class NotificationReadFlowTest {
         assertTrue(error.top >= status.bottom)
         capture("narrow-error")
     }
+    @Test fun datedStatusMatchesTheWholeReadStateSuffixWithoutMatchingUnreadAsRead() {
+        val dated = note.copy(dateLabel = "23 oct. 19:35")
+        compose.setSgmUiTestContent { NotificationCard(dated, false, false, null) {} }
+        compose.onNodeWithTag("notification.status.qa").assertTextContains(" · Non lue", substring = true)
+        compose.onNodeWithTag("notification.status.qa").assert(hasText(" · Lue", substring = true).not())
+    }
     private fun show(state: NotificationReadState, narrow: Boolean = false) {
         compose.setSgmUiTestContent {
             val scope = rememberCoroutineScope(); val density = LocalDensity.current

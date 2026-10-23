@@ -56,3 +56,9 @@ test('executes the connected stages, independent checks and primary copy before 
     'verifyNotificationReadRecords', 'assertNotificationReadRestart', "denied('markNotificationRead'"])
     assert(replay.includes(action), action);
 });
+test('date-bearing native status assertions explicitly use suffix substring matching', () => {
+  const ui = readFileSync('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNotificationReadFlowTest.kt', 'utf8');
+  assert.match(ui, /assertTextContains\(" · Lue", substring = true\)/);
+  assert.match(ui, /assertTextContains\(" · \$status", substring = true\)/);
+  assert(!/assertTextContains\(" · [^"\n]+"\)/.test(ui));
+});
