@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-function fixture(t, { missingChatCapture } = {}) {
+function fixture(t, { missingChatCapture, missingNotificationCapture } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'sgm-suite-status-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   for (const dir of ['scripts', 'android', 'bin']) mkdirSync(join(root, dir));
@@ -19,6 +19,7 @@ function fixture(t, { missingChatCapture } = {}) {
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-child-emergency-components && "$CAPTURE_FAILURE" == child ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-neutral-text && "$CAPTURE_FAILURE" == neutral ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-team-chat-components && "$CAPTURE_FAILURE" == chat ]]; then exit 9; fi',
+      'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-notification-read && "$CAPTURE_FAILURE" == notification ]]; then exit 9; fi',
       '',
     ].join('\n') : '';
     writeFileSync(join(root, path), '#!/bin/bash\n' + teamCopy + content, { mode: 0o700 });
@@ -41,6 +42,9 @@ function fixture(t, { missingChatCapture } = {}) {
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
   const screens = {
+    'sgm-notification-read': ['unread', 'confirmed', 'unconfirmed', 'narrow-error']
+      .flatMap(stem => ['.png', '-window.png'].map(suffix => `notification-read-${stem}${suffix}`))
+      .filter(name => name !== missingNotificationCapture),
     'sgm-team-chat-components': [
       ...['team-chat-narrow', 'team-chat-denied', 'team-chat-unconfirmed', 'team-chat-confirmed',
         'team-read-count-narrow', 'team-read-visible', 'team-read-error', 'team-read-retry', 'team-read-revoked']
@@ -90,6 +94,7 @@ for (const [name, env, exit, statuses] of [
   ['stale child contact files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'child' }, 1, [0, 1, 0]],
   ['stale neutral text files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'neutral' }, 1, [0, 1, 0]],
   ['stale team chat files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'chat' }, 1, [0, 1, 0]],
+  ['stale notification files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'notification' }, 1, [0, 1, 0]],
   ['isolated replay failure is never overwritten by ordinary success', { REPLAY_STATUS: '11' }, 11, [0, 0, 11]],
   ['both failures retain both outcomes and return the first', { ORDINARY_STATUS: '7', REPLAY_STATUS: '11' }, 7, [7, 0, 11]],
 ]) test(name, (t) => {
@@ -100,6 +105,14 @@ for (const [name, env, exit, statuses] of [
   assert.equal(result.statuses.scope, 'native-suite-exit-status-not-flow-verification');
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
 });
+
+for (const stem of ['unread', 'confirmed', 'unconfirmed', 'narrow-error']) for (const suffix of ['.png', '-window.png'])
+  test(`missing notification ${stem}${suffix} fails collection but still replays and restores`, t => {
+    const result = fixture(t, { missingNotificationCapture: `notification-read-${stem}${suffix}` })({});
+    assert.equal(result.status, 1); assert.match(result.stderr, /Missing notification read component capture/);
+    assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], [0, 1, 0]);
+    assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
+  });
 
 test('failed suites retain partial payment and other component captures without replacing the original failure', (t) => {
   const result = fixture(t)({ ORDINARY_STATUS: '7', CAPTURE_FAILURE: 'payments' });

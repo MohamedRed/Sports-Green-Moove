@@ -90,6 +90,8 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
         run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs
+      - name: Test private idempotent notification acknowledgements
+        run: npm run test:notification-reads
       - name: Retain booking notification and cleanup results
         if: ${{ always() }}
         uses: actions/upload-artifact@v7

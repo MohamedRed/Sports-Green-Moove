@@ -214,6 +214,7 @@ fun SportsGreenMooveApp() {
                         AppScreen.Messages -> session?.uid?.let { uid ->
                             messagesState.SaveableStateProvider(uid) {
                                 MessagesScreen(firebase = providers.firebase, conversations = providers.conversations,
+                                    userId = uid,
                                     teamConversations = providers.teamConversations,
                                     teamUserId = uid.takeIf { canManageTeamEnrollment(requireNotNull(session).roles) })
                             }

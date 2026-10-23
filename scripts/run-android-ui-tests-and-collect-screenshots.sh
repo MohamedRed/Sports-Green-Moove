@@ -56,6 +56,15 @@ collect_component_evidence() {
   fi
 
   if [[ "$test_status" -eq 0 ]]; then
+    adb pull /sdcard/Download/sgm-notification-read "$output_dir" || return 1
+    for stem in unread confirmed unconfirmed narrow-error; do
+      for suffix in .png -window.png; do
+        if [[ ! -s "$output_dir/sgm-notification-read/notification-read-$stem$suffix" ]]; then
+          echo "Missing notification read component capture: $stem$suffix" >&2
+          return 1
+        fi
+      done
+    done
     adb pull /sdcard/Download/sgm-team-chat-components "$output_dir" || return 1
     for stem in team-chat-narrow team-chat-denied team-chat-unconfirmed team-chat-confirmed team-read-count-narrow team-read-visible team-read-error team-read-retry team-read-revoked; do
       for suffix in .png -window.png .json; do

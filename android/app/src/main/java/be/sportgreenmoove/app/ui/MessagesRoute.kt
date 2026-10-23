@@ -14,7 +14,7 @@ import be.sportgreenmoove.app.services.FirebaseGateway
 import be.sportgreenmoove.app.services.TeamConversationGateway
 
 @Composable
-fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway,
+fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway, userId: String,
     teamConversations: TeamConversationGateway? = null, teamUserId: String? = null) {
     val saved = rememberSaveableStateHolder()
     var selectedType by rememberSaveable { mutableStateOf<String?>(null) }
@@ -48,7 +48,7 @@ fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway
                 onOpen = { open(it.ref, it.title, it.dateLabel) })
         }
         else -> saved.SaveableStateProvider("inbox") {
-            MessagesInboxRoute(firebase, conversations, selectedTab, onSelected = { selectedTab = it },
+            MessagesInboxRoute(userId, firebase, conversations, selectedTab, onSelected = { selectedTab = it },
                 onNew = { choosingBooking = true }, onOpen = { open(it.ref, it.title, it.tripLabel) },
                 teamsEnabled = teamConversations != null && teamUserId != null)
         }

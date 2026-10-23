@@ -146,6 +146,7 @@ private class RecordingFirebaseGateway : FirebaseGateway, TripChangeGateway by b
     override suspend fun getImpactSummary(): ImpactSummary = emptyImpactSummary()
     override suspend fun getRewardSummary(): RewardSummary = emptyRewardSummary()
     override suspend fun getInbox(): InboxSummary = InboxSummary()
+    override suspend fun markNotificationRead(uid: String, notificationId: String): Unit = error("Unused notification read in this fixture")
     override suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?): String = "rating-1"
     override suspend fun createReport(submission: be.sportgreenmoove.app.data.SupportSubmission): String = "report-1"
 }

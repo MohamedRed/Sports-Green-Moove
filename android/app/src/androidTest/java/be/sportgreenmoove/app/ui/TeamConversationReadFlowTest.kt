@@ -61,7 +61,7 @@ class TeamConversationReadFlowTest {
     private fun host(fixture: TeamConversationReadUiFixture, narrow: Boolean = false) {
         compose.setSgmUiTestContent {
             val density = LocalDensity.current
-            val content: @androidx.compose.runtime.Composable () -> Unit = { MessagesScreen(UiFlowFirebaseGateway(), UiFlowConversationGateway(), fixture, "parent") }
+            val content: @androidx.compose.runtime.Composable () -> Unit = { MessagesScreen(UiFlowFirebaseGateway(), UiFlowConversationGateway(), "parent", fixture, "parent") }
             if (narrow) CompositionLocalProvider(LocalDensity provides Density(density.density, 1.3f)) { Box(Modifier.width(320.dp)) { content() } }
             else content()
         }

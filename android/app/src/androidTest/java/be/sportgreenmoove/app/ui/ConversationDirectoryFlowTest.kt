@@ -20,7 +20,7 @@ class ConversationDirectoryFlowTest {
 
     @Test fun startsAnEmptyConversationFromItsReservationWithoutAnInventedFirstMessage() {
         val gateway = UiFlowConversationGateway().apply { directory = ConversationDirectoryPage(emptyList(), null, null, null) }
-        compose.setSgmUiTestContent { MessagesScreen(UiFlowFirebaseGateway(), gateway) }
+        compose.setSgmUiTestContent { MessagesScreen(UiFlowFirebaseGateway(), gateway, "parent") }
         waitForText("Aucune conversation.")
         compose.onNodeWithTag(SgmTestTags.ChatNewConversationAction).performClick()
         waitFor("${SgmTestTags.ChatBookingOptionAction}.new-booking-1")
@@ -46,7 +46,7 @@ class ConversationDirectoryFlowTest {
 
     @Test fun inaccessibleDirectoryDoesNotPretendThereAreNoConversations() {
         val gateway = UiFlowConversationGateway().apply { directoryFailure = IllegalStateException("Unavailable") }
-        compose.setSgmUiTestContent { MessagesScreen(UiFlowFirebaseGateway(), gateway) }
+        compose.setSgmUiTestContent { MessagesScreen(UiFlowFirebaseGateway(), gateway, "parent") }
         waitFor(SgmTestTags.ChatInboxRetryAction)
         compose.onNodeWithText("Aucune conversation.").assertDoesNotExist()
         compose.runOnIdle { gateway.directoryFailure = null }

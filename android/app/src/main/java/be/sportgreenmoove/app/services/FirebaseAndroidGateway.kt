@@ -25,7 +25,8 @@ import kotlinx.coroutines.tasks.await
 
 internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway,
     TripChangeGateway by FirebaseAndroidTripChangeGateway(), GuardianVerificationGateway by FirebaseAndroidGuardianGateway(),
-    TeamEnrollmentGateway by FirebaseAndroidTeamEnrollmentGateway(), SupportGateway by FirebaseAndroidSupportGateway() {
+    TeamEnrollmentGateway by FirebaseAndroidTeamEnrollmentGateway(), SupportGateway by FirebaseAndroidSupportGateway(),
+    NotificationReadGateway by FirebaseAndroidNotificationReadGateway() {
     private val appContext = context.applicationContext
     private val firestore = FirebaseFirestore.getInstance()
     private val functions = FirebaseFunctions.getInstance()

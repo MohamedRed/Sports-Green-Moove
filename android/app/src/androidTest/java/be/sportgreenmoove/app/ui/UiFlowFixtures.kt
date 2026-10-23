@@ -178,6 +178,8 @@ class UiFlowFirebaseGateway : FirebaseGateway, be.sportgreenmoove.app.services.T
         reviews = listOf(InboxReviewPrompt("review-1", "ride-session-1", "driver-1", "Avis conducteur", "Notez le trajet.", "DR")),
     )
 
+    override suspend fun markNotificationRead(uid: String, notificationId: String): Unit = error("Unused notification read in this fixture")
+
     override suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?): String {
         submittedRating = SubmittedRating(rideSessionId, ratedUserId, score, comment)
         return "rating-1"

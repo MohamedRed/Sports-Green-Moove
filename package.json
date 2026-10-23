@@ -20,6 +20,7 @@
     "test:support-submission": "node scripts/qa/run-local-support-submission.mjs",
     "test:support-urgent": "node scripts/qa/run-local-support-urgent.mjs",
     "test:booking-notices": "node scripts/qa/run-local-booking-notices.mjs",
+    "test:notification-reads": "firebase emulators:exec --project sports-green-moove-rules-test --only firestore \"vitest run tests/notification-read-flow.test.ts tests/notification-read-rules.test.ts --no-file-parallelism\"",
     "test:booking-display": "node scripts/qa/run-local-booking-display.mjs",
     "test:booking-intent-wire": "node scripts/qa/check-booking-intent-wire.mjs",
     "test:booking-response-loss": "node scripts/qa/run-local-booking-response-loss.mjs",

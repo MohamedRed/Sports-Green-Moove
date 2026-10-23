@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -28,16 +29,17 @@ import be.sportgreenmoove.app.services.FirebaseGateway
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun MessagesInboxRoute(firebase: FirebaseGateway, gateway: ConversationGateway, selected: String,
+internal fun MessagesInboxRoute(uid: String, firebase: FirebaseGateway, gateway: ConversationGateway, selected: String,
     onSelected: (String) -> Unit, onNew: () -> Unit, onOpen: (ConversationListItem) -> Unit, teamsEnabled: Boolean = false) {
-    val state = remember(firebase, gateway) { MessagesInboxState(firebase, gateway) }
+    val state = remember(uid, firebase, gateway) { MessagesInboxState(uid, firebase, gateway) }
+    DisposableEffect(state) { onDispose { state.notificationReads.clear() } }
     val scope = rememberCoroutineScope()
     val owner = LocalLifecycleOwner.current
     var refresh by remember { mutableIntStateOf(0) }
     LaunchedEffect(state, owner, refresh) { owner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) { state.observe() } }
     Column(Modifier.fillMaxSize().background(Sgm.colors.bgApp).sgmTestTag(SgmTestTags.MessagesScreen)) {
         MessagesHeader(onNew)
-        MessagesTabs(state.inbox, selected, onSelected, teamsEnabled)
+        MessagesTabs(state.displayedInbox, selected, onSelected, teamsEnabled)
         LazyColumn(Modifier.weight(1f).sgmTestTag(SgmTestTags.ChatInboxList),
             contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             if (selected == "chats") {
@@ -65,7 +67,12 @@ internal fun MessagesInboxRoute(firebase: FirebaseGateway, gateway: Conversation
                 state.error != null -> item { MessagesEmptyCard(state.error.orEmpty()); V2Button("Réessayer", onClick = { refresh += 1 }) }
                 selected == "notifs" -> {
                     if (state.inbox.notifications.isEmpty()) item { MessagesEmptyCard("Aucune notification.") }
-                    items(state.inbox.notifications, key = { it.id }) { NotificationCard(it) }
+                    items(state.displayedInbox.notifications, key = { it.id }) { notice ->
+                        NotificationCard(notice, state.notificationReads.pendingId != null,
+                            state.notificationReads.pendingId == notice.id, state.notificationReads.errors[notice.id]) {
+                            scope.launch { state.notificationReads.markRead(notice) }
+                        }
+                    }
                 }
                 else -> {
                     state.notice?.let { notice -> item { MessagesEmptyCard(notice) } }

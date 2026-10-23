@@ -59,7 +59,7 @@ class TeamConversationFlowTest {
     private fun host(fixture: TeamChatUiFixture, narrow: Boolean = false) {
         compose.setSgmUiTestContent {
             val content: @androidx.compose.runtime.Composable () -> Unit = {
-                MessagesScreen(UiFlowFirebaseGateway(), UiFlowConversationGateway(), fixture, "parent")
+                MessagesScreen(UiFlowFirebaseGateway(), UiFlowConversationGateway(), "parent", fixture, "parent")
             }
             if (narrow) {
                 val density = LocalDensity.current

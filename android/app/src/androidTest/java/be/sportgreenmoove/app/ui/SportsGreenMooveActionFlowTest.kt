@@ -234,7 +234,7 @@ class SportsGreenMooveActionFlowTest {
         val firebase = UiFlowFirebaseGateway()
 
         compose.setSgmUiTestContent {
-            MessagesScreen(firebase = firebase, conversations = UiFlowConversationGateway())
+            MessagesScreen(firebase = firebase, conversations = UiFlowConversationGateway(), userId = "parent")
         }
 
         waitUntilTagExists(SgmTestTags.RatingTab)

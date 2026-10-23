@@ -33,7 +33,7 @@ class ConversationFlowTest {
     @Test fun aConversationOpensSendsAndKeepsItsDraftWhenReturningToTheInbox() {
         val gateway = UiFlowConversationGateway()
         val firebase = UiFlowFirebaseGateway()
-        compose.setSgmUiTestContent { MessagesScreen(firebase, gateway) }
+        compose.setSgmUiTestContent { MessagesScreen(firebase, gateway, "parent") }
         waitFor(SgmTestTags.ChatOpenAction)
         compose.onNodeWithTag(SgmTestTags.ChatOpenAction).performClick()
         waitFor(SgmTestTags.ChatMessageInput)

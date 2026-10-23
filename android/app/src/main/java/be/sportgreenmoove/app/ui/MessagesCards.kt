@@ -21,12 +21,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import be.sportgreenmoove.app.data.ConversationListItem
-import be.sportgreenmoove.app.data.InboxNotificationSummary
 import be.sportgreenmoove.app.data.InboxReviewPrompt
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
@@ -63,30 +61,6 @@ fun ChatCard(chat: ConversationListItem, onClick: () -> Unit) {
         Column(horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(chat.dateLabel, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 10.sp, fontWeight = FontWeight.Medium))
             if (chat.unreadCount > 0) MessageUnreadBadge(if (chat.unreadCount > 99) "99+" else chat.unreadCount.toString(), chat.unreadCount)
-        }
-    }
-}
-
-@Composable
-fun NotificationCard(notice: InboxNotificationSummary) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(14.dp))
-            .padding(horizontal = 14.dp, vertical = 12.dp),
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.spacedBy(10.dp),
-    ) {
-        MessageAvatar(notice.initials, size = 36, muted = !notice.unread)
-        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
-            Text(notice.title, style = SgmType.BodyXS.copy(color = if (notice.unread) SgmColor.Green else Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 0.04.em))
-            Text(notice.body, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontWeight = if (notice.unread) FontWeight.SemiBold else FontWeight.Normal))
-            Text(notice.dateLabel, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 10.sp, fontWeight = FontWeight.Medium))
-        }
-        if (notice.unread) {
-            Box(Modifier.padding(top = 4.dp).size(8.dp).clip(CircleShape).background(SgmColor.Green))
         }
     }
 }
