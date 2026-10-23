@@ -36,7 +36,7 @@ test('real screen replay is mandatory and clearly separates stubbed discovery fr
   const read = (file) => readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
   const native = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
   const runner = read('scripts/qa/local-android-session.mjs');
-  assert.match(runner, /await replayBookingUiLoss/); assert.match(runner, /testCount: 36/);
+  assert.match(runner, /await replayBookingUiLoss/); assert.match(runner, /testCount: 37/);
   assert.match(read('scripts/qa/local-booking-ui-loss.mjs'), /assert.equal\(bookings.size, 1\)/);
   assert.match(read('scripts/qa/local-booking-ui-loss.mjs'), /assertBookingUiLoss\(result, runId\)/);
   const host = read(native + 'LocalBookingResponseLossUiTest.kt');

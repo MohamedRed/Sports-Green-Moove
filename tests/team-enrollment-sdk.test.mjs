@@ -56,7 +56,7 @@ test('cleanup transfers, stale receipts and interrupted primary copies never sat
 });
 test('team enrollment is added to the complete app matrix without removing preceding scenarios', () => {
   const runner = read('scripts/qa/local-android-session.mjs');
-  assert(runner.includes('testCount: 36, nativeCaseCount: 38')); assert(runner.includes("'team-enrollment-ui'"));
+  assert(runner.includes('testCount: 37, nativeCaseCount: 40')); assert(runner.includes("'team-enrollment-ui'"));
   assert(runner.indexOf('await replayEmergencyContactUi') < runner.indexOf('await replayTeamEnrollmentUi'));
   assert(runner.indexOf('await replayTeamEnrollmentUi') < runner.indexOf("instrument(['LocalAppFlowTest'"));
   for (const action of ['replayGuardianParentUi', 'replayNativeBookingLoss', 'replayBookingUiLoss', 'verifyLocalRideUi',

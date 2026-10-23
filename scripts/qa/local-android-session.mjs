@@ -34,6 +34,7 @@ import { replayEmergencyContactUi } from './local-emergency-contact-ui.mjs';
 import { replayTeamEnrollmentUi } from './local-team-enrollment-ui.mjs';
 import { disposableTestRunner, installationGuardArguments, installDisposableTestApks } from './install-disposable-test-apks.mjs';
 import { prepareMatrixReplay, usePreinstalledMatrixReplay } from './prepare-matrix-replay.mjs';
+import { replayNotificationReadUi } from './local-notification-read-ui.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const session = await seedLocalUiFixtures();
@@ -84,6 +85,8 @@ try {
     directory: evidenceDir, runId: session.runId });
   const teamEnrollment = await replayTeamEnrollmentUi({ instrument, collect: () => collectEvidence('team-enrollment'),
     directory: evidenceDir, runId: session.runId });
+  const notificationRead = await replayNotificationReadUi({instrument, adb, serial, directory: evidenceDir, runId: session.runId,
+    collect: () => collectEvidence('notification-read-restart')});
   instrument(['LocalAppFlowTest', 'LocalDriverFlowTest', 'LocalLandscapeLoginTest', 'LocalUiRegressionTest', 'SearchSessionFlowTest', 'SearchCriteriaFlowTest'], 9);
   instrument(['LocalThemeRestartTest'], 1);
   instrument(['LocalMultiSeatSdkTest'], 1);
@@ -172,12 +175,12 @@ try {
     'chat-post-commit-response-loss-ui', 'driver-trip-cancellation-ui', 'booking-post-commit-response-loss-sdk', 'booking-response-loss-search-ui',
     'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui',
     'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui',
-    'trip-draft-process-restart-ui', 'guardian-parent-ui', 'emergency-contact-ui', 'team-enrollment-ui']
+    'trip-draft-process-restart-ui', 'guardian-parent-ui', 'emergency-contact-ui', 'team-enrollment-ui', 'notification-read-process-restart-ui']
     .map((id) => ({ id, status: 'passed' }));
   result = { projectId: session.projectId,
     runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(), scope: 'local-ui-not-physical-device',
-    testCount: 36, nativeCaseCount: 38, matrixPreparation, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
-    guardianParent, emergencyContact, teamEnrollment,
+    testCount: 37, nativeCaseCount: 40, matrixPreparation, steps, ride, chat, directory, multiSeatSdk, reservationDecisions, tripCancellation, tripChanges, tripChangeInputs, tripSchedule,
+    guardianParent, emergencyContact, teamEnrollment, notificationRead,
     tripConsentRestart, tripConsentRecovery, tripDraftRestart, tripScheduleDraftRestart, membershipRefresh,
     chatNetwork, chatRestart, chatResponseLoss, bookingResponseLoss, bookingUiResponseLoss,
     search: { method: 'component-ui-with-explicit-fake-gateway',
