@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'La réservation passe, la suite reste interrompue',
+    text: 'La réservation corrigée et les 159 contrôles d’écran passent. La récupération des captures bloque ensuite ; un essai séparé perd la localisation.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/native-replay-a2f273fb-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'L’ouverture du téléphone reste bloquée',
+    text: 'Deux essais ramènent à l’accueil, avant même de passer par notre app. Aucun appel effectué.', flow: 'emergency-contact',
+    source: 'docs/release/evidence/emergency-dialer-preflight-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Les frais ne changent plus lors d’une reprise',
     text: 'Le paiement garde ses conditions après interruption, dans les essais locaux. Aucun argent réel n’a été débité.', flow: 'payments',
     source: 'docs/release/evidence/payment-fees-2026-10-23/README.md' },

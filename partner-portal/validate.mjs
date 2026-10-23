@@ -6,6 +6,7 @@ import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateBookingEvidence } from './booking-evidence.mjs';
 import { validateSupportEvidence } from './support-evidence.mjs';
 import { validateEmergencyDialerPreflight } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
+import { validateEmergencyDialerRecheck } from '../scripts/qa/emergency-dialer-recheck-evidence.mjs';
 import { validateRetainedTeamConversation } from '../scripts/qa/team-conversation-retained-evidence.mjs';
 import { validateRetainedTeamChatUi, validateTeamChatComponents, teamChatComponentScope } from '../scripts/qa/team-chat-ui-evidence.mjs';
 import { validateTeamConversationRecords } from './team-conversation-evidence.mjs';
@@ -175,6 +176,10 @@ export function validate(root) {
       assert.equal(f.id, 'emergency-contact'); assert.equal(f.status, 'partial');
       const run = validateEmergencyDialerPreflight(root, f.dialerPreflight.source);
       assert.equal(run.recordedAt.slice(0, 10), f.checkedAt);
+    }
+    if (f.dialerPreflightRecheck) {
+      assert.equal(f.id, 'emergency-contact'); assert.equal(f.status, 'partial');
+      validateEmergencyDialerRecheck(root, f.dialerPreflightRecheck);
     }
     validateTeamConversationRecords(root, f, captures);
     if (f.restorationRecheck) {

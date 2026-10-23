@@ -2,8 +2,8 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   { id: 'notification-native-replay', title: 'Terminer le nouvel essai complet',
-    text: 'La lecture après fermeture passe en local. L’essai s’arrête ensuite sur la vérification d’une réservation.',
-    next: 'Rejouer la vérification corrigée, centrée sur la réservation concernée.', source: 'docs/release/evidence/notification-native-recovery-2026-10-23/README.md' },
+    text: 'La réservation corrigée passe. La récupération des captures interrompt la suite ; un essai séparé perd la localisation.',
+    next: 'Comprendre les deux interruptions, puis terminer l’essai complet.', source: 'docs/release/evidence/native-replay-a2f273fb-2026-10-23/README.md' },
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
     text: 'Un essai précédent passe, captures comprises. La cause de la coupure reste inconnue.',
     next: 'Comprendre cette coupure pour fiabiliser les prochains essais.', source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },
@@ -32,8 +32,8 @@ export const blockers = [
     text: 'L’ancien écart entre le trajet et les réservations est corrigé dans le nouvel essai local.',
     next: 'Rejouer sur téléphone avant publication. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-history-2026-10-18/README.md' },
   { id: 'emergency-contact', title: 'Tester le contact d’urgence',
-    text: 'Le numéroteur se ferme aussi sur un second téléphone, même sans passer par notre app. Une aide est demandée.',
-    next: 'Reprendre sur téléphone l’ouverture du numéro, sans appeler. Terminer l’accès de l’enfant pendant son trajet.', source: 'docs/release/evidence/emergency-dialer-preflight-2026-10-21/README.md' },
+    text: 'Le nouvel essai du 23 octobre revient encore à l’accueil, même sans passer par notre app.',
+    next: 'Débloquer sur téléphone l’ouverture du numéro, sans appeler. Terminer l’accès de l’enfant pendant son trajet.', source: 'docs/release/evidence/emergency-dialer-preflight-2026-10-23/README.md' },
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
     text: 'Le renvoi depuis la recherche retrouve une seule demande en local.',
     next: 'Rejouer après réouverture, depuis les autres écrans et sur téléphone. Terminer les confirmations des parents.', source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },

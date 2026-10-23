@@ -13,6 +13,8 @@ export function createEmergencyFlow() {
     verified: 'Enregistrement, retour après fermeture, retrait du droit parent, annulation de suppression, suppression et changement de compte passent avec des données de test.',
     remaining: 'L’ouverture du téléphone reste à vérifier, sans appeler. Terminer aussi l’accès de l’enfant pendant son trajet.',
     dialerPreflight: { source: 'docs/release/evidence/emergency-dialer-preflight-2026-10-21/results.json' },
+    dialerPreflightRecheck: { source: 'docs/release/evidence/emergency-dialer-preflight-2026-10-23/results.json',
+      checkedAt: '2026-10-23', checksums: 'docs/release/evidence/emergency-dialer-preflight-2026-10-23/artifact-sha256.json' },
     phone: { source: 'docs/release/evidence/emergency-phone-2026-10-21/results.json', checkedAt: '2026-10-21' },
     ui: { source: source + 'emergency-contact-results.json', checkedAt: '2026-10-19', groups: ['emergency-contact-ui'] },
     local: { source: identity + 'services.json', checkedAt: '2026-10-19', groups: [

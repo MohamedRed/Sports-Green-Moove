@@ -2,6 +2,23 @@
 
 ## Current Publication Policy
 
+The a2f273fb replay executes the identity-scoped driver approval and its new
+component successfully (159 ordinary passes, 52 skips, no ordinary failure).
+The full job later fails its primary trip-change-inputs copy; the cleanup copy
+pulls 100 files but does not replace primary success. One focused startup case
+times out with a suppressed fused-service disconnection and a GPS-unavailable
+screen; nine other focused lanes pass. Both failed devices restore policy/packages
+and their hosts exit. No root cause, full replay or new public media is accepted.
+The current full-replay blocker follows this record, not the old approval wait.
+
+The 23 October system-Phone preflight remains blocked on a fresh physical device.
+Home and labelled drawer Phone actions both return Home; the drawer gesture works.
+Four device-only originals are retained internally, not added to the app gallery.
+Provider uninstall acknowledgement and explicit session stop are observed; package
+absence is not independently verified. Support reply status could not be checked
+because its connection needs reauthentication. Historical app captures and dates
+remain unchanged; no dialer handoff, call, root cause or release item is accepted.
+
 The later `412f22f7` trial completes both connected notification stages, primary
 collection and independent checks across 176 records and a measured process stop.
 Its ordinary cases pass 158/52 skipped/zero failed and all focused lanes pass.
