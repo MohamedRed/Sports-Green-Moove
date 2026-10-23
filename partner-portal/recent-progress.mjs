@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Marquer une alerte comme lue',
+    text: 'La lecture et les erreurs de confirmation passent les essais côté données. Le nouvel écran reste à rejouer ; l’envoi des alertes au téléphone reste à ajouter.', flow: 'notification-settings',
+    source: 'docs/release/evidence/notification-read-local-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'Les 36 parcours locaux passent, captures comprises',
+    text: 'Le nouvel essai complet et les dix essais séparés passent. La cause de la coupure précédente reste à comprendre.', flow: 'messages', coversFlows: ['publication', 'team-conversation'],
+    source: 'docs/release/evidence/native-replay-0f91172f-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Les connexions passent, la copie des captures bloque',
     text: 'Les deux connexions et les dix essais séparés passent. Le test complet s’arrête pendant la copie des captures du changement de trajet.', flow: 'team-conversation',
     source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },

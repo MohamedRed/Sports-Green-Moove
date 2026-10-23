@@ -11,6 +11,7 @@ export function partitionUpdates(updates) {
     if (recent.length < 6 && !flows.has(entry.flow)) {
       recent.push(entry);
       flows.add(entry.flow);
+      for (const flow of entry.coversFlows ?? []) flows.add(flow);
     } else {
       previous.push(entry);
     }

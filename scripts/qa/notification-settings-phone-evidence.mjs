@@ -6,6 +6,7 @@ import { XMLParser } from 'fast-xml-parser';
 import { imageSize } from 'image-size';
 import { assertEvidenceBundleChecksums } from './evidence-bundle-checksums.mjs';
 import { validateNotificationNativeRecheck } from './notification-native-recheck-evidence.mjs';
+import { validateNotificationReadLocal } from './notification-read-local-evidence.mjs';
 
 export function validateNotificationSettingsPhone(root, flow) {
   assert.equal(flow.id, 'notification-settings'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
@@ -59,5 +60,6 @@ export function validateNotificationSettingsPhone(root, flow) {
   }
   assertEvidenceBundleChecksums(base);
   if (flow.notificationNativeRecheck) validateNotificationNativeRecheck(root, flow.notificationNativeRecheck);
+  if (flow.notificationReadLocal) validateNotificationReadLocal(root, flow.notificationReadLocal);
   return run;
 }

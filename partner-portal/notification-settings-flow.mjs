@@ -2,10 +2,12 @@ const folder = 'docs/release/evidence/notification-settings-phone-2026-10-23/';
 
 export function createNotificationSettingsFlow() {
   return {
-    id: 'notification-settings', title: 'Réglage des notifications', status: 'partial', checkedAt: '2026-10-23', latestEvidence: 'phone',
+    id: 'notification-settings', title: 'Notifications', status: 'partial', checkedAt: '2026-10-23', latestEvidence: 'phone',
     summary: 'Le statut suit l’autorisation donnée sur le téléphone.',
     verified: 'Depuis le profil et les paramètres : autoriser puis bloquer les notifications met le statut à jour au retour. Six captures ajoutées.',
-    remaining: 'Vérifier la réception des vraies alertes et la version iPhone. Pas encore en ligne.',
+    remaining: 'Rejouer la lecture des alertes dans l’app. Ajouter leur envoi au téléphone et vérifier la version iPhone. Pas encore en ligne.',
+    notificationReadLocal: {source: 'docs/release/evidence/notification-read-local-2026-10-23/summary.json', checkedAt: '2026-10-23',
+      checksums: 'docs/release/evidence/notification-read-local-2026-10-23/artifact-sha256.json'},
     notificationPermissionPhone: {source: folder + 'summary.json', checkedAt: '2026-10-23', checksums: folder + 'artifact-sha256.json'},
     notificationNativeRecheck: {source: 'docs/release/evidence/notification-native-c1d2a2ff-2026-10-23/summary.json',
       checkedAt: '2026-10-23', checksums: 'docs/release/evidence/notification-native-c1d2a2ff-2026-10-23/artifact-sha256.json'},

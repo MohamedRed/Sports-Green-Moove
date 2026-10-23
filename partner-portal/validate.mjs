@@ -30,6 +30,7 @@ import { sessionRestorationScope, validateSessionRestorationReport, validateReta
 import { sessionDisconnectScope } from '../scripts/qa/session-disconnect-evidence.mjs';
 import { validateSessionDisconnectReport, validateRetainedSessionDisconnect } from '../scripts/qa/session-disconnect-retained-evidence.mjs';
 import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
+import { validateProgressEntries } from './progress-validation.mjs';
 import { validateNotificationSettingsPhone } from '../scripts/qa/notification-settings-phone-evidence.mjs';
 import { validatePayoutAccountingEvidence } from '../scripts/qa/payout-accounting-evidence.mjs';
 
@@ -192,14 +193,7 @@ export function validate(root) {
       assert.equal(validateHistoryPhoneArtifacts(root, f.historyPhone.source).testedAt.slice(0, 10), f.checkedAt);
     }
   }
-  for (const u of content.updates) {
-    assertDate(u.date); assert(ids.has(u.flow)); assert(u.date <= content.updatedAt);
-    if (u.source) {
-      const path = resolve(root, u.source);
-      assert(path.startsWith(resolve(root, 'docs/release/evidence') + sep)); assert(existsSync(path));
-    }
-  }
-  for (const b of content.blockers) assert(existsSync(resolve(root, b.source)));
+  validateProgressEntries(root, content, ids);
   for (const a of Object.values(assets)) {
     assert(!a.source.includes('/') && a.source.endsWith('.jpg'));
     assert(a.crop.length === 4 && a.crop.every((v) => Number.isInteger(v) && v >= 0));

@@ -342,7 +342,9 @@ records keep their own dates. The nine-step tour distinguishes both dates.
 
 `tours.mjs` defines guided steps using only each flow’s reviewed images or clips.
 The overview contains progress totals and the newest update for up to six distinct
-flows. All other news stays in an expandable history, in its original order.
+flows. A completed cross-flow trial may list the flows it supersedes, so older
+interrupted-trial headlines do not look current beside its pass. All other news
+stays in an expandable history, in its original order.
 Parcours is the single searchable visual catalogue:
 each flow opens its guided tour when available, or its evidence gallery. Guided steps have shareable `#parcours/<id>/visite/<step>` links and
 preserve original capture captions, dates and remaining scope. These are recorded

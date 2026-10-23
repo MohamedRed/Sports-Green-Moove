@@ -114,6 +114,7 @@ on:
       - "tests/notification-settings-phone-evidence.test.mjs"
       - "tests/notification-native-recheck.test.mjs"
       - "tests/notification-read-*.test.*"
+      - "tests/partner-portal-news.test.mjs"
       - "tests/native-copy-ce282274.test.mjs"
       - "tests/portal-evidence-fingerprints.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettings*.kt"
@@ -508,6 +509,7 @@ on:
       - "tests/notification-settings-phone-evidence.test.mjs"
       - "tests/notification-native-recheck.test.mjs"
       - "tests/notification-read-*.test.*"
+      - "tests/partner-portal-news.test.mjs"
       - "tests/native-copy-ce282274.test.mjs"
       - "tests/portal-evidence-fingerprints.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettings*.kt"
@@ -908,7 +910,7 @@ jobs:
       - name: Check truthful notification settings and isolated observation
         run: node --test tests/notification-settings-contract.test.mjs tests/notification-settings-phone-evidence.test.mjs
       - name: Test private idempotent notification acknowledgements
-        run: npm run test:notification-reads
+        run: npm run test:notification-reads && node --test tests/notification-read-evidence.test.mjs tests/partner-portal-news.test.mjs
       - name: Check executed notification cases, latest replay and complete portal fingerprints
         run: node --test tests/notification-native-recheck.test.mjs tests/native-copy-ce282274.test.mjs tests/portal-evidence-fingerprints.test.mjs
       - name: Validate physical guardian revocation and new team admission evidence

@@ -1,9 +1,9 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
-  { id: 'native-evidence-copy', title: 'Récupérer les captures du test complet',
-    text: 'Les connexions et les dix essais séparés passent. Le test complet s’arrête en copiant les captures du changement de trajet.',
-    next: 'Identifier pourquoi la copie s’arrête, puis rejouer la suite.', source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },
+  { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
+    text: 'Le nouvel essai complet passe, captures comprises. La cause de la coupure précédente reste inconnue.',
+    next: 'Comprendre cette coupure pour fiabiliser les prochains essais.', source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },
   { id: 'support-urgent-email', title: 'Activer les e-mails du support',
     text: 'L’alerte et le suivi passent depuis le téléphone, avec les données isolées. Aucun e-mail réel n’a été envoyé.',
     next: 'Choisir une adresse d’expédition, puis confirmer la réception d’un e-mail.', source: 'docs/release/evidence/support-urgent-phone-2026-10-23/README.md' },
