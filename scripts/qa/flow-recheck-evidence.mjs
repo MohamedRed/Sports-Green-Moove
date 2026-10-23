@@ -12,6 +12,7 @@ import { validateNativeTransferRecheck } from './native-transfer-recheck-evidenc
 import { validateFocusedPreparationEvidence } from './native-focused-preparation-evidence.mjs';
 import { validateNativeNetworkPreparation } from './native-network-preparation-evidence.mjs';
 import { validateNativeRideCompletionRecheck } from './native-ride-completion-recheck-evidence.mjs';
+import { validatePassengerObservationOwnership } from './passenger-observation-ownership-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -77,6 +78,7 @@ export function validateCurrentNativeBlocker(root, content) {
   const preparation = validateFocusedPreparationEvidence(root, content.nativeFocusedPreparationRecheck);
   validateNativeNetworkPreparation(root, content.nativeNetworkPreparationRecheck);
   validateNativeRideCompletionRecheck(root, content.nativeRideCompletionRecheck);
+  validatePassengerObservationOwnership(root, content.passengerStatusOwnershipRecheck);
   const blocker = content.blockers.find(item => item.id === 'test-device-stability');
   assert(blocker, 'The incomplete native replay must remain visible');
   assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeRideCompletionRecheck.source), 'README.md'));

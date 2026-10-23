@@ -5,11 +5,19 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { parseDocument } from 'yaml';
 import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
+import { validatePassengerObservationOwnership } from '../scripts/qa/passenger-observation-ownership-evidence.mjs';
+import { content } from '../partner-portal/content.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const text = (file) => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 const base = 'docs/release/evidence/ride-observation-services-2026-10-19/';
 const services = JSON.parse(text(base + 'services.json'));
+test('the passenger regression retains failing originals, passing units and an explicit native replay gap', () => {
+  const report = validatePassengerObservationOwnership(root, content.passengerStatusOwnershipRecheck);
+  assert.equal(report.ciFailureCauseProven, false); assert.equal(report.nativeUiExecuted, false);
+  const update = content.updates.find(item => item.source === content.passengerStatusOwnershipRecheck.source.replace('summary.json', 'README.md'));
+  assert.equal(update.flow, 'ride-lifecycle'); assert.match(update.text, /complet reste à rejouer/);
+});
 test('the selected-id API proof is an independently completed seven-group authenticated run', () => {
   assert.equal(services.projectId, 'demo-sgm-local-qa');
   assert.equal(services.scope, 'local-ride-observation-callables-not-native-or-physical');
@@ -48,6 +56,17 @@ test('age uses structured server observations, elapsed realtime and complete req
   const rootApp = text('android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt');
   assert(rootApp.includes('rideObservation.phase == RideObservationPhase.Live'));
   assert(rootApp.includes('includeActiveRide = false'));
+});
+test('passenger commands cannot compete with live observation or weaken ride completion', () => {
+  const actions = text('android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt');
+  const passenger = actions.slice(actions.indexOf('fun launchPassengerStatusUpdate('), actions.indexOf('fun launchEndActiveRide('));
+  assert(passenger.includes('providers.firebase.markPickup(')); assert(passenger.includes('providers.firebase.markDropoff('));
+  assert(!passenger.includes('getActiveRide(')); assert(!passenger.includes('setActiveRide'));
+  const monitor = text('android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt');
+  assert(monitor.includes('activeRide.passengers.all { it.pickupStatus == "pickedUp" && it.dropoffStatus == "droppedOff" }'));
+  const regression = text('android/app/src/test/java/be/sportgreenmoove/app/ui/PassengerStatusObservationOwnershipTest.kt');
+  for (const fragment of ['pickupDoesNotCreateASecondSnapshotWriter', 'dropoffDoesNotCreateASecondSnapshotWriter',
+    'advanceTimeBy(1_000)', 'data.rideObserverSink', 'No competing getActiveRide response']) assert(regression.includes(fragment));
 });
 test('activity recreation keeps the exact configured local database instead of resolving a second SDK instance', () => {
   const runtime = text('android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt');

@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Les statuts ne reviennent plus en arrière dans l’essai ciblé',
+    text: 'Le retour à l’ancien statut est reproduit puis corrigé. Le trajet complet reste à rejouer.', flow: 'ride-lifecycle',
+    source: 'docs/release/evidence/passenger-observation-ownership-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'La fin du trajet reste à vérifier',
     text: 'Le nouvel essai complet s’arrête sur le bouton de fin de trajet. La cause reste à vérifier ; les dix essais séparés passent.', flow: 'ride-lifecycle',
     source: 'docs/release/evidence/native-terminal-65c3f0fc-2026-10-23/README.md' },

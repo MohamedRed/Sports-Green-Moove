@@ -11,6 +11,13 @@ private-space label/sign-out control is removed; no client authentication is add
 Keep `noindex,nofollow,noarchive`. Historical publication-hold statements below and
 inside dated evidence describe their original state, not a current publication ban.
 
+The 23 October passenger-command regression reproduces a status rollback on the
+live observer's age tick, with two original failing unit cases. Removing the
+competing one-shot read passes both cases, 17 targeted cases and the complete
+497-case Android unit suite, and compiles the native test APK. This is not native
+execution or proof of the exact earlier CI timing. Current news states that the
+full ride still needs replay; its historical capture date stays unchanged.
+
 The later 23 October urgent-support physical trial passes with actual native
 submission and actual management-browser Review, Reply and Close. Eight read-only
 checkpoints preserve all 158 baseline records/claims. Five reviewed unscaled

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-23T14:11:47.468Z" hostname="MRRs-MacBook-Air.local" time="0.019">
+  <properties/>
+  <testcase name="invalidOrOversizedInputNeverReachesStorageOrTransport" classname="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" time="0.002"/>
+  <testcase name="writeFailurePreventsAnyNetworkRequestAndDoesNotClaimSuccess" classname="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" time="0.001"/>
+  <testcase name="cancellationKeepsIdentityAndReleasesBusyState" classname="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" time="0.003"/>
+  <testcase name="anotherAccountDoesNotReadOrSendTheOriginalPendingRequest" classname="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" time="0.003"/>
+  <testcase name="acknowledgementStorageFailureRetainsSameIdentityForRetry" classname="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" time="0.003"/>
+  <testcase name="corruptStorageIsNotReplacedByAnEmptyOrNewRequest" classname="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" time="0.001"/>
+  <testcase name="lostAcknowledgementRestoresExactOperationAfterReopeningAndWaitsForExplicitRetry" classname="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" time="0.002"/>
+  <testcase name="closingDuringSendDiscardsLateUiResultButRetainsDurableOperation" classname="be.sportgreenmoove.app.ui.SupportSubmissionStateTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -83,6 +83,7 @@ fun launchTripAction(
     }
 }
 
+// Passenger snapshots belong to the live observer, including its position-age ticker.
 fun launchPassengerStatusUpdate(
     scope: CoroutineScope,
     providers: AndroidProviderSet,
@@ -92,7 +93,6 @@ fun launchPassengerStatusUpdate(
     setLoading: (Boolean) -> Unit,
     setError: (String?) -> Unit,
     setNotice: (String) -> Unit,
-    setActiveRide: (LiveRideSnapshot?) -> Unit,
 ) {
     val activeRide = ride ?: return
     scope.launch {
@@ -106,7 +106,6 @@ fun launchPassengerStatusUpdate(
                 providers.firebase.markDropoff(activeRide.rideSessionId, passenger.bookingId, passenger.childId)
                 setNotice("Dépose confirmée.")
             }
-            setActiveRide(providers.firebase.getActiveRide())
         }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         setLoading(false)
     }

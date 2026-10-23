@@ -21,7 +21,7 @@ export const blockers = [
     next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/multipart-security-2026-10-20/README.md' },
   { id: 'test-device-stability', title: 'Rejouer la fin du trajet',
     text: 'Les dix essais séparés passent. Le dernier essai complet s’arrête sur le bouton de fin de trajet, resté désactivé.',
-    next: 'Comprendre ce blocage et obtenir une vérification complète.', source: 'docs/release/evidence/native-terminal-65c3f0fc-2026-10-23/README.md' },
+    next: 'Rejouer la fin du trajet avec la correction et obtenir une vérification complète.', source: 'docs/release/evidence/native-terminal-65c3f0fc-2026-10-23/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },

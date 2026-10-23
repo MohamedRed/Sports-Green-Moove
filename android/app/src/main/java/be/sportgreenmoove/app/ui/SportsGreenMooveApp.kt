@@ -79,7 +79,6 @@ fun SportsGreenMooveApp() {
             setLoading = { loading = it },
             setError = { errorMessage = it },
             setNotice = { noticeMessage = it },
-            setActiveRide = { activeRide = it },
         )
     }
     fun endActiveRide() {
