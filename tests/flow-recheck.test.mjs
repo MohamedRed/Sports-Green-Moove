@@ -17,6 +17,7 @@ test('latest full replay failed at ride completion without replacing the earlier
   assert.notEqual(content.nativeRideCompletionRecheck.source, content.nativeNetworkPreparationRecheck.source);
   const update = content.updates.find(item => item.source === content.nativeRideCompletionRecheck.source.replace('run.json', 'README.md'));
   assert.match(update.text, /cause reste à vérifier/);
+  assert.equal(update.flow, 'ride-lifecycle');
 });
 
 test('terminal service success is separate from failed native replay and unstarted phone checkpoints', () => {

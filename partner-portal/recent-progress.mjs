@@ -2,7 +2,7 @@ import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
   { date: '2026-10-23', title: 'La fin du trajet reste à vérifier',
-    text: 'Le nouvel essai complet s’arrête sur le bouton de fin de trajet. La cause reste à vérifier ; les dix essais séparés passent.', flow: 'tracking',
+    text: 'Le nouvel essai complet s’arrête sur le bouton de fin de trajet. La cause reste à vérifier ; les dix essais séparés passent.', flow: 'ride-lifecycle',
     source: 'docs/release/evidence/native-terminal-65c3f0fc-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Le support urgent passe sur téléphone',
     text: 'Envoi, alerte, réponse et clôture passent avec les données isolées. Cinq captures montrent aussi le changement de compte. Les e-mails restent à activer.', flow: 'support-urgent',
