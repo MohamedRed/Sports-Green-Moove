@@ -2,8 +2,8 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   { id: 'support-urgent-email', title: 'Activer les e-mails du support',
-    text: 'L’alerte dans l’espace support passe en local. Aucun e-mail réel n’a encore été envoyé.',
-    next: 'Configurer l’envoi et confirmer la réception, puis rejouer depuis le téléphone.', source: 'docs/release/evidence/support-urgent-2026-10-23/README.md' },
+    text: 'L’alerte et le suivi passent depuis le téléphone, avec les données isolées. Aucun e-mail réel n’a été envoyé.',
+    next: 'Choisir une adresse d’expédition, puis confirmer la réception d’un e-mail.', source: 'docs/release/evidence/support-urgent-phone-2026-10-23/README.md' },
   { id: 'payment-return', title: 'Rejouer l’inscription conducteur',
     text: 'Les deux pages de retour s’ouvrent à nouveau lors du contrôle du 22 octobre.',
     next: 'Tester l’inscription conducteur, puis les paiements réels et remboursements sur téléphone.', source: 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md' },
@@ -20,8 +20,8 @@ export const blockers = [
     text: 'Trois autres alertes sont corrigées et testées en local. D’autres restent à examiner.',
     next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/multipart-security-2026-10-20/README.md' },
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
-    text: 'Le dernier essai complet passe. Un essai séparé reste bloqué avant les écrans.',
-    next: 'Obtenir une vérification complète et comprendre les interruptions.', source: 'docs/release/evidence/native-terminal-fb628d5b-2026-10-23/README.md' },
+    text: 'Les dix essais séparés passent. La dernière vérification complète bloque pendant la préparation de la coupure réseau.',
+    next: 'Comprendre ce blocage et obtenir une vérification complète.', source: 'docs/release/evidence/native-terminal-80c88d0c-2026-10-23/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },

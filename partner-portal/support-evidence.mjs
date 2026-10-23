@@ -9,16 +9,26 @@ import { validateSupportDiagnosticEvidence } from '../scripts/qa/support-recover
 import { validateSupportProcessRestartPhone } from '../scripts/qa/support-process-restart-phone-evidence.mjs';
 import { validateConfirmedSupportPhone } from '../scripts/qa/support-confirmed-restart-phone-evidence.mjs';
 import { validateUrgentSupportEvidence } from '../scripts/qa/support-urgent-evidence.mjs';
+import { validateUrgentPhoneEvidence } from '../scripts/qa/support-urgent-phone-evidence.mjs';
 
 export function validateSupportEvidence(root, flow, captures) {
   if (flow.urgentSupport) {
     const proof = validateUrgentSupportEvidence(root, flow.urgentSupport.source);
-    assert.equal(flow.id, 'support-urgent'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local');
+    assert.equal(flow.id, 'support-urgent'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, flow.urgentPhone ? 'phone' : 'local');
     assert.equal(flow.checkedAt, proof.checkedAt); assert.equal(flow.urgentSupport.checkedAt, proof.checkedAt);
     assert.match(flow.remaining, /réception/); assert.match(flow.remaining, /téléphone/);
     for (const [id, file] of [['support-urgent-active', 'active-390.png'], ['support-urgent-closed', 'closed-link-mobile.png']]) {
       assert.equal(captures[id], dirname(flow.urgentSupport.source) + '/captures/' + file);
       assert(flow.images.some(image => image.file === id && image.alt.includes('local')));
+    }
+  }
+  if (flow.urgentPhone) {
+    const proof = validateUrgentPhoneEvidence(root, flow.urgentPhone.source);
+    assert.equal(flow.id, 'support-urgent'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
+    assert.equal(flow.checkedAt, proof.checkedAt); assert.equal(flow.urgentPhone.checkedAt, proof.checkedAt);
+    for (const [id, file] of Object.entries(proof.publishedCaptures)) {
+      assert.equal(captures[id], dirname(flow.urgentPhone.source) + '/' + file);
+      assert(flow.images.some(image => image.file === id && image.alt.includes('téléphone')));
     }
   }
   if (flow.submissionConfirmedRestartPhone) {

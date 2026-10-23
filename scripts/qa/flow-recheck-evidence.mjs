@@ -10,6 +10,7 @@ import { validateNativeBootRecheck } from './native-boot-recheck-evidence.mjs';
 import { validatePreinstalledMatrixEvidence } from './native-preinstalled-matrix-evidence.mjs';
 import { validateNativeTransferRecheck } from './native-transfer-recheck-evidence.mjs';
 import { validateFocusedPreparationEvidence } from './native-focused-preparation-evidence.mjs';
+import { validateNativeNetworkPreparation } from './native-network-preparation-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -73,15 +74,16 @@ export function validateCurrentNativeBlocker(root, content) {
   const matrix = validatePreinstalledMatrixEvidence(root, content.nativeMatrixRecheck);
   const transfer = validateNativeTransferRecheck(root, content.nativeTransferRecheck);
   const preparation = validateFocusedPreparationEvidence(root, content.nativeFocusedPreparationRecheck);
+  validateNativeNetworkPreparation(root, content.nativeNetworkPreparationRecheck);
   const blocker = content.blockers.find(item => item.id === 'test-device-stability');
   assert(blocker, 'The incomplete native replay must remain visible');
-  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeFocusedPreparationRecheck.source), 'README.md'));
+  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeNetworkPreparationRecheck.source), 'README.md'));
   assert.equal(report.fullCiPassed, false); assert.equal(latest.fullCiPassed, false);
   assert.equal(boot.fullCiPassed, false); assert.equal(boot.matrixExecuted, false);
   assert.equal(matrix.fullCiPassed, false); assert.equal(matrix.localFlowGroupsPassed, 36);
   assert.equal(transfer.fullCiPassed, false); assert.equal(transfer.fullNativeReplayCompleted, false);
   assert.equal(preparation.fullCiPassed, false); assert.equal(preparation.matrixJobPassed, true);
-  assert.match(blocker.text, /complet passe.*séparé.*avant les écrans/);
+  assert.match(blocker.text, /séparés passent.*complète bloque.*préparation de la coupure/);
   assert.match(blocker.next, /complète/);
   return blocker;
 }

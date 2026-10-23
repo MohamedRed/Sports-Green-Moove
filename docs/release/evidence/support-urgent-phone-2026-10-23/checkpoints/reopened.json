@@ -1,0 +1,198 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ceabbd242cecff629223b003000f1d8b",
+  "recordedAt": "2026-10-23T12:55:13.646Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "foreignUid": "sgm-qa-driver",
+    "managerUid": "sgm-qa-club-manager",
+    "foreignReadDenied": false,
+    "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+    "originalOperation": {
+      "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "requesterUserId": "sgm-qa-parent",
+      "clientRequestId": "d1a615e6-16f8-4d61-92de-aa42bf55747c",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "digest": "5c8392e0d67d1b2b98eb4250ba25d0b0365ef5f1fdd74ec4a55cf04e5617119f",
+      "createdAt": {
+        "_seconds": 1792759960,
+        "_nanoseconds": 91000000
+      }
+    },
+    "originalCreatedAt": {
+      "_seconds": 1792759960,
+      "_nanoseconds": 91000000
+    },
+    "replyId": "e1c71eaad1d654055e0ccb4a48b82916272f888673ca3b603a94cc2002c0eb3c"
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "subjectType": "other",
+        "subjectId": null,
+        "reason": "Support urgent QA",
+        "description": "Je souhaite une reponse pour cette urgence de test.",
+        "emergency": true,
+        "reporterUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792759960,
+          "_nanoseconds": 91000000
+        },
+        "reviewNote": null,
+        "reviewedByUserId": "sgm-qa-admin",
+        "publicReplyCount": 1,
+        "lastPublicReply": {
+          "id": "e1c71eaad1d654055e0ccb4a48b82916272f888673ca3b603a94cc2002c0eb3c",
+          "text": "Votre demande urgente est bien prise en charge.",
+          "sequence": 1,
+          "sentAt": {
+            "_seconds": 1792760016,
+            "_nanoseconds": 686000000
+          }
+        },
+        "reviewedAt": {
+          "_seconds": 1792760052,
+          "_nanoseconds": 706000000
+        },
+        "closedAt": {
+          "_seconds": 1792760052,
+          "_nanoseconds": 706000000
+        },
+        "status": "closed",
+        "updatedAt": {
+          "_seconds": 1792760052,
+          "_nanoseconds": 706000000
+        },
+        "reviewEvents": [
+          {
+            "status": "reviewing",
+            "reviewerUserId": "sgm-qa-admin",
+            "note": null,
+            "reviewedAt": {
+              "_seconds": 1792760000,
+              "_nanoseconds": 412000000
+            }
+          },
+          {
+            "status": "closed",
+            "reviewerUserId": "sgm-qa-admin",
+            "note": null,
+            "reviewedAt": {
+              "_seconds": 1792760052,
+              "_nanoseconds": 706000000
+            }
+          }
+        ]
+      }
+    ],
+    "operations": [
+      {
+        "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "requesterUserId": "sgm-qa-parent",
+        "clientRequestId": "d1a615e6-16f8-4d61-92de-aa42bf55747c",
+        "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "digest": "5c8392e0d67d1b2b98eb4250ba25d0b0365ef5f1fdd74ec4a55cf04e5617119f",
+        "createdAt": {
+          "_seconds": 1792759960,
+          "_nanoseconds": 91000000
+        }
+      }
+    ],
+    "outbox": [
+      {
+        "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "kind": "support-urgent",
+        "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "audience": "support",
+        "attempts": 0,
+        "createdAt": {
+          "_seconds": 1792759960,
+          "_nanoseconds": 91000000
+        },
+        "lastError": "configuration_required",
+        "status": "needs_configuration",
+        "updatedAt": {
+          "_seconds": 1792759961,
+          "_nanoseconds": 295000000
+        }
+      }
+    ],
+    "replyOperations": [
+      {
+        "id": "e1c71eaad1d654055e0ccb4a48b82916272f888673ca3b603a94cc2002c0eb3c",
+        "adminUid": "sgm-qa-admin",
+        "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "digest": "6f266658a8aa75ddaa3f318702a596b3578a06eae0a9303ceeb3067558168f1e",
+        "sequence": 1,
+        "status": "reviewing",
+        "createdAt": {
+          "_seconds": 1792760016,
+          "_nanoseconds": 686000000
+        }
+      }
+    ],
+    "replies": [
+      {
+        "id": "e1c71eaad1d654055e0ccb4a48b82916272f888673ca3b603a94cc2002c0eb3c",
+        "text": "Votre demande urgente est bien prise en charge.",
+        "sequence": 1,
+        "sentAt": {
+          "_seconds": 1792760016,
+          "_nanoseconds": 686000000
+        },
+        "authorUid": "sgm-qa-admin",
+        "previousStatus": "reviewing",
+        "status": "reviewing"
+      }
+    ],
+    "requesterView": {
+      "report": {
+        "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "reason": "Support urgent QA",
+        "description": "Je souhaite une reponse pour cette urgence de test.",
+        "emergency": true,
+        "status": "closed",
+        "createdAtMillis": 1792759960091,
+        "updatedAtMillis": 1792760052706,
+        "replyCount": 1,
+        "lastReply": {
+          "id": "e1c71eaad1d654055e0ccb4a48b82916272f888673ca3b603a94cc2002c0eb3c",
+          "text": "Votre demande urgente est bien prise en charge.",
+          "sequence": 1,
+          "sentAtMillis": 1792760016686
+        }
+      },
+      "replies": {
+        "items": [
+          {
+            "id": "e1c71eaad1d654055e0ccb4a48b82916272f888673ca3b603a94cc2002c0eb3c",
+            "text": "Votre demande urgente est bien prise en charge.",
+            "sequence": 1,
+            "sentAtMillis": 1792760016686
+          }
+        ],
+        "nextCursor": null
+      }
+    },
+    "foreignList": null,
+    "notifications": []
+  },
+  "result": {
+    "phase": "reopened",
+    "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+    "reportCount": 1,
+    "replyCount": 1,
+    "status": "closed",
+    "providerAttempts": 0,
+    "emailStatus": "needs_configuration",
+    "supportOnlyAudience": true,
+    "privateFieldsAbsentFromRequesterView": true
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "physicalUiVerifiedByObserver": false,
+  "adminWritesByObserver": 0,
+  "realEmailSent": false
+}

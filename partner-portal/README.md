@@ -1,5 +1,19 @@
 # Partner Progress Portal
 
+The later 23 October urgent-support physical trial passes with actual native
+submission and actual management-browser Review, Reply and Close. Eight read-only
+checkpoints preserve all 158 baseline records/claims. Five reviewed unscaled
+browser-stream rectangles lead its tour; the older local proof stays separate.
+Both accounts are observed sequentially, not two simultaneous phones. No email,
+native screenshot export, video, whole-process restart or real network loss is
+accepted. Sign-out, uninstall acknowledgement/launcher absence, explicit session
+stop and owned runtime/credential/port cleanup are verified. Publication stays held.
+
+The terminal 80c88d0c Native run passes all ten focused lanes, but the full replay
+fails waiting for network preparation in LocalChatNetworkFlowTest line 82. Current
+news/blocker follow that result, without accepting new native media or explaining
+the root cause. Earlier full-matrix successes retain their own source and date.
+
 The 23 October urgent-support record is a separate local tour: eleven isolated
 service checks, six actual management-browser checks, seven reviewed originals
 and unchanged 158 baseline UI fixtures. A genuine empty-note review bug is fixed

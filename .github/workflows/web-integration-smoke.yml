@@ -171,6 +171,8 @@ on:
       - "tests/support-followup-phone-evidence.test.mjs"
       - "tests/support-submission.test.mjs"
       - "tests/support-urgent-contract.test.mjs"
+      - "tests/manual-support-urgent-checkpoints.test.mjs"
+      - "tests/support-urgent-phone-evidence.test.mjs"
       - "tests/support-response-gate.test.mjs"
       - "tests/manual-support-recovery-checkpoints.test.mjs"
       - "tests/support-recovery-phone-evidence.test.mjs"
@@ -542,6 +544,8 @@ on:
       - "tests/support-followup-phone-evidence.test.mjs"
       - "tests/support-submission.test.mjs"
       - "tests/support-urgent-contract.test.mjs"
+      - "tests/manual-support-urgent-checkpoints.test.mjs"
+      - "tests/support-urgent-phone-evidence.test.mjs"
       - "tests/support-response-gate.test.mjs"
       - "tests/manual-support-recovery-checkpoints.test.mjs"
       - "tests/support-recovery-phone-evidence.test.mjs"
@@ -875,7 +879,7 @@ jobs:
       - name: Verify support-only urgent alerts and idempotent mail delivery in isolation
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-urgent.json
-        run: npm run test:support-urgent && node --test tests/support-urgent-contract.test.mjs
+        run: npm run test:support-urgent && node --test tests/support-urgent-contract.test.mjs tests/manual-support-urgent-checkpoints.test.mjs tests/support-urgent-phone-evidence.test.mjs
       - name: Validate private real-phone support recovery observation safeguards
         run: node --test tests/support-response-gate.test.mjs tests/manual-support-recovery-checkpoints.test.mjs tests/support-recovery-phone-evidence.test.mjs
       - name: Validate isolated device readiness and private support call diagnostics

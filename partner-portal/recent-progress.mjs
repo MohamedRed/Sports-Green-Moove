@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Le support urgent passe sur téléphone',
+    text: 'Envoi, alerte, réponse et clôture passent avec les données isolées. Cinq captures montrent aussi le changement de compte. Les e-mails restent à activer.', flow: 'support-urgent',
+    source: 'docs/release/evidence/support-urgent-phone-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'La coupure reste à rejouer',
+    text: 'Les dix essais séparés passent. La vérification complète bloque en préparant la coupure, avant l’envoi du message.', flow: 'publication',
+    source: 'docs/release/evidence/native-terminal-80c88d0c-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Les urgences arrivent dans l’espace support',
     text: 'L’alerte et la clôture passent en local, sans accès pour le club. Deux captures sont ajoutées. L’envoi réel d’e-mails reste à activer.', flow: 'support-urgent',
     source: 'docs/release/evidence/support-urgent-2026-10-23/README.md' },

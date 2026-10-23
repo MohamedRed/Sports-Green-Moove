@@ -41,6 +41,8 @@ export const content = {
   updatedAt: '2026-10-23',
   lastVerifiedAt: '2026-10-23',
   ...nativeRechecks,
+  nativeNetworkPreparationRecheck: { source: 'docs/release/evidence/native-terminal-80c88d0c-2026-10-23/run.json',
+    checkedAt: '2026-10-23', checksums: 'docs/release/evidence/native-terminal-80c88d0c-2026-10-23/artifact-sha256.json' },
   nativeVerification,
   releaseNote: 'Tests en cours.',
   updates: [

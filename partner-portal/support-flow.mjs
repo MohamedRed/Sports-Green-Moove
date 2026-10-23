@@ -2,7 +2,7 @@ export function createSupportFlow(local, ui, shot) {
   return { id: 'support', title: 'Support', status: 'partial', checkedAt: '2026-10-22', latestEvidence: 'phone',
     summary: 'Le parent retrouve ses réponses et le statut de sa demande sur téléphone.',
     verified: 'Une demande, deux réponses et le statut Clôturée sont retrouvés après réouverture. L’autre compte ne voit rien. Les notes internes restent privées.',
-    remaining: 'Tester le mode urgent et les erreurs de connexion pendant l’envoi. La réponse côté gestion a été vérifiée séparément, en local.',
+    remaining: 'Tester les erreurs de connexion pendant l’envoi. Le parcours urgent a son essai séparé ; les e-mails restent à activer.',
     supportFollowupPhone: { source: 'docs/release/evidence/support-followup-phone-2026-10-22/results.json', checkedAt: '2026-10-22',
       checksums: 'docs/release/evidence/support-followup-phone-2026-10-22/artifact-sha256.json' },
     supportFollowup: { source: 'docs/release/evidence/support-followup-2026-10-22/results.json', checkedAt: '2026-10-22' },
