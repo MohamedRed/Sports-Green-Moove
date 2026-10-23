@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The 23 October notification-permission trial fixes a hard-coded enabled label
+and unrelated profile navigation. Actual app-specific OS allow/block changes
+and both app-screen returns pass on one physical Android phone; four read-only
+checks preserve 158 baseline records/claims. Six reviewed stream rectangles lead
+the new notification-settings tour. Seven JVM cases and all 504 JVM cases pass;
+seven new native cases only compile in this retained bundle. Permission is not
+push delivery, process-survival, iOS or production proof. The original off value,
+sign-out, acknowledged uninstall/launcher absence, session stop and owned runtime
+cleanup are verified. No video or browser-permission change is accepted.
+
 The later 23 October fa0cc1ff full replay and all ten focused lanes pass. The
 full replay retains 36 groups, 38 native cases, 16 primary copies and verified
 restoration/host exit. Its old blocker is removed, without explaining historical

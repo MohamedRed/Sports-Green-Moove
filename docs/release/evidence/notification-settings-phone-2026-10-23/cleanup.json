@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-23T16:29:06.035Z",
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "credentialRemoved": true,
+  "helperDirectoryRemoved": true,
+  "portsClosed": [
+    5001,
+    8080,
+    9000,
+    9099,
+    45690,
+    45691
+  ],
+  "phoneSignedOut": true,
+  "appUninstallAcknowledged": true,
+  "launcherAbsenceObserved": true,
+  "phoneSessionStopped": true,
+  "notificationAllowedInitially": false,
+  "notificationAllowedFinally": false,
+  "notificationFlagsMeasured": false,
+  "globalPhoneSettingsChanged": false,
+  "administrationPolicyChanged": false,
+  "chromeRestarted": false
+}

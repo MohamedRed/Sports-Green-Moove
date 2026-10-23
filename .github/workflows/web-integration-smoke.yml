@@ -110,6 +110,16 @@ on:
       - "tests/location-freshness-evidence.test.mjs"
       - "tests/location-order-evidence.test.mjs"
       - "tests/ride-observation-contract.test.mjs"
+      - "tests/notification-settings-contract.test.mjs"
+      - "tests/notification-settings-phone-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettings*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Profile*Screen.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileSettingsCard.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsScreen.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidNotificationSettings.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/NotificationSettingsStateTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NotificationSettingsFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/services/AndroidNotificationSettingsTest.kt"
       - "tests/native-startup-contract.test.mjs"
       - "tests/remote-ride-stop-contract.test.mjs"
       - "tests/vehicle-map-contract.test.mjs"
@@ -487,6 +497,16 @@ on:
       - "tests/location-freshness-evidence.test.mjs"
       - "tests/location-order-evidence.test.mjs"
       - "tests/ride-observation-contract.test.mjs"
+      - "tests/notification-settings-contract.test.mjs"
+      - "tests/notification-settings-phone-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettings*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Profile*Screen.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileSettingsCard.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsScreen.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidNotificationSettings.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/NotificationSettingsStateTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NotificationSettingsFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/services/AndroidNotificationSettingsTest.kt"
       - "tests/native-startup-contract.test.mjs"
       - "tests/remote-ride-stop-contract.test.mjs"
       - "tests/vehicle-map-contract.test.mjs"
@@ -871,6 +891,8 @@ jobs:
         run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/manual-booking-phone-checkpoints.test.mjs tests/flow-recheck.test.mjs tests/booking-decisions-phone-evidence.test.mjs tests/native-capture-recheck-evidence.test.mjs
       - name: Check completed ride and physical-phone evidence
         run: node --test tests/manual-ride-phone-checkpoints.test.mjs tests/ride-completion-recheck-evidence.test.mjs
+      - name: Check truthful notification settings and isolated observation
+        run: node --test tests/notification-settings-contract.test.mjs tests/notification-settings-phone-evidence.test.mjs
       - name: Validate physical guardian revocation and new team admission evidence
         run: node --test tests/team-chat-authority-phone-evidence.test.mjs
       - name: Validate isolated phone support checkpoints

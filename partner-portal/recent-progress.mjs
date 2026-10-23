@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Le réglage des notifications fonctionne sur téléphone',
+    text: 'Le statut suit maintenant l’autorisation du téléphone, dans le profil et les paramètres. Six captures ajoutées. La réception des alertes reste à tester.', flow: 'notification-settings',
+    source: 'docs/release/evidence/notification-settings-phone-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Le trajet et l’avis passent sur téléphone',
     text: 'Prise en charge, dépose, fin du trajet et avis du parent : huit captures ajoutées. Les comptes sont utilisés l’un après l’autre, avec des données de test.', flow: 'ride-lifecycle',
     source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },

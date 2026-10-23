@@ -40,8 +40,8 @@ private val OptionSections = listOf(
         listOf(
             OptionRow(SgmIcon.Location, "Arrière-plan", "Trajets actifs", "Suivi arrêté hors session de course"),
             OptionRow(SgmIcon.Search, "Alertes position", "Activées", "Dernière mise à jour et statut obsolète"),
-            OptionRow(SgmIcon.Bell, "Notifications", "Activées", "Départ, pickup, dropoff et retard"),
         ),
+        includeNotifications = true,
     ),
     OptionSection(
         "PAIEMENTS",
@@ -64,7 +64,7 @@ fun OptionsScreen(uid: String, firebase: FirebaseGateway, onBack: () -> Unit, on
         }
         OptionSections.forEach { section ->
             V2SectionLabel(section.title)
-            OptionSectionCard(section.rows)
+            OptionSectionCard(section.rows, section.includeNotifications)
         }
         OptionsReportCard(uid, firebase)
         Box(Modifier.padding(horizontal = 20.dp)) {
@@ -96,7 +96,7 @@ private fun OptionHero() {
 }
 
 @Composable
-private fun OptionSectionCard(rows: List<OptionRow>) {
+private fun OptionSectionCard(rows: List<OptionRow>, includeNotifications: Boolean) {
     Column(
         modifier = Modifier
             .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
@@ -106,8 +106,9 @@ private fun OptionSectionCard(rows: List<OptionRow>) {
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG)),
     ) {
         rows.forEachIndexed { index, row ->
-            OptionRowView(row, showDivider = index < rows.lastIndex)
+            OptionRowView(row, showDivider = index < rows.lastIndex || includeNotifications)
         }
+        if (includeNotifications) NotificationSettingsRow()
     }
 }
 
@@ -134,5 +135,5 @@ private fun OptionRowView(row: OptionRow, showDivider: Boolean) {
     }
 }
 
-private data class OptionSection(val title: String, val rows: List<OptionRow>)
+private data class OptionSection(val title: String, val rows: List<OptionRow>, val includeNotifications: Boolean = false)
 private data class OptionRow(val icon: SgmIcon, val label: String, val value: String, val detail: String)

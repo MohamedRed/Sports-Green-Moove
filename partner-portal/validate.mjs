@@ -30,6 +30,7 @@ import { sessionRestorationScope, validateSessionRestorationReport, validateReta
 import { sessionDisconnectScope } from '../scripts/qa/session-disconnect-evidence.mjs';
 import { validateSessionDisconnectReport, validateRetainedSessionDisconnect } from '../scripts/qa/session-disconnect-retained-evidence.mjs';
 import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
+import { validateNotificationSettingsPhone } from '../scripts/qa/notification-settings-phone-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -80,6 +81,7 @@ export function validate(root) {
       }
     }
     validateBookingEvidence(root, f);
+    if (f.id === 'notification-settings' || f.notificationPermissionPhone) validateNotificationSettingsPhone(root, f);
     if (f.local) {
       assert.equal(f.status, 'partial', 'Local service checks cannot complete a phone flow');
       const run = JSON.parse(readFileSync(resolve(root, f.local.source), 'utf8'));

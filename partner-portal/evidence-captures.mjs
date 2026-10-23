@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['profile-blocked', 'os-blocked', 'os-allowed', 'profile-allowed', 'options-blocked', 'profile-restored'].map(phase => [
+    'notification-phone-' + phase, 'docs/release/evidence/notification-settings-phone-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['started', 'picked-up', 'dropped-off', 'stable', 'completed', 'parent-history', 'review-prompt', 'reviewed'].map(phase => [
     'ride-phone-' + phase, 'docs/release/evidence/ride-completion-recheck-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['prepared', 'pending', 'confirmed', 'reopened'].map(id => ['support-confirmed-phone-' + id,

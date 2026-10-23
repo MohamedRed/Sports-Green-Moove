@@ -5,6 +5,14 @@ const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
+  'notification-settings': [
+    image('notification-phone-profile-blocked', 'Voir le statut du téléphone', 'Le profil indique que les notifications sont bloquées.'),
+    image('notification-phone-os-blocked', 'Ouvrir le réglage', 'Le bouton mène aux notifications de cette app.'),
+    image('notification-phone-os-allowed', 'Autoriser les notifications', 'Le réglage est activé sur le téléphone de test.'),
+    image('notification-phone-profile-allowed', 'Revenir au profil', 'Le nouveau statut apparaît au retour.'),
+    image('notification-phone-options-blocked', 'Retirer l’autorisation', 'Dans les paramètres aussi, le statut se met à jour.'),
+    image('notification-phone-profile-restored', 'Retrouver le même statut', 'Le profil confirme le retour à l’autorisation initiale.'),
+  ],
   support: supportFollowupSteps(image),
   'support-urgent': [
     image('support-urgent-phone-prepared', 'Signaler une urgence', 'Le parent remplit sa demande et active Urgent.'),

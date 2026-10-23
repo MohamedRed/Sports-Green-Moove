@@ -9,6 +9,7 @@ import { createChildEmergencyFlow } from './child-emergency-flow.mjs';
 import { createEmergencyProfileFlow } from './emergency-profile-flow.mjs';
 import { createSessionRestorationFlow } from './session-restoration-flow.mjs';
 import { createSessionDisconnectFlow } from './session-disconnect-flow.mjs';
+import { createNotificationSettingsFlow } from './notification-settings-flow.mjs';
 import { nativeVerification } from './native-verification.mjs';
 import { nativeRechecks } from './native-rechecks.mjs';
 export { assets, videos, excerpts } from './portal-media.mjs';
@@ -140,6 +141,7 @@ export const content = {
       clips: ['signout-action', 'signed-out-relaunch'], recording: 'signout', source: replay },
     createSessionRestorationFlow(),
     createSessionDisconnectFlow(),
+    createNotificationSettingsFlow(),
     createNavigationFlow(),
     createSearchFlow(),
     { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-18',
