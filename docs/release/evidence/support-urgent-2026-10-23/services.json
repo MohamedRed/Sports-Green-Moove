@@ -1,0 +1,72 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "24489c12cc669cff602e86558c2c8d3c",
+  "testedAt": "2026-10-23T11:58:10.695Z",
+  "scope": "local-support-urgent-services-with-explicit-loopback-mail-provider-not-real-inbox-delivery",
+  "completed": true,
+  "checks": [
+    {
+      "id": "ordinary-report-does-not-create-an-urgent-outbox",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-ui-retries-commit-one-report-and-one-support-only-mail-operation",
+      "status": "passed"
+    },
+    {
+      "id": "parent-and-club-manager-cannot-read-write-or-retry-the-mail-operation",
+      "status": "passed"
+    },
+    {
+      "id": "missing-email-configuration-stays-visible-without-contacting-any-provider",
+      "status": "passed"
+    },
+    {
+      "id": "lost-provider-acknowledgement-reuses-one-mail-and-the-original-recipient",
+      "status": "passed"
+    },
+    {
+      "id": "legacy-report-creation-queues-the-same-support-only-escalation-atomically",
+      "status": "passed"
+    },
+    {
+      "id": "expired-ambiguous-send-requires-review-without-another-provider-request",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-workers-cannot-send-during-an-active-lease",
+      "status": "passed"
+    },
+    {
+      "id": "invalid-queue-state-and-attempt-count-fail-before-any-provider-call",
+      "status": "passed"
+    },
+    {
+      "id": "current-authority-query-sees-urgent-requests-beyond-the-ordinary-fifty-row-window",
+      "status": "passed"
+    },
+    {
+      "id": "requester-projection-and-all-baseline-records-remain-private-and-unchanged",
+      "status": "passed"
+    }
+  ],
+  "handlerRequests": [
+    {
+      "idempotencyKey": "support-urgent/f1e422e0076b2f9dcd5a4cc23cda3cc72551567ff5a43f5bcd8fc5810860934f",
+      "recipientCount": 1
+    },
+    {
+      "idempotencyKey": "support-urgent/f1e422e0076b2f9dcd5a4cc23cda3cc72551567ff5a43f5bcd8fc5810860934f",
+      "recipientCount": 1
+    },
+    {
+      "idempotencyKey": "support-urgent/c00bfa5cddb4cbe4c15893ef362d05e4f85028eb0f58f8c349d3324b8cdc1abf",
+      "recipientCount": 1
+    }
+  ],
+  "simulatedEmails": 2,
+  "protectedRecordCount": 19,
+  "productionWrites": false,
+  "realEmailSent": false,
+  "physicalDevice": false
+}

@@ -13,7 +13,8 @@
     "automatedUserFlowEvidence",
     "realDeviceRuns",
     "storeReviewEvidence",
-    "safetyAuditEvidence"
+    "safetyAuditEvidence",
+    "operationalUserFlowEvidence"
   ],
   "properties": {
     "manifestVersion": { "const": "1.0" },
@@ -42,6 +43,10 @@
       "required": ["items"]
     },
     "safetyAuditEvidence": {
+      "type": "object",
+      "required": ["items"]
+    },
+    "operationalUserFlowEvidence": {
       "type": "object",
       "required": ["items"]
     }

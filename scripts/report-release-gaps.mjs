@@ -9,6 +9,7 @@ import {
   requiredProviderEnvironmentVariables,
   requiredProviders,
   requiredStoreEvidence,
+  requiredOperationalEvidence,
 } from "./release-evidence-requirements.mjs";
 
 const { manifestPath, automatedEvidencePath, secretInventoryPath, json } = parseArgs(process.argv.slice(2));
@@ -40,6 +41,7 @@ function buildReport(manifestResult, automatedResult, secretInventoryResult) {
   const realDeviceRuns = realDeviceGaps(manifest?.realDeviceRuns);
   const storeReviewEvidence = itemGaps(manifest?.storeReviewEvidence?.items, requiredStoreEvidence);
   const safetyAuditEvidence = itemGaps(manifest?.safetyAuditEvidence?.items, requiredAuditEvidence);
+  const operationalUserFlowEvidence = itemGaps(manifest?.operationalUserFlowEvidence?.items, requiredOperationalEvidence);
 
   return {
     ok: [
@@ -49,6 +51,7 @@ function buildReport(manifestResult, automatedResult, secretInventoryResult) {
       realDeviceRuns,
       storeReviewEvidence,
       safetyAuditEvidence,
+      operationalUserFlowEvidence,
     ].every((section) => section.ok),
     manifest: manifestResult,
     automatedEvidence: automatedResult,
@@ -60,6 +63,7 @@ function buildReport(manifestResult, automatedResult, secretInventoryResult) {
     realDeviceRuns,
     storeReviewEvidence,
     safetyAuditEvidence,
+    operationalUserFlowEvidence,
   };
 }
 
@@ -230,6 +234,7 @@ function printTextReport(report) {
   }
   printList("Missing store-review evidence", report.storeReviewEvidence.missing);
   printList("Missing safety-audit evidence", report.safetyAuditEvidence.missing);
+  printList("Missing operational user-flow evidence", report.operationalUserFlowEvidence.missing);
 }
 
 function printList(label, items) {

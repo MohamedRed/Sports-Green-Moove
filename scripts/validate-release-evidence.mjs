@@ -8,6 +8,7 @@ import {
   postponedSocialAuthProviders,
   requiredProviders,
   requiredStoreEvidence,
+  requiredOperationalEvidence,
 } from "./release-evidence-requirements.mjs";
 
 const { manifestPath, allowPlaceholders } = parseArgs(process.argv.slice(2));
@@ -44,6 +45,8 @@ function validateManifest(data) {
   validateDeviceRuns(data.realDeviceRuns);
   validateStoreEvidence(data.storeReviewEvidence);
   validateAuditEvidence(data.safetyAuditEvidence);
+  requireObject(data.operationalUserFlowEvidence, "operationalUserFlowEvidence");
+  validateEvidenceItems(data.operationalUserFlowEvidence?.items, "operationalUserFlowEvidence.items", requiredOperationalEvidence);
 }
 
 function validatePostponedSocialAuth(providers) {

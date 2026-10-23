@@ -37,7 +37,7 @@ export function prepareLocalRuntime() {
     cpSync(resolve(root, 'functions/package.json'), resolve(temp, 'functions/package.json'));
     symlinkSync(resolve(root, 'node_modules'), resolve(temp, 'functions/node_modules'), 'dir');
     const secrets = ['RADAR_WEBHOOK_SECRET', 'GOOGLE_MAPS_API_KEY', 'STRIPE_SECRET_KEY',
-      'STRIPE_PUBLISHABLE_KEY', 'STRIPE_WEBHOOK_SECRET'];
+      'STRIPE_PUBLISHABLE_KEY', 'STRIPE_WEBHOOK_SECRET', 'SUPPORT_EMAIL_API_KEY', 'SUPPORT_EMAIL_CONFIG'];
     writeFileSync(resolve(temp, 'functions/.secret.local'), secrets.map((key) => `${key}=LOCAL_PROVIDER_DISABLED\n`).join(''), { mode: 0o600 });
     const config = JSON.parse(readFileSync(resolve(root, 'firebase.json'), 'utf8'));
     const local = { functions: { source: 'functions', runtime: 'nodejs22' },

@@ -2,6 +2,7 @@ import { Timestamp } from "firebase-admin/firestore";
 import { HttpsError } from "firebase-functions/v2/https";
 import { supportSubmissionIdentity, type SupportSubmission } from "../domain/supportSubmission.js";
 import { firestore } from "../lib/firebase.js";
+import { queueUrgentSupportEmail } from "./supportUrgentQueue.js";
 
 export async function submitSupportReport(uid: string, input: SupportSubmission) {
   if (input.requesterUserId !== uid) throw new HttpsError("permission-denied", "The support account changed.");
@@ -25,6 +26,7 @@ export async function submitSupportReport(uid: string, input: SupportSubmission)
       publicReplyCount: 0, lastPublicReply: null, createdAt, updatedAt: createdAt });
     transaction.create(operationRef, { requesterUserId: uid, clientRequestId: input.clientRequestId,
       reportId: reportRef.id, digest: identity.digest, createdAt });
+    queueUrgentSupportEmail(transaction, reportRef.id, input.emergency, createdAt);
     return { reportId: reportRef.id, clientRequestId: input.clientRequestId, requesterUserId: uid, status: "open", reused: false };
   });
 }

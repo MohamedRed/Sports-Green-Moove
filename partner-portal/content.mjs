@@ -1,6 +1,7 @@
 import { tours } from './tours.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { createSupportFlow } from './support-flow.mjs';
+import { createUrgentSupportFlow } from './urgent-support-flow.mjs';
 import { createSupportSubmissionFlow } from './support-submission-flow.mjs';
 import { createNavigationFlow, createSearchFlow } from './parent-phone-flows.mjs';
 import { createEmergencyFlow } from './emergency-flow.mjs';
@@ -270,6 +271,7 @@ export const content = {
       local: local(['ride-audit-ledgers'], ['Le trajet terminé crée une écriture d’impact.', 'Une récompense est enregistrée.', 'Une seconde clôture est refusée.']),
       images: [shot('ride-impact', 'Impact après un trajet terminé en local'), shot('ride-rewards', 'Solde de test et récompense du trajet local')], source: rideUiReport },
     createSupportFlow(local, ui, shot),
+    createUrgentSupportFlow(shot),
     createSupportSubmissionFlow(shot),
     { id: 'appearance', title: 'Affichage et thème sombre', status: 'partial', checkedAt: '2026-10-15',
       summary: 'La connexion passe en paysage et le thème est conservé après relancement.',

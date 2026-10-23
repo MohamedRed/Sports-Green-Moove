@@ -1,4 +1,6 @@
 export const nativeRechecks = {
+  nativeFocusedPreparationRecheck: { source: 'docs/release/evidence/native-terminal-fb628d5b-2026-10-23/summary.json', checkedAt: '2026-10-23',
+    checksums: 'docs/release/evidence/native-terminal-fb628d5b-2026-10-23/artifact-sha256.json' },
   flowRecheck: {source: 'docs/release/evidence/flow-recheck-2026-10-22/summary.json', checkedAt: '2026-10-22',
     checksums: 'docs/release/evidence/flow-recheck-2026-10-22/artifact-sha256.json'},
   nativeCaptureRecheck: {source: 'docs/release/evidence/native-capture-recheck-24218efd-2026-10-22/summary.json', checkedAt: '2026-10-22',

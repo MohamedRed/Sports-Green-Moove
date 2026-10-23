@@ -22,10 +22,12 @@ test('both native force-stop stages retain all ten independent checkpoints witho
   assert.equal(flow.checkedAt, '2026-10-23'); assert.equal(flow.submissionRestartPhone.checkedAt, '2026-10-22');
   assert(flow.images[0].file.startsWith('support-confirmed-phone-')); assert.equal(flow.status, 'partial');
 });
-test('the latest failed collection does not replace the older completed matrix with a success claim', () => {
+test('the historical failed collection stays failed while the newer blocker follows its separate terminal result', () => {
   const record = content.nativeTransferRecheck, report = validateNativeTransferRecheck(process.cwd(), record);
   assert.equal(report.fullCiPassed, false); assert.equal(report.focusedCasesPassed, 10);
-  assert.equal(content.blockers.find(item => item.id === 'test-device-stability').source, record.source.replace('summary.json', 'README.md'));
+  assert.equal(content.blockers.find(item => item.id === 'test-device-stability').source,
+    content.nativeFocusedPreparationRecheck.source.replace('summary.json', 'README.md'));
+  assert.notEqual(content.nativeFocusedPreparationRecheck.source, record.source);
 });
 test('the independent observer only reads records and refuses missing or invalid scope before connecting', () => {
   const file = 'scripts/qa/observe-support-recovery-records.mjs', source = readFileSync(file, 'utf8');

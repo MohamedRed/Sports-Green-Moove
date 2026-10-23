@@ -6,6 +6,10 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   support: supportFollowupSteps(image),
+  'support-urgent': [
+    image('support-urgent-active', 'Voir l’urgence', 'L’alerte apparaît dans l’espace support en local. L’e-mail reste à configurer.'),
+    image('support-urgent-closed', 'Retrouver la demande clôturée', 'La clôture retire l’alerte. Le lien ouvre toujours la demande.'),
+  ],
   'support-submission': supportSubmissionSteps(image, clip),
   'team-conversation': [
     image('team-authority-phone-initial', 'Avant le retrait', 'Avec des données de test, le parent retrouve le message reçu après son admission.'),

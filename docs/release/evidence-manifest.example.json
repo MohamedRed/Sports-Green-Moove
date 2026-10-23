@@ -320,6 +320,12 @@
       }
     ]
   },
+  "operationalUserFlowEvidence": {
+    "items": [
+      { "id": "urgent_support_space_alert", "status": "pending", "description": "Retain an app-origin production support-only urgent alert.", "evidenceRefs": ["../contracts/support-urgent.md"] },
+      { "id": "urgent_support_email_receipt", "status": "pending", "description": "Retain actual receipt at the approved support inbox; provider acceptance alone is insufficient.", "evidenceRefs": ["../contracts/support-urgent.md"] }
+    ]
+  },
   "safetyAuditEvidence": {
     "items": [
       {

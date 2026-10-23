@@ -176,6 +176,8 @@ export const captures = {
   'signup-password': 'docs/release/evidence/browserstack-2026-10-15/04-signup-missing-password.png',
   'signup-short': 'docs/release/evidence/browserstack-2026-10-15/05-signup-short-password.png',
   'support-reviewed': 'docs/release/evidence/local-ui-2026-10-15/local-support-reviewed.png',
+  'support-urgent-active': 'docs/release/evidence/support-urgent-2026-10-23/captures/active-390.png',
+  'support-urgent-closed': 'docs/release/evidence/support-urgent-2026-10-23/captures/closed-link-mobile.png',
   'support-phone-invalid': 'docs/release/evidence/support-phone-2026-10-22/invalid-device.jpg',
   'support-phone-filled': 'docs/release/evidence/support-phone-2026-10-22/filled-device.jpg',
   'support-phone-submitted': 'docs/release/evidence/support-phone-2026-10-22/submitted-device.jpg',

@@ -194,6 +194,11 @@ service cloud.firestore {
       allow create, update, delete: if false;
     }
 
+    match /supportUrgentEmailOutbox/{reportId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
     match /appConfig/{configId} {
       allow read: if true;
       allow write: if isAdmin();

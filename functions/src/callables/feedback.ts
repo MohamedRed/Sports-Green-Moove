@@ -6,6 +6,7 @@ import { normalizeReportReviewNote, reportClosedAtValue, REPORT_STATUSES } from 
 import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth } from "../lib/https.js";
 import { parseCallableData } from "../lib/validation.js";
+import { queueUrgentSupportEmail } from "../services/supportUrgentQueue.js";
 
 type RideSessionDocument = {
   driverUserId?: string;
@@ -67,14 +68,18 @@ export const createReport = onCall(async (request) => {
   const data = parseCallableData(schema, request.data);
   const ref = firestore.collection("reports").doc();
 
-  await ref.set({
-    ...data,
-    reporterUserId: uid,
-    status: "open",
-    publicReplyCount: 0,
-    lastPublicReply: null,
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
+  const createdAt = Timestamp.now();
+  await firestore.runTransaction(async transaction => {
+    transaction.create(ref, {
+      ...data,
+      reporterUserId: uid,
+      status: "open",
+      publicReplyCount: 0,
+      lastPublicReply: null,
+      createdAt,
+      updatedAt: createdAt,
+    });
+    queueUrgentSupportEmail(transaction, ref.id, data.emergency, createdAt);
   });
 
   return { reportId: ref.id, status: "open" };

@@ -18,6 +18,7 @@
     "test:booking-consistency": "node scripts/qa/run-local-booking-consistency.mjs",
     "test:support-followup": "node scripts/qa/run-local-support-followup.mjs",
     "test:support-submission": "node scripts/qa/run-local-support-submission.mjs",
+    "test:support-urgent": "node scripts/qa/run-local-support-urgent.mjs",
     "test:booking-notices": "node scripts/qa/run-local-booking-notices.mjs",
     "test:booking-display": "node scripts/qa/run-local-booking-display.mjs",
     "test:booking-intent-wire": "node scripts/qa/check-booking-intent-wire.mjs",

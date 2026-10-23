@@ -32,6 +32,6 @@ export async function reviewReport(reportId: string, status: ReportStatus, note:
   await httpsCallable(functions, "reviewReport")({
     reportId,
     status,
-    note: trimmedNote.length > 0 ? trimmedNote : undefined,
+    ...(trimmedNote.length > 0 ? { note: trimmedNote } : {}),
   });
 }

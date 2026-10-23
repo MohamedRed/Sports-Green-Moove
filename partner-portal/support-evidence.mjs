@@ -8,8 +8,19 @@ import { validateSupportRecoveryPhoneEvidence } from '../scripts/qa/support-reco
 import { validateSupportDiagnosticEvidence } from '../scripts/qa/support-recovery-diagnostic-evidence.mjs';
 import { validateSupportProcessRestartPhone } from '../scripts/qa/support-process-restart-phone-evidence.mjs';
 import { validateConfirmedSupportPhone } from '../scripts/qa/support-confirmed-restart-phone-evidence.mjs';
+import { validateUrgentSupportEvidence } from '../scripts/qa/support-urgent-evidence.mjs';
 
 export function validateSupportEvidence(root, flow, captures) {
+  if (flow.urgentSupport) {
+    const proof = validateUrgentSupportEvidence(root, flow.urgentSupport.source);
+    assert.equal(flow.id, 'support-urgent'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local');
+    assert.equal(flow.checkedAt, proof.checkedAt); assert.equal(flow.urgentSupport.checkedAt, proof.checkedAt);
+    assert.match(flow.remaining, /réception/); assert.match(flow.remaining, /téléphone/);
+    for (const [id, file] of [['support-urgent-active', 'active-390.png'], ['support-urgent-closed', 'closed-link-mobile.png']]) {
+      assert.equal(captures[id], dirname(flow.urgentSupport.source) + '/captures/' + file);
+      assert(flow.images.some(image => image.file === id && image.alt.includes('local')));
+    }
+  }
   if (flow.submissionConfirmedRestartPhone) {
     const record = flow.submissionConfirmedRestartPhone, proof = validateConfirmedSupportPhone(root, record.source);
     assert.equal(flow.id, 'support-submission'); assert.equal(flow.status, 'partial');

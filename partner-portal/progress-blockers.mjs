@@ -1,6 +1,9 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
+  { id: 'support-urgent-email', title: 'Activer les e-mails du support',
+    text: 'L’alerte dans l’espace support passe en local. Aucun e-mail réel n’a encore été envoyé.',
+    next: 'Configurer l’envoi et confirmer la réception, puis rejouer depuis le téléphone.', source: 'docs/release/evidence/support-urgent-2026-10-23/README.md' },
   { id: 'payment-return', title: 'Rejouer l’inscription conducteur',
     text: 'Les deux pages de retour s’ouvrent à nouveau lors du contrôle du 22 octobre.',
     next: 'Tester l’inscription conducteur, puis les paiements réels et remboursements sur téléphone.', source: 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md' },
@@ -17,8 +20,8 @@ export const blockers = [
     text: 'Trois autres alertes sont corrigées et testées en local. D’autres restent à examiner.',
     next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/multipart-security-2026-10-20/README.md' },
   { id: 'test-device-stability', title: 'Stabiliser l’appareil d’essai',
-    text: 'Les dix essais séparés passent. Le dernier essai complet s’arrête pendant une copie.',
-    next: 'Obtenir une vérification complète et comprendre les interruptions.', source: 'docs/release/evidence/native-transfer-6441dca5-2026-10-23/README.md' },
+    text: 'Le dernier essai complet passe. Un essai séparé reste bloqué avant les écrans.',
+    next: 'Obtenir une vérification complète et comprendre les interruptions.', source: 'docs/release/evidence/native-terminal-fb628d5b-2026-10-23/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },

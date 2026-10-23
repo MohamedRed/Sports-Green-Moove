@@ -6,6 +6,7 @@ export { declineBooking, listReservations } from "./callables/reservations.js";
 export { resolveBookingRequest } from "./callables/bookingRequestResolution.js";
 export { createReport, reviewReport, submitRating } from "./callables/feedback.js";
 export { submitSupportReport } from "./callables/supportSubmission.js";
+export { sendUrgentSupportEmail, retryUrgentSupportEmail } from "./supportUrgentEmail.js";
 export { listMySupportReports, getMySupportReport, respondToReport } from "./callables/supportReports.js";
 export { writeLocationBatch } from "./callables/locations.js";
 export { requestClubMembership } from "./callables/memberships.js";

@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Les urgences arrivent dans l’espace support',
+    text: 'L’alerte et la clôture passent en local, sans accès pour le club. Deux captures sont ajoutées. L’envoi réel d’e-mails reste à activer.', flow: 'support-urgent',
+    source: 'docs/release/evidence/support-urgent-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'L’essai complet passe à nouveau',
+    text: 'Un essai séparé reste bloqué pendant la préparation de son appareil, avant les écrans.', flow: 'publication',
+    source: 'docs/release/evidence/native-terminal-fb628d5b-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Le brouillon ne revient plus après confirmation',
     text: 'Deux fermetures complètes sur téléphone : le brouillon revient avant confirmation, puis reste effacé après. La demande est conservée sans doublon. Quatre captures sont ajoutées.', flow: 'support-submission',
     source: 'docs/release/evidence/support-confirmed-restart-phone-2026-10-23/README.md' },

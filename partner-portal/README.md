@@ -1,5 +1,17 @@
 # Partner Progress Portal
 
+The 23 October urgent-support record is a separate local tour: eleven isolated
+service checks, six actual management-browser checks, seven reviewed originals
+and unchanged 158 baseline UI fixtures. A genuine empty-note review bug is fixed
+and replayed through the browser SDK. Only two mobile originals are allowlisted.
+Actual email sending, inbox receipt, native replay and production activation remain
+open. The private destination is not source or portal content. Publication is held.
+
+The later terminal `fb628d5b` matrix job passes. Nine focused jobs pass, while one
+fails during device-action preparation before its app suite starts. Latest news
+and blocker follow that result without accepting the overall CI or publishing any
+new native media. Older failed matrix records remain unchanged.
+
 The 23 October connected physical support trial observes native Android Force
 stop before and after confirmation. Explicit Retry reuses one request; the
 post-confirmation reopen has no pending draft or third handler attempt. All ten

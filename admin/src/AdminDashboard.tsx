@@ -9,6 +9,8 @@ import { Wordmark } from "./Wordmark";
 import { MembershipReviewPanel } from "./MembershipReviewPanel";
 import { GuardianReviewPanel } from "./GuardianReviewPanel";
 import { TeamReviewPanel } from "./TeamReviewPanel";
+import { UrgentSupportPanel } from "./UrgentSupportPanel";
+import { SupportReportLink } from "./SupportReportLink";
 import type { FirestoreRecord, Metric, PayoutCandidate, RoleMap } from "./types";
 
 type Props = {
@@ -62,6 +64,8 @@ export function AdminDashboard({ uid, userEmail, projectLabel, onSignOut, canRev
         </section>
 
         <DataWarning states={[users, clubs, teams, memberships, trips, bookings, rideSessions, reports, ledger, stripeAccounts]} />
+        <UrgentSupportPanel />
+        <SupportReportLink listedIds={reports.items.map(report => report.id)} />
         <UsersTable users={users.items} />
         <MembershipReviewPanel uid={uid} />
         {canReviewClubRequests && <GuardianReviewPanel uid={uid} />}
@@ -69,7 +73,7 @@ export function AdminDashboard({ uid, userEmail, projectLabel, onSignOut, canRev
         <ClubOperationsTables clubs={clubs.items} teams={teams.items} memberships={memberships.items} />
         <TripsTable trips={trips.items} bookings={bookings.items} />
         <RideSessionsTable rideSessions={rideSessions.items} />
-        <ReportsTable reports={reports.items} />
+        <ReportsTable reports={reports.items.filter(report => report.emergency !== true || report.status === "closed")} />
         <PayoutsTable payouts={payouts} />
       </section>
     </main>

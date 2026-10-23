@@ -53,6 +53,11 @@ export const requiredAuditEvidence = [
   "payment_reconciliation_event",
 ];
 
+export const requiredOperationalEvidence = [
+  "urgent_support_space_alert",
+  "urgent_support_email_receipt",
+];
+
 export const requiredProviderEnvironmentVariables = [
   "FIREBASE_ANDROID_CONFIG_BASE64",
   "FIREBASE_IOS_CONFIG_BASE64",

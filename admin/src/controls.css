@@ -92,6 +92,8 @@ textarea.review-note {
 .support-reply-form p, .support-reply-form [role="status"] { overflow-wrap: anywhere; white-space: pre-wrap; }
 .support-reply-form select, .support-reply-form textarea { width: 100%; max-width: 100%; font: inherit; }
 .support-reply-form button { white-space: normal; }
+.support-email-status { display: grid; gap: 6px; max-width: 320px; overflow-wrap: anywhere; }
+.support-email-status button { white-space: normal; }
 
 button:disabled {
   cursor: not-allowed;
