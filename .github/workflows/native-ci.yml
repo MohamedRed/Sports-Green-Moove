@@ -132,6 +132,7 @@ on:
       - "tests/network-start-observation.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/network-bootstrap-observation.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
       - "scripts/check-ios-native-plan.sh"
@@ -255,6 +256,7 @@ on:
       - "tests/network-start-observation.test.mjs"
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/network-bootstrap-observation.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
       - "scripts/check-ios-native-plan.sh"
@@ -336,7 +338,7 @@ jobs:
         run: node --test tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs
 
       - name: Validate initial network observation before test-only transport requests
-        run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs tests/continuous-disposable-device.test.mjs
+        run: node --test tests/network-start-observation.test.mjs tests/network-bootstrap-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs tests/continuous-disposable-device.test.mjs
 
   android-native-unit:
     name: Android native unit tests

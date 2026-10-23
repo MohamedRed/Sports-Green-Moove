@@ -8,6 +8,7 @@ remote_dir="/sdcard/Download/sgm-store-review"
 
 mkdir -p "$output_dir" || exit 1
 export SGM_FOCUSED_UI_CASE=full-matrix
+node "$repo_root/scripts/qa/observe-network-bootstrap.mjs" "$output_dir/network-bootstrap" || exit 1
 device_receipt="$output_dir/disposable-device-setup.json"
 node "$repo_root/scripts/qa/configure-continuous-disposable.mjs" > "$device_receipt" || exit 1
 restore_test_store() {

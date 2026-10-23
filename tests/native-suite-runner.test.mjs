@@ -26,6 +26,7 @@ function fixture(t, { missingChatCapture } = {}) {
   executable('android/gradlew', 'echo forbidden-build >> "$CALL_LOG"\nexit 98\n');
   executable('bin/node', [
     'case "$1" in',
+    '*observe-network-bootstrap.mjs) echo bootstrap >> "$CALL_LOG"; exit "$BOOTSTRAP_STATUS";;',
     '*configure-continuous-disposable.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;',
     '*run-ordinary-android-ui.mjs) echo ordinary >> "$CALL_LOG"; exit "$ORDINARY_STATUS";;',
     '*verify-disposable-installations.mjs) exit "${INSTALL_GUARD_STATUS:-0}";;',
@@ -68,7 +69,7 @@ function fixture(t, { missingChatCapture } = {}) {
   return (env) => {
     const result = spawnSync('bash', [join(root, 'scripts/run.sh')], { encoding: 'utf8', env: { ...process.env,
       PATH: join(root, 'bin') + ':' + process.env.PATH, CALL_LOG: log, ADB_CALL_LOG: adbLog, ORDINARY_STATUS: '0', REPLAY_STATUS: '0',
-      GITHUB_ACTIONS: 'false', SETUP_STATUS: '0', RESTORE_STATUS: '0', DIAGNOSTIC_STATUS: '0', HOST_HEALTH_STATUS: '0', CAPTURE_FAILURE: '0', ...env } });
+      GITHUB_ACTIONS: 'false', BOOTSTRAP_STATUS: '0', SETUP_STATUS: '0', RESTORE_STATUS: '0', DIAGNOSTIC_STATUS: '0', HOST_HEALTH_STATUS: '0', CAPTURE_FAILURE: '0', ...env } });
     assert.equal(result.error, undefined);
     const statusFile = join(out, 'native-suite-status.json');
     return { ...result, calls: readFileSync(log, 'utf8').trim().split('\n'),
@@ -94,7 +95,7 @@ for (const [name, env, exit, statuses] of [
 ]) test(name, (t) => {
   const result = fixture(t)(env);
   assert.equal(result.status, exit, result.stderr);
-  assert.deepEqual(result.calls, ['setup', 'ordinary', ...(env.ORDINARY_STATUS ? ['diagnostic'] : []),
+  assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', ...(env.ORDINARY_STATUS ? ['diagnostic'] : []),
     ...(env.CAPTURE_FAILURE ? ['host-health'] : []), 'replay', ...(env.REPLAY_STATUS ? ['host-health'] : []), 'restore']);
   assert.equal(result.statuses.scope, 'native-suite-exit-status-not-flow-verification');
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
@@ -107,7 +108,7 @@ test('failed suites retain partial payment and other component captures without 
   for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history', 'sgm-neutral-text', 'sgm-team-chat-components']) {
     assert(result.adbCalls.some((call) => call.startsWith('pull /sdcard/Download/' + name + ' ') && call.endsWith('/partial-components')));
   }
-  assert.deepEqual(result.calls, ['setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
+  assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
   assert.equal(result.statuses.ordinaryTests, 7);
 });
 
@@ -118,7 +119,7 @@ for (const stem of ['team-draft-read-error', 'team-draft-write-error']) for (con
     assert.match(result.stderr, new RegExp('Missing team draft error component evidence: ' + stem));
     assert.equal(result.statuses.ordinaryTests, 0); assert.equal(result.statuses.componentEvidence, 1);
     assert.equal(result.statuses.localReplay, 0);
-    assert.deepEqual(result.calls, ['setup', 'ordinary', 'host-health', 'replay', 'restore']);
+    assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
   });
 
 for (const stem of ['team-read-count-narrow', 'team-read-visible', 'team-read-error', 'team-read-retry', 'team-read-revoked'])
@@ -129,40 +130,46 @@ for (const stem of ['team-read-count-narrow', 'team-read-visible', 'team-read-er
       assert.match(result.stderr, new RegExp('Missing team chat component evidence: ' + stem));
       assert.equal(result.statuses.ordinaryTests, 0); assert.equal(result.statuses.componentEvidence, 1);
       assert.equal(result.statuses.localReplay, 0);
-      assert.deepEqual(result.calls, ['setup', 'ordinary', 'host-health', 'replay', 'restore']);
+      assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
     });
 
 test('unavailable process diagnostics never suppress the original failure or the independent replay', (t) => {
   const result = fixture(t)({ ORDINARY_STATUS: '7', DIAGNOSTIC_STATUS: '9' });
   assert.equal(result.status, 7);
   assert.match(result.stdout, /original test failure is preserved/);
-  assert.deepEqual(result.calls, ['setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
+  assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
   assert.equal(result.statuses.ordinaryTests, 7);
 });
 
 test('an unsafe or unavailable device stops both suites before app execution', (t) => {
   const result = fixture(t)({ SETUP_STATUS: '3' });
-  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['setup']); assert.equal(result.statuses, null);
+  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['bootstrap', 'setup']); assert.equal(result.statuses, null);
+});
+
+test('unavailable early network diagnostics cannot start device mutations or claim cleanup', t => {
+  const result = fixture(t)({ BOOTSTRAP_STATUS: '17' });
+  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['bootstrap']); assert.equal(result.statuses, null);
+  assert.deepEqual(result.adbCalls, []);
 });
 
 test('an unverified installation guard stops further replay and still runs restoration', (t) => {
   const result = fixture(t)({ INSTALL_GUARD_STATUS: '23' });
   assert.equal(result.status, 23); assert.equal(result.statuses, null);
-  assert.deepEqual(result.calls, ['setup', 'ordinary', 'restore']);
+  assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'restore']);
   assert.deepEqual(result.adbCalls, []);
 });
 
 test('store cleanup failure cannot produce a green suite or overwrite an earlier failure', (t) => {
   const success = fixture(t)({ RESTORE_STATUS: '13' });
-  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['setup', 'ordinary', 'replay', 'restore']);
+  assert.equal(success.status, 13); assert.deepEqual(success.calls, ['bootstrap', 'setup', 'ordinary', 'replay', 'restore']);
   const failure = fixture(t)({ RESTORE_STATUS: '13', REPLAY_STATUS: '11' });
-  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['setup', 'ordinary', 'replay', 'host-health', 'restore']);
+  assert.equal(failure.status, 11); assert.deepEqual(failure.calls, ['bootstrap', 'setup', 'ordinary', 'replay', 'host-health', 'restore']);
 });
 
 test('unavailable host observations never suppress either suite failure or store restoration', (t) => {
   const result = fixture(t)({ CAPTURE_FAILURE: 'store', REPLAY_STATUS: '11', HOST_HEALTH_STATUS: '19' });
   assert.equal(result.status, 1); assert.deepEqual(result.calls,
-    ['setup', 'ordinary', 'host-health', 'replay', 'host-health', 'restore']);
+    ['bootstrap', 'setup', 'ordinary', 'host-health', 'replay', 'host-health', 'restore']);
   assert.equal(result.statuses.componentEvidence, 1); assert.equal(result.statuses.localReplay, 11);
   assert.match(result.stdout, /original component failure is preserved/);
   assert.match(result.stdout, /original replay failure is preserved/);
@@ -171,7 +178,7 @@ test('unavailable host observations never suppress either suite failure or store
 test('host observation follows verified cleanup and never replaces the suite outcome', t => {
   const result = fixture(t)({ GITHUB_ACTIONS: 'true', RUNNER_OS: 'Linux', OBSERVATION_STATUS: '21', REPLAY_STATUS: '11' });
   assert.equal(result.status, 11);
-  assert.deepEqual(result.calls, ['setup', 'ordinary', 'replay', 'host-health', 'restore', 'observe']);
+  assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'replay', 'host-health', 'restore', 'observe']);
   const failedCleanup = fixture(t)({ GITHUB_ACTIONS: 'true', RUNNER_OS: 'Linux', RESTORE_STATUS: '13' });
   assert.equal(failedCleanup.status, 13); assert(!failedCleanup.calls.includes('observe'));
 });
