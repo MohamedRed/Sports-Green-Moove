@@ -10,14 +10,22 @@ import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa
 import { validateNativeTerminalRecheck } from '../scripts/qa/native-terminal-recheck-evidence.mjs';
 import { validateNativeBootRecheck } from '../scripts/qa/native-boot-recheck-evidence.mjs';
 import { validateNativeRideCompletionRecheck } from '../scripts/qa/native-ride-completion-recheck-evidence.mjs';
+import { validateNativeScheduleCollectionRecheck } from '../scripts/qa/native-schedule-collection-recheck-evidence.mjs';
 
-test('latest full replay failed at ride completion without replacing the earlier network failure', () => {
+test('earlier full replay failed at ride completion without replacing the older network failure', () => {
   const run = validateNativeRideCompletionRecheck(process.cwd(), content.nativeRideCompletionRecheck);
   assert.equal(run.conclusion, 'failure');
   assert.notEqual(content.nativeRideCompletionRecheck.source, content.nativeNetworkPreparationRecheck.source);
   const update = content.updates.find(item => item.source === content.nativeRideCompletionRecheck.source.replace('run.json', 'README.md'));
   assert.match(update.text, /cause reste à vérifier/);
   assert.equal(update.flow, 'ride-lifecycle');
+});
+test('the later pre-correction ride pass cannot hide a failed copy or prove a network repair', () => {
+  const run = validateNativeScheduleCollectionRecheck(process.cwd(), content.nativeScheduleCollectionRecheck);
+  assert.equal(run.conclusion, 'failure');
+  const update = content.updates.find(item => item.source === content.nativeScheduleCollectionRecheck.source.replace('run.json', 'README.md'));
+  assert.match(update.text, /Avant la correction/); assert.match(update.text, /copie des captures bloque/);
+  assert.notEqual(content.nativeScheduleCollectionRecheck.source, content.nativeRideCompletionRecheck.source);
 });
 
 test('terminal service success is separate from failed native replay and unstarted phone checkpoints', () => {

@@ -13,6 +13,7 @@ import { validateFocusedPreparationEvidence } from './native-focused-preparation
 import { validateNativeNetworkPreparation } from './native-network-preparation-evidence.mjs';
 import { validateNativeRideCompletionRecheck } from './native-ride-completion-recheck-evidence.mjs';
 import { validatePassengerObservationOwnership } from './passenger-observation-ownership-evidence.mjs';
+import { validateNativeScheduleCollectionRecheck } from './native-schedule-collection-recheck-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -79,15 +80,16 @@ export function validateCurrentNativeBlocker(root, content) {
   validateNativeNetworkPreparation(root, content.nativeNetworkPreparationRecheck);
   validateNativeRideCompletionRecheck(root, content.nativeRideCompletionRecheck);
   validatePassengerObservationOwnership(root, content.passengerStatusOwnershipRecheck);
+  validateNativeScheduleCollectionRecheck(root, content.nativeScheduleCollectionRecheck);
   const blocker = content.blockers.find(item => item.id === 'test-device-stability');
   assert(blocker, 'The incomplete native replay must remain visible');
-  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeRideCompletionRecheck.source), 'README.md'));
+  assert.equal(resolve(root, blocker.source), resolve(root, dirname(content.nativeScheduleCollectionRecheck.source), 'README.md'));
   assert.equal(report.fullCiPassed, false); assert.equal(latest.fullCiPassed, false);
   assert.equal(boot.fullCiPassed, false); assert.equal(boot.matrixExecuted, false);
   assert.equal(matrix.fullCiPassed, false); assert.equal(matrix.localFlowGroupsPassed, 36);
   assert.equal(transfer.fullCiPassed, false); assert.equal(transfer.fullNativeReplayCompleted, false);
   assert.equal(preparation.fullCiPassed, false); assert.equal(preparation.matrixJobPassed, true);
-  assert.match(blocker.text, /séparés passent.*complet s’arrête.*fin de trajet.*désactivé/);
+  assert.match(blocker.text, /séparés passent.*Avant la correction.*trajet passe.*copie des captures bloque/);
   assert.match(blocker.next, /complète/);
   return blocker;
 }

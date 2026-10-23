@@ -18,6 +18,14 @@ competing one-shot read passes both cases, 17 targeted cases and the complete
 execution or proof of the exact earlier CI timing. Current news states that the
 full ride still needs replay; its historical capture date stays unchanged.
 
+The terminal 7c7bb699 run, started before that correction, passes the original
+ride/review native case but fails the schedule evidence copy. The later cleanup
+copy succeeds with 95 files, without replacing the failed phase. The first
+pre-installation network observer completes; its bounded carrier-readiness log
+is not a provisioning diagnosis. Policy/package/launcher restoration and host
+exit are verified. The current blocker follows this failed replay, not the older
+65c3f0fc ride assertion. No new gallery media or release acceptance is added.
+
 The later 23 October urgent-support physical trial passes with actual native
 submission and actual management-browser Review, Reply and Close. Eight read-only
 checkpoints preserve all 158 baseline records/claims. Five reviewed unscaled
