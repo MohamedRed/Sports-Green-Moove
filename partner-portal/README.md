@@ -1,5 +1,19 @@
 # Partner Progress Portal
 
+The 23 October connected physical support trial observes native Android Force
+stop before and after confirmation. Explicit Retry reuses one request; the
+post-confirmation reopen has no pending draft or third handler attempt. All ten
+independent checkpoints verify the 158 baseline records and claims. Four reviewed
+stream rectangles lead the tour; earlier dates and local clips remain separate.
+The later dashboard observation cannot establish uninstall or its session-end
+cause. No PID/SDK trace, real network-loss, urgent escalation or release acceptance
+is promoted. Backend/helper/credential cleanup is verified. Publication stays held.
+
+The latest `6441dca5` native job passes the ordinary 147 cases (50 explicit skips)
+and ten focused cases, but the full replay fails during evidence transfer after
+the consent native case passes. The current blocker/news follow that terminal
+failure; the older completed matrix retains its original evidence and date.
+
 The subsequent preinstalled `0af0155c` matrix passes 197 ordinary cases (147 pass,
 50 skip), all 36 isolated groups / 38 native cases and 16 copies. Four pinned APKs,
 the continuous installation guard and independent package/launcher/policy

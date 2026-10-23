@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Le brouillon ne revient plus après confirmation',
+    text: 'Deux fermetures complètes sur téléphone : le brouillon revient avant confirmation, puis reste effacé après. La demande est conservée sans doublon. Quatre captures sont ajoutées.', flow: 'support-submission',
+    source: 'docs/release/evidence/support-confirmed-restart-phone-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'L’essai complet reste interrompu',
+    text: 'Les dix essais séparés passent. La copie des captures bloque encore l’essai complet.', flow: 'publication',
+    source: 'docs/release/evidence/native-transfer-6441dca5-2026-10-23/README.md' },
   { date: '2026-10-22', title: 'Les 36 parcours locaux passent',
     text: 'Les captures sont aussi récupérées. Un essai séparé reste à refaire : son téléphone n’a pas pu être préparé.', flow: 'publication',
     source: 'docs/release/evidence/native-preinstalled-0af0155c-2026-10-22/README.md' },

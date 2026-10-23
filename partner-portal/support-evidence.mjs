@@ -7,8 +7,19 @@ import { validateSupportSubmissionEvidence } from '../scripts/qa/support-submiss
 import { validateSupportRecoveryPhoneEvidence } from '../scripts/qa/support-recovery-phone-evidence.mjs';
 import { validateSupportDiagnosticEvidence } from '../scripts/qa/support-recovery-diagnostic-evidence.mjs';
 import { validateSupportProcessRestartPhone } from '../scripts/qa/support-process-restart-phone-evidence.mjs';
+import { validateConfirmedSupportPhone } from '../scripts/qa/support-confirmed-restart-phone-evidence.mjs';
 
 export function validateSupportEvidence(root, flow, captures) {
+  if (flow.submissionConfirmedRestartPhone) {
+    const record = flow.submissionConfirmedRestartPhone, proof = validateConfirmedSupportPhone(root, record.source);
+    assert.equal(flow.id, 'support-submission'); assert.equal(flow.status, 'partial');
+    assert.equal(flow.checkedAt, proof.checkedAt); assert.equal(record.checkedAt, proof.checkedAt);
+    assert.equal(record.checksums, dirname(record.source) + '/artifact-sha256.json');
+    for (const [id, file] of Object.entries(proof.publishedCaptures)) {
+      assert(flow.images.some(image => image.file === id)); assert.equal(captures[id], dirname(record.source) + '/' + file);
+    }
+    assert.match(flow.verified, /seconde fermeture/); assert.match(flow.remaining, /vraie coupure/);
+  }
   if (flow.submissionRecovery) {
     const record = flow.submissionRecovery, proof = validateSupportSubmissionEvidence(root, record.source);
     assert.equal(flow.id, 'support-submission'); assert.equal(flow.status, 'partial');

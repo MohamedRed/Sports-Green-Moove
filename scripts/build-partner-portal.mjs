@@ -50,7 +50,7 @@ for (const flow of content.flows) for (const record of [flow.decisionPhone, flow
 for (const flow of content.flows.filter(flow => flow.supportPhone)) for (const file of [flow.supportPhone.source, flow.supportPhone.checksums])
   fingerprints[file] = createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex');
 for (const flow of content.flows)
-  for (const record of [flow.submissionPhoneAttempt, flow.submissionDiagnostics, flow.submissionRestartPhone].filter(Boolean))
+  for (const record of [flow.submissionPhoneAttempt, flow.submissionDiagnostics, flow.submissionRestartPhone, flow.submissionConfirmedRestartPhone].filter(Boolean))
     for (const file of [record.source, record.checksums])
       fingerprints[file] = createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex');
 const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };

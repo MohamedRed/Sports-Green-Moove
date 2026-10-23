@@ -3,6 +3,7 @@ import test from 'node:test';
 import { supportRecoveryPhases, verifySupportRecoveryCheckpoint, verifySupportLateConfirmation,
   verifySupportUnclassifiedReplay } from '../scripts/qa/manual-support-recovery-checkpoints.mjs';
 import { supportResponseGateInput } from '../scripts/qa/support-submission-response-gate.mjs';
+import { supportRecoveryProtocol, verifySupportProtocolCheckpoint, assertSupportResponseRelease } from '../scripts/qa/support-recovery-protocol.mjs';
 function fixture(confirmed = false) {
   const report = { id: 'a'.repeat(64), reporterUserId: supportResponseGateInput.uid, subjectType: 'other',
     reason: supportResponseGateInput.reason, description: supportResponseGateInput.description, emergency: true,
@@ -66,4 +67,28 @@ test('an unclassified second attempt can prove record integrity but never an exp
   assert.equal(result.explicitRetryVerified, false); assert.equal(result.processRestartVerified, false);
   row.state.reports.push(structuredClone(row.state.reports[0]));
   assert.throws(() => verifySupportUnclassifiedReplay(row.state, row.fixture));
+});
+test('the connected restart protocol never invents an offline checkpoint and includes a second post-confirmation reopening', () => {
+  const protocol = supportRecoveryProtocol('connected-process-restart');
+  assert.deepEqual(protocol.phases, ['prepared', 'committed', 'unconfirmed', 'stopped', 'reopened', 'confirmed',
+    'confirmed-stopped', 'confirmed-reopened', 'foreign', 'restored']);
+  assert(!protocol.phases.includes('offline'));
+  assert.deepEqual(supportRecoveryProtocol().phases, supportRecoveryPhases);
+  assert.throws(() => supportRecoveryProtocol('unknown'));
+  for (const phase of ['committed', 'unconfirmed', 'stopped', 'reopened', 'confirmed', 'confirmed-stopped', 'confirmed-reopened']) {
+    const confirmed = phase.startsWith('confirmed'), row = fixture(confirmed);
+    if (['stopped', 'reopened'].includes(phase)) row.state.released = {runId: 'run', reportId: row.fixture.reportId, receiptUnchanged: true};
+    const result = verifySupportProtocolCheckpoint(protocol, phase, row.state, row.fixture);
+    assert.equal(result.phase, phase); assert.equal(result.attemptCount, confirmed ? 2 : 1);
+    assert.equal(result.originalContentUnchanged, true);
+  }
+});
+test('release requires every actual pre-release checkpoint in order, without allowing another protocol', () => {
+  const protocol = supportRecoveryProtocol('connected-process-restart');
+  const checkpoints = ['prepared', 'committed', 'unconfirmed'].map(phase => ({phase}));
+  assertSupportResponseRelease(protocol, checkpoints);
+  for (const rows of [[], checkpoints.slice(0, 2), [...checkpoints].reverse(), [...checkpoints, {phase: 'stopped'}]])
+    assert.throws(() => assertSupportResponseRelease(protocol, rows));
+  assert.throws(() => assertSupportResponseRelease({...protocol, releaseAfter: 'committed'}, checkpoints.slice(0, 2)));
+  assert.throws(() => verifySupportProtocolCheckpoint(protocol, 'offline', {}, {}));
 });

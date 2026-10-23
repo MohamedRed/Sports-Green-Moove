@@ -13,4 +13,6 @@ export const nativeRechecks = {
     checksums: 'docs/release/evidence/native-boot-bea9e0ee-2026-10-22/artifact-sha256.json'},
   nativeMatrixRecheck: {source: 'docs/release/evidence/native-preinstalled-0af0155c-2026-10-22/summary.json', checkedAt: '2026-10-22',
     checksums: 'docs/release/evidence/native-preinstalled-0af0155c-2026-10-22/artifact-sha256.json'},
+  nativeTransferRecheck: {source: 'docs/release/evidence/native-transfer-6441dca5-2026-10-23/summary.json', checkedAt: '2026-10-23',
+    checksums: 'docs/release/evidence/native-transfer-6441dca5-2026-10-23/artifact-sha256.json'},
 };

@@ -37,8 +37,8 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
-  updatedAt: '2026-10-22',
-  lastVerifiedAt: '2026-10-22',
+  updatedAt: '2026-10-23',
+  lastVerifiedAt: '2026-10-23',
   ...nativeRechecks,
   nativeVerification,
   releaseNote: 'Tests en cours.',

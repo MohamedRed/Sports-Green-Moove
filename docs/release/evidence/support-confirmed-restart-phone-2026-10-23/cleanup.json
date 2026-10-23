@@ -1,0 +1,21 @@
+{
+  "scope": "owned-resources-only-with-unverified-phone-storage-disposal",
+  "controllerClosed": true,
+  "phoneDashboardObserved": true,
+  "phoneSessionEndCauseEstablished": false,
+  "unintendedReplacementSessionCancelled": true,
+  "appUninstallVerified": false,
+  "appPrivateStorageClearedVerified": false,
+  "deviceAdministrationChanged": false,
+  "networkSettingsChanged": false,
+  "storeSettingsChanged": false,
+  "hostClipboardRestored": true,
+  "backendExitCode": 130,
+  "helperExitCode": 0,
+  "helperProcessGroupExitVerified": true,
+  "helperPrivateDirectoryRemoved": true,
+  "backendPrivateRuntimeRemoved": true,
+  "privateSessionFileRemoved": true,
+  "phoneFixtureCredentialsUsableAfterBackendDestruction": false,
+  "listeningPortsAfterCleanup": []
+}

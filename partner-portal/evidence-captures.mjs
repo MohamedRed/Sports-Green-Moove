@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['prepared', 'pending', 'confirmed', 'reopened'].map(id => ['support-confirmed-phone-' + id,
+    'docs/release/evidence/support-confirmed-restart-phone-2026-10-23/captures/' + id + '.png'])),
   ...Object.fromEntries([['prepared', '01-prepared'], ['uncertain', '02-unconfirmed-before-stop'],
     ['restored', '04-draft-restored-new-process'], ['confirmed', '05-confirmed-after-explicit-retry'],
     ['history', '06-single-matching-history-item'], ['details', '07-original-urgent-request-details']]
