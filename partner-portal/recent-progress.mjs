@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Le trajet et l’avis passent sur téléphone',
+    text: 'Prise en charge, dépose, fin du trajet et avis du parent : huit captures ajoutées. Les comptes sont utilisés l’un après l’autre, avec des données de test.', flow: 'ride-lifecycle',
+    source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'Les 36 parcours locaux passent à nouveau',
+    text: 'Le parcours complet et les captures vont au bout, y compris la reprise des messages après coupure.', flow: 'messages',
+    source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Les statuts ne reviennent plus en arrière dans l’essai ciblé',
     text: 'Le retour à l’ancien statut est reproduit puis corrigé. Le trajet complet reste à rejouer.', flow: 'ride-lifecycle',
     source: 'docs/release/evidence/passenger-observation-ownership-2026-10-23/README.md' },

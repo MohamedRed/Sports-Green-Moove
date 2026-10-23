@@ -179,10 +179,18 @@ export const tours = {
     image('membership-reopened', 'Revenir aux adhésions', 'Les décisions restent visibles après réouverture de l’écran.'),
   ],
   'ride-lifecycle': [
+    image('ride-phone-started', 'Démarrer le trajet', 'Sur téléphone, avec un enfant inscrit pour deux places.'),
+    image('ride-phone-picked-up', 'Confirmer la prise en charge', 'La dépose devient disponible.'),
+    image('ride-phone-dropped-off', 'Confirmer la dépose', 'Les deux confirmations restent affichées.'),
+    image('ride-phone-stable', 'Terminer le trajet', 'Le bouton reste disponible après actualisation.'),
+    image('ride-phone-completed', 'Recevoir la confirmation', 'La course est terminée, sans paiement réel.'),
+    image('ride-phone-parent-history', 'Passer au compte parent', 'Le trajet apparaît dans les trajets passés.'),
     image('ride-delivered', 'Déposer les passagers', 'L’essai local vérifie les déposes avant la fin du trajet.'),
     image('ride-history', 'Retrouver le trajet terminé', 'Le trajet terminé apparaît dans l’historique du parent.'),
   ],
   ratings: [
+    image('ride-phone-review-prompt', 'Donner son avis sur téléphone', 'Le parent peut noter le trajet terminé.'),
+    image('ride-phone-reviewed', 'Envoyer cinq étoiles', 'L’avis est enregistré et la demande disparaît.'),
     image('ride-review', 'Donner son avis', 'Une demande d’avis est proposée après le trajet local.'),
     image('ride-review-sent', 'Envoyer l’avis', 'L’avis est enregistré et la demande disparaît.'),
   ],

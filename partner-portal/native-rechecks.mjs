@@ -1,4 +1,6 @@
 export const nativeRechecks = {
+  rideCompletionRecheck: { source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/summary.json', checkedAt: '2026-10-23',
+    checksums: 'docs/release/evidence/ride-completion-recheck-2026-10-23/artifact-sha256.json' },
   nativeScheduleCollectionRecheck: { source: 'docs/release/evidence/native-terminal-7c7bb699-2026-10-23/run.json', checkedAt: '2026-10-23',
     checksums: 'docs/release/evidence/native-terminal-7c7bb699-2026-10-23/artifact-sha256.json' },
   passengerStatusOwnershipRecheck: { source: 'docs/release/evidence/passenger-observation-ownership-2026-10-23/summary.json', checkedAt: '2026-10-23',

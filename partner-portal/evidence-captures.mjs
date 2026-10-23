@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['started', 'picked-up', 'dropped-off', 'stable', 'completed', 'parent-history', 'review-prompt', 'reviewed'].map(phase => [
+    'ride-phone-' + phase, 'docs/release/evidence/ride-completion-recheck-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['prepared', 'pending', 'confirmed', 'reopened'].map(id => ['support-confirmed-phone-' + id,
     'docs/release/evidence/support-confirmed-restart-phone-2026-10-23/captures/' + id + '.png'])),
   ...Object.fromEntries([['prepared', '01-prepared'], ['uncertain', '02-unconfirmed-before-stop'],

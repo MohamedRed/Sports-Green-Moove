@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 23 October fa0cc1ff full replay and all ten focused lanes pass. The
+full replay retains 36 groups, 38 native cases, 16 primary copies and verified
+restoration/host exit. Its old blocker is removed, without explaining historical
+transport failures. A separate physical ride UI trial passes pickup, stable
+dropoff, completion, parent history and rating with seven independent checkpoints
+and 158 unchanged baseline records/claims. Eight reviewed stream rectangles lead
+the ride/rating tours. Accounts are sequential; no GPS, maps, distance, payments,
+push or release readiness is accepted. Sign-out/session stop and owned local
+cleanup are verified; app uninstall remains unverified. Earlier records below
+remain historical and retain their original dates and outcomes.
+
 On 23 October 2026 the owner explicitly answered "Non, garder le site public".
 The existing public audience must be preserved; no access change or invitation is
 needed for the next update. Publish the reviewed synthetic media and concise flow

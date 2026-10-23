@@ -258,7 +258,9 @@ test('new ride captures use a completed seven-case UI run and keep old evidence 
     assert.equal(flow.ui.source, 'docs/release/evidence/local-ride-ui-2026-10-15/results.json');
     assert(flow.ui.groups.includes(group));
     assert.equal(flow.status, 'partial');
-    assert.equal(flow.images.length, 2);
+    assert.equal(flow.images.filter(image => !image.file.startsWith('ride-phone-')).length, 2);
+    assert.equal(flow.images.filter(image => image.file.startsWith('ride-phone-')).length,
+      id === 'ride-lifecycle' ? 6 : id === 'ratings' ? 2 : 0);
   }
   const old = JSON.parse(source('docs/release/evidence/local-ui-2026-10-15/results.json'));
   assert.equal(old.testCount, 6);

@@ -165,6 +165,8 @@ on:
       - "tests/booking-consistency-evidence.test.mjs"
       - "tests/booking-notice-atomicity.test.mjs"
       - "tests/manual-booking-phone-checkpoints.test.mjs"
+      - "tests/manual-ride-phone-checkpoints.test.mjs"
+      - "tests/ride-completion-recheck-evidence.test.mjs"
       - "tests/manual-support-phone-checkpoints.test.mjs"
       - "tests/support-phone-evidence.test.mjs"
       - "tests/support-followup.test.mjs"
@@ -540,6 +542,8 @@ on:
       - "tests/booking-consistency-evidence.test.mjs"
       - "tests/booking-notice-atomicity.test.mjs"
       - "tests/manual-booking-phone-checkpoints.test.mjs"
+      - "tests/manual-ride-phone-checkpoints.test.mjs"
+      - "tests/ride-completion-recheck-evidence.test.mjs"
       - "tests/manual-support-phone-checkpoints.test.mjs"
       - "tests/support-phone-evidence.test.mjs"
       - "tests/support-followup.test.mjs"
@@ -865,6 +869,8 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
         run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/manual-booking-phone-checkpoints.test.mjs tests/flow-recheck.test.mjs tests/booking-decisions-phone-evidence.test.mjs tests/native-capture-recheck-evidence.test.mjs
+      - name: Check completed ride and physical-phone evidence
+        run: node --test tests/manual-ride-phone-checkpoints.test.mjs tests/ride-completion-recheck-evidence.test.mjs
       - name: Validate physical guardian revocation and new team admission evidence
         run: node --test tests/team-chat-authority-phone-evidence.test.mjs
       - name: Validate isolated phone support checkpoints

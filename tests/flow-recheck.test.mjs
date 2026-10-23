@@ -37,14 +37,12 @@ test('terminal service success is separate from failed native replay and unstart
   assert.equal(progress.date, '2026-10-22');
   assert.match(progress.text, /interrompu/); assert.match(progress.text, /débloquer/);
 });
-test('current native blocker follows the latest incomplete CI, not an immutable historical gallery', () => {
+test('completed replay removes its blocker but does not replace historical failures or finish release', () => {
   validateCurrentNativeBlocker(process.cwd(), content);
-  for (const patch of [{source: content.nativeVerification.source}, {text: 'Tout passe'}, {next: ''}]) {
-    const changed = structuredClone(content);
-    Object.assign(changed.blockers.find(item => item.id === 'test-device-stability'), patch);
-    assert.throws(() => validateCurrentNativeBlocker(process.cwd(), changed));
-  }
-  const missing = {...content, blockers: content.blockers.filter(item => item.id !== 'test-device-stability')};
+  const changed = structuredClone(content);
+  changed.blockers.push({id: 'test-device-stability', text: 'Still blocked'});
+  assert.throws(() => validateCurrentNativeBlocker(process.cwd(), changed));
+  const missing = {...content, rideCompletionRecheck: content.nativeScheduleCollectionRecheck};
   assert.throws(() => validateCurrentNativeBlocker(process.cwd(), missing));
 });
 test('completed matrix is distinct from a cancelled focused job after verified fixture and policy restoration', () => {
