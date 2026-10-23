@@ -12,7 +12,8 @@
 
 ## Partner Progress Website
 
-The user requested an ongoing private visual follow-up site. Canonical source is
+The user requested an ongoing visual follow-up site. On 23 October 2026 the user
+explicitly chose to keep the existing Site public. Canonical source is
 `partner-portal/`; the published site is separate from public Firebase Hosting.
 Read `partner-portal/README.md` before changing or publishing it.
 
@@ -24,9 +25,10 @@ When completed work changes a user-facing flow, a verified result, or a blocker:
    retain the original recording and identify edits. Never infer a successful
    transaction or message exchange from an empty screen or passing CI.
 3. Validate, rebuild and review affected screens. Commit/push canonical changes.
-4. Publish the matching private Sites snapshot using the documented workflow.
+4. Publish the matching Sites snapshot with its confirmed public audience using the documented workflow.
    Report deployment success separately from committed or locally verified work.
 
-Never widen the Site audience or invite a guessed address. The partner's email is
-not known yet. Do not mark the overall user-flow release goal complete while
+Never change the Site audience without a new request or invite a guessed address.
+Publish only reviewed synthetic evidence, never raw diagnostics or private contacts.
+The partner's email is not known yet. Do not mark the overall user-flow release goal complete while
 required physical tracking and safety-audit evidence is missing.

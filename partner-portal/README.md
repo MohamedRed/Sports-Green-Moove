@@ -1,5 +1,16 @@
 # Partner Progress Portal
 
+## Current Publication Policy
+
+On 23 October 2026 the owner explicitly answered "Non, garder le site public".
+The existing public audience must be preserved; no access change or invitation is
+needed for the next update. Publish the reviewed synthetic media and concise flow
+results through `save_site_version` then `deploy_site_version`. Raw diagnostics,
+credentials and private contact details are not website assets. The obsolete
+private-space label/sign-out control is removed; no client authentication is added.
+Keep `noindex,nofollow,noarchive`. Historical publication-hold statements below and
+inside dated evidence describe their original state, not a current publication ban.
+
 The later 23 October urgent-support physical trial passes with actual native
 submission and actual management-browser Review, Reply and Close. Eight read-only
 checkpoints preserve all 158 baseline records/claims. Five reviewed unscaled
@@ -7,12 +18,14 @@ browser-stream rectangles lead its tour; the older local proof stays separate.
 Both accounts are observed sequentially, not two simultaneous phones. No email,
 native screenshot export, video, whole-process restart or real network loss is
 accepted. Sign-out, uninstall acknowledgement/launcher absence, explicit session
-stop and owned runtime/credential/port cleanup are verified. Publication stays held.
+stop and owned runtime/credential/port cleanup are verified. Its earlier publication
+hold is lifted by the owner's public-audience decision above.
 
-The terminal 80c88d0c Native run passes all ten focused lanes, but the full replay
-fails waiting for network preparation in LocalChatNetworkFlowTest line 82. Current
-news/blocker follow that result, without accepting new native media or explaining
-the root cause. Earlier full-matrix successes retain their own source and date.
+The later terminal 65c3f0fc run passes all ten focused lanes, but its full replay
+fails on the disabled end-ride button at LocalRideFlowTest line 75. Current news
+and blocker follow that limited observation, without claiming a root cause or
+new native media. The earlier 80c88d0c network-preparation failure remains separate;
+the later run stopped before that case. Earlier successes keep their own dates.
 
 The 23 October urgent-support record is a separate local tour: eleven isolated
 service checks, six actual management-browser checks, seven reviewed originals
@@ -438,8 +451,9 @@ Use the installed Sites skill and tools. Do not call `create_site` again.
 6. For confirmed owner-private access use `save_version_and_deploy_private` with
    the helper's exact project ID, commit SHA and archive. After an invitation,
    inspect the audience and use the appropriate shared-site deploy operation.
-7. Wait for deployment success. Verify anonymous page, JSON and media requests are
-   denied or redirected; verify authorized content through the supported access.
+7. Wait for deployment success. For the currently authorized public audience,
+   verify anonymous page, JSON and allowlisted media access. For a future explicitly
+   requested private audience, verify those requests are denied or redirected.
    Do not rotate credentials or widen access to perform a check.
 
 Publication is part of meaningful completed work, not an unattended schedule or an

@@ -26,7 +26,7 @@ test('the historical failed collection stays failed while the newer blocker foll
   const record = content.nativeTransferRecheck, report = validateNativeTransferRecheck(process.cwd(), record);
   assert.equal(report.fullCiPassed, false); assert.equal(report.focusedCasesPassed, 10);
   assert.equal(content.blockers.find(item => item.id === 'test-device-stability').source,
-    content.nativeNetworkPreparationRecheck.source.replace('run.json', 'README.md'));
+    content.nativeRideCompletionRecheck.source.replace('run.json', 'README.md'));
   assert.notEqual(content.nativeNetworkPreparationRecheck.source, record.source);
 });
 test('the independent observer only reads records and refuses missing or invalid scope before connecting', () => {

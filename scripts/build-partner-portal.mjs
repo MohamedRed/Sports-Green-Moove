@@ -16,7 +16,7 @@ rmSync(out, { recursive: true, force: true });
 mkdirSync(resolve(out, 'media'), { recursive: true });
 const assetRevision = buildBrowserAssets(root, portal, out);
 mkdirSync(resolve(out, 'icons'));
-for (const name of ['play', 'x', 'search', 'arrow-up-right', 'chevron-left', 'chevron-right', 'download', 'image-off', 'lock-keyhole', 'log-out', 'info', 'leaf']) {
+for (const name of ['play', 'x', 'search', 'arrow-up-right', 'chevron-left', 'chevron-right', 'download', 'image-off', 'info', 'leaf']) {
   cpSync(resolve(portal, `node_modules/lucide-static/icons/${name}.svg`), resolve(out, `icons/${name}.svg`));
 }
 for (const [name, source] of Object.entries(videos)) cpSync(resolve(root, source), resolve(out, `media/${name}-full.mp4`));

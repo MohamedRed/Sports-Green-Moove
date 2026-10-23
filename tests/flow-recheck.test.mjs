@@ -9,6 +9,15 @@ import { content } from '../partner-portal/content.mjs';
 import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
 import { validateNativeTerminalRecheck } from '../scripts/qa/native-terminal-recheck-evidence.mjs';
 import { validateNativeBootRecheck } from '../scripts/qa/native-boot-recheck-evidence.mjs';
+import { validateNativeRideCompletionRecheck } from '../scripts/qa/native-ride-completion-recheck-evidence.mjs';
+
+test('latest full replay failed at ride completion without replacing the earlier network failure', () => {
+  const run = validateNativeRideCompletionRecheck(process.cwd(), content.nativeRideCompletionRecheck);
+  assert.equal(run.conclusion, 'failure');
+  assert.notEqual(content.nativeRideCompletionRecheck.source, content.nativeNetworkPreparationRecheck.source);
+  const update = content.updates.find(item => item.source === content.nativeRideCompletionRecheck.source.replace('run.json', 'README.md'));
+  assert.match(update.text, /cause reste à vérifier/);
+});
 
 test('terminal service success is separate from failed native replay and unstarted phone checkpoints', () => {
   const report = validateFlowRecheck(process.cwd(), content.flowRecheck);

@@ -93,7 +93,8 @@ test('portal has no production app hosting rewrite or client-side auth substitut
   const html = source('partner-portal/src/index.html');
   assert.match(html, /noindex,nofollow,noarchive/);
   assert.match(html, /Content-Security-Policy/);
-  assert.match(html, /signout-with-chatgpt\?return_to=/);
+  assert.doesNotMatch(html, /Espace privé|Suivi privé|signout-with-chatgpt|lock-keyhole/);
+  assert.doesNotMatch(source('partner-portal/src/styles.css'), /\.access\s*\{|\.signout\s*\{/);
   assert(!html.includes('firebase'));
   const manifest = JSON.parse(source('partner-portal/.openai/hosting.json'));
   assert.equal(manifest.static.directory, 'dist');

@@ -36,5 +36,5 @@ cpSync(resolve(portal, '.openai/hosting.json'), resolve(destination, '.openai/ho
 // Only replace the generated static snapshot; never alter the Sites repository history.
 rmSync(resolve(destination, 'dist'), { recursive: true, force: true });
 cpSync(resolve(portal, 'dist'), resolve(destination, 'dist'), { recursive: true });
-writeFileSync(resolve(destination, 'README.md'), `# Sports Green-Moove Progress\n\nPrivate static snapshot generated from canonical source commit ${commit}.\n\nCanonical source: https://github.com/MohamedRed/Sports-Green-Moove/tree/${commit}/partner-portal\n\nAccess is controlled by Sites, including media and JSON. Keep owner-only until a partner email is explicitly supplied.\n`);
+writeFileSync(resolve(destination, 'README.md'), `# Sports Green-Moove Progress\n\nStatic snapshot generated from canonical source commit ${commit}.\n\nCanonical source: https://github.com/MohamedRed/Sports-Green-Moove/tree/${commit}/partner-portal\n\nThe owner explicitly chose to keep this Site public on 23 October 2026. Preserve that audience. Publish reviewed synthetic captures only; raw diagnostics, credentials and private contact details are not part of this snapshot.\n`);
 console.log(JSON.stringify({ checkout_path: destination, project_id: manifest.project_id, canonical_commit: commit }));
