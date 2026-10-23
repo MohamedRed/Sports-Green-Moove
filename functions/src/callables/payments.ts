@@ -10,7 +10,8 @@ import {
   createStripeClient,
 } from "../services/stripeConnect.js";
 import { prepareRidePayment, finishRidePayment } from "../services/ridePaymentPreparation.js";
-import { computeRewardBalanceCents } from "../domain/rewards.js";
+import { payoutResult, rewardPayoutInput } from "../domain/rewardPayout.js";
+import { reserveRewardPayout, finishRewardPayout } from "../services/rewardPayout.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth, requireRole } from "../lib/https.js";
 import { stripePublishableKeySecret, stripeSecretKeySecret } from "../lib/providerSecrets.js";
@@ -108,62 +109,18 @@ export const createRidePaymentIntent = onCall(
 );
 
 export const issueRewardPayout = onCall({ secrets: [stripeSecretKeySecret] }, async (request) => {
-  requireAuth(request.auth?.uid);
+  const uid = requireAuth(request.auth?.uid);
   requireAdmin(request.auth?.token);
-  const schema = z.object({
-    userId: z.string(),
-    amountCents: z.number().int().positive(),
-    currency: z.literal("eur").default("eur"),
-    sourceId: z.string().min(1).max(120).regex(/^[A-Za-z0-9._-]+$/).optional(),
-  });
-  const data = parseCallableData(schema, request.data);
-  const sourceId = data.sourceId ?? `manual_${Date.now()}`;
-  const ledgerId = `payout_${data.userId}_${sourceId}`;
-  const ledgerRef = firestore.collection("rewardLedger").doc(ledgerId);
-
-  const accountSnap = await firestore.collection("stripeAccounts").doc(data.userId).get();
-  const stripeAccount = accountSnap.data() as StripeAccountDocument | undefined;
-  if (!stripeAccount?.stripeAccountId) {
-    throw new HttpsError("failed-precondition", "User Stripe account is required before payout.");
+  const data = parseCallableData(rewardPayoutInput, request.data);
+  const prepared = await reserveRewardPayout(data, uid);
+  if (prepared.result) return prepared.result;
+  const operation = prepared.operation!;
+  let transfer;
+  try {
+    transfer = await createRewardPayoutTransfer(operation, stripeSecretKeySecret.value());
+  } catch {
+    throw new HttpsError("unavailable", "Payout is unconfirmed. Retry the same request; its balance remains reserved.");
   }
-  if (stripeAccount.payoutsEnabled !== true) {
-    throw new HttpsError("failed-precondition", "Stripe payouts are not enabled for this user.");
-  }
-  if ((await ledgerRef.get()).exists) {
-    throw new HttpsError("already-exists", "This payout was already issued.");
-  }
-
-  const ledgerSnap = await firestore.collection("rewardLedger").where("userId", "==", data.userId).get();
-  const balanceCents = computeRewardBalanceCents(
-    ledgerSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as Parameters<typeof computeRewardBalanceCents>[0],
-    data.userId,
-  );
-  if (balanceCents < data.amountCents) {
-    throw new HttpsError("failed-precondition", "Insufficient reward balance.");
-  }
-
-  const transfer = await createRewardPayoutTransfer(
-    {
-      userId: data.userId,
-      amountCents: data.amountCents,
-      currency: data.currency,
-      destinationStripeAccountId: stripeAccount.stripeAccountId,
-      sourceId,
-    },
-    stripeSecretKeySecret.value(),
-  );
-
-  await ledgerRef.create({
-    id: ledgerId,
-    userId: data.userId,
-    type: "payout",
-    amountCents: -data.amountCents,
-    currency: data.currency,
-    sourceId: transfer.id,
-    payoutSourceId: sourceId,
-    createdAt: new Date().toISOString(),
-    createdBy: request.auth?.uid,
-  });
-
-  return { transferId: transfer.id, ledgerId, amountCents: data.amountCents, currency: data.currency };
+  await finishRewardPayout(transfer, operation);
+  return payoutResult(operation, transfer.id);
 });

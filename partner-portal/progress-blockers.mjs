@@ -1,6 +1,9 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
+  { id: 'native-login-replay', title: 'Rejouer les connexions',
+    text: 'Le dernier essai complet et la conversation d’équipe s’arrêtent à la connexion. La cause reste à vérifier.',
+    next: 'Identifier le blocage, puis rejouer les parcours concernés.', source: 'docs/release/evidence/payout-accounting-2026-10-23/README.md' },
   { id: 'support-urgent-email', title: 'Activer les e-mails du support',
     text: 'L’alerte et le suivi passent depuis le téléphone, avec les données isolées. Aucun e-mail réel n’a été envoyé.',
     next: 'Choisir une adresse d’expédition, puis confirmer la réception d’un e-mail.', source: 'docs/release/evidence/support-urgent-phone-2026-10-23/README.md' },

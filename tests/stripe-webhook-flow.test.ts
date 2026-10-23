@@ -7,7 +7,7 @@ import { registerRidePaymentStatusChecks } from "./helpers/ride-payment-status-c
 
 const PROJECT_ID = "sports-green-moove-rules-test";
 const COLLECTIONS = ["bookings", "trips", "rewardLedger", "reports", "stripeAccounts", "tripCancellations", "notifications", "rideSessions",
-  "ridePaymentReceipts", "ridePaymentAttempts", "tripChangeBalances"];
+  "ridePaymentReceipts", "ridePaymentAttempts", "tripChangeBalances", "rewardPayoutOperations", "rewardPayoutGuards", "payoutReversals"];
 
 let firestore: Firestore;
 let reconcileStripeEvent: (event: Stripe.Event) => Promise<void>;

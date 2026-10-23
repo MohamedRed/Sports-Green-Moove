@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The later 23 October accounting run reproduces and fixes concurrent reward
+withdrawal and cumulative partial-reversal errors. Sixty emulator/journal cases,
+394 backend unit cases and five isolated browser component checks pass, without
+provider credentials, real money or an integrated browser/provider flow. No new
+payment media is published; prior capture dates stay unchanged. The preceding
+c1d2a2ff native run fails in two login waits; nine other focused cases pass. A new
+login-replay blocker reports that terminal run without invalidating older successes
+or claiming a cause, current native completion, deployment or release readiness.
+
 The 23 October notification-permission trial fixes a hard-coded enabled label
 and unrelated profile navigation. Actual app-specific OS allow/block changes
 and both app-screen returns pass on one physical Android phone; four read-only

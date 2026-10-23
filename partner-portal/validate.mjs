@@ -31,6 +31,7 @@ import { sessionDisconnectScope } from '../scripts/qa/session-disconnect-evidenc
 import { validateSessionDisconnectReport, validateRetainedSessionDisconnect } from '../scripts/qa/session-disconnect-retained-evidence.mjs';
 import { validateCurrentNativeBlocker, validateFlowRecheck } from '../scripts/qa/flow-recheck-evidence.mjs';
 import { validateNotificationSettingsPhone } from '../scripts/qa/notification-settings-phone-evidence.mjs';
+import { validatePayoutAccountingEvidence } from '../scripts/qa/payout-accounting-evidence.mjs';
 
 export function validate(root) {
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
@@ -39,6 +40,7 @@ export function validate(root) {
   assert(content.lastVerifiedAt <= content.updatedAt);
   validateFlowRecheck(root, content.flowRecheck);
   validateCurrentNativeBlocker(root, content);
+  validatePayoutAccountingEvidence(root, content);
   const nativeDirectory = dirname(content.nativeVerification.manifest);
   assert(nativeDirectory.startsWith('docs/release/evidence/'));
   assert.equal(content.nativeVerification.source, nativeDirectory + '/README.md');

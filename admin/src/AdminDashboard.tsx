@@ -11,6 +11,7 @@ import { GuardianReviewPanel } from "./GuardianReviewPanel";
 import { TeamReviewPanel } from "./TeamReviewPanel";
 import { UrgentSupportPanel } from "./UrgentSupportPanel";
 import { SupportReportLink } from "./SupportReportLink";
+import { RewardPayoutRow } from "./RewardPayoutRow";
 import type { FirestoreRecord, Metric, PayoutCandidate, RoleMap } from "./types";
 
 type Props = {
@@ -74,7 +75,7 @@ export function AdminDashboard({ uid, userEmail, projectLabel, onSignOut, canRev
         <TripsTable trips={trips.items} bookings={bookings.items} />
         <RideSessionsTable rideSessions={rideSessions.items} />
         <ReportsTable reports={reports.items.filter(report => report.emergency !== true || report.status === "closed")} />
-        <PayoutsTable payouts={payouts} />
+        <PayoutsTable payouts={payouts} scope={`${projectLabel}:${uid}`} />
       </section>
     </main>
   );
@@ -177,25 +178,11 @@ function RideSessionsTable({ rideSessions }: { rideSessions: FirestoreRecord[] }
   );
 }
 
-function PayoutsTable({ payouts }: { payouts: PayoutCandidate[] }) {
+function PayoutsTable({ payouts, scope }: { payouts: PayoutCandidate[]; scope: string }) {
   return (
-    <TableSection id="payouts" title="Payouts">
-      <thead><tr><th>User</th><th>Balance</th><th>Stripe</th><th>Action</th></tr></thead>
-      <tbody>{payouts.map((candidate) => <PayoutRow key={candidate.userId} candidate={candidate} />)}</tbody>
+    <TableSection id="payouts" title="Versements" className="payout-table">
+      <thead><tr><th>Bénéficiaire</th><th>Solde</th><th>Compte</th><th>Action</th></tr></thead>
+      <tbody>{payouts.map((candidate) => <RewardPayoutRow key={`${scope}:${candidate.userId}`} candidate={candidate} scope={scope} send={issueRewardPayout} />)}</tbody>
     </TableSection>
   );
-}
-
-function PayoutRow({ candidate }: { candidate: PayoutCandidate }) {
-  const [status, setStatus] = useState("");
-  async function pay() {
-    setStatus("Envoi...");
-    try {
-      await issueRewardPayout(candidate.userId, candidate.balanceCents);
-      setStatus("Payout demandé");
-    } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Erreur payout");
-    }
-  }
-  return <tr><td>{candidate.userId}</td><td>{formatEuro(candidate.balanceCents)}</td><td><Badge tone={candidate.stripeReady ? "ok" : "warning"}>{candidate.stripeReady ? "ready" : "blocked"}</Badge></td><td><button className="small-button" disabled={!candidate.stripeReady || candidate.balanceCents <= 0} onClick={pay}>Payout</button><span>{status}</span></td></tr>;
 }

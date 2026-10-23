@@ -378,6 +378,9 @@ on:
       - "storage.rules"
       - "tests/admin-plan-coverage.test.mjs"
       - "tests/stripe-webhook-flow.test.ts"
+      - "tests/reward-payout-flow.test.ts"
+      - "tests/admin-payout-request.test.ts"
+      - "tests/payout-accounting-evidence.test.mjs"
       - "tests/stripe-production-readiness.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "docs/release/evidence-manifest.json"
@@ -764,6 +767,9 @@ on:
       - "storage.rules"
       - "tests/admin-plan-coverage.test.mjs"
       - "tests/stripe-webhook-flow.test.ts"
+      - "tests/reward-payout-flow.test.ts"
+      - "tests/admin-payout-request.test.ts"
+      - "tests/payout-accounting-evidence.test.mjs"
       - "tests/stripe-production-readiness.test.mjs"
       - "tests/release-gaps.test.mjs"
       - "docs/release/evidence-manifest.json"
@@ -1106,6 +1112,8 @@ jobs:
 
       - name: Test Stripe webhook flow
         run: npm run test:stripe-webhook-flow
+      - name: Validate isolated payout evidence and its verification limits
+        run: node --test tests/payout-accounting-evidence.test.mjs
 
       - name: Test Stripe production readiness verification
         run: npm run test:stripe-production-readiness && npm run test:release-gaps

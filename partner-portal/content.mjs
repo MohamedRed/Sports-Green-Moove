@@ -10,6 +10,7 @@ import { createEmergencyProfileFlow } from './emergency-profile-flow.mjs';
 import { createSessionRestorationFlow } from './session-restoration-flow.mjs';
 import { createSessionDisconnectFlow } from './session-disconnect-flow.mjs';
 import { createNotificationSettingsFlow } from './notification-settings-flow.mjs';
+import { createPaymentsFlow } from './payments-flow.mjs';
 import { nativeVerification } from './native-verification.mjs';
 import { nativeRechecks } from './native-rechecks.mjs';
 export { assets, videos, excerpts } from './portal-media.mjs';
@@ -227,17 +228,7 @@ export const content = {
         { ...shot('membership-manager', 'Acceptation et refus des adhésions, essai du 16 octobre'), landscape: true },
         { ...shot('membership-admin', 'Décisions d’adhésion enregistrées, essai du 16 octobre'), landscape: true },
         shot('membership-mobile', 'Confirmation annulée sans modification, essai du 16 octobre')], source: 'docs/release/evidence/local-guardian-parent-native-2026-10-18/README.md' },
-    { id: 'payments', title: 'Paiements et compte conducteur', status: 'partial', checkedAt: '2026-10-18',
-      summary: 'Une confirmation tardive reste en attente dans les essais locaux.',
-      verified: 'Le paiement est confirmé seulement quand son enregistrement est complet. Vérifier ne relance pas de paiement.',
-      remaining: 'Les pages de retour s’ouvrent à nouveau. Tester les écrans, l’inscription conducteur, les paiements réels sur téléphone et les remboursements, y compris après fermeture.',
-      local: local(['ride-payment-confirmation'], ['Une confirmation tardive reste en attente.', 'Un enregistrement incomplet ne confirme pas le paiement.', 'Un autre parent ne peut pas consulter ce paiement.', 'Vérifier ne lance pas un nouveau paiement.', 'Aucun paiement ni remboursement réel dans ces essais.'], 'docs/release/evidence/local-payment-confirmation-2026-10-18/services.json'),
-      ui: { source: 'docs/release/evidence/local-payment-layout-2026-10-18/results.json', groups: [
-        'pendingPaymentOffersOnlyReadOnlyVerificationOnANarrowScreen', 'anInconsistentRecordRemainsExplicitlyUnconfirmed',
-        'aStatusReadDisablesRepeatedChecks'] },
-      images: [shot('payment-pending-narrow', 'Confirmation en attente sur écran étroit, essai local du 18 octobre'),
-        shot('payment-review', 'Paiement à vérifier, essai local du 18 octobre'),
-        shot('payments', 'Écran de paiement vide lors de l’essai du 11 octobre')], source: 'docs/release/evidence/local-payment-confirmation-2026-10-18/README.md' },
+    createPaymentsFlow(local, shot),
     createEmergencyFlow(),
     createEmergencyProfileFlow(),
     createChildEmergencyFlow(),

@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Deux erreurs de versement corrigées',
+    text: 'Le même solde ne part plus deux fois. Les remboursements en plusieurs étapes sont comptés. Les essais passent sans argent réel.', flow: 'payments',
+    source: 'docs/release/evidence/payout-accounting-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'Deux connexions restent à débloquer',
+    text: 'Le dernier essai complet et celui de la conversation d’équipe s’arrêtent à la connexion. Les neuf autres essais séparés passent.', flow: 'team-conversation',
+    source: 'docs/release/evidence/payout-accounting-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Le réglage des notifications fonctionne sur téléphone',
     text: 'Le statut suit maintenant l’autorisation du téléphone, dans le profil et les paramètres. Six captures ajoutées. La réception des alertes reste à tester.', flow: 'notification-settings',
     source: 'docs/release/evidence/notification-settings-phone-2026-10-23/README.md' },
