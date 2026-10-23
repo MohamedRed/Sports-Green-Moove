@@ -7,6 +7,7 @@ import { content, assets, captures, excerpts } from '../partner-portal/content.m
 import { validate } from '../partner-portal/validate.mjs';
 import { assetRevision, buildBrowserAssets, assertBrowserAssetsCurrent } from '../partner-portal/build-assets.mjs';
 import { nativeRechecks } from '../partner-portal/native-rechecks.mjs';
+import { evidenceSourcePaths } from '../partner-portal/evidence-fingerprints.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const source = (file) => readFileSync(resolve(root, file), 'utf8');
@@ -21,7 +22,9 @@ test('every flow has truthful, dated evidence and explicit remaining scope', () 
 });
 test('dated native rechecks remain modular and all their exact evidence paths are fingerprinted by the build', () => {
   for (const [name, record] of Object.entries(nativeRechecks)) assert.deepEqual(content[name], record);
-  assert(source('scripts/build-partner-portal.mjs').includes('Object.values(nativeRechecks).flatMap(record => [record.source, record.checksums])'));
+  const paths = evidenceSourcePaths(content);
+  for (const record of Object.values(nativeRechecks)) for (const file of [record.source, record.checksums]) assert(paths.includes(file));
+  assert(source('scripts/build-partner-portal.mjs').includes('fingerprintEvidence(root, content)'));
   assert(source('partner-portal/content.mjs').split('\n').length < 300);
 });
 

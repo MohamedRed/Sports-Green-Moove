@@ -4,6 +4,7 @@ import test from 'node:test';
 import { validateTeamReadPhone } from '../scripts/qa/team-read-phone-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
 import { detail } from '../partner-portal/src/render.js';
+import { evidenceSourcePaths } from '../partner-portal/evidence-fingerprints.mjs';
 
 const source = 'docs/release/evidence/team-read-phone-2026-10-21/results.json';
 test('eight reviewed phone stages retain their independent reads and bounded verification scope', () => {
@@ -23,7 +24,7 @@ test('eight reviewed phone stages retain their independent reads and bounded ver
   assert.equal(flow.tour.filter(step => historical(step.image)).length, 19);
   const smoke = readFileSync('.github/workflows/web-integration-smoke.yml', 'utf8');
   assert(smoke.includes('tests/team-chat-read-phone-evidence.test.mjs'));
-  const build = readFileSync('scripts/build-partner-portal.mjs', 'utf8'); assert(build.includes('flow.readPhone'));
+  for (const path of [flow.readPhone.source, flow.readPhone.checksums].filter(Boolean)) assert(evidenceSourcePaths(content).includes(path));
 });
 for (const [file, mutate] of [
   ...['nativePngExportObtained', 'twoPhoneFlowVerified', 'notificationsVerified', 'trackingVerified',

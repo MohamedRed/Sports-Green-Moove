@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Les connexions passent, la copie des captures bloque',
+    text: 'Les deux connexions et les dix essais séparés passent. Le test complet s’arrête pendant la copie des captures du changement de trajet.', flow: 'team-conversation',
+    source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'Sept contrôles supplémentaires passent pour les notifications',
+    text: 'Retour des réglages, texte agrandi et erreurs d’ouverture : les sept contrôles passent. La réception des alertes reste à tester.', flow: 'notification-settings',
+    source: 'docs/release/evidence/notification-native-c1d2a2ff-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Deux erreurs de versement corrigées',
     text: 'Le même solde ne part plus deux fois. Les remboursements en plusieurs étapes sont comptés. Les essais passent sans argent réel.', flow: 'payments',
     source: 'docs/release/evidence/payout-accounting-2026-10-23/README.md' },

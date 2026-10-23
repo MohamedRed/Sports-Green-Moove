@@ -112,6 +112,9 @@ on:
       - "tests/ride-observation-contract.test.mjs"
       - "tests/notification-settings-contract.test.mjs"
       - "tests/notification-settings-phone-evidence.test.mjs"
+      - "tests/notification-native-recheck.test.mjs"
+      - "tests/native-copy-ce282274.test.mjs"
+      - "tests/portal-evidence-fingerprints.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettings*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Profile*Screen.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileSettingsCard.kt"
@@ -502,6 +505,9 @@ on:
       - "tests/ride-observation-contract.test.mjs"
       - "tests/notification-settings-contract.test.mjs"
       - "tests/notification-settings-phone-evidence.test.mjs"
+      - "tests/notification-native-recheck.test.mjs"
+      - "tests/native-copy-ce282274.test.mjs"
+      - "tests/portal-evidence-fingerprints.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettings*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/Profile*Screen.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileSettingsCard.kt"
@@ -899,6 +905,8 @@ jobs:
         run: node --test tests/manual-ride-phone-checkpoints.test.mjs tests/ride-completion-recheck-evidence.test.mjs
       - name: Check truthful notification settings and isolated observation
         run: node --test tests/notification-settings-contract.test.mjs tests/notification-settings-phone-evidence.test.mjs
+      - name: Check executed notification cases, latest replay and complete portal fingerprints
+        run: node --test tests/notification-native-recheck.test.mjs tests/native-copy-ce282274.test.mjs tests/portal-evidence-fingerprints.test.mjs
       - name: Validate physical guardian revocation and new team admission evidence
         run: node --test tests/team-chat-authority-phone-evidence.test.mjs
       - name: Validate isolated phone support checkpoints

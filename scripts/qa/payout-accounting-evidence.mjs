@@ -50,8 +50,8 @@ export function validatePayoutAccountingEvidence(root, content) {
   assert.match(read('native-full-failure-excerpt.txt').toString(), /LocalGuardianVerificationFlowTest\.login/);
   assert.equal(json('native-team-restoration.json').verified, true);
   assert.equal(summary.latestNativeRun.rootCauseEstablished, false);
-  assert.equal(content.blockers.find(item => item.id === 'native-login-replay')?.source,
-    flow.accountingEvidence.source.replace('summary.json', 'README.md'));
+  assert(content.updates.some(item => item.source === flow.accountingEvidence.source.replace('summary.json', 'README.md')),
+    'The dated accounting and failed-run history must remain available');
   for (const [file, expected] of Object.entries(json('source-sha256.json')))
     assert.equal(createHash('sha256').update(read('source/' + file + '.txt')).digest('hex'), expected, file);
   for (const [file, expected] of Object.entries(json('artifact-sha256.json'))) {

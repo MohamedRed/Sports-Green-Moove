@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { validateTeamAuthorityPhone } from '../scripts/qa/team-authority-phone-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
+import { evidenceSourcePaths } from '../partner-portal/evidence-fingerprints.mjs';
 
 const source = 'docs/release/evidence/team-authority-phone-2026-10-21/results.json';
 test('five phone authority stages retain exact checkpoints, original captures and bounded scope', () => {
@@ -16,7 +17,7 @@ test('five phone authority stages retain exact checkpoints, original captures an
   }
   const blocker = content.blockers.find(item => item.id === 'group-conversation');
   assert.equal(blocker.source, flow.source); assert.match(blocker.next, /notifications.*échanges entre téléphones/);
-  assert(readFileSync('scripts/build-partner-portal.mjs', 'utf8').includes('flow.authorityPhone'));
+  for (const path of [flow.authorityPhone.source, flow.authorityPhone.checksums].filter(Boolean)) assert(evidenceSourcePaths(content).includes(path));
   const smoke = readFileSync('.github/workflows/web-integration-smoke.yml', 'utf8');
   assert.equal(smoke.split('"tests/team-chat-authority-phone-evidence.test.mjs"').length - 1, 2);
   assert.match(smoke, /run: node --test[^\n]*tests\/team-chat-authority-phone-evidence.test.mjs/);

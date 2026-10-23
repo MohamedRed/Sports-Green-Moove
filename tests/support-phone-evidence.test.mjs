@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 import test from 'node:test';
 import { validateSupportPhone } from '../scripts/qa/support-phone-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
+import { evidenceSourcePaths } from '../partner-portal/evidence-fingerprints.mjs';
 
 const root = resolve(import.meta.dirname, '..'), relative = 'docs/release/evidence/support-phone-2026-10-22/results.json';
 const base = resolve(root, 'docs/release/evidence/support-phone-2026-10-22');
@@ -51,5 +52,5 @@ test('portal keeps historical submission/local proofs separate from the latest w
   const workflow = readFileSync(resolve(root, '.github/workflows/web-integration-smoke.yml'), 'utf8');
   for (const name of ['tests/manual-support-phone-checkpoints.test.mjs', 'tests/support-phone-evidence.test.mjs'])
     assert(workflow.split(name).length >= 4, 'Both triggers and the execution step must include ' + name);
-  assert(readFileSync(resolve(root, 'scripts/build-partner-portal.mjs'), 'utf8').includes('flow.supportPhone.checksums'));
+  for (const path of [flow.supportPhone.source, flow.supportPhone.checksums]) assert(evidenceSourcePaths(content).includes(path));
 });

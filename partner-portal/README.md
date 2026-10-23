@@ -2,6 +2,21 @@
 
 ## Current Publication Policy
 
+The later ce282274 replay passes the guardian login/account-switch case and all
+ten focused cases, including the connected team exchange. The full job still
+fails at the primary trip-consent evidence copy; its 90-file cleanup copy is not
+accepted as primary success. Policy/package/launcher restoration and host exit
+are verified. The current blocker follows this copy failure; old login failures
+remain historical with no diagnosed cause. A separate c1d2a2ff record proves all
+seven notification cases executed within 154 passed/50 skipped ordinary cases.
+That older full workflow still failed and its host ended as zombie, not gone.
+No new public media, push, physical tracking or release acceptance is added.
+
+Evidence fingerprint discovery now covers every nested source/checksum/manifest.
+The original build omitted 16 of 164 references. The retained before report proves
+that coverage gap, not actual stale publication. New record names no longer need
+manual build-list additions, and invalid references fail closed.
+
 The later 23 October accounting run reproduces and fixes concurrent reward
 withdrawal and cumulative partial-reversal errors. Sixty emulator/journal cases,
 394 backend unit cases and five isolated browser component checks pass, without

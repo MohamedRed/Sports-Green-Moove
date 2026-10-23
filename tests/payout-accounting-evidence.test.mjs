@@ -9,8 +9,8 @@ test('paired accounting regressions pass without promoting money, native or rele
   const report = validatePayoutAccountingEvidence(root, content);
   assert.equal(report.financialCasesPassed, 60); assert.equal(report.releaseComplete, false);
 });
-test('the latest failed login replay cannot silently lose its current blocker', () => {
-  const changed = structuredClone(content); changed.blockers = changed.blockers.filter(item => item.id !== 'native-login-replay');
+test('dated accounting and failed replay history cannot silently disappear when the current blocker changes', () => {
+  const changed = structuredClone(content); changed.updates = changed.updates.filter(item => !item.source?.includes('payout-accounting-2026-10-23'));
   assert.throws(() => validatePayoutAccountingEvidence(root, changed));
 });
 test('new accounting proof cannot relabel the older payment screenshots', () => {

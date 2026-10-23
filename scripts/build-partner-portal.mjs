@@ -1,10 +1,9 @@
-import { cpSync, mkdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { cpSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { content, assets, captures, videos, excerpts } from '../partner-portal/content.mjs';
-import { nativeRechecks } from '../partner-portal/native-rechecks.mjs';
+import { fingerprintEvidence } from '../partner-portal/evidence-fingerprints.mjs';
 import { validate } from '../partner-portal/validate.mjs';
 import { buildBrowserAssets } from '../partner-portal/build-assets.mjs';
 
@@ -37,22 +36,7 @@ for (const [name, clip] of Object.entries(excerpts)) {
 for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'signout', 125]]) {
   ffmpeg('-ss', String(at), '-i', resolve(root, videos[video]), '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
 }
-const fingerprints = Object.fromEntries([...new Set([...Object.values(nativeRechecks).flatMap(record => [record.source, record.checksums]),
-  ...content.updates.flatMap(update => update.source ? [update.source] : []),
-  content.nativeVerification.source, content.nativeVerification.manifest,
-  content.nativeVerification.checksums, ...Object.values(content.nativeVerification.recheck),
-  ...content.flows.flatMap((f) => [f.source, ...(f.local ? [f.local.source] : []), ...(f.ui ? [f.ui.source] : []), ...(f.mapUi ? [f.mapUi.source] : []), ...(f.phone ? [f.phone.source] : []), ...(f.historyPhone ? [f.historyPhone.source] : []), ...(f.searchBookingUi ? [f.searchBookingUi.source] : [])])])].map((source) => [source,
-  createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex')]));
-for (const flow of content.flows) for (const record of [flow.decisionPhone, flow.attempt, flow.connected, flow.accessChanges, flow.readServices, flow.readConnected, flow.readAttempt, flow.readComponents, flow.readPhone, flow.authorityPhone, flow.noticeChecks, flow.accessAttempt, flow.nativeAccess, flow.draftAttempt, flow.draftRegression, flow.draftRestart, flow.draftErrorChecks, flow.draftErrorRecovery, flow.restorationRecheck, flow.restorationRecovery, flow.observationRecheck, flow.dialerPreflight, flow.supportFollowup, flow.supportFollowupPhone, flow.submissionRecovery].filter(Boolean)) {
-  fingerprints[record.source] = createHash('sha256').update(readFileSync(resolve(root, record.source))).digest('hex');
-  if (record.checksums) fingerprints[record.checksums] = createHash('sha256').update(readFileSync(resolve(root, record.checksums))).digest('hex');
-}
-for (const flow of content.flows.filter(flow => flow.supportPhone)) for (const file of [flow.supportPhone.source, flow.supportPhone.checksums])
-  fingerprints[file] = createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex');
-for (const flow of content.flows)
-  for (const record of [flow.submissionPhoneAttempt, flow.submissionDiagnostics, flow.submissionRestartPhone, flow.submissionConfirmedRestartPhone].filter(Boolean))
-    for (const file of [record.source, record.checksums])
-      fingerprints[file] = createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex');
+const fingerprints = fingerprintEvidence(root, content);
 const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };
 writeFileSync(resolve(out, 'data.json'), `${JSON.stringify(data, null, 2)}\n`);
 console.log(`Partner portal built: ${content.flows.length} flows, ${Object.keys(excerpts).length} short clips. No production app changes.`);

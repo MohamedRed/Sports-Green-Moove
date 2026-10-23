@@ -7,6 +7,8 @@ export function createNotificationSettingsFlow() {
     verified: 'Depuis le profil et les paramètres : autoriser puis bloquer les notifications met le statut à jour au retour. Six captures ajoutées.',
     remaining: 'Vérifier la réception des vraies alertes et la version iPhone. Pas encore en ligne.',
     notificationPermissionPhone: {source: folder + 'summary.json', checkedAt: '2026-10-23', checksums: folder + 'artifact-sha256.json'},
+    notificationNativeRecheck: {source: 'docs/release/evidence/notification-native-c1d2a2ff-2026-10-23/summary.json',
+      checkedAt: '2026-10-23', checksums: 'docs/release/evidence/notification-native-c1d2a2ff-2026-10-23/artifact-sha256.json'},
     images: [
       ['profile-blocked', 'Notifications bloquées dans le profil'], ['os-blocked', 'Autorisation du téléphone désactivée'],
       ['os-allowed', 'Autorisation du téléphone activée'], ['profile-allowed', 'Profil actualisé au retour des réglages'],

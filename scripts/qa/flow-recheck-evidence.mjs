@@ -15,6 +15,7 @@ import { validateNativeRideCompletionRecheck } from './native-ride-completion-re
 import { validatePassengerObservationOwnership } from './passenger-observation-ownership-evidence.mjs';
 import { validateNativeScheduleCollectionRecheck } from './native-schedule-collection-recheck-evidence.mjs';
 import { validateRideCompletionRecheck } from './ride-completion-recheck-evidence.mjs';
+import { validateNativeCopyCe282274 } from './native-copy-ce282274-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -68,6 +69,7 @@ export function validateFlowRecheck(root, record) {
 }
 
 export function validateCurrentNativeBlocker(root, content) {
+  validateNativeCopyCe282274(root, content.latestNativeCopyRecheck, content.blockers);
   validateNativeCaptureRecheck(root, content.nativeCaptureRecheck);
   validateNativeCopyRecheck(root, content.nativeCopyRecheck);
   const record = content.nativeReplayRecheck, report = validateSupportProcessRestartPhone(root, record.source);

@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { validateBookingNoticeRun, validateRetainedBookingNotices } from '../scripts/qa/booking-notice-evidence.mjs';
 import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 import { content } from '../partner-portal/content.mjs';
+import { evidenceSourcePaths } from '../partner-portal/evidence-fingerprints.mjs';
 
 const source = 'docs/release/evidence/booking-notice-atomicity-2026-10-21/after.json';
 const read = path => readFileSync(path, 'utf8');
@@ -43,5 +44,5 @@ test('booking decisions create notices inside the same transaction and both CI p
     const workflow = read('.github/workflows/' + path);
     assert(workflow.includes('npm run test:booking-notices')); assert(workflow.includes('tests/booking-notice-atomicity.test.mjs'));
   }
-  assert(read('scripts/build-partner-portal.mjs').includes('flow.noticeChecks'));
+  assert(evidenceSourcePaths(content).includes(content.flows.find(flow => flow.id === 'booking').noticeChecks.source));
 });

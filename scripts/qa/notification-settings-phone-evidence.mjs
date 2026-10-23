@@ -5,6 +5,7 @@ import { dirname, resolve } from 'node:path';
 import { XMLParser } from 'fast-xml-parser';
 import { imageSize } from 'image-size';
 import { assertEvidenceBundleChecksums } from './evidence-bundle-checksums.mjs';
+import { validateNotificationNativeRecheck } from './notification-native-recheck-evidence.mjs';
 
 export function validateNotificationSettingsPhone(root, flow) {
   assert.equal(flow.id, 'notification-settings'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
@@ -57,5 +58,6 @@ export function validateNotificationSettingsPhone(root, flow) {
     assert.equal(size.type, 'jpg'); assert.equal(size.width, compact ? 230 : 254); assert.equal(size.height, compact ? 132 : 559);
   }
   assertEvidenceBundleChecksums(base);
+  if (flow.notificationNativeRecheck) validateNotificationNativeRecheck(root, flow.notificationNativeRecheck);
   return run;
 }
