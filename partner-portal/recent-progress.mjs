@@ -1,6 +1,12 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'Les alertes lues restent lues',
+    text: 'Lecture, changement de compte et retour passent sur téléphone. Quatre captures ajoutées. L’envoi des alertes au téléphone reste à ajouter.', flow: 'notification-settings',
+    source: 'docs/release/evidence/notification-read-phone-2026-10-23/README.md' },
+  { date: '2026-10-23', title: 'Le nouvel essai complet reste à terminer',
+    text: 'La lecture passe. La collecte finale bloque et une capture de trajet échoue. La collecte est corrigée ; l’essai complet reste à valider.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/notification-native-attempt-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Marquer une alerte comme lue',
     text: 'La lecture et les erreurs de confirmation passent les essais côté données. Le nouvel écran reste à rejouer ; l’envoi des alertes au téléphone reste à ajouter.', flow: 'notification-settings',
     source: 'docs/release/evidence/notification-read-local-2026-10-23/README.md' },

@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The 23 October notification-read physical trial adds four reviewed originals:
+parent unread/read, driver isolation and parent return. Four independent snapshots
+protect 167 records/claims; only the selected notification's read fields change.
+The provider kill request does not establish a completed process stop, so the
+`reopened` checkpoint means account return only. Final sign-out/uninstall remain
+unverified; explicit session stop, observer closure and owned local cleanup pass.
+Four additional authenticated service checks remain separately scoped. The
+permission trial's six original images and dates stay unchanged. Push delivery,
+physical restart, iOS, production activation and release acceptance remain open.
+
 The later ce282274 replay passes the guardian login/account-switch case and all
 ten focused cases, including the connected team exchange. The full job still
 fails at the primary trip-consent evidence copy; its 90-file cleanup copy is not

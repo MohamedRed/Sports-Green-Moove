@@ -114,6 +114,7 @@ on:
       - "tests/notification-settings-phone-evidence.test.mjs"
       - "tests/notification-native-recheck.test.mjs"
       - "tests/notification-read-*.test.*"
+      - "tests/notification-connected-services-evidence.test.mjs"
       - "tests/partner-portal-news.test.mjs"
       - "tests/native-copy-ce282274.test.mjs"
       - "tests/portal-evidence-fingerprints.test.mjs"
@@ -509,6 +510,7 @@ on:
       - "tests/notification-settings-phone-evidence.test.mjs"
       - "tests/notification-native-recheck.test.mjs"
       - "tests/notification-read-*.test.*"
+      - "tests/notification-connected-services-evidence.test.mjs"
       - "tests/partner-portal-news.test.mjs"
       - "tests/native-copy-ce282274.test.mjs"
       - "tests/portal-evidence-fingerprints.test.mjs"
@@ -910,7 +912,7 @@ jobs:
       - name: Check truthful notification settings and isolated observation
         run: node --test tests/notification-settings-contract.test.mjs tests/notification-settings-phone-evidence.test.mjs
       - name: Test private idempotent notification acknowledgements
-        run: npm run test:notification-reads && node --test tests/notification-read-evidence.test.mjs tests/notification-read-replay.test.mjs tests/partner-portal-news.test.mjs
+        run: npm run test:notification-reads && node --test tests/notification-read-evidence.test.mjs tests/notification-read-replay.test.mjs tests/notification-read-phone-evidence.test.mjs tests/notification-read-native-attempt.test.mjs tests/notification-connected-services-evidence.test.mjs tests/partner-portal-news.test.mjs
       - name: Test actual authenticated notification calls and unchanged isolated records
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/notification-read-services.json

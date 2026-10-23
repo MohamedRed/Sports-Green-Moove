@@ -6,6 +6,10 @@ const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   'notification-settings': [
+    image('notification-read-phone-unread', 'Ouvrir les alertes', 'Trois alertes sont non lues.'),
+    image('notification-read-phone-read', 'Marquer une alerte comme lue', 'Les deux autres restent non lues.'),
+    image('notification-read-phone-driver', 'Changer de compte', 'Le conducteur ne voit que ses propres alertes.'),
+    image('notification-read-phone-parent-return', 'Revenir au compte parent', 'La lecture est conservée.'),
     image('notification-phone-profile-blocked', 'Voir le statut du téléphone', 'Le profil indique que les notifications sont bloquées.'),
     image('notification-phone-os-blocked', 'Ouvrir le réglage', 'Le bouton mène aux notifications de cette app.'),
     image('notification-phone-os-allowed', 'Autoriser les notifications', 'Le réglage est activé sur le téléphone de test.'),

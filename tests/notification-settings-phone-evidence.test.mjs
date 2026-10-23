@@ -10,11 +10,12 @@ const flow = content.flows.find(row => row.id === 'notification-settings');
 test('actual phone permission changes remain distinct from push delivery and compiled native cases', () => {
   const report = validateNotificationSettingsPhone(process.cwd(), flow);
   assert.equal(report.actualPhonePermissionFlowPassed, true); assert.equal(report.pushDeliveryAccepted, false);
-  assert.equal(report.newNativeTestsExecuted, false); assert.equal(flow.images.length, 6);
+  assert.equal(report.newNativeTestsExecuted, false); assert.equal(flow.images.filter(image => image.file.startsWith('notification-phone-')).length, 6);
+  assert.equal(flow.images.filter(image => image.file.startsWith('notification-read-phone-')).length, 4);
   for (const image of flow.images) assert(captures[image.file].includes('/captures/'));
   assert(!Object.values(captures).some(file => /notification-settings-phone.*(?:phone\/|validation\/|source\/)/.test(file)));
   const news = content.updates.find(row => row.flow === flow.id);
-  assert.match(news.text, /envoi des alertes au téléphone reste à ajouter/);
+  assert.match(news.text, /envoi des alertes au téléphone reste à ajouter/i);
   const permissionNews = content.updates.find(row => row.source === flow.source);
   assert.match(permissionNews.text, /réception des alertes reste à tester/);
   assert.match(content.blockers.find(row => row.id === 'settings').text, /ville et les frais restent à vérifier/);

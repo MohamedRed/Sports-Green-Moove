@@ -7,6 +7,8 @@ import { imageSize } from 'image-size';
 import { assertEvidenceBundleChecksums } from './evidence-bundle-checksums.mjs';
 import { validateNotificationNativeRecheck } from './notification-native-recheck-evidence.mjs';
 import { validateNotificationReadLocal } from './notification-read-local-evidence.mjs';
+import { validateNotificationReadPhone } from './notification-read-phone-evidence.mjs';
+import { validateNotificationConnectedServices } from './notification-connected-services-evidence.mjs';
 
 export function validateNotificationSettingsPhone(root, flow) {
   assert.equal(flow.id, 'notification-settings'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
@@ -53,7 +55,8 @@ export function validateNotificationSettingsPhone(root, flow) {
   assert.match(bytes('validation/local-apk-build.txt').toString(), /BUILD SUCCESSFUL/);
   assert.match(bytes('validation/root-tests.txt').toString(), /EADDRINUSE/);
   assert.match(bytes('validation/root-tests-after-cleanup.txt').toString(), /# pass 1764\r?\n# fail 0/);
-  assert.deepEqual(flow.images.map(image => image.file), run.publishedCaptures.map(name => 'notification-phone-' + name));
+  assert.deepEqual(flow.images.filter(image => image.file.startsWith('notification-phone-')).map(image => image.file),
+    run.publishedCaptures.map(name => 'notification-phone-' + name));
   for (const name of ['profile-blocked', 'os-blocked', 'os-allowed', 'profile-allowed', 'options-allowed', 'os-restored', 'options-blocked', 'profile-restored']) {
     const size = imageSize(bytes('captures/' + name + '.jpg')), compact = name.startsWith('options-');
     assert.equal(size.type, 'jpg'); assert.equal(size.width, compact ? 230 : 254); assert.equal(size.height, compact ? 132 : 559);
@@ -61,5 +64,11 @@ export function validateNotificationSettingsPhone(root, flow) {
   assertEvidenceBundleChecksums(base);
   if (flow.notificationNativeRecheck) validateNotificationNativeRecheck(root, flow.notificationNativeRecheck);
   if (flow.notificationReadLocal) validateNotificationReadLocal(root, flow.notificationReadLocal);
+  if (flow.notificationReadPhone) {
+    const read = validateNotificationReadPhone(root, flow.notificationReadPhone);
+    assert.deepEqual(flow.images.filter(image => image.file.startsWith('notification-read-phone-')).map(image => image.file),
+      read.captures.map(name => 'notification-read-phone-' + name));
+  }
+  if (flow.notificationConnectedServices) validateNotificationConnectedServices(root, flow.notificationConnectedServices);
   return run;
 }

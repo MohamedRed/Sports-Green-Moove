@@ -53,6 +53,13 @@ test('captures actual subprocess output with scoped tracing and records command 
   assert(!mock.calls.some((call) => call.args.includes('logcat')), 'Successful copies do not need failure diagnostics');
 });
 
+test('the connected notification restart lane is explicitly allowlisted for its single evidence copy', t => {
+  const mock = setup(t), receipt = mock.collect({phase: 'notification-read-restart'});
+  assert.equal(receipt.phase, 'notification-read-restart'); assert.equal(receipt.completed, true);
+  assert.equal(mock.read('notification-read-restart').scope, 'local-adb-file-sync-command-not-flow-verification');
+  assert.equal(mock.calls.filter(call => call.args[2] === 'pull').length, 1);
+});
+
 test('a success-looking file count with exit 1 stays failed, retains redacted diagnostics and is never retried', (t) => {
   const mock = setup(t, 'failed-summary');
   assert.throws(() => mock.collect(), (error) => {
