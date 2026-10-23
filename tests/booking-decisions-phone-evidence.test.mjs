@@ -16,8 +16,8 @@ test('six actual phone checkpoints preserve exact recipients, two seats, capacit
 });
 test('the current tour uses eight reviewed phone captures while historical search and one-seat proof remain dated', () => {
   const run = validateBookingDecisionsPhone(process.cwd(), source);
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-22'); assert.equal(flow.phone.checkedAt, '2026-10-18');
-  assert.match(detail(flow), /Essai sur téléphone du 22 octobre 2026/); assert.equal(flow.tour.length, 8);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-23'); assert.equal(flow.phone.checkedAt, '2026-10-18');
+  assert.match(detail(flow), /Essai sur téléphone du 23 octobre 2026/); assert.equal(flow.tour.length, 8);
   assert.deepEqual(flow.tour.map(step => step.image), Object.keys(run.publishedCaptures));
   for (const [id, file] of Object.entries(run.publishedCaptures)) {
     assert.equal(captures[id], dirname(source) + '/' + file);

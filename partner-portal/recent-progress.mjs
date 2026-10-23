@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'La demande arrive chez le conducteur',
+    text: 'Demande envoyée, alerte reçue puis lue, état conservé après reconnexion. Cinq captures ajoutées. L’essai a repris sur un second téléphone après interruption.', flow: 'booking',
+    source: 'docs/release/evidence/booking-request-phone-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'Une alerte pour chaque nouvelle demande',
     text: 'Le conducteur voit la nouvelle demande en local, une seule fois. L’alerte reste lue après un renvoi. À vérifier sur téléphone.', flow: 'booking',
     source: 'docs/release/evidence/booking-request-notices-2026-10-23/README.md' },

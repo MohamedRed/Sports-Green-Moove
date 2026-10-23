@@ -89,7 +89,7 @@ jobs:
       - name: Test atomic booking decisions and recipient notifications
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
-        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/booking-request-notice-evidence.test.mjs
+        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/booking-request-notice-evidence.test.mjs tests/booking-request-phone-checkpoints.test.mjs tests/booking-request-phone-evidence.test.mjs
       - name: Test private idempotent notification acknowledgements
         run: npm run test:notification-reads
       - name: Retain booking notification and cleanup results

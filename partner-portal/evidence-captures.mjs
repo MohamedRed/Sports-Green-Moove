@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['parent-request-sent', 'driver-unread', 'driver-read', 'parent-returned', 'driver-returned'].map(phase => [
+    'booking-request-phone-' + phase, 'docs/release/evidence/booking-request-phone-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['unread', 'read', 'driver', 'parent-return'].map(phase => [
     'notification-read-phone-' + phase, 'docs/release/evidence/notification-read-phone-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['profile-blocked', 'os-blocked', 'os-allowed', 'profile-allowed', 'options-blocked', 'profile-restored'].map(phase => [
