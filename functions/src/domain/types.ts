@@ -22,6 +22,11 @@ export type ResolvedPlace = PlaceSuggestion & {
 };
 
 export type Trip = {
+  activeRideSessionId?: string;
+  pendingChangeId?: string;
+  appliedChangeId?: string;
+  routeEncodedPolyline?: string;
+  routeDurationSeconds?: number;
   id: string;
   driverUserId: string;
   status: TripStatus;
@@ -55,7 +60,19 @@ export type Trip = {
 
 export type ClientTripStatus = "upcoming" | "past" | "pending";
 
+export type ClientMapPoint = {
+  lat: number;
+  lng: number;
+};
+
+export type ClientMapRoutePreview = {
+  start: ClientMapPoint;
+  end: ClientMapPoint;
+  encodedPolyline?: string;
+};
+
 export type ClientTripSummary = {
+  bookingIntent: import("./bookingIntent.js").BookingIntentSnapshot;
   id: string;
   title: string;
   club: string;
@@ -71,6 +88,7 @@ export type ClientTripSummary = {
   passengerInitials: string[];
   reasons: string[];
   status: ClientTripStatus;
+  mapPreview?: ClientMapRoutePreview;
 };
 
 export type ClientBookingSummary = {
@@ -96,13 +114,24 @@ export type ClientBookingRequestSummary = {
 };
 
 export type ClientRideSnapshot = {
+  vehiclePoint: import("./vehicleMapPoint.js").VehicleMapPoint | null;
   rideSessionId: string;
+  tripId?: string;
+  driverUserId?: string;
   status: string;
   vehicleLastUpdateLabel: string;
   childLastUpdateLabel: string | null;
   etaLabel: string;
   stale: boolean;
   passengers: ClientRidePassengerStatus[];
+  observation: {
+    vehicleAgeMs: number | null;
+    childAgeMs: number | null;
+    vehicleHasPoint: boolean;
+    childHasPoint: boolean;
+    vehicleSource: LocationSource | null;
+    childSource: LocationSource | null;
+  };
 };
 
 export type ClientRidePassengerStatus = {

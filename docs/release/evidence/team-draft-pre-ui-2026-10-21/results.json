@@ -1,0 +1,31 @@
+{
+  "scope": "local-team-draft-two-pre-ui-failures-not-recovery-proof",
+  "projectId": "demo-sgm-local-qa",
+  "testedAt": "2026-10-21T15:54:57Z",
+  "sourceCommit": "56fe90d2d056ee334376bcd6e0b4eeecd6c7f68b",
+  "workflowRunId": 39628682621,
+  "jobId": 119320682123,
+  "artifactId": 12357689226,
+  "ciRunId": "b261f8ce96de759f1be8f618bc8cac32",
+  "localRunId": "50c459bd13a0f468952c34be6ccd42db",
+  "nativeCaseCompleted": false,
+  "executedUserFlowCases": 0,
+  "draftRecoveryVerified": false,
+  "parentMessageSent": false,
+  "fullProcessRestartProven": false,
+  "physicalDevice": false,
+  "publishedCaptures": [],
+  "localRuntimeRemoved": true,
+  "localEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  },
+  "signatureRecompiled": true,
+  "signatureCheckNotUiProof": true
+}

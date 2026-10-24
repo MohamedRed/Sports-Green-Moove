@@ -1,0 +1,16 @@
+.support-reports table { table-layout: fixed; }
+.support-reports th:first-child { width: 19%; }
+.support-reports th:last-child { width: 31%; }
+.support-reports td { overflow-wrap: anywhere; }
+.support-reports td > strong { display: block; margin: 5px 0; }
+.support-reports .support-reply-form { min-width: 0; }
+
+@media (max-width: 980px) {
+  .support-reports table { min-width: 0; }
+  .support-reports thead { display: none; }
+  .support-reports tbody, .support-reports tr, .support-reports td { display: block; width: 100%; }
+  .support-reports td { border: 0; padding: 7px 0; }
+  .support-reports td::before { content: attr(data-label); display: block; font-weight: 800; margin-bottom: 5px; }
+  .support-reports tr + tr { margin-top: 24px; }
+  .support-reports .review-note, .support-reports .support-reply-form, .support-reports .support-email-status { max-width: 100%; width: 100%; }
+}

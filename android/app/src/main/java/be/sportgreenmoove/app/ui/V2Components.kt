@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,10 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -63,14 +68,16 @@ fun V2ThemeButton(size: Int = 36) {
         onClick = themeToggle.onToggle,
         size = size,
         selected = themeToggle.darkTheme,
+        testTag = "appearance.toggle",
     )
 }
 
 @Composable
-fun V2Screen(content: @Composable ColumnScope.() -> Unit) {
+fun V2Screen(testTag: String? = null, content: @Composable ColumnScope.() -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .sgmOptionalTestTag(testTag)
             .background(Sgm.colors.bgApp)
             .verticalScroll(rememberScrollState())
             .padding(bottom = 20.dp),
@@ -79,7 +86,7 @@ fun V2Screen(content: @Composable ColumnScope.() -> Unit) {
 }
 
 @Composable
-fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable (() -> Unit)? = null) {
+fun V2TopBar(title: String, onBack: (() -> Unit)? = null, titleLines: Int = 1, trailing: @Composable (() -> Unit)? = null) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -87,12 +94,13 @@ fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable 
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        if (onBack != null) V2CircleIconButton(SgmIcon.ChevronLeft, onClick = onBack)
+        if (onBack != null) V2CircleIconButton(SgmIcon.ChevronLeft, onClick = onBack,
+            testTag = SgmTestTags.BackAction, description = "Retour")
         Text(
             title,
-            style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.08.em),
+            style = SgmType.DisplayXL.copy(color = Sgm.colors.textPrimary, fontSize = 22.sp, letterSpacing = 0.sp),
             modifier = Modifier.weight(1f),
-            maxLines = 1,
+            maxLines = titleLines,
             overflow = TextOverflow.Ellipsis,
         )
         trailing?.invoke() ?: V2ThemeButton()
@@ -100,14 +108,21 @@ fun V2TopBar(title: String, onBack: (() -> Unit)? = null, trailing: @Composable 
 }
 
 @Composable
-fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, selected: Boolean = false) {
+fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, selected: Boolean = false,
+    testTag: String? = null, description: String? = null, enabled: Boolean = true) {
+    val isSelected = selected
     Box(
         modifier = Modifier
+            .sgmOptionalTestTag(testTag)
+            .semantics {
+                this.selected = isSelected
+                description?.let { contentDescription = it }
+            }
             .size(size.dp)
             .clip(CircleShape)
             .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), CircleShape)
-            .clickable(onClick = onClick),
+            .clickable(enabled = enabled, onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {
         SgmLineIcon(
@@ -148,6 +163,8 @@ fun V2Button(
     variant: V2ButtonVariant = V2ButtonVariant.Primary,
     size: V2ButtonSize = V2ButtonSize.Md,
     full: Boolean = false,
+    testTag: String? = null,
+    enabled: Boolean = true,
 ) {
     val bg = when (variant) {
         V2ButtonVariant.Primary -> SgmColor.Green
@@ -168,11 +185,13 @@ fun V2Button(
     Box(
         modifier = modifier
             .then(if (full) Modifier.fillMaxWidth() else Modifier)
+            .sgmOptionalTestTag(testTag)
             .height(size.height)
+            .alpha(if (enabled) 1f else 0.45f)
             .clip(RoundedCornerShape(SgmRadius.MD))
             .background(bg)
             .then(if (border != null) Modifier.border(border, RoundedCornerShape(SgmRadius.MD)) else Modifier)
-            .clickable(onClick = onClick)
+            .clickable(enabled = enabled, onClick = onClick)
             .padding(horizontal = 20.dp),
         contentAlignment = Alignment.Center,
     ) {
@@ -181,13 +200,14 @@ fun V2Button(
 }
 
 @Composable
-fun V2Chip(text: String, selected: Boolean, onClick: () -> Unit = {}, modifier: Modifier = Modifier) {
+fun V2Chip(text: String, selected: Boolean, onClick: () -> Unit = {}, modifier: Modifier = Modifier, testTag: String? = null) {
     Box(
         modifier = modifier
+            .sgmOptionalTestTag(testTag)
             .clip(RoundedCornerShape(999.dp))
             .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(999.dp))
-            .clickable(onClick = onClick)
+            .selectable(selected = selected, onClick = onClick)
             .padding(horizontal = 14.dp, vertical = 6.dp),
         contentAlignment = Alignment.Center,
     ) {

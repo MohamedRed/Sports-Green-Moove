@@ -6,10 +6,6 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-if (file("google-services.json").exists()) {
-    apply(plugin = "com.google.gms.google-services")
-}
-
 val radarPublishableKey = providers
     .gradleProperty("SGM_RADAR_PUBLISHABLE_KEY")
     .orElse(providers.environmentVariable("SGM_RADAR_PUBLISHABLE_KEY"))
@@ -22,6 +18,47 @@ val stripeConnectRefreshUrl = providers
     .gradleProperty("SGM_STRIPE_CONNECT_REFRESH_URL")
     .orElse(providers.environmentVariable("SGM_STRIPE_CONNECT_REFRESH_URL"))
     .getOrElse("")
+val facebookAppId = providers
+    .gradleProperty("SGM_FACEBOOK_APP_ID")
+    .orElse(providers.environmentVariable("SGM_FACEBOOK_APP_ID"))
+    .getOrElse("")
+val facebookClientToken = providers
+    .gradleProperty("SGM_FACEBOOK_CLIENT_TOKEN")
+    .orElse(providers.environmentVariable("SGM_FACEBOOK_CLIENT_TOKEN"))
+    .getOrElse("")
+val facebookLoginProtocolScheme = facebookAppId.takeIf(String::isNotBlank)?.let { "fb$it" } ?: ""
+val googleMapsAndroidApiKey = providers
+    .gradleProperty("SGM_GOOGLE_MAPS_ANDROID_API_KEY")
+    .orElse(providers.environmentVariable("SGM_GOOGLE_MAPS_ANDROID_API_KEY"))
+    .getOrElse("")
+val useFirebaseEmulator = providers
+    .gradleProperty("SGM_USE_FIREBASE_EMULATOR")
+    .orElse(providers.environmentVariable("SGM_USE_FIREBASE_EMULATOR"))
+    .map { it.equals("true", ignoreCase = true) || it == "1" }
+    .getOrElse(false)
+val localSupportTrace = providers.gradleProperty("SGM_LOCAL_SUPPORT_TRACE")
+    .map(String::toBooleanStrict).getOrElse(false)
+check(!localSupportTrace || useFirebaseEmulator) { "Support call diagnostics require the isolated Firebase emulator build." }
+val localRealMapsUi = providers
+    .gradleProperty("SGM_LOCAL_REAL_MAPS_UI")
+    .orElse(providers.environmentVariable("SGM_LOCAL_REAL_MAPS_UI"))
+    .map { it.equals("true", ignoreCase = true) || it == "1" }
+    .getOrElse(false)
+check(!localRealMapsUi || useFirebaseEmulator) { "Real-map local UI requires the isolated Firebase emulator build." }
+check(!localRealMapsUi || googleMapsAndroidApiKey.isNotBlank()) { "Real-map local UI requires an Android map credential." }
+val liveBackendUiTest = providers
+    .gradleProperty("SGM_LIVE_BACKEND_UI_TEST")
+    .orElse(providers.environmentVariable("SGM_LIVE_BACKEND_UI_TEST"))
+    .map { it.equals("true", ignoreCase = true) || it == "1" }
+    .getOrElse(false)
+val firebaseEmulatorHost = providers
+    .gradleProperty("SGM_FIREBASE_EMULATOR_HOST")
+    .orElse(providers.environmentVariable("SGM_FIREBASE_EMULATOR_HOST"))
+    .getOrElse("10.0.2.2")
+
+if (!useFirebaseEmulator && file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+}
 
 android {
     namespace = "be.sportgreenmoove.app"
@@ -33,9 +70,30 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
-        resValue("string", "sgm_radar_publishable_key", radarPublishableKey)
-        resValue("string", "sgm_stripe_connect_return_url", stripeConnectReturnUrl)
-        resValue("string", "sgm_stripe_connect_refresh_url", stripeConnectRefreshUrl)
+        testInstrumentationRunner = "be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner"
+        manifestPlaceholders["sgmFirebaseAutoInit"] = (!useFirebaseEmulator).toString()
+        resValue("string", "sgm_radar_publishable_key", if (useFirebaseEmulator) "" else radarPublishableKey)
+        resValue("string", "sgm_stripe_connect_return_url", if (useFirebaseEmulator) "" else stripeConnectReturnUrl)
+        resValue("string", "sgm_stripe_connect_refresh_url", if (useFirebaseEmulator) "" else stripeConnectRefreshUrl)
+        resValue("string", "facebook_app_id", if (useFirebaseEmulator) "" else facebookAppId)
+        resValue("string", "facebook_client_token", if (useFirebaseEmulator) "" else facebookClientToken)
+        resValue("string", "fb_login_protocol_scheme", if (useFirebaseEmulator) "" else facebookLoginProtocolScheme)
+        resValue("string", "sgm_google_maps_android_api_key", if (useFirebaseEmulator && !localRealMapsUi) "" else googleMapsAndroidApiKey)
+        buildConfigField("Boolean", "SGM_USE_FIREBASE_EMULATOR", useFirebaseEmulator.toString())
+        buildConfigField("Boolean", "SGM_LOCAL_SUPPORT_TRACE", "false")
+        buildConfigField("Boolean", "SGM_LOCAL_REAL_MAPS_UI", localRealMapsUi.toString())
+        buildConfigField("Boolean", "SGM_LIVE_BACKEND_UI_TEST", liveBackendUiTest.toString())
+        buildConfigField("String", "SGM_FIREBASE_EMULATOR_HOST", "\"$firebaseEmulatorHost\"")
+    }
+
+    buildTypes {
+        getByName("debug") {
+            if (useFirebaseEmulator) applicationIdSuffix = ".local"
+            buildConfigField("Boolean", "SGM_LOCAL_SUPPORT_TRACE", localSupportTrace.toString())
+        }
+    }
+    if (useFirebaseEmulator) {
+        sourceSets.getByName("debug").manifest.srcFile("src/localDebug/AndroidManifest.xml")
     }
 
     compileOptions {
@@ -44,6 +102,7 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 }
@@ -73,11 +132,23 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-functions")
     implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.google.android.gms:play-services-maps:20.0.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+    implementation("com.google.maps.android:maps-compose:8.3.0")
+    implementation("com.facebook.android:facebook-login:18.2.3")
     implementation("io.radar:sdk:3.34.0")
     implementation("com.stripe:stripe-android:23.10.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
 
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+
     debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
 }

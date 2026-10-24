@@ -1,4 +1,4 @@
-name: iOS Appetize Demo
+name: iOS Appetize Release Preview
 
 on:
   workflow_dispatch:
@@ -9,6 +9,9 @@ env:
 jobs:
   build-and-upload:
     name: Build iOS simulator app and upload to Appetize
+    # macOS runners are intentionally disabled for routine CI cost control.
+    # Re-enable only for an approved final iOS release-candidate build.
+    if: ${{ false }}
     runs-on: macos-26-intel
     timeout-minutes: 30
 
@@ -19,6 +22,9 @@ jobs:
       APPETIZE_API_TOKEN: ${{ secrets.APPETIZE_API_TOKEN }}
       FIREBASE_IOS_CONFIG_BASE64: ${{ secrets.FIREBASE_IOS_CONFIG_BASE64 }}
       SGM_GOOGLE_REVERSED_CLIENT_ID: ${{ secrets.SGM_GOOGLE_REVERSED_CLIENT_ID }}
+      SGM_GOOGLE_MAPS_IOS_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_IOS_API_KEY }}
+      SGM_FACEBOOK_APP_ID: ${{ secrets.SGM_FACEBOOK_APP_ID }}
+      SGM_FACEBOOK_CLIENT_TOKEN: ${{ secrets.SGM_FACEBOOK_CLIENT_TOKEN }}
       SGM_RADAR_PUBLISHABLE_KEY: ${{ secrets.SGM_RADAR_PUBLISHABLE_KEY }}
       SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
       SGM_STRIPE_CONNECT_REFRESH_URL: ${{ secrets.SGM_STRIPE_CONNECT_REFRESH_URL }}
@@ -117,7 +123,7 @@ jobs:
         if: ${{ steps.appetize.outputs.publicKey != '' }}
         run: |
           URL="https://appetize.io/app/${{ steps.appetize.outputs.publicKey }}"
-          echo "### iOS Appetize demo" >> "$GITHUB_STEP_SUMMARY"
+          echo "### iOS Appetize release preview" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "$URL" >> "$GITHUB_STEP_SUMMARY"
           echo "APPETIZE_IOS_URL=$URL" >> "$GITHUB_ENV"

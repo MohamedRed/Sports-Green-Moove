@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { canWriteLiveLocation } from "../domain/locationAccess.js";
 import { parseLocationBatchRequest } from "../domain/locationBatch.js";
+import { liveLocationPayload } from "../domain/liveLocationPayload.js";
 import { nativeFallbackUpdateForAuth } from "../domain/locations.js";
 
 describe("native location fallback", () => {
@@ -54,6 +55,43 @@ describe("native location fallback", () => {
 
   it("rejects invalid JSON-encoded location batches", () => {
     expect(() => parseLocationBatchRequest({ updatesJson: "not-json" })).toThrow();
+  });
+  it("rejects out-of-range coordinates through both native and JSON batch forms", () => {
+    const point = { rideSessionId: "ride-1", role: "driver", lat: 50.715, lng: 4.612, accuracyM: 8, capturedAt: 1760000000000 };
+    for (const patch of [{ lat: 91 }, { lat: -91 }, { lng: 181 }, { lng: -181 }]) {
+      const updates = [{ ...point, ...patch }];
+      expect(() => parseLocationBatchRequest({ updates })).toThrow();
+      expect(() => parseLocationBatchRequest({ updatesJson: JSON.stringify(updates) })).toThrow();
+    }
+    for (const [lat, lng] of [[0, 0], [90, 180], [-90, -180]])
+      expect(parseLocationBatchRequest({ updates: [{ ...point, lat, lng }] }).updates[0]).toMatchObject({ lat, lng });
+  });
+
+  it("omits undefined optional fields before writing live trip locations", () => {
+    const payload = liveLocationPayload({
+      rideSessionId: "ride-1",
+      userId: "driver-1",
+      role: "driver",
+      lat: 50.715,
+      lng: 4.612,
+      accuracyM: 8,
+      speedMps: undefined,
+      headingDeg: undefined,
+      batteryPct: undefined,
+      capturedAt: 1760000000000,
+      uploadedAt: 1760000005000,
+      source: "radar",
+    });
+
+    expect(payload).toMatchObject({
+      rideSessionId: "ride-1",
+      userId: "driver-1",
+      source: "radar",
+      uploadedAt: 1760000005000,
+    });
+    expect(payload).not.toHaveProperty("speedMps");
+    expect(payload).not.toHaveProperty("headingDeg");
+    expect(payload).not.toHaveProperty("batteryPct");
   });
 
   it("allows only active ride drivers and child participants to write live locations", () => {

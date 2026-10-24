@@ -1,0 +1,143 @@
+package be.sportgreenmoove.app.ui
+
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
+import be.sportgreenmoove.app.R
+import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.MapRoutePreview
+import be.sportgreenmoove.app.data.VehicleMapPoint
+import be.sportgreenmoove.app.design.Sgm
+import be.sportgreenmoove.app.design.SgmColor
+import be.sportgreenmoove.app.design.SgmType
+import be.sportgreenmoove.app.domain.MapRoutePolyline
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.MapProperties
+import com.google.maps.android.compose.MapUiSettings
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.Polyline
+import com.google.maps.android.compose.rememberCameraPositionState
+
+@Composable
+fun GoogleMapsRoutePreviewCard(
+    ride: LiveRideSnapshot,
+    preview: MapRoutePreview?,
+) {
+    val apiKey = stringResource(R.string.sgm_google_maps_android_api_key).trim()
+    Box(
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+            .fillMaxWidth()
+            .height(250.dp)
+            .sgmTestTag(SgmTestTags.GoogleMapsRoutePreview)
+            .clip(RoundedCornerShape(22.dp))
+            .background(Sgm.colors.bgCard)
+            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(22.dp)),
+    ) {
+        when {
+            apiKey.isBlank() -> RoutePreviewState(
+                title = "CARTE INDISPONIBLE",
+                body = "La carte ne peut pas être affichée pour le moment.",
+            )
+
+            preview == null -> RoutePreviewState(
+                title = "ITINÉRAIRE MANQUANT",
+                body = "Le trajet actif ne contient pas encore de coordonnées départ-arrivée.",
+            )
+
+            else -> NativeGoogleMap(preview = preview, vehiclePoint = ride.vehiclePoint, vehicleStale = ride.stale)
+        }
+    }
+}
+@Composable
+internal fun NativeGoogleMap(preview: MapRoutePreview, showRoute: Boolean = true, modifier: Modifier = Modifier,
+    vehiclePoint: VehicleMapPoint? = null, vehicleStale: Boolean = true) {
+    var viewport by remember { mutableStateOf(IntSize.Zero) }
+    var loaded by remember(preview, viewport) { mutableStateOf(false) }
+    val paddingPixels = with(LocalDensity.current) { 48.dp.roundToPx() }
+    val points = remember(preview) {
+        MapRoutePolyline.pointsFor(preview).map { LatLng(it.lat, it.lng) }
+    }
+    val start = LatLng(preview.start.lat, preview.start.lng)
+    val end = LatLng(preview.end.lat, preview.end.lng)
+    val anchors = listOfNotNull(start, end, vehiclePoint?.let { LatLng(it.lat, it.lng) })
+    val cameraState = rememberCameraPositionState()
+
+    Box(modifier.fillMaxWidth().height(250.dp).semantics {
+        stateDescription = if (loaded) "Carte chargée" else "Chargement de la carte"
+    }) {
+        GoogleMap(
+            modifier = Modifier.fillMaxSize().onSizeChanged { viewport = it },
+            cameraPositionState = cameraState,
+            contentDescription = "Carte du trajet",
+            properties = MapProperties(isTrafficEnabled = true),
+            uiSettings = MapUiSettings(
+                compassEnabled = false,
+                indoorLevelPickerEnabled = false,
+                mapToolbarEnabled = false,
+                myLocationButtonEnabled = false,
+                rotationGesturesEnabled = false,
+                tiltGesturesEnabled = false,
+                zoomControlsEnabled = false,
+            ),
+        ) {
+            FitRouteMapCamera(cameraState, points, anchors, viewport, paddingPixels) { loaded = it }
+            if (showRoute) Polyline(points = points, color = SgmColor.Green, width = 10f)
+            Marker(state = MarkerState(position = start), title = "Départ", contentDescription = "Départ du trajet")
+            Marker(state = MarkerState(position = end), title = "Arrivée", contentDescription = "Arrivée du trajet")
+            vehiclePoint?.let { VehicleMapMarker(it, vehicleStale) }
+        }
+    }
+}
+
+@Composable
+private fun RoutePreviewState(title: String, body: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(SgmColor.HeroGradient)
+            .padding(horizontal = 24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            title,
+            style = SgmType.DisplayXL.copy(color = SgmColor.TextOnGreen, fontSize = 24.sp, letterSpacing = 0.06.em),
+            textAlign = TextAlign.Center,
+        )
+        Text(
+            body,
+            style = SgmType.BodySM.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.68f), fontSize = 13.sp),
+            textAlign = TextAlign.Center,
+        )
+    }
+}

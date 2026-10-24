@@ -33,6 +33,7 @@ fun ActiveRideEntryCard(ride: LiveRideSnapshot, onOpen: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .sgmTestTag(SgmTestTags.ActiveRideResumeAction)
             .clip(RoundedCornerShape(20.dp))
             .then(backgroundModifier)
             .border(BorderStroke(1.dp, if (ride.stale) SgmColor.Orange.copy(alpha = 0.32f) else Sgm.colors.border), RoundedCornerShape(20.dp))

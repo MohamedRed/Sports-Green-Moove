@@ -1,0 +1,31 @@
+{
+  "scope": "operator-observed-physical-ui-not-an-automated-device-event-trace",
+  "steps": [
+    "profile-blocked",
+    "open-app-notification-settings-from-profile",
+    "allow-on-test-phone",
+    "profile-resume-allowed",
+    "options-allowed",
+    "open-app-notification-settings-from-options",
+    "block-on-test-phone",
+    "options-resume-blocked",
+    "profile-restored"
+  ],
+  "captureGeometry": {
+    "portrait": {
+      "x": 649,
+      "y": 112,
+      "width": 254,
+      "height": 559
+    },
+    "options": {
+      "x": 660,
+      "y": 464,
+      "width": 230,
+      "height": 132
+    }
+  },
+  "manualAppRestartRequested": false,
+  "processIdsMeasured": false,
+  "unrelatedAppsChanged": false
+}

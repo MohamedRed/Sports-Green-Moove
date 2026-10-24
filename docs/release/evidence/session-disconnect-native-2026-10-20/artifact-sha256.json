@@ -1,0 +1,21 @@
+{
+  "LocalSessionDisconnectTest#disconnectFromFailedRestoration-instrumentation.txt": "5a38a2be7ab751150099b28033557d83b1d129a2f53056d8907fa7a0c88f7ca6",
+  "LocalSessionDisconnectTest#reopenSignedOutSessionInNewProcess-instrumentation.txt": "debe33649070ca51d6ee16cebcb9aac3a69b36080af184ab18b5d588c6a31959",
+  "adb-pull-session-disconnect.json": "8ae99286306353cf13a71590dc440b08a4d0fe17cc2f2eb81715dcf35a56c84e",
+  "artifact-metadata.json": "3b223a86a43d496b12e99f8033ffac8674c128d1758b3c77ca24291977c73b72",
+  "disposable-device-restore.json": "8332df4c8cad8e9749946d91b0519f73a20f10b5be6ab9c46f9d542be45a59bf",
+  "disposable-device-setup.json": "ebf0a5adfac7a64d5ceb8b942deaf0a73b4eb4ab888aa59538c287234137aab5",
+  "disposable-device-setup.json.claimed": "d541368f929aeca52c6516ce39c7d5e26626c155b65767365ef690e668beca4c",
+  "local-session-disconnect-before.json": "c7af974ef39b71516b09ae87f6aaa1b8c2fcd19edc591d616fed0089ce32de5c",
+  "local-session-disconnect-device.json": "50e577f22bc34ad0ed332d0235d15848cfc6a823627da7b7aa58ca647904fb16",
+  "local-session-disconnect-error.png": "a326e9454be84e03f53966634b18daf4abe48d6f18b1a3d417e10f2fb7c94a2e",
+  "local-session-disconnect-reopened.png": "aa57ace903ad0ba3a2fe840cd90dcd972e0f473544599459cb86610f983bf7b0",
+  "local-session-disconnect-signed-out.png": "aa57ace903ad0ba3a2fe840cd90dcd972e0f473544599459cb86610f983bf7b0",
+  "local-session-disconnect-stop.json": "322f1723aedc7430d67d48326c4f5fc8ec65d2e8e508aecdc3eadd22295ee492",
+  "native-ci-run.json": "8bb64a13db79b7de57570c30132af3333748ea0c9ff2455f69880ce4cb154d5e",
+  "retained-context.json": "be03d571281f239b45acf7cb31ba0708d0036101d6e7b45aa3db610c4d9e0220",
+  "session-disconnect-app-results.json": "6090b38eca51e7b48e1c55cd17831c32764c2bf0344ed98f409d477ab46fa664",
+  "session-disconnect-proxy.json": "9f3e4d264ec8e610c3f2f2f9ca1b2f7fe5ad2d16d63fd538f604424bd36321f6",
+  "session-disconnect-results.json": "413043dd685d6ad7e48106e1597b507e8c3be3757754fef42e01cebad9738fa7",
+  "session-disconnect-suite-status.json": "8573f3f1846d7532397c999da43d422f44fd4c89454fd4a146a4166fa56de967"
+}

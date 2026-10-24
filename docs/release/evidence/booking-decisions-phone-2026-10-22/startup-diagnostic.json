@@ -1,0 +1,27 @@
+{
+  "scope": "classified-vendor-exit-not-connection-proof",
+  "code": 126,
+  "signal": null,
+  "diagnostics": {
+    "authenticationRejected": false,
+    "duplicateConnection": false,
+    "portUnavailable": true,
+    "networkFailure": false,
+    "configurationRejected": false
+  },
+  "startupOutputBytes": 1262,
+  "startupOutputTruncated": false,
+  "startupOutput": "Thu Oct 22 2026 11:21:33:601 GMT+0000 (+00) -- BrowserStackLocal v8.9\n\nThu Oct 22 2026 11:21:33:632 GMT+0000 (+00) -- Skipping initialisation of configuration console because: user disabled setup\n\nThu Oct 22 2026 11:21:33:684 GMT+0000 (+00) -- Setting output as verbose\nThu Oct 22 2026 11:21:34:571 GMT+0000 (+00) -- [ERROR] Necessary ports to start BrowserStack Binary were occupied by PID: -\nThu Oct 22 2026 11:21:34:573 GMT+0000 (+00) -- [ERROR] Please ensure that 45691 is available to use\nThu Oct 22 2026 11:21:34:573 GMT+0000 (+00) -- [ERROR] SYS_CONFLICT:1001 https://browserstack.com/docs/local-testing/binary/errors/1001\nThu Oct 22 2026 11:21:34:582 GMT+0000 (+00) -- [ERROR] Necessary ports to start BrowserStack Binary were occupied by PID: -\nThu Oct 22 2026 11:21:34:582 GMT+0000 (+00) -- [ERROR] Please ensure that 45690 is available to use\nThu Oct 22 2026 11:21:34:582 GMT+0000 (+00) -- [ERROR] SYS_CONFLICT:1001 https://browserstack.com/docs/local-testing/binary/errors/1001\nThu Oct 22 2026 11:21:34:596 GMT+0000 (+00) -- You can learn more about BrowserStack Binary flags by running ./BrowserStackLocal --help\nThu Oct 22 2026 11:21:34:598 GMT+0000 (+00) -- You can learn more about BrowserStack Binary flags by running ./BrowserStackLocal --help\n",
+  "startupOnlyApproved": true,
+  "requestLoggingEnabled": false,
+  "normalVerbosity": 0,
+  "rawLogWrittenToDisk": false,
+  "ownedGroupExitVerified": true,
+  "rootCauseEstablished": "required vendor ports occupied",
+  "conflictingPorts": [
+    45690,
+    45691
+  ],
+  "previousConnectionStoppedWithUserApproval": true,
+  "followUpConnection": "observed-enabled-on-physical-phone-with-normal-verbosity"
+}

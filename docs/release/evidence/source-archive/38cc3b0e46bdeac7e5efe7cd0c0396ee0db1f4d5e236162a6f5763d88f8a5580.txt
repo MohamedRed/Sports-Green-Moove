@@ -1,0 +1,17 @@
+import type { LocationUpdate } from "../domain/types.js";
+import { liveLocationPayload } from "../domain/liveLocationPayload.js";
+import { shouldReplaceLiveLocation } from "../domain/liveLocationOrder.js";
+import { realtimeDb } from "./firebase.js";
+
+export async function writeLiveLocation(update: LocationUpdate): Promise<boolean> {
+  const path =
+    update.role === "driver"
+      ? `liveTrips/${update.rideSessionId}/vehicle`
+      : `liveTrips/${update.rideSessionId}/children/${update.userId}`;
+  const now = Date.now();
+  const payload = liveLocationPayload(update);
+  const result = await realtimeDb.ref(path).transaction((current: unknown) =>
+    shouldReplaceLiveLocation(current, update, now) ? payload : undefined,
+  undefined, false);
+  return result.committed;
+}

@@ -1,0 +1,6 @@
+--------- beginning of system
+I/ActivityManager(  543): Force stopping be.sportgreenmoove.app.local appid=10212 user=0: finished inst
+E/ActivityManager(  543): Unable to freeze binder for 11977: -11
+I/ActivityManager(  543): Killing 11977:be.sportgreenmoove.app.local/u0a212 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  543): Unable to start service Intent { cmp=com.google.android.apps.tachyon/.clientapi.ClientApiService } U=0: not found
+W/ActivityManager(  543): setHasOverlayUi called on unknown pid: 11977

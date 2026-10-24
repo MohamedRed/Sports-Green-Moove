@@ -1,0 +1,59 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2551615Z INSTRUMENTATION_STATUS_CODE: 0
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2578452Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2605419Z be.sportgreenmoove.app.ui.LocalRideFlowTest:
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2607160Z Error in driverCompletesRideAndParentSubmitsReview(be.sportgreenmoove.app.ui.LocalRideFlowTest):
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2618768Z java.lang.AssertionError: Failed to assert the following: (is enabled)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2619770Z Semantics of the node:
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2623406Z Node #1505 at (l=95.0, t=2106.0, r=985.0, b=2232.0)px, Tag: 'active-ride.end.action'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2676707Z Shape = 'RectangleShape'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2677446Z Text = '[TERMINER LA COURSE]'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2677951Z [Disabled]
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2679381Z Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, SetTextSubstitution, ShowTextSubstitution]
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2680754Z MergeDescendants = 'true'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2681430Z Has 2 siblings
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2682215Z Selector used: (TestTag = 'active-ride.end.action')
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2682686Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2683381Z 	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2684716Z 	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2686100Z 	at androidx.compose.ui.test.AssertionsKt.assertIsEnabled(Assertions.kt:60)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2687987Z 	at be.sportgreenmoove.app.ui.LocalRideFlowTest.driverCompletesRideAndParentSubmitsReview(LocalRideFlowTest.kt:75)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2689056Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2689074Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2689260Z Time: 40.652
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2689756Z There was 1 failure:
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2691245Z 1) driverCompletesRideAndParentSubmitsReview(be.sportgreenmoove.app.ui.LocalRideFlowTest)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2692824Z java.lang.AssertionError: Failed to assert the following: (is enabled)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2693693Z Semantics of the node:
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2694773Z Node #1505 at (l=95.0, t=2106.0, r=985.0, b=2232.0)px, Tag: 'active-ride.end.action'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2695659Z Shape = 'RectangleShape'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2696280Z Text = '[TERMINER LA COURSE]'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2696764Z [Disabled]
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2698128Z Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, SetTextSubstitution, ShowTextSubstitution]
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2699389Z MergeDescendants = 'true'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2699878Z Has 2 siblings
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2724811Z Selector used: (TestTag = 'active-ride.end.action')
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2730571Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2732665Z 	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2734017Z 	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2735838Z 	at androidx.compose.ui.test.AssertionsKt.assertIsEnabled(Assertions.kt:60)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2737744Z 	at be.sportgreenmoove.app.ui.LocalRideFlowTest.driverCompletesRideAndParentSubmitsReview(LocalRideFlowTest.kt:75)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2738842Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2739039Z FAILURES!!!
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2739577Z Tests run: 1,  Failures: 1
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2739888Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2739917Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.2739933Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.7792772Z [36m[1mi  functions:[22m[39m Beginning execution of "us-central1-getActiveRide"
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.7849207Z [90m> [39m {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:55.8038731Z [36m[1mi  functions:[22m[39m Finished "us-central1-getActiveRide" in 24.717088ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2278090Z node:internal/modules/run_main:123
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2280056Z     triggerUncaughtException(
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2280854Z     ^
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2281079Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2281507Z AssertionError [ERR_ASSERTION]: Local Android instrumentation failed
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2282656Z     at assertInstrumentationPassed (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/android-instrumentation-result.mjs:4:3)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2283899Z     at instrument (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:63:9)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2284944Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:99:3
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2285805Z     at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2286345Z   generatedMessage: false,
+Android native UI tests	Run Android Compose UI tests	2026-10-23T13:41:56.2286662Z   code: 'ERR_ASSERTION',

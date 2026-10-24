@@ -1,0 +1,20 @@
+{
+  "scope": "local-build-and-unit-not-native-ui",
+  "retainedAt": "2026-10-18T17:06:01.937Z",
+  "unitCaseCount": 17,
+  "unitFailures": 0,
+  "nativeTestApkCompiled": true,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/data/GuardianVerificationModels.kt": "62390d34f7e9f747cd19d6f27cf6f73681fa743d45dbe1a32f9c370d7ea81ce6",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGuardianGateway.kt": "e2068c3ed18f5df69fd9eeefcec93d999869ef9f34dfe8aba84bf55e9bcfeadd",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationGateway.kt": "8bdbf58fc0afa3d76cf2c6071b72a115483794bd43df31caf38aa5f67f3d5638",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt": "4ec2c985f8ec462587873189931ee8c9cf01f2b78da161366e4e4d308b85220f",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianPageState.kt": "e1ba4e47a0a135dbc097c26dbcf86426ef793790178e424eae484971713b23bd",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationState.kt": "617dbca2fb9c369876c86b91443408b3ec33e17b89b541749de6ef46cc98ef3b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationRoute.kt": "ff30ce9aec2fbc4d9f6193510d647d7642642ec175a08460d030653c59c4d8cb",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationScreen.kt": "65d42b7b8a0197bda5e5402f9b408dc762919ac15f757bf9d30f4946c937ee1a",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationDialogs.kt": "b7c1cccacf64abc57b01f3b4a309a6415daa8ee4aa5a25a21c5ebd20e079866d"
+  }
+}

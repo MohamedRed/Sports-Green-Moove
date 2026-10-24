@@ -1,0 +1,611 @@
+10-17 12:35:02.210  4280  4309 I TestRunner: started: aConversationOpensSendsAndKeepsItsDraftWhenReturningToTheInbox(be.sportgreenmoove.app.ui.ConversationFlowTest)
+10-17 12:35:02.224   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:02.326  1342  4483 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-17 12:35:02.330  4280  4309 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@98ca80a]
+10-17 12:35:02.374  4280  4309 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-17 12:35:02.377   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:02.400  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:02.429   564   581 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10209, packageName = null, attributionTag = null, token = android.os.Binder@daaa7d6, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 12:35:02.457   564   689 I ImeTracker: com.android.settings:6e610743: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 12:35:02.527  4356  4356 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 12:35:02.534   916  1028 D SplashScreenView: Build android.window.SplashScreenView{24b1164 V.E...... ......ID 0,0-0,0}
+10-17 12:35:02.534   916  1028 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-17 12:35:02.534   916  1028 D SplashScreenView: Branding: view: android.view.View{9b0fcd G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-17 12:35:02.541  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():752 Loaded main LM 1.en
+10-17 12:35:02.542  4280  4280 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@718ceae in: PRE_ON_CREATE
+10-17 12:35:02.543  4280  4280 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-17 12:35:02.546   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 12:35:02.547   364   396 I netd    : tetherGetStats() -> {[]} <0.34ms>
+10-17 12:35:02.587  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():730 loadLanguageModel() : 7, version [n/a]
+10-17 12:35:02.671  4280  4280 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@718ceae in: CREATED
+10-17 12:35:02.671  4280  4280 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=androidx.activity.ComponentActivity@718ceae
+10-17 12:35:02.707  1342  1779 I native  : I0000 00:00:1792240502.587607    1779 blocklist-assembly.cc:126] LoadBlocklist en
+10-17 12:35:02.707  1342  1779 I native  : I0000 00:00:1792240502.707331    1779 blocklist.cc:227] No blocklist file for a language. (This is OK if the language is loaded for the first time.) /data/user/0/com.google.android.inputmethod.latin/files/personal/blacklist.en_us.list
+10-17 12:35:02.707  1342  1779 E native  : E0000 00:00:1792240502.707359    1779 android-decoder-jni.cc:483] Failed to load dynamic LM from /data/user/0/com.google.android.inputmethod.latin/files/personal/blacklist.en_us.list
+10-17 12:35:02.707  1342  1779 W Delight5Decoder: Decoder.loadLanguageModel():641 Failed to load dynamic LM 7.en
+10-17 12:35:02.707  1342  1779 W Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():778 Failed to load dynamic LM 7.en
+10-17 12:35:02.707  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():730 loadLanguageModel() : 4, version [n/a]
+10-17 12:35:02.745  4280  4280 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@718ceae in: STARTED
+10-17 12:35:02.745  4280  4280 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=androidx.activity.ComponentActivity@718ceae
+10-17 12:35:02.757  4280  4280 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@718ceae in: RESUMED
+10-17 12:35:02.762  4280  4280 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=androidx.activity.ComponentActivity@718ceae
+10-17 12:35:02.821  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():771 Loaded dynamic LM 4.en
+10-17 12:35:02.821  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():730 loadLanguageModel() : 3, version [n/a]
+10-17 12:35:02.821  1342  1779 W native  : W0000 00:00:1792240502.821750    1779 dynamic-lm.cc:95] Cannot load dynamic lm from /data/user/0/com.google.android.inputmethod.latin/files/personal/userhistory/UserHistory.en_US.dict, openBuffer failed.
+10-17 12:35:02.821  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():771 Loaded dynamic LM 3.en
+10-17 12:35:02.850  1342  1783 I EmojiShortcutsLoader: EmojiShortcutsLoader.call():82 Finished loading emoji shortcuts
+10-17 12:35:02.850  1342  1783 I Delight5Facilitator: EmailLanguageModelLoader.call():32 Running email language model loader
+10-17 12:35:02.851  1342  1783 I Delight5Facilitator: KeyCorrectionTfliteModelLoader.call():31 Running Key Correction Tflite Model loader
+10-17 12:35:02.851  1342  1783 I Delight5Facilitator: RankingModelLoader.call():30 Running Ranking Model loader
+10-17 12:35:02.884  4356  4356 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@2579670
+10-17 12:35:02.886  1342  4480 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[InputMethod]#0) as ready
+10-17 12:35:02.887  1342  4480 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[InputMethod]#1) as ready
+10-17 12:35:02.887   564   899 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10152 pid=0
+10-17 12:35:02.887   564   899 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10152 => denied (81 us)
+10-17 12:35:02.887   564   899 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10152 pid=0
+10-17 12:35:02.887   564   899 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10152 => denied (20 us)
+10-17 12:35:02.887   564   899 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10152 pid=0
+10-17 12:35:02.887   564   899 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10152 => denied (14 us)
+10-17 12:35:02.892   916  1027 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@e28c24b
+10-17 12:35:02.893  1342  1566 I SP      : Registering kc_tflite_model.2024052201, url: https://www.gstatic.com/android/keyboard/kc_triggering_model/superpacks-manifest-20240423_102657.json, constraints: W:*:*:*, flags: bg, requested: 2024052201, current: -1
+10-17 12:35:02.893  1342  1566 I SP      : Registering kc_tflite_model.2024052201, url: https://www.gstatic.com/android/keyboard/kc_triggering_model/superpacks-manifest-20240423_102657.json, constraints: W:*:*:*, flags: bg, requested: 2024052201, current: -1
+10-17 12:35:02.893  1342  1566 I SP      : Registering kc_tflite_model.2024052201, url: https://www.gstatic.com/android/keyboard/kc_triggering_model/superpacks-manifest-20240423_102657.json, constraints: W:*:*:*, flags: bg, requested: 2024052201, current: -1
+10-17 12:35:02.893  1342  1566 I SP      : Registering kc_tflite_model.2024052201, url: https://www.gstatic.com/android/keyboard/kc_triggering_model/superpacks-manifest-20240423_102657.json, constraints: W:*:*:*, flags: bg, requested: 2024052201, current: -1
+10-17 12:35:02.893  1342  1566 I SP      : Registering kc_tflite_model.2024052201, url: https://www.gstatic.com/android/keyboard/kc_triggering_model/superpacks-manifest-20240423_102657.json, constraints: W:*:*:*, flags: bg, requested: 2024052201, current: -1
+10-17 12:35:02.895   564  1698 W InputManager-JNI: Input channel object '3f67a35 Splash Screen be.sportgreenmoove.app.test (client)' was disposed without first being removed with the input manager!
+10-17 12:35:02.897   564  1713 W InputManager-JNI: Input channel object 'ea5862b be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity (client)' was disposed without first being removed with the input manager!
+10-17 12:35:02.901  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:02.921   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:02.922  1098  1098 D VRI[FallbackHome]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 12:35:03.155  3236  3236 W JobService: onNetworkChanged() not implemented in androidx.work.impl.background.systemjob.SystemJobService. Must override in a subclass.
+10-17 12:35:03.216   564   836 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 12:35:03.231   564   836 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 12:35:03.250   564   836 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 12:35:03.251   564   836 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 12:35:03.251   564   836 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 12:35:03.266   916  1057 D EGL_emulation: app_time_stats: avg=322.95ms min=20.06ms max=825.40ms count=4
+10-17 12:35:03.275  3521  3562 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+10-17 12:35:03.287  4280  4280 D AutofillManager: Fill dialog is enabled:false, hints=[password, passwordAuto, creditCardNumber, creditCardSecurityCode, creditCardExpirationDate]
+10-17 12:35:03.290  1342  1783 I CrankEngineLocales: CrankEngineLocales.getLocaleToUseForCrankEngine():66 Using locale en_US for emoji prediction
+10-17 12:35:03.296  3521  3686 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[63f65479-4384]>Handler" thread_id=72 ]
+10-17 12:35:03.322   564   585 W ziparchive: Unable to open '/data/app/~~PhLHD2eOQIm7N1hdvTNFYg==/be.sportgreenmoove.app-Dq9tFmHIwCRtEfTTrl5rnQ==/base.dm': No such file or directory
+10-17 12:35:03.335   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:03.341   564   585 I ActivityTaskManager: Displayed be.sportgreenmoove.app/androidx.activity.ComponentActivity for user 0: +906ms
+10-17 12:35:03.360  1217  1225 I ChimeraSrvcProxy: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl
+10-17 12:35:03.392  1217  1225 W .gms.persistent: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+10-17 12:35:03.413  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:03.478   916  1027 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@dfc02ce
+10-17 12:35:03.487   564   984 W InputManager-JNI: Input channel object '8c9760b Splash Screen be.sportgreenmoove.app (client)' was disposed without first being removed with the input manager!
+10-17 12:35:03.589   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:03.681   564   689 I ImeTracker: be.sportgreenmoove.app:8a72546d: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 12:35:03.713  1342  1783 I CrankEngineLocales: CrankEngineLocales.getLocaleToUseForCrankEngine():66 Using locale en_US for emoji prediction
+10-17 12:35:03.713  1342  1783 I CrankEngineLocales: CrankEngineLocales.getLocaleToUseForCrankEngine():66 Using locale en_US for emoji prediction
+10-17 12:35:03.789   564   984 D ConnectivityService: requestNetwork for uid/pid:10152/1342 activeRequest: null callbackRequest: 151 [NetworkRequest [ REQUEST id=152, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+10-17 12:35:03.790   564   829 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=152, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:03.790   564   829 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=152, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:03.790   564   829 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=152, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:03.790   564   829 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=152, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:03.791   564   836 D ConnectivityService: NetReassign [152 : null → 100] [c 0] [a 0] [i 1]
+10-17 12:35:03.791  1342  1566 I SP      : Scheduling job with delay of 0s for {W:b:u:l, bg}, 2 candidates
+10-17 12:35:03.806  1342  4476 W WM-Processor: Didn't find WorkSpec for id WorkGenerationalId(workSpecId=528aa3ca-d7f2-4d5c-bd92-8f2e3b3f10aa, generation=0)
+10-17 12:35:03.854  4280  4280 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+10-17 12:35:03.854  4280  4280 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+10-17 12:35:03.914  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:03.915  1342  1566 I SP      : Scheduling: download registered, 0 started, 0 paused, 2 scheduled, 2 pending: manifests:emoticon_content_description-2022081613 * {W:b:u:l, bg}, manifests:kc_tflite_model-2024052201 * {W:b:u:l, bg}
+10-17 12:35:03.925  1342  1566 I SuperpacksManagerImpl: SuperpacksManagerImpl$3$1.onFailure():588 kc_tflite_model.registerManifest() cancelled
+10-17 12:35:03.925  1342  1566 I SuperpacksManagerImpl: SuperpacksManagerImpl$3$1.onFailure():588 kc_tflite_model.registerManifest() cancelled
+10-17 12:35:03.925  1342  1566 I SuperpacksManagerImpl: SuperpacksManagerImpl$3$1.onFailure():588 kc_tflite_model.registerManifest() cancelled
+10-17 12:35:03.925  1342  1566 I SuperpacksManagerImpl: SuperpacksManagerImpl$3$1.onFailure():588 kc_tflite_model.registerManifest() cancelled
+10-17 12:35:03.931  1342  1566 I SP      : Registering next-word-predictor.20240611, url: https://www.gstatic.com/android/keyboard/next_word_predictor/prod/superpacks-manifest-20230719_210421.json, constraints: *:*:*:*, flags: *, requested: 20240611, current: -1
+10-17 12:35:03.936  1342  1566 I SP      : Sync for bundled_delight succeeded in 1752 ms: no changes
+10-17 12:35:03.937  1342  1566 I SP      : GC for 'bundled_delight' (10) with ttl of 0 ms took 0 ms (0/0/0)
+10-17 12:35:03.937  1342  1566 I LmManager: LmManager$1.onSuccess():82 Bundled delight sync success
+10-17 12:35:04.064  4280  4280 I SgmInputReadiness: phase=before-window-focus attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=false servedView=null acceptingText=null keyboardVisible=false
+10-17 12:35:04.065  4280  4280 I SgmInputReadiness: phase=window-focused attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=false servedView=null acceptingText=null keyboardVisible=false
+10-17 12:35:04.127  4280  4280 D InsetsController: show(ime(), fromIme=false)
+10-17 12:35:04.128  4280  4280 I ImeTracker: be.sportgreenmoove.app:79e2633f: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT_BY_INSETS_API fromUser false
+10-17 12:35:04.129  4280  4280 D InputMethodManager: showSoftInput() view=androidx.compose.ui.platform.AndroidComposeView{48c19d1 VFED..... .F....ID 0,0-1080,2400 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT_BY_INSETS_API
+10-17 12:35:04.135  4280  4280 I AssistStructure: Flattened final assist data: 552 bytes, containing 1 windows, 3 views
+10-17 12:35:04.158   564   984 I ImeTracker: be.sportgreenmoove.app:5c12115d: onCancelled at PHASE_WM_SHOW_IME_RUNNER
+10-17 12:35:04.161  4280  4280 I ImeTracker: be.sportgreenmoove.app:a0e878bd: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+10-17 12:35:04.162  4280  4280 D InputMethodManager: showSoftInput() view=androidx.compose.ui.platform.AndroidComposeView{48c19d1 VFED..... .F....ID 0,0-1080,2400 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+10-17 12:35:04.166   364   396 I netd    : tetherGetStats() -> {[]} <0.34ms>
+10-17 12:35:04.211  1342  1358 I HWUI    : Davey! duration=3165ms; Flags=1, FrameTimelineVsyncId=10484, IntendedVsync=342582837537, Vsync=343182837513, InputEventId=0, HandleInputStart=343191669364, AnimationStart=343191669971, PerformTraversalsStart=343191670181, DrawStart=343737050880, FrameDeadline=342599504203, FrameInterval=343188953469, FrameStartTime=16666666, SyncQueued=344033353521, SyncStart=344034331674, IssueDrawCommandsStart=344040355517, SwapBuffers=345537133613, FrameCompleted=345749760646, DequeueBufferDuration=4915, QueueBufferDuration=308015, GpuCompleted=345749760646, SwapBuffersCompleted=345735536280, DisplayPresentTime=0, CommandSubmissionCompleted=345537133613,
+10-17 12:35:04.224  1342  1566 I SP      : Requesting download of URL https://www.gstatic.com/android/keyboard/next_word_predictor/prod/superpacks-manifest-20230719_210421.json to next-word-predictor-20240611.fetched (constraints: m:b:u:l)
+10-17 12:35:04.226  1342  1783 I CrankEngineLocales: CrankEngineLocales.getLocaleToUseForCrankEngine():66 Using locale en_US for emoji prediction
+10-17 12:35:04.226  1342  1783 I CrankEngineLocales: CrankEngineLocales.getLocaleToUseForCrankEngine():66 Using locale en_US for emoji prediction
+10-17 12:35:04.229  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=404], hintText=null, hintLocales=[]}}, true)
+10-17 12:35:04.230  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:04.230  1342  1342 W SessionManager: SessionManager.beginSession():53 Try to begin an already begun session [INPUT_SESSION], end it first
+10-17 12:35:04.230  1342  1342 W SessionManager: SessionManager.endSession():96 Child session [INPUT_VIEW_SESSION] is not ended while ending session [{TRAINING_CACHE_SESSION=1792240501110, IME_SESSION=1792240501024, INPUT_SESSION=1792240500980, INPUT_VIEW_SESSION=1792240500986}], ending it now.
+10-17 12:35:04.230  1342  1342 W SessionManager: SessionManager.endSession():96 Child session [IME_SESSION] is not ended while ending session [{TRAINING_CACHE_SESSION=1792240501110, IME_SESSION=1792240501024, INPUT_SESSION=1792240500980, INPUT_VIEW_SESSION=1792240500986}], ending it now.
+10-17 12:35:04.231  1342  1342 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: en-US, ime_english_united_states
+10-17 12:35:04.232  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():2098 onStartInputView(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[{android.support.text.emoji.emojiCompat_metadataVersion=9, androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true, android.support.text.emoji.emojiCompat_replaceAll=false}], hintText=null, hintLocales=[]}}, true)
+10-17 12:35:04.232  1342  1342 I InputBundle: InputBundle.consumeEvent():884 Skip consuming an event as keyboard status is 0
+10-17 12:35:04.233  1342  1342 I VoiceInputHandler: VoiceInputHandler.onDeactivateIme():115 unregistering TalkbackStateListener
+10-17 12:35:04.233  1342  1342 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.shutdown():124 shutdown()
+10-17 12:35:04.235  1342  1342 E native  : E0000 00:00:1792240504.235334    1342 key-correction-manager.cc:337] User feature cache is not ready for key correction!
+10-17 12:35:04.235  1342  1342 I AndroidIME: AbstractIme.onDeactivate():202 LatinIme.onDeactivate()
+10-17 12:35:04.235  1342  1342 W SessionManager: SessionManager.endSession():88 Try to end a not begun session [IME_SESSION].
+10-17 12:35:04.236  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:04.236  1342  1342 I StylusEducationPopupDialog: StylusEducationPopupDialog.cancelShowFirstTimeEducationFuture():106 First time education future cancelled
+10-17 12:35:04.236  1342  1342 I StylusEducationPopupDialog: StylusEducationPopupDialog.onStartInputView():59 Schedule to show first time education
+10-17 12:35:04.238  1342  4328 I SuperDelight: SuperDelightManager$2.onSuccess():631 bundled_delight sync success, adding to data file manager
+10-17 12:35:04.238  1342  4328 I DataFileManager: DataFileManager.addDataWithoutNotify():181 data en-US already exists
+10-17 12:35:04.239  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.getOemKeyboardHeightRatio():206 systemKeyboardHeightRatio:1.000000.
+10-17 12:35:04.240  1342  1342 I AndroidIME: AbstractIme.onActivate():89 LatinIme.onActivate() : EditorInfo = EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[{android.support.text.emoji.emojiCompat_metadataVersion=9, androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true, android.support.text.emoji.emojiCompat_replaceAll=false}], hintText=null, hintLocales=[]}, IncognitoMode = false, DeviceLocked = false
+10-17 12:35:04.240  1342  1342 I Delight5Facilitator: Delight5Facilitator.initializeForIme():747 initializeForIme() : Locale = [en_US], layout = qwerty
+10-17 12:35:04.241  1342  1342 I VoiceInputHandler: VoiceInputHandler.onActivateIme():99 registering TalkbackStateListener
+10-17 12:35:04.242  1342  1342 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.cancelShutdown():102 cancelShutdown()
+10-17 12:35:04.242  1342  1342 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.syncLanguagePacks():114 syncLanguagePacks()
+10-17 12:35:04.242  1342  1342 I LatinIme: LatinIme.updateEnableInlineSuggestionsOnDecoderSideFlags():1174 inline flag updated to:false
+10-17 12:35:04.251  1342  1342 I InputBundle: InputBundle.consumeEvent():884 Skip consuming an event as keyboard status is 0
+10-17 12:35:04.254  1342  1342 I KeyboardWrapper: KeyboardWrapper.activateKeyboard():575 activateKeyboard(): type=prime, status=0, imeDef=ktt{stringId=ime_english_united_states, language=en-US, languageTag=en-US, processedConditions={enable_number_row=false, device=phone}, className=com.google.android.apps.inputmethod.libs.latin5.LatinIme, label=0, keyEventInterpreter=null, inlineComposing=true, autoCapital=true, announceAutoSelectedCandidate=true, statusIcon=0, primeKeyboardType=SOFT, indicatorIcon=0, indicatorLabel=US, displayAppCompletions=true, extraValues=ktl{}, processors=kvl@501ad89, unacceptableMetaKeys=4098, languageSpecificSettings=0, asciiCapable=true, alwaysShowSuggestions=false, useAsciiPasswordKeyboard=false, secondaryIme=null, keyboardGroupDef=kut@6794839, phenotypeFlagId=0, localizationLanguageTag=null, supportsInlineSuggestion=true, supportsAccessPoints=true}
+10-17 12:35:04.255  1342  1342 I KeyboardManager: KeyboardManager.requestKeyboard():234 Creating keyboard prime, imeId=ime_english_united_states, cacheKey=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign
+10-17 12:35:04.255  1342  1342 I KeyboardWrapper: KeyboardWrapper.onKeyboardReady():239 onKeyboardReady(): type=prime(prime), kb=com.google.android.apps.inputmethod.latin.keyboard.LatinPrimeKeyboard@71effdf
+10-17 12:35:04.255  1342  1342 I KeyboardWrapper: KeyboardWrapper.doActivateKeyboard():606 doActivateKeyboard(): prime
+10-17 12:35:04.255  1342  1342 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=HEADER keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{8365fea V.E...... ........ 0,0-1080,116}
+10-17 12:35:04.258  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.258  1342  1342 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=BODY keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{28dd29b V.E...... ........ 0,0-1080,641}
+10-17 12:35:04.258  1342  1342 I NewLanguagePromptExtension: NewLanguagePromptExtension$1.onKeyboardViewShown():115 Not show new language banner: no new languages.
+10-17 12:35:04.262  1342  4466 I SpeechFactory: SpeechRecognitionFactory.maybeScheduleAutoPackDownloadForFallback():200 maybeScheduleAutoPackDownloadForFallback()
+10-17 12:35:04.263  1342  4466 I FallbackOnDeviceRecognitionProvider: FallbackOnDeviceRecognitionProvider.maybeScheduleAutoPackDownload():197 maybeScheduleAutoPackDownload() for language tag en-US
+10-17 12:35:04.266  1342  1342 W Keyboard: Keyboard.getKeyboardViewHelper():574 null helper is returned: keyboardDef=kuo{processedConditions={enable_more_candidates_view_for_multilingual=false, enable_secondary_symbols=false, variant=qwerty, language=en-US, device=phone, expressions=normal, keyboard_mode=normal, show_secondary_digits=true, enable_preemptive_decode=true, rtl_layout=false}, globalConditions={global_theme_key=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign, global_locale=en_US, global_density_dpi=420, global_orientation=1}, className=.latin.keyboard.LatinPrimeKeyboard, resourceIds=[#0x7f170663, #0x7f1708e0], initialStates=0, keyboardViewDefs=[kvb{direction=null, id=#0x7f0b014d, isScalable=true, layoutId=#0x7f0e039d, type=BODY, touchable=true, defaultShow=true}, kvb{direction=null, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e01aa, type=FLOATING_CANDIDATES, touchable=false, defaultShow=false}, kvb{direction=LOCALE, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e0591, type=HEADER, touchable=true, defaultShow=true}], persistentStates=0, persistentStatesPrefKey=null, popupBubbleLayoutId=#0x7f0e068d, recentKeyLayoutId=0, recentKeyPopupLayoutId=0, recentKeyType=null, rememberRecentKey=NONE, sessionStates=17592186044419}, type=WIDGET, helpersCreated=[kib@4b15bd1, kib@e23f636, kib@e187937, null], context.getResources().getConfiguration(): {1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.48 fontWeightAdjustment=0}
+10-17 12:35:04.268  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.270  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.startInputIfInputViewStarted():3728 startInputIfInputViewStarted(): default prime
+10-17 12:35:04.271  1342  1342 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():625 setInputView() : supportsOneHandedMode=true supportsSplitMode=true
+10-17 12:35:04.271  1342  1342 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 12:35:04.271  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.271  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.271  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.271  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.271  1342  1342 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 12:35:04.272  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.274  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.274  1342  1342 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():613 setInputView() : supportsOneHandedMode=true, supportSplitMode=true
+10-17 12:35:04.279  1342  1342 I CrowdsourceExtension: CrowdsourceExtension.checkIfDefaultBrowserIsAllowed():110 Failed to get default browser. The default browser may be deactived.
+10-17 12:35:04.281  1342  1342 I AccessoryInputModeManager: AccessoryInputModeManager.onModeStarted():308 Accessory input mode started: null
+10-17 12:35:04.281  1342  1342 W SupplementaryKeyboardsWrapper: SupplementaryKeyboardsWrapper.deactivateKeyboard():159 keyboard accessory_candidates_consumer is not activated before!
+10-17 12:35:04.281  1342  1342 I VoiceImeExtension: VoiceImeExtension.shouldStartVoiceInputAutomaticallyInCurrentInputBox():415 No private IME option set to start voice input.
+10-17 12:35:04.283   564   984 I ImeTracker: be.sportgreenmoove.app:35ebbf41: onCancelled at PHASE_WM_SHOW_IME_RUNNER
+10-17 12:35:04.283  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.284  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.284  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.284  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.284  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onFinishInputView():2393
+10-17 12:35:04.285   564  1703 I ImeTracker: be.sportgreenmoove.app:3316970f: onFailed at PHASE_WM_ABORT_SHOW_IME_POST_LAYOUT
+10-17 12:35:04.285   564  1703 I ImeTracker: be.sportgreenmoove.app:be16fb04: onFailed at PHASE_WM_HAS_IME_INSETS_CONTROL_TARGET
+10-17 12:35:04.285  1217  1585 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-17 12:35:04.286  1217  1585 I FontLog : Query [Noto Color Emoji Compat] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+10-17 12:35:04.287  1342  1342 I InputBundle: InputBundle.consumeEvent():884 Skip consuming an event as keyboard status is 0
+10-17 12:35:04.289  1342  1342 I VoiceInputHandler: VoiceInputHandler.onDeactivateIme():115 unregistering TalkbackStateListener
+10-17 12:35:04.289  1365  1365 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.chimera.container.moduleinstall.ModuleInstallService.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 12:35:04.289  1365  1365 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.chimera.container.moduleinstall.ModuleInstallService.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 12:35:04.290  1342  1342 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.shutdown():124 shutdown()
+10-17 12:35:04.290  1342  1342 E native  : E0000 00:00:1792240504.290592    1342 key-correction-manager.cc:337] User feature cache is not ready for key correction!
+10-17 12:35:04.290  1342  1342 I AndroidIME: AbstractIme.onDeactivate():202 LatinIme.onDeactivate()
+10-17 12:35:04.291  1342  1342 I StylusEducationPopupDialog: StylusEducationPopupDialog.cancelShowFirstTimeEducationFuture():106 First time education future cancelled
+10-17 12:35:04.293  1342  1553 W ModuleManager: ModuleManager.loadModule():473 Module mgc is not available
+10-17 12:35:04.293  1342  1566 I SP      : Registering expressive_concepts_triggering.2022062400, url: https://www.gstatic.com/android/keyboard/modelpack/expressive_concepts_triggering/2022062400/superpacks_manifest.json, constraints: *:*:*:*, flags: *, requested: 2022062400, current: -1
+10-17 12:35:04.294  4280  4280 E ImeBackDispatcher: Ime callback not found. Ignoring unregisterReceivedCallback. callbackId: 201994303
+10-17 12:35:04.295   364  4494 I resolv  : GetAddrInfoHandler::run: {100 100 100 983140 10152 0}
+10-17 12:35:04.296   364  4496 I resolv  : res_nmkquery: (QUERY, IN, A)
+10-17 12:35:04.296   364  4495 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+10-17 12:35:04.297  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, true)
+10-17 12:35:04.301   364  4495 I resolv  : res_nsend: used send_dg 61 terrno: 0
+10-17 12:35:04.301   364  4495 I resolv  : doQuery: rcode=0, ancount=1, return value=61
+10-17 12:35:04.303   364  4496 I resolv  : res_nsend: used send_dg 49 terrno: 0
+10-17 12:35:04.303  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:04.303  1342  1342 W SessionManager: SessionManager.beginSession():53 Try to begin an already begun session [INPUT_SESSION], end it first
+10-17 12:35:04.303   364  4496 I resolv  : doQuery: rcode=0, ancount=1, return value=49
+10-17 12:35:04.303  1342  1342 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 12:35:04.305  1342  1342 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 12:35:04.305  1342  1342 I InputBundle: InputBundle.consumeEvent():880 Skip consuming an event as imeStatus is 0
+10-17 12:35:04.306  1342  4493 D TrafficStats: tagSocket(182) with statsTag=0xffffffff, statsUid=-1
+10-17 12:35:04.306  1342  1342 W ExtensionWrapper: ExtensionWrapper.requestKeyboard():732 class jhz is not activate
+10-17 12:35:04.308  1342  1342 I Choreographer: Skipped 160 frames!  The application may be doing too much work on its main thread.
+10-17 12:35:04.309  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.310  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.310  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.313  1342  1553 I NebulaeTrainingCacheMetricsProcessor: NebulaeTrainingCacheMetricsProcessor.processEndSession():510 No input action collection in this session, skip logging.
+10-17 12:35:04.313  1342  1342 I InputBundle: InputBundle.consumeEvent():880 Skip consuming an event as imeStatus is 0
+10-17 12:35:04.314  1342  1342 I AndroidIME: KeyboardViewManager.saveKeyboardBottomGap():259 windowHeight: 2146 windowHeightInInches: 5.109524
+10-17 12:35:04.314  1342  1342 I AndroidIME: keyboardHolderHeight: 757 navigationHeight: 126
+10-17 12:35:04.314  1342  1342 I AndroidIME: getKeyboardBodyViewHolderPaddingBottom(): 0
+10-17 12:35:04.314  1342  1342 I AndroidIME: keyboardBottomGap: 126 bodyViewHolderBottomPadding: 0
+10-17 12:35:04.314  1342  1342 I AndroidIME: decorViewStableInsetBottom: 126 updated: true
+10-17 12:35:04.314  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.314  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.314  1342  1342 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 12:35:04.314  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.314  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.316   564  1703 I ImeTracker: com.android.settings:6e610743: onFailed at PHASE_WM_HAS_IME_INSETS_CONTROL_TARGET
+10-17 12:35:04.317  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 12:35:04.317  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 12:35:04.317  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=com.android.settings, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-17 12:35:04.317  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:04.317  1342  1342 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 12:35:04.320  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 12:35:04.320  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 12:35:04.320  1098  1098 D InsetsController: hide(ime(), fromIme=true)
+10-17 12:35:04.320  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-17 12:35:04.320  1098  1098 I ImeTracker: be.sportgreenmoove.app:8a72546d: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-17 12:35:04.320  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:04.321  1342  1342 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 12:35:04.321  1342  1779 W Delight5Decoder: Delight5DecoderWrapper.shouldAbandonMessage():2218 Detected old [FetchSuggestions] request in background: 3<9
+10-17 12:35:04.322  1342  1342 I MDDTaskScheduler: MDDTaskScheduler$Worker.startWorkInner():122 work mdd_download_work started
+10-17 12:35:04.322  1342  1342 I DownloadManager: DownloadManager.startDownload():484 start download of __KLP_delight__en-840
+10-17 12:35:04.324  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 12:35:04.324  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 12:35:04.326  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=404], hintText=null, hintLocales=[]}}, false)
+10-17 12:35:04.327  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:04.327  1342  1342 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: en-US, ime_english_united_states
+10-17 12:35:04.329  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=404], hintText=null, hintLocales=[]}}, true)
+10-17 12:35:04.330  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:04.330  1342  1342 W SessionManager: SessionManager.beginSession():53 Try to begin an already begun session [INPUT_SESSION], end it first
+10-17 12:35:04.330  1342  1342 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: en-US, ime_english_united_states
+10-17 12:35:04.333  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():2098 onStartInputView(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[{android.support.text.emoji.emojiCompat_metadataVersion=9, androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true, android.support.text.emoji.emojiCompat_replaceAll=false}], hintText=null, hintLocales=[]}}, false)
+10-17 12:35:04.333  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:04.333  1342  1342 I StylusEducationPopupDialog: StylusEducationPopupDialog.onStartInputView():59 Schedule to show first time education
+10-17 12:35:04.335  1342  1566 I SP      : Requesting download of URL https://www.gstatic.com/android/keyboard/modelpack/expressive_concepts_triggering/2022062400/superpacks_manifest.json to expressive_concepts_triggering-2022062400.fetched (constraints: m:b:u:l)
+10-17 12:35:04.341  1342  4464 I DelightKLPDownloader: DelightKLPDownloader$2.onSuccess():207 klp en_840 downloaded with version 2024070900
+10-17 12:35:04.344  4280  4280 I ImeTracker: be.sportgreenmoove.app:43f3ce8a: onRequestShow at ORIGIN_CLIENT reason CONTROLS_CHANGED fromUser false
+10-17 12:35:04.356  4280  4280 D InputMethodManager: showSoftInput() view=androidx.compose.ui.platform.AndroidComposeView{48c19d1 VFED..... .F...... 0,0-1080,2400 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT_BY_INSETS_API
+10-17 12:35:04.361  1217  1585 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-17 12:35:04.374  1342  4491 I HWUI    : Davey! duration=2728ms; Flags=0, FrameTimelineVsyncId=10680, IntendedVsync=343216170845, Vsync=345882837405, InputEventId=0, HandleInputStart=345896055190, AnimationStart=345896056269, PerformTraversalsStart=345896193379, DrawStart=345897783610, FrameDeadline=345782837409, FrameInterval=345895598840, FrameStartTime=16666666, SyncQueued=345898205960, SyncStart=345898821947, IssueDrawCommandsStart=345899423080, SwapBuffers=345905963993, FrameCompleted=345945202874, DequeueBufferDuration=4762, QueueBufferDuration=240739, GpuCompleted=345944365246, SwapBuffersCompleted=345945202874, DisplayPresentTime=0, CommandSubmissionCompleted=345905963993,
+10-17 12:35:04.374  1217  1225 I FontLog : Pulling font file for id = 10, cache size = 8 [CONTEXT service_id=132 ]
+10-17 12:35:04.378  1342  4475 I DelightKLPDownloader: DelightKLPDownloader$2.onSuccess():207 klp en_840 downloaded with version 2024070900
+10-17 12:35:04.383  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.getOemKeyboardHeightRatio():206 systemKeyboardHeightRatio:1.000000.
+10-17 12:35:04.385  1342  1342 I AndroidIME: AbstractIme.onActivate():89 LatinIme.onActivate() : EditorInfo = EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[{android.support.text.emoji.emojiCompat_metadataVersion=9, androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true, android.support.text.emoji.emojiCompat_replaceAll=false}], hintText=null, hintLocales=[]}, IncognitoMode = false, DeviceLocked = false
+10-17 12:35:04.387  3610  3610 V InlineSuggestionRenderService: handleDestroySuggestionViews called for 0:18821735
+10-17 12:35:04.388  4280  4280 D Autofill Status: Autofill popup isn't shown because autofill is not available.
+10-17 12:35:04.388  4280  4280 D Autofill Status:
+10-17 12:35:04.388  4280  4280 D Autofill Status: Did you set up autofill?
+10-17 12:35:04.388  4280  4280 D Autofill Status: 1. Go to Settings > System > Languages&input > Advanced > Autofill Service
+10-17 12:35:04.388  4280  4280 D Autofill Status: 2. Pick a service
+10-17 12:35:04.388  4280  4280 D Autofill Status:
+10-17 12:35:04.388  4280  4280 D Autofill Status: Did you add an account?
+10-17 12:35:04.388  4280  4280 D Autofill Status: 1. Go to Settings > System > Languages&input > Advanced
+10-17 12:35:04.388  4280  4280 D Autofill Status: 2. Click on the settings icon next to the Autofill Service
+10-17 12:35:04.388  4280  4280 D Autofill Status: 3. Add your account
+10-17 12:35:04.389  1342  1342 I Delight5Facilitator: Delight5Facilitator.initializeForIme():747 initializeForIme() : Locale = [en_US], layout = qwerty
+10-17 12:35:04.391  1217  1225 I IPCThreadState: oneway function results for code 1 on binder at 0x7b944f6d3680 will be dropped but finished with status UNKNOWN_TRANSACTION and reply parcel size 80
+10-17 12:35:04.392  1342  1342 I VoiceInputHandler: VoiceInputHandler.onActivateIme():99 registering TalkbackStateListener
+10-17 12:35:04.394  1342  1342 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.cancelShutdown():102 cancelShutdown()
+10-17 12:35:04.394  1342  1342 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.syncLanguagePacks():114 syncLanguagePacks()
+10-17 12:35:04.396  1342  1342 I LatinIme: LatinIme.updateEnableInlineSuggestionsOnDecoderSideFlags():1174 inline flag updated to:false
+10-17 12:35:04.398  1342  1342 I InputBundle: InputBundle.consumeEvent():884 Skip consuming an event as keyboard status is 0
+10-17 12:35:04.399  1342  4466 I SpeechFactory: SpeechRecognitionFactory.maybeScheduleAutoPackDownloadForFallback():200 maybeScheduleAutoPackDownloadForFallback()
+10-17 12:35:04.400  1342  4466 I FallbackOnDeviceRecognitionProvider: FallbackOnDeviceRecognitionProvider.maybeScheduleAutoPackDownload():197 maybeScheduleAutoPackDownload() for language tag en-US
+10-17 12:35:04.406  1342  1342 I KeyboardWrapper: KeyboardWrapper.activateKeyboard():575 activateKeyboard(): type=prime, status=0, imeDef=ktt{stringId=ime_english_united_states, language=en-US, languageTag=en-US, processedConditions={enable_number_row=false, device=phone}, className=com.google.android.apps.inputmethod.libs.latin5.LatinIme, label=0, keyEventInterpreter=null, inlineComposing=true, autoCapital=true, announceAutoSelectedCandidate=true, statusIcon=0, primeKeyboardType=SOFT, indicatorIcon=0, indicatorLabel=US, displayAppCompletions=true, extraValues=ktl{}, processors=kvl@501ad89, unacceptableMetaKeys=4098, languageSpecificSettings=0, asciiCapable=true, alwaysShowSuggestions=false, useAsciiPasswordKeyboard=false, secondaryIme=null, keyboardGroupDef=kut@6794839, phenotypeFlagId=0, localizationLanguageTag=null, supportsInlineSuggestion=true, supportsAccessPoints=true}
+10-17 12:35:04.406  1342  1342 I KeyboardManager: KeyboardManager.requestKeyboard():234 Creating keyboard prime, imeId=ime_english_united_states, cacheKey=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign
+10-17 12:35:04.409  1342  1342 I KeyboardWrapper: KeyboardWrapper.onKeyboardReady():239 onKeyboardReady(): type=prime(prime), kb=com.google.android.apps.inputmethod.latin.keyboard.LatinPrimeKeyboard@71effdf
+10-17 12:35:04.409  1342  1342 I KeyboardWrapper: KeyboardWrapper.doActivateKeyboard():606 doActivateKeyboard(): prime
+10-17 12:35:04.409  1342  1342 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=HEADER keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{8365fea V.E...... ........ 0,0-1080,116}
+10-17 12:35:04.415  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:04.417  1342  1783 I CrankEngineLocales: CrankEngineLocales.getLocaleToUseForCrankEngine():66 Using locale en_US for emoji prediction
+10-17 12:35:04.422  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.422  1217  1585 I FontLog : Pulling font file for id = 10, cache size = 8 [CONTEXT service_id=132 ]
+10-17 12:35:04.425  1342  1342 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=BODY keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{28dd29b V.E...... ........ 0,0-1080,641}
+10-17 12:35:04.425  1342  1342 I NewLanguagePromptExtension: NewLanguagePromptExtension$1.onKeyboardViewShown():94 Not show new language banner: not prime keyboard, or the extension not activated.
+10-17 12:35:04.425  1342  1342 W Keyboard: Keyboard.getKeyboardViewHelper():574 null helper is returned: keyboardDef=kuo{processedConditions={enable_more_candidates_view_for_multilingual=false, enable_secondary_symbols=false, variant=qwerty, language=en-US, device=phone, expressions=normal, keyboard_mode=normal, show_secondary_digits=true, enable_preemptive_decode=true, rtl_layout=false}, globalConditions={global_theme_key=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign, global_locale=en_US, global_density_dpi=420, global_orientation=1}, className=.latin.keyboard.LatinPrimeKeyboard, resourceIds=[#0x7f170663, #0x7f1708e0], initialStates=0, keyboardViewDefs=[kvb{direction=null, id=#0x7f0b014d, isScalable=true, layoutId=#0x7f0e039d, type=BODY, touchable=true, defaultShow=true}, kvb{direction=null, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e01aa, type=FLOATING_CANDIDATES, touchable=false, defaultShow=false}, kvb{direction=LOCALE, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e0591, type=HEADER, touchable=true, defaultShow=true}], persistentStates=0, persistentStatesPrefKey=null, popupBubbleLayoutId=#0x7f0e068d, recentKeyLayoutId=0, recentKeyPopupLayoutId=0, recentKeyType=null, rememberRecentKey=NONE, sessionStates=17592186044419}, type=WIDGET, helpersCreated=[kib@4b15bd1, kib@e23f636, kib@e187937, null], context.getResources().getConfiguration(): {1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.48 fontWeightAdjustment=0}
+10-17 12:35:04.426  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.431  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.startInputIfInputViewStarted():3728 startInputIfInputViewStarted(): default prime
+10-17 12:35:04.436  1342  1342 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():625 setInputView() : supportsOneHandedMode=true supportsSplitMode=true
+10-17 12:35:04.436  1342  1342 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 12:35:04.436  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.437  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.437  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.437  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.437  1342  1342 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 12:35:04.437  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.437  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.437  1342  1342 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():613 setInputView() : supportsOneHandedMode=true, supportSplitMode=true
+10-17 12:35:04.445  1342  1342 I CrowdsourceExtension: CrowdsourceExtension.checkIfDefaultBrowserIsAllowed():110 Failed to get default browser. The default browser may be deactived.
+10-17 12:35:04.446  1342  1342 I AccessoryInputModeManager: AccessoryInputModeManager.onModeStarted():308 Accessory input mode started: null
+10-17 12:35:04.446  1342  1342 W SupplementaryKeyboardsWrapper: SupplementaryKeyboardsWrapper.deactivateKeyboard():159 keyboard accessory_candidates_consumer is not activated before!
+10-17 12:35:04.447  1342  1342 I VoiceImeExtension: VoiceImeExtension.shouldStartVoiceInputAutomaticallyInCurrentInputBox():415 No private IME option set to start voice input.
+10-17 12:35:04.448  1342  1342 W InputContextProxy: InputContextProxy.applyClientDiffInternal():940 Ignore [FetchSuggestions] diff due to stale request: 5<11, inputStateId=3, lastInputStateId=8
+10-17 12:35:04.449   564  1713 I ImeTracker: be.sportgreenmoove.app:79e2633f: onCancelled at PHASE_WM_SHOW_IME_RUNNER
+10-17 12:35:04.450  4280  4280 D InsetsController: show(ime(), fromIme=true)
+10-17 12:35:04.452  1342  1342 W InputContextProxy: InputContextProxy.applyClientDiffInternal():940 Ignore [FetchSuggestions] diff due to stale request: 8<11, inputStateId=6, lastInputStateId=8
+10-17 12:35:04.452  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.452  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.452  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.452  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.452  1342  1342 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 12:35:04.453  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.453  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.453  1342  1342 I KeyboardManager: KeyboardManager.requestKeyboard():234 Creating keyboard prime, imeId=ime_english_united_states, cacheKey=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign
+10-17 12:35:04.455  1342  1342 W ExtensionWrapper: ExtensionWrapper.requestKeyboard():732 class jhz is not activate
+10-17 12:35:04.455  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.455  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.458   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:04.460  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.460  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.460  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.469  4280  4280 W InteractionJankMonitor: Initializing without READ_DEVICE_CONFIG permission. enabled=true, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=be.sportgreenmoove.app
+10-17 12:35:04.472  1342  1342 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=HEADER keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{8365fea V.E...... ........ 0,0-1080,116}
+10-17 12:35:04.472  1342  1342 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=BODY keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{28dd29b V.E...... ........ 0,0-1080,641}
+10-17 12:35:04.473  1342  1342 I NewLanguagePromptExtension: NewLanguagePromptExtension$1.onKeyboardViewShown():115 Not show new language banner: no new languages.
+10-17 12:35:04.473  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.474  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.474  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:04.474  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:04.474  1342  1342 I KeyboardManager: KeyboardManager.requestKeyboard():234 Creating keyboard prime, imeId=ime_english_united_states, cacheKey=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign
+10-17 12:35:04.475  1342  1342 W ExtensionWrapper: ExtensionWrapper.requestKeyboard():732 class jhz is not activate
+10-17 12:35:04.506  4280  4280 I ImeTracker: be.sportgreenmoove.app:a0e878bd: onShown
+10-17 12:35:04.508  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:04.548  1342  1342 W MlKitModuleManager: MlKitModuleManager.lambda$onCreate$0():52 MlKit modules are not available.
+10-17 12:35:04.554  4280  4280 D InsetsController: show(ime(), fromIme=true)
+10-17 12:35:04.555  4280  4280 I ImeTracker: be.sportgreenmoove.app:43f3ce8a: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-17 12:35:04.598  1365  2897 E ZappPhoneskyConn: Unable to bind to Phonesky
+10-17 12:35:04.598  1365  2897 I GmsDebugLogger: [76]
+10-17 12:35:04.601  1365  2897 E ZappPhoneskyConn: Unable to bind to Phonesky
+10-17 12:35:04.601  1365  2897 E DynamicModuleDownloader: Zapp module request failed: null
+10-17 12:35:04.650  1342  1783 I CrankEngineLocales: CrankEngineLocales.getLocaleToUseForCrankEngine():66 Using locale en_US for emoji prediction
+10-17 12:35:04.652  1342  1783 I MainLanguageModelLoader: MainLanguageModelLoader.call():139 Running LM loader for [en_US]
+10-17 12:35:04.654  1342  1566 I SP      : Registering transformer_expression.2023102013, url: https://www.gstatic.com/android/keyboard/modelpack/transformer_expression/2023102013/superpacks_manifest.json, constraints: *:*:*:*, flags: *, requested: 2023102013, current: -1
+10-17 12:35:04.658  1342  1342 I StylusEducationPopupDialog: StylusEducationPopupDialog.showFirstTimeEducation():79 First time education not shown for null
+10-17 12:35:04.674  1342  1783 I DelightDataFileManagerLanguageModelProvider: DelightDataFileManagerLanguageModelProvider.fetchLanguageModel():76 find data en-840 mdd
+10-17 12:35:04.687  1365  4500 I GmsDebugLogger: [53] +vision.ocr:1
+10-17 12:35:04.706  1365  4501 I ChimeraConfigurator: Starting update, reason: 4 urgentFeatures: vision.ocr:1
+10-17 12:35:04.707  4280  4280 W FrameTracker: Missed App frame:UNKNOWN: 74, 11595, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@be.sportgreenmoove.app>
+10-17 12:35:04.707  4280  4280 W FrameTracker: Missed SF frame:UNKNOWN: 74, 11595, 0, CUJ=J<IME_INSETS_SHOW_ANIMATION::0@1@be.sportgreenmoove.app>
+10-17 12:35:04.740  1342  4464 I DailyPingWorker: DailyPingWorker.<init>():43 Initialized DailyPingWorker.
+10-17 12:35:04.741  4280  4317 D EGL_emulation: app_time_stats: avg=120.73ms min=12.44ms max=477.68ms count=12
+10-17 12:35:04.743  1342  1342 I MlKitModuleManager: MlKitModuleManager.lambda$tryToInstallModules$2():85 Modules install request has been initiated.
+10-17 12:35:04.745  1342  1566 I SP      : Requesting download of URL https://www.gstatic.com/android/keyboard/modelpack/transformer_expression/2023102013/superpacks_manifest.json to transformer_expression-2023102013.fetched (constraints: m:b:u:l)
+10-17 12:35:04.801  1365  4501 I ChimeraConfigurator: Detected pending changes for urgent request: [vision.ocr]. Pending module sets: container:2423359190800+mlkit.ocr.common+vision.ocr,tflite_dynamite:2627305025100800+tflite_dynamite
+10-17 12:35:04.826  1365  4501 I GmsDebugLogger: [73] 1801
+10-17 12:35:04.861  1365  4501 W ZappDownloader: No successful Zapp module downloads for requested modules [VisionOcr.optional:242335100000:permitMetered, TfliteDynamiteDynamite.integ:262730502100800:permitMetered, MlkitOcrCommon.optional:242335100800:permitMetered].
+10-17 12:35:04.865  1365  4501 I GmsDebugLogger: [30] [VisionOcr.optional:242335100000],[TfliteDynamiteDynamite.integ:262730502100800],[MlkitOcrCommon.optional:242335100800]
+10-17 12:35:04.876  1365  4501 W ChimeraConfigService: Retry attempt was throttled. [CONTEXT service_id=264 ]
+10-17 12:35:04.876  1365  4501 I ChimeraConfigurator: Update complete: success
+10-17 12:35:04.896  4280  4280 I SgmInputReadiness: phase=conversation-keyboard-visible attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=true servedView=true acceptingText=true keyboardVisible=true
+10-17 12:35:04.899  1365  4501 I GmsModuleFndr: Beginning GMS chimera module scan
+10-17 12:35:04.906  1342  1553 W ModuleManager: ModuleManager.loadModule():473 Module mgc is not available
+10-17 12:35:04.907  1342  1553 I NebulaeTrainingCacheMetricsProcessor: NebulaeTrainingCacheMetricsProcessor.processEndSession():510 No input action collection in this session, skip logging.
+10-17 12:35:04.908  1342  1553 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 12:35:04.909  1365  4501 I ModuleSetResolution: Computing pending module set with APKs: [[AdsFdrDynamite.integ:241199801100000], [Cronetdynamite:242335190800], [Dynamiteloader:242335190000], [Dynamitemodulesa:242335190000], [Dynamitemodulesc:242335190000], [Googlecertificates:242335190000], [Mapsdynamite:242335190000], [Measurementdynamite:242335190000]]
+10-17 12:35:04.920  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:04.925  1342  1783 I LmManager: LmManager.asyncUpdateEnabledLanguageModels():96 asyncUpdateEnabledLanguageModels()
+10-17 12:35:04.926  1342  4328 I SuperDelight: SuperDelightManager.initializeBundledDelightSuperpacks():374 initializeBundledDelightSuperpacks()
+10-17 12:35:04.926  1342  1342 I DailyPingWorker: DailyPingWorker.startWorkInner():61 Completed work: WORK_ID = daily_ping_work
+10-17 12:35:04.928  1365  4501 I ModuleSetResolution: Pending container module APKs: []
+10-17 12:35:04.928  1365  4501 I ModuleSetResolution: Pending non-container module APKs: []
+10-17 12:35:04.928  1342  1347 W putmethod.latin: Suspending all threads took: 11.786ms
+10-17 12:35:04.934  1342  1783 I SuperDelight: SuperDelightManager.initializeOverridesSuperpacks():400 initializeOverridesSuperpacks()
+10-17 12:35:04.935  1342  1783 I DelightKLPDownloader: DelightKLPDownloader.downloadKLPInternal():185 downloading KLP for en_840
+10-17 12:35:04.936  1342  4464 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=c485aab4-1166-4c08-b564-6690e42cf190, tags={ com.google.android.libraries.inputmethod.mdd.MDDTaskScheduler$Worker } ]
+10-17 12:35:04.937  1342  1783 I ManifestedDataDownloader: ManifestedDataDownloader.download():57 downloading manifest https://www.gstatic.com/android/keyboard/dictionarypack/2024070918/metadata.json-perlang/en-840.json?v=2024071002
+10-17 12:35:04.937  1342  1783 I DelightDataFileManagerLanguageModelProvider: DelightDataFileManagerLanguageModelProvider.fetchLanguageModel():76 find data en-US bundled_delight
+10-17 12:35:04.937  1342  1783 I LmManager: LmManager.asyncUpdateEnabledLanguageModels():96 asyncUpdateEnabledLanguageModels()
+10-17 12:35:04.937  1342  1783 I SuperDelight: SuperDelightManager.initializeOverridesSuperpacks():400 initializeOverridesSuperpacks()
+10-17 12:35:04.937  1342  1783 I DelightKLPDownloader: DelightKLPDownloader.downloadKLPInternal():185 downloading KLP for en_840
+10-17 12:35:04.937  1342  1783 I ManifestedDataDownloader: ManifestedDataDownloader.download():57 downloading manifest https://www.gstatic.com/android/keyboard/dictionarypack/2024070918/metadata.json-perlang/en-840.json?v=2024071002
+10-17 12:35:04.938  1342  1783 I MainLanguageModelLoader: MainLanguageModelLoader.updateLmAvailableState():349 updateLmAvailableState(): locale? en_US prevState? AVAILABLE
+10-17 12:35:04.938  1342  1783 I MainLanguageModelLoader: MainLanguageModelLoader.updateLmAvailableState():385 updateLmAvailableState(): locale? en_US newState? AVAILABLE
+10-17 12:35:04.938  1342  1783 I Delight5Facilitator: ContactsLanguageModelLoader.call():37 Running contacts language model loader
+10-17 12:35:04.938  1342  4327 I SuperDelight: SuperDelightManager.initializeBundledDelightSuperpacks():374 initializeBundledDelightSuperpacks()
+10-17 12:35:04.938  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.setKeyboardLayout():511 setKeyboardLayout()
+10-17 12:35:04.939  1342  4330 I DownloadManager: DownloadManager.downloadInternal():390 Download for __KLP_manifest_delight__en-840 scheduled with params DownloadParams{allowMetered=true, requireCharging=false, foreground=false, immediately=true, priority=0}
+10-17 12:35:04.939  1342  4330 I DownloadManager: DownloadManager.startDownload():484 start download of __KLP_manifest_delight__en-840
+10-17 12:35:04.951  1342  4464 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=e8aa030b-3dfe-4de9-be01-a36cceb0dfde, tags={ com.google.android.libraries.inputmethod.dailyping.DailyPingWorker } ]
+10-17 12:35:04.964  1342  1783 I Delight5Facilitator: ContactsLanguageModelLoader.call():49 Contacts language model is unloaded: preferences=false, deviceLocked=false, blockPersonalData=false
+10-17 12:35:04.988  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.setKeyboardLayout():511 setKeyboardLayout()
+10-17 12:35:04.990  1365  4501 I ChimeraConfigurator: Checking 1 listeners. All downloaded: false
+10-17 12:35:04.990  1365  4501 I GmsDebugLogger: [83] 1 [vision.ocr]
+10-17 12:35:04.992  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():730 loadLanguageModel() : 1, version [2024070900]
+10-17 12:35:04.992  1342  1779 I Delight5Decoder: Delight5DecoderWrapper.loadLanguageModel():738 Main LM for locale already loaded en-840-2024070900
+10-17 12:35:05.010  1342  1342 W MlKitModuleManager: MlKitModuleManager$1.onInstallStatusUpdated():112 Modules download failed. Error code: 8
+10-17 12:35:05.014  1217  1221 W .gms.persistent: Cleared Reference was only reachable from finalizer (only reported once)
+10-17 12:35:05.030  1342  4330 I DownloadManager: DownloadManager$4.onFailure():560 download for __KLP_manifest_delight__en-840 is cancelled
+10-17 12:35:05.030  1342  4330 I DownloadManager: DownloadManager.downloadInternal():388 Previous download for __KLP_manifest_delight__en-840 is cancelled
+10-17 12:35:05.030  1342  4330 I DownloadManager: DownloadManager.downloadInternal():390 Download for __KLP_manifest_delight__en-840 scheduled with params DownloadParams{allowMetered=true, requireCharging=false, foreground=false, immediately=true, priority=0}
+10-17 12:35:05.030  1342  4330 I DownloadManager: DownloadManager.startDownload():484 start download of __KLP_manifest_delight__en-840
+10-17 12:35:05.038  1342  1566 I SP      : Registering bundled_delight.2024043000, url: null, constraints: *:*:*:*, flags: *, requested: 2024043000, current: 2024043000
+10-17 12:35:05.039  1342  1566 I SP      : Registering bundled_delight.2024043000, url: null, constraints: *:*:*:*, flags: *, requested: 2024043000, current: 2024043000
+10-17 12:35:05.059  1342  4327 I SuperDelight: SuperDelightManager.lambda$syncOverridesLanguageModels$14():683 SuperDelightManager#syncOverridesLanguageModels(): Superpack delight_overrides not found or negative version provided
+10-17 12:35:05.059  1342  4328 I SuperDelight: SuperDelightManager.lambda$syncOverridesLanguageModels$14():683 SuperDelightManager#syncOverridesLanguageModels(): Superpack delight_overrides not found or negative version provided
+10-17 12:35:05.066  1342  1347 I putmethod.latin: Background concurrent mark compact GC freed 19MB AllocSpace bytes, 46(66MB) LOS objects, 49% free, 17MB/34MB, paused 13.264ms,5.983ms total 677.585ms
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: scribe_latin_20231123_tflite_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: qrnn_en_us_reco_20231010_fst_20230613_recospec_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_conf_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: pack_mapping_v1_lstm_20231127[2]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_seg_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: scribe_latin_20231123_recospec_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: en_us_20230613_compact_fst_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: scribe_latin_20231123_tflite_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: qrnn_en_us_reco_20231010_fst_20230613_recospec_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_conf_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: pack_mapping_v1_lstm_20231127[2]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_seg_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: scribe_latin_20231123_recospec_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: en_us_20230613_compact_fst_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: scribe_latin_20231123_recospec_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: scribe_latin_20231123_tflite_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: qrnn_en_us_reco_20231010_fst_20230613_recospec_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_conf_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_seg_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: transformer_latin_tflite_20231010_zip[3]
+10-17 12:35:05.068  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: en_us_20230613_compact_fst_zip[3]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: main_en_us_2024051500_1[4]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: main_en_us_2024051500_1[4]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: main_en_us_2024022600_2[8]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: main_en_us_2024022600_2[8]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: main_en_us_2024022600_2[8]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: main_en_us_2024022600_2[8]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: main_en_us_2024022600_2[8]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: 2023011913_en[5]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: 2023011913_en[5]
+10-17 12:35:05.069  1342  1354 W SP      : File ref is being finalized but wasn't closed, file: main_en_us_2024022600_2[8]
+10-17 12:35:05.086  1342  4330 I DownloadManager: DownloadManager.downloadInternal():390 Download for __KLP_delight__en-840 scheduled with params DownloadParams{allowMetered=false, requireCharging=false, foreground=false, immediately=false, priority=500}
+10-17 12:35:05.087  1342  4330 I DownloadManager: DownloadManager.downloadInternal():390 Download for __KLP_delight__en-840 scheduled with params DownloadParams{allowMetered=false, requireCharging=false, foreground=false, immediately=false, priority=500}
+10-17 12:35:05.109  1217  1221 I .gms.persistent: Background concurrent mark compact GC freed 17MB AllocSpace bytes, 10(436KB) LOS objects, 50% free, 16MB/32MB, paused 3.217ms,1.632ms total 439.776ms
+10-17 12:35:05.124  1217  1223 W .gms.persistent: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~PhLHD2eOQIm7N1hdvTNFYg==/be.sportgreenmoove.app-Dq9tFmHIwCRtEfTTrl5rnQ==/base.apk' with 1 weak references
+10-17 12:35:05.126  1217  1223 W System  : A resource failed to call close.
+10-17 12:35:05.236  1342  4464 W WM-Processor: Didn't find WorkSpec for id WorkGenerationalId(workSpecId=1dd37ba5-9c67-4877-a936-fab3a0ba78ec, generation=0)
+10-17 12:35:05.242  1342  4327 I SuperDelight: SuperDelightManager.lambda$syncBundledLanguageModels$16():769 SuperDelightManager#syncBundledLanguageModels(): Syncing for version 2024043000
+10-17 12:35:05.242  1342  1566 I SP      : Successfully got manifest for next-word-predictor-manifest: manifests:next-word-predictor-20240611
+10-17 12:35:05.242  1342  4327 I SuperDelight: SuperDelightManager$2.onSuccess():631 delight_overrides sync success, adding to data file manager
+10-17 12:35:05.243  1342  4327 I SuperDelight: SuperDelightManager$2.onSuccess():631 delight_overrides sync success, adding to data file manager
+10-17 12:35:05.243  1342  4328 I SuperDelight: SuperDelightManager.lambda$syncBundledLanguageModels$16():769 SuperDelightManager#syncBundledLanguageModels(): Syncing for version 2024043000
+10-17 12:35:05.246   564  1560 D ConnectivityService: requestNetwork for uid/pid:10152/1342 activeRequest: null callbackRequest: 153 [NetworkRequest [ REQUEST id=154, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+10-17 12:35:05.248   564   829 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=154, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:05.248   564   829 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=154, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:05.248   564   829 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=154, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:05.248   564   829 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=154, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:05.248   564   836 D ConnectivityService: NetReassign [154 : null → 100] [c 0] [a 0] [i 0]
+10-17 12:35:05.252  1342  1342 I MDDTaskScheduler: MDDTaskScheduler$Worker.startWorkInner():122 work mdd_download_work started
+10-17 12:35:05.252  1342  1342 I DownloadManager: DownloadManager.startDownload():484 start download of __KLP_delight__en-840
+10-17 12:35:05.253  1342  4476 I DelightKLPDownloader: DelightKLPDownloader$2.onSuccess():207 klp en_840 downloaded with version 2024070900
+10-17 12:35:05.253  1342  4476 I DelightKLPDownloader: DelightKLPDownloader$2.onSuccess():207 klp en_840 downloaded with version 2024070900
+10-17 12:35:05.270   564  1700 D ConnectivityService: requestNetwork for uid/pid:10152/1342 activeRequest: null callbackRequest: 155 [NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+10-17 12:35:05.271   564   836 D ConnectivityService: NetReassign [156 : null → 100] [c 0] [a 0] [i 1]
+10-17 12:35:05.272   564   829 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:05.272   564   829 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:05.272   564   829 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:05.272   564   829 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10152 RequestorUid: 10152 RequestorPkg: com.google.android.inputmethod.latin UnderlyingNetworks: Null] ]
+10-17 12:35:05.282  1342  4464 I WM-WorkerWrapper: Worker result SUCCESS for Work [ id=f99e0b3a-5a3f-4932-b8fd-5c80165dcfc5, tags={ com.google.android.libraries.inputmethod.mdd.MDDTaskScheduler$Worker } ]
+10-17 12:35:05.342  4280  4280 D InsetsController: hide(ime(), fromIme=false)
+10-17 12:35:05.342  4280  4280 I ImeTracker: be.sportgreenmoove.app:57faf336: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT_BY_INSETS_API fromUser false
+10-17 12:35:05.343  4280  4280 I ImeTracker: be.sportgreenmoove.app:74b4ec: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT_REQUEST_HIDE_WITH_CONTROL fromUser false
+10-17 12:35:05.346  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onFinishInputView():2393
+10-17 12:35:05.352   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:05.358  4280  4280 W RemoteInputConnectionImpl: requestCursorUpdates on inactive InputConnection
+10-17 12:35:05.359  1342  1342 W TooltipLifecycleManager: TooltipLifecycleManager.dismissTooltips():152 Tooltip with id spell_check_add_to_dictionary not found in tooltipManager.
+10-17 12:35:05.361  4280  4280 D InsetsController: hide(ime(), fromIme=true)
+10-17 12:35:05.361  1342  1342 I InputBundle: InputBundle.consumeEvent():884 Skip consuming an event as keyboard status is 0
+10-17 12:35:05.364  1342  1342 I VoiceInputHandler: VoiceInputHandler.onDeactivateIme():115 unregistering TalkbackStateListener
+10-17 12:35:05.365  4280  4280 I ImeTracker: be.sportgreenmoove.app:74b4ec: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-17 12:35:05.366  1342  1342 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.shutdown():124 shutdown()
+10-17 12:35:05.368  1342  1342 E native  : E0000 00:00:1792240505.368348    1342 key-correction-manager.cc:337] User feature cache is not ready for key correction!
+10-17 12:35:05.368  1342  1342 I AndroidIME: AbstractIme.onDeactivate():202 LatinIme.onDeactivate()
+10-17 12:35:05.377  1342  1553 W ModuleManager: ModuleManager.loadModule():473 Module mgc is not available
+10-17 12:35:05.378   364   396 I netd    : tetherGetStats() -> {[]} <5.50ms>
+10-17 12:35:05.380  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, true)
+10-17 12:35:05.380  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 12:35:05.380  1342  1342 W SessionManager: SessionManager.beginSession():53 Try to begin an already begun session [INPUT_SESSION], end it first
+10-17 12:35:05.380  1342  1342 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 12:35:05.395  1342  1342 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 12:35:05.396  4280  4280 I ImeTracker: be.sportgreenmoove.app:1bdea450: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT_ON_ANIMATION_STATE_CHANGED fromUser false
+10-17 12:35:05.401  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 12:35:05.402  1342  1342 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 12:35:05.402   564   689 I ImeTracker: be.sportgreenmoove.app:1bdea450: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-17 12:35:05.406  4280  4280 I ImeTracker: be.sportgreenmoove.app:57faf336: onHidden
+10-17 12:35:05.421  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:05.428  1342  1815 D EGL_emulation: app_time_stats: avg=320.13ms min=123.55ms max=793.26ms count=4
+10-17 12:35:05.492  4280  4280 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+10-17 12:35:05.492  4280  4280 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+10-17 12:35:05.584  1342  1566 I SP      : Successfully got manifest for expressive_concepts_triggering-manifest: manifests:expressive_concepts_triggering-2022062400
+10-17 12:35:05.590  4280  4280 W FrameTracker: Missed App frame:UNKNOWN: 74, 11834, 0, CUJ=J<IME_INSETS_HIDE_ANIMATION::1@1@be.sportgreenmoove.app>
+10-17 12:35:05.591  4280  4280 W FrameTracker: Missed SF frame:UNKNOWN: 74, 11834, 0, CUJ=J<IME_INSETS_HIDE_ANIMATION::1@1@be.sportgreenmoove.app>
+10-17 12:35:05.594  1342  1566 I SuperDelight: SuperDelightBundledSlicingStrategy.getSlices():41 BundledSlicing#getSlices() : Locale = [en_US]
+10-17 12:35:05.599  1342  1566 I SuperDelight: SuperDelightBundledSlicingStrategy.getSlices():67 BundledSlicing#getSlices(): result {slices=[bundled_delight:main_en_us_2024022600_2], last batch=true, sync metadata=false}
+10-17 12:35:05.599  1342  1566 I SP      : Syncing bundled_delight (2024043000) with slices: [main_en_us_2024022600_2], metadata: false
+10-17 12:35:05.600  1342  1566 I SuperDelight: SuperDelightBundledSlicingStrategy.getSlices():41 BundledSlicing#getSlices() : Locale = [en_US]
+10-17 12:35:05.600  1342  1566 I SuperDelight: SuperDelightBundledSlicingStrategy.getSlices():67 BundledSlicing#getSlices(): result {slices=[bundled_delight:main_en_us_2024022600_2], last batch=true, sync metadata=false}
+10-17 12:35:05.600  1342  1566 I SP      : Syncing bundled_delight (2024043000) with slices: [main_en_us_2024022600_2], metadata: false
+10-17 12:35:05.601  1342  1566 I SP      : Syncing next-word-predictor (20240611) with slices: [tflite-nwp-756c50035b995cfb0f7e8feb7d1b10ee], metadata: false
+10-17 12:35:05.648  4280  4280 D InsetsController: hide(ime(), fromIme=false)
+10-17 12:35:05.650  4280  4280 I ImeTracker: be.sportgreenmoove.app:3ba5735c: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT_BY_INSETS_API fromUser false
+10-17 12:35:05.650  4280  4280 I ImeTracker: be.sportgreenmoove.app:3ba5735c: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-17 12:35:05.714  4280  4309 I SgmConversationTest: send expectedRequests=1 keyboard=false bounds=Rect.fromLTRB(912.0, 2232.0, 1038.0, 2358.0) visible=Rect(0, 128 - 1080, 2400)
+10-17 12:35:05.737  1342  1566 I SP      : Scheduling job with delay of 0s for {m:b:u:l, bg}, 1 candidates
+10-17 12:35:05.743  1342  1566 I SP      : Scheduling job with delay of 0s for {W:b:u:l, bg}, 2 candidates
+10-17 12:35:05.744  1342  1342 I SpBackgroundTask: SuperpacksBackgroundJobService.onStartJob():26 onStartJob: android.app.job.JobParameters@8a8345f
+10-17 12:35:05.747  1342  1342 I SP      : ====> Starting job {m:b:u:l, bg}
+10-17 12:35:05.747  1342  1566 I SP      : Scheduling: download registered, 0 started, 0 paused, 3 scheduled, 3 pending: manifests:emoticon_content_description-2022081613 * {W:b:u:l, bg}, manifests:kc_tflite_model-2024052201 * {W:b:u:l, bg}, next-word-predictor:tflite-nwp-756c50035b995cfb0f7e8feb7d1b10ee * {m:b:u:l, bg}
+10-17 12:35:05.749  1342  1566 I SP      : Successfully got manifest for transformer_expression-manifest: manifests:transformer_expression-2023102013
+10-17 12:35:05.751  1342  1566 I SP      : GC for 'bundled_delight' (10) with ttl of 0 ms took 0 ms (0/0/0)
+10-17 12:35:05.751  1342  1566 I LmManager: LmManager$1.onFailure():87 Bundled delight sync failed
+10-17 12:35:05.751  1342  1566 I LmManager: java.util.concurrent.CancellationException: Task was cancelled.
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pug.r(PG:33)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pug.get(PG:3)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at a.i(PG:2)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at npy.t(PG:10)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pvy.run(PG:88)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pvh.execute(PG:1)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pug.h(PG:1)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pug.k(PG:101)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pug.p(PG:28)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pvd.c(PG:5)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pvf.e(PG:6)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at pwk.run(PG:75)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at jdk.run(PG:8)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at java.lang.Thread.run(Thread.java:1012)
+10-17 12:35:05.751  1342  1566 I LmManager: 	at jcx.run(PG:8)
+10-17 12:35:05.752  1342  1566 I SP      : Scheduling job with delay of 0s for {W:b:u:l, bg}, 2 candidates
+10-17 12:35:05.754  1342  1566 I SP      : Scheduling: job start ({m:b:u:l, bg}), 1 started, 0 paused, 2 scheduled, 3 pending: manifests:emoticon_content_description-2022081613 * {W:b:u:l, bg}, manifests:kc_tflite_model-2024052201 * {W:b:u:l, bg}, next-word-predictor:tflite-nwp-756c50035b995cfb0f7e8feb7d1b10ee @ * {m:b:u:l, bg}
+10-17 12:35:05.754  1342  1566 I SP      : Syncing expressive_concepts_triggering (2022062400) with slices: [2022011819_en], metadata: false
+10-17 12:35:05.754  1342  1566 I AbstractSyncResultCallback: AbstractSyncResultCallback.onFailure():38 onFailure(): bundled_delight.sync cancelled; expected if new request supersedes pending one.
+10-17 12:35:05.754  1342  1566 I SP      : Requesting download of URL https://www.gstatic.com/android/keyboard/next_word_predictor/prod/tflite-nwp-20230719_210421.zip to tflite-nwp-756c50035b995cfb0f7e8feb7d1b10ee.zip.fetched (constraints: m:b:u:l)
+10-17 12:35:05.756  1342  4327 I SuperDelight: SuperDelightManager$2.onSuccess():631 bundled_delight sync success, adding to data file manager
+10-17 12:35:05.757  1342  4327 I DataFileManager: DataFileManager.addDataWithoutNotify():181 data en-US already exists
+10-17 12:35:05.765  1342  4511 D TrafficStats: tagSocket(160) with statsTag=0xffffffff, statsUid=-1
+10-17 12:35:05.773  4280  4317 D EGL_emulation: app_time_stats: avg=91.98ms min=21.75ms max=264.14ms count=11
+10-17 12:35:05.780  1342  1566 I SP      : Scheduling job with delay of 0s for {W:b:u:l, bg}, 2 candidates
+10-17 12:35:05.784  1342  1566 I SP      : Scheduling: download registered, 1 started, 0 paused, 2 scheduled, 4 pending: manifests:emoticon_content_description-2022081613 * {W:b:u:l, bg}, manifests:kc_tflite_model-2024052201 * {W:b:u:l, bg}, next-word-predictor:tflite-nwp-756c50035b995cfb0f7e8feb7d1b10ee @ {m:b:u:l, bg}, expressive_concepts_triggering:2022011819_en @ * {m:b:u:l, bg}
+10-17 12:35:05.795  1342  1566 I SP      : Requesting download of URL https://www.gstatic.com/android/keyboard/modelpack/expressive_concepts_triggering/2022011819/en.zip to 2022011819_en.zip.fetched (constraints: m:b:u:l)
+10-17 12:35:05.796  1342  1566 I SP      : Syncing transformer_expression (2023102013) with slices: [2023012316_en], metadata: false
+10-17 12:35:05.797  1342  1566 I SP      : Sync for bundled_delight succeeded in 213 ms: no changes
+10-17 12:35:05.797  1342  1566 I SP      : GC for 'bundled_delight' (10) with ttl of 0 ms took 0 ms (0/0/0)
+10-17 12:35:05.797  1342  1566 I LmManager: LmManager$1.onSuccess():82 Bundled delight sync success
+10-17 12:35:05.894   564  1703 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10210, packageName = null, attributionTag = null, token = android.os.Binder@daaa7d6, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 12:35:05.907   916  1028 D SplashScreenView: Build android.window.SplashScreenView{b65002e V.E...... ......ID 0,0-0,0}
+10-17 12:35:05.907   916  1028 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-17 12:35:05.907   916  1028 D SplashScreenView: Branding: view: android.view.View{1a347cf G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-17 12:35:05.922  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:05.923  1342  1566 I SP      : Scheduling job with delay of 0s for {W:b:u:l, bg}, 2 candidates
+10-17 12:35:05.923  4280  4280 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@718ceae in: PAUSED
+10-17 12:35:05.923  4280  4280 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=androidx.activity.ComponentActivity@718ceae
+10-17 12:35:05.930   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 12:35:05.936  1342  1566 I SP      : Scheduling: download registered, 1 started, 0 paused, 2 scheduled, 5 pending: manifests:emoticon_content_description-2022081613 * {W:b:u:l, bg}, manifests:kc_tflite_model-2024052201 * {W:b:u:l, bg}, next-word-predictor:tflite-nwp-756c50035b995cfb0f7e8feb7d1b10ee @ {m:b:u:l, bg}, expressive_concepts_triggering:2022011819_en @ {m:b:u:l, bg}, transformer_expression:2023012316_en @ * {m:b:u:l, bg}
+10-17 12:35:05.936  1342  1566 I SP      : Requesting download of URL https://www.gstatic.com/android/keyboard/modelpack/transformer_expression/2023012316/en.zip to 2023012316_en.zip.fetched (constraints: m:b:u:l)
+10-17 12:35:05.938  1342  4328 I SuperDelight: SuperDelightManager$2.onSuccess():631 bundled_delight sync success, adding to data file manager
+10-17 12:35:05.939  1342  4328 I DataFileManager: DataFileManager.addDataWithoutNotify():181 data en-US already exists
+10-17 12:35:06.126  4280  4280 D VRI[ComponentActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 12:35:06.163   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:06.167  4356  4371 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-17 12:35:06.168  4356  4371 I EGL_emulation: Opening libGLESv2_emulation.so
+10-17 12:35:06.201   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:06.207  4356  4371 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-17 12:35:06.240   916  1057 D EGL_emulation: app_time_stats: avg=743.30ms min=78.02ms max=2471.14ms count=4
+10-17 12:35:06.425  1098  1098 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 12:35:06.443   564   585 W ziparchive: Unable to open '/data/app/~~19P-buw0GJ8UgG06ElFk2w==/be.sportgreenmoove.app.test-0_fuA_4b9-Fcx4WOX1beeg==/base.dm': No such file or directory
+10-17 12:35:06.447   564   585 I ActivityTaskManager: Displayed be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity for user 0: +548ms
+10-17 12:35:06.464   435   435 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 12:35:06.475   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:06.540   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:06.574   364   396 I netd    : tetherGetStats() -> {[]} <0.77ms>
+10-17 12:35:06.585  4280  4280 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@718ceae in: STOPPED
+10-17 12:35:06.586  4280  4280 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=androidx.activity.ComponentActivity@718ceae
+10-17 12:35:06.596  1217  1995 V NativeCrypto: Read error: ssl=0x7b94bf656c58: I/O error during system call, Connection reset by peer
+10-17 12:35:06.607  4280  4280 D AutofillManager: onActivityFinishing(): calling cancelLocked()
+10-17 12:35:06.675   916   922 I ndroid.systemui: NativeAlloc concurrent mark compact GC freed 7396KB AllocSpace bytes, 1(20KB) LOS objects, 49% free, 22MB/45MB, paused 495us,2.392ms total 625.279ms
+10-17 12:35:06.685   916   924 W ndroid.systemui: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~PhLHD2eOQIm7N1hdvTNFYg==/be.sportgreenmoove.app-Dq9tFmHIwCRtEfTTrl5rnQ==/base.apk' with 2 weak references
+10-17 12:35:06.704  4280  4280 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@718ceae in: DESTROYED
+10-17 12:35:06.704  4280  4280 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-17 12:35:06.704  4280  4280 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@42c3f5e
+10-17 12:35:06.713   564  1698 I system_server: IncrementDisableThreadFlip blocked for 27.087ms
+10-17 12:35:06.738   564   589 I system_server: IncrementDisableThreadFlip blocked for 47.653ms
+10-17 12:35:06.741  1217  4110 V NativeCrypto: SSL shutdown failed: ssl=0x7b94bf656c58: I/O error during system call, Broken pipe
+10-17 12:35:06.746  1217  4110 E WakeLock: GCM_HB_ALARM release without a matched acquire!
+10-17 12:35:06.746  1217  4110 W WakeLock: GCM_HB_ALARM counter does not exist
+10-17 12:35:06.754  1342  1566 I SP      : Download stopped: next-word-predictor:tflite-nwp-756c50035b995cfb0f7e8feb7d1b10ee, succeeded, size: 1956684
+10-17 12:35:06.778  4280  4309 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@98ca80a]
+10-17 12:35:06.808   564   588 W system_server: Long monitor contention with owner android.anim (589) at void com.android.server.wm.WindowSurfacePlacer$Traverser.run()(WindowSurfacePlacer.java:58) waiters=0 in void com.android.server.wm.WindowManagerService$H.handleMessage(android.os.Message) for 200ms
+10-17 12:35:06.813   916   916 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 12:35:06.847   564   689 I ImeTracker: com.android.settings:4e0abd79: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 12:35:06.847   564   689 I ImeTracker: com.android.settings:4e0abd79: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-17 12:35:06.849  4356  4356 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 12:35:06.859   564  1227 W InputManager-JNI: Input channel object '27f7fb be.sportgreenmoove.app/androidx.activity.ComponentActivity (client)' was disposed without first being removed with the input manager!
+10-17 12:35:06.909  1342  1342 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 12:35:06.925  4280  4309 I TestRunner: finished: aConversationOpensSendsAndKeepsItsDraftWhenReturningToTheInbox(be.sportgreenmoove.app.ui.ConversationFlowTest)

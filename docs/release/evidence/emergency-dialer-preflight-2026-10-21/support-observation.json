@@ -1,0 +1,20 @@
+{
+  "scope": "operator-observed-support-form-confirmation-not-ticket-api-or-email-proof",
+  "destination": "https://www.browserstack.com/contact?ref=header#technical-support",
+  "category": "Technical support",
+  "product": "App Live",
+  "summary": "App Live Android Phone app closes to Home; need dial-only ACTION_DIAL validation",
+  "status": "submitted-form-confirmation",
+  "observedConfirmation": ["Thank you", "You will be hearing from us soon!"],
+  "formResetAfterConfirmation": true,
+  "ticketId": null,
+  "emailDeliveryVerified": false,
+  "responseReceived": false,
+  "appAccessConsent": "no",
+  "uploadedAppShared": false,
+  "attachmentsSent": false,
+  "planChangeRequested": false,
+  "callingRequested": false,
+  "permissionChangeRequested": false,
+  "credentialsSent": false
+}

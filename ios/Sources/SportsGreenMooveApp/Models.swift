@@ -47,7 +47,7 @@ enum AppOverlay: String, Identifiable, Sendable {
     var id: String { rawValue }
 }
 
-enum TripStatus: String, Hashable, Sendable {
+public enum TripStatus: String, Hashable, Sendable {
     case upcoming
     case past
     case pending
@@ -69,6 +69,8 @@ struct TripSummary: Identifiable, Hashable, Sendable {
     let passengerInitials: [String]
     let reasons: [String]
     let status: TripStatus
+    let mapPreview: MapRoutePreview?
+    let bookingIntent: BookingIntentSnapshot?
 
     init(
         id: String,
@@ -85,7 +87,9 @@ struct TripSummary: Identifiable, Hashable, Sendable {
         priceLabel: String,
         passengerInitials: [String] = [],
         reasons: [String],
-        status: TripStatus = .upcoming
+        status: TripStatus = .upcoming,
+        mapPreview: MapRoutePreview? = nil,
+        bookingIntent: BookingIntentSnapshot? = nil
     ) {
         self.id = id
         self.title = title
@@ -102,6 +106,25 @@ struct TripSummary: Identifiable, Hashable, Sendable {
         self.passengerInitials = passengerInitials
         self.reasons = reasons
         self.status = status
+        self.mapPreview = mapPreview
+        self.bookingIntent = bookingIntent
+    }
+}
+
+struct MapPoint: Codable, Hashable, Sendable {
+    let lat: Double
+    let lng: Double
+}
+
+struct MapRoutePreview: Hashable, Sendable {
+    let start: MapPoint
+    let end: MapPoint
+    let encodedPolyline: String?
+
+    init(start: MapPoint, end: MapPoint, encodedPolyline: String? = nil) {
+        self.start = start
+        self.end = end
+        self.encodedPolyline = encodedPolyline
     }
 }
 
@@ -190,6 +213,7 @@ struct SearchFormState: Hashable, Sendable {
 
 struct LiveRideSnapshot: Hashable, Sendable {
     let rideSessionId: String
+    let tripId: String?
     let status: String
     let vehicleLastUpdateLabel: String
     let childLastUpdateLabel: String?

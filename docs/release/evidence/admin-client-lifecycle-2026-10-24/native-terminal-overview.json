@@ -1,0 +1,19 @@
+{
+  "runId": 40041012845,
+  "jobId": 120711838638,
+  "headSha": "aba016d8da9949dea89372626e8d2bc9400cd9ac",
+  "workflowConclusion": "cancelled",
+  "annotation": "The job has exceeded the maximum execution time of 35m0s",
+  "ordinary": {
+    "passed": 159,
+    "skipped": 52,
+    "failed": 0
+  },
+  "reportedLocalSteps": 37,
+  "reportedPassedLocalSteps": 37,
+  "reportedNativeCaseCount": 40,
+  "reportedResultsAt": "2026-10-24T00:11:07.448Z",
+  "allScenarioArtifactsIndependentlyValidated": false,
+  "cleanupCompletionAccepted": false,
+  "releaseComplete": false
+}

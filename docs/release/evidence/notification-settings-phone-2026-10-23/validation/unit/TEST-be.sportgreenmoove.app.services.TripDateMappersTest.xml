@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TripDateMappersTest" tests="30" skipped="0" failures="0" errors="0" timestamp="2026-10-23T16:07:17.825Z" hostname="MRRs-MacBook-Air.local" time="0.014">
+  <properties/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-19T11:50:00Z -&gt; LUN 19 OCT 13h50]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.002"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-01-15T11:50:00Z -&gt; JEU 15 JANV 12h50]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-07-01T22:30:00Z -&gt; JEU 02 JUIL 00h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-12-31T23:30:00Z -&gt; VEN 01 JANV 00h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-03-29T00:59:00Z -&gt; DIM 29 MARS 01h59]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-03-29T01:00:00Z -&gt; DIM 29 MARS 03h00]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-25T00:59:00Z -&gt; DIM 25 OCT 02h59]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-25T01:00:00Z -&gt; DIM 25 OCT 02h00]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-25T00:30:00Z -&gt; DIM 25 OCT 02h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-25T01:30:00Z -&gt; DIM 25 OCT 02h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-19T11:50:00Z -&gt; LUN 19 OCT 13h50]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-01-15T11:50:00Z -&gt; JEU 15 JANV 12h50]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-07-01T22:30:00Z -&gt; JEU 02 JUIL 00h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-12-31T23:30:00Z -&gt; VEN 01 JANV 00h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-03-29T00:59:00Z -&gt; DIM 29 MARS 01h59]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-03-29T01:00:00Z -&gt; DIM 29 MARS 03h00]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-25T00:59:00Z -&gt; DIM 25 OCT 02h59]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-25T01:00:00Z -&gt; DIM 25 OCT 02h00]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-25T00:30:00Z -&gt; DIM 25 OCT 02h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-25T01:30:00Z -&gt; DIM 25 OCT 02h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-19T11:50:00Z -&gt; LUN 19 OCT 13h50]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-01-15T11:50:00Z -&gt; JEU 15 JANV 12h50]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-07-01T22:30:00Z -&gt; JEU 02 JUIL 00h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-12-31T23:30:00Z -&gt; VEN 01 JANV 00h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-03-29T00:59:00Z -&gt; DIM 29 MARS 01h59]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-03-29T01:00:00Z -&gt; DIM 29 MARS 03h00]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-25T00:59:00Z -&gt; DIM 25 OCT 02h59]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-25T01:00:00Z -&gt; DIM 25 OCT 02h00]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.001"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-25T00:30:00Z -&gt; DIM 25 OCT 02h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <testcase name="tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-25T01:30:00Z -&gt; DIM 25 OCT 02h30]" classname="be.sportgreenmoove.app.services.TripDateMappersTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

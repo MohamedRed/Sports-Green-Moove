@@ -1,0 +1,47 @@
+
+be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest:
+Error in parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest):
+java.lang.AssertionError: Failed to assert the following: (is enabled)
+Semantics of the node:
+Node #260 at (l=53.0, t=692.0, r=1027.0, b=818.0)px, Tag: 'guardian.child'
+Role = 'Button'
+Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+Text = '[Choisir]'
+[Disabled]
+Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Has 10 siblings
+Selector used: (TestTag = 'guardian.child')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertIsEnabled(Assertions.kt:60)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.click(LocalGuardianVerificationFlowTest.kt:92)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(LocalGuardianVerificationFlowTest.kt:32)
+
+
+Time: 9.492
+There was 1 failure:
+1) parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest)
+java.lang.AssertionError: Failed to assert the following: (is enabled)
+Semantics of the node:
+Node #260 at (l=53.0, t=692.0, r=1027.0, b=818.0)px, Tag: 'guardian.child'
+Role = 'Button'
+Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+Text = '[Choisir]'
+[Disabled]
+Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Has 10 siblings
+Selector used: (TestTag = 'guardian.child')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertIsEnabled(Assertions.kt:60)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.click(LocalGuardianVerificationFlowTest.kt:92)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(LocalGuardianVerificationFlowTest.kt:32)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

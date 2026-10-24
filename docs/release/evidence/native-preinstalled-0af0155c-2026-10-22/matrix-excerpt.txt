@@ -1,0 +1,5 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:14:36.9206779Z Ordinary Android matrix: 147 passed, 50 skipped, 0 failed; 197 cases observed.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:28:31.6353571Z [32m[1m✔ [22m[39m Script exited successfully (code 0)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:28:33.0741329Z Ordinary tests: 0; component evidence: 0; local replay: 0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:28:36.2246556Z Error: ENOENT: no such file or directory, mkdir '/home/runner/work/Sports-Green-Moove/Sports-Green-Moove/android/app/build/outputs/focused-safety-ui/full-matrix/host-shutdown'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:28:36.2351298Z ##[warning]Read-only CI host observation unavailable; original outcomes unchanged.

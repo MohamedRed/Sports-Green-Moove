@@ -1,0 +1,9 @@
+2026-10-22T21:41:34.5822529Z OK (1 test)
+2026-10-22T21:41:35.2372249Z ✔  Script exited successfully (code 0)
+2026-10-22T21:41:35.7387341Z i  emulators: Shutting down emulators.
+2026-10-22T21:41:37.6917737Z ##[group]Terminate Emulator
+2026-10-22T21:41:37.6929383Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2026-10-22T21:41:37.6964600Z OK: killing emulator, bye bye
+2026-10-22T21:41:37.6967976Z ##[endgroup]
+2026-10-22T21:56:51.8581721Z ##[error]The operation was canceled.
+2026-10-22T21:56:51.8641926Z ##[endgroup]

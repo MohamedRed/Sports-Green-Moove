@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-23",
+  "scope": "local-notification-acknowledgement-services-and-state-not-connected-ui",
+  "sourceCommit": "b0677594a01d754b1b7cd18559c7639e5bdf50c5",
+  "serviceTestsPassed": 19,
+  "nativeStateTestsPassed": 10,
+  "rootTestsPassed": 1798,
+  "uiTestsPrepared": 3,
+  "uiTestApkBuilt": true,
+  "nativeUiExecuted": false,
+  "phoneTrialCompleted": false,
+  "pushDeliveryAccepted": false,
+  "iosAccepted": false,
+  "productionDeployed": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "firstAttempt": "Rules passed; callable suite failed before execution because an unrelated realtime database import required its URL. The callable now imports only its Firestore dependency.",
+  "secondAttempt": "Standalone command lacked the workspace Vitest PATH. The retained npm-exec attempt completed all 19 cases.",
+  "initialRootHarnessFailure": "23 shell-harness assertions failed because the new required capture fixtures were absent; the harness now includes them and nine additional fail-closed copy cases."
+}

@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c691f5e1aba9af16dcf828c8b92c32c9",
+  "label": "LocalRideObservationFlowTest",
+  "packageName": "be.sportgreenmoove.app.local",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-19T16:45:19.529Z",
+  "host": {
+    "totalMemoryBytes": 8589934592,
+    "freeMemoryBytes": 119029760,
+    "cpuCount": 8
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "LocalRideObservationFlowTest-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "LocalRideObservationFlowTest-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "LocalRideObservationFlowTest-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "LocalRideObservationFlowTest-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "LocalRideObservationFlowTest-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "LocalRideObservationFlowTest-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "LocalRideObservationFlowTest-package-operations.txt",
+      "empty": false
+    }
+  ]
+}

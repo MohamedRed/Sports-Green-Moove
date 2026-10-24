@@ -1,0 +1,3 @@
+--------- beginning of system
+W/ActivityManager(  544): SLOW OOM ADJ: 1184ms for pid 3882 = 0
+I/ActivityManager(  544): Background started FGS: Allowed [callingPackage: com.google.android.apps.messaging; callingUid: 10136; uidState: RCVR; uidBFSL: n/a; intent: Intent { cmp=com.google.android.apps.messaging/com.google.apps.tiktok.concurrent.InternalForegroundService (has extras) }; code:BACKGROUND_FGS_PERMISSION; tempAllowListReason:<null>; targetSdkVersion:35; callerTargetSdkVersion:35; startForegroundCount:0; bindFromPackage:null: isBindService:false]

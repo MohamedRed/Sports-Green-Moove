@@ -1,0 +1,31 @@
+
+be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest:
+Error in completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns$lambda$2$0$0(LocalRemoteRideStopFlowTest.kt:57)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.$r8$lambda$LL05PWgvfzFxd7uVzAYdmZu6ivM(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:18)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(LocalRemoteRideStopFlowTest.kt:53)
+
+
+Time: 59.821
+There was 1 failure:
+1) completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns$lambda$2$0$0(LocalRemoteRideStopFlowTest.kt:57)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.$r8$lambda$LL05PWgvfzFxd7uVzAYdmZu6ivM(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:18)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(LocalRemoteRideStopFlowTest.kt:53)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

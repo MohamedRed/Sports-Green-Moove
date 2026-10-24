@@ -5,6 +5,8 @@ import { rideParticipantUserIds } from "../domain/access.js";
 import { normalizeReportReviewNote, reportClosedAtValue, REPORT_STATUSES } from "../domain/reports.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth } from "../lib/https.js";
+import { parseCallableData } from "../lib/validation.js";
+import { queueUrgentSupportEmail } from "../services/supportUrgentQueue.js";
 
 type RideSessionDocument = {
   driverUserId?: string;
@@ -20,7 +22,7 @@ export const submitRating = onCall(async (request) => {
     score: z.number().int().min(1).max(5),
     comment: z.string().trim().max(500).optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const rideSnap = await firestore.collection("rideSessions").doc(data.rideSessionId).get();
   if (!rideSnap.exists) throw new HttpsError("not-found", "Ride session not found.");
 
@@ -63,15 +65,21 @@ export const createReport = onCall(async (request) => {
     description: z.string().trim().min(5).max(2000),
     emergency: z.boolean().default(false),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const ref = firestore.collection("reports").doc();
 
-  await ref.set({
-    ...data,
-    reporterUserId: uid,
-    status: "open",
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
+  const createdAt = Timestamp.now();
+  await firestore.runTransaction(async transaction => {
+    transaction.create(ref, {
+      ...data,
+      reporterUserId: uid,
+      status: "open",
+      publicReplyCount: 0,
+      lastPublicReply: null,
+      createdAt,
+      updatedAt: createdAt,
+    });
+    queueUrgentSupportEmail(transaction, ref.id, data.emergency, createdAt);
   });
 
   return { reportId: ref.id, status: "open" };
@@ -86,7 +94,7 @@ export const reviewReport = onCall(async (request) => {
     status: z.enum(REPORT_STATUSES),
     note: z.string().trim().max(1000).optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const reportRef = firestore.collection("reports").doc(data.reportId);
   const reviewedAt = Timestamp.now();
   const note = normalizeReportReviewNote(data.note);

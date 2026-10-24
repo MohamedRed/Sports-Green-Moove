@@ -1,0 +1,17 @@
+{
+  "scope": "local-session-restoration-controlled-callable-rejection-not-network-loss",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4dd04a69259d48d1c055a3b472fdff05",
+  "uid": "sgm-qa-parent",
+  "phase": "reject",
+  "attempts": [
+    {
+      "phase": "reject",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "injectedRejection": true,
+      "downstreamStatus": 503
+    }
+  ],
+  "transitions": []
+}

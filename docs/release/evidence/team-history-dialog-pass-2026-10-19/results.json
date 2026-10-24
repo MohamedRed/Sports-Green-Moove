@@ -1,0 +1,38 @@
+{
+  "scope": "completed-history-components-not-phone-or-release-proof",
+  "sourceCommit": "b20d5ce3656e94b97cd7e105a95aefba38e8b795",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39255684112",
+  "tests": 154,
+  "skipped": 34,
+  "failures": 0,
+  "errors": 0,
+  "executed": 120,
+  "historyCases": [
+    {
+      "id": "redactedChildHistoryHasNoWithdrawalAndFitsNarrowLargeText",
+      "status": "passed"
+    },
+    {
+      "id": "uncertainWithdrawalHasNoSecondWriteUntilTheUserReadsTheRequestAgain",
+      "status": "passed"
+    },
+    {
+      "id": "historyIsReachableWithoutActiveClubChoicesAndContinuesPastTwentyRows",
+      "status": "passed"
+    },
+    {
+      "id": "cancellingConfirmationDoesNotWriteAndConfirmedWithdrawalIsVisible",
+      "status": "passed"
+    }
+  ],
+  "dialogCaptureSucceeded": true,
+  "explicitFakeGateway": true,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "emergencyIdentityCorrectionIncluded": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryFlowTest.kt": "aba64fba09a24d815940b3480a80ec607f272786c40d2b07fdac0504a3a18c5d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "9c789e8029065b213b4003cbf0e6dcfaf9230f9be5f6bf5628a150e0aa60bc26",
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "f5b3d8325b447cb64a4977d31b7238375ef97ee73cfa4d32ecc9248be54cdd0b"
+  }
+}

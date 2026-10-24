@@ -1,0 +1,24 @@
+Sanitized excerpts selected from provider UI accessibility output.
+Whitespace was flattened by that UI representation. Not a complete ADB dump.
+
+Command: dumpsys package com.samsung.android.dialer
+versionCode=1517800000 minSdk=29 targetSdk=34
+versionName=15.1.78
+User 0: ceDataInode=5751 installed=true hidden=false suspended=false distractionFlags=0 stopped=true notLaunched=false enabled=0
+Preferred Activities User 0: Schemes: tel:
+com.samsung.android.dialer/.DialtactsActivity
+Action: "android.intent.action.DIAL" Category: "android.intent.category.DEFAULT" Scheme: "tel"
+enabledComponents: com.samsung.android.dialer.DialtactsActivity
+
+Command: dumpsys activity -p com.samsung.android.dialer activities
+ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)
+Display #0 (activities from top to bottom):
+Display #18 (activities from top to bottom):
+(nothing)
+
+Command: cmd package resolve-activity --brief -a android.intent.action.DIAL -d tel:+12025550123
+command invalid or not supported: cmd package resolve-activity --brief -a android.intent.action.DIAL -d tel:+12025550123
+One fill operation also submitted a truncated command; it was rejected.
+
+Command: dumpsys window windows | grep -E "mCurrentFocus|mFocusedApp"
+No output was returned. No focused-window identity is accepted from this read.

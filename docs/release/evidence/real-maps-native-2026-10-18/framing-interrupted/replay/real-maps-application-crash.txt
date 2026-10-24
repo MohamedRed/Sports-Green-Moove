@@ -1,0 +1,204 @@
+--------- beginning of crash
+E/AndroidRuntime( 5286): FATAL EXCEPTION: main
+E/AndroidRuntime( 5286): Process: com.google.android.gms, PID: 5286
+E/AndroidRuntime( 5286): ihlg: rethrowing error from lowpool[0]
+E/AndroidRuntime( 5286): 	at brsb.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):27)
+E/AndroidRuntime( 5286): 	at android.os.Handler.handleCallback(Handler.java:959)
+E/AndroidRuntime( 5286): 	at android.os.Handler.dispatchMessage(Handler.java:100)
+E/AndroidRuntime( 5286): 	at dota.lP(:com.google.android.gms@264032038@26.40.32 (260800-995630914):1)
+E/AndroidRuntime( 5286): 	at dota.dispatchMessage(:com.google.android.gms@264032038@26.40.32 (260800-995630914):145)
+E/AndroidRuntime( 5286): 	at android.os.Looper.loopOnce(Looper.java:232)
+E/AndroidRuntime( 5286): 	at android.os.Looper.loop(Looper.java:317)
+E/AndroidRuntime( 5286): 	at android.app.ActivityThread.main(ActivityThread.java:8705)
+E/AndroidRuntime( 5286): 	at java.lang.reflect.Method.invoke(Native Method)
+E/AndroidRuntime( 5286): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)
+E/AndroidRuntime( 5286): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)
+E/AndroidRuntime( 5286): 	Suppressed: hyog: 
+E/AndroidRuntime( 5286): 		at tk_trace.icing-IndexWorkerChimeraService_onStartCommand(Unknown Source:0)
+E/AndroidRuntime( 5286): Caused by: java.lang.ExceptionInInitializerError
+E/AndroidRuntime( 5286): 	at cvjw.c(:com.google.android.gms@264032038@26.40.32 (260800-995630914):747)
+E/AndroidRuntime( 5286): 	at cvjw.a(:com.google.android.gms@264032038@26.40.32 (260800-995630914):1)
+E/AndroidRuntime( 5286): 	at cvwx.k(:com.google.android.gms@264032038@26.40.32 (260800-995630914):95)
+E/AndroidRuntime( 5286): 	at cvwu.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):71)
+E/AndroidRuntime( 5286): 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+E/AndroidRuntime( 5286): 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+E/AndroidRuntime( 5286): 	at brst.d(:com.google.android.gms@264032038@26.40.32 (260800-995630914):40)
+E/AndroidRuntime( 5286): 	at brst.c(:com.google.android.gms@264032038@26.40.32 (260800-995630914):5)
+E/AndroidRuntime( 5286): 	at brst.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):33)
+E/AndroidRuntime( 5286): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+E/AndroidRuntime( 5286): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+E/AndroidRuntime( 5286): 	at bryx.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):8)
+E/AndroidRuntime( 5286): 	at java.lang.Thread.run(Thread.java:1012)
+E/AndroidRuntime( 5286): Caused by: java.lang.ArrayIndexOutOfBoundsException: length=8192; index=95127
+E/AndroidRuntime( 5286): 	at java.util.zip.ZipUtils.SH(ZipUtils.java:203)
+E/AndroidRuntime( 5286): 	at java.util.zip.ZipUtils.CENNAM(ZipUtils.java:272)
+E/AndroidRuntime( 5286): 	at java.util.zip.ZipFile$Source.getEntryPos(ZipFile.java:1782)
+E/AndroidRuntime( 5286): 	at java.util.zip.ZipFile$Source.-$$Nest$mgetEntryPos(Unknown Source:0)
+E/AndroidRuntime( 5286): 	at java.util.zip.ZipFile.getEntry(ZipFile.java:372)
+E/AndroidRuntime( 5286): 	at java.util.jar.JarFile.getEntry(JarFile.java:264)
+E/AndroidRuntime( 5286): 	at libcore.io.ClassPathURLStreamHandler.isEntryStored(ClassPathURLStreamHandler.java:83)
+E/AndroidRuntime( 5286): 	at dalvik.system.DexPathList$NativeLibraryElement.findNativeLibrary(DexPathList.java:897)
+E/AndroidRuntime( 5286): 	at dalvik.system.DexPathList.findLibrary(DexPathList.java:594)
+E/AndroidRuntime( 5286): 	at dalvik.system.BaseDexClassLoader.findLibrary(BaseDexClassLoader.java:371)
+E/AndroidRuntime( 5286): 	at java.lang.Runtime.loadLibrary0(Runtime.java:1055)
+E/AndroidRuntime( 5286): 	at java.lang.Runtime.loadLibrary0(Runtime.java:1003)
+E/AndroidRuntime( 5286): 	at java.lang.System.loadLibrary(System.java:1765)
+E/AndroidRuntime( 5286): 	at com.google.android.gms.icing.nativeindex.NativeIndex.<clinit>(:com.google.android.gms@264032038@26.40.32 (260800-995630914):3)
+E/AndroidRuntime( 5286): 	... 13 more
+F/libc    ( 6186): Fatal signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x4a6a1008 in tid 6216 (binder:6186_6), pid 6186 (gle.android.gms)
+F/DEBUG   ( 6330): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 6330): Build fingerprint: 'google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.036/12592187:user/release-keys'
+F/DEBUG   ( 6330): Revision: '0'
+F/DEBUG   ( 6330): ABI: 'x86_64'
+F/DEBUG   ( 6330): Timestamp: 2026-10-18 10:19:52.332702229+0000
+F/DEBUG   ( 6330): Process uptime: 3s
+F/DEBUG   ( 6330): Cmdline: com.google.android.gms
+F/DEBUG   ( 6330): pid: 6186, tid: 6216, name: binder:6186_6  >>> com.google.android.gms <<<
+F/DEBUG   ( 6330): uid: 10144
+F/DEBUG   ( 6330): signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x000000004a6a1008
+F/DEBUG   ( 6330):     rax 9666292913a759e4  rbx 00000000143aa3a8  rcx 0000000000000108  rdx 00000000143aa3c0
+F/DEBUG   ( 6330):     r8  0000000000000029  r9  0000000000000013  r10 6f30000000020002  r11 00000000ffffffa7
+F/DEBUG   ( 6330):     r12 000000004a6a1000  r13 0000000014fbb458  r14 00000000142a06a0  r15 0000000014fbb3e8
+F/DEBUG   ( 6330):     rdi 000000006f623f60  rsi 000000000000012c
+F/DEBUG   ( 6330):     rbp 9666292913a759e4  rsp 00007896e42cd310  rip 00007896edfc89ac
+F/DEBUG   ( 6330): 37 total frames
+F/DEBUG   ( 6330): backtrace:
+F/DEBUG   ( 6330):       #00 pc 00000000005999ac  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (bpvs.a+332)
+F/DEBUG   ( 6330):       #01 pc 000000000063092e  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (com.google.android.gms.common.GoogleCertificatesImpl.b+1022)
+F/DEBUG   ( 6330):       #02 pc 0000000000592dd7  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (bpun.a+3975)
+F/DEBUG   ( 6330):       #03 pc 000000000059164b  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (bpum.a+843)
+F/DEBUG   ( 6330):       #04 pc 0000000000594d40  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (bpva.a+2752)
+F/DEBUG   ( 6330):       #05 pc 0000000000594125  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (bpva.k+549)
+F/DEBUG   ( 6330):       #06 pc 000000000020986d  /apex/com.android.art/lib64/libart.so (nterp_helper+3837) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6330):       #07 pc 000000000021de7c  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (bpva.i+0)
+F/DEBUG   ( 6330):       #08 pc 0000000000209808  /apex/com.android.art/lib64/libart.so (nterp_helper+3736) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6330):       #09 pc 00000000002d7090  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (cmtk.create+88)
+F/DEBUG   ( 6330):       #10 pc 00000000005c4b55  /system/framework/x86_64/boot-framework.oat (android.util.LruCache.get+229) (BuildId: bc047a67a4076b80992fbdfabdfba12acbd1924a)
+F/DEBUG   ( 6330):       #11 pc 0000000000605434  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (com.google.android.gms.framework.tracing.AbstractGmsTracer.a+2228)
+F/DEBUG   ( 6330):       #12 pc 00000000006066e9  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (com.google.android.gms.framework.tracing.AbstractGmsTracer.b+153)
+F/DEBUG   ( 6330):       #13 pc 00000000005381b1  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (bkfe.b+465)
+F/DEBUG   ( 6330):       #14 pc 0000000000528505  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (bkai.query+293)
+F/DEBUG   ( 6330):       #15 pc 000000000044e10a  /system/framework/x86_64/boot-framework.oat (android.content.ContentProvider.query+1082) (BuildId: bc047a67a4076b80992fbdfabdfba12acbd1924a)
+F/DEBUG   ( 6330):       #16 pc 00000000004d32e1  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (afgr.superQuery+65)
+F/DEBUG   ( 6330):       #17 pc 000000000020acfd  /apex/com.android.art/lib64/libart.so (nterp_helper+9101) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6330):       #18 pc 00000000002ea510  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.chimera.ContentProvider.query+4)
+F/DEBUG   ( 6330):       #19 pc 00000000004d30e9  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (afgr.query+137)
+F/DEBUG   ( 6330):       #20 pc 00000000004a1df1  /system/framework/x86_64/boot-framework.oat (android.content.ContentProvider$Transport.query+1377) (BuildId: bc047a67a4076b80992fbdfabdfba12acbd1924a)
+F/DEBUG   ( 6330):       #21 pc 000000000045101b  /system/framework/x86_64/boot-framework.oat (android.content.ContentProviderNative.onTransact+8699) (BuildId: bc047a67a4076b80992fbdfabdfba12acbd1924a)
+F/DEBUG   ( 6330):       #22 pc 00000000005d2103  /system/framework/x86_64/boot-framework.oat (android.os.Binder.execTransactInternal+867) (BuildId: bc047a67a4076b80992fbdfabdfba12acbd1924a)
+F/DEBUG   ( 6330):       #23 pc 00000000005d1beb  /system/framework/x86_64/boot-framework.oat (android.os.Binder.execTransact+379) (BuildId: bc047a67a4076b80992fbdfabdfba12acbd1924a)
+F/DEBUG   ( 6330):       #24 pc 0000000000212154  /apex/com.android.art/lib64/libart.so (art_quick_invoke_stub+756) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6330):       #25 pc 0000000000474bf5  /apex/com.android.art/lib64/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+181) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6330):       #26 pc 0000000000875e78  /apex/com.android.art/lib64/libart.so (art::JValue art::InvokeVirtualOrInterfaceWithVarArgs<_jmethodID*>(art::ScopedObjectAccessAlreadyRunnable const&, _jobject*, _jmethodID*, __va_list_tag*)+584) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6330):       #27 pc 0000000000697b42  /apex/com.android.art/lib64/libart.so (art::JNI<false>::CallBooleanMethodV(_JNIEnv*, _jobject*, _jmethodID*, __va_list_tag*)+642) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6330):       #28 pc 00000000000e0544  /system/lib64/libandroid_runtime.so (_JNIEnv::CallBooleanMethod(_jobject*, _jmethodID*, ...)+164) (BuildId: 74e467b22a4c3107eac51948743c9977)
+F/DEBUG   ( 6330):       #29 pc 0000000000193ed7  /system/lib64/libandroid_runtime.so (JavaBBinder::onTransact(unsigned int, android::Parcel const&, android::Parcel*, unsigned int)+167) (BuildId: 74e467b22a4c3107eac51948743c9977)
+F/DEBUG   ( 6330):       #30 pc 000000000005925a  /system/lib64/libbinder.so (android::IPCThreadState::executeCommand(int)+1514) (BuildId: a61bb86177e0986f6533dad5dd4bad94)
+F/DEBUG   ( 6330):       #31 pc 0000000000057f11  /system/lib64/libbinder.so (android::IPCThreadState::joinThreadPool(bool)+929) (BuildId: a61bb86177e0986f6533dad5dd4bad94)
+F/DEBUG   ( 6330):       #32 pc 0000000000070367  /system/lib64/libbinder.so (android::PoolThread::threadLoop()+23) (BuildId: a61bb86177e0986f6533dad5dd4bad94)
+F/DEBUG   ( 6330):       #33 pc 0000000000016936  /system/lib64/libutils.so (android::Thread::_threadLoop(void*)+166) (BuildId: f128755c26519c61f5cd218576eff285)
+F/DEBUG   ( 6330):       #34 pc 00000000000f3352  /system/lib64/libandroid_runtime.so (android::AndroidRuntime::javaThreadShell(void*)+146) (BuildId: 74e467b22a4c3107eac51948743c9977)
+F/DEBUG   ( 6330):       #35 pc 000000000006d62a  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+58) (BuildId: eb58b4d427279994f00c0e1818477e4f)
+F/DEBUG   ( 6330):       #36 pc 0000000000060348  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+56) (BuildId: eb58b4d427279994f00c0e1818477e4f)
+E/AndroidRuntime( 6361): FATAL EXCEPTION: [com.google.android.gms.chimera.container.intentoperation.GmsIntentOperationChimeraService-Executor] idle
+E/AndroidRuntime( 6361): Process: com.google.android.gms, PID: 6361
+E/AndroidRuntime( 6361): java.lang.ArrayIndexOutOfBoundsException: length=16391; index=96167
+E/AndroidRuntime( 6361): 	at java.util.zip.ZipUtils.SH(ZipUtils.java:203)
+E/AndroidRuntime( 6361): 	at java.util.zip.ZipUtils.CENNAM(ZipUtils.java:272)
+E/AndroidRuntime( 6361): 	at java.util.zip.ZipFile$Source.getEntryPos(ZipFile.java:1782)
+E/AndroidRuntime( 6361): 	at java.util.zip.ZipFile$Source.-$$Nest$mgetEntryPos(Unknown Source:0)
+E/AndroidRuntime( 6361): 	at java.util.zip.ZipFile.getEntry(ZipFile.java:372)
+E/AndroidRuntime( 6361): 	at java.util.jar.JarFile.getEntry(JarFile.java:264)
+E/AndroidRuntime( 6361): 	at libcore.io.ClassPathURLStreamHandler.isEntryStored(ClassPathURLStreamHandler.java:83)
+E/AndroidRuntime( 6361): 	at dalvik.system.DexPathList$NativeLibraryElement.findNativeLibrary(DexPathList.java:897)
+E/AndroidRuntime( 6361): 	at dalvik.system.DexPathList.findLibrary(DexPathList.java:594)
+E/AndroidRuntime( 6361): 	at dalvik.system.BaseDexClassLoader.findLibrary(BaseDexClassLoader.java:371)
+E/AndroidRuntime( 6361): 	at brvr.a(:com.google.android.gms@264032038@26.40.32 (260800-995630914):50)
+E/AndroidRuntime( 6361): 	at bpxg.a(:com.google.android.gms@264032038@26.40.32 (260800-995630914):433)
+E/AndroidRuntime( 6361): 	at bpxg.c(:com.google.android.gms@264032038@26.40.32 (260800-995630914):9)
+E/AndroidRuntime( 6361): 	at com.google.android.gms.common.analytics.CoreAnalyticsIntentOperation.onHandleIntent(:com.google.android.gms@264032038@26.40.32 (260800-995630914):457)
+E/AndroidRuntime( 6361): 	at com.google.android.chimera.IntentOperation.onHandleIntent(:com.google.android.gms@264032038@26.40.32 (260800-995630914):1)
+E/AndroidRuntime( 6361): 	at bkhb.onHandleIntent(:com.google.android.gms@264032038@26.40.32 (260800-995630914):88)
+E/AndroidRuntime( 6361): 	at aflm.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):58)
+E/AndroidRuntime( 6361): 	at afll.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):111)
+E/AndroidRuntime( 6361): 	at hynt.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):23)
+E/AndroidRuntime( 6361): 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+E/AndroidRuntime( 6361): 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+E/AndroidRuntime( 6361): 	at java.lang.Thread.run(Thread.java:1012)
+F/libc    ( 6552): Fatal signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x4a6a1008 in tid 6963 (lowpool[18]), pid 6552 (gle.android.gms)
+F/DEBUG   ( 6975): *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+F/DEBUG   ( 6975): Build fingerprint: 'google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.036/12592187:user/release-keys'
+F/DEBUG   ( 6975): Revision: '0'
+F/DEBUG   ( 6975): ABI: 'x86_64'
+F/DEBUG   ( 6975): Timestamp: 2026-10-18 10:22:11.316946296+0000
+F/DEBUG   ( 6975): Process uptime: 53s
+F/DEBUG   ( 6975): Cmdline: com.google.android.gms
+F/DEBUG   ( 6975): pid: 6552, tid: 6963, name: lowpool[18]  >>> com.google.android.gms <<<
+F/DEBUG   ( 6975): uid: 10144
+F/DEBUG   ( 6975): signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x000000004a6a1008
+F/DEBUG   ( 6975):     rax 000000004a6a1000  rbx 00000000142034c8  rcx 0000000000017670  rdx 00000000720c8c88
+F/DEBUG   ( 6975):     r8  00000000000010b3  r9  0000000000000000  r10 199999999999999a  r11 28f5c28f5c28f5c3
+F/DEBUG   ( 6975):     r12 0000000000017642  r13 0000000014acfdd0  r14 00000000dd9971ce  r15 0000000000000027
+F/DEBUG   ( 6975):     rdi 000000006f6eb0d0  rsi 000000000001765e
+F/DEBUG   ( 6975):     rbp 000000006f4c1f90  rsp 000078976ec3b150  rip 0000000070a8904b
+F/DEBUG   ( 6975): 59 total frames
+F/DEBUG   ( 6975): backtrace:
+F/DEBUG   ( 6975):       #00 pc 000000000010504b  /system/framework/x86_64/boot.oat (java.util.zip.ZipFile$Source.getEntryPos+571) (BuildId: 68b5d9df423be4ebd4a6c38087fc90e635afb135)
+F/DEBUG   ( 6975):       #01 pc 000000000028dd1a  /system/framework/x86_64/boot.oat (java.util.jar.JarFile.getEntry+122) (BuildId: 68b5d9df423be4ebd4a6c38087fc90e635afb135)
+F/DEBUG   ( 6975):       #02 pc 000000000002b9ed  /system/framework/x86_64/boot-core-libart.oat (libcore.io.ClassPathURLStreamHandler.isEntryStored+61) (BuildId: 2745a90d2047b0ef078df0f659dab52c701a4608)
+F/DEBUG   ( 6975):       #03 pc 000000000001f95a  /system/framework/x86_64/boot-core-libart.oat (dalvik.system.DexPathList$NativeLibraryElement.findNativeLibrary+346) (BuildId: 2745a90d2047b0ef078df0f659dab52c701a4608)
+F/DEBUG   ( 6975):       #04 pc 000000000001d4d3  /system/framework/x86_64/boot-core-libart.oat (dalvik.system.BaseDexClassLoader.findLibrary+115) (BuildId: 2745a90d2047b0ef078df0f659dab52c701a4608)
+F/DEBUG   ( 6975):       #05 pc 00000000000b0511  /system/framework/x86_64/boot.oat (java.lang.Runtime.loadLibrary0+241) (BuildId: 68b5d9df423be4ebd4a6c38087fc90e635afb135)
+F/DEBUG   ( 6975):       #06 pc 00000000000b1339  /system/framework/x86_64/boot.oat (java.lang.Runtime.loadLibrary0+425) (BuildId: 68b5d9df423be4ebd4a6c38087fc90e635afb135)
+F/DEBUG   ( 6975):       #07 pc 00000000000b46e5  /system/framework/x86_64/boot.oat (java.lang.System.loadLibrary+85) (BuildId: 68b5d9df423be4ebd4a6c38087fc90e635afb135)
+F/DEBUG   ( 6975):       #08 pc 0000000000208a15  /apex/com.android.art/lib64/libart.so (nterp_helper+165) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #09 pc 00000000001edb3c  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.gms.org.conscrypt.NativeCryptoJni.init+40)
+F/DEBUG   ( 6975):       #10 pc 00000000002089a8  /apex/com.android.art/lib64/libart.so (nterp_helper+56) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #11 pc 00000000001ecf8c  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.gms.org.conscrypt.GoogleNativeCryptoJni.init+0)
+F/DEBUG   ( 6975):       #12 pc 00000000002089a8  /apex/com.android.art/lib64/libart.so (nterp_helper+56) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #13 pc 00000000001ed564  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.gms.org.conscrypt.NativeCrypto.<clinit>+0)
+F/DEBUG   ( 6975):       #14 pc 00000000002124b6  /apex/com.android.art/lib64/libart.so (art_quick_invoke_static_stub+806) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #15 pc 0000000000474c24  /apex/com.android.art/lib64/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+228) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #16 pc 00000000004aa6e8  /apex/com.android.art/lib64/libart.so (art::ClassLinker::InitializeClass(art::Thread*, art::Handle<art::mirror::Class>, bool, bool)+3256) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #17 pc 0000000000486997  /apex/com.android.art/lib64/libart.so (art::ClassLinker::EnsureInitialized(art::Thread*, art::Handle<art::mirror::Class>, bool, bool)+71) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #18 pc 0000000000998ef8  /apex/com.android.art/lib64/libart.so (NterpGetStaticField+552) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #19 pc 000000000020f5e9  /apex/com.android.art/lib64/libart.so (nterp_get_static_field+73) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #20 pc 000000000020db9c  /apex/com.android.art/lib64/libart.so (nterp_helper+21036) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #21 pc 00000000001ef9f8  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.gms.org.conscrypt.OpenSSLContextImpl$TLSv13.<init>+0)
+F/DEBUG   ( 6975):       #22 pc 0000000000209808  /apex/com.android.art/lib64/libart.so (nterp_helper+3736) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #23 pc 00000000001efa18  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.gms.org.conscrypt.OpenSSLContextImpl.getPreferred+4)
+F/DEBUG   ( 6975):       #24 pc 00000000002089a8  /apex/com.android.art/lib64/libart.so (nterp_helper+56) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #25 pc 00000000001fdc48  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.gms.providerinstaller.SocketFactoryCreatorImpl.b+0)
+F/DEBUG   ( 6975):       #26 pc 00000000002089a8  /apex/com.android.art/lib64/libart.so (nterp_helper+56) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #27 pc 00000000001fdbc2  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.gms.providerinstaller.SocketFactoryCreatorImpl.newSocketFactory+90)
+F/DEBUG   ( 6975):       #28 pc 000000000020a565  /apex/com.android.art/lib64/libart.so (nterp_helper+7157) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #29 pc 0000000000302008  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (com.google.android.gms.common.net.SocketFactoryCreatorImpl.newSocketFactory+20)
+F/DEBUG   ( 6975):       #30 pc 000000000020a565  /apex/com.android.art/lib64/libart.so (nterp_helper+7157) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #31 pc 0000000000325636  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (fyft.b+134)
+F/DEBUG   ( 6975):       #32 pc 0000000000209808  /apex/com.android.art/lib64/libart.so (nterp_helper+3736) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #33 pc 000000000032502a  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (fyfr.g+94)
+F/DEBUG   ( 6975):       #34 pc 0000000000209808  /apex/com.android.art/lib64/libart.so (nterp_helper+3736) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #35 pc 0000000000324f88  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (fyfr.createSocket+0)
+F/DEBUG   ( 6975):       #36 pc 0000000000209808  /apex/com.android.art/lib64/libart.so (nterp_helper+3736) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #37 pc 00000000002e07b2  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (cnuu.c+54)
+F/DEBUG   ( 6975):       #38 pc 0000000000209808  /apex/com.android.art/lib64/libart.so (nterp_helper+3736) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #39 pc 00000000002e0952  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (cnuu.b+22)
+F/DEBUG   ( 6975):       #40 pc 0000000000209808  /apex/com.android.art/lib64/libart.so (nterp_helper+3736) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #41 pc 00000000002e3328  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (cnvl.N+68)
+F/DEBUG   ( 6975):       #42 pc 0000000000209808  /apex/com.android.art/lib64/libart.so (nterp_helper+3736) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #43 pc 00000000002e16e8  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (cnve.call+12)
+F/DEBUG   ( 6975):       #44 pc 000000000020a565  /apex/com.android.art/lib64/libart.so (nterp_helper+7157) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #45 pc 0000000000349280  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/base.apk (gkpz.run+8)
+F/DEBUG   ( 6975):       #46 pc 00000000005d9e45  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (brst.d+277)
+F/DEBUG   ( 6975):       #47 pc 00000000005d9640  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (brst.c+80)
+F/DEBUG   ( 6975):       #48 pc 00000000005db6bb  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (brst.run+4747)
+F/DEBUG   ( 6975):       #49 pc 000000000028a1c1  /system/framework/x86_64/boot.oat (java.util.concurrent.ThreadPoolExecutor.runWorker+769) (BuildId: 68b5d9df423be4ebd4a6c38087fc90e635afb135)
+F/DEBUG   ( 6975):       #50 pc 000000000028795b  /system/framework/x86_64/boot.oat (java.util.concurrent.ThreadPoolExecutor$Worker.run+59) (BuildId: 68b5d9df423be4ebd4a6c38087fc90e635afb135)
+F/DEBUG   ( 6975):       #51 pc 00000000005e9870  /data/app/~~QI3V8ZLP-kFBLYJGYqINmw==/com.google.android.gms-LM80pPMgHU_DkUojfmQkyg==/oat/x86_64/base.odex (bryx.run+80)
+F/DEBUG   ( 6975):       #52 pc 000000000015c3ba  /system/framework/x86_64/boot.oat (java.lang.Thread.run+74) (BuildId: 68b5d9df423be4ebd4a6c38087fc90e635afb135)
+F/DEBUG   ( 6975):       #53 pc 0000000000212154  /apex/com.android.art/lib64/libart.so (art_quick_invoke_stub+756) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #54 pc 0000000000474bf5  /apex/com.android.art/lib64/libart.so (art::ArtMethod::Invoke(art::Thread*, unsigned int*, unsigned int, art::JValue*, char const*)+181) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #55 pc 00000000008c5cc3  /apex/com.android.art/lib64/libart.so (art::Thread::CreateCallback(void*)+1427) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #56 pc 00000000008c5725  /apex/com.android.art/lib64/libart.so (art::Thread::CreateCallbackWithUffdGc(void*)+5) (BuildId: 62338b1c62e3991543c9b8b8bae2b361)
+F/DEBUG   ( 6975):       #57 pc 000000000006d62a  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+58) (BuildId: eb58b4d427279994f00c0e1818477e4f)
+F/DEBUG   ( 6975):       #58 pc 0000000000060348  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+56) (BuildId: eb58b4d427279994f00c0e1818477e4f)

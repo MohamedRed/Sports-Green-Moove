@@ -1,0 +1,26 @@
+{
+  "scope": "single-case-continuous-installation-guard-not-flow-proof",
+  "case": "team-chat-components",
+  "serial": "emulator-5554",
+  "mapsRuntime": {
+    "playStoreEnabled": true,
+    "playServicesEnabled": true,
+    "playServicesVersion": "24.23.35"
+  },
+  "originalBackground": {
+    "RUN_IN_BACKGROUND": "allow",
+    "RUN_ANY_IN_BACKGROUND": "allow"
+  },
+  "originalStoreStopped": false,
+  "apkHashes": {
+    "be.sportgreenmoove.app.local": "48ab38f3f0176aa3b8b19e83e2df8fa5c0bcbe3627c8b13b4c91f41d6248eb38",
+    "be.sportgreenmoove.app.local.test": "dc8cddd74899b33de5832eb1e8cfaf605647a252c7baed9fae3365b921108dce"
+  },
+  "installAdmin": {
+    "packageName": "be.sportgreenmoove.qa.installguard",
+    "originalBlocked": false,
+    "policyReady": true,
+    "noAccounts": true
+  },
+  "storeStoppedAfterLock": false
+}

@@ -1,0 +1,84 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1c89c695696a0749269414d3a732b18a",
+  "testedAt": "2026-10-18T12:06:13.873Z",
+  "status": "passed",
+  "scope": "native-ui-with-local-callables-and-explicit-real-maps-not-physical-device",
+  "native": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "1c89c695696a0749269414d3a732b18a",
+    "scope": "native-three-account-real-map-trip-application",
+    "completed": true,
+    "tripId": "veebE6gY9u7GsMtFxeoA",
+    "selectedPlaceIds": [
+      "ChIJ6-fuiHZ9wUcRpFNMSdpAfTM",
+      "ChIJA76xCep_wUcRIgzsJATgLZ4"
+    ],
+    "quoteText": "7512 m · 9 min",
+    "mapDisplay": {
+      "sdkLoaded": true,
+      "anchorsFramed": true,
+      "capture": "native-display",
+      "screenFile": "local-real-map-display.png",
+      "regionFile": "local-real-map-region.png",
+      "left": 85,
+      "top": 1623,
+      "width": 910,
+      "height": 656,
+      "samples": 13563,
+      "colorBins": 185,
+      "dominantFraction": 0.44333849443338497
+    },
+    "realSuggestionsSelected": true,
+    "unconfirmedPlaceBlocked": true,
+    "bothParentsConfirmedInApp": true,
+    "originalTripKeptBeforeApplication": true,
+    "parentsCannotApply": true,
+    "routeQuoteRequired": true,
+    "driverAppliedInApp": true
+  },
+  "route": {
+    "distanceMeters": 7512,
+    "durationSeconds": 580,
+    "encodedPolyline": "gnptH_pb[M_@CSD_@Zu@xAZb@Fn@PZP|DdDb@Rx@Fr@E\\SZ_@zCsGHANSf@I~@vBJh@E`@D`@R`@XLTEBCZVz@dBpAvCxA|CfArBvCdGTlA@p@Ij@O`@[Vg@Fg@U{CcDw@gA]aAKw@DkAFm@`@{A?]pI_RpB}DfBaD~CaFjAaBdE_FnDsDdCcC~KkJlIqGtJ{GlBiAtK{GhNmHpKcFnGsCVO~T}I|\\oMXHxRuFl@ARJV\\DLn@jEj@dCPj@nAdCx@tCVbAh@nAFl@Cb@D^P\\VLT^j@vBZlALr@jBhDhBdBhBhAp@n@~@nAvCnExAtB~CzEdB`ClA~BJl@N~F@PFPXP`ACfAIj@EpCUJMFOVoBM{@iH{GOU"
+  },
+  "captureFiles": [
+    "local-real-maps-selected.png",
+    "local-real-maps-applied.png",
+    "local-real-map-display.png",
+    "local-real-map-region.png"
+  ],
+  "tripId": "veebE6gY9u7GsMtFxeoA",
+  "proposalId": "019c68707a55bb7097be774ccdefa3a80cdbe256716f920d58ef99dad577543e",
+  "bookingIds": [
+    "A26cQLiQ2WD7QRZeFA1H",
+    "QpmRIPvD80bfz4y67FNR"
+  ],
+  "savedTrip": {
+    "origin": {
+      "lat": 50.71606070000001,
+      "lng": 4.6055674
+    },
+    "destination": {
+      "lat": 50.669494099999994,
+      "lng": 4.6157188
+    },
+    "distanceKm": 7.512,
+    "routeDurationSeconds": 580,
+    "polylineSha256": "e8453752addcb81ec7ce996e633ec4a83d9f3ef9eef8b56c6dc461a44ca2890b"
+  },
+  "parentCount": 2,
+  "acceptedParentCount": 2,
+  "quoteThroughCallable": true,
+  "nativeUi": true,
+  "physicalDevice": false,
+  "productionDataWritten": false,
+  "paymentExercised": false,
+  "refundIssued": false,
+  "steps": [
+    {
+      "id": "real-route-application-ui",
+      "status": "passed"
+    }
+  ]
+}

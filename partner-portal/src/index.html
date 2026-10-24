@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr-BE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="same-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="description" content="Suivi du projet Sports Green-Moove : parcours vérifiés, démonstrations et prochaines étapes.">
+  <title>Sports Green-Moove | Suivi du projet</title>
+  <link rel="icon" href="icons/leaf.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <header class="site-header">
+    <a href="#apercu" class="wordmark" aria-label="Sports Green-Moove, aperçu">
+      <span class="wm-sports">SPORTS&nbsp;</span><span class="wm-green">GREEN-</span><span class="wm-m">m</span><span class="wm-oo">OO</span><span class="wm-ve">Ve</span>
+    </a>
+  </header>
+  <main id="main" class="shell">
+    <div class="page-heading"><h1>Suivi du projet</h1><p id="freshness" class="freshness"></p></div>
+    <nav class="view-tabs" aria-label="Vues du suivi">
+      <a href="#apercu" data-view="apercu" aria-current="page">Aperçu</a>
+      <a href="#parcours" data-view="parcours">Parcours</a>
+      <a href="#suite" data-view="suite">À faire</a>
+    </nav>
+    <div id="loading" role="status">Chargement du suivi…</div>
+    <div id="load-error" hidden role="alert"><p>Le suivi n’a pas pu être chargé.</p><button id="retry" type="button">Réessayer</button></div>
+    <section id="view-apercu" class="view" aria-label="Aperçu" hidden></section>
+    <section id="view-parcours" class="view" aria-label="Parcours utilisateurs" hidden>
+      <div class="section-heading"><h2>Parcours</h2><p id="flow-count" aria-live="polite"></p></div>
+      <p class="catalogue-intro">Explorez les parcours en images, puis retrouvez les résultats des essais et ce qui reste à vérifier.</p>
+      <form id="filters" class="filters" role="search">
+        <label class="search-field"><img src="icons/search.svg" alt=""><span class="sr-only">Rechercher un parcours</span><input id="query" type="search" placeholder="Rechercher un parcours" autocomplete="off"></label>
+        <label class="status-filter"><span class="sr-only">Filtrer par statut</span><select id="status"><option value="all">Tous</option><option value="verified">Testé</option><option value="partial">Test partiel</option><option value="blocked">Bloqué</option><option value="untested">À tester</option><option value="deferred">Plus tard</option></select></label>
+      </form>
+      <div id="flow-list" class="flow-list"></div>
+    </section>
+    <section id="view-suite" class="view" aria-label="Prochaines étapes" hidden></section>
+  </main>
+  <dialog id="flow-dialog" aria-labelledby="detail-title">
+    <header class="dialog-header"><button type="button" id="close-detail" class="icon-button" title="Fermer" aria-label="Fermer"><img src="icons/x.svg" alt=""></button></header>
+    <div id="flow-detail"></div>
+  </dialog>
+  <noscript><p class="shell">JavaScript est nécessaire pour consulter ce suivi.</p></noscript>
+</body>
+</html>

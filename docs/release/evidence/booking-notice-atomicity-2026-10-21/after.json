@@ -1,0 +1,101 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "92ec9ed6f5c9937d534937f43a747b15",
+  "testedAt": "2026-10-21T22:49:59.541Z",
+  "scope": "isolated-booking-decision-and-notification-atomicity-not-phone-ui",
+  "completed": true,
+  "steps": [
+    {
+      "id": "approval-notice-write-conflict-rolls-back-decision-and-capacity",
+      "status": "passed"
+    },
+    {
+      "id": "approval-commits-one-notice-and-one-seat-change",
+      "status": "passed"
+    },
+    {
+      "id": "approval-replay-does-not-create-extra-notices-or-remove-more-seats",
+      "status": "passed"
+    },
+    {
+      "id": "decline-notice-write-conflict-keeps-request-pending",
+      "status": "passed"
+    },
+    {
+      "id": "decline-commits-one-notice-without-consuming-capacity",
+      "status": "passed"
+    },
+    {
+      "id": "decline-replay-does-not-create-a-second-notice",
+      "status": "passed"
+    },
+    {
+      "id": "cancellation-notice-write-conflict-keeps-approved-booking-and-capacity",
+      "status": "passed"
+    },
+    {
+      "id": "cancellation-commits-one-driver-notice-and-restores-one-seat",
+      "status": "passed"
+    },
+    {
+      "id": "cancellation-replay-cannot-restore-capacity-or-create-notices-twice",
+      "status": "passed"
+    },
+    {
+      "id": "inbox-delivers-only-the-intended-parent-and-driver-notices",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-driver-approval-commits-one-decision-notice-and-seat-change",
+      "status": "passed"
+    },
+    {
+      "id": "unrelated-records-and-original-claims-remain-unchanged",
+      "status": "passed"
+    }
+  ],
+  "observations": [
+    {
+      "actor": "sgm-qa-parent",
+      "notices": [
+        "bookingDecision_276e7415fd2b7c53e1ac96539d45ceeefd5ef2d34d509e047e7050db243db54d",
+        "bookingDecision_41ffa1cde6d59c2334a997bc6ad9fd4a87a918a8f134419c7ff88c862fff7a7d"
+      ]
+    },
+    {
+      "actor": "sgm-qa-driver",
+      "notices": [
+        "bookingDecision_39286b3dcda1977c3c05470363c06bd71cb1d67105141eea3f6c657e21ce953a"
+      ]
+    },
+    {
+      "actor": "sgm-qa-outsider",
+      "notices": []
+    }
+  ],
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "pushDeliveryVerified": false,
+  "paymentExercised": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "functions/src/callables/bookings.ts": "6e69ede12240604c4ff0efc93535baef6bae2f532f9ffe10dbd4b3da15b12bb0",
+    "functions/src/callables/reservations.ts": "4a4d6916d729ed244c24adb905d0265e5ff2366b5a471b87931c3e63e8aa1ca9",
+    "functions/src/domain/bookingNotifications.ts": "0b7024f30e0bb39b57a25be19e5dc023f77f943bc10ffbe8c65bd8ef29272b6b",
+    "functions/src/lib/bookingNotifications.ts": "c63d4bfdf2dc07d8e665c36bccffe5ccbfffc96234583df080d309903564b477",
+    "scripts/qa/local-booking-notices.mjs": "6dc4e33a2cb8f5358d2d125315ccaca05ba6b41e86d46ab94ae9e97eaf43bb43"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

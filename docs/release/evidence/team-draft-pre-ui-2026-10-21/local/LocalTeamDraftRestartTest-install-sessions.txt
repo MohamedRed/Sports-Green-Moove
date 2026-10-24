@@ -1,0 +1,79 @@
+{
+  "scope": "typed-install-session-diagnostic-not-cause-or-flow-verification",
+  "sections": [
+    {
+      "kind": "active",
+      "sessions": []
+    },
+    {
+      "kind": "finalized",
+      "sessions": []
+    },
+    {
+      "kind": "historical",
+      "sessions": [
+        {
+          "id": 1908857165,
+          "mOriginalInstallerPackageName": "null",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.shell",
+          "createdMillis": 1792597703419,
+          "updatedMillis": 1792597713454,
+          "committedMillis": 1792597706225,
+          "appPackageName": "null",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        },
+        {
+          "id": 102904857,
+          "mOriginalInstallerPackageName": "null",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.shell",
+          "createdMillis": 1792597733387,
+          "updatedMillis": 1792597739858,
+          "committedMillis": 1792597737673,
+          "appPackageName": "null",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        },
+        {
+          "id": 1673596031,
+          "mOriginalInstallerPackageName": "null",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.shell",
+          "createdMillis": 1792597740527,
+          "updatedMillis": 1792597742507,
+          "committedMillis": 1792597740786,
+          "appPackageName": "null",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        }
+      ]
+    },
+    {
+      "kind": "legacy",
+      "sessions": []
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 import { onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
 import { requireAuth } from "../lib/https.js";
+import { googleMapsApiKeySecret } from "../lib/providerSecrets.js";
+import { parseCallableData } from "../lib/validation.js";
 import { GooglePlacesProvider } from "../services/googlePlaces.js";
 
 const suggestPlacesSchema = z.object({
@@ -11,16 +13,16 @@ const resolvePlaceSchema = z.object({
   placeId: z.string().trim().min(1).max(256),
 });
 
-export const suggestPlaces = onCall(async (request) => {
+export const suggestPlaces = onCall({ secrets: [googleMapsApiKeySecret] }, async (request) => {
   requireAuth(request.auth?.uid);
-  const { input } = suggestPlacesSchema.parse(request.data ?? {});
-  const suggestions = await new GooglePlacesProvider().suggestPlaces(input);
+  const { input } = parseCallableData(suggestPlacesSchema, request.data ?? {});
+  const suggestions = await new GooglePlacesProvider({ apiKey: googleMapsApiKeySecret.value() }).suggestPlaces(input);
   return { suggestions };
 });
 
-export const resolvePlace = onCall(async (request) => {
+export const resolvePlace = onCall({ secrets: [googleMapsApiKeySecret] }, async (request) => {
   requireAuth(request.auth?.uid);
-  const { placeId } = resolvePlaceSchema.parse(request.data ?? {});
-  const place = await new GooglePlacesProvider().resolvePlace(placeId);
+  const { placeId } = parseCallableData(resolvePlaceSchema, request.data ?? {});
+  const place = await new GooglePlacesProvider({ apiKey: googleMapsApiKeySecret.value() }).resolvePlace(placeId);
   return { place };
 });

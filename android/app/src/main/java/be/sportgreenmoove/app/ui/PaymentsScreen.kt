@@ -37,10 +37,21 @@ fun PaymentsScreen(
     onBack: () -> Unit,
     onPay: (PayableBookingSummary) -> Unit,
     onStartConnect: () -> Unit,
+    paymentPending: Boolean = false,
+    verificationMessage: String = "Paiement en cours de confirmation.",
+    verificationBusy: Boolean = false,
+    onVerifyPayment: () -> Unit = {},
 ) {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.PaymentsScreen) {
         V2TopBar("PAIEMENTS", onBack = onBack)
         PaymentsHero(bookings = bookings)
+        if (paymentPending) {
+            Column(Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(verificationMessage, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary))
+                V2Button(title = if (verificationBusy) "Vérification..." else "Vérifier le paiement",
+                    onClick = onVerifyPayment, enabled = !verificationBusy, full = true, testTag = "payments.verify")
+            }
+        }
         if (role == AppRole.Driver) {
             V2SectionLabel("STRIPE CONNECT")
             PaymentsConnectCard(loading = loading, onStartConnect = onStartConnect)
@@ -57,6 +68,7 @@ fun PaymentsScreen(
                     PaymentBookingCard(
                         booking = booking,
                         loading = loading,
+                        paymentPending = paymentPending,
                         onPay = { if (!loading) onPay(booking) },
                     )
                 }
@@ -79,7 +91,6 @@ private fun PaymentsHero(bookings: List<PayableBookingSummary>) {
     ) {
         SgmGridTexture()
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("STRIPE PAYMENTSHEET", style = SgmType.Label.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.52f), fontSize = 11.sp, letterSpacing = 0.14.em))
             Text(formatEuros(totalCents), style = SgmType.Display3XL.copy(color = SgmColor.Green, fontSize = 42.sp))
             Text(
                 "${bookings.size} réservation${if (bookings.size > 1) "s" else ""} approuvée${if (bookings.size > 1) "s" else ""} en attente de paiement.",
@@ -93,6 +104,7 @@ private fun PaymentsHero(bookings: List<PayableBookingSummary>) {
 private fun PaymentBookingCard(
     booking: PayableBookingSummary,
     loading: Boolean,
+    paymentPending: Boolean,
     onPay: () -> Unit,
 ) {
     Column(
@@ -113,11 +125,13 @@ private fun PaymentBookingCard(
             Text(booking.amountLabel, style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 22.sp))
         }
         V2Button(
-            title = if (loading) "Préparation..." else "Payer maintenant",
+            title = if (paymentPending) "Confirmation en attente" else if (loading) "Préparation..." else "Payer maintenant",
+            enabled = !loading,
             onClick = onPay,
             variant = V2ButtonVariant.Primary,
             size = V2ButtonSize.Md,
             full = true,
+            testTag = SgmTestTags.PaymentAction,
         )
     }
 }

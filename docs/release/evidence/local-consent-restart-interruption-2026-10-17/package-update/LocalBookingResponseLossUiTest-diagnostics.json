@@ -1,0 +1,56 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "493fcbaef51a1c79c06a99247ae441a0",
+  "label": "LocalBookingResponseLossUiTest",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-17T21:45:22.438Z",
+  "host": {
+    "totalMemoryBytes": 16766414848,
+    "freeMemoryBytes": 9288069120,
+    "cpuCount": 4
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "LocalBookingResponseLossUiTest-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "LocalBookingResponseLossUiTest-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "LocalBookingResponseLossUiTest-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "LocalBookingResponseLossUiTest-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "LocalBookingResponseLossUiTest-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "LocalBookingResponseLossUiTest-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "LocalBookingResponseLossUiTest-package-operations.txt",
+      "empty": false
+    }
+  ]
+}

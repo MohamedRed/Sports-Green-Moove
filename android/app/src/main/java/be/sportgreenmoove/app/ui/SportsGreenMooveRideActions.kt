@@ -1,13 +1,14 @@
 package be.sportgreenmoove.app.ui
 
+import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.BookingRequestSummary
 import be.sportgreenmoove.app.data.LiveRideSnapshot
-import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.services.AndroidProviderSet
-import be.sportgreenmoove.app.services.StripePaymentSheetController
 import be.sportgreenmoove.app.services.endTrackedRide
+import be.sportgreenmoove.app.services.startAccessibleRideTracking
 import be.sportgreenmoove.app.services.startTrackedRide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -31,92 +32,58 @@ fun TripSummary.distanceMetersFromLabel(): Int {
     return (km * 1000).toInt()
 }
 
-fun launchPayment(
-    scope: CoroutineScope,
-    providers: AndroidProviderSet,
-    paymentSheet: StripePaymentSheetController,
-    booking: PayableBookingSummary,
-    setLoading: (Boolean) -> Unit,
-    setError: (String?) -> Unit,
-) {
-    scope.launch {
-        setLoading(true)
-        setError(null)
-        runCatching {
-            if (!providers.stripe.isConfigured) {
-                error("Stripe Android n'est pas configuré.")
-            }
-            val config = providers.stripe.prepareRidePayment(booking.bookingId)
-            paymentSheet.present(config)
-        }.onFailure {
-            setError(it.message)
-        }
-        setLoading(false)
-    }
-}
-
-fun launchApproveBooking(
-    scope: CoroutineScope,
-    providers: AndroidProviderSet,
-    request: BookingRequestSummary,
-    setLoading: (Boolean) -> Unit,
-    setError: (String?) -> Unit,
-    setNotice: (String) -> Unit,
-    refreshAppData: suspend () -> Unit,
-) {
-    scope.launch {
-        setLoading(true)
-        setError(null)
-        runCatching {
-            providers.firebase.approveBooking(request.bookingId)
-            setNotice("Demande approuvée.")
-            refreshAppData()
-        }.onFailure { setError(it.message) }
-        setLoading(false)
-    }
-}
-
 fun launchTripAction(
     scope: CoroutineScope,
     providers: AndroidProviderSet,
     trip: TripSummary,
-    role: be.sportgreenmoove.app.data.AppRole,
+    role: AppRole,
     driverBookingRequests: List<BookingRequestSummary>,
     activeRidePermissionGate: ActiveRidePermissionGate,
     setActiveRide: (LiveRideSnapshot) -> Unit,
     setActiveRideTrip: (TripSummary?) -> Unit,
     setNotice: (String) -> Unit,
-    setScreen: (DemoScreen) -> Unit,
+    setScreen: (AppScreen) -> Unit,
     setError: (String?) -> Unit,
 ) {
     val action: () -> Unit = {
         scope.launch {
             runCatching {
-                if (role == be.sportgreenmoove.app.data.AppRole.Driver) {
-                    val result = providers.startTrackedRide(
-                        trip.id,
-                        role,
-                        approvedBookingIdsFor(trip, driverBookingRequests),
-                    )
-                    setActiveRide(result.ride)
-                    setActiveRideTrip(trip)
-                    setNotice(result.notice)
-                    setScreen(DemoScreen.Ride)
-                } else {
-                    val bookingId = providers.firebase.requestBooking(trip.id)
-                    setNotice("Demande envoyée: $bookingId")
+                when (role) {
+                    AppRole.Driver -> {
+                        val result = providers.startTrackedRide(
+                            trip.id,
+                            role,
+                            approvedBookingIdsFor(trip, driverBookingRequests),
+                        )
+                        setActiveRide(result.ride)
+                        setActiveRideTrip(trip)
+                        setNotice(result.notice)
+                        setScreen(AppScreen.Ride)
+                    }
+                    AppRole.Child -> {
+                        val result = providers.startAccessibleRideTracking(role)
+                        setActiveRide(result.ride)
+                        setActiveRideTrip(trip.takeIf { it.id == result.ride.tripId })
+                        setNotice(result.notice)
+                        setScreen(AppScreen.Ride)
+                    }
+                    else -> {
+                        val bookingId = providers.firebase.requestBooking(trip, null, 1)
+                        setNotice("Demande envoyée: $bookingId")
+                    }
                 }
-            }.onFailure { setError(it.message) }
+            }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         }
     }
 
-    if (role == be.sportgreenmoove.app.data.AppRole.Driver) {
+    if (role == AppRole.Driver || role == AppRole.Child) {
         activeRidePermissionGate.runWhenReady(action)
     } else {
         action()
     }
 }
 
+// Passenger snapshots belong to the live observer, including its position-age ticker.
 fun launchPassengerStatusUpdate(
     scope: CoroutineScope,
     providers: AndroidProviderSet,
@@ -126,7 +93,6 @@ fun launchPassengerStatusUpdate(
     setLoading: (Boolean) -> Unit,
     setError: (String?) -> Unit,
     setNotice: (String) -> Unit,
-    setActiveRide: (LiveRideSnapshot?) -> Unit,
 ) {
     val activeRide = ride ?: return
     scope.launch {
@@ -135,13 +101,12 @@ fun launchPassengerStatusUpdate(
         runCatching {
             if (pickup) {
                 providers.firebase.markPickup(activeRide.rideSessionId, passenger.bookingId, passenger.childId)
-                setNotice("Pickup confirmé.")
+                setNotice("Prise en charge confirmée.")
             } else {
                 providers.firebase.markDropoff(activeRide.rideSessionId, passenger.bookingId, passenger.childId)
-                setNotice("Dropoff confirmé.")
+                setNotice("Dépose confirmée.")
             }
-            setActiveRide(providers.firebase.getActiveRide())
-        }.onFailure { setError(it.message) }
+        }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         setLoading(false)
     }
 }
@@ -156,7 +121,7 @@ fun launchEndActiveRide(
     setNotice: (String) -> Unit,
     setActiveRide: (LiveRideSnapshot?) -> Unit,
     setActiveRideTrip: (TripSummary?) -> Unit,
-    setScreen: (DemoScreen) -> Unit,
+    setScreen: (AppScreen) -> Unit,
     refreshAppData: suspend () -> Unit,
 ) {
     val activeRide = ride ?: return
@@ -171,10 +136,10 @@ fun launchEndActiveRide(
             )
             setActiveRide(null)
             setActiveRideTrip(null)
-            setScreen(DemoScreen.Trips)
+            setScreen(AppScreen.Trips)
             setNotice("Course terminée · ${"%.1f".format(Locale.FRANCE, completion.co2SavedKg)} kg CO₂ · ${completion.rewardLabel()}")
             refreshAppData()
-        }.onFailure { setError(it.message) }
+        }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         setLoading(false)
     }
 }

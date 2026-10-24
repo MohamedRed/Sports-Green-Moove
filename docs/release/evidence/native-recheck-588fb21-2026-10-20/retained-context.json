@@ -1,0 +1,16 @@
+{
+  "scope": "full-local-replay-recheck-not-new-visual-or-physical-proof",
+  "sourceCommit": "588fb21381a5638b19464c499a72e643f2757327",
+  "workflowRunId": 39422026774,
+  "mainJobId": 118625101626,
+  "artifactId": 12265109077,
+  "runId": "29d7fa79eae57ffcac7cff9b54f24d8b",
+  "reviewedNewCaptures": [],
+  "physicalDevice": false,
+  "productionWrites": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "childOwnAccountVerified": false,
+  "fullSearchBookingVerified": false,
+  "focusedEvidenceScope": "terminal-ci-jobs-only-not-new-independent-artifact-validation"
+}

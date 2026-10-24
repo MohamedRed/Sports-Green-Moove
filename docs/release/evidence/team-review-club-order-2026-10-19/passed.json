@@ -1,0 +1,168 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "fcbc21fb272e777f1fdd272269f28058",
+  "testedAt": "2026-10-19T22:03:43.978Z",
+  "scope": "local-team-manager-review-not-physical-or-parent-native-ui",
+  "checks": [
+    {
+      "id": "team-review-requires-auth-and-current-exact-club-management",
+      "status": "passed"
+    },
+    {
+      "id": "twenty-five-teams-paginate-with-immutable-identity-and-minimal-fields",
+      "status": "passed"
+    },
+    {
+      "id": "team-review-cursors-cannot-cross-clubs-or-enrollment-lists",
+      "status": "passed"
+    },
+    {
+      "id": "manager-revocation-invalidates-an-already-returned-team-cursor",
+      "status": "passed"
+    },
+    {
+      "id": "closed-team-removal-remains-discoverable-without-parent-enrollment-access",
+      "status": "passed"
+    },
+    {
+      "id": "team-review-reads-never-create-or-rewrite-any-protected-record",
+      "status": "passed"
+    },
+    {
+      "id": "persisted-core-decisions-and-all-twenty-three-other-requests-retain-exact-actors-and-revisions",
+      "status": "passed"
+    },
+    {
+      "id": "scoped-fixture-cleanup-restores-all-original-records-and-account-roles",
+      "status": "passed"
+    }
+  ],
+  "testCount": 8,
+  "steps": [
+    {
+      "id": "team-review-services",
+      "status": "passed"
+    },
+    {
+      "id": "team-manager-review-ui",
+      "status": "passed"
+    }
+  ],
+  "browser": {
+    "checkedAt": "2026-10-19T22:03:42.641Z",
+    "scope": "local-manager-browser-with-actual-emulated-services-not-native-or-physical",
+    "checks": [
+      {
+        "id": "manager-sign-in-team-choice-and-request-pagination",
+        "status": "passed"
+      },
+      {
+        "id": "responsive-real-requests-desktop-tablet-mobile-and-large-text",
+        "status": "passed"
+      },
+      {
+        "id": "cancelled-approval-does-not-write",
+        "status": "passed"
+      },
+      {
+        "id": "manager-refusal-and-parent-new-request",
+        "status": "passed"
+      },
+      {
+        "id": "lost-approval-reply-clears-actions-and-reconciles-without-resubmitting",
+        "status": "passed"
+      },
+      {
+        "id": "parent-withdrawal-is-visible-and-cannot-be-decided-again",
+        "status": "passed"
+      },
+      {
+        "id": "verified-child-approval-is-confirmed-in-the-manager-screen",
+        "status": "passed"
+      },
+      {
+        "id": "guardian-loss-redacts-child-and-manager-can-remove-the-enrollment",
+        "status": "passed"
+      },
+      {
+        "id": "manager-access-loss-clears-private-rows-and-team-choices",
+        "status": "passed"
+      },
+      {
+        "id": "sign-out-and-parent-account-cannot-retain-manager-screen",
+        "status": "passed"
+      }
+    ],
+    "screenshots": [
+      "team-review-requests-1440.png",
+      "team-review-requests-768.png",
+      "team-review-requests-390.png",
+      "team-review-requests-320.png",
+      "team-review-large-text-320.png",
+      "team-review-confirmation-320.png",
+      "team-review-approval-recovered-320.png",
+      "team-review-child-approved-320.png",
+      "team-review-child-revoked-320.png",
+      "team-review-access-revoked-320.png"
+    ],
+    "viewports": [
+      1440,
+      768,
+      390,
+      320
+    ],
+    "largeTextScale": 1.3,
+    "externalRequests": 0,
+    "productionWrites": false
+  },
+  "independentPersistedVerification": true,
+  "fixtureCleanupVerified": true,
+  "teamRequestsThroughAuthenticatedSdk": 26,
+  "coreEnrollmentTransitions": 8,
+  "otherRequestsUnchanged": 23,
+  "guardianTransitions": 3,
+  "managerDecisionsMethod": "authenticated-management-browser",
+  "parentRequestsMethod": "authenticated-local-sdk-not-parent-ui",
+  "managerUiProven": true,
+  "parentNativeUiProven": false,
+  "wholeNativeReplayProven": false,
+  "fullProcessRestartProven": false,
+  "videoCaptured": false,
+  "releaseEvidenceAccepted": false,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "physicalDevice": false,
+  "teamChatImplemented": false,
+  "sourceFiles": {
+    "functions/src/callables/teamEnrollmentReview.ts": "ee5d45586d16d2c94ab886b48ba8cd4de7091fed046ca4f84bdd4da8f6181e37",
+    "functions/src/services/teamEnrollmentReview.ts": "b03b0800ae19f5541f0554733e7e0d2336be49d3bb8d53740dd44b099801c76c",
+    "functions/src/services/teamEnrollmentViews.ts": "a2406d4b2209bea911595f6024265aff93bac7873bb19bef8b972c59081251cc",
+    "functions/src/services/teamEnrollmentAuthority.ts": "f52978e570d4cd2d1ff5885721b1d0b4066a2173ce3f21831b30b26ea0a47c8c",
+    "functions/src/services/teamEnrollment.ts": "29782f9dfc58143b83fa0a9052814e38ea3669a480787794226438f6fff518da",
+    "functions/src/callables/teamEnrollment.ts": "0c3e3aa7e3245ee0eea5af12ff971cc90a5689b5213d75fdda4fa18cbde82b82",
+    "functions/src/domain/teamEnrollment.ts": "ac715ec1017d2353fcda844b998213f0ccd12625246f63e4d2717f113bb166ea",
+    "functions/src/index.ts": "230e3da426a5bf4debb8a11d16c38843655d56da5b75530d9cda4ef5eeac96ce",
+    "functions/src/domain/guardianVerification.ts": "209a2139bad3746c502b6055bed53e0ac16c7706d0ad141b87fdf2fce66d5b0a",
+    "functions/src/services/guardianVerification.ts": "da9bee7eadc066949e5b4ef45f142b8577cfe49b8ab4f85f999a62aa82d69a69",
+    "functions/src/callables/guardianVerification.ts": "53252c2bc6e2463d7904f281637d87dd975e6c597068232f214cc554033dbae4",
+    "scripts/qa/local-team-native-fixture.mjs": "827826594de591323a44f674e76ed95920d4a4478c287c5640ff4cafc0e17f00",
+    "scripts/qa/local-emulator-config.mjs": "4d1f899dba2465130d5e3830a7770f084520fe125b2dc06a7994778d51165598",
+    "scripts/qa/local-egress-guard.mjs": "2782ab3e05ae42b875666a7047574ecf536695f0f315d2aec1d1a625f1cbc081",
+    "scripts/qa/local-team-review-fixture.mjs": "d668074b1ff112c0e158e8ea50099f8c44e3e4a464172184745e6826dc540989",
+    "scripts/qa/local-team-review-suite.mjs": "c167c8ef5b4192bc9d08070a273e0418dd3d9e5a13b7c731d433545bc9a7afbb",
+    "scripts/qa/run-local-team-review.mjs": "b7a900bb8359b9bc29dec036c817286ae66484b70c1046f3c1f2ef8b8d73a66e",
+    "scripts/qa/local-team-review-browser.mjs": "7e15e3f65e9655b47a1422c8fb40d9b5fc54abf58eee1bcaa346f37b96973a6f",
+    "admin/src/TeamReviewPanel.tsx": "bd40bc85fa5b310d57e57fa479125f7adf9aa79f983ccda47f0e78d10e7d7974",
+    "admin/src/TeamReviewConfirmation.tsx": "4b4ebaf417045e77d7e626b9e6a8f03beb14e361b0097c258f3a224808b355a6",
+    "admin/src/TeamReviewController.ts": "2c329cb276cbb685d30b97d3451b0e0a708aaede207d7bd5f5678c4ebd5f1a84",
+    "admin/src/teamReviewTypes.ts": "53253f85c98f560fc0e25bdc4295a682ccbd45e217a3890db67a9ae649c1502b",
+    "admin/src/teamReviewWire.ts": "c32a27409da6fa0165f658390acf5aa9541a62e04a05621a2553fa99eb51de07",
+    "admin/src/teamReviewGateway.ts": "520ca2cd79124b3c9fdfa95d5e264698be9d63c75e998f2eee293626280fc0ba",
+    "admin/src/teamReview.css": "891c1b9147648770369464fcc58bc5ec4e037eeca8aa4cd15fd410033ecf0b90",
+    "admin/src/ClubDashboard.tsx": "44a5d5ee17004ca589febe72aa20afd8b106dd7c223f4e2f9926d56c0dc15fdf",
+    "admin/src/AdminDashboard.tsx": "09d9f7d2676ff23c865028704b4c0075a927f4bcaaa137075b9d65f073afeec2",
+    "admin/src/App.tsx": "a4f129ecfd2263bdfb7b82bf559a1fb22a26d275572629da095c46043c3c5c69",
+    "admin/src/useAdminAuth.ts": "a7d277638fbf9d4bb043b30d0b7316022b25313f83e063625fb824fb1d1f2cf7",
+    "admin/src/firebase.ts": "c3861730465b52064e60da25669a525bb7143641e53a6f302c7ea7af2aa5979f"
+  }
+}

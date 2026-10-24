@@ -5,9 +5,20 @@ struct PaymentsScreen: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(testID: UITestIdentifier.paymentsScreen) {
             SGMTopBar(title: "PAIEMENTS", showsBack: true)
             PaymentsHero(bookings: appState.payableBookings)
+            if appState.hasPendingRidePayment {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(appState.ridePaymentState.message)
+                        .font(.sgmBody(13, weight: .medium))
+                        .foregroundStyle(SGM.textPrimary)
+                    SGMButton(title: appState.ridePaymentBusy ? "Vérification..." : "Vérifier le paiement") {
+                        Task { await appState.verifyRidePayment() }
+                    }
+                    .disabled(appState.ridePaymentBusy)
+                }.padding(.horizontal, SGMSpace.padScreen)
+            }
             if appState.selectedRole == .driver {
                 SGMSectionLabel("STRIPE CONNECT")
                 PaymentsConnectCard(loading: appState.loading) {
@@ -24,9 +35,10 @@ struct PaymentsScreen: View {
                     ForEach(appState.payableBookings) { booking in
                         PaymentBookingCard(
                             booking: booking,
-                            loading: appState.loading
+                            loading: appState.loading || appState.ridePaymentBusy || appState.hasPendingRidePayment,
+                            paymentPending: appState.hasPendingRidePayment
                         ) {
-                            Task { await pay(booking) }
+                            Task { await appState.payRide(booking) }
                         }
                     }
                 }
@@ -69,28 +81,6 @@ struct PaymentsScreen: View {
         }
     }
 
-    private func pay(_ booking: PayableBookingSummary) async {
-        appState.loading = true
-        appState.errorMessage = nil
-        defer { appState.loading = false }
-
-        do {
-            guard appState.stripe.isConfigured else {
-                throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
-            }
-            let config = try await appState.stripe.prepareRidePayment(bookingId: booking.id)
-            let outcome = try await NativePaymentSheetFlow.present(config: config)
-            switch outcome {
-            case .completed:
-                appState.noticeMessage = "Paiement confirmé."
-                await appState.refreshAppData()
-            case .canceled:
-                appState.noticeMessage = "Paiement annulé."
-            }
-        } catch {
-            appState.errorMessage = error.localizedDescription
-        }
-    }
 }
 
 private struct PaymentsConnectCard: View {
@@ -133,10 +123,6 @@ private struct PaymentsHero: View {
             SGM.heroGradient
             SGMGridTexture()
             VStack(alignment: .leading, spacing: 8) {
-                Text("STRIPE PAYMENTSHEET")
-                    .font(.sgmBody(11, weight: .bold))
-                    .tracking(.sgmWider(for: 11))
-                    .foregroundStyle(SGM.textOnGreen.opacity(0.52))
                 Text(formatEuros(totalCents))
                     .font(.sgmDisplay(42))
                     .tracking(.sgmWide(for: 42))
@@ -155,6 +141,7 @@ private struct PaymentsHero: View {
 private struct PaymentBookingCard: View {
     let booking: PayableBookingSummary
     let loading: Bool
+    let paymentPending: Bool
     let action: () -> Void
 
     var body: some View {
@@ -175,7 +162,7 @@ private struct PaymentBookingCard: View {
                     .font(.sgmDisplay(22))
                     .foregroundStyle(SGM.orange)
             }
-            SGMButton(title: loading ? "Préparation..." : "Payer maintenant", action: action)
+            SGMButton(title: paymentPending ? "Confirmation en attente" : loading ? "Préparation..." : "Payer maintenant", testID: UITestIdentifier.paymentAction, action: action)
                 .opacity(loading ? 0.58 : 1)
                 .allowsHitTesting(!loading)
         }

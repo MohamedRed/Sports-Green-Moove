@@ -1,0 +1,41 @@
+{
+  "recordedAt": "2026-10-22T12:47:02.494Z",
+  "adminClientClosed": true,
+  "phoneSessionStopped": true,
+  "phoneAppUninstallConfirmedByProvider": true,
+  "backendDirectoryRemoved": true,
+  "privateSessionRemoved": true,
+  "helperDirectoryRemoved": true,
+  "firstAttemptBackendDirectoryRemoved": true,
+  "firstAttemptPrivateSessionRemoved": true,
+  "paths": {
+    "backendDirectoryRemoved": "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-CQGGMS",
+    "privateSessionRemoved": "/private/tmp/sgm-support-phone-retry-20261022-private.json",
+    "helperDirectoryRemoved": "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-scoped-bs-NHHDNF",
+    "firstAttemptBackendDirectoryRemoved": "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-wV4QWl",
+    "firstAttemptPrivateSessionRemoved": "/private/tmp/sgm-support-phone-20261022-private.json"
+  },
+  "fixtureEnvironmentDestroyed": true,
+  "credentialDiscarded": true,
+  "hostClipboardRestored": true,
+  "firstAttemptSessionUnavailableAfterReload": true,
+  "firstAttemptAppUninstallVerified": false,
+  "independentPackageInventoryRead": false,
+  "devicePolicyChanged": false,
+  "locationPermissionGranted": false,
+  "backendExit": 130,
+  "firstAttemptBackendExit": 130,
+  "helperExit": 130,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099,
+      45690,
+      45691
+    ],
+    "closed": true
+  }
+}

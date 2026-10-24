@@ -1,0 +1,152 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "eb2b795695b03cb8ceb0dc85c609a6ce",
+  "scope": "native-ui-with-disposable-os-network-control",
+  "completed": true,
+  "network": [
+    {
+      "phase": "before",
+      "wifiEnabled": true,
+      "mobileDataEnabled": true,
+      "activeNetwork": true,
+      "cellularRequestRegistered": true,
+      "cellularAvailableCallbacks": 1,
+      "cellularLostCallbacks": 0,
+      "cellularUnavailableCallbacks": 0,
+      "wifiRequestRegistered": true,
+      "wifiAvailableCallbacks": 1,
+      "wifiLostCallbacks": 0,
+      "wifiUnavailableCallbacks": 0,
+      "cellularDataState": 2,
+      "simState": 5,
+      "hasDefaultDataSubscription": true,
+      "airplaneModeSetting": "0",
+      "mobileDataAlwaysOnSetting": "1",
+      "internetNetworkCount": 2,
+      "backendReachable": true,
+      "activeInternetTransports": [
+        "wifi"
+      ],
+      "internetTransports": [
+        "wifi",
+        "cellular"
+      ]
+    },
+    {
+      "phase": "cellular-ready",
+      "wifiEnabled": false,
+      "mobileDataEnabled": true,
+      "activeNetwork": true,
+      "cellularRequestRegistered": true,
+      "cellularAvailableCallbacks": 1,
+      "cellularLostCallbacks": 0,
+      "cellularUnavailableCallbacks": 0,
+      "wifiRequestRegistered": true,
+      "wifiAvailableCallbacks": 1,
+      "wifiLostCallbacks": 1,
+      "wifiUnavailableCallbacks": 0,
+      "cellularDataState": 2,
+      "simState": 5,
+      "hasDefaultDataSubscription": true,
+      "airplaneModeSetting": "0",
+      "mobileDataAlwaysOnSetting": "1",
+      "internetNetworkCount": 1,
+      "backendReachable": true,
+      "activeInternetTransports": [
+        "cellular"
+      ],
+      "internetTransports": [
+        "cellular"
+      ]
+    },
+    {
+      "phase": "offline",
+      "wifiEnabled": false,
+      "mobileDataEnabled": false,
+      "activeNetwork": false,
+      "cellularRequestRegistered": true,
+      "cellularAvailableCallbacks": 1,
+      "cellularLostCallbacks": 1,
+      "cellularUnavailableCallbacks": 0,
+      "wifiRequestRegistered": true,
+      "wifiAvailableCallbacks": 1,
+      "wifiLostCallbacks": 1,
+      "wifiUnavailableCallbacks": 0,
+      "cellularDataState": 0,
+      "simState": 5,
+      "hasDefaultDataSubscription": true,
+      "airplaneModeSetting": "0",
+      "mobileDataAlwaysOnSetting": "1",
+      "internetNetworkCount": 0,
+      "backendReachable": false,
+      "activeInternetTransports": [],
+      "internetTransports": []
+    },
+    {
+      "phase": "restored",
+      "wifiEnabled": true,
+      "mobileDataEnabled": true,
+      "activeNetwork": true,
+      "cellularRequestRegistered": true,
+      "cellularAvailableCallbacks": 2,
+      "cellularLostCallbacks": 1,
+      "cellularUnavailableCallbacks": 0,
+      "wifiRequestRegistered": true,
+      "wifiAvailableCallbacks": 2,
+      "wifiLostCallbacks": 1,
+      "wifiUnavailableCallbacks": 0,
+      "cellularDataState": 2,
+      "simState": 5,
+      "hasDefaultDataSubscription": true,
+      "airplaneModeSetting": "0",
+      "mobileDataAlwaysOnSetting": "1",
+      "internetNetworkCount": 2,
+      "backendReachable": true,
+      "activeInternetTransports": [
+        "wifi"
+      ],
+      "internetTransports": [
+        "cellular",
+        "wifi"
+      ]
+    }
+  ],
+  "setupMethod": "requested-wifi-and-cellular-networks",
+  "transportSetupVersion": 2,
+  "handoverObservationVersion": 1,
+  "preparation": {
+    "phase": "preparing",
+    "wifiEnabled": true,
+    "mobileDataEnabled": true,
+    "activeNetwork": true,
+    "cellularRequestRegistered": true,
+    "cellularAvailableCallbacks": 1,
+    "cellularLostCallbacks": 0,
+    "cellularUnavailableCallbacks": 0,
+    "wifiRequestRegistered": true,
+    "wifiAvailableCallbacks": 1,
+    "wifiLostCallbacks": 0,
+    "wifiUnavailableCallbacks": 0,
+    "cellularDataState": 2,
+    "simState": 5,
+    "hasDefaultDataSubscription": true,
+    "airplaneModeSetting": "0",
+    "mobileDataAlwaysOnSetting": "1",
+    "internetNetworkCount": 2,
+    "backendReachable": true,
+    "activeInternetTransports": [
+      "wifi"
+    ],
+    "internetTransports": [
+      "wifi",
+      "cellular"
+    ]
+  },
+  "offlineSendUnconfirmed": true,
+  "offlineDraftRetained": true,
+  "recoveredSendConfirmed": true,
+  "cellularRequestReleased": true,
+  "wifiRequestReleased": true,
+  "accountDraftCleared": true,
+  "replyReceived": true
+}

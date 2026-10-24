@@ -1,6 +1,7 @@
 import Foundation
 
-#if canImport(FirebaseCore) && canImport(FirebaseFunctions)
+#if canImport(FirebaseCore) && canImport(FirebaseFunctions) && canImport(FirebaseAuth)
+import FirebaseAuth
 import FirebaseFunctions
 
 extension FirebaseBackendGateway {
@@ -27,28 +28,23 @@ extension FirebaseBackendGateway {
         }
     }
 
-    func createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Bool) async throws -> String {
-        try await withCheckedThrowingContinuation { continuation in
-            var data: [String: Any] = [
-                "subjectType": subjectType,
-                "reason": reason,
-                "description": description,
-                "emergency": emergency,
-            ]
-            if let subjectId, !subjectId.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                data["subjectId"] = subjectId
-            }
-            Functions.functions().httpsCallable("createReport").call(data) { result, error in
+    func createReport(submission: SupportSubmission) async throws -> String {
+        guard submission.isValid, Auth.auth().currentUser?.uid == submission.uid else { throw SupportSubmissionError.account }
+        let id: String = try await withCheckedThrowingContinuation { continuation in
+            Functions.functions().httpsCallable("submitSupportReport").call(submission.payload) { result, error in
                 if let error {
                     continuation.resume(throwing: error)
-                } else if let payload = result?.data as? [String: Any],
-                          let reportId = payload["reportId"] as? String {
-                    continuation.resume(returning: reportId)
+                } else if let payload = result?.data {
+                    do { continuation.resume(returning: try submission.acknowledgedReport(payload)) }
+                    catch { continuation.resume(throwing: error) }
                 } else {
                     continuation.resume(throwing: ProviderConfigurationError(message: "Réponse signalement invalide."))
                 }
             }
         }
+        try Task.checkCancellation()
+        guard Auth.auth().currentUser?.uid == submission.uid else { throw SupportSubmissionError.account }
+        return id
     }
 }
 #endif

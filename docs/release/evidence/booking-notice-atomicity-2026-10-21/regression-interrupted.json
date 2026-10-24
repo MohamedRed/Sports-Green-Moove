@@ -1,0 +1,125 @@
+{
+  "scope": "interrupted-broader-local-replay-not-completion-evidence",
+  "completed": false,
+  "expectedGroupCount": 24,
+  "groups": [
+    {
+      "id": "fixtures",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle",
+      "status": "passed"
+    },
+    {
+      "id": "publication",
+      "status": "passed"
+    },
+    {
+      "id": "booking-cancellation",
+      "status": "passed"
+    },
+    {
+      "id": "last-seat-concurrency",
+      "status": "passed"
+    },
+    {
+      "id": "multi-seat-booking",
+      "status": "passed"
+    },
+    {
+      "id": "messages-notifications",
+      "status": "passed"
+    },
+    {
+      "id": "ride-audit-ledgers",
+      "status": "passed"
+    },
+    {
+      "id": "ratings",
+      "status": "passed"
+    },
+    {
+      "id": "club-request",
+      "status": "passed"
+    },
+    {
+      "id": "support-request",
+      "status": "passed"
+    },
+    {
+      "id": "ride-passenger-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-delivery-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-post-commit-response-loss",
+      "status": "passed"
+    },
+    {
+      "id": "chat-directory-safety",
+      "status": "passed"
+    },
+    {
+      "id": "reservation-decisions",
+      "status": "passed"
+    },
+    {
+      "id": "membership-review",
+      "status": "passed"
+    },
+    {
+      "id": "trip-capacity-ownership",
+      "status": "passed"
+    },
+    {
+      "id": "team-ownership",
+      "status": "passed"
+    },
+    {
+      "id": "trip-cancellation",
+      "status": "failed"
+    },
+    {
+      "id": "trip-details-ownership",
+      "status": "failed"
+    },
+    {
+      "id": "trip-change-parent-confirmation",
+      "status": "failed"
+    },
+    {
+      "id": "trip-change-application",
+      "status": "failed"
+    },
+    {
+      "id": "trip-change-supplement",
+      "status": "failed"
+    }
+  ],
+  "finalServiceReportRetained": false,
+  "diagnostic": "Two generic Firebase CLI unexpected errors; cause unproven",
+  "observedAvailableDiskMiB": 293,
+  "diskExhaustionProven": false,
+  "ownedOrphanProcessesStopped": [
+    84234,
+    84244
+  ],
+  "stopSignal": "SIGTERM",
+  "cleanupVerifiedAt": "2026-10-21T22:58:30.730Z",
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "closed": true
+  },
+  "productionWrites": false,
+  "physicalDevice": false
+}

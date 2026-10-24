@@ -1,0 +1,21 @@
+{
+  "scope": "classified-vendor-exit-not-connection-proof",
+  "code": 126,
+  "signal": null,
+  "diagnostics": {
+    "authenticationRejected": false,
+    "duplicateConnection": false,
+    "portUnavailable": false,
+    "networkFailure": false,
+    "configurationRejected": false
+  },
+  "startupOutputBytes": 196,
+  "startupOutputTruncated": false,
+  "startupOutput": "Thu Oct 22 2026 09:42:50:571 GMT+0000 (+00) -- BrowserStackLocal v8.9\n\nThu Oct 22 2026 09:42:50:601 GMT+0000 (+00) -- Skipping initialisation of configuration console because: user disabled setup\n",
+  "reviewedAt": "2026-10-22",
+  "startupOnlyApproved": true,
+  "requestLoggingEnabled": false,
+  "helperDirectoryRemoved": true,
+  "normalVerbosity": 0,
+  "rootCauseEstablished": false
+}

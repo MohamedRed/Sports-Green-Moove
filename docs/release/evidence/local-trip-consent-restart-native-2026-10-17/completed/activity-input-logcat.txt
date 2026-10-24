@@ -1,0 +1,587 @@
+10-17 22:31:24.427  7080  7109 I TestRunner: started: activityInputUsesItsOwnFocusedWindowAndRealKeyboard(be.sportgreenmoove.app.ui.InputWindowReadinessTest)
+10-17 22:31:24.437  7080  7109 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@aeef979]
+10-17 22:31:24.443  7080  7109 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-17 22:31:24.447   887  1019 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@7a04a8d
+10-17 22:31:24.448  7973  8023 I NearbyPresence: (REDACTED) the count of deprecated key alias %s is %s
+10-17 22:31:24.462   543   986 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@95173369 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 22:31:24.467  7973  8001 W NearbySharing: No supported accounts found.
+10-17 22:31:24.476  7973  8023 I NearbyPresence: (REDACTED) the count of deprecated key alias %s is %s
+10-17 22:31:24.476  7973  7996 I Multidevice: (REDACTED) [FeatureSettingsApiService] onGetService called from: %s
+10-17 22:31:24.480  7973  8031 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_CONN_ALARM type: 2 triggerAtMillis: 479999]
+10-17 22:31:24.483  7973  7973 I TetheringManager: registerTetheringEventCallback:com.google.android.gms
+10-17 22:31:24.491   543  1238 W InputManager-JNI: Input channel object 'c494c34 Splash Screen be.sportgreenmoove.app.test (client)' was disposed without first being removed with the input manager!
+10-17 22:31:24.502  7973  7973 D BluetoothAdapter: isLeEnabled(): ON
+10-17 22:31:24.527  7973  8062 I SystemMemoryMap: (REDACTED) [activityrecognition] serialization complete (extras/values=%.2f/%.2fkb)
+10-17 22:31:24.531  7973  8023 I NearbyPresence: (REDACTED) the count of deprecated key alias %s is %s
+10-17 22:31:24.534   419   419 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 22:31:24.535  7328  7328 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@387a11
+10-17 22:31:24.536   543  1242 W InputManager-JNI: Input channel object '534422c be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity (client)' was disposed without first being removed with the input manager!
+10-17 22:31:24.549  7080  7080 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@b4c34ed in: PRE_ON_CREATE
+10-17 22:31:24.549  7080  7080 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-17 22:31:24.554  7973  8032 I ActivityScheduler: nextTriggerTime: 709449, in 235300ms, detectorType: 39, FULL_TYPE alarmWindowMillis: 30000
+10-17 22:31:24.554  7973  8032 W AlarmManager: alarm window unlikely to be respected [CONTEXT service_id=231 ]
+10-17 22:31:24.554  7973  8032 W AlarmManager: java.lang.IllegalArgumentException: alarm "NetworkLocationActivityDetection" has short window length
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at dmvx.c(:com.google.android.gms@264032038@26.40.32 (260800-995630914):32)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at dmvw.c(:com.google.android.gms@264032038@26.40.32 (260800-995630914):18)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hpos.b(:com.google.android.gms@264032038@26.40.32 (260800-995630914):133)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hnmr.v(:com.google.android.gms@264032038@26.40.32 (260800-995630914):74)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hnoj.q(:com.google.android.gms@264032038@26.40.32 (260800-995630914):135)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hnoj.u(:com.google.android.gms@264032038@26.40.32 (260800-995630914):107)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hnop.L(:com.google.android.gms@264032038@26.40.32 (260800-995630914):74)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hnnz.L(:com.google.android.gms@264032038@26.40.32 (260800-995630914):5)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hnnz.o(:com.google.android.gms@264032038@26.40.32 (260800-995630914):47)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hnnz.x(:com.google.android.gms@264032038@26.40.32 (260800-995630914):2)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hnmr.A(:com.google.android.gms@264032038@26.40.32 (260800-995630914):310)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at hpny.handleMessage(:com.google.android.gms@264032038@26.40.32 (260800-995630914):238)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at android.os.Handler.dispatchMessage(Handler.java:107)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at dota.lP(:com.google.android.gms@264032038@26.40.32 (260800-995630914):1)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at dota.dispatchMessage(:com.google.android.gms@264032038@26.40.32 (260800-995630914):145)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at android.os.Looper.loopOnce(Looper.java:232)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at android.os.Looper.loop(Looper.java:317)
+10-17 22:31:24.554  7973  8032 W AlarmManager: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+10-17 22:31:24.568  7080  7080 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@b4c34ed in: CREATED
+10-17 22:31:24.572  7080  7080 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=androidx.activity.ComponentActivity@b4c34ed
+10-17 22:31:24.578  7080  7080 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@b4c34ed in: STARTED
+10-17 22:31:24.582  7080  7080 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=androidx.activity.ComponentActivity@b4c34ed
+10-17 22:31:24.589  7080  7080 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@b4c34ed in: RESUMED
+10-17 22:31:24.589  7080  7080 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=androidx.activity.ComponentActivity@b4c34ed
+10-17 22:31:24.613  7973  7973 W NearbyMediums: Failed to retrieve default NfcAdapter, NFC is unsupported.
+10-17 22:31:24.653   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:24.653   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:24.689  7973  7973 W SystemServiceRegistry: No service published for: wifiaware
+10-17 22:31:24.695  7973  7973 W SystemServiceRegistry: No service published for: wifiaware
+10-17 22:31:24.699  7973  8001 W NearbySharing: Cannot call setVisibility() on DisabledNearbySharingProviderV2
+10-17 22:31:24.714  7973  7996 D nativeloader: Load /data/app/~~ROvqtE98JN5aQoLLtwF0nA==/com.google.android.gms-es0LvjtywGu6c3c-3KLBAw==/base.apk!/lib/x86_64/libdatastore_shared_counter.so using ns clns-9 from class loader (caller=/data/app/~~eLVtYH1ItJfCdAoOEolLtg==/com.google.android.gms-D5MSndt_GB_ybFbEqd65gQ==/base.apk): ok
+10-17 22:31:24.716  7973  7973 I TetheringManager: registerTetheringEventCallback:com.google.android.gms
+10-17 22:31:24.726  1066  1066 D VRI[FallbackHome]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 22:31:24.728  7973  8023 I NearbyPresence: (REDACTED) %s: Start BleAdvertiseBluetoothProvider.
+10-17 22:31:24.743  7973  8001 I NearbySharing: Not qualified for default opt-in. Multiple accounts are found.
+10-17 22:31:24.745  7973  7973 I TetheringManager: registerTetheringEventCallback caller:com.google.android.gms
+10-17 22:31:24.746   543   811 D ConnectivityService: NetReassign [no changes] [c 0] [a 0] [i 14]
+10-17 22:31:24.751   543  1610 D ConnectivityService: requestNetwork for uid/pid:10144/7973 activeRequest: null callbackRequest: 373 [NetworkRequest [ REQUEST id=374, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+10-17 22:31:24.754   543   811 D ConnectivityService: NetReassign [374 : null → 100] [c 1] [a 0] [i 0]
+10-17 22:31:24.805  7973  8026 I NearbyMediums: WifiNetwork defaultNetworkCallback onAvailable netId:100
+10-17 22:31:24.807   543   804 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=374, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+10-17 22:31:24.807   543   804 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=374, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+10-17 22:31:24.807   543   804 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=374, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+10-17 22:31:24.807   543   804 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=374, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+10-17 22:31:24.808  1066  1066 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 22:31:24.815   543   811 D ConnectivityService: NetReassign [no changes] [c 0] [a 1] [i 0]
+10-17 22:31:24.817   543   811 D ConnectivityService: NetReassign [no changes] [c 0] [a 1] [i 1]
+10-17 22:31:24.826  7973  7973 I NearbyConnections: GestureExchangeRegistrar is not enabled.
+10-17 22:31:24.827   543   562 W ziparchive: Unable to open '/data/app/~~mvhFOUit45hhAZn3KRHNUw==/be.sportgreenmoove.app-X1cR4iGY5KymIxoQR0gc7g==/base.dm': No such file or directory
+10-17 22:31:24.830  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.nearby.presence.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiServiceNoInstantApps }
+10-17 22:31:24.831  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.nearby.presence.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiServiceNoInstantApps }
+10-17 22:31:24.838  7973  8025 I NearbyMediums: Wifi changed new SSID: "AndroidWifi"
+10-17 22:31:24.840  7973  8025 I NearbyMediums: WifiLanConnectivityInfo is changed, should notify.
+10-17 22:31:24.841  7973  8025 I NearbyMediums: [WifiNetworkV2] networkCallback doAvailable netId:100 wifiStatusChangedCallbacks.size:0 freq:2437
+10-17 22:31:24.842   543   811 D ConnectivityService: NetReassign [no changes] [c 0] [a 0] [i 0]
+10-17 22:31:24.844  7973  8001 I NearbySharing: Broadcasting NearbySharing state change.
+10-17 22:31:24.849   543   562 I ActivityTaskManager: Displayed be.sportgreenmoove.app/androidx.activity.ComponentActivity for user 0: +357ms
+10-17 22:31:24.853  7973  8001 I NearbySharing: Broadcasting transfer status: false
+10-17 22:31:24.856  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.pseudonymous.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+10-17 22:31:24.856  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.pseudonymous.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+10-17 22:31:24.858  7973  8023 I NearbyPresence: (REDACTED) %s verified [!=] new request %s does not equal to the old request %s
+10-17 22:31:24.858  7973  8023 I NearbyPresence: (REDACTED) %s verified [!=] new request %s does not equal to the old request %s
+10-17 22:31:24.858  7973  8023 I NearbyPresence: (REDACTED) %s verified [!=] new request %s does not equal to the old request %s
+10-17 22:31:24.884  7973  8023 I NearbyPresence: MdnsServerProviderController is not enabled or requested [CONTEXT service_id=317 ]
+10-17 22:31:24.884  7973  8023 I NearbyPresence: (REDACTED) BleAdvertiseProviderController: request.isRequested() %s
+10-17 22:31:24.884  7973  8023 I NearbyPresence: (REDACTED) %s: Overriding the broadcastV1 request to : %s
+10-17 22:31:24.897  7973  8001 I NearbySharing: Screen is unlocked
+10-17 22:31:24.897  7973  8001 I NearbySharing: Location is enabled
+10-17 22:31:24.897  7973  8001 I NearbySharing: Uwb feature is off.
+10-17 22:31:24.897  7973  8001 I NearbySharing: Stopping scanning because Bluetooth is disabled.
+10-17 22:31:24.897  7973  8001 I NearbySharing: Stopping Fast Init advertisement because Bluetooth is off.
+10-17 22:31:24.897  7973  8001 I NearbySharing: Stopping advertising because Bluetooth is disabled.
+10-17 22:31:24.898  7973  7973 I ctxmgr  : (REDACTED) %s
+10-17 22:31:24.899  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.time.trustedtime.singleuserapi.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentSingleUserInternalApiService }
+10-17 22:31:24.899  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.time.trustedtime.singleuserapi.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentSingleUserInternalApiService }
+10-17 22:31:24.905  7973  8025 I NearbyMediums: Wifi changed new SSID: "AndroidWifi"
+10-17 22:31:24.905  7973  8025 I NearbyMediums: WifiLanConnectivityInfo is not changed, skip notify.
+10-17 22:31:24.905  7973  8025 I NearbyMediums: WifiNetwork setTelephonyIsDataConnected:true
+10-17 22:31:24.938  7973  8023 I NearbyPresence: (REDACTED) %s: Enabling engine.
+10-17 22:31:24.942   543   574 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 22:31:24.942   543   574 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 22:31:24.943   887  1032 D EGL_emulation: app_time_stats: avg=175.83ms min=9.37ms max=492.22ms count=6
+10-17 22:31:24.958   887  1019 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@af8a8aa
+10-17 22:31:24.959   543   985 W InputManager-JNI: Input channel object '81f9659 Splash Screen be.sportgreenmoove.app (client)' was disposed without first being removed with the input manager!
+10-17 22:31:24.970  7973  8024 I Multidevice: (REDACTED) [dyhc] accountsFlow.collect : it = %s
+10-17 22:31:24.997  7973  8019 I NearbySharing: Network state changed: NetworkState(isRestricted=false, isOnline=true, isCongested=false, isMetered=false, isWifiConnected=true)
+10-17 22:31:24.998  7973  8001 I NearbySharing: Fast Initiation Scanning has stopped
+10-17 22:31:24.999  7973  8001 I NearbySharing: Stopping FastInitiation scanning because Bluetooth is disabled.
+10-17 22:31:24.999  7973  8001 I NearbySharing: Dismissing HUN as there's no device nearby.
+10-17 22:31:25.017   543   662 I ImeTracker: be.sportgreenmoove.app:1203de39: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 22:31:25.023   543   662 I ImeTracker: be.sportgreenmoove.app:1203de39: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-17 22:31:25.033   543   804 E WifiChipAidlImpl: getUsableChannels failed with service-specific exception: android.os.ServiceSpecificException:  (code 4)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: (REDACTED) Querying wifi usable channels failed with exception
+10-17 22:31:25.038  7973  8037 I NearbyMediums: java.lang.UnsupportedOperationException
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3254)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.os.Parcel.createException(Parcel.java:3226)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.os.Parcel.readException(Parcel.java:3209)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.os.Parcel.readException(Parcel.java:3151)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.net.wifi.IWifiManager$Stub$Proxy.getUsableChannels(IWifiManager.java:6378)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.net.wifi.WifiManager.getUsableChannels(WifiManager.java:11215)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at eewo.x(:com.google.android.gms@264032038@26.40.32 (260800-995630914):21)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at eewo.t(:com.google.android.gms@264032038@26.40.32 (260800-995630914):22)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at eewo.o(:com.google.android.gms@264032038@26.40.32 (260800-995630914):24)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at efqb.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):9)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at brst.d(:com.google.android.gms@264032038@26.40.32 (260800-995630914):40)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at brst.c(:com.google.android.gms@264032038@26.40.32 (260800-995630914):5)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at brst.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):33)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at bryx.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):8)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at java.lang.Thread.run(Thread.java:1012)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: Caused by: android.os.RemoteException: Remote stack trace:
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at com.android.server.wifi.WifiServiceImpl.getUsableChannels(WifiServiceImpl.java:7580)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.net.wifi.IWifiManager$Stub.onTransact(IWifiManager.java:3180)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.os.Binder.execTransactInternal(Binder.java:1505)
+10-17 22:31:25.038  7973  8037 I NearbyMediums: 	at android.os.Binder.execTransact(Binder.java:1444)
+10-17 22:31:25.038  7973  8037 I NearbyMediums:
+10-17 22:31:25.038  7973  8037 I NearbyMediums: [DeviceCapabilities] Skip refreshing cached wifi channels because it is not supported (refreshCacheWifiChannelsRightAfterNetworkCallbackInvoked:true isWifiGetUsableChannelsSupported:false)
+10-17 22:31:25.039  7973  8023 I NearbyPresence: (REDACTED) %s: Charging state changed: %b
+10-17 22:31:25.040  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 22:31:25.043  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 22:31:25.043  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-17 22:31:25.049  7973  8029 D TrafficStats: tagSocket(172) with statsTag=0x407, statsUid=-1
+10-17 22:31:25.050  7973  8019 I Multidevice: (REDACTED) [dyju] Device Name Updated to: %s
+10-17 22:31:25.051  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 22:31:25.051  5543  5543 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: und-Latn-x-password, password
+10-17 22:31:25.054  7973  8023 I NearbyPresence: (REDACTED) %s verified [!=] new request %s does not equal to the old request %s
+10-17 22:31:25.065   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:25.066  7973  8001 I NearbySharing: Bluetooth is enabled
+10-17 22:31:25.066  7973  8001 I NearbySharing: Uwb feature is off.
+10-17 22:31:25.077  7973  8001 I NearbySharing: Stopping scanning because Nearby Sharing is disabled.
+10-17 22:31:25.089  7973  8001 I NearbySharing: Stopping Fast Init advertisement because we're not scanning in the foreground.
+10-17 22:31:25.096  7973  8001 I NearbySharing: Stopping advertising because Nearby Sharing is disabled.
+10-17 22:31:25.111  7973  8001 I NearbySharing: Stopping FastInitiation scanning because visibility is hidden.
+10-17 22:31:25.139   543  1238 D WifiNl80211Manager: Scan result ready event
+10-17 22:31:25.139   543  1238 D WifiNative: Scan result ready event
+10-17 22:31:25.146  7973  8001 I NearbySharing: Fast Initiation Scanning has stopped
+10-17 22:31:25.147  7973  8001 I NearbySharing: Dismissing HUN as there's no device nearby.
+10-17 22:31:25.152  7973  8029 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 1074747]
+10-17 22:31:25.157  7973  8001 I NearbySharing: onBindSlice failed since shareTargets is empty
+10-17 22:31:25.161  7973  8001 I NearbySharing: Granted slice and uri permissions to android
+10-17 22:31:25.161  7973  8001 I NearbySharing: Granted slice and uri permissions to com.google.android.apps.nbu.files
+10-17 22:31:25.163  7973  8001 I NearbySharing: com.google.android.gms.nearby.sharing.receive.SamsungQrCodeActivity enable=false
+10-17 22:31:25.169  7973  7973 I GmsCoreXrpcWrapper: (REDACTED) Returning a channel provider with trafficStatsTag=%d trafficStatsUid=%d
+10-17 22:31:25.169  7973  8023 W NearbyPresence: TidepoolIdentityProvider: Main Tidepool status toggle not enabled! Returned empty broadcast credentials. [CONTEXT service_id=317 ]
+10-17 22:31:25.169  7973  8023 W NearbyPresence: TidepoolIdentityProvider: Main Tidepool status toggle not enabled! Returned empty shared credentials. [CONTEXT service_id=317 ]
+10-17 22:31:25.169  7973  8023 I NearbyPresence: (REDACTED) %s: register with identity provider name %s broadcast size %s discover size %s
+10-17 22:31:25.172  7973  7996 I GmsCoreXrpcWrapper: (REDACTED) Returning a channel provider with trafficStatsTag=%d trafficStatsUid=%d
+10-17 22:31:25.175   543   804 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+10-17 22:31:25.178   543   574 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 22:31:25.181  7973  8001 E Nearby  : [CONTEXT service_id=49 ]
+10-17 22:31:25.181  7973  8001 E Nearby  : java.lang.IllegalArgumentException: Component class com.google.android.gms.nearby.sharing.MigrationCompleteIntentOperation does not exist in com.google.android.gms
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at android.os.Parcel.createExceptionOrNull(Parcel.java:3246)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at android.os.Parcel.createException(Parcel.java:3226)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at android.os.Parcel.readException(Parcel.java:3209)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at android.os.Parcel.readException(Parcel.java:3151)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at android.content.pm.IPackageManager$Stub$Proxy.setComponentEnabledSetting(IPackageManager.java:6325)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at android.app.ApplicationPackageManager.setComponentEnabledSetting(ApplicationPackageManager.java:3172)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at brtu.s(:com.google.android.gms@264032038@26.40.32 (260800-995630914):52)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at brtu.t(:com.google.android.gms@264032038@26.40.32 (260800-995630914):10)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at dzmm.a(:com.google.android.gms@264032038@26.40.32 (260800-995630914):20)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at ehjw.b(:com.google.android.gms@264032038@26.40.32 (260800-995630914):935)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at ehpf.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):3)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at brst.d(:com.google.android.gms@264032038@26.40.32 (260800-995630914):40)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at brst.c(:com.google.android.gms@264032038@26.40.32 (260800-995630914):27)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at brst.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):33)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at bryx.run(:com.google.android.gms@264032038@26.40.32 (260800-995630914):8)
+10-17 22:31:25.181  7973  8001 E Nearby  : 	at java.lang.Thread.run(Thread.java:1012)
+10-17 22:31:25.194  7973  8001 I NearbySharing: Uwb feature is off.
+10-17 22:31:25.195  7973  8001 I NearbySharing: Uwb feature is off.
+10-17 22:31:25.209  7973  8001 I NearbySharing: Stopping scanning because Nearby Sharing is disabled.
+10-17 22:31:25.249  7973  8001 I NearbySharing: Stopping Fast Init advertisement because we're not scanning in the foreground.
+10-17 22:31:25.249  7973  8001 I NearbySharing: Stopping advertising because Nearby Sharing is disabled.
+10-17 22:31:25.250  7973  8001 I NearbySharing: Stopping FastInitiation scanning because visibility is hidden.
+10-17 22:31:25.256  6405  6405 W JobService: onNetworkChanged() not implemented in androidx.work.impl.background.systemjob.SystemJobService. Must override in a subclass.
+10-17 22:31:25.262  7973  7996 I Multidevice: [FeatureSettingsApiService] Created API Stub. [CONTEXT service_id=348 ]
+10-17 22:31:25.264  7973  8024 I Multidevice: [dymr] presenceClient.sync( [CONTEXT service_id=348 ]
+10-17 22:31:25.264  7973  8024 I Multidevice: (REDACTED) [dymr]     multideviceEnabled: %s
+10-17 22:31:25.264  7973  8024 I Multidevice: (REDACTED) [dymr]     deviceName: %s
+10-17 22:31:25.264  7973  8024 I Multidevice: (REDACTED) [dymr]     accountListForSync: %s
+10-17 22:31:25.264  7973  8024 I Multidevice: [dymr] ) [CONTEXT service_id=348 ]
+10-17 22:31:25.264  7973  8023 I NearbyPresence: NetworkMonitorImpl started. [CONTEXT service_id=317 ]
+10-17 22:31:25.267  7973  8023 I NearbyPresence: (REDACTED) Scheduled Presence server sync periodic task with period %s seconds.
+10-17 22:31:25.267  7973  8023 I NearbyPresence: (REDACTED) %s verified [==] new request %s equals to the old request
+10-17 22:31:25.268  7973  8030 I FrewleTileCacheManagerV: (REDACTED) Fetched %d AP models from cache
+10-17 22:31:25.268  7973  8001 I NearbySharing: Fast Initiation Scanning has stopped
+10-17 22:31:25.271  7973  8001 I NearbySharing: Dismissing HUN as there's no device nearby.
+10-17 22:31:25.290  7080  7080 I SgmInputReadiness: phase=before-window-focus attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=false interactive=true keyguardLocked=false deviceLocked=false rootShown=true windowVisibility=0 displayState=2 servedView=null acceptingText=null keyboardVisible=false
+10-17 22:31:25.290   543   811 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 22:31:25.291  7973  7996 I Multidevice: (REDACTED) [FeatureSettingsApiService] registerXdFeatureStatusListener(featureKeys: %s, enableImmediateCallback: %s)
+10-17 22:31:25.292   543   811 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 22:31:25.293  7973  8044 I Multidevice: (REDACTED) [dymr] settingsState.collect(): %s
+10-17 22:31:25.294  7080  7080 I SgmInputReadiness: phase=window-focused attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=false interactive=true keyguardLocked=false deviceLocked=false rootShown=true windowVisibility=0 displayState=2 servedView=null acceptingText=null keyboardVisible=false
+10-17 22:31:25.300  3750  3794 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=60 ]
+10-17 22:31:25.300  7973  8020 I Multidevice: (REDACTED) [dymr] settingsState.collect(): %s
+10-17 22:31:25.301  3750  3856 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[df5a9c0f-3684]>Handler" thread_id=66 ]
+10-17 22:31:25.301  7973  8001 I NearbySharing: Broadcasting NearbySharing state change.
+10-17 22:31:25.301  7973  8001 I NearbySharing: Broadcasting NearbySharing state change.
+10-17 22:31:25.303  3750  3856 I BugleRcsEngine: RCS Configuration storage in Bugle is disabled by p/h flag, using ProvisioningEngineStateCacheUtil.getProvisioningConfigurationForGivenSimIfExist() [CONTEXT log_prefix="ProvisioningEngineDataRetriever" thread_id=66 ]
+10-17 22:31:25.306  7080  7086 I tgreenmoove.app: Background concurrent mark compact GC freed 7582KB AllocSpace bytes, 10(520KB) LOS objects, 49% free, 9177KB/17MB, paused 224us,10.611ms total 265.235ms
+10-17 22:31:25.309  1066  1066 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 22:31:25.309   543   811 D ConnectivityService: NetReassign [no changes] [c 0] [a 1] [i 1]
+10-17 22:31:25.310  7973  8026 I NearbyPresence: (REDACTED) NetworkMonitorImpl onAvailable %s
+10-17 22:31:25.310  7973  8026 I NearbyPresence: (REDACTED) NetworkMonitorImpl onLinkPropertiesChanged %s
+10-17 22:31:25.312  7973  8001 I NearbyPresence: (REDACTED) %s verified [==] new request %s equals to the old request
+10-17 22:31:25.314   543   811 D ConnectivityService: NetReassign [no changes] [c 0] [a 2] [i 0]
+10-17 22:31:25.316  7080  7080 D InsetsController: show(ime(), fromIme=false)
+10-17 22:31:25.317  7080  7080 I ImeTracker: be.sportgreenmoove.app:6eedd38b: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT_BY_INSETS_API fromUser false
+10-17 22:31:25.318  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 22:31:25.319  7973  7996 I NearbySharing: A new client has bound to the NearbySharingService ClientBridge for calling package com.google.android.gms and PID 7973
+10-17 22:31:25.319  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 0, locked = false
+10-17 22:31:25.320  7080  7080 D InputMethodManager: showSoftInput() view=androidx.compose.ui.platform.AndroidComposeView{8d2a859 VFED..... .F....ID 0,0-735,150 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT_BY_INSETS_API
+10-17 22:31:25.323  7080  7080 I AssistStructure: Flattened final assist data: 528 bytes, containing 1 windows, 3 views
+10-17 22:31:25.327  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=404], hintText=null, hintLocales=[]}}, false)
+10-17 22:31:25.334  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 22:31:25.334  5543  5543 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: en-US, ime_english_united_states
+10-17 22:31:25.339  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1986 onStartInput(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[mParcelledData.dataSize=404], hintText=null, hintLocales=[]}}, true)
+10-17 22:31:25.340  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 22:31:25.340  5543  5543 W SessionManager: SessionManager.beginSession():53 Try to begin an already begun session [INPUT_SESSION], end it first
+10-17 22:31:25.340  5543  5543 I AndroidIME: InputBundleManager.loadActiveInputBundleId():450 loadActiveInputBundleId: en-US, ime_english_united_states
+10-17 22:31:25.348  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.onStartInputView():2098 onStartInputView(EditorInfo{EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[{android.support.text.emoji.emojiCompat_metadataVersion=9, androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true, android.support.text.emoji.emojiCompat_replaceAll=false}], hintText=null, hintLocales=[]}}, false)
+10-17 22:31:25.351  7973  7996 I NearbySharing: A new client has bound to the NearbySharingService ClientBridge for calling package com.google.android.gms and PID 7973
+10-17 22:31:25.352  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2248 repeatCheckTimes = 1, locked = false
+10-17 22:31:25.353  5543  5543 I StylusEducationPopupDialog: StylusEducationPopupDialog.onStartInputView():59 Schedule to show first time education
+10-17 22:31:25.361  7973  8037 I NearbyMediums: Wifi changed new SSID: "AndroidWifi"
+10-17 22:31:25.361  7973  8037 I NearbyMediums: WifiLanConnectivityInfo is not changed, skip notify.
+10-17 22:31:25.361  7973  8006 I NullBinder: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl, calling uid: 1000, calling pid: 0
+10-17 22:31:25.361  7973  8006 W gle.android.gms: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+10-17 22:31:25.367  7080  7080 I ImeTracker: be.sportgreenmoove.app:c5f8cb32: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false
+10-17 22:31:25.367   543   574 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 22:31:25.368  7080  7080 D InputMethodManager: showSoftInput() view=androidx.compose.ui.platform.AndroidComposeView{8d2a859 VFED..... .F....ID 0,0-735,150 aid=1073741824} flags=0 reason=SHOW_SOFT_INPUT
+10-17 22:31:25.389  7973  7973 W Glide   : Failed to find GeneratedAppGlideModule. You should include an annotationProcessor compile dependency on com.github.bumptech.glide:compiler in your application and a @GlideModule annotated AppGlideModule implementation or LibraryGlideModules will be silently ignored
+10-17 22:31:25.393  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.getOemKeyboardHeightRatio():206 systemKeyboardHeightRatio:1.000000.
+10-17 22:31:25.395   543  1242 D ConnectivityService: requestNetwork for uid/pid:10144/7973 activeRequest: null callbackRequest: 380 [NetworkRequest [ REQUEST id=381, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+10-17 22:31:25.399   543   811 D ConnectivityService: NetReassign [381 : null → 100] [c 0] [a 0] [i 1]
+10-17 22:31:25.399  5543  5543 I AndroidIME: AbstractIme.onActivate():89 LatinIme.onActivate() : EditorInfo = EditorInfo{packageName=be.sportgreenmoove.app, inputType=28001, inputTypeString=Normal, enableLearning=true, autoCorrection=true, autoComplete=true, imeOptions=42000000, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=0, initialSelEnd=0, initialCapsMode=0, label=null, fieldId=-1, fieldName=null, extras=Bundle[{android.support.text.emoji.emojiCompat_metadataVersion=9, androidx.core.view.inputmethod.EditorInfoCompat.STYLUS_HANDWRITING_ENABLED=true, android.support.text.emoji.emojiCompat_replaceAll=false}], hintText=null, hintLocales=[]}, IncognitoMode = false, DeviceLocked = false
+10-17 22:31:25.399  5543  5543 I Delight5Facilitator: Delight5Facilitator.initializeForIme():747 initializeForIme() : Locale = [en_US], layout = qwerty
+10-17 22:31:25.400  5543  5543 I VoiceInputHandler: VoiceInputHandler.onActivateIme():99 registering TalkbackStateListener
+10-17 22:31:25.400  5543  5543 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.cancelShutdown():102 cancelShutdown()
+10-17 22:31:25.400  5543  5543 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.syncLanguagePacks():114 syncLanguagePacks()
+10-17 22:31:25.400  5543  5543 I LatinIme: LatinIme.updateEnableInlineSuggestionsOnDecoderSideFlags():1174 inline flag updated to:false
+10-17 22:31:25.401  5543  5543 I InputBundle: InputBundle.consumeEvent():884 Skip consuming an event as keyboard status is 0
+10-17 22:31:25.402  5543  5543 I KeyboardWrapper: KeyboardWrapper.activateKeyboard():575 activateKeyboard(): type=prime, status=0, imeDef=ktt{stringId=ime_english_united_states, language=en-US, languageTag=en-US, processedConditions={enable_number_row=false, device=phone}, className=com.google.android.apps.inputmethod.libs.latin5.LatinIme, label=0, keyEventInterpreter=null, inlineComposing=true, autoCapital=true, announceAutoSelectedCandidate=true, statusIcon=0, primeKeyboardType=SOFT, indicatorIcon=0, indicatorLabel=US, displayAppCompletions=true, extraValues=ktl{}, processors=kvl@2819efd, unacceptableMetaKeys=4098, languageSpecificSettings=0, asciiCapable=true, alwaysShowSuggestions=false, useAsciiPasswordKeyboard=false, secondaryIme=null, keyboardGroupDef=kut@a23ab08, phenotypeFlagId=0, localizationLanguageTag=null, supportsInlineSuggestion=true, supportsAccessPoints=true}
+10-17 22:31:25.402  5543  5543 I KeyboardManager: KeyboardManager.requestKeyboard():234 Creating keyboard prime, imeId=ime_english_united_states, cacheKey=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign
+10-17 22:31:25.402  5543  5543 I KeyboardWrapper: KeyboardWrapper.onKeyboardReady():239 onKeyboardReady(): type=prime(prime), kb=com.google.android.apps.inputmethod.latin.keyboard.LatinPrimeKeyboard@c700cc6
+10-17 22:31:25.402  5543  5543 I KeyboardWrapper: KeyboardWrapper.doActivateKeyboard():606 doActivateKeyboard(): prime
+10-17 22:31:25.403  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.403  5543  5543 W Keyboard: Keyboard.getKeyboardViewHelper():574 null helper is returned: keyboardDef=kuo{processedConditions={enable_more_candidates_view_for_multilingual=false, enable_secondary_symbols=false, variant=qwerty, language=en-US, device=phone, expressions=normal, keyboard_mode=normal, show_secondary_digits=true, enable_preemptive_decode=true, rtl_layout=false}, globalConditions={global_theme_key=theme_border_stylesheet_noshadow_gsans_pillkey_silkpopup_hover_light_phone_bottom4dp_navredesign, global_locale=en_US, global_density_dpi=420, global_orientation=1}, className=.latin.keyboard.LatinPrimeKeyboard, resourceIds=[#0x7f170663, #0x7f1708e0], initialStates=0, keyboardViewDefs=[kvb{direction=null, id=#0x7f0b014d, isScalable=true, layoutId=#0x7f0e039d, type=BODY, touchable=true, defaultShow=true}, kvb{direction=null, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e01aa, type=FLOATING_CANDIDATES, touchable=false, defaultShow=false}, kvb{direction=LOCALE, id=#0x7f0b014d, isScalable=false, layoutId=#0x7f0e0591, type=HEADER, touchable=true, defaultShow=true}], persistentStates=0, persistentStatesPrefKey=null, popupBubbleLayoutId=#0x7f0e068d, recentKeyLayoutId=0, recentKeyPopupLayoutId=0, recentKeyType=null, rememberRecentKey=NONE, sessionStates=17592186044419}, type=WIDGET, helpersCreated=[kib@407dc32, kib@d1c2d83, kib@12f7b00, null], context.getResources().getConfiguration(): {1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h914dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} as.3 s.48 fontWeightAdjustment=0}
+10-17 22:31:25.403  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.404  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.startInputIfInputViewStarted():3728 startInputIfInputViewStarted(): default prime
+10-17 22:31:25.404  5543  5543 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():625 setInputView() : supportsOneHandedMode=true supportsSplitMode=true
+10-17 22:31:25.404  5543  5543 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 22:31:25.404  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.404  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.404  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.404  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.404  5543  5543 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 22:31:25.404  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.404  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.404  5543  5543 I KeyboardModeManager: KeyboardModeManager.setInputViewKeyboardViewHolderProvider():613 setInputView() : supportsOneHandedMode=true, supportSplitMode=true
+10-17 22:31:25.405  5543  5543 I CrowdsourceExtension: CrowdsourceExtension.checkIfDefaultBrowserIsAllowed():110 Failed to get default browser. The default browser may be deactived.
+10-17 22:31:25.407  5543  7576 I SpeechFactory: SpeechRecognitionFactory.maybeScheduleAutoPackDownloadForFallback():200 maybeScheduleAutoPackDownloadForFallback()
+10-17 22:31:25.407  5543  7576 I FallbackOnDeviceRecognitionProvider: FallbackOnDeviceRecognitionProvider.maybeScheduleAutoPackDownload():197 maybeScheduleAutoPackDownload() for language tag en-US
+10-17 22:31:25.409  5543  5543 I AccessoryInputModeManager: AccessoryInputModeManager.onModeStarted():308 Accessory input mode started: null
+10-17 22:31:25.409  5543  5543 W SupplementaryKeyboardsWrapper: SupplementaryKeyboardsWrapper.deactivateKeyboard():159 keyboard accessory_candidates_consumer is not activated before!
+10-17 22:31:25.410  5543  5543 I VoiceImeExtension: VoiceImeExtension.shouldStartVoiceInputAutomaticallyInCurrentInputBox():415 No private IME option set to start voice input.
+10-17 22:31:25.410   543   804 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=381, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+10-17 22:31:25.410   543   804 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=381, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+10-17 22:31:25.410   543   804 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=381, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+10-17 22:31:25.410   543   804 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=381, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10144 RequestorUid: 10144 RequestorPkg: com.google.android.gms UnderlyingNetworks: Null] ]
+10-17 22:31:25.413  7973  7973 I AutofillModule: PersonalContext flight data fill is disabled [CONTEXT service_id=177 ]
+10-17 22:31:25.413  7973  7973 I AutofillModule: PersonalContext loyalty card data fill is disabled [CONTEXT service_id=177 ]
+10-17 22:31:25.413  7973  7973 I AutofillModule: PersonalContext vehicle info data fill is disabled [CONTEXT service_id=177 ]
+10-17 22:31:25.413  7973  7973 I AutofillModule: PersonalContext passport data fill is disabled [CONTEXT service_id=177 ]
+10-17 22:31:25.413  7973  7973 I AutofillModule: PersonalContext driver license data fill is disabled [CONTEXT service_id=177 ]
+10-17 22:31:25.417  7973  8003 I GmsCoreXrpcWrapper: (REDACTED) Returning a channel provider with trafficStatsTag=%d trafficStatsUid=%d
+10-17 22:31:25.417  7973  8003 I GmsCoreVoilaTileGrpc: (REDACTED) xrpc compression enabled: %s
+10-17 22:31:25.418  7973  7973 I GmsCoreXrpcWrapper: (REDACTED) Creating an unauthenticated channel provider with trafficStatsTag=%d trafficStatsUid=%d
+10-17 22:31:25.419  7973  7996 I NearbyConnections: Client 210796168 requested setting downloads directory to null.
+10-17 22:31:25.423  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.424  5543  5543 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 22:31:25.424  5543  5543 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 22:31:25.427  7973  7996 I NearbyConnections: Client 210796168 with package name 0p:com.google.android.gms.magictether.nearby and sdk version 264032000 has connected, downloads dir is set to null.
+10-17 22:31:25.434  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.auth.proximity.devicesyncservice.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentBoundBrokerService }
+10-17 22:31:25.434  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.auth.proximity.devicesyncservice.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentBoundBrokerService }
+10-17 22:31:25.438  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.auth.aang.events.services.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+10-17 22:31:25.438  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.auth.aang.events.services.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+10-17 22:31:25.444  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.nearby.uwb.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiServiceNoInstantApps }
+10-17 22:31:25.445  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.nearby.uwb.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiServiceNoInstantApps }
+10-17 22:31:25.458  7973  7973 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.phenotype.service.START pkg=com.google.android.gms }
+10-17 22:31:25.458  7973  8001 I NearbyUWB: (REDACTED) Screen unlocked: %s
+10-17 22:31:25.460  7973  7996 I NearbySharing: A new client has bound to the NearbySharingService ClientBridge for calling package com.google.android.gms and PID 7973
+10-17 22:31:25.463  7973  7996 I NearbySharing: Package com.google.android.gms has requested to register a state observer
+10-17 22:31:25.464  7973  7996 I NearbySharing: Package com.google.android.gms has requested to register a send surface of type BACKGROUND
+10-17 22:31:25.464  7973  7996 I NearbySharing: Package com.google.android.gms has requested to register a receive surface of type BACKGROUND
+10-17 22:31:25.484  5543  5543 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=HEADER keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{9e1a88b V.E...... ........ 0,0-1080,116 aid=12}
+10-17 22:31:25.485  5543  5543 I GoogleInputMethodService: GoogleInputMethodService$1.onKeyboardViewShown():494 onKeyboardViewShown: keyboardType=prime, keyboardViewType=BODY keyboardView=com.google.android.libraries.inputmethod.widgets.SoftKeyboardView{7a14179 V.E...... ........ 0,0-1080,641 aid=40}
+10-17 22:31:25.485  5543  5543 I NewLanguagePromptExtension: NewLanguagePromptExtension$1.onKeyboardViewShown():104 Not show new language banner: no change in enabled input method entries
+10-17 22:31:25.485  5543  5543 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 22:31:25.485  5543  5543 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 22:31:25.485  5543  5543 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 22:31:25.489  7973  8001 I NearbySharing: Not allowed to auto turn on device settings.
+10-17 22:31:25.489  7973  8001 I NearbySharing: A SendSurface(BACKGROUND)[id=7495] has been registered
+10-17 22:31:25.489  7973  8001 I NearbySharing: Uwb feature is off.
+10-17 22:31:25.489  7973  8001 I NearbySharing: Stopping scanning because Nearby Sharing is disabled.
+10-17 22:31:25.490  7973  8001 I NearbySharing: Stopping Fast Init advertisement because we're not scanning in the foreground.
+10-17 22:31:25.490  7973  8001 I NearbySharing: Stopping advertising because Nearby Sharing is disabled.
+10-17 22:31:25.490  7973  8001 I NearbySharing: Stopping FastInitiation scanning because visibility is hidden.
+10-17 22:31:25.491  7973  8001 I NearbySharing: Fast Initiation Scanning has stopped
+10-17 22:31:25.491  7973  8001 I NearbySharing: Dismissing HUN as there's no device nearby.
+10-17 22:31:25.491  7973  8001 I NearbySharing: Broadcasting NearbySharing state change.
+10-17 22:31:25.491  7973  8001 I NearbySharing: Not allowed to auto turn on device settings.
+10-17 22:31:25.491  7973  8001 I NearbySharing: A ReceiveSurface(BACKGROUND)[id=30496] has been registered
+10-17 22:31:25.498  5543  5543 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 22:31:25.498  5543  5543 I NormalModeController: NormalModeController.getKeyboardBodyViewHolderPaddingBottom():104 currentPrimeKeyboardType:SOFT systemPaddingBottom:-1
+10-17 22:31:25.498  5543  5604 I Delight5Decoder: Delight5DecoderWrapper.setKeyboardLayout():511 setKeyboardLayout()
+10-17 22:31:25.502  7973  8077 I Dtdi    : (REDACTED) [AdvertisingSettings] handleMultideviceSyncStateChange: multideviceSyncEnabled=%s, networkAvailable=%s, isAllowedFormFactorToAdvertiseForMultidevice=%s
+10-17 22:31:25.507  7080  7080 D InsetsController: show(ime(), fromIme=true)
+10-17 22:31:25.514   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:25.518  7080  7080 D InsetsController: show(ime(), fromIme=true)
+10-17 22:31:25.518  7080  7080 I ImeTracker: be.sportgreenmoove.app:c5f8cb32: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+10-17 22:31:25.526  7973  8001 I NearbySharing: Stopping advertising because Nearby Sharing is disabled.
+10-17 22:31:25.527  7973  8001 I NearbySharing: Stopping FastInitiation scanning because visibility is hidden.
+10-17 22:31:25.527  7973  8001 I NearbySharing: Fast Initiation Scanning has stopped
+10-17 22:31:25.527  7973  8001 I NearbySharing: Dismissing HUN as there's no device nearby.
+10-17 22:31:25.528  7973  8001 I NearbySharing: Broadcasting NearbySharing state change.
+10-17 22:31:25.534  7973  7973 I NearbySharing: SharingTileService created.
+10-17 22:31:25.547  7080  7080 I ImeTracker: be.sportgreenmoove.app:6eedd38b: onShown
+10-17 22:31:25.548  7973  7973 I NearbySharing: ReceiveSurfaceService started
+10-17 22:31:25.548  7973  7973 I NearbySharing: SendSurfaceService started
+10-17 22:31:25.548  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.dtdi.identity.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+10-17 22:31:25.548  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.dtdi.identity.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+10-17 22:31:25.550  7973  8095 I CallMetricsModuleInit: (REDACTED) CallMetricsModuleInitIntentOperation.onHandleIntentSanitized entered for %s
+10-17 22:31:25.551  7973  8095 I CallMetricsModuleInit: CallCenter flag disabled, cancelling task
+10-17 22:31:25.555  7080  7080 I SgmInputReadiness: phase=activity-keyboard-visible attached=true windowTokenPresent=true resumed=true windowFocused=true viewFocused=true interactive=true keyguardLocked=false deviceLocked=false rootShown=true windowVisibility=0 displayState=2 servedView=true acceptingText=true keyboardVisible=true
+10-17 22:31:25.561  7973  8094 W System  : ClassLoader referenced unknown path:
+10-17 22:31:25.562  7973  8094 D nativeloader: Configuring clns-10 for other apk . target_sdk_version=37, uses_libraries=, library_path=/data/app/~~ROvqtE98JN5aQoLLtwF0nA==/com.google.android.gms-es0LvjtywGu6c3c-3KLBAw==/lib/x86_64:/data/app/~~ROvqtE98JN5aQoLLtwF0nA==/com.google.android.gms-es0LvjtywGu6c3c-3KLBAw==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.gms
+10-17 22:31:25.589  7973  7996 I NearbyConnections: Client 70017671 requested setting downloads directory to null.
+10-17 22:31:25.589  7973  7996 I NearbyConnections: Client 70017671 with package name 0p:com.google.android.gms.nearby.presence and sdk version 264032000 has connected, downloads dir is set to null.
+10-17 22:31:25.605  7973  7996 I NearbyConnections: Add DeviceProvider of type 2.
+10-17 22:31:25.606  7973  7996 I NearbyConnections: Successfully register device provider for endpointType 2 by client 70017671
+10-17 22:31:25.610  7973  7996 I NearbyUWB: (REDACTED) onGetService: Create client bridge with key %s
+10-17 22:31:25.610  7973  7996 I NearbyUWB: (REDACTED) Analytics is enabled for package %s
+10-17 22:31:25.627  7973  8078 I Multidevice: (REDACTED) [dydw] Multidevice Sync Response: %s
+10-17 22:31:25.627  7973  8078 I Multidevice: [dymr] presenceClient.sync( [CONTEXT service_id=348 ]
+10-17 22:31:25.627  7973  8078 I Multidevice: (REDACTED) [dymr]     multideviceEnabled: %s
+10-17 22:31:25.627  7973  8078 I Multidevice: (REDACTED) [dymr]     deviceName: %s
+10-17 22:31:25.627  7973  8078 I Multidevice: (REDACTED) [dymr]     accountListForSync: %s
+10-17 22:31:25.627  7973  8078 I Multidevice: [dymr] ) [CONTEXT service_id=348 ]
+10-17 22:31:25.653  5543  5543 I StylusEducationPopupDialog: StylusEducationPopupDialog.showFirstTimeEducation():79 First time education not shown for null
+10-17 22:31:25.662  7973  8039 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 1075257]
+10-17 22:31:25.703  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.mdd.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.708  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.mdd.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.717  7973  7996 I NearbyUWB: (REDACTED) Client %s with package name %s, 0p Identifier %s, and sdk version %s has connected.
+10-17 22:31:25.737  7973  8098 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 1075332]
+10-17 22:31:25.741  7973  7973 I Dtdi    : (REDACTED) [TidepoolSettingsSubDelegate] Tidepool Toggles: %s, %s, %s, %s
+10-17 22:31:25.748  7973  7973 W ChimeraUtils: Module com.google.android.gms.location_base missing resource location_module_display_name(0)
+10-17 22:31:25.771  7973  8019 I Multidevice: (REDACTED) [dydw] Multidevice Sync Response: %s
+10-17 22:31:25.771  7973  8077 I Dtdi    : (REDACTED) [AdvertisingSettings] handleMultideviceSyncStateChange: multideviceSyncEnabled=%s, networkAvailable=%s, isAllowedFormFactorToAdvertiseForMultidevice=%s
+10-17 22:31:25.771  7973  7994 W MagicTether: [HostEnablementUtils] Invalid account list. [CONTEXT service_id=276 ]
+10-17 22:31:25.773  7973  8039 I NetworkScheduler.Stats: (REDACTED) Task %s/%s started execution. cause:%s exec_start_elapsed_seconds: %s
+10-17 22:31:25.781  7973  7973 I DrivingDndInitializer: Starting Driving Mode logger service for heartbeat
+10-17 22:31:25.782  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.credential.manager.service.firstparty.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.782  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.credential.manager.service.firstparty.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.783  7973  8090 W ziparchive: Unable to open '/data/user_de/0/com.google.android.gms/app_chimera/m/00000012/dl-Appsearch.optional_264032100800.dm': No such file or directory
+10-17 22:31:25.792  7973  8040 W ChimeraUtils: Module com.google.android.gms.location_base missing resource location_module_display_name(0)
+10-17 22:31:25.795  7973  8040 W ChimeraUtils: Module com.google.android.gms.location_base missing resource location_module_display_name(0)
+10-17 22:31:25.808  7973  8021 I NearbySharing: Network state changed: NetworkState(isRestricted=false, isOnline=true, isCongested=false, isMetered=false, isWifiConnected=true)
+10-17 22:31:25.810  1066  1066 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 22:31:25.814  7973  7994 I MagicTether: (REDACTED) [HostTetherRole] Nearby host is active: isNearbyActive: %s | isProxAuthActive: %s
+10-17 22:31:25.814  7973  7994 I MagicTether: [TetherService] Registering Tidepool update listener [CONTEXT service_id=276 ]
+10-17 22:31:25.814  7973  7994 I MagicTether: (REDACTED) [TidepoolFeatureStatusManager] registerUpdateListener: listener=%s
+10-17 22:31:25.817  7973  7996 I Multidevice: (REDACTED) [FeatureSettingsApiService] onGetService called from: %s
+10-17 22:31:25.818  7973  7994 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:25.819  7973  7994 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:25.820  7973  7994 I MagicTether: (REDACTED) [TidepoolFeatureStatusManager] init: register TidepoolListener, features=%s
+10-17 22:31:25.820  7973  7996 I Multidevice: [FeatureSettingsApiService] Created API Stub. [CONTEXT service_id=348 ]
+10-17 22:31:25.822  7973  7996 I Multidevice: (REDACTED) [FeatureSettingsApiService] registerXdFeatureStatusListener(featureKeys: %s, enableImmediateCallback: %s)
+10-17 22:31:25.824  7973  7994 I MagicTether: [TetherService] starting runnable [CONTEXT service_id=276 ]
+10-17 22:31:25.825  7973  7994 I MagicTether: [TetherService] Starting Instant Hotspot feature. [CONTEXT service_id=276 ]
+10-17 22:31:25.825  7973  7994 I MagicTether: (REDACTED) [HostTetherRole] enableProximityAuth: %s
+10-17 22:31:25.826  7973  8003 I DrivingDndInitializer: handled driving mode setting configs
+10-17 22:31:25.832  7973  8088 I AlarmManager: set [name: SystemMemoryCache type: 2 triggerAtMillis: 315360475427 windowMillis: -1 intervalMillis: 0]
+10-17 22:31:25.839  7973  8037 I NearbySharing: Broadcasting NearbySharing state change.
+10-17 22:31:25.842  7973  7994 W MagicTether: [HostEnablementUtils] Invalid account list. [CONTEXT service_id=276 ]
+10-17 22:31:25.843  7973  7994 I MagicTether: (REDACTED) [HostTetherRole] Nearby host is active: isNearbyActive: %s | isProxAuthActive: %s
+10-17 22:31:25.844  7973  7994 I MagicTether: (REDACTED) [TidepoolFeatureStatusManager] isInstantHotspotEnabled=%s
+10-17 22:31:25.845  7973  8019 I NearbyMediums: [UsbNcm]: ports is empty
+10-17 22:31:25.848  7973  7973 W SystemServiceRegistry: No service published for: persistent_data_block
+10-17 22:31:25.851  7973  7994 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:25.851  7973  7994 I MagicTether: [TetherService] Stopping Nearby component. [CONTEXT service_id=276 ]
+10-17 22:31:25.853  7973  7994 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:25.853  7973  7994 I MagicTether: [HostTetherRole] Nearby host role already stopped [CONTEXT service_id=276 ]
+10-17 22:31:25.862  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.auth.service.START pkg=com.google.android.gms }
+10-17 22:31:25.862  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.auth.service.START pkg=com.google.android.gms }
+10-17 22:31:25.866  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.chimera.container.moduleinstall.ModuleInstallService.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.866  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.chimera.container.moduleinstall.ModuleInstallService.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.867  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.mobstore.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.867  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.mobstore.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.870  7973  7996 W WearableService: onGetService: Wear is not available on this device. Calling package: com.google.android.gms
+10-17 22:31:25.871  7973  7996 W GoogleApiManager: Not showing notification since connectionResult is not user-facing: ConnectionResult{statusCode=API_UNAVAILABLE, resolution=null, message=null, clientMethodKey=null, errorResolutionInfo=null}
+10-17 22:31:25.884  7973  8021 W ChimeraUtils: Module com.google.android.gms.location_base missing resource location_module_display_name(0)
+10-17 22:31:25.903  7973  8003 I NetworkScheduler.Stats: (REDACTED) Task %s/%s started execution. cause:%s exec_start_elapsed_seconds: %s
+10-17 22:31:25.909  7973  7996 W WearableService: onGetService: Wear is not available on this device. Calling package: com.google.android.gms
+10-17 22:31:25.938  7973  7994 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:25.938  7973  7994 I MagicTether: [TetherService] Stopping Nearby client role [CONTEXT service_id=276 ]
+10-17 22:31:25.938  7973  7994 I MagicTether: [ClientTetherRole] Client role already stopped [CONTEXT service_id=276 ]
+10-17 22:31:25.940  7973  7973 I GmsCoreXrpcWrapper: (REDACTED) Creating an unauthenticated channel provider with trafficStatsTag=%d trafficStatsUid=%d
+10-17 22:31:25.952  4021  4021 V InlineSuggestionRenderService: handleDestroySuggestionViews called for 0:1095330839
+10-17 22:31:25.955  7080  7080 D Autofill Status: Autofill popup isn't shown because autofill is not available.
+10-17 22:31:25.955  7080  7080 D Autofill Status:
+10-17 22:31:25.955  7080  7080 D Autofill Status: Did you set up autofill?
+10-17 22:31:25.955  7080  7080 D Autofill Status: 1. Go to Settings > System > Languages&input > Advanced > Autofill Service
+10-17 22:31:25.955  7080  7080 D Autofill Status: 2. Pick a service
+10-17 22:31:25.955  7080  7080 D Autofill Status:
+10-17 22:31:25.955  7080  7080 D Autofill Status: Did you add an account?
+10-17 22:31:25.955  7080  7080 D Autofill Status: 1. Go to Settings > System > Languages&input > Advanced
+10-17 22:31:25.955  7080  7080 D Autofill Status: 2. Click on the settings icon next to the Autofill Service
+10-17 22:31:25.955  7080  7080 D Autofill Status: 3. Add your account
+10-17 22:31:25.964  5543  5543 I KeyboardHeightUtil: KeyboardHeightUtil.calculateMaxKeyboardBodyHeight():45 leave 281 height for app when ime window height:2146, header height:116 and isFullscreenMode:false, so the max keyboard body height is:1749
+10-17 22:31:25.987  7973  7973 I MagicTether: [TidepoolFeatureStatusManager] Successfully registered TidepoolListener [CONTEXT service_id=276 ]
+10-17 22:31:25.987  7973  7973 I MagicTether: (REDACTED) [TidepoolFeatureStatusManager] onFeatureStatusChanged: sharingWifi=%s, sharingHotspot=%s
+10-17 22:31:25.993  7973  7973 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:25.993  7973  7973 I MagicTether: (REDACTED) [TidepoolFeatureStatusManager] onFeatureStatusChanged: notifying listeners with onInstantHotspotUpdate(): listenerCount=%d, isInstantHotspotEnabled=%s
+10-17 22:31:25.993  7973  7973 I MagicTether: (REDACTED) [TetherService] TidepoolUpdateListener#onInstantHotspotUpdate isInstantHotspotEnabled=%s
+10-17 22:31:25.993  7973  7973 I MagicTether: (REDACTED) [TetherService] onTidepoolUpdate: isInstantHotspotEnabled=%s
+10-17 22:31:25.997  7973  7973 I MagicTether: (REDACTED) [TetherService] onTidepoolUpdate: setSettingsState, instantTetherEnabled=%s
+10-17 22:31:25.999  7973  7973 I CAR.DRIVINGMODE: Successfully unregister transition listener
+10-17 22:31:25.999  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.onboardingconsent.api.ConsentManagerApiService.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:25.999  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.onboardingconsent.api.ConsentManagerApiService.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+10-17 22:31:26.013   543  1614 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@96cc0c08 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 22:31:26.026  7080  7080 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@b4c34ed in: PAUSED
+10-17 22:31:26.026  7080  7080 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=androidx.activity.ComponentActivity@b4c34ed
+10-17 22:31:26.026  7973  7994 I MagicTether: [TetherService] starting runnable [CONTEXT service_id=276 ]
+10-17 22:31:26.026  7973  7994 I MagicTether: [TetherService] Starting Instant Hotspot feature. [CONTEXT service_id=276 ]
+10-17 22:31:26.026  7973  7994 I MagicTether: (REDACTED) [HostTetherRole] enableProximityAuth: %s
+10-17 22:31:26.027  7973  7994 W MagicTether: [HostEnablementUtils] Invalid account list. [CONTEXT service_id=276 ]
+10-17 22:31:26.033  7973  7994 I MagicTether: (REDACTED) [TidepoolFeatureStatusManager] isInstantHotspotEnabled=%s
+10-17 22:31:26.034  7973  7994 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:26.034  7973  7994 I MagicTether: [TetherService] Stopping Nearby component. [CONTEXT service_id=276 ]
+10-17 22:31:26.035  7973  7994 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:26.035  7973  7994 I MagicTether: [HostTetherRole] Nearby host role already stopped [CONTEXT service_id=276 ]
+10-17 22:31:26.042  7973  7996 I ConsentManagerApiServic: (REDACTED) ConsentManagerApiService onGetService success %s
+10-17 22:31:26.050  7973  7994 I MagicTether: [LaunchUtils] No accounts found for enabling Instant Wifi. [CONTEXT service_id=276 ]
+10-17 22:31:26.050  7973  7994 I MagicTether: [TetherService] Stopping Nearby client role [CONTEXT service_id=276 ]
+10-17 22:31:26.050  7973  7994 I MagicTether: [ClientTetherRole] Client role already stopped [CONTEXT service_id=276 ]
+10-17 22:31:26.050  7973  8098 I SystemMemoryMap: (REDACTED) [activitytransition] serialization complete (extras/values=%.2f/%.2fkb)
+10-17 22:31:26.053  7973  8021 I SetConsentOperation: (REDACTED) SetConsentOperation executing for package %s key %s
+10-17 22:31:26.054  7973  8021 I ProtoConsentDataManager: (REDACTED) setConsent: Storing consent for package=[%s], item=[%s]
+10-17 22:31:26.070  7973  8021 I SetConsentOperation: (REDACTED) SetConsentOperation executing for package %s key %s
+10-17 22:31:26.070  7973  8021 I ProtoConsentDataManager: (REDACTED) setConsent: Storing consent for package=[%s], item=[%s]
+10-17 22:31:26.070  7973  8021 I SetConsentOperation: (REDACTED) SetConsentOperation executing for package %s key %s
+10-17 22:31:26.070  7973  8021 I ProtoConsentDataManager: (REDACTED) setConsent: Storing consent for package=[%s], item=[%s]
+10-17 22:31:26.070  7973  8021 I SetConsentOperation: (REDACTED) SetConsentOperation executing for package %s key %s
+10-17 22:31:26.070  7973  8021 I ProtoConsentDataManager: (REDACTED) setConsent: Storing consent for package=[%s], item=[%s]
+10-17 22:31:26.095   419   419 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 22:31:26.097  7973  7973 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.097  7973  8090 I GmsModuleInitializer: Using ContainerGservicesDelegate
+10-17 22:31:26.102   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:26.104  7973  7973 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.110  7328  7350 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-17 22:31:26.110  7328  7350 I EGL_emulation: Opening libGLESv2_emulation.so
+10-17 22:31:26.150  7973  7973 W ChimeraUtils: Module com.google.android.gms.location__nonwearable missing resource location_module_display_name(0)
+10-17 22:31:26.282  7973  8102 W gle.android.gms: Verification of void m58.bbn.onServiceConnected(android.content.ComponentName, android.os.IBinder) took 189.862ms (700.51 bytecodes/s) (5432B approximate peak alloc)
+10-17 22:31:26.289  7973  7973 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.289  7973  7973 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.289  7973  8019 W gle.android.gms: Accessing hidden method Landroid/net/ConnectivityManager;->isNetworkSupported(I)Z (max-target-p, reflection, denied)
+10-17 22:31:26.298  7973  8021 I SetConsentOperation: SetConsentOperation success [CONTEXT service_id=460 ]
+10-17 22:31:26.301  7973  7973 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.302  7973  7973 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.310  7328  7350 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-17 22:31:26.353  7973  8088 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.353  7973  8088 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.355  1066  1066 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 22:31:26.355  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.clearcut.service.START pkg=com.google.android.gms }
+10-17 22:31:26.356  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.clearcut.service.START pkg=com.google.android.gms }
+10-17 22:31:26.357   392   445 I RanchuHwc: logCompositionFallbackIfChanged: layer 144 CompositionType fallback from 3 to 1
+10-17 22:31:26.381  7973  8039 I SemanticLocation: [MDD] Loading embedded CSL model. [CONTEXT service_id=173 ]
+10-17 22:31:26.388  7973  8021 I SetConsentOperation: SetConsentOperation success [CONTEXT service_id=460 ]
+10-17 22:31:26.396  7973  8021 I SetConsentOperation: SetConsentOperation success [CONTEXT service_id=460 ]
+10-17 22:31:26.396  7973  8021 I SetConsentOperation: SetConsentOperation success [CONTEXT service_id=460 ]
+10-17 22:31:26.411   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:26.413  7973  7977 W gle.android.gms: Missing inline cache for java.lang.Object duhx.apply(java.lang.Object)
+10-17 22:31:26.445  7973  7973 I LocationConsentTransfer: (REDACTED) Successfully submitted consent %s=%s to ConsentManager
+10-17 22:31:26.453  7973  8088 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.455  7973  8088 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.463  7973  8088 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.463  7973  8088 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.464  7080  7080 D VRI[ComponentActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 22:31:26.464  7973  7973 I NearbySharing: Invalidate tile state due to state change.
+10-17 22:31:26.466  7973  8040 W GLSUser : [DeviceKeyStore] Cannot load key: Device key file not found.
+10-17 22:31:26.516  7973  7973 I LocationConsentTransfer: (REDACTED) Successfully submitted consent %s=%s to ConsentManager
+10-17 22:31:26.520  7973  7973 I LocationConsentTransfer: (REDACTED) Successfully submitted consent %s=%s to ConsentManager
+10-17 22:31:26.520  7973  7973 I LocationConsentTransfer: (REDACTED) Successfully submitted consent %s=%s to ConsentManager
+10-17 22:31:26.520  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.common.telemetry.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+10-17 22:31:26.520  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.common.telemetry.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.PersistentApiService }
+10-17 22:31:26.525  7973  8090 W gle.android.gms: Verification of int m58.juo.p(byte[], int, m58.jun) took 147.332ms (319.01 bytecodes/s) (3024B approximate peak alloc)
+10-17 22:31:26.547  7973  8102 W gle.android.gms: Verification of java.lang.String m58.bxa.a(java.lang.String, android.content.Intent, java.lang.String) took 140.168ms (684.89 bytecodes/s) (3664B approximate peak alloc)
+10-17 22:31:26.547  7973  8088 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.547  7973  8088 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.548  7973  8088 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.548  7973  8088 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.553  4254  4254 W rules.WifiRx: FenceState currentState is not true
+10-17 22:31:26.559  7973  8088 I MagicTether: [AutoDisconnectIntentOperation] Canceling task. [CONTEXT service_id=276 ]
+10-17 22:31:26.561  7973  8088 I MagicTether: (REDACTED) [NotificationPresenter] cancelNotification: %d
+10-17 22:31:26.566  4254  4254 W rules.WifiRx: FenceState currentState is not true
+10-17 22:31:26.568  7973  8039 I SemanticLocation: (REDACTED) [MDD] ModelBundleMetadata: File not found: %s
+10-17 22:31:26.570  7973  8039 I SemanticLocation: (REDACTED) [MDD] ModelBundleMetadata: File not found: %s
+10-17 22:31:26.588  7973  8003 I PhenotypeResourceReader: unable to find any Phenotype resource metadata for com.google.android.onetimeinitializer
+10-17 22:31:26.613  7973  8015 W ctxmgr  : [NetworkStateProducer] No state change for network connection context [CONTEXT service_id=47 ]
+10-17 22:31:26.621  7973  8095 I Auth    : (REDACTED) [SupervisedAccountIntentOperation] onHandleIntent: %s
+10-17 22:31:26.685   543   562 W ziparchive: Unable to open '/data/app/~~lHgy8AxhfXA0dlOnulGqyA==/be.sportgreenmoove.app.test-ABHufELMebFgYoW_LDKHWg==/base.dm': No such file or directory
+10-17 22:31:26.686   543   562 I ActivityTaskManager: Displayed be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity for user 0: +667ms
+10-17 22:31:26.692  7328  7328 I Choreographer: Skipped 34 frames!  The application may be doing too much work on its main thread.
+10-17 22:31:26.695   419   419 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 22:31:26.704  7973  7973 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.checkin.START pkg=com.google.android.gms }
+10-17 22:31:26.704  7973  7973 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.checkin.START pkg=com.google.android.gms }
+10-17 22:31:26.708  7973  7973 I FPTimeHelper: TrustedTimeClient initialized successfully [CONTEXT service_id=469 ]
+10-17 22:31:26.715  7973  8095 I Auth.Api.Credentials: (REDACTED) [PasskeysUpdatedIntentOperation] Using passkey-cache with version %d
+10-17 22:31:26.719   887  1032 D EGL_emulation: app_time_stats: avg=588.76ms min=22.32ms max=1470.84ms count=3
+10-17 22:31:26.722  7973  8097 I Blockstore: (REDACTED) [BlockstoreModuleInitIntentOperation] Container update. Module updated: %b
+10-17 22:31:26.724  7973  8097 I Blockstore: [CloudSyncBackupTaskService] scheduling a periodic backup task. [CONTEXT service_id=258 ]
+10-17 22:31:26.727  7973  8092 W gle.android.gms: Verification of void m58.bgv.<clinit>() took 103.384ms (194652.22 bytecodes/s) (330968B approximate peak alloc)
+10-17 22:31:26.737   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:26.740   887  1019 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@52237f3
+10-17 22:31:26.741   543  1610 W InputManager-JNI: Input channel object 'cf1dbf Splash Screen be.sportgreenmoove.app.test (client)' was disposed without first being removed with the input manager!
+10-17 22:31:26.758   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:26.758   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:26.768  7973  8019 I Auth.Api.Credentials: [WebauthnCredentialDataClient#subscribe()] Operation started. [CONTEXT service_id=68 ]
+10-17 22:31:26.769  7973  8019 I Auth.Api.Credentials: (REDACTED) [WebauthnCredentialDataClient#subscribe()] Operation succeeded with result: %s.
+10-17 22:31:26.829  7080  7080 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@b4c34ed in: STOPPED
+10-17 22:31:26.829  7080  7080 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=androidx.activity.ComponentActivity@b4c34ed
+10-17 22:31:26.849   887   887 E OverviewProxyService: Failed to get overview proxy for system bar attr change.
+10-17 22:31:26.865  7080  7080 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@b4c34ed in: DESTROYED
+10-17 22:31:26.865  7080  7080 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-17 22:31:26.865  7080  7080 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@665621
+10-17 22:31:26.871  7080  7109 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@aeef979]
+10-17 22:31:26.879  1066  1066 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 22:31:26.910  7973  7996 I ConsentManagerApiServic: (REDACTED) ConsentManagerApiService onGetService success %s
+10-17 22:31:26.932   543  1610 W InputManager-JNI: Input channel object '45bf1ef be.sportgreenmoove.app/androidx.activity.ComponentActivity (client)' was disposed without first being removed with the input manager!
+10-17 22:31:26.937  7973  8098 I AndroidBackupEventsLogg: (REDACTED) null shouldSample, evaluating sampling value. Event %s
+10-17 22:31:26.941   543   662 I ImeTracker: com.android.settings:34ec794d: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-17 22:31:26.943  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.onFinishInputView():2393
+10-17 22:31:26.944  5543  7571 W RemoteInputConnection: requestCursorUpdates() was cancelled.
+10-17 22:31:26.945  5543  5543 W TooltipLifecycleManager: TooltipLifecycleManager.dismissTooltips():152 Tooltip with id spell_check_add_to_dictionary not found in tooltipManager.
+10-17 22:31:26.948  5543  5543 I InputBundle: InputBundle.consumeEvent():884 Skip consuming an event as keyboard status is 0
+10-17 22:31:26.948  5543  5543 I VoiceInputHandler: VoiceInputHandler.onDeactivateIme():115 unregistering TalkbackStateListener
+10-17 22:31:26.948  5543  5543 I VoiceInputManagerWrapper: VoiceInputManagerWrapper.shutdown():124 shutdown()
+10-17 22:31:26.948  5543  5543 I AndroidIME: AbstractIme.onDeactivate():202 LatinIme.onDeactivate()
+10-17 22:31:26.949  5543  5543 I WindowMetricsNotification: WindowMetricsNotification.notifyWithWindow():113
+10-17 22:31:26.949  5543  5543 I WindowMetricsNotification: WindowMetricsNotification.notify():106 WindowMetricsNotification{bounds=Rect(0, 128 - 1080, 2400), insets=Rect(0, 0 - 0, 126), densityDpi=420, smallestScreenWidthDp=411, displayWidth=1080, displayHeight=2400, xdpi=420.0, ydpi=420.0}; DisplayMetrics{density=2.625, width=1080, height=2400, scaledDensity=2.625, xdpi=420.0, ydpi=420.0}
+10-17 22:31:26.950  7973  8093 I B&R-HS-Init: onContainerUpdated [CONTEXT service_id=229 ]
+10-17 22:31:26.951  7328  7328 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 22:31:26.964  7973  8090 W ziparchive: Unable to open '/data/user_de/0/com.google.android.gms/app_chimera/m/00000013/dl-IdentityCredentialsPlatform.optional_264032100800.dm': No such file or directory
+10-17 22:31:26.971   543  1614 I ImeTracker: com.android.settings:34ec794d: onFailed at PHASE_WM_HAS_IME_INSETS_CONTROL_TARGET
+10-17 22:31:26.972  7973  8093 I B&R-HS-Init: (REDACTED) HeadStartActivity state set to: %d
+10-17 22:31:27.036  5543  5676 D EGL_emulation: app_time_stats: avg=780.71ms min=526.03ms max=1035.39ms count=2
+10-17 22:31:27.037  7080  7080 I ImeTracker: be.sportgreenmoove.app:b3701b91: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false
+10-17 22:31:27.039  5543  5543 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3157
+10-17 22:31:27.043  7328  7328 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@13e67b9
+10-17 22:31:27.049  7080  7080 I ImeTracker: be.sportgreenmoove.app:b3701b91: onFailed at PHASE_CLIENT_VIEW_SERVED
+10-17 22:31:27.057  7080  7109 I TestRunner: finished: activityInputUsesItsOwnFocusedWindowAndRealKeyboard(be.sportgreenmoove.app.ui.InputWindowReadinessTest)

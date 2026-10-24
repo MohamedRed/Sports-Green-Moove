@@ -1,0 +1,57 @@
+{
+  "scope": "local-session-restoration-controlled-callable-rejection-not-network-loss",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "41d5d800dc9ced46a1b3baa1c0bd28f7",
+  "uid": "sgm-qa-parent",
+  "phase": "recover",
+  "attempts": [
+    {
+      "phase": "reject",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "injectedRejection": true,
+      "downstreamStatus": 503
+    },
+    {
+      "phase": "reject",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "injectedRejection": true,
+      "downstreamStatus": 503
+    },
+    {
+      "phase": "recover",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getActiveRide",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getActiveRide",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    }
+  ],
+  "transitions": [
+    {
+      "from": "reject",
+      "to": "recover"
+    }
+  ]
+}

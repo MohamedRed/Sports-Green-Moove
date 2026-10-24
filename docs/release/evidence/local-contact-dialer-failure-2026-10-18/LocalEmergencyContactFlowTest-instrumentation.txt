@@ -1,0 +1,17 @@
+
+be.sportgreenmoove.app.ui.LocalEmergencyContactFlowTest:
+Error in actualContactSaveRevocationRecreationDialerRemovalAndAccountIsolation(be.sportgreenmoove.app.ui.LocalEmergencyContactFlowTest):
+java.lang.IllegalStateException: Check failed.
+	at be.sportgreenmoove.app.ui.LocalEmergencyContactFlowTest.actualContactSaveRevocationRecreationDialerRemovalAndAccountIsolation(LocalEmergencyContactFlowTest.kt:58)
+
+
+Time: 72.898
+There was 1 failure:
+1) actualContactSaveRevocationRecreationDialerRemovalAndAccountIsolation(be.sportgreenmoove.app.ui.LocalEmergencyContactFlowTest)
+java.lang.IllegalStateException: Check failed.
+	at be.sportgreenmoove.app.ui.LocalEmergencyContactFlowTest.actualContactSaveRevocationRecreationDialerRemovalAndAccountIsolation(LocalEmergencyContactFlowTest.kt:58)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

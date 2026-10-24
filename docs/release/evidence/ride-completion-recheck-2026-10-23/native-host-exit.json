@@ -1,0 +1,13 @@
+{
+  "scope": "ci-read-only-emulator-host-observation-not-flow-or-root-cause-proof",
+  "phase": "full-matrix",
+  "completedAt": "2026-10-23T15:07:16.056Z",
+  "finalState": "gone",
+  "observations": 2,
+  "elapsedMs": 2148.7330890000003,
+  "targetExitObserved": true,
+  "processSignalsRequested": false,
+  "deviceCommandsRequested": false,
+  "flowAccepted": false,
+  "rootCauseConfirmed": false
+}

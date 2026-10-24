@@ -1,0 +1,34 @@
+{
+  "scope": "monotonic-location-unit-and-local-services-not-ui",
+  "before": {
+    "commit": "64f9173f6bd82564b74d08e162dc9c6d2fa4d04a",
+    "runId": "f45a882b87d82e8c5cfb6dcc868f20a0",
+    "accepted": false,
+    "sourceFiles": {
+      "functions/src/lib/liveTrips.ts": "4f14132bd657daf8d0868f5030b039b18a0ba1be637f7b1257cf95662b68c365",
+      "functions/src/callables/locations.ts": "4cb8ac236b27a359bb142496a6fa180b8068ba011e6800bae70c21aa9aa153bc",
+      "functions/src/services/radarReconciliation.ts": "df5601c6fa78f1ff421db47ce0dfbc59ce58cd25831ce1811aff5716edecdef5",
+      "scripts/qa/local-location-order.mjs": "50cf14c23e4bcccd4ee8a9918ee18f62f0faea1874d1da7ea9b1ca0b0c713f2d"
+    }
+  },
+  "after": {
+    "runId": "c6fdd155a2dd3be24c9b2527296656e3",
+    "sourceFiles": {
+      "scripts/qa/local-location-order.mjs": "76957e46f6287a88fa7afe001c5953c885e3a6c2934e7d2dd9d8db4bef2f2c47",
+      "functions/src/lib/liveTrips.ts": "38cc3b0e46bdeac7e5efe7cd0c0396ee0db1f4d5e236162a6f5763d88f8a5580",
+      "functions/src/domain/liveLocationOrder.ts": "d4a293f240751d0dbac95e8fe6879b58a15ec3b8fc35db87a5fe7535f72d08a9",
+      "functions/src/callables/locations.ts": "56c129a9d575f702e51157220cd4ce4a116a02746b12ab70852b8f8df1f13c2b",
+      "functions/src/services/radarReconciliation.ts": "f38972a973285af35d8e04fff75acd4471dfc6d9a67e9016f426265a466268f2",
+      "functions/src/__tests__/live-location-order.test.ts": "ca042cc141af97b5382129510042cdd6b7fa62a9d2761f33685a5304819345ad"
+    },
+    "serviceGroups": 10,
+    "unitCases": 338,
+    "failures": 0
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerWebhookDelivery": false,
+  "storeReviewAccepted": false,
+  "auditAcceptance": false
+}

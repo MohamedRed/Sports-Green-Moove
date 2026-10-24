@@ -1,0 +1,8 @@
+{
+  "sourceCommit": "351aa4d571d2de3e0df670b4bff906250523a9e0",
+  "reason": "Explicit historical navigation and gateway sources; team enrollment now extends the app",
+  "historicalSourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt": "source-snapshot/android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "source-snapshot/android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt"
+  }
+}

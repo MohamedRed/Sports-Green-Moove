@@ -1,0 +1,31 @@
+{
+  "scope": "local-ride-live-sdk-not-physical-gps",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ae1adbbb68010bce9366dd9a57bc7401",
+  "rideSessionId": "skzSrNdqsPPEjy7qd9tD",
+  "bookingId": "lKsypS4glGT4X8ksWtwg",
+  "childId": "sgm-qa-child-lina",
+  "parentUid": "sgm-qa-parent",
+  "driverUid": "sgm-qa-driver",
+  "staleWaitElapsedMs": 89948,
+  "operations": {
+    "writeLocationBatch": 2,
+    "markPickup": 1,
+    "markDropoff": 1,
+    "endRide": 1
+  },
+  "screenshots": {
+    "local-ride-observation-fresh.png": "b1fd31086029abc579ba2aad183e2adfa88ee40bf3782bc43c48bf764f05ae5d",
+    "local-ride-observation-fresh-landscape.png": "feefd581de9ed6faa842a51d94388a31e026e6d9132b23a0dba6eb3996bfae9d",
+    "local-ride-observation-stale.png": "7ea2789cfd72a201a145ffcacb7fd2404ce7238003fef59a95eb761d8339fd45",
+    "local-ride-observation-recovered.png": "b1fd31086029abc579ba2aad183e2adfa88ee40bf3782bc43c48bf764f05ae5d",
+    "local-ride-observation-pickup.png": "a0d6f1aebbc8fa821a14828138d354e8f8027dfa1ba29f605ee59dd6ca047ffd",
+    "local-ride-observation-resumed.png": "d78242719566c87c179eb30a8e08e6d09da9cf2709a00f76f9fecfd47a6508b5",
+    "local-ride-observation-ended.png": "18f5134ddea919207c04fd5ae51dd35729d8abe5376a7420b94e4b7530c0082f",
+    "local-ride-observation-history.png": "615bf3772d0b538bf8cad20f49338152af29439fe269e8bcb1a63bccf7460588"
+  },
+  "parentSignedOut": true,
+  "physicalDevice": false,
+  "providerTrackingVerified": false,
+  "mapMovementVerified": false
+}

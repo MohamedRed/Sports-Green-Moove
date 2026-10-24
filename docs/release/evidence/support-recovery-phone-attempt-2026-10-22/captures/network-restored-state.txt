@@ -1,0 +1,147 @@
+Browser tab: 1621933415, Title: "Google Pixel 9 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		44 container
+			45 container content
+				181 container in-session-device-react
+					182 container
+					197 container
+						198 image
+						199 button Add Device
+							200 text Add Device
+							201 text PRO
+				278 text ;
+				434 container
+					435 button Expand
+					436 button Dock to bottom
+					437 text Dev Tools
+					438 tab group
+						439 tab (selectable, settable, boolean) Description: Logs, Value: 0
+						441 tab (selected, settable, boolean) Description: ADB Shell, Value: 1
+						442 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						443 tab (selectable, settable, boolean) Description: Network, Value: 0
+						444 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				445 content list
+					446 button Description: Switch Device, ID: switchBrowser
+					447 container
+						448 button Description: Local testing, ID: appLiveToolbarLocalTesting
+							449 image
+							450 image open content menu
+							451 text Local testing
+					452 menu zoomFeature
+						453 Description: zoom out, ID: zoom-out
+						454 Description: zoom in, ID: zoom-in
+						455 text Zoom
+					456 button Description: Record Session, ID: appLiveVideoRecording
+					457 button Description: DevTools, ID: showDebuggingOptions
+					458 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					459 button open content menu Settings, ID: appLiveSessionSettings
+						460 image open content menu
+						461 text Settings
+					462 button Description: Stop Session, ID: appLiveStopSession
+						463 image
+						464 text Stop Session
+				232 container vertical-toolbar-react
+					233 container vertical-toolbar-draggable
+						234 container
+							465 button toolbar drag icon
+							236 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						237 toolbar
+							238 content list
+								466 button Description: Add Device, ID: app-live-add-device
+									467 container app-live-add-device-lead-text-wrapper
+										468 text Add Device PRO
+								469 button Description: Show Home Screen, ID: dockHomeScreen
+									470 text Show Home Screen
+								471 container volume-buttons-lead-text-wrapper
+									472 text Volume
+									473 container volumeButtons
+										474 button - Volume Decrease
+										475 button (disabled) + Volume Increase
+								476 button Description: View Open Apps, ID: view-open-apps
+									477 text View Open Apps
+								478 button Description: Install New App, ID: switch-app
+									479 text Install New App
+								480 checkbox Description: Profile Performance, Value: 0
+									481 text Profile Performance
+									482 text PRO
+								483 button Description: Capture Screenshot, ID: get-screenshot
+									484 text Capture Screenshot
+								485 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									486 text Kill/Uninstall
+								487 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									488 container android-settings-lead-text-wrapper
+										489 text Android Settings PRO New
+								490 button Rotate Device, ID: dockOrientationRealAndroid
+									491 text Rotate Device
+								492 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									493 text Change Location
+								494 button (expanded) Description: Throttle Network, ID: network-simulation, Secondary Actions: Collapse
+									495 text Throttle Network
+								496 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									497 text Files & Media
+								498 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									499 text Change Language
+								500 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									501 text Screen Reader
+								502 button (collapsed) Description: Device info: Google Pixel 9, v15.0, ID: device-info, Secondary Actions: Expand
+									503 text Google Pixel 9
+									504 text v15.0
+						505 container Description: Network Simulation, ID: network-simulation-menu
+							506 heading Throttle Network, Value: 1
+								507 text Throttle Network
+							508 Network profiles
+								509 image
+								510 text Turn off network simulation
+								511 radio button (settable, integer) Description: 2G - good 50kbps 30kbps1% Loss500ms Latency, Value: 0, ID: {"bw_dwld":"50","bw_upld":"30","latency":"500","pk_loss":"1"}
+								512 container
+									513 text 2G - good
+									514 image
+									515 text 50 kbps
+									516 image
+									517 text 30 kbps 1 % Loss 500 ms Latency
+								518 radio button (settable, integer) Description: Edge - good 250kbps 150kbps0% Loss300ms Latency, Value: 0, ID: {"bw_dwld":"250","bw_upld":"150","latency":"300","pk_loss":"0"}
+								519 container
+									520 text Edge - good
+									521 image
+									522 text 250 kbps
+									523 image
+									524 text 150 kbps 0 % Loss 300 ms Latency
+								525 radio button (settable, integer) Description: 3G - good 400kbps 100kbps0% Loss100ms Latency, Value: 0, ID: {"bw_dwld":"400","bw_upld":"100","latency":"100","pk_loss":"0"}
+								526 container
+									527 text 3G - good
+									528 image
+									529 text 400 kbps
+									530 image
+									531 text 100 kbps 0 % Loss 100 ms Latency
+								532 radio button (settable, integer) Description: 4G - good 18000kbps 9000kbps0% Loss100ms Latency, Value: 0, ID: {"bw_dwld":"18000","bw_upld":"9000","latency":"100","pk_loss":"0"}
+								533 container
+									534 text 4G - good
+									535 image
+									536 text 18000 kbps
+									537 image
+									538 text 9000 kbps 0 % Loss 100 ms Latency
+								539 radio button (settable, integer) Description: 4G - high latency 18000kbps 9000kbps0% Loss3000ms Latency, Value: 0, ID: {"bw_dwld":"18000","bw_upld":"9000","latency":"3000","pk_loss":"0"}
+								540 container
+									541 text 4G - high latency
+									542 image
+									543 text 18000 kbps
+									544 image
+									545 text 9000 kbps 0 % Loss 3000 ms Latency
+								546 radio button (settable, integer) Description: Offline Mode 0kbps 0kbps0% Loss0ms Latency, Value: 0, ID: {"bw_dwld":"0","bw_upld":"0","latency":"0","pk_loss":"0","temp":"0"}
+								547 container
+									548 text Offline Mode
+									549 image
+									550 text 0 kbps
+									551 image
+									552 text 0 kbps 0 % Loss 0 ms Latency
+								553 radio button (settable, integer) Description: Custom profile Set custom profile Set Values, Value: 0, ID: {"bw_dwld":"","bw_upld":"","latency":"","pk_loss":""}
+								554 container
+									555 text Custom profile
+									556 button Set custom profile
+										557 image
+									558 text Set Values
+		559 text Network condition changes have been applied.
+
+The focused UI element is 505 container Description: Network Simulation, ID: network-simulation-menu

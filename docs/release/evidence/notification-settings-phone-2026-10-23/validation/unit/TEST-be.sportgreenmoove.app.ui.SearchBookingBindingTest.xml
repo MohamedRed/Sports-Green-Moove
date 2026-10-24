@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SearchBookingBindingTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-23T16:07:18.041Z" hostname="MRRs-MacBook-Air.local" time="0.008">
+  <properties/>
+  <testcase name="missingConsentIsRejectedInsteadOfDispatchingAContradictorySearch" classname="be.sportgreenmoove.app.ui.SearchBookingBindingTest" time="0.005"/>
+  <testcase name="theRequestCannotSubstituteAChildDifferentFromTheCompletedSearch" classname="be.sportgreenmoove.app.ui.SearchBookingBindingTest" time="0.001"/>
+  <testcase name="editingAPlaceInvalidatesThePreviousRequestAction" classname="be.sportgreenmoove.app.ui.SearchBookingBindingTest" time="0.0"/>
+  <testcase name="aTripOutsideTheReturnedResultsCannotBeRequested" classname="be.sportgreenmoove.app.ui.SearchBookingBindingTest" time="0.001"/>
+  <testcase name="theRequestCarriesTheDisplayedTripObjectWithoutFetchingNewTerms" classname="be.sportgreenmoove.app.ui.SearchBookingBindingTest" time="0.001"/>
+  <testcase name="anUnsearchedTripCannotBeRequested" classname="be.sportgreenmoove.app.ui.SearchBookingBindingTest" time="0.0"/>
+  <testcase name="aMismatchedSummaryCannotSubstituteAnotherTrip" classname="be.sportgreenmoove.app.ui.SearchBookingBindingTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

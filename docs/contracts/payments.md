@@ -26,21 +26,49 @@ The callable returns the native PaymentSheet setup data:
 - `amountCents`
 - `currency`
 
+Before contacting the provider, the server freezes `platformFeeCents` alongside
+the amount, destination and payment attempt identity. Lost-response retries use
+that same invoice even if `PLATFORM_FEE_BPS` changes. Malformed rates are rejected
+before writing an attempt; only an absent rate retains the documented zero policy.
+Whole basis points must be between 0 and 10000, and cent rounding uses integer
+arithmetic. Provider fee metadata and the actual application fee must agree with
+the frozen invoice before returning a client configuration or settling a webhook.
+
+A legacy attempt with a known provider identity is retrieved and its verified
+historical fee is recorded; current configuration cannot reprice it. Conflicting
+identities or an old fee-less attempt with no known provider identity require
+explicit reconciliation and never create a replacement charge. The same-key,
+same-parameters requirement follows the [provider idempotency contract](https://docs.stripe.com/api/idempotent_requests).
+
 iOS and Android request this config by `bookingId`, initialize the Stripe SDK with the returned publishable key, and present native PaymentSheet with the returned PaymentIntent client secret.
 
 iOS and Android list approved, unpaid, non-free parent bookings from Firestore
 and open PaymentSheet only for those bookings. Requested bookings remain
 non-payable until the driver approves them.
 
-`createStripeAccountLink` accepts `returnUrl` and `refreshUrl` for the signed-in
-driver. The backend loads `stripeAccounts/{uid}`, calls Accounts v2
-`/v2/core/account_links` for `account_onboarding`, and returns the Stripe-hosted
-onboarding URL.
+`createStripeAccountLink` accepts the approved primary `returnUrl` and `refreshUrl`
+for the signed-in driver. The backend loads `stripeAccounts/{uid}`, creates a
+Connect Express v1 `/v1/account_links` onboarding link, and returns its URL.
+Arbitrary client-selected callback destinations are rejected.
 
-Native onboarding requires environment-specific URLs:
+The production primary callbacks are defined in
+`functions/src/config/stripeOnboarding.json`:
 
-- `SGM_STRIPE_CONNECT_RETURN_URL`
-- `SGM_STRIPE_CONNECT_REFRESH_URL`
+- `SGM_STRIPE_CONNECT_RETURN_URL=https://sports-green-moove-prod.web.app/payments/return`
+- `SGM_STRIPE_CONNECT_REFRESH_URL=https://sports-green-moove-prod.web.app/payments/refresh`
+
+An opaque 256-bit state value binds callbacks to a driver account for 30 minutes.
+Only its SHA-256 digest and expiry are saved in the server-owned account record.
+A new onboarding attempt replaces the previous state. Refresh generates a fresh
+Stripe Account Link with the same account and approved callback parameters.
+Return retrieves account capabilities and outstanding requirements from Stripe;
+a redirect alone never establishes completion. Responses are uncached, prevent
+referrer propagation, and contain no credentials or account details. Both native
+apps register `sports-green-moove://payments` to return from the browser.
+
+Hosting rewrites are codified in `firebase.json`, before the admin SPA rewrite.
+Read-only `?health=1` probes require HTTP 204 and the matching
+`X-SGM-Stripe-Callback` header; an arbitrary SPA HTTP 200 is not readiness evidence.
 
 Android injects these as string resources at build time. iOS injects them into
 `Info.plist` through XcodeGen and can also read them from the process
@@ -62,6 +90,11 @@ Ledger entry types:
 - `refund`
 
 The app does not represent rewards as stored value money. It shows an app ledger reconciled against Stripe events.
+
+On `endRide`, the backend completes the ride and writes deterministic immutable accounting entries in the same Firestore transaction:
+
+- `co2Ledger/rideCompletion_{rideSessionId}` records the driver-owned CO2 saving source data.
+- `rewardLedger/co2Bonus_{rideSessionId}_{driverUserId}` records the driver's positive `co2Bonus` when the computed reward is greater than zero.
 
 On `payment_intent.succeeded`, the Stripe webhook marks the booking paid and writes deterministic ledger entries:
 
@@ -91,3 +124,10 @@ Paid bookings are never downgraded by later incomplete payment events.
 The backend creates a Stripe Transfer to the connected account and writes a
 negative `payout` ledger entry using `payout_{userId}_{sourceId}` as the
 deterministic document id.
+
+On `transfer.created`, `transfer.updated`, or `transfer.reversed`, the Stripe
+webhook verifies the transfer metadata against the deterministic payout ledger
+entry and writes an admin-visible `reports/stripe_{eventId}` reconciliation
+report. Reversed transfers create a deterministic positive `refund` ledger
+entry using `refund_{transferId}_{userId}` so reward balances remain derived
+from immutable ledger documents.

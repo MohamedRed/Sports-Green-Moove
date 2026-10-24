@@ -1,0 +1,43 @@
+{
+  "scope": "observed-web-smoke-time-budget-cancellation-not-test-completion",
+  "sourceCommit": "a7dae8a99809ef64b17b0b189014d11411358fc0",
+  "runId": 39273057112,
+  "jobId": 118130139596,
+  "conclusion": "cancelled",
+  "startedAt": "2026-10-19T14:53:44Z",
+  "completedAt": "2026-10-19T15:09:06Z",
+  "annotations": [
+    "The job has exceeded the maximum execution time of 15m0s",
+    "The operation was canceled."
+  ],
+  "interruptedSteps": [
+    {
+      "name": "Test transactional booking terms and guardian authority",
+      "conclusion": "cancelled"
+    }
+  ],
+  "skippedSteps": [
+    "Test team club ownership rules",
+    "Test server-owned trip cancellation rules",
+    "Test server-owned trip details",
+    "Test server-owned trip proposals and parent decisions",
+    "Validate native trip cancellation integration",
+    "Validate scoped native trip-change evidence",
+    "Validate completed native parent consent evidence",
+    "Validate dual-transport network prerequisites",
+    "Validate input window readiness evidence",
+    "Validate bounded file-sync failure diagnostics",
+    "Validate explicit partner component evidence scope",
+    "Build Admin",
+    "Validate membership decision state",
+    "Validate public privacy route",
+    "Validate private partner portal evidence and contracts",
+    "Validate admin plan coverage",
+    "Test Stripe webhook flow",
+    "Test Stripe production readiness verification",
+    "Test live smoke cleanup",
+    "Build Website",
+    "Post Set up Node"
+  ],
+  "accepted": false
+}

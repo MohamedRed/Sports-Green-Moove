@@ -1,0 +1,62 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "61c4bc3d855a68e23bb2645c914c171b",
+  "sourceId": "2ORZLC4HclAmMCYUvxJM",
+  "scope": "native-sdk-controlled-post-commit-reply-loss",
+  "phase": "recover",
+  "attempts": [
+    {
+      "phase": "loss",
+      "clientMessageId": "e1e08fca-80bb-4e54-991c-2ff07ecf2403",
+      "body": "Un seul message malgré une réponse perdue.",
+      "acknowledgementDropped": true,
+      "injectedRejection": false,
+      "upstreamStatus": 200,
+      "commit": {
+        "messageId": "5d8b336afba448195418c8d5428f57425c9ce64345d5de659f2e9258f588538b",
+        "notificationId": "chat_1dcf20b631d3aa68d8dcb5c26c102ccc7bc4e7a33379dca38d702cc90f9b6b0f",
+        "clientMessageId": "e1e08fca-80bb-4e54-991c-2ff07ecf2403",
+        "createdAtMillis": 1792313532509,
+        "messageCount": 1,
+        "notificationCount": 1,
+        "recipientUserId": "sgm-qa-driver"
+      }
+    },
+    {
+      "phase": "reject",
+      "clientMessageId": "e1e08fca-80bb-4e54-991c-2ff07ecf2403",
+      "body": "Un seul message malgré une réponse perdue.",
+      "acknowledgementDropped": false,
+      "injectedRejection": true,
+      "downstreamStatus": 429
+    },
+    {
+      "phase": "recover",
+      "clientMessageId": "e1e08fca-80bb-4e54-991c-2ff07ecf2403",
+      "body": "Un seul message malgré une réponse perdue.",
+      "acknowledgementDropped": false,
+      "injectedRejection": false,
+      "upstreamStatus": 200,
+      "commit": {
+        "messageId": "5d8b336afba448195418c8d5428f57425c9ce64345d5de659f2e9258f588538b",
+        "notificationId": "chat_1dcf20b631d3aa68d8dcb5c26c102ccc7bc4e7a33379dca38d702cc90f9b6b0f",
+        "clientMessageId": "e1e08fca-80bb-4e54-991c-2ff07ecf2403",
+        "createdAtMillis": 1792313532509,
+        "messageCount": 1,
+        "notificationCount": 1,
+        "recipientUserId": "sgm-qa-driver"
+      },
+      "downstreamStatus": 200
+    }
+  ],
+  "transitions": [
+    {
+      "from": "loss",
+      "to": "reject"
+    },
+    {
+      "from": "reject",
+      "to": "recover"
+    }
+  ]
+}

@@ -27,7 +27,13 @@ service cloud.firestore {
 
     function isClubManager(clubId) {
       return hasClubManagerRole() &&
-        exists(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId));
+        exists(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)) &&
+        get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.userId == request.auth.uid &&
+        get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.clubId == clubId &&
+        get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.role == 'clubManager' &&
+        get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.status == 'active' &&
+        (!get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.keys().hasAny(['active']) ||
+          get(/databases/$(database)/documents/memberships/$(request.auth.uid + '_' + clubId)).data.active != false);
     }
 
     function userProtectedFields() {
@@ -49,15 +55,8 @@ service cloud.firestore {
       ];
     }
 
-    function tripProtectedFields() {
-      return [
-        'driverUserId',
-        'driverVerified',
-        'driverRating',
-        'approvedPassengerUserIds',
-        'status',
-        'createdAt'
-      ];
+    match /childAccountLinks/{accountUserId} {
+      allow read, write: if false;
     }
 
     match /users/{userId} {
@@ -89,18 +88,35 @@ service cloud.firestore {
 
     match /teams/{teamId} {
       allow read: if true;
-      allow create, update: if isAdmin() || isClubManager(request.resource.data.clubId);
+      allow create: if isAdmin() || isClubManager(request.resource.data.clubId);
+      allow update: if isAdmin() || (
+        resource.data.clubId == request.resource.data.clubId &&
+        isClubManager(resource.data.clubId)
+      );
       allow delete: if isAdmin() || isClubManager(resource.data.clubId);
     }
 
     match /memberships/{membershipId} {
       allow read: if isAdmin() || isSelf(resource.data.userId) || isClubManager(resource.data.clubId);
-      allow create: if isAdmin() || isClubManager(request.resource.data.clubId);
-      allow update: if isAdmin() || (
-        isClubManager(resource.data.clubId) &&
-        request.resource.data.clubId == resource.data.clubId
-      );
-      allow delete: if isAdmin() || isClubManager(resource.data.clubId);
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /emergencyContacts/{contactId} {
+      allow read, write: if false;
+    }
+
+    match /emergencyContactOperations/{operationId} {
+      allow read, write: if false;
+    }
+
+    match /guardianVerifications/{verificationId} {
+      allow read: if isSelf(resource.data.parentUserId) || isClubManager(resource.data.clubId);
+      allow write: if false;
+    }
+
+    match /guardianVerificationEvents/{eventId} {
+      allow read: if isSelf(resource.data.parentUserId) || isClubManager(resource.data.clubId);
+      allow write: if false;
     }
 
     match /trips/{tripId} {
@@ -108,7 +124,7 @@ service cloud.firestore {
       allow create, delete: if isAdmin();
       allow update: if isAdmin() || (signedIn() &&
         resource.data.driverUserId == request.auth.uid &&
-        !request.resource.data.diff(resource.data).affectedKeys().hasAny(tripProtectedFields()));
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title']));
     }
 
     match /bookings/{bookingId} {
@@ -126,18 +142,27 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Team history is served only through current-authority, admission-filtered callables.
+    match /teamConversations/{document=**} {
+      allow read, write: if false;
+    }
+    match /teamMessageOperations/{operationId} {
+      allow read, write: if false;
+    }
+
     match /messages/{messageId} {
       allow read: if signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]);
       allow create, update, delete: if false;
     }
 
+    match /chatInboxes/{entryId} {
+      allow read: if signedIn() && resource.data.userId == request.auth.uid;
+      allow create, update, delete: if false;
+    }
+
     match /notifications/{notificationId} {
       allow read: if signedIn() && resource.data.userId == request.auth.uid;
-      allow update: if signedIn() &&
-        resource.data.userId == request.auth.uid &&
-        request.resource.data.userId == resource.data.userId &&
-        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'readAt']);
-      allow create, delete: if false;
+      allow create, update, delete: if false;
     }
 
     match /ratings/{ratingId} {
@@ -163,6 +188,11 @@ service cloud.firestore {
     match /reports/{reportId} {
       allow read: if isAdmin();
       allow create, update, delete: if false;
+    }
+
+    match /supportUrgentEmailOutbox/{reportId} {
+      allow read: if isAdmin();
+      allow write: if false;
     }
 
     match /appConfig/{configId} {

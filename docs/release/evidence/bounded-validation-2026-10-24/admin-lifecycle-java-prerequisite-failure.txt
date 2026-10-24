@@ -1,0 +1,22 @@
+
+> sports-green-moove@0.1.0 test:local-admin-lifecycle
+> node scripts/qa/run-local-admin-lifecycle.mjs
+
+
+> @sports-green-moove/functions@0.1.0 build
+> tsc -p tsconfig.json
+
+i  emulators: Shutting down emulators.
+
+Error: firebase-tools no longer supports Java version before 21. Please install a JDK at version 21 or above to get a compatible runtime.
+file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:27
+    if (result.status !== 0) throw new Error(`${command} failed (${result.status})`);
+                                   ^
+
+Error: /Users/mrr/.hermes/node/bin/node failed (1)
+    at Object.run (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:27:36)
+    at runEmulatorEntry (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:55:11)
+    at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/run-local-admin-lifecycle.mjs:14:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Node.js v22.22.3

@@ -1,0 +1,94 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "86398f3a285a7012032289d2dc626b1f",
+  "testedAt": "2026-10-22T10:13:51.474Z",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "steps": [
+    {
+      "id": "emergency-contact-ui",
+      "status": "passed"
+    }
+  ],
+  "checks": [
+    {
+      "id": "adult-save-reload",
+      "status": "passed"
+    },
+    {
+      "id": "activity-recreation-fresh-read",
+      "status": "passed"
+    },
+    {
+      "id": "verified-parent-child-save",
+      "status": "passed"
+    },
+    {
+      "id": "revoked-parent-dial-denied",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-read-dialer-handoff-without-direct-call",
+      "status": "passed"
+    },
+    {
+      "id": "return-from-dialer",
+      "status": "passed"
+    },
+    {
+      "id": "cancelled-removal-no-write",
+      "status": "passed"
+    },
+    {
+      "id": "confirmed-removal-versioned",
+      "status": "passed"
+    },
+    {
+      "id": "account-isolation",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "emergency-self-saved.png": "fb74a58074b45062b5bbd02377fd545a4d888bf756fa118dbe35cd91970f6c34",
+    "emergency-self-restored.png": "2caec82b43d1bc71d70232dba33d99674721931355289809ae22fb52de9b079b",
+    "emergency-child-saved.png": "0b35f91d99b074bfa5c2b561da4124698f1e83a7265dcafc8a99e17666e408e1",
+    "emergency-child-revoked.png": "3c6136b832ed41368fbcd4ef155074cbed8b4089b1f6709b34d675d2ab70d5c7",
+    "emergency-dialer-opened.png": "7e09306c1bb0db23170140669c3bfd30b9df4fef70d9d936a32b9ed51d31a697",
+    "emergency-self-removed.png": "86dca0c4f9ebcd7815ebc8fda362a3d8210cec5590edf85e83da9c89f7d6f8e6",
+    "emergency-other-account.png": "e7e1350afed87992c81ee4163a3a3a45e499a18302cec4a2b1309d87321f7f1b"
+  },
+  "transcriptSha256": "388098ad6d315934a27e8a63c38f68b149cf9d2f37796f4fa537c15fac66503c",
+  "verificationPreseeded": false,
+  "managerDecisionMethod": "authenticated-local-sdk-request-verify-revoke",
+  "privateOperationsVerified": 3,
+  "protectedRecordsUnchanged": true,
+  "isolatedFixtureCleanupVerified": true,
+  "dialerOpened": true,
+  "directCallIntentCount": 0,
+  "dialerPackage": "com.google.android.dialer",
+  "childOwnAccountDialImplemented": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt": "9c6e4712cb5d0dcae0494b8691d93ee7c78c3bc3c01f235812f3c8febe6d1cb3",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactGateway.kt": "f7f1e0b36b773d4682bc9bab96cf19721bff07f7384e0054efcadcd7611a48e4",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt": "c1566cab0bc5085f34c39c0786815c08626f6393971c7d50671da935c4cab063",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt": "5bd078158089956a8dbb712839ac56ed0ccdfecd79c904827fefa3fa3f9e4ac7",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidEmergencyDialer.kt": "52a691dace3ba9b91e713f0c7f7fcf05a89e89a7464854fc0ed4d26d4d2bb075",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt": "09965b0b16250983e8808a5a3c2144fe53748327345c4714f08ea87146f08632",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt": "ef47ccc47bbc779a52c8c3573d8d03a22ef9f314c3e20414f3251911255526c2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactDialogs.kt": "a2659e8ffd6a73c082932e27dc889ee56ba6be3e2baa1fd3c8b4bd6e46510350",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt": "1a0b108cd70f7dee2558cdf79d8765ea2a16b7f900ee3163ad47f4265e4049dd",
+    "functions/src/domain/emergencyContact.ts": "40ca89ad41521f32931573668996c84471cff84bdf01cdf6fda7d380788aa0ef",
+    "functions/src/services/emergencyContactAuthority.ts": "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865",
+    "functions/src/services/emergencyContact.ts": "6b64809a0107757ed356a817c1db31b80b8f52b1b7bdb1cd2107a692642b9a9a",
+    "functions/src/callables/emergencyContact.ts": "250cb025b035a1482c15760d0414ca4bcd243526dc114425682c702349ea97ab",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt": "772610752b6c8437053a884a4cd5b4cf01e14ee5ff5f526e62eb3196a4fe0e8c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyPeer.kt": "4648a7b2fde7a7a0141c521d749ca49da6da3e74965f78a71af72cf50283075c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyEvidence.kt": "e298ac1aac60290b5b734c6fc2f6952d8cab35832ac071c05921423e98ef4c19",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyDialerDiagnostic.kt": "ae3bd07e6a6965aac8e0fc5adca0858317ecbb30e3dd92fd07e2c98a02dd5941",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt": "5cbb386efc1dcf47240f4e2d9a1e3a0da7d730bb199c9468699b99ea766fda74",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalComposeRule.kt": "c0c3716209d799ceb3ce0d1648d522be73fd85a512d5ab4caa5e4fccb96030ae"
+  }
+}

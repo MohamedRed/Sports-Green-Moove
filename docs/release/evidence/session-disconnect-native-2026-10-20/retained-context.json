@@ -1,0 +1,19 @@
+{
+  "scope": "single-local-session-disconnect-native-trial-not-complete-release",
+  "sourceCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+  "workflowRunId": 39420260518,
+  "caseJobId": 118619147999,
+  "artifactId": 12263314595,
+  "runId": "4dd04a69259d48d1c055a3b472fdff05",
+  "physicalDevice": false,
+  "realNetworkLossVerified": false,
+  "productionDeployed": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "wholeWorkflowSuccessClaimed": false,
+  "reviewedCaptures": [
+    "local-session-disconnect-error.png",
+    "local-session-disconnect-signed-out.png",
+    "local-session-disconnect-reopened.png"
+  ]
+}

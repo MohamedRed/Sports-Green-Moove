@@ -1,0 +1,46 @@
+{
+  "scope": "unit-and-local-callable-freshness-not-native-or-physical-gps",
+  "sourceBaseCommit": "a7dae8a99809ef64b17b0b189014d11411358fc0",
+  "preparedWorktreeSources": true,
+  "before": {
+    "tests": 10,
+    "failures": 9,
+    "errors": 0,
+    "sourceFiles": {
+      "functions/src/lib/clientTrips.ts": "ba68b93f51e830d86ffd5291c6d1ae8491863e3d60f875ddaedf3f5fdb0e513a",
+      "functions/src/domain/locations.ts": "fec6a6892ef9309aa0254885ee798d233d419a5505a6b59a2f001d68d4b1fc2f",
+      "functions/src/__tests__/location-freshness.test.ts": "46f229cf12c573c89b58fe2acf60386de418d0995c3d5ddfae1c57feef404d54"
+    }
+  },
+  "after": {
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "fullFunctionUnitTests": 318,
+    "sourceFiles": {
+      "functions/src/lib/clientTrips.ts": "f51a17153d6330e290d2a810abb62391ea85cd900d909262317f01fdb3552d46",
+      "functions/src/domain/locations.ts": "e467eb4b9a33190cc04df1a4dbb272c799db87fe070139e60676aea775300599",
+      "functions/src/__tests__/location-freshness.test.ts": "46f229cf12c573c89b58fe2acf60386de418d0995c3d5ddfae1c57feef404d54",
+      "functions/src/__tests__/client-trips.test.ts": "42fde0e034eb24d602ff833d8910911cf906df0439c6fb4761721bbd13fb2872",
+      "functions/src/__tests__/locations.test.ts": "61f2d6f4d945d7620a1e1743392171d1f1c92227e797a8bd1c212827a36cdd13"
+    }
+  },
+  "services": {
+    "runId": "91e969aa7e7bcf8993c83301396a9d50",
+    "actualAuthenticatedChecks": 5,
+    "adminClientClosed": true,
+    "originalScriptExitedSuccessfully": true
+  },
+  "initialHarness": {
+    "runId": "a75341c74b08dee191db385fac9f8be9",
+    "observationsCompleted": 5,
+    "accepted": false,
+    "scriptWasTerminated": true,
+    "reason": "Open administrative database client prevented normal exit; original report is diagnostic only."
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "storeReviewAccepted": false
+}

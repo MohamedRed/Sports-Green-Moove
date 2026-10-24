@@ -1,0 +1,2 @@
+general-ui.xml -text whitespace=cr-at-eol
+*.txt -text whitespace=-blank-at-eof

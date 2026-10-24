@@ -1,0 +1,19 @@
+# Subtest: publicly readable pipes and oversized or multiline input are rejected
+not ok 1210 - publicly readable pipes and oversized or multiline input are rejected
+  ---
+  duration_ms: 15.836125
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/scoped-browserstack-local.test.mjs:187:1'
+  failureType: 'unhandledRejection'
+  error: 'Private credential input is too long'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    readPrivateCredentialPipe (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/read-private-credential-pipe.mjs:22:9)
+  ...
+# (node:99792) PromiseRejectionHandledWarning: Promise rejection was handled asynchronously (rejection id: 19)
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Error: Test "publicly readable pipes and oversized or multiline input are rejected" at tests/scoped-browserstack-local.test.mjs:187:1 generated asynchronous activity after the test ended. This activity created the error "Error: ENOENT: no such file or directory, lstat '/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-private-pipe-test-6MMh0J/input.pipe'" and would have caused the test to fail, but instead triggered an unhandledRejection event.

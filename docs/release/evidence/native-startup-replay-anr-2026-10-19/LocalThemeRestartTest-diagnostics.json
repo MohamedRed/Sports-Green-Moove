@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "494e97889107828a61550b0d6846cf6d",
+  "label": "LocalThemeRestartTest",
+  "packageName": "be.sportgreenmoove.app.local",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-19T17:47:39.350Z",
+  "host": {
+    "totalMemoryBytes": 8589934592,
+    "freeMemoryBytes": 140165120,
+    "cpuCount": 8
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "LocalThemeRestartTest-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "LocalThemeRestartTest-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "LocalThemeRestartTest-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "LocalThemeRestartTest-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "LocalThemeRestartTest-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "LocalThemeRestartTest-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "LocalThemeRestartTest-package-operations.txt",
+      "empty": true
+    }
+  ]
+}

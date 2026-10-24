@@ -43,6 +43,10 @@ describe("client trip summaries", () => {
     expect(summary.priceLabel).toBe("2,50 EUR");
     expect(summary.passengerInitials).toEqual(["IB", "NT"]);
     expect(summary.status).toBe("upcoming");
+    expect(summary.mapPreview).toEqual({
+      start: { lat: 50.716, lng: 4.611 },
+      end: { lat: 50.671, lng: 4.581 },
+    });
   });
 
   it("maps live trip state to source-aware ride snapshots", () => {
@@ -53,11 +57,13 @@ describe("client trip summaries", () => {
       {
         vehicle: {
           source: "nativeFallback",
+          capturedAt: now - 30_000,
           uploadedAt: now - 30_000,
         },
         children: {
           "child-1": {
             source: "radar",
+            capturedAt: now - 45_000,
             uploadedAt: now - 45_000,
           },
         },
@@ -69,6 +75,8 @@ describe("client trip summaries", () => {
         },
       },
       {
+        tripId: "trip-1",
+        driverUserId: "driver-1",
         passengers: [{
           bookingId: "booking-1",
           childId: "child-1",
@@ -82,6 +90,8 @@ describe("client trip summaries", () => {
 
     expect(snapshot).toMatchObject({
       rideSessionId: "ride-1",
+      tripId: "trip-1",
+      driverUserId: "driver-1",
       status: "Actif",
       vehicleLastUpdateLabel: "Secours GPS · il y a 30 s",
       childLastUpdateLabel: "Radar · il y a 45 s",
@@ -100,13 +110,25 @@ describe("client trip summaries", () => {
   it("marks active rides stale until a fresh vehicle update exists", () => {
     const now = 1_760_000_000_000;
 
-    expect(toClientRideSnapshot("ride-1", "active", null, now).stale).toBe(true);
+    expect(toClientRideSnapshot("ride-1", "active", null, null, now).stale).toBe(true);
     expect(toClientRideSnapshot("ride-1", "active", {
       vehicle: {
         source: "radar",
+        capturedAt: now - 91_000,
         uploadedAt: now - 91_000,
       },
     }, null, now).stale).toBe(true);
+  });
+
+  it("keeps booking-specific status authoritative over a historical child-level override", () => {
+    const snapshot = toClientRideSnapshot("ride-1", "active", null, {
+      passengers: [{ bookingId: "booking-1", childId: "child-1", pickupStatus: "pending", dropoffStatus: "pending" }],
+      passengerStatuses: {
+        "child-1": { pickupStatus: "pickedUp", dropoffStatus: "droppedOff" },
+        "booking-1": { pickupStatus: "pickedUp", dropoffStatus: "pending" },
+      },
+    });
+    expect(snapshot.passengers[0]).toMatchObject({ pickupStatus: "pickedUp", dropoffStatus: "pending" });
   });
 
   it("applies passenger status overrides from the ride session", () => {

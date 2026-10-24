@@ -10,6 +10,8 @@ on:
       - "firestore.rules"
       - "admin/**"
       - "functions/**"
+      - "tests/vehicle-map-contract.test.mjs"
+      - "scripts/qa/**"
       - "package-lock.json"
       - "package.json"
       - "storage.rules"
@@ -25,6 +27,8 @@ on:
       - "firestore.rules"
       - "admin/**"
       - "functions/**"
+      - "tests/vehicle-map-contract.test.mjs"
+      - "scripts/qa/**"
       - "package-lock.json"
       - "package.json"
       - "storage.rules"
@@ -60,14 +64,116 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Test runtime proxy trust against forwarded-address spoofing
+        run: node --test tests/proxy-trust-security.test.mjs
+
+      - name: Test runtime multipart parser against malformed inputs
+        run: node --test tests/multipart-security.test.mjs
+
+      - name: Test bounded restoration faults and unchanged fixture records
+        run: node --test tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
+      - name: Validate dated full native replay recheck
+        run: node --test tests/native-recheck-evidence.test.mjs
+
+      - name: Validate network run evidence and temporary administration cleanup
+        run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs
+
+      - name: Validate initial network observation before test-only transport requests
+        run: node --test tests/network-start-observation.test.mjs
+
       - name: Test functions
         run: npm run test --workspace functions
+      - name: Validate bounded collection regression evidence
+        run: node --test tests/bounded-validation-evidence.test.mjs
 
       - name: Build functions
         run: npm run build --workspace functions
+      - name: Test atomic booking decisions and recipient notifications
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
+        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/booking-request-notice-evidence.test.mjs tests/booking-request-phone-checkpoints.test.mjs tests/booking-request-phone-evidence.test.mjs
+      - name: Test private idempotent notification acknowledgements
+        run: npm run test:notification-reads && node --test tests/notification-read-restart-phone-evidence.test.mjs
+      - name: Retain booking notification and cleanup results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: backend-booking-notices
+          path: ${{ runner.temp }}/booking-notices.json
+          if-no-files-found: ignore
 
       - name: Build admin console
         run: npm run build --workspace admin
 
       - name: Test Firebase rules
         run: npm run test:rules
+
+      - name: Test Stripe webhook flow
+        run: npm run test:stripe-webhook-flow
+
+      - name: Test isolated payment confirmation access and read-only status
+        run: node scripts/qa/run-local-payment-status.mjs
+
+      - name: Test isolated guardian verification authority and lifecycle
+        run: npm run test:guardian-verification
+
+      - name: Test guardian review permissions, pagination and decision state
+        run: npm run test:guardian-review && node --test tests/guardian-review-controller.test.mjs tests/guardian-review-evidence.test.mjs
+
+      - name: Test parent verification choices and authoritative state reads
+        run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs
+
+      - name: Test private emergency contact ownership and revocation
+        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
+      - name: Test child emergency reading with preseeded private account links
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-emergency-services.json
+        run: npm run test:child-emergency && node --test tests/child-emergency-contract.test.mjs
+      - name: Retain child emergency service results and disposal
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: child-emergency-service-results
+          path: ${{ runner.temp }}/child-emergency-services.json*
+          if-no-files-found: ignore
+      - name: Test immutable child contact identity and independently verified fixtures
+        run: npm run test:emergency-contact-identity && npm run test:emergency-contact-fixture && npm run test:ride-emergency-fixture && node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/ride-emergency-completed-evidence.test.mjs
+
+      - name: Test authoritative team enrollment without granting conversation access
+        run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
+
+      - name: Verify observation freshness through isolated authenticated location calls
+        run: npm run test:location-freshness && node --test tests/location-freshness-evidence.test.mjs
+
+      - name: Verify atomic observation ordering through concurrent location calls
+        run: npm run test:location-order && node --test tests/location-order-evidence.test.mjs
+
+      - name: Verify selected ride observer authorization and remote lifecycle responses
+        run: npm run test:ride-observation-services && node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
+      - name: Verify authorized vehicle coordinates and invalid geographic input rejection
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-vehicle-map-services.json
+        run: npm run test:vehicle-map-services && node --test tests/vehicle-map-contract.test.mjs
+      - name: Validate native startup acknowledgement and temporary mock policy contracts
+        run: node --test tests/native-startup-contract.test.mjs tests/native-startup-evidence.test.mjs tests/local-mock-location-permission.test.mjs tests/local-emulator-log-evidence.test.mjs tests/local-emulator-lifecycle.test.mjs tests/isolated-ride-records.test.mjs
+
+      - name: Test owned enrollment history after eligibility and identity loss
+        run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
+      - name: Test owned local service process supervision
+        run: node --test tests/supervised-local-process.test.mjs
+      - name: Verify actual isolated admin clients close after replay success and failure
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-local-admin-lifecycle.json
+        run: npm run test:local-admin-lifecycle && node --test tests/local-admin-lifecycle.test.mjs tests/admin-client-lifecycle-evidence.test.mjs tests/native-admin-close-evidence.test.mjs
+
+      - name: Test scoped team and verified child choices
+        run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs
+
+      - name: Test shared membership cursor continuation and authorization
+        run: npm run test:membership-cursors && node --test tests/membership-cursor-contract.test.mjs
+
+      - name: Test native team fixture lifecycle and fail-closed evidence contract
+        run: npm run test:team-native-fixtures && node --test tests/team-enrollment-sdk.test.mjs tests/team-phone-evidence.test.mjs
+
+      - name: Test manager team review scope and real service lifecycle
+        run: npm run test:team-review && node --test tests/team-review-controller.test.mjs tests/team-review-wire.test.mjs tests/team-review-evidence.test.mjs

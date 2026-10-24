@@ -1,0 +1,251 @@
+{
+  "scope": "independent-isolated-team-read-records-not-phone-ui-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "59d574153c71057d48777f57fe502944",
+  "recordedAt": "2026-10-21T21:47:03.212Z",
+  "result": {
+    "phase": "parent-returned",
+    "messageCount": 4,
+    "receiptCount": 3,
+    "parentUnreadCount": 0,
+    "driverUnreadCount": 0,
+    "otherParentUnreadCount": 3,
+    "identitiesAndPrivateReceiptsVerified": true,
+    "historyBeforeAdmissionExcluded": true
+  },
+  "state": {
+    "entries": [
+      {
+        "id": "fe0330b8ddd78478ce8805020cef20fa83f1ec78af0ad679d2c335c523bca9d3",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Message avant arrivée QA",
+        "sequence": 1,
+        "clientMessageId": "f2b76a78-dfd3-42c8-90fa-6bf8f8b01fae",
+        "createdAtSeconds": 1792618156,
+        "createdAtNanos": 905000000
+      },
+      {
+        "id": "30a2168589e2ac9d0c3b3a8af3a5bdea79fef56bbc63f37672fe0bee81fa8a28",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Bonjour équipe QA",
+        "sequence": 2,
+        "clientMessageId": "44410408-25df-4450-a8d4-ffa4ab99aa33",
+        "createdAtSeconds": 1792618158,
+        "createdAtNanos": 254000000
+      },
+      {
+        "id": "8dda147c15af74fe3a8108d82f159f2ca66723df2bfa9b98dcd3334a8a70bc67",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Nouveau message non lu QA",
+        "sequence": 3,
+        "clientMessageId": "cb2e7d02-ada3-49c0-bc3a-25e361a4ba71",
+        "createdAtSeconds": 1792618758,
+        "createdAtNanos": 917000000
+      },
+      {
+        "id": "7499ffe1772671eda590d2e651b56d4cea78ecad425e18c7748166763993b796",
+        "senderUserId": "sgm-qa-parent",
+        "body": "Reçu sans doublon QA",
+        "sequence": 4,
+        "clientMessageId": "1ff1db26-db75-47cd-a14f-389cd2132d8b",
+        "createdAtSeconds": 1792618896,
+        "createdAtNanos": 791000000
+      }
+    ],
+    "receipts": [
+      {
+        "id": "b5bb792e34eee20956fb3ea7f3f3ae6f0af86215c8633bfb64adba30346ff730",
+        "userId": "sgm-qa-driver",
+        "messageId": "7499ffe1772671eda590d2e651b56d4cea78ecad425e18c7748166763993b796",
+        "messageCreatedAtSeconds": 1792618896,
+        "messageCreatedAtNanos": 791000000,
+        "readAtSeconds": 1792619082,
+        "readAtNanos": 978000000
+      },
+      {
+        "id": "c173331b9d2aeee3317d827b73c6ac45adfee58caaf5dae252ff14d7892f73ea",
+        "userId": "sgm-qa-parent",
+        "messageId": "8dda147c15af74fe3a8108d82f159f2ca66723df2bfa9b98dcd3334a8a70bc67",
+        "messageCreatedAtSeconds": 1792618758,
+        "messageCreatedAtNanos": 917000000,
+        "readAtSeconds": 1792618835,
+        "readAtNanos": 793000000
+      },
+      {
+        "id": "f156617604a4b2e8daa25e6644255bacc40c2ed13118295506ca50372279cbca",
+        "userId": "sgm-qa-parent",
+        "messageId": "30a2168589e2ac9d0c3b3a8af3a5bdea79fef56bbc63f37672fe0bee81fa8a28",
+        "messageCreatedAtSeconds": 1792618158,
+        "messageCreatedAtNanos": 254000000,
+        "readAtSeconds": 1792618598,
+        "readAtNanos": 55000000
+      }
+    ],
+    "pages": {
+      "sgm-qa-parent": {
+        "teamId": "zz-sgm-qa-chat-team",
+        "teamInstanceId": "06c26afcd75576cd78a018151dffe0287ad4732980d660911700a7cf6185ee05",
+        "currentUserId": "sgm-qa-parent",
+        "title": "Équipe conversations QA",
+        "accessVersion": "d147fb883da9a761b3461a75f79d4d94fea325135e7f97b99ccb32e7c65907b3",
+        "historyPolicy": "after-current-admission",
+        "items": [
+          {
+            "id": "7499ffe1772671eda590d2e651b56d4cea78ecad425e18c7748166763993b796",
+            "senderUserId": "sgm-qa-parent",
+            "authorName": "Hermes Parent QA",
+            "requestId": "1ff1db26-db75-47cd-a14f-389cd2132d8b",
+            "body": "Reçu sans doublon QA",
+            "sequence": 4,
+            "createdAtSeconds": 1792618896,
+            "createdAtNanos": 791000000,
+            "needsRead": false
+          },
+          {
+            "id": "8dda147c15af74fe3a8108d82f159f2ca66723df2bfa9b98dcd3334a8a70bc67",
+            "senderUserId": "sgm-qa-driver",
+            "authorName": "Hermes Driver QA",
+            "requestId": "cb2e7d02-ada3-49c0-bc3a-25e361a4ba71",
+            "body": "Nouveau message non lu QA",
+            "sequence": 3,
+            "createdAtSeconds": 1792618758,
+            "createdAtNanos": 917000000,
+            "needsRead": false
+          },
+          {
+            "id": "30a2168589e2ac9d0c3b3a8af3a5bdea79fef56bbc63f37672fe0bee81fa8a28",
+            "senderUserId": "sgm-qa-driver",
+            "authorName": "Hermes Driver QA",
+            "requestId": "44410408-25df-4450-a8d4-ffa4ab99aa33",
+            "body": "Bonjour équipe QA",
+            "sequence": 2,
+            "createdAtSeconds": 1792618158,
+            "createdAtNanos": 254000000,
+            "needsRead": false
+          }
+        ],
+        "nextCursor": null
+      },
+      "sgm-qa-driver": {
+        "teamId": "zz-sgm-qa-chat-team",
+        "teamInstanceId": "06c26afcd75576cd78a018151dffe0287ad4732980d660911700a7cf6185ee05",
+        "currentUserId": "sgm-qa-driver",
+        "title": "Équipe conversations QA",
+        "accessVersion": "134afc5205d8252aeefb532c88f0eb9c5f96b703021f78f0d27efbea181810f7",
+        "historyPolicy": "after-current-admission",
+        "items": [
+          {
+            "id": "7499ffe1772671eda590d2e651b56d4cea78ecad425e18c7748166763993b796",
+            "senderUserId": "sgm-qa-parent",
+            "authorName": "Hermes Parent QA",
+            "requestId": "1ff1db26-db75-47cd-a14f-389cd2132d8b",
+            "body": "Reçu sans doublon QA",
+            "sequence": 4,
+            "createdAtSeconds": 1792618896,
+            "createdAtNanos": 791000000,
+            "needsRead": false
+          },
+          {
+            "id": "8dda147c15af74fe3a8108d82f159f2ca66723df2bfa9b98dcd3334a8a70bc67",
+            "senderUserId": "sgm-qa-driver",
+            "authorName": "Hermes Driver QA",
+            "requestId": "cb2e7d02-ada3-49c0-bc3a-25e361a4ba71",
+            "body": "Nouveau message non lu QA",
+            "sequence": 3,
+            "createdAtSeconds": 1792618758,
+            "createdAtNanos": 917000000,
+            "needsRead": false
+          },
+          {
+            "id": "30a2168589e2ac9d0c3b3a8af3a5bdea79fef56bbc63f37672fe0bee81fa8a28",
+            "senderUserId": "sgm-qa-driver",
+            "authorName": "Hermes Driver QA",
+            "requestId": "44410408-25df-4450-a8d4-ffa4ab99aa33",
+            "body": "Bonjour équipe QA",
+            "sequence": 2,
+            "createdAtSeconds": 1792618158,
+            "createdAtNanos": 254000000,
+            "needsRead": false
+          },
+          {
+            "id": "fe0330b8ddd78478ce8805020cef20fa83f1ec78af0ad679d2c335c523bca9d3",
+            "senderUserId": "sgm-qa-driver",
+            "authorName": "Hermes Driver QA",
+            "requestId": "f2b76a78-dfd3-42c8-90fa-6bf8f8b01fae",
+            "body": "Message avant arrivée QA",
+            "sequence": 1,
+            "createdAtSeconds": 1792618156,
+            "createdAtNanos": 905000000,
+            "needsRead": false
+          }
+        ],
+        "nextCursor": null
+      },
+      "sgm-qa-chat-other-parent": {
+        "teamId": "zz-sgm-qa-chat-team",
+        "teamInstanceId": "06c26afcd75576cd78a018151dffe0287ad4732980d660911700a7cf6185ee05",
+        "currentUserId": "sgm-qa-chat-other-parent",
+        "title": "Équipe conversations QA",
+        "accessVersion": "921489433d851b45fc9ee44f7070eede0106b731d088a20388c82aa1b6058958",
+        "historyPolicy": "after-current-admission",
+        "items": [
+          {
+            "id": "7499ffe1772671eda590d2e651b56d4cea78ecad425e18c7748166763993b796",
+            "senderUserId": "sgm-qa-parent",
+            "authorName": "Hermes Parent QA",
+            "requestId": "1ff1db26-db75-47cd-a14f-389cd2132d8b",
+            "body": "Reçu sans doublon QA",
+            "sequence": 4,
+            "createdAtSeconds": 1792618896,
+            "createdAtNanos": 791000000,
+            "needsRead": true
+          },
+          {
+            "id": "8dda147c15af74fe3a8108d82f159f2ca66723df2bfa9b98dcd3334a8a70bc67",
+            "senderUserId": "sgm-qa-driver",
+            "authorName": "Hermes Driver QA",
+            "requestId": "cb2e7d02-ada3-49c0-bc3a-25e361a4ba71",
+            "body": "Nouveau message non lu QA",
+            "sequence": 3,
+            "createdAtSeconds": 1792618758,
+            "createdAtNanos": 917000000,
+            "needsRead": true
+          },
+          {
+            "id": "30a2168589e2ac9d0c3b3a8af3a5bdea79fef56bbc63f37672fe0bee81fa8a28",
+            "senderUserId": "sgm-qa-driver",
+            "authorName": "Hermes Driver QA",
+            "requestId": "44410408-25df-4450-a8d4-ffa4ab99aa33",
+            "body": "Bonjour équipe QA",
+            "sequence": 2,
+            "createdAtSeconds": 1792618158,
+            "createdAtNanos": 254000000,
+            "needsRead": true
+          }
+        ],
+        "nextCursor": null
+      }
+    },
+    "counts": {
+      "sgm-qa-parent": 0,
+      "sgm-qa-driver": 0,
+      "sgm-qa-chat-other-parent": 3
+    },
+    "parentMessageId": "7499ffe1772671eda590d2e651b56d4cea78ecad425e18c7748166763993b796",
+    "operationIds": [
+      "30a2168589e2ac9d0c3b3a8af3a5bdea79fef56bbc63f37672fe0bee81fa8a28",
+      "7499ffe1772671eda590d2e651b56d4cea78ecad425e18c7748166763993b796",
+      "8dda147c15af74fe3a8108d82f159f2ca66723df2bfa9b98dcd3334a8a70bc67",
+      "fe0330b8ddd78478ce8805020cef20fa83f1ec78af0ad679d2c335c523bca9d3"
+    ],
+    "lastSequence": 4
+  },
+  "isolation": {
+    "protectedBaselinePreserved": true,
+    "originalClaimsUnchanged": true,
+    "expectedProfileTimestampUpdatesOnly": true,
+    "protectedRecordCount": 158
+  },
+  "phoneUiProven": false,
+  "controllerMarksReads": false
+}

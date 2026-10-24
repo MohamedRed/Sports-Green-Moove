@@ -25,6 +25,18 @@ struct AppShell: View {
         } message: {
             Text(appState.errorMessage ?? appState.noticeMessage ?? "")
         }
+        .alert(ActiveRidePermissionCopy.title, isPresented: activeRidePermissionBinding) {
+            Button(ActiveRidePermissionCopy.cancel, role: .cancel) {
+                appState.cancelActiveRideStart()
+            }
+            Button(ActiveRidePermissionCopy.continueAction) {
+                Task {
+                    await appState.confirmActiveRideStart()
+                }
+            }
+        } message: {
+            Text(ActiveRidePermissionCopy.body)
+        }
     }
 
     private var authenticatedShell: some View {
@@ -45,6 +57,17 @@ struct AppShell: View {
                 if !visible {
                     appState.errorMessage = nil
                     appState.noticeMessage = nil
+                }
+            }
+        )
+    }
+
+    private var activeRidePermissionBinding: Binding<Bool> {
+        Binding(
+            get: { appState.activeRidePermissionDisclosure != nil },
+            set: { visible in
+                if !visible {
+                    appState.activeRidePermissionDisclosure = nil
                 }
             }
         )

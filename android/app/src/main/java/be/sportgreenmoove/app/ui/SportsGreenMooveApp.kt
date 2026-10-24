@@ -5,45 +5,45 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
-import be.sportgreenmoove.app.data.BookingRequestSummary
-import be.sportgreenmoove.app.data.ChildSummary
-import be.sportgreenmoove.app.data.LiveRideSnapshot
-import be.sportgreenmoove.app.data.PayableBookingSummary
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripSummary
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmTheme
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
+import be.sportgreenmoove.app.domain.canManageRide
 import be.sportgreenmoove.app.services.AndroidRuntime
-import be.sportgreenmoove.app.services.rememberStripePaymentSheetController
-import com.stripe.android.paymentsheet.PaymentSheetResult
 import kotlinx.coroutines.launch
-
 @Composable
 fun SportsGreenMooveApp() {
     val context = LocalContext.current
     val providers = remember { AndroidRuntime.create(context.applicationContext) }
     val scope = rememberCoroutineScope()
-    var screen by remember { mutableStateOf(DemoScreen.Home) }
+    var screen by rememberSaveable { mutableStateOf(AppScreen.Home) }
+    var contactReturn by rememberSaveable { mutableStateOf(AppScreen.Options) }
+    val messagesState = rememberSaveableStateHolder()
     var role by remember { mutableStateOf(AppRole.Parent) }
     var session by remember { mutableStateOf<AuthSession?>(null) }
-    var trips by remember { mutableStateOf(emptyList<TripSummary>()) }
-    var children by remember { mutableStateOf(emptyList<ChildSummary>()) }
-    var activeRide by remember { mutableStateOf<LiveRideSnapshot?>(null) }
-    var activeRideTrip by remember { mutableStateOf<TripSummary?>(null) }
-    var payableBookings by remember { mutableStateOf(emptyList<PayableBookingSummary>()) }
-    var driverBookingRequests by remember { mutableStateOf(emptyList<BookingRequestSummary>()) }
-    var darkTheme by remember { mutableStateOf(false) }
+    val appData = remember { AppDataState() }
+    var trips by appData.trips
+    var children by appData.children
+    val clubs by appData.clubs
+    var activeRide by appData.activeRide
+    var activeRideTrip by appData.activeRideTrip
+    var payableBookings by appData.payableBookings
+    var driverBookingRequests by appData.driverBookingRequests
+    var ledgerSummaries by appData.ledgerSummaries
+    var darkTheme by rememberAppDarkTheme()
     var loading by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var noticeMessage by remember { mutableStateOf<String?>(null) }
@@ -53,46 +53,22 @@ fun SportsGreenMooveApp() {
     val searchController = rememberSearchController(
         providers = providers,
         scope = scope,
+        sessionUid = session?.uid,
         onError = { errorMessage = it },
         onNotice = { noticeMessage = it },
         onAppLoading = { loading = it },
     )
     suspend fun refreshAppData() {
-        trips = providers.firebase.searchTrips()
-        children = if (role == AppRole.Parent) providers.firebase.listChildren() else emptyList()
-        activeRide = providers.firebase.getActiveRide()
-        payableBookings = providers.firebase.getPayableBookings()
-        driverBookingRequests = if (role == AppRole.Driver) {
-            providers.firebase.getDriverBookingRequests()
-        } else {
-            emptyList()
-        }
+        appData.refresh(providers, role)
     }
-    val paymentSheet = rememberStripePaymentSheetController { result ->
-        when (result) {
-            is PaymentSheetResult.Completed -> {
-                noticeMessage = "Paiement confirmé."
-                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
-            }
-            is PaymentSheetResult.Canceled -> {
-                noticeMessage = "Paiement annulé."
-            }
-            is PaymentSheetResult.Failed -> {
-                errorMessage = result.error.localizedMessage ?: "Paiement Stripe refusé."
-            }
-        }
-    }
-    fun approveBooking(request: BookingRequestSummary) {
-        launchApproveBooking(
-            scope = scope,
-            providers = providers,
-            request = request,
-            setLoading = { loading = it },
-            setError = { errorMessage = it },
-            setNotice = { noticeMessage = it },
-            refreshAppData = { refreshAppData() },
-        )
-    }
+    val paymentSheet = rememberSportsGreenMoovePaymentSheetController(
+        scope = scope,
+        sessionUid = session?.uid,
+        gateway = providers.stripe,
+        refreshAppData = { refreshAppData() },
+        setError = { errorMessage = it },
+        setNotice = { noticeMessage = it },
+    )
     fun updatePassengerStatus(passenger: RidePassengerStatus, pickup: Boolean) {
         launchPassengerStatusUpdate(
             scope = scope,
@@ -103,7 +79,6 @@ fun SportsGreenMooveApp() {
             setLoading = { loading = it },
             setError = { errorMessage = it },
             setNotice = { noticeMessage = it },
-            setActiveRide = { activeRide = it },
         )
     }
     fun endActiveRide() {
@@ -136,23 +111,44 @@ fun SportsGreenMooveApp() {
             setError = { errorMessage = it },
         )
     }
-
-    LaunchedEffect(providers) {
-        if (providers.isConfigured) {
-            session = providers.auth.currentSession()
-            if (session != null) {
-                runCatching { refreshAppData() }.onFailure { errorMessage = it.message }
-            }
+    fun logout() {
+        searchController.close()
+        session?.uid?.let { messagesState.removeState(it) }
+        signOutProviders(providers)
+        session = null
+        role = AppRole.Parent
+        appData.clear()
+        loading = false
+        noticeMessage = null
+        errorMessage = null
+        screen = AppScreen.Home
+        contactReturn = AppScreen.Options
+    }
+    val restoration = rememberSessionRestoration(providers.auth, providers.isConfigured) { restored ->
+        session = restored
+        if (restored != null) {
+            runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
         }
     }
-
+    ObserveMobileRoleSelection(session, role) { selected ->
+        role = selected
+        runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
+    }
+    val rideObservation = rememberActiveRideObservation(providers.rides, session?.uid, activeRide, appData) { uid ->
+        scope.launch { if (session?.uid == uid) runCatching { appData.refresh(providers, role, includeActiveRide = false) }
+            .onFailure { if (session?.uid == uid) errorMessage = UserFacingErrorPolicy.messageFor(it) } }
+    }
     SgmTheme(darkTheme = darkTheme) {
+        AppSystemBars(darkBackground = darkTheme)
         V2ThemeToggleProvider(darkTheme = darkTheme, onToggle = { darkTheme = !darkTheme }) {
             if (!providers.isConfigured) {
                 ConfigurationRequiredScreen()
                 return@V2ThemeToggleProvider
             }
-
+            if (restoration.phase != SessionRestorationPhase.Ready) {
+                SessionRestorationScreen(restoration, ::logout) { session = it }
+                return@V2ThemeToggleProvider
+            }
             if (session == null) {
                 OnboardingRoute(
                     loading = loading,
@@ -166,10 +162,15 @@ fun SportsGreenMooveApp() {
                 )
                 return@V2ThemeToggleProvider
             }
-
             SportsGreenMooveScaffold(
                 currentScreen = screen,
                 onNavigate = { destination -> screen = destination },
+                notice = noticeMessage,
+                error = errorMessage,
+                onDismissMessage = {
+                    noticeMessage = null
+                    errorMessage = null
+                },
             ) { padding ->
                 Box(
                     modifier = Modifier
@@ -178,94 +179,110 @@ fun SportsGreenMooveApp() {
                         .padding(padding),
                 ) {
                     when (screen) {
-                        DemoScreen.Home -> HomeScreen(
+                        AppScreen.Home -> HomeScreen(
+                            displayName = session?.displayName,
                             trips = trips,
-                            onTrips = { screen = DemoScreen.Trips },
-                            onRide = {
-                                trips.firstOrNull()?.let { trip ->
-                                    runTripAction(trip)
-                                }
-                            },
-                            onImpact = { screen = DemoScreen.Impact },
+                            impactSummary = ledgerSummaries.impact,
+                            onTrips = { screen = AppScreen.Trips },
+                            onRide = { trips.firstOrNull { it.status == be.sportgreenmoove.app.data.TripStatus.Upcoming }?.let(::runTripAction) },
+                            onImpact = { screen = AppScreen.Impact },
                         )
-
-                        DemoScreen.Trips -> TripsScreen(
+                        AppScreen.Trips -> TripsRoute(
+                            uid = requireNotNull(session).uid, role = role, gateway = providers.firebase,
+                            onChanged = { refreshAppData() },
                             trips = trips,
                             activeRide = activeRide,
-                            bookingRequests = driverBookingRequests,
-                            onTripAction = { trip ->
-                                runTripAction(trip)
+                            pendingCount = driverBookingRequests.count { it.status == "requested" },
+                            onTripAction = ::runTripAction,
+                            onOpenSearch = { screen = AppScreen.Search },
+                            onOpenRide = { launchActiveRideResume(scope, providers, role, activeRide, activeRidePermissionGate,
+                                { session?.uid }, { activeRide = it }, { screen = it }, { errorMessage = it }) },
+                            reservationContent = {
+                                ReservationManagementRoute(requireNotNull(session).uid, role, providers.reservations, providers.firebase) { refreshAppData() }
                             },
-                            onOpenSearch = { screen = DemoScreen.Search },
-                            onOpenRide = { screen = DemoScreen.Ride },
-                            onApproveBooking = ::approveBooking,
                         )
-
-                        DemoScreen.Publish -> PublishScreen(role = role, firebase = providers.firebase, onError = { errorMessage = it }, onNotice = { noticeMessage = it }, onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } } })
-                        DemoScreen.Messages -> MessagesScreen(firebase = providers.firebase)
-                        DemoScreen.Profile -> ProfileScreen(
+                        AppScreen.Publish -> PublishScreen(
                             role = role,
+                            firebase = providers.firebase,
+                            memberClubs = clubs.filter { it.isMember },
+                            initialOrigin = searchController.origin,
+                            initialDestination = searchController.destination,
+                            onError = { errorMessage = it },
+                            onNotice = { noticeMessage = it },
+                            onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } } },
+                        )
+                        AppScreen.Messages -> session?.uid?.let { uid ->
+                            messagesState.SaveableStateProvider(uid) {
+                                MessagesScreen(firebase = providers.firebase, conversations = providers.conversations,
+                                    userId = uid,
+                                    teamConversations = providers.teamConversations,
+                                    teamUserId = uid.takeIf { canManageTeamEnrollment(requireNotNull(session).roles) })
+                            }
+                        }
+                        AppScreen.Profile -> ProfileRoute(
+                            role = role,
+                            availableRoles = session?.roles ?: setOf(AppRole.Parent),
+                            session = session,
+                            clubs = clubs,
+                            ledgerSummaries = ledgerSummaries,
                             onRoleChange = {
                                 role = it
-                                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = it.message } }
+                                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } }
                             },
-                            onGroups = { screen = DemoScreen.Groups },
-                            onImpact = { screen = DemoScreen.Impact },
-                            onRewards = { screen = DemoScreen.Rewards },
-                            onPayments = { screen = DemoScreen.Payments },
-                            onOptions = { screen = DemoScreen.Options },
-                            onLogout = {
-                                providers.auth.signOut()
-                                session = null
-                                trips = emptyList()
-                                children = emptyList()
-                                activeRide = null
-                                activeRideTrip = null
-                                payableBookings = emptyList()
-                                driverBookingRequests = emptyList()
-                                screen = DemoScreen.Home
-                            },
+                            onGroups = { screen = AppScreen.Groups },
+                            onImpact = { screen = AppScreen.Impact },
+                            onRewards = { screen = AppScreen.Rewards },
+                            onPayments = { screen = AppScreen.Payments },
+                            onOptions = { screen = AppScreen.Options },
+                            onLogout = ::logout,
                         )
-
-                        DemoScreen.Search -> SearchScreen(
-                            origin = searchController.origin,
-                            destination = searchController.destination,
-                            originSuggestions = searchController.originSuggestions,
-                            destinationSuggestions = searchController.destinationSuggestions,
+                        AppScreen.Search -> SearchRoute(
+                            searchController = searchController,
                             children = children,
-                            matches = searchController.matches,
-                            loading = searchController.loading,
                             error = errorMessage,
-                            onBack = { screen = DemoScreen.Home },
-                            onSuggestOrigin = { searchController.suggestPlaces(it, SearchPlaceTarget.Origin) },
-                            onSuggestDestination = { searchController.suggestPlaces(it, SearchPlaceTarget.Destination) },
-                            onSelectOrigin = { searchController.selectPlace(it, SearchPlaceTarget.Origin) },
-                            onSelectDestination = { searchController.selectPlace(it, SearchPlaceTarget.Destination) },
-                            onSearch = searchController::runSearch,
-                            onRequest = searchController::requestMatch,
+                            onBack = { screen = AppScreen.Home },
                         )
-                        DemoScreen.Groups -> GroupsScreen(onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Impact -> ImpactScreen(onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Rewards -> RewardsScreen(onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Options -> OptionsScreen(firebase = providers.firebase, onBack = { screen = DemoScreen.Profile })
-                        DemoScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = DemoScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
-                        DemoScreen.Ride -> RideMonitorScreen(
+                        AppScreen.Groups -> GroupsRoute(
+                            sessionUid = requireNotNull(session).uid,
+                            providers = providers,
+                            onBack = { screen = AppScreen.Profile },
+                            onClubsLoaded = appData::replaceClubs,
+                            onGuardianVerification = if (AppRole.Parent in requireNotNull(session).roles) ({ screen = AppScreen.Guardians }) else null,
+                            onTeamEnrollment = if (canManageTeamEnrollment(requireNotNull(session).roles)) ({ screen = AppScreen.TeamEnrollments }) else null,
+                        )
+                        AppScreen.Guardians -> GuardianVerificationRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Groups }
+                        AppScreen.TeamEnrollments -> TeamEnrollmentRoute(requireNotNull(session).uid, providers.firebase, AppRole.Parent in requireNotNull(session).roles) { screen = AppScreen.Groups }
+                        AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
+                        AppScreen.Rewards -> RewardsRoute(
+                            summary = ledgerSummaries.rewards,
+                            availableRoles = session?.roles ?: setOf(AppRole.Parent),
+                            onBack = { screen = AppScreen.Profile },
+                            onOpenPayments = { payoutRole ->
+                                role = payoutRole
+                                screen = AppScreen.Payments
+                            },
+                            setError = { errorMessage = it },
+                        )
+                        AppScreen.Options -> OptionsScreen(uid = requireNotNull(session).uid, firebase = providers.firebase, onBack = { screen = AppScreen.Profile },
+                            onSupport = { screen = AppScreen.Support },
+                            onEmergencyContact = { contactReturn = AppScreen.Options; screen = AppScreen.EmergencyContacts })
+                        AppScreen.Support -> SupportInboxRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Options }
+                        AppScreen.EmergencyContacts -> EmergencyContactRoute(requireNotNull(session).uid, requireNotNull(session).roles,
+                            providers.emergencyContacts, providers.firebase, { screen = contactReturn },
+                            rideSessionId = activeRide?.takeIf { contactReturn == AppScreen.Ride }?.rideSessionId)
+                        AppScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = AppScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
+                        AppScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
-                            onBack = { screen = DemoScreen.Trips },
+                            canManageRide = canManageRide(role, session, activeRide) && rideObservation.phase == RideObservationPhase.Live,
+                            observation = rideObservation,
+                            routePreview = activeRideTrip?.mapPreview,
+                            onBack = { screen = AppScreen.Trips },
                             onPickup = { updatePassengerStatus(it, pickup = true) },
                             onDropoff = { updatePassengerStatus(it, pickup = false) },
                             onEndRide = ::endActiveRide,
+                            onEmergencyContact = { contactReturn = AppScreen.Ride; screen = AppScreen.EmergencyContacts },
                         )
                     }
-                    RuntimeNoticeHost(
-                        notice = noticeMessage,
-                        error = errorMessage,
-                        onDismiss = {
-                            noticeMessage = null
-                            errorMessage = null
-                        },
-                        modifier = Modifier.align(Alignment.TopCenter),
-                    )
                 }
             }
         }

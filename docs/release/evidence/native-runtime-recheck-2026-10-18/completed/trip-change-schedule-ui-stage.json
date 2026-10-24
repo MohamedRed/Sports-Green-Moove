@@ -1,0 +1,54 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "7fd23eda3c41d705b3a911fb24f1fbe8",
+  "testedAt": "2026-10-18T02:47:47.291Z",
+  "recordType": "native-trip-schedule-stage-not-full-run-result",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 1,
+  "steps": [
+    {
+      "id": "trip-change-schedule-ui",
+      "status": "passed"
+    }
+  ],
+  "native": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "7fd23eda3c41d705b3a911fb24f1fbe8",
+    "scope": "native-trip-change-date-and-arrival-consent-ui",
+    "completed": true,
+    "tripId": "rKZOX7wDNWHXY4eIIqtD",
+    "bookingId": "yqvbcKA0HDnKztpVy7lu",
+    "originalDepartureAt": "2026-10-19T09:00:00.000Z",
+    "proposedDepartureAt": "2026-10-20T09:00:00.000Z",
+    "desiredArrivalBy": "2026-10-20T10:00:00.000Z",
+    "nativeDatePickerUsed": true,
+    "nativeTimePickerUsed": true,
+    "dateCancellationPreservedDraft": true,
+    "pastDepartureBlocked": true,
+    "arrivalBeforeDepartureBlocked": true,
+    "desiredArrivalAdded": true,
+    "parentSawDatesAndArrival": true,
+    "parentConfirmed": true,
+    "notApplied": true
+  },
+  "captureFiles": [
+    "local-trip-change-date-arrival-confirmed.png"
+  ],
+  "tripId": "rKZOX7wDNWHXY4eIIqtD",
+  "bookingId": "yqvbcKA0HDnKztpVy7lu",
+  "proposalId": "db3eef3416eae135bd5b6102c67c0355e2502226a3fb4a143154a275177e7d3b",
+  "originalDepartureAt": "2026-10-19T09:00:00.000Z",
+  "proposedDepartureAt": "2026-10-20T09:00:00.000Z",
+  "desiredArrivalBy": "2026-10-20T10:00:00.000Z",
+  "tripAndBookingUnchanged": true,
+  "parentViewScoped": true,
+  "outsiderDenied": true,
+  "notificationCount": 3,
+  "datePickerExercised": true,
+  "desiredArrivalEditingExercised": true,
+  "applicationExercised": false,
+  "routeProviderExercised": false,
+  "paymentExercised": false,
+  "fullAppReplay": false,
+  "limitation": "Date and desired-arrival consent plus cancelled/past/invalid drafts only; no route change, application, payment, physical tracking or post-restart consent proof."
+}

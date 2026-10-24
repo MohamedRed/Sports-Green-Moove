@@ -10,6 +10,15 @@ final class PublishController {
     var destinationSuggestions: [PlaceSuggestion] = []
     var loading = false
 
+    func seedPlaces(origin initialOrigin: ResolvedPlace?, destination initialDestination: ResolvedPlace?) {
+        if let initialOrigin, origin == nil {
+            origin = initialOrigin
+        }
+        if let initialDestination, destination == nil {
+            destination = initialDestination
+        }
+    }
+
     func suggestPlaces(input: String, target: SearchPlaceTarget, firebase: FirebaseGateway, onError: (String?) -> Void) async {
         guard !input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             onError("Saisissez une adresse à chercher.")

@@ -1,0 +1,58 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9538980d87a8b8c6649cd9c0a4821a80",
+  "scope": "local-native-team-conversation-with-sdk-peers-not-physical-or-push",
+  "checks": [
+    {
+      "id": "approved-team-discovery",
+      "status": "passed"
+    },
+    {
+      "id": "no-pre-admission-parent-history",
+      "status": "passed"
+    },
+    {
+      "id": "driver-sdk-message-received",
+      "status": "passed"
+    },
+    {
+      "id": "parent-ui-message-independently-read",
+      "status": "passed"
+    },
+    {
+      "id": "draft-survives-activity-recreation",
+      "status": "passed"
+    },
+    {
+      "id": "revocation-in-background-hides-thread-on-return",
+      "status": "passed"
+    },
+    {
+      "id": "revoked-team-not-discoverable",
+      "status": "passed"
+    },
+    {
+      "id": "driver-account-does-not-recover-parent-draft",
+      "status": "passed"
+    },
+    {
+      "id": "driver-ui-send-after-account-switch",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "team-chat-native-parent.png": "5eb9c60d5cc2be710b75ff6201d5432c4136485976a803292bd6c655cc43fde5",
+    "team-chat-native-parent-window.png": "9b68071bd358bab955634d4e8de367af273e97ac7e11bf7b689dca572875992c",
+    "team-chat-native-exchange.png": "0e0b0b9133ca4f369f3246bdbd8fa35de3b05b7925ce40eafaf6002cc5931f1d",
+    "team-chat-native-exchange-window.png": "93f71320665dfd4e9e8977be746f898487a2f735170585fced0313c9d72ccd3b",
+    "team-chat-native-draft.png": "5eb74aac5ea2086bb26037af5dc39b860e518009e6ac177d2ce0a6ca13eab8cf",
+    "team-chat-native-draft-window.png": "4dd7dc3377a4c0c085ceed47d7a0ea841c09d55aa62445f973e05d6657470879",
+    "team-chat-native-revoked.png": "04a77252e3431038df0fb876d5a9972f4ba2610a3199beab48a7854183d92ee3",
+    "team-chat-native-revoked-window.png": "cb3e5533d7c5bf917ec6a35b01f110540e447313ff0e648ae9c35c483e0f61aa",
+    "team-chat-native-driver.png": "b2170bf68ca7e9987fd82f5da2ffc17bea4acb550a2de391861a0c7fac9e8487",
+    "team-chat-native-driver-window.png": "f24272395d4a5bce0e1f04015c2a06dbc578b021bd969ec52f109dacb05f3504"
+  },
+  "peerMessageId": "bc87f5d044e0ead0f3bf835ceb529d9998961adcd4c6f06d5672e6115107e253",
+  "parentMessageId": "1629f09b7e006e6941075c6ae5d850da90cd90298e3692e7b1b912fa9a4d2a52",
+  "guardianRevokeRequestId": "cf58854d-b1c5-4712-83dc-42a29215a5fa"
+}

@@ -1,0 +1,72 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1c02503330cffd379ee195710ef28e6e",
+  "testedAt": "2026-10-19T15:56:00.482Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "method": "actual-authenticated-callables-and-shared-admin-writer",
+  "checks": [
+    {
+      "id": "delayed-native-point-cannot-replace-newer-observation",
+      "status": "passed"
+    },
+    {
+      "id": "same-time-duplicate-does-not-change-location-or-receipt-time",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-native-requests-retain-the-greatest-observation-time",
+      "status": "passed"
+    },
+    {
+      "id": "participant-parent-still-receives-the-current-observation-age",
+      "status": "passed"
+    },
+    {
+      "id": "unauthorized-parent-write-remains-denied-without-changing-location",
+      "status": "passed"
+    },
+    {
+      "id": "native-and-webhook-writer-share-one-monotonic-register",
+      "status": "passed"
+    },
+    {
+      "id": "delayed-provider-event-retains-audit-without-rewinding-location",
+      "status": "passed"
+    },
+    {
+      "id": "each-child-register-and-vehicle-register-are-independent",
+      "status": "passed"
+    },
+    {
+      "id": "invalid-or-future-provider-times-cannot-poison-current-register",
+      "status": "passed"
+    },
+    {
+      "id": "older-batch-counts-only-committed-points-as-written",
+      "status": "passed"
+    }
+  ],
+  "steps": [
+    {
+      "id": "location-order",
+      "status": "passed"
+    }
+  ],
+  "testCount": 1,
+  "finalCapturedAt": 1792425325798,
+  "concurrentRequestCount": 12,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "providerWebhookDelivery": false,
+  "auditAcceptance": false,
+  "sourceFiles": {
+    "scripts/qa/local-location-order.mjs": "76957e46f6287a88fa7afe001c5953c885e3a6c2934e7d2dd9d8db4bef2f2c47",
+    "functions/src/lib/liveTrips.ts": "a09c4d700f9b2cc966b7215afae16dfa373c3b4c2e55c65053093e1002d67cea",
+    "functions/src/domain/liveLocationOrder.ts": "d4a293f240751d0dbac95e8fe6879b58a15ec3b8fc35db87a5fe7535f72d08a9",
+    "functions/src/callables/locations.ts": "56c129a9d575f702e51157220cd4ce4a116a02746b12ab70852b8f8df1f13c2b",
+    "functions/src/services/radarReconciliation.ts": "f38972a973285af35d8e04fff75acd4471dfc6d9a67e9016f426265a466268f2"
+  },
+  "adminClientClosed": true
+}

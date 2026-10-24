@@ -38,23 +38,16 @@ struct FirebaseBackendGateway: FirebaseGateway {
         return try await trips(for: query)
     }
 
-    func requestBooking(tripId: String, childId: String?) async throws -> String {
-        try await withCheckedThrowingContinuation { continuation in
-            var data: [String: Any] = ["tripId": tripId, "seats": 1]
-            if let childId, !childId.isEmpty {
-                data["childId"] = childId
-            }
-            Functions.functions().httpsCallable("requestBooking").call(data) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let payload = result?.data as? [String: Any],
-                          let bookingId = payload["bookingId"] as? String {
-                    continuation.resume(returning: bookingId)
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse booking invalide."))
-                }
-            }
-        }
+    func listClubSummaries() async throws -> [ClubSummary] {
+        try await loadClubSummaries()
+    }
+
+    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String {
+        _ = try bookingRequestPayload(trip: trip, childId: childId, seats: seats)
+        guard let terms = trip.bookingIntent else { throw BookingIntentError.unavailable }
+        let coordinator = BookingRequestCoordinator(store: try PendingBookingStore.platformStore(),
+            transport: FirebaseBookingRequestTransport(), currentUid: { Auth.auth().currentUser?.uid })
+        return try await coordinator.request(PendingBookingIntent(tripId: trip.id, childId: childId, seats: seats, terms: terms))
     }
 
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {
@@ -191,7 +184,7 @@ struct FirebaseBackendGateway: FirebaseGateway {
     }
 
     #if os(iOS) && canImport(CoreLocation)
-    private func uploadNativeLocationUpdate(_ update: NativeLocationFallbackUpdate) async throws {
+    private func uploadNativeLocationUpdate(_ update: NativeLocationBatchUpdate) async throws {
         let updatesJson = try update.callableBatchJson()
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             Functions.functions().httpsCallable("writeLocationBatch").call(["updatesJson": updatesJson]) { result, error in

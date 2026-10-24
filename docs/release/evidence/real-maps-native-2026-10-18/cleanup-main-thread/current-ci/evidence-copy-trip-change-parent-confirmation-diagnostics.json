@@ -1,0 +1,56 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d7e75581a8b2bd650a70d912a35499ad",
+  "label": "evidence-copy-trip-change-parent-confirmation",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-18T11:40:15.640Z",
+  "host": {
+    "totalMemoryBytes": 16766414848,
+    "freeMemoryBytes": 6588334080,
+    "cpuCount": 4
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-parent-confirmation-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-parent-confirmation-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-parent-confirmation-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-parent-confirmation-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-parent-confirmation-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-parent-confirmation-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-parent-confirmation-package-operations.txt",
+      "empty": true
+    }
+  ]
+}

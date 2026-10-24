@@ -1,0 +1,30 @@
+{
+  "scope": "transaction-reevaluation-unit-and-local-order-not-ui",
+  "before": {
+    "unitCases": 3,
+    "failures": 1,
+    "sourceFiles": {
+      "functions/src/lib/liveTrips.ts": "38cc3b0e46bdeac7e5efe7cd0c0396ee0db1f4d5e236162a6f5763d88f8a5580",
+      "functions/src/__tests__/live-trips-write.test.ts": "896df0b6e793820b295c457831fc1a4e2f8290336142e2f326c453043de7c08f"
+    }
+  },
+  "after": {
+    "runId": "1c02503330cffd379ee195710ef28e6e",
+    "unitCases": 341,
+    "failures": 0,
+    "sourceFiles": {
+      "scripts/qa/local-location-order.mjs": "76957e46f6287a88fa7afe001c5953c885e3a6c2934e7d2dd9d8db4bef2f2c47",
+      "functions/src/lib/liveTrips.ts": "a09c4d700f9b2cc966b7215afae16dfa373c3b4c2e55c65053093e1002d67cea",
+      "functions/src/domain/liveLocationOrder.ts": "d4a293f240751d0dbac95e8fe6879b58a15ec3b8fc35db87a5fe7535f72d08a9",
+      "functions/src/callables/locations.ts": "56c129a9d575f702e51157220cd4ce4a116a02746b12ab70852b8f8df1f13c2b",
+      "functions/src/services/radarReconciliation.ts": "f38972a973285af35d8e04fff75acd4471dfc6d9a67e9016f426265a466268f2",
+      "functions/src/__tests__/live-trips-write.test.ts": "896df0b6e793820b295c457831fc1a4e2f8290336142e2f326c453043de7c08f"
+    }
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerWebhookDelivery": false,
+  "auditAcceptance": false,
+  "storeReviewAccepted": false
+}

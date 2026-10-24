@@ -111,6 +111,7 @@ describe("Firestore rules", () => {
       driverUserId: "driver-1",
       driverVerified: true,
       driverRating: 4.8,
+      activeRideSessionId: "ride-1",
       status: "published",
     });
 
@@ -122,6 +123,9 @@ describe("Firestore rules", () => {
     await assertSucceeds(admin.firestore().doc("trips/trip-admin").set({ driverUserId: "driver-1", status: "published" }));
     await assertSucceeds(driver.firestore().doc("trips/trip-1").update({ title: "U8 Nationaux updated" }));
     await assertFails(driver.firestore().doc("trips/trip-1").update({ driverUserId: "driver-2" }));
+    await assertFails(driver.firestore().doc("trips/trip-1").update({ activeRideSessionId: "forged-ride" }));
+    await assertFails(driver.firestore().doc("trips/trip-1").update({ activeRideSessionId: null }));
+    await assertFails(driver.firestore().doc("trips/trip-1").update({ completedAt: new Date() }));
     await assertFails(otherDriver.firestore().doc("trips/trip-1").update({ title: "Hijacked" }));
   });
 
@@ -154,6 +158,28 @@ describe("Firestore rules", () => {
       participantUserIds: ["parent-1", "driver-1"],
       body: "No access",
     }));
+  });
+
+  it("restricts message history queries and prevents forged read acknowledgements", async () => {
+    await seedFirestore("messages/private-message", {
+      senderUserId: "driver-1", participantUserIds: ["parent-1", "driver-1"],
+      sourceType: "booking", sourceId: "booking-1", body: "Bonjour", createdAt: new Date(),
+      readByUserIds: ["driver-1"],
+    });
+    const parent = authed("parent-1", { parent: true }).firestore();
+    const stranger = authed("stranger", { parent: true }).firestore();
+    const history = (db: typeof parent, uid: string) => db.collection("messages")
+      .where("participantUserIds", "array-contains", uid).where("sourceType", "==", "booking")
+      .where("sourceId", "==", "booking-1").orderBy("createdAt", "desc").limit(51);
+    await assertSucceeds(parent.doc("messages/private-message").get());
+    await assertSucceeds(history(parent, "parent-1").get());
+    await assertSucceeds(history(stranger, "stranger").get());
+    await assertFails(history(stranger, "parent-1").get());
+    await assertFails(stranger.doc("messages/private-message").get());
+    await assertFails(testEnv.unauthenticatedContext().firestore().doc("messages/private-message").get());
+    await assertFails(parent.doc("messages/private-message").update({ readByUserIds: ["parent-1", "driver-1"] }));
+    await assertFails(parent.doc("messages/private-message").update({ body: "Edited" }));
+    await assertFails(parent.doc("messages/private-message").delete());
   });
 
   it("requires ratings and reports to be written through Cloud Functions", async () => {

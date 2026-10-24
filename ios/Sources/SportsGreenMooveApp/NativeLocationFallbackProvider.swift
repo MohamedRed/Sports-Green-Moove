@@ -3,36 +3,6 @@ import Foundation
 #if os(iOS) && canImport(CoreLocation)
 import CoreLocation
 
-struct NativeLocationFallbackUpdate: Encodable, Sendable {
-    let rideSessionId: String
-    let role: String
-    let latitude: Double
-    let longitude: Double
-    let accuracyM: Double
-    let capturedAtMs: Int
-    let speedMps: Double?
-    let headingDeg: Double?
-
-    enum CodingKeys: String, CodingKey {
-        case rideSessionId
-        case role
-        case latitude = "lat"
-        case longitude = "lng"
-        case accuracyM
-        case capturedAtMs = "capturedAt"
-        case speedMps
-        case headingDeg
-    }
-
-    func callableBatchJson() throws -> String {
-        let data = try JSONEncoder().encode([self])
-        guard let json = String(data: data, encoding: .utf8) else {
-            throw ProviderConfigurationError(message: "Encodage JSON localisation invalide.")
-        }
-        return json
-    }
-}
-
 private struct NativeLocationReading: Sendable {
     let latitude: Double
     let longitude: Double
@@ -54,7 +24,7 @@ private struct NativeLocationReading: Sendable {
 private struct ContinuousFallbackSession: Sendable {
     let rideSessionId: String
     let role: String
-    let upload: @Sendable (NativeLocationFallbackUpdate) async throws -> Void
+    let upload: @Sendable (NativeLocationBatchUpdate) async throws -> Void
 }
 
 @MainActor
@@ -74,10 +44,10 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         manager.pausesLocationUpdatesAutomatically = false
     }
 
-    func currentLocationUpdate(rideSessionId: String, role: String) async throws -> NativeLocationFallbackUpdate {
+    func currentLocationUpdate(rideSessionId: String, role: String) async throws -> NativeLocationBatchUpdate {
         try await ensureAuthorization()
         let location = try await requestLocation()
-        return NativeLocationFallbackUpdate(
+        return NativeLocationBatchUpdate(
             rideSessionId: rideSessionId,
             role: role,
             latitude: location.latitude,
@@ -92,7 +62,7 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
     func startContinuousUpdates(
         rideSessionId: String,
         role: String,
-        upload: @escaping @Sendable (NativeLocationFallbackUpdate) async throws -> Void
+        upload: @escaping @Sendable (NativeLocationBatchUpdate) async throws -> Void
     ) async throws {
         let firstUpdate = try await currentLocationUpdate(rideSessionId: rideSessionId, role: role)
         try await upload(firstUpdate)
@@ -172,7 +142,7 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
             continuation.resume(returning: location)
         }
         guard let session = continuousSession else { return }
-        let update = NativeLocationFallbackUpdate(
+        let update = NativeLocationBatchUpdate(
             rideSessionId: session.rideSessionId,
             role: session.role,
             latitude: location.latitude,

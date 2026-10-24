@@ -1,0 +1,10 @@
+--------- beginning of main
+I/ActivityManager(  540): Broadcasting: Intent { act=be.sportgreenmoove.qa.installguard.SET_BLOCKED flg=0x10400020 cmp=be.sportgreenmoove.qa.installguard/.InstallationPolicyReceiver (has extras) }
+--------- beginning of system
+I/ActivityManager(  540): Enqueued broadcast Intent { act=be.sportgreenmoove.qa.installguard.SET_BLOCKED flg=0x10400020 cmp=be.sportgreenmoove.qa.installguard/.InstallationPolicyReceiver (has extras) }: 0
+I/ActivityManager(  540): Broadcast completed: result=-1, data="SGM_INSTALL_BLOCKED=true"
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app.local appid=10210 user=0: finished inst
+E/ActivityManager(  540): Unable to freeze binder for 5002: -11
+I/ActivityManager(  540): Killing 5002:be.sportgreenmoove.app.local/u0a210 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  540): pid 1197 com.google.android.gms.persistent sent binder code 3 with flags 0 to frozen apps and got error -32
+W/ActivityManager(  540): Unable to start service Intent { cmp=com.google.android.apps.tachyon/.clientapi.ClientApiService } U=0: not found

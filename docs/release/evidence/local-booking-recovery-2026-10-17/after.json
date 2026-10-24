@@ -1,0 +1,265 @@
+{
+  "runId": "af54f39a3322292fb8f25c27e8b4f131",
+  "testedAt": "2026-10-17T05:45:21.638Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-http-booking-post-commit-response-loss-not-native-ui",
+  "sourceSha256": {
+    "callables/bookingRequests.ts": "18474b67b0e1487297870602ad8a8268b247f0297d863eb2ded05a124406a09c",
+    "domain/bookingIntent.ts": "44e3955b2ee8679f6e44ec5fce03778dd8c81f0889e813de5906005f0e700cea",
+    "domain/bookingRequestIdentity.ts": "94c2772de1862a82fa403beb787a0e4e1a7e0143673c7068e6681205901a840a",
+    "callables/bookingRequestResolution.ts": "7197a18e9b957a645d6e91b1e93b29b11986cbfee989efa56b7a43121b853c25"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "id": "independently-saved-before-lost-response",
+      "status": "passed"
+    },
+    {
+      "id": "same-request-recovers-original-identity",
+      "status": "passed"
+    },
+    {
+      "id": "one-booking-after-two-explicit-retries",
+      "status": "passed"
+    },
+    {
+      "id": "requests-do-not-reserve-seats-before-approval",
+      "status": "passed"
+    },
+    {
+      "id": "approval-does-not-turn-replay-into-another-request",
+      "status": "passed"
+    },
+    {
+      "id": "approval-retains-the-correct-two-seat-allocation",
+      "status": "passed"
+    },
+    {
+      "id": "cancelled-request-replay-does-not-create-a-new-booking",
+      "status": "passed"
+    },
+    {
+      "id": "cancelled-booking-stays-closed-and-capacity-is-restored",
+      "status": "passed"
+    },
+    {
+      "id": "same-identity-cannot-be-reused-for-different-seats",
+      "status": "passed"
+    },
+    {
+      "id": "anonymous-replay-remains-denied",
+      "status": "passed"
+    }
+  ],
+  "clientRequestId": "a4f0df9f-11c8-437c-88e6-6174270f4400",
+  "original": {
+    "bookingId": "HIKZJT6tbD5PTdsuNzxr",
+    "bookingCount": 1,
+    "createdAtMillis": 1792215892739,
+    "seats": 2
+  },
+  "firstError": {
+    "code": "ECONNRESET",
+    "responseReceived": false
+  },
+  "retries": [
+    {
+      "phase": "before-decision",
+      "status": 200,
+      "bookingId": "HIKZJT6tbD5PTdsuNzxr"
+    },
+    {
+      "phase": "before-decision",
+      "status": 200,
+      "bookingId": "HIKZJT6tbD5PTdsuNzxr"
+    },
+    {
+      "phase": "after-approval",
+      "status": 200,
+      "bookingId": "HIKZJT6tbD5PTdsuNzxr"
+    },
+    {
+      "phase": "after-cancellation",
+      "status": 200,
+      "bookingId": "HIKZJT6tbD5PTdsuNzxr"
+    }
+  ],
+  "stages": {
+    "beforeDecision": {
+      "seatsAvailable": 4,
+      "bookings": [
+        {
+          "id": "HIKZJT6tbD5PTdsuNzxr",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215892739
+        }
+      ]
+    },
+    "afterApproval": {
+      "seatsAvailable": 2,
+      "bookings": [
+        {
+          "id": "HIKZJT6tbD5PTdsuNzxr",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "approved",
+          "createdAtMillis": 1792215892739
+        }
+      ]
+    },
+    "afterCancellation": {
+      "seatsAvailable": 4,
+      "bookings": [
+        {
+          "id": "HIKZJT6tbD5PTdsuNzxr",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "cancelled",
+          "createdAtMillis": 1792215892739
+        }
+      ]
+    },
+    "afterConflict": {
+      "seatsAvailable": 4,
+      "bookings": [
+        {
+          "id": "HIKZJT6tbD5PTdsuNzxr",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "cancelled",
+          "createdAtMillis": 1792215892739
+        }
+      ]
+    }
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": true,
+      "commit": {
+        "bookingId": "HIKZJT6tbD5PTdsuNzxr",
+        "bookingCount": 1,
+        "createdAtMillis": 1792215892739,
+        "seats": 2
+      }
+    },
+    {
+      "number": 2,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    },
+    {
+      "number": 3,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    },
+    {
+      "number": 4,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    },
+    {
+      "number": 5,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    },
+    {
+      "number": 6,
+      "upstreamStatus": 409,
+      "acknowledgementDropped": false
+    }
+  ],
+  "races": {
+    "scope": "isolated-service-request-identity-races-not-native-ui",
+    "passed": true,
+    "outcomes": [
+      {
+        "id": "concurrent-identical-retry",
+        "bookingCount": 1,
+        "sameBookingId": true
+      },
+      {
+        "id": "concurrent-conflicting-payload",
+        "bookingCount": 1,
+        "conflictRejected": true
+      },
+      {
+        "id": "abandonment-fences-a-late-send",
+        "bookingCount": 0,
+        "lateSendRejected": true
+      },
+      {
+        "id": "resolution-never-cancels-a-committed-booking",
+        "bookingCount": 1,
+        "sameBookingId": true
+      },
+      {
+        "id": "send-resolution-race-1",
+        "state": "committed",
+        "bookingCount": 1,
+        "consistent": true
+      },
+      {
+        "id": "send-resolution-race-2",
+        "state": "committed",
+        "bookingCount": 1,
+        "consistent": true
+      },
+      {
+        "id": "send-resolution-race-3",
+        "state": "committed",
+        "bookingCount": 1,
+        "consistent": true
+      },
+      {
+        "id": "send-resolution-race-4",
+        "state": "committed",
+        "bookingCount": 1,
+        "consistent": true
+      },
+      {
+        "id": "send-resolution-race-5",
+        "state": "committed",
+        "bookingCount": 1,
+        "consistent": true
+      },
+      {
+        "id": "send-resolution-race-6",
+        "state": "abandoned",
+        "bookingCount": 0,
+        "consistent": true
+      },
+      {
+        "id": "send-resolution-race-7",
+        "state": "committed",
+        "bookingCount": 1,
+        "consistent": true
+      },
+      {
+        "id": "send-resolution-race-8",
+        "state": "committed",
+        "bookingCount": 1,
+        "consistent": true
+      },
+      {
+        "id": "account-and-request-identity-boundary",
+        "bookingCount": 0,
+        "accountMismatchRejected": true
+      }
+    ]
+  },
+  "conflict": {
+    "status": 409,
+    "code": "ALREADY_EXISTS"
+  },
+  "livePayment": false,
+  "productionDeployed": false
+}

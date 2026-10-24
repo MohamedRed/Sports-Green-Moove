@@ -1,4 +1,5 @@
 import type {
+  ClientMapRoutePreview,
   ClientRidePassengerStatus,
   ClientRideSnapshot,
   ClientTripSummary,
@@ -6,8 +7,15 @@ import type {
   LocationSource,
   Trip,
 } from "../domain/types.js";
+import { bookingIntentSnapshot } from "../domain/bookingIntent.js";
+import { vehicleMapPoint } from "../domain/vehicleMapPoint.js";
 
 type LiveTripLocation = {
+  lat?: number;
+  lng?: number;
+  role?: string;
+  userId?: string;
+  rideSessionId?: string;
   uploadedAt?: number;
   capturedAt?: number;
   source?: LocationSource;
@@ -17,6 +25,7 @@ type LiveTripSnapshot = {
   vehicle?: LiveTripLocation;
   children?: Record<string, LiveTripLocation | undefined>;
   meta?: {
+    tripId?: string;
     radar?: {
       etaSeconds?: number;
       etaDistanceMeters?: number;
@@ -34,6 +43,8 @@ type RidePassengerSnapshot = {
 };
 
 type RideSessionSnapshot = {
+  tripId?: string;
+  driverUserId?: string;
   passengers?: RidePassengerSnapshot[];
   passengerStatuses?: Record<string, {
     pickupStatus?: string;
@@ -41,16 +52,20 @@ type RideSessionSnapshot = {
   } | undefined>;
 };
 
+const tripTimeZone = "Europe/Brussels";
+
 function formatDateParts(value: string): { dateLabel: string; timeLabel: string; departureLabel: string; status: ClientTripStatus } {
   const departure = new Date(value);
   if (Number.isNaN(departure.getTime())) {
     return { dateLabel: "DATE À CONFIRMER", timeLabel: "--h--", departureLabel: "DATE À CONFIRMER", status: "upcoming" };
   }
 
-  const day = departure.toLocaleDateString("fr-BE", { weekday: "short", day: "2-digit", month: "short" }).replace(".", "");
+  const day = departure.toLocaleDateString("fr-BE", {
+    weekday: "short", day: "2-digit", month: "short", timeZone: tripTimeZone,
+  }).replace(".", "");
   const dateLabel = day.toUpperCase();
   const timeLabel = departure
-    .toLocaleTimeString("fr-BE", { hour: "2-digit", minute: "2-digit", hour12: false })
+    .toLocaleTimeString("fr-BE", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: tripTimeZone })
     .replace(":", "h");
   const status: ClientTripStatus = departure.getTime() < Date.now() ? "past" : "upcoming";
 
@@ -75,11 +90,13 @@ function distanceLabel(trip: Trip): string {
 }
 
 export function toClientTripSummary(trip: Trip): ClientTripSummary {
-  const dates = formatDateParts(trip.departureAt);
+  const intent = bookingIntentSnapshot(trip);
+  const dates = formatDateParts(intent.terms.departureAt);
   const seatsLabel = `${trip.seatsAvailable} ${trip.seatsAvailable > 1 ? "places" : "place"}`;
 
   return {
     id: trip.id,
+    bookingIntent: intent,
     title: trip.title ?? `${trip.category} · Trajet sportif`,
     club: trip.clubName ?? trip.clubId,
     category: trip.category,
@@ -98,6 +115,16 @@ export function toClientTripSummary(trip: Trip): ClientTripSummary {
       trip.supportsChildTracking ? "Suivi enfant disponible" : "Suivi enfant non inclus",
     ],
     status: dates.status,
+    mapPreview: toClientMapRoutePreview(trip),
+  };
+}
+
+export function toClientMapRoutePreview(trip: Trip, encodedPolyline?: string): ClientMapRoutePreview {
+  const polyline = encodedPolyline ?? trip.routeEncodedPolyline;
+  return {
+    start: trip.origin,
+    end: trip.destination,
+    ...(polyline ? { encodedPolyline: polyline } : {}),
   };
 }
 
@@ -114,12 +141,20 @@ export function toClientRideSnapshot(
 
   return {
     rideSessionId,
+    vehiclePoint: vehicleMapPoint(vehicle, rideSessionId, ride?.driverUserId, status, now),
+    ...(ride?.driverUserId ? { driverUserId: ride.driverUserId } : {}),
+    ...(ride?.tripId ?? live?.meta?.tripId ? { tripId: ride?.tripId ?? live?.meta?.tripId } : {}),
     status: status === "active" ? "Actif" : status,
     vehicleLastUpdateLabel: locationLabel(vehicle, now, "En attente du premier point GPS"),
     childLastUpdateLabel: child ? locationLabel(child, now, "Enfant en attente") : null,
     etaLabel: etaLabel(live?.meta?.radar?.etaSeconds),
     stale: vehicleAgeMs == null || vehicleAgeMs > 90_000,
     passengers: ridePassengers(ride),
+    observation: {
+      vehicleAgeMs, childAgeMs: ageMs(child ?? undefined, now),
+      vehicleHasPoint: Boolean(vehicle), childHasPoint: Boolean(child),
+      vehicleSource: vehicle?.source ?? null, childSource: child?.source ?? null,
+    },
   };
 }
 
@@ -129,7 +164,7 @@ function ridePassengers(ride: RideSessionSnapshot | null | undefined): ClientRid
     const childId = passenger.childId;
     if (!bookingId || !childId) return [];
 
-    const overrides = ride?.passengerStatuses?.[childId] ?? ride?.passengerStatuses?.[bookingId];
+    const overrides = ride?.passengerStatuses?.[bookingId] ?? ride?.passengerStatuses?.[childId];
     return [{
       bookingId,
       childId,
@@ -159,7 +194,8 @@ function latestChildLocation(children: LiveTripSnapshot["children"]): LiveTripLo
 
 function locationLabel(location: LiveTripLocation | undefined, now: number, fallback: string): string {
   if (!location) return fallback;
-  return `${sourceLabel(location.source)} · ${elapsedLabel(ageMs(location, now) ?? 0)}`;
+  const age = ageMs(location, now);
+  return age == null ? "Position à vérifier" : `${sourceLabel(location.source)} · ${elapsedLabel(age)}`;
 }
 
 function sourceLabel(source: LocationSource | undefined): string {
@@ -179,13 +215,14 @@ function etaLabel(etaSeconds: number | undefined): string {
 
 function ageMs(location: LiveTripLocation | undefined, now: number): number | null {
   if (!location) return null;
-  const timestamp = location.uploadedAt ?? location.capturedAt;
-  if (typeof timestamp !== "number" || !Number.isFinite(timestamp)) return null;
-  return Math.max(0, now - timestamp);
+  const timestamp = location.capturedAt;
+  if (typeof timestamp !== "number" || !Number.isSafeInteger(timestamp) || timestamp <= 0 || timestamp > now) return null;
+  return now - timestamp;
 }
 
 function locationTime(location: LiveTripLocation): number {
-  return location.uploadedAt ?? location.capturedAt ?? 0;
+  const timestamp = location.capturedAt;
+  return typeof timestamp === "number" && Number.isSafeInteger(timestamp) && timestamp > 0 ? timestamp : 0;
 }
 
 function elapsedLabel(ms: number): string {
