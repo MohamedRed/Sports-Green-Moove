@@ -11,6 +11,7 @@ import { createSessionRestorationFlow } from './session-restoration-flow.mjs';
 import { createSessionDisconnectFlow } from './session-disconnect-flow.mjs';
 import { createNotificationSettingsFlow } from './notification-settings-flow.mjs';
 import { createProfileCityFlow } from './profile-city-flow.mjs';
+import { createImpactFlow } from './impact-flow.mjs';
 import { createPaymentsFlow } from './payments-flow.mjs';
 import { nativeVerification } from './native-verification.mjs';
 import { nativeRechecks } from './native-rechecks.mjs';
@@ -267,13 +268,7 @@ export const content = {
       local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.'], 'docs/release/evidence/local-2026-10-15/results.json', '2026-10-15'),
       images: [shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
         shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },
-    { id: 'impact', title: 'Impact et récompenses', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'L’impact et le solde sont affichés dans l’app après le trajet local.',
-      verified: 'Dans l’app, en local : impact d’un trajet terminé, solde et historique de récompenses chargés. Les retours vers le profil fonctionnent.',
-      remaining: 'Vérifier les calculs sur un trajet réel. Aucun versement ni retrait réel testé.',
-      ui: rideUi(['ride-ledgers-ui']),
-      local: local(['ride-audit-ledgers'], ['Le trajet terminé crée une écriture d’impact.', 'Une récompense est enregistrée.', 'Une seconde clôture est refusée.']),
-      images: [shot('ride-impact', 'Impact après un trajet terminé en local'), shot('ride-rewards', 'Solde de test et récompense du trajet local')], source: rideUiReport },
+    createImpactFlow(local, rideUi, shot),
     createSupportFlow(local, ui, shot),
     createProfileCityFlow(),
     createUrgentSupportFlow(shot),

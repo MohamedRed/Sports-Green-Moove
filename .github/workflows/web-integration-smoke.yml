@@ -4,6 +4,12 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/ledger-summary*.test.mjs"
+      - "scripts/qa/*ledger-history*.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Ledger*.kt"
+      - "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift"
+      - "ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift"
+      - "ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift"
       - "tests/team-chat-*.test.mjs"
       - "tests/team-conversation-contract.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
@@ -423,6 +429,12 @@ on:
     branches:
       - main
     paths:
+      - "tests/ledger-summary*.test.mjs"
+      - "scripts/qa/*ledger-history*.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Ledger*.kt"
+      - "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift"
+      - "ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift"
+      - "ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift"
       - "tests/team-chat-*.test.mjs"
       - "tests/team-conversation-contract.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
@@ -1016,6 +1028,12 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/profile-city-services.json
         run: node scripts/qa/run-profile-city-services.mjs && node --test tests/profile-city-contract.test.mjs tests/profile-city-evidence.test.mjs
+
+      - name: Verify complete owned ledger summaries and bounded history
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/ledger-history-services.json
+        run: node scripts/qa/run-ledger-history-services.mjs && node --test tests/ledger-summary-contract.test.mjs tests/ledger-summary-evidence.test.mjs
+
       - name: Test child emergency reading with preseeded private account links
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-emergency-services.json
@@ -1249,4 +1267,12 @@ jobs:
         with:
           name: trip-contention-results
           path: ${{ runner.temp }}/sgm-trip-contention/**
+          if-no-files-found: ignore
+
+      - name: Retain ledger summary and disposal results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ledger-history-services
+          path: ${{ runner.temp }}/ledger-history-services.json
           if-no-files-found: ignore

@@ -10,7 +10,8 @@ async function fixture(t, overrides = {}) {
     forward: async (url, options) => {
       forwarded.push({ url, options });
       return Response.json({ result: url.endsWith('initializeUserProfile') ? { userId: config.uid } :
-        url.endsWith('getProfileCity') ? { userId: config.uid, city: null, revision: 0 } : { ride: null } });
+        url.endsWith('getProfileCity') ? { userId: config.uid, city: null, revision: 0 } :
+          url.endsWith('getActiveRide') ? { ride: null } : { userId: config.uid } });
     }, ...overrides,
   });
   t.after(() => proxy.close());
@@ -41,6 +42,19 @@ test('two explicit failures precede one-way recovery without forwarding or retai
 test('the proxy cannot target production or another fixture identity', async () => {
   for (const invalid of [{ ...config, origin: 'https://production.invalid' }, { ...config, uid: 'real-user' },
     { ...config, runId: 'bad' }]) await assert.rejects(openSessionRestorationFaultProxy(invalid, { verifyIdentity: async () => ({ uid: config.uid }) }));
+});
+test('complete ledger summaries are allowed only for the restored parent', async t => {
+  const f = await fixture(t); await f.initialize(); await f.initialize();
+  await f.post('/__qa/recover', { runId: config.runId });
+  for (const method of ['getImpactSummary', 'getRewardSummary']) {
+    assert.equal((await f.post('/demo-sgm-local-qa/us-central1/' + method)).status, 200);
+    assert.equal(f.proxy.receipt.attempts.at(-1).uid, config.uid);
+  }
+  assert.equal(f.proxy.receipt.failed, undefined);
+  const foreign = await fixture(t, { forward: async () => Response.json({result: {userId: 'sgm-qa-driver'}}) });
+  await foreign.initialize(); await foreign.initialize(); await foreign.post('/__qa/recover', {runId: config.runId});
+  assert.equal((await foreign.post('/demo-sgm-local-qa/us-central1/getRewardSummary')).status, 502);
+  assert.equal(foreign.proxy.receipt.failed, true);
 });
 test('the recovered parent can read its profile city without allowing a profile write', async t => {
   const f = await fixture(t); await f.initialize(); await f.initialize();

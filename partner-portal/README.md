@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The 24 October long-history update binds eight authenticated service groups and
+one connected Android case to 257 owned entries. Four reviewed originals are
+published; the duplicate first balance view is retained only. Preserve the older
+15 October captures and dates. Activity recreation/account return are not full
+process restart, a physical phone, iOS-provider integration, real money or a
+production deployment. The preceding 89db53e6 full CI passed separately.
+
 The 24 October commission decision is still open. Both native Options sources
 remove the fixed zero-fee business placeholder without changing payment policy.
 Report source/unit checks separately from the pending connected replay. No new

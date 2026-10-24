@@ -233,8 +233,9 @@ async function seed() {
     userId: qa.parent.uid,
     rideSessionId: 'sgm-qa-historical-ride',
     co2SavedKg: 3.2,
-    sharedDistanceKm: 14,
-    rideCount: 1,
+    type: 'rideCompletion',
+    sourceId: 'sgm-qa-historical-ride',
+    distanceMeters: 14_000,
     createdAt: now,
   }, { merge: true });
 
@@ -242,7 +243,9 @@ async function seed() {
     userId: qa.driver.uid,
     rideSessionId: 'sgm-qa-historical-ride',
     amountCents: 250,
-    type: 'earned',
+    type: 'co2Bonus',
+    currency: 'eur',
+    sourceId: 'sgm-qa-historical-ride',
     createdAt: now,
   }, { merge: true });
 

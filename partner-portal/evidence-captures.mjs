@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['impact', 'restored', 'foreign', 'return'].map(phase => [
+    'ledger-history-' + phase, 'docs/release/evidence/ledger-history-2026-10-24/captures/ledger-history-' + phase + '.png'])),
   ...Object.fromEntries(['editor', 'saved', 'restored', 'other-account', 'removed'].map(phase => [
     'profile-city-' + phase, 'docs/release/evidence/profile-city-2026-10-24/captures/profile-city-' + (phase === 'editor' ? 'editor-window' : phase) + '.png'])),
   ...Object.fromEntries(['unread', 'read', 'restored-home', 'restarted-inbox'].map(phase => [

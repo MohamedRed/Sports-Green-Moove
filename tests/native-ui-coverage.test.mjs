@@ -159,8 +159,8 @@ includes(androidProfile, "primaryClubLabel", "Android Profile reads the primary 
 notIncludes(androidProfile, "Olivier · Collège du Biéreau", "Android Profile must not embed a static club identity");
 includes(iosProfile, "clubSummaries.first", "iOS Profile reads the primary club from app state");
 notIncludes(iosProfile, "Olivier · Collège du Biéreau", "iOS Profile must not embed a static club identity");
-includes(androidLedgerGateway, 'collection("co2Ledger")', "Android ledger gateway reads CO2 ledger");
-includes(androidLedgerGateway, 'collection("rewardLedger")', "Android ledger gateway reads reward ledger");
+includes(androidLedgerGateway, '"getImpactSummary"', "Android ledger gateway reads the complete owned impact summary");
+includes(androidLedgerGateway, '"getRewardSummary"', "Android ledger gateway reads the complete owned reward summary");
 includes(androidHomeCards, "summary: ImpactSummary", "Android Home dashboard renders impact summary");
 includes(androidImpact, "summary: ImpactSummary", "Android Impact screen renders injected ledger summary");
 includes(androidRewards, "summary: RewardSummary", "Android Rewards screen renders injected ledger summary");
@@ -174,8 +174,8 @@ notIncludes(androidRewards, "7.50", "Android Rewards screen must not embed a sta
 notIncludes(androidRewards, "U8 vs Royal", "Android Rewards screen must not embed static reward events");
 notIncludes(androidProfile, "Rang #47 Belgique", "Android Profile must not embed static impact ranking");
 notIncludes(androidProfile, "7.50€", "Android Profile must not embed a static reward balance");
-includes(iosLedgerGateway, '.collection("co2Ledger")', "iOS ledger gateway reads CO2 ledger");
-includes(iosLedgerGateway, '.collection("rewardLedger")', "iOS ledger gateway reads reward ledger");
+includes(iosLedgerGateway, '"getImpactSummary"', "iOS ledger gateway reads the complete owned impact summary");
+includes(iosLedgerGateway, '"getRewardSummary"', "iOS ledger gateway reads the complete owned reward summary");
 includes(iosHome, "appState.impactSummary", "iOS Home dashboard renders impact summary");
 includes(iosImpactRewards, "appState.impactSummary", "iOS Impact screen renders app ledger summary");
 includes(iosImpactRewards, "appState.rewardSummary", "iOS Rewards screen renders app ledger summary");

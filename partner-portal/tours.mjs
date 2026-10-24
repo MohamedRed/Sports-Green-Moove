@@ -206,8 +206,4 @@ export const tours = {
     image('ride-review', 'Donner son avis', 'Une demande d’avis est proposée après le trajet local.'),
     image('ride-review-sent', 'Envoyer l’avis', 'L’avis est enregistré et la demande disparaît.'),
   ],
-  impact: [
-    image('ride-impact', 'Consulter son impact', 'L’écran présente l’impact du trajet terminé lors de l’essai local.'),
-    image('ride-rewards', 'Consulter ses récompenses', 'Le solde et la récompense du trajet de test sont visibles.'),
-  ],
 };

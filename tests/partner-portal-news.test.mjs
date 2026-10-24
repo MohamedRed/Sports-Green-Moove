@@ -16,8 +16,8 @@ test('a history-only event cannot hide a newer overview entry for another flow',
 });
 test('the bounded overview shows current work without deleting earlier interrupted or passing results', () => {
   const result = partitionUpdates(content.updates);
-  assert(result.recent.some(row => row.source?.includes('notification-read-restart-phone-2026-10-23')));
-  assert.equal(result.recent[0].source, 'docs/release/evidence/commission-presentation-2026-10-24/README.md');
+  assert.equal([...result.recent, ...result.previous].filter(row => row.source?.includes('notification-read-restart-phone-2026-10-23')).length, 1);
+  assert.equal(result.recent[0], content.updates[0]);
   assert.equal([...result.recent, ...result.previous].filter(row =>
     row.source?.includes('booking-request-phone-2026-10-23')).length, 1);
   assert(result.previous.some(row => row.source?.includes('notification-native-recovery-2026-10-23')));

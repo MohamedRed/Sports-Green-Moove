@@ -32,7 +32,7 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
     private val functions = FirebaseFunctions.getInstance()
     private val nativeLocationStartup = FirebaseAndroidNativeLocationStartup(appContext, functions)
     private val groupsGateway = FirebaseAndroidGroupsGateway(firestore)
-    private val ledgerGateway = FirebaseAndroidLedgerGateway(firestore)
+    private val ledgerGateway = FirebaseAndroidLedgerGateway()
     private val tripGateway = FirebaseAndroidTripGateway(firestore)
     private val cancellationGateway = FirebaseAndroidTripCancellationGateway(functions)
     private val bookingGateway = FirebaseAndroidBookingGateway(appContext, functions, FirebaseAuth.getInstance())

@@ -167,7 +167,7 @@ private fun rewardTiers(summary: RewardSummary): List<RewardTier> =
 
 private fun moneyValue(cents: Int): String {
     val sign = if (cents < 0) "-" else ""
-    val abs = kotlin.math.abs(cents)
+    val abs = kotlin.math.abs(cents.toLong())
     return String.format(Locale.FRANCE, "%s%d,%02d", sign, abs / 100, abs % 100)
 }
 

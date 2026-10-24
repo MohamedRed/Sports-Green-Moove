@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  {date: '2026-10-24', title: 'Les longs historiques sont comptés en entier',
+    text: 'Un calcul limité aux 100 premières écritures est corrigé. Essai local réussi sur 257 écritures, avec changement de compte. Captures ajoutées.', flow: 'impact',
+    source: 'docs/release/evidence/ledger-history-2026-10-24/README.md'},
   { date: '2026-10-24', title: 'La commission reste à choisir',
     text: 'Le « 0 € » fixe est retiré des réglages. Aucun tarif n’a été changé. Pas encore en ligne dans l’app.', flow: 'payments',
     source: 'docs/release/evidence/commission-presentation-2026-10-24/README.md' },

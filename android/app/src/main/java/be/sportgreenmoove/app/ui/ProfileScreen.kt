@@ -175,7 +175,7 @@ private fun ProfileImpactMetaStyle() = SgmType.BodyXS.copy(color = SgmColor.Text
 private fun kgValue(value: Double): String = String.format(Locale.FRANCE, "%.1f", value)
 private fun moneyLabel(cents: Int): String {
     val sign = if (cents < 0) "-" else ""
-    val abs = kotlin.math.abs(cents)
+    val abs = kotlin.math.abs(cents.toLong())
     return String.format(Locale.FRANCE, "%s%d,%02d€", sign, abs / 100, abs % 100)
 }
 private fun percentLabel(progress: Float): String = "${(progress.coerceIn(0f, 1f) * 100).toInt()}%"
