@@ -1,0 +1,17 @@
+{
+  "scope": "physical-android-profile-ledger-with-isolated-data-not-production",
+  "checkedAt": "2026-10-24",
+  "sourceCommit": "a55503a42d1066bc669ff3784086d0eaa0311379",
+  "physicalDevice": true,
+  "device": "Google Pixel 9 Pro",
+  "os": "15.0",
+  "uiObservation": "manual-native-ui",
+  "independentCheckpoints": 9,
+  "originalScreenshotExports": 8,
+  "productionDeployed": false,
+  "releaseComplete": false,
+  "wholeProcessRestart": false,
+  "physicalTracking": false,
+  "realPayment": false,
+  "iosTested": false
+}

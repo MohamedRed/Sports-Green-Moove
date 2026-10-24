@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The later 24 October physical Pixel 9 Pro trial uses the a55503a4 isolated APK.
+City save/clear, sequential account switch/return, complete ledger balances and
+the driver payment-settings destination are observed manually. Nine independent
+read-only checkpoints preserve all other records and claims. Seven original
+portrait exports lead the two tours; eight originals are retained. No payment,
+onboarding, GPS, whole-process restart, iPhone or production deployment is proven.
+Sign-out, uninstall acknowledgement, session stop, observer exit and owned local
+cleanup are verified; independent package absence is not. Older local evidence
+and dates remain intact. The a55503a4 Native CI and all focused lanes passed.
+
 The 24 October long-history update binds eight authenticated service groups and
 one connected Android case to 257 owned entries. Four reviewed originals are
 published; the duplicate first balance view is retained only. Preserve the older

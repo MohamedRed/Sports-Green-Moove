@@ -20,10 +20,10 @@ test('partial, simulated-only and physically overstated city reports are rejecte
     assert.throws(() => validateProfileCityReports(...pair));
   }
 });
-test('public city copy stays local and its gallery uses only reviewed originals', () => {
+test('public city copy preserves its dated local gallery under the newer phone trial', () => {
   const flow = content.flows.find(row => row.id === 'profile-city'), review = json('visual-review.json');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local');
-  assert.deepEqual(flow.images.map(image => basename(captures[image.file])).sort(), Object.keys(review.published).sort());
+  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
+  assert.deepEqual(flow.images.filter(image => image.file.startsWith('profile-city-')).map(image => basename(captures[image.file])).sort(), Object.keys(review.published).sort());
   assert(flow.remaining.includes('Pas encore en ligne'));
   assert(!/BrowserStack|Firebase|Firestore|SDK|Android|Kotlin/i.test([flow.title, flow.summary, flow.verified, flow.remaining].join(' ')));
 });

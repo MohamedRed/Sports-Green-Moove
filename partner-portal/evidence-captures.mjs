@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['parent-ready', 'parent-city-saved', 'parent-rewards', 'driver-ready', 'driver-rewards', 'parent-returned', 'parent-city-cleared']
+    .map(phase => ['profile-ledger-phone-' + phase, 'docs/release/evidence/profile-ledger-phone-2026-10-24/captures/' + phase + '.png'])),
   ...Object.fromEntries(['impact', 'restored', 'foreign', 'return'].map(phase => [
     'ledger-history-' + phase, 'docs/release/evidence/ledger-history-2026-10-24/captures/ledger-history-' + phase + '.png'])),
   ...Object.fromEntries(['editor', 'saved', 'restored', 'other-account', 'removed'].map(phase => [

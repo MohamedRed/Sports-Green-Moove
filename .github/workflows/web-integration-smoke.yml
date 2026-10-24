@@ -6,6 +6,8 @@ on:
     paths:
       - "tests/ledger-summary*.test.mjs"
       - "scripts/qa/*ledger-history*.mjs"
+      - "scripts/qa/*profile-ledger*.mjs"
+      - "tests/profile-ledger-phone.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Ledger*.kt"
       - "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift"
       - "ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift"
@@ -431,6 +433,8 @@ on:
     paths:
       - "tests/ledger-summary*.test.mjs"
       - "scripts/qa/*ledger-history*.mjs"
+      - "scripts/qa/*profile-ledger*.mjs"
+      - "tests/profile-ledger-phone.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Ledger*.kt"
       - "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift"
       - "ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift"
@@ -925,6 +929,8 @@ jobs:
 
       - name: Validate isolated private phone tunnel policy
         run: node --test tests/browserstack-isolated-tunnel.test.mjs tests/browserstack-isolated-booking-evidence.test.mjs tests/browserstack-parent-search-evidence.test.mjs tests/scoped-browserstack-local.test.mjs tests/manual-team-draft-views.test.mjs tests/manual-team-read-checkpoints.test.mjs tests/manual-team-authority-checkpoints.test.mjs
+      - name: Validate physical profile and ledger evidence without provider requests
+        run: node --test tests/profile-ledger-phone.test.mjs
       - name: Validate encrypted credential rotation without provider requests
         run: node --test tests/browserstack-key-rotation.test.mjs
       - name: Validate independent contact recovery without accepting a blocked dialer

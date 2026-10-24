@@ -33,11 +33,11 @@ for (const [file, key, value] of [['native.json', 'physicalDevice', true], ['nat
   });
 test('the public tour uses only reviewed originals and preserves the older dated ride evidence', () => {
   const flow = content.flows.find(row => row.id === 'impact'), review = json('visual-review.json');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
   assert.equal(flow.ui.checkedAt, '2026-10-15'); assert.equal(flow.local.checkedAt, '2026-10-15');
   assert.deepEqual(flow.images.filter(row => row.file.startsWith('ledger-history-')).map(row => basename(captures[row.file])).sort(),
     Object.keys(review.published).sort());
-  assert.equal(flow.tour.length, 4); assert(flow.tour.every(step => step.image.startsWith('ledger-history-')));
-  assert.match(flow.remaining, /téléphone.*iPhone.*Pas encore en ligne/);
+  assert.equal(flow.tour.length, 4); assert(flow.tour.every(step => step.image.startsWith('profile-ledger-phone-')));
+  assert.match(flow.remaining, /iPhone.*Pas encore en ligne/);
   assert(!/BrowserStack|Firebase|Firestore|SDK|Android|Kotlin/i.test([flow.title, flow.summary, flow.verified, flow.remaining].join(' ')));
 });

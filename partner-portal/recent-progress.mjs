@@ -1,6 +1,8 @@
 import { archivedProgress } from './progress-archive.mjs';
+import {profileLedgerProgress} from './profile-ledger-phone.mjs';
 
 export const recentProgress = [
+  ...profileLedgerProgress,
   {date: '2026-10-24', title: 'Les longs historiques sont comptés en entier',
     text: 'Un calcul limité aux 100 premières écritures est corrigé. Essai local réussi sur 257 écritures, avec changement de compte. Captures ajoutées.', flow: 'impact',
     source: 'docs/release/evidence/ledger-history-2026-10-24/README.md'},

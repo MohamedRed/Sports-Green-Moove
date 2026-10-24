@@ -35,6 +35,7 @@ import { validateNotificationSettingsPhone } from '../scripts/qa/notification-se
 import { validatePayoutAccountingEvidence } from '../scripts/qa/payout-accounting-evidence.mjs';
 import { validateProfileCityEvidence } from '../scripts/qa/profile-city-evidence.mjs';
 import { validateLedgerSummaryEvidence } from '../scripts/qa/ledger-summary-evidence.mjs';
+import { validateProfileLedgerPhoneEvidence } from '../scripts/qa/profile-ledger-phone-evidence.mjs';
 import { validateUiScope } from './ui-scope-validation.mjs';
 export { validateUiScope } from './ui-scope-validation.mjs';
 
@@ -88,6 +89,7 @@ export function validate(root) {
       }
     }
     validateBookingEvidence(root, f);
+    if (f.profileLedgerPhone) validateProfileLedgerPhoneEvidence(root, f.profileLedgerPhone);
     if (f.id === 'profile-city') { assert.equal(f.status, 'partial'); validateProfileCityEvidence(root, f.profileCity); }
     if (f.id === 'impact') { assert.equal(f.status, 'partial'); validateLedgerSummaryEvidence(root, f.ledgerHistory); }
     if (f.id === 'notification-settings' || f.notificationPermissionPhone) validateNotificationSettingsPhone(root, f);
