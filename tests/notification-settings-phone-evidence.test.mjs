@@ -15,9 +15,10 @@ test('actual phone permission changes remain distinct from push delivery and com
   for (const image of flow.images) assert(captures[image.file].includes('/captures/'));
   assert(!Object.values(captures).some(file => /notification-settings-phone.*(?:phone\/|validation\/|source\/)/.test(file)));
   const news = content.updates.find(row => row.flow === flow.id);
-  assert.match(news.text, /reste à vérifier sur téléphone/);
+  assert.equal(news.source, dirname(flow.notificationReadRestartPhone.source) + '/README.md');
+  assert.match(news.text, /sans reconnexion.*les deux autres non lues/);
   assert(content.updates.some(row => row.flow === flow.id && /envoi des alertes au téléphone reste à ajouter/i.test(row.text)));
-  const permissionNews = content.updates.find(row => row.source === flow.source);
+  const permissionNews = content.updates.find(row => row.source === dirname(flow.notificationPermissionPhone.source) + '/README.md');
   assert.match(permissionNews.text, /réception des alertes reste à tester/);
   assert.match(content.blockers.find(row => row.id === 'settings').text, /ville et les frais restent à vérifier/);
 });

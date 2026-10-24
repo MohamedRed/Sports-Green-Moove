@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['unread', 'read', 'restored-home', 'restarted-inbox'].map(phase => [
+    'notification-restart-phone-' + phase, 'docs/release/evidence/notification-read-restart-phone-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['parent-request-sent', 'driver-unread', 'driver-read', 'parent-returned', 'driver-returned'].map(phase => [
     'booking-request-phone-' + phase, 'docs/release/evidence/booking-request-phone-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['unread', 'read', 'driver', 'parent-return'].map(phase => [

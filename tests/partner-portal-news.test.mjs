@@ -14,9 +14,11 @@ test('a history-only event cannot hide a newer overview entry for another flow',
   const updates = [{flow: 'one'}, {flow: 'one', coversFlows: ['two']}, {flow: 'two'}];
   assert.deepEqual(partitionUpdates(updates).recent, [updates[0], updates[2]]);
 });
-test('the current overview shows the later interrupted replay without deleting earlier passing or failed results', () => {
+test('the current overview shows the physical restart without deleting earlier interrupted or passing results', () => {
   const result = partitionUpdates(content.updates);
-  assert(result.recent.some(row => row.source?.includes('notification-native-recovery-2026-10-23')));
+  assert(result.recent.some(row => row.source?.includes('notification-read-restart-phone-2026-10-23')));
+  assert(result.recent.some(row => row.source?.includes('booking-request-phone-2026-10-23')));
+  assert(result.previous.some(row => row.source?.includes('notification-native-recovery-2026-10-23')));
   assert(result.previous.some(row => row.source?.includes('notification-native-attempt-2026-10-23')));
   assert(result.previous.some(row => row.source?.includes('notification-read-phone-2026-10-23')));
   assert(!result.recent.some(row => row.source?.includes('native-replay-0f91172f')));

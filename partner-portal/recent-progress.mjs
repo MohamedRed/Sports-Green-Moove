@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-23', title: 'La lecture résiste à la fermeture complète',
+    text: 'Le compte revient sans reconnexion. L’alerte choisie reste lue, les deux autres non lues. Quatre captures ajoutées.', flow: 'notification-settings',
+    source: 'docs/release/evidence/notification-read-restart-phone-2026-10-23/README.md' },
   { date: '2026-10-23', title: 'La demande arrive chez le conducteur',
     text: 'Demande envoyée, alerte reçue puis lue, état conservé après reconnexion. Cinq captures ajoutées. L’essai a repris sur un second téléphone après interruption.', flow: 'booking',
     source: 'docs/release/evidence/booking-request-phone-2026-10-23/README.md' },

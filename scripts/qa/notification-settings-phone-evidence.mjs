@@ -9,6 +9,7 @@ import { validateNotificationNativeRecheck } from './notification-native-recheck
 import { validateNotificationReadLocal } from './notification-read-local-evidence.mjs';
 import { validateNotificationReadPhone } from './notification-read-phone-evidence.mjs';
 import { validateNotificationConnectedServices } from './notification-connected-services-evidence.mjs';
+import { validateNotificationReadRestartPhone } from './notification-read-restart-phone-evidence.mjs';
 
 export function validateNotificationSettingsPhone(root, flow) {
   assert.equal(flow.id, 'notification-settings'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
@@ -70,5 +71,10 @@ export function validateNotificationSettingsPhone(root, flow) {
       read.captures.map(name => 'notification-read-phone-' + name));
   }
   if (flow.notificationConnectedServices) validateNotificationConnectedServices(root, flow.notificationConnectedServices);
+  if (flow.notificationReadRestartPhone) {
+    const restart = validateNotificationReadRestartPhone(root, flow.notificationReadRestartPhone);
+    assert.deepEqual(flow.images.filter(image => image.file.startsWith('notification-restart-phone-')).map(image => image.file),
+      restart.publishedCaptures.map(name => 'notification-restart-phone-' + name));
+  }
   return run;
 }
