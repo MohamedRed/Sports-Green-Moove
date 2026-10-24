@@ -83,6 +83,8 @@ jobs:
 
       - name: Test functions
         run: npm run test --workspace functions
+      - name: Validate bounded collection regression evidence
+        run: node --test tests/bounded-validation-evidence.test.mjs
 
       - name: Build functions
         run: npm run build --workspace functions
@@ -162,7 +164,7 @@ jobs:
       - name: Verify actual isolated admin clients close after replay success and failure
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-local-admin-lifecycle.json
-        run: npm run test:local-admin-lifecycle && node --test tests/local-admin-lifecycle.test.mjs tests/admin-client-lifecycle-evidence.test.mjs
+        run: npm run test:local-admin-lifecycle && node --test tests/local-admin-lifecycle.test.mjs tests/admin-client-lifecycle-evidence.test.mjs tests/native-admin-close-evidence.test.mjs
 
       - name: Test scoped team and verified child choices
         run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs

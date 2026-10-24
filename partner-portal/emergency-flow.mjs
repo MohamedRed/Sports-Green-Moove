@@ -15,6 +15,8 @@ export function createEmergencyFlow() {
     dialerPreflight: { source: 'docs/release/evidence/emergency-dialer-preflight-2026-10-21/results.json' },
     dialerPreflightRecheck: { source: 'docs/release/evidence/emergency-dialer-preflight-2026-10-23/results.json',
       checkedAt: '2026-10-23', checksums: 'docs/release/evidence/emergency-dialer-preflight-2026-10-23/artifact-sha256.json' },
+    dialerPackageRecheck: { source: 'docs/release/evidence/emergency-dialer-samsung-2026-10-24/summary.json',
+      checkedAt: '2026-10-24', checksums: 'docs/release/evidence/emergency-dialer-samsung-2026-10-24/artifact-sha256.json' },
     phone: { source: 'docs/release/evidence/emergency-phone-2026-10-21/results.json', checkedAt: '2026-10-21' },
     ui: { source: source + 'emergency-contact-results.json', checkedAt: '2026-10-19', groups: ['emergency-contact-ui'] },
     local: { source: identity + 'services.json', checkedAt: '2026-10-19', groups: [

@@ -11,7 +11,7 @@ test('passing focused jobs do not erase a failed primary transfer or turn offlin
   const report=validateNativeScheduleCopy(process.cwd(),record);
   assert.equal(report.focusedJobsPassed,10);assert.equal(report.deviceOfflineObserved,true);assert.equal(report.rootCauseConfirmed,false);
   assert(content.updates.some(row=>row.source===record.source.replace('summary.json','README.md')));
-  assert.notEqual(content.blockers.find(row=>row.id==='notification-native-replay').source,record.source.replace('summary.json','README.md'));
+  assert.equal(content.blockers.find(row=>row.id==='notification-native-replay'),undefined);
 });
 for(const key of ['fullReplayAccepted','primaryCopyAccepted','rootCauseConfirmed','earlierStartupCauseConfirmed',
   'physicalTrackingAccepted','newMediaPublished','productionWrites','releaseComplete']) test('schedule copy evidence cannot promote '+key,t=>{

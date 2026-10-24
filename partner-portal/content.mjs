@@ -43,6 +43,8 @@ export const content = {
   updatedAt: '2026-10-24',
   lastVerifiedAt: '2026-10-24',
   ...nativeRechecks,
+  boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
+    checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
   adminClientLifecycleRecheck: { source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/results.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/artifact-sha256.json' },
   nativeNetworkPreparationRecheck: { source: 'docs/release/evidence/native-terminal-80c88d0c-2026-10-23/run.json',

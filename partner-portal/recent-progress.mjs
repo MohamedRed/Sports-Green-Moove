@@ -1,6 +1,15 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-24', title: 'L’essai complet se termine correctement',
+    text: 'Les 37 étapes et les dix essais séparés passent, captures et fermeture comprises. Le suivi réel reste à vérifier.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/native-admin-close-13a5b1e2-2026-10-24/README.md' },
+  { date: '2026-10-24', title: 'Un contrôle de sécurité renforcé',
+    text: 'Une alerte de sécurité corrigée et testée en local. D’autres restent à examiner.', flow: 'tracking',
+    source: 'docs/release/evidence/bounded-validation-2026-10-24/README.md' },
+  { date: '2026-10-24', title: 'L’ouverture du téléphone reste bloquée',
+    text: 'Même résultat sur un autre modèle : retour à l’accueil, avant de passer par notre app. Aucun appel effectué.', flow: 'emergency-contact',
+    source: 'docs/release/evidence/emergency-dialer-samsung-2026-10-24/README.md' },
   { date: '2026-10-24', title: 'Corriger la fin de l’essai complet',
     text: 'Les parcours de cet essai étaient exécutés, mais il ne se fermait pas. La correction passe en local. L’essai complet reste à relancer.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
     source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/README.md' },

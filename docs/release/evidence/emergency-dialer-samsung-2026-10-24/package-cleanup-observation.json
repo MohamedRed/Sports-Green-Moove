@@ -1,0 +1,8 @@
+{
+  "observedAt": "2026-10-24T00:45:52.062Z",
+  "command": "dumpsys package be.sportgreenmoove.app.local",
+  "packageAbsent": true,
+  "outputExcerpt": "Unable to find package: be.sportgreenmoove.app.local",
+  "scope": "read-only-package-absence-after-provider-uninstall",
+  "acknowledgementPresentInPackageSnapshot": false
+}

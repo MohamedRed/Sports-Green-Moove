@@ -14,8 +14,9 @@ test('later blocked system prerequisite preserves the older app gallery and scop
   assert.equal(flow.phone.checkedAt, '2026-10-21');
   assert(flow.dialerPreflight.source.includes('2026-10-21'));
   assert(Object.values(captures).every(file => !file.includes('emergency-dialer-preflight')));
+  assert(content.updates.some(row => row.source === record.source.replace('results.json', 'README.md')));
   assert.equal(content.blockers.find(row => row.id === 'emergency-contact').source,
-    'docs/release/evidence/emergency-dialer-preflight-2026-10-23/README.md');
+    flow.dialerPackageRecheck.source.replace('summary.json', 'README.md'));
 });
 for (const [key, value] of [['dialerHandoffVerified', true], ['rootCauseConfirmed', true],
   ['publishedCaptures', ['after-phone.jpg']], ['appSignInPerformed', true], ['realCallsPlaced', true],

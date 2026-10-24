@@ -22,6 +22,9 @@ import { validateNotificationNativeRecovery } from './notification-native-recove
 import { validateNativePaymentHeadRecheck } from './native-payment-head-evidence.mjs';
 import { validateNativeScheduleCopy } from './native-schedule-copy-evidence.mjs';
 import { validateAdminClientLifecycle } from './admin-client-lifecycle-evidence.mjs';
+import { validateSystemPhonePrerequisite } from './system-phone-prerequisite-evidence.mjs';
+import { validateBoundedValidation } from './bounded-validation-evidence.mjs';
+import { validateNativeAdminClose } from './native-admin-close-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -75,13 +78,15 @@ export function validateFlowRecheck(root, record) {
 }
 
 export function validateCurrentNativeBlocker(root, content) {
+  validateBoundedValidation(root, content.boundedValidationRecheck);
+  validateSystemPhonePrerequisite(root, content.flows.find(row => row.id === 'emergency-contact').dialerPackageRecheck);
   validateNotificationNativeAttempt(root, content.notificationNativeAttempt);
   validateNotificationNativeRecovery(root, content.notificationNativeRecovery);
   validateNativePaymentHeadRecheck(root, content.nativePaymentHeadRecheck);
   validateNativeScheduleCopy(root, content.nativeScheduleCopyRecheck);
   validateAdminClientLifecycle(root, content.adminClientLifecycleRecheck);
-  assert.equal(content.blockers.find(row => row.id === 'notification-native-replay')?.source,
-    content.adminClientLifecycleRecheck.source.replace('results.json', 'README.md'));
+  validateNativeAdminClose(root, content.nativeClientClosureRecheck);
+  assert.equal(content.blockers.find(row => row.id === 'notification-native-replay'), undefined);
   validateNativeReplay0f91172f(root, content.completedNativeReplayRecheck);
   validateNativeCopyCe282274(root, content.latestNativeCopyRecheck, content.blockers);
   validateNativeCaptureRecheck(root, content.nativeCaptureRecheck);

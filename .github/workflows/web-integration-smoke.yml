@@ -8,6 +8,9 @@ on:
       - "tests/team-conversation-contract.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "tests/emergency-dialer-recheck.test.mjs"
+      - "tests/system-phone-prerequisite-evidence.test.mjs"
+      - "tests/bounded-validation-evidence.test.mjs"
+      - "tests/native-admin-close-evidence.test.mjs"
       - "tests/native-payment-head-evidence.test.mjs"
       - "scripts/security/rotate-browserstack-key.mjs"
       - "tests/browserstack-key-rotation.test.mjs"
@@ -417,6 +420,9 @@ on:
       - "tests/team-conversation-contract.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "tests/emergency-dialer-recheck.test.mjs"
+      - "tests/system-phone-prerequisite-evidence.test.mjs"
+      - "tests/bounded-validation-evidence.test.mjs"
+      - "tests/native-admin-close-evidence.test.mjs"
       - "tests/native-payment-head-evidence.test.mjs"
       - "scripts/security/rotate-browserstack-key.mjs"
       - "tests/browserstack-key-rotation.test.mjs"
@@ -853,6 +859,8 @@ jobs:
 
       - name: Test Functions
         run: npm test --workspace functions
+      - name: Validate bounded collection regression evidence
+        run: node --test tests/bounded-validation-evidence.test.mjs
 
       - name: Test Belgian trip dates across server timezones
         run: |
@@ -899,7 +907,7 @@ jobs:
       - name: Validate encrypted credential rotation without provider requests
         run: node --test tests/browserstack-key-rotation.test.mjs
       - name: Validate independent contact recovery without accepting a blocked dialer
-        run: node --test tests/emergency-phone-recovery.test.mjs tests/emergency-dialer-recheck.test.mjs tests/native-payment-head-evidence.test.mjs
+        run: node --test tests/emergency-phone-recovery.test.mjs tests/emergency-dialer-recheck.test.mjs tests/system-phone-prerequisite-evidence.test.mjs tests/native-payment-head-evidence.test.mjs
 
       - name: Validate explicit real-map test boundaries without provider calls
         run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs tests/real-map-framing-evidence.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs tests/payment-confirmation-contract.test.mjs
@@ -1042,7 +1050,7 @@ jobs:
       - name: Verify actual isolated admin clients close after replay success and failure
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-local-admin-lifecycle.json
-        run: npm run test:local-admin-lifecycle && node --test tests/local-admin-lifecycle.test.mjs tests/admin-client-lifecycle-evidence.test.mjs
+        run: npm run test:local-admin-lifecycle && node --test tests/local-admin-lifecycle.test.mjs tests/admin-client-lifecycle-evidence.test.mjs tests/native-admin-close-evidence.test.mjs
       - name: Verify actual isolated UI service interruption cleanup
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-local-ui-shutdown.json

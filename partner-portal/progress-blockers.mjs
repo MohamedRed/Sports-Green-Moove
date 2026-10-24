@@ -1,9 +1,6 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
-  { id: 'notification-native-replay', title: 'Terminer le nouvel essai complet',
-    text: 'Le dernier essai exécute tous les parcours, puis reste bloqué à la fermeture. La correction passe en local.',
-    next: 'Relancer l’essai complet et confirmer sa fermeture.', source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/README.md' },
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
     text: 'Un essai précédent passe, captures comprises. La cause de la coupure reste inconnue.',
     next: 'Comprendre cette coupure pour fiabiliser les prochains essais.', source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },
@@ -23,8 +20,8 @@ export const blockers = [
     text: 'L’arrêt du suivi et la reprise conducteur passent dans le nouvel essai local.',
     next: 'Confirmer ces changements de compte sur téléphone, pendant un trajet.', source: 'docs/release/evidence/ride-emergency-pass-2026-10-19/README.md' },
   { id: 'dependency-security', title: 'Terminer les contrôles de sécurité',
-    text: 'Trois autres alertes sont corrigées et testées en local. D’autres restent à examiner.',
-    next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/multipart-security-2026-10-20/README.md' },
+    text: 'Une nouvelle alerte est corrigée et testée en local. D’autres restent à examiner.',
+    next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/bounded-validation-2026-10-24/README.md' },
   { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
     text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
     next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },
@@ -32,8 +29,8 @@ export const blockers = [
     text: 'L’ancien écart entre le trajet et les réservations est corrigé dans le nouvel essai local.',
     next: 'Rejouer sur téléphone avant publication. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-history-2026-10-18/README.md' },
   { id: 'emergency-contact', title: 'Tester le contact d’urgence',
-    text: 'Le nouvel essai du 23 octobre revient encore à l’accueil, même sans passer par notre app.',
-    next: 'Débloquer sur téléphone l’ouverture du numéro, sans appeler. Terminer l’accès de l’enfant pendant son trajet.', source: 'docs/release/evidence/emergency-dialer-preflight-2026-10-23/README.md' },
+    text: 'L’essai du 24 octobre revient encore à l’accueil, sur un autre modèle aussi, avant de passer par notre app.',
+    next: 'Débloquer sur téléphone l’ouverture du numéro, sans appeler. Terminer l’accès de l’enfant pendant son trajet.', source: 'docs/release/evidence/emergency-dialer-samsung-2026-10-24/README.md' },
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
     text: 'Le renvoi depuis la recherche retrouve une seule demande en local.',
     next: 'Rejouer après réouverture, depuis les autres écrans et sur téléphone. Terminer les confirmations des parents.', source: 'docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md' },

@@ -2,11 +2,24 @@
 
 ## Current Publication Policy
 
+The later 13a5b1e2 replay succeeds: 37 groups / 40 native cases, all 32 transcripts,
+17 primary copies, client-close acknowledgements, device restoration and host
+exit. Ten focused lanes and their aggregate pass. Remove the shutdown blocker,
+retain earlier failures, and do not accept physical/release scope or new gallery
+media. This run predates the separately verified validation-dependency update.
+
+The bounded-validation update reproduces three failed expectations with the
+unchanged four-case file; all four then pass, alongside 440 backend units and
+24 isolated service groups. Its targeted advisory disappears, not the other
+security findings. The Samsung dialer prerequisite still fails before app use;
+package diagnostics narrow the observation, without a confirmed cause. Separate
+uninstall acknowledgement/package absence/session stop verify its cleanup.
+
 The 24 October replay closure regression reproduces an unclosed real local
 Admin client. Awaited Firestore termination and app deletion permit natural
 success and error exits. The earlier aba016d8 replay reports all 37 local steps
 but exceeds its 35-minute job limit. Full native completion is still pending;
-the current blocker follows this shutdown issue rather than the older copy stage.
+the then-current blocker followed this shutdown issue rather than the older copy stage.
 No new app media or physical/release acceptance is added.
 
 The later 3413b579 native replay passes all ten focused jobs, including startup,

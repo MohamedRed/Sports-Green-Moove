@@ -16,8 +16,8 @@ test('passing driver replay remains separate from two later native failures', ()
 });
 test('the current blocker cannot point back to the superseded approval failure', () => {
   const changed = structuredClone(content);
-  changed.blockers.find(row => row.id === 'notification-native-replay').source =
-    content.notificationNativeRecovery.source.replace('summary.json', 'README.md');
+  changed.blockers.push({ id: 'notification-native-replay',
+    source: content.notificationNativeRecovery.source.replace('summary.json', 'README.md') });
   assert.throws(() => validateCurrentNativeBlocker(process.cwd(), changed));
 });
 for (const [file, key, value] of [

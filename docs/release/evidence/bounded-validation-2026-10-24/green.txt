@@ -1,0 +1,14 @@
+
+> @sports-green-moove/functions@0.1.0 test
+> vitest run src/__tests__/bounded-collection-validation.test.ts
+
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+
+ ✓ src/__tests__/bounded-collection-validation.test.ts (4 tests) 18ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  01:54:15
+   Duration  756ms (transform 100ms, setup 0ms, collect 471ms, tests 18ms, environment 0ms, prepare 47ms)
+

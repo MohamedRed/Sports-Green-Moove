@@ -107,8 +107,8 @@ test('personal contacts preserve verified-parent authority without accepting chi
   const emergency = content.blockers.find((item) => item.id === 'emergency-contact');
   assert.match(emergency.next, /Terminer l’accès de l’enfant/);
   assert.match(emergency.next, /sur téléphone/);
-  assert.match(emergency.text, /23 octobre.*sans passer par notre app/);
-  assert.equal(emergency.source, content.flows.find(item => item.id === 'emergency-contact').dialerPreflightRecheck.source.replace('results.json', 'README.md'));
+  assert.match(emergency.text, /24 octobre.*avant de passer par notre app/);
+  assert.equal(emergency.source, content.flows.find(item => item.id === 'emergency-contact').dialerPackageRecheck.source.replace('summary.json', 'README.md'));
   assert.match(emergency.next, /sans appeler/);
   assert.doesNotMatch(emergency.next, /Choisir le contact/);
 });
