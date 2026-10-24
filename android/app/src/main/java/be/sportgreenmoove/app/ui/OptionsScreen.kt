@@ -48,7 +48,6 @@ private val OptionSections = listOf(
         listOf(
             OptionRow(SgmIcon.Award, "Carte", "Stripe PaymentSheet", "Autorisation avant validation conducteur"),
             OptionRow(SgmIcon.ArrowRight, "Payout", "Stripe Connect", "Versements visibles dans le ledger"),
-            OptionRow(SgmIcon.Settings, "Frais plateforme", "0 EUR", "En attente des conditions business"),
         ),
     ),
 )

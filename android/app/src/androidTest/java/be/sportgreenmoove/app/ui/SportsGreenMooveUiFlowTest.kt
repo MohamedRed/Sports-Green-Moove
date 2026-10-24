@@ -151,6 +151,8 @@ class SportsGreenMooveUiFlowTest {
 
         host.show { OptionsScreen(uid = "ui-support-parent", firebase = firebase, onBack = {}, onEmergencyContact = {}, onSupport = {}) }
         assertTagsExist(SgmTestTags.OptionsScreen, SgmTestTags.SupportReportAction)
+        compose.onNodeWithText("Frais plateforme").assertDoesNotExist()
+        compose.onNodeWithText("0 EUR").assertDoesNotExist()
 
         host.show {
             PaymentsScreen(

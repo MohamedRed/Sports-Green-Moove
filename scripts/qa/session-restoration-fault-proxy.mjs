@@ -33,8 +33,8 @@ export async function openSessionRestorationFaultProxy(config, { verifyIdentity,
           restorationAttempts: receipt.attempts.filter(item => item.method === 'initializeUserProfile').length });
         return;
       }
-      const match = /^\/demo-sgm-local-qa\/us-central1\/(initializeUserProfile|getActiveRide)$/.exec(request.url);
-      assert(match, 'Only the selected restoration and read-only home call are allowed');
+      const match = /^\/demo-sgm-local-qa\/us-central1\/(initializeUserProfile|getActiveRide|getProfileCity)$/.exec(request.url);
+      assert(match, 'Only the selected restoration and read-only home/profile calls are allowed');
       assert.deepEqual(input, { data: {} });
       const authorization = request.headers.authorization;
       assert.equal(typeof authorization, 'string');
@@ -56,7 +56,7 @@ export async function openSessionRestorationFaultProxy(config, { verifyIdentity,
       const result = await upstream.json();
       attempt.upstreamStatus = upstream.status; attempt.downstreamStatus = upstream.status;
       assert.equal(upstream.status, 200);
-      if (method === 'initializeUserProfile') assert.equal(result.result?.userId, config.uid);
+      if (method === 'initializeUserProfile' || method === 'getProfileCity') assert.equal(result.result?.userId, config.uid);
       reply(response, upstream.status, result);
     })().catch(() => {
       receipt.failed = true;

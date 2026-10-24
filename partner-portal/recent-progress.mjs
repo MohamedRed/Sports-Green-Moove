@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-24', title: 'La commission reste à choisir',
+    text: 'Le « 0 € » fixe est retiré des réglages. Aucun tarif n’a été changé. Pas encore en ligne dans l’app.', flow: 'payments',
+    source: 'docs/release/evidence/commission-presentation-2026-10-24/README.md' },
   { date: '2026-10-24', title: 'La ville peut être modifiée',
     text: 'En local, elle reste propre au compte et peut être supprimée. Les recherches ne changent pas. Captures ajoutées.', flow: 'profile-city',
     source: 'docs/release/evidence/profile-city-2026-10-24/README.md' },

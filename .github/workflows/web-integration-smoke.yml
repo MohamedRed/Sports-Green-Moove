@@ -124,6 +124,8 @@ on:
       - "tests/location-order-evidence.test.mjs"
       - "tests/ride-observation-contract.test.mjs"
       - "tests/notification-settings-contract.test.mjs"
+      - "tests/options-pricing-contract.test.mjs"
+      - "ios/Sources/SportsGreenMooveApp/OptionsScreen.swift"
       - "tests/notification-settings-phone-evidence.test.mjs"
       - "tests/notification-native-recheck.test.mjs"
       - "tests/notification-read-*.test.*"
@@ -535,6 +537,8 @@ on:
       - "tests/location-order-evidence.test.mjs"
       - "tests/ride-observation-contract.test.mjs"
       - "tests/notification-settings-contract.test.mjs"
+      - "tests/options-pricing-contract.test.mjs"
+      - "ios/Sources/SportsGreenMooveApp/OptionsScreen.swift"
       - "tests/notification-settings-phone-evidence.test.mjs"
       - "tests/notification-native-recheck.test.mjs"
       - "tests/notification-read-*.test.*"
@@ -947,7 +951,7 @@ jobs:
       - name: Check completed ride and physical-phone evidence
         run: node --test tests/manual-ride-phone-checkpoints.test.mjs tests/ride-completion-recheck-evidence.test.mjs
       - name: Check truthful notification settings and isolated observation
-        run: node --test tests/notification-settings-contract.test.mjs tests/notification-settings-phone-evidence.test.mjs
+        run: node --test tests/notification-settings-contract.test.mjs tests/notification-settings-phone-evidence.test.mjs tests/options-pricing-contract.test.mjs
       - name: Test private idempotent notification acknowledgements
         run: npm run test:notification-reads && node --test tests/notification-read-evidence.test.mjs tests/notification-read-replay.test.mjs tests/notification-read-phone-evidence.test.mjs tests/notification-read-native-attempt.test.mjs tests/notification-read-native-recovery.test.mjs tests/notification-connected-services-evidence.test.mjs tests/partner-portal-news.test.mjs tests/notification-read-restart-phone-evidence.test.mjs
       - name: Test actual authenticated notification calls and unchanged isolated records

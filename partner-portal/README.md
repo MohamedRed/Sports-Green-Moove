@@ -2,6 +2,11 @@
 
 ## Current Publication Policy
 
+The 24 October commission decision is still open. Both native Options sources
+remove the fixed zero-fee business placeholder without changing payment policy.
+Report source/unit checks separately from the pending connected replay. No new
+payment media, production result or agreed customer commission is accepted.
+
 The 24 October profile-city trial is profile-only. Ten authenticated isolated
 service groups and three native components are separate from one connected
 Android case. The case covers cancel, save, activity recreation, account switch

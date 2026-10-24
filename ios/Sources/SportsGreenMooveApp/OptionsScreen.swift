@@ -24,7 +24,6 @@ struct OptionsScreen: View {
             OptionsSectionCard(rows: [
                 .init(icon: .award, label: "Carte", value: "Stripe PaymentSheet", detail: "Autorisation avant validation conducteur"),
                 .init(icon: .arrowRight, label: "Payout", value: "Stripe Connect", detail: "Versements visibles dans le ledger"),
-                .init(icon: .settings, label: "Frais plateforme", value: "0 EUR", detail: "En attente des conditions business"),
             ])
             SGMSectionLabel("SUPPORT")
             if let uid = appState.session?.uid { SupportSubmissionCard(uid: uid, gateway: appState.firebase).id(uid) }

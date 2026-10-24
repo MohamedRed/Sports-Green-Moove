@@ -8,6 +8,12 @@
 - Destination charges are used for platform-mediated rides.
 - Platform fee is `0` by default until business rules are finalized.
 
+The launch commission remains undecided (owner confirmation, 24 October 2026).
+Options must not advertise the implementation default as an agreed customer rate:
+the fixed `Frais plateforme / 0 EUR` placeholder is removed on both platforms.
+This presentation change does not alter fee configuration, frozen invoices or
+provider reconciliation. Agree the launch policy before activating paid flows.
+
 `createRidePaymentIntent` accepts a `bookingId` and derives all money-sensitive fields server-side:
 
 - the caller must be the booking parent.
