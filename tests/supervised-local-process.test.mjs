@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, rmSync, existsSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, existsSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
@@ -12,20 +12,45 @@ import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidenc
 const fixture = fileURLToPath(new URL('./fixtures/supervised-service.mjs', import.meta.url));
 const run = (mode, signal, readyPath, command = process.execPath) => superviseLocalProcess({ command,
   args: [fixture, mode, readyPath], env: process.env, signal, stopGraceMs: 5_000 });
-async function waitForFile(file) {
+async function waitForExistence(file) {
   const deadline = Date.now() + 5_000;
   while (!existsSync(file)) { assert(Date.now() < deadline, 'Fixture did not become ready'); await delay(20); }
-  return JSON.parse(readFileSync(file));
+}
+async function waitForFile(file) { await waitForExistence(file); return JSON.parse(readFileSync(file)); }
+async function withFixture(mode, check, stopSignal = 'SIGTERM') {
+  const directory = mkdtempSync(resolve(tmpdir(), 'sgm-supervision-')), ready = resolve(directory, 'ready.json');
+  const controller = new AbortController(), running = run(mode, controller.signal, ready);
+  try { return await check({ directory, ready, controller, running }); }
+  finally {
+    controller.abort(stopSignal);
+    const outcome = await running.then(result => result, error => error);
+    assert.equal(outcome.groupExitVerified, true, 'Fixture cleanup must finish even when readiness validation fails');
+    rmSync(directory, { recursive: true, force: true });
+  }
 }
 for (const signal of ['SIGINT', 'SIGTERM']) test(`${signal} stops the owned launcher and worker before acknowledging shutdown`, async () => {
-  const directory = mkdtempSync(resolve(tmpdir(), 'sgm-supervision-')), ready = resolve(directory, 'ready.json');
-  const controller = new AbortController(); let ids;
-  const running = run('service', controller.signal, ready);
-  try {
-    ids = await waitForFile(ready); controller.abort(signal);
+  await withFixture('service', async ({ ready, controller, running }) => {
+    const ids = await waitForFile(ready); controller.abort(signal);
     const result = await running; assert.equal(result.stopped, true); assert.equal(result.groupExitVerified, true);
     for (const pid of [ids.launcher, ids.worker]) assert.throws(() => process.kill(pid, 0), { code: 'ESRCH' });
-  } finally { controller.abort(signal); await running; rmSync(directory, { recursive: true, force: true }); }
+  }, signal);
+});
+test('readiness stays unpublished while its temporary JSON is incomplete', async () => {
+  await withFixture('blocked-publication', async ({ ready }) => {
+    await waitForExistence(ready + '.pending');
+    assert.equal(readFileSync(ready + '.pending', 'utf8'), ''); assert.equal(existsSync(ready), false);
+    writeFileSync(ready + '.publish', 'publish');
+    const ids = await waitForFile(ready);
+    assert(Number.isSafeInteger(ids.launcher) && ids.launcher > 0);
+    assert(Number.isSafeInteger(ids.worker) && ids.worker > 0); assert.equal(existsSync(ready + '.pending'), false);
+  });
+});
+test('a readiness-consumer failure still closes the owned launcher and worker', async () => {
+  let ids;
+  await assert.rejects(withFixture('service', async ({ ready }) => {
+    ids = await waitForFile(ready); throw new Error('Rejected readiness receipt');
+  }), /Rejected readiness receipt/);
+  for (const pid of [ids.launcher, ids.worker]) assert.throws(() => process.kill(pid, 0), { code: 'ESRCH' });
 });
 test('normal success and nonzero failure remain different outcomes', async () => {
   const result = await run('success', new AbortController().signal);
@@ -44,19 +69,16 @@ test('a stop requested before startup never spawns a service', async () => {
   assert.deepEqual(await run('service', controller.signal), { stopped: true, spawned: false, groupExitVerified: true });
 });
 test('an actual service failure cannot be converted to success by a simultaneous shutdown request', async () => {
-  const directory = mkdtempSync(resolve(tmpdir(), 'sgm-supervision-')), ready = resolve(directory, 'ready.json');
-  const controller = new AbortController(), running = run('failure-on-stop', controller.signal, ready);
-  try {
+  await withFixture('failure-on-stop', async ({ ready, controller, running }) => {
     await waitForFile(ready); controller.abort('SIGTERM'); await assert.rejects(running, /unsuccessfully/);
-  } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
 });
 test('a launcher that exits while leaving its worker fails even after explicit owned-group cleanup', async () => {
-  const directory = mkdtempSync(resolve(tmpdir(), 'sgm-supervision-')), ready = resolve(directory, 'ready.json');
-  try {
-    await assert.rejects(run('orphan', new AbortController().signal, ready), /live descendants/);
+  await withFixture('orphan', async ({ ready, running }) => {
+    await assert.rejects(running, /live descendants/);
     const ids = await waitForFile(ready);
     for (const pid of [ids.launcher, ids.worker]) assert.throws(() => process.kill(pid, 0), { code: 'ESRCH' });
-  } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
 });
 test('both original actual emulator shutdowns removed their private sessions and released every isolated port', () => {
   const root = fileURLToPath(new URL('../', import.meta.url)), base = resolve(root, 'docs/release/evidence/local-ui-shutdown-2026-10-19');

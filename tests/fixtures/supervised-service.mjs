@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { existsSync, renameSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const [mode, readyPath] = process.argv.slice(2);
@@ -13,8 +13,18 @@ if (mode === 'worker') {
 } else {
   const worker = spawn(process.execPath, [fileURLToPath(import.meta.url), 'worker'], { stdio: ['ignore', 'inherit', 'inherit', 'ipc'] });
   worker.once('message', ({ pid }) => {
-    writeFileSync(readyPath, JSON.stringify({ launcher: process.pid, worker: pid }));
-    if (mode === 'orphan') { worker.unref(); worker.disconnect(); process.exit(0); }
+    const pending = readyPath + '.pending';
+    const publish = () => {
+      writeFileSync(pending, JSON.stringify({ launcher: process.pid, worker: pid }));
+      renameSync(pending, readyPath);
+      if (mode === 'orphan') { worker.unref(); worker.disconnect(); process.exit(0); }
+    };
+    if (mode === 'blocked-publication') {
+      writeFileSync(pending, '');
+      const gate = setInterval(() => {
+        if (existsSync(readyPath + '.publish')) { clearInterval(gate); publish(); }
+      }, 20);
+    } else publish();
   });
   const stop = () => {
     const code = mode === 'failure-on-stop' ? 7 : 0;
