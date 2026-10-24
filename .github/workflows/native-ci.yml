@@ -56,6 +56,7 @@ on:
       - "tests/parent-search-booking-preparation.test.mjs"
       - "tests/search-maps-budget.test.mjs"
       - "tests/search-booking-runner.test.mjs"
+      - "tests/search-booking-phone.test.mjs"
       - "tests/search-booking-retained-evidence.test.mjs"
       - "tests/search-maps-bridge.test.mjs"
       - ".github/workflows/native-search-booking-ui.yml"
@@ -180,6 +181,7 @@ on:
       - "tests/parent-search-booking-preparation.test.mjs"
       - "tests/search-maps-budget.test.mjs"
       - "tests/search-booking-runner.test.mjs"
+      - "tests/search-booking-phone.test.mjs"
       - "tests/search-booking-retained-evidence.test.mjs"
       - "tests/search-maps-bridge.test.mjs"
       - ".github/workflows/native-search-booking-ui.yml"
@@ -321,6 +323,8 @@ jobs:
         run: node --test tests/session-transport-observations.test.mjs tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-restoration-recheck.test.mjs tests/session-restoration-recovery.test.mjs tests/ride-observation-preparation.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
       - name: Validate guarded full-search preparation and accessible trip controls
         run: node --test tests/parent-search-booking-preparation.test.mjs tests/search-maps-budget.test.mjs tests/search-booking-runner.test.mjs tests/search-maps-bridge.test.mjs tests/search-booking-retained-evidence.test.mjs
+      - name: Validate retained physical search without provider access
+        run: node --test tests/search-booking-phone.test.mjs
       - name: Validate dated full native replay recheck
         run: node --test tests/native-recheck-evidence.test.mjs tests/native-copy-failure-b158.test.mjs
       - name: Validate neutral text contrast and native capture scope

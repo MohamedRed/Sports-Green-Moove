@@ -1,3 +1,5 @@
+import {searchBookingPhone, searchPhoneImages} from './search-booking-phone.mjs';
+
 const proof = 'docs/release/evidence/browserstack-parent-search-2026-10-18/';
 const shot = (file, alt) => ({ file, alt });
 const phone = { source: proof + 'results.json' };
@@ -16,15 +18,16 @@ export function createNavigationFlow() {
 }
 
 export function createSearchFlow() {
-  return { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-20',
-    summary: 'Les adresses choisies mènent à une demande de deux places pour l’enfant, en local.',
-    verified: 'Wavre et Bruxelles-Central sont retrouvés. Le parent choisit Lina, deux places et son consentement ; un trajet est trouvé et une seule demande est enregistrée.',
-    remaining: 'Terminer la recherche complète et une réservation de deux places pour un enfant sur téléphone. Vérifier le classement, une vraie déconnexion et la reprise après coupure. Simplifier le choix de date.',
+  return { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-24', latestEvidence: 'phone',
+    summary: 'De vraies adresses à une demande de deux places sur téléphone.',
+    verified: 'Wavre et Bruxelles-Central sont retrouvés. Le parent choisit Lina, deux places et son consentement, puis envoie une seule demande. Comptes et trajet de test.',
+    remaining: 'Vérifier plusieurs trajets, le classement, les coupures et iPhone. Simplifier le choix de date. Pas encore en ligne.',
+    searchBookingPhone,
     phone: { ...phone, checkedAt: '2026-10-18' },
     searchBookingUi: { source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json', checkedAt: '2026-10-20' },
     ui: { source: 'docs/release/evidence/local-search-options-ui-2026-10-16/results.json',
       groups: ['search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui'], checkedAt: '2026-10-16' },
-    images: [shot('search-booking-choices', 'Adresses choisies, Lina, deux places et consentement, essai local du 20 octobre'),
+    images: [...searchPhoneImages, shot('search-booking-choices', 'Adresses choisies, Lina, deux places et consentement, essai local du 20 octobre'),
       shot('search-booking-requested', 'Un trajet trouvé et une seule demande envoyée, essai local du 20 octobre'),
       shot('phone-child-two-seats-consent', 'Enfant et deux places sélectionnés, sur téléphone le 18 octobre'),
       shot('phone-child-consent-reset', 'Consentement remis à zéro au changement de choix, sur téléphone le 18 octobre'),
@@ -33,5 +36,5 @@ export function createSearchFlow() {
       shot('search-options-invalidated', 'Anciens résultats retirés en local le 16 octobre'),
       shot('search-account-cleared', 'Compte simulé : recherche vidée le 15 octobre'),
       shot('local-search-empty', 'Recherche sans résultat le 15 octobre'), shot('places', 'Suggestion de lieu vérifiée le 11 octobre')],
-    source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/README.md' };
+    source: 'docs/release/evidence/search-booking-phone-2026-10-24/README.md' };
 }

@@ -14,18 +14,19 @@ test('six actual phone checkpoints preserve exact recipients, two seats, capacit
   assert.equal(run.completed, true); assert.equal(run.parentSearchOrRequestUiVerified, false);
   assert.equal(run.twoPhoneFlowVerified, false); assert.equal(run.pushDeliveryVerified, false);
 });
-test('the current tour uses eight reviewed phone captures while historical search and one-seat proof remain dated', () => {
+test('the current tour retains all eight historical decision captures under the newer full exchange', () => {
   const run = validateBookingDecisionsPhone(process.cwd(), source);
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-23'); assert.equal(flow.phone.checkedAt, '2026-10-18');
-  assert.match(detail(flow), /Essai sur téléphone du 23 octobre 2026/); assert.equal(flow.tour.length, 8);
-  assert.deepEqual(flow.tour.map(step => step.image), Object.keys(run.publishedCaptures));
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-24'); assert.equal(flow.phone.checkedAt, '2026-10-18');
+  assert.match(detail(flow), /Essai sur téléphone du 24 octobre 2026/); assert.equal(flow.tour.length, 5);
+  assert(flow.tour.every(step => step.image.startsWith('search-phone-')));
+  assert.equal(Object.keys(run.publishedCaptures).length, 8);
   for (const [id, file] of Object.entries(run.publishedCaptures)) {
     assert.equal(captures[id], dirname(source) + '/' + file);
     assert(flow.images.some(image => image.file === id && image.alt.includes('22 octobre')));
   }
   assert(flow.images.some(image => image.file === 'search-booking-requested' && image.alt.includes('20 octobre')));
   assert(flow.images.some(image => image.file === 'phone-booking-requested' && image.alt.includes('18 octobre')));
-  assert.match(flow.remaining, /sur téléphone la recherche/); assert.match(flow.remaining, /deux téléphones/);
+  assert.equal(flow.decisionPhone.checkedAt, '2026-10-22'); assert.match(flow.remaining, /deux téléphones/);
 });
 test('both new evidence contracts are selected and executed by the web smoke workflow', () => {
   const workflow = readFileSync('.github/workflows/web-integration-smoke.yml', 'utf8');

@@ -53,11 +53,12 @@ test('phone validation rejects expanded local access and a different capture seq
   assert.throws(() => assertParentPhoneSearch(...other));
 });
 
-test('website keeps old local test dates and calls the new phone search incomplete', () => {
+test('website keeps earlier incomplete search dates under the later complete phone exchange', () => {
   const search = content.flows.find((flow) => flow.id === 'search');
   assert.equal(search.status, 'partial'); assert.equal(search.phone.checkedAt, '2026-10-18');
   assert.equal(search.ui.checkedAt, '2026-10-16');
-  assert.match(search.remaining, /Terminer la recherche complète et une réservation de deux places/);
+  assert.equal(search.searchBookingPhone.checkedAt, '2026-10-24');
+  assert.match(search.remaining, /plusieurs trajets.*classement.*coupures.*iPhone/);
   const navigation = content.flows.find((flow) => flow.id === 'navigation');
   assert.equal(navigation.status, 'partial'); assert.equal(navigation.ui.checkedAt, '2026-10-15');
   for (const flow of [search, navigation]) assert.equal(flow.phone.source, source + 'results.json');

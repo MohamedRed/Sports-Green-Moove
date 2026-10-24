@@ -6,6 +6,7 @@ import { assertSearchBookingEvidence } from './search-booking-evidence.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
 import { validateContinuousDeviceEvidence } from './continuous-device-evidence.mjs';
 import { assertRetainedSourceFiles } from './retained-source-evidence.mjs';
+import { historicalSearchBookingNoticeContract } from './search-booking-checkpoint.mjs';
 
 export function validateRetainedSearchBooking(root, source) {
   const base = dirname(resolve(root, source)), read = name => readFileSync(resolve(base, name));
@@ -38,7 +39,8 @@ export function validateRetainedSearchBooking(root, source) {
   for (const [key, value] of Object.entries(app)) assert.deepEqual(report[key], value, key);
   for (const [key, value] of Object.entries(json('local-parent-search-booking-device.json'))) assert.deepEqual(report[key], value, key);
   const verification = assertSearchBookingEvidence({ native: report, checkpoints: json('search-booking-checkpoints.json'),
-    provider: json('search-booking-provider.json'), runId: context.runId, tripId: report.tripId, readCapture: read });
+    provider: json('search-booking-provider.json'), runId: context.runId, tripId: report.tripId, readCapture: read,
+    noticeContract: historicalSearchBookingNoticeContract });
   assert.deepEqual(report.verification, verification);
   const pull = json('adb-pull-parent-search-booking.json');
   assert.deepEqual(report.primaryCopy, pull); assert.equal(pull.completed, true); assert.equal(pull.status, 0);

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { assertSearchBookingCheckpoint, openSearchBookingCheckpoints } from '../scripts/qa/search-booking-checkpoint.mjs';
+import { assertSearchBookingCheckpoint, openSearchBookingCheckpoints, historicalSearchBookingNoticeContract } from '../scripts/qa/search-booking-checkpoint.mjs';
 import { assertSearchBookingEvidence, searchBookingCaptures } from '../scripts/qa/search-booking-evidence.mjs';
 import { verifySearchBookingIsolation } from '../scripts/qa/search-booking-records.mjs';
 import { focusedCases, requireFocusedDeviceApproval, preparePinnedApks } from '../scripts/qa/preinstalled-disposable-apks.mjs';
@@ -19,8 +19,9 @@ function state(phase) {
   trip: { driverUserId: 'sgm-qa-driver', priceCents: 0, seatsTotal: 4, seatsAvailable: phase === 'approved' ? 2 : 4, status: 'published' },
   receipts: [{ uid: 'sgm-qa-parent', state: 'committed', response: { bookingId, status: 'requested',
     trip: { bookingIntent: { terms: { priceCents: 0 } } } } }],
-  notifications: phase === 'requested' ? [] : [{ type: 'bookingApproved', userId: 'sgm-qa-parent' },
-    ...(phase === 'cancelled' ? [{ type: 'bookingCancelled', userId: 'sgm-qa-driver' }] : [])] };
+  notifications: [{ type: 'bookingRequested', userId: 'sgm-qa-driver', sourceId: bookingId },
+    ...(phase === 'requested' ? [] : [{ type: 'bookingApproved', userId: 'sgm-qa-parent', sourceId: bookingId }]),
+    ...(phase === 'cancelled' ? [{ type: 'bookingCancelled', userId: 'sgm-qa-driver', sourceId: bookingId }] : [])] };
 }
 
 test('independent checkpoints require exact ownership, two seats, committed free terms and nonduplicated notices', () => {
@@ -30,6 +31,8 @@ test('independent checkpoints require exact ownership, two seats, committed free
     for (const mutate of [s => { s.booking.childId = 'foreign'; }, s => { s.booking.seats = 1; },
       s => { s.trip.seatsAvailable = 3; }, s => { s.receipts[0].response.bookingId = 'foreign'; },
       s => { s.receipts[0].response.trip.bookingIntent.terms.priceCents = 500; }, s => { s.notifications.push({}); },
+      s => { s.notifications.shift(); }, s => { s.notifications[0].userId = 'sgm-qa-parent'; },
+      s => { s.notifications[0].sourceId = 'foreign'; },
       s => { s.booking.paymentIntentId = 'forbidden'; }]) {
       const value = state(phase); mutate(value); assert.throws(() => assertSearchBookingCheckpoint(phase, value, identity));
     }
@@ -80,15 +83,16 @@ test('evidence joins original capture hashes, actual provider calls and all thre
     e => { e.native.screenshots[searchBookingCaptures[0]] = '0'.repeat(64); }]) {
     const value = evidence(); mutate(value); assert.throws(() => assertSearchBookingEvidence(value));
   }
+  assert.throws(() => assertSearchBookingEvidence({...evidence(), noticeContract: historicalSearchBookingNoticeContract}));
 });
 
-test('record isolation accepts only the same owned booking, receipt, two notices and trip timestamp', () => {
+test('record isolation accepts only the same owned booking, receipt, three exact notices and trip timestamp', () => {
   const before = { claims: [{ uid: 'parent' }], liveTrips: null,
     documents: { trips: [{ id: tripId, data: { seatsAvailable: 4, updatedAt: 1 } }], users: [{ id: 'foreign', data: { label: 'untouched' } }] } };
   const after = structuredClone(before); after.documents.trips[0].data.updatedAt = 2;
   Object.assign(after.documents, { bookings: [{ id: bookingId, data: { tripId, status: 'cancelled' } }],
     bookingRequestReceipts: [{ id: 'receipt', data: { response: { bookingId } } }],
-    notifications: ['approved', 'cancelled'].map(id => ({ id, data: { sourceId: bookingId } })) });
+    notifications: state('cancelled').notifications.map((data, index) => ({id: 'notice-' + index, data})) });
   assert.equal(verifySearchBookingIsolation(before, after, { tripId, bookingId }).ownNewBookings, 1);
   for (const mutate of [s => { s.claims.push({ uid: 'foreign' }); }, s => { s.documents.users[0].data.label = 'changed'; },
     s => { s.documents.trips[0].data.seatsAvailable = 2; }, s => { s.liveTrips = { active: true }; },

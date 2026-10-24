@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { snapshotSessionRestorationRecords } from './session-restoration-records.mjs';
+import { expectedSearchBookingNotices } from './search-booking-checkpoint.mjs';
 
 export async function snapshotSearchBookingRecords(db, auth, database) {
   const state = await snapshotSessionRestorationRecords(db, auth, database);
@@ -18,7 +19,7 @@ export function verifySearchBookingIsolation(before, after, { tripId, bookingId 
   sanitized.documents.bookingRequestReceipts = (sanitized.documents.bookingRequestReceipts ?? []).filter(row =>
     row.data.response?.bookingId !== bookingId);
   const ownNotes = (sanitized.documents.notifications ?? []).filter(row => row.data.sourceId === bookingId);
-  assert.equal(ownNotes.length, 2);
+  assert.deepEqual(ownNotes.map(row => [row.data.type, row.data.userId]).sort(), expectedSearchBookingNotices('cancelled').sort());
   sanitized.documents.notifications = (sanitized.documents.notifications ?? []).filter(row => row.data.sourceId !== bookingId);
   const oldTrip = baseline.documents.trips.find(row => row.id === tripId);
   const newTrip = sanitized.documents.trips.find(row => row.id === tripId);
@@ -28,5 +29,5 @@ export function verifySearchBookingIsolation(before, after, { tripId, bookingId 
     if (rows.length === 0) delete value.documents[name];
   assert.deepEqual(sanitized, baseline, 'Unrelated records, claims and live trips must remain unchanged');
   return { unrelatedDocumentsUnchanged: true, allClaimsUnchanged: true, liveTripsUnchanged: true,
-    ownNewBookings: 1, ownNewRequestReceipts: 1, ownNewNotifications: 2 };
+    ownNewBookings: 1, ownNewRequestReceipts: 1, ownNewNotifications: 3 };
 }

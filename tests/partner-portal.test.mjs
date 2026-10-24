@@ -201,8 +201,9 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert.equal(flow.phone.checkedAt, '2026-10-18');
   assert.equal(flow.searchBookingUi.source, 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json');
   assert.equal(flow.status, 'partial');
-  assert.match(flow.remaining, /recherche complète/);
-  assert.match(flow.remaining, /vraie déconnexion/);
+  assert.equal(flow.searchBookingPhone.checkedAt, '2026-10-24');
+  assert.match(flow.remaining, /plusieurs trajets/);
+  assert.match(flow.remaining, /coupures/);
   const run = JSON.parse(source(flow.ui.source));
   assert.equal(run.testCount, 14);
   assert.equal(run.steps.length, 15);
@@ -210,8 +211,9 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
   assert.match(run.search.limitation, /host identity\/navigation changes, not real provider matching/);
   assert(flow.ui.groups.includes('search-session-ui') && flow.ui.groups.includes('search-input-ui'));
-  assert.equal(flow.images.filter(image => !image.file.startsWith('search-booking-')).length, 8);
-  assert.deepEqual(flow.images.slice(0, 2).map(image => image.file), ['search-booking-choices', 'search-booking-requested']);
+  assert.equal(flow.images.filter(image => !image.file.startsWith('search-booking-') && !image.file.startsWith('search-phone-')).length, 8);
+  assert.deepEqual(flow.images.slice(0, 3).map(image => image.file), ['search-phone-choices', 'search-phone-match', 'search-phone-requested']);
+  assert(flow.images.some(image => image.file === 'search-booking-choices' && image.alt.includes('20 octobre')));
   assert.equal(flow.ui.checkedAt, '2026-10-16');
   assert(flow.images.some(image => /essai local simulé du 16 octobre/.test(image.alt)));
   assert(!Object.values(captures).some((path) => path.endsWith('local-search-edited-place.png')));

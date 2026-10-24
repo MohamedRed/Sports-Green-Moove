@@ -11,7 +11,7 @@ const reports = steps.filter((step) => step.includes("uses: actions/upload-artif
 assert.deepEqual(reports.map((report) => report.match(/^          name: (.+)$/m)?.[1]).sort(), [
   'team-club-identity-results', 'trip-history-results', 'booking-recovery-results',
   'booking-display-results', 'booking-consistency-results', 'trip-contention-results',
-  'web-booking-notices', 'ledger-history-services',
+  'web-booking-notices', 'ledger-history-services', 'search-booking-notice-services',
 ].sort());
 assert(steps.indexOf(reports[0]) > steps.findLastIndex((step) => /^        run: /m.test(step)),
   "Report uploads must not stop later tests or builds when the artifact service is unavailable.");

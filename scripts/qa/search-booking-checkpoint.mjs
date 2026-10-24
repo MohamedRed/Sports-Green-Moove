@@ -3,8 +3,19 @@ import { createServer } from 'node:http';
 import { randomBytes, timingSafeEqual } from 'node:crypto';
 
 export const searchBookingPhases = ['requested', 'approved', 'cancelled'];
+export const searchBookingNoticeContract = 'request-and-decisions-v2';
+export const historicalSearchBookingNoticeContract = 'decisions-only-v1';
 
-export function assertSearchBookingCheckpoint(phase, state, identity) {
+export function expectedSearchBookingNotices(phase, contract = searchBookingNoticeContract) {
+  assert(searchBookingPhases.includes(phase));
+  assert([searchBookingNoticeContract, historicalSearchBookingNoticeContract].includes(contract));
+  const expected = contract === searchBookingNoticeContract ? [['bookingRequested', 'sgm-qa-driver']] : [];
+  if (phase !== 'requested') expected.push(['bookingApproved', 'sgm-qa-parent']);
+  if (phase === 'cancelled') expected.push(['bookingCancelled', 'sgm-qa-driver']);
+  return expected;
+}
+
+export function assertSearchBookingCheckpoint(phase, state, identity, noticeContract = searchBookingNoticeContract) {
   assert(searchBookingPhases.includes(phase));
   const { booking, trip, receipts, notifications } = state;
   for (const [key, value] of Object.entries({ tripId: identity.tripId, parentUserId: 'sgm-qa-parent',
@@ -17,8 +28,8 @@ export function assertSearchBookingCheckpoint(phase, state, identity) {
   assert.equal(receipts[0].state, 'committed'); assert.equal(receipts[0].response.bookingId, identity.bookingId);
   assert.equal(receipts[0].response.status, 'requested');
   assert.equal(receipts[0].response.trip.bookingIntent.terms.priceCents, 0);
-  const expected = phase === 'requested' ? [] : [['bookingApproved', 'sgm-qa-parent']];
-  if (phase === 'cancelled') expected.push(['bookingCancelled', 'sgm-qa-driver']);
+  const expected = expectedSearchBookingNotices(phase, noticeContract);
+  for (const notice of notifications) assert.equal(notice.sourceId, identity.bookingId);
   assert.deepEqual(notifications.map(n => [n.type, n.userId]).sort(), expected.sort());
   if (phase !== 'requested') assert(booking.approvedAt);
   if (phase === 'cancelled') {

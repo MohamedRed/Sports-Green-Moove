@@ -3,6 +3,11 @@
 One approved local trial passed on 2026-10-20, with six provider calls and three
 independent saved-state checkpoints. Original evidence and limits are in
 `../release/evidence/parent-search-booking-native-2026-10-20/README.md`.
+The separately approved 24 October physical trial also passes, with six provider
+calls, four independent checkpoints, seven original exports and full record
+isolation. Its scope and cleanup are in
+`../release/evidence/search-booking-phone-2026-10-24/README.md`. Neither approval
+authorizes another run. The ordinary native case below remains emulator-only.
 `LocalParentSearchBookingTest` is not executed by the ordinary
 offline suite: without the explicit `searchBookingApproved` instrumentation
 argument it skips before opening the app or making a provider request. It also
@@ -61,6 +66,14 @@ captures now prove this local trial; physical-device execution remains pending.
 Do not reset the allowance or restart a partially spent trial without approval.
 The server credential must stay outside the APK and evidence.
 Do not widen existing key restrictions or enable payments/social services.
+
+Current checkpoints require the request notice to the driver as well as approval
+and cancellation notices. They validate exact recipients and booking sources.
+Historical 20 October proof predates the request notice: its v1 format is selected
+explicitly and only for its pinned original source commit. Missing current notices
+never trigger that mode. A six-group authenticated replay protects this contract
+without any provider requests; the unchanged suite reproduces the old verifier's
+failure before the correction.
 
 The manual `parent_search_booking` selection in Native CI invokes the separate
 `native-search-booking-ui.yml` job. It excludes the ordinary replay and the

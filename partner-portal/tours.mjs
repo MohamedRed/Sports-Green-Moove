@@ -1,5 +1,6 @@
 import { supportFollowupSteps } from './support-followup-tour.mjs';
 import { supportSubmissionSteps } from './support-submission-flow.mjs';
+import { searchPhoneTour, bookingSearchPhoneTour } from './search-booking-phone.mjs';
 
 const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
@@ -144,15 +145,7 @@ export const tours = {
     image('local-home', 'Consulter l’accueil', 'Le trajet de test apparaît dans l’accueil.'),
     image('local-calendar', 'Consulter le calendrier', 'Le calendrier affiche le mois de l’essai et permet de changer de mois.'),
   ],
-  search: [
-    image('search-booking-choices', 'Choisir les adresses et les passagers', 'Dans le nouvel essai local, le parent choisit Wavre, Bruxelles-Central, Lina et deux places.'),
-    image('search-booking-requested', 'Trouver puis demander le trajet', 'Un trajet correspond. Le parent envoie une seule demande pour deux places. À rejouer sur téléphone.'),
-    image('phone-child-two-seats-consent', 'Choisir l’enfant et les places', 'Sur téléphone, l’enfant de test et deux places sont sélectionnés. La réservation complète reste à tester.'),
-    image('phone-child-consent-reset', 'Changer de choix', 'Le consentement est remis à zéro quand le choix d’enfant change.'),
-    image('phone-child-incomplete-search', 'Renseigner les adresses', 'Sans départ ni destination choisis, la recherche est bloquée et aucune réservation n’est créée.'),
-    image('search-options-retained', 'Retrouver ses choix', 'Les options restent sélectionnées au retour dans la recherche simulée.'),
-    image('search-options-invalidated', 'Modifier sa recherche', 'Les anciens résultats sont retirés après modification. Une recherche complète reste à vérifier.'),
-  ],
+  search: searchPhoneTour,
   publication: [
     image('trip-framed-places-selected', 'Choisir les nouvelles adresses', 'Les deux adresses sont retrouvées dans le nouvel essai local.'),
     image('trip-consent-first', 'Recueillir un premier accord', 'Dans l’essai du 17 octobre, un parent confirme le changement. Le second accord reste attendu.'),
@@ -162,16 +155,7 @@ export const tours = {
     image('trip-consent-refused', 'Si un parent refuse', 'Autre cas testé : le refus conserve la réservation et le trajet initial.'),
     image('trip-consent-withdrawn', 'Si le conducteur retire sa proposition', 'Autre cas testé : le changement est retiré sans annuler les réservations.'),
   ],
-  booking: [
-    image('booking-decision-phone-prepared', 'Deux demandes en attente', 'Deux demandes de test sont préparées pour Lina, avec deux places chacune.'),
-    image('booking-decision-phone-approved', 'Le conducteur accepte', 'Il confirme son accord pour la première réservation.'),
-    image('booking-decision-phone-declined', 'Il refuse l’autre demande', 'La réservation acceptée reste approuvée.'),
-    image('booking-decision-phone-parent-inbox', 'Le parent reçoit les réponses', 'L’accord et le refus arrivent dans ses notifications dans l’app.'),
-    image('booking-decision-phone-parent-capacity', 'Les deux places sont réservées', 'Le trajet accepté n’a plus que deux places disponibles, contre quatre pour l’autre.'),
-    image('booking-decision-phone-cancelled', 'Le parent annule', 'Il confirme l’annulation de sa réservation gratuite.'),
-    image('booking-decision-phone-restored-capacity', 'Les places redeviennent disponibles', 'Le trajet retrouve ses quatre places.'),
-    image('booking-decision-phone-driver-inbox', 'Le conducteur est prévenu', 'L’annulation apparaît dans ses notifications, sans les réponses destinées au parent.'),
-  ],
+  booking: bookingSearchPhoneTour,
   messages: [
     image('chat-reservation', 'Choisir la réservation', 'Le parent choisit la réservation depuis laquelle écrire au conducteur.'),
     image('chat-empty', 'Ouvrir la conversation', 'L’échange est prêt à recevoir le premier message.'),

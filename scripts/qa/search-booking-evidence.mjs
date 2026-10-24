@@ -1,12 +1,16 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { assertSearchBookingCheckpoint, searchBookingPhases } from './search-booking-checkpoint.mjs';
+import { assertSearchBookingCheckpoint, searchBookingPhases, searchBookingNoticeContract,
+  historicalSearchBookingNoticeContract } from './search-booking-checkpoint.mjs';
 import { searchMapsPolicy, searchOperations } from './search-maps-policy.mjs';
 
 export const searchBookingCaptures = ['choices', 'match', 'requested', 'driver-approved', 'parent-approved', 'cancelled']
   .map(stem => `local-parent-search-booking-${stem}.png`);
 
-export function assertSearchBookingEvidence({ native, checkpoints, provider, runId, tripId, readCapture }) {
+export function assertSearchBookingEvidence({ native, checkpoints, provider, runId, tripId, readCapture,
+  noticeContract = searchBookingNoticeContract }) {
+  if (noticeContract === historicalSearchBookingNoticeContract)
+    assert.equal(native.sourceCommit, '7d93569ce30c77ac0c8035dd25aea86cdcad14c4', 'Only the frozen historical run uses v1 notices');
   assert.equal(native.scope, 'local-parent-search-two-seat-booking-not-physical-or-payment');
   assert.equal(native.runId, runId); assert.equal(native.tripId, tripId); assert.equal(native.projectId, 'demo-sgm-local-qa');
   assert.equal(native.requestedSeats, 2); assert.equal(native.childId, 'sgm-qa-child-lina');
@@ -24,7 +28,7 @@ export function assertSearchBookingEvidence({ native, checkpoints, provider, run
   checkpoints.forEach((entry, index) => {
     assert.equal(entry.phase, searchBookingPhases[index]); assert.equal(entry.runId, runId);
     assert.equal(entry.bookingId, native.bookingId); assert.equal(entry.tripId, tripId);
-    assertSearchBookingCheckpoint(entry.phase, entry.state, { tripId, bookingId: native.bookingId });
+    assertSearchBookingCheckpoint(entry.phase, entry.state, { tripId, bookingId: native.bookingId }, noticeContract);
   });
   assert.equal(provider.policy, searchMapsPolicy); assert.equal(provider.approvedRequestLimit, 8); assert.equal(provider.stopped, false);
   assert.deepEqual(provider.requests.map(row => row.operation), searchOperations);

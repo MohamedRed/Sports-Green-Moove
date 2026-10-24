@@ -39,15 +39,15 @@ for (const [label, file, change] of [
   } finally { rmSync(temp, { recursive: true, force: true }); }
 });
 
-test('the private tour dates the newer local trial separately from older physical evidence and excludes weak frames', () => {
+test('the current phone tours preserve older local dates and exclude their weak original frames', () => {
   for (const id of ['search', 'booking']) {
     const flow = content.flows.find(row => row.id === id);
-    assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, id === 'booking' ? '2026-10-23' : '2026-10-20');
+    assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-24');
     assert.equal(flow.phone.checkedAt, '2026-10-18'); assert.equal(flow.searchBookingUi.source, source);
-    assert.match(detail(flow), id === 'booking' ? /Essai sur téléphone du 23 octobre 2026/ : /Essai local du 20 octobre 2026/);
+    assert.match(detail(flow), /Essai sur téléphone du 24 octobre 2026/);
     assert(!detail(flow).includes('Essai sur téléphone du 20 octobre 2026'));
     assert(flow.images.some(step => step.file.startsWith('search-booking-')));
-    assert.match(flow.remaining, /sur téléphone/);
+    assert.match(flow.remaining, /coupures|réponses perdues/);
   }
   const current = Object.entries(captures).filter(([id]) => id.startsWith('search-booking-'));
   assert.equal(current.length, 4);

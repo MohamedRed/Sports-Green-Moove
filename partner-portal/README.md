@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The later 24 October physical search trial completes real address selection,
+two seats for Lina, driver approval, parent account return, cancellation and
+four-seat restoration on one Pixel. Four independent checkpoints and full final
+isolation pass. Six approved map requests include nine matrix elements; no retry,
+payment or production write occurs. Seven original exports lead the search and
+booking tours. A stale two-notice verifier is reproduced against the real local
+backend and corrected to three notices; six service groups pass with the exact
+same replay source. Historical v1 validation is explicit and pinned to its old
+source commit, not inferred from missing notices. Sign-out, uninstall
+acknowledgement, session stop and owned local cleanup are verified. Package
+absence, two simultaneous phones, tracking, push, restart and iOS remain open.
+
 The later 24 October physical Pixel 9 Pro trial uses the a55503a4 isolated APK.
 City save/clear, sequential account switch/return, complete ledger balances and
 the driver payment-settings destination are observed manually. Nine independent

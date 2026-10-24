@@ -1,0 +1,29 @@
+{
+  "scope": "authenticated-search-booking-notice-contract-not-native-ui-or-provider",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a09c1eef40c4ebd1957c1977e3e23190",
+  "testedAt": "2026-10-24T15:03:36.353Z",
+  "checks": [],
+  "checkpoints": [],
+  "fixture": {
+    "tripId": "zhxKxSao4lOIMgs32yMJ",
+    "departureAt": "2026-10-27T15:03:34.860Z"
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "scripts/qa/search-booking-notice-services-suite.mjs": "3f30e1633e3e90637b06392cb891039f726c5043aa6d85d3f83cfeed4f68e640",
+    "scripts/qa/search-booking-checkpoint.mjs": "7f93d9619e8e67deece8e7125fd36af4f614a1fa417ed7e477c7f80420c5aae3",
+    "scripts/qa/search-booking-records.mjs": "3e8497d2374a7c6578017a77b159e9c6efc50ae7304c8e6cc75a16fa8a880ce3",
+    "functions/src/callables/bookingRequests.ts": "257af593b77ffc601e007d052021af923ec1cabc2567caf6a53ef31561e3b0f2"
+  },
+  "completed": false,
+  "nativeUiExecuted": false,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "failure": {
+    "name": "AssertionError",
+    "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   [\n+     'bookingRequested',\n+     'sgm-qa-driver'\n+   ]\n+ ]\n- []\n"
+  }
+}

@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['choices', 'match', 'requested', 'driver-approved', 'parent-approved', 'cancelled', 'capacity-restored']
+    .map(phase => ['search-phone-' + phase, 'docs/release/evidence/search-booking-phone-2026-10-24/captures/' + phase + '.png'])),
   ...Object.fromEntries(['parent-ready', 'parent-city-saved', 'parent-rewards', 'driver-ready', 'driver-rewards', 'parent-returned', 'parent-city-cleared']
     .map(phase => ['profile-ledger-phone-' + phase, 'docs/release/evidence/profile-ledger-phone-2026-10-24/captures/' + phase + '.png'])),
   ...Object.fromEntries(['impact', 'restored', 'foreign', 'return'].map(phase => [
