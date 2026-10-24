@@ -31,7 +31,8 @@ test('the current overview shows the physical restart without deleting earlier i
 test('covered flows must exist and historical evidence must remain inside the evidence folder', () => {
   const ids = new Set(content.flows.map(flow => flow.id));
   validateProgressEntries(process.cwd(), content, ids);
-  for (const patch of [{coversFlows: ['unknown-flow']}, {source: 'package.json'}, {date: '2026-10-24'}]) {
+  const future = new Date(content.updatedAt + 'T00:00:00Z'); future.setUTCDate(future.getUTCDate() + 1);
+  for (const patch of [{coversFlows: ['unknown-flow']}, {source: 'package.json'}, {date: future.toISOString().slice(0, 10)}]) {
     const changed = {...content, updates: [{...content.updates[0], ...patch}]};
     assert.throws(() => validateProgressEntries(process.cwd(), changed, ids));
   }

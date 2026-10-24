@@ -28,6 +28,9 @@ on:
       - "tests/retained-source-evidence.test.mjs"
       - "tests/manual-team-history-checkpoints.test.mjs"
       - "tests/supervised-local-process.test.mjs"
+      - "tests/local-admin-lifecycle.test.mjs"
+      - "tests/admin-client-lifecycle-evidence.test.mjs"
+      - "tests/fixtures/local-admin-client.mjs"
       - "tests/local-entry-command.test.mjs"
       - "tests/fixtures/signal-entry.mjs"
       - "tests/fixtures/supervised-service.mjs"
@@ -434,6 +437,9 @@ on:
       - "tests/retained-source-evidence.test.mjs"
       - "tests/manual-team-history-checkpoints.test.mjs"
       - "tests/supervised-local-process.test.mjs"
+      - "tests/local-admin-lifecycle.test.mjs"
+      - "tests/admin-client-lifecycle-evidence.test.mjs"
+      - "tests/fixtures/local-admin-client.mjs"
       - "tests/local-entry-command.test.mjs"
       - "tests/fixtures/signal-entry.mjs"
       - "tests/fixtures/supervised-service.mjs"
@@ -1033,6 +1039,10 @@ jobs:
         run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
       - name: Test owned local service process supervision
         run: node --test tests/supervised-local-process.test.mjs tests/local-entry-command.test.mjs
+      - name: Verify actual isolated admin clients close after replay success and failure
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-local-admin-lifecycle.json
+        run: npm run test:local-admin-lifecycle && node --test tests/local-admin-lifecycle.test.mjs tests/admin-client-lifecycle-evidence.test.mjs
       - name: Verify actual isolated UI service interruption cleanup
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-local-ui-shutdown.json

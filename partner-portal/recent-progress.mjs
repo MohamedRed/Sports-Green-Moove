@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-24', title: 'Corriger la fin de l’essai complet',
+    text: 'Les parcours de cet essai étaient exécutés, mais il ne se fermait pas. La correction passe en local. L’essai complet reste à relancer.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/README.md' },
   { date: '2026-10-23', title: 'La lecture résiste à la fermeture complète',
     text: 'Le compte revient sans reconnexion. L’alerte choisie reste lue, les deux autres non lues. Quatre captures ajoutées.', flow: 'notification-settings',
     source: 'docs/release/evidence/notification-read-restart-phone-2026-10-23/README.md' },

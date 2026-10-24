@@ -159,6 +159,10 @@ jobs:
         run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
       - name: Test owned local service process supervision
         run: node --test tests/supervised-local-process.test.mjs
+      - name: Verify actual isolated admin clients close after replay success and failure
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-local-admin-lifecycle.json
+        run: npm run test:local-admin-lifecycle && node --test tests/local-admin-lifecycle.test.mjs tests/admin-client-lifecycle-evidence.test.mjs
 
       - name: Test scoped team and verified child choices
         run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs

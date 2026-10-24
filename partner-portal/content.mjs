@@ -40,9 +40,11 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
-  updatedAt: '2026-10-23',
-  lastVerifiedAt: '2026-10-23',
+  updatedAt: '2026-10-24',
+  lastVerifiedAt: '2026-10-24',
   ...nativeRechecks,
+  adminClientLifecycleRecheck: { source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/results.json',
+    checkedAt: '2026-10-24', checksums: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/artifact-sha256.json' },
   nativeNetworkPreparationRecheck: { source: 'docs/release/evidence/native-terminal-80c88d0c-2026-10-23/run.json',
     checkedAt: '2026-10-23', checksums: 'docs/release/evidence/native-terminal-80c88d0c-2026-10-23/artifact-sha256.json' },
   nativeVerification,

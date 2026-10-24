@@ -21,6 +21,7 @@ import { validateNotificationNativeAttempt } from './notification-native-attempt
 import { validateNotificationNativeRecovery } from './notification-native-recovery-evidence.mjs';
 import { validateNativePaymentHeadRecheck } from './native-payment-head-evidence.mjs';
 import { validateNativeScheduleCopy } from './native-schedule-copy-evidence.mjs';
+import { validateAdminClientLifecycle } from './admin-client-lifecycle-evidence.mjs';
 
 export function validateFlowRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
@@ -78,8 +79,9 @@ export function validateCurrentNativeBlocker(root, content) {
   validateNotificationNativeRecovery(root, content.notificationNativeRecovery);
   validateNativePaymentHeadRecheck(root, content.nativePaymentHeadRecheck);
   validateNativeScheduleCopy(root, content.nativeScheduleCopyRecheck);
+  validateAdminClientLifecycle(root, content.adminClientLifecycleRecheck);
   assert.equal(content.blockers.find(row => row.id === 'notification-native-replay')?.source,
-    content.nativeScheduleCopyRecheck.source.replace('summary.json', 'README.md'));
+    content.adminClientLifecycleRecheck.source.replace('results.json', 'README.md'));
   validateNativeReplay0f91172f(root, content.completedNativeReplayRecheck);
   validateNativeCopyCe282274(root, content.latestNativeCopyRecheck, content.blockers);
   validateNativeCaptureRecheck(root, content.nativeCaptureRecheck);

@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The 24 October replay closure regression reproduces an unclosed real local
+Admin client. Awaited Firestore termination and app deletion permit natural
+success and error exits. The earlier aba016d8 replay reports all 37 local steps
+but exceeds its 35-minute job limit. Full native completion is still pending;
+the current blocker follows this shutdown issue rather than the older copy stage.
+No new app media or physical/release acceptance is added.
+
 The later 3413b579 native replay passes all ten focused jobs, including startup,
 and 159 ordinary cases. Its main job fails the schedule primary copy; three
 diagnostics observe the device offline and a transport reconnect. The 102-file
