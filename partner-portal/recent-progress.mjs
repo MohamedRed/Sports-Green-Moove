@@ -1,6 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 
 export const recentProgress = [
+  { date: '2026-10-24', title: 'La ville peut être modifiée',
+    text: 'En local, elle reste propre au compte et peut être supprimée. Les recherches ne changent pas. Captures ajoutées.', flow: 'profile-city',
+    source: 'docs/release/evidence/profile-city-2026-10-24/README.md' },
   { date: '2026-10-24', title: 'L’essai complet se termine correctement',
     text: 'Les 37 étapes et les dix essais séparés passent, captures et fermeture comprises. Le suivi réel reste à vérifier.', flow: 'publication', coversFlows: ['messages', 'team-conversation'],
     source: 'docs/release/evidence/native-admin-close-13a5b1e2-2026-10-24/README.md' },

@@ -10,6 +10,11 @@ on:
       - "tests/emergency-dialer-recheck.test.mjs"
       - "tests/system-phone-prerequisite-evidence.test.mjs"
       - "tests/bounded-validation-evidence.test.mjs"
+      - "tests/profile-city*.test.mjs"
+      - "scripts/qa/*profile-city*.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Profile*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*ProfileCity*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/ProfileCity.kt"
       - "tests/native-admin-close-evidence.test.mjs"
       - "tests/native-payment-head-evidence.test.mjs"
       - "scripts/security/rotate-browserstack-key.mjs"
@@ -1003,6 +1008,10 @@ jobs:
 
       - name: Test private emergency contact ownership and revocation
         run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
+      - name: Verify private profile-only city persistence and concurrent edits
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/profile-city-services.json
+        run: node scripts/qa/run-profile-city-services.mjs && node --test tests/profile-city-contract.test.mjs tests/profile-city-evidence.test.mjs
       - name: Test child emergency reading with preseeded private account links
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-emergency-services.json

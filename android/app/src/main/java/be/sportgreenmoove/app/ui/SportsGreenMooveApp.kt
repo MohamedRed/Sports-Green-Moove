@@ -220,6 +220,7 @@ fun SportsGreenMooveApp() {
                             }
                         }
                         AppScreen.Profile -> ProfileRoute(
+                            cityGateway = providers.profileCity,
                             role = role,
                             availableRoles = session?.roles ?: setOf(AppRole.Parent),
                             session = session,

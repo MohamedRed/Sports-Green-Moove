@@ -5,12 +5,14 @@ import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.NativeLedgerSummaries
+import be.sportgreenmoove.app.services.ProfileCityGateway
 
 @Composable
 fun ProfileRoute(
     role: AppRole,
     availableRoles: Set<AppRole>,
     session: AuthSession?,
+    cityGateway: ProfileCityGateway,
     clubs: List<ClubSummary>,
     ledgerSummaries: NativeLedgerSummaries,
     onRoleChange: (AppRole) -> Unit,
@@ -21,20 +23,25 @@ fun ProfileRoute(
     onOptions: () -> Unit,
     onLogout: () -> Unit,
 ) {
-    ProfileScreen(
-        role = role,
-        availableRoles = availableRoles,
-        displayName = session?.displayName,
-        email = session?.email,
-        primaryClubLabel = clubs.firstOrNull { it.isMember }?.name ?: "Aucun club lié",
-        impactSummary = ledgerSummaries.impact,
-        rewardSummary = ledgerSummaries.rewards,
-        onRoleChange = onRoleChange,
-        onGroups = onGroups,
-        onImpact = onImpact,
-        onRewards = onRewards,
-        onPayments = onPayments,
-        onOptions = onOptions,
-        onLogout = onLogout,
-    )
+    val uid = session?.uid ?: return
+    ProfileCityHost(uid, cityGateway) { cityLabel, onCity ->
+        ProfileScreen(
+            role = role,
+            availableRoles = availableRoles,
+            displayName = session.displayName,
+            email = session.email,
+            cityLabel = cityLabel,
+            onCity = onCity,
+            primaryClubLabel = clubs.firstOrNull { it.isMember }?.name ?: "Aucun club lié",
+            impactSummary = ledgerSummaries.impact,
+            rewardSummary = ledgerSummaries.rewards,
+            onRoleChange = onRoleChange,
+            onGroups = onGroups,
+            onImpact = onImpact,
+            onRewards = onRewards,
+            onPayments = onPayments,
+            onOptions = onOptions,
+            onLogout = onLogout,
+        )
+    }
 }

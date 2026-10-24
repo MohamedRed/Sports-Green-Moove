@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The 24 October profile-city trial is profile-only. Ten authenticated isolated
+service groups and three native components are separate from one connected
+Android case. The case covers cancel, save, activity recreation, account switch
+and clear, not a full process restart, physical phone or iPhone. Keep this flow
+partial and undeployed. Publish only visually reviewed app-window captures;
+exclude obstructed system-window originals, retaining their reason internally.
+
 The later 13a5b1e2 replay succeeds: 37 groups / 40 native cases, all 32 transcripts,
 17 primary copies, client-close acknowledgements, device restoration and host
 exit. Ten focused lanes and their aggregate pass. Remove the shutdown blocker,

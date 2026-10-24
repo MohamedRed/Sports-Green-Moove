@@ -42,6 +42,8 @@ fun ProfileScreen(
     availableRoles: Set<AppRole>,
     displayName: String?,
     email: String?,
+    cityLabel: String,
+    onCity: () -> Unit,
     primaryClubLabel: String,
     impactSummary: ImpactSummary,
     rewardSummary: RewardSummary,
@@ -67,6 +69,8 @@ fun ProfileScreen(
         ProfileRewardsCard(summary = rewardSummary, onClick = onRewards)
         V2SectionLabel("PARAMÈTRES")
         ProfileSettingsCard(
+            cityLabel = cityLabel,
+            onCity = onCity,
             primaryClubLabel = primaryClubLabel,
             onGroups = onGroups,
             onPayments = onPayments,

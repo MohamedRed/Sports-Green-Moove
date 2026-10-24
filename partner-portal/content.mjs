@@ -10,6 +10,7 @@ import { createEmergencyProfileFlow } from './emergency-profile-flow.mjs';
 import { createSessionRestorationFlow } from './session-restoration-flow.mjs';
 import { createSessionDisconnectFlow } from './session-disconnect-flow.mjs';
 import { createNotificationSettingsFlow } from './notification-settings-flow.mjs';
+import { createProfileCityFlow } from './profile-city-flow.mjs';
 import { createPaymentsFlow } from './payments-flow.mjs';
 import { nativeVerification } from './native-verification.mjs';
 import { nativeRechecks } from './native-rechecks.mjs';
@@ -274,6 +275,7 @@ export const content = {
       local: local(['ride-audit-ledgers'], ['Le trajet terminé crée une écriture d’impact.', 'Une récompense est enregistrée.', 'Une seconde clôture est refusée.']),
       images: [shot('ride-impact', 'Impact après un trajet terminé en local'), shot('ride-rewards', 'Solde de test et récompense du trajet local')], source: rideUiReport },
     createSupportFlow(local, ui, shot),
+    createProfileCityFlow(),
     createUrgentSupportFlow(shot),
     createSupportSubmissionFlow(shot),
     { id: 'appearance', title: 'Affichage et thème sombre', status: 'partial', checkedAt: '2026-10-15',

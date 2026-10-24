@@ -1,0 +1,14 @@
+{
+  "reviewed": true,
+  "containsRealCustomerData": false,
+  "published": {
+    "profile-city-editor-window.png": true,
+    "profile-city-saved.png": true,
+    "profile-city-restored.png": true,
+    "profile-city-other-account.png": true,
+    "profile-city-removed.png": true
+  },
+  "excluded": {
+    "profile-city-editor.png": "Duplicate synchronized dialog-only window; the clean full-device editor view is published."
+  }
+}

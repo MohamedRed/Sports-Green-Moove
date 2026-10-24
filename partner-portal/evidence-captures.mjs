@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['editor', 'saved', 'restored', 'other-account', 'removed'].map(phase => [
+    'profile-city-' + phase, 'docs/release/evidence/profile-city-2026-10-24/captures/profile-city-' + (phase === 'editor' ? 'editor-window' : phase) + '.png'])),
   ...Object.fromEntries(['unread', 'read', 'restored-home', 'restarted-inbox'].map(phase => [
     'notification-restart-phone-' + phase, 'docs/release/evidence/notification-read-restart-phone-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['parent-request-sent', 'driver-unread', 'driver-read', 'parent-returned', 'driver-returned'].map(phase => [
