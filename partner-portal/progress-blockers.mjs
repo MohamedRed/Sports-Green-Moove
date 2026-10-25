@@ -1,9 +1,6 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
-  {id: 'native-device-preparation', title: 'Terminer l’essai complet',
-    text: 'Le dernier contrôle complet n’a pas pu démarrer. Les essais déjà réalisés restent consultables.',
-    next: 'Reprendre avec un téléphone de test prêt.', source: 'docs/release/evidence/native-setup-8c9851e5-2026-10-24/README.md'},
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
     text: 'Un essai précédent passe, captures comprises. La cause de la coupure reste inconnue.',
     next: 'Comprendre cette coupure pour fiabiliser les prochains essais.', source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },
@@ -25,9 +22,9 @@ export const blockers = [
   { id: 'dependency-security', title: 'Terminer les contrôles de sécurité',
     text: 'Une nouvelle alerte est corrigée et testée en local. D’autres restent à examiner.',
     next: 'Vérifier les alertes restantes avant la mise en ligne.', source: 'docs/release/evidence/bounded-validation-2026-10-24/README.md' },
-  { id: 'trip-consent-restart', title: 'Rejouer les accords sur téléphone',
-    text: 'Les réponses et les brouillons, avec date et arrivée souhaitée, sont retrouvés après fermeture en local.',
-    next: 'Rejouer sur téléphone et entre plusieurs comptes.', source: 'docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md' },
+  { id: 'trip-consent-restart', title: 'Retrouver les accords après fermeture complète',
+    text: 'Deux accords, un refus et un retrait passent entre plusieurs comptes sur téléphone. Le brouillon revient après fermeture de l’éditeur.',
+    next: 'Rejouer après fermeture complète de l’app et entre deux téléphones.', source: 'docs/release/evidence/trip-consent-phone-2026-10-25/README.md' },
   { id: 'booking-time-display', title: 'Mettre en ligne les horaires corrigés',
     text: 'L’ancien écart entre le trajet et les réservations est corrigé dans le nouvel essai local.',
     next: 'Rejouer sur téléphone avant publication. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-history-2026-10-18/README.md' },

@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The 25 October physical consent trial binds ten independent read-only checkpoints
+to three booked trips and two parents. Six reviewed unscaled browser-viewport
+device rectangles form the new publication tour; they are not native-resolution
+exports or video. The single original native draft export remains retained only.
+Editor close/reopen is not whole-process restart. Confirmation, refusal and
+withdrawal preserve all six bookings and original terms. Application, route/time
+changes, payment and GPS remain open. Uninstall acknowledgement and session stop
+are verified; the provider rejects the package query, so absence is not claimed.
+Owned runtime/helper/session disposal and observer client closure are verified.
+Preserve older local application/restart evidence and the public audience.
+
 The 25 October recovery verifies the exact nine archived sources from the
 24 October four-case Compose trial. Its two final original captures replace
 neither the earlier payment evidence nor its dates. The original three-case

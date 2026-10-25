@@ -132,16 +132,17 @@ test('package-update interruption cannot accept fitted-map or application comple
 
 test('private portal adds the fitted map without promoting the historical clipped map or physical scope', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  assert.equal(flow.images.length, 25); assert.equal(new Set(flow.images.map((i) => i.file)).size, 25);
-  assert.deepEqual(flow.images.slice(0, 4).map((i) => i.file), ['trip-framed-map-visible', 'trip-framed-route-applied', 'trip-framed-places-selected', 'trip-real-map-visible']);
-  assert.match(flow.images[0].alt, /Deux repères entièrement visibles/); assert.match(flow.images[1].alt, /appliqué après les deux accords/);
+  const historical = flow.images.filter(image => !image.file.startsWith('consent-phone-'));
+  assert.equal(historical.length, 25); assert.equal(new Set(flow.images.map((i) => i.file)).size, 31);
+  assert.deepEqual(historical.slice(0, 4).map((i) => i.file), ['trip-framed-map-visible', 'trip-framed-route-applied', 'trip-framed-places-selected', 'trip-real-map-visible']);
+  assert.match(historical[0].alt, /Deux repères entièrement visibles/); assert.match(historical[1].alt, /appliqué après les deux accords/);
   assert.match(flow.images.find((i) => i.file === 'trip-real-map-visible').alt, /Ancien essai.*coupé/);
   // The original loaded raster remains weaker than the separately retained fitted-map proof.
   const display = mapsBase + 'completed-display/replay/';
   const run = JSON.parse(text(display + 'results.json')), verified = JSON.parse(text(display + 'verified.json'));
   assertRealMapsUiProviderEvidence(run, JSON.parse(text(display + 'real-maps-provider.json')), verified.runId);
   verifyRealMapDisplayFiles(run.native.mapDisplay, fileURLToPath(url(display)));
-  assert.match(flow.verified, /Les cartes s’affichent/);
+  assert.equal(flow.ui.checkedAt, '2026-10-18');
   assert.throws(() => assertFramedRealMapDisplay(run.native.mapDisplay));
   assert.match(content.blockers.find((b) => b.id === 'trip-management').text, /deux repères.*entièrement visibles/);
   assert.match(flow.remaining, /sur téléphone/); assert.match(flow.remaining, /paiements et remboursements réels/);

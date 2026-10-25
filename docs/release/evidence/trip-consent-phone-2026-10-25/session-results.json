@@ -1,0 +1,425 @@
+{
+  "scope": "independent-trip-consent-record-checkpoints-not-phone-ui-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b6423b0e77062f537bd02d41bcdfd00b",
+  "testedAt": "2026-10-25T12:04:50.414Z",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "proposalCount": 0,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "draft-private",
+      "proposalCount": 0,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "draft-returned",
+      "proposalCount": 0,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "proposed",
+      "proposalCount": 1,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "first-parent-accepted",
+      "proposalCount": 1,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "both-parents-accepted",
+      "proposalCount": 1,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "decline-proposed",
+      "proposalCount": 2,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "declined",
+      "proposalCount": 2,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "withdrawal-proposed",
+      "proposalCount": 3,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "withdrawn",
+      "proposalCount": 3,
+      "allBookingsUnchanged": true,
+      "tripTermsUnchanged": true,
+      "unrelatedRecordsUnchanged": true,
+      "allClaimsUnchanged": true,
+      "liveTripsUnchanged": true,
+      "applicationExercised": false,
+      "routeProviderExercised": false,
+      "paymentExercised": false,
+      "phoneUiProven": false
+    }
+  ],
+  "fixture": {
+    "fixtures": {
+      "confirmed": {
+        "tripId": "dKxHumUL7aHZ6kF9D1Qx",
+        "bookingIds": [
+          "FhEWsV5OwuuFU3v4NMSl",
+          "L1us8ttsj2mY9uCoVCQc"
+        ],
+        "before": {
+          "id": "dKxHumUL7aHZ6kF9D1Qx",
+          "driverUserId": "sgm-qa-driver",
+          "status": "published",
+          "title": "Confirmation des parents QA confirmed",
+          "sport": "Football",
+          "clubName": "Green Wavre QA Club",
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "departureAt": "2026-10-26T23:13:37.903Z",
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "pickupRadiusM": 1500,
+          "seatsTotal": 4,
+          "baggage": "medium",
+          "returnTrip": false,
+          "priceCents": 250,
+          "driverRating": 0,
+          "driverVerified": true,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "co2SavedKgEstimate": 7.4,
+          "passengerInitials": [],
+          "blockedUserIds": [],
+          "createdAt": {
+            "_seconds": 1792926817,
+            "_nanoseconds": 924000000
+          },
+          "seatsAvailable": 2
+        },
+        "bookingsBefore": [
+          {
+            "tripId": "dKxHumUL7aHZ6kF9D1Qx",
+            "parentUserId": "sgm-qa-parent",
+            "requesterUserId": "sgm-qa-parent",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 150000000
+            },
+            "approvedAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 846000000
+            },
+            "status": "approved",
+            "updatedAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 846000000
+            }
+          },
+          {
+            "tripId": "dKxHumUL7aHZ6kF9D1Qx",
+            "parentUserId": "sgm-qa-trip-change-parent-two",
+            "requesterUserId": "sgm-qa-trip-change-parent-two",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 873000000
+            },
+            "approvedAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 894000000
+            },
+            "status": "approved",
+            "updatedAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 894000000
+            }
+          }
+        ]
+      },
+      "declined": {
+        "tripId": "x8EpWUSSGTha3xg2pL9E",
+        "bookingIds": [
+          "US94g2qvOb1kevg0dDrW",
+          "61Xb5sQLk8psa91RqzJP"
+        ],
+        "before": {
+          "id": "x8EpWUSSGTha3xg2pL9E",
+          "driverUserId": "sgm-qa-driver",
+          "status": "published",
+          "title": "Confirmation des parents QA declined",
+          "sport": "Football",
+          "clubName": "Green Wavre QA Club",
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "departureAt": "2026-10-26T23:13:39.913Z",
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "pickupRadiusM": 1500,
+          "seatsTotal": 4,
+          "baggage": "medium",
+          "returnTrip": false,
+          "priceCents": 250,
+          "driverRating": 0,
+          "driverVerified": true,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "co2SavedKgEstimate": 7.4,
+          "passengerInitials": [],
+          "blockedUserIds": [],
+          "createdAt": {
+            "_seconds": 1792926819,
+            "_nanoseconds": 922000000
+          },
+          "seatsAvailable": 2
+        },
+        "bookingsBefore": [
+          {
+            "tripId": "x8EpWUSSGTha3xg2pL9E",
+            "parentUserId": "sgm-qa-parent",
+            "requesterUserId": "sgm-qa-parent",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 946000000
+            },
+            "approvedAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 969000000
+            },
+            "status": "approved",
+            "updatedAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 969000000
+            }
+          },
+          {
+            "tripId": "x8EpWUSSGTha3xg2pL9E",
+            "parentUserId": "sgm-qa-trip-change-parent-two",
+            "requesterUserId": "sgm-qa-trip-change-parent-two",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1792926819,
+              "_nanoseconds": 991000000
+            },
+            "approvedAt": {
+              "_seconds": 1792926820,
+              "_nanoseconds": 8000000
+            },
+            "status": "approved",
+            "updatedAt": {
+              "_seconds": 1792926820,
+              "_nanoseconds": 8000000
+            }
+          }
+        ]
+      },
+      "withdrawn": {
+        "tripId": "XhRQVhi97CCLgOXWkL8q",
+        "bookingIds": [
+          "2ufMVEXdNmTbPOmsRHHP",
+          "dSpHUt1Peva8lQgobqyq"
+        ],
+        "before": {
+          "id": "XhRQVhi97CCLgOXWkL8q",
+          "driverUserId": "sgm-qa-driver",
+          "status": "published",
+          "title": "Confirmation des parents QA withdrawn",
+          "sport": "Football",
+          "clubName": "Green Wavre QA Club",
+          "clubId": "sgm-qa-club-green-wavre",
+          "teamId": "sgm-qa-club-green-wavre-u8",
+          "category": "U 7/8",
+          "departureAt": "2026-10-26T23:13:40.021Z",
+          "origin": {
+            "lat": 50.7167,
+            "lng": 4.6167
+          },
+          "destination": {
+            "lat": 50.8503,
+            "lng": 4.3517
+          },
+          "pickupRadiusM": 1500,
+          "seatsTotal": 4,
+          "baggage": "medium",
+          "returnTrip": false,
+          "priceCents": 250,
+          "driverRating": 0,
+          "driverVerified": true,
+          "supportsVehicleTracking": true,
+          "supportsChildTracking": true,
+          "co2SavedKgEstimate": 7.4,
+          "passengerInitials": [],
+          "blockedUserIds": [],
+          "createdAt": {
+            "_seconds": 1792926820,
+            "_nanoseconds": 30000000
+          },
+          "seatsAvailable": 2
+        },
+        "bookingsBefore": [
+          {
+            "tripId": "XhRQVhi97CCLgOXWkL8q",
+            "parentUserId": "sgm-qa-parent",
+            "requesterUserId": "sgm-qa-parent",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1792926820,
+              "_nanoseconds": 54000000
+            },
+            "approvedAt": {
+              "_seconds": 1792926820,
+              "_nanoseconds": 71000000
+            },
+            "status": "approved",
+            "updatedAt": {
+              "_seconds": 1792926820,
+              "_nanoseconds": 71000000
+            }
+          },
+          {
+            "tripId": "XhRQVhi97CCLgOXWkL8q",
+            "parentUserId": "sgm-qa-trip-change-parent-two",
+            "requesterUserId": "sgm-qa-trip-change-parent-two",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1792926820,
+              "_nanoseconds": 90000000
+            },
+            "approvedAt": {
+              "_seconds": 1792926820,
+              "_nanoseconds": 105000000
+            },
+            "status": "approved",
+            "updatedAt": {
+              "_seconds": 1792926820,
+              "_nanoseconds": 105000000
+            }
+          }
+        ]
+      }
+    },
+    "secondParent": {
+      "uid": "sgm-qa-trip-change-parent-two",
+      "email": "trip-change-parent-two@example.test"
+    },
+    "driverUid": "sgm-qa-driver",
+    "parentUids": [
+      "sgm-qa-parent",
+      "sgm-qa-trip-change-parent-two"
+    ]
+  },
+  "protectedRecordCount": 187,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "phoneUiProven": false,
+  "wholeProcessRestartProven": false,
+  "productionWrites": false,
+  "routeProviderRequests": 0,
+  "applicationExercised": false,
+  "realPaymentExercised": false,
+  "sourceFiles": {
+    "scripts/qa/manual-trip-consent-phone-session.mjs": "fc39e737ec9c5a850b518810eb5c1d64439d71683a915d9091a74c7e953fad0a",
+    "scripts/qa/trip-consent-phone-checkpoints.mjs": "e76730779b87533f05d5f571edd5e72f6104b9ab9eeb324f2192d541e8d4e9bf",
+    "scripts/qa/local-trip-change-ui.mjs": "fda071250791b73088cfb6ccd41cf3c075c71f69791b3b830240cc1c994c748e",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802"
+  }
+}

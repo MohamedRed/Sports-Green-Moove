@@ -41,15 +41,18 @@ test('later public callback recovery does not promote older local payment eviden
   assert.doesNotMatch(blocker.text, /facturation|suspension|Stripe|Firebase|HTTP|BrowserStack/i);
 });
 
-test('completed local consent adds reviewed images without promoting failed or physical-device scope', () => {
+test('new phone consent keeps dated local application and restart evidence separate', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
   const blocker = content.blockers.find((item) => item.id === 'trip-management');
   assert.equal(flow.status, 'partial');
-  assert.match(flow.verified, /Deux parents confirment séparément/);
+  assert.match(flow.verified, /Deux parents acceptent séparément/);
   assert.match(blocker.next, /rejouer sur téléphone/);
   assert.match(blocker.next, /brouillons/);
   assert.equal(blocker.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md');
-  assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-18');
+  assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-25');
+  assert.equal(flow.ui.checkedAt, '2026-10-18');
+  assert.equal(flow.tripConsentPhone.checkedAt, '2026-10-25');
+  assert.equal(flow.tour.length, 6); assert(flow.tour.every(step => step.image.startsWith('consent-phone-')));
   assert(flow.ui.groups.includes('trip-consent-process-restart-ui'));
   assert.equal(flow.source, blocker.source);
   const current = Object.values(captures).filter((path) => path.includes('local-trip-consent-native-2026-10-17'));

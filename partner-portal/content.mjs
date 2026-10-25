@@ -1,4 +1,5 @@
 import { tours } from './tours.mjs';
+import {tripConsentPhone, tripConsentPhoneImages} from './trip-consent-phone.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { createSupportFlow } from './support-flow.mjs';
 import { createUrgentSupportFlow } from './urgent-support-flow.mjs';
@@ -151,13 +152,14 @@ export const content = {
     createNotificationSettingsFlow(),
     createNavigationFlow(),
     createSearchFlow(),
-    { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-18',
-      summary: 'Les deux repères sont visibles. Le parcours s’applique après les deux accords, en local.',
-      verified: 'Deux parents confirment séparément ; le conducteur applique le parcours en local. Les cartes s’affichent avec les deux repères entièrement visibles.',
-      remaining: 'Rejouer le parcours, la carte et les brouillons après fermeture sur téléphone. Terminer les paiements et remboursements réels. Pas encore en ligne.',
+    { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-25', latestEvidence: 'phone',
+      summary: 'Deux accords, un refus et un retrait vérifiés sur téléphone.',
+      verified: 'Deux parents acceptent séparément le prix proposé. Un refus ou un retrait conserve le trajet initial et les réservations. Le brouillon revient après fermeture de l’éditeur. Comptes de test.',
+      remaining: 'Rejouer l’application du changement, la carte et les brouillons après fermeture complète sur téléphone. Terminer les paiements et remboursements réels. Pas encore en ligne.',
+      tripConsentPhone,
       local: local(['publication', 'trip-cancellation', 'trip-details-ownership', 'trip-change-parent-confirmation', 'trip-change-application'], ['Le conducteur publie ; le parent retrouve le trajet.', 'L’annulation ferme les réservations et prévient les parents.', 'Répéter une demande ne crée aucun doublon.', 'Deux parents confirment séparément les détails proposés.', 'Un refus conserve le trajet initial et ses réservations.', 'Après accord, les nouveaux horaire, parcours et prix sont enregistrés.', 'Une réponse perdue est retrouvée sans recréer la proposition.', 'Un supplément ou remboursement non réglé bloque le départ.', 'Aucun paiement ni remboursement réel dans ces essais.'], 'docs/release/evidence/local-trip-change-native-2026-10-17/services.json', '2026-10-17'),
-      ui: { source: 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json', groups: ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui', 'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui'] },
-      images: [shot('trip-framed-map-visible', 'Deux repères entièrement visibles, nouvel essai local du 18 octobre'),
+      ui: { source: 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json', checkedAt: '2026-10-18', groups: ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui', 'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui'] },
+      images: [...tripConsentPhoneImages, shot('trip-framed-map-visible', 'Deux repères entièrement visibles, nouvel essai local du 18 octobre'),
         shot('trip-framed-route-applied', 'Nouveau parcours appliqué après les deux accords, nouvel essai local du 18 octobre'),
         shot('trip-framed-places-selected', 'Adresses choisies dans le nouvel essai local réussi du 18 octobre'),
         shot('trip-real-map-visible', 'Ancien essai du 18 octobre au matin : repère de départ coupé'),

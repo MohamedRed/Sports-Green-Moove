@@ -68,9 +68,10 @@ test('current map captures are linked without replacing older clipped or unavail
     ['trip-framed-route-applied', 'local-real-maps-applied.png'], ['trip-framed-places-selected', 'local-real-maps-selected.png']]) {
     assert.equal(captures[key], prefix + 'replay/' + name);
     assert(flow.images.some((image) => image.file === key));
-    assert(flow.tour.some((step) => step.image === key));
+    assert.match(flow.images.find(image => image.file === key).alt, /18 octobre/);
   }
   assert.match(captures['trip-real-map-visible'], /completed-display/);
   assert.match(captures['trip-real-route-applied'], /completed-application/);
-  assert.match(flow.verified, /deux repères entièrement visibles/);
+  assert(flow.tour.every(step => step.image.startsWith('consent-phone-')));
+  assert.equal(flow.ui.checkedAt, '2026-10-18');
 });
