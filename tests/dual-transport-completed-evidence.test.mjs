@@ -70,7 +70,7 @@ test('reviewed captures use this run while physical, stability and draft-restart
   for (const remaining of [/Répéter/, /brouillons après fermeture/, /téléphones/, /groupes/, /Pas encore en ligne/]) assert.match(flow.remaining, remaining);
   assert(content.blockers.some((item) => item.id === 'chat-send-stability' && /précédents/.test(item.text)));
   assert(content.updates.some((item) => item.title === 'La coupure et la reprise passent'));
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
 });
 
 test('all successful raw artifacts retain original bytes and explicit smoke coverage', () => {

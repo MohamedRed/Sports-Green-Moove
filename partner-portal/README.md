@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The 25 October GPS attempt is incomplete. One native point is accepted; the
+second mock coordinate is observed in Android diagnostics but not received in
+45 backend samples over 90 seconds. The app and parent read correctly report
+staleness. A timestamp-only edit in the disposable compiled backend identifies
+future-clock rejection; original production handlers and safety rules are not
+changed. Three reviewed unscaled viewport JPEGs show the failed attempt, not
+native-resolution exports, video or completed tracking. Keep tracking blocked,
+all release scenarios open, and older data-only sources dated separately.
+Uninstall acknowledgement, supported package-absence query, sign-out, session
+stop, Admin/Firestore closure and owned local disposal are verified.
+
 The 25 October physical consent trial binds ten independent read-only checkpoints
 to three booked trips and two parents. Six reviewed unscaled browser-viewport
 device rectangles form the new publication tour; they are not native-resolution

@@ -62,7 +62,7 @@ test('current private updates retain the prior observations without claiming who
   assert.match(flow.remaining, /sans appeler/); assert.equal(flow.images.filter((item) => item.file.startsWith('emergency-current-')).length, 7);
   assert(content.updates.some((item) => item.title === 'Le contact revient dans l’app'));
   validateCurrentNativeBlocker(process.cwd(), content);
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
 });
 test('synchronization proof and regressions are covered by web and native configuration gates', () => {
   const file = 'tests/emergency-contact-scheduler.test.mjs';

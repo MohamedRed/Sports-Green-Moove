@@ -2,8 +2,14 @@ import { archivedProgress } from './progress-archive.mjs';
 import {dailyProgress} from './progress-2026-10-24.mjs';
 import {driverConnectProgress} from './driver-connect.mjs';
 import {tripConsentPhoneProgress} from './trip-consent-phone.mjs';
+import {trackingAttemptProgress} from './tracking-phone-attempt.mjs';
 
 export const recentProgress = [
+  trackingAttemptProgress,
+  {date: '2026-10-25', title: 'Un essai de démarrage reste en échec',
+    text: 'Le contrôle principal et neuf essais séparés passent. Un service de localisation se déconnecte dans le dixième. Sa cause reste à comprendre.',
+    flow: 'native-startup', coversFlows: ['publication', 'messages', 'team-conversation'],
+    source: 'docs/release/evidence/native-checks-899e969-2026-10-25/README.md'},
   tripConsentPhoneProgress,
   {date: '2026-10-25', title: 'Le contrôle complet repasse',
     text: 'Le contrôle principal et les dix essais séparés passent. Les essais réels de suivi et de paiement restent ouverts.',

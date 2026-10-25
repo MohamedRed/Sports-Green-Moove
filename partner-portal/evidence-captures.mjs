@@ -1,7 +1,9 @@
 import {tripConsentPhoneCaptures} from './trip-consent-phone.mjs';
+import {trackingAttemptCaptures} from './tracking-phone-attempt.mjs';
 
 export const captures = {
   ...tripConsentPhoneCaptures,
+  ...trackingAttemptCaptures,
   ...Object.fromEntries(['opening', 'narrow'].map(phase => [
     'connect-safe-' + phase, 'docs/release/evidence/driver-connect-2026-10-24/layout/connect-' + phase + '.png'])),
   ...Object.fromEntries(['choices', 'match', 'requested', 'driver-approved', 'parent-approved', 'cancelled', 'capacity-restored']

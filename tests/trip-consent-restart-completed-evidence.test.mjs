@@ -88,7 +88,7 @@ test('only reviewed after and driver captures enter the partial partner flow whi
   assert(!Object.values(captures).includes(base + 'completed/local-trip-consent-restart-before.png'));
   for (const scope of [/brouillons après fermeture/, /sur téléphone/, /carte/, /paiements et remboursements réels/])
     assert.match(flow.remaining, scope);
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
   const manifest = JSON.parse(text('docs/release/evidence-manifest.json'));
   assert.equal(manifest.storeReviewEvidence.items.find((item) => item.id === 'emergency_contact_action_screenshot').status, 'pending');
   for (const workflow of ['native-ci.yml', 'web-integration-smoke.yml'])

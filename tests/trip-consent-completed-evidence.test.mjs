@@ -80,7 +80,7 @@ test('reviewed local consent images are backed by completion and cannot promote 
     assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2140);
   }
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
 });
 
 test('original complete artifacts and mandatory smoke coverage preserve failed historical evidence', () => {

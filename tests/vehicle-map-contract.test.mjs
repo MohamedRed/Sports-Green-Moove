@@ -50,7 +50,7 @@ test('the portal keeps actual parent screen proof separate from new coordinate-o
   assert.equal(flow.images.length, 18); assert.equal(flow.tour.length, 9); assert.match(flow.remaining, /vraies positions.*téléphone/);
   assert.equal(flow.images.at(-1).file, 'vehicle-map-unverified');
   assert.match(flow.images.at(-1).alt, /arrêté avant de vérifier le déplacement/);
-  assert.equal(content.flows.find((row) => row.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((row) => row.id === 'tracking').status, 'blocked');
 });
 test('the latest remote preparation failure cannot become app-flow proof while successful backend checks stay successful', () => {
   const base = 'docs/release/evidence/ci-df9e245-2026-10-19/';

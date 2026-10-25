@@ -96,9 +96,10 @@ test('the current writer is atomic and reports actual commits without losing eve
 
 test('the partner site still requires actual live screen and physical-device verification', () => {
   const flow = content.flows.find((item) => item.id === 'tracking');
-  assert.equal(flow.status, 'untested'); assert.equal(flow.ui, undefined); assert.equal(flow.phone, undefined);
-  assert.equal(flow.local, undefined); assert.deepEqual(flow.images, []);
-  assert.match(flow.verified, /sur les données, pas sur un trajet réel/);
+  assert.equal(flow.status, 'blocked'); assert.equal(flow.ui, undefined); assert.equal(flow.phone, undefined);
+  assert.equal(flow.local, undefined); assert.equal(flow.images.length, 3);
+  assert(flow.images.every(image => image.file.startsWith('tracking-attempt-')));
+  assert.match(flow.verified, /aucun trajet réel/);
   assert.match(flow.remaining, /affichage en direct/); assert.match(flow.remaining, /pertes GPS\/réseau/);
   assert(text(flow.source).includes('../location-order-2026-10-19'));
 });

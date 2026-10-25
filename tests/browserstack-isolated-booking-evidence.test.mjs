@@ -61,7 +61,7 @@ test('private site dates phone and old local results separately without closing 
   assert.match(detail(flow), /Essai sur téléphone du 24 octobre 2026/);
   assert.equal(flow.searchBookingUi.checkedAt, '2026-10-20');
   for (const remaining of [/deux téléphones/, /réponses perdues/, /remboursements/, /Pas encore en ligne/]) assert.match(flow.remaining, remaining);
-  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'blocked');
 });
 
 test('CLI checkpoints require private credentials, synthetic parent identity, one request and no payment metadata', () => {

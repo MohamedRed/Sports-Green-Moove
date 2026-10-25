@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-10-25T13:02:27.438Z",
+  "scope": "latest-read-only-android-location-output-extract-not-app-upload-proof",
+  "mockLocations": [
+    "last location=Location[gps 50.717700,4.617700 hAcc=1.0 et=+1d10h18m52s554ms mock]",
+    "last location=Location[network 50.717700,4.617700 hAcc=1.0 et=+1d10h18m52s549ms mock]",
+    "last mock location=Location[network 50.717700,4.617700 hAcc=1.0 et=+1d10h18m52s549ms mock]",
+    "last location=Location[fused 50.717700,4.617700 hAcc=1.0 et=+1d10h18m52s552ms mock]",
+    "last mock location=Location[fused 50.717700,4.617700 hAcc=1.0 et=+1d10h18m52s552ms mock]",
+    "last mock location=Location[gps 50.717700,4.617700 hAcc=1.0 et=+1d10h18m52s554ms mock]"
+  ]
+}

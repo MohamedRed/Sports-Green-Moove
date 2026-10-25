@@ -16,7 +16,7 @@ test('the startup tour publishes only its two usable images and keeps the render
   assert.equal(captures['native-startup-invalid'], undefined); assert.equal(captures['native-startup-resumed'], undefined);
   assert.deepEqual(flow.tour.map((step) => step.image), flow.images.map((image) => image.file));
   for (const image of flow.images) assert(captures[image.file].includes('/native-startup-pass-2026-10-19/'));
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
 });
 test('a functional case with rejected display images cannot be published as the reviewed startup tour', () => {
   assert.throws(() => validateRetainedNativeStartup(root,

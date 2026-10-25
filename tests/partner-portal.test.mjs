@@ -15,7 +15,7 @@ const source = (file) => readFileSync(resolve(root, file), 'utf8');
 test('every flow has truthful, dated evidence and explicit remaining scope', () => {
   assert.equal(validate(root), true);
   assert(content.flows.length >= 14);
-  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'blocked');
   assert.equal(content.flows.find((f) => f.id === 'booking').status, 'partial');
   assert.equal(content.flows.find((f) => f.id === 'social-auth').status, 'deferred');
   assert.equal(content.releaseNote, 'Tests en cours.');
@@ -121,7 +121,7 @@ test('local results are backed by successful evidence and are not presented as p
     assert(!flow.recording);
   }
   assert.match(source('partner-portal/src/media.js'), /sans enregistrement sur téléphone/);
-  assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'blocked');
 });
 
 test('manual screen evidence stays scoped and cannot complete a phone requirement', () => {
@@ -173,7 +173,7 @@ test('ride integrity claims use the new eleven-group evidence without promoting 
   assert(run.steps.every((step) => step.status === 'passed'));
   assert(flow.local.groups.includes('ride-passenger-safety'));
   assert.equal(flow.status, 'partial');
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
 });
 
 test('message service claims use the refreshed 24-group evidence and retain history', () => {
@@ -251,7 +251,7 @@ test('current conversation evidence retains the full replay and the dated histor
   assert.match(flow.remaining, /téléphones/);
   assert(!content.blockers.some((item) => item.id === 'chat-reply'));
   assert(!content.blockers.some((item) => item.id === 'chat-discovery'));
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
 });
 
 test('new ride captures use a completed seven-case UI run and keep old evidence intact', () => {
@@ -273,7 +273,7 @@ test('new ride captures use a completed seven-case UI run and keep old evidence 
   }
   const old = JSON.parse(source('docs/release/evidence/local-ui-2026-10-15/results.json'));
   assert.equal(old.testCount, 6);
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'untested');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
 });
 
 import './partner-portal-ui.test.mjs';

@@ -59,11 +59,12 @@ test('retained hashes and current integration prevent receipt timestamps from ma
   assert(harness.indexOf('finally { await deleteApp(getApp()); }') < harness.indexOf('writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT'));
   assert(!harness.includes('process.exit('));
 });
-test('portal tracking remains untested despite passing data checks and CI includes the actual backend dependency', () => {
+test('portal tracking keeps the phone blocker despite passing historical data checks', () => {
   const flow = content.flows.find((flow) => flow.id === 'tracking');
-  assert.equal(flow.status, 'untested'); assert.equal(flow.source, base + 'README.md');
+  assert.equal(flow.status, 'blocked'); assert.equal(flow.source, base + 'README.md');
   assert.equal(flow.local, undefined); assert.equal(flow.ui, undefined); assert.equal(flow.phone, undefined);
-  assert.match(flow.verified, /sur les données, pas sur un trajet réel/);
+  assert.match(flow.verified, /aucun trajet réel/);
+  assert.equal(flow.trackingPhoneAttempt.checkedAt, '2026-10-25');
   assert.match(flow.remaining, /affichage en direct/); assert.match(flow.remaining, /alertes de position/);
   for (const workflow of ['backend-ci.yml', 'web-integration-smoke.yml']) {
     const source = text('.github/workflows/' + workflow);

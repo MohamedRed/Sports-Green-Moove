@@ -1,6 +1,14 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
+  {id: 'native-startup-recheck', title: 'Stabiliser le démarrage du suivi',
+    text: 'Le contrôle principal passe. L’essai séparé du démarrage perd son service de localisation.',
+    next: 'Comprendre cette déconnexion puis rejouer cet essai. Ce résultat est distinct de l’écart d’horloge sur téléphone.',
+    source: 'docs/release/evidence/native-checks-899e969-2026-10-25/README.md'},
+  {id: 'tracking-clock', title: 'Corriger l’écart d’horloge',
+    text: 'Sur téléphone, un premier point est reçu mais les suivants sont refusés. L’alerte de position ancienne apparaît.',
+    next: 'Corriger la gestion des horloges et rejouer le déplacement simulé avant les autres essais de suivi.',
+    source: 'docs/release/evidence/tracking-phone-clock-2026-10-25/README.md'},
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
     text: 'Un essai précédent passe, captures comprises. La cause de la coupure reste inconnue.',
     next: 'Comprendre cette coupure pour fiabiliser les prochains essais.', source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },
