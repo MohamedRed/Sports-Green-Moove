@@ -99,7 +99,7 @@ test('the reviewed payment captures are scoped passing components inside an expl
   }
   const flow = content.flows.find((item) => item.id === 'payments');
   assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, base + 'results.json');
-  assert.equal(flow.images[0].file, 'payment-pending-narrow');
+  assert(flow.images.some(image => image.file === 'payment-pending-narrow' && /18 octobre/.test(image.alt)));
   assert(flow.images.some((item) => item.file === 'payments' && /11 octobre/.test(item.alt)));
   assert.match(flow.remaining, /paiements réels sur téléphone/); assert.match(flow.remaining, /remboursements/);
 });

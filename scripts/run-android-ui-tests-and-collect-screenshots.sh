@@ -126,6 +126,13 @@ collect_component_evidence() {
       fi
     done
     adb pull /sdcard/Download/sgm-payment-confirmation "$output_dir" || return 1
+    for name in connect-narrow.png connect-opening.png; do
+      adb pull "/sdcard/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/$name" "$output_dir/$name" || return 1
+      if [[ ! -s "$output_dir/$name" ]]; then
+        echo "Missing driver account component capture: $name" >&2
+        return 1
+      fi
+    done
     for name in payment-pending-narrow.png payment-pending-narrow-window.png payment-review.png payment-review-window.png; do
       if [[ ! -s "$output_dir/sgm-payment-confirmation/$name" ]]; then
         echo "Missing payment confirmation component capture: $name" >&2

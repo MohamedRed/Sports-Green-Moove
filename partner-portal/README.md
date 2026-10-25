@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The 25 October recovery verifies the exact nine archived sources from the
+24 October four-case Compose trial. Its two final original captures replace
+neither the earlier payment evidence nor its dates. The original three-case
+pass is visually rejected for a clipped label and retained internally. Eleven
+coordinator unit cases and eight payment regressions are rerun from the restored
+sources. These are isolated component/unit checks, not real onboarding, a
+physical phone, a cold process start, iOS, real money or deployment of the app.
+Keep the payment flow partial and the agreed public Site audience unchanged.
+
 The later 24 October physical search trial completes real address selection,
 two seats for Lina, driver approval, parent account return, cancellation and
 four-seat restoration on one Pixel. Four independent checkpoints and full final

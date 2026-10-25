@@ -7,7 +7,11 @@ import { validatePaymentFeeEvidence } from './payment-fee-evidence.mjs';
 export function validatePayoutAccountingEvidence(root, content) {
   const flow = content.flows.find(item => item.id === 'payments');
   validatePaymentFeeEvidence(root, flow.feeEvidence);
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-18');
+  assert.equal(flow.status, 'partial');
+  assert.match(flow.checkedAt, /^\d{4}-\d{2}-\d{2}$/);
+  assert(flow.checkedAt >= flow.accountingEvidence.checkedAt && flow.checkedAt <= content.updatedAt);
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-payment-layout-2026-10-18/results.json');
+  assert.match(flow.images.find(image => image.file === 'payment-pending-narrow')?.alt ?? '', /18 octobre/);
   assert.equal(flow.accountingEvidence.checkedAt, '2026-10-23');
   const folder = dirname(resolve(root, flow.accountingEvidence.source));
   const read = file => readFileSync(resolve(folder, file));

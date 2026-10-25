@@ -254,6 +254,12 @@ on:
       - "tests/real-map-display.test.mjs"
       - "tests/real-map-framing-evidence.test.mjs"
       - "tests/payment-confirmation-contract.test.mjs"
+      - "tests/driver-connect-evidence.test.mjs"
+      - "scripts/qa/*connect*.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/StripeConnectCoordinator.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/StripeConnectCoordinatorTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentsConnectLayoutTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/RidePaymentVerification.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Payment*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Payment*.kt"
@@ -676,6 +682,12 @@ on:
       - "tests/real-map-display.test.mjs"
       - "tests/real-map-framing-evidence.test.mjs"
       - "tests/payment-confirmation-contract.test.mjs"
+      - "tests/driver-connect-evidence.test.mjs"
+      - "scripts/qa/*connect*.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/StripeConnectCoordinator.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/StripeConnectCoordinatorTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentsConnectLayoutTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/RidePaymentVerification.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Payment*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Payment*.kt"
@@ -929,6 +941,8 @@ jobs:
         run: node scripts/qa/run-search-booking-notice-services.mjs
       - name: Validate retained physical search and booking proof without provider calls
         run: node --test tests/search-booking-phone.test.mjs
+      - name: Validate driver account preparation without provider calls
+        run: node --test tests/driver-connect-evidence.test.mjs
       - name: Validate dated full native replay recheck
         run: node --test tests/native-recheck-evidence.test.mjs tests/native-copy-failure-b158.test.mjs
       - name: Validate neutral text contrast and native capture scope

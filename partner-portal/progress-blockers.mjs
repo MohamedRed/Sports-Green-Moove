@@ -1,6 +1,9 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
+  {id: 'native-device-preparation', title: 'Terminer l’essai complet',
+    text: 'Le dernier contrôle complet n’a pas pu démarrer. Les essais déjà réalisés restent consultables.',
+    next: 'Reprendre avec un téléphone de test prêt.', source: 'docs/release/evidence/native-setup-8c9851e5-2026-10-24/README.md'},
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
     text: 'Un essai précédent passe, captures comprises. La cause de la coupure reste inconnue.',
     next: 'Comprendre cette coupure pour fiabiliser les prochains essais.', source: 'docs/release/evidence/native-copy-ce282274-2026-10-23/README.md' },
@@ -56,8 +59,8 @@ export const blockers = [
     text: 'La connexion est rétablie. Accord, refus, annulation et notifications passent avec deux comptes sur un même téléphone.',
     next: 'Rejouer entre deux téléphones. L’espace partagé attend toujours son budget de 5 €/mois.', source: 'docs/release/evidence/booking-decisions-phone-2026-10-22/README.md' },
   { id: 'settings', title: 'Paramètres de compte',
-    text: 'La ville passe les essais locaux. La commission reste à choisir ; le montant fixe est retiré des réglages.',
-    next: 'Vérifier la ville sur téléphone et choisir la commission avant les paiements. Le changement n’est pas encore en ligne dans l’app.', source: 'docs/release/evidence/commission-presentation-2026-10-24/README.md' },
+    text: 'La ville est enregistrée puis effacée sur téléphone. La commission reste à choisir ; le montant fixe est retiré des réglages.',
+    next: 'Choisir la commission avant les paiements et vérifier la ville sur iPhone. Pas encore en ligne dans l’app.', source: 'docs/release/evidence/profile-ledger-phone-2026-10-24/README.md' },
   { id: 'contrast', title: 'Lisibilité des écrans',
     text: 'Le thème est conservé, mais certains textes secondaires restent peu contrastés.',
     next: 'Revoir les contrastes, les dates des réservations et les marges en haut de l’écran.', source: 'docs/release/evidence/local-ui-2026-10-15/README.md' },

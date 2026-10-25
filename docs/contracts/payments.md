@@ -81,6 +81,19 @@ Android injects these as string resources at build time. iOS injects them into
 environment for Swift package builds. Missing values are configuration errors;
 the apps do not invent replacement URLs.
 
+Android onboarding work belongs to the payment screen's coroutine scope. Only
+one request chain may run at a time, and it is also blocked during another
+payment or pending confirmation. The initiating user id, email and selected
+driver role must still match after each provider suspension before requesting
+the next link or opening the browser. Leaving the screen cancels its work;
+cancellation is not displayed as an error. Missing configuration produces a
+support message, not internal variable names or replacement callback URLs.
+Only HTTPS links without embedded credentials may open. Opening a page does
+not establish account verification, onboarding completion or payout readiness.
+Local coordinator/component checks do not prove equivalent iOS behavior or
+real provider onboarding. Shared Android buttons use a minimum height and
+vertical padding so wrapped labels remain fully visible with larger text.
+
 ## Ledgers
 
 `rewardLedger` is immutable. Balances are computed from ledger entries, not overwritten fields.

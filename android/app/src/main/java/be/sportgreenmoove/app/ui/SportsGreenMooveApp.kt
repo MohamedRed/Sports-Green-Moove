@@ -271,7 +271,7 @@ fun SportsGreenMooveApp() {
                         AppScreen.EmergencyContacts -> EmergencyContactRoute(requireNotNull(session).uid, requireNotNull(session).roles,
                             providers.emergencyContacts, providers.firebase, { screen = contactReturn },
                             rideSessionId = activeRide?.takeIf { contactReturn == AppScreen.Ride }?.rideSessionId)
-                        AppScreen.Payments -> PaymentsRoute(role = role, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, scope = scope, onBack = { screen = AppScreen.Profile }, setLoading = { loading = it }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
+                        AppScreen.Payments -> PaymentsRoute(role = role, sessionUid = session?.uid, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, onBack = { screen = AppScreen.Profile }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         AppScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
                             canManageRide = canManageRide(role, session, activeRide) && rideObservation.phase == RideObservationPhase.Live,

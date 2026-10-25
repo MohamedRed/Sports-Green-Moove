@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ProfileCityStateTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:45:57.436Z" hostname="MRRs-MacBook-Air.local" time="0.004">
+  <properties/>
+  <testcase name="doesNotInventACityAndSavesOnlyTheNormalizedValue" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.001"/>
+  <testcase name="failedReadDoesNotLookLikeAnUnsetCityOrEnableSaving" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.001"/>
+  <testcase name="readingAfterALostReplyReconcilesTheSavedCityWithoutAnotherWrite" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.0"/>
+  <testcase name="removalIsExplicitAndKeepsTheNewRevision" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.0"/>
+  <testcase name="closingDiscardsLateReadsFromTheOldAccount" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.001"/>
+  <testcase name="editingAndCancellingNeverWrites" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.0"/>
+  <testcase name="lostReplyKeepsOneExactRetryIdentityAndCannotChangeItsPayload" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.0"/>
+  <testcase name="foreignReadAndWriteResponsesCannotPopulateTheProfile" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.0"/>
+  <testcase name="closingDiscardsLateWriteResultsFromTheOldAccount" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.001"/>
+  <testcase name="simultaneousSaveTapsCannotCreateTwoOperations" classname="be.sportgreenmoove.app.ui.ProfileCityStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

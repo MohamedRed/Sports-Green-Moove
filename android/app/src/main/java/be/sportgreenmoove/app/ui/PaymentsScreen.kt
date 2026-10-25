@@ -53,7 +53,7 @@ fun PaymentsScreen(
             }
         }
         if (role == AppRole.Driver) {
-            V2SectionLabel("STRIPE CONNECT")
+            V2SectionLabel("COMPTE CONDUCTEUR")
             PaymentsConnectCard(loading = loading, onStartConnect = onStartConnect)
         }
         V2SectionLabel("À RÉGLER")

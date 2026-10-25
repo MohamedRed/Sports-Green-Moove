@@ -14,6 +14,17 @@ test('dated accounting and failed replay history cannot silently disappear when 
   assert.throws(() => validatePayoutAccountingEvidence(root, changed));
 });
 test('new accounting proof cannot relabel the older payment screenshots', () => {
-  const changed = structuredClone(content); changed.flows.find(item => item.id === 'payments').checkedAt = '2026-10-23';
+  const changed = structuredClone(content); changed.flows.find(item => item.id === 'payments').ui.source =
+    'docs/release/evidence/local-payment-layout-2026-10-23/results.json';
   assert.throws(() => validatePayoutAccountingEvidence(root, changed));
+});
+test('a later scoped check can advance the flow date without changing historical payment evidence', () => {
+  const changed = structuredClone(content); changed.flows.find(item => item.id === 'payments').checkedAt = changed.updatedAt;
+  assert.equal(validatePayoutAccountingEvidence(root, changed).checkedAt, '2026-10-23');
+});
+test('accounting evidence cannot be newer than its displayed flow or site snapshot', () => {
+  for (const date of ['2026-10-18', '2099-01-01']) {
+    const changed = structuredClone(content); changed.flows.find(item => item.id === 'payments').checkedAt = date;
+    assert.throws(() => validatePayoutAccountingEvidence(root, changed));
+  }
 });

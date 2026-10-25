@@ -1,11 +1,13 @@
 import { supportFollowupSteps } from './support-followup-tour.mjs';
 import { supportSubmissionSteps } from './support-submission-flow.mjs';
 import { searchPhoneTour, bookingSearchPhoneTour } from './search-booking-phone.mjs';
+import {driverConnectTour} from './driver-connect.mjs';
 
 const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
+  payments: driverConnectTour,
   'notification-settings': [
     image('notification-read-phone-unread', 'Ouvrir les alertes', 'Trois alertes sont non lues.'),
     image('notification-read-phone-read', 'Marquer une alerte comme lue', 'Les deux autres restent non lues.'),

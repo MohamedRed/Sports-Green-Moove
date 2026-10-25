@@ -42,8 +42,8 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
-  updatedAt: '2026-10-24',
-  lastVerifiedAt: '2026-10-24',
+  updatedAt: '2026-10-25',
+  lastVerifiedAt: '2026-10-25',
   ...nativeRechecks,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },

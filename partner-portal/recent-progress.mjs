@@ -1,7 +1,9 @@
 import { archivedProgress } from './progress-archive.mjs';
 import {dailyProgress} from './progress-2026-10-24.mjs';
+import {driverConnectProgress} from './driver-connect.mjs';
 
 export const recentProgress = [
+  driverConnectProgress,
   ...dailyProgress,
   { date: '2026-10-23', title: 'La lecture résiste à la fermeture complète',
     text: 'Le compte revient sans reconnexion. L’alerte choisie reste lue, les deux autres non lues. Quatre captures ajoutées.', flow: 'notification-settings',

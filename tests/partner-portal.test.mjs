@@ -31,8 +31,9 @@ test('dated native rechecks remain modular and all their exact evidence paths ar
 test('later public callback recovery does not promote older local payment evidence or attribute an unconfirmed cause', () => {
   const flow = content.flows.find(item => item.id === 'payments');
   const blocker = content.blockers.find(item => item.id === 'payment-return');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-18');
-  assert.match(flow.remaining, /s’ouvrent à nouveau/);
+  assert.equal(flow.status, 'partial');
+  assert.equal(flow.ui.source, 'docs/release/evidence/local-payment-layout-2026-10-18/results.json');
+  assert.match(flow.remaining, /paiements réels sur téléphone/);
   assert.equal(blocker.source, 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md');
   assert.match(blocker.next, /paiements réels/);
   assert(content.updates.some(item => item.flow === 'payments' && /cause reste à identifier/.test(item.text)));

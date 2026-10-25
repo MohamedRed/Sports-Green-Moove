@@ -1,4 +1,6 @@
 export const captures = {
+  ...Object.fromEntries(['opening', 'narrow'].map(phase => [
+    'connect-safe-' + phase, 'docs/release/evidence/driver-connect-2026-10-24/layout/connect-' + phase + '.png'])),
   ...Object.fromEntries(['choices', 'match', 'requested', 'driver-approved', 'parent-approved', 'cancelled', 'capacity-restored']
     .map(phase => ['search-phone-' + phase, 'docs/release/evidence/search-booking-phone-2026-10-24/captures/' + phase + '.png'])),
   ...Object.fromEntries(['parent-ready', 'parent-city-saved', 'parent-rewards', 'driver-ready', 'driver-rewards', 'parent-returned', 'parent-city-cleared']

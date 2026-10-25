@@ -21,9 +21,9 @@ test('actual phone permission changes remain distinct from push delivery and com
   const permissionNews = content.updates.find(row => row.source === dirname(flow.notificationPermissionPhone.source) + '/README.md');
   assert.match(permissionNews.text, /réception des alertes reste à tester/);
   const settings = content.blockers.find(row => row.id === 'settings');
-  assert.match(settings.text, /ville passe les essais locaux/i);
+  assert.match(settings.text, /ville est enregistrée puis effacée sur téléphone/i);
   assert.match(settings.text, /commission reste à choisir/);
-  assert.match(settings.next, /ville sur téléphone/);
+  assert.match(settings.next, /iPhone/);
 });
 for (const [file, key, value] of [
   ['summary.json', 'pushDeliveryAccepted', true], ['summary.json', 'newNativeTestsExecuted', true],
