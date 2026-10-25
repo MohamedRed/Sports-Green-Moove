@@ -71,7 +71,7 @@ test('the separate profile gallery publishes only its four reviewed actual local
   const blocker = content.blockers.find(item => item.id === 'chat-send-stability');
   assert.equal(blocker.source, content.nativeVerification.source); assert.match(blocker.next, /sur téléphone/);
   assert.match(blocker.text, /précédent/);
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
 });
 test('raw bytes, actual new evidence tests and current source are covered by smoke and native gates', () => {
   for (const extension of ['xml', 'txt', 'json', 'claimed']) assert(read('.gitattributes').includes(base + '**/*.' + extension + ' -text -whitespace'));

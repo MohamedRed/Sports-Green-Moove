@@ -3,8 +3,10 @@ import {dailyProgress} from './progress-2026-10-24.mjs';
 import {driverConnectProgress} from './driver-connect.mjs';
 import {tripConsentPhoneProgress} from './trip-consent-phone.mjs';
 import {trackingAttemptProgress} from './tracking-phone-attempt.mjs';
+import {trackingClockProgress} from './tracking-clock-replay.mjs';
 
 export const recentProgress = [
+  trackingClockProgress,
   trackingAttemptProgress,
   {date: '2026-10-25', title: 'Un essai de démarrage reste en échec',
     text: 'Le contrôle principal et neuf essais séparés passent. Un service de localisation se déconnecte dans le dixième. Sa cause reste à comprendre.',

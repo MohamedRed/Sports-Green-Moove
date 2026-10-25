@@ -4,13 +4,14 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 
-internal fun LocalMockLocation.withCaptureFeed(capturedAt: Long, action: () -> Unit) {
-    emit(capturedAt)
+internal fun LocalMockLocation.withCaptureFeed(capturedAt: Long, captureElapsedNanos: Long? = null, action: () -> Unit) {
+    fun update() { if (captureElapsedNanos == null) emit(capturedAt) else emit(capturedAt, captureElapsedNanos) }
+    update()
     val sensorError = AtomicReference<Throwable?>()
     val scheduler = Executors.newSingleThreadScheduledExecutor()
     val task = scheduler.scheduleWithFixedDelay({
         if (sensorError.get() == null) {
-            try { emit(capturedAt) }
+            try { update() }
             catch (error: Throwable) { sensorError.compareAndSet(null, error) }
         }
     }, 500, 500, TimeUnit.MILLISECONDS)

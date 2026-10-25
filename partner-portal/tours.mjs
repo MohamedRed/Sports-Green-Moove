@@ -3,13 +3,13 @@ import { supportSubmissionSteps } from './support-submission-flow.mjs';
 import { searchPhoneTour, bookingSearchPhoneTour } from './search-booking-phone.mjs';
 import {driverConnectTour} from './driver-connect.mjs';
 import {tripConsentPhoneTour} from './trip-consent-phone.mjs';
-import {trackingAttemptTour} from './tracking-phone-attempt.mjs';
+import {trackingClockTour} from './tracking-clock-replay.mjs';
 
 const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
-  tracking: trackingAttemptTour,
+  tracking: trackingClockTour,
   payments: driverConnectTour,
   'notification-settings': [
     image('notification-read-phone-unread', 'Ouvrir les alertes', 'Trois alertes sont non lues.'),

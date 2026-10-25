@@ -35,7 +35,11 @@ test('native service and queued callbacks use immutable owner/session leases rat
     'ownership.ownerChanged()', 'scope.coroutineContext.cancelChildren()', 'stopLocationUpdates()', 'ownership.clear()', 'START_NOT_STICKY'])
     assert(source.includes(guard), guard);
   assert(!source.includes('return START_STICKY')); assert(!source.includes('?: ROLE_DRIVER'));
-  assert(source.indexOf('if (!ownership.accepts(lease)) return\n        functions.getHttpsCallable') > 0);
+  const upload = source.slice(source.indexOf('private suspend fun uploadBatch'));
+  const guard = upload.indexOf('if (!ownership.accepts(lease)) return');
+  const request = upload.indexOf('functions.getHttpsCallable("writeLocationBatch")');
+  assert(guard >= 0 && request > guard);
+  assert(upload.includes('ownership.accepts(lease) && captureClock === clock'));
   const lease = service('ActiveRideLocationLease');
   for (const guard of ['active === lease', 'currentUid() != ownerUid', 'currentRevision() != revision', 'lease.authRevision == currentRevision()'])
     assert(lease.includes(guard), guard);
@@ -49,7 +53,9 @@ test('sign-out invalidates pending starts and ends local sensing even for the sa
   assert(service('FirebaseAndroidGateway').includes('nativeLocationStartup.start(rideSessionId, role)'));
   const gateway = service('FirebaseAndroidNativeLocationStartup');
   assert(gateway.indexOf('val authRevision =') < gateway.indexOf('getCurrentLocation('));
-  assert.equal((gateway.match(/requireOwner\(\)/g) ?? []).length, 3);
+  assert.equal((gateway.match(/requireOwner\(\)/g) ?? []).length, 4);
+  const reference = gateway.indexOf('val reference = functions.getHttpsCallable("getActiveRide")');
+  assert(reference >= 0 && gateway.indexOf('requireOwner()', reference) < gateway.indexOf('getCurrentLocation('));
   assert(gateway.includes('role.locationRole(), ownerUid, authRevision'));
 });
 test('explicit resume uses the permission gate for an owned existing ride without making parents track', () => {

@@ -20,13 +20,13 @@ internal class LocalMockLocation(context: Context) : AutoCloseable {
         Tasks.await(client.setMockMode(true), 15, TimeUnit.SECONDS)
     }
 
-    fun emit(capturedAt: Long = System.currentTimeMillis()): Location {
+    fun emit(capturedAt: Long = System.currentTimeMillis(), captureElapsedNanos: Long = SystemClock.elapsedRealtimeNanos()): Location {
         val location = Location("fused").apply {
             latitude = 50.7167
             longitude = 4.6167
             accuracy = 5f
             time = capturedAt
-            elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos()
+            elapsedRealtimeNanos = captureElapsedNanos
         }
         Tasks.await(client.setMockLocation(location), 15, TimeUnit.SECONDS)
         return location

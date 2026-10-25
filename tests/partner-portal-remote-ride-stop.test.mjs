@@ -12,5 +12,5 @@ test('remote completion publishes only its reviewed start image and preserves th
   assert.match(captures['remote-ride-stop-started'], /remote-ride-stop-pass-2026-10-19/);
   assert.equal(captures['remote-ride-stop-ended'], undefined);
   assert.match(flow.remaining, /navigation du bas/); assert.match(flow.remaining, /Pas encore en ligne/);
-  assert.equal(content.flows.find((row) => row.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((row) => row.id === 'tracking').status, 'partial');
 });

@@ -11,6 +11,8 @@ const locationUpdateSchema = z.object({
   headingDeg: z.number().optional(),
   batteryPct: z.number().optional(),
   capturedAt: z.number(),
+  deviceCapturedAt: z.number().int().min(-Number.MAX_SAFE_INTEGER).max(Number.MAX_SAFE_INTEGER).optional(),
+  captureClock: z.literal("serverElapsedRealtime").optional(),
   uploadedAt: z.number().optional(),
   source: z.enum(["radar", "nativeFallback", "manual"]).optional(),
 });

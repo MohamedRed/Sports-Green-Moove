@@ -4,10 +4,13 @@ import { basename, dirname, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
 import { assertRetainedSourceFiles } from './retained-source-evidence.mjs';
+import {nativeClockStartupScope, validateNativeClockStartupReport} from './native-clock-startup-evidence.mjs';
 
 export const nativeStartupCaptures = ['started', 'invalid', 'resumed', 'signed-out'].map((id) => `local-native-startup-${id}.png`);
 export function validateNativeStartupReport(report) {
+  if (report.scope === nativeClockStartupScope) return validateNativeClockStartupReport(report);
   assert.equal(report.scope, 'local-fused-mock-startup-not-physical-gps');
+  assert(!Object.hasOwn(report, 'clockProtocolVersion'), 'The historical scope cannot stand in for a new clock protocol');
   assert.equal(report.projectId, 'demo-sgm-local-qa'); assert.match(report.runId, /^[a-f0-9]{32}$/);
   assert.equal(report.driverUid, 'sgm-qa-driver'); assert.equal(report.testCount, 1); assert.equal(report.nativeCaseCount, 1);
   assert.deepEqual(report.steps, [{ id: 'native-tracking-startup', status: 'passed' }]);
@@ -38,6 +41,7 @@ export function validateRetainedNativeStartup(root, source) {
   const directory = dirname(resolve(root, source)), read = (file) => readFileSync(resolve(directory, file));
   const json = (file) => JSON.parse(read(file)), sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
   const report = JSON.parse(readFileSync(resolve(root, source))); validateNativeStartupReport(report);
+  assert.equal(report.scope, 'local-fused-mock-startup-not-physical-gps', 'Historical visual review only');
   const marker = json('local-native-startup-device.json'), receipt = json('adb-pull-native-startup.json');
   for (const key of Object.keys(marker)) assert.deepEqual(marker[key], report[key], key);
   assert.equal(receipt.projectId, report.projectId); assert.equal(receipt.runId, report.runId);

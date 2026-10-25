@@ -15,6 +15,7 @@ import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
 import { readLocalMockPermission, setLocalMockPermission } from './local-mock-location-permission.mjs';
+import {assertNativeClockStartupMarker, nativeClockStartupCaptures} from './native-clock-startup-evidence.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), android = resolve(root, 'android');
 const serial = process.env.SGM_LOCAL_ANDROID_SERIAL; assert.match(serial, /^emulator-\d+$/);
@@ -44,16 +45,16 @@ try {
   assertInstrumentationPassed(transcript, 1);
   collectLocalUiEvidence({ adb, serial, evidenceDir: directory, phase: 'native-startup', runId: session.runId, password: session.password });
   marker = JSON.parse(readFileSync(resolve(directory, 'local-native-startup-device.json')));
-  assert.equal(marker.scope, 'local-fused-mock-startup-not-physical-gps'); assert.equal(marker.runId, session.runId);
+  assertNativeClockStartupMarker(marker); assert.equal(marker.runId, session.runId);
   assert.equal(marker.projectId, 'demo-sgm-local-qa'); assert.equal(marker.rideSessionId, fixture.rideSessionId);
   assert.equal(marker.driverUid, 'sgm-qa-driver');
-  for (const key of ['duplicateStarted', 'invalidPreventedStart', 'duplicateResumed', 'serviceStoppedOnSignOut', 'mockModeRestored', 'driverSignedOut', 'firestoreClientTerminated']) assert.equal(marker[key], true);
-  for (const key of ['physicalDevice', 'providerTrackingVerified', 'mapMovementVerified']) assert.equal(marker[key], false);
-  const expected = ['started', 'invalid', 'resumed', 'signed-out'].map((id) => `local-native-startup-${id}.png`);
+  const expected = nativeClockStartupCaptures;
   assert.deepEqual(Object.keys(marker.screenshots).sort(), expected.sort());
   for (const [name, hash] of Object.entries(marker.screenshots)) assert.equal(createHash('sha256').update(readFileSync(resolve(directory, name))).digest('hex'), hash);
   const live = (await getDatabase().ref(`liveTrips/${fixture.rideSessionId}/vehicle`).get()).val();
-  assert.equal(live.capturedAt, marker.capturedAt); assert.equal(live.source, 'nativeFallback'); assert.equal(live.userId, 'sgm-qa-driver');
+  assert(live.capturedAt >= marker.points.wallBehind.capturedAt);
+  assert.equal(live.deviceCapturedAt, marker.points.wallBehind.deviceCapturedAt); assert.equal(live.captureClock, 'serverElapsedRealtime');
+  assert.equal(live.source, 'nativeFallback'); assert.equal(live.userId, 'sgm-qa-driver');
   assert.equal((await document('rideSessions', fixture.rideSessionId)).status, 'active');
   assert.equal((await document('bookings', fixture.bookingId)).status, 'approved');
   assert.deepEqual((await auth.getUser('sgm-qa-driver')).customClaims, fixture.claims);
@@ -79,9 +80,10 @@ if (failure) throw failure;
 const paths = [...disposableApkSourceFiles, 'scripts/qa/local-native-startup-ui.mjs', 'scripts/qa/run-local-native-startup-ui.mjs', 'scripts/qa/run-isolated-ride-ui.mjs',
   'scripts/qa/local-emulator-lifecycle.mjs', 'scripts/qa/isolated-ride-records.mjs',
   'scripts/qa/local-ride-observation-fixture.mjs', 'scripts/qa/local-mock-location-permission.mjs', 'functions/src/lib/liveTrips.ts',
-  'functions/src/domain/liveLocationOrder.ts', 'functions/src/callables/locations.ts',
+  'functions/src/domain/liveLocationOrder.ts', 'functions/src/domain/locationBatch.ts', 'functions/src/callables/locations.ts', 'functions/src/callables/rides.ts',
+  'scripts/qa/native-clock-startup-evidence.mjs',
   ...['FirebaseAndroidGateway.kt', 'FirebaseAndroidNativeLocationStartup.kt', 'NativeLocationAcknowledgement.kt', 'ActiveRideLocationService.kt',
-    'NativeLocationPayloads.kt', 'ActiveRideLocationLease.kt'].map((file) => 'android/app/src/main/java/be/sportgreenmoove/app/services/' + file),
+    'NativeLocationPayloads.kt', 'NativeCaptureClock.kt', 'ActiveRideLocationLease.kt'].map((file) => 'android/app/src/main/java/be/sportgreenmoove/app/services/' + file),
   ...['LocalNativeTrackingStartupTest.kt', 'LocalMockLocation.kt', 'LocalMockLocationFeed.kt', 'LocalNativeStartupCapture.kt'].map((file) => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 paths.push('android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideResumeAction.kt',
   ...['FirebaseAndroidRuntime.kt', 'FirebaseAndroidRideObservationGateway.kt', 'NativeTrackingAuthorization.kt']

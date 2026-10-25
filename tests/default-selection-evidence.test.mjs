@@ -99,7 +99,7 @@ test('current captures and dates cannot promote this comparison to physical or s
     assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
   }
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
   const workflow = readFileSync(new URL('../.github/workflows/web-integration-smoke.yml', import.meta.url), 'utf8');
   assert.equal(workflow.split('"tests/default-selection-evidence.test.mjs"').length - 1, 2);
   assert(workflow.includes('node --test tests/default-selection-evidence.test.mjs'));

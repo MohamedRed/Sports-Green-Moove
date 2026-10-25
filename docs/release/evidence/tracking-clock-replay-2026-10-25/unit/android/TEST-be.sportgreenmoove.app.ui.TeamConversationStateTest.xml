@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TeamConversationStateTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-25T16:06:49.217Z" hostname="MRRs-MacBook-Air.local" time="0.185">
+  <properties/>
+  <testcase name="olderHistoryRemainsOnlyWhileTheAdmissionVersionIsUnchanged" classname="be.sportgreenmoove.app.ui.TeamConversationStateTest" time="0.005"/>
+  <testcase name="backgroundingIgnoresLateRepliesAndASeparateAccountStartsWithoutPrivateRows" classname="be.sportgreenmoove.app.ui.TeamConversationStateTest" time="0.075"/>
+  <testcase name="revokedOrUnreachableAuthorityHidesEveryCachedMessageAndTitle" classname="be.sportgreenmoove.app.ui.TeamConversationStateTest" time="0.04"/>
+  <testcase name="anOlderPageFromChangedAdmissionClearsTheThreadInsteadOfMergingPrivateHistory" classname="be.sportgreenmoove.app.ui.TeamConversationStateTest" time="0.006"/>
+  <testcase name="concurrentReadsDoNotDuplicateLoadsAndFailureDoesNotWrite" classname="be.sportgreenmoove.app.ui.TeamConversationStateTest" time="0.058"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

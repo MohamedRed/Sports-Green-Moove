@@ -52,5 +52,5 @@ test('the current phone tours preserve older local dates and exclude their weak 
   const current = Object.entries(captures).filter(([id]) => id.startsWith('search-booking-'));
   assert.equal(current.length, 4);
   assert(!current.some(([, path]) => /-match.png$|-parent-approved.png$/.test(path)));
-  assert.equal(content.flows.find(row => row.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find(row => row.id === 'tracking').status, 'partial');
 });

@@ -79,7 +79,9 @@ export function validateContinuousDeviceEvidence({ setup, restored, report, setu
     installAdmin: { authorizationRemoved: true, componentRemoved: true, originalPolicyRestored: true },
   }, 'Every independent cleanup step and administrator removal must succeed');
 
-  assert.equal(report.scope, reportScopes[setup.case]);
+  if (setup.case === 'native-startup' && report.scope === 'local-monotonic-clock-startup-not-physical-gps')
+    assert.equal(report.clockProtocolVersion, 2);
+  else assert.equal(report.scope, reportScopes[setup.case]);
   assert.equal(report.primaryEvidencePhase, setup.case);
   assert.equal(report.localPackagesRemoved, true);
   const preparation = report.apkPreparation;

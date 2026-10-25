@@ -23,4 +23,10 @@ describe("recorded phone timestamp rejection with synthetic coordinates", () => 
       expect(shouldReplaceLiveLocation(update(accepted.capturedAt), update(row.capturedAt), row.serverNow)).toBe(false);
     }
   });
+  it("does not trust native clock provenance as permission to accept a future primary capture", () => {
+    for (const row of evidence.records.filter(record => !record.captureValid)) {
+      expect(hasValidLocationCapture({...update(row.capturedAt), deviceCapturedAt: row.capturedAt,
+        captureClock: "serverElapsedRealtime"}, row.serverNow)).toBe(false);
+    }
+  });
 });

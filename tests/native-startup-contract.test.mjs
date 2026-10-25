@@ -46,8 +46,13 @@ test('the synthetic sensor keeps one capture identity and must stop without supp
     assert(feed.includes(fragment));
   assert(!feed.includes('System.currentTimeMillis'));
   const trial = text('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeTrackingStartupTest.kt');
-  assert.equal((trial.match(/step\(capturedAt\)/g) ?? []).length, 2);
-  assert(trial.includes('step(System.currentTimeMillis() + 86_400_000)'));
+  assert(trial.includes('step(capturedAt, location.elapsedRealtimeNanos)'));
+  assert(trial.includes('assertEquals(original, vehicle())'));
+  assert(trial.includes('step(ahead)')); assert(trial.includes('step(behind)'));
+  assert(trial.includes('System.currentTimeMillis() + 86_400_000'));
+  assert(trial.includes('System.currentTimeMillis() - 86_400_000'));
+  assert(trial.includes('receipts.put("future", JSONObject(invalid))'));
+  assert(!trial.includes('put("invalidPreventedStart", true)'));
   assert(trial.includes('printToString().replace(session.getString("password"), "[REDACTED]")'));
 });
 test('window captures await one committed frame and one successful copy without a secondary image path', () => {

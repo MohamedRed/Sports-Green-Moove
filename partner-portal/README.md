@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The later 25 October capture-clock candidate receives driver GPS A, B and C on
+a physical phone, including system-Home background movement and app return.
+Sign-out UI and a supplemental measured 50-second read-only stability check pass.
+The original six-phase observer remains incomplete because its final command was
+early; retain it and the first timestamp-wire comparison failure unchanged.
+Three reviewed unscaled viewport JPEGs lead the new tour, not video/native exports.
+Keep tracking partial: no map rendering, parent phone, child GPS, outdoor travel,
+locked screen, losses, restart, battery, iOS, release acceptance or production
+deployment. Four negative local trials and verified owned disposal remain retained.
+Recording permission is unavailable; do not restart the browser or change system
+permissions. Session stop is verified; package absence is not. Preserve public access.
+
 The 25 October GPS attempt is incomplete. One native point is accepted; the
 second mock coordinate is observed in Android diagnostics but not received in
 45 backend samples over 90 seconds. The app and parent read correctly report

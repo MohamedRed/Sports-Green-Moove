@@ -94,14 +94,14 @@ test('the current writer is atomic and reports actual commits without losing eve
   }
 });
 
-test('the partner site still requires actual live screen and physical-device verification', () => {
+test('the partner site keeps real-travel limits after the separate simulated phone replay', () => {
   const flow = content.flows.find((item) => item.id === 'tracking');
-  assert.equal(flow.status, 'blocked'); assert.equal(flow.ui, undefined); assert.equal(flow.phone, undefined);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.ui, undefined); assert.equal(flow.phone, undefined);
   assert.equal(flow.local, undefined); assert.equal(flow.images.length, 3);
-  assert(flow.images.every(image => image.file.startsWith('tracking-attempt-')));
+  assert(flow.images.every(image => image.file.startsWith('tracking-clock-')));
   assert.match(flow.verified, /aucun trajet réel/);
   assert.match(flow.remaining, /affichage en direct/); assert.match(flow.remaining, /pertes GPS\/réseau/);
-  assert(text(flow.source).includes('../location-order-2026-10-19'));
+  assert(text(flow.source).includes('No release manifest scenario is accepted'));
 });
 
 const reevaluationBase = 'docs/release/evidence/location-order-reevaluation-2026-10-19/';

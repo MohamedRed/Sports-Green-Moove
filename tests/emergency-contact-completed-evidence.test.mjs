@@ -54,7 +54,7 @@ test('executed synchronization regressions and successful restoration do not con
   assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, 'docs/release/evidence/local-contact-identity-pass-2026-10-19/emergency-contact-results.json');
   assert.match(flow.remaining, /enfant/); assert.match(flow.remaining, /trajet/);
   assert.equal(flow.images.filter((item) => item.file.startsWith('emergency-current-')).length, 7);
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
 });
 test('the corrected protocol executes nine contact checks with independent parent verification and primary evidence', () => {
   const path = 'docs/release/evidence/local-contact-identity-pass-2026-10-19/';

@@ -1,7 +1,8 @@
 # Server Clock Contract Preparation
 
-25 October 2026. This is the backend stage of the clock-rejection repair, not
-a corrected phone flow. Android still uses the earlier capture-time behavior.
+25 October 2026, backend-stage source `f3aef02ee28bbdccdff2c729fbd0f46c6cb11077`.
+This is the backend stage of the clock-rejection repair, not a corrected phone
+flow. Android uses the earlier capture-time behavior in this retained snapshot.
 The physical attempt remains blocked and its original images/dates are unchanged.
 
 `getActiveRide` now returns a response-time `serverTimeMs` after its existing

@@ -68,7 +68,7 @@ test('the new eight-step ride tour stays separate from prior settings evidence a
   for (const [index, image] of flow.images.entries()) {
     assert.equal(captures[image.file], base + rideEmergencyCaptures[index]); assert.match(image.alt, /essai local du 19 octobre/);
   }
-  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'partial');
   assert.equal(content.flows.find((f) => f.id === 'emergency-contact').images.filter((i) => i.file.startsWith('emergency-current-')).length, 7);
   assert.match(flow.remaining, /sur téléphone, sans appeler/); assert.match(flow.remaining, /compte enfant/);
   const failure = read('docs/release/evidence/ride-emergency-account-failure-2026-10-19/results.json');

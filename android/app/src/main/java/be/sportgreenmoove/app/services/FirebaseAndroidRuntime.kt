@@ -34,6 +34,8 @@ data class AndroidProviderSet(
 }
 
 object AndroidRuntime {
+    internal fun liveDatabase(): FirebaseDatabase = FirebaseAndroidEmulatorConfig.database()
+
     fun create(context: Context): AndroidProviderSet {
         val app = if (BuildConfig.SGM_USE_FIREBASE_EMULATOR) {
             check(BuildConfig.DEBUG) { "Local Firebase configuration is debug-only" }
@@ -59,7 +61,7 @@ object AndroidRuntime {
                 reservations = FirebaseAndroidReservationGateway(),
                 emergencyContacts = FirebaseAndroidEmergencyContactGateway(),
                 profileCity = FirebaseAndroidProfileCityGateway(),
-                rides = FirebaseAndroidRideObservationGateway(FirebaseAndroidEmulatorConfig.database()),
+                rides = FirebaseAndroidRideObservationGateway(liveDatabase()),
                 googleAuth = FirebaseAndroidGoogleSocialAuthGateway(context.applicationContext),
                 facebookAuth = FirebaseAndroidFacebookSocialAuthGateway(context.applicationContext),
                 radar = FirebaseAndroidRadarTrackingGateway(

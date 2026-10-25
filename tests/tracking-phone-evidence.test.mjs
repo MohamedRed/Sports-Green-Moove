@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 import test from 'node:test';
 import {content} from '../partner-portal/content.mjs';
 import {trackingAttemptCaptures, trackingAttemptTour} from '../partner-portal/tracking-phone-attempt.mjs';
+import {trackingClockTour} from '../partner-portal/tracking-clock-replay.mjs';
 import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retained-evidence.mjs';
 import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
 
@@ -23,12 +24,13 @@ test('all retained GPS and native failure artifacts are included in a fresh chec
 test('the incomplete phone run cannot promote movement, background, child or release acceptance', () => {
   const flow = content.flows.find(row => row.id === 'tracking');
   const run = validateTrackingPhoneAttempt(root, flow.trackingPhoneAttempt.source);
-  assert.equal(run.completed, false); assert.equal(flow.status, 'blocked');
+  assert.equal(run.completed, false); assert.equal(flow.status, 'partial');
   assert.equal(flow.checkedAt, '2026-10-25'); assert.equal(flow.latestEvidence, 'phone');
   assert.equal(flow.ui, undefined); assert.equal(flow.phone, undefined);
-  assert.equal(flow.tour.length, 3); assert.deepEqual(flow.tour, trackingAttemptTour);
+  assert.equal(flow.tour.length, 3); assert.deepEqual(flow.tour, trackingClockTour);
+  assert.equal(trackingAttemptTour.length, 3, 'Original negative tour remains retained separately');
   for (const step of flow.tour) assert(flow.images.some(image => image.file === step.image));
-  assert.match(flow.remaining, /Corriger les horloges/); assert.match(flow.remaining, /compte enfant/);
+  assert.match(flow.remaining, /vrai déplacement/); assert.match(flow.remaining, /compte enfant/);
 });
 test('the public images remain original-sized browser JPEGs, not invented native exports', () => {
   for (const file of Object.values(trackingAttemptCaptures)) {

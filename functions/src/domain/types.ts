@@ -211,6 +211,8 @@ export type LocationUpdate = {
   headingDeg?: number;
   batteryPct?: number;
   capturedAt: number;
+  deviceCapturedAt?: number;
+  captureClock?: "serverElapsedRealtime";
   uploadedAt: number;
   source: LocationSource;
 };

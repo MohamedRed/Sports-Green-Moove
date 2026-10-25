@@ -70,7 +70,8 @@ test('passenger commands cannot compete with live observation or weaken ride com
 });
 test('activity recreation keeps the exact configured local database instead of resolving a second SDK instance', () => {
   const runtime = text('android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt');
-  assert(runtime.includes('rides = FirebaseAndroidRideObservationGateway(FirebaseAndroidEmulatorConfig.database())'));
+  assert(runtime.includes('rides = FirebaseAndroidRideObservationGateway(liveDatabase())'));
+  assert(runtime.includes('internal fun liveDatabase(): FirebaseDatabase = FirebaseAndroidEmulatorConfig.database()'));
   assert(runtime.includes('checkNotNull(localDatabase)'));
   assert(runtime.includes('localDatabase = FirebaseDatabase.getInstance().also { it.useEmulator(host, 9000) }'));
   const gateway = text('android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideObservationGateway.kt');

@@ -87,7 +87,7 @@ test('the portal keeps reliability and physical limits open while publishing thi
   validateCurrentNativeBlocker(root, content);
   assert.equal(content.blockers.find((item) => item.id === 'chat-send-stability').source,
     content.nativeVerification.source);
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
   assert.equal(content.flows.find((item) => item.id === 'messages').status, 'partial');
   assert(content.updates.some((item) => item.title === 'L’essai local complet passe'));
 });

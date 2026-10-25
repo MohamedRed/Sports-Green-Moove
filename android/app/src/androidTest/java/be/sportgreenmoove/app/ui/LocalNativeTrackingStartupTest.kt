@@ -4,7 +4,6 @@ import android.app.ActivityManager
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.onAllNodesWithTag
-import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
@@ -18,12 +17,12 @@ import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.services.ActiveRideLocationService
 import be.sportgreenmoove.app.services.AndroidRuntime
-import be.sportgreenmoove.app.services.nativeLocationPayload
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Assume.assumeTrue
@@ -34,7 +33,7 @@ import java.security.MessageDigest
 
 class LocalNativeTrackingStartupTest {
     @get:Rule val compose = createLocalAppComposeRule()
-    @Test fun aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot() {
+    @Test fun retainedStartupAndWallClockChangesUseMonotonicCaptures() {
         assumeTrue(BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR)
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val session = JSONObject(File(context.filesDir, "local-qa-session.json").readText())
@@ -43,7 +42,30 @@ class LocalNativeTrackingStartupTest {
         val runtime = AndroidRuntime.create(context); runtime.auth.signOut()
         context.getSharedPreferences("appearance", Context.MODE_PRIVATE).edit().putBoolean("darkTheme", false).commit()
         val directory = File(context.getExternalFilesDir(null), "local-ui-evidence")
-        val captures = JSONObject(); val receipts = JSONObject()
+        val captures = JSONObject(); val receipts = JSONObject(); val points = JSONObject()
+        fun serverReference(): Map<*, *> = runBlocking {
+            FirebaseFunctions.getInstance().getHttpsCallable("getActiveRide").call(mapOf("rideSessionId" to rideId)).await().data as Map<*, *>
+        }
+        fun vehicle(): Map<*, *> = runBlocking {
+            withTimeout(30_000) {
+                AndroidRuntime.liveDatabase().getReference("liveTrips/$rideId/vehicle").get().await().value as Map<*, *>
+            }
+        }
+        fun send(update: Map<String, Any>): Map<*, *> = runBlocking {
+            FirebaseFunctions.getInstance().getHttpsCallable("writeLocationBatch")
+                .call(mapOf("updates" to listOf(update))).await().data as Map<*, *>
+        }
+        fun clockPoint(name: String, wallTime: Long, previous: Long): Long {
+            val point = vehicle()
+            val capture = (point["capturedAt"] as Number).toLong()
+            val reference = (serverReference()["serverTimeMs"] as Number).toLong()
+            assertEquals("serverElapsedRealtime", point["captureClock"])
+            assertEquals(wallTime, (point["deviceCapturedAt"] as Number).toLong())
+            assertTrue(capture > previous && capture <= reference)
+            assertTrue(kotlin.math.abs(wallTime - capture) > 23 * 60 * 60 * 1000L)
+            points.put(name, JSONObject(point))
+            return capture
+        }
         fun capture(name: String, tag: String) {
             compose.onNodeWithTag(tag).assertIsDisplayed()
             val file = "local-native-startup-$name.png"; captureNativeStartupWindow(compose, file)
@@ -53,7 +75,7 @@ class LocalNativeTrackingStartupTest {
         var capturedAt = 0L
         try {
             LocalMockLocation(context).use { mock ->
-                fun step(time: Long, action: () -> Unit) = mock.withCaptureFeed(time) {
+                fun step(time: Long, fixedElapsed: Long? = null, action: () -> Unit) = mock.withCaptureFeed(time, fixedElapsed) {
                     try { action() }
                     catch (error: Throwable) {
                         try {
@@ -71,32 +93,46 @@ class LocalNativeTrackingStartupTest {
                     compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick(); waitFor(SgmTestTags.HomeScreen)
                     compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick(); waitFor(SgmTestTags.ActiveRideResumeAction)
                     assertEquals(rideId, runBlocking { runtime.firebase.getActiveRide() }?.rideSessionId)
-                    val location = mock.emit(); capturedAt = location.time
-                    fun send(): Map<*, *> = runBlocking {
-                        FirebaseFunctions.getInstance().getHttpsCallable("writeLocationBatch")
-                            .call(mapOf("updates" to listOf(nativeLocationPayload(rideId, "driver", location)))).await().data as Map<*, *>
-                    }
-                    val first = send(); assertEquals(1, (first["written"] as Number).toInt())
-                    val duplicate = send(); assertEquals(0, (duplicate["written"] as Number).toInt())
+                    val location = mock.emit()
+                    capturedAt = (serverReference()["serverTimeMs"] as Number).toLong()
+                    val seed = mapOf<String, Any>("rideSessionId" to rideId, "role" to "driver", "lat" to location.latitude,
+                        "lng" to location.longitude, "accuracyM" to 5, "capturedAt" to capturedAt)
+                    val first = send(seed); assertEquals(1, (first["written"] as Number).toInt())
+                    val duplicate = send(seed); assertEquals(0, (duplicate["written"] as Number).toInt())
                     assertEquals("retained", ((duplicate["receipts"] as List<*>).single() as Map<*, *>)["status"])
                     receipts.put("first", JSONObject(first)); receipts.put("duplicate", JSONObject(duplicate))
-                    step(capturedAt) {
+                    val original = vehicle()
+                    step(capturedAt, location.elapsedRealtimeNanos) {
                         compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).performScrollTo().performClick()
                         waitFor(SgmTestTags.ActiveRidePickupAction); waitRunning(context, true)
+                        assertEquals(original, vehicle())
+                        points.put("retainedStart", JSONObject(vehicle()))
                         capture("started", SgmTestTags.ActiveRideScreen)
                     }
                     runtime.firebase.stopNativeLocationFallback(rideId); waitRunning(context, false)
                     compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick(); waitFor(SgmTestTags.ActiveRideResumeAction)
-                    step(System.currentTimeMillis() + 86_400_000) {
+                    val rejectedAt = (serverReference()["serverTimeMs"] as Number).toLong() + 86_400_000
+                    val invalid = send(seed + ("capturedAt" to rejectedAt))
+                    assertEquals(0, (invalid["written"] as Number).toInt())
+                    assertEquals("invalid", ((invalid["receipts"] as List<*>).single() as Map<*, *>)["status"])
+                    assertEquals(original, vehicle()); receipts.put("future", JSONObject(invalid))
+                    val ahead = System.currentTimeMillis() + 86_400_000
+                    var aheadCapture = 0L
+                    step(ahead) {
                         compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).performScrollTo().performClick()
-                        compose.waitUntil(60_000) { compose.onAllNodesWithText("Position GPS non confirmée. Réessayez.").fetchSemanticsNodes().isNotEmpty() }
-                        compose.onNodeWithText("Position GPS non confirmée. Réessayez.").assertIsDisplayed()
-                        assertFalse(serviceRunning(context)); capture("invalid", SgmTestTags.TripsScreen)
+                        waitFor(SgmTestTags.ActiveRidePickupAction); waitRunning(context, true)
+                        aheadCapture = clockPoint("wallAhead", ahead, capturedAt)
+                        compose.onNodeWithText("Position GPS non confirmée. Réessayez.").assertDoesNotExist()
+                        capture("ahead", SgmTestTags.ActiveRideScreen)
                     }
-                    step(capturedAt) {
+                    runtime.firebase.stopNativeLocationFallback(rideId); waitRunning(context, false)
+                    compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick(); waitFor(SgmTestTags.ActiveRideResumeAction)
+                    val behind = System.currentTimeMillis() - 86_400_000
+                    step(behind) {
                         compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).performScrollTo().performClick()
                         waitFor(SgmTestTags.ActiveRidePickupAction); waitRunning(context, true)
                         assertEquals(rideId, runBlocking { runtime.firebase.getActiveRide() }?.rideSessionId)
+                        clockPoint("wallBehind", behind, aheadCapture)
                         compose.onNodeWithText("Position GPS non confirmée. Réessayez.").assertDoesNotExist()
                         capture("resumed", SgmTestTags.ActiveRideScreen)
                     }
@@ -114,11 +150,11 @@ class LocalNativeTrackingStartupTest {
             }
         }
         File(directory, "local-native-startup-device.json").writeText(JSONObject()
-            .put("scope", "local-fused-mock-startup-not-physical-gps").put("projectId", "demo-sgm-local-qa")
+            .put("scope", "local-monotonic-clock-startup-not-physical-gps").put("clockProtocolVersion", 2).put("projectId", "demo-sgm-local-qa")
             .put("runId", session.getString("runId")).put("rideSessionId", rideId).put("capturedAt", capturedAt)
-            .put("driverUid", "sgm-qa-driver").put("receipts", receipts).put("screenshots", captures)
+            .put("driverUid", "sgm-qa-driver").put("receipts", receipts).put("points", points).put("screenshots", captures)
             .put("captureMethod", "render-enabled-decor-window-pixel-copy")
-            .put("duplicateStarted", true).put("invalidPreventedStart", true).put("duplicateResumed", true)
+            .put("retainedStarted", true).put("futureUploadRejected", true).put("wallAheadStarted", true).put("wallBehindResumed", true)
             .put("serviceStoppedOnSignOut", true).put("mockModeRestored", true).put("driverSignedOut", true)
             .put("firestoreClientTerminated", true)
             .put("physicalDevice", false).put("providerTrackingVerified", false).put("mapMovementVerified", false).toString(2))

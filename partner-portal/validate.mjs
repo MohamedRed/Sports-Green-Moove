@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retained-evidence.mjs';
+import {validateTrackingClockReplay} from '../scripts/qa/tracking-clock-replay-evidence.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
@@ -71,7 +72,10 @@ export function validate(root) {
     assert(existsSync(resolve(root, f.source)), `Missing source ${f.source}`);
     if (f.checkedAt) { assertDate(f.checkedAt); assert(f.checkedAt <= content.lastVerifiedAt); }
     if (f.trackingPhoneAttempt) {
-      assert.equal(f.id, 'tracking'); assert.equal(f.status, 'blocked');
+      assert.equal(f.id, 'tracking');
+      if (f.trackingClockReplay) {
+        assert.equal(f.status, 'partial'); validateTrackingClockReplay(root, f.trackingClockReplay);
+      } else assert.equal(f.status, 'blocked');
       const attempt = validateTrackingPhoneAttempt(root, f.trackingPhoneAttempt.source);
       assert.equal(attempt.testedAt.slice(0, 10), f.trackingPhoneAttempt.checkedAt);
       assert.equal(f.checkedAt, f.trackingPhoneAttempt.checkedAt);

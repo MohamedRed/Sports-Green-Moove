@@ -59,9 +59,10 @@ test('retained hashes and current integration prevent receipt timestamps from ma
   assert(harness.indexOf('finally { await deleteApp(getApp()); }') < harness.indexOf('writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT'));
   assert(!harness.includes('process.exit('));
 });
-test('portal tracking keeps the phone blocker despite passing historical data checks', () => {
+test('portal separates later simulated phone movement from historical data checks and real travel', () => {
   const flow = content.flows.find((flow) => flow.id === 'tracking');
-  assert.equal(flow.status, 'blocked'); assert.equal(flow.source, base + 'README.md');
+  assert.equal(flow.status, 'partial');
+  assert.equal(flow.source, 'docs/release/evidence/tracking-clock-replay-2026-10-25/README.md');
   assert.equal(flow.local, undefined); assert.equal(flow.ui, undefined); assert.equal(flow.phone, undefined);
   assert.match(flow.verified, /aucun trajet réel/);
   assert.equal(flow.trackingPhoneAttempt.checkedAt, '2026-10-25');

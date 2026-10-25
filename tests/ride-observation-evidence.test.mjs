@@ -51,7 +51,7 @@ test('the portal keeps observation separate from untested physical tracking with
   assert.equal(flow.tour.length, 9); assert.match(flow.remaining, /vraies positions.*téléphone/);
   assert.equal(flow.checkedAt, '2026-10-21'); assert.equal(flow.ui.checkedAt, '2026-10-19');
   assert.equal(flow.mapUi.checkedAt, '2026-10-19'); assert.equal(flow.local.checkedAt, '2026-10-19');
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
   assert.doesNotMatch(JSON.stringify(flow), /BrowserStack|Firebase|Android|SDK|emulator/i);
 });
 

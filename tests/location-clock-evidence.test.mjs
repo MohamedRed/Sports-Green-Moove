@@ -14,12 +14,13 @@ test('the completed server-clock preparation retains authenticated results, futu
   const report = validateLocationClockContract(root, record);
   assert.equal(report.clientIntegrationExecuted, false); assert.equal(report.physicalGpsAccepted, false);
 });
-test('server-clock groundwork cannot refresh the failed phone run or accept a tracking flow', () => {
+test('server-clock groundwork remains separate from the later scoped phone replay', () => {
   const flow = content.flows.find(row => row.id === 'tracking');
-  assert.equal(flow.status, 'blocked'); assert.equal(flow.latestEvidence, 'phone');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
   assert.equal(flow.checkedAt, '2026-10-25'); assert.equal(flow.ui, undefined); assert.equal(flow.phone, undefined);
   assert(flow.trackingPhoneAttempt.source.includes('tracking-phone-clock-2026-10-25'));
-  assert(flow.images.every(row => row.file.startsWith('tracking-attempt-')));
+  assert(flow.trackingClockReplay.source.includes('tracking-clock-replay-2026-10-25'));
+  assert(flow.images.every(row => row.file.startsWith('tracking-clock-')));
 });
 const mutations = [
   ['summary.json', row => { row.clientIntegrationExecuted = true; }],

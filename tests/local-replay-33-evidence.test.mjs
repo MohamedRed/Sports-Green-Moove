@@ -74,7 +74,7 @@ test('private updates retain historical failures and distinguish the latest pass
   assert(content.updates.some(item => item.title === 'Le dernier essai complet ne démarre pas'));
   assert(content.updates.some((u) => u.title === 'L’essai complet reste à stabiliser'));
   assert.equal(content.flows.find((f) => f.id === 'publication').status, 'partial');
-  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'partial');
   assert.match(content.flows.find((f) => f.id === 'payments').remaining, /paiements réels/);
   const workflow = text('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/local-replay-33-evidence.test.mjs"').length - 1, 2);

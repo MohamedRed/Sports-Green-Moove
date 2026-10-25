@@ -99,7 +99,7 @@ test('three earlier captures remain historical alongside newer evidence without 
   assert.match(timeGap.text, /corrigé.*essai local/); assert.match(timeGap.next, /Rejouer sur téléphone/);
   for (const scope of [/sur téléphone/, /carte/, /brouillons/, /paiements et remboursements réels/])
     assert.match(flow.remaining, scope);
-  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'partial');
   const manifest = JSON.parse(text('docs/release/evidence-manifest.json'));
   assert.equal(manifest.storeReviewEvidence.items.find((i) => i.id === 'emergency_contact_action_screenshot').status, 'pending');
   for (const workflow of ['native-ci.yml', 'web-integration-smoke.yml'])

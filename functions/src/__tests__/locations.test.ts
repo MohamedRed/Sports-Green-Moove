@@ -56,6 +56,19 @@ describe("native location fallback", () => {
   it("rejects invalid JSON-encoded location batches", () => {
     expect(() => parseLocationBatchRequest({ updatesJson: "not-json" })).toThrow();
   });
+  it("retains native clock provenance without treating device wall time as capture time", () => {
+    const point = { rideSessionId: "ride-1", role: "driver", lat: 50.715, lng: 4.612, accuracyM: 8,
+      capturedAt: 1760000000000, deviceCapturedAt: 1760086400000, captureClock: "serverElapsedRealtime" };
+    const parsed = parseLocationBatchRequest({ updates: [point] }).updates[0];
+    const normalized = nativeFallbackUpdateForAuth(parsed, "driver-1", 1760000005000);
+    expect(liveLocationPayload(normalized)).toMatchObject({ capturedAt: point.capturedAt,
+      deviceCapturedAt: point.deviceCapturedAt, captureClock: point.captureClock, userId: "driver-1" });
+    expect(parseLocationBatchRequest({ updatesJson: JSON.stringify([point]) }).updates[0]).toEqual(parsed);
+    for (const deviceCapturedAt of [0, -1])
+      expect(parseLocationBatchRequest({ updates: [{ ...point, deviceCapturedAt }] }).updates[0].deviceCapturedAt).toBe(deviceCapturedAt);
+    for (const patch of [{ deviceCapturedAt: 1.5 }, { deviceCapturedAt: Number.MAX_SAFE_INTEGER + 1 },
+      { captureClock: "caller-verified" }]) expect(() => parseLocationBatchRequest({ updates: [{ ...point, ...patch }] })).toThrow();
+  });
   it("rejects out-of-range coordinates through both native and JSON batch forms", () => {
     const point = { rideSessionId: "ride-1", role: "driver", lat: 50.715, lng: 4.612, accuracyM: 8, capturedAt: 1760000000000 };
     for (const patch of [{ lat: 91 }, { lat: -91 }, { lng: 181 }, { lng: -181 }]) {

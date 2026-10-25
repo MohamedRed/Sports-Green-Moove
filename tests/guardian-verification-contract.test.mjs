@@ -59,7 +59,7 @@ test('both CI paths rerun isolated authority and the private website retains inc
   assert.equal(smoke.split('"tests/guardian-verification-contract.test.mjs"').length - 1, 2);
   assert(smoke.includes('run: node --test tests/guardian-verification-contract.test.mjs'));
   assert.equal(content.flows.find((flow) => flow.id === 'clubs').status, 'partial');
-  assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'partial');
   assert(content.updates.some((entry) => entry.flow === 'clubs' && entry.title === 'La vérification des parents passe les essais locaux'));
   const group = content.blockers.find((entry) => entry.id === 'group-conversation');
   const team = content.flows.find(flow => flow.id === 'team-conversation');

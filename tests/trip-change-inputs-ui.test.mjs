@@ -172,6 +172,6 @@ test('reviewed time and unavailable-route captures require the independently ver
     const png = bytes(completedBase + name); assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2140);
   }
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
   assert(content.updates.some((item) => item.title === 'Le parent confirme le nouvel horaire' && item.date === '2026-10-17'));
 });

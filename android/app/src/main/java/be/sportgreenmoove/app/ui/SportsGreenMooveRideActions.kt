@@ -47,6 +47,7 @@ fun launchTripAction(
 ) {
     val action: () -> Unit = {
         scope.launch {
+            setError(null)
             runCatching {
                 when (role) {
                     AppRole.Driver -> {

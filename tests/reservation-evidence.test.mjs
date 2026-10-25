@@ -23,7 +23,7 @@ test('native decision state and payload checks do not imply phone or refund appr
     assert(source(base + file).includes(`tests="${count}" skipped="0" failures="0" errors="0"`));
   }
   assert.equal(content.flows.find((flow) => flow.id === 'booking').status, 'partial');
-  assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((flow) => flow.id === 'tracking').status, 'partial');
   assert.match(source(base + 'README.md'), /have not been deployed to production/);
 });
 test('new reservation actions are wired to scoped state and persisted app verification', () => {

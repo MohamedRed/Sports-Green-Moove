@@ -39,6 +39,7 @@ describe("authenticated location clock response", () => {
     const result = await read({ rideSessionId: rideId });
     expect(result.serverTimeMs).toBe(1_792_930_000_750);
     expect(result.ride?.rideSessionId).toBe(rideId);
+    expect(result.ride?.status).toBe("Actif");
     expect(mocks.lookup).toHaveBeenCalledWith("driver", { roleKeys: ["driver"] }, rideId);
   });
   it("does not invent an active ride just to issue a clock reference", async () => {

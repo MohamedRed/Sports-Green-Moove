@@ -79,6 +79,6 @@ test('the portal adds actual map proof separately from older status checks and p
     assert.equal(flow.tour[index].image, 'vehicle-map-' + id);
   }
   assert.equal(flow.images.at(-1).file, 'vehicle-map-unverified');
-  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'partial');
   assert.match(flow.remaining, /vraies positions.*téléphone/);
 });

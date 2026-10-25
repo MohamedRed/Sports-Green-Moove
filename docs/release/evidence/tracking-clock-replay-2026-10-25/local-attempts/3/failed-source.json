@@ -1,0 +1,18 @@
+{
+  "scope": "rejected-apk-preparation-before-instrumentation-not-user-flow-proof",
+  "completed": false,
+  "nativeUiExecuted": false,
+  "sourceFiles": {
+    "scripts/qa/local-native-startup-ui.mjs": "d3a5de7d90c173caa1f41f6a31c6ed9a643756e6c6be7948d7e35e3831693d44",
+    "scripts/qa/preinstalled-disposable-apks.mjs": "5be515cb8a518ca0a255ed1f3e8e9f95f205056ec39c90cbde575189113787aa",
+    "scripts/qa/continuous-disposable-device.mjs": "8e853b69acce9af52f393a6a691f5cedc4d21fecd131f2eb9a53852bfe397638"
+  },
+  "preparationApkHashes": {
+    "be.sportgreenmoove.app.local": "f452d9cadbb71552f5d0159d691b1d1e4e0d499573c77cb96d1544afa820ea03",
+    "be.sportgreenmoove.app.local.test": "bc25b480648aa4d70455b91bc1d32efec3da6afdc705ffaa9ae7c39bffa7d578"
+  },
+  "finalCompiledApkHashes": {
+    "be.sportgreenmoove.app.local": "0b6553d925f54958ce5f93ce6665ea75cc8e516e4816ccb5dfc9b635f1bc1a4b",
+    "be.sportgreenmoove.app.local.test": "bc25b480648aa4d70455b91bc1d32efec3da6afdc705ffaa9ae7c39bffa7d578"
+  }
+}

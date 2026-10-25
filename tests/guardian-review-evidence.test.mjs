@@ -48,7 +48,7 @@ test('the private website keeps separate management images alongside the scoped 
   assert.equal(flow.local.checkedAt, '2026-10-16');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-guardian-parent-native-2026-10-18/guardian-parent-results.json'); validateUiScope(run);
   assert.match(flow.remaining, /fermeture complète/);
-  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'blocked');
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
   for (const file of ['guardian-review-desktop', 'guardian-review-confirmation', 'guardian-review-verified']) {
     assert(flow.images.some((image) => image.file === file)); assert(captures[file].startsWith(base));
   }
