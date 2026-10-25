@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The separate 25 October disposable socket probe verifies its owned HTTP marker
+while the direct native loopback connection returns ECONNREFUSED. It uses no
+accounts, Firebase fixtures, maps or payments. Exact SDK bytecode establishes
+that its plain WebSocket path uses a native Socket constructor. This identifies
+the current isolated test-route mismatch, not a universal provider limitation
+or production bug. Retain both earlier failed phone runs and their three public
+captures. Publish no diagnostic-app screenshots. The preflight now requires a
+live event connection before another tracking trial. No alternative route or
+polling fallback is installed; access/cost changes still require approval.
+
 The latest 25 October diagnostic replay retains two incomplete disposable phone
 attempts. Complete overlapping event sequences show two disconnected live
 database listeners and four fast completed refreshes, with no position

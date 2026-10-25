@@ -3,6 +3,7 @@ import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retaine
 import {validateTrackingClockReplay} from '../scripts/qa/tracking-clock-replay-evidence.mjs';
 import {validateTrackingNetworkPhone} from '../scripts/qa/tracking-network-retained-evidence.mjs';
 import {validateTrackingObservationDiagnostics} from '../scripts/qa/tracking-observation-diagnostics.mjs';
+import {validateNativeSocketProbe} from '../scripts/qa/native-socket-probe-evidence.mjs';
 import {validateNativeClockCi} from '../scripts/qa/native-clock-ci-evidence.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
@@ -81,6 +82,7 @@ export function validate(root) {
     if (f.trackingNetworkPhone) {
       assert.equal(f.status, 'partial'); validateTrackingNetworkPhone(root, f.trackingNetworkPhone);
       validateTrackingObservationDiagnostics(root, f.trackingNetworkDiagnostics);
+      validateNativeSocketProbe(root, f.trackingNetworkTransportProbe);
     }
     if (f.trackingPhoneAttempt) {
       assert.equal(f.id, 'tracking');

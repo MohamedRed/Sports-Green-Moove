@@ -1,0 +1,152 @@
+Browser tab: 1621934829, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 Pro 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		2 container
+			3 container content
+				4 container in-session-device-react
+					5 container
+					6 container
+						7 image
+						8 button Add Device
+							9 text Add Device
+							10 text PRO
+				11 text ;
+				12 container debugger
+					13 text DevTools -  Logcat
+					14 button Download logs, ID: devtool-download-logs
+					15 button Dock to bottom, ID: devtool-change-orientation
+					16 button Collapse, ID: devtool-toggle
+					17 container device-logs
+						18 container
+							19 text be.sportgreenmoove.qa.connectivity
+							20 text field Description: Device logs dropdown, ID: react-select-8-input
+						21 container
+							22 text Info
+							23 text field Description: Log type dropwdown, ID: react-select-9-input
+						24 container
+							25 link Description: Clear logs, Value: app-live.browserstack.com/dashboard#
+							26 link Description: Pause logs, Value: app-live.browserstack.com/dashboard#
+							27 link Description: Wrap, Value: app-live.browserstack.com/dashboard#
+						28 container
+							29 search text field (settable) Search Logs
+							30 image
+							31 checkbox (settable, integer) Description: Use regex search, Value: 0, ID: search-regex-box
+							32 text Regex
+						33 container
+							34 table grid
+								35 container
+									36 row Device Selected: Pixel 9 Pro v15.0
+										37 cell
+											38 text Device Selected: Pixel 9 Pro v15.0
+									39 row Connecting to real device cloud
+										40 cell
+											41 text Connecting to real device cloud
+									42 row Starting device Pixel 9 Pro v15.0
+										43 cell
+											44 text Starting device Pixel 9 Pro v15.0
+									45 row Downloading app on Pixel 9 Pro v15.0
+										46 cell
+											47 text Downloading app on Pixel 9 Pro v15.0
+									48 row Installing app on Pixel 9 Pro v15.0
+										49 cell
+											50 text Installing app on Pixel 9 Pro v15.0
+									51 row Starting app on Pixel 9 Pro v15.0
+										52 cell
+											53 text Starting app on Pixel 9 Pro v15.0
+									54 row 10-25 19:17:52.736 I/qa.connectivity(26243): Late-enabling -Xcheck:jni
+										55 cell
+											56 text 10-25 19:17:52.736 I/qa.connectivity(26243): Late-enabling -Xcheck:jni
+									57 row 10-25 19:17:52.750 I/qa.connectivity(26243): Using CollectorTypeCMC GC.
+										58 cell
+											59 text 10-25 19:17:52.750 I/qa.connectivity(26243): Using CollectorTypeCMC GC.
+									60 row 10-25 19:17:52.784 W/ziparchive(26243): Unable to open '/data/app/~~SV7HTvBPGtKNfQZ_-oU3BQ==/be.sportgreenmoove.qa.connectivity-cUFGDAeWz4T2KDydizdqTw==/base.dm': No such file or directory
+										61 cell
+											62 text 10-25 19:17:52.784 W/ziparchive(26243): Unable to open '/data/app/~~SV7HTvBPGtKNfQZ_-oU3BQ==/be.sportgreenmoove.qa.connectivity-cUFGDAeWz4T2KDydizdqTw==/base.dm': No such file or directory
+									63 row 10-25 19:17:52.784 W/ziparchive(26243): Unable to open '/data/app/~~SV7HTvBPGtKNfQZ_-oU3BQ==/be.sportgreenmoove.qa.connectivity-cUFGDAeWz4T2KDydizdqTw==/base.dm': No such file or directory
+										64 cell
+											65 text 10-25 19:17:52.784 W/ziparchive(26243): Unable to open '/data/app/~~SV7HTvBPGtKNfQZ_-oU3BQ==/be.sportgreenmoove.qa.connectivity-cUFGDAeWz4T2KDydizdqTw==/base.dm': No such file or directory
+									66 row 10-25 19:17:52.977 I/qa.connectivity(26243): Compiler allocated 4206KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+										67 cell
+											68 text 10-25 19:17:52.977 I/qa.connectivity(26243): Compiler allocated 4206KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+									69 row 10-25 19:17:53.147 I/qa.connectivity(26243): Compiler allocated 5250KB to compile void android.view.ViewRootImpl.performTraversals()
+										70 cell
+											71 text 10-25 19:17:53.147 I/qa.connectivity(26243): Compiler allocated 5250KB to compile void android.view.ViewRootImpl.performTraversals()
+							72 button Scroll to Latest
+					73 link Resize Component
+						74 text ||
+					75 tab group
+						76 tab (selected, settable, boolean) Description: Logs, Value: 1
+						77 tab (selectable, settable, boolean) Description: ADB Shell, Value: 0
+						78 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						79 tab (selectable, settable, boolean) Description: Network, Value: 0
+						80 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				81 content list
+					82 button Description: Switch Device, ID: switchBrowser
+					83 container
+						84 button Description: Local testing, ID: appLiveToolbarLocalTesting
+							85 image
+							86 image open content menu
+							87 text Local testing
+					88 menu zoomFeature
+						89 Description: zoom out, ID: zoom-out
+						90 Description: zoom in, ID: zoom-in
+						91 text Zoom
+					92 button Description: Record Session, ID: appLiveVideoRecording
+					93 button Description: DevTools, ID: showDebuggingOptions
+					94 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					95 button Description: Settings, ID: appLiveSessionSettings
+						96 image open content menu
+						97 text Settings
+					98 button Description: Stop Session, ID: appLiveStopSession
+						99 image
+						100 text Stop Session
+				101 container vertical-toolbar-react
+					102 container vertical-toolbar-draggable
+						103 container
+							104 button toolbar drag icon
+							105 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						106 toolbar
+							107 content list
+								108 button Description: Add Device, ID: app-live-add-device
+									109 container app-live-add-device-lead-text-wrapper
+										110 text Add Device PRO
+								111 button Description: Show Home Screen, ID: dockHomeScreen
+									112 text Show Home Screen
+								113 container volume-buttons-lead-text-wrapper
+									114 text Volume
+									115 container volumeButtons
+										116 button - Volume Decrease
+										117 button (disabled) + Volume Increase
+								118 button Description: View Open Apps, ID: view-open-apps
+									119 text View Open Apps
+								120 button Description: Install New App, ID: switch-app
+									121 text Install New App
+								122 checkbox Description: Profile Performance, Value: 0
+									123 text Profile Performance
+									124 text PRO
+								125 button Description: Capture Screenshot, ID: get-screenshot
+									126 text Capture Screenshot
+								127 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									128 text Kill/Uninstall
+								129 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									130 container android-settings-lead-text-wrapper
+										131 text Android Settings PRO New
+								132 button Rotate Device, ID: dockOrientationRealAndroid
+									133 text Rotate Device
+								134 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									135 text Change Location
+								136 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									137 text Throttle Network
+								138 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									139 text Files & Media
+								140 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									141 text Change Language
+								142 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									143 text Screen Reader
+								144 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									145 text Google Pixel 9 Pro
+									146 text v15.0
+		147 text Succesfully uninstalled your app(s)!
+
+The focused UI element is 127 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand

@@ -43,6 +43,23 @@ npm run browserstack:real-device-evidence -- \
 The normalizer only accepts completed real-device evidence for both platforms and
 all required scenarios; it does not fake device evidence.
 
+### Private-Data Connection Preflight
+
+Before an isolated cloud-phone tracking trial, verify the live-position data
+connection itself, not just authentication, callable requests or a Local Testing
+badge. The SDK listener must establish its live connection and receive a new
+position event without leaving the ride screen. Retain the connection/event
+metadata and matching sanitized backend update. HTTP success alone is insufficient:
+the separate 25 October loopback probe reaches the private HTTP marker but its
+direct native socket is refused. See
+`docs/release/evidence/native-socket-probe-2026-10-25/README.md`.
+
+If this preflight fails, keep the trial incomplete and stop the tracking replay.
+Do not replace the SDK, add polling, widen tunnel access, use production records,
+or count a manual screen refresh as live recovery. An alternative test route
+needs explicit approval where it changes access, costs or introduces a fallback.
+This isolated preflight does not replace any production-provider release scenario.
+
 | Platform | Required device state |
 | --- | --- |
 | iOS | precise location allowed, always/background location allowed, notifications allowed |

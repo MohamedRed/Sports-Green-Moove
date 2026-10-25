@@ -1,10 +1,10 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
-  {id: 'tracking-reconnect-display', title: 'Actualiser le suivi en continu',
-    text: 'Dans l’essai isolé, les positions arrivent mais la connexion en direct ne s’ouvre pas.',
-    next: 'Rétablir cette connexion et rejouer la coupure.',
-    source: 'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md'},
+  {id: 'tracking-reconnect-display', title: 'Rejouer le suivi en direct',
+    text: 'L’essai séparé confirme un blocage de la connexion privée de test.',
+    next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',
+    source: 'docs/release/evidence/native-socket-probe-2026-10-25/README.md'},
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
     text: 'Les dix essais séparés passent. La capture d’un écran de modification et la récupération des captures restent en échec.',
     next: 'Corriger ces deux étapes puis relancer le contrôle complet.', source: 'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md' },
