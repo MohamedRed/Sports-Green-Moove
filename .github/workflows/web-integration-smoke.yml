@@ -948,6 +948,11 @@ jobs:
       - name: Validate driver account preparation without provider calls
         run: node --test tests/driver-connect-evidence.test.mjs
 
+      - name: Install media inspection tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends ffmpeg
+
       - name: Validate physical trip consent checkpoints and retained proof
         run: node --test tests/trip-consent-phone-checkpoints.test.mjs tests/trip-consent-phone-evidence.test.mjs
       - name: Validate dated full native replay recheck

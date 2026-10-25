@@ -68,6 +68,9 @@ test('the newer successful native job status supersedes only the historical prep
   assert.equal(run.jobs.filter(job => /^Android focused.*Isolated (?!safety flows)/.test(job.name) && job.conclusion === 'success').length, 10);
   assert.equal(run.jobs.find(job => job.name === 'iOS native UI tests')?.conclusion, 'skipped');
   const smoke = readFileSync(resolve(root, '.github/workflows/web-integration-smoke.yml'), 'utf8');
+  const setupAt = smoke.indexOf('name: Install media inspection tools');
+  assert(setupAt >= 0 && setupAt < smoke.indexOf('name: Validate physical trip consent checkpoints'));
+  assert(smoke.includes('sudo apt-get install --yes --no-install-recommends ffmpeg'));
   for (const file of ['trip-consent-phone-checkpoints.test.mjs', 'trip-consent-phone-evidence.test.mjs']) {
     assert.equal(smoke.split('"tests/' + file + '"').length - 1, 2);
     assert(smoke.includes('node --test tests/trip-consent-phone-checkpoints.test.mjs tests/trip-consent-phone-evidence.test.mjs'));
