@@ -1,6 +1,8 @@
 .DS_Store
 *.log
 !docs/release/evidence/native-boot-bea9e0ee-2026-10-22/native-job.log
+!docs/release/evidence/native-checks-899e969-2026-10-25/failure.log
+!docs/release/evidence/native-checks-899e969-2026-10-25/previous-main-failure.log
 
 # Environment files
 .env

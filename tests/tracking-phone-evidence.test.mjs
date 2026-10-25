@@ -9,6 +9,17 @@ import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retaine
 import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
 
 const root = resolve(import.meta.dirname, '..');
+test('all retained GPS and native failure artifacts are included in a fresh checkout', () => {
+  for (const folder of ['tracking-phone-clock-2026-10-25', 'native-checks-899e969-2026-10-25']) {
+    const directory = 'docs/release/evidence/' + folder;
+    const hashes = JSON.parse(readFileSync(resolve(root, directory, 'artifact-sha256.json')));
+    const tracked = new Set(execFileSync('git', ['ls-files', '-z', '--', directory], {
+      cwd: root, encoding: 'utf8',
+    }).split('\0').filter(Boolean));
+    for (const file of ['artifact-sha256.json', ...Object.keys(hashes)])
+      assert(tracked.has(directory + '/' + file), 'Missing committed evidence: ' + directory + '/' + file);
+  }
+});
 test('the incomplete phone run cannot promote movement, background, child or release acceptance', () => {
   const flow = content.flows.find(row => row.id === 'tracking');
   const run = validateTrackingPhoneAttempt(root, flow.trackingPhoneAttempt.source);
