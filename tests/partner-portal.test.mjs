@@ -279,6 +279,7 @@ test('new ride captures use a completed seven-case UI run and keep old evidence 
 
 test('current native status keeps completed replay separate from both failed gates', () => {
   const report = validateNativeStatus(root, content.blockers);
+  assert.equal(report.laterMainJobPassed,true);
   assert.equal(report.replay.groups, 37); assert.equal(report.replay.cases, 40);
   assert.equal(report.ordinary.failed, 1); assert.equal(report.fullGatePassed, false);
   assert.equal(report.focusedScreenAssertionsCompleted, true); assert.equal(report.focusedPrimaryCopyPassed, false);

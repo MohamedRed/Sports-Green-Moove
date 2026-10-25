@@ -7,10 +7,11 @@ import { assertDisposableInstallAdmin, installAdminPackage } from './disposable-
 import { assertNoActiveInstall, readInstallBlocked } from './disposable-installations.mjs';
 import { androidMapsPrerequisites } from './android-maps-prerequisites.mjs';
 import { readStoreBackground, storeBackgroundRestrictions } from './disposable-store-background.mjs';
-import { pinnedPackages, matrixCases, packagesForCase, focusedCases } from './android-case-apks.mjs';
+import { pinnedPackages, matrixCases, manualComponentCases, packagesForCase, focusedCases } from './android-case-apks.mjs';
 export { pinnedPackages, focusedCases };
 export function isApprovedDeviceCase(env) {
   if (matrixCases.includes(env.SGM_FOCUSED_UI_CASE)) return env.GITHUB_ACTIONS === 'true' && env.RUNNER_OS === 'Linux';
+  if (manualComponentCases.includes(env.SGM_FOCUSED_UI_CASE)) return env.SGM_COMPONENT_UI_APPROVAL === 'trip-change-capture-only';
   return focusedCases.includes(env.SGM_FOCUSED_UI_CASE) ||
     env.SGM_FOCUSED_UI_CASE === 'team-chat-components' ||
     (env.SGM_FOCUSED_UI_CASE === 'parent-search-booking' && env.SGM_SEARCH_BOOKING_APPROVAL === 'one-trial-max-eight-requests');
@@ -44,7 +45,7 @@ export function assertPinnedApks(shell, hashes, packages = pinnedPackages) {
 }
 export function assertContinuousDevice(device, receipt) {
   assert.equal(receipt.scope, 'single-case-continuous-installation-guard-not-flow-proof');
-  assert(focusedCases.includes(receipt.case) || ['parent-search-booking', 'team-chat-components', ...matrixCases].includes(receipt.case));
+  assert(focusedCases.includes(receipt.case) || ['parent-search-booking', 'team-chat-components', ...matrixCases, ...manualComponentCases].includes(receipt.case));
   assert.equal(receipt.installAdmin?.packageName, installAdminPackage);
   assert.equal(receipt.installAdmin.originalBlocked, false);
   assert.equal(receipt.installAdmin.policyReady, true); assert.equal(receipt.installAdmin.noAccounts, true);

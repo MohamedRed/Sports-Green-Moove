@@ -8,7 +8,7 @@ import { assertNoActiveInstall, readInstallBlocked, setInstallBlocked } from './
 import { readStoreBackground, setStoreBackground, storeBackgroundRestrictions } from './disposable-store-background.mjs';
 import { readStoreStopped, restoreStoreStopped } from './disposable-store-pause.mjs';
 import { resetDisposableTestApps } from './reset-disposable-local-apps.mjs';
-import { packagesForCase, matrixCases, assertMatrixApkMetadata } from './android-case-apks.mjs';
+import { packagesForCase, matrixCases, manualComponentCases, assertMatrixApkMetadata } from './android-case-apks.mjs';
 import { pinnedApkHashes, assertPinnedApks, requireFocusedDeviceApproval, assertContinuousDevice, focusedCases } from './preinstalled-disposable-apks.mjs';
 
 const launcher = 'com.google.android.apps.nexuslauncher';
@@ -21,7 +21,7 @@ export function prepareContinuousDevice(env = process.env, execute = execFileSyn
   requireFocusedDeviceApproval(env);
   const { shell, command, serial } = device;
   const packages = packagesForCase(env.SGM_FOCUSED_UI_CASE);
-  if (matrixCases.includes(env.SGM_FOCUSED_UI_CASE)) verifyMetadata(resolve(root, 'android'), env.SGM_FOCUSED_UI_CASE);
+  if ([...matrixCases, ...manualComponentCases].includes(env.SGM_FOCUSED_UI_CASE)) verifyMetadata(resolve(root, 'android'), env.SGM_FOCUSED_UI_CASE);
   assert.equal(shell('getprop', 'ro.build.version.sdk'), '35');
   assert.equal(shell('am', 'get-current-user'), '0');
   assert.equal(readInstallBlocked(shell), false);
@@ -68,7 +68,7 @@ export function prepareContinuousDevice(env = process.env, execute = execFileSyn
 export function continuousSetupFailureReceipt(failure, env = process.env) {
   if (failure.receipt) return failure.receipt;
   return { scope: 'failed-single-case-device-preflight-not-flow-proof', stage: 'read-only-preflight',
-    case: [...focusedCases, ...matrixCases].includes(env.SGM_FOCUSED_UI_CASE) ? env.SGM_FOCUSED_UI_CASE : null, verified: false };
+    case: [...focusedCases, ...matrixCases, ...manualComponentCases].includes(env.SGM_FOCUSED_UI_CASE) ? env.SGM_FOCUSED_UI_CASE : null, verified: false };
 }
 function restoreLauncher(shell) {
   shell('pm', 'enable', '--user', '0', launcher);

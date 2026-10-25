@@ -7,6 +7,7 @@ export function resetDisposableLocalApps(adb, serial, execute = execFileSync) {
 }
 export function resetDisposableTestApps(adb, serial, packages, execute = execFileSync) {
   const variants = [['be.sportgreenmoove.app.local.test', 'be.sportgreenmoove.app.local'],
+    ['be.sportgreenmoove.app.test', 'be.sportgreenmoove.app'],
     ['be.sportgreenmoove.app.local.test', 'be.sportgreenmoove.app.local', 'be.sportgreenmoove.app.test', 'be.sportgreenmoove.app']];
   assert(variants.some(names => JSON.stringify(names) === JSON.stringify(packages)), 'Select one exact owned test APK set');
   const prefix = packages.at(-1);

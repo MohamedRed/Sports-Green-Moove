@@ -20,6 +20,7 @@ on:
       - "tests/native-build-before-boot.test.mjs"
       - "tests/android-junit-transcript.test.mjs"
       - "tests/android-matrix-preparation.test.mjs"
+      - "tests/manual-trip-components.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
@@ -147,6 +148,7 @@ on:
       - "tests/native-build-before-boot.test.mjs"
       - "tests/android-junit-transcript.test.mjs"
       - "tests/android-matrix-preparation.test.mjs"
+      - "tests/manual-trip-components.test.mjs"
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
@@ -316,7 +318,7 @@ jobs:
         run: node --test tests/adb-host-health.test.mjs tests/native-build-before-boot.test.mjs tests/emulator-host-observation.test.mjs tests/disposable-launcher-cleanup.test.mjs
 
       - name: Validate preinstalled full-matrix APKs and complete raw JUnit inventory
-        run: node --test tests/android-junit-transcript.test.mjs tests/android-matrix-preparation.test.mjs
+        run: node --test tests/android-junit-transcript.test.mjs tests/android-matrix-preparation.test.mjs tests/manual-trip-components.test.mjs
 
       - name: Validate membership cursor regression and client decoder evidence
         run: node --test tests/membership-cursor-contract.test.mjs

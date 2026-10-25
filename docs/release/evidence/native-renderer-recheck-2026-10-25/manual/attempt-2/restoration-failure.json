@@ -1,0 +1,21 @@
+{
+  "scope": "single-case-device-restoration-not-flow-proof",
+  "case": "trip-change-components",
+  "observed": {
+    "continuousGuardVerified": true,
+    "storeStopped": false
+  },
+  "restored": false,
+  "verified": false,
+  "restoration": {
+    "localPackagesRemoved": false,
+    "background": true,
+    "stopped": true,
+    "launcher": true,
+    "installAdmin": {
+      "authorizationRemoved": true,
+      "componentRemoved": true,
+      "originalPolicyRestored": true
+    }
+  }
+}

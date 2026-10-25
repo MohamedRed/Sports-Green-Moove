@@ -17,13 +17,16 @@ export const matrixPackages = {
   'be.sportgreenmoove.app.local.test': 'matrix-apks/local-test/app-debug-androidTest.apk',
 };
 export const matrixCases = ['full-matrix'];
+export const manualComponentCases = ['trip-change-components'];
 export const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft', 'team-read-components'];
 export function packagesForCase(name) {
-  assert([...focusedCases, ...matrixCases, 'parent-search-booking', 'team-chat-components'].includes(name));
+  assert([...focusedCases, ...matrixCases, ...manualComponentCases, 'parent-search-booking', 'team-chat-components'].includes(name));
+  if (manualComponentCases.includes(name)) return Object.fromEntries(Object.entries(matrixPackages)
+    .filter(([applicationId]) => Object.hasOwn(ordinaryPackages, applicationId)));
   return name === 'full-matrix' ? matrixPackages : pinnedPackages;
 }
 export function assertMatrixApkMetadata(android, name) {
-  assert(matrixCases.includes(name));
+  assert([...matrixCases, ...manualComponentCases].includes(name));
   for (const [applicationId, file] of Object.entries(packagesForCase(name))) {
     const metadata = JSON.parse(readFileSync(resolve(android, 'app/build/outputs', dirname(file), 'output-metadata.json')));
     assert.equal(metadata.applicationId, applicationId, 'Compile the explicit matrix variant before starting the phone');

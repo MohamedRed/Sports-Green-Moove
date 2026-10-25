@@ -56,5 +56,20 @@ export function validateNativeStatus(root, blockers) {
   assert.equal(host.finalState, 'zombie'); assert.equal(host.targetExitObserved, false);
   const artifacts = json('artifact-inventory.json'); assert.equal(artifacts.length, 2);
   for (const artifact of artifacts) assert.match(artifact.digest, /^sha256:[a-f0-9]{64}$/);
-  return report;
+  const later=json('later-run-terminal.json');
+  assert.equal(later.databaseId,report.focusedRunId);assert.equal(later.headSha,team.head_sha);
+  assert.equal(later.status,'completed');assert.equal(later.conclusion,'failure');
+  assert.equal(later.jobs.find(job=>job.name==='Android native UI tests').conclusion,'success');
+  assert.equal(later.jobs.find(job=>job.databaseId===team.id).conclusion,'failure');
+  for(const attempt of [2,3]) {
+    const path='manual/attempt-'+attempt+'/';
+    assert.match(read(path+(attempt===2?'instrumentation.txt':'component-instrumentation.txt')),/shortMsg=Process crashed/);
+    assert.equal(json(path+'process-exit.json').exited,true);
+  }
+  assert.equal(json('manual/attempt-2/restoration-failure.json').restored,false);
+  assert.equal(json('manual/attempt-3/restoration.json').verified,true);
+  assert.equal(json('manual/attempt-3/restoration.json').restoration.localPackagesRemoved,true);
+  const disposal=json('manual/disposal.json');assert(Object.values(disposal.removed).every(Boolean));
+  assert.equal(disposal.earlierRestorationFailureOverridden,false);assert.equal(disposal.screenAssertionsAccepted,false);
+  return {...report,laterMainJobPassed:true};
 }
