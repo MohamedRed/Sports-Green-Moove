@@ -16,7 +16,8 @@ export function runManualTripComponents({env=process.env,root=resolve(import.met
   const receiptPath=env.SGM_PREINSTALLED_TEST_APKS_RECEIPT;
   assert(receiptPath && isAbsolute(receiptPath));
   const directory=dirname(receiptPath), files=['component-preparation.json','component-instrumentation.txt',
-    'component-process.json','component-results.json','component-crash.txt','component-crash-process.json'];
+    'component-process.json','component-results.json','component-crash.txt','component-crash-process.json',
+    'component-exit-info.txt','component-exit-info-process.json'];
   for(const file of files) assert(!existsSync(resolve(directory,file)),'A diagnostic trial cannot overwrite or retry its evidence');
   device??=disposableAndroidShell(env);
   const receipt=JSON.parse(readFileSync(receiptPath));
@@ -40,12 +41,15 @@ export function runManualTripComponents({env=process.env,root=resolve(import.met
     assert.equal(result.status,0); assert.equal(result.signal,null); assert(!result.error);
     parsed=parseAndroidJUnitTranscript(transcript);
   } catch(failure) {
-    try {
-      const crash=spawn(adb,['-s',device.serial,'shell','logcat','-d','-b','crash','-v','brief'],
+    for(const [name,args] of [
+      ['crash',['logcat','-d','-b','crash','-v','brief']],
+      ['exit-info',['dumpsys','activity','exit-info','be.sportgreenmoove.app']],
+    ]) try {
+      const diagnostic=spawn(adb,['-s',device.serial,'shell',...args],
         {encoding:'utf8',timeout:15000,maxBuffer:2*1024*1024,stdio:['ignore','pipe','pipe']});
-      save('component-crash.txt',redact(crash.stdout));
-      save('component-crash-process.json',{status:crash.status,signal:crash.signal,errorCode:crash.error?'DIAGNOSTIC_PROCESS_ERROR':null});
-    } catch { console.warn('Startup crash diagnostic unavailable; original instrumentation failure preserved.'); }
+      save('component-'+name+'.txt',redact(diagnostic.stdout));
+      save('component-'+name+'-process.json',{status:diagnostic.status,signal:diagnostic.signal,errorCode:diagnostic.error?'DIAGNOSTIC_PROCESS_ERROR':null});
+    } catch { console.warn('Startup diagnostic unavailable; original instrumentation failure preserved.'); }
     throw failure;
   }
   assert.equal(parsed.caseCount,1); assert.equal(parsed.cases[0].className,className); assert.equal(parsed.cases[0].name,method);

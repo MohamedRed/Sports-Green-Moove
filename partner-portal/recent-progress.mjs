@@ -7,6 +7,10 @@ import {trackingClockProgress} from './tracking-clock-replay.mjs';
 import {trackingNetworkProgress, trackingNetworkDiagnosticsProgress, trackingNetworkTransportProgress} from './tracking-network-phone.mjs';
 
 export const recentProgress = [
+  {date: '2026-10-25', title: 'La copie des images bloque encore',
+    text: 'Les 166 essais d’écran passent. La vérification s’arrête pendant la récupération des captures.',
+    flow: 'publication', coversFlows: ['messages', 'team-conversation', 'native-startup'],
+    source: 'docs/release/evidence/native-renderer-recheck-2026-10-25/README.md'},
   {date: '2026-10-25', title: 'Le contrôle principal passe',
     text: 'Un essai séparé s’arrête encore pendant la copie des images. La vérification n’est pas terminée.',
     flow: 'publication', coversFlows: ['messages', 'team-conversation', 'native-startup'],

@@ -71,5 +71,31 @@ export function validateNativeStatus(root, blockers) {
   assert.equal(json('manual/attempt-3/restoration.json').restoration.localPackagesRemoved,true);
   const disposal=json('manual/disposal.json');assert(Object.values(disposal.removed).every(Boolean));
   assert.equal(disposal.earlierRestorationFailureOverridden,false);assert.equal(disposal.screenAssertionsAccepted,false);
-  return {...report,laterMainJobPassed:true};
+  const current=json('current-run-terminal.json'),ordinary=json('current-matrix/ordinary-results.json');
+  assert.equal(current.headSha,'94aa7dd996b4a3ddb13ebefd3d474417a6769f42');
+  assert.equal(current.status,'completed');assert.equal(current.conclusion,'failure');
+  assert.equal(current.jobs.find(job=>job.name==='Android native UI tests').conclusion,'failure');
+  assert.equal(ordinary.complete,true);assert.equal(ordinary.guardConfirmed,true);
+  assert.equal(ordinary.caseCount,220);assert.equal(ordinary.cases.length,220);
+  assert.equal(ordinary.passed,166);assert.equal(ordinary.failed,0);assert.equal(ordinary.skipped,54);
+  for(const [status,count]of [['passed',166],['failed',0],['skipped',54]])
+    assert.equal(ordinary.cases.filter(row=>row.status===status).length,count);
+  const currentReplay=json('current-matrix/results.json');assert.equal(currentReplay.testCount,37);
+  assert.equal(currentReplay.steps.length,37);assert(currentReplay.steps.every(row=>row.status==='passed'));
+  assert.deepEqual(json('current-matrix/native-suite-status.json'),{scope:'native-suite-exit-status-not-flow-verification',
+    ordinaryTests:0,componentEvidence:1,localReplay:0});
+  const currentArtifact=json('current-matrix/artifact.json');assert.equal(currentArtifact.workflow_run.id,current.databaseId);
+  assert.equal(currentArtifact.workflow_run.head_sha,current.headSha);
+  assert.match(currentArtifact.digest,/^sha256:[a-f0-9]{64}$/);
+  assert.match(read('manual/attempt-4/exit-info.txt'),/reason=6 \(ANR\)/);
+  assert.match(read('manual/attempt-4/exit-info.txt'),/failed to complete startup/);
+  assert.equal(read('manual/attempt-4/component-crash.txt'),'');
+  assert.match(read('manual/attempt-4/postmortem-dropbox.txt'),/compressed text, 0 bytes/);
+  assert.match(read('manual/attempt-4/postmortem-dropbox.txt'),/java.io.EOFException/);
+  assert.equal(json('manual/attempt-4/restoration.json').verified,true);
+  assert.equal(json('manual/attempt-4/process-exit.json').exited,true);
+  assert.equal(json('manual/attempt-4/postmortem-exit.json').exited,true);
+  assert.equal(json('manual/attempt-4/disposal.json').screenTestAccepted,false);
+  assert.equal(json('manual/attempt-4/disposal.json').rootCauseConfirmed,false);
+  return {...report,laterMainJobPassed:true,latestNativeJobPassed:false,latestScreenCasesPassed:ordinary.passed};
 }

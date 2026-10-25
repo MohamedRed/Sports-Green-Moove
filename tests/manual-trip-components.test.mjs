@@ -78,7 +78,7 @@ test('manual runner uses one fixed test, consumes its receipt once, and cannot a
 for(const [name,stdout] of [['failure',transcript(-2)],['skip',transcript(-4)],['crash','INSTRUMENTATION_RESULT: shortMsg=Process crashed.']])
   test('manual runner preserves and rejects '+name+' without retry',t=>{
     const f=fixture(t);f.prepareAndSave();let calls=0;
-    const spawn=(_adb,args)=>{if(args.includes('logcat'))return{status:0,signal:null,stdout:'',stderr:''};
+    const spawn=(_adb,args)=>{if(args.includes('logcat')||args.includes('dumpsys'))return{status:0,signal:null,stdout:'',stderr:''};
       calls++;return{status:0,signal:null,stdout,stderr:''};};
     assert.throws(()=>runManualTripComponents({env:f.env,root:f.directory,device:f.device,spawn}));assert.equal(calls,1);
     assert.equal(readFileSync(resolve(f.directory,'component-instrumentation.txt'),'utf8'),stdout);
@@ -87,16 +87,30 @@ test('startup diagnostic includes native crash tags and redacts access tokens',t
   const f=fixture(t);f.prepareAndSave();let attempts=0;
   const spawn=(_adb,args)=>{
     if(args.includes('logcat')){assert.equal(args.at(-1),'brief');return{status:0,signal:null,stdout:'F DEBUG native trace Bearer private-diagnostic-token',stderr:''};}
+    if(args.includes('dumpsys'))return{status:0,signal:null,stdout:'reason=6 (ANR) description=failed to complete startup',stderr:''};
     attempts++;return{status:0,signal:null,stdout:'INSTRUMENTATION_RESULT: shortMsg=Process crashed.',stderr:''};
   };
   assert.throws(()=>runManualTripComponents({env:f.env,root:f.directory,device:f.device,spawn}));assert.equal(attempts,1);
   const retained=readFileSync(resolve(f.directory,'component-crash.txt'),'utf8');
   assert(retained.includes('F DEBUG native trace'));assert(!retained.includes('private-diagnostic-token'));
+  assert.match(readFileSync(resolve(f.directory,'component-exit-info.txt'),'utf8'),/reason=6 \(ANR\)/);
 });
 test('startup diagnostic errors do not replace the primary failure or retry instrumentation',t=>{
   const f=fixture(t);f.prepareAndSave();t.mock.method(console,'warn',()=>{});let attempts=0;
-  const spawn=(_adb,args)=>{if(args.includes('logcat'))throw Error('diagnostic unavailable');
+  const spawn=(_adb,args)=>{if(args.includes('logcat')||args.includes('dumpsys'))throw Error('diagnostic unavailable');
     attempts++;return{status:0,signal:null,stdout:'INSTRUMENTATION_RESULT: shortMsg=Process crashed.',stderr:''};};
   assert.throws(()=>runManualTripComponents({env:f.env,root:f.directory,device:f.device,spawn}),/Instrumentation did not complete normally/);
   assert.equal(attempts,1);
+});
+test('an empty crash buffer still retains a scoped startup exit record',t=>{
+  const f=fixture(t);f.prepareAndSave();let attempts=0;
+  const spawn=(_adb,args)=>{
+    if(args.includes('logcat'))return{status:0,signal:null,stdout:'',stderr:''};
+    if(args.includes('dumpsys')){assert.equal(args.at(-1),'be.sportgreenmoove.app');
+      return{status:0,signal:null,stdout:'reason=6 (ANR) failed to complete startup',stderr:''};}
+    attempts++;return{status:0,signal:null,stdout:'INSTRUMENTATION_RESULT: shortMsg=Process crashed.',stderr:''};
+  };
+  assert.throws(()=>runManualTripComponents({env:f.env,root:f.directory,device:f.device,spawn}));
+  assert.equal(attempts,1);assert.equal(readFileSync(resolve(f.directory,'component-crash.txt'),'utf8'),'');
+  assert.match(readFileSync(resolve(f.directory,'component-exit-info.txt'),'utf8'),/ANR/);
 });

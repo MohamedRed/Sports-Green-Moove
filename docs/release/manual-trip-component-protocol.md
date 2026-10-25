@@ -31,7 +31,9 @@ Do not set fake Linux or GitHub environment markers on another host.
 Run `node scripts/qa/run-manual-trip-components.mjs`. The receipt is consumed
 once. Original instrumentation, process status and parsed results are appended
 beside it without overwrites. A process crash triggers a bounded Android runtime
-crash-buffer diagnostic (Java and native entries) before the original failure is rethrown. Diagnostic failure
+crash-buffer diagnostic (Java and native entries) and a package-scoped Activity
+Manager exit record before the original failure is rethrown. This distinguishes
+an empty crash buffer from missing startup-exit evidence. Diagnostic failure
 does not convert the test into a pass. No account credentials are required.
 
 The device owner must call `restoreContinuousDevice` in a `finally` block,
