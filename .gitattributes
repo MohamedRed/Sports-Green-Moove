@@ -200,3 +200,5 @@ docs/release/evidence/trip-consent-phone-2026-10-25/phone-cleanup.txt -text -whi
 docs/release/evidence/tracking-phone-clock-2026-10-25/**/*.txt -text -whitespace
 docs/release/evidence/native-checks-899e969-2026-10-25/** -text -whitespace
 docs/release/evidence/location-clock-contract-2026-10-25/** -text -whitespace
+docs/release/evidence/tracking-clock-replay-2026-10-25/**/*.txt -text -whitespace
+docs/release/evidence/tracking-clock-replay-2026-10-25/**/*.xml -text -whitespace
