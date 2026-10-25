@@ -259,6 +259,7 @@ on:
       - "tests/trip-consent-phone-evidence.test.mjs"
       - "tests/tracking-phone-checkpoints.test.mjs"
       - "tests/tracking-phone-evidence.test.mjs"
+      - "tests/location-clock-evidence.test.mjs"
       - "scripts/qa/*connect*.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/StripeConnectCoordinator.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/services/StripeConnectCoordinatorTest.kt"
@@ -691,6 +692,7 @@ on:
       - "tests/trip-consent-phone-evidence.test.mjs"
       - "tests/tracking-phone-checkpoints.test.mjs"
       - "tests/tracking-phone-evidence.test.mjs"
+      - "tests/location-clock-evidence.test.mjs"
       - "scripts/qa/*connect*.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/StripeConnectCoordinator.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/services/StripeConnectCoordinatorTest.kt"
@@ -961,7 +963,7 @@ jobs:
         run: node --test tests/trip-consent-phone-checkpoints.test.mjs tests/trip-consent-phone-evidence.test.mjs
 
       - name: Validate incomplete simulated GPS attempt and preserved clock failure
-        run: node --test tests/tracking-phone-checkpoints.test.mjs tests/tracking-phone-evidence.test.mjs
+        run: node --test tests/tracking-phone-checkpoints.test.mjs tests/tracking-phone-evidence.test.mjs tests/location-clock-evidence.test.mjs
       - name: Validate dated full native replay recheck
         run: node --test tests/native-recheck-evidence.test.mjs tests/native-copy-failure-b158.test.mjs
       - name: Validate neutral text contrast and native capture scope

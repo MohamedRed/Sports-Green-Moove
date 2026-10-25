@@ -35,7 +35,7 @@ export const writeLocationBatch = onCall(async (request) => {
   const written = results.filter((outcome) => outcome === "written").length;
   const receipts = results.map((status, index) => ({ status, rideSessionId: updates[index].rideSessionId,
     role: updates[index].role, capturedAt: updates[index].capturedAt }));
-  return { written, ignored: results.length - written, receipts };
+  return { written, ignored: results.length - written, receipts, serverTimeMs: Date.now() };
 });
 
 async function loadRideSessions(rideSessionIds: string[]): Promise<Map<string, LocationAccessRideSession>> {

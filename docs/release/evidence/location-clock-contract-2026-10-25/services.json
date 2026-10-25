@@ -1,0 +1,386 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "82490d8061abd4ac15a4dc4e56f9d842",
+  "testedAt": "2026-10-25T14:02:37.765Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "method": "actual-authenticated-callables-and-shared-admin-writer",
+  "checks": [
+    {
+      "id": "delayed-native-point-cannot-replace-newer-observation",
+      "status": "passed"
+    },
+    {
+      "id": "same-time-duplicate-does-not-change-location-or-receipt-time",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-native-requests-retain-the-greatest-observation-time",
+      "status": "passed"
+    },
+    {
+      "id": "participant-parent-still-receives-the-current-observation-age",
+      "status": "passed"
+    },
+    {
+      "id": "unauthorized-parent-write-remains-denied-without-changing-location",
+      "status": "passed"
+    },
+    {
+      "id": "native-and-webhook-writer-share-one-monotonic-register",
+      "status": "passed"
+    },
+    {
+      "id": "delayed-provider-event-retains-audit-without-rewinding-location",
+      "status": "passed"
+    },
+    {
+      "id": "each-child-register-and-vehicle-register-are-independent",
+      "status": "passed"
+    },
+    {
+      "id": "invalid-or-future-provider-times-cannot-poison-current-register",
+      "status": "passed"
+    },
+    {
+      "id": "authenticated-server-clock-reference-does-not-relax-native-capture-validation",
+      "status": "passed"
+    },
+    {
+      "id": "older-batch-counts-only-committed-points-as-written",
+      "status": "passed"
+    }
+  ],
+  "clockObservations": [
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936953370,
+      "serverTimeMs": 1792936954112,
+      "after": 1792936954114,
+      "written": 1,
+      "ignored": 0,
+      "receipts": [
+        {
+          "status": "written",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923370
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954124,
+      "serverTimeMs": 1792936954140,
+      "after": 1792936954141,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936833370
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954144,
+      "serverTimeMs": 1792936954154,
+      "after": 1792936954156,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923370
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954158,
+      "serverTimeMs": 1792936954212,
+      "after": 1792936954222,
+      "written": 1,
+      "ignored": 0,
+      "receipts": [
+        {
+          "status": "written",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923382
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956372,
+      "after": 1792936956393,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923372
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956592,
+      "after": 1792936956594,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923373
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956688,
+      "after": 1792936956696,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923375
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956717,
+      "after": 1792936956734,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923371
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956768,
+      "after": 1792936956774,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923380
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956773,
+      "after": 1792936956782,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923377
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956817,
+      "after": 1792936956819,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923376
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956822,
+      "after": 1792936956826,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923381
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956822,
+      "after": 1792936956828,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923378
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956829,
+      "after": 1792936956831,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923379
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936954159,
+      "serverTimeMs": 1792936956834,
+      "after": 1792936956836,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923374
+        }
+      ]
+    },
+    {
+      "endpoint": "getActiveRide",
+      "before": 1792936956840,
+      "after": 1792936957598,
+      "serverTimeMs": 1792936957593,
+      "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv"
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936957641,
+      "serverTimeMs": 1792936957661,
+      "after": 1792936957662,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923469
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936957724,
+      "serverTimeMs": 1792936957733,
+      "after": 1792936957734,
+      "written": 0,
+      "ignored": 1,
+      "receipts": [
+        {
+          "status": "invalid",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1793023357724
+        }
+      ]
+    },
+    {
+      "endpoint": "writeLocationBatch",
+      "before": 1792936957753,
+      "serverTimeMs": 1792936957763,
+      "after": 1792936957764,
+      "written": 0,
+      "ignored": 3,
+      "receipts": [
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923370
+        },
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923371
+        },
+        {
+          "status": "retained",
+          "rideSessionId": "eRTDJ9ZvazRIhUg6L2uv",
+          "role": "driver",
+          "capturedAt": 1792936923372
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": "location-order",
+      "status": "passed"
+    }
+  ],
+  "testCount": 1,
+  "finalCapturedAt": 1792936923470,
+  "concurrentRequestCount": 12,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "providerWebhookDelivery": false,
+  "auditAcceptance": false,
+  "sourceFiles": {
+    "scripts/qa/local-location-order.mjs": "cea1189bcf0cefa51e65b11585098fb0c38b89e5a4702db978c8933ec1e89b14",
+    "functions/src/lib/liveTrips.ts": "3c34120f897ddb06b6e03df6db3bc1be9231bdc781714a0c7d916ffb5d86552a",
+    "functions/src/callables/rides.ts": "a6b2584e4538059b52b8a202a8c240a6c9180d00334cd2c953f9ccf07b20671a",
+    "functions/src/domain/liveLocationOrder.ts": "8fa5936cabbb0aa0fb70c4294ca402ba4eccd3341b020197ee798ccc9bebb0f5",
+    "functions/src/callables/locations.ts": "55088411cae3af08f2723fb55433d7c861b685bfffd172c47dda13065a0e4e48",
+    "functions/src/services/radarReconciliation.ts": "f38972a973285af35d8e04fff75acd4471dfc6d9a67e9016f426265a466268f2"
+  },
+  "adminClientClosed": true
+}

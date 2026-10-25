@@ -22,11 +22,11 @@ export const getActiveRide = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
   const data = parseCallableData(z.object({ rideSessionId: chatDocumentIdSchema.optional() }).strict(), request.data);
   const activeRide = await loadAccessibleActiveRide(uid, request.auth?.token, data.rideSessionId);
-  if (!activeRide) return { ride: null };
+  if (!activeRide) return { ride: null, serverTimeMs: Date.now() };
   const { id, ride } = activeRide;
   const status = ride.status ?? "active";
   const liveSnap = await realtimeDb.ref(`liveTrips/${id}`).get();
-  return { ride: toClientRideSnapshot(id, status, liveSnap.val(), ride) };
+  return { ride: toClientRideSnapshot(id, status, liveSnap.val(), ride), serverTimeMs: Date.now() };
 });
 
 export const endRide = onCall(async (request) => {
