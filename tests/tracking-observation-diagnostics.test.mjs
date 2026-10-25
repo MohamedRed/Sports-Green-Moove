@@ -4,6 +4,7 @@ import test from 'node:test';
 import {parseRideObservationTrace, verifyDisconnectedRideTrace} from '../scripts/qa/ride-observation-trace-evidence.mjs';
 import {validateTrackingDiagnosticScope, validateTrackingObservationDiagnostics} from '../scripts/qa/tracking-observation-diagnostics.mjs';
 import {content} from '../partner-portal/content.mjs';
+import {validateNativeStatus} from '../partner-portal/native-status-validation.mjs';
 const directory = 'docs/release/evidence/tracking-observation-diagnostics-2026-10-25';
 const record = {source: directory + '/summary.json', checksums: directory + '/artifact-sha256.json', checkedAt: '2026-10-25'};
 const views = readdirSync(directory).filter(name => /^second-.*events\.txt$/.test(name))
@@ -34,7 +35,7 @@ test('retained negative runs, supplemental isolation, units and failed CI are va
   const result = validateTrackingObservationDiagnostics(process.cwd(), record);
   assert.equal(result.ci.mainAccepted, false);
   assert.deepEqual(content.flows.find(row => row.id === 'tracking-network').trackingNetworkDiagnostics, record);
-  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').source, directory + '/README.md');
+  assert.equal(validateNativeStatus(process.cwd(), content.blockers).fullGatePassed, false);
 });
 for (const key of ['tracingEnabledInRelease', 'firstAttemptCompleted', 'secondNetworkCheckpointRunCompleted',
   'offlineBoundaryAccepted', 'overallFlowAccepted', 'transportRootCauseConfirmed', 'productionWrites', 'releaseScenariosAccepted'])

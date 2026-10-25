@@ -4,6 +4,7 @@ import {validateTrackingClockReplay} from '../scripts/qa/tracking-clock-replay-e
 import {validateTrackingNetworkPhone} from '../scripts/qa/tracking-network-retained-evidence.mjs';
 import {validateTrackingObservationDiagnostics} from '../scripts/qa/tracking-observation-diagnostics.mjs';
 import {validateNativeSocketProbe} from '../scripts/qa/native-socket-probe-evidence.mjs';
+import {validateNativeStatus} from './native-status-validation.mjs';
 import {validateNativeClockCi} from '../scripts/qa/native-clock-ci-evidence.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
@@ -48,8 +49,7 @@ export { validateUiScope } from './ui-scope-validation.mjs';
 export function validate(root) {
   assert.equal(content.nativeClockCiRecheck.checksums, dirname(content.nativeClockCiRecheck.source) + '/artifact-sha256.json');
   validateNativeClockCi(root, dirname(content.nativeClockCiRecheck.source));
-  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy')?.source,
-    'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md');
+  validateNativeStatus(root, content.blockers);
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
   assertDate(content.updatedAt);
   assertDate(content.lastVerifiedAt);

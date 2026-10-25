@@ -1,0 +1,42 @@
+[
+  {
+    "id": 12611671263,
+    "node_id": "MDg6QXJ0aWZhY3QxMjYxMTY3MTI2Mw==",
+    "name": "android-connected-ui-test-results",
+    "size_in_bytes": 23060723,
+    "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/12611671263",
+    "archive_download_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/12611671263/zip",
+    "expired": false,
+    "digest": "sha256:e28ac677bd4a3fa62b0c48da64ee8711de8e50778e91c53def85093bc43595e9",
+    "created_at": "2026-10-25T19:44:34Z",
+    "updated_at": "2026-10-25T19:44:34Z",
+    "expires_at": "2027-01-23T19:12:29Z",
+    "workflow_run": {
+      "id": 40224919474,
+      "repository_id": 1265168151,
+      "head_repository_id": 1265168151,
+      "head_branch": "codex/implement-plan",
+      "head_sha": "25359420c8ef067504cb4b74fe0715e35b522481"
+    }
+  },
+  {
+    "id": 12612130335,
+    "node_id": "MDg6QXJ0aWZhY3QxMjYxMjEzMDMzNQ==",
+    "name": "android-focused-safety-ui-team-conversation",
+    "size_in_bytes": 945761,
+    "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/12612130335",
+    "archive_download_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/12612130335/zip",
+    "expired": false,
+    "digest": "sha256:a8471707a2a638ccd9e54df69ce8beb88460cddf52e8c58f752c117cf370ae1e",
+    "created_at": "2026-10-25T19:42:31Z",
+    "updated_at": "2026-10-25T19:42:31Z",
+    "expires_at": "2027-01-23T19:32:52Z",
+    "workflow_run": {
+      "id": 40226545552,
+      "repository_id": 1265168151,
+      "head_repository_id": 1265168151,
+      "head_branch": "codex/implement-plan",
+      "head_sha": "66a9044be99c4912b103c664cb95f908c436ad6d"
+    }
+  }
+]

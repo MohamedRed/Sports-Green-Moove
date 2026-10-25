@@ -8,6 +8,7 @@ import test from 'node:test';
 import {content} from '../partner-portal/content.mjs';
 import {validateTrackingNetworkPhone} from '../scripts/qa/tracking-network-retained-evidence.mjs';
 import {validateNativeClockCi} from '../scripts/qa/native-clock-ci-evidence.mjs';
+import {validateNativeStatus} from '../partner-portal/native-status-validation.mjs';
 
 const root = resolve(import.meta.dirname, '..'), folder = 'docs/release/evidence/tracking-network-phone-2026-10-25';
 const record = {source: folder + '/summary.json', checksums: folder + '/artifact-sha256.json', checkedAt: '2026-10-25'};
@@ -22,8 +23,7 @@ test('record recovery cannot accept the visibly stalled continuous phone display
 test('the independent clock case remains passing while the complete native CI run stays failed', () => {
   const summary = validateNativeClockCi(root, 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25');
   assert.equal(summary.focusedClockCasePassed, true); assert.equal(summary.wholeRunAccepted, false);
-  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').source,
-    'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md');
+  assert.equal(validateNativeStatus(root, content.blockers).fullGatePassed, false);
   assert(!content.blockers.some(row => row.id === 'native-startup-recheck'));
 });
 test('both new artifact sets are tracked, including original transcripts and source snapshots', () => {

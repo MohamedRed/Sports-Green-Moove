@@ -8,6 +8,7 @@ import { validate } from '../partner-portal/validate.mjs';
 import { assetRevision, buildBrowserAssets, assertBrowserAssetsCurrent } from '../partner-portal/build-assets.mjs';
 import { nativeRechecks } from '../partner-portal/native-rechecks.mjs';
 import { evidenceSourcePaths } from '../partner-portal/evidence-fingerprints.mjs';
+import {validateNativeStatus} from '../partner-portal/native-status-validation.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const source = (file) => readFileSync(resolve(root, file), 'utf8');
@@ -274,6 +275,18 @@ test('new ride captures use a completed seven-case UI run and keep old evidence 
   const old = JSON.parse(source('docs/release/evidence/local-ui-2026-10-15/results.json'));
   assert.equal(old.testCount, 6);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
+});
+
+test('current native status keeps completed replay separate from both failed gates', () => {
+  const report = validateNativeStatus(root, content.blockers);
+  assert.equal(report.replay.groups, 37); assert.equal(report.replay.cases, 40);
+  assert.equal(report.ordinary.failed, 1); assert.equal(report.fullGatePassed, false);
+  assert.equal(report.focusedScreenAssertionsCompleted, true); assert.equal(report.focusedPrimaryCopyPassed, false);
+  assert.equal(report.rendererRootCauseFixed, false); assert.equal(report.physicalDeviceAccepted, false);
+  assert.throws(() => validateNativeStatus(root, []));
+  const old = structuredClone(content.blockers);
+  old.find(row => row.id === 'native-evidence-copy').source = 'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md';
+  assert.throws(() => validateNativeStatus(root, old));
 });
 
 import './partner-portal-ui.test.mjs';
