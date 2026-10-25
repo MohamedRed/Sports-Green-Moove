@@ -4,8 +4,10 @@ import {driverConnectProgress} from './driver-connect.mjs';
 import {tripConsentPhoneProgress} from './trip-consent-phone.mjs';
 import {trackingAttemptProgress} from './tracking-phone-attempt.mjs';
 import {trackingClockProgress} from './tracking-clock-replay.mjs';
+import {trackingNetworkProgress} from './tracking-network-phone.mjs';
 
 export const recentProgress = [
+  trackingNetworkProgress,
   trackingClockProgress,
   trackingAttemptProgress,
   {date: '2026-10-25', title: 'Un essai de démarrage reste en échec',

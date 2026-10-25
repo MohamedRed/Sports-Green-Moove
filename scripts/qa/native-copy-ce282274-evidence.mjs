@@ -46,7 +46,7 @@ export function validateNativeCopyCe282274(root, record, blockers) {
   for (const key of ['fullCiPassed', 'earlierLoginRootCauseConfirmed', 'copyRootCauseConfirmed', 'newMediaAccepted',
     'physicalTrackingAccepted', 'realPaymentExercised', 'productionWrites', 'releaseComplete']) assert.equal(summary[key], false);
   const blocker = blockers.find(row => row.id === 'native-evidence-copy');
-  assert.equal(blocker?.source, record.source.replace('summary.json', 'README.md'));
+  assert(blocker?.source?.startsWith('docs/release/evidence/'), 'A current copy blocker must remain; its newer source is validated separately');
   assert.equal(blockers.find(row => row.id === 'native-login-replay'), undefined);
   assertEvidenceBundleChecksums(base);
   return summary;

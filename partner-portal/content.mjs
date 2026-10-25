@@ -18,6 +18,7 @@ import { nativeVerification } from './native-verification.mjs';
 import { nativeRechecks } from './native-rechecks.mjs';
 export { assets, videos, excerpts } from './portal-media.mjs';
 import { createTrackingFlow } from './tracking-flow.mjs';
+import {createTrackingNetworkFlow} from './tracking-network-phone.mjs';
 import { createRideEmergencyFlow } from './ride-emergency-flow.mjs';
 import { createRideObservationFlow } from './ride-observation-flow.mjs';
 import { createNativeStartupFlow } from './native-startup-flow.mjs';
@@ -45,6 +46,8 @@ const shot = (file, alt) => ({ file, alt });
 export const content = {
   updatedAt: '2026-10-25',
   lastVerifiedAt: '2026-10-25',
+  nativeClockCiRecheck: {source: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/summary.json',
+    checksums: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/artifact-sha256.json', checkedAt: '2026-10-25'},
   ...nativeRechecks,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
@@ -245,6 +248,7 @@ export const content = {
     createNativeStartupFlow(),
     createRemoteRideStopFlow(),
     createTrackingFlow(),
+    createTrackingNetworkFlow(),
     { id: 'ride-lifecycle', title: 'Déroulement du trajet', status: 'partial', checkedAt: '2026-10-23',
       latestEvidence: 'phone',
       summary: 'Prise en charge, dépose et fin du trajet passent sur téléphone.',

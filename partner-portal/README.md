@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The later 25 October network trial completes seven independent record-only
+checkpoints, including a measured offline window and sign-out stability. Uploads
+resume, but automatic/continuous display recovery fails. Lifecycle return refreshes
+once, then the screen again ages while the backend keeps receiving points. Three
+reviewed viewport JPEGs form a separate network tour. Do not accept the UI flow,
+infer a root cause, add a polling fallback or promote release/child/outdoor scope.
+The 30e1ebe CI has ten successful focused jobs, including clock protocol v2, but
+the main job fails primary trip-change-inputs collection. Restoration/host exit
+do not replace collection. Preserve negative records, previous media and public access.
+
 The later 25 October capture-clock candidate receives driver GPS A, B and C on
 a physical phone, including system-Home background movement and app return.
 Sign-out UI and a supplemental measured 50-second read-only stability check pass.
@@ -661,6 +671,8 @@ Use the installed Sites skill and tools. Do not call `create_site` again.
 1. Validate, build and review media/layouts. Commit and push canonical source.
 2. Read the Site and acquire its short-lived source write credential. Keep it in
    session memory; pass it to the Sites workflow helper only through hidden stdin.
+   `get_site` can also return a bypass bearer token. Never print the complete
+   result, even for a public Site; emit only allowlisted IDs, audience and status.
 3. For updates, open the existing separate Sites checkout with the helper first,
    so remote changes are reconciled before replacing the generated snapshot.
 4. Export to a separate checkout, for example:

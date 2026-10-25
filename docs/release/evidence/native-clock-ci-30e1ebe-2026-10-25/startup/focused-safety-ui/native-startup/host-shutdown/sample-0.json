@@ -1,0 +1,531 @@
+{
+  "elapsedMs": 0.0028950000000023124,
+  "observedAt": "2026-10-25T17:29:54.295Z",
+  "state": "present",
+  "processState": "S",
+  "tasks": [
+    {
+      "tid": 3392,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3393,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3405,
+      "waitChannel": null
+    },
+    {
+      "tid": 3416,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3417,
+      "waitChannel": null
+    },
+    {
+      "tid": 3418,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3419,
+      "waitChannel": null
+    },
+    {
+      "tid": 3420,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3421,
+      "waitChannel": "hrtimer_nanosleep"
+    },
+    {
+      "tid": 3434,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3435,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3436,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3437,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3438,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3439,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3440,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3441,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3442,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3443,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3444,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3445,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3446,
+      "waitChannel": "hrtimer_nanosleep"
+    },
+    {
+      "tid": 3448,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3452,
+      "waitChannel": null
+    },
+    {
+      "tid": 3456,
+      "waitChannel": null
+    },
+    {
+      "tid": 3457,
+      "waitChannel": "hrtimer_nanosleep"
+    },
+    {
+      "tid": 3458,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3459,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3460,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3469,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3479,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3480,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3481,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3482,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3483,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3484,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3485,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3490,
+      "waitChannel": "vhost_task_fn"
+    },
+    {
+      "tid": 3491,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3492,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3493,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3494,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3495,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3496,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3497,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3498,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3499,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3500,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3501,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3502,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3503,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3504,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3505,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3506,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3507,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3508,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3509,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3510,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3511,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3512,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3513,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3514,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3515,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3528,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3530,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3531,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3532,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3533,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3534,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3535,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3537,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3538,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3539,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3540,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3571,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3574,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3575,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3576,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3577,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3578,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3579,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3580,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3581,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3582,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3583,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3584,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3585,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3586,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3587,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3588,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3589,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3590,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3593,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3607,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3608,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3609,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3610,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3623,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3759,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3800,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3801,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3830,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3913,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3966,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 3974,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4090,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4107,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4202,
+      "waitChannel": "ep_poll"
+    },
+    {
+      "tid": 4375,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4376,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4377,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4378,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4389,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4390,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4391,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4392,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4395,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4396,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4397,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4398,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4479,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4480,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4481,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4482,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4483,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4602,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4603,
+      "waitChannel": "futex_do_wait"
+    },
+    {
+      "tid": 4604,
+      "waitChannel": "futex_do_wait"
+    }
+  ],
+  "descendants": [
+    {
+      "pid": 3462,
+      "startedTicks": "58539",
+      "state": "S",
+      "executable": "netsimd",
+      "waitChannel": "futex_do_wait"
+    }
+  ],
+  "stdout": "socket",
+  "stderr": "socket"
+}

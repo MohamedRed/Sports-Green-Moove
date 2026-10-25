@@ -1,0 +1,19 @@
+{
+  "scope": "read-only-backend-point-not-ui-recovery-proof",
+  "observedAt": "2026-10-25T17:58:17.616Z",
+  "status": 200,
+  "vehicle": {
+    "accuracyM": 1,
+    "captureClock": "serverElapsedRealtime",
+    "capturedAt": 1792951095254,
+    "deviceCapturedAt": 1792951095649,
+    "lat": 50.7177,
+    "lng": 4.6177,
+    "rideSessionId": "5MScNL2kiyvv0ESD78zV",
+    "role": "driver",
+    "source": "nativeFallback",
+    "uploadedAt": 1792951095449,
+    "userId": "sgm-qa-driver"
+  },
+  "backendAgeMs": 2177
+}

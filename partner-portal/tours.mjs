@@ -4,12 +4,14 @@ import { searchPhoneTour, bookingSearchPhoneTour } from './search-booking-phone.
 import {driverConnectTour} from './driver-connect.mjs';
 import {tripConsentPhoneTour} from './trip-consent-phone.mjs';
 import {trackingClockTour} from './tracking-clock-replay.mjs';
+import {trackingNetworkTour} from './tracking-network-phone.mjs';
 
 const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
 
 export const tours = {
   tracking: trackingClockTour,
+  'tracking-network': trackingNetworkTour,
   payments: driverConnectTour,
   'notification-settings': [
     image('notification-read-phone-unread', 'Ouvrir les alertes', 'Trois alertes sont non lues.'),

@@ -17,6 +17,11 @@ export function validateTrackingPhoneAttempt(root, source) {
   assert.equal(run.childTrackingProven, false); assert.equal(run.productionWrites, false); assert.equal(run.routeProviderRequests, 0);
   assert.deepEqual(run.checkpoints.map(row => row.phase), ['prepared', 'foreground-first']);
   assert.deepEqual(run.fixture, fixture);
+  assert.deepEqual(run.sourceFiles, {
+    'scripts/qa/manual-tracking-phone-session.mjs': 'd54c54f842f1afe88eea6a6474ad2d84b76d1c766dd675c51a28499372b335f0',
+    'scripts/qa/tracking-phone-checkpoints.mjs': '95bf48d2b0c68c03b83e9f5c86ab1bfb6aca5398f38ef572d3d14773a4735d78',
+    'scripts/qa/session-restoration-records.mjs': 'd69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802',
+  }, 'This historical attempt must keep its original controller version');
   for (const [index, phase] of ['prepared', 'foreground-first'].entries()) {
     const stage = json(phase + '.json'); assert.equal(stage.runId, run.runId);
     assert.deepEqual(verifyTrackingPhoneCheckpoint(phase, stage.state, baseline, fixture), run.checkpoints[index]);
@@ -24,7 +29,6 @@ export function validateTrackingPhoneAttempt(root, source) {
   for (const [file, sha] of Object.entries(run.sourceFiles)) {
     const retained = readFileSync(resolve(base, 'source', file.split('/').at(-1) + '.txt'));
     assert.equal(createHash('sha256').update(retained).digest('hex'), sha);
-    assert.equal(createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex'), sha);
   }
   const first = json('foreground-first.json'), final = json('final-stalled-state.json');
   const rideId = first.result.rideId, comparable = structuredClone(final.state);

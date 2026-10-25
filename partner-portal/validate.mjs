@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retained-evidence.mjs';
 import {validateTrackingClockReplay} from '../scripts/qa/tracking-clock-replay-evidence.mjs';
+import {validateTrackingNetworkPhone} from '../scripts/qa/tracking-network-retained-evidence.mjs';
+import {validateNativeClockCi} from '../scripts/qa/native-clock-ci-evidence.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
@@ -42,6 +44,10 @@ import { validateUiScope } from './ui-scope-validation.mjs';
 export { validateUiScope } from './ui-scope-validation.mjs';
 
 export function validate(root) {
+  assert.equal(content.nativeClockCiRecheck.checksums, dirname(content.nativeClockCiRecheck.source) + '/artifact-sha256.json');
+  validateNativeClockCi(root, dirname(content.nativeClockCiRecheck.source));
+  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy')?.source,
+    'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/README.md');
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
   assertDate(content.updatedAt);
   assertDate(content.lastVerifiedAt);
@@ -71,6 +77,9 @@ export function validate(root) {
     for (const field of ['title', 'summary', 'verified', 'remaining', 'source']) assert(f[field]?.trim());
     assert(existsSync(resolve(root, f.source)), `Missing source ${f.source}`);
     if (f.checkedAt) { assertDate(f.checkedAt); assert(f.checkedAt <= content.lastVerifiedAt); }
+    if (f.trackingNetworkPhone) {
+      assert.equal(f.status, 'partial'); validateTrackingNetworkPhone(root, f.trackingNetworkPhone);
+    }
     if (f.trackingPhoneAttempt) {
       assert.equal(f.id, 'tracking');
       if (f.trackingClockReplay) {
