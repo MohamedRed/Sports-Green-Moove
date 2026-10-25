@@ -2,12 +2,12 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   {id: 'tracking-reconnect-display', title: 'Actualiser le suivi en continu',
-    text: 'Après une coupure, les envois reprennent. L’écran ne suit pas encore les nouvelles positions.',
-    next: 'Corriger l’actualisation et rejouer la coupure.',
-    source: 'docs/release/evidence/tracking-network-phone-2026-10-25/README.md'},
+    text: 'Dans l’essai isolé, les positions arrivent mais la connexion en direct ne s’ouvre pas.',
+    next: 'Rétablir cette connexion et rejouer la coupure.',
+    source: 'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md'},
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
-    text: 'Les essais séparés passent. Le contrôle complet s’arrête encore pendant la récupération des captures.',
-    next: 'Corriger la récupération puis relancer le contrôle complet.', source: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/README.md' },
+    text: 'Les dix essais séparés passent. La capture d’un écran de modification et la récupération des captures restent en échec.',
+    next: 'Corriger ces deux étapes puis relancer le contrôle complet.', source: 'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md' },
   { id: 'support-urgent-email', title: 'Activer les e-mails du support',
     text: 'L’alerte et le suivi passent depuis le téléphone, avec les données isolées. Aucun e-mail réel n’a été envoyé.',
     next: 'Choisir une adresse d’expédition, puis confirmer la réception d’un e-mail.', source: 'docs/release/evidence/support-urgent-phone-2026-10-23/README.md' },

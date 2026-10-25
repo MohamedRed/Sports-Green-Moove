@@ -1,0 +1,5 @@
+								387 row 10-25 18:37:45.227 I/SGM.RideObservation(23389): observer=1 sequence=1 elapsedMs=1 event=Opened
+								390 row 10-25 18:37:45.240 I/SGM.RideObservation(23389): observer=1 sequence=2 elapsedMs=14 event=Connected connected=false
+								393 row 10-25 18:37:45.486 I/SGM.RideObservation(23389): observer=1 sequence=3 elapsedMs=260 event=RideServer
+								396 row 10-25 18:37:45.486 I/SGM.RideObservation(23389): observer=1 sequence=4 elapsedMs=260 event=FetchStarted
+								399 row 10-25 18:37:45.641 I/SGM.RideObservation(23389): observer=1 sequence=5 elapsedMs=415 event=FetchCompleted

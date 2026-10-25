@@ -1,0 +1,66 @@
+Browser tab: 1621934829, Title: "App Live Dashboard", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 153
+~										151 row sgm-ride-observation-trace-wip-566a994-20261025.apk v0.1.0 7 minutes ago by me App Settings for sgm-ride-observation-trace-wip-566a994-20261025.apk Select sgm-ride-observation-trace-wip-566a994-20261025.apk for deletion
+~											152 cell (selected) sgm-ride-observation-trace-wip-566a994-20261025.apk
++												226 text sgm-ride-observation-trace-wip-566a994-20261025.apk
++												227 text v0.1.0 7 minutes ago by me
++												228 container
++													229 button App Settings for sgm-ride-observation-trace-wip-566a994-20261025.apk
++														230 image Settings
++													231 checkbox (settable, integer) Description: Select sgm-ride-observation-trace-wip-566a994-20261025.apk for deletion, Value: 0
+~										154 row sgm-gps-clock-localhost-wip-f3aef02-20261025.apk v0.1.0 2 hours ago by me Select sgm-gps-clock-localhost-wip-f3aef02-20261025.apk for deletion
+~											155 cell (selectable) sgm-gps-clock-localhost-wip-f3aef02-20261025.apk
++												232 text sgm-gps-clock-localhost-wip-f3aef02-20261025.apk
++												233 text v0.1.0 2 hours ago by me
+~												156 checkbox (settable, integer) Description: Select sgm-gps-clock-localhost-wip-f3aef02-20261025.apk for deletion, Value: 0
+~										157 row sgm-trip-consent-localhost-9b59f31-20261025.apk v0.1.0 7 hours ago by me Select sgm-trip-consent-localhost-9b59f31-20261025.apk for deletion
+~											158 cell (selectable) sgm-trip-consent-localhost-9b59f31-20261025.apk
++												234 text sgm-trip-consent-localhost-9b59f31-20261025.apk
++												235 text v0.1.0 7 hours ago by me
+~												159 checkbox (settable, integer) Description: Select sgm-trip-consent-localhost-9b59f31-20261025.apk for deletion, Value: 0
+~										160 row sgm-notification-read-localhost-87082b10-20261023.apk v0.1.0 Yesterday at 19:42 by me Select sgm-notification-read-localhost-87082b10-20261023.apk for deletion
+~											161 cell (selectable) sgm-notification-read-localhost-87082b10-20261023.apk
++												236 text sgm-notification-read-localhost-87082b10-20261023.apk
++												237 text v0.1.0 Yesterday at 19:42 by me
+~												162 checkbox (settable, integer) Description: Select sgm-notification-read-localhost-87082b10-20261023.apk for deletion, Value: 0
+~										163 row sgm-notification-settings-localhost-20261023.apk v0.1.0 Oct 23 at 16:11 by me Select sgm-notification-settings-localhost-20261023.apk for deletion
+~											164 cell (selectable) sgm-notification-settings-localhost-20261023.apk
++												238 text sgm-notification-settings-localhost-20261023.apk
++												239 text v0.1.0 Oct 23 at 16:11 by me
+~												165 checkbox (settable, integer) Description: Select sgm-notification-settings-localhost-20261023.apk for deletion, Value: 0
+~										166 row sgm-ride-status-phone-086263f3-localhost-20261023.apk v0.1.0 Oct 23 at 15:05 by me Select sgm-ride-status-phone-086263f3-localhost-20261023.apk for deletion
+~											167 cell (selectable) Description: Select sgm-ride-status-phone-086263f3-localhost-20261023.apk for deletion, Help: sgm-ride-status-phone-086263f3-localhost-20261023.apk, Value: sgm-ride-status-phone-086263f3-localhost-20261023.apk
+v0.1.0 Oct 23 at 15:05 by me
+~												168 checkbox Description: Select sgm-ride-status-phone-086263f3-localhost-20261023.apk for deletion, Value: 0
+~										169 row sgm-ride-status-isolated-086263f3-20261023.apk v0.1.0 Oct 23 at 14:51 by me Select sgm-ride-status-isolated-086263f3-20261023.apk for deletion
+~											170 cell (selectable) sgm-ride-status-isolated-086263f3-20261023.apk
++												240 text sgm-ride-status-isolated-086263f3-20261023.apk
++												241 text v0.1.0 Oct 23 at 14:51 by me
+~												171 checkbox (settable, integer) Description: Select sgm-ride-status-isolated-086263f3-20261023.apk for deletion, Value: 0
+~										172 row sgm-support-call-trace-000ed178-dirty-20261022.apk v0.1.0 Oct 22 at 23:56 by me Select sgm-support-call-trace-000ed178-dirty-20261022.apk for deletion
+~											173 cell (selectable) sgm-support-call-trace-000ed178-dirty-20261022.apk
++												242 text sgm-support-call-trace-000ed178-dirty-20261022.apk
++												243 text v0.1.0 Oct 22 at 23:56 by me
+~												174 checkbox (settable, integer) Description: Select sgm-support-call-trace-000ed178-dirty-20261022.apk for deletion, Value: 0
+~										175 row sgm-support-call-trace-000ed178-dirty-20261022.apk v0.1.0 Oct 22 at 20:55 by me Select sgm-support-call-trace-000ed178-dirty-20261022.apk for deletion
+~											176 cell (selectable) sgm-support-call-trace-000ed178-dirty-20261022.apk
++												244 text sgm-support-call-trace-000ed178-dirty-20261022.apk
++												245 text v0.1.0 Oct 22 at 20:55 by me
+~												177 checkbox (settable, integer) Description: Select sgm-support-call-trace-000ed178-dirty-20261022.apk for deletion, Value: 0
+~										178 row sgm-support-recovery-isolated-bafc9d0-20261022.apk v0.1.0 Oct 22 at 19:23 by me Select sgm-support-recovery-isolated-bafc9d0-20261022.apk for deletion
+~											179 cell (selectable) sgm-support-recovery-isolated-bafc9d0-20261022.apk
++												246 text sgm-support-recovery-isolated-bafc9d0-20261022.apk
++												247 text v0.1.0 Oct 22 at 19:23 by me
+~												180 checkbox (settable, integer) Description: Select sgm-support-recovery-isolated-bafc9d0-20261022.apk for deletion, Value: 0
+~										181 row sgm-support-followup-isolated-e23809a-20261022.apk v0.1.0 Oct 22 at 14:45 by me Select sgm-support-followup-isolated-e23809a-20261022.apk for deletion
+~											182 cell (selectable) sgm-support-followup-isolated-e23809a-20261022.apk
++												248 text sgm-support-followup-isolated-e23809a-20261022.apk
++												249 text v0.1.0 Oct 22 at 14:45 by me
+~												183 checkbox (settable, integer) Description: Select sgm-support-followup-isolated-e23809a-20261022.apk for deletion, Value: 0
+~										184 row sgm-team-reads-isolated-458318c-20261021.apk v0.1.0 Oct 21 at 21:27 by me Select sgm-team-reads-isolated-458318c-20261021.apk for deletion
+~											185 cell (selectable) sgm-team-reads-isolated-458318c-20261021.apk
++												250 text sgm-team-reads-isolated-458318c-20261021.apk
++												251 text v0.1.0 Oct 21 at 21:27 by me
+~												186 checkbox (settable, integer) Description: Select sgm-team-reads-isolated-458318c-20261021.apk for deletion, Value: 0
+The focused UI element is 0 AXWebArea App Live Dashboard, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1

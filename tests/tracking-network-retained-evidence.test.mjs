@@ -23,7 +23,7 @@ test('the independent clock case remains passing while the complete native CI ru
   const summary = validateNativeClockCi(root, 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25');
   assert.equal(summary.focusedClockCasePassed, true); assert.equal(summary.wholeRunAccepted, false);
   assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').source,
-    'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/README.md');
+    'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md');
   assert(!content.blockers.some(row => row.id === 'native-startup-recheck'));
 });
 test('both new artifact sets are tracked, including original transcripts and source snapshots', () => {

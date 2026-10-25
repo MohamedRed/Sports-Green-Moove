@@ -1,0 +1,195 @@
+Browser tab: 1621934829, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+1 AXWebArea Google Pixel 9 Pro 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	2 container bd-dashboard
+		45 container
+			46 container content
+				152 container in-session-device-react
+					153 container
+					154 container
+						155 image
+						156 button Add Device
+							157 text Add Device
+							158 text PRO
+				149 text ;
+				151 container debugger
+					160 text DevTools -  Logcat
+					161 button Download logs, ID: devtool-download-logs
+					162 button Dock to bottom, ID: devtool-change-orientation
+					163 button Collapse, ID: devtool-toggle
+					473 container device-logs
+						474 container
+							475 text be.sportgreenmoove.app.local
+							476 text field Description: Device logs dropdown, ID: react-select-4-input
+						477 container
+							478 text Info
+							479 text field Description: Log type dropwdown, ID: react-select-5-input
+						480 container
+							481 link Description: Clear logs, Value: app-live.browserstack.com/dashboard#
+							482 link Description: Pause logs, Value: app-live.browserstack.com/dashboard#
+							483 link Description: Wrap, Value: app-live.browserstack.com/dashboard#
+						484 container
+							485 search text field (settable) Description: Search Logs, Value: SGM.RideObservation
+							486 image
+							487 checkbox (settable, integer) Description: Use regex search, Value: 0, ID: search-regex-box
+							488 text Regex
+						489 table grid
+							490 container
+								521 row 10-25 18:37:45.641 I/SGM.RideObservation(23389): observer=1 sequence=5 elapsedMs=415 event=FetchCompleted
+									522 cell
+										523 text 10-25 18:37:45.641 I/ SGM.RideObservation (23389): observer=1 sequence=5 elapsedMs=415 event=FetchCompleted
+								533 row 10-25 18:42:08.748 I/SGM.RideObservation(23389): observer=1 sequence=6 elapsedMs=263522 event=RideCached
+									534 cell
+										535 text 10-25 18:42:08.748 I/ SGM.RideObservation (23389): observer=1 sequence=6 elapsedMs=263522 event=RideCached
+								536 row 10-25 18:42:11.460 I/SGM.RideObservation(23389): observer=1 sequence=7 elapsedMs=266234 event=RideServer
+									537 cell
+										538 text 10-25 18:42:11.460 I/ SGM.RideObservation (23389): observer=1 sequence=7 elapsedMs=266234 event=RideServer
+								539 row 10-25 18:42:11.462 I/SGM.RideObservation(23389): observer=1 sequence=8 elapsedMs=266236 event=FetchStarted
+									540 cell
+										541 text 10-25 18:42:11.462 I/ SGM.RideObservation (23389): observer=1 sequence=8 elapsedMs=266236 event=FetchStarted
+								542 row 10-25 18:42:11.775 I/SGM.RideObservation(23389): observer=1 sequence=9 elapsedMs=266550 event=FetchCompleted
+									543 cell
+										544 text 10-25 18:42:11.775 I/ SGM.RideObservation (23389): observer=1 sequence=9 elapsedMs=266550 event=FetchCompleted
+								580 row 10-25 18:42:23.205 I/SGM.RideObservation(23389): observer=1 sequence=10 elapsedMs=277980 event=RideCached
+									581 cell
+										582 text 10-25 18:42:23.205 I/ SGM.RideObservation (23389): observer=1 sequence=10 elapsedMs=277980 event=RideCached
+								583 row 10-25 18:43:55.342 I/SGM.RideObservation(23389): observer=1 sequence=11 elapsedMs=370117 event=RideServer
+									584 cell
+										585 text 10-25 18:43:55.342 I/ SGM.RideObservation (23389): observer=1 sequence=11 elapsedMs=370117 event=RideServer
+								586 row 10-25 18:43:55.343 I/SGM.RideObservation(23389): observer=1 sequence=12 elapsedMs=370117 event=FetchStarted
+									587 cell
+										588 text 10-25 18:43:55.343 I/ SGM.RideObservation (23389): observer=1 sequence=12 elapsedMs=370117 event=FetchStarted
+								589 row 10-25 18:43:55.641 I/SGM.RideObservation(23389): observer=1 sequence=13 elapsedMs=370415 event=FetchCompleted
+									590 cell
+										591 text 10-25 18:43:55.641 I/ SGM.RideObservation (23389): observer=1 sequence=13 elapsedMs=370415 event=FetchCompleted
+					524 link Resize Component
+						592 text ||
+					526 tab group
+						527 tab (selected, settable, boolean) Description: Logs, Value: 1
+						528 tab (selectable, settable, boolean) Description: ADB Shell, Value: 0
+						529 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						530 tab (selectable, settable, boolean) Description: Network, Value: 0
+						531 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				403 content list
+					404 button Description: Switch Device, ID: switchBrowser
+					405 container
+						406 button Description: Local testing, ID: appLiveToolbarLocalTesting
+							407 image
+							408 image open content menu
+							409 text Local testing
+					410 menu zoomFeature
+						411 Description: zoom out, ID: zoom-out
+						412 Description: zoom in, ID: zoom-in
+						413 text Zoom
+					414 button Description: Record Session, ID: appLiveVideoRecording
+					415 button Description: DevTools, ID: showDebuggingOptions
+					416 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					417 button Description: Settings, ID: appLiveSessionSettings
+						418 image open content menu
+						419 text Settings
+					420 button Description: Stop Session, ID: appLiveStopSession
+						421 image
+						422 text Stop Session
+				303 container vertical-toolbar-react
+					304 container vertical-toolbar-draggable
+						305 container
+							423 button toolbar drag icon
+							307 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						308 toolbar
+							309 content list
+								424 button Description: Add Device, ID: app-live-add-device
+									425 container app-live-add-device-lead-text-wrapper
+										426 text Add Device PRO
+								427 button Description: Show Home Screen, ID: dockHomeScreen
+									428 text Show Home Screen
+								429 container volume-buttons-lead-text-wrapper
+									430 text Volume
+									431 container volumeButtons
+										432 button - Volume Decrease
+										433 button (disabled) + Volume Increase
+								434 button Description: View Open Apps, ID: view-open-apps
+									435 text View Open Apps
+								436 button Description: Install New App, ID: switch-app
+									437 text Install New App
+								438 checkbox Description: Profile Performance, Value: 0
+									439 text Profile Performance
+									440 text PRO
+								441 button Description: Capture Screenshot, ID: get-screenshot
+									442 text Capture Screenshot
+								443 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									444 text Kill/Uninstall
+								445 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									446 container android-settings-lead-text-wrapper
+										447 text Android Settings PRO New
+								448 button Rotate Device, ID: dockOrientationRealAndroid
+									449 text Rotate Device
+								450 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									451 text Change Location
+								452 button (expanded) Description: Throttle Network, ID: network-simulation, Secondary Actions: Collapse
+									453 text Throttle Network
+								454 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									455 text Files & Media
+								456 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									457 text Change Language
+								458 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									459 text Screen Reader
+								460 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									461 text Google Pixel 9 Pro
+									462 text v15.0
+						593 container Description: Network Simulation, ID: network-simulation-menu
+							594 heading Throttle Network, Value: 1
+								595 text Throttle Network
+							596 Network profiles
+								597 image
+								598 text Turn off network simulation
+								599 radio button (settable, integer) Description: 2G - good 50kbps 30kbps1% Loss500ms Latency, Value: 0, ID: {"bw_dwld":"50","bw_upld":"30","latency":"500","pk_loss":"1"}
+								600 container
+									601 text 2G - good
+									602 image
+									603 text 50 kbps
+									604 image
+									605 text 30 kbps 1 % Loss 500 ms Latency
+								606 radio button (settable, integer) Description: Edge - good 250kbps 150kbps0% Loss300ms Latency, Value: 0, ID: {"bw_dwld":"250","bw_upld":"150","latency":"300","pk_loss":"0"}
+								607 container
+									608 text Edge - good
+									609 image
+									610 text 250 kbps
+									611 image
+									612 text 150 kbps 0 % Loss 300 ms Latency
+								613 radio button (settable, integer) Description: 3G - good 400kbps 100kbps0% Loss100ms Latency, Value: 0, ID: {"bw_dwld":"400","bw_upld":"100","latency":"100","pk_loss":"0"}
+								614 container
+									615 text 3G - good
+									616 image
+									617 text 400 kbps
+									618 image
+									619 text 100 kbps 0 % Loss 100 ms Latency
+								620 radio button (settable, integer) Description: 4G - good 18000kbps 9000kbps0% Loss100ms Latency, Value: 0, ID: {"bw_dwld":"18000","bw_upld":"9000","latency":"100","pk_loss":"0"}
+								621 container
+									622 text 4G - good
+									623 image
+									624 text 18000 kbps
+									625 image
+									626 text 9000 kbps 0 % Loss 100 ms Latency
+								627 radio button (settable, integer) Description: 4G - high latency 18000kbps 9000kbps0% Loss3000ms Latency, Value: 0, ID: {"bw_dwld":"18000","bw_upld":"9000","latency":"3000","pk_loss":"0"}
+								628 container
+									629 text 4G - high latency
+									630 image
+									631 text 18000 kbps
+									632 image
+									633 text 9000 kbps 0 % Loss 3000 ms Latency
+								634 radio button (settable, integer) Description: Offline Mode 0kbps 0kbps0% Loss0ms Latency, Value: 0, ID: {"bw_dwld":"0","bw_upld":"0","latency":"0","pk_loss":"0","temp":"0"}
+								635 container
+									636 text Offline Mode
+									637 image
+									638 text 0 kbps
+									639 image
+									640 text 0 kbps 0 % Loss 0 ms Latency
+								641 radio button (settable, integer) Description: Custom profile Set custom profile Set Values, Value: 0, ID: {"bw_dwld":"","bw_upld":"","latency":"","pk_loss":""}
+								642 container
+									643 text Custom profile
+									644 button Set custom profile
+										645 image
+									646 text Set Values
+		647 text Network condition changes have been applied.
+
+The focused UI element is 593 container Description: Network Simulation, ID: network-simulation-menu

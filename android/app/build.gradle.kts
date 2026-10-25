@@ -39,6 +39,9 @@ val useFirebaseEmulator = providers
 val localSupportTrace = providers.gradleProperty("SGM_LOCAL_SUPPORT_TRACE")
     .map(String::toBooleanStrict).getOrElse(false)
 check(!localSupportTrace || useFirebaseEmulator) { "Support call diagnostics require the isolated Firebase emulator build." }
+val localRideTrace = providers.gradleProperty("SGM_LOCAL_RIDE_TRACE")
+    .map(String::toBooleanStrict).getOrElse(false)
+check(!localRideTrace || useFirebaseEmulator) { "Ride diagnostics require the isolated Firebase emulator build." }
 val localRealMapsUi = providers
     .gradleProperty("SGM_LOCAL_REAL_MAPS_UI")
     .orElse(providers.environmentVariable("SGM_LOCAL_REAL_MAPS_UI"))
@@ -81,6 +84,7 @@ android {
         resValue("string", "sgm_google_maps_android_api_key", if (useFirebaseEmulator && !localRealMapsUi) "" else googleMapsAndroidApiKey)
         buildConfigField("Boolean", "SGM_USE_FIREBASE_EMULATOR", useFirebaseEmulator.toString())
         buildConfigField("Boolean", "SGM_LOCAL_SUPPORT_TRACE", "false")
+        buildConfigField("Boolean", "SGM_LOCAL_RIDE_TRACE", "false")
         buildConfigField("Boolean", "SGM_LOCAL_REAL_MAPS_UI", localRealMapsUi.toString())
         buildConfigField("Boolean", "SGM_LIVE_BACKEND_UI_TEST", liveBackendUiTest.toString())
         buildConfigField("String", "SGM_FIREBASE_EMULATOR_HOST", "\"$firebaseEmulatorHost\"")
@@ -90,6 +94,7 @@ android {
         getByName("debug") {
             if (useFirebaseEmulator) applicationIdSuffix = ".local"
             buildConfigField("Boolean", "SGM_LOCAL_SUPPORT_TRACE", localSupportTrace.toString())
+            buildConfigField("Boolean", "SGM_LOCAL_RIDE_TRACE", localRideTrace.toString())
         }
     }
     if (useFirebaseEmulator) {

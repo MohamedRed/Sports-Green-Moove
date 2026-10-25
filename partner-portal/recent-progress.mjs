@@ -4,9 +4,14 @@ import {driverConnectProgress} from './driver-connect.mjs';
 import {tripConsentPhoneProgress} from './trip-consent-phone.mjs';
 import {trackingAttemptProgress} from './tracking-phone-attempt.mjs';
 import {trackingClockProgress} from './tracking-clock-replay.mjs';
-import {trackingNetworkProgress} from './tracking-network-phone.mjs';
+import {trackingNetworkProgress, trackingNetworkDiagnosticsProgress} from './tracking-network-phone.mjs';
 
 export const recentProgress = [
+  trackingNetworkDiagnosticsProgress,
+  {date: '2026-10-25', title: 'Le contrôle complet reste en échec',
+    text: 'Les dix essais séparés passent. La capture d’un écran de modification et la récupération des captures bloquent encore le contrôle complet.',
+    flow: 'publication', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/README.md'},
   trackingNetworkProgress,
   trackingClockProgress,
   trackingAttemptProgress,

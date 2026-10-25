@@ -1,0 +1,29 @@
+import assert from 'node:assert/strict';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {setTimeout} from 'node:timers/promises';
+const root = '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025';
+const output = '/Users/mrr/.codex/sgm-ride-observation-trace-20261025';
+const [name, previousName] = process.argv.slice(2);
+assert(/^[a-z-]+$/.test(name));
+const session = JSON.parse(readFileSync('/private/tmp/sgm-ride-trace-session2-20261025.json'));
+assert.equal(session.projectId, 'demo-sgm-local-qa'); process.env.SGM_QA_PASSWORD = session.password;
+const {db, auth} = await import(root + '/scripts/qa/local-flow-client.mjs');
+const {getDatabase} = await import(root + '/node_modules/firebase-admin/lib/database/index.js');
+const {withLocalAdminCleanup} = await import(root + '/scripts/qa/local-admin-lifecycle.mjs');
+const {snapshotSessionRestorationRecords} = await import(root + '/scripts/qa/session-restoration-records.mjs');
+const {assertTrackingPhoneState} = await import(root + '/scripts/qa/tracking-phone-state.mjs');
+const {baseline, fixture} = JSON.parse(readFileSync(output + '/observer2/baseline.json'));
+try {
+  await withLocalAdminCleanup(async () => {
+    const previous = previousName ? JSON.parse(readFileSync(output + '/' + previousName + '.json')).state : null;
+    const started = performance.now();
+    if (previous) await setTimeout(50_000);
+    const state = JSON.parse(JSON.stringify(await snapshotSessionRestorationRecords(db, auth, getDatabase())));
+    const checked = assertTrackingPhoneState(state, baseline, fixture, {active: true,
+      point: {lat: 50.7177, lng: 4.6177}, ...(previous ? {previous, stable: true} : {})});
+    writeFileSync(output + '/' + name + '.json', JSON.stringify({scope: 'supplemental-read-only-phone-records',
+      projectId: session.projectId, runId: session.runId, recordedAt: new Date().toISOString(),
+      observedForMs: performance.now() - started, allOtherRecordsUnchanged: true, state, checked}, null, 2) + '\n', {flag: 'wx', mode: 0o600});
+    console.log(JSON.stringify({sample: name, pointReceived: true, stableWindow: Boolean(previous), allOtherRecordsUnchanged: true}));
+  }, {firestore: db});
+} finally {delete process.env.SGM_QA_PASSWORD;}

@@ -1,5 +1,7 @@
 const base = 'docs/release/evidence/tracking-network-phone-2026-10-25/';
 export const trackingNetworkPhone = {source: base + 'summary.json', checksums: base + 'artifact-sha256.json', checkedAt: '2026-10-25'};
+const diagnostics = 'docs/release/evidence/tracking-observation-diagnostics-2026-10-25/';
+export const trackingNetworkDiagnostics = {source: diagnostics + 'summary.json', checksums: diagnostics + 'artifact-sha256.json', checkedAt: '2026-10-25'};
 export const trackingNetworkCaptures = Object.fromEntries(['offline-stale', 'manual-screen-return', 'after-manual-return-observation']
   .map(phase => ['tracking-network-' + phase, base + 'photos/' + phase + '.jpg']));
 export const trackingNetworkTour = [
@@ -9,12 +11,15 @@ export const trackingNetworkTour = [
 ];
 export function createTrackingNetworkFlow() {
   return {id: 'tracking-network', title: 'Suivi après une coupure réseau', status: 'partial', checkedAt: '2026-10-25', latestEvidence: 'phone',
-    summary: 'Les envois reprennent ; l’affichage reste à corriger.',
+    summary: 'Les positions arrivent ; le suivi en direct reste à vérifier.',
     verified: 'La course reste ouverte pendant la coupure simulée. L’avertissement apparaît et les envois reprennent au retour du réseau. Comptes et positions de test.',
-    remaining: 'Corriger l’affichage continu : il se rafraîchit au retour à l’app, puis prend à nouveau du retard. Rejouer ensuite avec le parent et l’enfant, puis en trajet réel.',
-    trackingNetworkPhone, images: trackingNetworkTour.map(step => ({file: step.image, alt: step.title + ', essai sur téléphone du 25 octobre'})),
+    remaining: 'Rétablir la connexion du suivi dans l’essai isolé. Rejouer ensuite avec le parent et l’enfant, puis pendant un vrai déplacement.',
+    trackingNetworkPhone, trackingNetworkDiagnostics, images: trackingNetworkTour.map(step => ({file: step.image, alt: step.title + ', essai sur téléphone du 25 octobre'})),
     source: base + 'README.md'};
 }
 export const trackingNetworkProgress = {date: '2026-10-25', title: 'La coupure révèle un problème d’affichage',
   text: 'Les positions sont à nouveau reçues après la coupure. L’écran ne suit pas encore leurs mises à jour. Trois captures ajoutées.',
   flow: 'tracking-network', source: base + 'README.md'};
+export const trackingNetworkDiagnosticsProgress = {date: '2026-10-25', title: 'La connexion du suivi reste à débloquer',
+  text: 'Le nouvel essai reçoit les positions, mais la connexion en direct ne s’ouvre pas. Les écrans gardent leur retard. Le parcours reste à terminer.',
+  flow: 'tracking-network', source: diagnostics + 'README.md'};

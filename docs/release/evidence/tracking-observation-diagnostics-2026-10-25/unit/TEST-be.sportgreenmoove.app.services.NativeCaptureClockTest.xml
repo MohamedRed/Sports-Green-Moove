@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.NativeCaptureClockTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2026-10-25T18:26:34.477Z" hostname="MRRs-MacBook-Air.local" time="0.008">
+  <properties/>
+  <testcase name="aDelayedCalibrationCannotRetroactivelyChangeAFixAssignedByAnotherCallback" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.001"/>
+  <testcase name="aSlowResponseDoesNotPermanentlyPoisonTrackingAfterNetworkRecovery" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="oldAndDuplicateRepliesCannotReplaceTheNewestRequestReference" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="aLowerReferenceCorrectsTheMappingWithoutRejuvenatingDelayedFixes" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="aLaterFasterResponseCannotMakeAnOldFixLookNewer" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="subMillisecondAgesRoundDownRatherThanInventingAFutureCapture" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="startupHandoffPreservesEveryCaptureEpochInsteadOfReanchoringCachedFixes" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="aReplyFromBeforeTheCurrentAnchorCannotMoveIt" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="aFixBeforeTheResponseKeepsItsRealElapsedAge" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="networkDelayRemainsConservativeInsteadOfBeingAddedToTheFix" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="zeroNegativeOrFutureSensorTimesAreRejected" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.001"/>
+  <testcase name="aResetMonotonicCounterCannotReuseTheOldProcessReference" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="malformedClockHistoryCannotCrossTheServiceBoundary" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.002"/>
+  <testcase name="manyCalibrationsNeverMakeTheSameDelayedCaptureYounger" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.001"/>
+  <testcase name="invalidReferenceIntervalsAndOutOfRangeCaptureResultsFailClosed" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.001"/>
+  <testcase name="integerCallableNumbersAreAcceptedWithoutChangingTheirTime" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="aFixAfterTheReferenceAdvancesWithoutReadingAWallClock" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="malformedOrMissingServerTimeIsNotADeviceClockFallback" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="fractionalOffsetChangesCannotRejuvenateAFixByOneMillisecond" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="invalidCalibrationDoesNotMutateTheLastTrustedMapping" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <testcase name="boundedHistoryRejectsEvictedFixesRatherThanGivingThemANewCaptureTime" classname="be.sportgreenmoove.app.services.NativeCaptureClockTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,13 @@
+{
+  "baseCommit": "566a994ead3e4925e15ff818d2304d9399f54afc",
+  "uncommittedDiagnostic": true,
+  "apk": "sgm-ride-observation-trace-wip-566a994-20261025.apk",
+  "sha256": "ccda6879ca36d8384592a47c2ce3c37bccce2c2050c3bf518d166b679d124612",
+  "sources": {
+    "android/app/build.gradle.kts": "1e3cc17d735d23476dee4ba65648827af6875a32b3bd99cf9e20c812d3603458",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideObservationGateway.kt": "e77d9b2114ad56864f928b99c52c75cedcfecefa93200bdbc9129602e9548cb3",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "b71645e21f0c3f88242d674a665eb1e9d8a8aab297986e38d70c6bc492c2db4e",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/LocalRideObservationTrace.kt": "c1570a7664655da211215c4723e65f8c262523a8fa9447b079caed7b3b013a8a",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/RideObservationTrace.kt": "3601e9354271616c908b67227a616e2be46ecf970d6fab39e064e80033427e54"
+  }
+}

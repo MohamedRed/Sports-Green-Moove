@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.MetadataChanges
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -30,10 +31,12 @@ internal class FirebaseAndroidRideObservationGateway(
         require(rideSessionId.isNotBlank() && '/' !in rideSessionId)
         val owner = auth.currentUser ?: throw ProviderConfigurationException("Connexion requise.")
         val revoked = AtomicBoolean(false)
+        val trace = localRideObservationTrace()
         fun checkOwner() {
             check(!revoked.get() && auth.currentUser === owner) { "La session a changé." }
         }
         return callbackFlow {
+            trace?.record(RideObservationEvent.Opened)
             val authListener = FirebaseAuth.AuthStateListener {
                 if (it.currentUser !== owner) {
                     revoked.set(true)
@@ -43,39 +46,65 @@ internal class FirebaseAndroidRideObservationGateway(
             auth.addAuthStateListener(authListener)
             val reference = database.getReference("liveTrips").child(rideSessionId)
             val locationListener = object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) { trySend(Unit) }
-                override fun onCancelled(error: DatabaseError) { close(error.toException()) }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    trace?.record(RideObservationEvent.LocationChanged); trySend(Unit)
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    trace?.record(RideObservationEvent.LocationFailed); close(error.toException())
+                }
             }
             reference.addValueEventListener(locationListener)
+            val connectionReference = if (trace != null) database.getReference(".info/connected") else null
+            val connectionListener = object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    trace?.record(RideObservationEvent.Connected, snapshot.getValue(Boolean::class.java) == true)
+                }
+                override fun onCancelled(error: DatabaseError) { trace?.record(RideObservationEvent.ConnectionFailed) }
+            }
+            connectionReference?.addValueEventListener(connectionListener)
             val rideListener = firestore.collection("rideSessions").document(rideSessionId)
                 .addSnapshotListener(MetadataChanges.INCLUDE) { snapshot, error ->
                     when {
-                        error != null -> close(error)
-                        snapshot != null && !snapshot.metadata.isFromCache -> trySend(Unit)
+                        error != null -> { trace?.record(RideObservationEvent.RideFailed); close(error) }
+                        snapshot != null && !snapshot.metadata.isFromCache -> {
+                            trace?.record(RideObservationEvent.RideServer); trySend(Unit)
+                        }
+                        snapshot != null -> trace?.record(RideObservationEvent.RideCached)
                     }
                 }
             awaitClose {
                 revoked.set(true)
                 auth.removeAuthStateListener(authListener)
                 reference.removeEventListener(locationListener)
+                connectionReference?.removeEventListener(connectionListener)
                 rideListener.remove()
+                trace?.record(RideObservationEvent.Closed)
             }
         }.conflate().mapLatest {
-            checkOwner()
-            val started = SystemClock.elapsedRealtime()
-            val payload = functions.getHttpsCallable("getActiveRide")
-                .call(mapOf("rideSessionId" to rideSessionId)).await().data as? Map<*, *>
-                ?: throw ProviderConfigurationException("Réponse de suivi invalide.")
-            checkOwner()
-            check(payload.containsKey("ride")) { "Réponse de suivi incomplète." }
-            val raw = payload["ride"]
-            val ride = if (raw == null) null else {
-                check(raw is Map<*, *>) { "Réponse de suivi invalide." }
-                mapRide(raw).also {
-                    check(it.rideSessionId == rideSessionId && it.observation != null) { "Suivi du trajet à actualiser." }
+            trace?.record(RideObservationEvent.FetchStarted)
+            try {
+                checkOwner()
+                val started = SystemClock.elapsedRealtime()
+                val payload = functions.getHttpsCallable("getActiveRide")
+                    .call(mapOf("rideSessionId" to rideSessionId)).await().data as? Map<*, *>
+                    ?: throw ProviderConfigurationException("Réponse de suivi invalide.")
+                checkOwner()
+                check(payload.containsKey("ride")) { "Réponse de suivi incomplète." }
+                val raw = payload["ride"]
+                val ride = if (raw == null) null else {
+                    check(raw is Map<*, *>) { "Réponse de suivi invalide." }
+                    mapRide(raw).also {
+                        check(it.rideSessionId == rideSessionId && it.observation != null) { "Suivi du trajet à actualiser." }
+                    }
                 }
+                RideObservationUpdate(ride, (SystemClock.elapsedRealtime() - started).coerceAtLeast(0)).also {
+                    trace?.record(RideObservationEvent.FetchCompleted)
+                }
+            } catch (cancelled: CancellationException) {
+                trace?.record(RideObservationEvent.FetchCancelled); throw cancelled
+            } catch (error: Exception) {
+                trace?.record(RideObservationEvent.FetchFailed); throw error
             }
-            RideObservationUpdate(ride, (SystemClock.elapsedRealtime() - started).coerceAtLeast(0))
         }
     }
 }

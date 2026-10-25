@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The latest 25 October diagnostic replay retains two incomplete disposable phone
+attempts. Complete overlapping event sequences show two disconnected live
+database listeners and four fast completed refreshes, with no position
+invalidations. This narrows the isolated connection problem, not its root cause
+or a production UI defect. The second offline-stability boundary fails; a later
+50-second sign-out stability sample cannot replace it. Keep the previous three
+reviewed network screenshots and dates; publish no diagnostic logs or new media.
+The 566a994 native run has ten successful focused jobs, but an ordinary PixelCopy
+capture and later primary trip-consent-recovery collection fail. Both failures,
+policy restoration and host exit are retained without accepting the gate.
+Public audience remains unchanged. Do not add polling or a transport fallback.
+
 The later 25 October network trial completes seven independent record-only
 checkpoints, including a measured offline window and sign-out stability. Uploads
 resume, but automatic/continuous display recovery fails. Lifecycle return refreshes
