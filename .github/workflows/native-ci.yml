@@ -428,6 +428,7 @@ jobs:
           target: google_apis_playstore
           arch: x86_64
           profile: pixel_6
+          emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim
           script: bash scripts/run-android-ui-tests-and-collect-screenshots.sh
 
       - name: Finish bounded read-only full-matrix host observation

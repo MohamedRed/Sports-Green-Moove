@@ -5,6 +5,19 @@ import YAML from 'yaml';
 import { createHash } from 'node:crypto';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+test('the full screenshot gate selects a supported rendering mode without weakening captures or collection', () => {
+  const job = YAML.parse(read('.github/workflows/native-ci.yml')).jobs['android-native-ui'];
+  const boot = job.steps.find(step => step.uses === 'reactivecircus/android-emulator-runner@v2');
+  assert.equal(boot.with['emulator-options'], '-no-window -gpu software -no-snapshot -noaudio -no-boot-anim');
+  assert.equal(boot['continue-on-error'], undefined); assert.equal(job['continue-on-error'], undefined);
+  assert.equal(boot.with.script, 'bash scripts/run-android-ui-tests-and-collect-screenshots.sh');
+  const capture = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt');
+  assert(capture.includes('window.captureToImage().asAndroidBitmap()'));
+  assert(capture.includes('Blank test capture rejected')); assert(!capture.includes('catch'));
+  const collector = read('scripts/qa/collect-local-ui-evidence.mjs');
+  assert(collector.includes('throw new EvidenceCollectionError'));
+  assert(collector.includes('A named evidence copy cannot be repeated or overwrite its receipt'));
+});
 test('both APK pairs compile and stage before device boot without an in-device rebuild', () => {
   const workflow = YAML.parse(read('.github/workflows/native-ci.yml'));
   const steps = workflow.jobs['android-native-ui'].steps;
