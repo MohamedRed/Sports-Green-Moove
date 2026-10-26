@@ -9,6 +9,7 @@ import { validateChildAccountApprovalEvidence } from '../scripts/qa/child-accoun
 import { validateChildAccountPhoneAttempt } from '../scripts/qa/child-account-phone-evidence.mjs';
 import { validateChildAccountPhonePass } from '../scripts/qa/child-account-phone-pass-evidence.mjs';
 import { validateInvitationPhoneArtifacts } from '../scripts/qa/child-invitation-phone-evidence.mjs';
+import { validateNativeCopyDisconnect } from '../scripts/qa/native-copy-disconnect-evidence.mjs';
 import { validateFlowCheckRecoveryEvidence } from '../scripts/qa/flow-check-recovery-evidence.mjs';
 import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retained-evidence.mjs';
 import {validateTrackingClockReplay} from '../scripts/qa/tracking-clock-replay-evidence.mjs';
@@ -289,5 +290,5 @@ export function validate(root) {
   const manifest = JSON.parse(readFileSync(resolve(root, 'partner-portal/.openai/hosting.json'), 'utf8'));
   assert(manifest.project_id === 'appgprj_6acfa0036dac8191bd2792bbf88afaaf');
   assert(manifest.static.directory === 'dist');
-  return true;
+  validateNativeCopyDisconnect(root); return true;
 }

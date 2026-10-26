@@ -6,6 +6,10 @@ export const childPhoneStartupAttempt = {
   source: folder + 'README.md', checksums: folder + 'artifact-sha256.json', checkedAt: '2026-10-26',
 };
 export const october26Progress = [
+  { date: '2026-10-26', title: 'Le contrôle complet reste en échec',
+    text: '177 cas passent. La récupération d’une capture échoue ; le test complet n’est pas validé.',
+    flow: 'publication', source: 'docs/release/evidence/native-copy-disconnect-2026-10-26/README.md',
+    checksums: 'docs/release/evidence/native-copy-disconnect-2026-10-26/artifact-sha256.json' },
   childInvitationPhoneProgress,
   childAccountPhonePassProgress,
   { date: '2026-10-26', title: 'Les contrôles automatiques passent',

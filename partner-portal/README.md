@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The terminal ed851b7 native recheck has 177 ordinary passes, 54 skips and eleven
+successful focused lanes, but its primary trip-consent-restart copy fails during
+an observed guest transport disconnect. Successful later cleanup is not a gate
+pass. Retain original JSON/XML and update the current news without deleting the
+earlier green baseline or phone media. The new same-user socket observer is local
+fixture-tested only; do not claim a live CI observation or root-cause repair yet.
+
 Media URLs now include each generated file's SHA-256 in a shared resolver for
 previews, galleries, tours, video sources/posters and downloads. A live unversioned
 new-image URL returned cached HTML while its versioned URL returned JPEG. The
