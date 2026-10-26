@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The latest 26 October physical draft trial preserves the exact unfinished price
+and both unconfirmed address fields across Android Force stop and a new process,
+while a second booked trip stays clean. Nine independent record checkpoints pass.
+Publish its three reviewed originals, not a video or schedule-picker proof; keep
+application, real maps/payments, other accounts/devices and release scope partial.
+Runtime/helper disposal and uninstall acknowledgement/session stop are verified;
+package absence is not independently queried. Public audience stays unchanged.
+
+The subsequent 398d207 automated gate passes all enabled checks and all three
+native suite exits. Its original primary-copy report contains the new allowlisted
+daemon events: one identical historical read-termination event before and after
+the successful copy, not a new failure or a proven cause. Preserve earlier failed
+runs. This pass does not establish a root-cause repair or release readiness.
+
 The later 4dbffa4 native run retains 177 ordinary passes/54 skips and eleven
 successful focused lanes but fails the primary trip-consent-recovery copy. Its
 actual socket records show one stable server/listener, loss of the old emulator

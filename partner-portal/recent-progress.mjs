@@ -3,12 +3,14 @@ import { olderOctober19Progress } from './progress-2026-10-19.mjs';
 import {dailyProgress} from './progress-2026-10-24.mjs';
 import {driverConnectProgress} from './driver-connect.mjs';
 import {tripConsentPhoneProgress} from './trip-consent-phone.mjs';
+import {tripDraftPhoneProgress} from './trip-draft-phone.mjs';
 import {trackingAttemptProgress} from './tracking-phone-attempt.mjs';
 import {trackingClockProgress} from './tracking-clock-replay.mjs';
 import {trackingNetworkProgress, trackingNetworkDiagnosticsProgress, trackingNetworkTransportProgress} from './tracking-network-phone.mjs';
 import {october26Progress} from './progress-2026-10-26.mjs';
 
 export const recentProgress = [
+  tripDraftPhoneProgress,
   ...october26Progress,
   {date: '2026-10-25', title: 'La copie des images bloque encore',
     text: 'Les 166 essais d’écran passent. La vérification s’arrête pendant la récupération des captures.',

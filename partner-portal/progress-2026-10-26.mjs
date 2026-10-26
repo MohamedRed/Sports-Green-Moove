@@ -7,6 +7,10 @@ export const childPhoneStartupAttempt = {
   source: folder + 'README.md', checksums: folder + 'artifact-sha256.json', checkedAt: '2026-10-26',
 };
 export const october26Progress = [
+  { date: '2026-10-26', title: 'Le nouvel essai complet passe',
+    text: 'Les contrôles automatiques se terminent sans échec. La coupure intermittente des captures reste à expliquer.',
+    flow: 'native-startup', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/flow-gate-398d207-2026-10-26/README.md' },
   childEmergencyPhoneProgress,
   { date: '2026-10-26', title: 'Le contrôle complet reste en échec',
     text: 'Les écrans passent, mais la récupération d’une capture bloque encore.', flow: 'publication',

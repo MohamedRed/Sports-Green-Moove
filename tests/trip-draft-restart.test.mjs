@@ -8,6 +8,46 @@ import { assertInstrumentationPassed } from '../scripts/qa/android-instrumentati
 import { assertPreparedTripDraft, assertTripDraftRestart } from '../scripts/qa/trip-draft-restart-evidence.mjs';
 import { stopDisposableAppProcess } from '../scripts/qa/local-disposable-process-stop.mjs';
 import { assertPreparedScheduleDraft, assertScheduleDraftRestart, scheduleDraftFields } from '../scripts/qa/trip-schedule-draft-evidence.mjs';
+import { tripDraftPhonePhases, verifyTripDraftPhoneCheckpoint } from '../scripts/qa/trip-draft-phone-checkpoints.mjs';
+import { assertTripDraftPhoneScope, validateTripDraftPhone } from '../scripts/qa/trip-draft-phone-evidence.mjs';
+
+test('retained physical draft proof keeps manual process observations separate from the record observer', () => {
+  const root = new URL('..', import.meta.url).pathname, flow = content.flows.find(row => row.id === 'publication');
+  validateTripDraftPhone(root, flow.tripDraftPhone); assert.equal(flow.status, 'partial');
+  const folder = 'docs/release/evidence/trip-draft-phone-2026-10-26/';
+  const report = JSON.parse(read(folder + 'session-results.json')), review = JSON.parse(read(folder + 'ui-review.json'));
+  for (const mutate of [r => r.completed = false, r => r.wholeProcessRestartProvenByThisReport = true,
+    r => r.draftStorageProvenByThisReport = true, r => r.providerRequests = 1, r => r.checkpoints.pop()]) {
+    const changed = structuredClone(report); mutate(changed); assert.throws(() => assertTripDraftPhoneScope(changed, review));
+  }
+  for (const mutate of [r => r.processObservation.reopenedPid = r.processObservation.beforePid,
+    r => r.restoredRawFields.price = '4', r => r.scheduleDraftTested = true, r => r.videoAccepted = true,
+    r => r.packageAbsenceIndependentlyProven = true, r => r.nativeForceStopConfirmed = false]) {
+    const changed = structuredClone(review); mutate(changed); assert.throws(() => assertTripDraftPhoneScope(report, changed));
+  }
+  assert.equal(flow.images.slice(0, 3).length, 3);
+});
+
+test('physical draft observer cannot turn unchanged shared records into UI, private storage or process proof', () => {
+  const fixture = { driverUid: 'sgm-qa-driver', tripId: 'one', otherTripId: 'two', bookingIds: ['b1', 'b2'] };
+  const baseline = { documents: { trips: ['one', 'two'].map(id => ({ id, data: { driverUserId: fixture.driverUid, priceCents: 250 } })),
+    bookings: ['one', 'two'].map((tripId, i) => ({ id: 'b' + (i + 1), data: { tripId } })) },
+    claims: [{ uid: fixture.driverUid, claims: { roleKeys: ['driver'] } }], liveData: null };
+  for (const phase of tripDraftPhonePhases) {
+    const result = verifyTripDraftPhoneCheckpoint(phase, baseline, structuredClone(baseline), fixture);
+    assert.equal(result.status, 'passed');
+    for (const key of ['proposalCreated', 'physicalUiProvenByThisCheckpoint', 'processStopProvenByThisCheckpoint', 'draftStorageProvenByThisCheckpoint'])
+      assert.equal(result[key], false);
+  }
+  for (const mutate of [s => s.documents.trips[0].data.priceCents = 400, s => s.claims[0].claims.roleKeys.push('admin'),
+    s => s.liveData = {}, s => s.documents.tripChanges = [{ id: 'proposal', data: { tripId: 'one' } }],
+    s => s.documents.bookings[0].data.tripId = 'two']) {
+    const changed = structuredClone(baseline); mutate(changed);
+    assert.throws(() => verifyTripDraftPhoneCheckpoint('draft-reopened', baseline, changed, fixture));
+  }
+  assert.throws(() => verifyTripDraftPhoneCheckpoint('unknown', baseline, baseline, fixture));
+  assert.throws(() => verifyTripDraftPhoneCheckpoint('draft-entered', baseline, baseline, { ...fixture, otherTripId: 'one' }));
+});
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const runId = 'a'.repeat(32), appId = 'be.sportgreenmoove.app.local';
@@ -234,5 +274,6 @@ test('completed real draft restart is accepted only as its own stage inside a fa
   assert.equal(restored.length, 1); assert.match(restored[0].alt, /essai local du 18 octobre/);
   assert.equal(captures['trip-draft-restored'], base + 'local-trip-draft-restored.png');
   assert(!Object.values(captures).some((p) => p.endsWith('/local-trip-draft-before.png')));
-  assert.match(flow.remaining, /brouillons après fermeture complète sur téléphone/);
+  assert.match(flow.remaining, /date et l’heure/);
+  assert.match(flow.verified, /Prix et adresses retrouvés sur le bon trajet après redémarrage/);
 });

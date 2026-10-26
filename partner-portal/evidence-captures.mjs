@@ -1,4 +1,5 @@
 import {tripConsentPhoneCaptures} from './trip-consent-phone.mjs';
+import {tripDraftPhoneCaptures} from './trip-draft-phone.mjs';
 import {trackingAttemptCaptures} from './tracking-phone-attempt.mjs';
 import {trackingClockCaptures} from './tracking-clock-replay.mjs';
 import {trackingNetworkCaptures} from './tracking-network-phone.mjs';
@@ -13,6 +14,7 @@ export const captures = {
   ...childAccountPhonePassCaptures,
   ...childAccountPhoneCaptures,
   ...tripConsentPhoneCaptures,
+  ...tripDraftPhoneCaptures,
   ...trackingAttemptCaptures,
   ...trackingClockCaptures,
   ...trackingNetworkCaptures,

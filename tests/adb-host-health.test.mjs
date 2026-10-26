@@ -230,3 +230,8 @@ test('an unavailable or malformed process observation stays unobserved without c
     assert.doesNotMatch(JSON.stringify(result), /secret/);
   }
 });
+import { validateFlowGate398 } from '../scripts/qa/flow-gate-398-evidence.mjs';
+
+test('subsequent green gate retains live daemon events without relabeling the earlier failed copies', () => {
+  validateFlowGate398(new URL('..', import.meta.url).pathname);
+});

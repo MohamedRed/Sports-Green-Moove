@@ -3,6 +3,7 @@ import { supportSubmissionSteps } from './support-submission-flow.mjs';
 import { searchPhoneTour, bookingSearchPhoneTour } from './search-booking-phone.mjs';
 import {driverConnectTour} from './driver-connect.mjs';
 import {tripConsentPhoneTour} from './trip-consent-phone.mjs';
+import {tripDraftPhoneTour} from './trip-draft-phone.mjs';
 import {trackingClockTour} from './tracking-clock-replay.mjs';
 import {trackingNetworkTour} from './tracking-network-phone.mjs';
 
@@ -153,7 +154,7 @@ export const tours = {
     image('local-calendar', 'Consulter le calendrier', 'Le calendrier affiche le mois de l’essai et permet de changer de mois.'),
   ],
   search: searchPhoneTour,
-  publication: tripConsentPhoneTour,
+  publication: [...tripDraftPhoneTour, ...tripConsentPhoneTour],
   booking: bookingSearchPhoneTour,
   messages: [
     image('chat-reservation', 'Choisir la réservation', 'Le parent choisit la réservation depuis laquelle écrire au conducteur.'),
