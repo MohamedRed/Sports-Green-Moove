@@ -1,6 +1,7 @@
 import { overview, flowRows, nextSteps, detail, date } from './render.js';
 import { createGallery } from './media.js';
 import { createTour } from './tour.js';
+import { configureMediaRevisions } from './media-url.js';
 
 let data;
 let selectedClip;
@@ -61,6 +62,7 @@ async function load() {
     const response = await fetch('data.json', { cache: 'no-cache' });
     if (!response.ok) throw new Error('Content unavailable');
     data = await response.json();
+    configureMediaRevisions(data.mediaRevisions);
     document.getElementById('view-apercu').innerHTML = overview(data);
     document.getElementById('view-suite').innerHTML = nextSteps(data);
     document.getElementById('freshness').textContent = `Mis à jour le ${date(data.updatedAt)}`;

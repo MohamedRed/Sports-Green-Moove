@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+Media URLs now include each generated file's SHA-256 in a shared resolver for
+previews, galleries, tours, video sources/posters and downloads. A live unversioned
+new-image URL returned cached HTML while its versioned URL returned JPEG. The
+build emits the exact media manifest and publication rejects changed output.
+There is no unversioned retry or alternate-host fallback. Keep the original phone
+evidence and partial signup/delivery scope unchanged by this hosting correction.
+
 The later 26 October physical invitation trial completes six independent record
 checkpoints. Manual system inspection verifies Android's real share sheet and the
 visible link token hash against the app-created invitation. Two reviewed original

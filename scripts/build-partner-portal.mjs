@@ -6,6 +6,7 @@ import { content, assets, captures, videos, excerpts } from '../partner-portal/c
 import { fingerprintEvidence } from '../partner-portal/evidence-fingerprints.mjs';
 import { validate } from '../partner-portal/validate.mjs';
 import { buildBrowserAssets } from '../partner-portal/build-assets.mjs';
+import { fingerprintMedia } from '../partner-portal/media-assets.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const portal = resolve(root, 'partner-portal');
@@ -37,6 +38,6 @@ for (const [name, video, at] of [['home', 'navigation', 10], ['signed-out', 'sig
   ffmpeg('-ss', String(at), '-i', resolve(root, videos[video]), '-frames:v', '1', '-q:v', '3', resolve(out, `media/${name}.jpg`));
 }
 const fingerprints = fingerprintEvidence(root, content);
-const data = { ...content, assetRevision, evidenceFingerprints: fingerprints };
+const data = { ...content, assetRevision, evidenceFingerprints: fingerprints, mediaRevisions: fingerprintMedia(resolve(out, 'media')) };
 writeFileSync(resolve(out, 'data.json'), `${JSON.stringify(data, null, 2)}\n`);
 console.log(`Partner portal built: ${content.flows.length} flows, ${Object.keys(excerpts).length} short clips. No production app changes.`);

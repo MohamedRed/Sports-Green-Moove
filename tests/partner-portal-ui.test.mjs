@@ -6,9 +6,51 @@ import { resolve } from 'node:path';
 import { content, assets, captures, excerpts } from '../partner-portal/content.mjs';
 import { validate } from '../partner-portal/validate.mjs';
 import { assetRevision, buildBrowserAssets, assertBrowserAssetsCurrent } from '../partner-portal/build-assets.mjs';
+import { fingerprintMedia, assertMediaCurrent } from '../partner-portal/media-assets.mjs';
+import { configureMediaRevisions, mediaUrl } from '../partner-portal/src/media-url.js';
 
 const root = resolve(import.meta.dirname, '..');
 const source = (file) => readFileSync(resolve(root, file), 'utf8');
+const previewRevisions = Object.fromEntries(content.flows.flatMap(flow => [
+  ...flow.images.map(image => image.file), ...(flow.clips || []),
+]).map(file => [file + '.jpg', 'a'.repeat(64)]));
+
+test('media addresses are content-addressed and missing or unsafe manifest entries fail closed', () => {
+  assert.throws(() => mediaUrl('capture.jpg'));
+  for (const manifest of [null, [], {}, { '../capture.jpg': 'a'.repeat(64) }, { 'capture.jpg': 'invalid' }])
+    assert.throws(() => configureMediaRevisions(manifest));
+  configureMediaRevisions({ 'capture.jpg': 'a'.repeat(64), 'clip.mp4': 'b'.repeat(64) });
+  assert.equal(mediaUrl('capture.jpg'), 'media/capture.jpg?v=' + 'a'.repeat(64));
+  assert.equal(mediaUrl('clip.mp4'), 'media/clip.mp4?v=' + 'b'.repeat(64));
+  assert.throws(() => mediaUrl('missing.jpg'));
+  configureMediaRevisions({ 'capture.jpg': 'c'.repeat(64) });
+  assert.equal(mediaUrl('capture.jpg'), 'media/capture.jpg?v=' + 'c'.repeat(64));
+  assert.throws(() => mediaUrl('clip.mp4'));
+});
+
+test('media fingerprints cover actual bytes and publication rejects changed or missing output', () => {
+  const directory = mkdtempSync(resolve(tmpdir(), 'sgm-media-test-'));
+  try {
+    writeFileSync(resolve(directory, 'capture.jpg'), 'original-image-test-bytes');
+    writeFileSync(resolve(directory, 'clip.mp4'), 'original-video-test-bytes');
+    const manifest = fingerprintMedia(directory); assertMediaCurrent(directory, manifest);
+    writeFileSync(resolve(directory, 'capture.jpg'), 'changed-image-test-bytes');
+    assert.notEqual(fingerprintMedia(directory)['capture.jpg'], manifest['capture.jpg']);
+    assert.throws(() => assertMediaCurrent(directory, manifest));
+    rmSync(resolve(directory, 'clip.mp4')); assert.throws(() => assertMediaCurrent(directory, manifest));
+    writeFileSync(resolve(directory, 'unreviewed.txt'), 'unexpected'); assert.throws(() => fingerprintMedia(directory));
+  } finally { rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('previews, gallery, tours, posters and downloads all use the same versioned media resolver', () => {
+  for (const name of ['visuals.js', 'media.js', 'tour.js']) {
+    const value = source('partner-portal/src/' + name);
+    assert(value.includes("from './media-url.js'")); assert(!value.includes('media/${'));
+  }
+  const app = source('partner-portal/src/app.js');
+  assert(app.indexOf('configureMediaRevisions(data.mediaRevisions)') < app.indexOf('overview(data)'));
+  assert(source('scripts/prepare-partner-portal-publish.mjs').includes('assertMediaCurrent'));
+});
 
 test('smoke workflow covers portal source, evidence changes and validation', () => {
   const workflow = source('.github/workflows/web-integration-smoke.yml');
@@ -66,6 +108,7 @@ test('partner copy stays brief and recording context is optional', async () => {
 });
 
 test('partner-facing pages do not name the implementation or testing stack', async () => {
+  configureMediaRevisions(previewRevisions);
   const { overview, flowRows, nextSteps, detail } = await import('../partner-portal/src/render.js');
   const html = [overview(content), flowRows(content.flows), nextSteps(content),
     ...content.flows.map(detail), source('partner-portal/src/index.html')].join('\n');
@@ -86,6 +129,7 @@ test('guided tours reference reviewed flow evidence and reject invented steps', 
 });
 
 test('overview stays focused while the catalogue exposes every tour and screenshot', async () => {
+  configureMediaRevisions(previewRevisions);
   const { overview, flowRows } = await import('../partner-portal/src/render.js');
   const html = flowRows(content.flows);
   assert.equal((html.match(/data-tour="true"/g) || []).length, content.flows.filter((flow) => flow.tour).length);

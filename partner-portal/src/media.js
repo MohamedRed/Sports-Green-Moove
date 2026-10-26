@@ -1,4 +1,5 @@
 import { escape, icon, localResults } from './render.js';
+import { mediaUrl } from './media-url.js';
 
 const clipLabels = {
   'support-submission-retry': 'Reprendre une demande · essai local · 10 s',
@@ -27,12 +28,12 @@ export function createGallery(flow, initialClip) {
     }
     const entry = entries[index];
     container.innerHTML = `${entry.type === 'checks' ? localResults(flow) : `<div class="media-stage${entry.landscape ? ' is-landscape' : ''}">${entry.type === 'video'
-      ? `<video controls playsinline preload="metadata" poster="media/${entry.poster}" aria-label="${escape(entry.label)}"><source src="media/${entry.file}" type="video/mp4">Votre navigateur ne prend pas en charge la vidéo.</video>`
-      : `<a href="media/${entry.file}" target="_blank" rel="noopener" title="Agrandir la capture"><img src="media/${entry.file}" alt="${escape(entry.label)}"></a>`}
+      ? `<video controls playsinline preload="metadata" poster="${mediaUrl(entry.poster)}" aria-label="${escape(entry.label)}"><source src="${mediaUrl(entry.file)}" type="video/mp4">Votre navigateur ne prend pas en charge la vidéo.</video>`
+      : `<a href="${mediaUrl(entry.file)}" target="_blank" rel="noopener" title="Agrandir la capture"><img src="${mediaUrl(entry.file)}" alt="${escape(entry.label)}"></a>`}
       </div>`}${entry.type === 'checks' ? '' : `<p class="media-caption">${escape(entry.label)}</p>`}
       ${entries.length > 1 ? `<div class="media-navigation"><button class="icon-button" id="previous-media" type="button" aria-label="Preuve précédente" title="Preuve précédente" ${index === 0 ? 'disabled' : ''}>${icon('chevron-left')}</button><span>${index + 1} / ${entries.length}</span><button class="icon-button" id="next-media" type="button" aria-label="Preuve suivante" title="Preuve suivante" ${index === entries.length - 1 ? 'disabled' : ''}>${icon('chevron-right')}</button></div>` : ''}
-      <div class="media-actions">${entry.type === 'checks' ? '' : `<a class="text-link" download href="media/${entry.file}">${icon('download')}Télécharger</a>`}
-      ${flow.recording ? `<a href="media/${flow.recording}-full.mp4" target="_blank" rel="noopener">Vidéo longue (${flow.recording === 'navigation' ? '4 min' : '2 min 08'})</a>` : ''}</div>`;
+      <div class="media-actions">${entry.type === 'checks' ? '' : `<a class="text-link" download href="${mediaUrl(entry.file)}">${icon('download')}Télécharger</a>`}
+      ${flow.recording ? `<a href="${mediaUrl(flow.recording + '-full.mp4')}" target="_blank" rel="noopener">Vidéo longue (${flow.recording === 'navigation' ? '4 min' : '2 min 08'})</a>` : ''}</div>`;
     for (const [selector, delta] of [['#previous-media', -1], ['#next-media', 1]]) {
       const button = container.querySelector(selector);
       if (button) button.onclick = () => { index += delta; render(); };
