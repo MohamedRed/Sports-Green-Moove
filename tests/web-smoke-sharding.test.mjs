@@ -75,3 +75,19 @@ test('the unchanged required check only succeeds after both complete groups succ
       assert.equal(result.status === 0, smoke === 'success' && people === 'success');
     }
 });
+
+test('every CI caller of the structured PR check installs the locked YAML dependency first', () => {
+  const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url)));
+  const lock = JSON.parse(readFileSync(new URL('../package-lock.json', import.meta.url)));
+  assert.equal(pkg.devDependencies.yaml, lock.packages['node_modules/yaml'].version);
+  assert.equal(lock.packages[''].devDependencies.yaml, pkg.devDependencies.yaml);
+  const readiness = parseDocument(readFileSync(new URL('../.github/workflows/release-readiness.yml', import.meta.url), 'utf8')).toJSON();
+  for (const source of [workflow, readiness]) {
+    for (const job of Object.values(source.jobs)) {
+      const checker = job.steps?.findIndex(step => step.run?.includes('npm run test:pr-user-flow-checks')) ?? -1;
+      if (checker < 0) continue;
+      const install = job.steps.findIndex(step => step.run === 'npm ci');
+      assert(install >= 0 && install < checker);
+    }
+  }
+});
