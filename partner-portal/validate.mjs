@@ -11,6 +11,7 @@ import { validateChildAccountPhonePass } from '../scripts/qa/child-account-phone
 import { validateInvitationPhoneArtifacts } from '../scripts/qa/child-invitation-phone-evidence.mjs';
 import { validateChildEmergencyPhone } from '../scripts/qa/child-emergency-phone-evidence.mjs';
 import { validateNativeCopyDisconnect } from '../scripts/qa/native-copy-disconnect-evidence.mjs';
+import { validateNativeSocketDisconnect } from '../scripts/qa/native-socket-disconnect-evidence.mjs';
 import { validateFlowCheckRecoveryEvidence } from '../scripts/qa/flow-check-recovery-evidence.mjs';
 import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retained-evidence.mjs';
 import {validateTrackingClockReplay} from '../scripts/qa/tracking-clock-replay-evidence.mjs';
@@ -60,6 +61,7 @@ import { validateUiScope } from './ui-scope-validation.mjs';
 export { validateUiScope } from './ui-scope-validation.mjs';
 
 export function validate(root) {
+  validateNativeSocketDisconnect(root);
   validateChildInvitationEvidence(root);
   assert.equal(content.flows.find(flow => flow.id === 'publication').captureInvestigation.source,
     'docs/release/evidence/capture-callback-investigation-2026-10-26/README.md');

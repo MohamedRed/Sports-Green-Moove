@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import { isAbsolute, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { observeAdbSockets } from './adb-host-sockets.mjs';
+import { summarizeAdbDaemonEvents } from './adb-daemon-events.mjs';
 
 export function summarizeAdbHost(version, inventory, daemonTail) {
   const stateCounts = { device: 0, offline: 0, unauthorized: 0, other: 0 };
@@ -49,9 +50,10 @@ export function summarizeAdbProcesses(output) {
 }
 
 export function observeAdbHostProcesses(run = spawnSync, observeSockets = observeAdbSockets) {
+  const daemonTail = readDaemonTail();
   const result = { scope: 'host-adb-process-and-log-counts-not-server-identity-or-root-cause',
     observedAt: new Date().toISOString(), rawLogsRetained: false, deviceCommandRequested: false,
-    daemonLog: summarizeAdbHost('', '', readDaemonTail()).daemonLog };
+    daemonLog: summarizeAdbHost('', '', daemonTail).daemonLog, daemonEvents: summarizeAdbDaemonEvents(daemonTail, []) };
   try {
     // ps comm contains executable names, never process arguments or environments.
     const outcome = run('/bin/ps', ['-axo', 'pid=,lstart=,comm='], {
@@ -63,7 +65,8 @@ export function observeAdbHostProcesses(run = spawnSync, observeSockets = observ
     return { ...result, completed, status: Number.isInteger(outcome.status) ? outcome.status : null,
       signal: typeof outcome.signal === 'string' ? outcome.signal : null,
       errorCode: outcome.error ? 'PROCESS_OBSERVATION_UNAVAILABLE' : null,
-      adbProcesses, socketOwnership: completed ? observeSockets(adbProcesses) : null };
+      adbProcesses, socketOwnership: completed ? observeSockets(adbProcesses) : null,
+      daemonEvents: summarizeAdbDaemonEvents(daemonTail, adbProcesses?.map(row => row.pid) ?? []) };
   } catch {
     return { ...result, completed: false, status: null, signal: null,
       errorCode: 'PROCESS_OBSERVATION_UNAVAILABLE', adbProcesses: null, socketOwnership: null };
@@ -86,6 +89,7 @@ export function collectAdbHostHealth(phase, run, daemonTail) {
   return { scope: 'sanitized-host-transport-observations-not-root-cause-or-flow-proof', phase,
     observedAt: new Date().toISOString(), observations, ...summary,
     emulatorStates: observations[1].completed ? summary.emulatorStates : null,
+    daemonEvents: summarizeAdbDaemonEvents(daemonTail),
     rawLogsRetained: false, deviceMutationRequested: false, retryPerformed: false };
 }
 

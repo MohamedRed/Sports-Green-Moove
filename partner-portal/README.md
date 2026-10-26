@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The later 4dbffa4 native run retains 177 ordinary passes/54 skips and eleven
+successful focused lanes but fails the primary trip-consent-recovery copy. Its
+actual socket records show one stable server/listener, loss of the old emulator
+connection, then a different cleanup connection. Retain those originals separately
+from ed851b7 and do not accept cleanup as the gate or infer a cause. The new
+allowlisted default-daemon event parser is fixture-tested, not observed in that
+run; it adds no logging category, restart, retry or alternative capture path.
+Keep the latest child phone captures and public audience. Publish no diagnostics
+or new media from the failed automated run.
+
 The later 26 October child emergency phone trial verifies a fixture-provisioned
 child account retrieving its current parent-chosen contact with Android location
 permission set to Don't allow. Five independent read-only checkpoints preserve

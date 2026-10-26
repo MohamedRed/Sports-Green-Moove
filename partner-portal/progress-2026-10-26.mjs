@@ -9,6 +9,10 @@ export const childPhoneStartupAttempt = {
 export const october26Progress = [
   childEmergencyPhoneProgress,
   { date: '2026-10-26', title: 'Le contrôle complet reste en échec',
+    text: 'Les écrans passent, mais la récupération d’une capture bloque encore.', flow: 'publication',
+    source: 'docs/release/evidence/native-socket-disconnect-2026-10-26/README.md',
+    checksums: 'docs/release/evidence/native-socket-disconnect-2026-10-26/artifact-sha256.json' },
+  { date: '2026-10-26', title: 'Le contrôle complet reste en échec',
     text: '177 cas passent. La récupération d’une capture échoue ; le test complet n’est pas validé.',
     flow: 'publication', source: 'docs/release/evidence/native-copy-disconnect-2026-10-26/README.md',
     checksums: 'docs/release/evidence/native-copy-disconnect-2026-10-26/artifact-sha256.json' },

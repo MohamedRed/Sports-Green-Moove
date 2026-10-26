@@ -7,6 +7,68 @@ import { resolve } from 'node:path';
 import { collectAdbHostHealth, summarizeAdbHost, summarizeAdbProcesses, observeAdbHostProcesses } from '../scripts/qa/adb-host-health.mjs';
 import { observeAdbSockets, parseLocalTcpSockets } from '../scripts/qa/adb-host-sockets.mjs';
 import { validateNativeCopyDisconnect } from '../scripts/qa/native-copy-disconnect-evidence.mjs';
+import { summarizeAdbDaemonEvents } from '../scripts/qa/adb-daemon-events.mjs';
+import { validateNativeSocketDisconnect, nativeSocketDisconnectFolder } from '../scripts/qa/native-socket-disconnect-evidence.mjs';
+
+test('actual CI socket owners distinguish the surviving listener, failed peer and later cleanup connection', () => {
+  validateNativeSocketDisconnect(resolve(import.meta.dirname, '..'));
+});
+test('rehashed socket receipts cannot invent a server replacement, preserved peer or successful primary gate', () => {
+  const root = resolve(import.meta.dirname, '..'), temp = mkdtempSync(resolve(tmpdir(), 'sgm-socket-history-'));
+  const folder = nativeSocketDisconnectFolder;
+  try {
+    cpSync(resolve(root, folder), resolve(temp, folder), { recursive: true });
+    for (const [file, change] of [['run.json', value => value.conclusion = 'success'],
+      ['primary-copy.json', value => value.completed = true],
+      ['primary-copy.json', value => value.hostAfter.socketOwnership.processes[0].pid++],
+      ['primary-copy.json', value => value.hostAfter.socketOwnership.processes[0].connections = value.hostBefore.socketOwnership.processes[0].connections],
+      ['primary-copy.json', value => value.hostBefore.daemonEvents = { events: [] }],
+      ['cleanup-copy.json', value => value.hostAfter.socketOwnership.completed = false]]) {
+      const original = readFileSync(resolve(root, folder, file)), value = JSON.parse(original); change(value);
+      const bytes = JSON.stringify(value); writeFileSync(resolve(temp, folder, file), bytes);
+      const hashes = JSON.parse(readFileSync(resolve(root, folder, 'artifact-sha256.json')));
+      hashes[file] = createHash('sha256').update(bytes).digest('hex');
+      writeFileSync(resolve(temp, folder, 'artifact-sha256.json'), JSON.stringify(hashes));
+      assert.throws(() => validateNativeSocketDisconnect(temp)); writeFileSync(resolve(temp, folder, file), original);
+    }
+  } finally { rmSync(temp, { recursive: true, force: true }); }
+});
+
+test('daemon events retain only allowlisted host transport metadata and never packet, command or key content', () => {
+  const line = message => '10-26 21:08:38.680 3719 3720 I adb : transport.cpp:348 ' + message;
+  const tail = [line('emulator-5554: read failed: Connection reset by peer'),
+    line('emulator-5554: connection terminated: read failed'), line('kicking transport 0xab123 emulator-5554'),
+    line('emulator-5554: read failed: SECRET-UNCLASSIFIED'), line('real-phone-secret: read failed: Broken pipe'),
+    line('emulator-5555: read failed: Broken pipe'),
+    line('command=private-key emulator-5554: connection terminated: write failed'),
+    '10-26 21:08:38.680 3719 3720 I adb : services.cpp:12 transport.cpp:348 emulator-5554: read failed: secret',
+    'private-token kill-server', 'malformed adb log'].join('\n');
+  const result = summarizeAdbDaemonEvents(tail);
+  assert.equal(result.available, true); assert.equal(result.matchedEventCount, 4);
+  assert.deepEqual(result.events.map(row => row.kind), ['transport-read-failed', 'connection-terminated-read-failed',
+    'transport-kicked', 'transport-read-failed']);
+  assert.deepEqual(result.events.map(row => row.errno), ['connection-reset', null, null, 'unclassified']);
+  assert.equal(result.rawLogsRetained, false); assert.equal(result.unclassifiedTransportLineCount, 3);
+  assert.doesNotMatch(JSON.stringify(result), /SECRET|secret|private|token|0xab123|services\.cpp/);
+  assert.equal(result.events[0].timestampLocal, '10-26 21:08:38.680'); assert.equal(result.events[0].pid, 3719);
+  const unselected = summarizeAdbDaemonEvents(tail, [4000]);
+  assert.equal(unselected.events.length, 0); assert.equal(unselected.unselectedPidLineCount, 7);
+  assert.equal(summarizeAdbDaemonEvents(tail, [3719]).events.length, 4);
+  assert.throws(() => summarizeAdbDaemonEvents(tail, [0]));
+});
+
+test('daemon event tails preserve unavailable, clipping and malformed metadata boundaries', () => {
+  assert.equal(summarizeAdbDaemonEvents(null).available, false);
+  assert.equal(summarizeAdbDaemonEvents('').available, true);
+  assert.throws(() => summarizeAdbDaemonEvents('x'.repeat(65537)));
+  const message = '10-26 21:08:38.680 3719 3720 I adb : transport.cpp:335 emulator-5554: connection terminated: write failed';
+  const result = summarizeAdbDaemonEvents(Array(80).fill(message).join('\n'));
+  assert.equal(result.events.length, 64); assert.equal(result.matchedEventCount, 80); assert.equal(result.droppedEventCount, 16);
+  for (const value of [message.replace('10-26', '99-26'), message.replace('21:08:38', '21:99:38'),
+    message.replace('3719 3720', '0 3720'), message.replace('3719 3720', '9007199254740992 3720')])
+    assert.deepEqual(summarizeAdbDaemonEvents(value).events, []);
+  assert.equal(summarizeAdbDaemonEvents(message).events[0].kind, 'connection-terminated-write-failed');
+});
 
 const tcpHeader = '  sl local_address rem_address st tx_queue rx_queue tr tm->when retrnsmt uid timeout inode';
 test('the terminal copy failure retains the observed disconnect without inventing a server identity or successful gate', () => {
@@ -103,6 +165,7 @@ test('unsupported hosts are explicit and host process collection supplies only s
     called++; assert.deepEqual(processes.map(row => row.pid), [55]); return { completed: false, unavailableReason: 'test-unavailable' };
   });
   assert.equal(called, 1); assert.equal(result.completed, true); assert.equal(result.socketOwnership.completed, false);
+  assert.deepEqual(result.daemonEvents.selectedPids, [55]);
   assert.equal(result.deviceCommandRequested, false);
 });
 
