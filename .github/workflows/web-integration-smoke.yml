@@ -391,6 +391,7 @@ on:
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/network-bootstrap-observation.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/web-smoke-sharding.test.mjs"
       - "tests/local-replay-33-evidence.test.mjs"
       - "docs/release/evidence/local-replay-33-2026-10-18/**"
       - "tests/default-selection-evidence.test.mjs"
@@ -839,6 +840,7 @@ on:
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/network-bootstrap-observation.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/web-smoke-sharding.test.mjs"
       - "tests/local-replay-33-evidence.test.mjs"
       - "docs/release/evidence/local-replay-33-2026-10-18/**"
       - "tests/default-selection-evidence.test.mjs"
@@ -909,7 +911,7 @@ env:
 
 jobs:
   smoke:
-    name: Functions, admin, and website smoke
+    name: Functions, admin, and website checks
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -937,6 +939,8 @@ jobs:
 
       - name: Validate required checks and report ordering
         run: npm run test:pr-user-flow-checks
+      - name: Validate complete smoke partitioning
+        run: node --test tests/web-smoke-sharding.test.mjs
 
       - name: Test Functions
         run: npm test --workspace functions
@@ -1057,93 +1061,6 @@ jobs:
         run: node --test tests/team-chat-authority-phone-evidence.test.mjs
       - name: Validate isolated phone support checkpoints
         run: node --test tests/manual-support-phone-checkpoints.test.mjs tests/support-phone-evidence.test.mjs
-      - name: Test private requester support replies and explicit retry
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-followup.json
-        run: npm run test:support-followup && node --test tests/support-followup.test.mjs tests/manual-support-followup-checkpoints.test.mjs tests/support-followup-phone-evidence.test.mjs
-      - name: Validate terminal native copy failure and passing support components
-        run: node --test tests/native-copy-recheck-evidence.test.mjs
-      - name: Verify requester support submission recovery and urgent flag in isolation
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-submission.json
-        run: npm run test:support-submission && node --test tests/support-submission.test.mjs
-
-      - name: Verify support-only urgent alerts and idempotent mail delivery in isolation
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-urgent.json
-        run: npm run test:support-urgent && node --test tests/support-urgent-contract.test.mjs tests/manual-support-urgent-checkpoints.test.mjs tests/support-urgent-phone-evidence.test.mjs
-      - name: Validate private real-phone support recovery observation safeguards
-        run: node --test tests/support-response-gate.test.mjs tests/manual-support-recovery-checkpoints.test.mjs tests/support-recovery-phone-evidence.test.mjs
-      - name: Validate isolated device readiness and private support call diagnostics
-        run: node --test tests/disposable-emulator-selection.test.mjs tests/android-support-call-trace.test.mjs tests/android-ride-observation-trace.test.mjs tests/support-process-restart-phone-evidence.test.mjs
-
-      - name: Test team-only adult conversations and admission-scoped history
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-conversation-services.json
-        run: npm run test:team-conversation && node --test tests/team-conversation-contract.test.mjs
-      - name: Test multi-child grants and cross-team conversation isolation
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json
-        run: npm run test:team-chat-access-changes && node --test tests/team-chat-access-changes.test.mjs tests/team-chat-native-access.test.mjs tests/team-chat-native-attempt-access.test.mjs tests/team-chat-native-access-retained.test.mjs tests/team-chat-draft-restart.test.mjs tests/team-chat-draft-persistence.test.mjs
-      - name: Verify isolated team conversation directory
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-options.json
-        run: npm run test:team-chat-options && node --test tests/team-chat-native-contract.test.mjs tests/team-chat-ui-evidence.test.mjs tests/team-chat-connected-contract.test.mjs tests/team-chat-native-attempt.test.mjs tests/team-chat-connected-retained.test.mjs
-      - name: Verify isolated team read state and retained evidence
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-reads.json
-        run: npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs tests/team-chat-read-evidence.test.mjs tests/team-chat-read-connected-evidence.test.mjs tests/team-chat-read-component-attempt.test.mjs tests/team-chat-read-components-evidence.test.mjs tests/team-chat-read-phone-evidence.test.mjs
-
-      - name: Test isolated guardian verification authority and lifecycle
-        run: npm run test:guardian-verification
-
-      - name: Test guardian review permissions, pagination and decision state
-        run: npm run test:guardian-review && node --test tests/guardian-review-controller.test.mjs tests/guardian-review-evidence.test.mjs
-
-      - name: Test parent verification choices and authoritative state reads
-        run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs
-
-      - name: Test private emergency contact ownership and revocation
-        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
-      - name: Verify private profile-only city persistence and concurrent edits
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/profile-city-services.json
-        run: node scripts/qa/run-profile-city-services.mjs && node --test tests/profile-city-contract.test.mjs tests/profile-city-evidence.test.mjs
-
-      - name: Verify complete owned ledger summaries and bounded history
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/ledger-history-services.json
-        run: node scripts/qa/run-ledger-history-services.mjs && node --test tests/ledger-summary-contract.test.mjs tests/ledger-summary-evidence.test.mjs
-
-      - name: Test child emergency reading with preseeded private account links
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-emergency-services.json
-        run: npm run test:child-emergency && node --test tests/child-emergency-contract.test.mjs tests/child-account-approval-contract.test.mjs tests/child-account-phone-checkpoints.test.mjs
-      - name: Test immutable child contact identity and independently verified fixtures
-        run: npm run test:emergency-contact-identity && npm run test:emergency-contact-fixture && npm run test:ride-emergency-fixture && node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/ride-emergency-completed-evidence.test.mjs
-
-      - name: Test authoritative team enrollment without granting conversation access
-        run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
-
-      - name: Test team enrollment across club recreation with verified disposal
-        id: team_club_identity
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-team-club-identity/results.json
-        run: npm run test:team-club-identity && node --test tests/team-club-identity.test.mjs
-
-      - name: Validate recreated child contact UI evidence contract
-        env:
-          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/emergency-identity-fixture.json
-        run: node scripts/qa/run-emergency-identity-fixture.mjs && node --test tests/emergency-identity-ui.test.mjs tests/emergency-identity-profile-isolation.test.mjs
-
-      - name: Verify observation freshness through isolated authenticated location calls
-        run: npm run test:location-freshness && node --test tests/location-freshness-evidence.test.mjs
-
-      - name: Verify atomic observation ordering through concurrent location calls
-        run: npm run test:location-order && node --test tests/location-order-evidence.test.mjs
-
-      - name: Verify selected ride observer authorization and remote lifecycle responses
-        run: npm run test:ride-observation-services && node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
       - name: Validate native startup acknowledgement and temporary mock policy contracts
         run: node --test tests/native-startup-contract.test.mjs tests/native-startup-evidence.test.mjs tests/native-capture-clock-contract.test.mjs tests/local-mock-location-permission.test.mjs tests/local-emulator-log-evidence.test.mjs tests/local-emulator-lifecycle.test.mjs tests/isolated-ride-records.test.mjs
       - name: Validate reviewed native startup tour scope
@@ -1300,13 +1217,6 @@ jobs:
           path: ${{ runner.temp }}/booking-notices.json
           if-no-files-found: ignore
 
-      - name: Upload club identity trial and disposal evidence
-        if: always() && steps.team_club_identity.outcome != 'skipped'
-        uses: actions/upload-artifact@v7
-        with:
-          name: team-club-identity-results
-          path: ${{ runner.temp }}/sgm-team-club-identity/**
-          if-no-files-found: error
 
       - name: Upload isolated trip history results
         if: always()
@@ -1350,13 +1260,6 @@ jobs:
           path: ${{ runner.temp }}/sgm-trip-contention/**
           if-no-files-found: ignore
 
-      - name: Retain ledger summary and disposal results
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: ledger-history-services
-          path: ${{ runner.temp }}/ledger-history-services.json
-          if-no-files-found: ignore
 
       - name: Retain authenticated search notice replay
         if: always()
@@ -1365,3 +1268,155 @@ jobs:
           name: search-booking-notice-services
           path: ${{ runner.temp }}/search-booking-notice-services.json
           if-no-files-found: ignore
+
+  people-safety:
+    name: People and safety service smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Functions
+        run: npm run build --workspace functions
+
+      - name: Install media inspection tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends ffmpeg
+
+      - name: Test private requester support replies and explicit retry
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-followup.json
+        run: npm run test:support-followup && node --test tests/support-followup.test.mjs tests/manual-support-followup-checkpoints.test.mjs tests/support-followup-phone-evidence.test.mjs
+      - name: Validate terminal native copy failure and passing support components
+        run: node --test tests/native-copy-recheck-evidence.test.mjs
+      - name: Verify requester support submission recovery and urgent flag in isolation
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-submission.json
+        run: npm run test:support-submission && node --test tests/support-submission.test.mjs
+
+      - name: Verify support-only urgent alerts and idempotent mail delivery in isolation
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-urgent.json
+        run: npm run test:support-urgent && node --test tests/support-urgent-contract.test.mjs tests/manual-support-urgent-checkpoints.test.mjs tests/support-urgent-phone-evidence.test.mjs
+      - name: Validate private real-phone support recovery observation safeguards
+        run: node --test tests/support-response-gate.test.mjs tests/manual-support-recovery-checkpoints.test.mjs tests/support-recovery-phone-evidence.test.mjs
+      - name: Validate isolated device readiness and private support call diagnostics
+        run: node --test tests/disposable-emulator-selection.test.mjs tests/android-support-call-trace.test.mjs tests/android-ride-observation-trace.test.mjs tests/support-process-restart-phone-evidence.test.mjs
+
+      - name: Test team-only adult conversations and admission-scoped history
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-conversation-services.json
+        run: npm run test:team-conversation && node --test tests/team-conversation-contract.test.mjs
+      - name: Test multi-child grants and cross-team conversation isolation
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json
+        run: npm run test:team-chat-access-changes && node --test tests/team-chat-access-changes.test.mjs tests/team-chat-native-access.test.mjs tests/team-chat-native-attempt-access.test.mjs tests/team-chat-native-access-retained.test.mjs tests/team-chat-draft-restart.test.mjs tests/team-chat-draft-persistence.test.mjs
+      - name: Verify isolated team conversation directory
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-options.json
+        run: npm run test:team-chat-options && node --test tests/team-chat-native-contract.test.mjs tests/team-chat-ui-evidence.test.mjs tests/team-chat-connected-contract.test.mjs tests/team-chat-native-attempt.test.mjs tests/team-chat-connected-retained.test.mjs
+      - name: Verify isolated team read state and retained evidence
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-reads.json
+        run: npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs tests/team-chat-read-evidence.test.mjs tests/team-chat-read-connected-evidence.test.mjs tests/team-chat-read-component-attempt.test.mjs tests/team-chat-read-components-evidence.test.mjs tests/team-chat-read-phone-evidence.test.mjs
+
+      - name: Test isolated guardian verification authority and lifecycle
+        run: npm run test:guardian-verification
+
+      - name: Test guardian review permissions, pagination and decision state
+        run: npm run test:guardian-review && node --test tests/guardian-review-controller.test.mjs tests/guardian-review-evidence.test.mjs
+
+      - name: Test parent verification choices and authoritative state reads
+        run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs
+
+      - name: Test private emergency contact ownership and revocation
+        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
+      - name: Verify private profile-only city persistence and concurrent edits
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/profile-city-services.json
+        run: node scripts/qa/run-profile-city-services.mjs && node --test tests/profile-city-contract.test.mjs tests/profile-city-evidence.test.mjs
+
+      - name: Verify complete owned ledger summaries and bounded history
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/ledger-history-services.json
+        run: node scripts/qa/run-ledger-history-services.mjs && node --test tests/ledger-summary-contract.test.mjs tests/ledger-summary-evidence.test.mjs
+
+      - name: Test child emergency reading with preseeded private account links
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-emergency-services.json
+        run: npm run test:child-emergency && node --test tests/child-emergency-contract.test.mjs tests/child-account-approval-contract.test.mjs tests/child-account-phone-checkpoints.test.mjs
+      - name: Test immutable child contact identity and independently verified fixtures
+        run: npm run test:emergency-contact-identity && npm run test:emergency-contact-fixture && npm run test:ride-emergency-fixture && node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/ride-emergency-completed-evidence.test.mjs
+
+      - name: Test authoritative team enrollment without granting conversation access
+        run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
+
+      - name: Test team enrollment across club recreation with verified disposal
+        id: team_club_identity
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-team-club-identity/results.json
+        run: npm run test:team-club-identity && node --test tests/team-club-identity.test.mjs
+
+      - name: Validate recreated child contact UI evidence contract
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/emergency-identity-fixture.json
+        run: node scripts/qa/run-emergency-identity-fixture.mjs && node --test tests/emergency-identity-ui.test.mjs tests/emergency-identity-profile-isolation.test.mjs
+
+      - name: Verify observation freshness through isolated authenticated location calls
+        run: npm run test:location-freshness && node --test tests/location-freshness-evidence.test.mjs
+
+      - name: Verify atomic observation ordering through concurrent location calls
+        run: npm run test:location-order && node --test tests/location-order-evidence.test.mjs
+
+      - name: Verify selected ride observer authorization and remote lifecycle responses
+        run: npm run test:ride-observation-services && node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
+      - name: Upload club identity trial and disposal evidence
+        if: always() && steps.team_club_identity.outcome != 'skipped'
+        uses: actions/upload-artifact@v7
+        with:
+          name: team-club-identity-results
+          path: ${{ runner.temp }}/sgm-team-club-identity/**
+          if-no-files-found: error
+
+      - name: Retain ledger summary and disposal results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ledger-history-services
+          path: ${{ runner.temp }}/ledger-history-services.json
+          if-no-files-found: ignore
+
+
+  integration-gate:
+    name: Functions, admin, and website smoke
+    if: ${{ always() }}
+    needs: [smoke, people-safety]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Require both complete smoke groups
+        env:
+          SMOKE_RESULT: ${{ needs.smoke.result }}
+          PEOPLE_RESULT: ${{ needs.people-safety.result }}
+        run: test "$SMOKE_RESULT" = success && test "$PEOPLE_RESULT" = success

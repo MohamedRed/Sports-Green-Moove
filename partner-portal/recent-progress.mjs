@@ -6,13 +6,10 @@ import {tripConsentPhoneProgress} from './trip-consent-phone.mjs';
 import {trackingAttemptProgress} from './tracking-phone-attempt.mjs';
 import {trackingClockProgress} from './tracking-clock-replay.mjs';
 import {trackingNetworkProgress, trackingNetworkDiagnosticsProgress, trackingNetworkTransportProgress} from './tracking-network-phone.mjs';
-import {childAccountPhoneProgress} from './child-account-phone-attempt.mjs';
+import {october26Progress} from './progress-2026-10-26.mjs';
 
 export const recentProgress = [
-  childAccountPhoneProgress,
-  {date: '2026-10-26', title: 'Le parent peut lier le compte enfant en local',
-    text: 'Dix contrôles passent. L’accès au contact sans localisation est ajouté ; les essais sur téléphone restent à faire.',
-    flow: 'child-emergency', source: 'docs/release/evidence/child-account-approval-2026-10-26/README.md'},
+  ...october26Progress,
   {date: '2026-10-25', title: 'La copie des images bloque encore',
     text: 'Les 166 essais d’écran passent. La vérification s’arrête pendant la récupération des captures.',
     flow: 'publication', coversFlows: ['messages', 'team-conversation', 'native-startup'],

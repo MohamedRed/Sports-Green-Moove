@@ -1,4 +1,5 @@
 import { childAccountPhoneAttempt } from './child-account-phone-attempt.mjs';
+import { childPhoneStartupAttempt } from './progress-2026-10-26.mjs';
 const source = 'docs/release/evidence/child-contact-heading-pass-2026-10-19/';
 
 export function createChildEmergencyFlow() {
@@ -8,6 +9,7 @@ export function createChildEmergencyFlow() {
     verified: 'Le parent retrouve son enfant et ouvre la demande de liaison. Les essais locaux de liaison passent aussi.',
     remaining: 'Terminer l’accord du parent et la création du compte, puis tester le trajet de l’enfant, l’accès sans localisation sur téléphone et l’ouverture réelle du téléphone.',
     phoneAttempt: childAccountPhoneAttempt,
+    phoneStartup: childPhoneStartupAttempt,
     accountApproval: { source: 'docs/release/evidence/child-account-approval-2026-10-26/results.json',
       checksums: 'docs/release/evidence/child-account-approval-2026-10-26/artifact-sha256.json', checkedAt: '2026-10-26' },
     ui: { source: source + 'results.json', checkedAt: '2026-10-19', groups: ['child-contact-components'] },

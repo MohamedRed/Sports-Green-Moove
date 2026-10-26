@@ -4,20 +4,24 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { requiredUserFlowChecks } from "../scripts/release-evidence-requirements.mjs";
+import { parseDocument } from "yaml";
 
 const smoke = readFileSync(new URL("../.github/workflows/web-integration-smoke.yml", import.meta.url), "utf8");
-const steps = smoke.split(/^      - name: /m).slice(1);
-const reports = steps.filter((step) => step.includes("uses: actions/upload-artifact@"));
-assert.deepEqual(reports.map((report) => report.match(/^          name: (.+)$/m)?.[1]).sort(), [
+const jobs = Object.values(parseDocument(smoke).toJSON().jobs);
+const reports = jobs.flatMap(job => job.steps.filter(step => step.uses?.startsWith("actions/upload-artifact@")));
+assert.deepEqual(reports.map(report => report.with.name).sort(), [
   'team-club-identity-results', 'trip-history-results', 'booking-recovery-results',
   'booking-display-results', 'booking-consistency-results', 'trip-contention-results',
   'web-booking-notices', 'ledger-history-services', 'search-booking-notice-services',
 ].sort());
-assert(steps.indexOf(reports[0]) > steps.findLastIndex((step) => /^        run: /m.test(step)),
-  "Report uploads must not stop later tests or builds when the artifact service is unavailable.");
+for (const job of jobs) {
+  const firstReport = job.steps.findIndex(step => step.uses?.startsWith("actions/upload-artifact@"));
+  if (firstReport >= 0) assert(firstReport > job.steps.findLastIndex(step => step.run),
+    "Report uploads must not stop later tests or builds in their owning job when the artifact service is unavailable.");
+}
 for (const report of reports) {
-  assert.match(report, /        if: always\(\)/, "Retain evidence after test failures.");
-  assert(!report.includes("continue-on-error"), "Upload failures must remain visible as failures.");
+  assert.match(report.if, /^always\(\)/, "Retain evidence after test failures.");
+  assert.notEqual(report['continue-on-error'], true, "Upload failures must remain visible as failures.");
 }
 assert(smoke.includes("run: npm run test:pr-user-flow-checks"), "Check upload ordering in the smoke job itself.");
 

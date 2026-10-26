@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The later 26 October phone startup attempt has zero completed checkpoints: the
+app installation stayed pending and its package query was rejected. Session stop,
+observer client closure and owned fixture/helper disposal are verified; package
+absence is not. Keep the previous two phone captures and partial approval status.
+The separately retained main Android job passed, a focused preparation failed,
+and the sequential web job hit its original deadline. Workload partitioning keeps
+every original command/upload and a fail-closed required check. A new CI execution
+is required; neither partitioning nor an unused phone accepts a user flow.
+
 The 26 October child-account phone trial retains two incomplete disposable
 attempts, each with three independent checkpoints: child sign-in, app-created
 code and parent review. Neither proves final approval, child return, sign-out,
