@@ -20,6 +20,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   const rows = ['smoke', 'people-safety'].flatMap(key => workflow.jobs[key].steps)
     .filter(step => step.run && !setup.has(step.name) && step.name !== 'Validate complete smoke partitioning' &&
       step.name !== 'Test child contact discovery through verified-parent approval')
+    .filter(step => step.name !== 'Test primary capture observation protocol')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -29,6 +30,8 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(added.length, 1);
   assert.equal(added[0].run, 'npm run test:child-account-approval && node --test tests/child-contact-discovery.test.mjs');
   assert.equal(added[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/child-contact-discovery.json');
+  const capture = workflow.jobs.smoke.steps.filter(step => step.name === 'Test primary capture observation protocol');
+  assert.equal(capture.length, 1); assert.equal(capture[0].run, 'node --test tests/primary-capture-diagnostics.test.mjs');
 });
 
 test('service groups use separate runners and build their own unchanged backend before testing', () => {

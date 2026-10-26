@@ -17,7 +17,7 @@ internal fun captureLocalUi(compose: ComposeTestRule, name: String, landscape: B
     val output = File(directory, name)
     // Capture the synchronized Compose window rather than a stale display buffer.
     val window = if (dialog) compose.onNode(isDialog()) else compose.onRoot()
-    val bitmap = window.captureToImage().asAndroidBitmap()
+    val bitmap = observePrimaryCapture(name) { window.captureToImage().asAndroidBitmap() }
     try {
         check((bitmap.width > bitmap.height) == landscape) { "Capture orientation does not match the tested layout." }
         val colors = mutableSetOf<Int>()

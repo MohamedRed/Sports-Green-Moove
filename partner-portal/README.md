@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The subsequent 95d0081 baseline passes all enabled checks and all three full
+native suite exit statuses, with 170 ordinary passes and 54 intentional skips.
+This is a successful dated baseline, not a repair of the intermittent screen-copy
+failure. Keep the earlier failures and partial real-phone scope. The new opt-in
+primary-call observer is compiled, not yet executed in its preparation record;
+publish no diagnostic content or new media, and do not claim a root cause.
+
 The subsequent 3b386a0 run passes all nine child components, including corrected
 no-ride discovery and actual denied-location checks with mocked contacts/dialer.
 Its main gate remains failed: a trip-refusal case stops while PixelCopy waits.

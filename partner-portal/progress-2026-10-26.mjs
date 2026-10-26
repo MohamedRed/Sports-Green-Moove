@@ -4,6 +4,9 @@ export const childPhoneStartupAttempt = {
   source: folder + 'README.md', checksums: folder + 'artifact-sha256.json', checkedAt: '2026-10-26',
 };
 export const october26Progress = [
+  { date: '2026-10-26', title: 'Les contrôles d’écran passent à nouveau',
+    text: 'Une capture peut encore échouer. Les parcours complets sur téléphone restent à terminer.',
+    flow: 'publication', source: 'docs/release/evidence/capture-callback-investigation-2026-10-26/README.md' },
   { date: '2026-10-26', title: 'Le contact reste accessible sans localisation en simulation',
     text: 'Neuf essais d’écran enfant passent. Le parcours complet sur téléphone reste à terminer.',
     flow: 'child-emergency', source: 'docs/release/evidence/child-contact-discovery-ui-2026-10-26/README.md' },

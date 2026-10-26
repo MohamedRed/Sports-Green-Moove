@@ -30,6 +30,7 @@ on:
       - ".github/workflows/android-browserstack.yml"
       - "tests/team-review*.mjs"
       - "tests/native-build-before-boot.test.mjs"
+      - "tests/primary-capture-diagnostics.test.mjs"
       - "tests/android-junit-transcript.test.mjs"
       - "tests/android-matrix-preparation.test.mjs"
       - "tests/manual-trip-components.test.mjs"
@@ -482,6 +483,7 @@ on:
       - ".github/workflows/android-browserstack.yml"
       - "tests/team-review*.mjs"
       - "tests/native-build-before-boot.test.mjs"
+      - "tests/primary-capture-diagnostics.test.mjs"
       - "tests/android-junit-transcript.test.mjs"
       - "tests/android-matrix-preparation.test.mjs"
       - "tests/manual-trip-components.test.mjs"
@@ -943,6 +945,9 @@ jobs:
         run: npm run test:pr-user-flow-checks
       - name: Validate complete smoke partitioning
         run: node --test tests/web-smoke-sharding.test.mjs
+
+      - name: Test primary capture observation protocol
+        run: node --test tests/primary-capture-diagnostics.test.mjs
 
       - name: Test Functions
         run: npm test --workspace functions
