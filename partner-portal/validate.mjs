@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { validateCaptureCallbackInvestigation } from '../scripts/qa/capture-callback-investigation-evidence.mjs';
+import { validateCaptureRuntimeEvidence, captureRuntimeFolder } from '../scripts/qa/capture-runtime-evidence.mjs';
 import { validateChildDiscoveryEvidence } from '../scripts/qa/child-contact-discovery-evidence.mjs';
 import { validateChildDiscoveryCiFailure } from '../scripts/qa/child-contact-discovery-ci-evidence.mjs';
 import { validateChildDiscoveryUiEvidence } from '../scripts/qa/child-contact-discovery-ui-evidence.mjs';
@@ -57,6 +58,9 @@ export function validate(root) {
   assert.equal(content.flows.find(flow => flow.id === 'publication').captureInvestigation.source,
     'docs/release/evidence/capture-callback-investigation-2026-10-26/README.md');
   validateCaptureCallbackInvestigation(root);
+  assert.deepEqual(content.flows.find(flow => flow.id === 'publication').captureInvestigation.runtime,
+    { source: captureRuntimeFolder + 'README.md', checksums: captureRuntimeFolder + 'artifact-sha256.json' });
+  validateCaptureRuntimeEvidence(root);
   assert.equal(content.nativeClockCiRecheck.checksums, dirname(content.nativeClockCiRecheck.source) + '/artifact-sha256.json');
   validateNativeClockCi(root, dirname(content.nativeClockCiRecheck.source));
   validateNativeStatus(root, content.blockers);

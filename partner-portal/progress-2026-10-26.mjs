@@ -4,6 +4,10 @@ export const childPhoneStartupAttempt = {
   source: folder + 'README.md', checksums: folder + 'artifact-sha256.json', checkedAt: '2026-10-26',
 };
 export const october26Progress = [
+  { date: '2026-10-26', title: 'Les essais locaux passent à nouveau',
+    text: 'Écrans, réservations et messages passent. Les essais complets sur téléphone restent à terminer.',
+    flow: 'publication', coversFlows: ['messages', 'team-conversation'],
+    source: 'docs/release/evidence/capture-callback-runtime-2026-10-26/README.md' },
   { date: '2026-10-26', title: 'Les contrôles d’écran passent à nouveau',
     text: 'Une capture peut encore échouer. Les parcours complets sur téléphone restent à terminer.',
     flow: 'publication', source: 'docs/release/evidence/capture-callback-investigation-2026-10-26/README.md' },

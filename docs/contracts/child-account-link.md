@@ -7,7 +7,9 @@ child's profile. Club managers still verify the parent-child relationship;
 their manager role alone cannot approve a login link.
 
 The verified parent also initiates account creation by sending an invitation
-(owner decision, 26 October). Invitation creation, delivery and acceptance are
+(owner decision, 26 October). The parent shares an invitation link from their
+phone; the app does not send an automatic email (owner decision, 26 October).
+Invitation creation, sharing and acceptance are
 not implemented by the existing-code pairing protocol below. That protocol links
 an already provisioned login and does not replace this invitation-first signup
 requirement or the separate parent approval of the link.

@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The f06c61d instrumented run passes all enabled checks, all three native suite
+exit statuses, 174 ordinary cases and four observer contract cases, with 54
+intentional skips. Six primary calls return once each in 126-432 ms. This does
+not reproduce or repair the intermittent failure. Retain its raw metadata only
+internally, preserve preparation and negative records, and accept no new media,
+phone journey, child invitation or release scope from this run.
+
 The subsequent 95d0081 baseline passes all enabled checks and all three full
 native suite exit statuses, with 170 ordinary passes and 54 intentional skips.
 This is a successful dated baseline, not a repair of the intermittent screen-copy

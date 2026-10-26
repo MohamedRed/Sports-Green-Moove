@@ -9,6 +9,9 @@ import { collectPrimaryCaptureDiagnostics, primaryCaptureDiagnosticArguments } f
 import { captureDiagnosticScope, requiredTripCaptureNames, validatePrimaryCaptureDiagnostic } from '../scripts/qa/primary-capture-diagnostic-schema.mjs';
 import { fileURLToPath } from 'node:url';
 import { validateCaptureCallbackInvestigation, validateCaptureInvestigationReport } from '../scripts/qa/capture-callback-investigation-evidence.mjs';
+import { validateCaptureRuntimeEvidence, validateCaptureRuntimeReport } from '../scripts/qa/capture-runtime-evidence.mjs';
+import { content } from '../partner-portal/content.mjs';
+import { evidenceSourcePaths } from '../partner-portal/evidence-fingerprints.mjs';
 
 const trace = (captureName = requiredTripCaptureNames[0]) => ({ schemaVersion: 1, scope: captureDiagnosticScope, captureName,
   sdkInvocations: 1, primaryOutcome: 'returned', errorCategory: 'none', elapsedMs: 125,
@@ -19,6 +22,17 @@ const prepared = () => ({ ...trace(), sdkInvocations: 0, primaryOutcome: 'prepar
   primaryStartOffsetMs: null, primaryElapsedMs: null,
   observerClosed: false, mainPostAccepted: false, heartbeatDelaysMs: [], heartbeatAtMs: [], maxMainQueueDelayMs: null });
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+test('six actual successful observations do not claim failure reproduction, a repair or physical release proof', () => {
+  validateCaptureRuntimeEvidence(fileURLToPath(new URL('..', import.meta.url)));
+  for (const name of ['README.md', 'artifact-sha256.json'])
+    assert(evidenceSourcePaths(content).includes('docs/release/evidence/capture-callback-runtime-2026-10-26/' + name));
+  const report = JSON.parse(read('docs/release/evidence/capture-callback-runtime-2026-10-26/analysis.json'));
+  for (const key of ['failureReproduced', 'rootCauseProven', 'primaryApiModified', 'primaryDeadlineModified',
+    'outerRetryAdded', 'alternateCaptureAdded', 'physicalDevice', 'newScreenshotsAccepted', 'releaseAccepted'])
+    assert.throws(() => validateCaptureRuntimeReport({ ...report, [key]: true }));
+  assert.throws(() => validateCaptureRuntimeReport({ ...report, contractCasesExecuted: 0 }));
+  assert.throws(() => validateCaptureRuntimeReport({ ...report, runtimeTimingCollected: false }));
+});
 test('a passing baseline and compiled probe cannot claim runtime timing, a root repair or release proof', () => {
   validateCaptureCallbackInvestigation(fileURLToPath(new URL('..', import.meta.url)));
   const report = JSON.parse(read('docs/release/evidence/capture-callback-investigation-2026-10-26/analysis.json'));

@@ -25,6 +25,8 @@ test('the failed main CI remains negative and the no-ride candidate exercises di
     'assertEquals(1, fixture.discoveries)', 'assertEquals(0, fixture.reads)',
     'compose.onNodeWithTag("emergency.child-link").assertIsEnabled()']) assert(component.includes(text));
   assert(read('docs/contracts/child-account-link.md').includes('initiates account creation by sending an invitation'));
+  assert(read('docs/contracts/child-account-link.md').includes('parent shares an invitation link from their'));
+  assert(read('docs/contracts/child-account-link.md').includes('app does not send an automatic email'));
 });
 test('retained discovery proof rejects device, production, seeded-link and weakened-authority claims', () => {
   validateChildDiscoveryEvidence(fileURLToPath(new URL('..', import.meta.url)));
