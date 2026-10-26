@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
 import test from 'node:test';
+import {mediaInstallCommands} from '../scripts/ci/media-tools-plan.mjs';
 import {tripConsentPhonePhases, verifyTripConsentPhoneState} from '../scripts/qa/trip-consent-phone-checkpoints.mjs';
 import {tripConsentPhoneTour, tripConsentPhoneCaptures} from '../partner-portal/trip-consent-phone.mjs';
 
@@ -70,7 +71,11 @@ test('the newer successful native job status supersedes only the historical prep
   const smoke = readFileSync(resolve(root, '.github/workflows/web-integration-smoke.yml'), 'utf8');
   const setupAt = smoke.indexOf('name: Install media inspection tools');
   assert(setupAt >= 0 && setupAt < smoke.indexOf('name: Validate physical trip consent checkpoints'));
-  assert(smoke.includes('sudo apt-get install --yes --no-install-recommends ffmpeg'));
+  assert(smoke.includes('node scripts/ci/install-media-tools.mjs'));
+  const installation = mediaInstallCommands('/tmp/sgm-proof/ubuntu.sources');
+  assert(installation.some(([command, args]) => command === 'sudo' && args[0] === 'apt-get' &&
+    args.includes('install') && args.includes('--yes') && args.includes('--no-install-recommends') && args.includes('ffmpeg')));
+  assert.deepEqual(installation.slice(-2), [['ffmpeg', ['-version']], ['ffprobe', ['-version']]]);
   for (const file of ['trip-consent-phone-checkpoints.test.mjs', 'trip-consent-phone-evidence.test.mjs']) {
     assert.equal(smoke.split('"tests/' + file + '"').length - 1, 2);
     assert(smoke.includes('node --test tests/trip-consent-phone-checkpoints.test.mjs tests/trip-consent-phone-evidence.test.mjs'));

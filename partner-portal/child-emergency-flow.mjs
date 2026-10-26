@@ -10,6 +10,8 @@ export function createChildEmergencyFlow() {
     remaining: 'Tester le partage du lien, l’inscription et l’accord du parent sur téléphone. Vérifier ensuite le trajet de l’enfant, l’accès sans localisation et l’ouverture réelle du téléphone.',
     browserInvitation: { source: 'docs/release/evidence/child-invitation-browser-2026-10-26/README.md',
       checksums: 'docs/release/evidence/child-invitation-browser-2026-10-26/artifact-sha256.json', checkedAt: '2026-10-26' },
+    invitationComponents: { source: 'docs/release/evidence/child-invitation-native-2026-10-26/README.md',
+      checksums: 'docs/release/evidence/child-invitation-native-2026-10-26/artifact-sha256.json', checkedAt: '2026-10-26' },
     invitation: { source: 'docs/release/evidence/child-invitation-2026-10-26/README.md',
       checksums: 'docs/release/evidence/child-invitation-2026-10-26/artifact-sha256.json', checkedAt: '2026-10-26',
       recheck: { source: 'docs/release/evidence/child-invitation-2026-10-26/binding-recheck/README.md',

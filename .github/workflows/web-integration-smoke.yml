@@ -260,6 +260,8 @@ on:
       - "tests/partner-portal.browser.mjs"
       - "tests/partner-portal-child-contact.browser.mjs"
       - "scripts/qa/**"
+      - "scripts/ci/**"
+      - "tests/ci-media-tools.test.mjs"
       - "tests/local-emulator-config.test.mjs"
       - "tests/real-maps-local.test.mjs"
       - "tests/real-maps-ui.test.mjs"
@@ -712,6 +714,8 @@ on:
       - "tests/membership-evidence.test.mjs"
       - "tests/partner-portal.browser.mjs"
       - "scripts/qa/**"
+      - "scripts/ci/**"
+      - "tests/ci-media-tools.test.mjs"
       - "tests/local-emulator-config.test.mjs"
       - "tests/real-maps-local.test.mjs"
       - "tests/real-maps-ui.test.mjs"
@@ -998,9 +1002,8 @@ jobs:
         run: node --test tests/driver-connect-evidence.test.mjs
 
       - name: Install media inspection tools
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends ffmpeg
+        timeout-minutes: 5
+        run: node --test tests/ci-media-tools.test.mjs && node scripts/ci/install-media-tools.mjs
 
       - name: Validate physical trip consent checkpoints and retained proof
         run: node --test tests/trip-consent-phone-checkpoints.test.mjs tests/trip-consent-phone-evidence.test.mjs
@@ -1307,9 +1310,8 @@ jobs:
         run: npm run build --workspace functions
 
       - name: Install media inspection tools
-        run: |
-          sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends ffmpeg
+        timeout-minutes: 5
+        run: node --test tests/ci-media-tools.test.mjs && node scripts/ci/install-media-tools.mjs
 
       - name: Test private requester support replies and explicit retry
         env:
