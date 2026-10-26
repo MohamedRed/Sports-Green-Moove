@@ -4,8 +4,10 @@ import {trackingClockCaptures} from './tracking-clock-replay.mjs';
 import {trackingNetworkCaptures} from './tracking-network-phone.mjs';
 import {childAccountPhoneCaptures} from './child-account-phone-attempt.mjs';
 import {childAccountPhonePassCaptures} from './child-account-phone-pass.mjs';
+import {childInvitationPhoneCaptures} from './child-invitation-phone.mjs';
 
 export const captures = {
+  ...childInvitationPhoneCaptures,
   ...childAccountPhonePassCaptures,
   ...childAccountPhoneCaptures,
   ...tripConsentPhoneCaptures,

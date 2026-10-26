@@ -1,0 +1,76 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6c4e1c6cc77270903cf52bed091a9b97",
+  "testedAt": "2026-10-26T20:00:16.418Z",
+  "scope": "independent-invitation-phone-records-not-system-share-proof",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "parent-signed-in",
+      "status": "passed",
+      "accountClaimsUnchanged": true,
+      "protectedRecordsUnchanged": true,
+      "systemShareProvenByThisCheckpoint": false,
+      "signupProven": false,
+      "parentApprovalProven": false
+    },
+    {
+      "phase": "invitation-created",
+      "status": "passed",
+      "accountClaimsUnchanged": true,
+      "protectedRecordsUnchanged": true,
+      "systemShareProvenByThisCheckpoint": false,
+      "signupProven": false,
+      "parentApprovalProven": false
+    },
+    {
+      "phase": "share-opened",
+      "status": "passed",
+      "accountClaimsUnchanged": true,
+      "protectedRecordsUnchanged": true,
+      "systemShareProvenByThisCheckpoint": false,
+      "signupProven": false,
+      "parentApprovalProven": false
+    },
+    {
+      "phase": "share-returned",
+      "status": "passed",
+      "accountClaimsUnchanged": true,
+      "protectedRecordsUnchanged": true,
+      "systemShareProvenByThisCheckpoint": false,
+      "signupProven": false,
+      "parentApprovalProven": false
+    },
+    {
+      "phase": "invitation-revoked",
+      "status": "passed",
+      "accountClaimsUnchanged": true,
+      "protectedRecordsUnchanged": true,
+      "systemShareProvenByThisCheckpoint": false,
+      "signupProven": false,
+      "parentApprovalProven": false
+    },
+    {
+      "phase": "signed-out",
+      "status": "passed",
+      "accountClaimsUnchanged": true,
+      "protectedRecordsUnchanged": true,
+      "systemShareProvenByThisCheckpoint": false,
+      "signupProven": false,
+      "parentApprovalProven": false
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "systemShareProvenByThisReport": false,
+  "signupProven": false,
+  "parentApprovalProven": false,
+  "sourceFiles": {
+    "scripts/qa/manual-child-invitation-phone-session.mjs": "5fb208045a0db1ad57b64defacb77257e791ab8703d9706cccaf5bb560f97937",
+    "scripts/qa/child-invitation-phone-checkpoints.mjs": "d4b3c0a8060d1f73f3f1c51d2ff6131c5330a6ecea5a064d4de23a2229a87975",
+    "scripts/qa/child-account-phone-fixture.mjs": "367c5916d399a5eb19e785c03f17b16e756e5f6d3c3a59e55b0fab3db2d7cfb2",
+    "scripts/qa/child-account-phone-runtime.mjs": "23e0fc2e9a3556a455931ecd091fc9d9ba22a94581d20fc8044deeedf087a16d",
+    "scripts/qa/start-child-account-phone.mjs": "a78e97e9d99747a948c825788a1ef660474fccfbc88ac2416488718ad4c6a44d"
+  }
+}

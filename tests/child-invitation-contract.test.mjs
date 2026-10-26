@@ -1,14 +1,81 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdtempSync, mkdirSync, cpSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
 import ts from 'typescript';
 import { parseDocument } from 'yaml';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
+import { invitationPhonePhases, verifyInvitationPhoneCheckpoint } from '../scripts/qa/child-invitation-phone-checkpoints.mjs';
+import { validateInvitationPhoneArtifacts } from '../scripts/qa/child-invitation-phone-evidence.mjs';
+import { childInvitationPhone } from '../partner-portal/child-invitation-phone.mjs';
 import { validateChildInvitationEvidence, validateChildInvitationReport } from '../scripts/qa/child-invitation-evidence.mjs';
 import { validateChildBindingReport } from '../scripts/qa/child-invitation-binding-evidence.mjs';
 import { validateChildInvitationBrowserEvidence, validateConnectedInvitationReport, validateInvitationBrowserReview } from '../scripts/qa/child-invitation-browser-evidence.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+test('physical invitation records and manual share review retain delivery, signup and public deployment gaps', () => {
+  validateInvitationPhoneArtifacts(fileURLToPath(new URL('..', import.meta.url)), childInvitationPhone);
+});
+test('even rehashed invitation receipts reject changed authority and broader delivery or signup claims', () => {
+  const root = fileURLToPath(new URL('..', import.meta.url)), temp = mkdtempSync(resolve(tmpdir(), 'sgm-invitation-evidence-'));
+  const folder = 'docs/release/evidence/child-invitation-phone-2026-10-26';
+  try {
+    cpSync(resolve(root, folder), resolve(temp, folder), { recursive: true });
+    const archive = resolve(temp, 'docs/release/evidence/source-archive'); mkdirSync(archive);
+    for (const file of ['session-results.json', 'fixture-ready.json']) {
+      const report = JSON.parse(readFileSync(resolve(root, folder, file)));
+      for (const hash of Object.values(report.sourceFiles))
+        cpSync(resolve(root, 'docs/release/evidence/source-archive', hash + '.txt'), resolve(archive, hash + '.txt'));
+    }
+    const changes = [['session-results.json', value => value.completed = false],
+      ['session-results.json', value => value.signupProven = true],
+      ['session-results.json', value => value.checkpoints[2].systemShareProvenByThisCheckpoint = true],
+      ['session-results.json', value => value.checkpoints[3].protectedRecordsUnchanged = false],
+      ['ui-review.json', value => value.externalDeliveryProven = true],
+      ['ui-review.json', value => value.publicLanding.childSignupAvailable = true],
+      ['ui-review.json', value => value.sharedTokenSha256 = '0'.repeat(64)],
+      ['invitation-records.json', value => value.observations[2].invitations[0].data.parentUserId = 'other'],
+      ['invitation-records.json', value => value.observations[4].invitations[0].data.status = 'pending']];
+    for (const [file, mutate] of changes) {
+      const original = readFileSync(resolve(root, folder, file)), value = JSON.parse(original);
+      mutate(value); const bytes = JSON.stringify(value); writeFileSync(resolve(temp, folder, file), bytes);
+      const manifest = JSON.parse(readFileSync(resolve(root, folder, 'artifact-sha256.json')));
+      manifest[file] = createHash('sha256').update(bytes).digest('hex');
+      writeFileSync(resolve(temp, folder, 'artifact-sha256.json'), JSON.stringify(manifest));
+      assert.throws(() => validateInvitationPhoneArtifacts(temp, childInvitationPhone));
+      writeFileSync(resolve(temp, folder, file), original);
+    }
+  } finally { rmSync(temp, { recursive: true, force: true }); }
+});
+test('phone invitation checkpoints preserve roles and records across real sharing and revocation', () => {
+  const fixture = { childId: 'child', childInstanceId: 'b'.repeat(64), parentUid: 'parent', clubId: 'club' };
+  const baseline = { documents: { users: [], childAccountInvitations: [], childAccountInvitationOwners: [] }, claims: [], liveData: null };
+  const ownerId = createHash('sha256').update(JSON.stringify([fixture.childId, fixture.childInstanceId])).digest('hex');
+  const createdAt = { seconds: 100, nanoseconds: 0 };
+  const pending = structuredClone(baseline);
+  pending.documents.childAccountInvitations.push({ id: 'a'.repeat(64), data: { ...fixture, parentUserId: fixture.parentUid,
+    ownerId, status: 'pending', createdAt, expiresAt: { seconds: 86500, nanoseconds: 0 } } });
+  delete pending.documents.childAccountInvitations[0].data.parentUid;
+  pending.documents.childAccountInvitationOwners.push({ id: ownerId, data: { invitationHash: 'a'.repeat(64), createdAt } });
+  const revoked = structuredClone(pending);
+  Object.assign(revoked.documents.childAccountInvitations[0].data, { status: 'revoked', revokedAt: { seconds: 101, nanoseconds: 0 } });
+  const states = [baseline, pending, pending, pending, revoked, revoked];
+  invitationPhonePhases.forEach((phase, index) => {
+    const result = verifyInvitationPhoneCheckpoint(phase, baseline, states[index], fixture, states[index - 1]);
+    assert.equal(result.status, 'passed'); assert.equal(result.systemShareProvenByThisCheckpoint, false);
+    assert.equal(result.signupProven, false); assert.equal(result.parentApprovalProven, false);
+  });
+  for (const mutate of [state => state.claims.push({ admin: true }), state => state.liveData = {},
+    state => state.documents.users.push({ id: 'unexpected' }), state => state.documents.childAccountInvitations[0].data.token = 'secret',
+    state => state.documents.childAccountInvitations[0].data.parentUserId = 'other',
+    state => state.documents.childAccountInvitations[0].data.expiresAt.seconds++]) {
+    const changed = structuredClone(pending); mutate(changed);
+    assert.throws(() => verifyInvitationPhoneCheckpoint('invitation-created', baseline, changed, fixture, baseline));
+  }
+  assert.throws(() => verifyInvitationPhoneCheckpoint('share-returned', baseline, revoked, fixture, pending));
+});
 const compiled = ts.transpileModule(read('admin/src/childInvitationLink.ts'), {
   compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
 }).outputText;

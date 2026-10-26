@@ -1,0 +1,210 @@
+{
+  "scope": "sanitized-independent-invitation-record-projections-not-ui-proof",
+  "observations": [
+    {
+      "phase": "parent-signed-in",
+      "recordedAt": "2026-10-26T19:55:30.053Z",
+      "sourceSnapshotSha256": "69563a381e980dd912bf2ec1fff93c08cf9567408277068f442cadcd15e99c2a",
+      "invitations": [],
+      "owners": []
+    },
+    {
+      "phase": "invitation-created",
+      "recordedAt": "2026-10-26T19:56:19.257Z",
+      "sourceSnapshotSha256": "c6e320f2db23c4cf7178b3638da4ca1a93dd85767210c01da8cec4fea2bcb4cd",
+      "invitations": [
+        {
+          "id": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+          "data": {
+            "parentUserId": "sgm-qa-parent",
+            "childId": "sgm-qa-child-lina",
+            "clubId": "sgm-qa-club-green-wavre",
+            "childInstanceId": "e5556976b2669283584414f8c46dd9b74673b110508a78c2a5716d29ea008ee0",
+            "ownerId": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+            "status": "pending",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            },
+            "expiresAt": {
+              "seconds": 1793130976,
+              "nanoseconds": 822000000
+            }
+          }
+        }
+      ],
+      "owners": [
+        {
+          "id": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+          "data": {
+            "invitationHash": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            }
+          }
+        }
+      ]
+    },
+    {
+      "phase": "share-opened",
+      "recordedAt": "2026-10-26T19:58:04.886Z",
+      "sourceSnapshotSha256": "f746e7aba557fe4ff28afc30ed8385e924c334fa1032a8c6396df1ab476f8d73",
+      "invitations": [
+        {
+          "id": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+          "data": {
+            "parentUserId": "sgm-qa-parent",
+            "childId": "sgm-qa-child-lina",
+            "clubId": "sgm-qa-club-green-wavre",
+            "childInstanceId": "e5556976b2669283584414f8c46dd9b74673b110508a78c2a5716d29ea008ee0",
+            "ownerId": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+            "status": "pending",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            },
+            "expiresAt": {
+              "seconds": 1793130976,
+              "nanoseconds": 822000000
+            }
+          }
+        }
+      ],
+      "owners": [
+        {
+          "id": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+          "data": {
+            "invitationHash": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            }
+          }
+        }
+      ]
+    },
+    {
+      "phase": "share-returned",
+      "recordedAt": "2026-10-26T19:58:58.335Z",
+      "sourceSnapshotSha256": "3176ea170ba74f4c0abe8ee724bfe74e2f069cd459113475ec70bf2566cb6b46",
+      "invitations": [
+        {
+          "id": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+          "data": {
+            "parentUserId": "sgm-qa-parent",
+            "childId": "sgm-qa-child-lina",
+            "clubId": "sgm-qa-club-green-wavre",
+            "childInstanceId": "e5556976b2669283584414f8c46dd9b74673b110508a78c2a5716d29ea008ee0",
+            "ownerId": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+            "status": "pending",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            },
+            "expiresAt": {
+              "seconds": 1793130976,
+              "nanoseconds": 822000000
+            }
+          }
+        }
+      ],
+      "owners": [
+        {
+          "id": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+          "data": {
+            "invitationHash": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            }
+          }
+        }
+      ]
+    },
+    {
+      "phase": "invitation-revoked",
+      "recordedAt": "2026-10-26T19:59:14.209Z",
+      "sourceSnapshotSha256": "826dad4d152e8e1e346e2acdc5ccb6eaa901859dd50c41eb115d463c8106b589",
+      "invitations": [
+        {
+          "id": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+          "data": {
+            "parentUserId": "sgm-qa-parent",
+            "childId": "sgm-qa-child-lina",
+            "clubId": "sgm-qa-club-green-wavre",
+            "childInstanceId": "e5556976b2669283584414f8c46dd9b74673b110508a78c2a5716d29ea008ee0",
+            "ownerId": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            },
+            "expiresAt": {
+              "seconds": 1793130976,
+              "nanoseconds": 822000000
+            },
+            "revokedAt": {
+              "seconds": 1793044751,
+              "nanoseconds": 369000000
+            },
+            "status": "revoked"
+          }
+        }
+      ],
+      "owners": [
+        {
+          "id": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+          "data": {
+            "invitationHash": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            }
+          }
+        }
+      ]
+    },
+    {
+      "phase": "signed-out",
+      "recordedAt": "2026-10-26T20:00:16.160Z",
+      "sourceSnapshotSha256": "bb9ccb9d674786c57a78b4d50b4db5a0e362d28aa4b01f71ff05d5ff9e37f162",
+      "invitations": [
+        {
+          "id": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+          "data": {
+            "parentUserId": "sgm-qa-parent",
+            "childId": "sgm-qa-child-lina",
+            "clubId": "sgm-qa-club-green-wavre",
+            "childInstanceId": "e5556976b2669283584414f8c46dd9b74673b110508a78c2a5716d29ea008ee0",
+            "ownerId": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            },
+            "expiresAt": {
+              "seconds": 1793130976,
+              "nanoseconds": 822000000
+            },
+            "revokedAt": {
+              "seconds": 1793044751,
+              "nanoseconds": 369000000
+            },
+            "status": "revoked"
+          }
+        }
+      ],
+      "owners": [
+        {
+          "id": "3f345901ebc4df5bb74bb57b635aeebe1b8b3187a3bf9acd113375a6e3f79eb8",
+          "data": {
+            "invitationHash": "194abc0824d3ad0556e37bd35d4f6046afcb75cd7fc930032a1ddb0af8b22ba3",
+            "createdAt": {
+              "seconds": 1793044576,
+              "nanoseconds": 822000000
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

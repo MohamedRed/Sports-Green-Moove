@@ -1,10 +1,12 @@
 import { childAccountPhoneProgress } from './child-account-phone-attempt.mjs';
 import { childAccountPhonePassProgress } from './child-account-phone-pass.mjs';
+import { childInvitationPhoneProgress } from './child-invitation-phone.mjs';
 const folder = 'docs/release/evidence/flow-check-recovery-2026-10-26/';
 export const childPhoneStartupAttempt = {
   source: folder + 'README.md', checksums: folder + 'artifact-sha256.json', checkedAt: '2026-10-26',
 };
 export const october26Progress = [
+  childInvitationPhoneProgress,
   childAccountPhonePassProgress,
   { date: '2026-10-26', title: 'Les contrôles automatiques passent',
     text: 'Le nouvel essai se termine sans échec. Les parcours complets sur téléphone restent à terminer.',

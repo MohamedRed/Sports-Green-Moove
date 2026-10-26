@@ -99,7 +99,7 @@ test('the partner gallery separates simulated child screens and uses the newly v
   const flow = content.flows.find((item) => item.id === 'child-emergency');
   assert.equal(flow.status, 'partial'); assert.equal(flow.phone, undefined);
   assert.match(flow.summary, /sur téléphone/); assert.match(flow.remaining, /accord du parent/);
-  assert.match(flow.remaining, /ouverture réelle du téléphone/); assert.equal(flow.images.length, 6);
+  assert.match(flow.remaining, /ouverture réelle du téléphone/); assert.equal(flow.images.length, 8);
   assert.equal(flow.images[0].file, 'child-approved-phone');
   const simulatedImages = flow.images.filter(item => item.file.startsWith('child-contact-'));
   assert.deepEqual(simulatedImages.map((item) => item.file), ['child-contact-narrow', 'child-contact-denied', 'child-contact-changed']);

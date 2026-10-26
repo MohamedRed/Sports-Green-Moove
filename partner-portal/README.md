@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The later 26 October physical invitation trial completes six independent record
+checkpoints. Manual system inspection verifies Android's real share sheet and the
+visible link token hash against the app-created invitation. Two reviewed original
+device exports show creation and revocation, never the secret-bearing share sheet.
+This does not prove recipient delivery, signup, parent approval or release. The
+public tokenless invitation URL still renders the older admin login. Preserve
+that deployment gap, earlier pairing/browser evidence and public access.
+
 The subsequent 26 October physical pairing run completes all six independent
 checkpoints plus manual sign-in, code creation, verified-parent approval, child
 return and sign-out. One reviewed original 960 x 2142 result export leads the

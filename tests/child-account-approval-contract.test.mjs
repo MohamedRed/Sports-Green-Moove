@@ -41,7 +41,7 @@ test('the production child contact entry has no dependency on the tracking permi
 test('the portal keeps the new local approval separate from older simulated child captures', () => {
   const flow = content.flows.find(row => row.id === 'child-emergency');
   assert.equal(flow.status, 'partial'); assert.deepEqual(flow.accountApproval, metadata);
-  assert.equal(flow.ui.checkedAt, '2026-10-19'); assert.equal(flow.images.length, 6);
+  assert.equal(flow.ui.checkedAt, '2026-10-19'); assert.equal(flow.images.length, 8);
   assert.equal(flow.images[0].file, 'child-approved-phone');
   assert.equal(flow.images.filter(image => image.alt.includes('19 octobre')).length, 3);
   assert.match(flow.remaining, /accord du parent/); assert.match(flow.remaining, /ouverture réelle du téléphone/);
