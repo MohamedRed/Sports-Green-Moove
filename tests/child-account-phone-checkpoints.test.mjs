@@ -7,6 +7,8 @@ import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { validateChildAccountPhoneAttempt } from '../scripts/qa/child-account-phone-evidence.mjs';
 import { childAccountPhoneAttempt } from '../partner-portal/child-account-phone-attempt.mjs';
+import { assertCompletedPairingReport, validateChildAccountPhonePass } from '../scripts/qa/child-account-phone-pass-evidence.mjs';
+import { childAccountPhonePass } from '../partner-portal/child-account-phone-pass.mjs';
 import { content } from '../partner-portal/content.mjs';
 import ts from 'typescript';
 import { childAccountPhonePhases, verifyChildAccountPhoneCheckpoint } from '../scripts/qa/child-account-phone-checkpoints.mjs';
@@ -94,6 +96,42 @@ test('the observer only reads after setup and cannot approve links or create cod
 });
 
 const root = fileURLToPath(new URL('..', import.meta.url));
+test('completed phone pairing retains separate UI, record, disposal and signup boundaries', () => {
+  validateChildAccountPhonePass(root, childAccountPhonePass);
+  const flow = content.flows.find(row => row.id === 'child-emergency');
+  assert.deepEqual(flow.phonePairing, childAccountPhonePass); assert.equal(flow.status, 'partial');
+  assert.equal(flow.images[0].file, 'child-approved-phone');
+  assert.match(flow.remaining, /partage du lien/); assert.match(flow.remaining, /sans localisation/);
+});
+test('missing phases, role changes and broader claims cannot become accepted phone evidence', () => {
+  const report = JSON.parse(readFileSync(resolve(root, 'docs/release/evidence/child-account-phone-pass-2026-10-26/session-results.json')));
+  for (const mutate of [value => value.completed = false, value => value.checkpoints.pop(),
+    value => value.checkpoints.reverse(), value => value.checkpoints[3].approved = false,
+    value => value.checkpoints[4].protectedRecordsUnchanged = false,
+    value => value.checkpoints[0].accountClaimsUnchanged = false,
+    value => value.signupProven = true, value => value.trackingProven = true,
+    value => value.physicalUiProvenByThisReport = true, value => value.productionWrites = true,
+    value => value.adminClientClosed = false]) {
+    const changed = structuredClone(report); mutate(changed);
+    assert.throws(() => assertCompletedPairingReport(changed));
+  }
+});
+test('the later successful gate remains tied to its original source and intentional skips', () => {
+  const folder = resolve(root, 'docs/release/evidence/flow-gate-pass-2026-10-26');
+  const read = name => JSON.parse(readFileSync(resolve(root, 'docs/release/evidence/flow-gate-pass-2026-10-26', name)));
+  for (const [file, hash] of Object.entries(read('artifact-sha256.json')))
+    assert.equal(createHash('sha256').update(readFileSync(resolve(folder, file))).digest('hex'), hash);
+  const pr = read('pr-checks.json');
+  assert.equal(pr.headRefOid, '1518a8bdf193e99d27921699fcdcf24544b1aa2c');
+  assert.equal(pr.statusCheckRollup.filter(row => row.conclusion === 'SUCCESS').length, 20);
+  assert.equal(pr.statusCheckRollup.filter(row => row.conclusion === 'SKIPPED').length, 5);
+  assert(pr.statusCheckRollup.every(row => row.status === 'COMPLETED'));
+  assert.deepEqual(read('native-suite-status.json'), { scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 0, componentEvidence: 0, localReplay: 0 });
+  const ordinary = read('ordinary-results.json');
+  assert.equal(ordinary.caseCount, 231); assert.equal(ordinary.passed, 177);
+  assert.equal(ordinary.skipped, 54); assert.equal(ordinary.failed, 0);
+});
 test('both incomplete phone attempts retain their three checkpoints, source archives and verified local disposal', () => {
   validateChildAccountPhoneAttempt(root, childAccountPhoneAttempt);
   const flow = content.flows.find(row => row.id === 'child-emergency');

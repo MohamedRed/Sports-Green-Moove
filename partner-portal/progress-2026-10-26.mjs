@@ -1,9 +1,14 @@
 import { childAccountPhoneProgress } from './child-account-phone-attempt.mjs';
+import { childAccountPhonePassProgress } from './child-account-phone-pass.mjs';
 const folder = 'docs/release/evidence/flow-check-recovery-2026-10-26/';
 export const childPhoneStartupAttempt = {
   source: folder + 'README.md', checksums: folder + 'artifact-sha256.json', checkedAt: '2026-10-26',
 };
 export const october26Progress = [
+  childAccountPhonePassProgress,
+  { date: '2026-10-26', title: 'Les contrôles automatiques passent',
+    text: 'Le nouvel essai se termine sans échec. Les parcours complets sur téléphone restent à terminer.',
+    flow: 'publication', source: 'docs/release/evidence/flow-gate-pass-2026-10-26/README.md' },
   { date: '2026-10-26', title: 'L’inscription enfant passe dans le navigateur',
     text: 'Un compte enfant est créé avec les données de test. Le partage et l’accord du parent restent à vérifier sur téléphone.',
     flow: 'child-emergency', source: 'docs/release/evidence/child-invitation-browser-2026-10-26/README.md' },

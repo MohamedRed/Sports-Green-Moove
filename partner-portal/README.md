@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The subsequent 26 October physical pairing run completes all six independent
+checkpoints plus manual sign-in, code creation, verified-parent approval, child
+return and sign-out. One reviewed original 960 x 2142 result export leads the
+child gallery. The login was fixture-provisioned: invitation sharing/signup,
+child ride/contact/dialer, tracking and release scope remain open. Preserve the
+earlier incomplete trials and public audience. The exact 1518a8b baseline also
+passes all 20 enabled checks, five intentional skips and all three native suite
+exits. This later success neither repairs nor erases the earlier copy failures.
+
 The later 26 October connected-browser trial uses the real public component and
 its default client gateway against isolated services. Original observations show
 three users before and after mismatched confirmation, then four users and one

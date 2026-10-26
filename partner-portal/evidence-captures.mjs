@@ -3,8 +3,10 @@ import {trackingAttemptCaptures} from './tracking-phone-attempt.mjs';
 import {trackingClockCaptures} from './tracking-clock-replay.mjs';
 import {trackingNetworkCaptures} from './tracking-network-phone.mjs';
 import {childAccountPhoneCaptures} from './child-account-phone-attempt.mjs';
+import {childAccountPhonePassCaptures} from './child-account-phone-pass.mjs';
 
 export const captures = {
+  ...childAccountPhonePassCaptures,
   ...childAccountPhoneCaptures,
   ...tripConsentPhoneCaptures,
   ...trackingAttemptCaptures,

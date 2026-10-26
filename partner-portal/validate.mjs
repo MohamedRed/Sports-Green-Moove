@@ -7,6 +7,7 @@ import { validateChildDiscoveryCiFailure } from '../scripts/qa/child-contact-dis
 import { validateChildDiscoveryUiEvidence } from '../scripts/qa/child-contact-discovery-ui-evidence.mjs';
 import { validateChildAccountApprovalEvidence } from '../scripts/qa/child-account-approval-evidence.mjs';
 import { validateChildAccountPhoneAttempt } from '../scripts/qa/child-account-phone-evidence.mjs';
+import { validateChildAccountPhonePass } from '../scripts/qa/child-account-phone-pass-evidence.mjs';
 import { validateFlowCheckRecoveryEvidence } from '../scripts/qa/flow-check-recovery-evidence.mjs';
 import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retained-evidence.mjs';
 import {validateTrackingClockReplay} from '../scripts/qa/tracking-clock-replay-evidence.mjs';
@@ -134,6 +135,7 @@ export function validate(root) {
     }
     if (f.id === 'child-emergency') {
       assert.equal(f.status, 'partial'); validateChildAccountPhoneAttempt(root, f.phoneAttempt);
+      validateChildAccountPhonePass(root, f.phonePairing);
       validateFlowCheckRecoveryEvidence(root, f.phoneStartup);
       assert.equal(f.contactDiscovery.source, 'docs/release/evidence/child-contact-discovery-2026-10-26/results.json');
       validateChildDiscoveryEvidence(root);
