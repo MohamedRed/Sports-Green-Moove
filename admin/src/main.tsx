@@ -10,6 +10,15 @@ const root = createRoot(document.getElementById("root") as HTMLElement);
 renderRoute(window.location.pathname);
 
 async function renderRoute(pathname: string) {
+  if (pathname === "/child-invitation" || pathname === "/child-invitation/") {
+    document.documentElement.lang = "fr";
+    document.title = "Compte enfant | Sports Green-Moove";
+    const { takeChildInvitationToken } = await import("./childInvitationLink");
+    const token = takeChildInvitationToken(window.location, window.history);
+    const { ChildInvitationPage } = await import("./ChildInvitationPage");
+    root.render(<StrictMode><ChildInvitationPage token={token} /></StrictMode>);
+    return;
+  }
   if (isPublicPrivacyRoute(pathname)) {
     const { PrivacyPolicyPage } = await import("./PrivacyPolicyPage");
     root.render(

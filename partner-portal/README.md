@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The 26 October child-invitation candidate passes eighteen isolated service groups,
+eleven focused backend units, ten Android state cases and 207 rules cases. Its
+three new connected components are compiled only. The web component review uses
+a fake submit handler, not real account creation. Keep the existing phone media,
+public access and partial status. No app/backend/landing-page deployment or new
+gallery evidence is accepted. The prior 4454cc1 people/safety job was cancelled
+while downloading packages before user flows; preserve that incomplete gate.
+The subsequent binding/role fault trials expose two failures in that unshipped
+candidate. Keep both negative reports. The repaired replay passes eighteen groups,
+sixteen focused backend units, six additional Android Auth wire cases and 208
+rules cases. It does not accept real sharing, signup on a phone or new media.
+
 The f06c61d instrumented run passes all enabled checks, all three native suite
 exit statuses, 174 ordinary cases and four observer contract cases, with 54
 intentional skips. Six primary calls return once each in 126-432 ms. This does

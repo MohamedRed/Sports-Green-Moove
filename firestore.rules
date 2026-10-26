@@ -39,6 +39,7 @@ service cloud.firestore {
     function userProtectedFields() {
       return [
         'roles',
+        'childInvitationHash',
         'verified',
         'driverVerified',
         'stripeAccountId',
@@ -64,14 +65,23 @@ service cloud.firestore {
     match /childAccountApprovalRequests/{codeHash} {
       allow read, write: if false;
     }
+    match /childAccountInvitations/{invitationHash} {
+      allow read, write: if false;
+    }
+    match /childAccountInvitationOwners/{ownerId} {
+      allow read, write: if false;
+    }
+    match /childAccountInvitationAccounts/{accountUserId} {
+      allow read, write: if false;
+    }
 
     match /users/{userId} {
       allow read: if isSelf(userId) || isAdmin();
       allow create: if isSelf(userId) && !hasAnyKey(userProtectedFields());
-      allow update: if isAdmin() || (
+      allow update: if !request.resource.data.diff(resource.data).affectedKeys().hasAny(['childInvitationHash']) && (isAdmin() || (
         isSelf(userId) &&
         !request.resource.data.diff(resource.data).affectedKeys().hasAny(userProtectedFields())
-      );
+      ));
       allow delete: if isAdmin();
     }
 

@@ -16,7 +16,10 @@ import kotlinx.coroutines.launch
 internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: EmergencyContactGateway,
     guardians: GuardianVerificationGateway, onBack: () -> Unit,
     launchDialer: ((PersonalEmergencyContact) -> EmergencyDialerResult)? = null, rideSessionId: String? = null,
-    accountLinks: ChildAccountLinkGateway = UnconfiguredChildAccountLinkGateway()) {
+    accountLinks: ChildAccountLinkGateway = UnconfiguredChildAccountLinkGateway(),
+    invitations: ChildInvitationGateway = UnconfiguredChildInvitationGateway()) {
+    var invitationTarget by remember(uid, roles, gateway) { mutableStateOf<ChildAccountLinkTarget?>(null) }
+    invitationTarget?.let { target -> ChildInvitationDialog(uid, target, invitations, { invitationTarget = null }) }
     var linkAccount by remember(uid, roles, gateway) { mutableStateOf(false) }
     var linkTarget by remember(uid, roles, gateway) { mutableStateOf<ChildAccountLinkTarget?>(null) }
     if (linkAccount) ChildAccountLinkDialog(uid, accountLinks, linkTarget) { linkAccount = false; linkTarget = null }
@@ -75,6 +78,10 @@ internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: Em
                 linkTarget = ChildAccountLinkTarget(target.childId, target.clubId, view.childInstanceId, requireNotNull(view.childName))
                 linkAccount = true
             }
+        }, onInviteChild = { view ->
+            val target = view.target as? EmergencyContactTarget.Child
+            if (parent && target != null && view.childInstanceId != null)
+                invitationTarget = ChildAccountLinkTarget(target.childId, target.clubId, view.childInstanceId, requireNotNull(view.childName))
         })
     if (picker) EmergencyChildDialog(children, selectionBusy = state.busy,
         onChoose = { item -> select(EmergencyContactTarget.Child(item.childId, item.clubId)) },

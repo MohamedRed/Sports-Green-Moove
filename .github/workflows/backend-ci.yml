@@ -133,6 +133,10 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-account-approval.json
         run: npm run test:child-account-approval && node --test tests/child-account-approval-contract.test.mjs tests/child-contact-discovery.test.mjs
+      - name: Test parent-shared child invitations without adult-role signup
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-invitation.json
+        run: npm run test:child-invitation && node --test tests/child-invitation-contract.test.mjs
       - name: Retain child account approval results and disposal
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
@@ -140,6 +144,13 @@ jobs:
           name: child-account-approval-results
           path: ${{ runner.temp }}/child-account-approval.json*
           if-no-files-found: ignore
+      - name: Retain child invitation results and disposal
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: child-invitation-results
+          path: ${{ runner.temp }}/child-invitation.json*
+          if-no-files-found: error
       - name: Retain child emergency service results and disposal
         if: ${{ always() }}
         uses: actions/upload-artifact@v7

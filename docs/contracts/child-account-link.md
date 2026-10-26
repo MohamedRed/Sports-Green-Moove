@@ -9,10 +9,57 @@ their manager role alone cannot approve a login link.
 The verified parent also initiates account creation by sending an invitation
 (owner decision, 26 October). The parent shares an invitation link from their
 phone; the app does not send an automatic email (owner decision, 26 October).
-Invitation creation, sharing and acceptance are
-not implemented by the existing-code pairing protocol below. That protocol links
-an already provisioned login and does not replace this invitation-first signup
-requirement or the separate parent approval of the link.
+The invitation-first candidate below creates a child login; the separate pairing
+protocol then links that login to its profile after explicit parent approval.
+
+## Invitation-First Signup Candidate
+
+- The currently verified parent selects an immutable child profile and creates
+  a private HTTPS link. A random 256-bit secret is in the URL fragment, not the
+  query string. Only its SHA-256 fingerprint is stored. Unclaimed links expire
+  after 24 hours. Replacement has a one-minute cooldown and invalidates the old
+  unclaimed link. A pending invitation can be revoked, but a claimed signup is
+  not treated as an unused invitation or automatically deleted.
+- The child supplies email and a password of 12-128 characters on the separate
+  public signup page. All client-selected account IDs, parent IDs and roles are
+  rejected. The same transaction pins the invitation to a new reserved account
+  and the original credentials. An HMAC request fingerprint uses the unstored
+  link secret as its key; raw passwords and link secrets are never persisted.
+- A disabled login is created first. Only child claims and the child profile are
+  written before enabling sign-in. No parent, driver, manager or admin role is
+  temporarily granted. An existing email/account is not adopted, changed or reset.
+  A definitive pre-creation email/password rejection releases that reservation.
+- A lost response or interrupted disabled-account setup is resumed explicitly
+  from the original shared link with the same credentials and reserved identity,
+  including after initial-claim expiry. No password is overwritten. Requests are
+  limited to five per minute per invitation; changed credentials cannot rebind it.
+  Current parent/guardian/membership/profile authority is rechecked throughout.
+- Creation does not approve the account/profile link. The existing code/approval
+  step remains separate and is pinned to the invited child identity and club.
+  Claim, immutable profile, private origin and approval-request fingerprints must
+  agree with the accepted invitation. Missing data is not interpreted as an
+  unmarked pre-invitation account. Direct clients cannot rewrite the profile marker.
+- Android validates the returned origin, fragment, fingerprint, expiry and child
+  identity. The link stays in memory and is cleared on background/account disposal.
+  An explicit share action opens the system chooser. Status refresh never
+  reconstructs a secret. A late response cannot restore a previous account's link.
+- The web page removes the fragment from browser history and uses a separate
+  in-memory Auth instance, not the manager's persisted session. The child later
+  signs in normally in the app; opening the app does not replace an existing session.
+
+Eighteen isolated service groups, eleven focused backend units, ten native state
+cases and the rules suite passed. Three native component methods compile but
+have not run in the retained preparation record. Web rendering used a fake submit
+handler. The complete real-phone share/signup/approval journey and iOS remain
+open. Neither the new backend nor signup page is deployed; configuration of the
+primary Firebase host does not publish the route or isolated fixtures there.
+Evidence: `../release/evidence/child-invitation-2026-10-26/`.
+
+The later binding/role fault replay retains two original failures and the repaired
+eighteen-group result in `binding-recheck/`. Missing child role claims now fail
+before ordinary-user defaults can run, on both the server and Android response
+parsing. Sixteen focused backend units, six extra Android Auth wire cases and 208
+rules cases pass. This does not replace missing connected or physical evidence.
 
 ## Implemented Protocol
 
@@ -55,7 +102,7 @@ Four additional Android UI cases are prepared for the existing complete matrix:
 two assert that location is actually denied and two exercise the pairing dialogs.
 Compilation is not proof that these cases ran or that a dialer opened.
 
-This does not provision child accounts, grant child roles, supply credentials,
+The pairing protocol alone does not provision child accounts, grant child roles, supply credentials,
 resolve normal child trip discovery, add parent link-revocation management, or
 rewrite live-stream identities. Those workflows and iOS integration remain open.
 No production deployment, physical-device result or store-review acceptance is

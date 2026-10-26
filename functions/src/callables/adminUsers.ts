@@ -14,6 +14,7 @@ import type { UserRole } from "../domain/types.js";
 import { auth, firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth } from "../lib/https.js";
 import { parseCallableData } from "../lib/validation.js";
+import { assertInitializedChildRoleIntegrity } from "../domain/initializedChildRoles.js";
 
 const roleMapSchema = z.object({
   admin: z.boolean().optional(),
@@ -41,6 +42,9 @@ export const initializeUserProfile = onCall(async (request) => {
   const data = parseCallableData(initializeUserProfileSchema, request.data ?? {});
   const user = await auth.getUser(uid);
   const currentClaims = user.customClaims ?? {};
+  const profileRef = firestore.collection("users").doc(uid);
+  const profile = await profileRef.get();
+  assertInitializedChildRoleIntegrity(currentClaims, profile.data());
   const roleKeys = defaultRoleKeysForClaims(currentClaims);
   const rawRoleKeys = currentClaims.roleKeys;
   const hasLegacyClaims = "roles" in currentClaims || USER_ROLES.some((role) => role in currentClaims);
@@ -53,8 +57,6 @@ export const initializeUserProfile = onCall(async (request) => {
     await auth.setCustomUserClaims(uid, initializedRoleClaims(currentClaims));
   }
 
-  const profileRef = firestore.collection("users").doc(uid);
-  const profile = await profileRef.get();
   const now = Timestamp.now();
   const profileData: Record<string, unknown> = {
     email: user.email ?? request.auth?.token.email ?? null,

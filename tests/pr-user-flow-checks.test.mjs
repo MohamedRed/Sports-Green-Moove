@@ -13,7 +13,7 @@ assert.deepEqual(reports.map(report => report.with.name).sort(), [
   'team-club-identity-results', 'trip-history-results', 'booking-recovery-results',
   'booking-display-results', 'booking-consistency-results', 'trip-contention-results',
   'web-booking-notices', 'ledger-history-services', 'search-booking-notice-services',
-  'child-contact-discovery-results',
+  'child-contact-discovery-results', 'child-invitation-results',
 ].sort());
 for (const job of jobs) {
   const firstReport = job.steps.findIndex(step => step.uses?.startsWith("actions/upload-artifact@"));

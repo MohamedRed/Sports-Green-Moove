@@ -4,9 +4,7 @@ import android.content.Context
 import android.util.Log
 import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.R
-import be.sportgreenmoove.app.data.AppRole
 import be.sportgreenmoove.app.data.AuthSession
-import be.sportgreenmoove.app.data.appRoleFromClaim
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -15,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.CancellationException
 
 data class AndroidProviderSet(
     val auth: AuthGateway,
@@ -30,6 +29,7 @@ data class AndroidProviderSet(
     val rides: RideObservationGateway = UnconfiguredRideObservationGateway(),
     val profileCity: ProfileCityGateway = UnconfiguredProfileCityGateway(),
     val childAccountLinks: ChildAccountLinkGateway = UnconfiguredChildAccountLinkGateway(),
+    val childInvitations: ChildInvitationGateway = UnconfiguredChildInvitationGateway(),
 ) {
     val isConfigured: Boolean = auth.isConfigured && firebase.isConfigured
 }
@@ -63,6 +63,7 @@ object AndroidRuntime {
                 emergencyContacts = FirebaseAndroidEmergencyContactGateway(),
                 profileCity = FirebaseAndroidProfileCityGateway(),
                 childAccountLinks = FirebaseAndroidChildAccountLinkGateway(),
+                childInvitations = FirebaseAndroidChildInvitationGateway(),
                 rides = FirebaseAndroidRideObservationGateway(liveDatabase()),
                 googleAuth = FirebaseAndroidGoogleSocialAuthGateway(context.applicationContext),
                 facebookAuth = FirebaseAndroidFacebookSocialAuthGateway(context.applicationContext),
@@ -132,20 +133,16 @@ private class FirebaseAndroidAuthGateway(private val context: Context) : AuthGat
         }.getOrThrow()
         if (BuildConfig.DEBUG) Log.d("SGM.FirebaseEmulator", "initializeUserProfile succeeded for ${user.uid}")
         val profile = result.data as? Map<*, *>
+        if (auth.currentUser?.uid != user.uid) throw CancellationException("Account changed during profile initialization")
+        val roles = InitializedAuthProfileWire.roles(user.uid, profile)
         user.getIdToken(true).await()
+        if (auth.currentUser?.uid != user.uid) throw CancellationException("Account changed during profile initialization")
         return AuthSession(
             uid = user.uid,
             email = profile?.get("email") as? String ?: user.email,
             displayName = profile?.get("displayName") as? String ?: displayName ?: user.displayName,
-            roles = profileRoles(profile),
+            roles = roles,
         )
     }
 
-    private fun profileRoles(profile: Map<*, *>?): Set<AppRole> =
-        (profile?.get("roleKeys") as? List<*>)
-            ?.mapNotNull { it as? String }
-            ?.mapNotNull(::appRoleFromClaim)
-            ?.toSet()
-            ?.takeIf { it.isNotEmpty() }
-            ?: setOf(AppRole.Parent)
 }

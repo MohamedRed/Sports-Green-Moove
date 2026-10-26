@@ -15,7 +15,8 @@ import be.sportgreenmoove.app.design.SgmType
 @Composable
 internal fun EmergencyContactScreen(state: EmergencyContactState, canChooseChildren: Boolean, onBack: () -> Unit,
     onRefresh: () -> Unit, onSelf: () -> Unit, onChildren: () -> Unit, onSave: () -> Unit,
-    onRemove: (EmergencyContactView) -> Unit, onDial: () -> Unit, onLinkAccount: ((EmergencyContactView) -> Unit)? = null) {
+    onRemove: (EmergencyContactView) -> Unit, onDial: () -> Unit, onLinkAccount: ((EmergencyContactView) -> Unit)? = null,
+    onInviteChild: ((EmergencyContactView) -> Unit)? = null) {
     V2Screen(testTag = "emergency.screen") {
         V2TopBar("CONTACT D’URGENCE", onBack = onBack, titleLines = 2, trailing = {
             EmergencyRefreshButton(state.busy, onRefresh)
@@ -32,6 +33,8 @@ internal fun EmergencyContactScreen(state: EmergencyContactState, canChooseChild
                 view.clubName?.let { Text(it, color = Sgm.colors.textSecondary) }
                 if (canChooseChildren && view.target is EmergencyContactTarget.Child && onLinkAccount != null)
                     EmergencyContactButton("Lier le compte de cet enfant", "emergency.link-account", !state.busy, { onLinkAccount(view) })
+                if (canChooseChildren && view.target is EmergencyContactTarget.Child && onInviteChild != null)
+                    EmergencyContactButton("Inviter cet enfant", "emergency.invite-child", !state.busy, { onInviteChild(view) })
                 if (view.contact == null) Text("Aucun contact enregistré.", color = Sgm.colors.textSecondary,
                     modifier = Modifier.testTag("emergency.empty"))
                 OutlinedTextField(state.name, state::editName, enabled = !state.busy, label = { Text("Nom du contact") },

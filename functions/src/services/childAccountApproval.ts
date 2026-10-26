@@ -7,6 +7,7 @@ import { childAccountCodeHash, childAccountCodeLifetimeMs, childAccountCodeCoold
 import { firestore } from "../lib/firebase.js";
 import { hasRole, requireRole } from "../lib/https.js";
 import { requireEmergencyContactAuthority } from "./emergencyContactAuthority.js";
+import { readChildInvitationBinding } from "./childInvitationBinding.js";
 
 function childRoles(value: unknown) {
   if (!value || typeof value !== "object") return false;
@@ -23,6 +24,9 @@ export async function createChildAccountApprovalCode(uid: string, token: unknown
     const [user, link, owner] = await transaction.getAll(firestore.collection("users").doc(uid),
       firestore.collection("childAccountLinks").doc(uid), ownerRef);
     if (!childRoles(user.get("roles"))) throw denied();
+    const marker = token && typeof token === "object" ? (token as { childInvitationHash?: unknown }).childInvitationHash : undefined;
+    const binding = await readChildInvitationBinding(transaction, uid, user.get("childInvitationHash"), marker);
+    if (binding && marker !== binding.invitationHash) throw denied();
     if (link.exists) throw new HttpsError("failed-precondition", "This account already has a link requiring review.");
     const now = Timestamp.now(), previous = owner.get("createdAt"), previousHash: unknown = owner.get("codeHash");
     if (previous instanceof Timestamp && now.toMillis() - previous.toMillis() < childAccountCodeCooldownMs)
@@ -33,7 +37,7 @@ export async function createChildAccountApprovalCode(uid: string, token: unknown
     if (typeof previousHash === "string") transaction.delete(firestore.collection("childAccountApprovalRequests").doc(previousHash));
     transaction.set(ownerRef, { accountUserId: uid, codeHash: hash, createdAt: now });
     transaction.create(firestore.collection("childAccountApprovalRequests").doc(hash), {
-      accountUserId: uid, createdAt: now, expiresAt, status: "pending",
+      accountUserId: uid, createdAt: now, expiresAt, status: "pending", ...(binding ? { invitationHash: binding.invitationHash } : {}),
     });
     return { accountUserId: uid, code, expiresAtMillis: expiresAt.toMillis() };
   });
@@ -59,6 +63,9 @@ export async function approveChildAccount(uid: string, token: unknown, input: Ch
     const linkRef = firestore.collection("childAccountLinks").doc(accountId);
     const [childAccount, owner, link] = await transaction.getAll(firestore.collection("users").doc(accountId),
       firestore.collection("childAccountApprovalOwners").doc(accountId), linkRef);
+    const binding = await readChildInvitationBinding(transaction, accountId, childAccount.get("childInvitationHash"), request.get("invitationHash"));
+    if (binding && (request.get("invitationHash") !== binding.invitationHash || binding.childId !== input.childId ||
+      binding.clubId !== input.clubId || binding.childInstanceId !== identity.childInstanceId)) throw denied();
     if (!childRoles(childAccount.get("roles")) || owner.get("codeHash") !== hash || owner.get("accountUserId") !== accountId)
       throw denied();
     if (request.get("status") === "approved") {

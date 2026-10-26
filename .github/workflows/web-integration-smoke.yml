@@ -122,6 +122,7 @@ on:
       - "tests/emergency-contact-contract.test.mjs"
       - "tests/child-emergency-contract.test.mjs"
       - "tests/child-account-approval-contract.test.mjs"
+      - "tests/child-invitation-contract.test.mjs"
       - "tests/child-contact-discovery.test.mjs"
       - "tests/child-account-phone-checkpoints.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyRideAccess.kt"
@@ -574,6 +575,7 @@ on:
       - "tests/emergency-contact-contract.test.mjs"
       - "tests/child-emergency-contract.test.mjs"
       - "tests/child-account-approval-contract.test.mjs"
+      - "tests/child-invitation-contract.test.mjs"
       - "tests/child-contact-discovery.test.mjs"
       - "tests/child-account-phone-checkpoints.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyRideAccess.kt"
@@ -1378,6 +1380,10 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-contact-discovery.json
         run: npm run test:child-account-approval && node --test tests/child-contact-discovery.test.mjs
+      - name: Test parent-shared child invitations without adult-role signup
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-invitation.json
+        run: npm run test:child-invitation && node --test tests/child-invitation-contract.test.mjs
 
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
@@ -1424,6 +1430,13 @@ jobs:
         with:
           name: child-contact-discovery-results
           path: ${{ runner.temp }}/child-contact-discovery.json*
+          if-no-files-found: error
+      - name: Retain child invitation results and disposal
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: child-invitation-results
+          path: ${{ runner.temp }}/child-invitation.json*
           if-no-files-found: error
 
   integration-gate:

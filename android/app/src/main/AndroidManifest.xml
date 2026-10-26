@@ -41,6 +41,12 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="sports-green-moove" android:host="payments" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sports-green-moove" android:host="account" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
