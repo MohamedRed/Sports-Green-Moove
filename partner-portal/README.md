@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The subsequent 8b53925 isolated session-disconnect job fails while installing its
+system image, before emulator launch or app assertions. Compilation passed, but
+the package installer rejects the archive; the archive bytes are unavailable and
+its precise cause is unproven. Retain original job metadata and a strictly selected
+timestamped excerpt. This is not a product regression or a cleanup pass. Preserve
+the successful raw-draft phone captures and public audience; publish no new media
+or completed schedule-phone result. Other running jobs keep their own outcomes.
+
 The latest 26 October physical draft trial preserves the exact unfinished price
 and both unconfirmed address fields across Android Force stop and a new process,
 while a second booked trip stays clean. Nine independent record checkpoints pass.

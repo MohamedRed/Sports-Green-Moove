@@ -3,6 +3,14 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import YAML from 'yaml';
 import { createHash } from 'node:crypto';
+import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation-evidence.mjs';
+
+test('failed system-image preparation cannot be accepted as a session-disconnect UI or cleanup pass', () => {
+  const result = validateSdkImagePreparation(new URL('..', import.meta.url).pathname);
+  assert.equal(result.compilationPassed, true);
+  for (const key of ['preparationPassed', 'flowAssertionsAccepted', 'emulatorLaunchObserved',
+    'archiveBytesRetained', 'downloadFailureRootCauseEstablished', 'releaseAccepted']) assert.equal(result[key], false);
+});
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 test('the full screenshot gate selects a supported rendering mode without weakening captures or collection', () => {

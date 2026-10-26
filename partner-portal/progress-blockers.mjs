@@ -6,7 +6,7 @@ export const blockers = [
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',
     source: 'docs/release/evidence/native-socket-probe-2026-10-25/README.md'},
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
-    text: 'Le dernier essai complet passe. Les coupures intermittentes des captures restent à expliquer.',
+    text: 'Des coupures intermittentes pendant la copie des captures restent à expliquer.',
     next: 'Stabiliser la récupération des images, puis relancer la vérification complète.', source: 'docs/release/evidence/native-renderer-recheck-2026-10-25/README.md',
     checksums: 'docs/release/evidence/native-renderer-recheck-2026-10-25/artifact-sha256.json' },
   { id: 'support-urgent-email', title: 'Activer les e-mails du support',

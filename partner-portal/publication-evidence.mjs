@@ -3,9 +3,11 @@ import { validateCaptureCallbackInvestigation } from '../scripts/qa/capture-call
 import { validateCaptureRuntimeEvidence, captureRuntimeFolder } from '../scripts/qa/capture-runtime-evidence.mjs';
 import { validateTripDraftPhone } from '../scripts/qa/trip-draft-phone-evidence.mjs';
 import { validateFlowGate398 } from '../scripts/qa/flow-gate-398-evidence.mjs';
+import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation-evidence.mjs';
 
 export function validatePublicationEvidence(root, flow) {
   validateFlowGate398(root);
+  validateSdkImagePreparation(root);
   assert.equal(flow.id, 'publication'); assert.equal(flow.status, 'partial');
   assert.equal(flow.captureInvestigation.source, 'docs/release/evidence/capture-callback-investigation-2026-10-26/README.md');
   validateCaptureCallbackInvestigation(root);
