@@ -23,6 +23,7 @@ class ChildAccountLinkFlowTest {
         compose.onNodeWithTag("child-link.approve").assertDoesNotExist()
         compose.onNodeWithTag("child-link.create").performClick()
         waitFor("child-link.code"); assertEquals(1, gateway.creations); assertEquals(0, gateway.approvals)
+        compose.onNodeWithTag("child-link.create").assertIsNotEnabled()
         compose.waitForIdle(); captureChildAccountWindow("child-account-code-window.png")
     }
     @Test fun theParentSeesTheSelectedChildAndApprovesAnExplicitCodeOnASmallScreen() {

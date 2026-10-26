@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
+import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.services.*
 import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.delay
@@ -35,7 +36,9 @@ internal fun ChildAccountLinkDialog(uid: String, gateway: ChildAccountLinkGatewa
         }
     }
     LaunchedEffect(state.code) { state.code?.let { delay((it.expiresAtMillis - System.currentTimeMillis()).coerceAtLeast(0)); state.expireCode() } }
-    AlertDialog(onDismissRequest = onClose, title = { Text("Lier le compte enfant") }, text = {
+    AlertDialog(onDismissRequest = onClose, containerColor = Sgm.colors.bgCard,
+        titleContentColor = Sgm.colors.textPrimary, textContentColor = Sgm.colors.textPrimary,
+        title = { Text("Lier le compte enfant") }, text = {
         Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             target?.let { Text(it.childName) }
             if (state.busy) Text("Chargement...")
@@ -46,17 +49,22 @@ internal fun ChildAccountLinkDialog(uid: String, gateway: ChildAccountLinkGatewa
                     SelectionContainer { Text(code.code.chunked(8).joinToString("\n"), modifier = Modifier.testTag("child-link.code")) }
                     Text("Valable 10 minutes.")
                 }
-                OutlinedButton(onClick = { scope.launch { state.create() } }, enabled = !state.busy,
+                OutlinedButton(onClick = { scope.launch { state.create() } }, enabled = !state.busy && state.code == null,
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Sgm.colors.textPrimary),
                     modifier = Modifier.fillMaxWidth().testTag("child-link.create")) { Text("Créer un code") }
             } else {
                 OutlinedTextField(state.input, state::edit, label = { Text("Code du compte enfant") },
                     enabled = !state.busy, singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Ascii, imeAction = ImeAction.Done, autoCorrectEnabled = false),
                     keyboardActions = KeyboardActions(onDone = { focus.clearFocus() }),
+                    colors = OutlinedTextFieldDefaults.colors(focusedLabelColor = Sgm.colors.textPrimary,
+                        focusedBorderColor = Sgm.colors.textPrimary, cursorColor = Sgm.colors.textPrimary,
+                        unfocusedLabelColor = Sgm.colors.textSecondary),
                     modifier = Modifier.fillMaxWidth().testTag("child-link.input"))
                 OutlinedButton(onClick = { scope.launch { state.approve() } }, enabled = state.canApprove,
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Sgm.colors.textPrimary),
                     modifier = Modifier.fillMaxWidth().testTag("child-link.approve")) { Text("Autoriser la liaison") }
             }
         }
-    }, confirmButton = { TextButton(onClick = onClose) { Text("Fermer") } })
+    }, confirmButton = { TextButton(onClick = onClose) { Text("Fermer", color = Sgm.colors.textPrimary) } })
 }

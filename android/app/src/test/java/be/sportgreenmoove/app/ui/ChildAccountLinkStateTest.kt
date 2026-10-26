@@ -63,6 +63,11 @@ class ChildAccountLinkStateTest {
         var time = 100L; val state = ChildAccountLinkState("child", null, LinkFixture()) { time }
         state.create(); assertNotNull(state.code); time = 200; state.expireCode(); assertNull(state.code)
     }
+    @Test fun anotherTapCannotEraseOrReplaceAVisibleUnexpiredCode() = runTest {
+        val gateway = LinkFixture(); val state = ChildAccountLinkState("child", null, gateway) { 100 }
+        state.create(); state.create()
+        assertEquals(1, gateway.creations); assertEquals(gateway.code, state.code); assertNull(state.error)
+    }
     @Test fun networkFailureNeedsAnExplicitParentRetryAndNeverShowsSuccess() = runTest {
         val gateway = LinkFixture(); gateway.fail = true
         val state = ChildAccountLinkState("parent", target, gateway); state.edit("a".repeat(32)); state.approve()

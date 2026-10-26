@@ -44,3 +44,10 @@ test('the portal keeps the new local approval separate from older simulated chil
   assert.equal(flow.ui.checkedAt, '2026-10-19'); assert.equal(flow.images.length, 3);
   assert.match(flow.remaining, /connexion de l’enfant/); assert.match(flow.remaining, /ouverture réelle du téléphone/);
 });
+test('the new dialog uses the existing emergency palette for surfaces, labels and interactive text', () => {
+  const dialog = read('android/app/src/main/java/be/sportgreenmoove/app/ui/ChildAccountLinkDialog.kt');
+  for (const fragment of ['containerColor = Sgm.colors.bgCard', 'titleContentColor = Sgm.colors.textPrimary',
+    'textContentColor = Sgm.colors.textPrimary', 'focusedLabelColor = Sgm.colors.textPrimary',
+    'focusedBorderColor = Sgm.colors.textPrimary', 'Text("Fermer", color = Sgm.colors.textPrimary)']) assert(dialog.includes(fragment));
+  assert.equal((dialog.match(/outlinedButtonColors\(contentColor = Sgm.colors.textPrimary\)/g) || []).length, 2);
+});

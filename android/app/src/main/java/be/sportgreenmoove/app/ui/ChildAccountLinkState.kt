@@ -23,7 +23,7 @@ internal class ChildAccountLinkState(private val uid: String, private val target
     fun close() { leaveForeground(); closed = true }
     fun expireCode() { if (code?.let { it.expiresAtMillis <= now() } == true) code = null }
     suspend fun create() {
-        if (closed || target != null || busy) return
+        if (closed || target != null || busy || code != null) return
         val ticket = ++generation; busy = true; code = null; error = null
         try {
             val value = gateway.createCode(uid)
