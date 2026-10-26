@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The 26 October child-account phone trial retains two incomplete disposable
+attempts, each with three independent checkpoints: child sign-in, app-created
+code and parent review. Neither proves final approval, child return, sign-out,
+signup, denied-location contact or GPS. Two reviewed code-free viewport device
+rectangles lead the gallery; the three older simulated captures keep their dates.
+Remote text-entry/navigation problems are not a confirmed application defect.
+Both observers and owned environments/helpers closed. Phone session stop is
+verified, but independent package absence is not. Preserve partial status and
+the public audience. Do not publish real pairing codes or inspector output.
+
 The separate 25 October disposable socket probe verifies its owned HTTP marker
 while the direct native loopback connection returns ECONNREFUSED. It uses no
 accounts, Firebase fixtures, maps or payments. Exact SDK bytecode establishes

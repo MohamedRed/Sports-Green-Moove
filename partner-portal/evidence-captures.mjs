@@ -2,8 +2,10 @@ import {tripConsentPhoneCaptures} from './trip-consent-phone.mjs';
 import {trackingAttemptCaptures} from './tracking-phone-attempt.mjs';
 import {trackingClockCaptures} from './tracking-clock-replay.mjs';
 import {trackingNetworkCaptures} from './tracking-network-phone.mjs';
+import {childAccountPhoneCaptures} from './child-account-phone-attempt.mjs';
 
 export const captures = {
+  ...childAccountPhoneCaptures,
   ...tripConsentPhoneCaptures,
   ...trackingAttemptCaptures,
   ...trackingClockCaptures,

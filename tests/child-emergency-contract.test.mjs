@@ -97,9 +97,10 @@ test('full emergency headings wrap without shrinking and both narrow cases inspe
 test('the partner gallery separates simulated child screens and uses the newly verified narrow heading', () => {
   const flow = content.flows.find((item) => item.id === 'child-emergency');
   assert.equal(flow.status, 'partial'); assert.equal(flow.phone, undefined);
-  assert.match(flow.summary, /simulées/); assert.match(flow.remaining, /connexion de l’enfant/);
-  assert.match(flow.remaining, /ouverture réelle du téléphone/); assert.equal(flow.images.length, 3);
-  assert.deepEqual(flow.images.map((item) => item.file), ['child-contact-narrow', 'child-contact-denied', 'child-contact-changed']);
+  assert.match(flow.summary, /sur téléphone/); assert.match(flow.remaining, /accord du parent/);
+  assert.match(flow.remaining, /ouverture réelle du téléphone/); assert.equal(flow.images.length, 5);
+  const simulatedImages = flow.images.filter(item => item.file.startsWith('child-contact-'));
+  assert.deepEqual(simulatedImages.map((item) => item.file), ['child-contact-narrow', 'child-contact-denied', 'child-contact-changed']);
   const report = JSON.parse(read(flow.ui.source));
   validateRetainedChildContactComponents(root, flow.ui.source);
   assert.equal(report.scope, correctedChildContactScope); assert.equal(report.headingLayoutVerified, true);
@@ -108,8 +109,8 @@ test('the partner gallery separates simulated child screens and uses the newly v
   for (const extension of ['xml', 'txt']) assert(read('.gitattributes').includes(
     'docs/release/evidence/child-contact-heading-pass-2026-10-19/*.' + extension + ' -text -whitespace'));
   assert(!content.blockers.some((item) => item.id === 'child-contact-heading'));
-  for (const image of flow.images) {
-    assert.match(image.alt, /simulé/);
+  for (const image of simulatedImages) {
+    assert.match(image.alt, /simulé.*19 octobre/);
     const file = captures[image.file].split('/').at(-1);
     assert(!report.knownVisualDefects.includes(file)); assert(report.screenshots[file]);
   }

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { validateChildAccountApprovalEvidence } from '../scripts/qa/child-account-approval-evidence.mjs';
+import { validateChildAccountPhoneAttempt } from '../scripts/qa/child-account-phone-evidence.mjs';
 import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retained-evidence.mjs';
 import {validateTrackingClockReplay} from '../scripts/qa/tracking-clock-replay-evidence.mjs';
 import {validateTrackingNetworkPhone} from '../scripts/qa/tracking-network-retained-evidence.mjs';
@@ -116,6 +117,9 @@ export function validate(root) {
     validateBookingEvidence(root, f);
     if (f.accountApproval) {
       assert.equal(f.status, 'partial'); validateChildAccountApprovalEvidence(root, f.accountApproval);
+    }
+    if (f.id === 'child-emergency') {
+      assert.equal(f.status, 'partial'); validateChildAccountPhoneAttempt(root, f.phoneAttempt);
     }
     if (f.profileLedgerPhone) validateProfileLedgerPhoneEvidence(root, f.profileLedgerPhone);
     if (f.id === 'profile-city') { assert.equal(f.status, 'partial'); validateProfileCityEvidence(root, f.profileCity); }
