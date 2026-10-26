@@ -4,9 +4,18 @@ import { readFileSync } from 'node:fs';
 import { parseDocument } from 'yaml';
 import { fileURLToPath } from 'node:url';
 import { validateChildDiscoveryEvidence, validateChildDiscoveryReport } from '../scripts/qa/child-contact-discovery-evidence.mjs';
+import { validateChildDiscoveryCiFailure } from '../scripts/qa/child-contact-discovery-ci-evidence.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const android = 'android/app/src/main/java/be/sportgreenmoove/app/';
+test('the failed main CI remains negative and the no-ride candidate exercises discovery rather than bypassing it', () => {
+  validateChildDiscoveryCiFailure(fileURLToPath(new URL('..', import.meta.url)));
+  const component = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildRideEmergencyFlowTest.kt');
+  for (const text of ['fixture.noActiveRide = true', 'waitFor("emergency.child-ride.no-active-ride")',
+    'assertEquals(1, fixture.discoveries)', 'assertEquals(0, fixture.reads)',
+    'compose.onNodeWithTag("emergency.child-link").assertIsEnabled()']) assert(component.includes(text));
+  assert(read('docs/contracts/child-account-link.md').includes('initiates account creation by sending an invitation'));
+});
 test('retained discovery proof rejects device, production, seeded-link and weakened-authority claims', () => {
   validateChildDiscoveryEvidence(fileURLToPath(new URL('..', import.meta.url)));
   const original = JSON.parse(read('docs/release/evidence/child-contact-discovery-2026-10-26/results.json'));

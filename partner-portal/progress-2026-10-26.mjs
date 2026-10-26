@@ -4,6 +4,9 @@ export const childPhoneStartupAttempt = {
   source: folder + 'README.md', checksums: folder + 'artifact-sha256.json', checkedAt: '2026-10-26',
 };
 export const october26Progress = [
+  { date: '2026-10-26', title: 'L’écran sans trajet reste à revérifier',
+    text: 'Le contact passe sans localisation en simulation. Le contrôle complet n’est pas encore validé.',
+    flow: 'child-emergency', source: 'docs/release/evidence/child-contact-discovery-ci-2026-10-26/README.md' },
   { date: '2026-10-26', title: 'L’enfant retrouve son contact pendant le trajet en local',
     text: 'Le lien avec son profil est corrigé. Les contrôles d’accès passent ; le parcours sur téléphone reste à terminer.',
     flow: 'child-emergency', source: 'docs/release/evidence/child-contact-discovery-2026-10-26/README.md' },

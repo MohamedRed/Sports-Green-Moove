@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The original 61d1294 main native recheck has 169 ordinary passes, 54 intentional
+skips and one obsolete no-ride expectation failure. Retain the original report,
+XML and source; both denied-location child component cases passed with mocked
+data/dialer only. The corrected no-ride candidate is not a completed gate until
+re-executed. The parent's invitation-first signup decision is recorded, not
+implemented by the existing pairing flow. No new media or release scope is accepted.
+
 The separate 26 October child-contact discovery replay fixes the profile-ID versus
 login-ID lookup without returning an adult ride payload. Ten authenticated local
 approval groups include twelve current-authority patches against discovery and

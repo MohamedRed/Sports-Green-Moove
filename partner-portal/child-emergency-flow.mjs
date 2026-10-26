@@ -7,7 +7,7 @@ export function createChildEmergencyFlow() {
     latestEvidence: 'phone',
     summary: 'L’enfant se connecte et demande un code sur téléphone. L’accord du parent reste à refaire.',
     verified: 'Le parent retrouve son enfant sur téléphone. En local, l’enfant retrouve aussi le contact choisi par son parent pendant le trajet.',
-    remaining: 'Terminer l’accord du parent et la création du compte, puis tester le trajet de l’enfant, l’accès sans localisation sur téléphone et l’ouverture réelle du téléphone.',
+    remaining: 'Terminer l’invitation par le parent, la création du compte et l’accord du parent. Tester ensuite le trajet de l’enfant, l’accès sans localisation sur téléphone et l’ouverture réelle du téléphone.',
     phoneAttempt: childAccountPhoneAttempt,
     phoneStartup: childPhoneStartupAttempt,
     contactDiscovery: { source: 'docs/release/evidence/child-contact-discovery-2026-10-26/results.json',

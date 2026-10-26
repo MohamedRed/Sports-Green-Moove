@@ -65,11 +65,16 @@ class ChildRideEmergencyFlowTest {
         compose.onNodeWithTag("emergency.child-ride.dial").assertDoesNotExist()
         compose.onNodeWithTag("emergency.save").assertDoesNotExist(); assertEquals(0, fixture.opens)
     }
-    @Test fun settingsEntryWithoutARideDoesNotReadOrManageTheChildContact() {
-        val fixture = ChildEmergencyUiFixture()
+    @Test fun settingsDiscoversNoActiveRideWithoutReadingOrManagingAContact() {
+        val fixture = ChildEmergencyUiFixture(); fixture.noActiveRide = true
         compose.setSgmUiTestContent { EmergencyContactRoute("child", setOf(AppRole.Child), fixture,
             UnconfiguredGuardianVerificationGateway(), {}, rideSessionId = null) }
-        compose.onNodeWithText("Contact indisponible hors trajet.").assertIsDisplayed(); assertEquals(0, fixture.reads)
+        waitFor("emergency.child-ride.no-active-ride")
+        compose.onNodeWithText("Contact indisponible hors trajet.").assertIsDisplayed()
+        compose.onNodeWithTag("emergency.child-link").assertIsEnabled()
+        for (tag in listOf("emergency.child-ride.phone", "emergency.child-ride.dial", "emergency.save"))
+            compose.onNodeWithTag(tag).assertDoesNotExist()
+        assertEquals(1, fixture.discoveries); assertEquals(0, fixture.reads); assertEquals(0, fixture.opens)
     }
     private fun host(fixture: ChildEmergencyUiFixture, narrow: Boolean = false, expected: String = "emergency.child-ride.phone") {
         compose.setSgmUiTestContent {
@@ -99,7 +104,11 @@ class ChildRideEmergencyFlowTest {
     }
 }
 private class ChildEmergencyUiFixture : EmergencyContactGateway {
-    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? = readChildRideEmergencyContact(uid, current.rideSessionId)
+    var discoveries = 0; var noActiveRide = false
+    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? {
+        discoveries++; check(uid == "child")
+        return if (noActiveRide) null else readChildRideEmergencyContact(uid, current.rideSessionId)
+    }
     var current = ChildRideEmergencyContactView("child", "ride", "profile-child", "a".repeat(64), "Enfant fictif QA",
         PersonalEmergencyContact("Alexandre de la Croix Saint-Lambert QA", "+12025550121"), 1)
     var reads = 0; var opens = 0; var fail = false

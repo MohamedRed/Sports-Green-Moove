@@ -6,6 +6,12 @@ The child's verified parent approves linking an existing child login to the
 child's profile. Club managers still verify the parent-child relationship;
 their manager role alone cannot approve a login link.
 
+The verified parent also initiates account creation by sending an invitation
+(owner decision, 26 October). Invitation creation, delivery and acceptance are
+not implemented by the existing-code pairing protocol below. That protocol links
+an already provisioned login and does not replace this invitation-first signup
+requirement or the separate parent approval of the link.
+
 ## Implemented Protocol
 
 - The signed-in, already provisioned child account requests a random 128-bit code
