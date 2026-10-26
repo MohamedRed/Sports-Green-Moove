@@ -1,0 +1,52 @@
+{
+  "scope": "isolated-connected-browser-signup-not-native-share-or-phone-approval",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "bb5a75540ea253dd505ed74e6b389863",
+  "observations": [
+    {
+      "phase": "before",
+      "checkedAt": "2026-10-26T18:09:33.121Z",
+      "userCount": 3,
+      "invitationStatus": "pending",
+      "redemptionRequests": 0,
+      "parentApprovalCount": 0,
+      "originalRolesUnchanged": true
+    },
+    {
+      "phase": "mismatch",
+      "checkedAt": "2026-10-26T18:10:24.870Z",
+      "userCount": 3,
+      "invitationStatus": "pending",
+      "redemptionRequests": 0,
+      "parentApprovalCount": 0,
+      "originalRolesUnchanged": true
+    },
+    {
+      "phase": "created",
+      "checkedAt": "2026-10-26T18:10:41.712Z",
+      "userCount": 4,
+      "invitationStatus": "accepted",
+      "redemptionRequests": 1,
+      "parentApprovalCount": 0,
+      "originalRolesUnchanged": true
+    }
+  ],
+  "sourceFiles": {
+    "scripts/qa/start-child-invitation-browser.mjs": "7e8bf439cc43faff1d026add48bd2f4cf2977b8a9c5f3dbb64f8bd89b3b704a2",
+    "scripts/qa/child-invitation-browser-runtime.mjs": "184380fb23170bbf83337e95b714b1aecd65264d81af5e5152b99c5ff4f9e714",
+    "admin/src/main.tsx": "785ffa0019838ee3b1bfaa92bdcc25b3cfe0ba91bb9a943f573f7524053b30a1",
+    "admin/src/ChildInvitationPage.tsx": "6a06e81b3ef54f7397e38a4943f77588bc1c1d0bc740a23175e9c05774d87ad8",
+    "admin/src/childInvitationLink.ts": "66ad6882a9c8ff54fa5a46073b37df060a5f810675193dfb22256c68fac99848",
+    "admin/src/childInvitationGateway.ts": "a1a78217ab9c5b39837a05b07b50eddd50b894998c2d0e341d7ad97e96efa422",
+    "admin/src/firebase.ts": "c3861730465b52064e60da25669a525bb7143641e53a6f302c7ea7af2aa5979f",
+    "admin/src/localFirebaseConfig.ts": "5bbb9b69e7ef0b23b20dccd544ef880352d302e4fbe353eabf36fe4c11f65910"
+  },
+  "verifiedAt": "2026-10-26T18:10:41.712Z",
+  "applicationHead": "f773b3df5f656103323ab51a8db83b124db7beb9",
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "parentApprovalSeparate": true,
+  "accountCreatedThroughBrowser": true
+}

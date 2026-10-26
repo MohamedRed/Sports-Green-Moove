@@ -6,12 +6,28 @@ import { parseDocument } from 'yaml';
 import { fileURLToPath } from 'node:url';
 import { validateChildInvitationEvidence, validateChildInvitationReport } from '../scripts/qa/child-invitation-evidence.mjs';
 import { validateChildBindingReport } from '../scripts/qa/child-invitation-binding-evidence.mjs';
+import { validateChildInvitationBrowserEvidence, validateConnectedInvitationReport, validateInvitationBrowserReview } from '../scripts/qa/child-invitation-browser-evidence.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const compiled = ts.transpileModule(read('admin/src/childInvitationLink.ts'), {
   compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
 }).outputText;
 const { takeChildInvitationToken, invitationSignupError } = await import('data:text/javascript;base64,' + Buffer.from(compiled).toString('base64'));
+test('original connected-browser receipts prove one child signup, never phone sharing or approval', () => {
+  validateChildInvitationBrowserEvidence(fileURLToPath(new URL('..', import.meta.url)));
+  const folder = 'docs/release/evidence/child-invitation-browser-2026-10-26/';
+  const report = JSON.parse(read(folder + 'observations.json'));
+  for (const field of ['nativeUiExecuted', 'physicalDevice', 'productionWrites'])
+    assert.throws(() => validateConnectedInvitationReport({ ...report, [field]: true }));
+  for (const field of ['userCount', 'redemptionRequests', 'parentApprovalCount']) {
+    const changed = structuredClone(report); changed.observations[2][field]++;
+    assert.throws(() => validateConnectedInvitationReport(changed));
+  }
+  const review = JSON.parse(read(folder + 'browser-review.json'));
+  for (const field of ['submitHandlerInjected', 'accountFormSubmittedInIframe', 'phoneTested', 'nativeShareChooserOpened',
+    'appLinkOpened', 'newGalleryMediaAccepted', 'applicationDeployed', 'releaseAccepted'])
+    assert.throws(() => validateInvitationBrowserReview({ ...review, [field]: true }));
+});
 test('retained negative trials and passing repairs cannot be promoted into phone, production or release completion', () => {
   validateChildInvitationEvidence(fileURLToPath(new URL('..', import.meta.url)));
   const folder = 'docs/release/evidence/child-invitation-2026-10-26/';

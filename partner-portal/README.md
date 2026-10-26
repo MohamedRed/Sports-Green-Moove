@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The later 26 October connected-browser trial uses the real public component and
+its default client gateway against isolated services. Original observations show
+three users before and after mismatched confirmation, then four users and one
+redemption after successful signup, with no parent-approved link. The manual
+browser review is separate from those service receipts. This is not a phone share,
+phone signup/approval, new gallery image, production deployment or release pass.
+The existing invitation contract runs this evidence validator in Backend CI and
+Web Integration Smoke; no duplicate workflow lane is needed.
+
 The 26 October child-invitation candidate passes eighteen isolated service groups,
 eleven focused backend units, ten Android state cases and 207 rules cases. Its
 three new connected components are compiled only. The web component review uses

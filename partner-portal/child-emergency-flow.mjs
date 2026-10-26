@@ -5,9 +5,11 @@ const source = 'docs/release/evidence/child-contact-heading-pass-2026-10-19/';
 export function createChildEmergencyFlow() {
   return { id: 'child-emergency', title: 'Contact d’urgence côté enfant', status: 'partial', checkedAt: '2026-10-26',
     latestEvidence: 'phone',
-    summary: 'L’invitation crée un compte enfant en local. Le parcours complet sur téléphone reste à terminer.',
-    verified: 'Le parent retrouve son enfant sur téléphone. En local, la création du compte et l’accord séparé du parent passent. L’enfant retrouve aussi son contact pendant le trajet.',
+    summary: 'L’inscription enfant passe dans le navigateur. Le parcours sur téléphone reste à terminer.',
+    verified: 'Le parent retrouve son enfant sur téléphone. La page crée un compte enfant avec les données de test. En local, l’accord séparé du parent et l’accès au contact pendant le trajet passent.',
     remaining: 'Tester le partage du lien, l’inscription et l’accord du parent sur téléphone. Vérifier ensuite le trajet de l’enfant, l’accès sans localisation et l’ouverture réelle du téléphone.',
+    browserInvitation: { source: 'docs/release/evidence/child-invitation-browser-2026-10-26/README.md',
+      checksums: 'docs/release/evidence/child-invitation-browser-2026-10-26/artifact-sha256.json', checkedAt: '2026-10-26' },
     invitation: { source: 'docs/release/evidence/child-invitation-2026-10-26/README.md',
       checksums: 'docs/release/evidence/child-invitation-2026-10-26/artifact-sha256.json', checkedAt: '2026-10-26',
       recheck: { source: 'docs/release/evidence/child-invitation-2026-10-26/binding-recheck/README.md',
