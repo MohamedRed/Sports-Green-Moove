@@ -9,6 +9,35 @@ import { validateChildEmergencyServices, validateRetainedChildEmergency, validat
   validateRetainedChildContactComponents, correctedChildContactScope } from '../scripts/qa/child-emergency-evidence.mjs';
 import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
 import { content, captures } from '../partner-portal/content.mjs';
+import { childEmergencyPhonePhases, verifyChildEmergencyPhoneCheckpoint } from '../scripts/qa/child-emergency-phone-checkpoints.mjs';
+import { assertChildEmergencyPhoneScope, validateChildEmergencyPhone } from '../scripts/qa/child-emergency-phone-evidence.mjs';
+import { childEmergencyPhone } from '../partner-portal/child-emergency-phone.mjs';
+
+test('child phone contact checkpoints require the distinct approved identity and unchanged current contact records', () => {
+  const fixture = { childUid: 'account', parentUid: 'parent', childId: 'profile', childInstanceId: 'a'.repeat(64),
+    rideSessionId: 'ride', contact: { name: 'Fictif QA', phone: '+12025550121' } };
+  const baseline = { documents: { childAccountLinks: [{ id: 'account', data: { accountUserId: 'account', childId: 'profile',
+    childInstanceId: fixture.childInstanceId, status: 'verified', verifiedByUserId: 'parent' } }] },
+    claims: [{ uid: 'account', claims: { roleKeys: ['child'] } }], liveData: null,
+    contactView: { accountUserId: 'account', current: { accountUserId: 'account', subjectId: 'profile',
+      childInstanceId: fixture.childInstanceId, rideSessionId: 'ride', contact: fixture.contact, revision: 1 } } };
+  for (const phase of childEmergencyPhonePhases) {
+    const report = verifyChildEmergencyPhoneCheckpoint(phase, baseline, structuredClone(baseline), fixture);
+    assert.equal(report.status, 'passed');
+    for (const key of ['physicalUiProvenByThisCheckpoint', 'locationPermissionProvenByThisCheckpoint', 'dialerHandoffProvenByThisCheckpoint'])
+      assert.equal(report[key], false);
+  }
+  for (const mutate of [s => { s.liveData = {}; }, s => { s.claims[0].claims.roleKeys.push('parent'); },
+    s => { s.documents.childAccountLinks[0].data.verifiedByUserId = 'manager'; },
+    s => { s.contactView.current.contact.phone = '+12025550122'; }, s => { s.contactView.current = null; }]) {
+    const current = structuredClone(baseline); mutate(current);
+    assert.throws(() => verifyChildEmergencyPhoneCheckpoint('contact-shown', baseline, current, fixture));
+    if (current.contactView.current === null || current.documents.childAccountLinks[0].data.verifiedByUserId === 'manager')
+      assert.throws(() => verifyChildEmergencyPhoneCheckpoint('contact-shown', current, current, fixture));
+  }
+  assert.throws(() => verifyChildEmergencyPhoneCheckpoint('unknown', baseline, baseline, fixture));
+  assert.throws(() => verifyChildEmergencyPhoneCheckpoint('contact-shown', baseline, baseline, { ...fixture, childId: 'account' }));
+});
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const read = (file) => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
@@ -99,9 +128,9 @@ test('the partner gallery separates simulated child screens and uses the newly v
   const flow = content.flows.find((item) => item.id === 'child-emergency');
   assert.equal(flow.status, 'partial'); assert.equal(flow.phone, undefined);
   assert.match(flow.summary, /sur téléphone/); assert.match(flow.remaining, /accord du parent/);
-  assert.match(flow.remaining, /ouverture réelle du téléphone/); assert.equal(flow.images.length, 8);
-  assert.equal(flow.images[0].file, 'child-approved-phone');
-  const simulatedImages = flow.images.filter(item => item.file.startsWith('child-contact-'));
+  assert.match(flow.remaining, /ouverture réelle du téléphone/); assert.equal(flow.images.length, 10);
+  assert.equal(flow.images[0].file, 'child-contact-phone');
+  const simulatedImages = flow.images.filter(item => item.alt.includes('19 octobre'));
   assert.deepEqual(simulatedImages.map((item) => item.file), ['child-contact-narrow', 'child-contact-denied', 'child-contact-changed']);
   const report = JSON.parse(read(flow.ui.source));
   validateRetainedChildContactComponents(root, flow.ui.source);
@@ -121,4 +150,23 @@ test('the partner gallery separates simulated child screens and uses the newly v
   for (const patch of [{ headingLayoutVerified: false }, { mainNativeJobPassed: true }, { parentComponentCaseCount: 6 },
     { knownVisualDefects: ['child-emergency-readonly-narrow.png'] }, { reviewedWindows: [] }])
     assert.throws(() => validateChildContactComponents({ ...report, ...patch }));
+});
+
+test('physical child contact proof retains denial and Home results without accepting dialer or signup', () => {
+  validateChildEmergencyPhone(root, childEmergencyPhone);
+  const flow = content.flows.find(row => row.id === 'child-emergency');
+  assert.deepEqual(flow.phoneContact, childEmergencyPhone); assert.equal(flow.status, 'partial');
+  assert(!Object.values(captures).some(file => file.endsWith('/handoff-unresolved.png')));
+  const folder = 'docs/release/evidence/child-emergency-phone-2026-10-26/';
+  const report = JSON.parse(read(folder + 'session-results.json')), review = JSON.parse(read(folder + 'ui-review.json'));
+  for (const key of ['dialerHandoffProven', 'signupProven', 'parentUiProven', 'trackingProven', 'callPlaced',
+    'rootCauseEstablished', 'wholeProcessRestartProven', 'releaseAccepted', 'videoAccepted', 'locationPermissionChanged'])
+    assert.throws(() => assertChildEmergencyPhoneScope(report, { ...review, [key]: true }));
+  for (const mutate of [r => r.completed = false, r => r.checkpoints.pop(), r => r.checkpoints.reverse(),
+    r => r.checkpoints[3].dialerHandoffProvenByThisCheckpoint = true, r => r.checkpoints[2].recordsUnchanged = false,
+    r => r.fixture.accountProvisionedByFixture = false, r => r.fixture.accountApprovalMethod = 'phone-ui',
+    r => r.fixture.childId = r.fixture.childUid, r => r.fixture.contact.phone = '+12025550122',
+    r => r.physicalUiProvenByThisReport = true]) {
+    const changed = structuredClone(report); mutate(changed); assert.throws(() => assertChildEmergencyPhoneScope(changed, review));
+  }
 });

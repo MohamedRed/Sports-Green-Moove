@@ -9,6 +9,7 @@ import { validateChildAccountApprovalEvidence } from '../scripts/qa/child-accoun
 import { validateChildAccountPhoneAttempt } from '../scripts/qa/child-account-phone-evidence.mjs';
 import { validateChildAccountPhonePass } from '../scripts/qa/child-account-phone-pass-evidence.mjs';
 import { validateInvitationPhoneArtifacts } from '../scripts/qa/child-invitation-phone-evidence.mjs';
+import { validateChildEmergencyPhone } from '../scripts/qa/child-emergency-phone-evidence.mjs';
 import { validateNativeCopyDisconnect } from '../scripts/qa/native-copy-disconnect-evidence.mjs';
 import { validateFlowCheckRecoveryEvidence } from '../scripts/qa/flow-check-recovery-evidence.mjs';
 import {validateTrackingPhoneAttempt} from '../scripts/qa/tracking-phone-retained-evidence.mjs';
@@ -139,6 +140,7 @@ export function validate(root) {
       assert.equal(f.status, 'partial'); validateChildAccountPhoneAttempt(root, f.phoneAttempt);
       validateChildAccountPhonePass(root, f.phonePairing);
       validateInvitationPhoneArtifacts(root, f.phoneInvitation);
+      validateChildEmergencyPhone(root, f.phoneContact);
       validateFlowCheckRecoveryEvidence(root, f.phoneStartup);
       assert.equal(f.contactDiscovery.source, 'docs/release/evidence/child-contact-discovery-2026-10-26/results.json');
       validateChildDiscoveryEvidence(root);

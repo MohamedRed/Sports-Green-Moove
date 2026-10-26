@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The later 26 October child emergency phone trial verifies a fixture-provisioned
+child account retrieving its current parent-chosen contact with Android location
+permission set to Don't allow. Five independent read-only checkpoints preserve
+records/claims, including return from an attempted handoff and sign-out. The
+parent-approved link, free active ride and contact were service-prepared, not
+created through phone UI in this trial. The app button and the independent Phone
+icon both show Home, not a dialer; no call was placed and no cause is confirmed.
+Publish only the two reviewed original contact/permission captures. Retain the
+Home capture internally and preserve partial signup, dialer, tracking and release
+scope. Owned runtime/helper disposal and uninstall acknowledgement/session stop
+are verified; independent package absence is not. Public audience is unchanged.
+
 The terminal ed851b7 native recheck has 177 ordinary passes, 54 skips and eleven
 successful focused lanes, but its primary trip-consent-restart copy fails during
 an observed guest transport disconnect. Successful later cleanup is not a gate

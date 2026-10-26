@@ -1,11 +1,13 @@
 import { childAccountPhoneProgress } from './child-account-phone-attempt.mjs';
 import { childAccountPhonePassProgress } from './child-account-phone-pass.mjs';
 import { childInvitationPhoneProgress } from './child-invitation-phone.mjs';
+import { childEmergencyPhoneProgress } from './child-emergency-phone.mjs';
 const folder = 'docs/release/evidence/flow-check-recovery-2026-10-26/';
 export const childPhoneStartupAttempt = {
   source: folder + 'README.md', checksums: folder + 'artifact-sha256.json', checkedAt: '2026-10-26',
 };
 export const october26Progress = [
+  childEmergencyPhoneProgress,
   { date: '2026-10-26', title: 'Le contrôle complet reste en échec',
     text: '177 cas passent. La récupération d’une capture échoue ; le test complet n’est pas validé.',
     flow: 'publication', source: 'docs/release/evidence/native-copy-disconnect-2026-10-26/README.md',

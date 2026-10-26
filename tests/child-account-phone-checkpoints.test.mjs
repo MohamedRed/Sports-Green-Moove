@@ -100,8 +100,9 @@ test('completed phone pairing retains separate UI, record, disposal and signup b
   validateChildAccountPhonePass(root, childAccountPhonePass);
   const flow = content.flows.find(row => row.id === 'child-emergency');
   assert.deepEqual(flow.phonePairing, childAccountPhonePass); assert.equal(flow.status, 'partial');
-  assert.equal(flow.images[0].file, 'child-approved-phone');
-  assert.match(flow.remaining, /partage du lien/); assert.match(flow.remaining, /sans localisation/);
+  assert.equal(flow.images[0].file, 'child-contact-phone');
+  assert(flow.images.some(image => image.file === 'child-approved-phone'));
+  assert.match(flow.remaining, /partage du lien/); assert.match(flow.summary, /sans localisation/);
 });
 test('missing phases, role changes and broader claims cannot become accepted phone evidence', () => {
   const report = JSON.parse(readFileSync(resolve(root, 'docs/release/evidence/child-account-phone-pass-2026-10-26/session-results.json')));
