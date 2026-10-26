@@ -59,7 +59,8 @@ fun SportsGreenMooveApp() {
         onAppLoading = { loading = it },
     )
     suspend fun refreshAppData() {
-        appData.refresh(providers, role)
+        if (AppRole.Child in session?.roles.orEmpty()) appData.clear()
+        else appData.refresh(providers, role)
     }
     val paymentSheet = rememberSportsGreenMoovePaymentSheetController(
         scope = scope,
@@ -195,7 +196,7 @@ fun SportsGreenMooveApp() {
                             pendingCount = driverBookingRequests.count { it.status == "requested" },
                             onTripAction = ::runTripAction,
                             onOpenSearch = { screen = AppScreen.Search },
-                            onEmergencyContact = if (AppRole.Child in requireNotNull(session).roles && activeRide != null)
+                            onEmergencyContact = if (AppRole.Child in requireNotNull(session).roles)
                                 ({ contactReturn = AppScreen.Trips; screen = AppScreen.EmergencyContacts }) else null,
                             onOpenRide = { launchActiveRideResume(scope, providers, role, activeRide, activeRidePermissionGate,
                                 { session?.uid }, { activeRide = it }, { screen = it }, { errorMessage = it }) },

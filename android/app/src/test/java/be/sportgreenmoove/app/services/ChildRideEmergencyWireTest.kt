@@ -4,6 +4,15 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class ChildRideEmergencyWireTest {
+    @Test fun discoveryRequiresTheCurrentAccountAndAnExplicitCurrentField() {
+        val envelope = mapOf("accountUserId" to "child", "current" to reply())
+        assertEquals("ride", EmergencyContactWire.currentChildRideView(envelope, "child")?.rideSessionId)
+        assertNull(EmergencyContactWire.currentChildRideView(envelope + mapOf("current" to null), "child"))
+        for (bad in listOf(envelope - "current", envelope + mapOf("accountUserId" to "other"),
+            envelope + mapOf("current" to (reply() - "rideSessionId")),
+            envelope + mapOf("current" to (reply() + mapOf("accountUserId" to "other")))))
+            assertThrows(Exception::class.java) { EmergencyContactWire.currentChildRideView(bad, "child") }
+    }
     private fun reply() = mapOf<String, Any?>("accountUserId" to "child", "subjectId" to "profile-child", "rideSessionId" to "ride", "childName" to "Enfant QA",
         "childInstanceId" to "a".repeat(64), "revision" to 1,
         "contact" to mapOf("name" to "Contact QA", "phone" to "+12025550121"))

@@ -21,6 +21,8 @@ internal class FirebaseAndroidEmergencyContactGateway(
     }
     override suspend fun readEmergencyContact(uid: String, target: EmergencyContactTarget): EmergencyContactView =
         EmergencyContactWire.view(call(uid, "getEmergencyContact", mapOf("target" to EmergencyContactWire.target(target))), uid, target)
+    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? =
+        EmergencyContactWire.currentChildRideView(call(uid, "getCurrentChildRideEmergencyContact", emptyMap()), uid)
     override suspend fun readChildRideEmergencyContact(uid: String, rideSessionId: String): ChildRideEmergencyContactView =
         EmergencyContactWire.childRideView(call(uid, "getChildRideEmergencyContact", mapOf("rideSessionId" to TripChangeWire.id(rideSessionId))), uid, rideSessionId)
     override suspend fun saveEmergencyContact(uid: String, operation: EmergencyContactOperation): EmergencyContactReceipt =

@@ -9,6 +9,7 @@ import { auth, call, db, denied } from './local-flow-client.mjs';
 import { childAccountCodeHash } from '../../functions/lib/domain/childAccountApproval.js';
 import { seedRideObservationFixture, verifyReadOnlyRideFixtureIsolation } from './local-ride-observation-fixture.mjs';
 import { childEmergencyActors, verifyChildContactParent, saveChildChosenContact, withChildFixturePatch } from './child-emergency-fixture.mjs';
+import { verifyChildContactDiscovery } from './child-contact-discovery-checks.mjs';
 
 execFileSync(process.execPath, [resolve(import.meta.dirname, 'seed-firebase-emulator.mjs')],
   { env: process.env, stdio: ['ignore', 'pipe', 'pipe'], timeout: 90_000 });
@@ -23,7 +24,7 @@ const snapshot = async () => Object.fromEntries(await Promise.all(unrelatedNames
   (await db.collection(name).get()).docs.map(row => ({ id: row.id, data: row.data() })).sort((a, b) => a.id.localeCompare(b.id))])));
 const before = await snapshot(), steps = [];
 const check = async (id, action) => { await action(); steps.push({ id, status: 'passed' }); };
-let code, input, requestRef, retiredCode, failure, isolation;
+let code, input, requestRef, retiredCode, failure, isolation, discovery;
 const approve = (actor = actors.parent, payload = input) => call('approveChildAccountLink', actor, payload);
 try {
   await check('only-an-existing-child-account-can-create-a-code-without-role-escalation', async () => {
@@ -88,6 +89,7 @@ try {
     const view = await call('getChildRideEmergencyContact', actors.child, { rideSessionId: ride.rideSessionId });
     assert.equal(view.accountUserId, actors.child.uid); assert.equal(view.subjectId, childId); assert.notEqual(childId, actors.child.uid);
     assert.equal(view.contact.phone, '+12025550121');
+    discovery = await verifyChildContactDiscovery(actors, ride, clubId);
     await denied('createChildAccountLinkCode', actors.child, {}, 'FAILED_PRECONDITION');
   });
   await check('a-consumed-code-cannot-rebind-an-account-or-replay-after-the-parent-loses-authority', async () => {
@@ -108,12 +110,14 @@ try {
 } catch (error) { failure = error; }
 finally { await deleteApp(getApp()); }
 const paths = ['functions/src/domain/childAccountApproval.ts', 'functions/src/services/childAccountApproval.ts',
-  'functions/src/callables/childAccountApproval.ts', 'scripts/qa/local-child-account-approval-suite.mjs', 'firestore.rules'];
+  'functions/src/callables/childAccountApproval.ts', 'scripts/qa/local-child-account-approval-suite.mjs', 'firestore.rules',
+  'scripts/qa/child-contact-discovery-checks.mjs', 'functions/src/services/childRideEmergencyContact.ts',
+  'functions/src/callables/emergencyContact.ts'];
 writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT, JSON.stringify({ projectId: 'demo-sgm-local-qa', runId: process.env.SGM_LOCAL_RUN_ID,
   testedAt: new Date().toISOString(), scope: 'local-authenticated-parent-account-approval-not-signup-or-native-navigation',
   steps, testCount: steps.length, childAccountLinkPreseeded: false, childAccountApprovalFlowExecuted: true,
   nativeUiExecuted: false, physicalDevice: false, productionWrites: false, providerRequests: 0, adminClientClosed: true,
-  isolation, sourceFiles: Object.fromEntries(paths.map(path => [path,
+  isolation, discovery, sourceFiles: Object.fromEntries(paths.map(path => [path,
     createHash('sha256').update(readFileSync(resolve(import.meta.dirname, '../..', path))).digest('hex')])) }, null, 2) + '\n', { flag: 'wx' });
 if (failure) throw failure;
 console.log('Ten authenticated child-account approval groups passed without provisioning or changing account roles.');

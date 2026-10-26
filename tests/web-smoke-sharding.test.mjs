@@ -18,12 +18,17 @@ test('original terminal CI outcomes and the zero-checkpoint phone attempt remain
 
 test('all 111 original workload steps retain their exact commands, environments, IDs and multiplicity', () => {
   const rows = ['smoke', 'people-safety'].flatMap(key => workflow.jobs[key].steps)
-    .filter(step => step.run && !setup.has(step.name) && step.name !== 'Validate complete smoke partitioning')
+    .filter(step => step.run && !setup.has(step.name) && step.name !== 'Validate complete smoke partitioning' &&
+      step.name !== 'Test child contact discovery through verified-parent approval')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
   assert.equal(createHash('sha256').update(JSON.stringify(rows)).digest('hex'),
     '9cd670feeb2b0fa303212bd460b0f647499dac6264ad0830468354575dcbb1a2');
+  const added = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test child contact discovery through verified-parent approval');
+  assert.equal(added.length, 1);
+  assert.equal(added[0].run, 'npm run test:child-account-approval && node --test tests/child-contact-discovery.test.mjs');
+  assert.equal(added[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/child-contact-discovery.json');
 });
 
 test('service groups use separate runners and build their own unchanged backend before testing', () => {
@@ -43,7 +48,7 @@ test('service groups use separate runners and build their own unchanged backend 
   }
 });
 
-test('all nine evidence uploads follow their owning tests and retain the correct producer IDs', () => {
+test('all nine original and one discovery evidence uploads follow their owning tests', () => {
   const names = [];
   for (const key of ['smoke', 'people-safety']) {
     const steps = workflow.jobs[key].steps;
@@ -58,7 +63,8 @@ test('all nine evidence uploads follow their owning tests and retain the correct
       if (step.with.name === 'ledger-history-services') assert(steps.some(row => row.env?.SGM_LOCAL_FLOW_OUTPUT?.endsWith('/ledger-history-services.json')));
     }
   }
-  assert.equal(names.length, 9); assert.equal(new Set(names).size, 9);
+  assert.equal(names.length, 10); assert.equal(new Set(names).size, 10);
+  assert(names.includes('child-contact-discovery-results'));
 });
 
 test('the unchanged required check only succeeds after both complete groups succeed', () => {

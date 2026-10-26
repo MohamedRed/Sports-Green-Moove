@@ -36,7 +36,7 @@ class ChildEmergencyPermissionFlowTest {
                         UnconfiguredGuardianVerificationGateway(), { contact = false },
                         rideSessionId = emergencyRideSessionId(setOf(AppRole.Child), ride, false),
                         launchDialer = { fixture.opens++; EmergencyDialerResult.Unavailable })
-                    else TripsScreen(emptyList(), ride, 0, {}, {}, { trackingStarts++ }, {},
+                    else TripsScreen(emptyList(), null, 0, {}, {}, { trackingStarts++ }, {},
                         onEmergencyContact = { contact = true })
                 }
             }
@@ -48,7 +48,7 @@ class ChildEmergencyPermissionFlowTest {
         val button = compose.onNodeWithTag("emergency.child-ride.dial").performScrollTo().fetchSemanticsNode().boundsInRoot
         assertTrue(button.left >= bounds.left && button.right <= bounds.right)
         compose.onNodeWithTag("emergency.child-ride.dial").performClick(); waitFor("emergency.child-ride.error")
-        assertEquals(1, fixture.opens); assertEquals(0, trackingStarts); assertLocationDenied()
+        assertEquals(1, fixture.opens); assertEquals(1, fixture.discoveries); assertEquals(0, trackingStarts); assertLocationDenied()
         compose.waitForIdle(); captureChildAccountWindow("child-emergency-location-denied-trips.png")
     }
 
@@ -76,6 +76,10 @@ class ChildEmergencyPermissionFlowTest {
 }
 
 private class PermissionContactFixture : EmergencyContactGateway {
+    var discoveries = 0
+    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? {
+        discoveries++; return readChildRideEmergencyContact(uid, "ride")
+    }
     var opens = 0
     override suspend fun readChildRideEmergencyContact(uid: String, rideSessionId: String): ChildRideEmergencyContactView {
         check(uid == "child" && rideSessionId == "ride")

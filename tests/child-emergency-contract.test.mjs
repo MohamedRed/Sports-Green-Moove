@@ -44,7 +44,8 @@ test('eleven retained JVM cases passed without claiming native component executi
 });
 test('the child screen has no editor and rechecks authority before a lifecycle-fenced dial-only callback', () => {
   const state = read('android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyState.kt');
-  assert(state.indexOf('gateway.readChildRideEmergencyContact(uid, rideId); accept') < state.indexOf('when (launch('));
+  const freshRead = state.indexOf('gateway.readChildRideEmergencyContact(uid, expected.rideSessionId); accept');
+  assert(freshRead >= 0 && freshRead < state.indexOf('when (launch('));
   for (const fragment of ['value.ownerUid == uid', 'value.rideSessionId == rideId', 'latest.childId != expected.childId',
     'latest.childInstanceId != expected.childInstanceId', 'generation++; clear(); busy = false']) assert(state.includes(fragment));
   const route = read('android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyRoute.kt');

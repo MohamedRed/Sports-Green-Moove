@@ -12,6 +12,25 @@ import org.junit.Test
 class ChildRideEmergencyStateTest {
     private val contact = PersonalEmergencyContact("Contact enfant QA", "+12025550121")
     private fun fixture() = ChildReadFixture(ChildRideEmergencyContactView("child", "ride", "profile-child", "a".repeat(64), "Enfant QA", contact, 1))
+    @Test fun discoversTheChildContactWithoutAnAdultRideAndRechecksThatRideBeforeDialing() = runBlocking {
+        val gateway = fixture(); val state = ChildRideEmergencyState("child", null, gateway)
+        state.refresh(); assertEquals("profile-child", state.view?.childId); assertEquals(1, gateway.discoveries)
+        state.dial { EmergencyDialerResult.Opened }; assertEquals(1, gateway.reads)
+        assertEquals("ride", gateway.lastRideId); assertEquals(0, gateway.writes)
+    }
+    @Test fun noRideAndDeniedDiscoveryAreDistinctAndNeverRetainThePreviousNumber() = runBlocking {
+        val gateway = fixture(); val state = ChildRideEmergencyState("child", null, gateway)
+        state.refresh(); assertNotNull(state.view)
+        gateway.noRide = true; state.refresh(); assertTrue(state.noActiveRide); assertNull(state.error); assertNull(state.view)
+        gateway.fail = true; state.refresh(); assertFalse(state.noActiveRide); assertNotNull(state.error); assertFalse(state.canDial)
+    }
+    @Test fun discoveryReplyAfterLeavingTheScreenCannotRestorePrivateData() = runTest {
+        val gateway = fixture(); gateway.held = CompletableDeferred()
+        val state = ChildRideEmergencyState("child", null, gateway)
+        val pending = launch { state.refresh() }; runCurrent(); state.close()
+        gateway.held!!.complete(gateway.current); pending.join()
+        assertNull(state.view); assertFalse(state.noActiveRide); assertFalse(state.canDial)
+    }
     @Test fun emptyIsExplicitButAReadFailureClearsThePrivateContactAndNeverLooksEmpty() = runBlocking {
         val gateway = fixture(); val state = ChildRideEmergencyState("child", "ride", gateway)
         gateway.current = gateway.current.copy(contact = null, revision = 0); state.refresh()
@@ -72,10 +91,15 @@ class ChildRideEmergencyStateTest {
     }
 }
 private class ChildReadFixture(var current: ChildRideEmergencyContactView) : EmergencyContactGateway {
+    var discoveries = 0; var noRide = false; var lastRideId: String? = null
+    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? {
+        discoveries++; if (fail) error("Explicit denied discovery")
+        return if (noRide) null else held?.await() ?: current
+    }
     var reads = 0; var writes = 0; var fail = false
     var held: CompletableDeferred<ChildRideEmergencyContactView>? = null
     override suspend fun readChildRideEmergencyContact(uid: String, rideSessionId: String): ChildRideEmergencyContactView {
-        reads++; if (fail) error("Explicit denied read"); return held?.await() ?: current
+        reads++; lastRideId = rideSessionId; if (fail) error("Explicit denied read"); return held?.await() ?: current
     }
     override suspend fun readEmergencyContact(uid: String, target: EmergencyContactTarget): EmergencyContactView = error("Not an adult read")
     override suspend fun saveEmergencyContact(uid: String, operation: EmergencyContactOperation): EmergencyContactReceipt {

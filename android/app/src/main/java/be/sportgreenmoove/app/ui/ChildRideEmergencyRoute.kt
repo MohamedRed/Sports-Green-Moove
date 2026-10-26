@@ -17,8 +17,8 @@ import be.sportgreenmoove.app.services.*
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun ChildRideEmergencyRoute(uid: String, rideId: String, gateway: EmergencyContactGateway, onBack: () -> Unit,
-    launchDialer: ((PersonalEmergencyContact) -> EmergencyDialerResult)? = null) {
+internal fun ChildRideEmergencyRoute(uid: String, rideId: String?, gateway: EmergencyContactGateway, onBack: () -> Unit,
+    launchDialer: ((PersonalEmergencyContact) -> EmergencyDialerResult)? = null, onLinkAccount: (() -> Unit)? = null) {
     val state = remember(uid, rideId, gateway) { ChildRideEmergencyState(uid, rideId, gateway) }
     val owner = LocalLifecycleOwner.current; val scope = rememberCoroutineScope(); val context = LocalContext.current
     DisposableEffect(state) { onDispose { state.close() } }
@@ -36,6 +36,8 @@ internal fun ChildRideEmergencyRoute(uid: String, rideId: String, gateway: Emerg
             if (state.busy) Text("Chargement...", color = Sgm.colors.textSecondary)
             state.error?.let { Text(it, color = Sgm.colors.textPrimary, modifier = Modifier.testTag("emergency.child-ride.error")) }
             state.notice?.let { Text(it, color = Sgm.colors.textPrimary) }
+            if (state.noActiveRide) Text("Contact indisponible hors trajet.", color = Sgm.colors.textPrimary,
+                modifier = Modifier.testTag("emergency.child-ride.no-active-ride"))
             state.view?.let { view ->
                 Text(view.childName, style = SgmType.BodyLG, color = Sgm.colors.textPrimary)
                 val contact = view.contact
@@ -53,6 +55,7 @@ internal fun ChildRideEmergencyRoute(uid: String, rideId: String, gateway: Emerg
                     })
                 }
             }
+            if (onLinkAccount != null) EmergencyContactButton("Lier mon compte", "emergency.child-link", !state.busy, onLinkAccount)
         }
     }
 }

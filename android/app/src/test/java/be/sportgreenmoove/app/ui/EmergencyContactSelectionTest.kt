@@ -37,6 +37,7 @@ class EmergencyContactSelectionTest {
     }
 }
 private class SelectionFixture : EmergencyContactGateway {
+    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? = error("Not a child fixture")
     val firstRead = CompletableDeferred<Unit>(); var reads = 0; var fail = false
     override suspend fun readEmergencyContact(uid: String, target: EmergencyContactTarget): EmergencyContactView {
         if (reads++ == 0) firstRead.await()

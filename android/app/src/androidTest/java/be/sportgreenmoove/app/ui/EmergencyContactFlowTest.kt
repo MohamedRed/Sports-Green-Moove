@@ -137,6 +137,7 @@ class EmergencyContactFlowTest {
 }
 
 private class EmergencyUiFixture : EmergencyContactGateway, GuardianVerificationGateway by UnconfiguredGuardianVerificationGateway() {
+    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? = error("Not a child fixture")
     override suspend fun readChildRideEmergencyContact(uid: String, rideSessionId: String): ChildRideEmergencyContactView =
         error("This fixture does not implement child ride reads")
     val contact = PersonalEmergencyContact("Contact fictif QA", "+12025550123")

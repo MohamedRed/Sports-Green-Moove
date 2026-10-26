@@ -8,8 +8,9 @@ import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidenc
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 test('contact ownership and guardian authority are authenticated and checked in each transaction', () => {
   const callable = read('functions/src/callables/emergencyContact.ts');
-  assert.equal(callable.split('requireAuth(request.auth?.uid)').length - 1, 3);
+  assert.equal(callable.split('requireAuth(request.auth?.uid)').length - 1, 4);
   assert(callable.includes('export const getChildRideEmergencyContact'));
+  assert(callable.includes('export const getCurrentChildRideEmergencyContact'));
   const service = read('functions/src/services/emergencyContact.ts');
   assert.equal(service.split('await requireEmergencyContactAuthority(transaction, uid, token,').length - 1, 2);
   assert(service.indexOf('await requireEmergencyContactAuthority', service.indexOf('export async function writeEmergencyContact')) < service.indexOf('if (operation.exists)'));

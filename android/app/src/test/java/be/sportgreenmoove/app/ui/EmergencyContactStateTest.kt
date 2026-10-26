@@ -135,6 +135,7 @@ class EmergencyContactStateTest {
         val first = EmergencyContactView("parent", child, null, 0, "Enfant QA", "Club QA", "a".repeat(64))
         var reads = 0; var writes = 0
         val gateway = object : EmergencyContactGateway {
+            override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? = error("Not a child fixture")
     override suspend fun readChildRideEmergencyContact(uid: String, rideSessionId: String): ChildRideEmergencyContactView =
         error("This fixture does not implement child ride reads")
             override suspend fun readEmergencyContact(uid: String, target: EmergencyContactTarget) =
@@ -154,6 +155,7 @@ class EmergencyContactStateTest {
 }
 
 private class ContactFixture : EmergencyContactGateway {
+    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? = error("Not a child fixture")
     override suspend fun readChildRideEmergencyContact(uid: String, rideSessionId: String): ChildRideEmergencyContactView =
         error("This fixture does not implement child ride reads")
     var current = EmergencyContactView("parent", EmergencyContactTarget.Self, null, 0)

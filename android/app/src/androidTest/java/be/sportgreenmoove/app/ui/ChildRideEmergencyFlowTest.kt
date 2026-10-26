@@ -99,6 +99,7 @@ class ChildRideEmergencyFlowTest {
     }
 }
 private class ChildEmergencyUiFixture : EmergencyContactGateway {
+    override suspend fun discoverChildRideEmergencyContact(uid: String): ChildRideEmergencyContactView? = readChildRideEmergencyContact(uid, current.rideSessionId)
     var current = ChildRideEmergencyContactView("child", "ride", "profile-child", "a".repeat(64), "Enfant fictif QA",
         PersonalEmergencyContact("Alexandre de la Croix Saint-Lambert QA", "+12025550121"), 1)
     var reads = 0; var opens = 0; var fail = false

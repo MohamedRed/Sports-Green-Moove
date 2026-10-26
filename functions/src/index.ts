@@ -17,7 +17,7 @@ export { reviewClubMembership } from "./callables/membershipReview.js";
 export { transitionGuardianVerification } from "./callables/guardianVerification.js";
 export { listGuardianReviewClubs, listMyGuardianVerifications, listClubGuardianVerifications } from "./callables/guardianLists.js";
 export { listGuardianParentOptions, getMyGuardianVerification } from "./callables/guardianParent.js";
-export { getChildRideEmergencyContact, getEmergencyContact, saveEmergencyContact } from "./callables/emergencyContact.js";
+export { getCurrentChildRideEmergencyContact, getChildRideEmergencyContact, getEmergencyContact, saveEmergencyContact } from "./callables/emergencyContact.js";
 export { createChildAccountLinkCode, approveChildAccountLink } from "./callables/childAccountApproval.js";
 export { getTeamEnrollmentView, requestTeamEnrollment, transitionTeamEnrollment, listTeamEnrollments } from "./callables/teamEnrollment.js";
 export { listTeamEnrollmentOptions } from "./callables/teamEnrollmentOptions.js";

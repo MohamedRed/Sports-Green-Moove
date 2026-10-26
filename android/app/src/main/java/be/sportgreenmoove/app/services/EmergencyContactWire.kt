@@ -3,6 +3,13 @@ package be.sportgreenmoove.app.services
 import be.sportgreenmoove.app.data.*
 
 internal object EmergencyContactWire {
+    fun currentChildRideView(value: Any?, uid: String): ChildRideEmergencyContactView? = map(value).let {
+        check(it["accountUserId"] == uid && it.containsKey("current"))
+        it["current"]?.let { raw ->
+            val rideId = TripChangeWire.id(map(raw)["rideSessionId"] as? String ?: error("Trajet manquant."))
+            childRideView(raw, uid, rideId)
+        }
+    }
     fun childRideView(value: Any?, uid: String, rideSessionId: String): ChildRideEmergencyContactView = map(value).let {
         check(it["accountUserId"] == uid && it["rideSessionId"] == rideSessionId && it.containsKey("contact"))
         val childId = TripChangeWire.id(it["subjectId"] as? String ?: error("Profil enfant manquant."))

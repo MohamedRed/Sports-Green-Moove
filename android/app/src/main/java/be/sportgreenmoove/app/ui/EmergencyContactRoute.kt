@@ -1,14 +1,10 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
@@ -25,14 +21,7 @@ internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: Em
     var linkTarget by remember(uid, roles, gateway) { mutableStateOf<ChildAccountLinkTarget?>(null) }
     if (linkAccount) ChildAccountLinkDialog(uid, accountLinks, linkTarget) { linkAccount = false; linkTarget = null }
     if (AppRole.Child in roles) {
-        if (rideSessionId == null) V2Screen {
-            V2TopBar("CONTACT D’URGENCE", onBack, titleLines = 2)
-            Column(Modifier.padding(20.dp)) {
-                Text("Contact indisponible hors trajet.")
-                EmergencyContactButton("Lier mon compte", "emergency.child-link", true, { linkAccount = true })
-            }
-        }
-        else ChildRideEmergencyRoute(uid, rideSessionId, gateway, onBack, launchDialer)
+        ChildRideEmergencyRoute(uid, null, gateway, onBack, launchDialer, onLinkAccount = { linkAccount = true })
         return
     }
     val canManage = AppRole.Child !in roles && roles.any { it in setOf(AppRole.Parent, AppRole.Driver, AppRole.ClubManager) }

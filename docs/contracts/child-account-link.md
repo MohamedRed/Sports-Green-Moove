@@ -52,3 +52,26 @@ resolve normal child trip discovery, add parent link-revocation management, or
 rewrite live-stream identities. Those workflows and iOS integration remain open.
 No production deployment, physical-device result or store-review acceptance is
 implied. Existing preseeded-link evidence retains its original scope and date.
+
+## Dedicated Child Contact Discovery, 26 October
+
+`getCurrentChildRideEmergencyContact` accepts a strict empty object. A pure-child
+token and current stored child role are required. One transaction reads the
+server-owned verified link, validates the immutable child profile, selects its
+newest active ride through the existing child-profile/status/start-time index,
+and applies the same contact authority checks as the known-ride endpoint.
+It returns `{ accountUserId, current }`, where `current` is the child's own minimal
+contact view or explicitly null when no active ride exists. Invalid links and
+invalid latest rides are errors, not absence and not a fallback to older rides.
+
+Android child sessions skip adult ride bootstrap. Trips offers the independent
+contact action even without an adult ride snapshot; Options uses the same child
+discovery path. Pairing stays accessible on an unlinked account. Background and
+account disposal clear private data, and a dial-only action still rereads the
+displayed ride's contact before handing off. Parent/driver ride behavior is unchanged.
+
+The isolated authenticated replay and fifteen focused JVM cases are retained in
+`../release/evidence/child-contact-discovery-2026-10-26/`. This fixes contact
+discovery only, not general child tracking, signup, iOS or the incomplete phone
+approval journey. The component APK builds; no connected component execution or
+physical dialer result is accepted from this local replay.

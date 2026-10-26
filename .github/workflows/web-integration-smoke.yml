@@ -121,6 +121,7 @@ on:
       - "tests/emergency-contact-contract.test.mjs"
       - "tests/child-emergency-contract.test.mjs"
       - "tests/child-account-approval-contract.test.mjs"
+      - "tests/child-contact-discovery.test.mjs"
       - "tests/child-account-phone-checkpoints.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyRideAccess.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildAccountLink*"
@@ -571,6 +572,7 @@ on:
       - "tests/emergency-contact-contract.test.mjs"
       - "tests/child-emergency-contract.test.mjs"
       - "tests/child-account-approval-contract.test.mjs"
+      - "tests/child-contact-discovery.test.mjs"
       - "tests/child-account-phone-checkpoints.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyRideAccess.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildAccountLink*"
@@ -1367,6 +1369,11 @@ jobs:
       - name: Test immutable child contact identity and independently verified fixtures
         run: npm run test:emergency-contact-identity && npm run test:emergency-contact-fixture && npm run test:ride-emergency-fixture && node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/ride-emergency-completed-evidence.test.mjs
 
+      - name: Test child contact discovery through verified-parent approval
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-contact-discovery.json
+        run: npm run test:child-account-approval && node --test tests/child-contact-discovery.test.mjs
+
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
 
@@ -1405,6 +1412,14 @@ jobs:
           path: ${{ runner.temp }}/ledger-history-services.json
           if-no-files-found: ignore
 
+
+      - name: Retain child contact discovery and disposal evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: child-contact-discovery-results
+          path: ${{ runner.temp }}/child-contact-discovery.json*
+          if-no-files-found: error
 
   integration-gate:
     name: Functions, admin, and website smoke

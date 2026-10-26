@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The separate 26 October child-contact discovery replay fixes the profile-ID versus
+login-ID lookup without returning an adult ride payload. Ten authenticated local
+approval groups include twelve current-authority patches against discovery and
+known-ride reads. Fifteen focused JVM cases and a test-APK build pass. Preserve
+partial status: this adds no phone, screenshot, dialer, child signup, live tracking,
+iOS or production evidence. Keep both earlier phone captures and public access.
+
 The later 26 October phone startup attempt has zero completed checkpoints: the
 app installation stayed pending and its package query was rejected. Session stop,
 observer client closure and owned fixture/helper disposal are verified; package
