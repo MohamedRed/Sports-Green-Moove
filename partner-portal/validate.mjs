@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { validateChildDiscoveryEvidence } from '../scripts/qa/child-contact-discovery-evidence.mjs';
 import { validateChildDiscoveryCiFailure } from '../scripts/qa/child-contact-discovery-ci-evidence.mjs';
+import { validateChildDiscoveryUiEvidence } from '../scripts/qa/child-contact-discovery-ui-evidence.mjs';
 import { validateChildAccountApprovalEvidence } from '../scripts/qa/child-account-approval-evidence.mjs';
 import { validateChildAccountPhoneAttempt } from '../scripts/qa/child-account-phone-evidence.mjs';
 import { validateFlowCheckRecoveryEvidence } from '../scripts/qa/flow-check-recovery-evidence.mjs';
@@ -127,6 +128,7 @@ export function validate(root) {
       assert.equal(f.contactDiscovery.source, 'docs/release/evidence/child-contact-discovery-2026-10-26/results.json');
       validateChildDiscoveryEvidence(root);
       validateChildDiscoveryCiFailure(root);
+      validateChildDiscoveryUiEvidence(root);
     }
     if (f.profileLedgerPhone) validateProfileLedgerPhoneEvidence(root, f.profileLedgerPhone);
     if (f.id === 'profile-city') { assert.equal(f.status, 'partial'); validateProfileCityEvidence(root, f.profileCity); }

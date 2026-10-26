@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The subsequent 3b386a0 run passes all nine child components, including corrected
+no-ride discovery and actual denied-location checks with mocked contacts/dialer.
+Its main gate remains failed: a trip-refusal case stops while PixelCopy waits.
+Retain that distinct failure, all 224 outcomes and source hashes. Do not infer
+a graphics root cause, accept the trip flow, claim signup/phone completion or
+publish new screenshots from those child component passes. The public page uses
+plain French and remains partial; source details stay in the retained history.
+
 The original 61d1294 main native recheck has 169 ordinary passes, 54 intentional
 skips and one obsolete no-ride expectation failure. Retain the original report,
 XML and source; both denied-location child component cases passed with mocked

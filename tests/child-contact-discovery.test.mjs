@@ -5,9 +5,19 @@ import { parseDocument } from 'yaml';
 import { fileURLToPath } from 'node:url';
 import { validateChildDiscoveryEvidence, validateChildDiscoveryReport } from '../scripts/qa/child-contact-discovery-evidence.mjs';
 import { validateChildDiscoveryCiFailure } from '../scripts/qa/child-contact-discovery-ci-evidence.mjs';
+import { validateChildDiscoveryUiEvidence, validateChildDiscoveryUiReport } from '../scripts/qa/child-contact-discovery-ui-evidence.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const android = 'android/app/src/main/java/be/sportgreenmoove/app/';
+test('nine actual child components cannot override the separate screen-copy failure or claim a real-phone journey', () => {
+  validateChildDiscoveryUiEvidence(fileURLToPath(new URL('..', import.meta.url)));
+  const folder = 'docs/release/evidence/child-contact-discovery-ui-2026-10-26/';
+  const ordinary = JSON.parse(read(folder + 'ordinary-results.json')), source = JSON.parse(read(folder + 'source.json'));
+  for (const key of ['mainNativeCiPassed', 'physicalDevice', 'actualChildSignIn', 'invitationExecuted',
+    'connectedBackend', 'dialerOpened', 'screenshotsAccepted', 'productionWrites'])
+    assert.throws(() => validateChildDiscoveryUiReport(ordinary, { ...source, [key]: true }));
+  assert.throws(() => validateChildDiscoveryUiReport({ ...ordinary, failed: 0 }, source));
+});
 test('the failed main CI remains negative and the no-ride candidate exercises discovery rather than bypassing it', () => {
   validateChildDiscoveryCiFailure(fileURLToPath(new URL('..', import.meta.url)));
   const component = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildRideEmergencyFlowTest.kt');

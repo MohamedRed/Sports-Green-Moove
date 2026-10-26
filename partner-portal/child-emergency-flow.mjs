@@ -10,6 +10,8 @@ export function createChildEmergencyFlow() {
     remaining: 'Terminer l’invitation par le parent, la création du compte et l’accord du parent. Tester ensuite le trajet de l’enfant, l’accès sans localisation sur téléphone et l’ouverture réelle du téléphone.',
     phoneAttempt: childAccountPhoneAttempt,
     phoneStartup: childPhoneStartupAttempt,
+    discoveryComponents: { source: 'docs/release/evidence/child-contact-discovery-ui-2026-10-26/README.md',
+      checksums: 'docs/release/evidence/child-contact-discovery-ui-2026-10-26/artifact-sha256.json', checkedAt: '2026-10-26' },
     contactDiscovery: { source: 'docs/release/evidence/child-contact-discovery-2026-10-26/results.json',
       checksums: 'docs/release/evidence/child-contact-discovery-2026-10-26/artifact-sha256.json', checkedAt: '2026-10-26',
       ciRecheck: { source: 'docs/release/evidence/child-contact-discovery-ci-2026-10-26/README.md',
