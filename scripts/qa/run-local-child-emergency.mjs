@@ -6,17 +6,19 @@ import { assertLocalEndpointsClosed } from './local-emulator-lifecycle.mjs';
 import { retainLocalEmulatorLogs } from './local-emulator-log-evidence.mjs';
 
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
+assert(process.argv.length === 2 || process.argv.length === 3 && process.argv[2] === 'approval');
+const approval = process.argv[2] === 'approval';
 assert(typeof output === 'string' && isAbsolute(output) && !existsSync(output) && !existsSync(output + '.artifacts'));
 const runtime = prepareLocalRuntime();
 let report, failure, endpoints;
 try {
   await assertLocalEndpointsClosed([9099, 8080, 9000, 5001]);
   runtime.env.SGM_LOCAL_FLOW_OUTPUT = resolve(runtime.temp, 'child-emergency-attempt.json');
-  runEmulatorEntry(runtime, 'local-child-emergency-suite.mjs');
+  runEmulatorEntry(runtime, approval ? 'local-child-account-approval-suite.mjs' : 'local-child-emergency-suite.mjs');
   report = JSON.parse(readFileSync(runtime.env.SGM_LOCAL_FLOW_OUTPUT));
   assert.equal(report.runId, runtime.env.SGM_LOCAL_RUN_ID);
-  assert.equal(report.steps.length, 16); assert(report.steps.every((step) => step.status === 'passed'));
-  assert.equal(report.childAccountLinkPreseeded, true); assert.equal(report.childAccountApprovalFlowExecuted, false);
+  assert.equal(report.steps.length, approval ? 10 : 16); assert(report.steps.every((step) => step.status === 'passed'));
+  assert.equal(report.childAccountLinkPreseeded, !approval); assert.equal(report.childAccountApprovalFlowExecuted, approval);
   assert.equal(report.nativeUiExecuted, false); assert.equal(report.adminClientClosed, true);
 } catch (error) { failure = error; }
 finally {

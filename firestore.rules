@@ -58,6 +58,12 @@ service cloud.firestore {
     match /childAccountLinks/{accountUserId} {
       allow read, write: if false;
     }
+    match /childAccountApprovalOwners/{accountUserId} {
+      allow read, write: if false;
+    }
+    match /childAccountApprovalRequests/{codeHash} {
+      allow read, write: if false;
+    }
 
     match /users/{userId} {
       allow read: if isSelf(userId) || isAdmin();

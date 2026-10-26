@@ -7,6 +7,9 @@ import {trackingClockProgress} from './tracking-clock-replay.mjs';
 import {trackingNetworkProgress, trackingNetworkDiagnosticsProgress, trackingNetworkTransportProgress} from './tracking-network-phone.mjs';
 
 export const recentProgress = [
+  {date: '2026-10-26', title: 'Le parent peut lier le compte enfant en local',
+    text: 'Dix contrôles passent. L’accès au contact sans localisation est ajouté ; les essais sur téléphone restent à faire.',
+    flow: 'child-emergency', source: 'docs/release/evidence/child-account-approval-2026-10-26/README.md'},
   {date: '2026-10-25', title: 'La copie des images bloque encore',
     text: 'Les 166 essais d’écran passent. La vérification s’arrête pendant la récupération des captures.',
     flow: 'publication', coversFlows: ['messages', 'team-conversation', 'native-startup'],
@@ -292,21 +295,5 @@ export const recentProgress = [
     text: 'En local, l’ancien contact ne revient plus sur un profil enfant recréé. Le nouveau contrôle reste à tester dans l’app.', flow: 'emergency-contact' },
   { date: '2026-10-19', title: 'Les anciennes demandes restent accessibles',
     text: 'Sur téléphone, la liste continue, le retrait se confirme et reste enregistré au retour. Sans autorisation parentale, la demande de l’enfant devient non modifiable. Six captures sont ajoutées.', flow: 'team-enrollment' },
-  { date: '2026-10-19', title: 'L’essai local complet passe',
-    text: 'Les écrans, les essais prévus et la récupération des captures passent ensemble. Les autres essais sur téléphone restent ouverts.', flow: 'publication' },
-  { date: '2026-10-19', title: 'Les écrans passent ; la reprise réseau reste bloquée',
-    text: 'Les captures sont récupérées. L’essai de coupure bloque avant de commencer. Le réglage temporaire est bien retiré.', flow: 'publication' },
-  { date: '2026-10-19', title: 'Un contrôle de sécurité est corrigé',
-    text: 'Quatre essais passent après correction. Les autres alertes restent à examiner avant la mise en ligne.', flow: 'publication' },
-  { date: '2026-10-19', title: 'Le parent et le club passent ensemble sur téléphone',
-    text: 'Demande, refus, nouvel accord et retrait passent. Le parent inscrit aussi son enfant et retrouve l’accord du club. Les captures sont ajoutées.', flow: 'team-enrollment' },
-  { date: '2026-10-19', title: 'Les réponses du club reviennent dans l’app',
-    text: 'Le responsable répond depuis son espace. Les inscriptions du parent et de l’enfant restent distinctes sur le téléphone.', flow: 'team-review' },
-  { date: '2026-10-19', title: 'Le dernier essai complet ne démarre pas',
-    text: 'La préparation de l’appareil s’arrête avant les écrans. Le parcours d’inscription sur téléphone a été testé séparément.', flow: 'publication' },
-  { date: '2026-10-19', title: 'L’inscription à une équipe passe dans l’app',
-    text: 'Demande, refus, accord, retrait et changement de compte passent avec les données de test. Cinq captures sont ajoutées, dont l’inscription d’un enfant.', flow: 'team-enrollment' },
-  { date: '2026-10-19', title: 'L’essai complet reste à terminer',
-    text: 'Le réglage temporaire est retiré après l’essai. Les inscriptions passent ; la récupération de captures bloque plus loin.', flow: 'publication' },
   ...archivedProgress,
 ];

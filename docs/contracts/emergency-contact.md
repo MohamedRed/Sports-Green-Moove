@@ -49,6 +49,11 @@ deleted, rewritten or relabeled as a successful call.
 
 ## Product Decision
 
+On 26 October the owner chose the verified parent to approve a child's login link
+and kept emergency contacts accessible when location permission is denied. The
+new linking protocol and its exact remaining scope are in `child-account-link.md`.
+Tracking still requires its existing permissions; contact access does not start it.
+
 On 2026-10-18 the owner selected a saved personal emergency contact. Adults
 manage their own contact; a child's verified parent chooses the child's contact.
 The club manager verifies parent-child authorisation, separately from approving
@@ -320,8 +325,9 @@ A login UID is not a child profile ID. The endpoint requires a private,
 server-owned `childAccountLinks` entry binding the authenticated account to the
 current immutable child profile. Direct client reads/writes are denied. Missing,
 revoked, stale, mismatched or self-confirmed links fail closed. The account-link
-approval/provisioning workflow is deliberately not implemented: the owner has not
-yet chosen who confirms it. No privileged role or link is created in production.
+approval was undefined at this 19 October snapshot. The 26 October parent-approved
+code protocol is now implemented separately; account provisioning remains open.
+No privileged role or link is created in production.
 
 Sixteen actual local service groups with a preseeded link and independent profile
 ID passed; original evidence is in `child-emergency-services-2026-10-19`.
@@ -334,11 +340,11 @@ requires another tap after contact/version/profile changes and clears private
 values on background/account disposal. No number, dialer or authority fallback is
 added. A successful component callback must not be described as a real phone app.
 
-Full child sign-in and ride discovery still need the approved account-link
-workflow: existing ride discovery/stream identity assumptions have not been
-rewritten. Access when the child refuses location also remains a product decision;
-the existing location gate is not silently removed. Source compilation and local
-service checks do not close these end-to-end gaps or accept store-review evidence.
+Full child sign-in and ride discovery remain open: existing ride discovery/stream
+identity assumptions have not been rewritten. The 26 October contact-only entry
+now bypasses the tracking gate as explicitly approved, without starting location
+collection. Source compilation and local service checks do not close the complete
+child workflow or accept store-review evidence.
 
 ## Independent Native Safety Lane
 

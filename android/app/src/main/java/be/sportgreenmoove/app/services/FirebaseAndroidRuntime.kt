@@ -29,6 +29,7 @@ data class AndroidProviderSet(
     val emergencyContacts: EmergencyContactGateway = UnconfiguredEmergencyContactGateway(),
     val rides: RideObservationGateway = UnconfiguredRideObservationGateway(),
     val profileCity: ProfileCityGateway = UnconfiguredProfileCityGateway(),
+    val childAccountLinks: ChildAccountLinkGateway = UnconfiguredChildAccountLinkGateway(),
 ) {
     val isConfigured: Boolean = auth.isConfigured && firebase.isConfigured
 }
@@ -61,6 +62,7 @@ object AndroidRuntime {
                 reservations = FirebaseAndroidReservationGateway(),
                 emergencyContacts = FirebaseAndroidEmergencyContactGateway(),
                 profileCity = FirebaseAndroidProfileCityGateway(),
+                childAccountLinks = FirebaseAndroidChildAccountLinkGateway(),
                 rides = FirebaseAndroidRideObservationGateway(liveDatabase()),
                 googleAuth = FirebaseAndroidGoogleSocialAuthGateway(context.applicationContext),
                 facebookAuth = FirebaseAndroidFacebookSocialAuthGateway(context.applicationContext),

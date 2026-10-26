@@ -26,11 +26,13 @@ internal fun TripsRoute(
     trips: List<TripSummary>, activeRide: LiveRideSnapshot?, pendingCount: Int,
     onTripAction: (TripSummary) -> Unit, onOpenSearch: () -> Unit, onOpenRide: () -> Unit,
     onChanged: suspend () -> Unit, reservationContent: @Composable () -> Unit,
+    onEmergencyContact: (() -> Unit)? = null,
 ) {
     var selected by remember(uid, role, gateway) { mutableStateOf<TripSummary?>(null) }
     var change by remember(uid, role, gateway) { mutableStateOf<Pair<String, Boolean>?>(null) }
     var history by remember(uid, role, gateway) { mutableStateOf<TripSummary?>(null) }
     TripsScreen(trips, activeRide, pendingCount, onTripAction, onOpenSearch, onOpenRide, reservationContent,
+        onEmergencyContact = onEmergencyContact,
         management = TripManagementActions(uid, role, activeRide?.tripId,
             onEdit = { change = it.id to false }, onReview = { change = it.id to true }, onHistory = { history = it }) { selected = it })
     history?.let { trip ->

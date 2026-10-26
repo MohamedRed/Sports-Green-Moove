@@ -58,6 +58,7 @@ fun TripsScreen(
     onOpenRide: () -> Unit,
     reservationContent: @Composable () -> Unit,
     management: TripManagementActions? = null,
+    onEmergencyContact: (() -> Unit)? = null,
 ) {
     var selectedTab by remember { mutableStateOf("upcoming") }
     var monthIso by rememberSaveable { mutableStateOf(YearMonth.now(BelgianTripZone).toString()) }
@@ -85,6 +86,9 @@ fun TripsScreen(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
+            if (activeRide != null && onEmergencyContact != null) {
+                EmergencyContactButton("Contact d’urgence", "trips.emergency", true, onEmergencyContact)
+            }
             if (activeRide != null && selectedTab != "pending") {
                 ActiveRideEntryCard(activeRide, onOpenRide)
             }

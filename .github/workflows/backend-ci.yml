@@ -129,6 +129,17 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-emergency-services.json
         run: npm run test:child-emergency && node --test tests/child-emergency-contract.test.mjs
+      - name: Test authenticated verified-parent child account approval
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-account-approval.json
+        run: npm run test:child-account-approval && node --test tests/child-account-approval-contract.test.mjs
+      - name: Retain child account approval results and disposal
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: child-account-approval-results
+          path: ${{ runner.temp }}/child-account-approval.json*
+          if-no-files-found: ignore
       - name: Retain child emergency service results and disposal
         if: ${{ always() }}
         uses: actions/upload-artifact@v7

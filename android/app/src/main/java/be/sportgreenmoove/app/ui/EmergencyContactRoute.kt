@@ -1,10 +1,14 @@
 package be.sportgreenmoove.app.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
@@ -15,9 +19,19 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: EmergencyContactGateway,
     guardians: GuardianVerificationGateway, onBack: () -> Unit,
-    launchDialer: ((PersonalEmergencyContact) -> EmergencyDialerResult)? = null, rideSessionId: String? = null) {
+    launchDialer: ((PersonalEmergencyContact) -> EmergencyDialerResult)? = null, rideSessionId: String? = null,
+    accountLinks: ChildAccountLinkGateway = UnconfiguredChildAccountLinkGateway()) {
+    var linkAccount by remember(uid, roles, gateway) { mutableStateOf(false) }
+    var linkTarget by remember(uid, roles, gateway) { mutableStateOf<ChildAccountLinkTarget?>(null) }
+    if (linkAccount) ChildAccountLinkDialog(uid, accountLinks, linkTarget) { linkAccount = false; linkTarget = null }
     if (AppRole.Child in roles) {
-        if (rideSessionId == null) V2Screen { V2TopBar("CONTACT D’URGENCE", onBack, titleLines = 2); Text("Contact indisponible hors trajet.") }
+        if (rideSessionId == null) V2Screen {
+            V2TopBar("CONTACT D’URGENCE", onBack, titleLines = 2)
+            Column(Modifier.padding(20.dp)) {
+                Text("Contact indisponible hors trajet.")
+                EmergencyContactButton("Lier mon compte", "emergency.child-link", true, { linkAccount = true })
+            }
+        }
         else ChildRideEmergencyRoute(uid, rideSessionId, gateway, onBack, launchDialer)
         return
     }
@@ -66,6 +80,12 @@ internal fun EmergencyContactRoute(uid: String, roles: Set<AppRole>, gateway: Em
                 if (!owner.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) EmergencyDialerResult.Cancelled
                 else if (launchDialer != null) launchDialer(contact) else openEmergencyDialer(context, contact)
             } }
+        }, onLinkAccount = { view ->
+            val target = view.target as? EmergencyContactTarget.Child
+            if (target != null && view.childInstanceId != null) {
+                linkTarget = ChildAccountLinkTarget(target.childId, target.clubId, view.childInstanceId, requireNotNull(view.childName))
+                linkAccount = true
+            }
         })
     if (picker) EmergencyChildDialog(children, selectionBusy = state.busy,
         onChoose = { item -> select(EmergencyContactTarget.Child(item.childId, item.clubId)) },

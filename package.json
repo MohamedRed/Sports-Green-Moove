@@ -67,6 +67,7 @@
     "test:guardian-parent": "node scripts/qa/run-local-guardian-parent.mjs",
     "test:emergency-contact": "node scripts/qa/run-local-emergency-contact.mjs",
     "test:child-emergency": "node scripts/qa/run-local-child-emergency.mjs",
+    "test:child-account-approval": "node scripts/qa/run-local-child-emergency.mjs approval",
     "test:emergency-contact-identity": "node scripts/qa/run-local-emergency-identity.mjs",
     "test:ride-emergency-fixture": "node scripts/qa/run-local-ride-emergency-fixture.mjs",
     "test:location-freshness": "node scripts/qa/run-local-location-freshness.mjs",

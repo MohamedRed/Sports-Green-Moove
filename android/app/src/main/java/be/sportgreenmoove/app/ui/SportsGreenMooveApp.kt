@@ -195,6 +195,8 @@ fun SportsGreenMooveApp() {
                             pendingCount = driverBookingRequests.count { it.status == "requested" },
                             onTripAction = ::runTripAction,
                             onOpenSearch = { screen = AppScreen.Search },
+                            onEmergencyContact = if (AppRole.Child in requireNotNull(session).roles && activeRide != null)
+                                ({ contactReturn = AppScreen.Trips; screen = AppScreen.EmergencyContacts }) else null,
                             onOpenRide = { launchActiveRideResume(scope, providers, role, activeRide, activeRidePermissionGate,
                                 { session?.uid }, { activeRide = it }, { screen = it }, { errorMessage = it }) },
                             reservationContent = {
@@ -270,7 +272,8 @@ fun SportsGreenMooveApp() {
                         AppScreen.Support -> SupportInboxRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Options }
                         AppScreen.EmergencyContacts -> EmergencyContactRoute(requireNotNull(session).uid, requireNotNull(session).roles,
                             providers.emergencyContacts, providers.firebase, { screen = contactReturn },
-                            rideSessionId = activeRide?.takeIf { contactReturn == AppScreen.Ride }?.rideSessionId)
+                            accountLinks = providers.childAccountLinks,
+                            rideSessionId = emergencyRideSessionId(requireNotNull(session).roles, activeRide, contactReturn == AppScreen.Ride))
                         AppScreen.Payments -> PaymentsRoute(role = role, sessionUid = session?.uid, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, onBack = { screen = AppScreen.Profile }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
                         AppScreen.Ride -> RideMonitorScreen(
                             activeRide = activeRide,
