@@ -4,8 +4,10 @@ import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
 import { tripDraftPhonePhases, verifyTripDraftPhoneCheckpoint } from './trip-draft-phone-checkpoints.mjs';
+import { tripSchedulePhoneFixture } from './trip-schedule-phone-fixture.mjs';
 
-const [sessionPath, output] = process.argv.slice(2);
+const [sessionPath, output, draftKind = 'raw'] = process.argv.slice(2);
+assert(['raw', 'schedule'].includes(draftKind) && process.argv.length <= 5);
 assert(isAbsolute(sessionPath ?? '') && isAbsolute(output ?? '') && process.stdin.isTTY);
 assert.equal(statSync(sessionPath).mode & 0o077, 0); assert.equal(statSync(dirname(sessionPath)).mode & 0o077, 0);
 const session = JSON.parse(readFileSync(sessionPath));
@@ -35,13 +37,16 @@ async function snapshot() {
 try {
   await withLocalAdminCleanup(async () => {
     const driver = await signIn('d@example.test'); await call('initializeUserProfile', driver);
-    fixture = { ...await seedPrivateDraftTrips(), driverUid: driver.uid, driverEmail: 'd@example.test',
+    const schedule = draftKind === 'schedule' ? tripSchedulePhoneFixture() : null;
+    fixture = { ...await seedPrivateDraftTrips(schedule ? { departureAt: schedule.originalDepartureAt } : {}),
+      draftKind, ...(schedule ? { schedule } : {}), driverUid: driver.uid, driverEmail: 'd@example.test',
       preparationMethod: 'authenticated-local-service', providerRequests: 0, productionWrites: false };
     const baseline = await snapshot(); verifyTripDraftPhoneCheckpoint('driver-signed-in', baseline, await snapshot(), fixture);
     save('fixture-ready.json', { projectId: session.projectId, runId: session.runId, fixture,
       preparedAt: new Date().toISOString(), scope: 'service-prepared-booked-trips-not-phone-proof' });
     save('baseline.json', baseline);
     console.log('Isolated booked draft trips ready; baseline price is 2.50 EUR. No map or payment request.');
+    if (schedule) console.log('Expected schedule UTC: ' + JSON.stringify(schedule));
     console.log('Observer order: ' + tripDraftPhonePhases.join(', ') + ', finish.');
     for await (const line of input) {
       const phase = line.trim(); if (phase === 'stop') break;
@@ -58,6 +63,7 @@ finally {
   input.close(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); delete process.env.SGM_QA_PASSWORD;
 }
 const paths = ['scripts/qa/manual-trip-draft-phone-session.mjs', 'scripts/qa/trip-draft-phone-checkpoints.mjs',
+  'scripts/qa/trip-schedule-phone-fixture.mjs', 'scripts/qa/trip-change-schedule-evidence.mjs',
   'scripts/qa/local-trip-draft-restart.mjs', 'scripts/qa/local-trip-input.mjs', 'scripts/qa/start-child-account-phone.mjs'];
 save('session-results.json', { projectId: session.projectId, runId: session.runId, testedAt: new Date().toISOString(),
   scope: 'independent-private-trip-draft-records-not-storage-or-process-proof', completed: completed && !failure,

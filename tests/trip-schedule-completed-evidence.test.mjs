@@ -97,3 +97,34 @@ test('only the reviewed schedule image is added and the private page retains the
   }
   assert(JSON.parse(text('package.json')).scripts['test:local-flow-isolation'].includes('tests/trip-schedule-completed-evidence.test.mjs'));
 });
+import { tripSchedulePhoneFixture } from '../scripts/qa/trip-schedule-phone-fixture.mjs';
+
+test('physical schedule fixture uses explicit future UTC times with departure before desired arrival', () => {
+  const fixture = tripSchedulePhoneFixture(Date.parse('2026-10-26T22:00:00.000Z'));
+  assert.deepEqual(fixture, { originalDepartureAt: '2026-10-27T09:00:00.000Z',
+    draftDepartureAt: '2026-10-28T11:00:00.000Z', draftArrivalBy: '2026-10-28T12:00:00.000Z' });
+  assert(Date.parse(fixture.originalDepartureAt) < Date.parse(fixture.draftDepartureAt));
+  assert(Date.parse(fixture.draftDepartureAt) < Date.parse(fixture.draftArrivalBy));
+  const format = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Brussels', hour: '2-digit', minute: '2-digit' });
+  assert.equal(format.format(new Date(fixture.draftDepartureAt)), '12:00');
+  assert.equal(format.format(new Date(fixture.draftArrivalBy)), '13:00');
+  assert.throws(() => tripSchedulePhoneFixture(NaN));
+});
+import { assertRetainedSourceFiles } from '../scripts/qa/retained-source-evidence.mjs';
+import { assertEvidenceBundleChecksums } from '../scripts/qa/evidence-bundle-checksums.mjs';
+
+test('schedule phone preparation retains its stopped run without claiming picker, restart or physical proof', () => {
+  const root = new URL('..', import.meta.url).pathname;
+  const folder = 'docs/release/evidence/schedule-draft-phone-preparation-2026-10-26/';
+  assertEvidenceBundleChecksums(root + folder.slice(0, -1));
+  const report = JSON.parse(text(folder + 'session-results.json'));
+  assert.equal(report.completed, false); assert.deepEqual(report.checkpoints, []);
+  assert.equal(report.fixture.draftKind, 'schedule'); assert.equal(report.providerRequests, 0);
+  assert.equal(report.adminClientClosed, true); assert.equal(report.firestoreClientTerminated, true);
+  assert.equal(report.physicalUiProvenByThisReport, false); assert.equal(report.wholeProcessRestartProvenByThisReport, false);
+  assert.equal(report.draftStorageProvenByThisReport, false); assert.equal(report.productionWrites, false);
+  assertRetainedSourceFiles(root, report.sourceFiles);
+  const cleanup = JSON.parse(text(folder + 'runtime-cleanup.json'));
+  for (const key of ['processGroupExited', 'privateSessionAbsent', 'runtimeAbsent', 'endpointsClosed']) assert.equal(cleanup[key], true);
+  assert.equal(cleanup.failed, false);
+});

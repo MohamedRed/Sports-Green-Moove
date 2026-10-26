@@ -1,0 +1,45 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "f47325c981675dc1303f3832eee50c40",
+  "testedAt": "2026-10-26T22:14:44.837Z",
+  "scope": "independent-private-trip-draft-records-not-storage-or-process-proof",
+  "completed": false,
+  "fixture": {
+    "tripId": "1pbcHsKPfDW4z7b6vCRC",
+    "otherTripId": "RyJywzfGTJ6Y1mmVOcJf",
+    "bookingIds": [
+      "asD2W4JxUVQznGXeyHxu",
+      "v8hzhSlbnAFN1tQDDs1F"
+    ],
+    "draftKind": "schedule",
+    "schedule": {
+      "originalDepartureAt": "2026-10-27T09:00:00.000Z",
+      "draftDepartureAt": "2026-10-28T11:00:00.000Z",
+      "draftArrivalBy": "2026-10-28T12:00:00.000Z"
+    },
+    "driverUid": "sgm-qa-driver",
+    "driverEmail": "d@example.test",
+    "preparationMethod": "authenticated-local-service",
+    "providerRequests": 0,
+    "productionWrites": false
+  },
+  "checkpoints": [],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "physicalUiProvenByThisReport": false,
+  "wholeProcessRestartProvenByThisReport": false,
+  "draftStorageProvenByThisReport": false,
+  "proposalCreated": false,
+  "realPaymentExercised": false,
+  "sourceFiles": {
+    "scripts/qa/manual-trip-draft-phone-session.mjs": "70ece63250170c72a2800264e9269802a051e1698374476ad3e87acf9cb0fb64",
+    "scripts/qa/trip-draft-phone-checkpoints.mjs": "46e86d2eb818b1779d2888cd632692c652b2b2e6a45893235dffdf688b11524b",
+    "scripts/qa/trip-schedule-phone-fixture.mjs": "b8f7de8f4a1b14d9510b74fc84a5e7eccc75938b93571a3243d517bd5b2b66a8",
+    "scripts/qa/trip-change-schedule-evidence.mjs": "e452f42a0a6bcd10a7d100816d84020335da122cafb3fbd1dcf2c5b29652598f",
+    "scripts/qa/local-trip-draft-restart.mjs": "14311bdce195b7fde2798ae82146cc6b627820a179aab5f2ee204daa687bdb05",
+    "scripts/qa/local-trip-input.mjs": "3277c597a1fdfc14e44d4de771d678720a72ca5a1b564967efdeaf86a84e7499",
+    "scripts/qa/start-child-account-phone.mjs": "a78e97e9d99747a948c825788a1ef660474fccfbc88ac2416488718ad4c6a44d"
+  }
+}
