@@ -18,15 +18,21 @@ function frames(rows) {
 }
 
 export function validatePrimaryCaptureDiagnostic(value) {
+  assert([1, 2].includes(value.schemaVersion));
   keys(value, ['schemaVersion', 'scope', 'captureName', 'sdkInvocations', 'primaryOutcome', 'errorCategory', 'elapsedMs',
     'callerIsMain', 'mainPostAccepted', 'heartbeatDelaysMs', 'maxMainQueueDelayMs', 'samples', 'sampleFailures',
-    'observerClosed', 'observerMayAffectScheduling', 'imagesWrittenByObserver', 'primaryStartOffsetMs', 'primaryElapsedMs', 'heartbeatAtMs']);
-  assert.equal(value.schemaVersion, 1); assert.equal(value.scope, captureDiagnosticScope);
+    'observerClosed', 'observerMayAffectScheduling', 'imagesWrittenByObserver', 'primaryStartOffsetMs', 'primaryElapsedMs', 'heartbeatAtMs',
+    ...(value.schemaVersion === 2 ? ['observerTerminationVerified'] : [])]);
+  assert.equal(value.scope, captureDiagnosticScope);
   assert(requiredTripCaptureNames.includes(value.captureName));
   assert(['prepared', 'returned', 'threw'].includes(value.primaryOutcome));
   assert.equal(value.sdkInvocations, value.primaryOutcome === 'prepared' ? 0 : 1);
   assert(value.primaryOutcome === 'threw' ? ['pixelcopy-callback-wait', 'other'].includes(value.errorCategory) : value.errorCategory === 'none');
   number(value.elapsedMs); bool(value.callerIsMain); bool(value.mainPostAccepted); bool(value.observerClosed);
+  if (value.schemaVersion === 2) {
+    if (value.observerClosed) bool(value.observerTerminationVerified);
+    else assert.equal(value.observerTerminationVerified, null);
+  }
   if (value.primaryOutcome === 'prepared') {
     assert.equal(value.primaryStartOffsetMs, null); assert.equal(value.primaryElapsedMs, null);
   } else {
@@ -56,5 +62,6 @@ export function validatePrimaryCaptureDiagnostic(value) {
     assert.deepEqual(value.heartbeatDelaysMs, []); assert.deepEqual(value.heartbeatAtMs, []);
     assert.deepEqual(value.samples, []); assert.equal(value.sampleFailures, 0);
   }
-  return { complete: value.primaryOutcome !== 'prepared' && value.observerClosed && value.mainPostAccepted && value.sampleFailures === 0 };
+  return { complete: value.primaryOutcome !== 'prepared' && value.observerClosed && value.mainPostAccepted && value.sampleFailures === 0
+    && (value.schemaVersion === 1 || value.observerTerminationVerified === true) };
 }

@@ -525,3 +525,11 @@ Stop the test session, remove its private credential file if interruption preven
 cleanup, and stop the disposable device when done. Never commit runtime logs or
 credential-entry screenshots. Captures under the local app's external-files
 `local-ui-evidence` directory contain only explicitly captured test states.
+
+Primary capture diagnostic schema 2 persists the final SDK outcome even when
+observer shutdown fails. A failed or interrupted termination records
+`observerTerminationVerified: false` and remains an incomplete observation,
+instead of leaving only the initial `prepared` record. Historical schema 1
+receipts keep their original contract. The primary SDK call, single invocation,
+capture deadline, blank-image rejection and 100 ms observer shutdown bound are
+unchanged. This repairs diagnostic persistence, not the capture/transport failure.

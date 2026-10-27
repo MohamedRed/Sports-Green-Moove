@@ -95,6 +95,27 @@ test('prepared and incomplete observer records cannot claim a complete capture o
     assert.equal(receipt.ok, false); assert.equal(receipt.errorCode, 'INCOMPLETE_CAPTURE_OBSERVATION');
   }
 });
+test('version-two final records retain the primary result but never infer observer termination', () => {
+  const complete = { ...trace(), schemaVersion: 2, observerTerminationVerified: true };
+  assert.equal(validatePrimaryCaptureDiagnostic(complete).complete, true);
+  const failed = { ...complete, primaryOutcome: 'threw', errorCategory: 'pixelcopy-callback-wait', observerTerminationVerified: false };
+  assert.equal(validatePrimaryCaptureDiagnostic(failed).complete, false);
+  const collected = collect([failed], { ordinaryPassed: false }).receipt;
+  assert.equal(collected.ok, false); assert.equal(collected.errorCode, 'INCOMPLETE_CAPTURE_OBSERVATION');
+  assert.equal(collected.traces[0].primaryOutcome, 'threw'); assert.equal(collected.traces[0].errorCategory, 'pixelcopy-callback-wait');
+  assert.equal(validatePrimaryCaptureDiagnostic({ ...prepared(), schemaVersion: 2, observerTerminationVerified: null }).complete, false);
+  for (const row of [{ ...complete, observerTerminationVerified: null }, { ...complete, observerTerminationVerified: 'true' },
+    { ...prepared(), schemaVersion: 2, observerTerminationVerified: true }, { ...trace(), observerTerminationVerified: true },
+    { ...complete, schemaVersion: 3 }]) assert.throws(() => validatePrimaryCaptureDiagnostic(row));
+  const probe = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureProbe.kt');
+  assert(probe.includes('finishPrimaryCaptureObservation(awaitTermination = {'));
+  assert(probe.includes('executor.awaitTermination(100, TimeUnit.MILLISECONDS)'));
+  assert(probe.includes('.put("observerTerminationVerified", terminationVerified ?: JSONObject.NULL)'));
+  const finalization = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureFinalization.kt');
+  assert(finalization.indexOf('catch (error: Throwable) { failure = error }') < finalization.indexOf('persist(terminated)'));
+  assert(finalization.indexOf('persist(terminated)') < finalization.indexOf('failure?.let { throw it }'));
+  assert(!/sleep|repeat\(|captureToImage|PixelCopy/.test(finalization));
+});
 test('raw exception messages, contact values, image claims, retries and invalid timing data are rejected', () => {
   for (const patch of [{ message: 'private value' }, { phone: '+12025550121' }, { rootCauseProven: true },
     { imagesWrittenByObserver: true }, { observerMayAffectScheduling: false }, { sdkInvocations: 2 },

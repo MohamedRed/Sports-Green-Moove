@@ -19,6 +19,7 @@ internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObs
     private val heartbeatTimes = mutableListOf<Long>()
     private val samples = mutableListOf<JSONObject>()
     private var closed = false
+    private var terminationVerified: Boolean? = null
     private var outcome = "prepared"
     private var category = "none"
     private var duration = 0L
@@ -103,15 +104,19 @@ internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObs
 
     override fun close() {
         synchronized(lock) { check(!closed); closed = true }
-        handler.removeCallbacks(heartbeat)
-        executor.shutdownNow()
-        check(executor.awaitTermination(100, TimeUnit.MILLISECONDS)) { "Capture observer did not stop" }
-        writeSnapshot()
+        finishPrimaryCaptureObservation(awaitTermination = {
+            handler.removeCallbacks(heartbeat)
+            executor.shutdownNow()
+            executor.awaitTermination(100, TimeUnit.MILLISECONDS)
+        }, persist = { stopped ->
+            synchronized(lock) { terminationVerified = stopped }
+            writeSnapshot()
+        })
     }
 
     private fun writeSnapshot() {
         val value = synchronized(lock) {
-            JSONObject().put("schemaVersion", 1).put("scope", "primary-compose-capture-observation-not-flow-or-root-cause-proof")
+            JSONObject().put("schemaVersion", 2).put("scope", "primary-compose-capture-observation-not-flow-or-root-cause-proof")
                 .put("captureName", name).put("sdkInvocations", if (outcome == "prepared") 0 else 1).put("primaryOutcome", outcome)
                 .put("errorCategory", category).put("elapsedMs", duration).put("callerIsMain", caller === main)
                 .put("primaryStartOffsetMs", primaryStartOffset ?: JSONObject.NULL)
@@ -120,7 +125,8 @@ internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObs
                 .put("heartbeatAtMs", JSONArray(heartbeatTimes))
                 .put("maxMainQueueDelayMs", delays.maxOrNull() ?: JSONObject.NULL).put("samples", JSONArray(samples))
                 .put("sampleFailures", sampleFailures)
-                .put("observerClosed", closed).put("observerMayAffectScheduling", true).put("imagesWrittenByObserver", false)
+                .put("observerClosed", closed).put("observerTerminationVerified", terminationVerified ?: JSONObject.NULL)
+                .put("observerMayAffectScheduling", true).put("imagesWrittenByObserver", false)
         }
         output.writeText(value.toString(2) + "\n")
     }
