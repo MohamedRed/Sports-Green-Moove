@@ -69,7 +69,7 @@ test('service scenarios and new native captures are mandatory without claiming n
   assert(components.includes('layout.getLineBottom(line) <= layout.size.height'));
   assert(components.includes('layout.isLineEllipsized(line)'));
   assert(components.includes('layout.layoutInput.text.length, layout.getLineEnd(layout.lineCount - 1)'));
-  assert(read('.github/workflows/native-focused-ui.yml').includes('team-read-components]'));
+  assert(parse(read('.github/workflows/native-focused-ui.yml')).jobs['focused-case'].strategy.matrix.case.includes('team-read-components'));
   const connected = read('scripts/qa/team-chat-native-records.mjs');
   assert(connected.includes('teamReadReceiptId(uid, messageId)'));
   assert(connected.includes("root.collection('readReceipts').get()).size, 3"));

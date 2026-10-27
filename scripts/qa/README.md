@@ -355,6 +355,18 @@ The Android 15 loader uses these bundles when deriving its applied-configuration
 flag, and prints their presence separately in its dump:
 [CarrierConfigLoader](https://android.googlesource.com/platform/packages/services/Telephony/+/refs/tags/android-15.0.0_r1/src/com/android/phone/CarrierConfigLoader.java).
 
+The independent `chat-network-recovery` lane uses a fresh disposable device and
+the unchanged `LocalChatNetworkFlowTest`, `replayWithNetworkCleanup` and
+`verifyChatNetworkUi`. It observes bootstrap state before test-app installation,
+then prepares refused/cancelled picker history through isolated callables rather
+than relying on earlier UI cases. A primary evidence-copy failure, failed radio
+prerequisite, duplicate message or failed cleanup still fails the lane. Recovery
+copies cannot rescue a failed primary copy. The original full matrix still runs
+and remains required; this extra lane does not replace or weaken it. Both lanes
+use the existing 30-second cellular preparation deadline, not a longer wait,
+forced subscription choice or substitute connection. No physical network-loss,
+GPS or release readiness is established by a simulated device.
+
 The ride case needs a Google APIs image with functioning Play services. It grants
 permissions only to `.local`, then injects a synthetic location through the
 official fused-location mock API. Mock positions affect the entire emulator:

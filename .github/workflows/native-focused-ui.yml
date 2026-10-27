@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        case: [emergency-identity, ride-observation, native-startup, remote-ride-stop, session-restoration, session-disconnect, team-conversation, team-access, team-draft, team-read-components]
+        case: [emergency-identity, ride-observation, native-startup, remote-ride-stop, session-restoration, session-disconnect, team-conversation, team-access, team-draft, team-read-components, chat-network-recovery]
     permissions:
       contents: read
     steps:

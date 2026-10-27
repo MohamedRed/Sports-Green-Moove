@@ -2,7 +2,10 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
-import { focusedCases } from './android-case-apks.mjs';
+
+// Dated evidence must not acquire new requirements from today's CI matrix.
+const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop',
+  'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft', 'team-read-components'];
 
 export function validateNativeBootRecheck(root, record) {
   const base = dirname(resolve(root, record.source)), bytes = name => readFileSync(resolve(base, name));

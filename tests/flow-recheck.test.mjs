@@ -80,6 +80,13 @@ test('latest boot failure and ten restored focused cases never imply a full repl
   const update = content.updates.find(row => row.source === dirname(content.nativeBootRecheck.source) + '/README.md');
   assert.match(update.text, /avant les parcours/);
 });
+test('historical boot evidence stays pinned to its original ten cases when current CI adds network recovery', () => {
+  const source = readFileSync('scripts/qa/native-boot-recheck-evidence.mjs', 'utf8');
+  assert(!source.includes("from './android-case-apks.mjs'"));
+  const current = readFileSync('scripts/qa/android-case-apks.mjs', 'utf8');
+  assert(current.includes('chat-network-recovery'));
+  assert.equal(validateNativeBootRecheck(process.cwd(), content.nativeBootRecheck).focusedCasesPassed, 10);
+});
 test('the retained original boot log is tracked despite the general runtime-log ignore rule', () => {
   const path = 'docs/release/evidence/native-boot-bea9e0ee-2026-10-22/native-job.log';
   assert.equal(execFileSync('git', ['ls-files', '--error-unmatch', path], {encoding: 'utf8'}).trim(), path);

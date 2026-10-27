@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { parseDocument } from 'yaml';
 import { focusedCases } from '../scripts/qa/preinstalled-disposable-apks.mjs';
+import { seedChatNetworkHistory } from '../scripts/qa/chat-network-history-fixture.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 function run(t, phase, overrides = {}) {
@@ -14,6 +15,7 @@ function run(t, phase, overrides = {}) {
   for (const dir of ['scripts', 'bin']) mkdirSync(join(root, dir));
   cpSync(new URL('../scripts/run-focused-android-ui.sh', import.meta.url), join(root, 'scripts/run.sh'));
   const commands = [
+    '*observe-network-bootstrap.mjs) echo bootstrap >> "$CALL_LOG"; exit "$BOOTSTRAP_STATUS";;',
     '*configure-continuous-disposable.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;',
     '*restore-continuous-disposable.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;',
     '*observe-emulator-shutdown.mjs) echo observe >> "$CALL_LOG"; exit "$OBSERVER_STATUS";;',
@@ -23,7 +25,7 @@ function run(t, phase, overrides = {}) {
   const log = join(root, 'calls');
   const result = spawnSync('bash', [join(root, 'scripts/run.sh'), ...(phase == null ? [] : [phase])], {
     encoding: 'utf8', env: { ...process.env, PATH: join(root, 'bin') + ':' + process.env.PATH,
-      CALL_LOG: log, SETUP_STATUS: '0', RESTORE_STATUS: '0', FLOW_STATUS: '0', OBSERVER_STATUS: '0',
+      CALL_LOG: log, SETUP_STATUS: '0', RESTORE_STATUS: '0', FLOW_STATUS: '0', OBSERVER_STATUS: '0', BOOTSTRAP_STATUS: '0',
       GITHUB_ACTIONS: 'false', ...overrides },
   });
   assert.equal(result.error, undefined);
@@ -32,6 +34,7 @@ function run(t, phase, overrides = {}) {
   return { ...result, calls: existsSync(log) ? readFileSync(log, 'utf8').trim().split('\n') : [],
     outcome: existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : null };
 }
+const lifecycle = phase => [...(phase === 'chat-network-recovery' ? ['bootstrap'] : []), 'setup', phase, 'restore'];
 for (const phase of focusedCases) {
   for (const [name, env, expected] of [
     ['passes', {}, 0], ['retains its failure', { FLOW_STATUS: '41' }, 41],
@@ -40,7 +43,7 @@ for (const phase of focusedCases) {
   ]) test(phase + ' ' + name + ' on a dedicated phone', (t) => {
     const result = run(t, phase, env);
     assert.equal(result.status, expected, result.stderr);
-    assert.deepEqual(result.calls, ['setup', phase, 'restore']);
+    assert.deepEqual(result.calls, lifecycle(phase));
     assert.deepEqual(result.outcome, { scope: phase + '-command-status-not-flow-verification', status: Number(env.FLOW_STATUS ?? 0) });
   });
 }
@@ -64,10 +67,10 @@ test('missing, unknown or compound case selection changes no phone', (t) => {
 test('every independent case remains scheduled when another case fails', (t) => {
   const results = focusedCases.map((phase, index) => run(t, phase, { FLOW_STATUS: String(index === 0 ? 41 : 0) }));
   assert.deepEqual(results.map((result) => result.status), focusedCases.map((_, index) => index === 0 ? 41 : 0));
-  assert.deepEqual(results.map((result) => result.calls), focusedCases.map((phase) => ['setup', phase, 'restore']));
+  assert.deepEqual(results.map((result) => result.calls), focusedCases.map(lifecycle));
 });
 test('all dedicated jobs and cleanup remain mandatory under the existing release gate', () => {
-  assert.deepEqual(focusedCases, ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft', 'team-read-components']);
+  assert.deepEqual(focusedCases, ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft', 'team-read-components', 'chat-network-recovery']);
   const native = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   const focused = parseDocument(read('.github/workflows/native-focused-ui.yml')).toJSON();
   assert.equal(native.jobs['android-focused-safety-ui'].uses, './.github/workflows/native-focused-ui.yml');
@@ -122,4 +125,79 @@ test('all focused flows explicitly choose pinned APK preparation and still unins
     const source = read('scripts/qa/' + file);
     for (const key of ['SGM_PREINSTALLED_TEST_APKS_RECEIPT', 'SGM_FOCUSED_UI_CASE', 'SGM_TEST_PHONE_ADMIN_APPROVED']) assert(source.includes(key));
   }
+});
+
+test('network bootstrap refusal does not install apps or start the isolated flow', t => {
+  const result = run(t, 'chat-network-recovery', { BOOTSTRAP_STATUS: '31' });
+  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['bootstrap']); assert.equal(result.outcome, null);
+});
+
+const networkEnv = { SGM_LOCAL_DISPOSABLE_EMULATOR: 'true', GCLOUD_PROJECT: 'demo-sgm-local-qa', FIREBASE_PROJECT_ID: 'demo-sgm-local-qa' };
+function networkHistoryClient({ failDecision = false, wrongStatus = false, parentUid = 'sgm-qa-parent' } = {}) {
+  const calls = [], bookings = new Map(), trips = new Map();
+  return { calls,
+    async signIn(email) { return { uid: email === 'p@example.test' ? parentUid : 'sgm-qa-driver' }; },
+    tripInput: () => ({ seatsTotal: 4, seatsAvailable: 4 }),
+    async viewedBooking(actor, data) { assert.equal(actor.uid, parentUid); return { ...data, viewed: true }; },
+    async call(name, actor, data) {
+      calls.push({ name, actor: actor.uid, data });
+      if (name === 'createTrip') {
+        assert.equal(actor.uid, 'sgm-qa-driver');
+        const tripId = 'trip-' + trips.size; trips.set(tripId, data); return { tripId };
+      }
+      if (name === 'requestBooking') {
+        assert.equal(actor.uid, parentUid); assert.equal(data.viewed, true);
+        const bookingId = 'booking-' + bookings.size;
+        bookings.set(bookingId, { ...data, status: 'requested', parentUserId: parentUid, driverUserId: 'sgm-qa-driver' });
+        return { bookingId };
+      }
+      assert(['declineBooking', 'cancelBooking'].includes(name));
+      assert.equal(actor.uid, name === 'declineBooking' ? 'sgm-qa-driver' : parentUid);
+      if (failDecision) throw new Error('decision rejected');
+      if (!wrongStatus) bookings.get(data.bookingId).status = name === 'declineBooking' ? 'declined' : 'cancelled';
+    },
+    async document(collection, id) {
+      assert(['trips', 'bookings'].includes(collection));
+      return (collection === 'trips' ? trips : bookings).get(id);
+    },
+  };
+}
+test('independent network fixtures preserve refused and cancelled picker statuses through actual decision callables', async () => {
+  const client = networkHistoryClient(), result = await seedChatNetworkHistory(client, networkEnv);
+  assert.equal(result.method, 'isolated-callable-fixture-not-ui-verification');
+  assert.deepEqual(result.bookings.map(row => row.status), ['declined', 'cancelled']);
+  assert.deepEqual(client.calls.map(row => row.name),
+    ['createTrip', 'requestBooking', 'declineBooking', 'createTrip', 'requestBooking', 'cancelBooking']);
+  assert.equal(result.nativeUiExecuted, undefined);
+});
+test('network fixture guards and rejected decisions cannot create production data or fabricated history', async () => {
+  for (const env of [{}, { ...networkEnv, SGM_LOCAL_DISPOSABLE_EMULATOR: 'false' },
+    { ...networkEnv, GCLOUD_PROJECT: 'production' }, { ...networkEnv, FIREBASE_PROJECT_ID: 'production' }]) {
+    const client = networkHistoryClient(); await assert.rejects(() => seedChatNetworkHistory(client, env));
+    assert.equal(client.calls.length, 0);
+  }
+  const outsider = networkHistoryClient({ parentUid: 'outsider' });
+  await assert.rejects(() => seedChatNetworkHistory(outsider, networkEnv)); assert.equal(outsider.calls.length, 0);
+  for (const options of [{ failDecision: true }, { wrongStatus: true }]) {
+    const client = networkHistoryClient(options);
+    await assert.rejects(() => seedChatNetworkHistory(client, networkEnv));
+    assert.equal(client.calls.filter(row => row.name === 'declineBooking').length, 1);
+    assert(!client.calls.some(row => row.name === 'cancelBooking'));
+  }
+});
+test('independent network trial reuses the exact native case, radio cleanup and persisted-message verifier', () => {
+  const source = read('scripts/qa/local-chat-network-recovery-ui.mjs');
+  for (const item of ['seedChatNetworkHistory(client)', 'seedChatNetworkUiFixture()',
+    'replayWithNetworkCleanup(adb, serial, session.runId', 'verifyChatNetworkUi(fixture, directory)',
+    "collect('network-recovery')", "collect('failure-cleanup')", 'assertInstrumentationPassed(transcript, expected)',
+    'withLocalAdminCleanup', 'firestoreClientTerminated: true', 'nativeUiExecuted: true']) assert(source.includes(item), item);
+  assert(source.indexOf("collect('network-recovery')") < source.indexOf('verifyChatNetworkUi(fixture, directory)'));
+  assert(source.indexOf('if (failure) throw failure') < source.indexOf("scope: 'isolated-chat-network-ui-not-physical-network-loss'"));
+  const full = read('scripts/qa/local-android-session.mjs');
+  for (const item of ['replayWithNetworkCleanup(adb, serial, session.runId, instrument)',
+    "collectEvidence('network-recovery')", 'verifyChatNetworkUi(networkFixture, evidenceDir)']) assert(full.includes(item));
+  assert(read('scripts/qa/run-isolated-ride-ui.mjs').includes("'chat-network-recovery': 'local-chat-network-recovery-ui.mjs'"));
+  assert(read('scripts/qa/run-local-chat-network-recovery-ui.mjs').includes("runIsolatedRideUi('chat-network-recovery')"));
+  assert(read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt')
+    .includes('compose.waitUntil(30_000)'));
 });

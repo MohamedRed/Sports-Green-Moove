@@ -40,6 +40,13 @@ test('pre-installation observation is independently identified and never claims 
   assert(t.commands.filter(args => args[0] === 'am').every(args => args[1] === 'get-current-user'));
   assert(t.commands.filter(args => args[0] === 'pm').every(args => args[1] === 'list'));
 });
+test('the independent network case observes the same state before installing its test apps', () => {
+  const t = trial();
+  assert.equal(t.run({ ...env, SGM_FOCUSED_UI_CASE: 'chat-network-recovery' }).completed, true);
+  assert.equal(t.calls.length, 4);
+  const source = readFileSync('scripts/run-focused-android-ui.sh', 'utf8');
+  assert(source.indexOf('observe-network-bootstrap.mjs') < source.indexOf('configure-continuous-disposable.mjs'));
+});
 test('unapproved, physical, wrong-case and relative-output invocations stop before observation writes', () => {
   for (const environment of [{}, { ...env, SGM_LOCAL_DISPOSABLE_EMULATOR: 'false' }, { ...env, SGM_FOCUSED_UI_CASE: 'team-draft' }]) {
     const t = trial(); assert.throws(() => t.run(environment)); assert.equal(t.commands.length, 0); assert.equal(t.writes.length, 0);

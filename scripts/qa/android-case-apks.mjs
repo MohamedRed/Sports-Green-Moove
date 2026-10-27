@@ -18,7 +18,7 @@ export const matrixPackages = {
 };
 export const matrixCases = ['full-matrix'];
 export const manualComponentCases = ['trip-change-components'];
-export const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft', 'team-read-components'];
+export const focusedCases = ['emergency-identity', 'ride-observation', 'native-startup', 'remote-ride-stop', 'session-restoration', 'session-disconnect', 'team-conversation', 'team-access', 'team-draft', 'team-read-components', 'chat-network-recovery'];
 export function packagesForCase(name) {
   assert([...focusedCases, ...matrixCases, ...manualComponentCases, 'parent-search-booking', 'team-chat-components'].includes(name));
   if (manualComponentCases.includes(name)) return Object.fromEntries(Object.entries(matrixPackages)

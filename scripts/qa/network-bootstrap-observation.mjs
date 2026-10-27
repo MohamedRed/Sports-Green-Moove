@@ -27,7 +27,7 @@ export function observeNetworkBootstrap(output, env = process.env, execute = exe
   id = () => randomBytes(16).toString('hex'),
 } = {}) {
   assert.equal(env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
-  assert.equal(env.SGM_FOCUSED_UI_CASE, 'full-matrix');
+  assert(['full-matrix', 'chat-network-recovery'].includes(env.SGM_FOCUSED_UI_CASE));
   assert(isAbsolute(output ?? ''), 'Bootstrap observation requires an absolute evidence directory');
   const { serial, shell } = deviceFactory(env, execute);
   assert.match(serial, /^emulator-\d+$/);
