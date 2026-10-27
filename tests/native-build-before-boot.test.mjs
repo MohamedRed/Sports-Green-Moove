@@ -4,9 +4,10 @@ import { readFileSync } from 'node:fs';
 import YAML from 'yaml';
 import { createHash } from 'node:crypto';
 import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation-evidence.mjs';
-import { validateRenderNetworkGate } from '../scripts/qa/render-network-gate-evidence.mjs';
+import { renderNetworkGateFolder, validateRenderNetworkGate } from '../scripts/qa/render-network-gate-evidence.mjs';
 
 test('latest capture and cellular precondition failures remain distinct from successful copying and safety lanes', () => {
+  assert(read('.gitattributes').includes(renderNetworkGateFolder + '** -text -whitespace'));
   const result = validateRenderNetworkGate(new URL('..', import.meta.url).pathname);
   assert.equal(result.ordinaryPassed, 176); assert.equal(result.ordinaryFailed, 1);
   assert.equal(result.allPrimaryCopiesPassed, true); assert.equal(result.networkFailedPhase, 'network-preparation');
