@@ -534,6 +534,21 @@ receipts keep their original contract. The primary SDK call, single invocation,
 capture deadline, blank-image rejection and 100 ms observer shutdown bound are
 unchanged. This repairs diagnostic persistence, not the capture/transport failure.
 
+Diagnostic stack filenames also accept the bounded, numeric-versioned
+`:com.google.android.gms.<module>_dynamite@<version>@<build>` source marker found
+in dynamically loaded Play services modules. This exception applies only to the
+filename field; paths, contacts, arbitrary annotations, control characters and
+overlong values remain rejected. Class and method labels keep their original
+restrictions. Source bytes are not rewritten or replaced when validating them.
+This rejection was reproduced from the original six records in
+[run 40511335572](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40511335572)
+at `6b4fe7c`: all 181 executed ordinary cases and the 37-step local replay passed,
+but the applied-balance capture sampled the Maps module marker and failed the
+diagnostic collector. The corrected validator accepts those six unmodified
+records locally; the original CI result remains failed and a fresh head check is required.
+The separate renderer comparison passed, but its independently built APK digests
+differ from the control, so it does not prove that changing rendering fixed anything.
+
 The normal full matrix still selects `software`. A manually dispatched
 `full_matrix_renderer=swiftshader` selects that explicit supported backend for a
 controlled comparison of the identical full suite, without increasing deadlines,

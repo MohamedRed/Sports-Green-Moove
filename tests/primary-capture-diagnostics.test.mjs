@@ -143,6 +143,32 @@ test('stack samples are bounded metadata and retain unknown queue responsiveness
     { mainFrames: Array(21).fill(frame) }, { callerFrames: [{ ...frame, fileName: '/private/value' }] }])
     assert.throws(() => validatePrimaryCaptureDiagnostic({ ...trace(), samples: [{ ...sample, ...patch }] }));
 });
+const dynamiteSource = ':com.google.android.gms.policy_maps_core_dynamite@241610205@241610202049.636179997.636179997';
+const moduleSample = (frame = {}) => ({ atMs: 651, scheduledMs: 610, offsetMs: 600, observerDelayMs: 41,
+  mainState: 'RUNNABLE', mainFrames: [{ className: 'com.google.maps.api.android.lib6.Map', methodName: 'render',
+    fileName: dynamiteSource, lineNumber: -1, ...frame }], callerFrames: [] });
+test('versioned Android module source markers remain bounded filename metadata, not capture repairs', () => {
+  for (const schemaVersion of [1, 2]) {
+    const row = { ...trace(), schemaVersion, samples: [moduleSample()],
+      ...(schemaVersion === 2 ? { observerTerminationVerified: true } : {}) };
+    assert.equal(validatePrimaryCaptureDiagnostic(row).complete, true);
+    const rows = requiredTripCaptureNames.map(name => ({ ...row, captureName: name }));
+    const { receipt } = collect(rows);
+    assert.equal(receipt.ok, true); assert.equal(receipt.traces.length, 6);
+    assert.equal(Object.keys(receipt.files).length, 6);
+    assert.equal(collect([{ ...row, sampleFailures: 1 }], { ordinaryPassed: false }).receipt.ok, false);
+  }
+});
+test('module source markers cannot admit contacts, paths, arbitrary annotations or other frame fields', () => {
+  for (const fileName of ['/private/value', 'person@example.com', 'https://example.com/module',
+    ':com.google.android.gms.policy_maps_core_dynamite@private@123', dynamiteSource + '@secret',
+    dynamiteSource + '/private/value', dynamiteSource + '\n', dynamiteSource.replace('@241610205', '@-1'),
+    dynamiteSource.replace('241610205', '1'.repeat(21)), ':other.package.module@123@456',
+    ':com.google.android.gms.module@123@456', 'x'.repeat(261)])
+    assert.throws(() => validatePrimaryCaptureDiagnostic({ ...trace(), samples: [moduleSample({ fileName })] }));
+  for (const field of ['className', 'methodName'])
+    assert.throws(() => validatePrimaryCaptureDiagnostic({ ...trace(), samples: [moduleSample({ [field]: dynamiteSource })] }));
+});
 test('a missing capture or extra image cannot become a complete passing-suite diagnostic inventory', () => {
   for (const rows of [[trace()], [trace(), trace()]]) assert.equal(collect(rows).receipt.ok, false);
   const result = collect([trace()], { ordinaryPassed: false, edit(folder) { writeFileSync(join(folder, 'image.png'), 'no'); } });

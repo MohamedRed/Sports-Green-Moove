@@ -8,11 +8,18 @@ const keys = (object, names) => assert.deepEqual(Object.keys(object).sort(), nam
 const number = value => assert(Number.isSafeInteger(value) && value >= 0 && value <= 300_000);
 const bool = value => assert.equal(typeof value, 'boolean');
 const label = value => assert(typeof value === 'string' && value.length <= 260 && !/[\u0000-\u001f\u007f@/:]/u.test(value));
+const dynamiteSource = /^:com\.google\.android\.gms\.[a-z][a-z0-9_]*_dynamite@[0-9]{1,20}@[0-9]{1,20}(?:\.[0-9]{1,20}){0,4}$/;
+function sourceLabel(value) {
+  // Android's dynamically loaded Play services modules use a versioned source marker, not a path.
+  if (typeof value === 'string' && value.length <= 260 && dynamiteSource.test(value)) return;
+  label(value);
+}
 function frames(rows) {
   assert(Array.isArray(rows) && rows.length <= 20);
   for (const row of rows) {
     keys(row, ['className', 'methodName', 'fileName', 'lineNumber']);
-    for (const key of ['className', 'methodName', 'fileName']) label(row[key]);
+    for (const key of ['className', 'methodName']) label(row[key]);
+    sourceLabel(row.fileName);
     assert(Number.isSafeInteger(row.lineNumber) && row.lineNumber >= -2 && row.lineNumber <= 2_147_483_647);
   }
 }
