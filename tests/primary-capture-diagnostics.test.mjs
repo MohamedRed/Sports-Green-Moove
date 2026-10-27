@@ -181,7 +181,7 @@ test('only the ordinary disposable-device job opts in and web smoke protects the
   const workflow = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   const boot = workflow.jobs['android-native-ui'].steps.find(step => step.uses === 'reactivecircus/android-emulator-runner@v2');
   assert.equal(boot.env.SGM_PRIMARY_CAPTURE_DIAGNOSTICS, 'true');
-  assert.equal(boot.with['emulator-options'], '-no-window -gpu software -no-snapshot -noaudio -no-boot-anim');
+  assert.equal(boot.with['emulator-options'], '${{ steps.matrix_renderer.outputs.emulator_options }}');
   assert.equal(read('.github/workflows/native-ci.yml').split('SGM_PRIMARY_CAPTURE_DIAGNOSTICS:').length - 1, 1);
   assert(read('.github/workflows/web-integration-smoke.yml').includes('node --test tests/primary-capture-diagnostics.test.mjs'));
 });

@@ -1,10 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
 import { createHash } from 'node:crypto';
 import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation-evidence.mjs';
 import { renderNetworkGateFolder, validateRenderNetworkGate } from '../scripts/qa/render-network-gate-evidence.mjs';
+import { matrixRendererConfiguration } from '../scripts/qa/select-matrix-renderer.mjs';
 
 test('latest capture and cellular precondition failures remain distinct from successful copying and safety lanes', () => {
   assert(read('.gitattributes').includes(renderNetworkGateFolder + '** -text -whitespace'));
@@ -28,7 +33,8 @@ const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf
 test('the full screenshot gate selects a supported rendering mode without weakening captures or collection', () => {
   const job = YAML.parse(read('.github/workflows/native-ci.yml')).jobs['android-native-ui'];
   const boot = job.steps.find(step => step.uses === 'reactivecircus/android-emulator-runner@v2');
-  assert.equal(boot.with['emulator-options'], '-no-window -gpu software -no-snapshot -noaudio -no-boot-anim');
+  assert.equal(boot.with['emulator-options'], '${{ steps.matrix_renderer.outputs.emulator_options }}');
+  assert.equal(matrixRendererConfiguration('software').emulatorOptions, '-no-window -gpu software -no-snapshot -noaudio -no-boot-anim');
   assert.equal(boot['continue-on-error'], undefined); assert.equal(job['continue-on-error'], undefined);
   assert.equal(boot.with.script, 'bash scripts/run-android-ui-tests-and-collect-screenshots.sh');
   const capture = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt');
@@ -37,6 +43,42 @@ test('the full screenshot gate selects a supported rendering mode without weaken
   const collector = read('scripts/qa/collect-local-ui-evidence.mjs');
   assert(collector.includes('throw new EvidenceCollectionError'));
   assert(collector.includes('A named evidence copy cannot be repeated or overwrite its receipt'));
+});
+test('renderer comparison is explicit, fail-closed and never replaces the ordinary release gate', () => {
+  const workflow = YAML.parse(read('.github/workflows/native-ci.yml'));
+  const input = workflow.on.workflow_dispatch.inputs.full_matrix_renderer;
+  assert.deepEqual(input.options, ['software', 'swiftshader']); assert.equal(input.default, 'software');
+  const job = workflow.jobs['android-native-ui'];
+  assert(job.name.includes("inputs.full_matrix_renderer == 'swiftshader' && 'Android renderer comparison (not release)'"));
+  const select = job.steps.findIndex(step => step.id === 'matrix_renderer');
+  const boot = job.steps.findIndex(step => step.uses === 'reactivecircus/android-emulator-runner@v2');
+  assert(select >= 0 && select < boot); assert.equal(job.steps[select]['continue-on-error'], undefined);
+  assert.equal(job.steps[select].run, 'node scripts/qa/select-matrix-renderer.mjs');
+  assert.equal(job.steps[select].env.SGM_MATRIX_RENDERER,
+    "${{ github.event_name == 'workflow_dispatch' && inputs.full_matrix_renderer || 'software' }}");
+  assert(workflow.jobs['android-focused-safety-ui'].if.includes("inputs.full_matrix_renderer == 'software'"));
+  assert(job.steps.some(step => step.if === '${{ always() }}' && step.with?.path?.includes('outputs/matrix-renderer.json')));
+  const baseline = matrixRendererConfiguration('software'), comparison = matrixRendererConfiguration('swiftshader');
+  assert.equal(baseline.comparison, false); assert.equal(comparison.comparison, true);
+  assert.equal(comparison.emulatorOptions, baseline.emulatorOptions.replace('-gpu software', '-gpu swiftshader'));
+  for (const mode of [undefined, null, '', 'auto', 'swiftshader_indirect', 'host', 'software; touch unsafe', 'swiftshader\nsecret'])
+    assert.throws(() => matrixRendererConfiguration(mode));
+});
+test('renderer CLI writes exact options once and refuses invalid modes without changing output', t => {
+  const root = mkdtempSync(join(tmpdir(), 'sgm-renderer-')); t.after(() => rmSync(root, { recursive: true, force: true }));
+  const output = join(root, 'output'); writeFileSync(output, '');
+  const script = fileURLToPath(new URL('../scripts/qa/select-matrix-renderer.mjs', import.meta.url));
+  const run = mode => spawnSync(process.execPath, [script], { cwd: root, encoding: 'utf8',
+    env: { ...process.env, SGM_MATRIX_RENDERER: mode, GITHUB_OUTPUT: output } });
+  assert.notEqual(run('swiftshader; echo unsafe').status, 0); assert.equal(readFileSync(output, 'utf8'), '');
+  assert.equal(run('swiftshader').status, 0);
+  const expected = matrixRendererConfiguration('swiftshader');
+  assert.equal(readFileSync(output, 'utf8'), `emulator_options=${expected.emulatorOptions}\n`);
+  const record = join(root, 'android/app/build/outputs/matrix-renderer.json');
+  assert.deepEqual(JSON.parse(readFileSync(record)), expected);
+  const bytes = readFileSync(record); assert.notEqual(run('software').status, 0);
+  assert.deepEqual(readFileSync(record), bytes);
+  assert.equal(readFileSync(output, 'utf8'), `emulator_options=${expected.emulatorOptions}\n`);
 });
 test('both APK pairs compile and stage before device boot without an in-device rebuild', () => {
   const workflow = YAML.parse(read('.github/workflows/native-ci.yml'));

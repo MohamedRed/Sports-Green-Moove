@@ -3,6 +3,11 @@ name: Native CI
 on:
   workflow_dispatch:
     inputs:
+      full_matrix_renderer:
+        description: "Full-matrix renderer; swiftshader is a diagnostic comparison, not a release check"
+        type: choice
+        options: [software, swiftshader]
+        default: software
       real_maps_ui:
         description: "Run the approved isolated real-map UI integration (five server requests)"
         type: boolean
@@ -378,7 +383,7 @@ jobs:
         run: ./gradlew :app:testDebugUnitTest --no-daemon --stacktrace
 
   android-native-ui:
-    name: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && 'Offline UI matrix (not requested)' || 'Android native UI tests' }}
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.full_matrix_renderer == 'swiftshader' && 'Android renderer comparison (not release)' || github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && 'Offline UI matrix (not requested)' || 'Android native UI tests' }}
     if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking) }}
     runs-on: ubuntu-latest
     timeout-minutes: 35
@@ -413,6 +418,12 @@ jobs:
           SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
         run: node scripts/qa/build-android-matrix-apks.mjs
 
+      - name: Select one validated full-matrix renderer
+        id: matrix_renderer
+        env:
+          SGM_MATRIX_RENDERER: ${{ github.event_name == 'workflow_dispatch' && inputs.full_matrix_renderer || 'software' }}
+        run: node scripts/qa/select-matrix-renderer.mjs
+
       - name: Enable KVM group permissions
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -433,7 +444,7 @@ jobs:
           target: google_apis_playstore
           arch: x86_64
           profile: pixel_6
-          emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim
+          emulator-options: ${{ steps.matrix_renderer.outputs.emulator_options }}
           script: bash scripts/run-android-ui-tests-and-collect-screenshots.sh
 
       - name: Finish bounded read-only full-matrix host observation
@@ -448,6 +459,7 @@ jobs:
         with:
           name: android-connected-ui-test-results
           path: |
+            android/app/build/outputs/matrix-renderer.json
             android/app/build/reports/androidTests/connected/**
             android/app/build/outputs/androidTest-results/connected/**
             android/app/build/outputs/store-review-screenshots/**
@@ -459,7 +471,7 @@ jobs:
 
   android-focused-safety-ui:
     name: Android focused safety UI tests
-    if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking) }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.full_matrix_renderer == 'software' && !inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking) }}
     uses: ./.github/workflows/native-focused-ui.yml
 
   android-real-maps-ui:

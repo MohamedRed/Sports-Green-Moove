@@ -533,3 +533,15 @@ instead of leaving only the initial `prepared` record. Historical schema 1
 receipts keep their original contract. The primary SDK call, single invocation,
 capture deadline, blank-image rejection and 100 ms observer shutdown bound are
 unchanged. This repairs diagnostic persistence, not the capture/transport failure.
+
+The normal full matrix still selects `software`. A manually dispatched
+`full_matrix_renderer=swiftshader` selects that explicit supported backend for a
+controlled comparison of the identical full suite, without increasing deadlines,
+retrying a capture or using another capture API. Its job is named `Android renderer
+comparison (not release)` and cannot replace the required normal UI check. Only
+the eleven already-scheduled focused lanes are omitted from this manual comparison;
+normal PR runs still require them. Unknown modes fail before device launch.
+The selected options are retained in `outputs/matrix-renderer.json`. Compare
+executed APK digests and original emulator logs before attributing a difference to
+rendering; a passing comparison alone does not establish a root cause or release.
+Supported modes: [Android Emulator graphics acceleration](https://developer.android.com/studio/run/emulator-acceleration).
