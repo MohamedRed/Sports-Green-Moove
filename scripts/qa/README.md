@@ -534,6 +534,12 @@ receipts keep their original contract. The primary SDK call, single invocation,
 capture deadline, blank-image rejection and 100 ms observer shutdown bound are
 unchanged. This repairs diagnostic persistence, not the capture/transport failure.
 
+The isolated native-startup trial retains failure evidence inside the active
+activity, including login and trip-resume navigation before the sensor steps.
+The original failure is rethrown before activity teardown; diagnostic failures
+are suppressed onto it. This observation does not repair navigation or count a
+failed startup as passed.
+
 Diagnostic stack filenames also accept the bounded, numeric-versioned
 `:com.google.android.gms.<module>_dynamite@<version>@<build>` source marker found
 in dynamically loaded Play services modules. This exception applies only to the

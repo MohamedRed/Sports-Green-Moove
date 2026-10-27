@@ -75,7 +75,8 @@ class LocalNativeTrackingStartupTest {
         var capturedAt = 0L
         try {
             LocalMockLocation(context).use { mock ->
-                fun step(time: Long, fixedElapsed: Long? = null, action: () -> Unit) = mock.withCaptureFeed(time, fixedElapsed) {
+                fun step(time: Long, fixedElapsed: Long? = null, action: () -> Unit) = mock.withCaptureFeed(time, fixedElapsed, action)
+                fun retainFailure(action: () -> Unit) {
                     try { action() }
                     catch (error: Throwable) {
                         try {
@@ -87,6 +88,7 @@ class LocalNativeTrackingStartupTest {
                     }
                 }
                 ActivityScenario.launch(MainActivity::class.java).use {
+                  retainFailure {
                     waitFor(SgmTestTags.AuthEmailAction)
                     compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performTextInput(session.getString("driver"))
                     compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performTextInput(session.getString("password"))
@@ -140,6 +142,7 @@ class LocalNativeTrackingStartupTest {
                     compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick(); waitFor(SgmTestTags.AuthEmailAction)
                     waitRunning(context, false); assertNull(FirebaseAuth.getInstance().currentUser)
                     capture("signed-out", SgmTestTags.AuthEmailAction)
+                  }
                 }
             }
         } finally {

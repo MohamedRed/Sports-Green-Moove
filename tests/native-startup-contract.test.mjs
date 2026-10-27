@@ -65,3 +65,17 @@ test('window captures await one committed frame and one successful copy without 
   assert(!capture.includes('uiAutomation.takeScreenshot')); assert(!capture.includes('captureToImage'));
   assert.equal((capture.match(/PixelCopy.request\(/g) ?? []).length, 1);
 });
+test('startup navigation failures retain the original error and evidence before activity teardown', () => {
+  const trial = text('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeTrackingStartupTest.kt');
+  const observer = trial.slice(trial.indexOf('fun retainFailure'), trial.indexOf('ActivityScenario.launch'));
+  assert(observer.includes('try { action() }'));
+  assert(observer.includes('error.addSuppressed(diagnostic)'));
+  assert(observer.includes('throw error'));
+  assert.equal((trial.match(/local-native-startup-failure\.png/g) ?? []).length, 1);
+  assert.equal((trial.match(/local-native-startup-failure-tree\.txt/g) ?? []).length, 1);
+  assert.match(trial, /ActivityScenario\.launch\(MainActivity::class\.java\)\.use \{\s+retainFailure \{/);
+  assert(trial.indexOf('retainFailure {') < trial.indexOf('waitFor(SgmTestTags.AuthEmailAction)'));
+  assert(trial.includes('mock.withCaptureFeed(time, fixedElapsed, action)'));
+  assert(trial.includes('compose.waitUntil(60_000)'));
+  assert(!observer.includes('repeat(')); assert(!observer.includes('Thread.sleep'));
+});
