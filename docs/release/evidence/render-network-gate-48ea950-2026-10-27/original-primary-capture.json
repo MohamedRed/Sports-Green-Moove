@@ -1,0 +1,781 @@
+{
+  "schemaVersion": 1,
+  "scope": "primary-compose-capture-observation-not-flow-or-root-cause-proof",
+  "captureName": "trip-change-parent-review-large-text.png",
+  "sdkInvocations": 1,
+  "primaryOutcome": "threw",
+  "errorCategory": "pixelcopy-callback-wait",
+  "elapsedMs": 1084,
+  "callerIsMain": false,
+  "primaryStartOffsetMs": 1,
+  "primaryElapsedMs": 1083,
+  "mainPostAccepted": true,
+  "heartbeatDelaysMs": [
+    0,
+    714
+  ],
+  "heartbeatAtMs": [
+    51,
+    815
+  ],
+  "maxMainQueueDelayMs": 714,
+  "samples": [
+    {
+      "atMs": 263,
+      "scheduledMs": 250,
+      "offsetMs": 250,
+      "observerDelayMs": 13,
+      "mainState": "RUNNABLE",
+      "mainFrames": [
+        {
+          "className": "android.graphics.HardwareRenderer",
+          "methodName": "nSyncAndDrawFrame",
+          "fileName": "HardwareRenderer.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "android.graphics.HardwareRenderer",
+          "methodName": "syncAndDrawFrame",
+          "fileName": "HardwareRenderer.java",
+          "lineNumber": 486
+        },
+        {
+          "className": "android.view.ThreadedRenderer",
+          "methodName": "draw",
+          "fileName": "ThreadedRenderer.java",
+          "lineNumber": 816
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "draw",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 5659
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "performDraw",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 5312
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "performTraversals",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 4303
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "doTraversal",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 2917
+        },
+        {
+          "className": "android.view.ViewRootImpl$TraversalRunnable",
+          "methodName": "run",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 10324
+        },
+        {
+          "className": "android.view.Choreographer$CallbackRecord",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1406
+        },
+        {
+          "className": "android.view.Choreographer$CallbackRecord",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1415
+        },
+        {
+          "className": "android.view.Choreographer",
+          "methodName": "doCallbacks",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1015
+        },
+        {
+          "className": "android.view.Choreographer",
+          "methodName": "doFrame",
+          "fileName": "Choreographer.java",
+          "lineNumber": 945
+        },
+        {
+          "className": "android.view.Choreographer$FrameDisplayEventReceiver",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1389
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "handleCallback",
+          "fileName": "Handler.java",
+          "lineNumber": 959
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "dispatchMessage",
+          "fileName": "Handler.java",
+          "lineNumber": 100
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loopOnce",
+          "fileName": "Looper.java",
+          "lineNumber": 232
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loop",
+          "fileName": "Looper.java",
+          "lineNumber": 317
+        },
+        {
+          "className": "android.app.ActivityThread",
+          "methodName": "main",
+          "fileName": "ActivityThread.java",
+          "lineNumber": 8705
+        },
+        {
+          "className": "java.lang.reflect.Method",
+          "methodName": "invoke",
+          "fileName": "Method.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "com.android.internal.os.RuntimeInit$MethodAndArgsCaller",
+          "methodName": "run",
+          "fileName": "RuntimeInit.java",
+          "lineNumber": 580
+        }
+      ],
+      "callerFrames": [
+        {
+          "className": "jdk.internal.misc.Unsafe",
+          "methodName": "park",
+          "fileName": "Unsafe.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "java.util.concurrent.locks.LockSupport",
+          "methodName": "parkNanos",
+          "fileName": "LockSupport.java",
+          "lineNumber": 252
+        },
+        {
+          "className": "java.util.concurrent.locks.AbstractQueuedSynchronizer",
+          "methodName": "acquire",
+          "fileName": "AbstractQueuedSynchronizer.java",
+          "lineNumber": 717
+        },
+        {
+          "className": "java.util.concurrent.locks.AbstractQueuedSynchronizer",
+          "methodName": "tryAcquireSharedNanos",
+          "fileName": "AbstractQueuedSynchronizer.java",
+          "lineNumber": 1074
+        },
+        {
+          "className": "java.util.concurrent.CountDownLatch",
+          "methodName": "await",
+          "fileName": "CountDownLatch.java",
+          "lineNumber": 276
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "generateBitmapFromPixelCopy",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 156
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "generateBitmap",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 135
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 51
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "withDrawingEnabled",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 89
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 47
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "runWithRetryWhenNoData",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 64
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 45
+        },
+        {
+          "className": "androidx.compose.ui.test.AndroidImageHelpers_androidKt",
+          "methodName": "captureToImage",
+          "fileName": "AndroidImageHelpers.android.kt",
+          "lineNumber": 101
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt",
+          "methodName": "captureLocalUi$lambda$0",
+          "fileName": "LocalUiCapture.kt",
+          "lineNumber": 20
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt",
+          "methodName": "$r8$lambda$KTsChHeezMjh5xFx_wbL1QlG6u0",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        }
+      ]
+    },
+    {
+      "atMs": 866,
+      "scheduledMs": 601,
+      "offsetMs": 600,
+      "observerDelayMs": 265,
+      "mainState": "RUNNABLE",
+      "mainFrames": [
+        {
+          "className": "android.graphics.HardwareRenderer",
+          "methodName": "nSyncAndDrawFrame",
+          "fileName": "HardwareRenderer.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "android.graphics.HardwareRenderer",
+          "methodName": "syncAndDrawFrame",
+          "fileName": "HardwareRenderer.java",
+          "lineNumber": 486
+        },
+        {
+          "className": "android.view.ThreadedRenderer",
+          "methodName": "draw",
+          "fileName": "ThreadedRenderer.java",
+          "lineNumber": 816
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "draw",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 5659
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "performDraw",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 5312
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "performTraversals",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 4303
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "doTraversal",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 2917
+        },
+        {
+          "className": "android.view.ViewRootImpl$TraversalRunnable",
+          "methodName": "run",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 10324
+        },
+        {
+          "className": "android.view.Choreographer$CallbackRecord",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1406
+        },
+        {
+          "className": "android.view.Choreographer$CallbackRecord",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1415
+        },
+        {
+          "className": "android.view.Choreographer",
+          "methodName": "doCallbacks",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1015
+        },
+        {
+          "className": "android.view.Choreographer",
+          "methodName": "doFrame",
+          "fileName": "Choreographer.java",
+          "lineNumber": 945
+        },
+        {
+          "className": "android.view.Choreographer$FrameDisplayEventReceiver",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1389
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "handleCallback",
+          "fileName": "Handler.java",
+          "lineNumber": 959
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "dispatchMessage",
+          "fileName": "Handler.java",
+          "lineNumber": 100
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loopOnce",
+          "fileName": "Looper.java",
+          "lineNumber": 232
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loop",
+          "fileName": "Looper.java",
+          "lineNumber": 317
+        },
+        {
+          "className": "android.app.ActivityThread",
+          "methodName": "main",
+          "fileName": "ActivityThread.java",
+          "lineNumber": 8705
+        },
+        {
+          "className": "java.lang.reflect.Method",
+          "methodName": "invoke",
+          "fileName": "Method.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "com.android.internal.os.RuntimeInit$MethodAndArgsCaller",
+          "methodName": "run",
+          "fileName": "RuntimeInit.java",
+          "lineNumber": 580
+        }
+      ],
+      "callerFrames": [
+        {
+          "className": "jdk.internal.misc.Unsafe",
+          "methodName": "park",
+          "fileName": "Unsafe.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "java.util.concurrent.locks.LockSupport",
+          "methodName": "parkNanos",
+          "fileName": "LockSupport.java",
+          "lineNumber": 252
+        },
+        {
+          "className": "java.util.concurrent.locks.AbstractQueuedSynchronizer",
+          "methodName": "acquire",
+          "fileName": "AbstractQueuedSynchronizer.java",
+          "lineNumber": 717
+        },
+        {
+          "className": "java.util.concurrent.locks.AbstractQueuedSynchronizer",
+          "methodName": "tryAcquireSharedNanos",
+          "fileName": "AbstractQueuedSynchronizer.java",
+          "lineNumber": 1074
+        },
+        {
+          "className": "java.util.concurrent.CountDownLatch",
+          "methodName": "await",
+          "fileName": "CountDownLatch.java",
+          "lineNumber": 276
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "generateBitmapFromPixelCopy",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 156
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "generateBitmap",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 135
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 51
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "withDrawingEnabled",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 89
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 47
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "runWithRetryWhenNoData",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 64
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 45
+        },
+        {
+          "className": "androidx.compose.ui.test.AndroidImageHelpers_androidKt",
+          "methodName": "captureToImage",
+          "fileName": "AndroidImageHelpers.android.kt",
+          "lineNumber": 101
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt",
+          "methodName": "captureLocalUi$lambda$0",
+          "fileName": "LocalUiCapture.kt",
+          "lineNumber": 20
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt",
+          "methodName": "$r8$lambda$KTsChHeezMjh5xFx_wbL1QlG6u0",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        }
+      ]
+    },
+    {
+      "atMs": 901,
+      "scheduledMs": 901,
+      "offsetMs": 900,
+      "observerDelayMs": 0,
+      "mainState": "RUNNABLE",
+      "mainFrames": [
+        {
+          "className": "android.graphics.HardwareRenderer",
+          "methodName": "nSyncAndDrawFrame",
+          "fileName": "HardwareRenderer.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "android.graphics.HardwareRenderer",
+          "methodName": "syncAndDrawFrame",
+          "fileName": "HardwareRenderer.java",
+          "lineNumber": 486
+        },
+        {
+          "className": "android.view.ThreadedRenderer",
+          "methodName": "draw",
+          "fileName": "ThreadedRenderer.java",
+          "lineNumber": 816
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "draw",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 5659
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "performDraw",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 5312
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "performTraversals",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 4303
+        },
+        {
+          "className": "android.view.ViewRootImpl",
+          "methodName": "doTraversal",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 2917
+        },
+        {
+          "className": "android.view.ViewRootImpl$TraversalRunnable",
+          "methodName": "run",
+          "fileName": "ViewRootImpl.java",
+          "lineNumber": 10324
+        },
+        {
+          "className": "android.view.Choreographer$CallbackRecord",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1406
+        },
+        {
+          "className": "android.view.Choreographer$CallbackRecord",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1415
+        },
+        {
+          "className": "android.view.Choreographer",
+          "methodName": "doCallbacks",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1015
+        },
+        {
+          "className": "android.view.Choreographer",
+          "methodName": "doFrame",
+          "fileName": "Choreographer.java",
+          "lineNumber": 945
+        },
+        {
+          "className": "android.view.Choreographer$FrameDisplayEventReceiver",
+          "methodName": "run",
+          "fileName": "Choreographer.java",
+          "lineNumber": 1389
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "handleCallback",
+          "fileName": "Handler.java",
+          "lineNumber": 959
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "dispatchMessage",
+          "fileName": "Handler.java",
+          "lineNumber": 100
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loopOnce",
+          "fileName": "Looper.java",
+          "lineNumber": 232
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loop",
+          "fileName": "Looper.java",
+          "lineNumber": 317
+        },
+        {
+          "className": "android.app.ActivityThread",
+          "methodName": "main",
+          "fileName": "ActivityThread.java",
+          "lineNumber": 8705
+        },
+        {
+          "className": "java.lang.reflect.Method",
+          "methodName": "invoke",
+          "fileName": "Method.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "com.android.internal.os.RuntimeInit$MethodAndArgsCaller",
+          "methodName": "run",
+          "fileName": "RuntimeInit.java",
+          "lineNumber": 580
+        }
+      ],
+      "callerFrames": [
+        {
+          "className": "jdk.internal.misc.Unsafe",
+          "methodName": "park",
+          "fileName": "Unsafe.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "java.util.concurrent.locks.LockSupport",
+          "methodName": "parkNanos",
+          "fileName": "LockSupport.java",
+          "lineNumber": 252
+        },
+        {
+          "className": "java.util.concurrent.locks.AbstractQueuedSynchronizer",
+          "methodName": "acquire",
+          "fileName": "AbstractQueuedSynchronizer.java",
+          "lineNumber": 717
+        },
+        {
+          "className": "java.util.concurrent.locks.AbstractQueuedSynchronizer",
+          "methodName": "tryAcquireSharedNanos",
+          "fileName": "AbstractQueuedSynchronizer.java",
+          "lineNumber": 1074
+        },
+        {
+          "className": "java.util.concurrent.CountDownLatch",
+          "methodName": "await",
+          "fileName": "CountDownLatch.java",
+          "lineNumber": 276
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "generateBitmapFromPixelCopy",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 156
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "generateBitmap",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 135
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 51
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "withDrawingEnabled",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 89
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 47
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "runWithRetryWhenNoData",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 64
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 45
+        },
+        {
+          "className": "androidx.compose.ui.test.AndroidImageHelpers_androidKt",
+          "methodName": "captureToImage",
+          "fileName": "AndroidImageHelpers.android.kt",
+          "lineNumber": 101
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt",
+          "methodName": "captureLocalUi$lambda$0",
+          "fileName": "LocalUiCapture.kt",
+          "lineNumber": 20
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt",
+          "methodName": "$r8$lambda$KTsChHeezMjh5xFx_wbL1QlG6u0",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        }
+      ]
+    }
+  ],
+  "sampleFailures": 0,
+  "observerClosed": true,
+  "observerMayAffectScheduling": true,
+  "imagesWrittenByObserver": false
+}

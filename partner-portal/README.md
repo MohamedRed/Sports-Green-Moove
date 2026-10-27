@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The 27 October review of terminal 48ea950 finds 176 ordinary passes, 54 skips and
+one capture callback failure before parent acceptance. The local replay then
+fails its dual-network preparation before any disconnect; seventeen primary
+copies and independent device restoration succeed. All ten focused safety jobs
+pass, but the full gate does not. Preserve exact failure/source records, public
+audience and earlier phone media. Add no timeout, retry, capture alternative or
+claimed product repair from the sampled renderer/carrier observations alone.
+
 The subsequent 8b53925 isolated session-disconnect job fails while installing its
 system image, before emulator launch or app assertions. Compilation passed, but
 the package installer rejects the archive; the archive bytes are unavailable and

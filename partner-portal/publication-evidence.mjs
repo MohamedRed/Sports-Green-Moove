@@ -4,10 +4,12 @@ import { validateCaptureRuntimeEvidence, captureRuntimeFolder } from '../scripts
 import { validateTripDraftPhone } from '../scripts/qa/trip-draft-phone-evidence.mjs';
 import { validateFlowGate398 } from '../scripts/qa/flow-gate-398-evidence.mjs';
 import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation-evidence.mjs';
+import { validateRenderNetworkGate } from '../scripts/qa/render-network-gate-evidence.mjs';
 
 export function validatePublicationEvidence(root, flow) {
   validateFlowGate398(root);
   validateSdkImagePreparation(root);
+  validateRenderNetworkGate(root);
   assert.equal(flow.id, 'publication'); assert.equal(flow.status, 'partial');
   assert.equal(flow.captureInvestigation.source, 'docs/release/evidence/capture-callback-investigation-2026-10-26/README.md');
   validateCaptureCallbackInvestigation(root);

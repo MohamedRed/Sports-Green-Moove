@@ -4,6 +4,17 @@ import { readFileSync } from 'node:fs';
 import YAML from 'yaml';
 import { createHash } from 'node:crypto';
 import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation-evidence.mjs';
+import { validateRenderNetworkGate } from '../scripts/qa/render-network-gate-evidence.mjs';
+
+test('latest capture and cellular precondition failures remain distinct from successful copying and safety lanes', () => {
+  const result = validateRenderNetworkGate(new URL('..', import.meta.url).pathname);
+  assert.equal(result.ordinaryPassed, 176); assert.equal(result.ordinaryFailed, 1);
+  assert.equal(result.allPrimaryCopiesPassed, true); assert.equal(result.networkFailedPhase, 'network-preparation');
+  assert.equal(result.primaryCopyCount, 16); assert.equal(result.failureCleanupCopyPassed, true);
+  for (const key of ['fullGatePassed', 'imageRootCauseEstablished', 'networkRootCauseEstablished',
+    'phoneFlowAccepted', 'releaseAccepted']) assert.equal(result[key], false);
+  assert.deepEqual(result.publicMedia, []);
+});
 
 test('failed system-image preparation cannot be accepted as a session-disconnect UI or cleanup pass', () => {
   const result = validateSdkImagePreparation(new URL('..', import.meta.url).pathname);
