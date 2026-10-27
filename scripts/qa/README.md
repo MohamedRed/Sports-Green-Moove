@@ -344,6 +344,17 @@ Six Android instrumentation cases cover record-before-refusal, recording errors
 and mutation isolation; local Node contracts run with
 `node --test tests/network-start-observation.test.mjs`.
 
+The existing carrier-loader observation also retains four per-slot bundle-presence
+booleans: default app, carrier app, persistent override and transient override.
+An empty loaded bundle is distinct from an absent (`null`) bundle. Values,
+package names, SIM identifiers and raw dumps are never retained. A notification
+sent by the loader does not prove that a configuration bundle exists; bundle
+presence alone does not prove carrier identification or a selected data SIM.
+This remains a read-only diagnostic, not a repair or a completed network trial.
+The Android 15 loader uses these bundles when deriving its applied-configuration
+flag, and prints their presence separately in its dump:
+[CarrierConfigLoader](https://android.googlesource.com/platform/packages/services/Telephony/+/refs/tags/android-15.0.0_r1/src/com/android/phone/CarrierConfigLoader.java).
+
 The ride case needs a Google APIs image with functioning Play services. It grants
 permissions only to `.local`, then injects a synthetic location through the
 official fused-location mock API. Mock positions affect the entire emulator:

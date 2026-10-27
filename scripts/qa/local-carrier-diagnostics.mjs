@@ -27,6 +27,20 @@ export function parseCarrierDiagnostics(output) {
   const slots = state.filter((line) => line.startsWith('Phone Id = '));
   assert.equal(slots.length, phoneCount, invalid);
   assert(slots.every((line, index) => line === `Phone Id = ${index}`), invalid);
+  const configBundlePresent = {};
+  for (const [name, fieldName] of Object.entries({ defaultApp: 'mConfigFromDefaultApp',
+    carrierApp: 'mConfigFromCarrierApp', persistentOverride: 'mPersistentOverrideConfigs',
+    transientOverride: 'mOverrideConfigs' })) {
+    configBundlePresent[name] = slots.map((slot, index) => {
+      const start = state.indexOf(slot) + 1;
+      const end = index + 1 < phoneCount ? state.indexOf(slots[index + 1]) : state.length;
+      const matches = state.slice(start, end).filter(line => line.trimStart().startsWith(`${fieldName} :`));
+      assert.equal(matches.length, 1, invalid);
+      const match = new RegExp(`^\\s+${fieldName} :\\s*(null)?\\s*$`).exec(matches[0]);
+      assert(match !== null, invalid);
+      return match[1] !== 'null';
+    });
+  }
   const booleans = (name) => {
     const value = field(name);
     assert(/^\[(true|false)(, (true|false))*\]$/.test(value), invalid);
@@ -39,6 +53,7 @@ export function parseCarrierDiagnostics(output) {
     configChangeSent: booleans('mHasSentConfigChange'),
     fromSystemUnlocked: booleans('mFromSystemUnlocked'),
     serviceBoundForNoSimConfig: booleans('mServiceBoundForNoSimConfig'),
+    configBundlePresent,
   };
 }
 

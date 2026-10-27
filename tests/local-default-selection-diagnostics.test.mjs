@@ -11,6 +11,8 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf
 const carrierDump = (sent = '[false]') => [
   'CarrierConfigLoader: com.android.phone.CarrierConfigLoader@123456', 'Phone Id = 0',
   '    mConfigFromDefaultApp : ', '            private_key = PRIVATE_CONFIG',
+  '    mConfigFromCarrierApp : null ', '    mPersistentOverrideConfigs : null ',
+  '    mOverrideConfigs : null ',
   'mNumPhones=1', 'mPlatformCarrierConfigPackage=PRIVATE_PACKAGE',
   'mServiceConnection=[PRIVATE_PACKAGE]', 'mServiceBoundForNoSimConfig=[false]',
   `mHasSentConfigChange=${sent}`, 'mFromSystemUnlocked=[false]', '',
@@ -114,15 +116,42 @@ test('current carrier observations retain only typed loader state and never impl
     assert.deepEqual(result, {
       source: 'current-carrier-loader-state-not-default-selection-readiness', phoneCount: 1,
       configChangeSent: [sent], fromSystemUnlocked: [false], serviceBoundForNoSimConfig: [false],
+      configBundlePresent: { defaultApp: [true], carrierApp: [false], persistentOverride: [false], transientOverride: [false] },
     });
     assert(!JSON.stringify(result).includes('PRIVATE'));
     assert(!JSON.stringify(result).includes('123456'));
   }
-  const twoPhones = carrierDump('[true, false]').replace('mNumPhones=1', 'Phone Id = 1\nmNumPhones=2')
+  const twoPhones = carrierDump('[true, false]').replace('mNumPhones=1', [
+    'Phone Id = 1', '    mConfigFromDefaultApp : null ', '    mConfigFromCarrierApp : ',
+    '    mPersistentOverrideConfigs : ', '    mOverrideConfigs : ', 'mNumPhones=2',
+  ].join('\n'))
     .replace('mFromSystemUnlocked=[false]', 'mFromSystemUnlocked=[false, true]')
     .replace('mServiceBoundForNoSimConfig=[false]', 'mServiceBoundForNoSimConfig=[true, false]');
   assert.deepEqual(parseCarrierDiagnostics(twoPhones).configChangeSent, [true, false]);
+  assert.deepEqual(parseCarrierDiagnostics(twoPhones).configBundlePresent,
+    { defaultApp: [true, false], carrierApp: [false, true], persistentOverride: [false, true], transientOverride: [false, true] });
   assert.deepEqual(parseCarrierDiagnostics(carrierDump().replaceAll('\n', '\r\n')).configChangeSent, [false]);
+});
+
+test('bundle presence records loaded-but-empty separately from absent, without reading configuration values', () => {
+  const empty = carrierDump().replace('            private_key = PRIVATE_CONFIG', '');
+  assert.deepEqual(parseCarrierDiagnostics(empty).configBundlePresent.defaultApp, [true]);
+  const absent = empty.replace('mConfigFromDefaultApp : ', 'mConfigFromDefaultApp : null ');
+  assert.deepEqual(parseCarrierDiagnostics(absent).configBundlePresent.defaultApp, [false]);
+  const present = parseCarrierDiagnostics(carrierDump('[true]'));
+  assert.deepEqual(present.configChangeSent, [true]);
+  assert.deepEqual(present.configBundlePresent.carrierApp, [false]);
+  assert.equal(present.defaultDataReady, undefined);
+  assert.equal(present.carrierConfigurationApplied, undefined);
+  for (const field of ['mConfigFromDefaultApp', 'mConfigFromCarrierApp', 'mPersistentOverrideConfigs', 'mOverrideConfigs']) {
+    const without = empty.split('\n').filter(line => !line.trimStart().startsWith(`${field} :`)).join('\n');
+    for (const raw of [without, empty.replace('CarrierConfigLoader local log=', `    ${field} : null \nCarrierConfigLoader local log=`),
+      empty.replace(`${field} :`, `${field} : PRIVATE_VALUE`)]) {
+      assert.throws(() => parseCarrierDiagnostics(raw), error => {
+        assert(!error.message.includes('PRIVATE')); assert(!JSON.stringify(error).includes('PRIVATE')); return true;
+      });
+    }
+  }
 });
 
 test('missing, duplicated, malformed and historical carrier state fail without exposing raw data', () => {
