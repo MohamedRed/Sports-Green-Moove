@@ -190,7 +190,7 @@ test('message service claims use the refreshed 24-group evidence and retain hist
   assert(flow.local.groups.includes('chat-post-commit-response-loss'));
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
   assert.equal(flow.status, 'partial');
-  assert.match(flow.remaining, /groupe/);
+  assert.equal(content.flows.find(item => item.id === 'team-conversation').status, 'partial');
   assert.match(flow.remaining, /clavier/);
   const baseline = JSON.parse(source('docs/release/evidence/local-chat-2026-10-15/baseline-failed.json'));
   assert.equal(baseline.steps.find((step) => step.id === 'chat-delivery-safety').status, 'failed');
@@ -245,7 +245,7 @@ test('current conversation evidence retains the full replay and the dated histor
   assert.equal(run.directory.secondPageCount, 8);
   assert.equal(run.directory.messageCount, 2);
   assert.equal(run.directory.readNotificationCount, 2);
-  assert.equal(flow.images.filter((image) => !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply'].includes(image.file)).length, 11);
+  assert.equal(flow.images.filter((image) => !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply', 'chat-network-isolated-draft', 'chat-network-isolated-reply'].includes(image.file)).length, 11);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-ui-2026-10-15/results.json')).testCount, 9);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-ui-2026-10-15/results.json')).testCount, 8);
   assert(!Object.values(captures).some((path) => /directory-(first-message|reply)\.png/.test(path)));

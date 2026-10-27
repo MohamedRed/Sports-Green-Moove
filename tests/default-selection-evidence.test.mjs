@@ -85,7 +85,7 @@ test('fresh handover, offline and restored app evidence remain independently req
 test('current captures and dates cannot promote this comparison to physical or stable readiness', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   const latest = 'docs/release/evidence/local-dual-transport-2026-10-17/';
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-19');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.checkedAt, '2026-10-19');
   const current = 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/';
   assert.equal(flow.ui.source, current + 'replay/results.json'); assert.equal(flow.source, current + 'README.md');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');

@@ -1,6 +1,7 @@
 import { tours } from './tours.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
+import { chatNetworkRecovery } from './chat-network-recovery.mjs';
 import { createSupportFlow } from './support-flow.mjs';
 import { createUrgentSupportFlow } from './urgent-support-flow.mjs';
 import { createSupportSubmissionFlow } from './support-submission-flow.mjs';
@@ -158,10 +159,11 @@ export const content = {
     createPublicationFlow(local, shot),
     createBookingFlow(local, shot),
     createTeamConversationFlow(),
-    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-19',
-      summary: 'Les messages reprennent après une coupure, en local.',
-      verified: 'Le nouvel essai retrouve le brouillon, le renvoi sans doublon et la réponse après coupure. L’échange reprend aussi après fermeture. Les captures gardent leur date d’origine.',
-      remaining: 'Rejouer le clavier. Répéter les essais de coupure. Restent les groupes, les échanges entre téléphones, les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
+    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-27',
+      summary: 'Le brouillon reste présent après une coupure et le renvoi ne crée pas de doublon, en simulation.',
+      verified: 'Le message est renvoyé une seule fois et la réponse du conducteur arrive. Deux nouvelles captures du 27 octobre.',
+      remaining: 'Rejouer le clavier. Répéter les essais de coupure sur téléphones, vérifier les groupes, les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
+      networkRecovery: chatNetworkRecovery,
       local: { ...local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
         'Après une confirmation perdue, deux renvois gardent un seul message et une seule notification.',
@@ -170,8 +172,10 @@ export const content = {
         'Les contrôles retrouvent 26 conversations malgré 120 messages dans un seul échange.',
         'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
       ], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json'), checkedAt: '2026-10-17' },
-      ui: { source: 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
-      images: [shot('chat-network-current-draft', 'Brouillon conservé pendant la coupure, essai local du 17 octobre'),
+      ui: { source: 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json', checkedAt: '2026-10-19', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
+      images: [shot('chat-network-isolated-draft', 'Brouillon conservé pendant la coupure, simulation du 27 octobre'),
+        shot('chat-network-isolated-reply', 'Message renvoyé et réponse reçue, simulation du 27 octobre'),
+        shot('chat-network-current-draft', 'Brouillon conservé pendant la coupure, essai local du 17 octobre'),
         shot('chat-network-current-reply', 'Message renvoyé et réponse reçue, essai local du 17 octobre'),
         shot('chat-restart-recheck-reply', 'Échange après relancement revérifié en local le 16 octobre'),
         shot('chat-loss-confirmed', 'Un seul message enregistré après les renvois, essai local du 16 octobre'),

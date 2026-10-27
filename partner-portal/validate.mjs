@@ -24,6 +24,7 @@ import { dirname, resolve, sep } from 'node:path';
 import { assets, captures, videos, excerpts, content } from './content.mjs';
 import { validatePhoneEvidence } from './phone-evidence.mjs';
 import { validateBookingEvidence } from './booking-evidence.mjs';
+import { validateMessagesEvidence } from './messages-evidence.mjs';
 import { validateSupportEvidence } from './support-evidence.mjs';
 import { validateEmergencyDialerPreflight } from '../scripts/qa/emergency-phone-retained-evidence.mjs';
 import { validateEmergencyDialerRecheck } from '../scripts/qa/emergency-dialer-recheck-evidence.mjs';
@@ -129,6 +130,7 @@ export function validate(root) {
       }
     }
     validateBookingEvidence(root, f);
+    validateMessagesEvidence(root, f, captures);
     if (f.accountApproval) {
       assert.equal(f.status, 'partial'); validateChildAccountApprovalEvidence(root, f.accountApproval);
     }

@@ -57,7 +57,7 @@ test('strict version-2 observations, request release and saved messages all rema
 
 test('reviewed captures use this run while physical, stability and draft-restart scope stays open', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-19');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.ui.checkedAt, '2026-10-19');
   const current = 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/';
   assert.equal(flow.source, current + 'README.md'); assert.equal(flow.ui.source, current + 'replay/results.json');
   for (const [id, name] of [['chat-network-current-draft', 'local-chat-network-unconfirmed.png'],

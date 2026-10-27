@@ -1,4 +1,5 @@
 import { supportFollowupSteps } from './support-followup-tour.mjs';
+import { chatNetworkRecoveryTour } from './chat-network-recovery.mjs';
 import { supportSubmissionSteps } from './support-submission-flow.mjs';
 import { searchPhoneTour, bookingSearchPhoneTour } from './search-booking-phone.mjs';
 import {driverConnectTour} from './driver-connect.mjs';
@@ -156,12 +157,7 @@ export const tours = {
   search: searchPhoneTour,
   publication: [...tripDraftPhoneTour, ...tripConsentPhoneTour],
   booking: bookingSearchPhoneTour,
-  messages: [
-    image('chat-reservation', 'Choisir la réservation', 'Le parent choisit la réservation depuis laquelle écrire au conducteur.'),
-    image('chat-empty', 'Ouvrir la conversation', 'L’échange est prêt à recevoir le premier message.'),
-    image('chat-received', 'Échanger avec le conducteur', 'Le premier message et la réponse sont visibles dans l’app en local.'),
-    image('chat-history', 'Retrouver un ancien échange', 'Un autre cas de l’essai vérifie l’accès à l’historique.'),
-  ],
+  messages: chatNetworkRecoveryTour,
   clubs: [
     image('guardian-parent-requested', 'Demander la vérification', 'Le parent choisit son enfant et son club. La demande apparaît en attente, dans l’essai local.'),
     image('guardian-parent-verified', 'Voir la réponse du responsable', 'Après l’accord du responsable, le parent retrouve le statut vérifié dans l’app.'),

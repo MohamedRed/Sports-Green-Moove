@@ -4,9 +4,11 @@ import { cpSync, mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, ex
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { parseDocument } from 'yaml';
 import { focusedCases } from '../scripts/qa/preinstalled-disposable-apks.mjs';
 import { seedChatNetworkHistory } from '../scripts/qa/chat-network-history-fixture.mjs';
+import { chatNetworkIsolatedFolder, validateChatNetworkIsolated } from '../scripts/qa/chat-network-isolated-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 function run(t, phase, overrides = {}) {
@@ -200,4 +202,47 @@ test('independent network trial reuses the exact native case, radio cleanup and 
   assert(read('scripts/qa/run-local-chat-network-recovery-ui.mjs').includes("runIsolatedRideUi('chat-network-recovery')"));
   assert(read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt')
     .includes('compose.waitUntil(30_000)'));
+});
+
+test('retained independent network pass binds the native case, primary copy, saved state and separate cleanup', async () => {
+  const result = validateChatNetworkIsolated(process.cwd());
+  assert.equal(result.run.network.messageCount, 2); assert.equal(result.run.network.duplicateMessages, 0);
+  assert.equal(Object.keys(result.publishedCaptures).length, 2); assert.equal(result.run.physicalDevice, false);
+  const { content, captures } = await import('../partner-portal/content.mjs');
+  const flow = content.flows.find(row => row.id === 'messages');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-27');
+  assert.equal(flow.ui.checkedAt, '2026-10-19');
+  assert.deepEqual(flow.tour.map(row => row.image), Object.keys(result.publishedCaptures));
+  assert(flow.images.some(row => row.file === 'chat-network-current-draft'));
+  for (const [id, file] of Object.entries(result.publishedCaptures)) assert.equal(captures[id], chatNetworkIsolatedFolder + file);
+  assert.equal(content.updates[0].source, chatNetworkIsolatedFolder + 'README.md');
+  assert(!Object.values(captures).some(file => file === chatNetworkIsolatedFolder + 'captures/local-chat-network-recovered.png'));
+  const attributes = spawnSync('git', ['check-attr', 'text', 'whitespace', '--',
+    chatNetworkIsolatedFolder + 'LocalChatNetworkFlowTest-instrumentation.txt'], { encoding: 'utf8' });
+  assert.equal(attributes.status, 0); assert.match(attributes.stdout, /text: unset/); assert.match(attributes.stdout, /whitespace: unset/);
+});
+
+for (const [file, mutate] of [
+  ['chat-network-recovery-results.json', row => { row.physicalDevice = true; }],
+  ['chat-network-recovery-results.json', row => { row.network.duplicateMessages = 1; }],
+  ['chat-network-recovery-results.json', row => { row.isolatedEnvironmentDestroyed = false; }],
+  ['local-chat-network-ui.json', row => { row.network[2].backendReachable = true; }],
+  ['adb-pull-network-recovery.json', row => { row.completed = false; }],
+  ['disposable-device-restore.json', row => { row.verified = false; }],
+  ['artifact.json', row => { row.workflow_run.head_sha = '0'.repeat(40); }],
+  ['visual-review.json', row => { row.published['unreviewed-image'] = 'captures/local-chat-network-recovered.png'; }],
+]) test('scoped network evidence rejects unsupported state: ' + file + ' ' + mutate, t => {
+  const root = mkdtempSync(join(tmpdir(), 'sgm-isolated-network-evidence-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const target = join(root, chatNetworkIsolatedFolder);
+  cpSync(chatNetworkIsolatedFolder, target, { recursive: true });
+  const archives = join(root, 'docs/release/evidence/source-archive'); mkdirSync(archives, { recursive: true });
+  const run = JSON.parse(readFileSync(join(target, 'chat-network-recovery-results.json')));
+  for (const hash of new Set(Object.values(run.sourceFiles)))
+    cpSync('docs/release/evidence/source-archive/' + hash + '.txt', join(archives, hash + '.txt'));
+  const path = join(target, file), row = JSON.parse(readFileSync(path)); mutate(row);
+  writeFileSync(path, JSON.stringify(row));
+  const checksums = join(target, 'artifact-sha256.json'), hashes = JSON.parse(readFileSync(checksums));
+  hashes[file] = createHash('sha256').update(readFileSync(path)).digest('hex'); writeFileSync(checksums, JSON.stringify(hashes));
+  assert.throws(() => validateChatNetworkIsolated(root));
 });

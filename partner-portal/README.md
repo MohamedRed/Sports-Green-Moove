@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The 27 October independent network case passes the unchanged native dual-radio,
+offline draft/retry, cross-account and stored-message checks. Its primary copy,
+fixture disposal and independent device restoration pass. Publish only the two
+reviewed original draft/reply windows; the intermediate recovered window has an
+incomplete redraw and is excluded. Keep earlier full-gate failures and real-phone
+requirements open. This scoped pass neither repairs nor replaces the full matrix.
+
 The 27 October review of terminal 48ea950 finds 176 ordinary passes, 54 skips and
 one capture callback failure before parent acceptance. The local replay then
 fails its dual-network preparation before any disconnect; seventeen primary
