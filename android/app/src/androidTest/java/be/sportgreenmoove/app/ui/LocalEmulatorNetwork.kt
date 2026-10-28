@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import android.os.UserManager
+import android.os.SystemClock
 import android.provider.Settings
 import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
@@ -87,7 +88,10 @@ internal class LocalEmulatorNetwork(
     fun snapshot(phase: String): JSONObject {
         val active = connectivity.activeNetwork
         val activeCapabilities = active?.let(connectivity::getNetworkCapabilities)
-        val internetCapabilities = connectivity.allNetworks.mapNotNull(connectivity::getNetworkCapabilities)
+        val available = connectivity.allNetworks.mapNotNull { network ->
+            connectivity.getNetworkCapabilities(network)?.let { (network == active) to it }
+        }
+        val internetCapabilities = available.map { it.second }
             .filter { it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) }
         return JSONObject().put("phase", phase).put("wifiEnabled", wifi.isWifiEnabled)
         .put("mobileDataEnabled", telephony.isDataEnabled).put("activeNetwork", active != null)
@@ -102,15 +106,9 @@ internal class LocalEmulatorNetwork(
         .put("airplaneModeSetting", Settings.Global.getString(resolver, Settings.Global.AIRPLANE_MODE_ON) ?: JSONObject.NULL)
         .put("mobileDataAlwaysOnSetting", Settings.Global.getString(resolver, "mobile_data_always_on") ?: JSONObject.NULL)
         .put("internetNetworkCount", internetCapabilities.size).put("backendReachable", backendReachable())
-        .put("activeInternetTransports", org.json.JSONArray(transportNames(activeCapabilities)))
-        .put("internetTransports", org.json.JSONArray(internetCapabilities.flatMap(::transportNames).distinct()))
-    }
-
-    private fun transportNames(capabilities: NetworkCapabilities?): List<String> {
-        if (capabilities == null || !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) return emptyList()
-        return listOf(NetworkCapabilities.TRANSPORT_WIFI to "wifi", NetworkCapabilities.TRANSPORT_CELLULAR to "cellular",
-            NetworkCapabilities.TRANSPORT_ETHERNET to "ethernet", NetworkCapabilities.TRANSPORT_VPN to "vpn")
-            .filter { capabilities.hasTransport(it.first) }.map { it.second }
+        .put("activeInternetTransports", org.json.JSONArray(localInternetTransports(activeCapabilities)))
+        .put("internetTransports", org.json.JSONArray(internetCapabilities.flatMap(::localInternetTransports).distinct()))
+        .put("capabilityObservation", localNetworkCapabilitySnapshot(activeCapabilities, available, SystemClock.elapsedRealtime()))
     }
 
     override fun close() {

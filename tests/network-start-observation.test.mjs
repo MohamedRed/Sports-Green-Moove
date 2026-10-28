@@ -68,6 +68,24 @@ test('constructor failures have the right phase and persist an initial record wi
     assert(verifier.includes(required));
 });
 
+test('read-only capability observations retain validation separately without changing network acceptance', () => {
+  const control = native('LocalEmulatorNetwork'), helper = native('LocalNetworkCapabilitySnapshot');
+  assert(control.includes('localNetworkCapabilitySnapshot(activeCapabilities, available, SystemClock.elapsedRealtime())'));
+  assert(helper.includes('"atomicObservation", false'));
+  for (const capability of ['INTERNET', 'VALIDATED', 'CAPTIVE_PORTAL', 'NOT_SUSPENDED', 'NOT_METERED', 'TRUSTED'])
+    assert(helper.includes('hasCapability(NetworkCapabilities.NET_CAPABILITY_' + capability + ')'));
+  assert(helper.includes('active?.let(::describe) ?: JSONObject.NULL'));
+  assert(helper.includes('localNetworkCapabilityDescription(capabilities::hasCapability, capabilities::hasTransport)'));
+  for (const forbidden of ['.toString()', '.transportInfo', 'getLinkProperties', 'requestNetwork', 'bindProcessToNetwork',
+    'executeShellCommand', 'Thread.sleep', 'repeat(']) assert(!helper.includes(forbidden), forbidden);
+  assert(!native('LocalInitialNetworkObservation').includes('capabilityObservation'));
+  assert(!native('LocalCellularObservation').includes('capabilityObservation'));
+  const cases = native('LocalNetworkCapabilitySnapshotTest');
+  assert.equal((cases.match(/@Test fun /g) ?? []).length, 4);
+  for (const name of ['LocalNetworkCapabilitySnapshot', 'LocalNetworkCapabilitySnapshotTest', 'LocalEmulatorNetwork'])
+    assert(native(name).split('\n').length < 300, name);
+});
+
 test('native and web gates cover the initial observation while all new native modules remain small', () => {
   const file = 'tests/network-start-observation.test.mjs';
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml']) {

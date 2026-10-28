@@ -344,6 +344,20 @@ Six Android instrumentation cases cover record-before-refusal, recording errors
 and mutation isolation; local Node contracts run with
 `node --test tests/network-start-observation.test.mjs`.
 
+Each network snapshot now also includes a read-only `capabilityObservation`:
+the active and available networks' transport enums, configured-Internet,
+validation, captive-portal, suspension, metering and trust booleans. Sampling is
+explicitly non-atomic; the active flag refers to the start of that snapshot.
+Only public capability readers are used. No identifiers, addresses, raw platform
+dumps, network binding, probes, radio changes or extra requests are added by this
+observer. Missing active capabilities stay null. Four native serializer cases
+and the existing Node initial-observation gate protect this boundary. These
+observations do not change the Wi-Fi-default prerequisite, 30-second preparation
+deadline, cellular handover, offline proof, recovery or cleanup. They can expose
+validation differences, but do not establish the OS selection reason by themselves.
+See [Android network-state capabilities](https://developer.android.com/develop/connectivity/network-ops/reading-network-state)
+and [network selection](https://source.android.com/docs/core/connect/network-selection).
+
 The existing carrier-loader observation also retains four per-slot bundle-presence
 booleans: default app, carrier app, persistent override and transient override.
 An empty loaded bundle is distinct from an absent (`null`) bundle. Values,
