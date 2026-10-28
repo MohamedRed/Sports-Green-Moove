@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.AppDataStateTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-28T17:20:07.868Z" hostname="MRRs-MacBook-Air.local" time="0.019">
+  <properties/>
+  <testcase name="aSlowAppSnapshotCannotUndoANewerGroupsRefresh" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.009"/>
+  <testcase name="logoutInvalidatesAnAlreadyRunningRefresh" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.001"/>
+  <testcase name="anOlderResponseCannotReplaceTheNewAccountsRefresh" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.001"/>
+  <testcase name="anOldObserverCannotPublishIntoANewAccountEvenForTheSameRideId" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.0"/>
+  <testcase name="aSlowAppRefreshCannotUndoALiveRideUpdate" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.001"/>
+  <testcase name="externalCancellationStillCancelsTheRefreshWithoutPublishing" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.001"/>
+  <testcase name="aFailureFromAnInvalidatedAccountCannotSurfaceInTheNewSession" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.002"/>
+  <testcase name="aFailedRefreshCannotPublishHalfOfANewSnapshot" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.001"/>
+  <testcase name="completionHistoryRefreshCannotJumpToAnotherActiveRide" classname="be.sportgreenmoove.app.ui.AppDataStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,7 +1,8 @@
 import { supportFollowupSteps } from './support-followup-tour.mjs';
 import { chatNetworkRecoveryTour } from './chat-network-recovery.mjs';
 import { supportSubmissionSteps } from './support-submission-flow.mjs';
-import { searchPhoneTour, bookingSearchPhoneTour } from './search-booking-phone.mjs';
+import { searchPhoneTour } from './search-booking-phone.mjs';
+import { directBookingTour } from './direct-booking.mjs';
 import {driverConnectTour} from './driver-connect.mjs';
 import {tripConsentPhoneTour} from './trip-consent-phone.mjs';
 import {tripDraftPhoneTour} from './trip-draft-phone.mjs';
@@ -141,7 +142,7 @@ export const tours = {
   ],
   search: searchPhoneTour,
   publication: [...tripDraftPhoneTour, ...tripConsentPhoneTour],
-  booking: bookingSearchPhoneTour,
+  booking: directBookingTour,
   messages: chatNetworkRecoveryTour,
   clubs: [
     image('guardian-parent-requested', 'Demander la vérification', 'Le parent choisit son enfant et son club. La demande apparaît en attente, dans l’essai local.'),

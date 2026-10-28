@@ -10,7 +10,7 @@ import { content, captures } from '../partner-portal/content.mjs';
 const flow = content.flows.find(row => row.id === 'booking'), record = flow.requestNoticePhone;
 test('request phone observation stays distinct from local records and historical decision evidence', () => {
   const run = validate(process.cwd(), record.source);
-  assert.equal(flow.checkedAt, '2026-10-24'); assert.equal(flow.status, 'partial');
+  assert.equal(flow.checkedAt, '2026-10-28'); assert.equal(flow.status, 'partial');
   assert.equal(flow.decisionPhone.checkedAt, '2026-10-22');
   assert.equal(flow.requestNoticeChecks.checkedAt, '2026-10-23');
   assert.equal(run.parentRequestInUi, true); assert.equal(run.sameDeviceEndToEnd, false);

@@ -34,6 +34,7 @@ fun SportsGreenMooveApp() {
     val messagesState = rememberSaveableStateHolder()
     var role by remember { mutableStateOf(AppRole.Parent) }
     var session by remember { mutableStateOf<AuthSession?>(null) }
+    val directBooking = rememberDirectBookingState(providers, scope, session?.uid)
     val appData = remember { AppDataState() }
     var trips by appData.trips
     var children by appData.children
@@ -110,9 +111,11 @@ fun SportsGreenMooveApp() {
             setNotice = { noticeMessage = it },
             setScreen = { screen = it },
             setError = { errorMessage = it },
+            onParentBooking = directBooking::open,
         )
     }
     fun logout() {
+        directBooking.close()
         searchController.close()
         session?.uid?.let { messagesState.removeState(it) }
         signOutProviders(providers)
@@ -142,6 +145,7 @@ fun SportsGreenMooveApp() {
     SgmTheme(darkTheme = darkTheme) {
         AppSystemBars(darkBackground = darkTheme)
         V2ThemeToggleProvider(darkTheme = darkTheme, onToggle = { darkTheme = !darkTheme }) {
+            DirectBookingDialog(directBooking)
             if (!providers.isConfigured) {
                 ConfigurationRequiredScreen()
                 return@V2ThemeToggleProvider
@@ -180,13 +184,9 @@ fun SportsGreenMooveApp() {
                         .padding(padding),
                 ) {
                     when (screen) {
-                        AppScreen.Home -> HomeScreen(
-                            displayName = session?.displayName,
-                            trips = trips,
-                            impactSummary = ledgerSummaries.impact,
-                            onTrips = { screen = AppScreen.Trips },
-                            onRide = { trips.firstOrNull { it.status == be.sportgreenmoove.app.data.TripStatus.Upcoming }?.let(::runTripAction) },
-                            onImpact = { screen = AppScreen.Impact },
+                        AppScreen.Home -> HomeRoute(
+                            displayName = session?.displayName, data = appData,
+                            onNavigate = { screen = it }, onTripAction = ::runTripAction,
                         )
                         AppScreen.Trips -> TripsRoute(
                             uid = requireNotNull(session).uid, role = role, gateway = providers.firebase,

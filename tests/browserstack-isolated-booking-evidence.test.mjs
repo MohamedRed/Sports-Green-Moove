@@ -56,9 +56,9 @@ test('private site dates phone and old local results separately without closing 
   assert.equal(flow.phone.source, base + 'results.json');
   const historical = flow.images.filter(image => image.file.startsWith('phone-booking-')).map(image => image.file);
   assert.deepEqual(historical, ['phone-booking-requested', 'phone-booking-approved', 'phone-booking-cancelled']);
-  assert(flow.tour.every(step => step.image.startsWith('search-phone-')));
+  assert(flow.tour.every(step => step.image.startsWith('booking-direct-')));
   for (const [index, id] of historical.entries()) assert.equal(captures[id], base + run.captures[index]);
-  assert.match(detail(flow), /Essai sur téléphone du 24 octobre 2026/);
+  assert.match(detail(flow), /Essai sur téléphone du 28 octobre 2026/);
   assert.equal(flow.searchBookingUi.checkedAt, '2026-10-20');
   for (const remaining of [/deux téléphones/, /réponses perdues/, /remboursements/, /Pas encore en ligne/]) assert.match(flow.remaining, remaining);
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'partial');

@@ -24,6 +24,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate physical draft and consent evidence boundaries')
     .filter(step => step.name !== 'Validate partial team connection recovery evidence')
     .filter(step => step.name !== 'Validate seven physical team process restarts')
+    .filter(step => step.name !== 'Validate direct booking confirmation and phone restart')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
@@ -48,6 +49,8 @@ test('all 111 original workload steps retain their exact commands, environments,
   const restarts = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate seven physical team process restarts');
   assert.equal(restarts.length, 1);
   assert.equal(restarts[0].run, 'node --test tests/team-process-restart-phone-evidence.test.mjs');
+  const direct = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate direct booking confirmation and phone restart');
+  assert.equal(direct.length, 1); assert.equal(direct[0].run, 'node --test tests/direct-booking-evidence.test.mjs');
 });
 
 test('service groups use separate runners and build their own unchanged backend before testing', () => {

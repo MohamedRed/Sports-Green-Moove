@@ -71,7 +71,7 @@ test('the public portal leads with dated session captures, retaining earlier pho
   assert.match(flow.remaining, /notifications/); assert.match(flow.remaining, /autres appareils/);
   assert.doesNotMatch(flow.remaining, /fermeture complète/);
   assert.doesNotMatch(JSON.stringify(flow), /Firebase|BrowserStack|Playwright|SDK|Terraform|Pixel/);
-  assert.match(content.updates[0].title, /fermeture/);
+  assert(content.updates.some(row => row.flow === 'team-enrollment' && row.source === teamRestartDirectory + '/README.md'));
 });
 test('web smoke runs the new evidence contract without changing previous workload commands', () => {
   const workflow = readFileSync(resolve(root, '.github/workflows/web-integration-smoke.yml'), 'utf8');

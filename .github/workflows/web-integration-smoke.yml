@@ -294,6 +294,12 @@ on:
       - "tests/scoped-browserstack-local.test.mjs"
       - "tests/team-connection-recovery-evidence.test.mjs"
       - "tests/team-process-restart-phone-evidence.test.mjs"
+      - "tests/direct-booking-evidence.test.mjs"
+      - "tests/partner-portal-direct-booking.browser.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/DirectBooking*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/HomeRoute.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripActionBookingTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DirectBookingConfirmationTest.kt"
       - "tests/partner-portal-team-restart.browser.mjs"
       - "tests/manual-team-draft-views.test.mjs"
       - "tests/manual-team-read-checkpoints.test.mjs"
@@ -755,6 +761,12 @@ on:
       - "tests/scoped-browserstack-local.test.mjs"
       - "tests/team-connection-recovery-evidence.test.mjs"
       - "tests/team-process-restart-phone-evidence.test.mjs"
+      - "tests/direct-booking-evidence.test.mjs"
+      - "tests/partner-portal-direct-booking.browser.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/DirectBooking*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/HomeRoute.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripActionBookingTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DirectBookingConfirmationTest.kt"
       - "tests/partner-portal-team-restart.browser.mjs"
       - "tests/manual-team-draft-views.test.mjs"
       - "tests/manual-team-read-checkpoints.test.mjs"
@@ -1224,6 +1236,8 @@ jobs:
         run: node --test tests/team-connection-recovery-evidence.test.mjs
       - name: Validate seven physical team process restarts
         run: node --test tests/team-process-restart-phone-evidence.test.mjs
+      - name: Validate direct booking confirmation and phone restart
+        run: node --test tests/direct-booking-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

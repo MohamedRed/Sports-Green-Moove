@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The later 28 October direct-booking trial verifies zero writes on opening or
+dismissal, one explicit adult one-seat request and the same request after actual
+Force stop/new process, reopening from Home and Trips, and sign-out. All eight
+read-only checkpoints and independent package/runtime disposal pass. The original
+controlled three-call regression remains failed; eleven corrected controller cases
+and 613 local native unit tests pass. Two new native component cases compile but
+are not yet executed evidence. Publish four reviewed session-window crops, clearly
+dated as session captures. Keep the older child two-seat search gallery/date and
+the unchanged public audience. The short current tour has four direct-booking
+steps. Search restart, physical lost replies, other accounts/devices, payments,
+push and production release remain open. Do not turn a source APK hash into an
+independently verified installed-byte claim or claim the two focused baseline CI
+failures are repaired by this scoped product change.
+
 The later 28 October team enrollment trial completes seven independent stored
 checkpoints and seven actual Android Force stop/reopen sequences. Every sequence
 has fresh package-scoped process-before, no-process and new-process observations,

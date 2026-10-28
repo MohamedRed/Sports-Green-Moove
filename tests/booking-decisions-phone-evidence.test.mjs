@@ -16,9 +16,9 @@ test('six actual phone checkpoints preserve exact recipients, two seats, capacit
 });
 test('the current tour retains all eight historical decision captures under the newer full exchange', () => {
   const run = validateBookingDecisionsPhone(process.cwd(), source);
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-24'); assert.equal(flow.phone.checkedAt, '2026-10-18');
-  assert.match(detail(flow), /Essai sur téléphone du 24 octobre 2026/); assert.equal(flow.tour.length, 5);
-  assert(flow.tour.every(step => step.image.startsWith('search-phone-')));
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-28'); assert.equal(flow.phone.checkedAt, '2026-10-18');
+  assert.match(detail(flow), /Essai sur téléphone du 28 octobre 2026/); assert.equal(flow.tour.length, 4);
+  assert(flow.tour.every(step => step.image.startsWith('booking-direct-')));
   assert.equal(Object.keys(run.publishedCaptures).length, 8);
   for (const [id, file] of Object.entries(run.publishedCaptures)) {
     assert.equal(captures[id], dirname(source) + '/' + file);

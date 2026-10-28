@@ -4,8 +4,10 @@ import { scheduleDraftPhoneProgress } from './schedule-draft-phone.mjs';
 import { consentRestartPhoneProgress } from './consent-restart-phone.mjs';
 import { teamConnectionRecoveryProgress } from './team-connection-recovery.mjs';
 import { teamRestartProgress } from './team-process-restart.mjs';
+import { directBookingProgress } from './direct-booking.mjs';
 
 export const currentProgress = [
+  directBookingProgress,
   teamRestartProgress,
   teamConnectionRecoveryProgress,
   consentRestartPhoneProgress,

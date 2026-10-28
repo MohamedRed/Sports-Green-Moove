@@ -44,7 +44,12 @@ fun launchTripAction(
     setNotice: (String) -> Unit,
     setScreen: (AppScreen) -> Unit,
     setError: (String?) -> Unit,
+    onParentBooking: (TripSummary) -> Unit,
 ) {
+    if (role != AppRole.Driver && role != AppRole.Child) {
+        onParentBooking(trip)
+        return
+    }
     val action: () -> Unit = {
         scope.launch {
             setError(null)
@@ -68,20 +73,12 @@ fun launchTripAction(
                         setNotice(result.notice)
                         setScreen(AppScreen.Ride)
                     }
-                    else -> {
-                        val bookingId = providers.firebase.requestBooking(trip, null, 1)
-                        setNotice("Demande envoyée: $bookingId")
-                    }
                 }
             }.onFailure { setError(UserFacingErrorPolicy.messageFor(it)) }
         }
     }
 
-    if (role == AppRole.Driver || role == AppRole.Child) {
-        activeRidePermissionGate.runWhenReady(action)
-    } else {
-        action()
-    }
+    activeRidePermissionGate.runWhenReady(action)
 }
 
 // Passenger snapshots belong to the live observer, including its position-age ticker.

@@ -7,6 +7,7 @@ import { validateBookingRequestNoticeEvidence } from '../scripts/qa/booking-requ
 import { validateBookingRequestPhoneEvidence } from '../scripts/qa/booking-request-phone-evidence.mjs';
 import { validateSearchBookingPhone } from '../scripts/qa/search-booking-phone-evidence.mjs';
 import {validateDriverConnectEvidence} from '../scripts/qa/driver-connect-evidence.mjs';
+import {validateDirectBookingEvidence} from '../scripts/qa/direct-booking-evidence.mjs';
 
 export function validateBookingEvidence(root, flow) {
   if (flow.requestNoticeChecks) {
@@ -14,6 +15,7 @@ export function validateBookingEvidence(root, flow) {
     validateBookingRequestNoticeEvidence(root, flow.requestNoticeChecks);
   }
   for (const [record, validate, ids] of [
+    [flow.directBookingPhone, validateDirectBookingEvidence, ['booking']],
     [flow.driverConnectChecks, validateDriverConnectEvidence, ['payments']],
     [flow.searchBookingPhone, validateSearchBookingPhone, ['search', 'booking']],
     [flow.requestNoticePhone, validateBookingRequestPhoneEvidence, ['booking']],
