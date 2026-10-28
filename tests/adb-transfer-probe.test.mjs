@@ -64,6 +64,13 @@ test('first command failure is immutable, stops the sequence and cannot be rescu
   assert.doesNotMatch(JSON.stringify(result), /RAW-SECRET/);
 });
 
+test('a clean checkout needs no app build to create the diagnostic output parent', t => {
+  const f = fixture(t);
+  f.options.output = join(f.output, 'not-built', 'outputs', 'probe');
+  assert.equal(f.execute().success, true);
+  assert.equal(JSON.parse(readFileSync(join(f.options.output, 'result.json'))).success, true);
+});
+
 test('zero exit with missing or changed bytes fails integrity without another transfer', t => {
   const f = fixture(t, { corruptAt: 0 }), result = f.execute();
   assert.equal(result.success, false); assert.equal(result.trials.length, 1);

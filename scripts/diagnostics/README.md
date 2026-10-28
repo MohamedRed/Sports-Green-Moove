@@ -28,6 +28,13 @@ A diagnostic failure can establish reproduction without the app. A diagnostic
 pass only means these 32 transfers passed; it does not disprove an intermittent
 failure or establish the root cause. No release manifest entry is promoted.
 
+The [first CI attempt](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40697049828)
+at `03c6941` stopped with `ENOENT` before the probe's first device command: the
+clean checkout had no app-build output parent. The probe now creates that parent
+without compiling or installing the app, while still refusing an existing result
+directory. A clean-checkout regression reproduced the failure before this fix.
+This preparation fix is not a repair of the original ADB disconnect.
+
 Run the contract tests with `node --test tests/adb-transfer-probe.test.mjs`.
 The dedicated workflow runs these contracts before starting the device, and
 uploads only its JSON outcomes. Web Integration Smoke is unchanged because this

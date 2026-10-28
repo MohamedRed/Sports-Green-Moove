@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
-import { isAbsolute, join } from 'node:path';
+import { dirname, isAbsolute, join } from 'node:path';
 import { readTransferTrace } from './adb-transfer-trace.mjs';
 
 export const transferTrialCount = 32;
@@ -18,6 +18,7 @@ export function runTransferProbe({ adb, serial, output, runId }, {
 } = {}) {
   assert(isAbsolute(adb) && isAbsolute(output)); assert.match(serial, /^emulator-\d+$/);
   assert.match(runId, /^[a-f0-9]{32}$/);
+  mkdirSync(dirname(output), { recursive: true, mode: 0o700 });
   mkdirSync(output, { mode: 0o700 });
   const save = (name, value) => writeFileSync(join(output, name + '.json'), JSON.stringify(value, null, 2) + '\n',
     { mode: 0o600, flag: 'wx' });
