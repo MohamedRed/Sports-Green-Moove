@@ -29,6 +29,7 @@ including zero writes on open/dismissal, one confirmed request, process restart,
 cross-entry-point restoration and sign-out. See
 `../release/evidence/direct-booking-confirmation-2026-10-28/README.md`.
 
-The new two-case native component suite is compiled, not yet accepted as executed.
+The two native component cases subsequently execute successfully in Native CI
+40735408854 on c898253; their declared fake gateways do not prove a physical fault.
 Response loss on a physical phone, search-screen restoration, simultaneous devices,
 payments, push notifications, iOS and production rollout remain outside this proof.

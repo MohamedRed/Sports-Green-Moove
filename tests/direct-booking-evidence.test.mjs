@@ -18,6 +18,12 @@ test('the original three-call regression and corrected unit/phone proof stay sco
   const run = validateDirectBookingEvidence(root);
   assert.equal(run.completedCheckpoints, 8); assert.equal(run.nativeComponentTestsExecuted, false);
 });
+test('subsequent component execution stays separate from the original phone record and failed web check', () => {
+  const ci = json('component-ci/summary');
+  assert.equal(ci.nativeCiPassed, true); assert.equal(ci.directBookingCasesPassed, 2);
+  assert.equal(ci.overallPrChecksPassed, false); assert.equal(ci.physicalResponseLossVerified, false);
+  assert.match(read(folder + '/composition-recheck/gradle.txt'), /BUILD SUCCESSFUL/);
+});
 test('duplicates, altered capacity, replacement receipts and changes to unrelated records invalidate the phone proof', () => {
   for (const mutate of [
     r => r.checkpoints[3].state.documents.bookings.push(r.checkpoints[3].state.documents.bookings.at(-1)),

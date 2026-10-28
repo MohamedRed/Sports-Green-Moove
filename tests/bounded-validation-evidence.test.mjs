@@ -10,7 +10,7 @@ const record = content.boundedValidationRecheck;
 test('the same bounded-collection tests reproduce excess validation work and pass after one dependency update', () => {
   const report = validateBoundedValidation(process.cwd(), record);
   assert.equal(report.backendUnitCasesPassed, 440); assert.equal(report.securityAuditClear, false);
-  assert.equal(content.blockers.find(row => row.id === 'dependency-security').source, record.source.replace('summary.json', 'README.md'));
+  assert(content.updates.some(row => row.source === record.source.replace('summary.json', 'README.md')));
 });
 for (const key of ['unchangedTestFile', 'securityAuditClear', 'productionDeployed', 'outOfMemoryAttackExecuted', 'nativeReplayAccepted']) {
   test('validation-work evidence rejects altered ' + key, t => {

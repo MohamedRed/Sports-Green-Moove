@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync, rmSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve, isAbsolute } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -6,16 +6,17 @@ import { randomBytes } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { projectId } from './local-emulator-config.mjs';
 import { localEntryCommand } from './local-entry-command.mjs';
+import { disposeLocalRuntime, localRuntimeJvmOptions } from './local-runtime-disposal.mjs';
 
 export const root = resolve(import.meta.dirname, '../..');
 
 export function prepareLocalRuntime() {
   const temp = mkdtempSync(resolve(tmpdir(), 'sgm-local-runtime-'));
-  const cleanup = () => rmSync(temp, { recursive: true, force: true });
+  const cleanup = () => disposeLocalRuntime(temp, runtime.emulatorsPrepared);
   const env = Object.fromEntries(['PATH', 'HOME', 'USER', 'LOGNAME', 'TMPDIR', 'JAVA_HOME', 'ANDROID_HOME', 'ANDROID_SDK_ROOT']
     .filter((key) => process.env[key]).map((key) => [key, process.env[key]]));
   Object.assign(env, { CI: 'true', FIREBASE_CLI_DISABLE_USAGE_REPORTING: 'true',
-    GCLOUD_PROJECT: projectId, FIREBASE_PROJECT_ID: projectId,
+    GCLOUD_PROJECT: projectId, FIREBASE_PROJECT_ID: projectId, JAVA_TOOL_OPTIONS: localRuntimeJvmOptions,
     XDG_CONFIG_HOME: resolve(temp, 'cli-config'),
     GOOGLE_APPLICATION_CREDENTIALS: resolve(temp, 'no-cloud-credentials.json'),
     SGM_QA_PASSWORD: randomBytes(24).toString('hex'),
@@ -26,6 +27,7 @@ export function prepareLocalRuntime() {
     if (result.error) throw result.error;
     if (result.status !== 0) throw new Error(`${command} failed (${result.status})`);
   }
+  const runtime = {temp, env, run, cleanup, emulatorsPrepared: false};
   try {
     assert(isAbsolute(env.SGM_LOCAL_FLOW_OUTPUT), 'Local evidence output must be an absolute path');
     run('npm', ['run', 'build', '--workspace', 'functions']);
@@ -47,7 +49,7 @@ export function prepareLocalRuntime() {
         .map((key) => [key, { host: '127.0.0.1', port: config.emulators[key].port }])),
         ui: { enabled: false }, singleProjectMode: true } };
     writeFileSync(resolve(temp, 'firebase.json'), JSON.stringify(local, null, 2));
-    return { temp, env, run, cleanup };
+    return runtime;
   } catch (error) { cleanup(); throw error; }
 }
 
@@ -57,6 +59,7 @@ export function runEmulatorEntry(runtime, name) {
 
 export function emulatorEntryArguments(runtime, name) {
   const entry = resolve(root, 'scripts/qa', name);
+  runtime.emulatorsPrepared = true;
   return [resolve(root, 'node_modules/firebase-tools/lib/bin/firebase.js'),
     'emulators:exec', '--project', projectId, '--config', resolve(runtime.temp, 'firebase.json'),
     '--only', 'auth,firestore,database,functions', localEntryCommand(process.execPath, entry)];

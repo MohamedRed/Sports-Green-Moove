@@ -125,7 +125,28 @@ export function validateDirectBookingEvidence(root, source = directBookingEviden
   assert.equal(Number(preparation['@_failures']), 6);
   for (const testcase of [].concat(preparation.testcase)) if (testcase.failure)
     assert.match(testcase.failure['@_message'], /No space left on device/);
-  assert.match(readFileSync(resolve(base, 'composition-recheck/gradle.log'), 'utf8'), /BUILD SUCCESSFUL/);
+  assert.match(readFileSync(resolve(base, 'composition-recheck/gradle.txt'), 'utf8'), /BUILD SUCCESSFUL/);
+  const ci = json('component-ci/summary'), run = json('component-ci/run');
+  assert.equal(ci.scope, 'subsequent-native-ci-component-execution-not-another-phone-run-or-release-clearance');
+  assert.equal(run.headSha, ci.sourceCommit); assert.equal(run.databaseId, ci.nativeRunId);
+  assert.equal(run.status, 'completed'); assert.equal(run.conclusion, 'success'); assert.equal(ci.nativeCiPassed, true);
+  assert(run.jobs.every(job => ['success', 'skipped'].includes(job.conclusion)));
+  const ordinary = xml('component-ci/ordinary-components.xml');
+  assert.equal(Number(ordinary['@_tests']), 237); assert.equal(Number(ordinary['@_skipped']), 54);
+  assert.equal(Number(ordinary['@_failures']), 0); assert.equal(Number(ordinary['@_errors']), 0);
+  const direct = [].concat(ordinary.testcase).filter(row => row['@_classname'] === 'be.sportgreenmoove.app.ui.DirectBookingConfirmationTest');
+  assert.deepEqual(direct.map(row => row['@_name']).sort(), [
+    'largeTextRetainsTheExplicitRetryWithoutPretendingTheReplyWasConfirmed',
+    'onlyExplicitConfirmationSendsAndReopeningFindsTheExistingRequest']);
+  assert(direct.every(row => !Object.hasOwn(row, 'failure') && !Object.hasOwn(row, 'skipped')));
+  const exits = json('component-ci/native-suite-status');
+  for (const name of ['ordinaryTests', 'componentEvidence', 'localReplay']) assert.equal(exits[name], 0);
+  const pr = json('component-ci/pr-checks'); assert.equal(pr.headRefOid, ci.sourceCommit);
+  assert.deepEqual(pr.statusCheckRollup.filter(row => row.conclusion === 'FAILURE').map(row => row.name).sort(),
+    ['Functions, admin, and website checks', 'Functions, admin, and website smoke']);
+  for (const flag of ['physicalResponseLossVerified', 'intermittentTransferRootCauseProven', 'overallPrChecksPassed', 'releaseComplete'])
+    assert.equal(ci[flag], false);
+  assert.equal(ci.webEvidenceArtifactMissingFromCommit, true); assert.equal(ci.directBookingCasesPassed, 2);
   for (const capture of report.captures) {
     assert.equal(createHash('sha256').update(readFileSync(resolve(base, 'phone', capture.original))).digest('hex'), capture.originalSha256);
     assert.equal(capture.file, 'captures/' + capture.phase + '.png');

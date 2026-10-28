@@ -2,13 +2,25 @@
 
 ## Current Publication Policy
 
+The 28 October parser check reproduces two isolated worker crashes and an invalid
+limit failure, then passes the same nine cases with the maintainer patch. Preserve
+the first 21/24 service failure and its manual orphan-process disposal separately
+from the bounded 24/24 replay. A new cleanup guard retains launched-runtime files
+while any checked endpoint is live. This does not prove the earlier CLI exit cause
+or automatically stop detached processes. Publish concise text only, without
+dependency/provider names or new media. Keep the remaining audit findings, physical
+application/maps and release gaps open; public access stays unchanged.
+
 The later 28 October direct-booking trial verifies zero writes on opening or
 dismissal, one explicit adult one-seat request and the same request after actual
 Force stop/new process, reopening from Home and Trips, and sign-out. All eight
 read-only checkpoints and independent package/runtime disposal pass. The original
 controlled three-call regression remains failed; eleven corrected controller cases
-and 613 local native unit tests pass. Two new native component cases compile but
-are not yet executed evidence. Publish four reviewed session-window crops, clearly
+and 613 local native unit tests pass. Two native component cases subsequently pass
+in c898253 Native CI; the original phone summary retains its narrower scope. That
+PR's web check fails on an ignored original log; retain its bytes as text and
+require evidence-file membership in the source commit before publishing. Publish
+four reviewed session-window crops, clearly
 dated as session captures. Keep the older child two-seat search gallery/date and
 the unchanged public audience. The short current tour has four direct-booking
 steps. Search restart, physical lost replies, other accounts/devices, payments,

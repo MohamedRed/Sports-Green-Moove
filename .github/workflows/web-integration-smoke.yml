@@ -295,6 +295,11 @@ on:
       - "tests/team-connection-recovery-evidence.test.mjs"
       - "tests/team-process-restart-phone-evidence.test.mjs"
       - "tests/direct-booking-evidence.test.mjs"
+      - "tests/http-body-parser-security.test.mjs"
+      - "tests/portal-committed-evidence.test.mjs"
+      - "tests/local-runtime-disposal.test.mjs"
+      - "tests/http-body-parser-evidence.test.mjs"
+      - "tests/helpers/http-body-parser-probe.mjs"
       - "tests/partner-portal-direct-booking.browser.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/DirectBooking*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/HomeRoute.kt"
@@ -762,6 +767,11 @@ on:
       - "tests/team-connection-recovery-evidence.test.mjs"
       - "tests/team-process-restart-phone-evidence.test.mjs"
       - "tests/direct-booking-evidence.test.mjs"
+      - "tests/http-body-parser-security.test.mjs"
+      - "tests/portal-committed-evidence.test.mjs"
+      - "tests/local-runtime-disposal.test.mjs"
+      - "tests/http-body-parser-evidence.test.mjs"
+      - "tests/helpers/http-body-parser-probe.mjs"
       - "tests/partner-portal-direct-booking.browser.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/DirectBooking*.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/HomeRoute.kt"
@@ -1238,6 +1248,10 @@ jobs:
         run: node --test tests/team-process-restart-phone-evidence.test.mjs
       - name: Validate direct booking confirmation and phone restart
         run: node --test tests/direct-booking-evidence.test.mjs
+      - name: Test runtime compressed request parsing and size limits
+        run: node --test tests/http-body-parser-security.test.mjs tests/http-body-parser-evidence.test.mjs tests/local-runtime-disposal.test.mjs
+      - name: Verify committed publication artifacts
+        run: node --test tests/portal-committed-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

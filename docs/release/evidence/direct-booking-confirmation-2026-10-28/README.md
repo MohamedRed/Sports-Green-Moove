@@ -5,8 +5,9 @@
 produce three successful gateway calls; the expected single call assertion fails.
 This is not evidence of three real server bookings. Original JUnit and test source
 are retained. The corrected eleven-case controller suite and all 613 local native
-unit tests pass. The new two-case native component suite compiles but has not yet
-been executed in the retained evidence; do not infer its execution from compilation.
+unit tests pass. The new two-case native component suite initially compiles only;
+its subsequent CI execution is retained separately below, not inferred from that
+compilation or promoted to physical response-loss proof.
 
 The parent card now opens an explicit one-adult/one-seat confirmation. Fresh trip
 terms and paginated owned reservations are read before enabling submission.
@@ -76,3 +77,22 @@ preparation and ride-observation lanes; this scoped product repair does not repa
 or replace those failures.
 
 Validate with `node --test tests/direct-booking-evidence.test.mjs`.
+
+## Subsequent Native Component Execution
+
+Native CI 40735408854 on committed source c898253 succeeds, including all three
+native suite exit codes. Its original ordinary-component XML has 237 cases:
+183 passed, 54 intentionally skipped, zero failures/errors. Both direct-booking
+component cases execute successfully, including explicit confirmation/reopening
+and large-text explicit retry with declared fake gateways. Original run metadata,
+XML, suite status and terminal PR checks are retained under component-ci.
+
+The complete PR is not green: Web Integration Smoke fails because the local
+composition-recheck/gradle.log matched the repository's ignored log extension and
+was absent from the commit despite being listed in the checksum manifest. Those
+same original bytes are now retained as gradle.txt. The publishing command also
+checks source-commit membership of evidence references and checksum-listed files;
+a clean worktree alone cannot accept an ignored original. Dedicated tests retain
+that clean-but-incomplete case and reject index-only files before commit.
+This evidence packaging repair does not claim a production deployment, physical
+response-loss recovery or a root-cause repair of intermittent capture transfers.

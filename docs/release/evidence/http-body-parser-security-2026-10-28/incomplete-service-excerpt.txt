@@ -1,0 +1,17 @@
+trip-change-parent-confirmation: failed
+trip-change-application: failed
+trip-change-supplement: failed
+Local QA: 21/24 groups passed. Evidence saved.
+file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-runtime.mjs:27
+    if (result.status !== 0) throw new Error(`${command} failed (${result.status})`);
+                                   ^
+
+Error: /Users/mrr/.hermes/node/bin/node failed (2)
+    at Object.run (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-runtime.mjs:27:36)
+    at runEmulatorEntry (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-runtime.mjs:55:11)
+    at file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/run-local-flows.mjs:9:3
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.3

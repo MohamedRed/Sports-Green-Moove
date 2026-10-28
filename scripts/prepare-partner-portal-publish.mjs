@@ -7,6 +7,7 @@ import { createHash } from 'node:crypto';
 import { content } from '../partner-portal/content.mjs';
 import { assertBrowserAssetsCurrent, assetRevision } from '../partner-portal/build-assets.mjs';
 import { assertMediaCurrent } from '../partner-portal/media-assets.mjs';
+import {assertEvidenceArtifactsCommitted} from '../partner-portal/committed-evidence.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const portal = resolve(root, 'partner-portal');
@@ -22,6 +23,7 @@ if (existsSync(destination)) {
 const dirty = execFileSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' }).trim();
 assert.equal(dirty, '', 'Commit canonical source before preparing a release');
 const commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
+assertEvidenceArtifactsCommitted(root, content, commit);
 assert(existsSync(resolve(portal, 'dist/data.json')), 'Build the portal first');
 const built = JSON.parse(readFileSync(resolve(portal, 'dist/data.json'), 'utf8'));
 const { evidenceFingerprints, assetRevision: builtRevision, mediaRevisions, ...snapshot } = built;
