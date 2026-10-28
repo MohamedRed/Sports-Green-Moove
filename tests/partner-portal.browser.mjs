@@ -274,7 +274,9 @@ try {
     await page.screenshot({ path: `${output}/payment-return-blocker-${width}.png`, fullPage: false });
     await page.goto(`${base}/#parcours/payments`);
     await page.getByRole('dialog').waitFor();
-    await page.getByRole('dialog').getByText('Les pages de retour s’ouvrent à nouveau', { exact: false }).waitFor();
+    const payments = content.flows.find(flow => flow.id === 'payments');
+    await page.getByRole('dialog').getByText(payments.verified, { exact: true }).waitFor();
+    await page.getByRole('dialog').getByText(payments.remaining, { exact: true }).waitFor();
     assert(await page.locator('dialog').evaluate(element => element.scrollWidth <= element.clientWidth));
     await page.screenshot({ path: `${output}/payment-return-flow-${width}.png`, fullPage: true });
   }
