@@ -86,7 +86,8 @@ test('only reviewed after and driver captures enter the partial partner flow whi
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2140);
   }
   assert(!Object.values(captures).includes(base + 'completed/local-trip-consent-restart-before.png'));
-  for (const scope of [/brouillons après fermeture/, /sur téléphone/, /carte/, /paiements et remboursements réels/])
+  assert.equal(flow.scheduleDraftPhone.checkedAt, '2026-10-28');
+  for (const scope of [/application du changement/, /sur téléphone/, /carte/, /paiements et remboursements réels/])
     assert.match(flow.remaining, scope);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
   const manifest = JSON.parse(text('docs/release/evidence-manifest.json'));

@@ -120,14 +120,21 @@ try {
   await page.goto(`${base}/#parcours`);
   assert.equal(await page.locator('.flow-row[data-tour]').count(), content.flows.filter((flow) => flow.tour).length);
   await page.locator('.flow-row[data-flow="publication"]').click();
-  await page.getByText(`Étape 1 sur ${content.flows.find((f) => f.id === 'publication').tour.length}`, { exact: true }).waitFor();
+  const publication = content.flows.find(flow => flow.id === 'publication');
+  await page.getByText(`Étape 1 sur ${publication.tour.length}`, { exact: true }).waitFor();
   await page.getByRole('link', { name: 'Suivant', exact: true }).click();
-  await page.getByRole('heading', { name: 'Recueillir un premier accord', exact: true }).waitFor();
+  await page.getByRole('heading', { name: publication.tour[1].title, exact: true }).waitFor();
+  await waitForImage();
+  assert.equal(await page.locator('.media-stage img').getAttribute('alt'),
+    publication.images.find(image => image.file === publication.tour[1].image).alt);
   assert.equal(new URL(page.url()).hash, '#parcours/publication/visite/2');
   await page.goBack();
   await page.getByText(`Étape 1 sur ${content.flows.find((f) => f.id === 'publication').tour.length}`, { exact: true }).waitFor();
-  await page.goto(`${base}/#parcours/messages/visite/3`);
-  await page.getByRole('heading', { name: 'Échanger avec le conducteur', exact: true }).waitFor();
+  const messages = content.flows.find(flow => flow.id === 'messages');
+  const messageStep = Math.min(3, messages.tour.length);
+  await page.goto(`${base}/#parcours/messages/visite/${messageStep}`);
+  await page.getByRole('heading', { name: messages.tour[messageStep - 1].title, exact: true }).waitFor();
+  assert.equal(new URL(page.url()).hash, `#parcours/messages/visite/${messageStep}`);
   await page.getByRole('link', { name: 'Toutes les preuves', exact: true }).click();
   await page.locator('.tour-progress').waitFor({ state: 'detached' });
   for (const width of [1440, 768, 390, 320]) {
@@ -243,7 +250,11 @@ try {
   await page.getByText('Étape 2 sur 2', { exact: true }).waitFor();
   assert.equal(await page.locator('dialog').evaluate((element) => element.scrollTop), 0);
   await page.goto(`${base}/#parcours/tracking`);
-  await page.getByRole('heading', { name: 'Pas encore de vidéo' }).waitFor();
+  await page.getByRole('img', {name: content.flows.find(flow => flow.id === 'tracking').images[0].alt, exact: true}).waitFor();
+  await waitForImage();
+  assert.equal(await page.locator('video').count(), 0);
+  await page.goto(`${base}/#parcours/social-auth`);
+  await page.getByRole('heading', { name: 'Pas encore de vidéo', exact: true }).waitFor();
   assert.equal(await page.locator('video').count(), 0);
   assert.deepEqual(errors, []);
   await verifyRemoteRideStopGallery({ browser, base, output });

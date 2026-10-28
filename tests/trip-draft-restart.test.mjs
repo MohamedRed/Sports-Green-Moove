@@ -274,6 +274,7 @@ test('completed real draft restart is accepted only as its own stage inside a fa
   assert.equal(restored.length, 1); assert.match(restored[0].alt, /essai local du 18 octobre/);
   assert.equal(captures['trip-draft-restored'], base + 'local-trip-draft-restored.png');
   assert(!Object.values(captures).some((p) => p.endsWith('/local-trip-draft-before.png')));
-  assert.match(flow.remaining, /date et l’heure/);
-  assert.match(flow.verified, /Prix et adresses retrouvés sur le bon trajet après redémarrage/);
+  assert.equal(flow.scheduleDraftPhone.checkedAt, '2026-10-28');
+  assert.equal(flow.tripDraftPhone.checkedAt, '2026-10-26');
+  assert.match(flow.remaining, /application du changement et la carte sur téléphone/);
 });

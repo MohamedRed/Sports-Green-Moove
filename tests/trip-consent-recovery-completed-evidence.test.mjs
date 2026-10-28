@@ -97,7 +97,8 @@ test('three earlier captures remain historical alongside newer evidence without 
   const timeGap = content.blockers.find((b) => b.id === 'booking-time-display');
   assert.equal(timeGap.source, 'docs/release/evidence/local-trip-history-2026-10-18/README.md');
   assert.match(timeGap.text, /corrigé.*essai local/); assert.match(timeGap.next, /Rejouer sur téléphone/);
-  for (const scope of [/sur téléphone/, /carte/, /brouillons/, /paiements et remboursements réels/])
+  assert.equal(flow.scheduleDraftPhone.checkedAt, '2026-10-28');
+  for (const scope of [/sur téléphone/, /carte/, /application du changement/, /paiements et remboursements réels/])
     assert.match(flow.remaining, scope);
   assert.equal(content.flows.find((f) => f.id === 'tracking').status, 'partial');
   const manifest = JSON.parse(text('docs/release/evidence-manifest.json'));

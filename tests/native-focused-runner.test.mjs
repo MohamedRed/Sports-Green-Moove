@@ -215,7 +215,7 @@ test('retained independent network pass binds the native case, primary copy, sav
   assert.deepEqual(flow.tour.map(row => row.image), Object.keys(result.publishedCaptures));
   assert(flow.images.some(row => row.file === 'chat-network-current-draft'));
   for (const [id, file] of Object.entries(result.publishedCaptures)) assert.equal(captures[id], chatNetworkIsolatedFolder + file);
-  assert.equal(content.updates[0].source, chatNetworkIsolatedFolder + 'README.md');
+  assert.equal(content.updates.find(row => row.flow === 'messages').source, chatNetworkIsolatedFolder + 'README.md');
   assert(!Object.values(captures).some(file => file === chatNetworkIsolatedFolder + 'captures/local-chat-network-recovered.png'));
   const attributes = spawnSync('git', ['check-attr', 'text', 'whitespace', '--',
     chatNetworkIsolatedFolder + 'LocalChatNetworkFlowTest-instrumentation.txt'], { encoding: 'utf8' });

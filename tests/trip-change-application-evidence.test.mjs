@@ -72,7 +72,8 @@ test('private progress separates simulated editing screens from full native repl
   assert.equal(flow.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md');
   assert.equal(flow.local.source, current + 'services.json'); assert(flow.local.groups.includes('trip-change-application'));
   assert.equal(flow.ui.source, 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json');
-  assert.match(flow.remaining, /brouillons après fermeture/);
+  assert.equal(flow.scheduleDraftPhone.checkedAt, '2026-10-28');
+  assert.match(flow.remaining, /application du changement et la carte sur téléphone/);
   assert.match(flow.remaining, /paiements et remboursements réels/);
   assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /pas encore en ligne/i);
   assert(content.updates.some((item) => /changements confirmés s’appliquent/.test(item.title)));

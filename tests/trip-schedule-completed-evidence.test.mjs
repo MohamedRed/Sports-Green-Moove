@@ -87,7 +87,8 @@ test('only the reviewed schedule image is added and the private page retains the
   assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2140);
   assert(flow.images.some((item) => /Nouvelle date et arrivée souhaitée/.test(item.alt)));
   assert.match(flow.remaining, /carte/);
-  for (const scope of [/après fermeture/, /sur téléphone/, /paiements et remboursements réels/]) assert.match(flow.remaining, scope);
+  assert.equal(flow.scheduleDraftPhone.checkedAt, '2026-10-28');
+  for (const scope of [/application du changement/, /sur téléphone/, /paiements et remboursements réels/]) assert.match(flow.remaining, scope);
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
   assert(content.updates.some((item) => item.title === 'La date et l’arrivée souhaitée sont confirmées' && item.date === '2026-10-17'));
   const manifest = JSON.parse(text('docs/release/evidence-manifest.json'));
