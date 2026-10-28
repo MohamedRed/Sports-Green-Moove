@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: "22"
+      - name: Install locked diagnostic test dependencies
+        run: npm ci
       - name: Test diagnostic boundaries without a device
         run: node --test tests/adb-transfer-probe.test.mjs tests/adb-host-health.test.mjs
       - uses: android-actions/setup-android@v4

@@ -64,3 +64,11 @@ errors or logs are retained. Fixed command-error classifications distinguish
 offline/missing devices, transport closure, permission/space errors and timeout.
 These observations cannot alone establish a disconnect's root cause and do not
 change any command, retry, renderer, tool version or release acceptance rule.
+
+The first instrumented attempt, [40712496246](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40712496246)
+at `9ad4b9d`, never starts a device: the reused observer's historical-evidence tests
+require the locked `fast-xml-parser` package, which that previously dependency-free
+workflow did not install. It produces no device artifacts. The workflow now runs
+the repository's normal `npm ci` before its test imports; a structured workflow
+regression checks that ordering. This fixes diagnostic preparation only, not the
+original disconnect, and the failed attempt remains failed.

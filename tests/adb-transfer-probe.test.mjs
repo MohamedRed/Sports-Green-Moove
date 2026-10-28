@@ -9,6 +9,7 @@ import { transferCommandOutcome } from '../scripts/diagnostics/adb-transfer-outc
 import { assertEvidenceBundleChecksums } from '../scripts/qa/evidence-bundle-checksums.mjs';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
+import { parseDocument } from 'yaml';
 
 function fixture(t, { failAt = -1, corruptAt = -1, remoteExists = false, cleanupFails = false,
   pathCheckOffline = false } = {}) {
@@ -171,4 +172,13 @@ test('original account-free failure remains failed and retains source and missin
   assert.deepEqual(Object.keys(origin.sourceSha256).sort(), Object.keys(origin.sourceSnapshots).sort());
   for (const snapshot of Object.keys(origin.sourceSnapshots))
     assert.equal(createHash('sha256').update(readFileSync(join(base, snapshot))).digest('hex'), origin.sourceSha256[snapshot]);
+});
+
+test('the isolated diagnostic installs locked transitive test dependencies before loading the observer tests', () => {
+  const workflow = parseDocument(readFileSync(new URL('../.github/workflows/android-transport-probe.yml', import.meta.url), 'utf8')).toJSON();
+  const steps = workflow.jobs['generated-file-transfer'].steps;
+  const install = steps.findIndex(step => step.run === 'npm ci');
+  const contracts = steps.findIndex(step => step.run === 'node --test tests/adb-transfer-probe.test.mjs tests/adb-host-health.test.mjs');
+  assert(install >= 0 && contracts > install);
+  assert(steps.findIndex(step => step.uses?.startsWith('reactivecircus/android-emulator-runner@')) > contracts);
 });
