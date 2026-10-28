@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The 28 October physical Android schedule trial verifies date, departure and
+desired-arrival draft recovery after manual Android Force stop/reopen. Nine
+independent stored-state checkpoints pass; they are not independent UI/PID proof.
+Keep the earlier three-checkpoint ENOSPC attempt incomplete. Publish text only:
+native screenshot exports and recording were unavailable, and alternate session
+capture publication awaits approval. Preserve the dated 26 October media, public
+audience, partial application/maps/payments and unresolved full CI/release scope.
+
 The 27 October independent network case passes the unchanged native dual-radio,
 offline draft/retry, cross-account and stored-message checks. Its primary copy,
 fixture disposal and independent device restoration pass. Publish only the two

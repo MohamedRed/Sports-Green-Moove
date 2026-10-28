@@ -50,7 +50,7 @@ test('new phone consent keeps dated local application and restart evidence separ
   assert.match(blocker.next, /rejouer sur téléphone/);
   assert.match(blocker.next, /brouillons/);
   assert.equal(blocker.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md');
-  assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-26');
+  assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-28');
   assert.equal(flow.ui.checkedAt, '2026-10-18');
   assert.equal(flow.tripConsentPhone.checkedAt, '2026-10-25');
   assert.equal(flow.tour.length, 9); assert(flow.tour.slice(0, 3).every(step => step.image.startsWith('draft-phone-')));

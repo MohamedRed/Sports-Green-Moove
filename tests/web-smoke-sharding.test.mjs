@@ -21,6 +21,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.run && !setup.has(step.name) && step.name !== 'Validate complete smoke partitioning' &&
       step.name !== 'Test child contact discovery through verified-parent approval')
     .filter(step => step.name !== 'Test primary capture observation protocol')
+    .filter(step => step.name !== 'Validate physical schedule draft evidence boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
@@ -36,6 +37,9 @@ test('all 111 original workload steps retain their exact commands, environments,
   const invitation = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test parent-shared child invitations without adult-role signup');
   assert.equal(invitation.length, 1);
   assert.equal(invitation[0].run, 'npm run test:child-invitation && node --test tests/child-invitation-contract.test.mjs');
+  const schedule = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate physical schedule draft evidence boundaries');
+  assert.equal(schedule.length, 1);
+  assert.equal(schedule[0].run, 'node --test tests/schedule-draft-phone-evidence.test.mjs');
 });
 
 test('service groups use separate runners and build their own unchanged backend before testing', () => {

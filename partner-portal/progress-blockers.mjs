@@ -56,7 +56,7 @@ export const blockers = [
     next: 'Reproduire cet ancien plantage et rejouer les autres écrans entre comptes.', source: 'docs/release/evidence/local-ui-collection-2026-10-16/README.md' },
   { id: 'trip-management', title: 'Modifier un trajet',
     text: 'Le conducteur applique le parcours après les deux accords, en local. Les deux repères sont maintenant entièrement visibles.',
-    next: 'Vérifier les autres brouillons, puis rejouer sur téléphone. Terminer les paiements concernés et les remboursements.', source: 'docs/release/evidence/real-maps-native-2026-10-18/README.md' },
+    next: 'Les brouillons sont retrouvés. Reste à rejouer sur téléphone l’application et la carte. Terminer les paiements concernés et les remboursements.', source: 'docs/release/evidence/real-maps-native-2026-10-18/README.md' },
   { id: 'shared-testing', title: 'Tester entre plusieurs téléphones',
     text: 'La connexion est rétablie. Accord, refus, annulation et notifications passent avec deux comptes sur un même téléphone.',
     next: 'Rejouer entre deux téléphones. L’espace partagé attend toujours son budget de 5 €/mois.', source: 'docs/release/evidence/booking-decisions-phone-2026-10-22/README.md' },
