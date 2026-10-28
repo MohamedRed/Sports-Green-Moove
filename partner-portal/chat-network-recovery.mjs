@@ -1,5 +1,10 @@
 const folder = 'docs/release/evidence/chat-network-isolated-2026-10-27/';
 export const chatNetworkRecovery = { source: folder + 'chat-network-recovery-results.json', checkedAt: '2026-10-27' };
+const recheck = 'docs/release/evidence/chat-network-recheck-7417e22-2026-10-28/';
+export const chatNetworkRecheck = {source: recheck + 'chat-network-recovery-results.json', checkedAt: '2026-10-28'};
+export const chatNetworkRecheckProgress = {date: '2026-10-28', title: 'L’envoi reprend après la coupure',
+  text: 'Le nouvel essai isolé reprend l’envoi sans doubler le message. À confirmer sur téléphone réel.',
+  flow: 'messages', source: recheck + 'README.md'};
 export const chatNetworkRecoveryCaptures = {
   'chat-network-isolated-draft': folder + 'captures/local-chat-network-unconfirmed.png',
   'chat-network-isolated-reply': folder + 'captures/local-chat-network-received.png',

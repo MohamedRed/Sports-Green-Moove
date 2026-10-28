@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The later 28 October isolated network rerun at 7417e22 passes its unchanged
+Wi-Fi/cellular/offline/retry/reply scenario, independent records, primary copy
+and device/runtime disposal. Publish a short text update only; preserve earlier
+capture dates and failed attempts. This result predates the 9da2228 capability
+observer, so do not attribute it to that diagnostic or claim a selection repair.
+Physical-phone, tracking, full native matrix and release requirements stay open.
+
 The subsequent 28 October dependency checks reproduce twelve failures among
 eighteen installed-library cases; the unchanged cases pass after eight same-minor
 lock updates. All 501 backend units, three builds, 24 service groups, twelve

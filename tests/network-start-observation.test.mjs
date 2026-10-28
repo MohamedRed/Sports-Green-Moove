@@ -76,6 +76,7 @@ test('read-only capability observations retain validation separately without cha
     assert(helper.includes('hasCapability(NetworkCapabilities.NET_CAPABILITY_' + capability + ')'));
   assert(helper.includes('active?.let(::describe) ?: JSONObject.NULL'));
   assert(helper.includes('localNetworkCapabilityDescription(capabilities::hasCapability, capabilities::hasTransport)'));
+  assert(read('scripts/qa/local-chat-network-recovery-ui.mjs').includes("'LocalNetworkCapabilitySnapshot.kt'"));
   for (const forbidden of ['.toString()', '.transportInfo', 'getLinkProperties', 'requestNetwork', 'bindProcessToNetwork',
     'executeShellCommand', 'Thread.sleep', 'repeat(']) assert(!helper.includes(forbidden), forbidden);
   assert(!native('LocalInitialNetworkObservation').includes('capabilityObservation'));

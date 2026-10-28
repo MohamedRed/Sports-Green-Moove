@@ -1,5 +1,5 @@
 import { tripDraftPhoneProgress } from './trip-draft-phone.mjs';
-import { chatNetworkRecoveryProgress } from './chat-network-recovery.mjs';
+import { chatNetworkRecoveryProgress, chatNetworkRecheckProgress } from './chat-network-recovery.mjs';
 import { scheduleDraftPhoneProgress } from './schedule-draft-phone.mjs';
 import { consentRestartPhoneProgress } from './consent-restart-phone.mjs';
 import { teamConnectionRecoveryProgress } from './team-connection-recovery.mjs';
@@ -10,6 +10,7 @@ import {tripCancellationProgress} from './trip-cancellation-phone.mjs';
 import {dependencyPatchProgress, networkPreparationProgress} from './dependency-patch.mjs';
 
 export const currentProgress = [
+  chatNetworkRecheckProgress,
   dependencyPatchProgress,
   networkPreparationProgress,
   tripCancellationProgress,

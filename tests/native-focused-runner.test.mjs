@@ -210,14 +210,17 @@ test('retained independent network pass binds the native case, primary copy, sav
   assert.equal(Object.keys(result.publishedCaptures).length, 2); assert.equal(result.run.physicalDevice, false);
   const { content, captures } = await import('../partner-portal/content.mjs');
   const flow = content.flows.find(row => row.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-27');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-28');
+  assert.equal(flow.networkRecovery.checkedAt, '2026-10-27');
+  assert.equal(flow.networkRecoveryRecheck.checkedAt, '2026-10-28');
   assert.equal(flow.ui.checkedAt, '2026-10-19');
   assert.deepEqual(flow.tour.map(row => row.image), Object.keys(result.publishedCaptures));
   assert(flow.images.some(row => row.file === 'chat-network-current-draft'));
   for (const [id, file] of Object.entries(result.publishedCaptures)) assert.equal(captures[id], chatNetworkIsolatedFolder + file);
   assert(content.updates.some(row => row.flow === 'messages' && row.source === chatNetworkIsolatedFolder + 'README.md'));
   assert.equal(content.updates.find(row => row.flow === 'messages').source,
-    'docs/release/evidence/dependency-patch-2026-10-28/previous-ci/README.md');
+    'docs/release/evidence/chat-network-recheck-7417e22-2026-10-28/README.md');
+  assert(content.updates.some(row => row.source === 'docs/release/evidence/dependency-patch-2026-10-28/previous-ci/README.md'));
   assert(!Object.values(captures).some(file => file === chatNetworkIsolatedFolder + 'captures/local-chat-network-recovered.png'));
   const attributes = spawnSync('git', ['check-attr', 'text', 'whitespace', '--',
     chatNetworkIsolatedFolder + 'LocalChatNetworkFlowTest-instrumentation.txt'], { encoding: 'utf8' });

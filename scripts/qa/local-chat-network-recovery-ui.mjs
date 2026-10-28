@@ -84,7 +84,7 @@ const sources = [...disposableApkSourceFiles,
     'local-carrier-diagnostics.mjs', 'local-subscription-diagnostics.mjs', 'local-default-selection-diagnostics.mjs',
     'run-isolated-ride-ui.mjs', 'local-ui-fixtures.mjs'].map(file => 'scripts/qa/' + file),
   ...['LocalChatNetworkFlowTest.kt', 'LocalEmulatorNetwork.kt', 'LocalRequestedTransport.kt',
-    'LocalInitialNetworkObservation.kt', 'LocalNetworkStartObservation.kt']
+    'LocalInitialNetworkObservation.kt', 'LocalNetworkStartObservation.kt', 'LocalNetworkCapabilitySnapshot.kt']
     .map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 writeFileSync(resolve(directory, 'chat-network-recovery-app-results.json'), JSON.stringify({ ...result,
   adminClientClosed: true, firestoreClientTerminated: true,

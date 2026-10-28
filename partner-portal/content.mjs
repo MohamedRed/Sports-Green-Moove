@@ -3,7 +3,7 @@ import {requestSafetyRecheck} from './request-safety.mjs';
 import {dependencyPatchRecheck} from './dependency-patch.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
-import { chatNetworkRecovery } from './chat-network-recovery.mjs';
+import { chatNetworkRecovery, chatNetworkRecheck } from './chat-network-recovery.mjs';
 import { createSupportFlow } from './support-flow.mjs';
 import { createUrgentSupportFlow } from './urgent-support-flow.mjs';
 import { createSupportSubmissionFlow } from './support-submission-flow.mjs';
@@ -163,11 +163,12 @@ export const content = {
     createPublicationFlow(local, shot),
     createBookingFlow(local, shot),
     createTeamConversationFlow(),
-    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-27',
+    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-28',
       summary: 'Le brouillon reste présent après une coupure et le renvoi ne crée pas de doublon, en simulation.',
-      verified: 'Le message est renvoyé une seule fois et la réponse du conducteur arrive. Deux nouvelles captures du 27 octobre.',
+      verified: 'Le nouvel essai du 28 octobre confirme le renvoi unique et la réponse. Les captures affichées datent du 27 octobre ou des essais précédents.',
       remaining: 'Rejouer le clavier. Répéter les essais de coupure sur téléphones, vérifier les groupes, les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       networkRecovery: chatNetworkRecovery,
+      networkRecoveryRecheck: chatNetworkRecheck,
       local: { ...local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
         'Après une confirmation perdue, deux renvois gardent un seul message et une seule notification.',

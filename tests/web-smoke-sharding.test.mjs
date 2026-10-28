@@ -27,6 +27,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate direct booking confirmation and phone restart')
     .filter(step => step.name !== 'Test runtime compressed request parsing and size limits')
     .filter(step => step.name !== 'Verify committed publication artifacts')
+    .filter(step => step.name !== 'Validate isolated network recovery recheck without promoting physical readiness')
     .filter(step => step.name !== 'Validate physical trip cancellation evidence and observer boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .map(step => JSON.stringify(step)).sort();
@@ -62,6 +63,8 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(parser[0].run, 'node --test tests/http-body-parser-security.test.mjs tests/http-body-parser-evidence.test.mjs tests/local-runtime-disposal.test.mjs tests/dependency-security-contract.test.mjs tests/dependency-patch-evidence.test.mjs');
   const committed = workflow.jobs.smoke.steps.filter(step => step.name === 'Verify committed publication artifacts');
   assert.equal(committed.length, 1); assert.equal(committed[0].run, 'node --test tests/portal-committed-evidence.test.mjs');
+  const network = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate isolated network recovery recheck without promoting physical readiness');
+  assert.equal(network.length, 1); assert.equal(network[0].run, 'node --test tests/chat-network-recheck-evidence.test.mjs');
 });
 
 test('service groups use separate runners and build their own unchanged backend before testing', () => {
