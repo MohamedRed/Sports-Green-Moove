@@ -27,10 +27,14 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate direct booking confirmation and phone restart')
     .filter(step => step.name !== 'Test runtime compressed request parsing and size limits')
     .filter(step => step.name !== 'Verify committed publication artifacts')
+    .filter(step => step.name !== 'Validate physical trip cancellation evidence and observer boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
+  const cancellation = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate physical trip cancellation evidence and observer boundaries');
+  assert.equal(cancellation.length, 1);
+  assert.equal(cancellation[0].run, 'node --test tests/trip-cancellation-phone-checkpoints.test.mjs tests/trip-cancellation-phone-evidence.test.mjs');
   assert.equal(createHash('sha256').update(JSON.stringify(rows)).digest('hex'),
     '9cd670feeb2b0fa303212bd460b0f647499dac6264ad0830468354575dcbb1a2');
   const added = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test child contact discovery through verified-parent approval');

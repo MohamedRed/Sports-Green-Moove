@@ -3,9 +3,8 @@ import { chatNetworkRecoveryTour } from './chat-network-recovery.mjs';
 import { supportSubmissionSteps } from './support-submission-flow.mjs';
 import { searchPhoneTour } from './search-booking-phone.mjs';
 import { directBookingTour } from './direct-booking.mjs';
+import {tripCancellationTour} from './trip-cancellation-phone.mjs';
 import {driverConnectTour} from './driver-connect.mjs';
-import {tripConsentPhoneTour} from './trip-consent-phone.mjs';
-import {tripDraftPhoneTour} from './trip-draft-phone.mjs';
 import {trackingClockTour} from './tracking-clock-replay.mjs';
 import {trackingNetworkTour} from './tracking-network-phone.mjs';
 import { teamRestartTour } from './team-process-restart.mjs';
@@ -141,7 +140,7 @@ export const tours = {
     image('local-calendar', 'Consulter le calendrier', 'Le calendrier affiche le mois de l’essai et permet de changer de mois.'),
   ],
   search: searchPhoneTour,
-  publication: [...tripDraftPhoneTour, ...tripConsentPhoneTour],
+  publication: tripCancellationTour,
   booking: directBookingTour,
   messages: chatNetworkRecoveryTour,
   clubs: [

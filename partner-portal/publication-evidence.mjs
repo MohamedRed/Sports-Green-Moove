@@ -7,8 +7,11 @@ import { validateConsentRestartPhone } from '../scripts/qa/trip-consent-restart-
 import { validateFlowGate398 } from '../scripts/qa/flow-gate-398-evidence.mjs';
 import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation-evidence.mjs';
 import { validateRenderNetworkGate } from '../scripts/qa/render-network-gate-evidence.mjs';
+import {validateCancellationPhoneEvidence, cancellationEvidenceDirectory} from '../scripts/qa/trip-cancellation-phone-evidence.mjs';
 
 export function validatePublicationEvidence(root, flow) {
+  assert.equal(flow.tripCancellationPhone.source, cancellationEvidenceDirectory + '/summary.json');
+  validateCancellationPhoneEvidence(root, flow.tripCancellationPhone.source);
   validateFlowGate398(root);
   validateSdkImagePreparation(root);
   validateRenderNetworkGate(root);

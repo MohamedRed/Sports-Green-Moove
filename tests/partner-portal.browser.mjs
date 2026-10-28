@@ -11,6 +11,7 @@ import { verifySupportFollowupTour } from './partner-portal-support-followup.bro
 import { verifySupportSubmissionTour } from './partner-portal-support-submission.browser.mjs';
 import { verifyTeamRestartGallery } from './partner-portal-team-restart.browser.mjs';
 import { verifyDirectBookingTour } from './partner-portal-direct-booking.browser.mjs';
+import {verifyTripCancellationTour} from './partner-portal-trip-cancellation.browser.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE_PATH;
 const { chromium } = modulePath ? await import(pathToFileURL(modulePath).href) : await import('playwright');
@@ -268,6 +269,7 @@ try {
   await verifySupportSubmissionTour({ browser, base, output });
   await verifyTeamRestartGallery({ browser, base, output });
   await verifyDirectBookingTour({ browser, base, output });
+  await verifyTripCancellationTour({browser, base, output});
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(`${base}/#suite`);

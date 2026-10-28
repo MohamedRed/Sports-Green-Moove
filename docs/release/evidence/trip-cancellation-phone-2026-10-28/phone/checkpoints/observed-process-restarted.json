@@ -1,0 +1,3856 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ba4fa4587cedfc8c4c4dd14d1924a266",
+  "phase": "process-restarted",
+  "state": {
+    "documents": {
+      "bookingRequestReceipts": [
+        {
+          "id": "08389db7b58a58b109a0b19b10b9c95704d0caa688450ba35529ce24905cc6e1",
+          "data": {
+            "uid": "sgm-qa-parent",
+            "clientRequestId": "f6772cba-fb12-4a3e-8417-e6d36c496b70",
+            "fingerprint": "d2528811e9d2235f9a8cbe5fa38449abc1180b68c6daf569b8b81f46fdcddda3",
+            "state": "committed",
+            "response": {
+              "bookingId": "I50dKoDqk4MHIaBbhl0O",
+              "clientRequestId": "f6772cba-fb12-4a3e-8417-e6d36c496b70",
+              "status": "requested",
+              "trip": {
+                "id": "VOmFcMNWG0C3rN4Ga8bL",
+                "bookingIntent": {
+                  "terms": {
+                    "departureAt": "2026-10-29T18:27:45.024Z",
+                    "arrivalBy": null,
+                    "origin": {
+                      "lat": 50.7167,
+                      "lng": 4.6167
+                    },
+                    "destination": {
+                      "lat": 50.8503,
+                      "lng": 4.3517
+                    },
+                    "priceCents": 0
+                  },
+                  "context": {
+                    "driverUserId": "sgm-qa-driver",
+                    "seatsTotal": 4,
+                    "clubId": "sgm-qa-club-green-wavre",
+                    "teamId": "sgm-qa-club-green-wavre-u8",
+                    "category": "U 7/8",
+                    "pickupRadiusM": 1500,
+                    "baggage": "medium",
+                    "returnTrip": false,
+                    "supportsVehicleTracking": true,
+                    "supportsChildTracking": true,
+                    "appliedChangeId": null
+                  }
+                },
+                "title": "Annulation familles QA",
+                "club": "Green Wavre QA Club",
+                "category": "U 7/8",
+                "sport": "Football",
+                "departureLabel": "JEU 29 OCT. · 19h27",
+                "dateLabel": "JEU 29 OCT.",
+                "timeLabel": "19h27",
+                "distanceLabel": "Distance à confirmer",
+                "seatsAvailable": 4,
+                "seatsLabel": "4 places",
+                "priceLabel": "Gratuit",
+                "passengerInitials": [],
+                "reasons": [
+                  "4 places",
+                  "Suivi véhicule disponible",
+                  "Suivi enfant disponible"
+                ],
+                "status": "upcoming",
+                "mapPreview": {
+                  "start": {
+                    "lat": 50.7167,
+                    "lng": 4.6167
+                  },
+                  "end": {
+                    "lat": 50.8503,
+                    "lng": 4.3517
+                  }
+                }
+              }
+            },
+            "createdAt": {
+              "_seconds": 1793212065,
+              "_nanoseconds": 770000000
+            }
+          }
+        },
+        {
+          "id": "6753d4d2f122d8fde107d08b657d01fe3caadf3c1566d960f9e7f19202df6dfe",
+          "data": {
+            "uid": "sgm-qa-parent",
+            "clientRequestId": "56f722d9-367b-4b30-9f7f-4e4bcfc1c489",
+            "fingerprint": "6f4b2c76698ac131b81e77f62af6a19009b8b9d1256a0e0eb4489bd5cd61056c",
+            "state": "committed",
+            "response": {
+              "bookingId": "Wjfi97ePkjsJJY6daYmZ",
+              "clientRequestId": "56f722d9-367b-4b30-9f7f-4e4bcfc1c489",
+              "status": "requested",
+              "trip": {
+                "id": "VOmFcMNWG0C3rN4Ga8bL",
+                "bookingIntent": {
+                  "terms": {
+                    "departureAt": "2026-10-29T18:27:45.024Z",
+                    "arrivalBy": null,
+                    "origin": {
+                      "lat": 50.7167,
+                      "lng": 4.6167
+                    },
+                    "destination": {
+                      "lat": 50.8503,
+                      "lng": 4.3517
+                    },
+                    "priceCents": 0
+                  },
+                  "context": {
+                    "driverUserId": "sgm-qa-driver",
+                    "seatsTotal": 4,
+                    "clubId": "sgm-qa-club-green-wavre",
+                    "teamId": "sgm-qa-club-green-wavre-u8",
+                    "category": "U 7/8",
+                    "pickupRadiusM": 1500,
+                    "baggage": "medium",
+                    "returnTrip": false,
+                    "supportsVehicleTracking": true,
+                    "supportsChildTracking": true,
+                    "appliedChangeId": null
+                  }
+                },
+                "title": "Annulation familles QA",
+                "club": "Green Wavre QA Club",
+                "category": "U 7/8",
+                "sport": "Football",
+                "departureLabel": "JEU 29 OCT. · 19h27",
+                "dateLabel": "JEU 29 OCT.",
+                "timeLabel": "19h27",
+                "distanceLabel": "Distance à confirmer",
+                "seatsAvailable": 2,
+                "seatsLabel": "2 places",
+                "priceLabel": "Gratuit",
+                "passengerInitials": [],
+                "reasons": [
+                  "2 places",
+                  "Suivi véhicule disponible",
+                  "Suivi enfant disponible"
+                ],
+                "status": "upcoming",
+                "mapPreview": {
+                  "start": {
+                    "lat": 50.7167,
+                    "lng": 4.6167
+                  },
+                  "end": {
+                    "lat": 50.8503,
+                    "lng": 4.3517
+                  }
+                }
+              }
+            },
+            "createdAt": {
+              "_seconds": 1793212066,
+              "_nanoseconds": 690000000
+            }
+          }
+        },
+        {
+          "id": "97f624d0df66d6b47c4fafa8fd988363b1f7a8186b4d448c74816918ff93d8c3",
+          "data": {
+            "uid": "sgm-qa-cancel-parent-two",
+            "clientRequestId": "a3b728d0-1e61-41df-aaee-668e943ccab1",
+            "fingerprint": "6f4b2c76698ac131b81e77f62af6a19009b8b9d1256a0e0eb4489bd5cd61056c",
+            "state": "committed",
+            "response": {
+              "bookingId": "nFR2RcXyy5WG7VEqecg7",
+              "clientRequestId": "a3b728d0-1e61-41df-aaee-668e943ccab1",
+              "status": "requested",
+              "trip": {
+                "id": "VOmFcMNWG0C3rN4Ga8bL",
+                "bookingIntent": {
+                  "terms": {
+                    "departureAt": "2026-10-29T18:27:45.024Z",
+                    "arrivalBy": null,
+                    "origin": {
+                      "lat": 50.7167,
+                      "lng": 4.6167
+                    },
+                    "destination": {
+                      "lat": 50.8503,
+                      "lng": 4.3517
+                    },
+                    "priceCents": 0
+                  },
+                  "context": {
+                    "driverUserId": "sgm-qa-driver",
+                    "seatsTotal": 4,
+                    "clubId": "sgm-qa-club-green-wavre",
+                    "teamId": "sgm-qa-club-green-wavre-u8",
+                    "category": "U 7/8",
+                    "pickupRadiusM": 1500,
+                    "baggage": "medium",
+                    "returnTrip": false,
+                    "supportsVehicleTracking": true,
+                    "supportsChildTracking": true,
+                    "appliedChangeId": null
+                  }
+                },
+                "title": "Annulation familles QA",
+                "club": "Green Wavre QA Club",
+                "category": "U 7/8",
+                "sport": "Football",
+                "departureLabel": "JEU 29 OCT. · 19h27",
+                "dateLabel": "JEU 29 OCT.",
+                "timeLabel": "19h27",
+                "distanceLabel": "Distance à confirmer",
+                "seatsAvailable": 2,
+                "seatsLabel": "2 places",
+                "priceLabel": "Gratuit",
+                "passengerInitials": [],
+                "reasons": [
+                  "2 places",
+                  "Suivi véhicule disponible",
+                  "Suivi enfant disponible"
+                ],
+                "status": "upcoming",
+                "mapPreview": {
+                  "start": {
+                    "lat": 50.7167,
+                    "lng": 4.6167
+                  },
+                  "end": {
+                    "lat": 50.8503,
+                    "lng": 4.3517
+                  }
+                }
+              }
+            },
+            "createdAt": {
+              "_seconds": 1793212066,
+              "_nanoseconds": 653000000
+            }
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "id": "I50dKoDqk4MHIaBbhl0O",
+          "data": {
+            "tripId": "VOmFcMNWG0C3rN4Ga8bL",
+            "parentUserId": "sgm-qa-parent",
+            "requesterUserId": "sgm-qa-parent",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 2,
+            "createdAt": {
+              "_seconds": 1793212065,
+              "_nanoseconds": 770000000
+            },
+            "childId": "sgm-qa-child-lina",
+            "childLabel": "Lina QA",
+            "approvedAt": {
+              "_seconds": 1793212066,
+              "_nanoseconds": 585000000
+            },
+            "cancelledAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            },
+            "refundStatus": "notRequired",
+            "cancelledByUserId": "sgm-qa-driver",
+            "cancelReason": "Entrainement reporte pour cet essai",
+            "status": "cancelled",
+            "updatedAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            }
+          }
+        },
+        {
+          "id": "Wjfi97ePkjsJJY6daYmZ",
+          "data": {
+            "tripId": "VOmFcMNWG0C3rN4Ga8bL",
+            "parentUserId": "sgm-qa-parent",
+            "requesterUserId": "sgm-qa-parent",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1793212066,
+              "_nanoseconds": 690000000
+            },
+            "cancelledAt": {
+              "_seconds": 1793212067,
+              "_nanoseconds": 485000000
+            },
+            "refundStatus": "notRequired",
+            "cancelledByUserId": "sgm-qa-parent",
+            "cancelReason": null,
+            "status": "cancelled",
+            "updatedAt": {
+              "_seconds": 1793212067,
+              "_nanoseconds": 485000000
+            }
+          }
+        },
+        {
+          "id": "nFR2RcXyy5WG7VEqecg7",
+          "data": {
+            "tripId": "VOmFcMNWG0C3rN4Ga8bL",
+            "parentUserId": "sgm-qa-cancel-parent-two",
+            "requesterUserId": "sgm-qa-cancel-parent-two",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1793212066,
+              "_nanoseconds": 653000000
+            },
+            "cancelledAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            },
+            "refundStatus": "notRequired",
+            "cancelledByUserId": "sgm-qa-driver",
+            "cancelReason": "Entrainement reporte pour cet essai",
+            "status": "cancelled",
+            "updatedAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-booking-approved",
+          "data": {
+            "note": "Un siege enfant est necessaire.",
+            "requesterUserId": "sgm-qa-parent",
+            "parentUserId": "sgm-qa-parent",
+            "childLabel": "Lina QA",
+            "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+            "approvedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "childId": "sgm-qa-child-lina",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "driverUserId": "sgm-qa-driver",
+            "paymentStatus": "required",
+            "status": "approved",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-booking-requested",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "note": "Rendez-vous devant le stade.",
+            "requesterUserId": "sgm-qa-parent",
+            "parentUserId": "sgm-qa-parent",
+            "childLabel": "Lina QA",
+            "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+            "childId": "sgm-qa-child-lina",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "paymentStatus": "not_required",
+            "status": "requested",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-chat-history",
+          "data": {
+            "note": "Un siege enfant est necessaire.",
+            "requesterUserId": "sgm-qa-parent",
+            "parentUserId": "sgm-qa-parent",
+            "childLabel": "Lina QA",
+            "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+            "approvedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "childId": "sgm-qa-child-lina",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "driverUserId": "sgm-qa-driver",
+            "paymentStatus": "required",
+            "status": "cancelled",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        }
+      ],
+      "chatInboxes": [
+        {
+          "id": "3d7aa50c33a01aa8da71ede206ea2782354a1093589a6ee6ebbd0a1479a03760",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "schemaVersion": 1,
+            "userId": "sgm-qa-parent",
+            "revision": 240,
+            "unreadCount": 0,
+            "lastMessageId": "sgm-qa-history-120",
+            "lastMessageAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            },
+            "lastMessageBody": "Historique 120",
+            "lastSenderUserId": "sgm-qa-driver"
+          }
+        },
+        {
+          "id": "a0e95be7a7ba35a9866b11557f379f99511f938aa981b278fd1077a1e66ecd57",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-booking-approved",
+            "schemaVersion": 1,
+            "userId": "sgm-qa-parent",
+            "revision": 1,
+            "unreadCount": 1,
+            "lastMessageId": "sgm-qa-chat-booking",
+            "lastMessageAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "lastMessageBody": "Bonjour, le point de rendez-vous QA est confirmé.",
+            "lastSenderUserId": "sgm-qa-driver"
+          }
+        },
+        {
+          "id": "aa9c8baf6c276cd5734ba2b4e174476df719718158507db9274590349c28ec75",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-booking-approved",
+            "schemaVersion": 1,
+            "userId": "sgm-qa-driver",
+            "revision": 1,
+            "unreadCount": 0,
+            "lastMessageId": "sgm-qa-chat-booking",
+            "lastMessageAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "lastMessageBody": "Bonjour, le point de rendez-vous QA est confirmé.",
+            "lastSenderUserId": "sgm-qa-driver"
+          }
+        },
+        {
+          "id": "e52d1592476a29898149d08e72e62451470dc21292cb2c59f9cc6751a98c2abc",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "schemaVersion": 1,
+            "userId": "sgm-qa-driver",
+            "revision": 120,
+            "unreadCount": 0,
+            "lastMessageId": "sgm-qa-history-120",
+            "lastMessageAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            },
+            "lastMessageBody": "Historique 120",
+            "lastSenderUserId": "sgm-qa-driver"
+          }
+        }
+      ],
+      "children": [
+        {
+          "id": "sgm-qa-child-lina",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "firstName": "Lina",
+            "guardianUserIds": [
+              "sgm-qa-parent"
+            ],
+            "displayName": "Lina QA",
+            "teamId": "sgm-qa-club-green-wavre-u8",
+            "clubId": "sgm-qa-club-green-wavre",
+            "category": "U 7/8",
+            "consent": {
+              "childTracking": true,
+              "guardian": true,
+              "updatedAt": {
+                "_seconds": 1793212040,
+                "_nanoseconds": 422000000
+              }
+            },
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        }
+      ],
+      "clubs": [
+        {
+          "id": "sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "name": "Green Wavre QA Club",
+            "primarySport": "Football",
+            "sport": "Football",
+            "memberInitials": [
+              "HP",
+              "HD",
+              "HC"
+            ],
+            "status": "public",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "memberCount": 4
+          }
+        },
+        {
+          "id": "sgm-qa-native-approve",
+          "data": {
+            "name": "Club adhésion QA",
+            "sport": "Football",
+            "status": "public",
+            "memberCount": 1,
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 192000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-native-reject",
+          "data": {
+            "name": "Club nouvelle demande QA",
+            "sport": "Football",
+            "status": "public",
+            "memberCount": 1,
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 205000000
+            }
+          }
+        }
+      ],
+      "co2Ledger": [
+        {
+          "id": "sgm-qa-co2-parent",
+          "data": {
+            "sourceId": "sgm-qa-historical-ride",
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "distanceMeters": 14000,
+            "rideSessionId": "sgm-qa-historical-ride",
+            "co2SavedKg": 3.2,
+            "type": "rideCompletion",
+            "userId": "sgm-qa-parent"
+          }
+        }
+      ],
+      "memberships": [
+        {
+          "id": "sgm-qa-applicant-admin_sgm-qa-club-green-wavre",
+          "data": {
+            "userId": "sgm-qa-applicant-admin",
+            "clubId": "sgm-qa-club-green-wavre",
+            "role": "member",
+            "status": "requested",
+            "active": false,
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 100000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-applicant-approve_sgm-qa-club-green-wavre",
+          "data": {
+            "userId": "sgm-qa-applicant-approve",
+            "clubId": "sgm-qa-club-green-wavre",
+            "role": "member",
+            "status": "requested",
+            "active": false,
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 85000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-applicant-reject_sgm-qa-club-green-wavre",
+          "data": {
+            "userId": "sgm-qa-applicant-reject",
+            "clubId": "sgm-qa-club-green-wavre",
+            "role": "member",
+            "status": "requested",
+            "active": false,
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 92000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-applicant-responsive_sgm-qa-club-green-wavre",
+          "data": {
+            "userId": "sgm-qa-applicant-responsive",
+            "clubId": "sgm-qa-club-green-wavre",
+            "role": "member",
+            "status": "requested",
+            "active": false,
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 185000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-cancel-parent-two_sgm-qa-club-green-wavre",
+          "data": {
+            "userId": "sgm-qa-cancel-parent-two",
+            "clubId": "sgm-qa-club-green-wavre",
+            "role": "member",
+            "status": "active",
+            "active": true
+          }
+        },
+        {
+          "id": "sgm-qa-child-lina_sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "guardianUserId": "sgm-qa-parent",
+            "role": "child",
+            "childUserId": "sgm-qa-child-lina",
+            "clubId": "sgm-qa-club-green-wavre",
+            "approvedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "userId": "sgm-qa-child-lina",
+            "teamIds": [
+              "sgm-qa-club-green-wavre-u8"
+            ],
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-club-manager_sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "role": "clubManager",
+            "clubId": "sgm-qa-club-green-wavre",
+            "approvedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "userId": "sgm-qa-club-manager",
+            "teamIds": [
+              "sgm-qa-club-green-wavre-u8"
+            ],
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-club-manager_sgm-qa-native-approve",
+          "data": {
+            "userId": "sgm-qa-club-manager",
+            "clubId": "sgm-qa-native-approve",
+            "role": "clubManager",
+            "status": "active",
+            "active": true,
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 195000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-club-manager_sgm-qa-native-reject",
+          "data": {
+            "userId": "sgm-qa-club-manager",
+            "clubId": "sgm-qa-native-reject",
+            "role": "clubManager",
+            "status": "active",
+            "active": true,
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 208000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-driver_sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "role": "driver",
+            "clubId": "sgm-qa-club-green-wavre",
+            "approvedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "userId": "sgm-qa-driver",
+            "teamIds": [
+              "sgm-qa-club-green-wavre-u8"
+            ],
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-parent_sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "role": "parent",
+            "clubId": "sgm-qa-club-green-wavre",
+            "approvedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "userId": "sgm-qa-parent",
+            "teamIds": [
+              "sgm-qa-club-green-wavre-u8"
+            ],
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        }
+      ],
+      "messages": [
+        {
+          "id": "sgm-qa-chat-booking",
+          "data": {
+            "sourceId": "sgm-qa-booking-approved",
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "senderUserId": "sgm-qa-driver",
+            "sourceType": "booking",
+            "body": "Bonjour, le point de rendez-vous QA est confirmé.",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-driver"
+            ]
+          }
+        },
+        {
+          "id": "sgm-qa-history-001",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 001",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-002",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 002",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-003",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 003",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-004",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 004",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-005",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 005",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-006",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 006",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-007",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 007",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-008",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 008",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-009",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 009",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-010",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 010",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-011",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 011",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-012",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 012",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-013",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 013",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-014",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 014",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-015",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 015",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-016",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 016",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-017",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 017",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-018",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 018",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-019",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 019",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-020",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 020",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-021",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 021",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-022",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 022",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-023",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 023",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-024",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 024",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-025",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 025",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-026",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 026",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-027",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 027",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-028",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 028",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-029",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 029",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-030",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 030",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-031",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 031",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-032",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 032",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-033",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 033",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-034",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 034",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-035",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 035",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-036",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 036",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-037",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 037",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-038",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 038",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-039",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 039",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-040",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 040",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-041",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 041",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-042",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 042",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-043",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 043",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-044",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 044",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-045",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 045",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-046",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 046",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-047",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 047",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-048",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 048",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-049",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 049",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-050",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 050",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-051",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 051",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-052",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 052",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-053",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 053",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-054",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 054",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-055",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 055",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-056",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 056",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-057",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 057",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-058",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 058",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-059",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 059",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-060",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 060",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-061",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 061",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-062",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 062",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-063",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 063",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-064",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 064",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-065",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 065",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-066",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 066",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-067",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 067",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-068",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 068",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-069",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 069",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-070",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 070",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-071",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 071",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-072",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 072",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-073",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 073",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-074",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 074",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-075",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 075",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-076",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 076",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-077",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 077",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-078",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 078",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-079",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 079",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-080",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 080",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-081",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 081",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-082",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 082",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-083",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 083",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-084",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 084",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-085",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 085",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-086",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 086",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-087",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 087",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-088",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 088",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-089",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 089",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-090",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 090",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-091",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 091",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-092",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 092",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-093",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 093",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-094",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 094",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-095",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 095",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-096",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 096",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-097",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 097",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-098",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 098",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-099",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 099",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-100",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 100",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-101",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 101",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-102",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 102",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-103",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 103",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-104",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 104",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-105",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 105",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-106",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 106",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-107",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 107",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-108",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 108",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-109",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 109",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-110",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 110",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-111",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 111",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-112",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 112",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-113",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 113",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-114",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 114",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-115",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 115",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-116",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 116",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-117",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 117",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-118",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 118",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-119",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 119",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-history-120",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-chat-history",
+            "senderUserId": "sgm-qa-driver",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "readByUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ],
+            "body": "Historique 120",
+            "createdAt": {
+              "_seconds": 1793125641,
+              "_nanoseconds": 131000000
+            }
+          }
+        }
+      ],
+      "notifications": [
+        {
+          "id": "bookingDecision_2e2f62371a592f1aad6226e88eaef5a5f2d08cde3556db33cb816a01ab6f92a0",
+          "data": {
+            "type": "bookingRequested",
+            "sourceId": "nFR2RcXyy5WG7VEqecg7",
+            "title": "Nouvelle demande de réservation",
+            "body": "Une nouvelle demande de réservation attend votre réponse.",
+            "userId": "sgm-qa-driver",
+            "read": false,
+            "createdAt": {
+              "_seconds": 1793212066,
+              "_nanoseconds": 654000000
+            }
+          }
+        },
+        {
+          "id": "bookingDecision_3faf3112c144b9bb0d84c9f99a4169f73c67c6ab337f56faa6ca7a309aabf533",
+          "data": {
+            "type": "bookingApproved",
+            "title": "Réservation approuvée",
+            "body": "Annulation familles QA est approuvé par le conducteur.",
+            "sourceId": "I50dKoDqk4MHIaBbhl0O",
+            "userId": "sgm-qa-parent",
+            "read": false,
+            "createdAt": {
+              "_seconds": 1793212066,
+              "_nanoseconds": 586000000
+            }
+          }
+        },
+        {
+          "id": "bookingDecision_4505e255c833e4e71bf2b4b2d7fe3b31cc3f38ff912e8b75f3b6223f3cec4ede",
+          "data": {
+            "type": "bookingCancelled",
+            "title": "Réservation annulée",
+            "body": "Une réservation a été annulée.",
+            "sourceId": "Wjfi97ePkjsJJY6daYmZ",
+            "userId": "sgm-qa-driver",
+            "read": false,
+            "createdAt": {
+              "_seconds": 1793212067,
+              "_nanoseconds": 486000000
+            }
+          }
+        },
+        {
+          "id": "bookingDecision_87a79c6f517dccb0c6cbb75e84decfcd1cf3df4bda94fad75a8550fc78f13107",
+          "data": {
+            "type": "bookingRequested",
+            "sourceId": "I50dKoDqk4MHIaBbhl0O",
+            "title": "Nouvelle demande de réservation",
+            "body": "Une nouvelle demande de réservation attend votre réponse.",
+            "userId": "sgm-qa-driver",
+            "read": false,
+            "createdAt": {
+              "_seconds": 1793212065,
+              "_nanoseconds": 772000000
+            }
+          }
+        },
+        {
+          "id": "bookingDecision_b19c36cc231528138973d1d2f30baf834e98f39a01bd44cf2aeabfa0dbfe3b28",
+          "data": {
+            "type": "bookingRequested",
+            "sourceId": "Wjfi97ePkjsJJY6daYmZ",
+            "title": "Nouvelle demande de réservation",
+            "body": "Une nouvelle demande de réservation attend votre réponse.",
+            "userId": "sgm-qa-driver",
+            "read": false,
+            "createdAt": {
+              "_seconds": 1793212066,
+              "_nanoseconds": 690000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-parent-booking-approved",
+          "data": {
+            "sourceId": "sgm-qa-booking-approved",
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "read": false,
+            "body": "Le conducteur QA a approuvé votre trajet.",
+            "title": "Réservation approuvée",
+            "type": "bookingApproved",
+            "userId": "sgm-qa-parent"
+          }
+        },
+        {
+          "id": "tripCancelled_67277aac9b04d1b574270cd9c4671c20aa2459ac1832f81479d39b64de71b872",
+          "data": {
+            "userId": "sgm-qa-parent",
+            "type": "tripCancelled",
+            "title": "Trajet annulé",
+            "body": "Entrainement reporte pour cet essai",
+            "sourceId": "VOmFcMNWG0C3rN4Ga8bL",
+            "bookingIds": [
+              "I50dKoDqk4MHIaBbhl0O"
+            ],
+            "read": false,
+            "createdAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            }
+          }
+        },
+        {
+          "id": "tripCancelled_9b25f07538577903a1c54012480741857650c6086a737f33a732562299414aa3",
+          "data": {
+            "userId": "sgm-qa-cancel-parent-two",
+            "type": "tripCancelled",
+            "title": "Trajet annulé",
+            "body": "Entrainement reporte pour cet essai",
+            "sourceId": "VOmFcMNWG0C3rN4Ga8bL",
+            "bookingIds": [
+              "nFR2RcXyy5WG7VEqecg7"
+            ],
+            "read": false,
+            "createdAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            }
+          }
+        }
+      ],
+      "reports": [
+        {
+          "id": "sgm-qa-support-review",
+          "data": {
+            "reporterUserId": "sgm-qa-parent",
+            "subjectType": "other",
+            "reason": "Local QA support",
+            "description": "Isolated local support processing test",
+            "status": "open",
+            "createdAt": {
+              "_seconds": 1793212041,
+              "_nanoseconds": 76000000
+            }
+          }
+        }
+      ],
+      "rewardLedger": [
+        {
+          "id": "sgm-qa-reward-driver",
+          "data": {
+            "sourceId": "sgm-qa-historical-ride",
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "amountCents": 250,
+            "rideSessionId": "sgm-qa-historical-ride",
+            "currency": "eur",
+            "type": "co2Bonus",
+            "userId": "sgm-qa-driver"
+          }
+        }
+      ],
+      "teams": [
+        {
+          "id": "sgm-qa-club-green-wavre-u8",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "name": "U 7/8 QA",
+            "clubId": "sgm-qa-club-green-wavre",
+            "category": "U 7/8",
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        }
+      ],
+      "tripCancellations": [
+        {
+          "id": "VOmFcMNWG0C3rN4Ga8bL",
+          "data": {
+            "tripId": "VOmFcMNWG0C3rN4Ga8bL",
+            "requestId": "32e509aa-7611-4179-b742-3e6f48caa237",
+            "expectedRevision": "e0f44bb62d7bee2a90c17bd1cd2a72f222bb4126081db3662bf93c6bea0ac415",
+            "reason": "Entrainement reporte pour cet essai",
+            "actorUserId": "sgm-qa-driver",
+            "cancelledAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            },
+            "bookingIds": [
+              "I50dKoDqk4MHIaBbhl0O",
+              "nFR2RcXyy5WG7VEqecg7"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4
+          }
+        }
+      ],
+      "trips": [
+        {
+          "id": "VOmFcMNWG0C3rN4Ga8bL",
+          "data": {
+            "id": "VOmFcMNWG0C3rN4Ga8bL",
+            "driverUserId": "sgm-qa-driver",
+            "title": "Annulation familles QA",
+            "sport": "Football",
+            "clubName": "Green Wavre QA Club",
+            "clubId": "sgm-qa-club-green-wavre",
+            "teamId": "sgm-qa-club-green-wavre-u8",
+            "category": "U 7/8",
+            "departureAt": "2026-10-29T18:27:45.024Z",
+            "origin": {
+              "lat": 50.7167,
+              "lng": 4.6167
+            },
+            "destination": {
+              "lat": 50.8503,
+              "lng": 4.3517
+            },
+            "pickupRadiusM": 1500,
+            "seatsTotal": 4,
+            "baggage": "medium",
+            "returnTrip": false,
+            "priceCents": 0,
+            "driverRating": 0,
+            "driverVerified": true,
+            "supportsVehicleTracking": true,
+            "supportsChildTracking": true,
+            "co2SavedKgEstimate": 7.4,
+            "passengerInitials": [],
+            "blockedUserIds": [],
+            "createdAt": {
+              "_seconds": 1793212065,
+              "_nanoseconds": 43000000
+            },
+            "approvedPassengerUserIds": [],
+            "cancelledAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            },
+            "cancelledByUserId": "sgm-qa-driver",
+            "cancelReason": "Entrainement reporte pour cet essai",
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "updatedAt": {
+              "_seconds": 1793212387,
+              "_nanoseconds": 30000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-trip-u8-wavre-bruxelles",
+          "data": {
+            "teamName": "U 7/8 QA",
+            "co2SavedKgEstimate": 7.4,
+            "returnTrip": true,
+            "passengerInitials": [
+              "LQ"
+            ],
+            "baggage": "medium",
+            "clubName": "Green Wavre QA Club",
+            "origin": {
+              "lng": 4.6167,
+              "lat": 50.7167
+            },
+            "destination": {
+              "lng": 4.3517,
+              "lat": 50.8503
+            },
+            "distanceKm": 28.6,
+            "pickupRadiusM": 1500,
+            "regionGeohash": "u15",
+            "supportsChildTracking": true,
+            "title": "U 7/8 · Green Wavre QA Club",
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "driverRating": 4.8,
+            "supportsVehicleTracking": true,
+            "driverUserId": "sgm-qa-driver",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "driverVerified": true,
+            "blockedUserIds": [],
+            "arrivalBy": {
+              "_seconds": 1793346140,
+              "_nanoseconds": 422000000
+            },
+            "seatsTotal": 4,
+            "clubId": "sgm-qa-club-green-wavre",
+            "seatsAvailable": 2,
+            "departureAt": {
+              "_seconds": 1793341640,
+              "_nanoseconds": 422000000
+            },
+            "teamId": "sgm-qa-club-green-wavre-u8",
+            "priceCents": 350,
+            "category": "U 7/8",
+            "sport": "Football",
+            "status": "published"
+          }
+        },
+        {
+          "id": "xjA3txP1PbqhVRwV5wEH",
+          "data": {
+            "id": "xjA3txP1PbqhVRwV5wEH",
+            "driverUserId": "sgm-qa-driver",
+            "status": "published",
+            "title": "Trajet QA deux places",
+            "sport": "Football",
+            "clubName": "Green Wavre QA Club",
+            "clubId": "sgm-qa-club-green-wavre",
+            "teamId": "sgm-qa-club-green-wavre-u8",
+            "category": "U 7/8",
+            "departureAt": "2026-10-30T06:27:21.495Z",
+            "origin": {
+              "lat": 50.7167,
+              "lng": 4.6167
+            },
+            "destination": {
+              "lat": 50.8503,
+              "lng": 4.3517
+            },
+            "pickupRadiusM": 1500,
+            "seatsTotal": 4,
+            "seatsAvailable": 4,
+            "baggage": "medium",
+            "returnTrip": false,
+            "priceCents": 0,
+            "driverRating": 0,
+            "driverVerified": true,
+            "supportsVehicleTracking": true,
+            "supportsChildTracking": true,
+            "co2SavedKgEstimate": 7.4,
+            "passengerInitials": [],
+            "blockedUserIds": [],
+            "createdAt": {
+              "_seconds": 1793212042,
+              "_nanoseconds": 717000000
+            },
+            "updatedAt": {
+              "_seconds": 1793212042,
+              "_nanoseconds": 717000000
+            }
+          }
+        }
+      ],
+      "users": [
+        {
+          "id": "sgm-qa-admin",
+          "data": {
+            "displayName": "Local QA Admin",
+            "email": "admin@example.test",
+            "roles": {
+              "admin": true
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-applicant-admin",
+          "data": {
+            "displayName": "Jordan QA"
+          }
+        },
+        {
+          "id": "sgm-qa-applicant-approve",
+          "data": {
+            "displayName": "Camille QA"
+          }
+        },
+        {
+          "id": "sgm-qa-applicant-reject",
+          "data": {
+            "displayName": "Alex QA"
+          }
+        },
+        {
+          "id": "sgm-qa-applicant-responsive",
+          "data": {
+            "displayName": "Robin QA"
+          }
+        },
+        {
+          "id": "sgm-qa-cancel-parent-two",
+          "data": {
+            "displayName": "Parent annulation QA",
+            "roles": {
+              "parent": true,
+              "driver": false,
+              "admin": false,
+              "child": false,
+              "clubManager": false
+            },
+            "email": "cancel-parent-two@example.test",
+            "updatedAt": {
+              "_seconds": 1793212065,
+              "_nanoseconds": 19000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-club-manager",
+          "data": {
+            "driverVerified": false,
+            "stripeStatus": null,
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "displayName": "Hermes Club QA",
+            "roles": {
+              "parent": true,
+              "driver": false,
+              "admin": false,
+              "child": false,
+              "clubManager": true
+            },
+            "verified": true,
+            "email": "c@example.test",
+            "updatedAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-driver",
+          "data": {
+            "driverVerified": true,
+            "stripeStatus": "test_ready",
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "displayName": "Hermes Driver QA",
+            "roles": {
+              "parent": true,
+              "driver": true,
+              "admin": false,
+              "child": false,
+              "clubManager": false
+            },
+            "verified": true,
+            "email": "d@example.test",
+            "updatedAt": {
+              "_seconds": 1793212507,
+              "_nanoseconds": 102000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-outsider",
+          "data": {
+            "displayName": "Visiteur QA",
+            "roles": {
+              "parent": true
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-parent",
+          "data": {
+            "driverVerified": false,
+            "stripeStatus": null,
+            "createdAt": {
+              "_seconds": 1793212040,
+              "_nanoseconds": 422000000
+            },
+            "displayName": "Hermes Parent QA",
+            "roles": {
+              "parent": true,
+              "driver": false,
+              "admin": false,
+              "child": false,
+              "clubManager": false
+            },
+            "verified": true,
+            "email": "p@example.test"
+          }
+        }
+      ]
+    },
+    "claims": [
+      {
+        "uid": "sgm-qa-admin",
+        "claims": {
+          "roleKeys": [
+            "admin"
+          ]
+        }
+      },
+      {
+        "uid": "sgm-qa-cancel-parent-two",
+        "claims": {
+          "roleKeys": [
+            "parent"
+          ]
+        }
+      },
+      {
+        "uid": "sgm-qa-club-manager",
+        "claims": {
+          "roleKeys": [
+            "clubManager",
+            "parent"
+          ]
+        }
+      },
+      {
+        "uid": "sgm-qa-driver",
+        "claims": {
+          "roleKeys": [
+            "driver",
+            "parent"
+          ]
+        }
+      },
+      {
+        "uid": "sgm-qa-outsider",
+        "claims": {
+          "roleKeys": [
+            "parent"
+          ]
+        }
+      },
+      {
+        "uid": "sgm-qa-parent",
+        "claims": {
+          "roleKeys": [
+            "parent"
+          ]
+        }
+      }
+    ],
+    "liveTrips": null
+  },
+  "recordedAt": "2026-10-28T18:35:47.222Z"
+}

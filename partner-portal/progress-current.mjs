@@ -6,8 +6,10 @@ import { teamConnectionRecoveryProgress } from './team-connection-recovery.mjs';
 import { teamRestartProgress } from './team-process-restart.mjs';
 import { directBookingProgress } from './direct-booking.mjs';
 import {requestSafetyProgress} from './request-safety.mjs';
+import {tripCancellationProgress} from './trip-cancellation-phone.mjs';
 
 export const currentProgress = [
+  tripCancellationProgress,
   requestSafetyProgress,
   directBookingProgress,
   teamRestartProgress,

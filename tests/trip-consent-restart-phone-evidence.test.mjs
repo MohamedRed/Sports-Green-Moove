@@ -47,7 +47,8 @@ test('portal keeps dated galleries, partial application/payments and simultaneou
   assert.equal(flow.status, 'partial'); assert.equal(flow.tripConsentPhone.checkedAt, '2026-10-25');
   assert.equal(flow.tripDraftPhone.checkedAt, '2026-10-26'); assert.equal(flow.scheduleDraftPhone.checkedAt, '2026-10-28');
   assert.match(flow.remaining, /application du changement et la carte sur téléphone/);
-  assert.equal(flow.tour.length, 9);
+  assert.equal(flow.tour.length, 5);
+  assert(flow.images.some(row => row.file.startsWith('consent-phone-')));
   assert(evidenceSourcePaths(content).includes(consentRestartPhone.checksums));
   const blocker = content.blockers.find(row => row.id === 'trip-consent-restart');
   assert.equal(blocker.source, consentRestartPhone.source); assert.match(blocker.next, /deux téléphones/);

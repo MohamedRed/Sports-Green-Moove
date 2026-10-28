@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The later 28 October whole-trip cancellation trial completes twelve independent
+stored-state checkpoints on one physical phone. Three accounts inspect the
+driver's cancellation, the accepted child's two seats and a second parent's
+pending request, plus their separate in-app notices. One receipt, two notices and
+capacity restored only once remain after measured PID/no-process/new-PID restart.
+Publish seven reviewed session-window captures with their date, not native exports
+or video. The existing earlier galleries stay dated. The fixture prepared booking
+creation/approval through services; no payment or map requests were used. Keep
+simultaneous cancellation/approval race, refunds, push, tracking, other devices
+and release gaps open. Runtime/helper/package disposal is independently checked.
+Use concise French without technology names and preserve the public audience.
+
 The 28 October parser check reproduces two isolated worker crashes and an invalid
 limit failure, then passes the same nine cases with the maintainer patch. Preserve
 the first 21/24 service failure and its manual orphan-process disposal separately

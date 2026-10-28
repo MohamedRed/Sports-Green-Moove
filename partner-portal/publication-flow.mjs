@@ -3,20 +3,22 @@ import { captureInvestigation } from './capture-observations.mjs';
 import { tripDraftPhone, tripDraftPhoneImages } from './trip-draft-phone.mjs';
 import { scheduleDraftPhone } from './schedule-draft-phone.mjs';
 import { consentRestartPhone } from './consent-restart-phone.mjs';
+import {tripCancellationPhone, tripCancellationImages} from './trip-cancellation-phone.mjs';
 
 export function createPublicationFlow(local, shot) {
   return { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-28', latestEvidence: 'phone',
-      summary: 'Le brouillon est conservé après fermeture complète de l’app.',
-      verified: 'Horaires, brouillons et réponses retrouvés après l’arrêt complet. Deux parents acceptent séparément ; refus et retrait vérifiés. Les réservations restent intactes. Comptes de test.',
+      summary: 'L’annulation ferme les réservations et prévient les deux parents.',
+      verified: 'Annulation retrouvée après fermeture, places rendues une fois. Deux parents acceptent séparément les changements. Brouillons, horaires, refus et retrait vérifiés.',
       remaining: 'Rejouer l’application du changement et la carte sur téléphone. Terminer les paiements et remboursements réels. Pas encore en ligne.',
       scheduleDraftPhone,
+      tripCancellationPhone,
       consentRestartPhone,
       tripDraftPhone,
       tripConsentPhone,
       captureInvestigation,
       local: local(['publication', 'trip-cancellation', 'trip-details-ownership', 'trip-change-parent-confirmation', 'trip-change-application'], ['Le conducteur publie ; le parent retrouve le trajet.', 'L’annulation ferme les réservations et prévient les parents.', 'Répéter une demande ne crée aucun doublon.', 'Deux parents confirment séparément les détails proposés.', 'Un refus conserve le trajet initial et ses réservations.', 'Après accord, les nouveaux horaire, parcours et prix sont enregistrés.', 'Une réponse perdue est retrouvée sans recréer la proposition.', 'Un supplément ou remboursement non réglé bloque le départ.', 'Aucun paiement ni remboursement réel dans ces essais.'], 'docs/release/evidence/local-trip-change-native-2026-10-17/services.json', '2026-10-17'),
       ui: { source: 'docs/release/evidence/local-trip-history-2026-10-18/completed-native/results.json', checkedAt: '2026-10-18', groups: ['driver-trip-cancellation-ui', 'trip-change-parent-confirmation-ui', 'trip-change-inputs-ui', 'trip-change-schedule-ui', 'trip-consent-process-restart-ui', 'trip-consent-pending-restart-ui', 'trip-consent-partial-restart-ui', 'trip-consent-declined-restart-ui', 'trip-consent-withdrawn-restart-ui'] },
-      images: [...tripDraftPhoneImages, ...tripConsentPhoneImages, shot('trip-framed-map-visible', 'Deux repères entièrement visibles, nouvel essai local du 18 octobre'),
+      images: [...tripCancellationImages, ...tripDraftPhoneImages, ...tripConsentPhoneImages, shot('trip-framed-map-visible', 'Deux repères entièrement visibles, nouvel essai local du 18 octobre'),
         shot('trip-framed-route-applied', 'Nouveau parcours appliqué après les deux accords, nouvel essai local du 18 octobre'),
         shot('trip-framed-places-selected', 'Adresses choisies dans le nouvel essai local réussi du 18 octobre'),
         shot('trip-real-map-visible', 'Ancien essai du 18 octobre au matin : repère de départ coupé'),

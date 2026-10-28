@@ -53,8 +53,9 @@ test('new phone consent keeps dated local application and restart evidence separ
   assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-28');
   assert.equal(flow.ui.checkedAt, '2026-10-18');
   assert.equal(flow.tripConsentPhone.checkedAt, '2026-10-25');
-  assert.equal(flow.tour.length, 9); assert(flow.tour.slice(0, 3).every(step => step.image.startsWith('draft-phone-')));
-  assert(flow.tour.slice(3).every(step => step.image.startsWith('consent-phone-')));
+  assert.equal(flow.tour.length, 5); assert(flow.tour.every(step => step.image.startsWith('cancel-phone-')));
+  assert(flow.images.some(image => image.file.startsWith('draft-phone-')));
+  assert(flow.images.some(image => image.file.startsWith('consent-phone-')));
   assert(flow.ui.groups.includes('trip-consent-process-restart-ui'));
   assert.equal(flow.source, blocker.source);
   const current = Object.values(captures).filter((path) => path.includes('local-trip-consent-native-2026-10-17'));

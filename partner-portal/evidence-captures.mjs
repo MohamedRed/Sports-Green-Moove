@@ -10,8 +10,10 @@ import {childEmergencyPhoneCaptures} from './child-emergency-phone.mjs';
 import { chatNetworkRecoveryCaptures } from './chat-network-recovery.mjs';
 import { teamRestartCaptures } from './team-process-restart.mjs';
 import { directBookingCaptures } from './direct-booking.mjs';
+import {tripCancellationCaptures} from './trip-cancellation-phone.mjs';
 
 export const captures = {
+  ...tripCancellationCaptures,
   ...directBookingCaptures,
   ...teamRestartCaptures,
   ...chatNetworkRecoveryCaptures,
