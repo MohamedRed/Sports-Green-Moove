@@ -901,3 +901,20 @@ Use the installed Sites skill and tools. Do not call `create_site` again.
 Publication is part of meaningful completed work, not an unattended schedule or an
 automatic CI deployment. If publication is blocked, report the last published
 snapshot and the unpublished changes rather than claiming the website is current.
+
+## Team Connection Recovery, 28 October
+
+The newest update records one parent request restored after the private test
+connection was interrupted, followed by the club refusal observed on the phone.
+The complete seven-phase enrollment restart trial remains incomplete: two
+provider kill commands never reached observed completion. See
+`docs/release/evidence/team-connection-recovery-phone-2026-10-28/README.md`.
+
+The enrollment flow remains partial. Its original UI/phone/history results and
+all 15 gallery images retain their 19 October dates. No new public media is added.
+The obsolete instruction to add team chat is removed; existing chat evidence
+remains a separate partial flow. Public copy names no test technology or device.
+
+The new evidence validator is included in Web Integration Smoke. The full local
+Node suite passes (2,392 tests), as do the final portal build and browser checks
+at 320, 390, 768 and 1440 pixels. The public access policy is unchanged.

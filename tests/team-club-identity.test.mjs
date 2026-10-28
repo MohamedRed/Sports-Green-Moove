@@ -88,5 +88,7 @@ test('current team access and cursors use server club identity while the portal 
   assert.equal(flow.images.length, 15); assert.equal(flow.tour.length, 15);
   assert.match(flow.ui.source, /local-team-enrollment-native-2026-10-19/);
   assert.match(flow.phone.source, /phone-team-enrollment-2026-10-19/);
-  assert.match(flow.remaining, /conversation d’équipe/);
+  assert.match(flow.remaining, /fermeture complète/);
+  assert.doesNotMatch(flow.remaining, /Ajouter la conversation/);
+  assert.equal(content.flows.find(row => row.id === 'team-conversation').status, 'partial');
 });

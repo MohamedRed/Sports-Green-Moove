@@ -1,15 +1,17 @@
 import { teamClubIdentityGroups } from '../scripts/qa/team-club-identity-evidence.mjs';
+import { teamConnectionRecoveryPhone } from './team-connection-recovery.mjs';
 const native = 'docs/release/evidence/local-team-enrollment-native-2026-10-19/';
 const phone = 'docs/release/evidence/phone-team-enrollment-2026-10-19/';
 
 export function createTeamEnrollmentFlow() {
-  return { id: 'team-enrollment', title: 'Inscription à une équipe', status: 'partial', checkedAt: '2026-10-19',
+  return { id: 'team-enrollment', title: 'Inscription à une équipe', status: 'partial', checkedAt: '2026-10-28',
     summary: 'Le parent retrouve ses demandes et les réponses du club sur téléphone.',
-    verified: 'L’historique reste accessible sans accès au club. Le retrait est conservé au retour. Sans autorisation parentale, le nom de l’enfant est masqué et sa demande n’est plus modifiable.',
-    remaining: 'Tester après fermeture complète et sur d’autres appareils. Ajouter la conversation d’équipe. Pas encore en ligne.',
-    ui: { source: native + 'team-enrollment-results.json', groups: ['team-enrollment-ui'] },
-    phone: { source: phone + 'results.json' },
-    historyPhone: { source: 'docs/release/evidence/phone-team-history-2026-10-19/results.json' },
+    verified: 'Après une coupure, le parent retrouve sa demande sans nouvel envoi. Le refus du club s’affiche aussi. L’historique et la protection des demandes des enfants ont été vérifiés séparément.',
+    remaining: 'Confirmer la reprise après fermeture complète, les notifications et le parcours sur d’autres appareils. Pas encore en ligne.',
+    connectionRecoveryPhone: teamConnectionRecoveryPhone,
+    ui: { source: native + 'team-enrollment-results.json', checkedAt: '2026-10-19', groups: ['team-enrollment-ui'] },
+    phone: { source: phone + 'results.json', checkedAt: '2026-10-19' },
+    historyPhone: { source: 'docs/release/evidence/phone-team-history-2026-10-19/results.json', checkedAt: '2026-10-19' },
     local: { source: 'docs/release/evidence/team-club-identity-2026-10-19/passed/results.json', checkedAt: '2026-10-19',
       groups: [...teamClubIdentityGroups], checks: [
         'Un club recréé ne reprend pas les anciennes inscriptions d’équipe.',

@@ -56,7 +56,8 @@ test('the private portal preserves the nine original phone views alongside six s
   assert.equal(original.length, 9);
   assert.equal(flow.tour.filter((step) => original.some((image) => image.file === step.image)).length, 9);
   assert.equal(flow.historyPhone.source, 'docs/release/evidence/phone-team-history-2026-10-19/results.json');
-  assert.match(flow.remaining, /fermeture complète/); assert.match(flow.remaining, /conversation/);
+  assert.match(flow.remaining, /fermeture complète/); assert.match(flow.remaining, /notifications/);
+  assert.equal(flow.phone.checkedAt, '2026-10-19');
   assert.doesNotMatch(JSON.stringify(flow), /Firebase|BrowserStack|Playwright|SDK|Terraform/);
   const manager = content.flows.find((item) => item.id === 'team-review');
   assert.equal(manager.phone.source, flow.phone.source); assert.equal(manager.ui.checkedAt, '2026-10-18');

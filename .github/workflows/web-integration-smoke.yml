@@ -292,6 +292,7 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/scoped-browserstack-local.test.mjs"
+      - "tests/team-connection-recovery-evidence.test.mjs"
       - "tests/manual-team-draft-views.test.mjs"
       - "tests/manual-team-read-checkpoints.test.mjs"
       - "tests/manual-team-authority-checkpoints.test.mjs"
@@ -750,6 +751,7 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/scoped-browserstack-local.test.mjs"
+      - "tests/team-connection-recovery-evidence.test.mjs"
       - "tests/manual-team-draft-views.test.mjs"
       - "tests/manual-team-read-checkpoints.test.mjs"
       - "tests/manual-team-authority-checkpoints.test.mjs"
@@ -1214,6 +1216,8 @@ jobs:
 
       - name: Validate physical draft and consent evidence boundaries
         run: node --test tests/schedule-draft-phone-evidence.test.mjs tests/trip-consent-restart-phone-evidence.test.mjs
+      - name: Validate partial team connection recovery evidence
+        run: node --test tests/team-connection-recovery-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

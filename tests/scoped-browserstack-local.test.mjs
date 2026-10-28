@@ -30,7 +30,7 @@ test('the private config FIFO contains only the key; argv, env and logs cannot c
   const h = harness(t), controller = new AbortController();
   const result = await runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
     signal: controller.signal, env: { HOME: '/private/owned-home' }, configPipe: h.configPipe, spawnImpl: h.spawnImpl,
-    onSpawn: () => h.child.emit('close', 0, null),
+    onSpawn: () => { controller.abort('SIGTERM'); h.child.emit('close', 0, null); },
   });
   assert.equal(result.code, 0); assert.equal(h.calls.length, 1);
   const [binary, args, options] = h.calls[0]; assert.equal(binary, '/vendor/BrowserStackLocal');
@@ -56,6 +56,35 @@ test('a failed provider process is not retried or declared connected', async t =
   await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
     signal: new AbortController().signal, env: {}, configPipe: h.configPipe, spawnImpl: h.spawnImpl, onSpawn: () => h.child.emit('close', 7, null),
   }), /no device flow is verified/);
+  assert.equal(h.calls.length, 1);
+});
+test('an unsolicited zero exit is a lost connection, never a successful owned shutdown or a retry', async t => {
+  const h = harness(t);
+  await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
+    signal: new AbortController().signal, env: {}, configPipe: h.configPipe, spawnImpl: h.spawnImpl,
+    onSpawn: () => h.child.emit('close', 0, null),
+  }), error => {
+    assert.equal(error.vendorOutcome.code, 0); assert.equal(error.vendorOutcome.signal, null);
+    assert.equal(error.vendorOutcome.stopRequested, false);
+    assert.match(error.message, /no device flow is verified/);
+    assert(!JSON.stringify(error).includes(fictionalKey)); return true;
+  });
+  assert.equal(h.calls.length, 1); assert.deepEqual(h.kills, []);
+});
+test('requesting a stop after the child already exited cannot retroactively accept that exit', async t => {
+  const h = harness(t), controller = new AbortController();
+  await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
+    signal: controller.signal, env: {}, configPipe: h.configPipe, spawnImpl: h.spawnImpl,
+    onSpawn: () => { h.child.emit('close', 0, null); controller.abort('SIGTERM'); },
+  }), error => error.vendorOutcome.stopRequested === false);
+  assert.deepEqual(h.kills, []);
+});
+test('an external termination signal is not an owner-requested stop', async t => {
+  const h = harness(t);
+  await assert.rejects(runScopedLocalBinary('/vendor/BrowserStackLocal', fictionalKey, {
+    signal: new AbortController().signal, env: {}, configPipe: h.configPipe, spawnImpl: h.spawnImpl,
+    onSpawn: () => h.child.emit('close', null, 'SIGTERM'),
+  }), error => error.vendorOutcome.signal === 'SIGTERM' && error.vendorOutcome.stopRequested === false);
   assert.equal(h.calls.length, 1);
 });
 test('a vendor exit before reading config cancels the private transfer', async t => {

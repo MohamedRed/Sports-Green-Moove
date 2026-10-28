@@ -2,8 +2,10 @@ import { tripDraftPhoneProgress } from './trip-draft-phone.mjs';
 import { chatNetworkRecoveryProgress } from './chat-network-recovery.mjs';
 import { scheduleDraftPhoneProgress } from './schedule-draft-phone.mjs';
 import { consentRestartPhoneProgress } from './consent-restart-phone.mjs';
+import { teamConnectionRecoveryProgress } from './team-connection-recovery.mjs';
 
 export const currentProgress = [
+  teamConnectionRecoveryProgress,
   consentRestartPhoneProgress,
   scheduleDraftPhoneProgress,
   chatNetworkRecoveryProgress,

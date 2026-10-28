@@ -33,7 +33,7 @@ import { validateRetainedTeamChatUi, teamChatComponentScope } from '../scripts/q
 import { validateTeamConversationRecords } from './team-conversation-evidence.mjs';
 import { validateSessionRestorationRecheck } from '../scripts/qa/session-restoration-recheck.mjs';
 import { validateSessionRestorationRecovery } from '../scripts/qa/session-restoration-recovery.mjs';
-import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
+import { validateTeamEnrollmentRecords } from './team-enrollment-evidence.mjs';
 import { validateRetainedTeamEnrollment } from '../scripts/qa/team-enrollment-retained-evidence.mjs';
 import { validateRetainedRideEmergency } from '../scripts/qa/ride-emergency-retained-evidence.mjs';
 import { validateRetainedRideObservation } from '../scripts/qa/ride-observation-retained-evidence.mjs';
@@ -96,6 +96,7 @@ export function validate(root) {
     for (const field of ['title', 'summary', 'verified', 'remaining', 'source']) assert(f[field]?.trim());
     assert(existsSync(resolve(root, f.source)), `Missing source ${f.source}`);
     if (f.checkedAt) { assertDate(f.checkedAt); assert(f.checkedAt <= content.lastVerifiedAt); }
+    validateTeamEnrollmentRecords(root, f);
     if (f.trackingNetworkPhone) {
       assert.equal(f.status, 'partial'); validateTrackingNetworkPhone(root, f.trackingNetworkPhone);
       validateTrackingObservationDiagnostics(root, f.trackingNetworkDiagnostics);
@@ -255,10 +256,6 @@ export function validate(root) {
       assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
       assert.deepEqual(f.images.filter(image => image.file.startsWith('session-recheck-')).map(image => image.file).sort(), Object.keys(run.publishedCaptures).sort());
       for (const [id, file] of Object.entries(run.publishedCaptures)) assert.equal(captures[id], dirname(f.restorationRecovery.source) + '/' + file);
-    }
-    if (f.historyPhone) {
-      assert.equal(f.status, 'partial');
-      assert.equal(validateHistoryPhoneArtifacts(root, f.historyPhone.source).testedAt.slice(0, 10), f.checkedAt);
     }
   }
   validateProgressEntries(root, content, ids);

@@ -1,0 +1,40 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "581b257773505a49a48df782d33a86fd",
+  "reviewedAt": "2026-10-28T14:30:07.666Z",
+  "scope": "manual-physical-phone-observations-not-independent-process-or-release-proof",
+  "device": { "model": "Google Pixel 9 Pro", "os": "Android 15", "physical": true },
+  "parentLoginObserved": true,
+  "parentReconnectedWithoutCredentials": true,
+  "pendingEnrollmentSeenAgain": true,
+  "clubRefusalConfirmedThroughManagementUi": true,
+  "clubRefusalSeenOnPhone": true,
+  "newEnrollmentRequestSentAfterInterruption": false,
+  "completeRestartTrialAccepted": false,
+  "providerKillRequestCount": 2,
+  "providerKillCompletionObserved": false,
+  "providerKillPendingText": "Force killing all processes for your apps...",
+  "independentPidMeasurements": [],
+  "androidForceStopControlUsed": false,
+  "phoneSignoutObserved": false,
+  "managerSignoutObserved": true,
+  "providerReturnedToIdleDashboard": true,
+  "providerKillTextPersistedOnDashboard": true,
+  "uninstallAcknowledgementObserved": false,
+  "packageAbsenceIndependentlyQueried": false,
+  "nativeScreenshotExportAccepted": false,
+  "videoAccepted": false,
+  "newPublicMediaAdded": false,
+  "observations": [
+    { "phase": "self-requested-before-stop", "observedAt": "2026-10-28T13:57:01.624Z", "status": "En attente", "requestAcknowledged": true },
+    { "phase": "app-info-navigation", "observedAt": "2026-10-28T13:58:42.486Z", "opened": "Google", "forceStopRequested": false, "settingsChanged": false },
+    { "phase": "self-requested-restored", "observedAt": "2026-10-28T14:19:39.871Z", "route": "Mes demandes", "status": "En attente", "credentialsReentered": false },
+    { "phase": "self-refused-before-stop", "observedAt": "2026-10-28T14:22:54.364Z", "route": "Mes demandes", "status": "Inscription refusée" }
+  ],
+  "notes": [
+    "The provider kill requests did not reach an observed terminal result; no complete process-restart journey is accepted.",
+    "After-stop snapshot filenames mean after the button request, not independently confirmed process termination.",
+    "Google App info was opened read-only during navigation; no force stop or settings change was applied there.",
+    "Recovery follows a private-backend connection interruption, not physical internet loss or GPS testing."
+  ]
+}

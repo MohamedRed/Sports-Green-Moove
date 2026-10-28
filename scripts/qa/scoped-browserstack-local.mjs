@@ -17,6 +17,7 @@ export function scopedLocalArguments(configPipe, startupDiagnostic = false, logP
   if (startupDiagnostic) assert(isAbsolute(logPipe ?? ''), 'Approved diagnostics require a private log pipe');
   else assert.equal(logPipe, undefined, 'Normal operation cannot capture a startup log');
   assertIsolatedTunnelSettings(scopedLocalSettings);
+  // The vendor timeout is ten minutes of inactivity, not a startup deadline.
   return ['--config-file', configPipe, '--only', isolatedLocalAllowlist, '--verbose', startupDiagnostic ? '1' : '0',
     '--log-file', startupDiagnostic ? logPipe : '/dev/null', '--disable-dashboard', '--timeout', '10'];
 }
@@ -66,9 +67,11 @@ export async function runScopedLocalBinary(binary, accessKey, { signal, env, con
     if (signal.aborted) stop();
     const result = await closed;
     startupLog?.close();
-    if (!(result.code === 0 || (signal.aborted && (['SIGINT', 'SIGTERM'].includes(result.signal) || [130, 143].includes(result.code)))))
-      throw Object.assign(new Error('Scoped helper exited unsuccessfully; no device flow is verified'),
-        { vendorOutcome: { code: result.code, signal: result.signal, diagnostics,
+    const ownedStop = stopRequested && signal.aborted &&
+      (result.code === 0 || ['SIGINT', 'SIGTERM'].includes(result.signal) || [130, 143].includes(result.code));
+    if (!ownedStop)
+      throw Object.assign(new Error('Scoped helper exited without a verified requested shutdown; no device flow is verified'),
+        { vendorOutcome: { code: result.code, signal: result.signal, stopRequested, diagnostics,
           ...(startupDiagnostic ? {startupOutputBytes, startupOutputTruncated: startupOutputBytes > 8192,
             startupOutput: startupOutput.replaceAll(diagnosticKey, '[REDACTED]')
               .replace(/Bearer\s+[^\s]+|AIza[\w-]{20,}|eyJ[\w-]+\.[\w-]+\.[\w-]*/g, '[REDACTED]')
