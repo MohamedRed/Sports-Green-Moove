@@ -48,3 +48,19 @@ The dedicated workflow runs these contracts before starting the device, and
 uploads only its JSON outcomes. Web Integration Smoke is unchanged because this
 job contains no web, service or product code and owns its own contract check.
 No cloud infrastructure is created, so no Terraform change is needed.
+
+At `063efab`, [run 40709878812](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40709878812)
+reproduces the transfer failure without the product app: five exact-byte pulls
+pass and the sixth exits 1, with increased host transport-read failure counts.
+Original receipts and their original source snapshots are retained under
+`docs/release/evidence/generated-transfer-failure-063efab-2026-10-28/`.
+Remote fixture removal and absence are not verified in that failed run.
+
+The probe now captures the existing passive host process/socket observation
+before transfers and after their terminal result, before cleanup. It retains
+only selected ADB process identities, same-user loopback socket metadata and
+allowlisted daemon events. No process arguments, environments, raw command
+errors or logs are retained. Fixed command-error classifications distinguish
+offline/missing devices, transport closure, permission/space errors and timeout.
+These observations cannot alone establish a disconnect's root cause and do not
+change any command, retry, renderer, tool version or release acceptance rule.

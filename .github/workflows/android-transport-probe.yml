@@ -7,6 +7,11 @@ on:
       - ".github/workflows/android-transport-probe.yml"
       - "scripts/diagnostics/adb-transfer-*.mjs"
       - "scripts/diagnostics/run-adb-transfer-probe.mjs"
+      - "scripts/qa/adb-host-health.mjs"
+      - "scripts/qa/adb-host-sockets.mjs"
+      - "scripts/qa/adb-daemon-events.mjs"
+      - "tests/adb-host-health.test.mjs"
+      - "docs/release/evidence/generated-transfer-failure-063efab-2026-10-28/**"
       - "tests/adb-transfer-probe.test.mjs"
 
 permissions:
@@ -23,7 +28,7 @@ jobs:
         with:
           node-version: "22"
       - name: Test diagnostic boundaries without a device
-        run: node --test tests/adb-transfer-probe.test.mjs
+        run: node --test tests/adb-transfer-probe.test.mjs tests/adb-host-health.test.mjs
       - uses: android-actions/setup-android@v4
       - name: Enable disposable virtual-device acceleration
         run: |

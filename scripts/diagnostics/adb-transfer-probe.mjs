@@ -4,16 +4,16 @@ import { createHash, randomBytes } from 'node:crypto';
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, join } from 'node:path';
 import { readTransferTrace } from './adb-transfer-trace.mjs';
+import { transferCommandOutcome as commandOutcome } from './adb-transfer-outcome.mjs';
+import { observeAdbHostProcesses } from '../qa/adb-host-health.mjs';
 
 export const transferTrialCount = 32;
 export const fixtureSizes = [147456, 1048576, 4194304];
 const digest = value => createHash('sha256').update(value).digest('hex');
-const commandOutcome = result => ({ status: Number.isInteger(result.status) ? result.status : null,
-  signal: result.signal ?? null, errorCode: result.error ? 'COMMAND_ERROR' : null });
 const completed = row => row.status === 0 && row.signal === null && row.errorCode === null;
 
 export function runTransferProbe({ adb, serial, output, runId }, {
-  run = spawnSync, trace = readTransferTrace, bytes = randomBytes,
+  run = spawnSync, trace = readTransferTrace, bytes = randomBytes, observeHost = observeAdbHostProcesses,
 } = {}) {
   assert(isAbsolute(adb) && isAbsolute(output)); assert.match(serial, /^emulator-\d+$/);
   assert.match(runId, /^[a-f0-9]{32}$/);
@@ -58,7 +58,7 @@ export function runTransferProbe({ adb, serial, output, runId }, {
     });
     remoteOwned = true;
     check('push-generated-files', ['push', source, remote]);
-    report.stage = 'transfers'; report.traceBefore = trace();
+    report.stage = 'transfers'; report.hostBefore = observeHost(); report.traceBefore = trace();
     for (let index = 0; index < transferTrialCount; index++) {
       const name = `trial-${String(index).padStart(2, '0')}`, destination = join(output, name);
       mkdirSync(destination, { mode: 0o700 });
@@ -83,7 +83,7 @@ export function runTransferProbe({ adb, serial, output, runId }, {
     report.completed = true;
   } catch { failure = true; }
   finally {
-    report.traceAfter = trace();
+    report.traceAfter = trace(); report.hostAfter = observeHost();
     report.cleanup = { remoteCreatedOrPartiallyCreated: remoteOwned, removed: false, absenceVerified: false };
     if (remoteOwned) {
       const removal = commandOutcome(command(['shell', 'rm', '-rf', remote]));

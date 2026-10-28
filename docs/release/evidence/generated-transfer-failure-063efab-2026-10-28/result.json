@@ -1,0 +1,135 @@
+{
+  "scope": "isolated-generated-file-transfer-not-user-flow-or-release-proof",
+  "runId": "6cc41647fc49e80ddb332fa7955ca4c3",
+  "startedAt": "2026-10-28T14:52:06.842Z",
+  "plannedTrials": 32,
+  "trials": [
+    {
+      "index": 0,
+      "startedAt": "2026-10-28T14:52:07.624Z",
+      "elapsedMs": 76,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 1,
+      "startedAt": "2026-10-28T14:52:07.716Z",
+      "elapsedMs": 118,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 2,
+      "startedAt": "2026-10-28T14:52:07.846Z",
+      "elapsedMs": 67,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 3,
+      "startedAt": "2026-10-28T14:52:07.925Z",
+      "elapsedMs": 88,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 4,
+      "startedAt": "2026-10-28T14:52:08.024Z",
+      "elapsedMs": 73,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 5,
+      "startedAt": "2026-10-28T14:52:08.106Z",
+      "elapsedMs": 67,
+      "status": 1,
+      "signal": null,
+      "errorCode": null,
+      "commandCompleted": false,
+      "integrityVerified": false
+    }
+  ],
+  "completed": false,
+  "stage": "transfers",
+  "appInstalled": false,
+  "accountsUsed": false,
+  "retryPerformed": false,
+  "alternateTransportUsed": false,
+  "rootCauseConfirmed": false,
+  "releaseAccepted": false,
+  "lastPreparationCommand": {
+    "status": 0,
+    "signal": null,
+    "errorCode": null
+  },
+  "fixtures": [
+    {
+      "name": "generated-0.bin",
+      "size": 147456,
+      "sha256": "a509dd569f1688065d5238f9cad27b8e4b7bc1714524055b61a8b44e63bf98b5"
+    },
+    {
+      "name": "generated-1.bin",
+      "size": 1048576,
+      "sha256": "dc2a5ff121811ada7d56199f09a818e7ea650e1836a7cbe9f97b171684f496ba"
+    },
+    {
+      "name": "generated-2.bin",
+      "size": 4194304,
+      "sha256": "3f29127ae09583750e34fac7c650019142510047e169d6d5b0bc65bae354b41c"
+    }
+  ],
+  "traceBefore": {
+    "available": true,
+    "tailClipped": false,
+    "scope": "bounded-host-transport-error-counts-not-root-cause",
+    "rawLogsRetained": false,
+    "counts": {
+      "messageReadEnded": 1,
+      "payloadReadEnded": 0,
+      "readOverflow": 0,
+      "badHeader": 0,
+      "writeEnded": 0,
+      "transportReadFailed": 1,
+      "transportWriteFailed": 0
+    }
+  },
+  "traceAfter": {
+    "available": true,
+    "tailClipped": false,
+    "scope": "bounded-host-transport-error-counts-not-root-cause",
+    "rawLogsRetained": false,
+    "counts": {
+      "messageReadEnded": 2,
+      "payloadReadEnded": 0,
+      "readOverflow": 0,
+      "badHeader": 0,
+      "writeEnded": 0,
+      "transportReadFailed": 2,
+      "transportWriteFailed": 0
+    }
+  },
+  "cleanup": {
+    "remoteCreatedOrPartiallyCreated": true,
+    "removed": false,
+    "absenceVerified": false
+  },
+  "finishedAt": "2026-10-28T14:52:08.182Z",
+  "success": false
+}
