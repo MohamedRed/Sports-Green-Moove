@@ -7,6 +7,7 @@ import {tripConsentPhoneTour} from './trip-consent-phone.mjs';
 import {tripDraftPhoneTour} from './trip-draft-phone.mjs';
 import {trackingClockTour} from './tracking-clock-replay.mjs';
 import {trackingNetworkTour} from './tracking-network-phone.mjs';
+import { teamRestartTour } from './team-process-restart.mjs';
 
 const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
@@ -81,23 +82,7 @@ export const tours = {
     image('session-recheck-recovered', 'Réessayer', 'Une fois le service de test rétabli, le parent retrouve son accueil.'),
     image('session-recheck-restored', 'Revenir en portrait', 'Le même compte reste connecté au retour.'),
   ],
-  'team-enrollment': [
-    image('team-history-list', 'Retrouver ses demandes', 'L’historique reste accessible même sans accès au club.'),
-    image('team-history-page-2', 'Continuer la liste', 'Les demandes au-delà des vingt premières sont aussi retrouvées.'),
-    image('team-history-confirmation', 'Confirmer le retrait', 'Revenir garde l’inscription. Confirmer enregistre le retrait.'),
-    image('team-history-withdrawn', 'Voir le retrait enregistré', 'L’inscription personnelle est retirée une seule fois.'),
-    image('team-history-child', 'Protéger la demande de l’enfant', 'Sans autorisation parentale, le nom est masqué et aucune modification n’est proposée.'),
-    image('team-history-refreshed', 'Revenir plus tard', 'Après réouverture et actualisation, le retrait est toujours enregistré.'),
-    image('team-phone-requested', 'Demander son inscription', 'Le parent confirme sa demande sur le téléphone.'),
-    image('team-phone-refused', 'Retrouver le refus du club', 'Le responsable refuse depuis son espace. Le parent retrouve sa réponse.'),
-    image('team-phone-requested-again', 'Faire une nouvelle demande', 'Le parent redemande son inscription après le refus.'),
-    image('team-phone-manager-approved', 'Le club donne son accord', 'Le responsable confirme l’inscription dans son espace.'),
-    image('team-phone-approved', 'Voir l’accord sur téléphone', 'Le parent relit son inscription et retrouve l’accord.'),
-    image('team-phone-withdrawn', 'Retirer son inscription', 'Le parent confirme le retrait. Le club retrouve ce nouvel état.'),
-    image('team-phone-child-requested', 'Demander pour son enfant', 'Le parent vérifié confirme une demande distincte pour son enfant.'),
-    image('team-phone-manager-child-approved', 'Le club approuve l’enfant', 'L’accord de l’enfant ne rouvre pas l’inscription retirée du parent.'),
-    image('team-phone-child-approved', 'Retrouver l’accord pour l’enfant', 'Le parent retrouve l’inscription approuvée de son enfant sur le téléphone.'),
-  ],
+  'team-enrollment': teamRestartTour,
   'emergency-contact': [
     image('emergency-phone-empty', 'Choisir son contact', 'Le nouvel essai sur téléphone commence sans contact enregistré.'),
     image('emergency-phone-saved', 'Enregistrer le contact', 'Le parent enregistre un nom et un numéro fictifs.'),

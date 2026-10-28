@@ -293,6 +293,8 @@ on:
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/scoped-browserstack-local.test.mjs"
       - "tests/team-connection-recovery-evidence.test.mjs"
+      - "tests/team-process-restart-phone-evidence.test.mjs"
+      - "tests/partner-portal-team-restart.browser.mjs"
       - "tests/manual-team-draft-views.test.mjs"
       - "tests/manual-team-read-checkpoints.test.mjs"
       - "tests/manual-team-authority-checkpoints.test.mjs"
@@ -752,6 +754,8 @@ on:
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/scoped-browserstack-local.test.mjs"
       - "tests/team-connection-recovery-evidence.test.mjs"
+      - "tests/team-process-restart-phone-evidence.test.mjs"
+      - "tests/partner-portal-team-restart.browser.mjs"
       - "tests/manual-team-draft-views.test.mjs"
       - "tests/manual-team-read-checkpoints.test.mjs"
       - "tests/manual-team-authority-checkpoints.test.mjs"
@@ -1218,6 +1222,8 @@ jobs:
         run: node --test tests/schedule-draft-phone-evidence.test.mjs tests/trip-consent-restart-phone-evidence.test.mjs
       - name: Validate partial team connection recovery evidence
         run: node --test tests/team-connection-recovery-evidence.test.mjs
+      - name: Validate seven physical team process restarts
+        run: node --test tests/team-process-restart-phone-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

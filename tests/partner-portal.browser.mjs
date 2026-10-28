@@ -9,6 +9,7 @@ import { verifyChildContactGallery, verifyEmergencyProfileTour } from './partner
 import { verifySessionRecoveryTours } from './partner-portal-session-restoration.browser.mjs';
 import { verifySupportFollowupTour } from './partner-portal-support-followup.browser.mjs';
 import { verifySupportSubmissionTour } from './partner-portal-support-submission.browser.mjs';
+import { verifyTeamRestartGallery } from './partner-portal-team-restart.browser.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE_PATH;
 const { chromium } = modulePath ? await import(pathToFileURL(modulePath).href) : await import('playwright');
@@ -215,7 +216,7 @@ try {
       await waitForImage();
       assert.equal(await page.locator('.media-stage img').getAttribute('alt'), image.alt);
       assert.equal(await page.locator('.media-stage.is-landscape').count(), image.landscape ? 1 : 0);
-      assert.match(image.alt, /19 octobre/);
+      assert.match(image.alt, index < 5 ? /capture de session du 28 octobre/ : /19 octobre/);
       assert.doesNotMatch(image.alt, /simulé/);
       assert(await page.locator('dialog').evaluate((element) => element.scrollWidth <= element.clientWidth));
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
@@ -264,6 +265,7 @@ try {
   await verifySessionRecoveryTours({ browser, base, output });
   await verifySupportFollowupTour({ browser, base, output });
   await verifySupportSubmissionTour({ browser, base, output });
+  await verifyTeamRestartGallery({ browser, base, output });
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(`${base}/#suite`);

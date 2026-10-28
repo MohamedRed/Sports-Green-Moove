@@ -55,12 +55,12 @@ test('altered original screen context fails even when the published crop is unto
 test('the private portal presents the current reviewed history without completing the team flow', () => {
   const flow = content.flows.find((item) => item.id === 'team-enrollment');
   assert.equal(flow.status, 'partial'); assert.equal(flow.historyPhone.source, base + 'results.json');
-  assert.match(flow.remaining, /fermeture complète/); assert.match(flow.remaining, /notifications/);
+  assert.match(flow.remaining, /autres appareils/); assert.match(flow.remaining, /notifications/);
   assert.equal(flow.historyPhone.checkedAt, '2026-10-19');
   assert.equal(flow.connectionRecoveryPhone.checkedAt, '2026-10-28');
   for (const name of ['team-history-list', 'team-history-page-2', 'team-history-confirmation',
     'team-history-withdrawn', 'team-history-child', 'team-history-refreshed']) {
     assert(captures[name].startsWith(base)); assert(flow.images.some((image) => image.file === name));
-    assert(flow.tour.some((step) => step.image === name));
+    assert(flow.images.find(image => image.file === name).alt.includes('19 octobre'));
   }
 });

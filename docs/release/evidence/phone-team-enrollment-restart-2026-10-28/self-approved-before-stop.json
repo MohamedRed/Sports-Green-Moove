@@ -1,0 +1,54 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "614b78d6896cf1e31a2323ff23ce1b2f",
+  "scope": "read-only-original-isolated-enrollment-snapshot-not-ui-proof",
+  "recordedAt": "2026-10-28T15:40:43.471Z",
+  "documents": [
+    {
+      "name": "projects/demo-sgm-local-qa/databases/(default)/documents/teamEnrollments/608840b3a7a84ab4cfd29fbb9363dc7fcc316260a3385920763c6ac9d63f6732",
+      "fields": {
+        "teamId": {
+          "stringValue": "sgm-qa-team-ui-team"
+        },
+        "teamInstanceId": {
+          "stringValue": "1e1b42cd7706a63d7f30c7d85e2fca80b0378ed8ed284cabfac07c2b8c3b2f90"
+        },
+        "teamCreatedAt": {
+          "timestampValue": "2026-10-28T15:06:55.146802Z"
+        },
+        "clubId": {
+          "stringValue": "sgm-qa-team-ui-club"
+        },
+        "subjectKind": {
+          "stringValue": "member"
+        },
+        "subjectId": {
+          "stringValue": "sgm-qa-parent"
+        },
+        "childCreatedAt": {
+          "nullValue": null
+        },
+        "requesterUserId": {
+          "stringValue": "sgm-qa-parent"
+        },
+        "status": {
+          "stringValue": "approved"
+        },
+        "revision": {
+          "integerValue": "4"
+        },
+        "lastActorUserId": {
+          "stringValue": "sgm-qa-club-manager"
+        },
+        "createdAt": {
+          "timestampValue": "2026-10-28T15:19:52.614Z"
+        },
+        "updatedAt": {
+          "timestampValue": "2026-10-28T15:40:06.678Z"
+        }
+      },
+      "createTime": "2026-10-28T15:19:52.621031Z",
+      "updateTime": "2026-10-28T15:40:06.693851Z"
+    }
+  ]
+}

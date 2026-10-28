@@ -2,8 +2,16 @@ import assert from 'node:assert/strict';
 import { dirname } from 'node:path';
 import { validateHistoryPhoneArtifacts } from './team-history-phone-evidence.mjs';
 import { validateTeamConnectionRecovery } from '../scripts/qa/team-connection-recovery-evidence.mjs';
+import { validateTeamProcessRestart } from '../scripts/qa/team-process-restart-phone-evidence.mjs';
 
 export function validateTeamEnrollmentRecords(root, flow) {
+  if (flow.restartPhone) {
+    assert.equal(flow.id, 'team-enrollment'); assert.equal(flow.status, 'partial');
+    const evidence = flow.restartPhone;
+    assert.equal(evidence.checksums, dirname(evidence.source) + '/artifact-sha256.json');
+    assert.equal(validateTeamProcessRestart(root, evidence.source).testedAt.slice(0, 10), evidence.checkedAt);
+    assert.equal(flow.checkedAt, evidence.checkedAt);
+  }
   if (flow.connectionRecoveryPhone) {
     assert.equal(flow.id, 'team-enrollment'); assert.equal(flow.status, 'partial');
     const evidence = flow.connectionRecoveryPhone;

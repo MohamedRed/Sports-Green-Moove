@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The later 28 October team enrollment trial completes seven independent stored
+checkpoints and seven actual Android Force stop/reopen sequences. Every sequence
+has fresh package-scoped process-before, no-process and new-process observations,
+plus unchanged original document pairs and manually reviewed restored UI.
+The user approved session-window captures, not native exports: publish only the
+five reviewed device crops, identified as session captures of 28 October. The
+current guided tour has five steps; all fifteen earlier 19 October gallery images
+retain their own dates under all evidence. Preserve the earlier incomplete trial.
+Keep notifications, other devices, production, tracking and full-release gaps.
+The guardian relationship was fixture-prepared, not reviewed through this run's
+UI. Both accounts signed out, provider uninstall and independent package absence
+were observed, and all owned resources were disposed. No technology or device
+names appear in public copy. Public access stays unchanged.
+
 The later 28 October physical consent trial completes ten independent record
 checkpoints and five manually observed Android Force stop/reopen sequences:
 pending, first approval, both approvals, refusal and withdrawal. The separate
@@ -902,16 +916,16 @@ Publication is part of meaningful completed work, not an unattended schedule or 
 automatic CI deployment. If publication is blocked, report the last published
 snapshot and the unpublished changes rather than claiming the website is current.
 
-## Team Connection Recovery, 28 October
+## Earlier Team Connection Recovery, 28 October
 
-The newest update records one parent request restored after the private test
+The earlier update records one parent request restored after the private test
 connection was interrupted, followed by the club refusal observed on the phone.
 The complete seven-phase enrollment restart trial remains incomplete: two
 provider kill commands never reached observed completion. See
 `docs/release/evidence/team-connection-recovery-phone-2026-10-28/README.md`.
 
-The enrollment flow remains partial. Its original UI/phone/history results and
-all 15 gallery images retain their 19 October dates. No new public media is added.
+That incomplete trial remains partial. Its original UI/phone/history results and
+all 15 earlier gallery images retain their 19 October dates. It added no public media.
 The obsolete instruction to add team chat is removed; existing chat evidence
 remains a separate partial flow. Public copy names no test technology or device.
 

@@ -1,13 +1,15 @@
 import { teamClubIdentityGroups } from '../scripts/qa/team-club-identity-evidence.mjs';
 import { teamConnectionRecoveryPhone } from './team-connection-recovery.mjs';
+import { teamRestartPhone, teamRestartImages } from './team-process-restart.mjs';
 const native = 'docs/release/evidence/local-team-enrollment-native-2026-10-19/';
 const phone = 'docs/release/evidence/phone-team-enrollment-2026-10-19/';
 
 export function createTeamEnrollmentFlow() {
-  return { id: 'team-enrollment', title: 'Inscription à une équipe', status: 'partial', checkedAt: '2026-10-28',
-    summary: 'Le parent retrouve ses demandes et les réponses du club sur téléphone.',
-    verified: 'Après une coupure, le parent retrouve sa demande sans nouvel envoi. Le refus du club s’affiche aussi. L’historique et la protection des demandes des enfants ont été vérifiés séparément.',
-    remaining: 'Confirmer la reprise après fermeture complète, les notifications et le parcours sur d’autres appareils. Pas encore en ligne.',
+  return { id: 'team-enrollment', title: 'Inscription à une équipe', status: 'partial', checkedAt: '2026-10-28', latestEvidence: 'phone',
+    summary: 'Les inscriptions du parent et de l’enfant reviennent après fermeture complète.',
+    verified: 'Demande, refus, nouvel envoi, accord et retrait : les sept étapes reviennent sur téléphone après fermeture complète. L’inscription de l’enfant reste distincte. Captures de session du 28 octobre.',
+    remaining: 'Confirmer les notifications et le parcours sur d’autres appareils. Pas encore en ligne.',
+    restartPhone: teamRestartPhone,
     connectionRecoveryPhone: teamConnectionRecoveryPhone,
     ui: { source: native + 'team-enrollment-results.json', checkedAt: '2026-10-19', groups: ['team-enrollment-ui'] },
     phone: { source: phone + 'results.json', checkedAt: '2026-10-19' },
@@ -19,7 +21,7 @@ export function createTeamEnrollmentFlow() {
         'Les anciennes pages ne rouvrent pas les accès.',
         'Une nouvelle validation permet une nouvelle inscription.',
       ] },
-    images: [{ file: 'team-history-list', alt: 'Les demandes restent accessibles après la perte d’accès au club, essai sur téléphone du 19 octobre' },
+    images: [...teamRestartImages, { file: 'team-history-list', alt: 'Les demandes restent accessibles après la perte d’accès au club, essai sur téléphone du 19 octobre' },
       { file: 'team-history-page-2', alt: 'La liste continue au-delà des vingt premières demandes, essai sur téléphone du 19 octobre' },
       { file: 'team-history-confirmation', alt: 'Le retrait exige une confirmation, essai sur téléphone du 19 octobre' },
       { file: 'team-history-withdrawn', alt: 'Le retrait de l’inscription est enregistré, essai sur téléphone du 19 octobre' },

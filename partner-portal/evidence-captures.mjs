@@ -8,8 +8,10 @@ import {childAccountPhonePassCaptures} from './child-account-phone-pass.mjs';
 import {childInvitationPhoneCaptures} from './child-invitation-phone.mjs';
 import {childEmergencyPhoneCaptures} from './child-emergency-phone.mjs';
 import { chatNetworkRecoveryCaptures } from './chat-network-recovery.mjs';
+import { teamRestartCaptures } from './team-process-restart.mjs';
 
 export const captures = {
+  ...teamRestartCaptures,
   ...chatNetworkRecoveryCaptures,
   ...childEmergencyPhoneCaptures,
   ...childInvitationPhoneCaptures,
