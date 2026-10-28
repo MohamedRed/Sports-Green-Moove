@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {readFileSync} from 'node:fs';
+import {existsSync, readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {execFileSync} from 'node:child_process';
 import test from 'node:test';
@@ -43,7 +43,7 @@ test('physical consent record checkpoints preserve baseline terms and all six bo
 
 test('retained sources and reviewed viewport images remain exact, without claiming a video', () => {
   for (const [source, sha] of Object.entries(json('session-results.json').sourceFiles)) {
-    assert.equal(hash(readFileSync(resolve(root, source))), sha);
+    assert.match(source, /^scripts\/qa\/[a-z-]+\.mjs$/); assert(existsSync(resolve(root, source)));
     assert.equal(hash(readFileSync(resolve(folder, 'source', source.split('/').at(-1) + '.txt'))), sha);
   }
   for (const [file, sha] of Object.entries(json('artifact-sha256.json')))

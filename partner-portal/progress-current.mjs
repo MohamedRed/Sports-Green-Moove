@@ -1,8 +1,10 @@
 import { tripDraftPhoneProgress } from './trip-draft-phone.mjs';
 import { chatNetworkRecoveryProgress } from './chat-network-recovery.mjs';
 import { scheduleDraftPhoneProgress } from './schedule-draft-phone.mjs';
+import { consentRestartPhoneProgress } from './consent-restart-phone.mjs';
 
 export const currentProgress = [
+  consentRestartPhoneProgress,
   scheduleDraftPhoneProgress,
   chatNetworkRecoveryProgress,
   { date: '2026-10-27', title: 'Un essai complet s’arrête avant la coupure',

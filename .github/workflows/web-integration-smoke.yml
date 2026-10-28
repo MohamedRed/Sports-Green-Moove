@@ -105,6 +105,8 @@ on:
       - "tests/partner-portal.test.mjs"
       - "tests/schedule-draft-phone-evidence.test.mjs"
       - "scripts/qa/schedule-draft-phone-evidence.mjs"
+      - "tests/trip-consent-restart-phone-evidence.test.mjs"
+      - "scripts/qa/trip-consent-restart-phone-evidence.mjs"
       - "tests/partner-portal-team-history.test.mjs"
       - "tests/partner-portal-native-startup.test.mjs"
       - "tests/partner-portal-ui.test.mjs"
@@ -563,6 +565,8 @@ on:
       - "tests/partner-portal.test.mjs"
       - "tests/schedule-draft-phone-evidence.test.mjs"
       - "scripts/qa/schedule-draft-phone-evidence.mjs"
+      - "tests/trip-consent-restart-phone-evidence.test.mjs"
+      - "scripts/qa/trip-consent-restart-phone-evidence.mjs"
       - "tests/partner-portal-team-history.test.mjs"
       - "tests/partner-portal-native-startup.test.mjs"
       - "tests/partner-portal-ui.test.mjs"
@@ -1208,8 +1212,8 @@ jobs:
       - name: Validate private partner portal evidence and contracts
         run: node --test tests/partner-portal.test.mjs tests/partner-portal-team-history.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/trip-capacity-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs tests/cellular-request-evidence.test.mjs tests/chat-composer-intent.test.mjs tests/team-ownership-evidence.test.mjs tests/trip-cancellation-evidence.test.mjs tests/trip-details-evidence.test.mjs tests/trip-change-evidence.test.mjs tests/trip-change-application-evidence.test.mjs tests/trip-supplement-evidence.test.mjs tests/ui-collection-evidence.test.mjs tests/chat-restart-recheck-evidence.test.mjs
 
-      - name: Validate physical schedule draft evidence boundaries
-        run: node --test tests/schedule-draft-phone-evidence.test.mjs
+      - name: Validate physical draft and consent evidence boundaries
+        run: node --test tests/schedule-draft-phone-evidence.test.mjs tests/trip-consent-restart-phone-evidence.test.mjs
 
       - name: Validate admin plan coverage
         run: npm run test:admin-plan-coverage

@@ -2,13 +2,15 @@ import {tripConsentPhone, tripConsentPhoneImages} from './trip-consent-phone.mjs
 import { captureInvestigation } from './capture-observations.mjs';
 import { tripDraftPhone, tripDraftPhoneImages } from './trip-draft-phone.mjs';
 import { scheduleDraftPhone } from './schedule-draft-phone.mjs';
+import { consentRestartPhone } from './consent-restart-phone.mjs';
 
 export function createPublicationFlow(local, shot) {
   return { id: 'publication', title: 'Publication, modification et annulation', status: 'partial', checkedAt: '2026-10-28', latestEvidence: 'phone',
       summary: 'Le brouillon est conservé après fermeture complète de l’app.',
-      verified: 'Horaires retrouvés après l’arrêt complet. Prix et adresses aussi. Deux parents acceptent séparément ; refus et retrait vérifiés. L’autre trajet reste intact. Comptes de test.',
+      verified: 'Horaires, brouillons et réponses retrouvés après l’arrêt complet. Deux parents acceptent séparément ; refus et retrait vérifiés. Les réservations restent intactes. Comptes de test.',
       remaining: 'Rejouer l’application du changement et la carte sur téléphone. Terminer les paiements et remboursements réels. Pas encore en ligne.',
       scheduleDraftPhone,
+      consentRestartPhone,
       tripDraftPhone,
       tripConsentPhone,
       captureInvestigation,

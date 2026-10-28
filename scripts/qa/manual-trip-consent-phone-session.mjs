@@ -3,13 +3,13 @@ import {createHash} from 'node:crypto';
 import {existsSync, mkdirSync, readFileSync, statSync, writeFileSync} from 'node:fs';
 import {isAbsolute, resolve} from 'node:path';
 import {createInterface} from 'node:readline';
-import {tripConsentPhonePhases, verifyTripConsentPhoneState} from './trip-consent-phone-checkpoints.mjs';
+import {assertTripConsentPhoneSession, tripConsentPhonePhases, verifyTripConsentPhoneState} from './trip-consent-phone-checkpoints.mjs';
 
 const [sessionPath, output] = process.argv.slice(2);
 assert(isAbsolute(sessionPath ?? '') && isAbsolute(output ?? '') && process.stdin.isTTY);
 assert.equal(statSync(sessionPath).mode & 0o077, 0); assert(!existsSync(output));
-const session = JSON.parse(readFileSync(sessionPath)); assert.equal(session.projectId, 'demo-sgm-local-qa');
-assert.match(session.runId, /^[a-f0-9]{32}$/); process.env.SGM_QA_PASSWORD = session.password;
+const session = JSON.parse(readFileSync(sessionPath)); assertTripConsentPhoneSession(session);
+process.env.SGM_QA_PASSWORD = session.password;
 const {auth, db, call, denied, signIn} = await import('./local-flow-client.mjs');
 const {getDatabase} = await import('firebase-admin/database');
 const {deleteApp} = await import('firebase-admin/app');

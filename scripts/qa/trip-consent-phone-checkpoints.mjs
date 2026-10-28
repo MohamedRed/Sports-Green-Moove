@@ -1,5 +1,13 @@
 import assert from 'node:assert/strict';
 
+export function assertTripConsentPhoneSession(session) {
+  assert(session?.projectId === 'demo-sgm-local-qa', 'Consent trial requires the isolated project');
+  assert(typeof session.runId === 'string' && /^[a-f0-9]{32}$/.test(session.runId), 'Consent trial requires a valid run ID');
+  assert(typeof session.password === 'string' && session.password.length >= 12, 'Consent trial requires an ephemeral password');
+  for (const [role, email] of Object.entries({driver: 'd@example.test', parent: 'p@example.test', outsider: 'outsider@example.test'}))
+    assert(session[role] === email, `Consent trial requires the ${role} account from start-local-ui.mjs`);
+}
+
 export const tripConsentPhonePhases = ['prepared', 'draft-private', 'draft-returned', 'proposed',
   'first-parent-accepted', 'both-parents-accepted', 'decline-proposed', 'declined', 'withdrawal-proposed', 'withdrawn'];
 const cleanTrip = data => Object.fromEntries(Object.entries(data).filter(([key]) => !['pendingChangeId', 'updatedAt'].includes(key)));

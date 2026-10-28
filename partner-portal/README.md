@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The later 28 October physical consent trial completes ten independent record
+checkpoints and five manually observed Android Force stop/reopen sequences:
+pending, first approval, both approvals, refusal and withdrawal. The separate
+manual review is not independent PID proof. Preserve the zero-checkpoint wrong
+runtime preparation failure and its verified disposal; the corrected observer
+now rejects incompatible actor files before any setup. Publish concise text only,
+keep earlier dated galleries and public access, and retain application, payments,
+simultaneous devices, iOS, GPS and full native-gate gaps.
+
 The 28 October physical Android schedule trial verifies date, departure and
 desired-arrival draft recovery after manual Android Force stop/reopen. Nine
 independent stored-state checkpoints pass; they are not independent UI/PID proof.

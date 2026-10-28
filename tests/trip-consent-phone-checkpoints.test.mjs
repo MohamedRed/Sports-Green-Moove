@@ -1,7 +1,24 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFileSync} from 'node:fs';
-import {tripConsentPhonePhases, verifyTripConsentPhoneState} from '../scripts/qa/trip-consent-phone-checkpoints.mjs';
+import {assertTripConsentPhoneSession, tripConsentPhonePhases, verifyTripConsentPhoneState} from '../scripts/qa/trip-consent-phone-checkpoints.mjs';
+
+test('consent preparation requires the flat isolated account contract before any clients or fixture writes', () => {
+  const valid = {projectId: 'demo-sgm-local-qa', runId: 'a'.repeat(32), password: 'ephemeral-test-only',
+    driver: 'd@example.test', parent: 'p@example.test', outsider: 'outsider@example.test'};
+  assert.doesNotThrow(() => assertTripConsentPhoneSession(valid));
+  for (const role of ['driver', 'parent', 'outsider']) {
+    const missing = {...valid}; delete missing[role];
+    assert.throws(() => assertTripConsentPhoneSession(missing), /start-local-ui\.mjs/);
+    assert.throws(() => assertTripConsentPhoneSession({...valid, [role]: 'different@example.test'}), /start-local-ui\.mjs/);
+  }
+  for (const patch of [{projectId: 'production'}, {runId: ''}, {password: ''},
+    {driver: undefined, parent: undefined, outsider: undefined, fixture: {parentEmail: 'p@example.test'}}])
+    assert.throws(() => assertTripConsentPhoneSession({...valid, ...patch}));
+  const source = readFileSync(new URL('../scripts/qa/manual-trip-consent-phone-session.mjs', import.meta.url), 'utf8');
+  assert(source.indexOf('assertTripConsentPhoneSession(session)') < source.indexOf("await import('./local-flow-client.mjs')"));
+  assert(source.indexOf('assertTripConsentPhoneSession(session)') < source.indexOf('await seedTripChangeUi()'));
+});
 
 function sample(phase) {
   const fixtures = {}, parentUids = ['p1', 'p2'], stage = tripConsentPhonePhases.indexOf(phase);
