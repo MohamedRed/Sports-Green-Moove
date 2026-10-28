@@ -35,6 +35,14 @@ without compiling or installing the app, while still refusing an existing result
 directory. A clean-checkout regression reproduced the failure before this fix.
 This preparation fix is not a repair of the original ADB disconnect.
 
+The [second attempt](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40697516691)
+at `c57555e` stopped inside the emulator action's initial animation configuration
+with ADB exit 255, before the probe script started. It produced no trial receipts.
+That is a separate preparation failure, not reproduction of the original copy
+failure. Neither failed attempt is hidden or converted into a passing transfer.
+Path absence now requires a successful `test ! -e` device command: an offline
+error's exit 1 cannot authorize creating or later deleting a remote directory.
+
 Run the contract tests with `node --test tests/adb-transfer-probe.test.mjs`.
 The dedicated workflow runs these contracts before starting the device, and
 uploads only its JSON outcomes. Web Integration Smoke is unchanged because this

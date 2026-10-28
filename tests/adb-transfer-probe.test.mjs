@@ -6,7 +6,8 @@ import { join } from 'node:path';
 import { runTransferProbe, transferTrialCount } from '../scripts/diagnostics/adb-transfer-probe.mjs';
 import { summarizeTransferTrace } from '../scripts/diagnostics/adb-transfer-trace.mjs';
 
-function fixture(t, { failAt = -1, corruptAt = -1, remoteExists = false, cleanupFails = false } = {}) {
+function fixture(t, { failAt = -1, corruptAt = -1, remoteExists = false, cleanupFails = false,
+  pathCheckOffline = false } = {}) {
   const directory = mkdtempSync(join(tmpdir(), 'sgm-generated-transfer-'));
   t.after(() => rmSync(directory, { recursive: true, force: true }));
   const output = join(directory, 'result'), calls = [];
@@ -19,7 +20,11 @@ function fixture(t, { failAt = -1, corruptAt = -1, remoteExists = false, cleanup
     if (args[0] === 'get-state') return done('device\n');
     if (args[1] === 'getprop') return done(args[2] === 'ro.kernel.qemu' ? '1\n' : '35\n');
     if (args[1] === 'pm') return done('');
-    if (args[1] === 'test') return { ...done(), status: remoteExists ? 0 : 1 };
+    if (args[1] === 'test') {
+      assert.deepEqual(args.slice(0, 4), ['shell', 'test', '!', '-e']);
+      return { ...done(), status: pathCheckOffline || remoteExists ? 1 : 0,
+        stderr: pathCheckOffline ? 'adb: device offline' : '' };
+    }
     if (args[0] === 'push') { source = args[1]; return done(); }
     if (args[0] === 'pull') {
       const index = pulls++;
@@ -80,6 +85,13 @@ test('zero exit with missing or changed bytes fails integrity without another tr
 test('existing or unobservable remote paths are never overwritten or removed', t => {
   const f = fixture(t, { remoteExists: true }), result = f.execute();
   assert.equal(result.success, false); assert.equal(result.trials.length, 0);
+  assert.equal(result.cleanup.remoteCreatedOrPartiallyCreated, false);
+  assert(!f.calls.some(args => ['push', 'pull'].includes(args[0]) || args[1] === 'rm'));
+});
+
+test('an offline device is not evidence that a remote path is absent', t => {
+  const f = fixture(t, { pathCheckOffline: true }), result = f.execute();
+  assert.equal(result.success, false);
   assert.equal(result.cleanup.remoteCreatedOrPartiallyCreated, false);
   assert(!f.calls.some(args => ['push', 'pull'].includes(args[0]) || args[1] === 'rm'));
 });

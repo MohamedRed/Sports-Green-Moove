@@ -11,7 +11,6 @@ const digest = value => createHash('sha256').update(value).digest('hex');
 const commandOutcome = result => ({ status: Number.isInteger(result.status) ? result.status : null,
   signal: result.signal ?? null, errorCode: result.error ? 'COMMAND_ERROR' : null });
 const completed = row => row.status === 0 && row.signal === null && row.errorCode === null;
-const missing = row => row.status === 1 && row.signal === null && row.errorCode === null;
 
 export function runTransferProbe({ adb, serial, output, runId }, {
   run = spawnSync, trace = readTransferTrace, bytes = randomBytes,
@@ -48,8 +47,8 @@ export function runTransferProbe({ adb, serial, output, runId }, {
     for (const name of ['be.sportgreenmoove.app', 'be.sportgreenmoove.app.local'])
       assert.equal(check('product-app-absence', ['shell', 'pm', 'list', 'packages', name]), '', 'Probe requires no product app');
     report.stage = 'fresh-remote-path';
-    const absent = commandOutcome(command(['shell', 'test', '-e', remote]));
-    assert(missing(absent), 'Refuse an existing or unobservable remote path');
+    const absent = commandOutcome(command(['shell', 'test', '!', '-e', remote]));
+    assert(completed(absent), 'Refuse an existing or unobservable remote path');
     report.stage = 'generate-fixtures'; mkdirSync(source, { mode: 0o700 });
     report.fixtures = fixtureSizes.map((size, index) => {
       const name = `generated-${index}.bin`, value = bytes(size);
@@ -90,7 +89,7 @@ export function runTransferProbe({ adb, serial, output, runId }, {
       const removal = commandOutcome(command(['shell', 'rm', '-rf', remote]));
       report.cleanup.removed = completed(removal);
       report.cleanup.absenceVerified = report.cleanup.removed &&
-        missing(commandOutcome(command(['shell', 'test', '-e', remote])));
+        completed(commandOutcome(command(['shell', 'test', '!', '-e', remote])));
     }
     rmSync(source, { recursive: true, force: true });
     report.finishedAt = new Date().toISOString();
