@@ -1,13 +1,15 @@
 import { nativeVerification } from './native-verification.mjs';
+import {publishedMediaBlocker} from './published-media-review.mjs';
 
 export const blockers = [
+  publishedMediaBlocker,
   {id: 'tracking-reconnect-display', title: 'Rejouer le suivi en direct',
     text: 'L’essai séparé confirme un blocage de la connexion privée de test.',
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',
     source: 'docs/release/evidence/native-socket-probe-2026-10-25/README.md'},
   { id: 'native-evidence-copy', title: 'Stabiliser la récupération des captures',
-    text: 'Des coupures intermittentes pendant la copie des captures restent à expliquer.',
-    next: 'Stabiliser la récupération des images, puis relancer la vérification complète.', source: 'docs/release/evidence/native-renderer-recheck-2026-10-25/README.md',
+    text: 'La copie réussit dans le nouvel essai complet. Les interruptions précédentes restent inexpliquées.',
+    next: 'Vérifier sa stabilité sur plusieurs essais et sur téléphone.', source: 'docs/release/evidence/native-renderer-recheck-2026-10-25/README.md',
     checksums: 'docs/release/evidence/native-renderer-recheck-2026-10-25/artifact-sha256.json' },
   { id: 'support-urgent-email', title: 'Activer les e-mails du support',
     text: 'L’alerte et le suivi passent depuis le téléphone, avec les données isolées. Aucun e-mail réel n’a été envoyé.',

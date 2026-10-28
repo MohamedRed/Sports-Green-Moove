@@ -8,8 +8,10 @@ import { directBookingProgress } from './direct-booking.mjs';
 import {requestSafetyProgress} from './request-safety.mjs';
 import {tripCancellationProgress} from './trip-cancellation-phone.mjs';
 import {dependencyPatchProgress, networkPreparationProgress} from './dependency-patch.mjs';
+import {nativeGateProgress} from './native-gate-recheck.mjs';
 
 export const currentProgress = [
+  nativeGateProgress,
   chatNetworkRecheckProgress,
   dependencyPatchProgress,
   networkPreparationProgress,

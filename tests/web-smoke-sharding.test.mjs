@@ -28,6 +28,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Test runtime compressed request parsing and size limits')
     .filter(step => step.name !== 'Verify committed publication artifacts')
     .filter(step => step.name !== 'Validate isolated network recovery recheck without promoting physical readiness')
+    .filter(step => step.name !== 'Validate full native gate and published media evidence boundaries')
     .filter(step => step.name !== 'Validate physical trip cancellation evidence and observer boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .map(step => JSON.stringify(step)).sort();
@@ -65,6 +66,9 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(committed.length, 1); assert.equal(committed[0].run, 'node --test tests/portal-committed-evidence.test.mjs');
   const network = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate isolated network recovery recheck without promoting physical readiness');
   assert.equal(network.length, 1); assert.equal(network[0].run, 'node --test tests/chat-network-recheck-evidence.test.mjs');
+  const gateEvidence = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate full native gate and published media evidence boundaries');
+  assert.equal(gateEvidence.length, 1);
+  assert.equal(gateEvidence[0].run, 'node --test tests/native-gate-recheck-evidence.test.mjs tests/published-media-seek-evidence.test.mjs');
 });
 
 test('service groups use separate runners and build their own unchanged backend before testing', () => {

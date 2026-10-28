@@ -39,7 +39,8 @@ test('request security and runtime disposal stay in both required CI workflows w
   assert(content.updates.some(row => row.source === requestSafetyFolder + '/README.md'));
   const update = content.updates.find(row => row.source === blocker.source);
   assert(update); assert.doesNotMatch(update.text, /body-parser|Firebase|npm|Express|SDK/);
-  const {recent} = partitionUpdates(content.updates);
-  assert(recent.includes(update));
+  const {recent, previous} = partitionUpdates(content.updates);
+  assert(previous.includes(update));
+  assert(recent.some(row => row.source === 'docs/release/evidence/native-gate-94e8e78-2026-10-28/README.md'));
   assert(recent.some(row => row.source === 'docs/release/evidence/direct-booking-confirmation-2026-10-28/README.md'));
 });

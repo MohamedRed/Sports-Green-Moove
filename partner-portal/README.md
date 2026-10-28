@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 28 October full native gate at 94e8e78 passes 187 ordinary cases
+(54 skips), forty replay cases in 37 groups, seventeen primary copies and the
+independent restoration. All enabled checks pass. Preserve the previous copy and
+emulator-start failures, the five explicit unrun scopes and open physical/release
+requirements. Publish a short simulation-only update without new captures or a
+claimed root-cause repair. Public audience and older media dates stay unchanged.
+The public support excerpt plays but its seek check fails, despite fully buffered
+bytes; retain the live probe separately from passing range-capable local preview
+checks. Keep that portal-only blocker visible. No alternate player, buffering
+workaround or access change is approved or implemented by this evidence update.
+
 The later 28 October isolated network rerun at 7417e22 passes its unchanged
 Wi-Fi/cellular/offline/retry/reply scenario, independent records, primary copy
 and device/runtime disposal. Publish a short text update only; preserve earlier
