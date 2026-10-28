@@ -7,8 +7,11 @@ import { teamRestartProgress } from './team-process-restart.mjs';
 import { directBookingProgress } from './direct-booking.mjs';
 import {requestSafetyProgress} from './request-safety.mjs';
 import {tripCancellationProgress} from './trip-cancellation-phone.mjs';
+import {dependencyPatchProgress, networkPreparationProgress} from './dependency-patch.mjs';
 
 export const currentProgress = [
+  dependencyPatchProgress,
+  networkPreparationProgress,
   tripCancellationProgress,
   requestSafetyProgress,
   directBookingProgress,

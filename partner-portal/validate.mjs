@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
+import {validateDependencyPatchEvidence} from '../scripts/qa/dependency-patch-evidence.mjs';
 import { validatePublicationEvidence } from './publication-evidence.mjs';
 import { validateChildInvitationEvidence } from '../scripts/qa/child-invitation-evidence.mjs';
 import { validateChildDiscoveryEvidence } from '../scripts/qa/child-contact-discovery-evidence.mjs';
@@ -75,6 +76,7 @@ export function validate(root) {
   validateFlowRecheck(root, content.flowRecheck);
   validateCurrentNativeBlocker(root, content);
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
+  validateDependencyPatchEvidence(root, content.dependencyPatchRecheck);
   validatePayoutAccountingEvidence(root, content);
   const nativeDirectory = dirname(content.nativeVerification.manifest);
   assert(nativeDirectory.startsWith('docs/release/evidence/'));

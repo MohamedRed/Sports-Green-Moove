@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The subsequent 28 October dependency checks reproduce twelve failures among
+eighteen installed-library cases; the unchanged cases pass after eight same-minor
+lock updates. All 501 backend units, three builds, 24 service groups, twelve
+controlled conflicts and seven streaming contracts pass. Preserve audit contexts:
+full root 38 to 33, with two critical tooling findings still present; Functions
+production-only sixteen to ten moderate findings. Publish concise text only and
+keep the overall security/release scope open. The baseline chat-network job fails
+before disconnect with cellular default and both networks present. Retain that
+separate failed marker/restoration; do not claim the dependency patch repairs it.
+Earlier phone captures and public audience stay unchanged.
+
 The later 28 October whole-trip cancellation trial completes twelve independent
 stored-state checkpoints on one physical phone. Three accounts inspect the
 driver's cancellation, the accepted child's two seats and a second parent's

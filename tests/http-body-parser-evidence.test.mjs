@@ -33,8 +33,10 @@ test('request security and runtime disposal stay in both required CI workflows w
       'tests/local-runtime-disposal.test.mjs']) assert(workflow.includes(path));
   }
   const blocker = content.blockers.find(row => row.id === 'dependency-security');
-  assert.equal(blocker.source, requestSafetyFolder + '/README.md');
-  assert.match(blocker.text, /en local/); assert.match(blocker.text, /D’autres alertes/);
+  assert.equal(content.requestSafetyRecheck.source, requestSafetyFolder + '/summary.json');
+  assert.equal(blocker.source, 'docs/release/evidence/dependency-patch-2026-10-28/README.md');
+  assert.match(blocker.text, /locaux/); assert.match(blocker.text, /autres alertes/i);
+  assert(content.updates.some(row => row.source === requestSafetyFolder + '/README.md'));
   const update = content.updates.find(row => row.source === blocker.source);
   assert(update); assert.doesNotMatch(update.text, /body-parser|Firebase|npm|Express|SDK/);
   const {recent} = partitionUpdates(content.updates);
