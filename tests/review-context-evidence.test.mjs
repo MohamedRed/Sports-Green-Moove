@@ -14,7 +14,7 @@ const report = () => ({summary: json('summary'), service: json('service'), units
 test('the local context proof stays separate from the later partial phone attempt and preserves earlier galleries', () => {
   assert.equal(validateReviewContextEvidence(root).nativeComponentCases, 9);
   const flow = content.flows.find(row => row.id === 'ratings');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.images.length, 35);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local'); assert.equal(flow.images.length, 38);
   assert.equal(flow.tour.length, 4); assert(flow.tour.every(row => row.image.startsWith('review-page-')));
   assert.match(flow.remaining, /reconnexion/); assert.match(flow.remaining, /coupure/);
   assert.equal(flow.images.filter(row => row.file.startsWith('review-history-')).length, 7);

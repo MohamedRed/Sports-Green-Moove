@@ -5,13 +5,15 @@ import {nativeGateRecheck} from './native-gate-recheck.mjs';
 import {publishedMediaReview} from './published-media-review.mjs';
 import {publishedMediaPlayback} from './published-media-playback.mjs';
 import {reviewHistoryRecheck} from './review-history.mjs';
-import {reviewHistoryPhone, reviewHistoryPhoneImages} from './review-history-phone.mjs';
-import {receivedRatingsRecheck, receivedRatingImages} from './received-ratings.mjs';
-import {reviewPaginationRecheck, reviewPaginationImages} from './review-pagination.mjs';
-import {reviewDisplayRecheck, reviewDisplayImage} from './review-display-recovery.mjs';
-import {reviewContextRecheck, reviewTripImages, reviewBaselineGateRecheck} from './review-trip-context.mjs';
-import {reviewContextPhoneAttempt, reviewContextPhoneImages} from './review-context-phone.mjs';
-import {reviewContextPhoneReplay, reviewReplayImages} from './review-context-replay.mjs';
+import {reviewHistoryPhone} from './review-history-phone.mjs';
+import {receivedRatingsRecheck} from './received-ratings.mjs';
+import {reviewPaginationRecheck} from './review-pagination.mjs';
+import {reviewDisplayRecheck} from './review-display-recovery.mjs';
+import {reviewContextRecheck, reviewBaselineGateRecheck} from './review-trip-context.mjs';
+import {reviewContextPhoneAttempt} from './review-context-phone.mjs';
+import {reviewContextPhoneReplay} from './review-context-replay.mjs';
+import {reviewSubmissionRecovery} from './review-submission-recovery.mjs';
+import {createRatingsFlow} from './ratings-flow.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { chatNetworkRecovery, chatNetworkRecheck } from './chat-network-recovery.mjs';
@@ -76,6 +78,7 @@ export const content = {
   reviewContextRecheck,
   reviewContextPhoneAttempt,
   reviewContextPhoneReplay,
+  reviewSubmissionRecovery,
   reviewBaselineGateRecheck,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
@@ -265,15 +268,7 @@ export const content = {
       images: [...['started', 'picked-up', 'dropped-off', 'stable', 'completed', 'parent-history'].map(phase => shot('ride-phone-' + phase, 'Trajet sur téléphone avec des données isolées, le 23 octobre')),
         shot('ride-delivered', 'Passagers déposés avant de terminer le trajet, en local'),
         shot('ride-history', 'Trajet terminé dans l’historique du parent, en local')], source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },
-    { id: 'ratings', title: 'Avis après trajet', status: 'partial', checkedAt: '2026-10-29',
-      latestEvidence: 'phone',
-      summary: 'Reconnaître le trajet, donner un avis et voir sa moyenne.',
-      verified: 'Deux comptes de test envoient chacun leur avis. Le parent retrouve les bons trajets et sa moyenne après fermeture complète.',
-      remaining: 'Revoir le trajet concerné après une coupure et une reconnexion réseau, puis sur iPhone.',
-      ui: { ...rideUi(['ride-review-ui']), checkedAt: '2026-10-15' },
-      local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.'], 'docs/release/evidence/local-2026-10-15/results.json', '2026-10-15'),
-      images: [...reviewReplayImages, ...reviewContextPhoneImages, ...reviewTripImages, reviewDisplayImage, ...reviewPaginationImages, ...receivedRatingImages, ...reviewHistoryPhoneImages, shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
-        shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/review-context-phone-replay-2026-10-29/README.md' },
+    createRatingsFlow(local, rideUi, shot),
     createImpactFlow(local, rideUi, shot),
     createSupportFlow(local, ui, shot),
     createProfileCityFlow(),

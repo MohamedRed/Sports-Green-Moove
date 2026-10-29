@@ -78,7 +78,9 @@ internal fun MessagesInboxRoute(uid: String, firebase: FirebaseGateway, gateway:
                     state.notice?.let { notice -> item { MessagesEmptyCard(notice) } }
                     if (state.reviews.items.isEmpty() && state.reviews.nextCursor == null) item { MessagesEmptyCard("Aucun avis en attente.") }
                     items(state.reviews.items, key = { it.id }) { review ->
-                        ReviewCard(review, state.submittingReviewId == review.id) { score ->
+                        ReviewCard(review, state.submittingReviewId == review.id,
+                            state.reviewFailure?.takeIf { it.reviewId == review.id }?.message,
+                            enabled = state.submittingReviewId == null) { score ->
                             scope.launch { state.submitReview(review.id, review.rideSessionId, review.ratedUserId, score) }
                         }
                     }

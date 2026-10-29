@@ -20,7 +20,7 @@ test('the eight-checkpoint phone replay closes auth/process recovery but not net
   const result = validateContextReplayEvidence(root, content.reviewContextPhoneReplay);
   assert.equal(result.gate.contextualComponentCases, 3);
   const flow = content.flows.find(row => row.id === 'ratings');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.images.length, 35); assert.equal(flow.tour.length, 4);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.images.length, 38); assert.equal(flow.tour.length, 4);
   assert(flow.tour.every(row => row.image.startsWith('review-page-')));
   assert.match(flow.remaining, /réseau/); assert.match(flow.remaining, /iPhone/);
   const current = flow.images.filter(row => row.file.startsWith('review-trip-replay-')); assert.equal(current.length, 7);

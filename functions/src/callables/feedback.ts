@@ -1,18 +1,12 @@
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
-import { rideParticipantUserIds } from "../domain/access.js";
 import { normalizeReportReviewNote, reportClosedAtValue, REPORT_STATUSES } from "../domain/reports.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth } from "../lib/https.js";
 import { parseCallableData } from "../lib/validation.js";
 import { queueUrgentSupportEmail } from "../services/supportUrgentQueue.js";
-
-type RideSessionDocument = {
-  driverUserId?: string;
-  participantUserIds?: string[];
-  status?: string;
-};
+import { submitRideRating } from "../services/ratingSubmission.js";
 
 export const submitRating = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
@@ -23,37 +17,7 @@ export const submitRating = onCall(async (request) => {
     comment: z.string().trim().max(500).optional(),
   });
   const data = parseCallableData(schema, request.data);
-  const rideSnap = await firestore.collection("rideSessions").doc(data.rideSessionId).get();
-  if (!rideSnap.exists) throw new HttpsError("not-found", "Ride session not found.");
-
-  const ride = rideSnap.data() as RideSessionDocument;
-  if (ride.status !== "completed") {
-    throw new HttpsError("failed-precondition", "Ratings can only be submitted after completed rides.");
-  }
-
-  const participants = rideParticipantUserIds(ride);
-  if (!participants.includes(uid) || !participants.includes(data.ratedUserId)) {
-    throw new HttpsError("permission-denied", "Only ride participants can rate each other.");
-  }
-  if (data.ratedUserId === uid) {
-    throw new HttpsError("failed-precondition", "Users cannot rate themselves.");
-  }
-
-  const ratingRef = firestore.collection("ratings").doc(`${data.rideSessionId}_${uid}_${data.ratedUserId}`);
-  if ((await ratingRef.get()).exists) {
-    throw new HttpsError("already-exists", "This rating was already submitted.");
-  }
-
-  await ratingRef.create({
-    rideSessionId: data.rideSessionId,
-    authorUserId: uid,
-    ratedUserId: data.ratedUserId,
-    score: data.score,
-    comment: data.comment ?? null,
-    createdAt: Timestamp.now(),
-  });
-
-  return { ratingId: ratingRef.id };
+  return submitRideRating(uid, data);
 });
 
 export const createReport = onCall(async (request) => {

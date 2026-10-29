@@ -9,11 +9,14 @@ import be.sportgreenmoove.app.services.ConversationGateway
 import be.sportgreenmoove.app.services.FirebaseGateway
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 internal class MessagesInboxState(uid: String, private val firebase: FirebaseGateway, private val gateway: ConversationGateway) {
+    private var closed = false
     val conversations = ConversationDirectoryState(gateway)
     val notificationReads = NotificationReadState(uid, firebase)
     val reviews = PendingReviewsState(uid, firebase)
@@ -27,6 +30,8 @@ internal class MessagesInboxState(uid: String, private val firebase: FirebaseGat
     var notice by mutableStateOf<String?>(null)
         private set
     var submittingReviewId by mutableStateOf<String?>(null)
+        private set
+    var reviewFailure by mutableStateOf<ReviewSubmissionFailure?>(null)
         private set
 
     suspend fun observe() {
@@ -46,16 +51,20 @@ internal class MessagesInboxState(uid: String, private val firebase: FirebaseGat
     }
 
     suspend fun submitReview(id: String, rideSessionId: String, ratedUserId: String, score: Int) {
-        if (submittingReviewId != null) return
+        if (closed || submittingReviewId != null) return
         submittingReviewId = id
-        error = null
+        reviewFailure = null
         notice = null
         try {
             firebase.submitRating(rideSessionId, ratedUserId, score)
+            currentCoroutineContext().ensureActive()
+            if (closed) return
             reviews.submitted(id)
             notice = "Avis envoyé."
         } catch (cancelled: CancellationException) { throw cancelled }
-        catch (failure: Exception) { error = UserFacingErrorPolicy.messageFor(failure) }
+        catch (failure: Exception) {
+            if (!closed) reviewFailure = ReviewSubmissionFailure(id, UserFacingErrorPolicy.messageFor(failure))
+        }
         finally { submittingReviewId = null }
     }
 
@@ -71,5 +80,10 @@ internal class MessagesInboxState(uid: String, private val firebase: FirebaseGat
         inbox = value
     }
 
-    fun close() { reviews.close(); notificationReads.clear() }
+    fun close() {
+        closed = true; reviews.close(); notificationReads.clear()
+        reviewFailure = null; submittingReviewId = null; notice = null
+    }
 }
+
+internal data class ReviewSubmissionFailure(val reviewId: String, val message: String)

@@ -428,6 +428,8 @@ on:
       - "tests/review-pagination-evidence.test.mjs"
       - "tests/review-display-evidence.test.mjs"
       - "tests/review-context-contract.test.mjs"
+      - "tests/review-recovery-contract.test.mjs"
+      - "tests/review-recovery-evidence.test.mjs"
       - "tests/review-context-evidence.test.mjs"
       - "tests/review-context-phone-checkpoints.test.mjs"
       - "tests/review-context-phone-evidence.test.mjs"
@@ -929,6 +931,8 @@ on:
       - "tests/review-pagination-evidence.test.mjs"
       - "tests/review-display-evidence.test.mjs"
       - "tests/review-context-contract.test.mjs"
+      - "tests/review-recovery-contract.test.mjs"
+      - "tests/review-recovery-evidence.test.mjs"
       - "tests/review-context-evidence.test.mjs"
       - "tests/review-context-phone-checkpoints.test.mjs"
       - "tests/review-context-phone-evidence.test.mjs"
@@ -1155,6 +1159,11 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/review-context.json
         run: npm run test:review-context && node --test tests/review-context-contract.test.mjs tests/review-context-evidence.test.mjs tests/review-context-phone-checkpoints.test.mjs tests/review-context-phone-evidence.test.mjs tests/review-context-replay-evidence.test.mjs
+
+      - name: Test immutable rating retries after connection loss
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/review-recovery.json
+        run: npm run test:review-recovery && node --test tests/review-recovery-contract.test.mjs tests/review-recovery-evidence.test.mjs
 
       - name: Test runtime multipart parser against malformed inputs
         run: node --test tests/multipart-security.test.mjs
@@ -1393,6 +1402,14 @@ jobs:
         with:
           name: review-context-results
           path: ${{ runner.temp }}/review-context.json
+          if-no-files-found: ignore
+
+      - name: Retain rating retry results and local diagnostics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: review-recovery-results
+          path: ${{ runner.temp }}/review-recovery.json*
           if-no-files-found: ignore
 
 

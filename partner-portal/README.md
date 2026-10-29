@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The next 29 October review-submission recovery check reproduces the global-error
+screen hiding the selected trip, then passes eleven isolated native component
+cases and eight authenticated loopback fault groups. Preserve exact rating
+identity, immutable score/comment and original timestamp on identical retries;
+changed retries remain refused. Publish only the three reviewed original component
+captures as simulation evidence, retaining all 35 earlier images and the older
+four-step phone tour. The average/count phone proof is historical, not a new
+network-loss run. Keep physical network/iOS and all release gaps open. The da317d9
+full native gate fails in chat-network recovery; its separate remote-stop lane
+fails before Home. This change does not repair either CI failure. Public access
+and technology-free, concise French copy remain unchanged.
+
 The later 29 October contextual review replay completes all eight independent
 phone checkpoints. The driver reconnects; the parent distinguishes the two trip
 dates, loads 20 then 32 requests, sends the exact later review and retains 31.

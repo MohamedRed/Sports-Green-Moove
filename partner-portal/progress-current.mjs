@@ -18,8 +18,10 @@ import {reviewDisplayProgress, sessionCurrentProgress} from './review-display-re
 import {reviewTripProgress, reviewBaselineGateProgress} from './review-trip-context.mjs';
 import {reviewContextPhoneProgress} from './review-context-phone.mjs';
 import {reviewReplayProgress, reviewContextGateProgress} from './review-context-replay.mjs';
+import {reviewRecoveryProgress} from './review-submission-recovery.mjs';
 
 export const currentProgress = [
+  reviewRecoveryProgress,
   reviewReplayProgress,
   reviewContextGateProgress,
   reviewContextPhoneProgress,

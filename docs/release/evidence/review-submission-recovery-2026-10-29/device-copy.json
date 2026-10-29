@@ -1,0 +1,15 @@
+{
+  "serial": "emulator-5580",
+  "observedAt": "2026-10-29T23:26:07.947Z",
+  "installedApkHashes": {
+    "be.sportgreenmoove.app.local": "0c1e0ffc5078914dc4ce3612e8d7c2cee495c9cc8001e196db3451479d71c40d",
+    "be.sportgreenmoove.app.local.test": "3947f0aaa246ba3a3a884c44603c1c7a481e728c9df7cf78c7336a0df5d84d38"
+  },
+  "installedBytesVerified": true,
+  "captures": {
+    "review-submission-network-failed.png": "e1884930d65eba232aeb82fd81b773babf34c59a677b4c0bfc0ef9ce9465243a",
+    "review-submission-network-recovered.png": "79e19a82abd2436cabd122c89a28936228f8f0de00fa61d46b971321cf903b74",
+    "review-submission-network-large-text.png": "b62489a0fb7b2bbe074e6338153ed2c91af271bc8f0831682d53eb4c7d443dca"
+  },
+  "scope": "isolated-native-component-captures-not-physical-phone"
+}

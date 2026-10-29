@@ -18,7 +18,7 @@ import be.sportgreenmoove.app.data.InboxReviewPrompt
 import be.sportgreenmoove.app.design.*
 
 @Composable
-fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, onRate: (Int) -> Unit) {
+fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, error: String? = null, enabled: Boolean = true, onRate: (Int) -> Unit) {
     Column(
         modifier = Modifier.fillMaxWidth().sgmTestTag(SgmTestTags.RatingPromptAction)
             .clip(RoundedCornerShape(SgmRadius.LG)).background(Sgm.colors.bgCard)
@@ -42,13 +42,17 @@ fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, onRate: (Int) -> 
             }
         }
         Text(review.prompt, style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
+        error?.let { message ->
+            Text(message, style = SgmType.BodySM.copy(color = SgmColor.Red),
+                modifier = Modifier.sgmTestTag("review.submission.error"))
+        }
         Text(if (submitting) "Envoi de l'avis..." else "Touchez une note.",
             style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold))
         Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             repeat(5) { index ->
                 Text("★", style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 26.sp),
                     modifier = Modifier.sgmTestTag("${SgmTestTags.RatingPromptAction}.${index + 1}")
-                        .clickable(enabled = !submitting) { onRate(index + 1) })
+                        .clickable(enabled = enabled && !submitting) { onRate(index + 1) })
             }
         }
     }

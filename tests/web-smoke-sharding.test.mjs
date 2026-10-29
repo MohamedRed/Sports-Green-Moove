@@ -33,6 +33,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Test private received rating summaries')
     .filter(step => step.name !== 'Test pending review pagination across completed ride history')
     .filter(step => step.name !== 'Test authenticated pending review trip context')
+    .filter(step => step.name !== 'Test immutable rating retries after connection loss')
     .filter(step => step.name !== 'Validate physical trip cancellation evidence and observer boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .map(step => JSON.stringify(step)).sort();
@@ -111,7 +112,8 @@ test('original and added evidence uploads follow their owning tests', () => {
       if (step.with.name === 'ledger-history-services') assert(steps.some(row => row.env?.SGM_LOCAL_FLOW_OUTPUT?.endsWith('/ledger-history-services.json')));
     }
   }
-  assert.equal(names.length, 15); assert.equal(new Set(names).size, 15);
+  assert.equal(names.length, 16); assert.equal(new Set(names).size, 16);
+  assert(names.includes('review-recovery-results'));
   assert(names.includes('review-context-results'));
   assert(names.includes('received-rating-summary-results'));
   assert(names.includes('review-history-results'));

@@ -17,6 +17,7 @@
     "test:received-ratings": "node scripts/qa/run-local-received-ratings.mjs",
     "test:review-pagination": "node scripts/qa/run-local-review-pagination.mjs",
     "test:review-context": "node scripts/qa/run-local-review-context.mjs",
+    "test:review-recovery": "node scripts/qa/run-local-review-recovery.mjs",
     "test:local-ui-shutdown": "node scripts/qa/check-local-ui-shutdown.mjs",
     "test:local-admin-lifecycle": "node scripts/qa/run-local-admin-lifecycle.mjs",
     "test:trip-contention": "node scripts/qa/run-local-trip-contention.mjs",
