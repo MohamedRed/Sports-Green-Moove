@@ -17,8 +17,10 @@ import {reviewPaginationCaptures} from './review-pagination.mjs';
 import {reviewDisplayCaptures} from './review-display-recovery.mjs';
 import {reviewTripCaptures} from './review-trip-context.mjs';
 import {reviewContextPhoneCaptures} from './review-context-phone.mjs';
+import {reviewReplayCaptures} from './review-context-replay.mjs';
 
 export const captures = {
+  ...reviewReplayCaptures,
   ...reviewContextPhoneCaptures,
   ...receivedRatingCaptures,
   ...reviewPaginationCaptures,

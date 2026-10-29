@@ -11,6 +11,7 @@ import {validateReviewDisplayEvidence} from '../scripts/qa/review-display-eviden
 import {validateReviewContextEvidence} from '../scripts/qa/review-context-evidence.mjs';
 import {validateReviewBaselineGate} from '../scripts/qa/review-baseline-gate-evidence.mjs';
 import {validateContextPhoneAttempt} from '../scripts/qa/review-context-phone-evidence.mjs';
+import {validateContextReplayEvidence} from '../scripts/qa/review-context-replay-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -26,4 +27,5 @@ export function validateCurrentChecks(root, content) {
   validateReviewContextEvidence(root, content.reviewContextRecheck);
   validateReviewBaselineGate(root, content.reviewBaselineGateRecheck);
   validateContextPhoneAttempt(root, content.reviewContextPhoneAttempt);
+  validateContextReplayEvidence(root, content.reviewContextPhoneReplay);
 }

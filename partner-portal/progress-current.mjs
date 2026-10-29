@@ -17,8 +17,11 @@ import {reviewPaginationProgress} from './review-pagination.mjs';
 import {reviewDisplayProgress, sessionCurrentProgress} from './review-display-recovery.mjs';
 import {reviewTripProgress, reviewBaselineGateProgress} from './review-trip-context.mjs';
 import {reviewContextPhoneProgress} from './review-context-phone.mjs';
+import {reviewReplayProgress, reviewContextGateProgress} from './review-context-replay.mjs';
 
 export const currentProgress = [
+  reviewReplayProgress,
+  reviewContextGateProgress,
   reviewContextPhoneProgress,
   reviewTripProgress,
   reviewBaselineGateProgress,

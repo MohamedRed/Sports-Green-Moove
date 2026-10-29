@@ -2,6 +2,19 @@
 
 ## Current Publication Policy
 
+The later 29 October contextual review replay completes all eight independent
+phone checkpoints. The driver reconnects; the parent distinguishes the two trip
+dates, loads 20 then 32 requests, sends the exact later review and retains 31.
+Native Force stop is corroborated by PID/no-process/new-PID observations; the same
+parent, older trip, legacy request, 31-request continuation and mean/count return.
+Publish seven reviewed original session captures with concise test-account copy;
+keep all earlier galleries and the older four-step tour. All enabled native/PR
+checks pass at matching app source 2264018, including 196 ordinary passes/54 skips,
+forty replays and seventeen primary copies. Remove only the completed full-gate
+blocker. Keep real network loss, iOS, actual legacy-data audit, tracking, operational
+and release requirements open. Preserve earlier failed/partial attempts and the
+unchanged public audience; no production, payments or maps were exercised.
+
 The later 29 October physical contextual-review attempt passes two of eight
 independent checkpoints: the driver sees the exact trip name/date and submits
 five stars. Publish its two reviewed original session-window captures and one

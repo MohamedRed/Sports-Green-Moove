@@ -1,0 +1,15 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalAppFlowTest:.
+be.sportgreenmoove.app.ui.LocalDriverFlowTest:.
+be.sportgreenmoove.app.ui.LocalLandscapeLoginTest:.
+be.sportgreenmoove.app.ui.LocalUiRegressionTest:..
+be.sportgreenmoove.app.ui.SearchSessionFlowTest:..
+be.sportgreenmoove.app.ui.SearchCriteriaFlowTest:..
+
+Time: 49.386
+
+OK (9 tests)
+
+

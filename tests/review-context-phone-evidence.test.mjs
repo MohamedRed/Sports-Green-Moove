@@ -12,7 +12,7 @@ test('two actual phone checkpoints remain partial and preserve all earlier galle
   const proof = validateContextPhoneAttempt(root, content.reviewContextPhoneAttempt);
   assert.equal(proof.twoAccountReplayCompleted, false);
   const flow = content.flows.find(row => row.id === 'ratings');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.images.length, 28);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.images.length, 35);
   assert.equal(flow.tour.length, 4); assert(flow.tour.every(row => row.image.startsWith('review-page-')));
   assert.match(flow.remaining, /reconnexion/); assert.match(flow.remaining, /coupure/);
   for (const name of ['driver-context', 'driver-rated']) {

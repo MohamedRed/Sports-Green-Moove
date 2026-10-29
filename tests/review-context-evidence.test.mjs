@@ -6,6 +6,7 @@ import test from 'node:test';
 import {content, captures} from '../partner-portal/content.mjs';
 import {assertReviewContextEvidence, reviewContextFolder, reviewContextCaptures, validateReviewContextEvidence} from '../scripts/qa/review-context-evidence.mjs';
 import {validateReviewBaselineGate} from '../scripts/qa/review-baseline-gate-evidence.mjs';
+import {validateContextReplayEvidence} from '../scripts/qa/review-context-replay-evidence.mjs';
 
 const root = resolve(import.meta.dirname, '..'), base = resolve(root, reviewContextFolder);
 const json = file => JSON.parse(readFileSync(resolve(base, file + '.json')));
@@ -13,18 +14,19 @@ const report = () => ({summary: json('summary'), service: json('service'), units
 test('the local context proof stays separate from the later partial phone attempt and preserves earlier galleries', () => {
   assert.equal(validateReviewContextEvidence(root).nativeComponentCases, 9);
   const flow = content.flows.find(row => row.id === 'ratings');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.images.length, 28);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.images.length, 35);
   assert.equal(flow.tour.length, 4); assert(flow.tour.every(row => row.image.startsWith('review-page-')));
   assert.match(flow.remaining, /reconnexion/); assert.match(flow.remaining, /coupure/);
   assert.equal(flow.images.filter(row => row.file.startsWith('review-history-')).length, 7);
   assert.equal(flow.images.filter(row => row.file.startsWith('received-rating-')).length, 5);
   for (const name of reviewContextCaptures) assert.equal(captures['review-trip-' + name], reviewContextFolder + 'review-trip-context-' + name + '.png');
 });
-test('the complete earlier gate is retained without promoting the later context implementation', () => {
+test('the earlier gate stays distinct from the later context implementation own matching gate', () => {
   const baseline = validateReviewBaselineGate(root, content.reviewBaselineGateRecheck);
   assert.equal(baseline.nativeGatePassed, true); assert.equal(baseline.newReviewContextCovered, false);
   assert.equal(json('summary').fullNativeGatePassedForThisImplementation, false);
-  assert(content.blockers.some(row => row.id === 'native-primary-capture'));
+  assert.equal(validateContextReplayEvidence(root).gate.contextualComponentCases, 3);
+  assert(!content.blockers.some(row => row.id === 'native-primary-capture'));
 });
 for (const [name, mutate] of [
   ['physical-phone promotion', row => {row.summary.physicalDeviceTested = true;}],

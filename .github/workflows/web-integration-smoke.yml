@@ -431,6 +431,8 @@ on:
       - "tests/review-context-evidence.test.mjs"
       - "tests/review-context-phone-checkpoints.test.mjs"
       - "tests/review-context-phone-evidence.test.mjs"
+      - "tests/review-context-replay-evidence.test.mjs"
+      - "scripts/qa/*review-context-replay*.mjs"
       - "scripts/qa/*review-context-phone*.mjs"
       - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
@@ -930,6 +932,8 @@ on:
       - "tests/review-context-evidence.test.mjs"
       - "tests/review-context-phone-checkpoints.test.mjs"
       - "tests/review-context-phone-evidence.test.mjs"
+      - "tests/review-context-replay-evidence.test.mjs"
+      - "scripts/qa/*review-context-replay*.mjs"
       - "scripts/qa/*review-context-phone*.mjs"
       - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
@@ -1150,7 +1154,7 @@ jobs:
       - name: Test authenticated pending review trip context
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/review-context.json
-        run: npm run test:review-context && node --test tests/review-context-contract.test.mjs tests/review-context-evidence.test.mjs tests/review-context-phone-checkpoints.test.mjs tests/review-context-phone-evidence.test.mjs
+        run: npm run test:review-context && node --test tests/review-context-contract.test.mjs tests/review-context-evidence.test.mjs tests/review-context-phone-checkpoints.test.mjs tests/review-context-phone-evidence.test.mjs tests/review-context-replay-evidence.test.mjs
 
       - name: Test runtime multipart parser against malformed inputs
         run: node --test tests/multipart-security.test.mjs

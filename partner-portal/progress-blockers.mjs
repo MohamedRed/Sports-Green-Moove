@@ -1,12 +1,9 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
-  {id: 'review-trip-context', title: 'Reconnaître le trajet à noter',
-    text: 'Le conducteur voit le nom et la date sur téléphone, puis envoie son avis.',
-    next: 'Reprendre la reconnexion, le compte parent, les anciens trajets et la coupure.', source: 'docs/release/evidence/review-context-phone-attempt-2026-10-29/README.md'},
-  {id: 'native-primary-capture', title: 'Terminer une série complète de tests',
-    text: 'La série précédente passe. Le dernier essai s’arrête avant la conversation d’équipe.',
-    next: 'Terminer la série complète avec les nouveaux détails d’avis.', source: 'docs/release/evidence/review-context-phone-attempt-2026-10-29/README.md'},
+  {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
+    text: 'Les noms, les dates et la reprise après fermeture complète passent sur téléphone.',
+    next: 'Vérifier une vraie coupure réseau et le retour de la connexion, puis l’iPhone.', source: 'docs/release/evidence/review-context-phone-replay-2026-10-29/README.md'},
   {id: 'tracking-reconnect-display', title: 'Rejouer le suivi en direct',
     text: 'L’essai séparé confirme un blocage de la connexion privée de test.',
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',
