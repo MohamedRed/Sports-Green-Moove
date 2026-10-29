@@ -10,6 +10,7 @@ import {validateReviewPaginationEvidence} from '../scripts/qa/review-pagination-
 import {validateReviewDisplayEvidence} from '../scripts/qa/review-display-evidence.mjs';
 import {validateReviewContextEvidence} from '../scripts/qa/review-context-evidence.mjs';
 import {validateReviewBaselineGate} from '../scripts/qa/review-baseline-gate-evidence.mjs';
+import {validateContextPhoneAttempt} from '../scripts/qa/review-context-phone-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -24,4 +25,5 @@ export function validateCurrentChecks(root, content) {
   validateReviewDisplayEvidence(root, content.reviewDisplayRecheck);
   validateReviewContextEvidence(root, content.reviewContextRecheck);
   validateReviewBaselineGate(root, content.reviewBaselineGateRecheck);
+  validateContextPhoneAttempt(root, content.reviewContextPhoneAttempt);
 }

@@ -10,12 +10,12 @@ import {validateReviewBaselineGate} from '../scripts/qa/review-baseline-gate-evi
 const root = resolve(import.meta.dirname, '..'), base = resolve(root, reviewContextFolder);
 const json = file => JSON.parse(readFileSync(resolve(base, file + '.json')));
 const report = () => ({summary: json('summary'), service: json('service'), units: json('android-unit-counts'), device: json('device-copy'), disposal: json('disposal')});
-test('the local context proof preserves every earlier phone gallery and keeps phone/integration work open', () => {
+test('the local context proof stays separate from the later partial phone attempt and preserves earlier galleries', () => {
   assert.equal(validateReviewContextEvidence(root).nativeComponentCases, 9);
   const flow = content.flows.find(row => row.id === 'ratings');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local'); assert.equal(flow.images.length, 26);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.images.length, 28);
   assert.equal(flow.tour.length, 4); assert(flow.tour.every(row => row.image.startsWith('review-page-')));
-  assert.match(flow.remaining, /téléphone/); assert.match(flow.remaining, /coupure/);
+  assert.match(flow.remaining, /reconnexion/); assert.match(flow.remaining, /coupure/);
   assert.equal(flow.images.filter(row => row.file.startsWith('review-history-')).length, 7);
   assert.equal(flow.images.filter(row => row.file.startsWith('received-rating-')).length, 5);
   for (const name of reviewContextCaptures) assert.equal(captures['review-trip-' + name], reviewContextFolder + 'review-trip-context-' + name + '.png');

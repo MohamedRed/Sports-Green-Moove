@@ -12,8 +12,8 @@ test('completed replay and actual phone actions retain distinct honest scope', (
   for (const id of ['ride-lifecycle', 'ratings']) {
     const flow = content.flows.find(item => item.id === id);
     assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, id === 'ratings' ? content.reviewHistoryPhone.checkedAt : report.checkedAt);
-    assert.equal(flow.latestEvidence, id === 'ratings' ? 'local' : 'phone'); assert.equal(flow.ui.checkedAt, '2026-10-15');
-    if (id === 'ratings') assert.equal(content.reviewContextRecheck.checkedAt, flow.checkedAt);
+    assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.ui.checkedAt, '2026-10-15');
+    if (id === 'ratings') assert.equal(content.reviewContextPhoneAttempt.checkedAt, flow.checkedAt);
     assert.equal(flow.local.checkedAt, '2026-10-15');
     const original = flow.images.filter(image => image.file.startsWith('ride-phone-'));
     assert.equal(original.length, id === 'ratings' ? 2 : 6);

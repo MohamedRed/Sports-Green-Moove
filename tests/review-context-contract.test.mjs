@@ -29,12 +29,15 @@ test('both native parsers require explicit available/unavailable details and bot
   assert.match(text(ios + 'MessagesScreen.swift'), /trip.departureLabel/);
   assert.match(text('scripts/check-ios-native-plan.sh'), /ReviewTripContextWire.swift/);
 });
-test('smoke runs authenticated context checks and watches both new contracts on pull requests and pushes', () => {
+test('smoke runs authenticated context and phone-checkpoint checks on pull requests and pushes', () => {
   const source = text('.github/workflows/web-integration-smoke.yml'), workflow = parse(source);
-  for (const file of ['review-context-contract.test.mjs', 'review-context-evidence.test.mjs'])
+  for (const file of ['review-context-contract.test.mjs', 'review-context-evidence.test.mjs',
+    'review-context-phone-checkpoints.test.mjs', 'review-context-phone-evidence.test.mjs'])
     assert.equal(source.split('"tests/' + file + '"').length - 1, 2);
   const step = workflow.jobs.smoke.steps.find(row => row.name === 'Test authenticated pending review trip context');
   assert.match(step.run, /npm run test:review-context/);
+  assert.match(step.run, /tests\/review-context-phone-checkpoints.test.mjs/);
+  assert.equal(source.split('"scripts/qa/*review-context-phone*.mjs"').length - 1, 2);
   assert.equal(step.env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/review-context.json');
   const upload = workflow.jobs.smoke.steps.find(row => row.with?.name === 'review-context-results');
   assert.equal(upload.if, 'always()'); assert.equal(upload.with.path, '${{ runner.temp }}/review-context.json');

@@ -10,6 +10,7 @@ import {receivedRatingsRecheck, receivedRatingImages} from './received-ratings.m
 import {reviewPaginationRecheck, reviewPaginationImages} from './review-pagination.mjs';
 import {reviewDisplayRecheck, reviewDisplayImage} from './review-display-recovery.mjs';
 import {reviewContextRecheck, reviewTripImages, reviewBaselineGateRecheck} from './review-trip-context.mjs';
+import {reviewContextPhoneAttempt, reviewContextPhoneImages} from './review-context-phone.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { chatNetworkRecovery, chatNetworkRecheck } from './chat-network-recovery.mjs';
@@ -72,6 +73,7 @@ export const content = {
   reviewPaginationRecheck,
   reviewDisplayRecheck,
   reviewContextRecheck,
+  reviewContextPhoneAttempt,
   reviewBaselineGateRecheck,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
@@ -262,14 +264,14 @@ export const content = {
         shot('ride-delivered', 'Passagers déposés avant de terminer le trajet, en local'),
         shot('ride-history', 'Trajet terminé dans l’historique du parent, en local')], source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },
     { id: 'ratings', title: 'Avis après trajet', status: 'partial', checkedAt: '2026-10-29',
-      latestEvidence: 'local',
+      latestEvidence: 'phone',
       summary: 'Reconnaître le trajet, donner un avis et voir sa moyenne.',
-      verified: 'Sur téléphone, conducteur et parent notent le 31e trajet. En local, le nom et la date distinguent les trajets ; un avis ne retire que la bonne demande.',
-      remaining: 'Vérifier le trajet concerné sur téléphone, les anciens détails et la reprise après une coupure.',
+      verified: 'Nom et date affichés, puis avis du conducteur enregistré sur téléphone. Les essais précédents couvrent aussi le parent et la suite de la liste.',
+      remaining: 'Revoir le trajet concerné après reconnexion, les anciens détails et la reprise après une coupure.',
       ui: { ...rideUi(['ride-review-ui']), checkedAt: '2026-10-15' },
       local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.'], 'docs/release/evidence/local-2026-10-15/results.json', '2026-10-15'),
-      images: [...reviewTripImages, reviewDisplayImage, ...reviewPaginationImages, ...receivedRatingImages, ...reviewHistoryPhoneImages, shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
-        shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/review-trip-context-2026-10-29/README.md' },
+      images: [...reviewContextPhoneImages, ...reviewTripImages, reviewDisplayImage, ...reviewPaginationImages, ...receivedRatingImages, ...reviewHistoryPhoneImages, shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
+        shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/review-context-phone-attempt-2026-10-29/README.md' },
     createImpactFlow(local, rideUi, shot),
     createSupportFlow(local, ui, shot),
     createProfileCityFlow(),

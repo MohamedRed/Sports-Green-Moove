@@ -16,8 +16,10 @@ import {receivedRatingProgress, latestNativeFailureProgress} from './received-ra
 import {reviewPaginationProgress} from './review-pagination.mjs';
 import {reviewDisplayProgress, sessionCurrentProgress} from './review-display-recovery.mjs';
 import {reviewTripProgress, reviewBaselineGateProgress} from './review-trip-context.mjs';
+import {reviewContextPhoneProgress} from './review-context-phone.mjs';
 
 export const currentProgress = [
+  reviewContextPhoneProgress,
   reviewTripProgress,
   reviewBaselineGateProgress,
   reviewDisplayProgress,

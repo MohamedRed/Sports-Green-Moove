@@ -1,11 +1,18 @@
 import assert from 'node:assert/strict';
 import { createDecipheriv, createHash, generateKeyPairSync, privateDecrypt, constants } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
 import test from 'node:test';
 import { rotateKey, rotationSettings } from '../scripts/security/rotate-browserstack-key.mjs';
 
 const { publicKey, privateKey } = generateKeyPairSync('rsa', { modulusLength: 3072 });
+const rotationEvidenceFolder = 'docs/release/evidence/browserstack-key-rotation-2026-10-21/';
+function trackedRotationEvidence(cwd) {
+  return new Set(execFileSync('git', ['ls-files', '-z', '--', rotationEvidenceFolder], {cwd, encoding: 'utf8'})
+    .split('\0').filter(Boolean));
+}
 const env = { BROWSERSTACK_USERNAME: 'fictional-qa', BROWSERSTACK_ACCESS_KEY: 'fictional-old-key',
   ROTATION_PUBLIC_KEY: publicKey.export({ type: 'spki', format: 'pem' }),
   ROTATION_REQUEST_ID: '12345678-1234-1234-1234-123456789abc',
@@ -127,9 +134,7 @@ test('the later replacement rejects the exposed key, updates the secret and reta
   assert.equal(apk.sourceCommit, receipt.sha); assert.equal(apk.deviceSessionStarted, false);
   assert.equal(apk.acceptedFlowEvidence, false); assert.equal(apk.buildSucceeded, true);
   const hashes = JSON.parse(readFileSync(new URL('artifact-sha256.json', base)));
-  const tracked = new Set(execFileSync('git', ['ls-files', '-z'], {
-    cwd: new URL('../', import.meta.url), encoding: 'utf8',
-  }).split('\0'));
+  const tracked = trackedRotationEvidence(new URL('../', import.meta.url));
   for (const [file, digest] of Object.entries(hashes)) {
     assert(tracked.has('docs/release/evidence/browserstack-key-rotation-2026-10-21/' + file), `Uncommitted evidence file: ${file}`);
     assert(!/[\\/]/.test(file)); assert.equal(createHash('sha256').update(readFileSync(new URL(file, base))).digest('hex'), digest);
@@ -137,4 +142,20 @@ test('the later replacement rejects the exposed key, updates the secret and reta
   const guide = readFileSync(new URL('../docs/release/browserstack-isolated-phone-test.md', import.meta.url), 'utf8');
   assert(guide.includes('do not\nbootstrap an unrestricted connection'));
   assert(guide.includes('never emit a raw accessibility tree'));
+});
+
+test('rotation evidence membership is independent of an unrelated repository inventory larger than the process buffer', t => {
+  const root = mkdtempSync(resolve(tmpdir(), 'sgm-rotation-index-'));
+  t.after(() => rmSync(root, {recursive: true, force: true}));
+  execFileSync('git', ['init', '--quiet'], {cwd: root});
+  const blob = execFileSync('git', ['hash-object', '-w', '--stdin'], {cwd: root, input: '', encoding: 'utf8'}).trim();
+  const expected = rotationEvidenceFolder + 'receipt.json';
+  const unrelated = Array.from({length: 9000}, (_, index) => 'unrelated/evidence/' + index + '-' + 'x'.repeat(140));
+  execFileSync('git', ['update-index', '--index-info'], {cwd: root,
+    input: [...unrelated, expected].map(file => `100644 ${blob}\t${file}\n`).join('')});
+  assert.throws(() => execFileSync('git', ['ls-files', '-z'], {cwd: root, encoding: 'utf8'}), error => error.code === 'ENOBUFS');
+  const tracked = trackedRotationEvidence(root);
+  assert.deepEqual([...tracked], [expected]);
+  assert(!tracked.has(rotationEvidenceFolder + 'uncommitted.json'));
+  assert(!tracked.has(unrelated[0]));
 });

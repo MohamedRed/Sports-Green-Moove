@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The later 29 October physical contextual-review attempt passes two of eight
+independent checkpoints: the driver sees the exact trip name/date and submits
+five stars. Publish its two reviewed original session-window captures and one
+concise partial-result update. Remote reconnection input failed; do not promote
+parent context, legacy UI, interruption or full replay. Preserve prior galleries,
+the four-step pagination tour, unchanged public audience and all original failed
+attempts. All 2,721 broad local cases pass after owned runtime disposal; the first
+run has five occupied-port failures. The web inventory buffer defect is reproduced
+and scoped, with the same evidence assertions and a large-index regression. The
+separate current-head team-conversation connection failure is not fixed by that
+change. Full current CI and broader release proof remain open.
+
 The terminal 7e0e22e baseline now passes the full enabled gate: 193 ordinary
 passes/54 skips, forty replay cases in 37 groups, all seventeen primary copies,
 verified device restoration and eleven focused lanes. All 29 PR entries are
