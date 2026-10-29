@@ -29,6 +29,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Verify committed publication artifacts')
     .filter(step => step.name !== 'Validate isolated network recovery recheck without promoting physical readiness')
     .filter(step => step.name !== 'Validate full native gate and published media evidence boundaries')
+    .filter(step => step.name !== 'Test completed review history beyond the legacy limit')
     .filter(step => step.name !== 'Validate physical trip cancellation evidence and observer boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .map(step => JSON.stringify(step)).sort();
@@ -69,6 +70,10 @@ test('all 111 original workload steps retain their exact commands, environments,
   const gateEvidence = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate full native gate and published media evidence boundaries');
   assert.equal(gateEvidence.length, 1);
   assert.equal(gateEvidence[0].run, 'node --test tests/native-gate-recheck-evidence.test.mjs tests/published-media-seek-evidence.test.mjs tests/short-video-loading.test.mjs tests/short-video-lifecycle.test.mjs tests/buffered-media-evidence.test.mjs');
+  const reviews = workflow.jobs.smoke.steps.filter(step => step.name === 'Test completed review history beyond the legacy limit');
+  assert.equal(reviews.length, 1);
+  assert.equal(reviews[0].run, 'npm run test:review-history && node --test tests/review-history-evidence.test.mjs');
+  assert.equal(reviews[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/review-history.json');
 });
 
 test('service groups use separate runners and build their own unchanged backend before testing', () => {
@@ -88,7 +93,7 @@ test('service groups use separate runners and build their own unchanged backend 
   }
 });
 
-test('all nine original, discovery and invitation uploads follow their owning tests', () => {
+test('original and added evidence uploads follow their owning tests', () => {
   const names = [];
   for (const key of ['smoke', 'people-safety']) {
     const steps = workflow.jobs[key].steps;
@@ -103,7 +108,8 @@ test('all nine original, discovery and invitation uploads follow their owning te
       if (step.with.name === 'ledger-history-services') assert(steps.some(row => row.env?.SGM_LOCAL_FLOW_OUTPUT?.endsWith('/ledger-history-services.json')));
     }
   }
-  assert.equal(names.length, 11); assert.equal(new Set(names).size, 11);
+  assert.equal(names.length, 12); assert.equal(new Set(names).size, 12);
+  assert(names.includes('review-history-results'));
   assert(names.includes('child-contact-discovery-results'));
   assert(names.includes('child-invitation-results'));
 });

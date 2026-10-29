@@ -3,6 +3,7 @@ import {validateDependencyPatchEvidence} from '../scripts/qa/dependency-patch-ev
 import {validateNativeGateRecheck} from '../scripts/qa/native-gate-recheck-evidence.mjs';
 import {validatePublishedMediaSeek} from '../scripts/qa/published-media-seek-evidence.mjs';
 import {validateBufferedMediaEvidence} from '../scripts/qa/buffered-media-evidence.mjs';
+import {validateReviewHistoryEvidence} from '../scripts/qa/review-history-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -10,4 +11,5 @@ export function validateCurrentChecks(root, content) {
   validateNativeGateRecheck(root, content.nativeGateRecheck);
   validatePublishedMediaSeek(root, content.publishedMediaReview);
   validateBufferedMediaEvidence(root, content.publishedMediaPlayback);
+  validateReviewHistoryEvidence(root, content.reviewHistoryRecheck);
 }

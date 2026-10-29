@@ -125,6 +125,16 @@ directory pagination or a group-chat implementation.
 
 Android conversation discovery reads through `listChatConversations`, backed by private `chatInboxes` entries rather than the latest 50 messages. The reservation picker uses `listChatBookingOptions`; an empty conversation is not persisted until a real send. `getInbox` remains compatible for notifications, bounded legacy previews and pending `ratings` prompts derived from completed ride sessions. iOS still uses that legacy contract. See [conversation rollout](../release/chat-inbox-rollout.md) for summary fields, historical preparation and coordinated deployment requirements.
 
+For every completed ride loaded by `getInbox`, pending-review suppression reads
+the exact immutable rating document for that ride, authenticated author and target.
+It does not scan the author's first 100 ratings. Both existing ride queries remain
+bounded to 30 rows and are de-duplicated before at most 60 point reads; no candidate
+means no rating read. Notifications and legacy chat queries are unchanged. The
+29 October authenticated regression covers 104 submitted ratings across 26 rides,
+a fresh unrated ride, refresh/replay and account isolation. It does not prove
+discovery beyond the existing ride windows, received-rating display, phone UI or
+production deployment. See `../release/evidence/review-history-2026-10-29/README.md`.
+
 `guardianVerifications` and `guardianVerificationEvents` are private, server-written
 records for a club/child/parent tuple and immutable transition history. Verification
 requires a current scoped club manager, independently of team enrollment; the

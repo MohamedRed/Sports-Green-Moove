@@ -4,6 +4,7 @@ import {dependencyPatchRecheck} from './dependency-patch.mjs';
 import {nativeGateRecheck} from './native-gate-recheck.mjs';
 import {publishedMediaReview} from './published-media-review.mjs';
 import {publishedMediaPlayback} from './published-media-playback.mjs';
+import {reviewHistoryRecheck} from './review-history.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { chatNetworkRecovery, chatNetworkRecheck } from './chat-network-recovery.mjs';
@@ -60,6 +61,7 @@ export const content = {
   nativeGateRecheck,
   publishedMediaReview,
   publishedMediaPlayback,
+  reviewHistoryRecheck,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
   adminClientLifecycleRecheck: { source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/results.json',
@@ -252,7 +254,7 @@ export const content = {
       latestEvidence: 'phone',
       summary: 'Le parent envoie son avis sur téléphone après le trajet.',
       verified: 'Cinq étoiles enregistrées, puis la demande disparaît. L’essai utilise des données de test et un seul téléphone.',
-      remaining: 'Rejouer entre téléphones et vérifier l’affichage des notes reçues.',
+      remaining: 'Rejouer l’historique corrigé sur téléphone, les notes reçues et les très longues listes de trajets.',
       ui: { ...rideUi(['ride-review-ui']), checkedAt: '2026-10-15' },
       local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.'], 'docs/release/evidence/local-2026-10-15/results.json', '2026-10-15'),
       images: [shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),

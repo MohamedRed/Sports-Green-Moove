@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The 29 October review-history comparison reproduces one returning submitted
+review after 104 ratings with the original inbox module, then passes seven
+authenticated local checks with exact candidate reads. All 24 service groups and
+501 backend units pass. Publish a short local-only update, preserve the original
+failed receipt and October 23 phone evidence, and keep physical replay, received
+ratings, longer ride discovery and release scope open. There are no new captures,
+videos, provider requests or production deployment. Public audience is unchanged.
+
 The published 29 October version 247 now passes all twenty short-clip playback and
 seek cases, including sixteen actual visible-gallery/tour cases and four explicit
 unlisted-asset harness cases. Retain the new checksummed result, earlier failed
