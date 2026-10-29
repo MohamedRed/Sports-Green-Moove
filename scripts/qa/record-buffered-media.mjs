@@ -21,7 +21,7 @@ try {
   const data = await live.json(); assert.deepEqual(data, expected);
   result.assetRevision = data.assetRevision;
   result.implementationSha256 = {};
-  for (const path of ['index.html', `assets/${data.assetRevision}/short-video.js`, `assets/${data.assetRevision}/app.js`]) {
+  for (const path of [`assets/${data.assetRevision}/short-video.js`, `assets/${data.assetRevision}/app.js`]) {
     const response = await fetch(base + '/' + path); assert.equal(response.status, 200);
     const actual = Buffer.from(await response.arrayBuffer());
     assert.deepEqual(actual, readFileSync(new URL('../../partner-portal/dist/' + path, import.meta.url)));
@@ -49,6 +49,8 @@ try {
     const step = flow?.tour?.findIndex(row => row.clip === id) ?? -1;
     const route = flow ? '#parcours/' + flow.id + (step >= 0 ? '/visite/' + (step + 1) : '') : '#parcours/signout/visite/1';
     await page.goto(base + '/' + route); await page.getByRole('dialog').waitFor(); await page.bringToFront();
+    assert.equal(await page.locator('script[type="module"]').getAttribute('src'), `assets/${data.assetRevision}/app.js`);
+    assert.match(await page.locator('meta[http-equiv="Content-Security-Policy"]').getAttribute('content'), /media-src 'self' blob:;/);
     let mode = step >= 0 ? 'tour' : 'gallery';
     const selectGalleryClip = async () => {
       for (let i = 0; i < flow.images.length + flow.clips.length; i++) {

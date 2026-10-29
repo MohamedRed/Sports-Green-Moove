@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The published 29 October version 247 now passes all twenty short-clip playback and
+seek cases, including sixteen actual visible-gallery/tour cases and four explicit
+unlisted-asset harness cases. Retain the new checksummed result, earlier failed
+HTML preflight and original seek failure separately. Remove only the portal video
+blocker and publish one concise French update. Other application, CI, physical
+and release requirements remain open. No new native captures are implied.
+
 The owner subsequently approved full loading of the existing short excerpts.
 The 29 October player accepts only approved clips at most 240,000 bytes, verifies
 their exact size and SHA-256, and uses a temporary Blob source. The CSP permits

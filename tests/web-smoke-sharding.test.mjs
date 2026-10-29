@@ -68,7 +68,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(network.length, 1); assert.equal(network[0].run, 'node --test tests/chat-network-recheck-evidence.test.mjs');
   const gateEvidence = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate full native gate and published media evidence boundaries');
   assert.equal(gateEvidence.length, 1);
-  assert.equal(gateEvidence[0].run, 'node --test tests/native-gate-recheck-evidence.test.mjs tests/published-media-seek-evidence.test.mjs tests/short-video-loading.test.mjs tests/short-video-lifecycle.test.mjs');
+  assert.equal(gateEvidence[0].run, 'node --test tests/native-gate-recheck-evidence.test.mjs tests/published-media-seek-evidence.test.mjs tests/short-video-loading.test.mjs tests/short-video-lifecycle.test.mjs tests/buffered-media-evidence.test.mjs');
 });
 
 test('service groups use separate runners and build their own unchanged backend before testing', () => {

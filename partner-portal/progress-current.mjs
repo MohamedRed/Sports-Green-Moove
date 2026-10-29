@@ -9,8 +9,10 @@ import {requestSafetyProgress} from './request-safety.mjs';
 import {tripCancellationProgress} from './trip-cancellation-phone.mjs';
 import {dependencyPatchProgress, networkPreparationProgress} from './dependency-patch.mjs';
 import {nativeGateProgress} from './native-gate-recheck.mjs';
+import {publishedMediaProgress} from './published-media-playback.mjs';
 
 export const currentProgress = [
+  publishedMediaProgress,
   nativeGateProgress,
   chatNetworkRecheckProgress,
   dependencyPatchProgress,

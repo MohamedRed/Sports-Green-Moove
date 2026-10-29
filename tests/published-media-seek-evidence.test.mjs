@@ -11,7 +11,7 @@ const root = resolve(import.meta.dirname, '..'), reference = {source: folder + '
 test('the published clip plays but remains unseekable despite a fully buffered, unchanged file', () => {
   const result = validatePublishedMediaSeek(root, reference); assert.equal(result.seekConfirmed, false);
   assert.deepEqual(content.publishedMediaReview, reference);
-  assert(content.blockers.some(row => row.id === 'published-video-seek' && row.source === folder + 'README.md'));
+  assert(content.publishedMediaPlayback.source !== reference.source, 'A later success cannot overwrite this failure');
 });
 for (const [index, mutate] of [
   value => {value.completed = true;}, value => {value.seekConfirmed = true;}, value => {value.browserClosed = false;},

@@ -1,8 +1,6 @@
 import { nativeVerification } from './native-verification.mjs';
-import {publishedMediaBlocker} from './published-media-review.mjs';
 
 export const blockers = [
-  publishedMediaBlocker,
   {id: 'tracking-reconnect-display', title: 'Rejouer le suivi en direct',
     text: 'L’essai séparé confirme un blocage de la connexion privée de test.',
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',

@@ -1,0 +1,818 @@
+{
+  "scope": "short-clip-playback-not-mobile-app-or-release-proof",
+  "site": "https://sports-green-moove-progress.mohamed-redha.chatgpt.site",
+  "observedAt": "2026-10-29T09:49:15.732Z",
+  "approvedLimitBytes": 240000,
+  "completed": true,
+  "browserClosed": true,
+  "cases": [
+    {
+      "id": "support-submission-retry",
+      "width": 1440,
+      "mode": "tour",
+      "before": {
+        "time": 0.511835,
+        "duration": 9.931171,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            9.931171
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 9.931171,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            9.931171
+          ]
+        ]
+      },
+      "colors": 340,
+      "screenshot": "support-submission-retry-1440.png",
+      "urls": {
+        "created": 2,
+        "revoked": 2
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "home-to-trips",
+      "width": 1440,
+      "mode": "gallery",
+      "before": {
+        "time": 0.515424,
+        "duration": 16,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 16,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "colors": 829,
+      "screenshot": "home-to-trips-1440.png",
+      "urls": {
+        "created": 3,
+        "revoked": 3
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "parent-guard",
+      "width": 1440,
+      "mode": "unlisted-asset-production-player-harness",
+      "before": {
+        "time": 0.508995,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "colors": 810,
+      "screenshot": "parent-guard-1440.png",
+      "urls": {
+        "created": 5,
+        "revoked": 5
+      },
+      "originalDownloadUnchanged": false
+    },
+    {
+      "id": "signout-action",
+      "width": 1440,
+      "mode": "tour",
+      "before": {
+        "time": 0.518055,
+        "duration": 13,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            13
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 13,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            13
+          ]
+        ]
+      },
+      "colors": 1874,
+      "screenshot": "signout-action-1440.png",
+      "urls": {
+        "created": 7,
+        "revoked": 7
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "signed-out-relaunch",
+      "width": 1440,
+      "mode": "tour",
+      "before": {
+        "time": 0.508797,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "colors": 2475,
+      "screenshot": "signed-out-relaunch-1440.png",
+      "urls": {
+        "created": 10,
+        "revoked": 10
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "support-submission-retry",
+      "width": 768,
+      "mode": "tour",
+      "before": {
+        "time": 0.510639,
+        "duration": 9.931171,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            9.931171
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 9.931171,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            9.931171
+          ]
+        ]
+      },
+      "colors": 340,
+      "screenshot": "support-submission-retry-768.png",
+      "urls": {
+        "created": 12,
+        "revoked": 12
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "home-to-trips",
+      "width": 768,
+      "mode": "gallery",
+      "before": {
+        "time": 0.511907,
+        "duration": 16,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 16,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "colors": 829,
+      "screenshot": "home-to-trips-768.png",
+      "urls": {
+        "created": 13,
+        "revoked": 13
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "parent-guard",
+      "width": 768,
+      "mode": "unlisted-asset-production-player-harness",
+      "before": {
+        "time": 0.526608,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "colors": 810,
+      "screenshot": "parent-guard-768.png",
+      "urls": {
+        "created": 15,
+        "revoked": 15
+      },
+      "originalDownloadUnchanged": false
+    },
+    {
+      "id": "signout-action",
+      "width": 768,
+      "mode": "tour",
+      "before": {
+        "time": 0.515428,
+        "duration": 13,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            13
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 13,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            13
+          ]
+        ]
+      },
+      "colors": 1874,
+      "screenshot": "signout-action-768.png",
+      "urls": {
+        "created": 17,
+        "revoked": 17
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "signed-out-relaunch",
+      "width": 768,
+      "mode": "tour",
+      "before": {
+        "time": 0.51794,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "colors": 2475,
+      "screenshot": "signed-out-relaunch-768.png",
+      "urls": {
+        "created": 20,
+        "revoked": 20
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "support-submission-retry",
+      "width": 390,
+      "mode": "tour",
+      "before": {
+        "time": 0.511187,
+        "duration": 9.931171,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            9.931171
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 9.931171,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            9.931171
+          ]
+        ]
+      },
+      "colors": 340,
+      "screenshot": "support-submission-retry-390.png",
+      "urls": {
+        "created": 22,
+        "revoked": 22
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "home-to-trips",
+      "width": 390,
+      "mode": "gallery",
+      "before": {
+        "time": 0.51158,
+        "duration": 16,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 16,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "colors": 829,
+      "screenshot": "home-to-trips-390.png",
+      "urls": {
+        "created": 23,
+        "revoked": 23
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "parent-guard",
+      "width": 390,
+      "mode": "unlisted-asset-production-player-harness",
+      "before": {
+        "time": 0.512407,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "colors": 810,
+      "screenshot": "parent-guard-390.png",
+      "urls": {
+        "created": 25,
+        "revoked": 25
+      },
+      "originalDownloadUnchanged": false
+    },
+    {
+      "id": "signout-action",
+      "width": 390,
+      "mode": "tour",
+      "before": {
+        "time": 0.522411,
+        "duration": 13,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            13
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 13,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            13
+          ]
+        ]
+      },
+      "colors": 1874,
+      "screenshot": "signout-action-390.png",
+      "urls": {
+        "created": 27,
+        "revoked": 27
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "signed-out-relaunch",
+      "width": 390,
+      "mode": "tour",
+      "before": {
+        "time": 0.51768,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "colors": 2475,
+      "screenshot": "signed-out-relaunch-390.png",
+      "urls": {
+        "created": 30,
+        "revoked": 30
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "support-submission-retry",
+      "width": 320,
+      "mode": "tour",
+      "before": {
+        "time": 0.521537,
+        "duration": 9.931171,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            9.931171
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 9.931171,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            9.931171
+          ]
+        ]
+      },
+      "colors": 340,
+      "screenshot": "support-submission-retry-320.png",
+      "urls": {
+        "created": 32,
+        "revoked": 32
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "home-to-trips",
+      "width": 320,
+      "mode": "gallery",
+      "before": {
+        "time": 0.523473,
+        "duration": 16,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 16,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            16
+          ]
+        ]
+      },
+      "colors": 829,
+      "screenshot": "home-to-trips-320.png",
+      "urls": {
+        "created": 33,
+        "revoked": 33
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "parent-guard",
+      "width": 320,
+      "mode": "unlisted-asset-production-player-harness",
+      "before": {
+        "time": 0.511931,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "colors": 810,
+      "screenshot": "parent-guard-320.png",
+      "urls": {
+        "created": 35,
+        "revoked": 35
+      },
+      "originalDownloadUnchanged": false
+    },
+    {
+      "id": "signout-action",
+      "width": 320,
+      "mode": "tour",
+      "before": {
+        "time": 0.515444,
+        "duration": 13,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            13
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 13,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            13
+          ]
+        ]
+      },
+      "colors": 1874,
+      "screenshot": "signout-action-320.png",
+      "urls": {
+        "created": 37,
+        "revoked": 37
+      },
+      "originalDownloadUnchanged": true
+    },
+    {
+      "id": "signed-out-relaunch",
+      "width": 320,
+      "mode": "tour",
+      "before": {
+        "time": 0.51992,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "target": 8.8,
+      "after": {
+        "time": 8.8,
+        "duration": 15,
+        "controls": true,
+        "blobSource": true,
+        "error": null,
+        "seekable": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "colors": 2475,
+      "screenshot": "signed-out-relaunch-320.png",
+      "urls": {
+        "created": 40,
+        "revoked": 40
+      },
+      "originalDownloadUnchanged": true
+    }
+  ],
+  "errors": [],
+  "assetRevision": "ff4c91f22006deb5",
+  "implementationSha256": {
+    "assets/ff4c91f22006deb5/short-video.js": "8243a88d7f3d69ce3cc7363d955889db40de2ac062d3c074aa1d0e345dac4728",
+    "assets/ff4c91f22006deb5/app.js": "6734c5587f739fcf8bd9e63d192c6fff49277652c658dfaa6a0c8138f6df1b43"
+  },
+  "media": {
+    "support-submission-retry.mp4": {
+      "bytes": 67043,
+      "sha256": "474cf2468709ae65c04c7d4dec5b7e97eba08a50262eaaafdf7db71e85479f9b"
+    },
+    "home-to-trips.mp4": {
+      "bytes": 137157,
+      "sha256": "854c289cad41a46acbffb106a64395a9b7c931237efbdd03e51c4eb619c890b0"
+    },
+    "parent-guard.mp4": {
+      "bytes": 70835,
+      "sha256": "7f0d1c559cdbadd294cfe6caae23b8c51d1395a969ff8cb99ba0d43d87ced89c"
+    },
+    "signout-action.mp4": {
+      "bytes": 136440,
+      "sha256": "f4c6fd68ad971db3cf9701a3cd550fb3fcc6cd8ee008499d8f9c35922a91b211"
+    },
+    "signed-out-relaunch.mp4": {
+      "bytes": 238170,
+      "sha256": "06b94ae78e3d771a5b7e6c11a1eef4df4e8408b99bf95cdfb0724bf749950074"
+    }
+  }
+}
