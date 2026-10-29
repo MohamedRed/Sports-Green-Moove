@@ -78,7 +78,7 @@ for (const [label, mutate] of [
 test('the recovery tour keeps four original captures and the separately verified disconnect flow stays local-only', () => {
   const flow = content.flows.find(item => item.id === 'session-restoration');
   assert.equal(flow.status, 'partial'); assert.equal(flow.ui.source, source);
-  assert.equal(flow.images.length, 8); assert.equal(flow.tour.length, 4);
+  assert.equal(flow.images.filter(row => !row.file.startsWith('session-current-')).length, 8); assert.equal(flow.tour.length, 4);
   const historical = flow.images.filter(item => item.file.startsWith('session-recovery-'));
   assert.deepEqual(historical.map(item => captures[item.file].split('/').at(-1)), publishedSessionRestorationCaptures);
   assert.deepEqual(historical.map(item => item.landscape), [false, true, true, false]);

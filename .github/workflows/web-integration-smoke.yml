@@ -426,6 +426,7 @@ on:
       - "tests/received-ratings-evidence.test.mjs"
       - "tests/review-pagination-contract.test.mjs"
       - "tests/review-pagination-evidence.test.mjs"
+      - "tests/review-display-evidence.test.mjs"
       - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
       - "tests/network-start-observation.test.mjs"
@@ -919,6 +920,7 @@ on:
       - "tests/received-ratings-evidence.test.mjs"
       - "tests/review-pagination-contract.test.mjs"
       - "tests/review-pagination-evidence.test.mjs"
+      - "tests/review-display-evidence.test.mjs"
       - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
       - "tests/network-start-observation.test.mjs"
@@ -1125,7 +1127,7 @@ jobs:
       - name: Test private received rating summaries
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/received-ratings.json
-        run: npm run test:received-ratings && node --test tests/received-ratings-contract.test.mjs tests/received-ratings-evidence.test.mjs
+        run: npm run test:received-ratings && node --test tests/received-ratings-contract.test.mjs tests/received-ratings-evidence.test.mjs tests/review-display-evidence.test.mjs
 
       - name: Test pending review pagination across completed ride history
         env:

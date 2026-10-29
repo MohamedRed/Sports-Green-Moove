@@ -31,7 +31,6 @@ import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.services.ReceivedRatingsGateway
 import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.launch
-import java.text.NumberFormat
 import java.util.Locale
 
 @Composable
@@ -65,7 +64,7 @@ internal fun ReceivedRatingsRow(summary: ReceivedRatingSummary?, busy: Boolean, 
             Text(text, style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary, fontWeight = FontWeight.SemiBold),
                 modifier = Modifier.sgmTestTag("profile.received-ratings.value"))
             if (!busy && !failed && summary != null && summary.count > 0) {
-                Text("${NumberFormat.getIntegerInstance(Locale.FRANCE).format(summary.count)} avis ${if (summary.count == 1L) "reçu" else "reçus"}",
+                Text(receivedRatingCountLabel(summary.count),
                     style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary),
                     modifier = Modifier.sgmTestTag("profile.received-ratings.count"))
             }

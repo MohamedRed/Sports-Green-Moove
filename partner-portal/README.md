@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 29 October local review-display/recovery replay retains the original
+failed CI and local baseline, the unsuccessful count-only attempt and the actual
+line geometry. The average overflow flag was a false positive, not a proven
+clipping defect. Six component cases and 633 units pass with full-character,
+non-ellipsized line bounds. Publish the original large-text component with its
+synthetic count explicitly identified. A strictly scoped profile-read proxy fix
+also passes all thirteen contracts and one full native session recovery replay;
+publish only its two reviewed error/recovered images. Preserve older galleries,
+real-network-loss and full-gate gaps, dates and public audience. No physical-phone,
+production, maps, payments or release acceptance is implied.
+
 The latest 29 October pending-review replay fixes the retained 31st-ride gap.
 Two accounts on one physical Android phone each submit that trip's own review;
 the parent loads 20 then 31 requests and keeps 30 after a later-page submission.

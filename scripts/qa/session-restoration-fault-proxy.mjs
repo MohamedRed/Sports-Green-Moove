@@ -33,7 +33,7 @@ export async function openSessionRestorationFaultProxy(config, { verifyIdentity,
           restorationAttempts: receipt.attempts.filter(item => item.method === 'initializeUserProfile').length });
         return;
       }
-      const match = /^\/demo-sgm-local-qa\/us-central1\/(initializeUserProfile|getActiveRide|getProfileCity|getImpactSummary|getRewardSummary)$/.exec(request.url);
+      const match = /^\/demo-sgm-local-qa\/us-central1\/(initializeUserProfile|getActiveRide|getProfileCity|getImpactSummary|getRewardSummary|getReceivedRatingSummary)$/.exec(request.url);
       assert(match, 'Only the selected restoration and read-only home/profile calls are allowed');
       assert.deepEqual(input, { data: {} });
       const authorization = request.headers.authorization;

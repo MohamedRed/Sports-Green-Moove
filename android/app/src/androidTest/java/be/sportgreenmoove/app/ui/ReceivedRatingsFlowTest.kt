@@ -16,6 +16,7 @@ import be.sportgreenmoove.app.services.ReceivedRatingsGateway
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import kotlin.math.ceil
 
 class ReceivedRatingsFlowTest {
     @get:Rule val compose = createComposeRule()
@@ -65,9 +66,22 @@ class ReceivedRatingsFlowTest {
             assertTrue(text.left >= frame.left && text.right < refresh.left && text.bottom <= frame.bottom)
             val layouts = mutableListOf<TextLayoutResult>()
             compose.onNodeWithTag("profile.received-ratings.$tag").performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(layouts) }
-            assertFalse(layouts.single().hasVisualOverflow)
+            val layout = layouts.single()
+            for (line in 0 until layout.lineCount) {
+                assertFalse("Review $tag line $line must not be ellipsized", layout.isLineEllipsized(line))
+                assertTrue("Review $tag line $line starts outside its bounds", layout.getLineLeft(line) >= 0)
+                assertTrue("Review $tag line $line exceeds its width", ceil(layout.getLineRight(line)).toInt() <= layout.size.width)
+                assertTrue("Review $tag line $line exceeds its height", ceil(layout.getLineBottom(line)).toInt() <= layout.size.height)
+            }
+            assertEquals("Review $tag must render every character", layout.layoutInput.text.length, layout.getLineEnd(layout.lineCount - 1))
+            println("SGM_REVIEW_LAYOUT tag=$tag size=${layout.size} paragraph=${layout.multiParagraph.width}x${layout.multiParagraph.height} " +
+                "lines=${layout.lineCount} lineRight=${(0 until layout.lineCount).map(layout::getLineRight)} " +
+                "lineBottom=${(0 until layout.lineCount).map(layout::getLineBottom)}")
         }
+        compose.onNodeWithTag("profile.received-ratings.count").assertTextEquals("9 007 199 254 740 991 avis reçus")
         assertTrue(refresh.right <= frame.right)
+        val canvas = compose.onRoot().fetchSemanticsNode().boundsInRoot
+        captureLocalUi(compose, "received-ratings-large-text.png", landscape = canvas.width > canvas.height)
     }
     private fun waitFor(text: String) {
         compose.waitUntil(10_000) { compose.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }

@@ -14,10 +14,12 @@ import {tripCancellationCaptures} from './trip-cancellation-phone.mjs';
 import {reviewHistoryPhoneCaptures} from './review-history-phone.mjs';
 import {receivedRatingCaptures} from './received-ratings.mjs';
 import {reviewPaginationCaptures} from './review-pagination.mjs';
+import {reviewDisplayCaptures} from './review-display-recovery.mjs';
 
 export const captures = {
   ...receivedRatingCaptures,
   ...reviewPaginationCaptures,
+  ...reviewDisplayCaptures,
   ...reviewHistoryPhoneCaptures,
   ...tripCancellationCaptures,
   ...directBookingCaptures,

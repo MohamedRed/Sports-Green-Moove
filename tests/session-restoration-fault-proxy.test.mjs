@@ -11,6 +11,7 @@ async function fixture(t, overrides = {}) {
       forwarded.push({ url, options });
       return Response.json({ result: url.endsWith('initializeUserProfile') ? { userId: config.uid } :
         url.endsWith('getProfileCity') ? { userId: config.uid, city: null, revision: 0 } :
+          url.endsWith('getReceivedRatingSummary') ? { userId: config.uid, count: 31, average: 4 } :
           url.endsWith('getActiveRide') ? { ride: null } : { userId: config.uid } });
     }, ...overrides,
   });
@@ -55,6 +56,32 @@ test('complete ledger summaries are allowed only for the restored parent', async
   await foreign.initialize(); await foreign.initialize(); await foreign.post('/__qa/recover', {runId: config.runId});
   assert.equal((await foreign.post('/demo-sgm-local-qa/us-central1/getRewardSummary')).status, 502);
   assert.equal(foreign.proxy.receipt.failed, true);
+});
+test('the recovered profile can read its received review summary through the same scoped proxy', async t => {
+  const f = await fixture(t); await f.initialize(); await f.initialize();
+  await f.post('/__qa/recover', {runId: config.runId});
+  const response = await f.post('/demo-sgm-local-qa/us-central1/getReceivedRatingSummary');
+  assert.equal(response.status, 200);
+  assert.deepEqual(response.body, {result: {userId: config.uid, count: 31, average: 4}});
+  assert.equal(f.forwarded.length, 1); assert.equal(f.forwarded[0].url, config.origin + '/getReceivedRatingSummary');
+  assert.equal(f.proxy.receipt.failed, undefined);
+  assert.doesNotMatch(JSON.stringify(f.proxy.receipt), /synthetic-qa-token|authorization/);
+});
+test('received review reads still reject early access, foreign accounts, foreign upstream owners and write-shaped requests', async t => {
+  const early = await fixture(t);
+  assert.equal((await early.post('/demo-sgm-local-qa/us-central1/getReceivedRatingSummary')).status, 502);
+  assert.equal(early.forwarded.length, 0);
+  const identity = await fixture(t, {verifyIdentity: async () => ({uid: 'sgm-qa-driver'})});
+  assert.equal((await identity.post('/demo-sgm-local-qa/us-central1/getReceivedRatingSummary')).status, 502);
+  assert.equal(identity.forwarded.length, 0);
+  const owner = await fixture(t, {forward: async () => Response.json({result: {userId: 'sgm-qa-driver', count: 1, average: 5}})});
+  await owner.initialize(); await owner.initialize(); await owner.post('/__qa/recover', {runId: config.runId});
+  assert.equal((await owner.post('/demo-sgm-local-qa/us-central1/getReceivedRatingSummary')).status, 502);
+  const write = await fixture(t); await write.initialize(); await write.initialize();
+  await write.post('/__qa/recover', {runId: config.runId});
+  assert.equal((await write.post('/demo-sgm-local-qa/us-central1/getReceivedRatingSummary', {data: {userId: 'sgm-qa-driver'}})).status, 502);
+  assert.equal((await write.post('/demo-sgm-local-qa/us-central1/submitRating')).status, 502);
+  assert.equal(write.forwarded.length, 0);
 });
 test('the recovered parent can read its profile city without allowing a profile write', async t => {
   const f = await fixture(t); await f.initialize(); await f.initialize();

@@ -250,12 +250,13 @@ export function validate(root) {
     validateTeamConversationRecords(root, f, captures);
     if (f.restorationRecheck) {
       assert.equal(f.id, 'session-restoration'); assert.equal(f.status, 'partial');
-      assert.equal(validateSessionRestorationRecheck(root, f.restorationRecheck.source).testedAt.slice(0, 10), f.checkedAt);
+      assert.equal(validateSessionRestorationRecheck(root, f.restorationRecheck.source).testedAt.slice(0, 10), f.restorationRecheck.checkedAt);
+      assert(f.restorationRecheck.checkedAt <= f.checkedAt);
     }
     if (f.restorationRecovery) {
       assert.equal(f.id, 'session-restoration'); assert.equal(f.status, 'partial');
       const run = validateSessionRestorationRecovery(root, f.restorationRecovery.source);
-      assert.equal(run.testedAt.slice(0, 10), f.checkedAt);
+      assert.equal(run.testedAt.slice(0, 10), f.restorationRecovery.checkedAt); assert(f.restorationRecovery.checkedAt <= f.checkedAt);
       assert.deepEqual(f.images.filter(image => image.file.startsWith('session-recheck-')).map(image => image.file).sort(), Object.keys(run.publishedCaptures).sort());
       for (const [id, file] of Object.entries(run.publishedCaptures)) assert.equal(captures[id], dirname(f.restorationRecovery.source) + '/' + file);
     }

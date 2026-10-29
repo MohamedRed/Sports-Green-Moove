@@ -14,8 +14,11 @@ import {reviewHistoryProgress} from './review-history.mjs';
 import {reviewHistoryPhoneProgress} from './review-history-phone.mjs';
 import {receivedRatingProgress, latestNativeFailureProgress} from './received-ratings.mjs';
 import {reviewPaginationProgress} from './review-pagination.mjs';
+import {reviewDisplayProgress, sessionCurrentProgress} from './review-display-recovery.mjs';
 
 export const currentProgress = [
+  reviewDisplayProgress,
+  sessionCurrentProgress,
   reviewPaginationProgress,
   receivedRatingProgress,
   latestNativeFailureProgress,

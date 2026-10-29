@@ -15,7 +15,8 @@ test('the later recovery keeps exact requests, source-bound native evidence and 
   assert.equal(run.testedAt.slice(0, 10), '2026-10-21'); assert.equal(run.restorationAttempts, 4);
   const flow = content.flows.find(item => item.id === 'session-restoration');
   assert.equal(flow.status, 'partial'); assert.equal(flow.restorationRecovery.source, source);
-  assert.equal(flow.ui.checkedAt, '2026-10-20'); assert.equal(flow.images.length, 8);
+  assert.equal(flow.ui.checkedAt, '2026-10-20'); assert.equal(flow.restorationRecovery.checkedAt, '2026-10-21');
+  assert.equal(flow.images.filter(row => !row.file.startsWith('session-current-')).length, 8);
   assert.equal(flow.tour.length, 4); assert(flow.tour.every(step => step.image.startsWith('session-recheck-')));
   assert.deepEqual(flow.images.filter(image => image.file.startsWith('session-recheck-')).map(image => image.file).sort(), Object.keys(run.publishedCaptures).sort());
   for (const [id, file] of Object.entries(run.publishedCaptures)) assert.equal(captures[id], folder + '/' + file);

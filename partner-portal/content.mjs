@@ -8,6 +8,7 @@ import {reviewHistoryRecheck} from './review-history.mjs';
 import {reviewHistoryPhone, reviewHistoryPhoneImages} from './review-history-phone.mjs';
 import {receivedRatingsRecheck, receivedRatingImages} from './received-ratings.mjs';
 import {reviewPaginationRecheck, reviewPaginationImages} from './review-pagination.mjs';
+import {reviewDisplayRecheck, reviewDisplayImage} from './review-display-recovery.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { chatNetworkRecovery, chatNetworkRecheck } from './chat-network-recovery.mjs';
@@ -68,6 +69,7 @@ export const content = {
   reviewHistoryPhone,
   receivedRatingsRecheck,
   reviewPaginationRecheck,
+  reviewDisplayRecheck,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
   adminClientLifecycleRecheck: { source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/results.json',
@@ -263,7 +265,7 @@ export const content = {
       remaining: 'Préciser le trajet concerné dans chaque demande. Vérifier la reprise après une coupure.',
       ui: { ...rideUi(['ride-review-ui']), checkedAt: '2026-10-15' },
       local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.'], 'docs/release/evidence/local-2026-10-15/results.json', '2026-10-15'),
-      images: [...reviewPaginationImages, ...receivedRatingImages, ...reviewHistoryPhoneImages, shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
+      images: [reviewDisplayImage, ...reviewPaginationImages, ...receivedRatingImages, ...reviewHistoryPhoneImages, shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
         shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/review-pagination-2026-10-29/README.md' },
     createImpactFlow(local, rideUi, shot),
     createSupportFlow(local, ui, shot),

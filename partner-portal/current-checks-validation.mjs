@@ -7,6 +7,7 @@ import {validateReviewHistoryEvidence} from '../scripts/qa/review-history-eviden
 import {validateReviewPhoneEvidence} from '../scripts/qa/review-history-phone-evidence.mjs';
 import {validateReceivedRatingsEvidence} from '../scripts/qa/received-ratings-evidence.mjs';
 import {validateReviewPaginationEvidence} from '../scripts/qa/review-pagination-evidence.mjs';
+import {validateReviewDisplayEvidence} from '../scripts/qa/review-display-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -18,4 +19,5 @@ export function validateCurrentChecks(root, content) {
   validateReviewPhoneEvidence(root, content.reviewHistoryPhone);
   validateReceivedRatingsEvidence(root, content.receivedRatingsRecheck);
   validateReviewPaginationEvidence(root, content.reviewPaginationRecheck);
+  validateReviewDisplayEvidence(root, content.reviewDisplayRecheck);
 }
