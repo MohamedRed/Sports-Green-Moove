@@ -34,6 +34,10 @@ test('local verification covers real loopback disconnects before and after commi
     'storedBeforeRetry', 'all-unrelated-records-claims-and-trip-details-remain-unchanged', 'physicalNetworkLossProven: false',
     'providerRequests: 0', 'productionWrites: false', 'phoneUiExecuted: false']) assert(suite.includes(token));
   assert.match(source('scripts/qa/run-local-review-recovery.mjs'), /result.checks.length, 8/);
+  const broad = source('scripts/qa/local-flow-scenarios.mjs');
+  assert.match(broad, /assert.deepEqual\(await call\('submitRating', parent, input\), rating\)/);
+  assert.match(broad, /score: 4\}, 'ALREADY_EXISTS'/);
+  assert.match(broad, /immutableContentAndTimestamp: true, ratingCount: stored.size/);
 });
 test('pull requests run the rating retry service suite and retain results even on failure', () => {
   const yaml = source('.github/workflows/web-integration-smoke.yml'), workflow = parse(yaml);

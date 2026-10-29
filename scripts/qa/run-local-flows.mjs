@@ -54,6 +54,9 @@ try {
   assert.equal(result.scenarios?.multiSeat?.requestedSeats, 2);
   assert.equal(result.scenarios?.multiSeat?.seatsAfterApproval, 2);
   assert.equal(result.scenarios?.multiSeat?.seatsAfterCancellation, 4);
+  assert.equal(result.scenarios?.ratingRetry?.sameReceipt, true);
+  assert.equal(result.scenarios?.ratingRetry?.immutableContentAndTimestamp, true);
+  assert.equal(result.scenarios?.ratingRetry?.ratingCount, 1);
   assert(result.steps.every((step) => step.status === 'passed'), 'Every local scenario must pass');
 } finally {
   runtime.cleanup();

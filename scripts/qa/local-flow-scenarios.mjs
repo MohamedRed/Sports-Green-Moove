@@ -12,6 +12,7 @@ export async function runScenarios(check, lifecycle) {
   await call('initializeUserProfile', outsider);
   let tripId;
   let multiSeat;
+  let ratingRetry;
   await check('publication', async () => {
     const input = tripInput();
     await denied('createTrip', parent, input, 'PERMISSION_DENIED');
@@ -116,10 +117,18 @@ export async function runScenarios(check, lifecycle) {
     const input = { rideSessionId: lifecycle.rideSessionId, ratedUserId: driver.uid, score: 5, comment: 'Local QA review' };
     await denied('submitRating', outsider, input, 'PERMISSION_DENIED');
     const rating = await call('submitRating', parent, input);
-    assert.equal((await document('ratings', rating.ratingId)).score, 5);
-    await denied('submitRating', parent, input, 'ALREADY_EXISTS');
+    const original = await document('ratings', rating.ratingId);
+    assert.equal(original.score, 5);
+    assert.deepEqual(await call('submitRating', parent, input), rating);
+    await denied('submitRating', parent, {...input, score: 4}, 'ALREADY_EXISTS');
+    await denied('submitRating', parent, {...input, comment: 'Changed local QA review'}, 'ALREADY_EXISTS');
+    assert.deepEqual(await document('ratings', rating.ratingId), original);
+    const stored = await db.collection('ratings').where('rideSessionId', '==', lifecycle.rideSessionId)
+      .where('authorUserId', '==', parent.uid).where('ratedUserId', '==', driver.uid).get();
+    assert.equal(stored.size, 1);
     const inbox = await call('getInbox', parent);
     assert(!JSON.stringify(inbox.inbox.reviews).includes(lifecycle.rideSessionId));
+    ratingRetry = {ratingId: rating.ratingId, sameReceipt: true, immutableContentAndTimestamp: true, ratingCount: stored.size};
   });
   await check('club-request', async () => {
     const clubId = 'sgm-qa-club-green-wavre';
@@ -143,5 +152,5 @@ export async function runScenarios(check, lifecycle) {
     await denied('submitSupportReport', parent, { clientRequestId: randomUUID(), requesterUserId: parent.uid,
       subjectType: 'other', reason: 'QA', description: '' }, 'INVALID_ARGUMENT');
   });
-  return { multiSeat };
+  return { multiSeat, ratingRetry };
 }
