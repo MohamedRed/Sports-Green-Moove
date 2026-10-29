@@ -26,7 +26,7 @@ import kotlinx.coroutines.tasks.await
 internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway,
     TripChangeGateway by FirebaseAndroidTripChangeGateway(), GuardianVerificationGateway by FirebaseAndroidGuardianGateway(),
     TeamEnrollmentGateway by FirebaseAndroidTeamEnrollmentGateway(), SupportGateway by FirebaseAndroidSupportGateway(),
-    NotificationReadGateway by FirebaseAndroidNotificationReadGateway() {
+    NotificationReadGateway by FirebaseAndroidNotificationReadGateway(), PendingReviewGateway by FirebaseAndroidPendingReviewGateway() {
     private val appContext = context.applicationContext
     private val firestore = FirebaseFirestore.getInstance()
     private val functions = FirebaseFunctions.getInstance()
@@ -212,10 +212,15 @@ internal class FirebaseAndroidBackendGateway(context: Context) : FirebaseGateway
         ledgerGateway.getRewardSummary()
 
     override suspend fun getInbox(): InboxSummary {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: throw kotlinx.coroutines.CancellationException("Inbox session ended")
         val result = functions.getHttpsCallable("getInbox").call(emptyMap<String, Any>()).await()
+        if (FirebaseAuth.getInstance().currentUser?.uid != uid) throw kotlinx.coroutines.CancellationException("Inbox account changed")
         val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse inbox invalide.")
         val inbox = payload["inbox"] as? Map<*, *> ?: throw ProviderConfigurationException("Inbox manquante.")
-        return mapInbox(inbox)
+        check(inbox.containsKey("reviewsNextCursor"))
+        val reviews = parsePendingReviewPage(mapOf("userId" to inbox["reviewsUserId"],
+            "items" to inbox["reviews"], "nextCursor" to inbox["reviewsNextCursor"]), uid)
+        return mapInbox(inbox, reviews)
     }
 
     override suspend fun submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?): String {

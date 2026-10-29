@@ -16,7 +16,8 @@ import kotlinx.coroutines.launch
 internal class MessagesInboxState(uid: String, private val firebase: FirebaseGateway, private val gateway: ConversationGateway) {
     val conversations = ConversationDirectoryState(gateway)
     val notificationReads = NotificationReadState(uid, firebase)
-    val displayedInbox get() = inbox.copy(notifications = inbox.notifications.map(notificationReads::display))
+    val reviews = PendingReviewsState(uid, firebase)
+    val displayedInbox get() = inbox.copy(notifications = inbox.notifications.map(notificationReads::display), reviews = reviews.items)
     var inbox by mutableStateOf(InboxSummary())
         private set
     var loading by mutableStateOf(true)
@@ -51,7 +52,7 @@ internal class MessagesInboxState(uid: String, private val firebase: FirebaseGat
         notice = null
         try {
             firebase.submitRating(rideSessionId, ratedUserId, score)
-            updateInbox(firebase.getInbox())
+            reviews.submitted(id)
             notice = "Avis envoyé."
         } catch (cancelled: CancellationException) { throw cancelled }
         catch (failure: Exception) { error = UserFacingErrorPolicy.messageFor(failure) }
@@ -66,6 +67,9 @@ internal class MessagesInboxState(uid: String, private val firebase: FirebaseGat
 
     private fun updateInbox(value: InboxSummary) {
         notificationReads.reconcile(value.notifications)
+        reviews.replace(value.reviews, value.reviewsNextCursor)
         inbox = value
     }
+
+    fun close() { reviews.close(); notificationReads.clear() }
 }

@@ -10,7 +10,6 @@ export const receivedRatingsRecheck = {source: folder + 'summary.json', checkedA
 export const receivedRatingCaptures = Object.fromEntries(captions.map(([phase]) => ['received-rating-' + phase, folder + 'captures/' + phase + '.jpg']));
 export const receivedRatingImages = captions.map(([phase, title]) => ({file: 'received-rating-' + phase,
   alt: title + ', capture de session du 29 octobre', ...(phase === 'landscape' ? {landscape: true} : {})}));
-export const receivedRatingTour = steps.map(([phase, title, text]) => ({image: 'received-rating-' + phase, title, text}));
 export const receivedRatingProgress = {date: '2026-10-29', title: 'La moyenne des avis apparaît sur le profil',
   text: 'La moyenne et le nombre d’avis s’actualisent, sans mélanger les comptes. Cinq captures ajoutées.', flow: 'ratings', source: folder + 'README.md'};
 export const latestNativeFailureProgress = {date: '2026-10-29', title: 'La série complète s’arrête sur une capture',

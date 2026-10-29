@@ -264,6 +264,8 @@ struct InboxSummary: Hashable, Sendable {
     var notifications: [InboxNotificationSummary] = []
     var chats: [InboxChatSummary] = []
     var reviews: [InboxReviewPrompt] = []
+    var reviewsNextCursor: String? = nil
+    var reviewsUserId: String? = nil
 }
 
 struct InboxNotificationSummary: Identifiable, Hashable, Sendable {

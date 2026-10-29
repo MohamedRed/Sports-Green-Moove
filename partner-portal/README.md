@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The latest 29 October pending-review replay fixes the retained 31st-ride gap.
+Two accounts on one physical Android phone each submit that trip's own review;
+the parent loads 20 then 31 requests and keeps 30 after a later-page submission.
+Six independent record checkpoints pass. Publish six selected original session
+captures and the new four-step tour, preserving older average/history galleries.
+The separate 320-ride service suite passes eight groups, including empty
+continuations and scoped cursors. Preserve the failed first preparation. Do not
+promote iOS model checks, built component tests or either phone replay to overall
+release proof. Generic review-card trip context and interruption replay remain
+open. Keep the existing public audience and technology-free public copy.
+
 The later 29 October received-rating summary is verified on one physical phone
 with three accounts and six independent checkpoints: zero, 104, 105 and separate
 26-review profiles, plus a third empty account and sign-out. All reviews were

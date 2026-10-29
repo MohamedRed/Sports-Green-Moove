@@ -102,7 +102,7 @@ test('partner copy stays brief and recording context is optional', async () => {
   assert.equal(statuses.verified, 'Testé');
   assert.equal(statuses.partial, 'Test partiel');
   assert(!overview(content).includes('release-note'));
-  assert(!overview(content).includes('La suite'));
+  assert.doesNotMatch(overview(content), /<h[1-6][^>]*>La suite<\/h[1-6]>/);
   assert.match(detail(content.flows.find((f) => f.id === 'signout')), /<details[^>]*><summary>Infos du test<\/summary>/);
   assert(!source('partner-portal/src/app.js').includes('validation globale'));
 });

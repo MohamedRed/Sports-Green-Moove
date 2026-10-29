@@ -31,6 +31,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate full native gate and published media evidence boundaries')
     .filter(step => step.name !== 'Test completed review history beyond the legacy limit')
     .filter(step => step.name !== 'Test private received rating summaries')
+    .filter(step => step.name !== 'Test pending review pagination across completed ride history')
     .filter(step => step.name !== 'Validate physical trip cancellation evidence and observer boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .map(step => JSON.stringify(step)).sort();
@@ -109,7 +110,7 @@ test('original and added evidence uploads follow their owning tests', () => {
       if (step.with.name === 'ledger-history-services') assert(steps.some(row => row.env?.SGM_LOCAL_FLOW_OUTPUT?.endsWith('/ledger-history-services.json')));
     }
   }
-  assert.equal(names.length, 13); assert.equal(new Set(names).size, 13);
+  assert.equal(names.length, 14); assert.equal(new Set(names).size, 14);
   assert(names.includes('received-rating-summary-results'));
   assert(names.includes('review-history-results'));
   assert(names.includes('child-contact-discovery-results'));

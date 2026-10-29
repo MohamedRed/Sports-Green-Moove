@@ -211,6 +211,7 @@ data class InboxSummary(
     val notifications: List<InboxNotificationSummary> = emptyList(),
     val chats: List<InboxChatSummary> = emptyList(),
     val reviews: List<InboxReviewPrompt> = emptyList(),
+    val reviewsNextCursor: String? = null,
 )
 
 data class InboxNotificationSummary(

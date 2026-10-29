@@ -3,6 +3,7 @@ import "./options.js";
 export { initializeUserProfile, setUserRoles } from "./callables/adminUsers.js";
 export { getProfileCity, saveProfileCity } from "./callables/profileCity.js";
 export { getReceivedRatingSummary } from "./callables/receivedRatings.js";
+export { getPendingReviews } from "./callables/pendingReviews.js";
 export { getImpactSummary, getRewardSummary } from "./callables/ledgerSummaries.js";
 export { approveBooking, cancelBooking, listDriverBookingRequests, requestBooking } from "./callables/bookings.js";
 export { declineBooking, listReservations } from "./callables/reservations.js";

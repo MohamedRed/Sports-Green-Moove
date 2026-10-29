@@ -1,0 +1,31 @@
+{
+  "scope": "pending-review-pagination-on-one-isolated-physical-android-not-release",
+  "testedAt": "2026-10-29T19:37:46.115Z",
+  "physicalDeviceCount": 1,
+  "accountsTested": 2,
+  "sourceApkSha256": "42f26542418863ce715ebc1321bef6ef08b68fcf23813e6cde78c5fb4dc81b6d",
+  "sourceBaselineCommit": "3641ea1add6196cd19742d94bb7c28cf16960d74",
+  "implementationWasUncommittedAtBuild": true,
+  "publicCaptureMethod": "browser-session-window-not-native-export",
+  "publicCaptures": [
+    "driver-pending31",
+    "driver-sent",
+    "parent-first-page",
+    "parent-continuation",
+    "parent-more",
+    "parent-sent-top"
+  ],
+  "original31RideGapFixedInIsolatedReplay": true,
+  "phoneRatingSubmissionsIndependentlyObserved": 2,
+  "installedBytesIndependentlyVerified": false,
+  "processRestartProven": false,
+  "productionDeployed": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "videoAccepted": false,
+  "componentTestsExecutedLocally": false,
+  "iosUiExecuted": false,
+  "iosPhysicalPhoneTested": false,
+  "providerMapRequests": 0,
+  "realPaymentExercised": false
+}

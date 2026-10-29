@@ -7,10 +7,11 @@ import {auth, call, db, denied, signIn} from './local-flow-client.mjs';
 import {seedLocalUiFixtures} from './local-ui-fixtures.mjs';
 import {withLocalAdminCleanup} from './local-admin-lifecycle.mjs';
 import {createReviewHistoryFixture, createCompletedReviewRide} from './review-history-fixture.mjs';
+import {collectPendingReviews} from './review-pagination-client.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), steps = [], observations = [];
 const sources = ['scripts/qa/run-local-review-history.mjs', 'scripts/qa/local-review-history.mjs',
-  'scripts/qa/review-history-fixture.mjs',
+  'scripts/qa/review-history-fixture.mjs', 'scripts/qa/review-pagination-client.mjs',
   'functions/src/callables/inbox.ts', 'functions/src/domain/inbox.ts', 'functions/src/callables/feedback.ts'];
 const sourceFiles = Object.fromEntries(sources.map(file => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]));
 let failure, adminClientClosed = false, firestoreClientTerminated = false, ratingsSubmitted = 0, protectedRecordCount = 0;
@@ -49,8 +50,8 @@ try {
       observations.push({phase: 'new-unrated', displayedPrompts: inbox.reviews.length});
     });
     await check('another-accounts-ratings-cannot-hide-the-parents-own-prompts', async () => {
-      const {inbox} = await call('getInbox', parent);
-      const own = inbox.reviews.filter(row => [...rides, freshRide].includes(row.rideSessionId));
+      const {items} = await collectPendingReviews(parent);
+      const own = items.filter(row => [...rides, freshRide].includes(row.rideSessionId));
       assert.equal(own.length, 27); assert(own.every(row => row.ratedUserId === driver.uid));
       observations.push({phase: 'other-account', displayedPrompts: own.length});
     });
@@ -63,7 +64,7 @@ try {
     });
     await check('parent-submission-hides-only-that-parents-own-review', async () => {
       await call('submitRating', parent, {rideSessionId: freshRide, ratedUserId: driver.uid, score: 3}); ratingsSubmitted++;
-      const own = (await call('getInbox', parent)).inbox.reviews.filter(row => [...rides, freshRide].includes(row.rideSessionId));
+      const own = (await collectPendingReviews(parent)).items.filter(row => [...rides, freshRide].includes(row.rideSessionId));
       assert.equal(own.length, 26); assert(!own.some(row => row.rideSessionId === freshRide));
       assert.deepEqual((await call('getInbox', driver)).inbox.reviews, []);
     });

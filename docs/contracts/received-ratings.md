@@ -52,6 +52,7 @@ claims. Backend and Android unit tests cover strict aggregate parsing and stale
 session disposal. Component tests cover refresh, errors, account switching and
 narrow large-text layout. Building them is not evidence they executed.
 
-The separately reproduced 30-ride pending-review discovery gap remains open.
-None of these aggregate-summary checks proves pagination, physical tracking,
-production deployment, actual payments or full release readiness.
+The separately reproduced 30-ride discovery gap and its later fix are documented
+in [pending-review pagination](pending-review-pagination.md). Aggregate-summary
+checks themselves do not prove pagination, physical tracking, production
+deployment, actual payments or full release readiness.

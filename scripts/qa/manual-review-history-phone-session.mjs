@@ -12,6 +12,7 @@ const session = JSON.parse(readFileSync(sessionPath)); assert.equal(session.proj
 process.env.SGM_QA_PASSWORD = session.password;
 const {auth, call, db, signIn} = await import('./local-flow-client.mjs');
 const {createReviewHistoryFixture, createCompletedReviewRide} = await import('./review-history-fixture.mjs');
+const {collectPendingReviews} = await import('./review-pagination-client.mjs');
 const {withLocalAdminCleanup} = await import('./local-admin-lifecycle.mjs');
 const {deleteApp} = await import('firebase-admin/app');
 mkdirSync(output, {mode: 0o700});
@@ -44,7 +45,8 @@ try {
       assert.equal(phase, reviewPhonePhases[checks.length]);
       if (phase !== 'history-hidden') assert.equal(published, true);
       const ratings = (await db.collection('ratings').get()).docs.map(row => ({id: row.id, ...row.data()}));
-      const state = {ratings, driverInbox: (await call('getInbox', driver)).inbox, parentInbox: (await call('getInbox', parent)).inbox};
+      const state = {ratings, driverInbox: {...(await call('getInbox', driver)).inbox, reviews: (await collectPendingReviews(driver)).items},
+        parentInbox: {...(await call('getInbox', parent)).inbox, reviews: (await collectPendingReviews(parent)).items}};
       writeFileSync(resolve(output, phase + '-observed.json'), JSON.stringify({runId: session.runId, observedAt: new Date().toISOString(), state}, null, 2) + '\n', {flag: 'wx', mode: 0o600});
       const result = verifyReviewPhoneCheckpoint(phase, state, fixture);
       for (const [id, original] of historyRows) {
@@ -69,7 +71,7 @@ try {
 } catch (error) {failure = error;}
 finally {input.close(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); delete process.env.SGM_QA_PASSWORD;}
 const files = ['scripts/qa/manual-review-history-phone-session.mjs', 'scripts/qa/review-history-phone-checkpoints.mjs',
-  'scripts/qa/review-history-fixture.mjs', 'functions/src/callables/inbox.ts', 'functions/src/callables/feedback.ts'];
+  'scripts/qa/review-history-fixture.mjs', 'scripts/qa/review-pagination-client.mjs', 'functions/src/callables/inbox.ts', 'functions/src/callables/feedback.ts'];
 writeFileSync(resolve(output, 'session-results.json'), JSON.stringify({projectId: session.projectId, runId: session.runId,
   testedAt: new Date().toISOString(), scope: 'independent-phone-review-records-not-ui-or-release-proof', completed: completed && !failure,
   checks, adminClientClosed, firestoreClientTerminated, productionWrites: false, providerRequests: 0,

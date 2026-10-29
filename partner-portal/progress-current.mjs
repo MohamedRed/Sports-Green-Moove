@@ -13,8 +13,10 @@ import {publishedMediaProgress} from './published-media-playback.mjs';
 import {reviewHistoryProgress} from './review-history.mjs';
 import {reviewHistoryPhoneProgress} from './review-history-phone.mjs';
 import {receivedRatingProgress, latestNativeFailureProgress} from './received-ratings.mjs';
+import {reviewPaginationProgress} from './review-pagination.mjs';
 
 export const currentProgress = [
+  reviewPaginationProgress,
   receivedRatingProgress,
   latestNativeFailureProgress,
   reviewHistoryPhoneProgress,

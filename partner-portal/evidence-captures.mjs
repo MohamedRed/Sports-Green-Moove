@@ -13,9 +13,11 @@ import { directBookingCaptures } from './direct-booking.mjs';
 import {tripCancellationCaptures} from './trip-cancellation-phone.mjs';
 import {reviewHistoryPhoneCaptures} from './review-history-phone.mjs';
 import {receivedRatingCaptures} from './received-ratings.mjs';
+import {reviewPaginationCaptures} from './review-pagination.mjs';
 
 export const captures = {
   ...receivedRatingCaptures,
+  ...reviewPaginationCaptures,
   ...reviewHistoryPhoneCaptures,
   ...tripCancellationCaptures,
   ...directBookingCaptures,

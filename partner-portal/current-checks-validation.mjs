@@ -6,6 +6,7 @@ import {validateBufferedMediaEvidence} from '../scripts/qa/buffered-media-eviden
 import {validateReviewHistoryEvidence} from '../scripts/qa/review-history-evidence.mjs';
 import {validateReviewPhoneEvidence} from '../scripts/qa/review-history-phone-evidence.mjs';
 import {validateReceivedRatingsEvidence} from '../scripts/qa/received-ratings-evidence.mjs';
+import {validateReviewPaginationEvidence} from '../scripts/qa/review-pagination-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -16,4 +17,5 @@ export function validateCurrentChecks(root, content) {
   validateReviewHistoryEvidence(root, content.reviewHistoryRecheck);
   validateReviewPhoneEvidence(root, content.reviewHistoryPhone);
   validateReceivedRatingsEvidence(root, content.receivedRatingsRecheck);
+  validateReviewPaginationEvidence(root, content.reviewPaginationRecheck);
 }

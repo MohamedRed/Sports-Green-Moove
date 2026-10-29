@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 internal fun MessagesInboxRoute(uid: String, firebase: FirebaseGateway, gateway: ConversationGateway, selected: String,
     onSelected: (String) -> Unit, onNew: () -> Unit, onOpen: (ConversationListItem) -> Unit, teamsEnabled: Boolean = false) {
     val state = remember(uid, firebase, gateway) { MessagesInboxState(uid, firebase, gateway) }
-    DisposableEffect(state) { onDispose { state.notificationReads.clear() } }
+    DisposableEffect(state) { onDispose { state.close() } }
     val scope = rememberCoroutineScope()
     val owner = LocalLifecycleOwner.current
     var refresh by remember { mutableIntStateOf(0) }
@@ -76,10 +76,18 @@ internal fun MessagesInboxRoute(uid: String, firebase: FirebaseGateway, gateway:
                 }
                 else -> {
                     state.notice?.let { notice -> item { MessagesEmptyCard(notice) } }
-                    if (state.inbox.reviews.isEmpty()) item { MessagesEmptyCard("Aucun avis en attente.") }
-                    items(state.inbox.reviews, key = { it.id }) { review ->
+                    if (state.reviews.items.isEmpty() && state.reviews.nextCursor == null) item { MessagesEmptyCard("Aucun avis en attente.") }
+                    items(state.reviews.items, key = { it.id }) { review ->
                         ReviewCard(review, state.submittingReviewId == review.id) { score ->
                             scope.launch { state.submitReview(review.id, review.rideSessionId, review.ratedUserId, score) }
+                        }
+                    }
+                    state.reviews.error?.let { error -> item { MessagesEmptyCard(error) } }
+                    if (state.reviews.nextCursor != null) item {
+                        TextButton(onClick = { scope.launch { state.reviews.loadMore() } }, enabled = !state.reviews.loading,
+                            modifier = Modifier.sgmTestTag("messages.reviews.more")) {
+                            Text(if (state.reviews.loading) "Chargement..." else if (state.reviews.items.isEmpty())
+                                "Continuer la recherche" else "Voir d’autres avis")
                         }
                     }
                 }

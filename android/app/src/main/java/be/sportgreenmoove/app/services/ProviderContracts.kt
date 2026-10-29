@@ -31,7 +31,7 @@ interface AuthGateway {
     fun signOut()
 }
 
-interface FirebaseGateway : TripCancellationGateway, TripChangeGateway, GuardianVerificationGateway, TeamEnrollmentGateway, SupportGateway, NotificationReadGateway {
+interface FirebaseGateway : TripCancellationGateway, TripChangeGateway, GuardianVerificationGateway, TeamEnrollmentGateway, SupportGateway, NotificationReadGateway, PendingReviewGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
     suspend fun listChildren(): List<ChildSummary>

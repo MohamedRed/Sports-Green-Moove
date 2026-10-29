@@ -125,15 +125,15 @@ directory pagination or a group-chat implementation.
 
 Android conversation discovery reads through `listChatConversations`, backed by private `chatInboxes` entries rather than the latest 50 messages. The reservation picker uses `listChatBookingOptions`; an empty conversation is not persisted until a real send. `getInbox` remains compatible for notifications, bounded legacy previews and pending `ratings` prompts derived from completed ride sessions. iOS still uses that legacy contract. See [conversation rollout](../release/chat-inbox-rollout.md) for summary fields, historical preparation and coordinated deployment requirements.
 
-For every completed ride loaded by `getInbox`, pending-review suppression reads
-the exact immutable rating document for that ride, authenticated author and target.
-It does not scan the author's first 100 ratings. Both existing ride queries remain
-bounded to 30 rows and are de-duplicated before at most 60 point reads; no candidate
-means no rating read. Notifications and legacy chat queries are unchanged. The
-29 October authenticated regression covers 104 submitted ratings across 26 rides,
-a fresh unrated ride, refresh/replay and account isolation. It does not prove
-discovery beyond the existing ride windows, received-rating display, phone UI or
-production deployment. See `../release/evidence/review-history-2026-10-29/README.md`.
+Pending-review discovery now traverses completed rides through one account-scoped
+driver/participant disjunction ordered by document ID. It evaluates at most 100
+rides per request, returns at most 20 prompts and provides a continuation even
+when a fully rated window contains none. Suppression reads only the exact
+immutable rating for each ride/author/target, not an author's first 100 ratings.
+`getInbox` carries the first page; `getPendingReviews` continues it. Notifications
+and legacy chat previews are unchanged. See
+[pending-review pagination](pending-review-pagination.md) for native behavior,
+index rollout, the 31-ride phone replay and 320-ride isolated service proof.
 
 `guardianVerifications` and `guardianVerificationEvents` are private, server-written
 records for a club/child/parent tuple and immutable transition history. Verification

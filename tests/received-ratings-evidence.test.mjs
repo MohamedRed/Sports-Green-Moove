@@ -15,9 +15,9 @@ function report() {
 test('original service and physical summary evidence retain the separate open window and native-gate failures', () => {
   assert.equal(validateReceivedRatingsEvidence(root).physicalDeviceCount, 1);
   const flow = content.flows.find(row => row.id === 'ratings');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-29'); assert.equal(flow.images.length, 16);
-  assert.match(flow.remaining, /30 trajets/); assert.equal(flow.tour.length, 4);
-  assert(flow.tour.every(row => row.image.startsWith('received-rating-')));
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-29');
+  assert.equal(flow.images.filter(row => row.file.startsWith('received-rating-')).length, 5);
+  assert.match(flow.remaining, /trajet concerné/); assert.equal(flow.tour.length, 4);
   for (const name of ['empty-driver', 'historical-driver', 'updated-driver', 'parent', 'landscape']) {
     assert.equal(captures['received-rating-' + name], receivedRatingsFolder + 'captures/' + name + '.jpg');
     assert.match(flow.images.find(row => row.file === 'received-rating-' + name).alt, /capture de session du 29 octobre/);
