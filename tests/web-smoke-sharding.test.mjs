@@ -72,7 +72,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(gateEvidence[0].run, 'node --test tests/native-gate-recheck-evidence.test.mjs tests/published-media-seek-evidence.test.mjs tests/short-video-loading.test.mjs tests/short-video-lifecycle.test.mjs tests/buffered-media-evidence.test.mjs');
   const reviews = workflow.jobs.smoke.steps.filter(step => step.name === 'Test completed review history beyond the legacy limit');
   assert.equal(reviews.length, 1);
-  assert.equal(reviews[0].run, 'npm run test:review-history && node --test tests/review-history-evidence.test.mjs');
+  assert.equal(reviews[0].run, 'npm run test:review-history && node --test tests/review-history-evidence.test.mjs tests/review-history-phone-checkpoints.test.mjs tests/review-history-phone-evidence.test.mjs');
   assert.equal(reviews[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/review-history.json');
 });
 

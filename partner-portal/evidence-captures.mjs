@@ -11,8 +11,10 @@ import { chatNetworkRecoveryCaptures } from './chat-network-recovery.mjs';
 import { teamRestartCaptures } from './team-process-restart.mjs';
 import { directBookingCaptures } from './direct-booking.mjs';
 import {tripCancellationCaptures} from './trip-cancellation-phone.mjs';
+import {reviewHistoryPhoneCaptures} from './review-history-phone.mjs';
 
 export const captures = {
+  ...reviewHistoryPhoneCaptures,
   ...tripCancellationCaptures,
   ...directBookingCaptures,
   ...teamRestartCaptures,

@@ -11,10 +11,12 @@ test('completed replay and actual phone actions retain distinct honest scope', (
   assert.equal(report.physicalPhoneUiPassed, true); assert.equal(report.physicalTrackingAccepted, false);
   for (const id of ['ride-lifecycle', 'ratings']) {
     const flow = content.flows.find(item => item.id === id);
-    assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, report.checkedAt);
+    assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, id === 'ratings' ? content.reviewHistoryPhone.checkedAt : report.checkedAt);
     assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.ui.checkedAt, '2026-10-15');
     assert.equal(flow.local.checkedAt, '2026-10-15');
-    assert(flow.images[0].file.startsWith('ride-phone-'));
+    const original = flow.images.filter(image => image.file.startsWith('ride-phone-'));
+    assert.equal(original.length, id === 'ratings' ? 2 : 6);
+    assert(original.every(image => image.alt.includes('23 octobre')));
   }
   for (const phase of report.screenshots) assert(captures['ride-phone-' + phase].includes('/captures/'));
   assert(!Object.values(captures).some(path => /ride-completion-recheck.*(?:phone\/|cleanup)/.test(path)));

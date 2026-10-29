@@ -4,6 +4,7 @@ import {validateNativeGateRecheck} from '../scripts/qa/native-gate-recheck-evide
 import {validatePublishedMediaSeek} from '../scripts/qa/published-media-seek-evidence.mjs';
 import {validateBufferedMediaEvidence} from '../scripts/qa/buffered-media-evidence.mjs';
 import {validateReviewHistoryEvidence} from '../scripts/qa/review-history-evidence.mjs';
+import {validateReviewPhoneEvidence} from '../scripts/qa/review-history-phone-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -12,4 +13,5 @@ export function validateCurrentChecks(root, content) {
   validatePublishedMediaSeek(root, content.publishedMediaReview);
   validateBufferedMediaEvidence(root, content.publishedMediaPlayback);
   validateReviewHistoryEvidence(root, content.reviewHistoryRecheck);
+  validateReviewPhoneEvidence(root, content.reviewHistoryPhone);
 }

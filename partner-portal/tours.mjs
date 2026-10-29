@@ -8,6 +8,7 @@ import {driverConnectTour} from './driver-connect.mjs';
 import {trackingClockTour} from './tracking-clock-replay.mjs';
 import {trackingNetworkTour} from './tracking-network-phone.mjs';
 import { teamRestartTour } from './team-process-restart.mjs';
+import {reviewHistoryPhoneTour} from './review-history-phone.mjs';
 
 const image = (file, title, text) => ({ image: file, title, text });
 const clip = (file, title, text) => ({ clip: file, title, text });
@@ -165,10 +166,5 @@ export const tours = {
     image('ride-delivered', 'Déposer les passagers', 'L’essai local vérifie les déposes avant la fin du trajet.'),
     image('ride-history', 'Retrouver le trajet terminé', 'Le trajet terminé apparaît dans l’historique du parent.'),
   ],
-  ratings: [
-    image('ride-phone-review-prompt', 'Donner son avis sur téléphone', 'Le parent peut noter le trajet terminé.'),
-    image('ride-phone-reviewed', 'Envoyer cinq étoiles', 'L’avis est enregistré et la demande disparaît.'),
-    image('ride-review', 'Donner son avis', 'Une demande d’avis est proposée après le trajet local.'),
-    image('ride-review-sent', 'Envoyer l’avis', 'L’avis est enregistré et la demande disparaît.'),
-  ],
+  ratings: reviewHistoryPhoneTour,
 };

@@ -2,13 +2,20 @@
 
 ## Current Publication Policy
 
-The 29 October review-history comparison reproduces one returning submitted
-review after 104 ratings with the original inbox module, then passes seven
-authenticated local checks with exact candidate reads. All 24 service groups and
-501 backend units pass. Publish a short local-only update, preserve the original
-failed receipt and October 23 phone evidence, and keep physical replay, received
-ratings, longer ride discovery and release scope open. There are no new captures,
-videos, provider requests or production deployment. Public audience is unchanged.
+The later 29 October physical review-history replay passes seven independent
+record checkpoints on one Android phone. After 104 fixture-prepared ratings,
+one new request appears and the driver submits five stars through the phone;
+returning to the inbox keeps it hidden. The parent retains separate requests and
+submits a distinct five-star review. The observer submits neither new rating.
+Publish seven original reviewed JPEG session-window captures, not native exports
+or video. Earlier October 23 captures retain their date. Completed rides were
+fixture-prepared; navigation is not process-restart proof. Keep received ratings,
+longer ride discovery and release requirements open. Both accounts signed out;
+clipboard replacement/restoration, the idle dashboard and owned runtime/helper
+disposal were observed. The selected older isolated APK has unchanged adult
+review presentation files, not independently verified installed bytes. Preserve
+the failed old-handler comparison separately. No map requests, real payments,
+production changes or audience changes occurred.
 
 The published 29 October version 247 now passes all twenty short-clip playback and
 seek cases, including sixteen actual visible-gallery/tour cases and four explicit

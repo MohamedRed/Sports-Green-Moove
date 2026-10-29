@@ -5,6 +5,7 @@ import {nativeGateRecheck} from './native-gate-recheck.mjs';
 import {publishedMediaReview} from './published-media-review.mjs';
 import {publishedMediaPlayback} from './published-media-playback.mjs';
 import {reviewHistoryRecheck} from './review-history.mjs';
+import {reviewHistoryPhone, reviewHistoryPhoneImages} from './review-history-phone.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { chatNetworkRecovery, chatNetworkRecheck } from './chat-network-recovery.mjs';
@@ -62,6 +63,7 @@ export const content = {
   publishedMediaReview,
   publishedMediaPlayback,
   reviewHistoryRecheck,
+  reviewHistoryPhone,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
   adminClientLifecycleRecheck: { source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/results.json',
@@ -250,15 +252,15 @@ export const content = {
       images: [...['started', 'picked-up', 'dropped-off', 'stable', 'completed', 'parent-history'].map(phase => shot('ride-phone-' + phase, 'Trajet sur téléphone avec des données isolées, le 23 octobre')),
         shot('ride-delivered', 'Passagers déposés avant de terminer le trajet, en local'),
         shot('ride-history', 'Trajet terminé dans l’historique du parent, en local')], source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },
-    { id: 'ratings', title: 'Avis après trajet', status: 'partial', checkedAt: '2026-10-23',
+    { id: 'ratings', title: 'Avis après trajet', status: 'partial', checkedAt: '2026-10-29',
       latestEvidence: 'phone',
-      summary: 'Le parent envoie son avis sur téléphone après le trajet.',
-      verified: 'Cinq étoiles enregistrées, puis la demande disparaît. L’essai utilise des données de test et un seul téléphone.',
-      remaining: 'Rejouer l’historique corrigé sur téléphone, les notes reçues et les très longues listes de trajets.',
+      summary: 'Les avis envoyés ne réapparaissent plus, même après de nombreux trajets.',
+      verified: 'Après 104 avis, conducteur et parent envoient chacun cinq étoiles. Les demandes restent séparées. Un seul téléphone, avec des données de test.',
+      remaining: 'Vérifier les notes reçues et les très longues listes de trajets.',
       ui: { ...rideUi(['ride-review-ui']), checkedAt: '2026-10-15' },
       local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.'], 'docs/release/evidence/local-2026-10-15/results.json', '2026-10-15'),
-      images: [shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
-        shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },
+      images: [...reviewHistoryPhoneImages, shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
+        shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/review-history-phone-2026-10-29/README.md' },
     createImpactFlow(local, rideUi, shot),
     createSupportFlow(local, ui, shot),
     createProfileCityFlow(),

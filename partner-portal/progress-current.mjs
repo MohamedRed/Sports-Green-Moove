@@ -11,8 +11,10 @@ import {dependencyPatchProgress, networkPreparationProgress} from './dependency-
 import {nativeGateProgress} from './native-gate-recheck.mjs';
 import {publishedMediaProgress} from './published-media-playback.mjs';
 import {reviewHistoryProgress} from './review-history.mjs';
+import {reviewHistoryPhoneProgress} from './review-history-phone.mjs';
 
 export const currentProgress = [
+  reviewHistoryPhoneProgress,
   reviewHistoryProgress,
   publishedMediaProgress,
   nativeGateProgress,

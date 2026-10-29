@@ -11,9 +11,9 @@ const root = resolve(import.meta.dirname, '..'), reference = content.reviewHisto
 test('an unchanged 104-rating regression fails with the old handler and passes with exact candidate reads', () => {
   const after = validateReviewHistoryEvidence(root, reference); assert.equal(after.ratingsSubmitted, 106);
   const flow = content.flows.find(row => row.id === 'ratings');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-23');
-  assert.deepEqual(flow.images.map(row => row.file), ['ride-phone-review-prompt', 'ride-phone-reviewed', 'ride-review', 'ride-review-sent']);
-  assert.match(flow.remaining, /téléphone/);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-29');
+  assert.deepEqual(flow.images.slice(-4).map(row => row.file), ['ride-phone-review-prompt', 'ride-phone-reviewed', 'ride-review', 'ride-review-sent']);
+  assert.match(flow.images.at(-4).alt, /23 octobre/); assert.match(flow.remaining, /notes reçues/);
 });
 for (const [index, file, mutate] of [
   [0, 'before.json', value => {value.completed = true;}],

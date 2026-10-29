@@ -420,6 +420,8 @@ on:
       - "tests/short-video-lifecycle.test.mjs"
       - "tests/buffered-media-evidence.test.mjs"
       - "tests/review-history-evidence.test.mjs"
+      - "tests/review-history-phone-checkpoints.test.mjs"
+      - "tests/review-history-phone-evidence.test.mjs"
       - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
       - "tests/network-start-observation.test.mjs"
@@ -907,6 +909,8 @@ on:
       - "tests/short-video-lifecycle.test.mjs"
       - "tests/buffered-media-evidence.test.mjs"
       - "tests/review-history-evidence.test.mjs"
+      - "tests/review-history-phone-checkpoints.test.mjs"
+      - "tests/review-history-phone-evidence.test.mjs"
       - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
       - "tests/network-start-observation.test.mjs"
@@ -1108,7 +1112,7 @@ jobs:
       - name: Test completed review history beyond the legacy limit
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/review-history.json
-        run: npm run test:review-history && node --test tests/review-history-evidence.test.mjs
+        run: npm run test:review-history && node --test tests/review-history-evidence.test.mjs tests/review-history-phone-checkpoints.test.mjs tests/review-history-phone-evidence.test.mjs
 
       - name: Test runtime proxy trust against forwarded-address spoofing
         run: node --test tests/proxy-trust-security.test.mjs

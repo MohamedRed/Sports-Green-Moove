@@ -3,13 +3,14 @@ import {createHash} from 'node:crypto';
 import {readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {deleteApp} from 'firebase-admin/app';
-import {Timestamp} from 'firebase-admin/firestore';
 import {auth, call, db, denied, signIn} from './local-flow-client.mjs';
 import {seedLocalUiFixtures} from './local-ui-fixtures.mjs';
 import {withLocalAdminCleanup} from './local-admin-lifecycle.mjs';
+import {createReviewHistoryFixture, createCompletedReviewRide} from './review-history-fixture.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), steps = [], observations = [];
 const sources = ['scripts/qa/run-local-review-history.mjs', 'scripts/qa/local-review-history.mjs',
+  'scripts/qa/review-history-fixture.mjs',
   'functions/src/callables/inbox.ts', 'functions/src/domain/inbox.ts', 'functions/src/callables/feedback.ts'];
 const sourceFiles = Object.fromEntries(sources.map(file => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]));
 let failure, adminClientClosed = false, firestoreClientTerminated = false, ratingsSubmitted = 0, protectedRecordCount = 0;
@@ -26,28 +27,21 @@ try {
     for (const collection of await db.listCollections()) for (const row of (await collection.get()).docs)
       protectedRows.set(row.ref.path, row.data());
     const originalClaims = await Promise.all([driver, parent].map(async actor => (await auth.getUser(actor.uid)).customClaims));
-    const peers = [parent.uid, 'sgm-review-history-parent-2', 'sgm-review-history-parent-3', 'sgm-review-history-parent-4'];
-    for (const uid of peers.slice(1)) await auth.createUser({uid, email: uid + '@example.test', password: process.env.SGM_QA_PASSWORD});
-    const rides = Array.from({length: 26}, (_, i) => 'sgm-review-history-' + String(i).padStart(3, '0'));
-    const createCompletedFixture = async id => db.doc('rideSessions/' + id).create({driverUserId: driver.uid,
-      participantUserIds: [driver.uid, ...peers], status: 'completed', completedAt: Timestamp.now()});
+    let fixture;
     await check('104-immutable-ratings-created-through-authenticated-callable', async () => {
-      for (const rideSessionId of rides) {
-        await createCompletedFixture(rideSessionId);
-        for (const ratedUserId of peers) {await call('submitRating', driver, {rideSessionId, ratedUserId, score: 4}); ratingsSubmitted++;}
-      }
+      fixture = await createReviewHistoryFixture(driver, parent); ratingsSubmitted = 104;
       assert.equal(ratingsSubmitted, 104);
       assert.equal((await db.collection('ratings').where('authorUserId', '==', driver.uid).get()).size, 104);
     });
+    const {rides, freshRide} = fixture;
     await check('submitted-reviews-do-not-reappear-beyond-the-first-100-ratings', async () => {
       const {inbox} = await call('getInbox', driver);
       const repeated = inbox.reviews.filter(row => rides.includes(row.rideSessionId));
       observations.push({phase: '104-rated', displayedAlreadyRatedPrompts: repeated.length, displayedIds: repeated.map(row => row.id)});
       assert.equal(repeated.length, 0, 'Already-submitted reviews must remain absent beyond the history window');
     });
-    const freshRide = 'sgm-review-history-zzz-unrated';
     await check('one-new-unrated-ride-keeps-exactly-one-distinct-prompt', async () => {
-      await createCompletedFixture(freshRide);
+      await createCompletedReviewRide(fixture);
       const {inbox} = await call('getInbox', driver);
       assert.equal(inbox.reviews.length, 1); assert.equal(inbox.reviews[0].rideSessionId, freshRide);
       assert.equal(inbox.reviews[0].ratedUserId, parent.uid);
