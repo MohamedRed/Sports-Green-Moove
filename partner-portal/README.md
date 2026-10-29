@@ -2,6 +2,24 @@
 
 ## Current Publication Policy
 
+The terminal 7e0e22e baseline now passes the full enabled gate: 193 ordinary
+passes/54 skips, forty replay cases in 37 groups, all seventeen primary copies,
+verified device restoration and eleven focused lanes. All 29 PR entries are
+terminal success/skipped. Retain these originals separately; the new trip-context
+implementation is not covered. Publish one concise baseline-only progress item,
+preserve failed history and keep the new-context/full-release requirements open.
+
+The later 29 October contextual-review check adds trip name/date without changing
+review identity or pagination. Seven authenticated service groups, nine local
+Android component cases, 538 backend units and 636 Android units pass. Publish
+three reviewed original native component captures and concise French local-only
+news. Preserve the older phone galleries and tour. The model/wire checks do not
+prove iOS UI; component and service checks do not prove integrated phone execution.
+Keep contextual phone/legacy/interruption work, full native gate and broader
+release gaps open. Explicitly unavailable details invent no date or alternative
+source. Preserve the two failed Java preparations, initial test compile failure,
+final source-bound pass, closed processes/ports and unchanged public audience.
+
 The later 29 October local review-display/recovery replay retains the original
 failed CI and local baseline, the unsuccessful count-only attempt and the actual
 line geometry. The average overflow flag was a false positive, not a proven

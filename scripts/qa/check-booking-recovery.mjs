@@ -7,7 +7,7 @@ import { resolve, dirname, isAbsolute } from 'node:path';
 
 const root = resolve(import.meta.dirname, '../..');
 const temp = mkdtempSync(resolve(tmpdir(), 'sgm-booking-recovery-'));
-const sources = ['Models.swift', 'BookingIntentSnapshot.swift', 'PendingBookingStore.swift', 'BookingRequestCoordinator.swift']
+const sources = ['Models.swift', 'ReviewTripContext.swift', 'BookingIntentSnapshot.swift', 'PendingBookingStore.swift', 'BookingRequestCoordinator.swift']
   .map((name) => `ios/Sources/SportsGreenMooveApp/${name}`);
 try {
   const output = process.env.SGM_SWIFT_BOOKING_RECOVERY_OUTPUT || resolve(temp, 'results.json');

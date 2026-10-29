@@ -5,7 +5,7 @@ import org.junit.Test
 
 class PendingReviewParserTest {
     private fun row(id: String = "ride_parent_driver") = mapOf("id" to id, "rideSessionId" to "ride", "ratedUserId" to "driver",
-        "title" to "Avis", "prompt" to "Votre avis ?", "initials" to "AV")
+        "title" to "Avis", "prompt" to "Votre avis ?", "initials" to "AV", "tripContext" to null)
     private fun page() = mapOf("userId" to "parent", "items" to listOf(row()), "nextCursor" to "next_1")
     @Test fun parsesEmptyContinuationAndTerminalPagesSeparately() {
         assertEquals("next_1", parsePendingReviewPage(page() + ("items" to emptyList<Any>()), "parent").nextCursor)

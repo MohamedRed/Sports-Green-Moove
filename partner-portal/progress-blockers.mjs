@@ -2,11 +2,11 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   {id: 'review-trip-context', title: 'Reconnaître le trajet à noter',
-    text: 'Les demandes d’avis portent encore le même titre.',
-    next: 'Afficher le trajet concerné dans chaque demande.', source: 'docs/release/evidence/review-pagination-2026-10-29/README.md'},
+    text: 'Le nom et la date passent en local. Les détails manquants sont signalés.',
+    next: 'Rejouer sur téléphone, avec les anciens trajets et après une coupure.', source: 'docs/release/evidence/review-trip-context-2026-10-29/README.md'},
   {id: 'native-primary-capture', title: 'Terminer une série complète de tests',
-    text: 'Une série s’est arrêtée sur une capture ; d’autres essais ont été interrompus.',
-    next: 'Stabiliser les captures et terminer la série sans interruption.', source: 'docs/release/evidence/received-ratings-2026-10-29/README.md'},
+    text: 'La version précédente passe la série complète. Les nouveaux détails d’avis passent en local.',
+    next: 'Terminer la série complète avec les nouveaux détails d’avis.', source: 'docs/release/evidence/native-review-baseline-7e0e22e-2026-10-29/README.md'},
   {id: 'tracking-reconnect-display', title: 'Rejouer le suivi en direct',
     text: 'L’essai séparé confirme un blocage de la connexion privée de test.',
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',

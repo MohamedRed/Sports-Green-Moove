@@ -13,6 +13,7 @@ try {
   mkdirSync(dirname(output), { recursive: true });
   const binary = resolve(temp, 'booking-wire');
   execFileSync('swiftc', ['-swift-version', '6', 'ios/Sources/SportsGreenMooveApp/Models.swift',
+    'ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift',
     'ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift', 'scripts/qa/check-booking-intent.swift', '-o', binary],
   { cwd: root, stdio: 'inherit', timeout: 120_000 });
   execFileSync(binary, [output], { cwd: root, stdio: 'inherit', timeout: 30_000 });

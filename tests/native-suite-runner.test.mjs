@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-function fixture(t, { missingChatCapture, missingNotificationCapture, missingConnectCapture, missingRatingCapture = false } = {}) {
+function fixture(t, { missingChatCapture, missingNotificationCapture, missingConnectCapture, missingRatingCapture = false, missingContextCapture } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'sgm-suite-status-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   for (const dir of ['scripts', 'android', 'bin']) mkdirSync(join(root, dir));
@@ -23,6 +23,7 @@ function fixture(t, { missingChatCapture, missingNotificationCapture, missingCon
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-notification-read && "$CAPTURE_FAILURE" == notification ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == */local-ui-evidence/connect-*.png && "$CAPTURE_FAILURE" == connect ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == */local-ui-evidence/received-ratings-large-text.png && "$CAPTURE_FAILURE" == rating ]]; then exit 9; fi',
+      'if [[ "$1" == pull && "$2" == */local-ui-evidence/review-trip-context-*.png && "$CAPTURE_FAILURE" == context ]]; then exit 9; fi',
       '',
     ].join('\n') : '';
     writeFileSync(join(root, path), '#!/bin/bash\n' + teamCopy + content, { mode: 0o700 });
@@ -44,8 +45,8 @@ function fixture(t, { missingChatCapture, missingNotificationCapture, missingCon
   executable('bin/adb', 'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-session-restoration && "$CAPTURE_FAILURE" == 1 ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-store-review && "$CAPTURE_FAILURE" == store ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-payment-confirmation && "$CAPTURE_FAILURE" == payments ]]; then exit 9; fi\nif [[ "$1" == pull && "$2" == /sdcard/Download/sgm-emergency-contact && "$CAPTURE_FAILURE" == emergency ]]; then exit 9; fi\nexit 0\n');
   const out = join(root, 'android/app/build/outputs/store-review-screenshots');
   mkdirSync(out, { recursive: true });
-  for (const name of ['connect-opening.png', 'connect-narrow.png', 'received-ratings-large-text.png']
-    .filter(name => name !== missingConnectCapture && !(missingRatingCapture && name.startsWith('received-'))))
+  for (const name of ['connect-opening.png', 'connect-narrow.png', 'received-ratings-large-text.png', 'review-trip-context-large-text.png', 'review-trip-context-unavailable.png', 'review-trip-context-choices.png']
+    .filter(name => name !== missingConnectCapture && name !== missingContextCapture && !(missingRatingCapture && name.startsWith('received-'))))
     writeFileSync(join(out, name), 'shell-harness-fixture-not-device-evidence');
   const screens = {
     'sgm-notification-read': ['unread', 'confirmed', 'unconfirmed', 'narrow-error']
@@ -96,6 +97,7 @@ for (const [name, env, exit, statuses] of [
   ['stale payment component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'payments' }, 1, [0, 1, 0]],
   ['stale driver account files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'connect' }, 1, [0, 1, 0]],
   ['stale rating capture cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'rating' }, 1, [0, 1, 0]],
+  ['stale review context captures cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'context' }, 1, [0, 1, 0]],
   ['stale contact component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'emergency' }, 1, [0, 1, 0]],
   ['stale team component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'teams' }, 1, [0, 1, 0]],
   ['stale owned-history component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'history' }, 1, [0, 1, 0]],
@@ -131,10 +133,17 @@ test('missing received-rating capture fails the gate without suppressing replay 
 
 test('a failed partial rating copy preserves the original ordinary failure', t => {
   const result = fixture(t)({ORDINARY_STATUS: '7', CAPTURE_FAILURE: 'rating'});
-  assert.equal(result.status, 7); assert.match(result.stdout, /Could not retain the partial received-rating/);
+  assert.equal(result.status, 7); assert.match(result.stdout, /Could not retain the partial profile\/review/);
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], [7, 0, 0]);
   assert(result.adbCalls.some(call => call.includes('/partial-components/received-ratings-large-text.png')));
 });
+for (const name of ['review-trip-context-large-text.png', 'review-trip-context-unavailable.png', 'review-trip-context-choices.png'])
+  test(`missing ${name} fails collection but still executes independent replay and cleanup`, t => {
+    const result = fixture(t, {missingContextCapture: name})({});
+    assert.equal(result.status, 1); assert(result.stderr.includes(name));
+    assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], [0, 1, 0]);
+    assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
+  });
 
 for (const stem of ['unread', 'confirmed', 'unconfirmed', 'narrow-error']) for (const suffix of ['.png', '-window.png'])
   test(`missing notification ${stem}${suffix} fails collection but still replays and restores`, t => {

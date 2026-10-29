@@ -25,10 +25,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import be.sportgreenmoove.app.data.ConversationListItem
-import be.sportgreenmoove.app.data.InboxReviewPrompt
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
-import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
@@ -66,41 +64,6 @@ fun ChatCard(chat: ConversationListItem, onClick: () -> Unit) {
 }
 
 @Composable
-fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, onRate: (Int) -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .sgmTestTag(SgmTestTags.RatingPromptAction)
-            .clip(RoundedCornerShape(SgmRadius.LG))
-            .background(Sgm.colors.bgCard)
-            .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG))
-            .padding(14.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            MessageAvatar(review.initials, size = 36)
-            Text(review.title, style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontWeight = FontWeight.Bold))
-        }
-        Text(review.prompt, style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
-        Text(
-            if (submitting) "Envoi de l'avis..." else "Touchez une note.",
-            style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold),
-        )
-        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            repeat(5) { index ->
-                Text(
-                    "★",
-                    style = SgmType.DisplayXL.copy(color = SgmColor.Orange, fontSize = 26.sp),
-                    modifier = Modifier
-                        .sgmTestTag("${SgmTestTags.RatingPromptAction}.${index + 1}")
-                        .clickable(enabled = !submitting) { onRate(index + 1) },
-                )
-            }
-        }
-    }
-}
-
-@Composable
 fun MessagesEmptyCard(message: String) {
     Box(
         modifier = Modifier
@@ -115,7 +78,7 @@ fun MessagesEmptyCard(message: String) {
 }
 
 @Composable
-private fun MessageAvatar(initials: String, size: Int, muted: Boolean = false) {
+internal fun MessageAvatar(initials: String, size: Int, muted: Boolean = false) {
     Box(
         modifier = Modifier
             .size(size.dp)

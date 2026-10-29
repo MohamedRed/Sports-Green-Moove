@@ -1,0 +1,14 @@
+{
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/ReviewCard.kt": "2f0a5472da1a7188427920d213ae0418f35c16f61df2344e2a011cc2f29909b0",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/MessagesCards.kt": "bb1b4fa136f3e885289f45e111a25a04f709e5527301252f63c8116dcb9b5547",
+  "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt": "f7ad841b3a84f3d091780352315fdc6610afa574f75b9c05a5b7af714cad814f",
+  "android/app/src/main/java/be/sportgreenmoove/app/data/ReviewTripContext.kt": "796ecf83881e9b35e3f814db0875474ba25112c1cb9c9e280612850ee5d25bc4",
+  "android/app/src/main/java/be/sportgreenmoove/app/services/ReviewTripContextParser.kt": "7d07a3481ed51c5baf2510827d2dabdde418a04d35dd6de5caf8033f51f942cd",
+  "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidPendingReviewGateway.kt": "5320fd759965b3046cf3debbd8c4b2c6e928d03cfbaaa00be9b7b96b1f52a94c",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ReviewTripContextFlowTest.kt": "534a5eb657986227f74746cdf0ac82fd5df7aadb259e895eecef106588f8c442",
+  "ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift": "9a3b6be612e2b563bd6a6cd5eada3d3bdc04d38fcba1e1ddf600bcbdbdb3cc13",
+  "ios/Sources/SportsGreenMooveApp/ReviewTripContextWire.swift": "0d65d2aa06ee366d0a5918dac097ef366e9d8f5001f6b7bdfa80f74826b2357e",
+  "ios/Sources/SportsGreenMooveApp/Models.swift": "7dd16448670e89929b7680f1bf79d8cb8f7e7e972704a6771690d308429270b0",
+  "ios/Sources/SportsGreenMooveApp/PendingReviewWire.swift": "15772da2e0bd5d8d205ed608a55e1dda5fd1def53a07085c356c611f8baa755f",
+  "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift": "93687bcffba54367258610ca9ccf456d5005041ab2fc2dc66748c47e49c60fb3"
+}

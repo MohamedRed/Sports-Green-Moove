@@ -22,9 +22,20 @@ private func review(_ id: String) -> InboxReviewPrompt {
 
 @MainActor func checkPendingReviews() async throws {
     let wire: [String: Any] = ["userId": "parent", "items": [["id": "ride_parent_driver", "rideSessionId": "ride",
-        "ratedUserId": "driver", "title": "Avis", "prompt": "Votre avis ?", "initials": "AV"]], "nextCursor": NSNull()]
+        "ratedUserId": "driver", "title": "Avis", "prompt": "Votre avis ?", "initials": "AV", "tripContext": NSNull()]], "nextCursor": NSNull()]
     let page = try PendingReviewWire.parse(wire, uid: "parent")
     check(page.items.count == 1 && page.nextCursor == nil, "Terminal review page failed")
+    let context: [String: Any] = ["tripId": "trip", "title": "Entraînement U12", "departureAt": "2026-10-29T17:45:00Z",
+                                "departureLabel": "29 octobre 2026 à 18:45"]
+    let parsed = try ReviewTripContextWire.parse(["tripContext": context])
+    check(parsed?.title == "Entraînement U12" && parsed?.departureLabel == "29 octobre 2026 à 18:45", "Review details changed")
+    for bad in [[:], ["tripContext": false], ["tripContext": context.merging(["tripId": "foreign/path"], uniquingKeysWith: { _, b in b })],
+                ["tripContext": context.merging(["departureAt": "2026-10-29T17:45:00"], uniquingKeysWith: { _, b in b })],
+                ["tripContext": context.merging(["departureAt": "invalid"], uniquingKeysWith: { _, b in b })],
+                ["tripContext": context.merging(["unexpected": true], uniquingKeysWith: { _, b in b })],
+                ["tripContext": context.merging(["title": " "], uniquingKeysWith: { _, b in b })]] as [[String: Any]] {
+        do { _ = try ReviewTripContextWire.parse(bad); fatalError("Invalid review details accepted") } catch { }
+    }
     var invalid = wire; invalid["userId"] = "other"
     do { _ = try PendingReviewWire.parse(invalid, uid: "parent"); fatalError("Foreign review page was accepted") } catch { }
     invalid = wire; invalid.removeValue(forKey: "nextCursor")

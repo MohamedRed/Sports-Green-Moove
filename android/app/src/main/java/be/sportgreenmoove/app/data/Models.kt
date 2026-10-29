@@ -241,4 +241,5 @@ data class InboxReviewPrompt(
     val title: String,
     val prompt: String,
     val initials: String,
+    val tripContext: ReviewTripContext? = null,
 )

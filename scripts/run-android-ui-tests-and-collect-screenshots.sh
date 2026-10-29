@@ -46,11 +46,13 @@ collect_component_evidence() {
 
   if [[ "$test_status" -ne 0 ]]; then
     mkdir -p "$output_dir/partial-components" || return 1
-    rating_capture=/sdcard/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/received-ratings-large-text.png
-    if adb shell test -s "$rating_capture"; then
-      adb pull "$rating_capture" "$output_dir/partial-components/received-ratings-large-text.png" || \
-        echo "::warning::Could not retain the partial received-rating component capture"
-    fi
+    for name in received-ratings-large-text.png review-trip-context-large-text.png review-trip-context-unavailable.png review-trip-context-choices.png; do
+      component_capture="/sdcard/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/$name"
+      if adb shell test -s "$component_capture"; then
+        adb pull "$component_capture" "$output_dir/partial-components/$name" || \
+          echo "::warning::Could not retain the partial profile/review component capture: $name"
+      fi
+    done
     for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components sgm-neutral-text sgm-team-chat-components; do
       if adb shell test -d "/sdcard/Download/$directory"; then
         if ! adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"; then
@@ -131,7 +133,7 @@ collect_component_evidence() {
       fi
     done
     adb pull /sdcard/Download/sgm-payment-confirmation "$output_dir" || return 1
-    for name in connect-narrow.png connect-opening.png received-ratings-large-text.png; do
+    for name in connect-narrow.png connect-opening.png received-ratings-large-text.png review-trip-context-large-text.png review-trip-context-unavailable.png review-trip-context-choices.png; do
       adb pull "/sdcard/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/$name" "$output_dir/$name" || return 1
       if [[ ! -s "$output_dir/$name" ]]; then
         echo "Missing profile or driver account component capture: $name" >&2

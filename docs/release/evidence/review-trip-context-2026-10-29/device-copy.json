@@ -1,0 +1,22 @@
+{
+  "serial": "emulator-5582",
+  "records": [
+    {
+      "packageName": "be.sportgreenmoove.app.local",
+      "file": "context.apk",
+      "sha256": "87572997804d63c9a633d8d5d670c288e7a6fa14c8187bca3018b41c63b8834c",
+      "installedBytesVerified": true
+    },
+    {
+      "packageName": "be.sportgreenmoove.app.local.test",
+      "file": "context-test.apk",
+      "sha256": "3501fea2bd2a0e52cf3436bfc025fcd95ab3c352fd0292e01a6f0ab5332fad95",
+      "installedBytesVerified": true
+    }
+  ],
+  "captures": {
+    "review-trip-context-choices.png": "87ca27217842914a2d28a6cf2c3befd08b08dfb2b86fe8988c87f7e9f8904f3f",
+    "review-trip-context-large-text.png": "37252743a00df2d01afdb56d687be5ee11d07b99aa0474e57274b3adfad3f3fd",
+    "review-trip-context-unavailable.png": "3683c9312b863a6c1d9da5e0aeb15663f76c572b2d45739dd79370ab5c6d28bf"
+  }
+}

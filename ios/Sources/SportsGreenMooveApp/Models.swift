@@ -287,12 +287,3 @@ struct InboxChatSummary: Identifiable, Hashable, Sendable {
     let unreadCount: Int
     let initials: String
 }
-
-struct InboxReviewPrompt: Identifiable, Hashable, Sendable {
-    let id: String
-    let rideSessionId: String
-    let ratedUserId: String
-    let title: String
-    let prompt: String
-    let initials: String
-}

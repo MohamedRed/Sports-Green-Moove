@@ -17,6 +17,8 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RidePaymentVerification.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ClubSummary.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/Models.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReviewTripContextWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PendingReviews.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PendingReviewWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift" \

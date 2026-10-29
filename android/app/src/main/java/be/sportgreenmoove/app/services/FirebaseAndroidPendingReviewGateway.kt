@@ -32,7 +32,7 @@ internal fun parsePendingReviewPage(raw: Any?, uid: String): PendingReviewPage {
         fun field(key: String) = (row[key] as? String)?.takeIf { it.isNotBlank() } ?: error("Missing review $key")
         val ride = field("rideSessionId"); val target = field("ratedUserId"); val id = field("id")
         check(target != uid && id == "${ride}_${uid}_${target}")
-        InboxReviewPrompt(id, ride, target, field("title"), field("prompt"), field("initials"))
+        InboxReviewPrompt(id, ride, target, field("title"), field("prompt"), field("initials"), parseReviewTripContext(row))
     }
     check(items.map { it.id }.distinct().size == items.size)
     return PendingReviewPage(uid, items, cursor as String?)

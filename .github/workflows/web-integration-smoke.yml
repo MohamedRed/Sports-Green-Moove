@@ -427,6 +427,8 @@ on:
       - "tests/review-pagination-contract.test.mjs"
       - "tests/review-pagination-evidence.test.mjs"
       - "tests/review-display-evidence.test.mjs"
+      - "tests/review-context-contract.test.mjs"
+      - "tests/review-context-evidence.test.mjs"
       - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
       - "tests/network-start-observation.test.mjs"
@@ -921,6 +923,8 @@ on:
       - "tests/review-pagination-contract.test.mjs"
       - "tests/review-pagination-evidence.test.mjs"
       - "tests/review-display-evidence.test.mjs"
+      - "tests/review-context-contract.test.mjs"
+      - "tests/review-context-evidence.test.mjs"
       - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
       - "tests/network-start-observation.test.mjs"
@@ -1136,6 +1140,11 @@ jobs:
 
       - name: Test runtime proxy trust against forwarded-address spoofing
         run: node --test tests/proxy-trust-security.test.mjs
+
+      - name: Test authenticated pending review trip context
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/review-context.json
+        run: npm run test:review-context && node --test tests/review-context-contract.test.mjs tests/review-context-evidence.test.mjs
 
       - name: Test runtime multipart parser against malformed inputs
         run: node --test tests/multipart-security.test.mjs
@@ -1366,6 +1375,14 @@ jobs:
         with:
           name: review-pagination-results
           path: ${{ runner.temp }}/review-pagination.json
+          if-no-files-found: ignore
+
+      - name: Retain pending review context results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: review-context-results
+          path: ${{ runner.temp }}/review-context.json
           if-no-files-found: ignore
 
 

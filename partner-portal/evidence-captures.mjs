@@ -15,11 +15,13 @@ import {reviewHistoryPhoneCaptures} from './review-history-phone.mjs';
 import {receivedRatingCaptures} from './received-ratings.mjs';
 import {reviewPaginationCaptures} from './review-pagination.mjs';
 import {reviewDisplayCaptures} from './review-display-recovery.mjs';
+import {reviewTripCaptures} from './review-trip-context.mjs';
 
 export const captures = {
   ...receivedRatingCaptures,
   ...reviewPaginationCaptures,
   ...reviewDisplayCaptures,
+  ...reviewTripCaptures,
   ...reviewHistoryPhoneCaptures,
   ...tripCancellationCaptures,
   ...directBookingCaptures,

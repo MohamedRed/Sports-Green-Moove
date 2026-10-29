@@ -1,3 +1,5 @@
+import type { ReviewTripContext } from "./reviewTripContext.js";
+
 export type ClientInboxSummary = {
   notifications: ClientInboxNotification[];
   chats: ClientInboxChat[];
@@ -31,6 +33,7 @@ export type ClientInboxReviewPrompt = {
   title: string;
   prompt: string;
   initials: string;
+  tripContext?: ReviewTripContext | null;
 };
 
 export type InboxDocument<T extends Record<string, unknown> = Record<string, unknown>> = {

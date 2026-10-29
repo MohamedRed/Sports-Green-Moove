@@ -14,7 +14,7 @@ assert.deepEqual(reports.map(report => report.with.name).sort(), [
   'booking-display-results', 'booking-consistency-results', 'trip-contention-results',
   'web-booking-notices', 'ledger-history-services', 'search-booking-notice-services',
   'child-contact-discovery-results', 'child-invitation-results',
-  'review-history-results', 'received-rating-summary-results', 'review-pagination-results',
+  'review-history-results', 'received-rating-summary-results', 'review-pagination-results', 'review-context-results',
 ].sort());
 for (const job of jobs) {
   const firstReport = job.steps.findIndex(step => step.uses?.startsWith("actions/upload-artifact@"));

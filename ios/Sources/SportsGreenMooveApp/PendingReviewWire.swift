@@ -19,7 +19,7 @@ enum PendingReviewWire {
             let id = try field("id"), ride = try field("rideSessionId"), target = try field("ratedUserId")
             guard target != uid, id == "\(ride)_\(uid)_\(target)" else { throw invalid }
             return try .init(id: id, rideSessionId: ride, ratedUserId: target,
-                             title: field("title"), prompt: field("prompt"), initials: field("initials"))
+                             title: field("title"), prompt: field("prompt"), initials: field("initials"), tripContext: ReviewTripContextWire.parse(row))
         }
         guard Set(items.map(\.id)).count == items.count else { throw invalid }
         return .init(userId: uid, items: items, nextCursor: cursor)

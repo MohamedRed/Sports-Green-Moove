@@ -62,5 +62,6 @@ driver requests, scope checks, repeated/deleted cursor anchors and later-page
 submission. The physical Android replay independently verifies two real phone
 submissions and one continuation over a 31-ride isolated dataset. iOS model/wire
 checks are not an iOS UI, SDK integration or physical-phone result. Instrumented
-component-test builds alone are not execution proof. The remaining generic
-review-card title still needs trip context before full user-flow sign-off.
+component-test builds alone are not execution proof. The later local context
+checks are in `review-trip-context.md`; contextual review replay on a phone
+and historical data verification remain open before full user-flow sign-off.

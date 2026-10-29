@@ -202,6 +202,14 @@ struct ReviewCard: View {
                     .font(.sgmBody(13, weight: .bold))
                     .foregroundStyle(SGM.textPrimary)
             }
+            if let trip = review.tripContext {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(trip.title).font(.sgmBody(14, weight: .semibold)).foregroundStyle(SGM.textPrimary)
+                    Text(trip.departureLabel).font(.sgmBody(13)).foregroundStyle(SGM.textSecondary)
+                }
+            } else {
+                Text("Détails du trajet indisponibles").font(.sgmBody(13)).foregroundStyle(SGM.textSecondary)
+            }
             Text(review.prompt)
                 .font(.sgmBody(13))
                 .foregroundStyle(SGM.textSecondary)
