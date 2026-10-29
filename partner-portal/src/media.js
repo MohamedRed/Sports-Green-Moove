@@ -1,5 +1,6 @@
 import { escape, icon, localResults } from './render.js';
 import { mediaUrl } from './media-url.js';
+import {bindShortVideo, disposeShortVideo} from './short-video.js';
 
 const clipLabels = {
   'support-submission-retry': 'Reprendre une demande · essai local · 10 s',
@@ -20,15 +21,14 @@ export function createGallery(flow, initialClip) {
   let index = Math.max(0, entries.findIndex((entry) => entry.file === `${initialClip}.mp4`));
   const container = document.getElementById('media-content');
   const render = () => {
-    const oldVideo = container.querySelector('video');
-    oldVideo?.pause();
+    disposeShortVideo();
     if (!entries.length) {
       container.innerHTML = `<div class="no-media">${icon('image-off')}<h3>Pas encore de vidéo</h3></div>`;
       return;
     }
     const entry = entries[index];
     container.innerHTML = `${entry.type === 'checks' ? localResults(flow) : `<div class="media-stage${entry.landscape ? ' is-landscape' : ''}">${entry.type === 'video'
-      ? `<video controls playsinline preload="metadata" poster="${mediaUrl(entry.poster)}" aria-label="${escape(entry.label)}"><source src="${mediaUrl(entry.file)}" type="video/mp4">Votre navigateur ne prend pas en charge la vidéo.</video>`
+      ? `<video controls playsinline preload="metadata" poster="${mediaUrl(entry.poster)}" aria-label="${escape(entry.label)}">Votre navigateur ne prend pas en charge la vidéo.</video>`
       : `<a href="${mediaUrl(entry.file)}" target="_blank" rel="noopener" title="Agrandir la capture"><img src="${mediaUrl(entry.file)}" alt="${escape(entry.label)}"></a>`}
       </div>`}${entry.type === 'checks' ? '' : `<p class="media-caption">${escape(entry.label)}</p>`}
       ${entries.length > 1 ? `<div class="media-navigation"><button class="icon-button" id="previous-media" type="button" aria-label="Preuve précédente" title="Preuve précédente" ${index === 0 ? 'disabled' : ''}>${icon('chevron-left')}</button><span>${index + 1} / ${entries.length}</span><button class="icon-button" id="next-media" type="button" aria-label="Preuve suivante" title="Preuve suivante" ${index === entries.length - 1 ? 'disabled' : ''}>${icon('chevron-right')}</button></div>` : ''}
@@ -38,12 +38,8 @@ export function createGallery(flow, initialClip) {
       const button = container.querySelector(selector);
       if (button) button.onclick = () => { index += delta; render(); };
     }
-    container.querySelector('video')?.addEventListener('error', () => {
-      const note = document.createElement('p');
-      note.setAttribute('role', 'alert');
-      note.textContent = 'La vidéo ne peut pas être lue. Le téléchargement reste disponible.';
-      container.append(note);
-    });
+    const video = container.querySelector('video');
+    if (video) bindShortVideo(video, entry.file, container.querySelector('.media-caption'));
   };
   render();
 }

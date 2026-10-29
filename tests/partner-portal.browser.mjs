@@ -12,6 +12,7 @@ import { verifySupportSubmissionTour } from './partner-portal-support-submission
 import { verifyTeamRestartGallery } from './partner-portal-team-restart.browser.mjs';
 import { verifyDirectBookingTour } from './partner-portal-direct-booking.browser.mjs';
 import {verifyTripCancellationTour} from './partner-portal-trip-cancellation.browser.mjs';
+import {readyBufferedVideo} from './partner-portal-video.browser.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE_PATH;
 const { chromium } = modulePath ? await import(pathToFileURL(modulePath).href) : await import('playwright');
@@ -63,6 +64,7 @@ try {
   await page.locator('.flow-row[data-flow="signout"]').click();
   await page.getByRole('dialog').waitFor();
   const video = page.locator('video');
+  await readyBufferedVideo(page);
   await video.evaluate((element) => element.play());
   await page.waitForFunction(() => document.querySelector('video').currentTime > .3);
   const duration = await video.evaluate((element) => element.duration);
@@ -247,7 +249,7 @@ try {
     assert(await page.getByRole('button', { name: 'Preuve suivante', exact: true }).isDisabled());
   }
   await page.goto(`${base}/#parcours/signout/visite/1`);
-  await page.locator('video').evaluate((element) => element.play());
+  await (await readyBufferedVideo(page)).evaluate((element) => element.play());
   await page.waitForFunction(() => document.querySelector('video').currentTime > .3);
   await page.getByRole('link', { name: 'Suivant', exact: true }).click();
   await page.getByText('Étape 2 sur 2', { exact: true }).waitFor();

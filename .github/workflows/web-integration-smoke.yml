@@ -416,6 +416,9 @@ on:
       - "tests/chat-network-recheck-evidence.test.mjs"
       - "tests/native-gate-recheck-evidence.test.mjs"
       - "tests/published-media-seek-evidence.test.mjs"
+      - "tests/short-video-loading.test.mjs"
+      - "tests/short-video-lifecycle.test.mjs"
+      - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
       - "tests/network-start-observation.test.mjs"
       - "tests/dual-transport-evidence.test.mjs"
@@ -898,6 +901,9 @@ on:
       - "tests/chat-network-recheck-evidence.test.mjs"
       - "tests/native-gate-recheck-evidence.test.mjs"
       - "tests/published-media-seek-evidence.test.mjs"
+      - "tests/short-video-loading.test.mjs"
+      - "tests/short-video-lifecycle.test.mjs"
+      - "tests/partner-portal-video.browser.mjs"
       - "tests/dual-transport-config.test.mjs"
       - "tests/network-start-observation.test.mjs"
       - "tests/dual-transport-evidence.test.mjs"
@@ -1111,7 +1117,7 @@ jobs:
         run: node --test tests/chat-network-recheck-evidence.test.mjs
 
       - name: Validate full native gate and published media evidence boundaries
-        run: node --test tests/native-gate-recheck-evidence.test.mjs tests/published-media-seek-evidence.test.mjs
+        run: node --test tests/native-gate-recheck-evidence.test.mjs tests/published-media-seek-evidence.test.mjs tests/short-video-loading.test.mjs tests/short-video-lifecycle.test.mjs
 
       - name: Validate guardian verification contracts and retained scope
         run: node --test tests/guardian-verification-contract.test.mjs

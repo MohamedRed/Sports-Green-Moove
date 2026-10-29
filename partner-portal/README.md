@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The owner subsequently approved full loading of the existing short excerpts.
+The 29 October player accepts only approved clips at most 240,000 bytes, verifies
+their exact size and SHA-256, and uses a temporary Blob source. The CSP permits
+Blob media only. Leaving a view cancels loading and revokes the source. Originals,
+long recordings, download URLs and public access are unchanged. No alternative
+network source or automatic retry is added. Local playback/seek checks pass for
+all five assets at four widths; the unlisted parent-guard asset uses a separate
+production-module harness, not a newly invented visible flow. Keep the original
+published failure and its blocker until a matching live recheck succeeds. See
+`docs/release/short-video-playback.md` for the bounded protocol.
+
 The later 28 October full native gate at 94e8e78 passes 187 ordinary cases
 (54 skips), forty replay cases in 37 groups, seventeen primary copies and the
 independent restoration. All enabled checks pass. Preserve the previous copy and
@@ -947,8 +958,9 @@ deployment; never expose it as a public tunnel. Browser QA lives in
 Playwright runtime. It tests playback, deep links, filters, dialogs and overflow
 at 320, 390, 768 and 1440 pixels. Use a separate headless browser, not the user's
 existing browser profile. Web Integration Smoke validates content contracts.
-The preview must support HTTP byte ranges for video seeking; the basic Python
-server does not. A range request for a video should return HTTP 206.
+Use the range-capable preview for unchanged direct recordings. Approved short
+excerpts now use the fully loaded, verified player and do not rely on remote
+byte-range support. Do not infer published behavior from local playback alone.
 
 ## Publish Or Update
 

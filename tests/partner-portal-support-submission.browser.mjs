@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { content } from '../partner-portal/content.mjs';
+import {readyBufferedVideo} from './partner-portal-video.browser.mjs';
 
 export async function verifySupportSubmissionTour({ browser, base, output }) {
   const page = await browser.newPage(), errors = [];
@@ -35,7 +36,7 @@ export async function verifySupportSubmissionTour({ browser, base, output }) {
 }
 
 async function verifyRecordedClip(page, width, output) {
-  const video = page.locator('video'); await video.evaluate(element => element.play());
+  const video = await readyBufferedVideo(page); await video.evaluate(element => element.play());
   try { await page.waitForFunction(() => document.querySelector('video')?.currentTime > .5); }
   catch (cause) {
     const state = await video.evaluate(element => ({ current: element.currentTime, paused: element.paused,

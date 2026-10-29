@@ -4,9 +4,9 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { content } from '../partner-portal/content.mjs';
+import { content, excerpts } from '../partner-portal/content.mjs';
 import { assertBrowserAssetsCurrent, assetRevision } from '../partner-portal/build-assets.mjs';
-import { assertMediaCurrent } from '../partner-portal/media-assets.mjs';
+import { assertMediaCurrent, assertShortClipsCurrent } from '../partner-portal/media-assets.mjs';
 import {assertEvidenceArtifactsCommitted} from '../partner-portal/committed-evidence.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -26,11 +26,12 @@ const commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding:
 assertEvidenceArtifactsCommitted(root, content, commit);
 assert(existsSync(resolve(portal, 'dist/data.json')), 'Build the portal first');
 const built = JSON.parse(readFileSync(resolve(portal, 'dist/data.json'), 'utf8'));
-const { evidenceFingerprints, assetRevision: builtRevision, mediaRevisions, ...snapshot } = built;
+const { evidenceFingerprints, assetRevision: builtRevision, mediaRevisions, shortClipBytes, ...snapshot } = built;
 assert.deepEqual(snapshot, content, 'Content changed after build; rebuild before publishing');
 assert.equal(builtRevision, assetRevision(portal), 'Browser bundle changed; rebuild before publishing');
 assertBrowserAssetsCurrent(portal, resolve(portal, 'dist'));
 assertMediaCurrent(resolve(portal, 'dist/media'), mediaRevisions);
+assertShortClipsCurrent(resolve(portal, 'dist/media'), excerpts, shortClipBytes);
 for (const [source, fingerprint] of Object.entries(evidenceFingerprints)) {
   assert.equal(createHash('sha256').update(readFileSync(resolve(root, source))).digest('hex'), fingerprint,
     'Evidence source changed after build; review and rebuild before publishing');

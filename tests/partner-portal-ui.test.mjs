@@ -66,7 +66,7 @@ test('rendered content is escaped and native accessible controls remain present'
   assert.match(flowRows([]), /Aucun parcours/);
   assert.match(detail(content.flows[0]), /À faire/);
   assert.match(source('partner-portal/src/app.js'), /hashchange/);
-  assert.match(source('partner-portal/src/media.js'), /oldVideo\?\.pause/);
+  assert.match(source('partner-portal/src/media.js'), /disposeShortVideo\(\)/);
 });
 
 test('portal code modules remain below 300 lines', () => {

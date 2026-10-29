@@ -11,8 +11,12 @@ export function configureMediaRevisions(manifest) {
   revisions = next;
 }
 
-export function mediaUrl(file) {
+export function mediaRevision(file) {
   const hash = revisions?.get(file);
   if (!hash) throw new Error('Media revision unavailable');
-  return `media/${file}?v=${hash}`;
+  return hash;
+}
+
+export function mediaUrl(file) {
+  return `media/${file}?v=${mediaRevision(file)}`;
 }

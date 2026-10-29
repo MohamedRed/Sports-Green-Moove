@@ -90,6 +90,7 @@ body:has(dialog[open]) { overflow: hidden; }
 .media-stage a { display: grid; place-items: center; height: 100%; min-height: 0; }
 .media-stage video { width: 100%; background: var(--bg-dark); border-radius: 6px; }
 .media-caption { font-size: 12px; color: var(--text-secondary); margin-top: 14px; min-height: 40px; }
+.media-state { display: block; min-height: 1.3em; }
 .media-navigation { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; }
 .media-navigation span { font-size: 12px; }
 .media-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 18px; font-size: 12px; }

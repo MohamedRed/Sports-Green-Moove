@@ -2,11 +2,13 @@ import { overview, flowRows, nextSteps, detail, date } from './render.js';
 import { createGallery } from './media.js';
 import { createTour } from './tour.js';
 import { configureMediaRevisions } from './media-url.js';
+import {configureShortClips, currentShortClip, disposeShortVideo} from './short-video.js';
 
 let data;
 let selectedClip;
 let dialogFlow;
 let renderedRoute;
+let suspendedClip;
 const dialog = document.getElementById('flow-dialog');
 const query = document.getElementById('query');
 const filter = document.getElementById('status');
@@ -32,7 +34,7 @@ function route() {
   const flow = view === 'parcours' && flowId ? data.flows.find((f) => f.id === flowId) : null;
   if (flow) {
     if (renderedRoute !== location.hash || selectedClip) {
-      dialog.querySelector('video')?.pause();
+      disposeShortVideo();
       document.getElementById('flow-detail').innerHTML = detail(flow);
       const guided = mode === 'visite' && flow.tour;
       if (guided) createTour(flow, step);
@@ -63,6 +65,7 @@ async function load() {
     if (!response.ok) throw new Error('Content unavailable');
     data = await response.json();
     configureMediaRevisions(data.mediaRevisions);
+    configureShortClips(data.shortClipBytes);
     document.getElementById('view-apercu').innerHTML = overview(data);
     document.getElementById('view-suite').innerHTML = nextSteps(data);
     document.getElementById('freshness').textContent = `Mis à jour le ${date(data.updatedAt)}`;
@@ -85,10 +88,16 @@ document.addEventListener('click', (event) => {
 });
 document.getElementById('close-detail').onclick = () => { location.hash = '#parcours'; };
 dialog.addEventListener('cancel', (event) => { event.preventDefault(); location.hash = '#parcours'; });
-dialog.addEventListener('close', () => { dialog.querySelector('video')?.pause(); });
+dialog.addEventListener('close', disposeShortVideo);
 document.getElementById('filters').onsubmit = (event) => event.preventDefault();
 query.addEventListener('input', filterFlows);
 filter.addEventListener('change', filterFlows);
 document.getElementById('retry').onclick = load;
 window.addEventListener('hashchange', route);
+window.addEventListener('pagehide', () => {suspendedClip = currentShortClip(); disposeShortVideo();});
+window.addEventListener('pageshow', event => {
+  if (event.persisted && suspendedClip) {
+    selectedClip = suspendedClip.slice(0, -4); suspendedClip = undefined; renderedRoute = undefined; route();
+  }
+});
 load();
