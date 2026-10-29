@@ -12,8 +12,10 @@ import { teamRestartCaptures } from './team-process-restart.mjs';
 import { directBookingCaptures } from './direct-booking.mjs';
 import {tripCancellationCaptures} from './trip-cancellation-phone.mjs';
 import {reviewHistoryPhoneCaptures} from './review-history-phone.mjs';
+import {receivedRatingCaptures} from './received-ratings.mjs';
 
 export const captures = {
+  ...receivedRatingCaptures,
   ...reviewHistoryPhoneCaptures,
   ...tripCancellationCaptures,
   ...directBookingCaptures,

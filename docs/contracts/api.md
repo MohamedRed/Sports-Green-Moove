@@ -36,6 +36,7 @@ All client writes that change money, booking status, ride lifecycle, CO2, or saf
 | `getChatConversation` | participants | Reauthorizes an exact booking/ride conversation before listening. |
 | `markChatMessagesRead` | participants | Atomically acknowledges up to 50 exact addressed messages/notifications and decrements only newly read incoming counts. |
 | `submitRating` | ride participant | Immutable rating. |
+| `getReceivedRatingSummary` | authenticated user | Own received-review count and mean only; no raw review details. |
 | `createReport` | signed-in users | Safety/support report. |
 | `reviewReport` | admin | Status, review note, and audit event for a support report. |
 | `createStripeAccount` | driver | Connected account record. |

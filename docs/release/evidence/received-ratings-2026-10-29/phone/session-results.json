@@ -1,0 +1,86 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "20ab16ab6187c9462496b91f0d6d3d3c",
+  "testedAt": "2026-10-29T18:50:32.055Z",
+  "scope": "independent-received-rating-summary-records-not-ui-or-release-proof",
+  "completed": true,
+  "checks": [
+    {
+      "phase": "empty-driver",
+      "status": "passed",
+      "driverCount": 0,
+      "parentCount": 0,
+      "managerCount": 0,
+      "protectedRecordCount": 158,
+      "ratingsAndRidesUnchanged": true,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "historical-driver",
+      "status": "passed",
+      "driverCount": 104,
+      "parentCount": 26,
+      "managerCount": 0,
+      "protectedRecordCount": 158,
+      "ratingsAndRidesUnchanged": true,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "updated-driver",
+      "status": "passed",
+      "driverCount": 105,
+      "parentCount": 26,
+      "managerCount": 0,
+      "protectedRecordCount": 158,
+      "ratingsAndRidesUnchanged": true,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "parent",
+      "status": "passed",
+      "driverCount": 105,
+      "parentCount": 26,
+      "managerCount": 0,
+      "protectedRecordCount": 158,
+      "ratingsAndRidesUnchanged": true,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "empty-manager",
+      "status": "passed",
+      "driverCount": 105,
+      "parentCount": 26,
+      "managerCount": 0,
+      "protectedRecordCount": 158,
+      "ratingsAndRidesUnchanged": true,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "signed-out",
+      "status": "passed",
+      "driverCount": 105,
+      "parentCount": 26,
+      "managerCount": 0,
+      "protectedRecordCount": 158,
+      "ratingsAndRidesUnchanged": true,
+      "originalClaimsUnchanged": true
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "phoneUiProvenByThisObserver": false,
+  "processRestartProven": false,
+  "fixtureSubmittedAllRatings": true,
+  "sourceApkSha256": "2db153d4ea561a549bbf29fde9e70d500de8c8989950910afcc180910678d430",
+  "installedBytesIndependentlyVerified": false,
+  "sourceFiles": {
+    "scripts/qa/manual-received-ratings-phone-session.mjs": "39d3e999c3d7c8295df6994eac86896a668f031ebaa634650c86a876c5c811f4",
+    "scripts/qa/review-history-fixture.mjs": "6a59290095137647ec0eeb0098e2fb3178e559bfff696b1639f470da51cc73b7",
+    "functions/src/callables/receivedRatings.ts": "837b4d46ad31bfcae54b28be8e6d0c7adf601990fa171757c7279ba78f7c1015",
+    "functions/src/domain/receivedRatings.ts": "1045100f29355444b2b1cc6b1fe5dac7e7d4b266b29a5fde1665b4633f97136c",
+    "firestore.rules": "d87a583ceec9c708ea9cc9250ea7247a74057637f9e04e3452b009f3f0e7843b",
+    "firestore.indexes.json": "1ee38a9e9b6b14d21ea5e4e6b645bfbc8b66f844a9fc2eda264d8974ed17fc2e"
+  }
+}

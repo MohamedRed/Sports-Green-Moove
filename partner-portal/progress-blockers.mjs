@@ -1,6 +1,12 @@
 import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
+  {id: 'review-history-window', title: 'Retrouver toutes les demandes d’avis',
+    text: 'Avec 31 trajets terminés, une demande d’avis manque.',
+    next: 'Corriger l’accès à tout l’historique, puis rejouer sur téléphone.', source: 'docs/release/evidence/received-ratings-2026-10-29/README.md'},
+  {id: 'native-primary-capture', title: 'Terminer une série complète de tests',
+    text: 'Le dernier essai complet s’arrête pendant une capture. Un autre essai ne peut pas préparer le téléphone.',
+    next: 'Stabiliser les captures et terminer la série sans interruption.', source: 'docs/release/evidence/received-ratings-2026-10-29/README.md'},
   {id: 'tracking-reconnect-display', title: 'Rejouer le suivi en direct',
     text: 'L’essai séparé confirme un blocage de la connexion privée de test.',
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',

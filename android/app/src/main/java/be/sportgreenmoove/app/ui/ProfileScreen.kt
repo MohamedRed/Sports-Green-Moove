@@ -42,6 +42,7 @@ fun ProfileScreen(
     availableRoles: Set<AppRole>,
     displayName: String?,
     email: String?,
+    receivedRatings: @Composable () -> Unit,
     cityLabel: String,
     onCity: () -> Unit,
     primaryClubLabel: String,
@@ -64,6 +65,7 @@ fun ProfileScreen(
     ) {
         V2TopBar("MON PROFIL")
         ProfileIdentity(displayName = displayName, email = email, primaryClubLabel = primaryClubLabel)
+        receivedRatings()
         ProfileRoleSelector(role = role, availableRoles = availableRoles, onRoleChange = onRoleChange)
         ProfileImpactCard(summary = impactSummary, onClick = onImpact)
         ProfileRewardsCard(summary = rewardSummary, onClick = onRewards)

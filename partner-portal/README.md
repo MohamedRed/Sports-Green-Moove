@@ -2,6 +2,19 @@
 
 ## Current Publication Policy
 
+The later 29 October received-rating summary is verified on one physical phone
+with three accounts and six independent checkpoints: zero, 104, 105 and separate
+26-review profiles, plus a third empty account and sign-out. All reviews were
+fixture-submitted; no phone submission or process restart is implied. Publish five
+selected original session-window captures, including landscape, and a concise
+four-step tour. Preserve the older galleries and dates. Eight authenticated service
+groups, 517 backend units and 622 Android units pass; three component cases build
+but have not executed locally. Mean/count only was explicitly chosen by the owner.
+Keep the reproduced 31-ride missing-request defect and original failed native gate
+visible. The prior run fails PixelCopy and a separate device download; do not imply
+a root-cause repair or complete CI success. No production/rules/index deployment,
+payments, maps, iOS implementation or public-audience change is accepted.
+
 The later 29 October physical review-history replay passes seven independent
 record checkpoints on one Android phone. After 104 fixture-prepared ratings,
 one new request appears and the driver submits five stars through the phone;

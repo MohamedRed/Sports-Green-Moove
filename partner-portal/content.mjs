@@ -6,6 +6,7 @@ import {publishedMediaReview} from './published-media-review.mjs';
 import {publishedMediaPlayback} from './published-media-playback.mjs';
 import {reviewHistoryRecheck} from './review-history.mjs';
 import {reviewHistoryPhone, reviewHistoryPhoneImages} from './review-history-phone.mjs';
+import {receivedRatingsRecheck, receivedRatingImages} from './received-ratings.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
 import { chatNetworkRecovery, chatNetworkRecheck } from './chat-network-recovery.mjs';
@@ -64,6 +65,7 @@ export const content = {
   publishedMediaPlayback,
   reviewHistoryRecheck,
   reviewHistoryPhone,
+  receivedRatingsRecheck,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
   adminClientLifecycleRecheck: { source: 'docs/release/evidence/admin-client-lifecycle-2026-10-24/results.json',
@@ -254,13 +256,13 @@ export const content = {
         shot('ride-history', 'Trajet terminé dans l’historique du parent, en local')], source: 'docs/release/evidence/ride-completion-recheck-2026-10-23/README.md' },
     { id: 'ratings', title: 'Avis après trajet', status: 'partial', checkedAt: '2026-10-29',
       latestEvidence: 'phone',
-      summary: 'Les avis envoyés ne réapparaissent plus, même après de nombreux trajets.',
-      verified: 'Après 104 avis, conducteur et parent envoient chacun cinq étoiles. Les demandes restent séparées. Un seul téléphone, avec des données de test.',
-      remaining: 'Vérifier les notes reçues et les très longues listes de trajets.',
+      summary: 'Donner un avis et retrouver sa moyenne sur le profil.',
+      verified: 'La moyenne et le nombre d’avis s’actualisent. Chaque compte garde ses propres notes. Essai sur un téléphone avec des données de test.',
+      remaining: 'Certaines demandes d’avis manquent après 30 trajets. Corriger l’accès à tout l’historique.',
       ui: { ...rideUi(['ride-review-ui']), checkedAt: '2026-10-15' },
       local: local(['ratings'], ['L’avis du parent est enregistré.', 'Le même avis ne peut pas être envoyé deux fois.', 'La demande d’avis disparaît après envoi.', 'Une personne extérieure ne peut pas noter ce trajet.'], 'docs/release/evidence/local-2026-10-15/results.json', '2026-10-15'),
-      images: [...reviewHistoryPhoneImages, shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
-        shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/review-history-phone-2026-10-29/README.md' },
+      images: [...receivedRatingImages, ...reviewHistoryPhoneImages, shot('ride-phone-review-prompt', 'Demande d’avis sur téléphone le 23 octobre'), shot('ride-phone-reviewed', 'Avis confirmé sur téléphone le 23 octobre'),
+        shot('ride-review', 'Demande d’avis après le trajet local'), shot('ride-review-sent', 'Avis envoyé et demande retirée, en local')], source: 'docs/release/evidence/received-ratings-2026-10-29/README.md' },
     createImpactFlow(local, rideUi, shot),
     createSupportFlow(local, ui, shot),
     createProfileCityFlow(),

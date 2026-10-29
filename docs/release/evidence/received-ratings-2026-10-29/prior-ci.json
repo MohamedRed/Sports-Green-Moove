@@ -1,0 +1,122 @@
+{
+  "head": "5246a079e1f02af234697111cbc2c1e3f70f3f3c",
+  "runId": 40926872921,
+  "fullNativeGatePassed": false,
+  "ordinary": {
+    "passed": 186,
+    "failed": 1,
+    "skipped": 54,
+    "failedCases": [
+      {
+        "className": "be.sportgreenmoove.app.ui.TripChangeFlowTest",
+        "name": "agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement",
+        "status": "failed",
+        "reason": "test-failure"
+      }
+    ]
+  },
+  "jobs": [
+    {
+      "name": "Native UI flow coverage",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android native unit tests",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android native UI tests",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated chat-network-recovery",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated team-access",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated ride-observation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated native-startup",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated team-draft",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated team-read-components",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated session-restoration",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated session-disconnect",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated team-conversation",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated emergency-identity",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated remote-ride-stop",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Android approved vehicle-map UI",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Android approved parent search and booking",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "iOS native UI tests",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "iOS native checks",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Android approved real-map UI integration",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated safety flows",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ],
+  "scopedSdkCaseStarted": false,
+  "source": "terminal-original-5246a07-before-received-rating-implementation"
+}

@@ -6,6 +6,7 @@ import be.sportgreenmoove.app.data.AuthSession
 import be.sportgreenmoove.app.data.ClubSummary
 import be.sportgreenmoove.app.data.NativeLedgerSummaries
 import be.sportgreenmoove.app.services.ProfileCityGateway
+import be.sportgreenmoove.app.services.ReceivedRatingsGateway
 
 @Composable
 fun ProfileRoute(
@@ -13,6 +14,7 @@ fun ProfileRoute(
     availableRoles: Set<AppRole>,
     session: AuthSession?,
     cityGateway: ProfileCityGateway,
+    ratingsGateway: ReceivedRatingsGateway,
     clubs: List<ClubSummary>,
     ledgerSummaries: NativeLedgerSummaries,
     onRoleChange: (AppRole) -> Unit,
@@ -30,6 +32,7 @@ fun ProfileRoute(
             availableRoles = availableRoles,
             displayName = session.displayName,
             email = session.email,
+            receivedRatings = { ProfileReceivedRatings(uid, ratingsGateway) },
             cityLabel = cityLabel,
             onCity = onCity,
             primaryClubLabel = clubs.firstOrNull { it.isMember }?.name ?: "Aucun club lié",

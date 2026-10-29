@@ -28,6 +28,7 @@ data class AndroidProviderSet(
     val emergencyContacts: EmergencyContactGateway = UnconfiguredEmergencyContactGateway(),
     val rides: RideObservationGateway = UnconfiguredRideObservationGateway(),
     val profileCity: ProfileCityGateway = UnconfiguredProfileCityGateway(),
+    val receivedRatings: ReceivedRatingsGateway = UnconfiguredReceivedRatingsGateway(),
     val childAccountLinks: ChildAccountLinkGateway = UnconfiguredChildAccountLinkGateway(),
     val childInvitations: ChildInvitationGateway = UnconfiguredChildInvitationGateway(),
 ) {
@@ -62,6 +63,7 @@ object AndroidRuntime {
                 reservations = FirebaseAndroidReservationGateway(),
                 emergencyContacts = FirebaseAndroidEmergencyContactGateway(),
                 profileCity = FirebaseAndroidProfileCityGateway(),
+                receivedRatings = FirebaseAndroidReceivedRatingsGateway(),
                 childAccountLinks = FirebaseAndroidChildAccountLinkGateway(),
                 childInvitations = FirebaseAndroidChildInvitationGateway(),
                 rides = FirebaseAndroidRideObservationGateway(liveDatabase()),
