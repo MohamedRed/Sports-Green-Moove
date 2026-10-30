@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The new-budget `91c4a09` execution is terminal failure after 20m37s, not a
+50-minute timeout. All 205 ordinary cases and 29 replay cases pass before the
+eleventh primary copy fails during consent restart. Ten earlier primary copies
+and all eleven independent jobs pass. The later failure-cleanup copy succeeds,
+but never replaces the failed primary receipt; the full replay has no result.
+Device policy, apps and launcher restoration are independently verified. The
+same host bridge PID survives while its emulator transport disconnects. That
+observation does not identify the cause. Publish one concise incomplete-result
+note and update the existing blocker; retain every previous failure and passing
+run, media, flow status and date. No product change or new phone evidence is
+claimed. See `docs/release/evidence/native-transfer-91c4a09-2026-10-30/README.md`.
+
 The 30 October `9abc639` complete native job times out at its outer 35-minute
 limit after 205 ordinary passes/54 skips and ten completed primary copies. Final
 replay, suite outcome and independent restoration receipts are absent. The later
@@ -11,7 +23,7 @@ complete local result, without media or flow promotion. Retain the
 successful independent chat repeat, all older failures and gallery dates. Only
 the outer job budget changes to 50 minutes; no inner deadline, case, quality
 guard or evidence requirement changes, and no APK transfer artifact is added.
-That success precedes the budget change; the new-budget gate still needs to execute. See
+That success precedes the budget change; its later failed execution is retained separately above. See
 `docs/release/evidence/native-timeout-9abc639-2026-10-30/README.md`.
 
 The later 30 October `9abc639` independent chat-network repeat passes its strict

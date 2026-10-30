@@ -11,6 +11,29 @@ import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation
 import { renderNetworkGateFolder, validateRenderNetworkGate } from '../scripts/qa/render-network-gate-evidence.mjs';
 import { matrixRendererConfiguration } from '../scripts/qa/select-matrix-renderer.mjs';
 import {nativeTimeoutFolder, validateNativeTimeout, validateNativeBudgetFollowup} from '../scripts/qa/native-timeout-evidence.mjs';
+import {nativeBudgetExecutionFolder, validateNativeBudgetExecution} from '../scripts/qa/native-budget-execution-evidence.mjs';
+
+test('the executed fifty-minute budget retains the terminal primary-copy failure and independently restored device', () => {
+  assert.deepEqual(validateNativeBudgetExecution(new URL('..', import.meta.url).pathname),
+    {ordinaryPassed: 205, ordinarySkipped: 54, partialReplayCasesPassed: 29, successfulPrimaryCopies: 10,
+      focusedJobsPassed: 11, deviceRestorationVerified: true, fullGatePassed: false, rootCauseConfirmed: false, releaseAccepted: false});
+});
+for (const [file, mutate] of [
+  ['summary.json', row => {row.fullGatePassed = true;}],
+  ['summary.json', row => {row.rootCauseConfirmed = true;}],
+  ['native-run.json', row => {row.jobs.find(item => item.name === 'Android native UI tests').conclusion = 'success';}],
+  ['replay/adb-pull-trip-consent-restart.json', row => {row.completed = true; row.status = 0;}],
+  ['replay/adb-pull-trip-consent-restart.json', row => {row.hostAfter.adbProcesses[0].pid++;}],
+  ['pr-checks.json', row => {row.statusCheckRollup.find(item => item.name === 'Functions and Firebase rules').status = 'IN_PROGRESS';}],
+  ['device-restore.json', row => {row.restoration.installAdmin.originalPolicyRestored = false;}],
+]) test('new-budget failure cannot invent a pass after rehashing: ' + file + ' ' + mutate, t => {
+  const root = mkdtempSync(join(tmpdir(), 'sgm-native-budget-')); t.after(() => rmSync(root, {recursive: true, force: true}));
+  const base = join(root, nativeBudgetExecutionFolder); cpSync(new URL('../' + nativeBudgetExecutionFolder, import.meta.url), base, {recursive: true});
+  const path = join(base, file), row = JSON.parse(readFileSync(path)); mutate(row); writeFileSync(path, JSON.stringify(row));
+  const hashesPath = join(base, 'artifact-sha256.json'), hashes = JSON.parse(readFileSync(hashesPath));
+  hashes[file] = createHash('sha256').update(readFileSync(path)).digest('hex'); writeFileSync(hashesPath, JSON.stringify(hashes));
+  assert.throws(() => validateNativeBudgetExecution(root));
+});
 
 test('the outer job receives bounded preparation headroom without changing a single execution or evidence step', () => {
   const report = validateNativeTimeout(new URL('..', import.meta.url).pathname);
