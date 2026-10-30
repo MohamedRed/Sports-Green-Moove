@@ -1,0 +1,214 @@
+TAP version 13
+# Subtest: observes exact network-review records: parent-ready
+ok 1 - observes exact network-review records: parent-ready
+  ---
+  duration_ms: 2.086583
+  type: 'test'
+  ...
+# Subtest: observes exact network-review records: offline-sending
+ok 2 - observes exact network-review records: offline-sending
+  ---
+  duration_ms: 0.247
+  type: 'test'
+  ...
+# Subtest: observes exact network-review records: offline-failed
+ok 3 - observes exact network-review records: offline-failed
+  ---
+  duration_ms: 0.59925
+  type: 'test'
+  ...
+# Subtest: observes exact network-review records: online-before-retry
+ok 4 - observes exact network-review records: online-before-retry
+  ---
+  duration_ms: 0.28775
+  type: 'test'
+  ...
+# Subtest: observes exact network-review records: parent-rated
+ok 5 - observes exact network-review records: parent-rated
+  ---
+  duration_ms: 0.229833
+  type: 'test'
+  ...
+# Subtest: observes exact network-review records: parent-restored
+ok 6 - observes exact network-review records: parent-restored
+  ---
+  duration_ms: 0.063541
+  type: 'test'
+  ...
+# Subtest: observes exact network-review records: driver-summary
+ok 7 - observes exact network-review records: driver-summary
+  ---
+  duration_ms: 0.119709
+  type: 'test'
+  ...
+# Subtest: observes exact network-review records: signed-out
+ok 8 - observes exact network-review records: signed-out
+  ---
+  duration_ms: 0.051541
+  type: 'test'
+  ...
+# Subtest: rejects an automatic send before explicit retry
+ok 9 - rejects an automatic send before explicit retry
+  ---
+  duration_ms: 1.246292
+  type: 'test'
+  ...
+# Subtest: rejects the wrong same-name trip removed
+ok 10 - rejects the wrong same-name trip removed
+  ---
+  duration_ms: 1.440416
+  type: 'test'
+  ...
+# Subtest: rejects a fabricated trip date
+ok 11 - rejects a fabricated trip date
+  ---
+  duration_ms: 0.529458
+  type: 'test'
+  ...
+# Subtest: rejects a duplicate stored rating
+ok 12 - rejects a duplicate stored rating
+  ---
+  duration_ms: 0.102709
+  type: 'test'
+  ...
+# Subtest: rejects another target
+ok 13 - rejects another target
+  ---
+  duration_ms: 0.086959
+  type: 'test'
+  ...
+# Subtest: rejects a changed score
+ok 14 - rejects a changed score
+  ---
+  duration_ms: 0.075083
+  type: 'test'
+  ...
+# Subtest: rejects a driver request removed by the parent submission
+ok 15 - rejects a driver request removed by the parent submission
+  ---
+  duration_ms: 0.091375
+  type: 'test'
+  ...
+# Subtest: rejects an average/count belonging to another account
+ok 16 - rejects an average/count belonging to another account
+  ---
+  duration_ms: 0.391166
+  type: 'test'
+  ...
+# Subtest: the observer cannot submit reviews or promote host observations to physical/UI proof
+ok 17 - the observer cannot submit reviews or promote host observations to physical/UI proof
+  ---
+  duration_ms: 0.551
+  type: 'test'
+  ...
+# Subtest: both smoke triggers include the strict observer contract without running a phone fixture in CI
+ok 18 - both smoke triggers include the strict observer contract without running a phone fixture in CI
+  ---
+  duration_ms: 36.802167
+  type: 'test'
+  ...
+# Subtest: original controlled-offline phone records and reviewed captures remain bound without release promotion
+ok 19 - original controlled-offline phone records and reviewed captures remain bound without release promotion
+  ---
+  duration_ms: 12.971375
+  type: 'test'
+  ...
+# Subtest: rejects an unobserved sending spinner
+ok 20 - rejects an unobserved sending spinner
+  ---
+  duration_ms: 0.935417
+  type: 'test'
+  ...
+# Subtest: rejects independent restart proof from manual force stop
+ok 21 - rejects independent restart proof from manual force stop
+  ---
+  duration_ms: 0.214709
+  type: 'test'
+  ...
+# Subtest: rejects real-world radio loss from controlled offline mode
+ok 22 - rejects real-world radio loss from controlled offline mode
+  ---
+  duration_ms: 0.262333
+  type: 'test'
+  ...
+# Subtest: rejects physical post-commit response loss
+ok 23 - rejects physical post-commit response loss
+  ---
+  duration_ms: 0.148792
+  type: 'test'
+  ...
+# Subtest: rejects iOS or release completion
+ok 24 - rejects iOS or release completion
+  ---
+  duration_ms: 0.243709
+  type: 'test'
+  ...
+# Subtest: rejects an automatic submission before retry
+ok 25 - rejects an automatic submission before retry
+  ---
+  duration_ms: 0.172
+  type: 'test'
+  ...
+# Subtest: rejects a duplicated rating after retry
+ok 26 - rejects a duplicated rating after retry
+  ---
+  duration_ms: 0.12925
+  type: 'test'
+  ...
+# Subtest: rejects another source APK
+ok 27 - rejects another source APK
+  ---
+  duration_ms: 0.489917
+  type: 'test'
+  ...
+# Subtest: rejects an observer pretending to prove the phone UI
+ok 28 - rejects an observer pretending to prove the phone UI
+  ---
+  duration_ms: 0.60675
+  type: 'test'
+  ...
+# Subtest: portal preserves earlier images, dates and remaining confirmation-loss/iPhone scope
+ok 29 - portal preserves earlier images, dates and remaining confirmation-loss/iPhone scope
+  ---
+  duration_ms: 0.255708
+  type: 'test'
+  ...
+# Subtest: smoke explicitly checks retained phone evidence without creating a device session
+ok 30 - smoke explicitly checks retained phone evidence without creating a device session
+  ---
+  duration_ms: 33.344833
+  type: 'test'
+  ...
+# Subtest: rating replay checks current ride authority and exact immutable content in the same transaction
+ok 31 - rating replay checks current ride authority and exact immutable content in the same transaction
+  ---
+  duration_ms: 1.745292
+  type: 'test'
+  ...
+# Subtest: submission failures stay attached to their review without replacing the loaded inbox
+ok 32 - submission failures stay attached to their review without replacing the loaded inbox
+  ---
+  duration_ms: 0.924959
+  type: 'test'
+  ...
+# Subtest: local verification covers real loopback disconnects before and after commit without claiming physical proof
+ok 33 - local verification covers real loopback disconnects before and after commit without claiming physical proof
+  ---
+  duration_ms: 1.03725
+  type: 'test'
+  ...
+# Subtest: pull requests run the rating retry service suite and retain results even on failure
+ok 34 - pull requests run the rating retry service suite and retain results even on failure
+  ---
+  duration_ms: 40.746916
+  type: 'test'
+  ...
+1..34
+# tests 34
+# suites 0
+# pass 34
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 192.676916

@@ -13,6 +13,7 @@ import {reviewContextRecheck, reviewBaselineGateRecheck} from './review-trip-con
 import {reviewContextPhoneAttempt} from './review-context-phone.mjs';
 import {reviewContextPhoneReplay} from './review-context-replay.mjs';
 import {reviewSubmissionRecovery} from './review-submission-recovery.mjs';
+import {reviewNetworkPhone} from './review-network-phone.mjs';
 import {createRatingsFlow} from './ratings-flow.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
@@ -60,8 +61,8 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
-  updatedAt: '2026-10-29',
-  lastVerifiedAt: '2026-10-29',
+  updatedAt: '2026-10-30',
+  lastVerifiedAt: '2026-10-30',
   nativeClockCiRecheck: {source: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/summary.json',
     checksums: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/artifact-sha256.json', checkedAt: '2026-10-25'},
   ...nativeRechecks,
@@ -79,6 +80,7 @@ export const content = {
   reviewContextPhoneAttempt,
   reviewContextPhoneReplay,
   reviewSubmissionRecovery,
+  reviewNetworkPhone,
   reviewBaselineGateRecheck,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },

@@ -13,6 +13,7 @@ import {validateReviewBaselineGate} from '../scripts/qa/review-baseline-gate-evi
 import {validateContextPhoneAttempt} from '../scripts/qa/review-context-phone-evidence.mjs';
 import {validateContextReplayEvidence} from '../scripts/qa/review-context-replay-evidence.mjs';
 import {validateReviewRecovery} from '../scripts/qa/review-recovery-evidence.mjs';
+import {validateReviewNetworkPhone} from '../scripts/qa/review-network-phone-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -30,4 +31,5 @@ export function validateCurrentChecks(root, content) {
   validateContextPhoneAttempt(root, content.reviewContextPhoneAttempt);
   validateContextReplayEvidence(root, content.reviewContextPhoneReplay);
   validateReviewRecovery(root, content.reviewSubmissionRecovery);
+  validateReviewNetworkPhone(root, content.reviewNetworkPhone);
 }

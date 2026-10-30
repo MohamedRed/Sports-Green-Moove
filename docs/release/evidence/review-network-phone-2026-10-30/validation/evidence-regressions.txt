@@ -1,0 +1,1294 @@
+TAP version 13
+# Subtest: media addresses are content-addressed and missing or unsafe manifest entries fail closed
+ok 1 - media addresses are content-addressed and missing or unsafe manifest entries fail closed
+  ---
+  duration_ms: 1.231208
+  type: 'test'
+  ...
+# Subtest: media fingerprints cover actual bytes and publication rejects changed or missing output
+ok 2 - media fingerprints cover actual bytes and publication rejects changed or missing output
+  ---
+  duration_ms: 4.836
+  type: 'test'
+  ...
+# Subtest: previews, gallery, tours, posters and downloads all use the same versioned media resolver
+ok 3 - previews, gallery, tours, posters and downloads all use the same versioned media resolver
+  ---
+  duration_ms: 3.223583
+  type: 'test'
+  ...
+# Subtest: smoke workflow covers portal source, evidence changes and validation
+ok 4 - smoke workflow covers portal source, evidence changes and validation
+  ---
+  duration_ms: 0.266541
+  type: 'test'
+  ...
+# Subtest: rendered content is escaped and native accessible controls remain present
+ok 5 - rendered content is escaped and native accessible controls remain present
+  ---
+  duration_ms: 34.310625
+  type: 'test'
+  ...
+# Subtest: portal code modules remain below 300 lines
+ok 6 - portal code modules remain below 300 lines
+  ---
+  duration_ms: 0.874791
+  type: 'test'
+  ...
+# Subtest: frontend bundles are versioned together and stale generated source is rejected
+ok 7 - frontend bundles are versioned together and stale generated source is rejected
+  ---
+  duration_ms: 11.78675
+  type: 'test'
+  ...
+# Subtest: partner copy stays brief and recording context is optional
+ok 8 - partner copy stays brief and recording context is optional
+  ---
+  duration_ms: 31.378292
+  type: 'test'
+  ...
+# Subtest: partner-facing pages do not name the implementation or testing stack
+ok 9 - partner-facing pages do not name the implementation or testing stack
+  ---
+  duration_ms: 20.364417
+  type: 'test'
+  ...
+# Subtest: guided tours reference reviewed flow evidence and reject invented steps
+ok 10 - guided tours reference reviewed flow evidence and reject invented steps
+  ---
+  duration_ms: 1950.0825
+  type: 'test'
+  ...
+# Subtest: overview stays focused while the catalogue exposes every tour and screenshot
+ok 11 - overview stays focused while the catalogue exposes every tour and screenshot
+  ---
+  duration_ms: 20.664542
+  type: 'test'
+  ...
+# Subtest: overview selects the newest result per flow without losing previous results
+ok 12 - overview selects the newest result per flow without losing previous results
+  ---
+  duration_ms: 0.523833
+  type: 'test'
+  ...
+# Subtest: update partition handles empty, repeated and more than six distinct flows
+ok 13 - update partition handles empty, repeated and more than six distinct flows
+  ---
+  duration_ms: 0.274292
+  type: 'test'
+  ...
+# Subtest: every flow has truthful, dated evidence and explicit remaining scope
+ok 14 - every flow has truthful, dated evidence and explicit remaining scope
+  ---
+  duration_ms: 700.582667
+  type: 'test'
+  ...
+# Subtest: dated native rechecks remain modular and all their exact evidence paths are fingerprinted by the build
+ok 15 - dated native rechecks remain modular and all their exact evidence paths are fingerprinted by the build
+  ---
+  duration_ms: 2.720292
+  type: 'test'
+  ...
+# Subtest: later public callback recovery does not promote older local payment evidence or attribute an unconfirmed cause
+ok 16 - later public callback recovery does not promote older local payment evidence or attribute an unconfirmed cause
+  ---
+  duration_ms: 0.201125
+  type: 'test'
+  ...
+# Subtest: new phone consent keeps dated local application and restart evidence separate
+ok 17 - new phone consent keeps dated local application and restart evidence separate
+  ---
+  duration_ms: 0.14975
+  type: 'test'
+  ...
+# Subtest: older local results retain their own date when a newer app replay is added
+ok 18 - older local results retain their own date when a newer app replay is added
+  ---
+  duration_ms: 954.12325
+  type: 'test'
+  ...
+# Subtest: excerpts are bounded, original recordings retained and no audio exported
+ok 19 - excerpts are bounded, original recordings retained and no audio exported
+  ---
+  duration_ms: 0.208417
+  type: 'test'
+  ...
+# Subtest: new form checks do not imply signup or completed participant flows
+ok 20 - new form checks do not imply signup or completed participant flows
+  ---
+  duration_ms: 0.1635
+  type: 'test'
+  ...
+# Subtest: portal has no production app hosting rewrite or client-side auth substitute
+ok 21 - portal has no production app hosting rewrite or client-side auth substitute
+  ---
+  duration_ms: 0.60775
+  type: 'test'
+  ...
+# Subtest: local results are backed by successful evidence and are not presented as phone recordings
+ok 22 - local results are backed by successful evidence and are not presented as phone recordings
+  ---
+  duration_ms: 2.152458
+  type: 'test'
+  ...
+# Subtest: manual screen evidence stays scoped and cannot complete a phone requirement
+ok 23 - manual screen evidence stays scoped and cannot complete a phone requirement
+  ---
+  duration_ms: 1032.749666
+  type: 'test'
+  ...
+# Subtest: app screenshots require a completed scoped run and retain product gaps
+ok 24 - app screenshots require a completed scoped run and retain product gaps
+  ---
+  duration_ms: 0.288958
+  type: 'test'
+  ...
+# Subtest: ride integrity claims use the new eleven-group evidence without promoting phone readiness
+ok 25 - ride integrity claims use the new eleven-group evidence without promoting phone readiness
+  ---
+  duration_ms: 0.096292
+  type: 'test'
+  ...
+# Subtest: message service claims use the refreshed 24-group evidence and retain history
+ok 26 - message service claims use the refreshed 24-group evidence and retain history
+  ---
+  duration_ms: 0.985333
+  type: 'test'
+  ...
+# Subtest: search claims distinguish passing unit and simulated-screen evidence from real accounts
+ok 27 - search claims distinguish passing unit and simulated-screen evidence from real accounts
+  ---
+  duration_ms: 1.463333
+  type: 'test'
+  ...
+# Subtest: current conversation evidence retains the full replay and the dated historical captures
+ok 28 - current conversation evidence retains the full replay and the dated historical captures
+  ---
+  duration_ms: 1.251709
+  type: 'test'
+  ...
+# Subtest: new ride captures use a completed seven-case UI run and keep old evidence intact
+ok 29 - new ride captures use a completed seven-case UI run and keep old evidence intact
+  ---
+  duration_ms: 0.177917
+  type: 'test'
+  ...
+# Subtest: current native status keeps completed replay separate from both failed gates
+ok 30 - current native status keeps completed replay separate from both failed gates
+  ---
+  duration_ms: 5.386167
+  type: 'test'
+  ...
+# Subtest: original service and physical summary evidence retain the separate open window and native-gate failures
+ok 31 - original service and physical summary evidence retain the separate open window and native-gate failures
+  ---
+  duration_ms: 36.769416
+  type: 'test'
+  ...
+# Subtest: rejects production deployment
+ok 32 - rejects production deployment
+  ---
+  duration_ms: 2.34325
+  type: 'test'
+  ...
+# Subtest: rejects phone submission inflation
+ok 33 - rejects phone submission inflation
+  ---
+  duration_ms: 0.80475
+  type: 'test'
+  ...
+# Subtest: rejects installed-byte inflation
+ok 34 - rejects installed-byte inflation
+  ---
+  duration_ms: 1.523167
+  type: 'test'
+  ...
+# Subtest: rejects component execution inflation
+ok 35 - rejects component execution inflation
+  ---
+  duration_ms: 2.312
+  type: 'test'
+  ...
+# Subtest: rejects release inflation
+ok 36 - rejects release inflation
+  ---
+  duration_ms: 1.160416
+  type: 'test'
+  ...
+# Subtest: rejects repaired pagination inflation
+ok 37 - rejects repaired pagination inflation
+  ---
+  duration_ms: 0.673125
+  type: 'test'
+  ...
+# Subtest: rejects missing original failure
+ok 38 - rejects missing original failure
+  ---
+  duration_ms: 0.710792
+  type: 'test'
+  ...
+# Subtest: rejects truncated average
+ok 39 - rejects truncated average
+  ---
+  duration_ms: 2.815
+  type: 'test'
+  ...
+# Subtest: rejects cross-account count
+ok 40 - rejects cross-account count
+  ---
+  duration_ms: 2.364291
+  type: 'test'
+  ...
+# Subtest: rejects wrong received mean
+ok 41 - rejects wrong received mean
+  ---
+  duration_ms: 0.970208
+  type: 'test'
+  ...
+# Subtest: rejects invented empty score
+ok 42 - rejects invented empty score
+  ---
+  duration_ms: 0.823167
+  type: 'test'
+  ...
+# Subtest: rejects missing phone observation
+ok 43 - rejects missing phone observation
+  ---
+  duration_ms: 0.998458
+  type: 'test'
+  ...
+# Subtest: rejects unclosed client
+ok 44 - rejects unclosed client
+  ---
+  duration_ms: 1.01125
+  type: 'test'
+  ...
+# Subtest: rejects live endpoint
+ok 45 - rejects live endpoint
+  ---
+  duration_ms: 0.91
+  type: 'test'
+  ...
+# Subtest: rejects hidden known gap
+ok 46 - rejects hidden known gap
+  ---
+  duration_ms: 0.468958
+  type: 'test'
+  ...
+# Subtest: rejects hidden native failure
+ok 47 - rejects hidden native failure
+  ---
+  duration_ms: 0.486584
+  type: 'test'
+  ...
+# Subtest: the local context proof stays separate from the later partial phone attempt and preserves earlier galleries
+ok 48 - the local context proof stays separate from the later partial phone attempt and preserves earlier galleries
+  ---
+  duration_ms: 25.9245
+  type: 'test'
+  ...
+# Subtest: the earlier gate stays distinct from the later context implementation own matching gate
+ok 49 - the earlier gate stays distinct from the later context implementation own matching gate
+  ---
+  duration_ms: 179.154042
+  type: 'test'
+  ...
+# Subtest: rejects physical-phone promotion
+ok 50 - rejects physical-phone promotion
+  ---
+  duration_ms: 3.347417
+  type: 'test'
+  ...
+# Subtest: rejects native/service integration promotion
+ok 51 - rejects native/service integration promotion
+  ---
+  duration_ms: 24.704666
+  type: 'test'
+  ...
+# Subtest: rejects process restart promotion
+ok 52 - rejects process restart promotion
+  ---
+  duration_ms: 0.833541
+  type: 'test'
+  ...
+# Subtest: rejects full gate promotion
+ok 53 - rejects full gate promotion
+  ---
+  duration_ms: 3.664667
+  type: 'test'
+  ...
+# Subtest: rejects iOS UI promotion
+ok 54 - rejects iOS UI promotion
+  ---
+  duration_ms: 0.355125
+  type: 'test'
+  ...
+# Subtest: rejects release promotion
+ok 55 - rejects release promotion
+  ---
+  duration_ms: 1.040833
+  type: 'test'
+  ...
+# Subtest: rejects incomplete service replay
+ok 56 - rejects incomplete service replay
+  ---
+  duration_ms: 7.438791
+  type: 'test'
+  ...
+# Subtest: rejects lost unavailable reviews
+ok 57 - rejects lost unavailable reviews
+  ---
+  duration_ms: 9.487667
+  type: 'test'
+  ...
+# Subtest: rejects wrong request removed
+ok 58 - rejects wrong request removed
+  ---
+  duration_ms: 4.477125
+  type: 'test'
+  ...
+# Subtest: rejects another account changed
+ok 59 - rejects another account changed
+  ---
+  duration_ms: 0.394958
+  type: 'test'
+  ...
+# Subtest: rejects provider call
+ok 60 - rejects provider call
+  ---
+  duration_ms: 2.553667
+  type: 'test'
+  ...
+# Subtest: rejects missing source-byte check
+ok 61 - rejects missing source-byte check
+  ---
+  duration_ms: 1.933458
+  type: 'test'
+  ...
+# Subtest: rejects unclosed runtime
+ok 62 - rejects unclosed runtime
+  ---
+  duration_ms: 1.811916
+  type: 'test'
+  ...
+# Subtest: rejects unclosed device
+ok 63 - rejects unclosed device
+  ---
+  duration_ms: 0.590916
+  type: 'test'
+  ...
+# Subtest: an altered native capture fails even when the other reports remain valid
+ok 64 - an altered native capture fails even when the other reports remain valid
+  ---
+  duration_ms: 18.831875
+  type: 'test'
+  ...
+# Subtest: two actual phone checkpoints remain partial and preserve all earlier galleries and the tour
+ok 65 - two actual phone checkpoints remain partial and preserve all earlier galleries and the tour
+  ---
+  duration_ms: 42.102167
+  type: 'test'
+  ...
+# Subtest: rejects promotion of twoAccountReplayCompleted
+ok 66 - rejects promotion of twoAccountReplayCompleted
+  ---
+  duration_ms: 1.570791
+  type: 'test'
+  ...
+# Subtest: rejects promotion of parentContextUiVerified
+ok 67 - rejects promotion of parentContextUiVerified
+  ---
+  duration_ms: 0.476125
+  type: 'test'
+  ...
+# Subtest: rejects promotion of legacyContextUiVerified
+ok 68 - rejects promotion of legacyContextUiVerified
+  ---
+  duration_ms: 0.300666
+  type: 'test'
+  ...
+# Subtest: rejects promotion of reconnectionVerified
+ok 69 - rejects promotion of reconnectionVerified
+  ---
+  duration_ms: 0.206542
+  type: 'test'
+  ...
+# Subtest: rejects promotion of processRestartProven
+ok 70 - rejects promotion of processRestartProven
+  ---
+  duration_ms: 0.162792
+  type: 'test'
+  ...
+# Subtest: rejects promotion of realNetworkLossVerified
+ok 71 - rejects promotion of realNetworkLossVerified
+  ---
+  duration_ms: 0.197542
+  type: 'test'
+  ...
+# Subtest: rejects promotion of installedBytesIndependentlyVerified
+ok 72 - rejects promotion of installedBytesIndependentlyVerified
+  ---
+  duration_ms: 0.112166
+  type: 'test'
+  ...
+# Subtest: rejects promotion of fullCurrentNativeGatePassed
+ok 73 - rejects promotion of fullCurrentNativeGatePassed
+  ---
+  duration_ms: 1.095541
+  type: 'test'
+  ...
+# Subtest: rejects promotion of releaseComplete
+ok 74 - rejects promotion of releaseComplete
+  ---
+  duration_ms: 0.913
+  type: 'test'
+  ...
+# Subtest: rejects promotion of credentialRotationPerformed
+ok 75 - rejects promotion of credentialRotationPerformed
+  ---
+  duration_ms: 0.429375
+  type: 'test'
+  ...
+# Subtest: rejects invented parent checkpoint
+ok 76 - rejects invented parent checkpoint
+  ---
+  duration_ms: 2.364959
+  type: 'test'
+  ...
+# Subtest: rejects changed parent requests
+ok 77 - rejects changed parent requests
+  ---
+  duration_ms: 1.108917
+  type: 'test'
+  ...
+# Subtest: rejects fixture-provided final rating
+ok 78 - rejects fixture-provided final rating
+  ---
+  duration_ms: 0.499875
+  type: 'test'
+  ...
+# Subtest: rejects completed observer
+ok 79 - rejects completed observer
+  ---
+  duration_ms: 0.200958
+  type: 'test'
+  ...
+# Subtest: altering a session capture invalidates the retained evidence
+ok 80 - altering a session capture invalidates the retained evidence
+  ---
+  duration_ms: 131.70925
+  type: 'test'
+  ...
+# Subtest: the eight-checkpoint phone replay closes auth/process recovery but not network/iOS/release scope
+ok 81 - the eight-checkpoint phone replay closes auth/process recovery but not network/iOS/release scope
+  ---
+  duration_ms: 165.507333
+  type: 'test'
+  ...
+# Subtest: rejects promotion of realNetworkLossVerified
+ok 82 - rejects promotion of realNetworkLossVerified
+  ---
+  duration_ms: 4.601958
+  type: 'test'
+  ...
+# Subtest: rejects promotion of iosUiExecuted
+ok 83 - rejects promotion of iosUiExecuted
+  ---
+  duration_ms: 0.385292
+  type: 'test'
+  ...
+# Subtest: rejects promotion of installedBytesIndependentlyVerified
+ok 84 - rejects promotion of installedBytesIndependentlyVerified
+  ---
+  duration_ms: 0.880917
+  type: 'test'
+  ...
+# Subtest: rejects promotion of realPayments
+ok 85 - rejects promotion of realPayments
+  ---
+  duration_ms: 0.360667
+  type: 'test'
+  ...
+# Subtest: rejects promotion of productionWrites
+ok 86 - rejects promotion of productionWrites
+  ---
+  duration_ms: 0.527833
+  type: 'test'
+  ...
+# Subtest: rejects promotion of releaseComplete
+ok 87 - rejects promotion of releaseComplete
+  ---
+  duration_ms: 1.436833
+  type: 'test'
+  ...
+# Subtest: rejects promotion of earlierInputRootCauseConfirmed
+ok 88 - rejects promotion of earlierInputRootCauseConfirmed
+  ---
+  duration_ms: 17.481041
+  type: 'test'
+  ...
+# Subtest: rejects a missing checkpoint
+ok 89 - rejects a missing checkpoint
+  ---
+  duration_ms: 14.397458
+  type: 'test'
+  ...
+# Subtest: rejects fixture-supplied final reviews
+ok 90 - rejects fixture-supplied final reviews
+  ---
+  duration_ms: 2.134583
+  type: 'test'
+  ...
+# Subtest: rejects first-page truncation after submission
+ok 91 - rejects first-page truncation after submission
+  ---
+  duration_ms: 1.826042
+  type: 'test'
+  ...
+# Subtest: rejects a dropped legacy request
+ok 92 - rejects a dropped legacy request
+  ---
+  duration_ms: 0.307458
+  type: 'test'
+  ...
+# Subtest: rejects an altered original record
+ok 93 - rejects an altered original record
+  ---
+  duration_ms: 0.791084
+  type: 'test'
+  ...
+# Subtest: rejects a client left open
+ok 94 - rejects a client left open
+  ---
+  duration_ms: 0.243833
+  type: 'test'
+  ...
+# Subtest: rejects an invented received count
+ok 95 - rejects an invented received count
+  ---
+  duration_ms: 2.455084
+  type: 'test'
+  ...
+# Subtest: rejects no final sign-out
+ok 96 - rejects no final sign-out
+  ---
+  duration_ms: 0.381375
+  type: 'test'
+  ...
+# Subtest: rejects an open runtime endpoint
+ok 97 - rejects an open runtime endpoint
+  ---
+  duration_ms: 2.477042
+  type: 'test'
+  ...
+# Subtest: fragmented terminal output is bound to its original command snapshot and ignores old history
+ok 98 - fragmented terminal output is bound to its original command snapshot and ignores old history
+  ---
+  duration_ms: 1.647875
+  type: 'test'
+  ...
+# Subtest: rejects a foreign package command
+ok 99 - rejects a foreign package command
+  ---
+  duration_ms: 1.5885
+  type: 'test'
+  ...
+# Subtest: rejects an output not in its original snapshot
+ok 100 - rejects an output not in its original snapshot
+  ---
+  duration_ms: 1.353041
+  type: 'test'
+  ...
+# Subtest: rejects a stale final command without its result
+ok 101 - rejects a stale final command without its result
+  ---
+  duration_ms: 2.322083
+  type: 'test'
+  ...
+# Subtest: rejects the old PID presented as the reopened PID
+ok 102 - rejects the old PID presented as the reopened PID
+  ---
+  duration_ms: 4.848333
+  type: 'test'
+  ...
+# Subtest: rejects a missing stopped observation
+ok 103 - rejects a missing stopped observation
+  ---
+  duration_ms: 1.595375
+  type: 'test'
+  ...
+# Subtest: rejects out-of-order observations
+ok 104 - rejects out-of-order observations
+  ---
+  duration_ms: 16.146666
+  type: 'test'
+  ...
+# Subtest: rejects unverified package removal
+ok 105 - rejects unverified package removal
+  ---
+  duration_ms: 0.474
+  type: 'test'
+  ...
+# Subtest: rejects an incomplete or mismatched full gate: native-run.json row => {row.conclusion = 'failure';}
+ok 106 - rejects an incomplete or mismatched full gate: native-run.json row => {row.conclusion = 'failure';}
+  ---
+  duration_ms: 63.747459
+  type: 'test'
+  ...
+# Subtest: rejects an incomplete or mismatched full gate: native-run.json row => {row.jobs.find(job => job.name.include
+ok 107 - rejects an incomplete or mismatched full gate: native-run.json row => {row.jobs.find(job => job.name.include
+  ---
+  duration_ms: 63.279917
+  type: 'test'
+  ...
+# Subtest: rejects an incomplete or mismatched full gate: pr-checks.json row => {row.statusCheckRollup[0].status = 'IN
+ok 108 - rejects an incomplete or mismatched full gate: pr-checks.json row => {row.statusCheckRollup[0].status = 'IN
+  ---
+  duration_ms: 99.894042
+  type: 'test'
+  ...
+# Subtest: rejects an incomplete or mismatched full gate: native-artifact.json row => {row.workflow_run.head_sha = '0'.repea
+ok 109 - rejects an incomplete or mismatched full gate: native-artifact.json row => {row.workflow_run.head_sha = '0'.repea
+  ---
+  duration_ms: 62.156084
+  type: 'test'
+  ...
+# Subtest: rejects an incomplete or mismatched full gate: native/native-suite-status.json row => {row.componentEvidence = 1;}
+ok 110 - rejects an incomplete or mismatched full gate: native/native-suite-status.json row => {row.componentEvidence = 1;}
+  ---
+  duration_ms: 56.014333
+  type: 'test'
+  ...
+# Subtest: rejects an incomplete or mismatched full gate: native/device-restoration.json row => {row.verified = false;}
+ok 111 - rejects an incomplete or mismatched full gate: native/device-restoration.json row => {row.verified = false;}
+  ---
+  duration_ms: 75.776709
+  type: 'test'
+  ...
+# Subtest: altering an original session capture invalidates the bundle
+ok 112 - altering an original session capture invalidates the bundle
+  ---
+  duration_ms: 48.427
+  type: 'test'
+  ...
+# Subtest: retains original failures and narrow local passes without promoting them to a release
+ok 113 - retains original failures and narrow local passes without promoting them to a release
+  ---
+  duration_ms: 192.067792
+  type: 'test'
+  ...
+# Subtest: native assertions check actual rendered lines, all digits and refresh separation
+ok 114 - native assertions check actual rendered lines, all digits and refresh separation
+  ---
+  duration_ms: 1.792875
+  type: 'test'
+  ...
+# Subtest: both web smoke triggers retain the display/recovery evidence test and execute it
+ok 115 - both web smoke triggers retain the display/recovery evidence test and execute it
+  ---
+  duration_ms: 114.58325
+  type: 'test'
+  ...
+# Subtest: rejects fabricated clipping repair
+ok 116 - rejects fabricated clipping repair
+  ---
+  duration_ms: 2.344542
+  type: 'test'
+  ...
+# Subtest: rejects full gate inflation
+ok 117 - rejects full gate inflation
+  ---
+  duration_ms: 0.875625
+  type: 'test'
+  ...
+# Subtest: rejects physical-device inflation
+ok 118 - rejects physical-device inflation
+  ---
+  duration_ms: 1.202708
+  type: 'test'
+  ...
+# Subtest: rejects real network-loss inflation
+ok 119 - rejects real network-loss inflation
+  ---
+  duration_ms: 0.460459
+  type: 'test'
+  ...
+# Subtest: rejects release acceptance
+ok 120 - rejects release acceptance
+  ---
+  duration_ms: 0.409208
+  type: 'test'
+  ...
+# Subtest: rejects erased baseline failure
+ok 121 - rejects erased baseline failure
+  ---
+  duration_ms: 1.339292
+  type: 'test'
+  ...
+# Subtest: rejects missing component execution
+ok 122 - rejects missing component execution
+  ---
+  duration_ms: 1.598334
+  type: 'test'
+  ...
+# Subtest: rejects foreign summary owner
+ok 123 - rejects foreign summary owner
+  ---
+  duration_ms: 1.558084
+  type: 'test'
+  ...
+# Subtest: rejects failed proxy
+ok 124 - rejects failed proxy
+  ---
+  duration_ms: 1.298083
+  type: 'test'
+  ...
+# Subtest: rejects changed records
+ok 125 - rejects changed records
+  ---
+  duration_ms: 0.490959
+  type: 'test'
+  ...
+# Subtest: rejects unclosed runtime
+ok 126 - rejects unclosed runtime
+  ---
+  duration_ms: 0.505625
+  type: 'test'
+  ...
+# Subtest: rejects open local service
+ok 127 - rejects open local service
+  ---
+  duration_ms: 2.695958
+  type: 'test'
+  ...
+# Subtest: rejects unverified installed bytes
+ok 128 - rejects unverified installed bytes
+  ---
+  duration_ms: 0.561834
+  type: 'test'
+  ...
+# Subtest: a modified native image is rejected
+ok 129 - a modified native image is rejected
+  ---
+  duration_ms: 73.37925
+  type: 'test'
+  ...
+# Subtest: an unchanged 104-rating regression fails with the old handler and passes with exact candidate reads
+ok 130 - an unchanged 104-rating regression fails with the old handler and passes with exact candidate reads
+  ---
+  duration_ms: 9.232625
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 0
+ok 131 - altered review-history evidence is rejected: 0
+  ---
+  duration_ms: 17.283084
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 1
+ok 132 - altered review-history evidence is rejected: 1
+  ---
+  duration_ms: 18.659083
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 2
+ok 133 - altered review-history evidence is rejected: 2
+  ---
+  duration_ms: 10.177333
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 3
+ok 134 - altered review-history evidence is rejected: 3
+  ---
+  duration_ms: 14.789875
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 4
+ok 135 - altered review-history evidence is rejected: 4
+  ---
+  duration_ms: 11.623792
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 5
+ok 136 - altered review-history evidence is rejected: 5
+  ---
+  duration_ms: 50.986833
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 6
+ok 137 - altered review-history evidence is rejected: 6
+  ---
+  duration_ms: 125.133375
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 7
+ok 138 - altered review-history evidence is rejected: 7
+  ---
+  duration_ms: 33.511792
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 8
+ok 139 - altered review-history evidence is rejected: 8
+  ---
+  duration_ms: 23.074292
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 9
+ok 140 - altered review-history evidence is rejected: 9
+  ---
+  duration_ms: 18.879875
+  type: 'test'
+  ...
+# Subtest: altered review-history evidence is rejected: 10
+ok 141 - altered review-history evidence is rejected: 10
+  ---
+  duration_ms: 28.644834
+  type: 'test'
+  ...
+# Subtest: retained phone review history has seven original captures and independent stored checkpoints
+ok 142 - retained phone review history has seven original captures and independent stored checkpoints
+  ---
+  duration_ms: 107.862584
+  type: 'test'
+  ...
+# Subtest: rejects process restart inflation
+ok 143 - rejects process restart inflation
+  ---
+  duration_ms: 3.1915
+  type: 'test'
+  ...
+# Subtest: rejects received-rating inflation
+ok 144 - rejects received-rating inflation
+  ---
+  duration_ms: 3.37525
+  type: 'test'
+  ...
+# Subtest: rejects installed-byte inflation
+ok 145 - rejects installed-byte inflation
+  ---
+  duration_ms: 7.482167
+  type: 'test'
+  ...
+# Subtest: rejects production inflation
+ok 146 - rejects production inflation
+  ---
+  duration_ms: 1.902333
+  type: 'test'
+  ...
+# Subtest: rejects release inflation
+ok 147 - rejects release inflation
+  ---
+  duration_ms: 3.920541
+  type: 'test'
+  ...
+# Subtest: rejects missing phone observation
+ok 148 - rejects missing phone observation
+  ---
+  duration_ms: 5.6585
+  type: 'test'
+  ...
+# Subtest: rejects unclosed session
+ok 149 - rejects unclosed session
+  ---
+  duration_ms: 1.548583
+  type: 'test'
+  ...
+# Subtest: rejects duplicate stored review
+ok 150 - rejects duplicate stored review
+  ---
+  duration_ms: 3.404458
+  type: 'test'
+  ...
+# Subtest: rejects modified original timestamp
+ok 151 - rejects modified original timestamp
+  ---
+  duration_ms: 35.51325
+  type: 'test'
+  ...
+# Subtest: rejects returned review
+ok 152 - rejects returned review
+  ---
+  duration_ms: 5.246625
+  type: 'test'
+  ...
+# Subtest: rejects cross-run observation
+ok 153 - rejects cross-run observation
+  ---
+  duration_ms: 11.540667
+  type: 'test'
+  ...
+# Subtest: rejects reordered observation time
+ok 154 - rejects reordered observation time
+  ---
+  duration_ms: 36.464375
+  type: 'test'
+  ...
+# Subtest: rejects live endpoint
+ok 155 - rejects live endpoint
+  ---
+  duration_ms: 10.238125
+  type: 'test'
+  ...
+# Subtest: original controlled-offline phone records and reviewed captures remain bound without release promotion
+ok 156 - original controlled-offline phone records and reviewed captures remain bound without release promotion
+  ---
+  duration_ms: 26.7155
+  type: 'test'
+  ...
+# Subtest: rejects an unobserved sending spinner
+ok 157 - rejects an unobserved sending spinner
+  ---
+  duration_ms: 1.016959
+  type: 'test'
+  ...
+# Subtest: rejects independent restart proof from manual force stop
+ok 158 - rejects independent restart proof from manual force stop
+  ---
+  duration_ms: 0.2175
+  type: 'test'
+  ...
+# Subtest: rejects real-world radio loss from controlled offline mode
+ok 159 - rejects real-world radio loss from controlled offline mode
+  ---
+  duration_ms: 0.279292
+  type: 'test'
+  ...
+# Subtest: rejects physical post-commit response loss
+ok 160 - rejects physical post-commit response loss
+  ---
+  duration_ms: 0.36375
+  type: 'test'
+  ...
+# Subtest: rejects iOS or release completion
+ok 161 - rejects iOS or release completion
+  ---
+  duration_ms: 1.353292
+  type: 'test'
+  ...
+# Subtest: rejects an automatic submission before retry
+ok 162 - rejects an automatic submission before retry
+  ---
+  duration_ms: 1.490042
+  type: 'test'
+  ...
+# Subtest: rejects a duplicated rating after retry
+ok 163 - rejects a duplicated rating after retry
+  ---
+  duration_ms: 0.297875
+  type: 'test'
+  ...
+# Subtest: rejects another source APK
+ok 164 - rejects another source APK
+  ---
+  duration_ms: 1.632917
+  type: 'test'
+  ...
+# Subtest: rejects an observer pretending to prove the phone UI
+ok 165 - rejects an observer pretending to prove the phone UI
+  ---
+  duration_ms: 2.416709
+  type: 'test'
+  ...
+# Subtest: portal preserves earlier images, dates and remaining confirmation-loss/iPhone scope
+ok 166 - portal preserves earlier images, dates and remaining confirmation-loss/iPhone scope
+  ---
+  duration_ms: 0.700125
+  type: 'test'
+  ...
+# Subtest: smoke explicitly checks retained phone evidence without creating a device session
+ok 167 - smoke explicitly checks retained phone evidence without creating a device session
+  ---
+  duration_ms: 142.002042
+  type: 'test'
+  ...
+# Subtest: new 31-ride phone and 320-ride service proof close the gap without replacing older failure evidence
+ok 168 - new 31-ride phone and 320-ride service proof close the gap without replacing older failure evidence
+  ---
+  duration_ms: 17.795
+  type: 'test'
+  ...
+# Subtest: rejects production deployment
+ok 169 - rejects production deployment
+  ---
+  duration_ms: 1.287416
+  type: 'test'
+  ...
+# Subtest: rejects release completion
+ok 170 - rejects release completion
+  ---
+  duration_ms: 0.541125
+  type: 'test'
+  ...
+# Subtest: rejects native screenshot export
+ok 171 - rejects native screenshot export
+  ---
+  duration_ms: 1.686708
+  type: 'test'
+  ...
+# Subtest: rejects installed-byte verification
+ok 172 - rejects installed-byte verification
+  ---
+  duration_ms: 0.431084
+  type: 'test'
+  ...
+# Subtest: rejects component execution
+ok 173 - rejects component execution
+  ---
+  duration_ms: 0.3405
+  type: 'test'
+  ...
+# Subtest: rejects iOS UI verification
+ok 174 - rejects iOS UI verification
+  ---
+  duration_ms: 0.378875
+  type: 'test'
+  ...
+# Subtest: rejects phone fixture-submission inflation
+ok 175 - rejects phone fixture-submission inflation
+  ---
+  duration_ms: 0.355375
+  type: 'test'
+  ...
+# Subtest: rejects missing initial failure
+ok 176 - rejects missing initial failure
+  ---
+  duration_ms: 1.605084
+  type: 'test'
+  ...
+# Subtest: rejects same failed and passed run
+ok 177 - rejects same failed and passed run
+  ---
+  duration_ms: 22.839167
+  type: 'test'
+  ...
+# Subtest: rejects truncated parent discovery
+ok 178 - rejects truncated parent discovery
+  ---
+  duration_ms: 13.897625
+  type: 'test'
+  ...
+# Subtest: rejects missing empty continuation
+ok 179 - rejects missing empty continuation
+  ---
+  duration_ms: 0.628042
+  type: 'test'
+  ...
+# Subtest: rejects another account inheriting requests
+ok 180 - rejects another account inheriting requests
+  ---
+  duration_ms: 0.369083
+  type: 'test'
+  ...
+# Subtest: rejects fixture supplied phone review
+ok 181 - rejects fixture supplied phone review
+  ---
+  duration_ms: 0.507708
+  type: 'test'
+  ...
+# Subtest: rejects second page reset after submission
+ok 182 - rejects second page reset after submission
+  ---
+  duration_ms: 1.959125
+  type: 'test'
+  ...
+# Subtest: rejects unclosed account client
+ok 183 - rejects unclosed account client
+  ---
+  duration_ms: 1.857916
+  type: 'test'
+  ...
+# Subtest: rejects active helper
+ok 184 - rejects active helper
+  ---
+  duration_ms: 0.794458
+  type: 'test'
+  ...
+# Subtest: rejects still-open test service
+ok 185 - rejects still-open test service
+  ---
+  duration_ms: 1.044541
+  type: 'test'
+  ...
+# Subtest: rejects wrong APK
+ok 186 - rejects wrong APK
+  ---
+  duration_ms: 0.35325
+  type: 'test'
+  ...
+# Subtest: a changed original capture fails bundle verification
+ok 187 - a changed original capture fails bundle verification
+  ---
+  duration_ms: 18.420916
+  type: 'test'
+  ...
+# Subtest: recovery evidence proves scoped components and loopback faults without physical or whole-gate promotion
+ok 188 - recovery evidence proves scoped components and loopback faults without physical or whole-gate promotion
+  ---
+  duration_ms: 69.16125
+  type: 'test'
+  ...
+# Subtest: refuses promotion of physicalNetworkLossProven
+ok 189 - refuses promotion of physicalNetworkLossProven
+  ---
+  duration_ms: 3.036292
+  type: 'test'
+  ...
+# Subtest: refuses promotion of physicalDeviceTested
+ok 190 - refuses promotion of physicalDeviceTested
+  ---
+  duration_ms: 0.441375
+  type: 'test'
+  ...
+# Subtest: refuses promotion of iosUiExecuted
+ok 191 - refuses promotion of iosUiExecuted
+  ---
+  duration_ms: 0.57225
+  type: 'test'
+  ...
+# Subtest: refuses promotion of productionDeployed
+ok 192 - refuses promotion of productionDeployed
+  ---
+  duration_ms: 0.247041
+  type: 'test'
+  ...
+# Subtest: refuses promotion of productionWrites
+ok 193 - refuses promotion of productionWrites
+  ---
+  duration_ms: 0.935792
+  type: 'test'
+  ...
+# Subtest: refuses promotion of fullNativeGatePassed
+ok 194 - refuses promotion of fullNativeGatePassed
+  ---
+  duration_ms: 0.673917
+  type: 'test'
+  ...
+# Subtest: refuses promotion of releaseComplete
+ok 195 - refuses promotion of releaseComplete
+  ---
+  duration_ms: 0.426834
+  type: 'test'
+  ...
+# Subtest: refuses a missing service group
+ok 196 - refuses a missing service group
+  ---
+  duration_ms: 0.531917
+  type: 'test'
+  ...
+# Subtest: refuses a duplicated service group
+ok 197 - refuses a duplicated service group
+  ---
+  duration_ms: 1.702917
+  type: 'test'
+  ...
+# Subtest: refuses a failed service group
+ok 198 - refuses a failed service group
+  ---
+  duration_ms: 8.797583
+  type: 'test'
+  ...
+# Subtest: refuses a commit supposedly forwarded before disconnection
+ok 199 - refuses a commit supposedly forwarded before disconnection
+  ---
+  duration_ms: 1.871084
+  type: 'test'
+  ...
+# Subtest: refuses a post-commit loss without an upstream acknowledgement
+ok 200 - refuses a post-commit loss without an upstream acknowledgement
+  ---
+  duration_ms: 1.002417
+  type: 'test'
+  ...
+# Subtest: refuses a retry for another trip
+ok 201 - refuses a retry for another trip
+  ---
+  duration_ms: 0.731792
+  type: 'test'
+  ...
+# Subtest: refuses unverified installed bytes
+ok 202 - refuses unverified installed bytes
+  ---
+  duration_ms: 0.195
+  type: 'test'
+  ...
+# Subtest: refuses an open local endpoint
+ok 203 - refuses an open local endpoint
+  ---
+  duration_ms: 0.236
+  type: 'test'
+  ...
+# Subtest: refuses an emulator left running
+ok 204 - refuses an emulator left running
+  ---
+  duration_ms: 0.166167
+  type: 'test'
+  ...
+# Subtest: refuses a failed Android unit case
+ok 205 - refuses a failed Android unit case
+  ---
+  duration_ms: 0.446916
+  type: 'test'
+  ...
+# Subtest: completed replay and actual phone actions retain distinct honest scope
+ok 206 - completed replay and actual phone actions retain distinct honest scope
+  ---
+  duration_ms: 22.236375
+  type: 'test'
+  ...
+# Subtest: physical ride checkpoints and evidence run in both smoke triggers
+ok 207 - physical ride checkpoints and evidence run in both smoke triggers
+  ---
+  duration_ms: 0.335625
+  type: 'test'
+  ...
+# Subtest: reject unsupported ride recheck claim: summary.json/physicalTrackingAccepted
+ok 208 - reject unsupported ride recheck claim: summary.json/physicalTrackingAccepted
+  ---
+  duration_ms: 45.52
+  type: 'test'
+  ...
+# Subtest: reject unsupported ride recheck claim: summary.json/releaseComplete
+ok 209 - reject unsupported ride recheck claim: summary.json/releaseComplete
+  ---
+  duration_ms: 26.854291
+  type: 'test'
+  ...
+# Subtest: reject unsupported ride recheck claim: summary.json/earlierTransportRootCauseConfirmed
+ok 210 - reject unsupported ride recheck claim: summary.json/earlierTransportRootCauseConfirmed
+  ---
+  duration_ms: 23.068959
+  type: 'test'
+  ...
+# Subtest: reject unsupported ride recheck claim: summary.json/bookingDecisionPerformedOnPhone
+ok 211 - reject unsupported ride recheck claim: summary.json/bookingDecisionPerformedOnPhone
+  ---
+  duration_ms: 24.513166
+  type: 'test'
+  ...
+# Subtest: reject unsupported ride recheck claim: native-run.json/conclusion
+ok 212 - reject unsupported ride recheck claim: native-run.json/conclusion
+  ---
+  duration_ms: 24.049791
+  type: 'test'
+  ...
+# Subtest: reject unsupported ride recheck claim: phone/session-results.json/completed
+ok 213 - reject unsupported ride recheck claim: phone/session-results.json/completed
+  ---
+  duration_ms: 31.087416
+  type: 'test'
+  ...
+# Subtest: reject unsupported ride recheck claim: cleanup.json/uninstallVerified
+ok 214 - reject unsupported ride recheck claim: cleanup.json/uninstallVerified
+  ---
+  duration_ms: 26.944375
+  type: 'test'
+  ...
+1..214
+# tests 214
+# suites 0
+# pass 214
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6113.076042

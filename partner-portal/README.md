@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The 30 October controlled offline review replay uses one physical Android phone
+and two isolated accounts. Publish five reviewed original session-window JPEGs:
+inline failure retains both dated trips, explicit retry stores one exact review,
+the older request survives manual Force stop/reopen, and the driver sees 5/5 for
+one rating with separate pending requests. All eight stored-state checkpoints
+pass; the transient sending spinner was not captured and no PID sequence was
+collected. Preserve initial preparation errors and failed package-cleanup proof;
+the device session ended and all local services/session material were disposed.
+Keep physical post-commit reply loss, iOS, metadata-refresh failure, full current
+CI and broader release gaps open. Preserve all older images, dates, tour and
+public access, with concise technology-free French copy.
+
 The next 29 October review-submission recovery check reproduces the global-error
 screen hiding the selected trip, then passes eleven isolated native component
 cases and eight authenticated loopback fault groups. Preserve exact rating

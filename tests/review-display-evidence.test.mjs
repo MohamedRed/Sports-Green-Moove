@@ -15,7 +15,8 @@ const report = () => ({summary: json('summary'), ordinary: json('prior-ordinary-
 test('retains original failures and narrow local passes without promoting them to a release', () => {
   assert.equal(validateReviewDisplayEvidence(root).componentCasesPassed, 6);
   const ratings = content.flows.find(row => row.id === 'ratings'), recovery = content.flows.find(row => row.id === 'session-restoration');
-  assert.equal(ratings.status, 'partial'); assert.equal(ratings.images.filter(row => !row.file.startsWith('review-trip-')).length, 23);
+  assert.equal(ratings.status, 'partial');
+  assert.equal(ratings.images.filter(row => !['review-trip-', 'review-network-phone-'].some(prefix => row.file.startsWith(prefix))).length, 23);
   assert.match(ratings.images.find(row => row.file === 'rating-accessible-count').alt, /fictif/);
   assert.equal(ratings.tour.length, 4); assert.equal(recovery.status, 'partial'); assert.equal(recovery.images.length, 10);
   assert.equal(recovery.checkedAt, '2026-10-29'); assert.match(recovery.remaining, /vraie coupure/);

@@ -1,0 +1,111 @@
+Browser tab: 1621935642, Title: "Google Pixel 9 Pro v15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 Pro v15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		44 container
+			45 container content
+				324 container in-session-device-react
+					907 container
+					908 container
+						909 image
+						910 button Add Device
+							911 text Add Device
+							912 text PRO
+				148 text ;
+				913 container debugger
+					914 text DevTools -  ADB Shell
+					915 button Download logs, ID: devtool-download-logs
+					916 button Dock to bottom, ID: devtool-change-orientation
+					917 button Collapse, ID: devtool-toggle
+					1117 container
+						1118 container
+							1119 text pixel9Pro:/ $  pm list packages be.sportgreenmoove.app.local
+						1120 text command invalid or not supported: pm list packages be.sportgreenmoove.app.local
+						1121 link Description: Refer to the supported commands, Value: browserstack.com/docs/app-live/adb-commands
+						1122 container
+							1123 text pixel9Pro:/ $  dumpsys package be.sportgreenmoove.app.local
+						1124 text Activity Resolver Table: Schemes: stripe: a165894 be.sportgreenmoove.app.local/com.stripe.android.financialconnections.lite.FinancialConnectionsSheetLiteRedirectActivity filter f8ff3d Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "stripe" Authority: "financial-connections-lite": -1 Path: "PatternMatcher{PREFIX: /be.sportgreenmoove.app.local/auth_redirect}" link-popup: 9a6c5e8 be.sportgreenmoove.app.local/com.stripe.android.link.LinkRedirectHandlerActivity filter 5bf2401 Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "link-popup" Authority: "complete": -1 Path: "PatternMatcher{LITERAL: /be.sportgreenmoove.app.local}" stripesdk: 920d2a6 be.sportgreenmoove.app.local/com.stripe.android.payments.StripeBrowserProxyReturnActivity filter 58c74e7 Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "stripesdk" Authority: "payment_return_url": -1 Path: "PatternMatcher{LITERAL: /be.sportgreenmoove.app.local}" : cfca4c9 be.sportgreenmoove.app.local/com.facebook.CustomTabActivity filter e3d97ce Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "" fbconnect: cfca4c9 be.sportgreenmoove.app.local/com.facebook.CustomTabActivity filter bce96ef Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "fbconnect" Authority: "cct.be.sportgreenmoove.app.local": -1 genericidp: 4cd45fc be.sportgreenmoove.app.local/com.google.firebase.auth.internal.GenericIdpActivity filter 3a1c485 Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "genericidp" Authority: "firebase.auth": -1 Path: "PatternMatcher{LITERAL: /}" recaptcha: 99f62da be.sportgreenmoove.app.local/com.google.firebase.auth.internal.RecaptchaActivity filter 797b30b Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "recaptcha" Authority: "firebase.auth": -1 Path: "PatternMatcher{LITERAL: /}" sports-green-moove: b3748cd be.sportgreenmoove.app.local/be.sportgreenmoove.app.MainActivity filter b0e4493 Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "sports-green-moove" Authority: "payments": -1 b3748cd be.sportgreenmoove.app.local/be.sportgreenmoove.app.MainActivity filter aaa2cd0 Action: "android.intent.action.VIEW" Category: "android.intent.category.DEFAULT" Category: "android.intent.category.BROWSABLE" Scheme: "sports-green-moove" Authority: "account": -1 Non-Data Actions: android.intent.action.MAIN: b3748cd be.sportgreenmoove.app.local/be.sportgreenmoove.app.MainActivity filter a46a582 Action: "android.intent.action.MAIN" Category: "android.intent.category.LAUNCHER" Receiver Resolver Table: Non-Data Actions: io.radar.sdk.LocationReceiver.SYNCED_GEOFENCES: 17f74fb be.sportgreenmoove.app.local/io.radar.sdk.RadarLocationReceiver filter e0b7918 Action: "io.radar.sdk.LocationReceiver.SYNCED_GEOFENCES" Action: "io.radar.sdk.LocationReceiver.GEOFENCE" Action: "io.radar.sdk.LocationReceiver.LOCATION" Action: "android.intent.action.BOOT_COMPLETED" Action: "io.radar.sdk.LocationReceiver.BEACON" Action: "android.intent.action.MY_PACKAGE_REPLACED" mPriority=999, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false androidx.profileinstaller.action.SAVE_PROFILE: 525907e be.sportgreenmoove.app.local/androidx.profileinstaller.ProfileInstallReceiver filter e35d8f5 Action: "androidx.profileinstaller.action.SAVE_PROFILE" com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED: 34a6a00 be.sportgreenmoove.app.local/com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver filter efb5239 Action: "com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED" io.radar.sdk.LocationReceiver.GEOFENCE: 17f74fb be.sportgreenmoove.app.local/io.radar.sdk.RadarLocationReceiver filter e0b7918 Action: "io.radar.sdk.LocationReceiver.SYNCED_GEOFENCES" Action: "io.radar.sdk.LocationReceiver.GEOFENCE" Action: "io.radar.sdk.LocationReceiver.LOCATION" Action: "android.intent.action.BOOT_COMPLETED" Action: "io.radar.sdk.LocationReceiver.BEACON" Action: "android.intent.action.MY_PACKAGE_REPLACED" mPriority=999, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false io.radar.sdk.LocationReceiver.LOCATION: 17f74fb be.sportgreenmoove.app.local/io.radar.sdk.RadarLocationReceiver filter e0b7918 Action: "io.radar.sdk.LocationReceiver.SYNCED_GEOFENCES" Action: "io.radar.sdk.LocationReceiver.GEOFENCE" Action: "io.radar.sdk.LocationReceiver.LOCATION" Action: "android.intent.action.BOOT_COMPLETED" Action: "io.radar.sdk.LocationReceiver.BEACON" Action: "android.intent.action.MY_PACKAGE_REPLACED" mPriority=999, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED: df77332 be.sportgreenmoove.app.local/com.facebook.CurrentAccessTokenExpirationBroadcastReceiver filter 2217883 Action: "com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" androidx.profileinstaller.action.INSTALL_PROFILE: 525907e be.sportgreenmoove.app.local/androidx.profileinstaller.ProfileInstallReceiver filter 27919df Action: "androidx.profileinstaller.action.INSTALL_PROFILE" androidx.profileinstaller.action.SKIP_FILE: 525907e be.sportgreenmoove.app.local/androidx.profileinstaller.ProfileInstallReceiver filter 4ec262c Action: "androidx.profileinstaller.action.SKIP_FILE" androidx.profileinstaller.action.BENCHMARK_OPERATION: 525907e be.sportgreenmoove.app.local/androidx.profileinstaller.ProfileInstallReceiver filter 786368a Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION" android.intent.action.BOOT_COMPLETED: 17f74fb be.sportgreenmoove.app.local/io.radar.sdk.RadarLocationReceiver filter e0b7918 Action: "io.radar.sdk.LocationReceiver.SYNCED_GEOFENCES" Action: "io.radar.sdk.LocationReceiver.GEOFENCE" Action: "io.radar.sdk.LocationReceiver.LOCATION" Action: "android.intent.action.BOOT_COMPLETED" Action: "io.radar.sdk.LocationReceiver.BEACON" Action: "android.intent.action.MY_PACKAGE_REPLACED" mPriority=999, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false io.radar.sdk.LocationReceiver.BEACON: 17f74fb be.sportgreenmoove.app.local/io.radar.sdk.RadarLocationReceiver filter e0b7918 Action: "io.radar.sdk.LocationReceiver.SYNCED_GEOFENCES" Action: "io.radar.sdk.LocationReceiver.GEOFENCE" Action: "io.radar.sdk.LocationReceiver.LOCATION" Action: "android.intent.action.BOOT_COMPLETED" Action: "io.radar.sdk.LocationReceiver.BEACON" Action: "android.intent.action.MY_PACKAGE_REPLACED" mPriority=999, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false android.intent.action.MY_PACKAGE_REPLACED: 17f74fb be.sportgreenmoove.app.local/io.radar.sdk.RadarLocationReceiver filter e0b7918 Action: "io.radar.sdk.LocationReceiver.SYNCED_GEOFENCES" Action: "io.radar.sdk.LocationReceiver.GEOFENCE" Action: "io.radar.sdk.LocationReceiver.LOCATION" Action: "android.intent.action.BOOT_COMPLETED" Action: "io.radar.sdk.LocationReceiver.BEACON" Action: "android.intent.action.MY_PACKAGE_REPLACED" mPriority=999, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false Domain verification status: Permissions: Permission [be.sportgreenmoove.app.local.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (f652c1a): sourcePackage=be.sportgreenmoove.app.local uid=10717 gids=[] type=0 prot=signature perm=PermissionInfo{79fe34b be.sportgreenmoove.app.local.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION} flags=0x0 Registered ContentProviders: be.sportgreenmoove.app.local/com.google.firebase.provider.FirebaseInitProvider: Provider{d56d128 be.sportgreenmoove.app.local/com.google.firebase.provider.FirebaseInitProvider} be.sportgreenmoove.app.local/com.facebook.internal.FacebookInitProvider: Provider{ea16e41 be.sportgreenmoove.app.local/com.facebook.internal.FacebookInitProvider} be.sportgreenmoove.app.local/androidx.startup.InitializationProvider: Provider{199efe6 be.sportgreenmoove.app.local/androidx.startup.InitializationProvider} ContentProvider Authorities: [be.sportgreenmoove.app.local.androidx-startup]: Provider{199efe6 be.sportgreenmoove.app.local/androidx.startup.InitializationProvider} applicationInfo=ApplicationInfo{7876927 be.sportgreenmoove.app.local} [be.sportgreenmoove.app.local.firebaseinitprovider]: Provider{d56d128 be.sportgreenmoove.app.local/com.google.firebase.provider.FirebaseInitProvider} applicationInfo=ApplicationInfo{1dbd7d4 be.sportgreenmoove.app.local} [be.sportgreenmoove.app.local.FacebookInitProvider]: Provider{ea16e41 be.sportgreenmoove.app.local/com.facebook.internal.FacebookInitProvider} applicationInfo=ApplicationInfo{855ad7d be.sportgreenmoove.app.local} Key Set Manager: [be.sportgreenmoove.app.local] Signing KeySets: 309 Packages: Package [be.sportgreenmoove.app.local] (8b7d89): appId=10717 pkg=Package{3052472 be.sportgreenmoove.app.local} codePath=/data/app/~~QrOIqJYqqp4VLw2RF0XbaQ==/be.sportgreenmoove.app.local-KmYMgo8RWKT181NHgq2iLQ== resourcePath=/data/app/~~QrOIqJYqqp4VLw2RF0XbaQ==/be.sportgreenmoove.app.local-KmYMgo8RWKT181NHgq2iLQ== legacyNativeLibraryDir=/data/app/~~QrOIqJYqqp4VLw2RF0XbaQ==/be.sportgreenmoove.app.local-KmYMgo8RWKT181NHgq2iLQ==/lib extractNativeLibs=false primaryCpuAbi=arm64-v8a secondaryCpuAbi=null cpuAbiOverride=null versionCode=1 minSdk=26 targetSdk=36 minExtensionVersions=[] versionName=0.1.0 hiddenApiEnforcementPolicy=2 usesNonSdkApi=false splits=[base] apkSigningVersion=2 flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ] privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ] forceQueryable=false queriesPackages=[com.android.chrome, com.google.android.apps.maps, com.facebook.katana] scannedAsStoppedSystemApp=false supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity] usesOptionalLibraries: org.apache.http.legacy androidx.window.extensions androidx.window.sidecar usesLibraryFiles: /system/framework/org.apache.http.legacy.jar /system_ext/framework/androidx.window.extensions.jar /system_ext/framework/androidx.window.sidecar.jar timeStamp=2026-10-29 23:54:11 lastUpdateTime=2026-10-29 23:54:12 installerPackageName=null installerPackageUid=-1 initiatingPackageName=com.android.shell originatingPackageName=null packageSource=1 appMetadataFilePath=null appMetadataSource=0 signatures=PackageSignatures{c7770c3 version:2, signatures:[4a97766d], past signatures:[]} installPermissionsFixed=false pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ] privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ] apexModuleName=null declared permissions: be.sportgreenmoove.app.local.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature requested permissions: com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE android.permission.ACCESS_ADSERVICES_TOPICS be.sportgreenmoove.app.local.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION android.permission.POST_NOTIFICATIONS com.google.android.c2dm.permission.RECEIVE android.permission.ACCESS_FINE_LOCATION android.permission.ACCESS_MOCK_LOCATION com.google.android.providers.gsf.permission.READ_GSERVICES android.permission.CHANGE_NETWORK_STATE android.permission.FOREGROUND_SERVICE android.permission.RECEIVE_BOOT_COMPLETED android.permission.ACCESS_ADSERVICES_AD_ID android.permission.FOREGROUND_SERVICE_LOCATION android.permission.INTERNET android.permission.ACCESS_ADSERVICES_CUSTOM_AUDIENCE android.permission.ACCESS_COARSE_LOCATION android.permission.ACCESS_NETWORK_STATE android.permission.ACCESS_ADSERVICES_ATTRIBUTION android.permission.ACCESS_WIFI_STATE com.google.android.gms.permission.AD_ID android.permission.WAKE_LOCK android.permission.ACCESS_BACKGROUND_LOCATION install permissions: com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE: granted=true android.permission.ACCESS_ADSERVICES_TOPICS: granted=true be.sportgreenmoove.app.local.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true com.google.android.c2dm.permission.RECEIVE: granted=true com.google.android.providers.gsf.permission.READ_GSERVICES: granted=true android.permission.CHANGE_NETWORK_STATE: granted=true android.permission.FOREGROUND_SERVICE: granted=true android.permission.RECEIVE_BOOT_COMPLETED: granted=true android.permission.ACCESS_ADSERVICES_AD_ID: granted=true android.permission.FOREGROUND_SERVICE_LOCATION: granted=true android.permission.INTERNET: granted=true android.permission.ACCESS_ADSERVICES_CUSTOM_AUDIENCE: granted=true android.permission.ACCESS_NETWORK_STATE: granted=true android.permission.ACCESS_ADSERVICES_ATTRIBUTION: granted=true android.permission.ACCESS_WIFI_STATE: granted=true com.google.android.gms.permission.AD_ID: granted=true android.permission.WAKE_LOCK: granted=true User 0: ceDataInode=17673 deDataInode=17648 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false installReason=0 dataDir=/data/user/0/be.sportgreenmoove.app.local firstInstallTime=2026-10-29 23:54:12 uninstallReason=0 overlay paths: /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk /data/resource-cache/com.android.systemui-neutral-4fS0.frro /data/resource-cache/com.android.systemui-accent-kOKB.frro /data/resource-cache/com.android.systemui-dynamic-4MpJ.frro legacy overlay paths: /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk gids=[3003] runtime permissions: android.permission.POST_NOTIFICATIONS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED] android.permission.ACCESS_FINE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED] android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED] android.permission.ACCESS_BACKGROUND_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT] Queries: system apps queryable: false queries via forceQueryable: queries via package name: be.sportgreenmoove.app.local: com.android.chrome com.google.android.apps.maps queries via component: com.google.android.settings.intelligence: be.sportgreenmoove.app.local com.google.android.apps.diagnosticstool: be.sportgreenmoove.app.local com.google.android.as: be.sportgreenmoove.app.local com.google.android.apps.privacy.wildlife: be.sportgreenmoove.app.local com.google.android.apps.messaging: be.sportgreenmoove.app.local com.google.android.apps.accessibility.voiceaccess: be.sportgreenmoove.app.local com.google.android.youtube: be.sportgreenmoove.app.local com.google.android.gm: be.sportgreenmoove.app.local com.google.android.contacts: be.sportgreenmoove.app.local com.verizon.mips.services: be.sportgreenmoove.app.local com.microsoft.emmx: be.sportgreenmoove.app.local queryable via interaction: User 0: [com.google.android.settings.future.biometrics.faceenroll,com.android.settings,com.android.DeviceAsWebcam,com.google.pixel.camera.services,com.android.providers.settings,com.android.qns,com.android.localtransport,com.google.android.iwlan,com.google.android.satellite,com.android.keychain,com.android.inputdevices,com.google.SSRestartDetector,android,com.android.location.fused,com.android.server.telecom,com.google.android.repairmode,com.android.dynsystem]: be.sportgreenmoove.app.local [com.google.android.gms,com.google.android.gsf]: be.sportgreenmoove.app.local com.google.android.inputmethod.latin: be.sportgreenmoove.app.local queryable via uses-library: Dexopt state: [be.sportgreenmoove.app.local] path: /data/app/~~QrOIqJYqqp4VLw2RF0XbaQ==/be.sportgreenmoove.app.local-KmYMgo8RWKT181NHgq2iLQ==/base.apk arm64: [status=run-from-apk] [reason=unknown] [primary-abi] [location is error] Compiler stats: [be.sportgreenmoove.app.local] (No recorded stats)
+						1125 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 
+						1126 text To know more about supported commands, refer to 
+						1127 link Description: this documentation, Value: browserstack.com/docs/app-live/adb-commands
+						1128 link Resize Component
+							1129 text ||
+						1130 tab group
+							1131 tab (selectable, settable, boolean) Description: Logs, Value: 0
+							1132 tab (selected, settable, boolean) Description: ADB Shell, Value: 1
+							1133 text ADB Shell
+							1134 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+							1135 tab (selectable, settable, boolean) Description: Network, Value: 0
+							1136 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				1055 content list
+					1056 button Description: Switch Device, ID: switchBrowser
+					1057 container
+						1058 button (disabled) Description: Local testing, ID: appLiveToolbarLocalTesting
+							1059 image
+							1060 image open content menu
+							1061 text Local testing
+					1062 menu zoomFeature
+						1063 Description: zoom out, ID: zoom-out
+						1064 Description: zoom in, ID: zoom-in
+						1065 text Zoom
+					1066 button Description: Record Session, ID: appLiveVideoRecording
+					1067 button Description: DevTools, ID: showDebuggingOptions
+					1068 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					1069 button Description: Settings, ID: appLiveSessionSettings
+						1070 image open content menu
+						1071 text Settings
+					1072 button Description: Stop Session, ID: appLiveStopSession
+						1073 image
+						1074 text Stop Session
+				419 container vertical-toolbar-react
+					993 container vertical-toolbar-draggable
+						994 container
+							1075 button toolbar drag icon
+							996 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						997 toolbar
+							998 content list
+								1076 button Description: Add Device, ID: app-live-add-device
+									1077 container app-live-add-device-lead-text-wrapper
+										1078 text Add Device PRO
+								1079 button Description: Show Home Screen, ID: dockHomeScreen
+									1080 text Show Home Screen
+								1081 container volume-buttons-lead-text-wrapper
+									1082 text Volume
+									1083 container volumeButtons
+										1084 button - Volume Decrease
+										1085 button (disabled) + Volume Increase
+								1086 button Description: View Open Apps, ID: view-open-apps
+									1087 text View Open Apps
+								1088 button Description: Install New App, ID: switch-app
+									1089 text Install New App
+								1090 checkbox Description: Profile Performance, Value: 0
+									1091 text Profile Performance
+									1092 text PRO
+								1093 button Description: Capture Screenshot, ID: get-screenshot
+									1094 text Capture Screenshot
+								1018 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									1019 text Kill/Uninstall
+								1095 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									1096 container android-settings-lead-text-wrapper
+										1097 text Android Settings PRO
+								1098 button Rotate Device, ID: dockOrientationRealAndroid
+									1099 text Rotate Device
+								1100 button (collapsed) Description: Scroll speed, ID: appLiveScrollSensitivity, Secondary Actions: Expand
+									1101 container appLiveScrollSensitivity-lead-text-wrapper
+										1102 text Scroll speed New
+								1103 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									1104 text Change Location
+								1105 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									1106 text Throttle Network
+								1107 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									1108 text Files & Media
+								1109 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									1110 text Change Language
+								1111 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									1112 text Screen Reader
+								1113 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									1114 text Google Pixel 9 Pro
+									1115 text v15.0
+		1116 text No user apps found to uninstall.
+
+The focused UI element is 1125 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 
