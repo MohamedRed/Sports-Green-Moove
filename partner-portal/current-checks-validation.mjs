@@ -21,8 +21,10 @@ import {validateBookingBeforeAck} from '../scripts/qa/booking-before-ack-evidenc
 import {validateNativeFollowup} from '../scripts/qa/native-followup-evidence.mjs';
 import {validateNativeFollowupMain} from '../scripts/qa/native-followup-main-evidence.mjs';
 import {validateRejectedCaptureProbe} from '../scripts/qa/rejected-capture-probe-evidence.mjs';
+import {validateTestRunnerSecurity} from '../scripts/qa/test-runner-security-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
+  validateTestRunnerSecurity(root);
   validateNativeFollowup(root, content.flows.find(row => row.id === 'team-conversation').nativeRecheck);
   validateNativeFollowupMain(root);
   validateRejectedCaptureProbe(root, content.rejectedCaptureRecheck);

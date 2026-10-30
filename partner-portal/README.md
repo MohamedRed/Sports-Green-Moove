@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The later 30 October test-runner security change removes the deprecated pool and
+its three reproduced inherited-option paths. The full workspace audit has zero
+critical findings but retains twelve high/eighteen moderate findings. Rule,
+payment and notification checks pass with the maintained runner; no production
+or phone result is implied. Publish one brief security-progress note without new
+media or changed flow statuses. Preserve the public audience, dated history and
+the independently scoped full native gate. See the retained before/after evidence
+in `docs/release/evidence/test-runner-security-2026-10-30/README.md`.
+
 The later 30 October rejected-capture investigation preserves the original
 three-case local baseline, the failed candidate startup and the fresh seven-case
 calibration. The rejected-bitmap observer is opt-in, named and diagnostic-only;

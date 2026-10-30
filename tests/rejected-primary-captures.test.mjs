@@ -110,7 +110,8 @@ test('all CI guard paths include the new protocol while the ordinary failure pat
 test('source-bound local baseline, startup failure and seven-case fresh probe retain distinct outcomes', () => {
   const result = validateRejectedCaptureProbe(root, content.rejectedCaptureRecheck);
   assert.equal(result.diagnosticCalibrationCases, 4); assert.equal(result.rootCauseProven, false);
-  const update = content.updates.find(row => row.flow === 'native-startup');
+  const update = content.updates.find(row => row.source === rejectedCaptureFolder + 'README.md');
+  assert.equal(update.flow, 'native-startup');
   assert.equal(update.source, rejectedCaptureFolder + 'README.md'); assert.match(update.text, /local/);
   assert.doesNotMatch(update.text, /BrowserStack|Firebase|SDK|Android/);
   assert.equal(content.flows.find(row => row.id === 'team-conversation').status, 'partial');

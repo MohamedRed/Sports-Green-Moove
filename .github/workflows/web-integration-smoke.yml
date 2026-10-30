@@ -305,6 +305,10 @@ on:
       - "scripts/qa/*trip-cancellation-phone*.mjs"
       - "tests/http-body-parser-security.test.mjs"
       - "tests/dependency-security-contract.test.mjs"
+      - "tests/test-runner-security-contract.test.mjs"
+      - "tests/test-runner-security-evidence.test.mjs"
+      - "tests/helpers/test-pool-security-probe.mjs"
+      - "tests/fixtures/pool-probe-*.mjs"
       - "tests/dependency-patch-evidence.test.mjs"
       - "tests/helpers/dependency-security-probe.mjs"
       - "scripts/qa/*dependency-patch-evidence.mjs"
@@ -821,6 +825,10 @@ on:
       - "scripts/qa/*trip-cancellation-phone*.mjs"
       - "tests/http-body-parser-security.test.mjs"
       - "tests/dependency-security-contract.test.mjs"
+      - "tests/test-runner-security-contract.test.mjs"
+      - "tests/test-runner-security-evidence.test.mjs"
+      - "tests/helpers/test-pool-security-probe.mjs"
+      - "tests/fixtures/pool-probe-*.mjs"
       - "tests/dependency-patch-evidence.test.mjs"
       - "tests/helpers/dependency-security-probe.mjs"
       - "scripts/qa/*dependency-patch-evidence.mjs"
@@ -1376,7 +1384,7 @@ jobs:
       - name: Validate physical trip cancellation evidence and observer boundaries
         run: node --test tests/trip-cancellation-phone-checkpoints.test.mjs tests/trip-cancellation-phone-evidence.test.mjs
       - name: Test runtime compressed request parsing and size limits
-        run: node --test tests/http-body-parser-security.test.mjs tests/http-body-parser-evidence.test.mjs tests/local-runtime-disposal.test.mjs tests/dependency-security-contract.test.mjs tests/dependency-patch-evidence.test.mjs
+        run: node --test tests/http-body-parser-security.test.mjs tests/http-body-parser-evidence.test.mjs tests/local-runtime-disposal.test.mjs tests/dependency-security-contract.test.mjs tests/dependency-patch-evidence.test.mjs tests/test-runner-security-contract.test.mjs tests/test-runner-security-evidence.test.mjs
       - name: Verify committed publication artifacts
         run: node --test tests/portal-committed-evidence.test.mjs
 

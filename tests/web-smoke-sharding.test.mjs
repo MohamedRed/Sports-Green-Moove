@@ -68,7 +68,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(direct.length, 1); assert.equal(direct[0].run, 'node --test tests/direct-booking-evidence.test.mjs');
   const parser = workflow.jobs.smoke.steps.filter(step => step.name === 'Test runtime compressed request parsing and size limits');
   assert.equal(parser.length, 1);
-  assert.equal(parser[0].run, 'node --test tests/http-body-parser-security.test.mjs tests/http-body-parser-evidence.test.mjs tests/local-runtime-disposal.test.mjs tests/dependency-security-contract.test.mjs tests/dependency-patch-evidence.test.mjs');
+  assert.equal(parser[0].run, 'node --test tests/http-body-parser-security.test.mjs tests/http-body-parser-evidence.test.mjs tests/local-runtime-disposal.test.mjs tests/dependency-security-contract.test.mjs tests/dependency-patch-evidence.test.mjs tests/test-runner-security-contract.test.mjs tests/test-runner-security-evidence.test.mjs');
   const committed = workflow.jobs.smoke.steps.filter(step => step.name === 'Verify committed publication artifacts');
   assert.equal(committed.length, 1); assert.equal(committed[0].run, 'node --test tests/portal-committed-evidence.test.mjs');
   const network = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate isolated network recovery recheck without promoting physical readiness');

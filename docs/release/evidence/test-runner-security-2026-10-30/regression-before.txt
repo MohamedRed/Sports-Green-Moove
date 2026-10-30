@@ -1,0 +1,112 @@
+TAP version 13
+# Subtest: test workers never accept inherited filename options
+not ok 1 - test workers never accept inherited filename options
+  ---
+  duration_ms: 110.022833
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/test-runner-security-contract.test.mjs:11:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/test-runner-security-contract.test.mjs:18:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: test workers never accept inherited execArgv options
+not ok 2 - test workers never accept inherited execArgv options
+  ---
+  duration_ms: 89.5775
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/test-runner-security-contract.test.mjs:11:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/test-runner-security-contract.test.mjs:18:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: test workers never accept inherited env options
+not ok 3 - test workers never accept inherited env options
+  ---
+  duration_ms: 89.096584
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/test-runner-security-contract.test.mjs:11:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/test-runner-security-contract.test.mjs:18:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: installed and locked runner removes the vulnerable pool and uses the supported mocker fix
+not ok 4 - installed and locked runner removes the vulnerable pool and uses the supported mocker fix
+  ---
+  duration_ms: 5.774875
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/test-runner-security-contract.test.mjs:21:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /^4\.1\.(?:1[2-9]|[2-9]\d|\d{3,})$/. Input:
+    
+    '3.2.6'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '3.2.6'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/test-runner-security-contract.test.mjs:28:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 0
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 383.226959

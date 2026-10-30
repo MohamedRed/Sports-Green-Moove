@@ -2,8 +2,8 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   {id: 'native-current-gate', title: 'Terminer la nouvelle série de vérifications',
-    text: 'La conversation passe en local. La dernière série complète échoue sur la copie des captures et la préparation de la coupure du chat.',
-    next: 'Terminer la copie des captures et rejouer la coupure du chat.', source: 'docs/release/evidence/rejected-capture-probe-2026-10-30/README.md'},
+    text: 'La capture d’une modification de trajet échoue. La récupération des images s’interrompt aussi.',
+    next: 'Stabiliser les captures et reprendre la série complète.', source: 'docs/release/evidence/test-runner-security-2026-10-30/README.md'},
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',
     next: 'Vérifier sur iPhone et avec une coupure pendant un vrai déplacement.', source: 'docs/release/evidence/review-receipt-phone-2026-10-30/README.md'},
@@ -31,8 +31,8 @@ export const blockers = [
     text: 'L’arrêt du suivi et la reprise conducteur passent dans le nouvel essai local.',
     next: 'Confirmer ces changements de compte sur téléphone, pendant un trajet.', source: 'docs/release/evidence/ride-emergency-pass-2026-10-19/README.md' },
   { id: 'dependency-security', title: 'Terminer les contrôles de sécurité',
-    text: 'Douze cas en échec passent après correction. Les parcours locaux passent aussi ; d’autres alertes restent à vérifier.',
-    next: 'Terminer les contrôles avant la mise en ligne.', source: 'docs/release/evidence/dependency-patch-2026-10-28/README.md' },
+    text: 'Les deux alertes critiques de l’outil de test sont levées. D’autres alertes restent à traiter.',
+    next: 'Terminer les contrôles avant la mise en ligne.', source: 'docs/release/evidence/test-runner-security-2026-10-30/README.md' },
   { id: 'trip-consent-restart', title: 'Retrouver les accords après fermeture complète',
     text: 'Les accords, le refus et le retrait reviennent après l’arrêt complet de l’app. Les réservations restent intactes.',
     next: 'Rejouer entre deux téléphones, puis terminer l’application des changements et les paiements.', source: 'docs/release/evidence/trip-consent-restart-phone-2026-10-28/README.md' },
