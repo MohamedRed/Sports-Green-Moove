@@ -57,6 +57,21 @@ MITM, extra-host, force-local or daemon flag is allowed. A process-start receipt
 is not connection proof: require the phone toolbar's active local connection.
 Stop only this launcher's process group with SIGINT after the trial and require
 its cleanup acknowledgement; do not kill other local helpers.
+
+For browser-controlled input, start `node scripts/qa/private-credential-form.mjs`
+with the launcher's actual pipe path. It serves one password input on a fresh
+loopback-only port, outside the phone tunnel. Read the existing account key into
+session memory, mask its account field again, and fill the local form without
+emitting accessibility values, clipboard contents or screenshots during entry.
+Use a freshly resolved submit control, not an index retained from before filling.
+The form clears its field before sending one same-origin JSON request, delivers
+one bounded line into the existing 0600 FIFO, and closes on delivery or expiry.
+Host/Origin/content-type checks and CSP reject cross-site submission and framing.
+No key is logged, echoed, saved in a regular file, or passed in process arguments
+or environment variables by this input helper. Verify the field is empty and
+the listener has closed, then close only the input tab created for this trial.
+This prepares authentication; it does not prove a connected phone or user flow.
+
 Only ports 5001, 8080, 9000 and 9099 on `127.0.0.1` and `localhost` are approved.
 The 21 October scoped launch reached App Live's active local-testing toolbar,
 installed the pinned isolated team-chat APK and signed in the synthetic parent.

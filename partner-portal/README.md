@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The 30 October physical Android stale-cancellation preview passes eight isolated
+record checkpoints. A separate authenticated service session approves a booking
+after the phone opens its review. The phone refuses the old confirmation,
+refreshes, then cancels against the new revision without duplicate receipts or
+notices. Publish five dated session-window crops first, retain the older five
+tour steps and all galleries with their original dates, and keep Publication
+partial. This is not simultaneous transaction overlap, a second phone, peer UI,
+push, payment or physical tracking proof. The `dcd7a5e` baseline CI is terminal
+success/skipped after one unchanged failed provider-job rerun; the original
+callback timeout and earlier native transfer failures remain retained. Publish
+the passing baseline as the newest simulated result, without promoting physical
+readiness; it does not establish the earlier failures' root cause. Preserve public access. See
+`docs/release/evidence/cancellation-stale-phone-2026-10-30/README.md`.
+
 The new-budget `91c4a09` execution is terminal failure after 20m37s, not a
 50-minute timeout. All 205 ordinary cases and 29 replay cases pass before the
 eleventh primary copy fails during consent restart. Ten earlier primary copies

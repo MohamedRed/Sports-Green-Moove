@@ -50,10 +50,14 @@ test('new phone consent keeps dated local application and restart evidence separ
   assert.match(blocker.next, /rejouer sur téléphone/);
   assert.match(blocker.next, /brouillons/);
   assert.equal(blocker.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md');
-  assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-28');
+  assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.checkedAt, '2026-10-30');
+  assert.equal(flow.scheduleDraftPhone.checkedAt, '2026-10-28'); assert.equal(flow.consentRestartPhone.checkedAt, '2026-10-28');
+  assert.equal(flow.tripCancellationPhone.checkedAt, '2026-10-28'); assert.equal(flow.staleCancellationPhone.checkedAt, '2026-10-30');
   assert.equal(flow.ui.checkedAt, '2026-10-18');
   assert.equal(flow.tripConsentPhone.checkedAt, '2026-10-25');
-  assert.equal(flow.tour.length, 5); assert(flow.tour.every(step => step.image.startsWith('cancel-phone-')));
+  assert.equal(flow.tour.length, 10);
+  assert(flow.tour.slice(0, 5).every(step => step.image.startsWith('cancel-stale-phone-')));
+  assert(flow.tour.slice(5).every(step => step.image.startsWith('cancel-phone-')));
   assert(flow.images.some(image => image.file.startsWith('draft-phone-')));
   assert(flow.images.some(image => image.file.startsWith('consent-phone-')));
   assert(flow.ui.groups.includes('trip-consent-process-restart-ui'));

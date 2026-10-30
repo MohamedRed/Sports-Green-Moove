@@ -14,6 +14,11 @@ export function normalizeCancellationProfiles(state, fixture) {
 }
 
 export function verifyCancellationPhoneCheckpoint(phase, baseline, current, fixture) {
+  return verifyCancellationWithCapacity(phase, baseline, current, fixture, 2);
+}
+
+export function verifyCancellationWithCapacity(phase, baseline, current, fixture, initialAvailableSeats) {
+  assert(Number.isInteger(initialAvailableSeats) && initialAvailableSeats >= 0 && initialAvailableSeats <= 4);
   const index = cancellationPhonePhases.indexOf(phase); assert(index >= 0, 'Unknown cancellation checkpoint');
   const before = normalizeCancellationProfiles(baseline, fixture), after = normalizeCancellationProfiles(current, fixture);
   assert.equal(fixture.driverUid, 'sgm-qa-driver'); assert.equal(fixture.activeBookingIds.length, 2);
@@ -36,7 +41,12 @@ export function verifyCancellationPhoneCheckpoint(phase, baseline, current, fixt
     bookingIds: fixture.activeBookingIds.slice().sort(), refundPendingCount: 0, seatsAvailable: 4});
   const tripBefore = before.documents.trips.find(row => row.id === fixture.tripId)?.data;
   const trip = after.documents.trips.find(row => row.id === fixture.tripId); assert(tripBefore && trip);
-  assert.equal(tripBefore.priceCents, 0); assert.equal(tripBefore.seatsAvailable, 2); assert.equal(tripBefore.seatsTotal, 4);
+  assert.equal(tripBefore.priceCents, 0); assert.equal(tripBefore.seatsAvailable, initialAvailableSeats); assert.equal(tripBefore.seatsTotal, 4);
+  const approvedSeats = fixture.activeBookingIds.reduce((sum, id) => {
+    const data = before.documents.bookings.find(row => row.id === id).data;
+    assert(Number.isInteger(data.seats) && data.seats > 0); return sum + (data.status === 'approved' ? data.seats : 0);
+  }, 0);
+  assert.equal(approvedSeats, 4 - initialAvailableSeats);
   assert(!tripBefore.pendingChangeId && !tripBefore.activeRideSessionId);
   assert.deepEqual(trip.data, {...tripBefore, status: 'cancelled', seatsAvailable: 4, approvedPassengerUserIds: [],
     cancelledAt: time, cancelledByUserId: fixture.driverUid, cancelReason: cancellationPhoneReason, updatedAt: time});
@@ -65,6 +75,6 @@ export function verifyCancellationPhoneCheckpoint(phase, baseline, current, fixt
     if (!(name in before.documents) && !after.documents[name].length) delete after.documents[name];
   }
   assert.deepEqual(after, before, 'Closed bookings, unrelated records, claims and live trips must remain unchanged');
-  return {phase, cancelledBookings: 2, newCancellationReceipts: 1, newNotices: 2, returnedSeats: 2,
+  return {phase, cancelledBookings: 2, newCancellationReceipts: 1, newNotices: 2, returnedSeats: approvedSeats,
     seatsAvailable: 4, refundRequired: false, protectedRecordsUnchanged: true, phoneUiProven: false};
 }

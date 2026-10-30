@@ -12,6 +12,7 @@ import { chatNetworkRecoveryCaptures } from './chat-network-recovery.mjs';
 import { teamRestartCaptures } from './team-process-restart.mjs';
 import { directBookingCaptures } from './direct-booking.mjs';
 import {tripCancellationCaptures} from './trip-cancellation-phone.mjs';
+import {staleCancellationCaptures} from './cancellation-stale-phone.mjs';
 import {reviewHistoryPhoneCaptures} from './review-history-phone.mjs';
 import {receivedRatingCaptures} from './received-ratings.mjs';
 import {reviewPaginationCaptures} from './review-pagination.mjs';
@@ -26,6 +27,7 @@ import {bookingReceiptCaptures} from './booking-receipt-phone.mjs';
 import {bookingBeforeAckCaptures} from './booking-before-ack-phone.mjs';
 
 export const captures = {
+  ...staleCancellationCaptures,
   ...bookingBeforeAckCaptures,
   ...bookingReceiptCaptures,
   ...reviewNetworkCaptures,

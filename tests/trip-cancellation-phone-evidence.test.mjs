@@ -6,6 +6,7 @@ import test from 'node:test';
 import {assertCancellationPhoneEvidence, validateCancellationPhoneEvidence, cancellationEvidenceDirectory as folder} from '../scripts/qa/trip-cancellation-phone-evidence.mjs';
 import {cancellationPhonePhases} from '../scripts/qa/trip-cancellation-phone-checkpoints.mjs';
 import {content, captures} from '../partner-portal/content.mjs';
+import {tripCancellationTour, tripCancellationImages} from '../partner-portal/trip-cancellation-phone.mjs';
 
 const root = resolve(import.meta.dirname, '..'), base = resolve(root, folder);
 const json = file => JSON.parse(readFileSync(resolve(base, file + '.json')));
@@ -54,8 +55,9 @@ test('altering an original screenshot invalidates the evidence even with unchang
 test('portal keeps seven dated session captures, earlier galleries and partial scope without technology names', () => {
   const flow = content.flows.find(row => row.id === 'publication');
   assert.equal(flow.status, 'partial'); assert.equal(flow.tripCancellationPhone.source, folder + '/summary.json');
-  assert.equal(flow.tour.length, 5); assert(flow.tour.every(row => row.image.startsWith('cancel-phone-')));
-  for (const image of flow.images.slice(0, 7)) {
+  assert.equal(flow.tour.length, 10); assert.deepEqual(flow.tour.slice(5), tripCancellationTour);
+  assert.deepEqual(flow.images.slice(5, 12), tripCancellationImages);
+  for (const image of flow.images.slice(5, 12)) {
     assert.match(image.alt, /capture de session du 28 octobre/); assert(captures[image.file].startsWith(folder + '/captures/'));
   }
   assert(flow.images.some(row => row.file.startsWith('draft-phone-')));

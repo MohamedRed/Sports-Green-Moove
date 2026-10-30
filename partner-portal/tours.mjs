@@ -4,6 +4,7 @@ import { supportSubmissionSteps } from './support-submission-flow.mjs';
 import { searchPhoneTour } from './search-booking-phone.mjs';
 import { directBookingTour } from './direct-booking.mjs';
 import {tripCancellationTour} from './trip-cancellation-phone.mjs';
+import {staleCancellationTour} from './cancellation-stale-phone.mjs';
 import {driverConnectTour} from './driver-connect.mjs';
 import {trackingClockTour} from './tracking-clock-replay.mjs';
 import {trackingNetworkTour} from './tracking-network-phone.mjs';
@@ -141,7 +142,7 @@ export const tours = {
     image('local-calendar', 'Consulter le calendrier', 'Le calendrier affiche le mois de l’essai et permet de changer de mois.'),
   ],
   search: searchPhoneTour,
-  publication: tripCancellationTour,
+  publication: [...staleCancellationTour, ...tripCancellationTour],
   booking: directBookingTour,
   messages: chatNetworkRecoveryTour,
   clubs: [

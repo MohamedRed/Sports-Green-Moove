@@ -39,9 +39,13 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate physical trip cancellation evidence and observer boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .filter(step => step.name !== 'Test child booking receipt recovery without map requests')
+    .filter(step => step.name !== 'Validate private input and stale cancellation phone evidence')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
+  const privatePhone = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate private input and stale cancellation phone evidence');
+  assert.equal(privatePhone.length, 1);
+  assert.equal(privatePhone[0].run, 'node --test tests/private-credential-form.test.mjs tests/cancellation-stale-phone.test.mjs');
   const cancellation = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate physical trip cancellation evidence and observer boundaries');
   assert.equal(cancellation.length, 1);
   assert.equal(cancellation[0].run, 'node --test tests/trip-cancellation-phone-checkpoints.test.mjs tests/trip-cancellation-phone-evidence.test.mjs');

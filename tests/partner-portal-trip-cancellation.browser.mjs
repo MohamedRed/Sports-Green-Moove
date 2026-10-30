@@ -11,7 +11,7 @@ export async function verifyTripCancellationTour({browser, base, output}) {
       await page.setViewportSize({width, height: 1000});
       await page.goto(base + '/#parcours/publication/visite/1');
       await page.getByRole('dialog').waitFor();
-      await page.locator('.detail-heading .date').filter({hasText: 'Essai sur téléphone du 28 octobre 2026'}).waitFor();
+      await page.locator('.detail-heading .date').filter({hasText: 'Essai sur téléphone du 30 octobre 2026'}).waitFor();
       for (const [index, step] of flow.tour.entries()) {
         const image = flow.images.find(row => row.file === step.image);
         await page.getByRole('img', {name: image.alt, exact: true}).waitFor();
@@ -19,7 +19,8 @@ export async function verifyTripCancellationTour({browser, base, output}) {
           const image = document.querySelector('.media-stage img');
           return image?.complete && image.naturalWidth > 0;
         });
-        assert.match(await page.locator('.media-caption').innerText(), /capture de session du 28 octobre/);
+        const captionDate = step.image.startsWith('cancel-stale-phone-') ? '30 octobre' : '28 octobre';
+        assert((await page.locator('.media-caption').innerText()).includes('capture de session du ' + captionDate));
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
         assert(await page.locator('dialog').evaluate(dialog => dialog.scrollWidth <= dialog.clientWidth));
         assert(await page.locator('.media-stage').evaluate(stage => {

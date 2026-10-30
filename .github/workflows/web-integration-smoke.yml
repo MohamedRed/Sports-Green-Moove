@@ -299,6 +299,9 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/scoped-browserstack-local.test.mjs"
+      - "tests/private-credential-form.test.mjs"
+      - "tests/private-credential-form.browser.mjs"
+      - "tests/cancellation-stale-phone.test.mjs"
       - "tests/team-connection-recovery-evidence.test.mjs"
       - "tests/team-process-restart-phone-evidence.test.mjs"
       - "tests/direct-booking-evidence.test.mjs"
@@ -820,6 +823,9 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/scoped-browserstack-local.test.mjs"
+      - "tests/private-credential-form.test.mjs"
+      - "tests/private-credential-form.browser.mjs"
+      - "tests/cancellation-stale-phone.test.mjs"
       - "tests/team-connection-recovery-evidence.test.mjs"
       - "tests/team-process-restart-phone-evidence.test.mjs"
       - "tests/direct-booking-evidence.test.mjs"
@@ -1154,6 +1160,8 @@ jobs:
 
       - name: Validate isolated private phone tunnel policy
         run: node --test tests/browserstack-isolated-tunnel.test.mjs tests/browserstack-isolated-booking-evidence.test.mjs tests/browserstack-parent-search-evidence.test.mjs tests/scoped-browserstack-local.test.mjs tests/manual-team-draft-views.test.mjs tests/manual-team-read-checkpoints.test.mjs tests/manual-team-authority-checkpoints.test.mjs
+      - name: Validate private input and stale cancellation phone evidence
+        run: node --test tests/private-credential-form.test.mjs tests/cancellation-stale-phone.test.mjs
       - name: Validate physical profile and ledger evidence without provider requests
         run: node --test tests/profile-ledger-phone.test.mjs
       - name: Validate encrypted credential rotation without provider requests
