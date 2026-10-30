@@ -78,6 +78,8 @@ on:
       - "tests/booking-ui-loss.test.mjs"
       - "tests/booking-receipt-loss-proxy.test.mjs"
       - "tests/booking-receipt-phone-evidence.test.mjs"
+      - "tests/booking-before-ack-phone-evidence.test.mjs"
+      - "tests/booking-receipt-checkpoint-plan.test.mjs"
       - "tests/booking-search-feedback-evidence.test.mjs"
       - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
@@ -590,6 +592,8 @@ on:
       - "tests/booking-ui-loss.test.mjs"
       - "tests/booking-receipt-loss-proxy.test.mjs"
       - "tests/booking-receipt-phone-evidence.test.mjs"
+      - "tests/booking-before-ack-phone-evidence.test.mjs"
+      - "tests/booking-receipt-checkpoint-plan.test.mjs"
       - "tests/booking-search-feedback-evidence.test.mjs"
       - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
@@ -1357,7 +1361,7 @@ jobs:
         run: node --test tests/direct-booking-evidence.test.mjs
 
       - name: Test isolated booking reply-loss guards
-        run: node --test tests/booking-receipt-loss-proxy.test.mjs tests/booking-receipt-phone-evidence.test.mjs
+        run: node --test tests/booking-receipt-loss-proxy.test.mjs tests/booking-receipt-phone-evidence.test.mjs tests/booking-receipt-checkpoint-plan.test.mjs tests/booking-before-ack-phone-evidence.test.mjs
       - name: Validate physical trip cancellation evidence and observer boundaries
         run: node --test tests/trip-cancellation-phone-checkpoints.test.mjs tests/trip-cancellation-phone-evidence.test.mjs
       - name: Test runtime compressed request parsing and size limits

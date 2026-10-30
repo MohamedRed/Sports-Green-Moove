@@ -1,0 +1,230 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d366d97be6f9764f0aa06589993a3916",
+  "scope": "native-ui-with-disposable-os-network-control",
+  "completed": false,
+  "network": [],
+  "setupMethod": "requested-wifi-and-cellular-networks",
+  "transportSetupVersion": 2,
+  "handoverObservationVersion": 1,
+  "initialNetworkObservationVersion": 1,
+  "initialNetwork": {
+    "phase": "initial",
+    "wifiEnabled": true,
+    "mobileDataEnabled": true,
+    "activeNetwork": true,
+    "cellularRequestRegistered": false,
+    "cellularAvailableCallbacks": 0,
+    "cellularLostCallbacks": 0,
+    "cellularUnavailableCallbacks": 0,
+    "wifiRequestRegistered": false,
+    "wifiAvailableCallbacks": 0,
+    "wifiLostCallbacks": 0,
+    "wifiUnavailableCallbacks": 0,
+    "cellularDataState": 2,
+    "simState": 5,
+    "hasDefaultDataSubscription": true,
+    "airplaneModeSetting": "0",
+    "mobileDataAlwaysOnSetting": "1",
+    "internetNetworkCount": 2,
+    "backendReachable": true,
+    "activeInternetTransports": [
+      "cellular"
+    ],
+    "internetTransports": [
+      "wifi",
+      "cellular"
+    ],
+    "capabilityObservation": {
+      "schemaVersion": 1,
+      "scope": "read-only-network-capabilities-not-selection-reason-or-flow-proof",
+      "sampledAtElapsedRealtimeMs": 128162,
+      "atomicObservation": false,
+      "active": {
+        "transports": [
+          "cellular"
+        ],
+        "internet": true,
+        "validated": true,
+        "captivePortal": false,
+        "notSuspended": true,
+        "notMetered": false,
+        "trusted": true
+      },
+      "available": [
+        {
+          "transports": [
+            "wifi"
+          ],
+          "internet": true,
+          "validated": false,
+          "captivePortal": false,
+          "notSuspended": true,
+          "notMetered": true,
+          "trusted": true,
+          "activeAtSnapshotStart": false
+        },
+        {
+          "transports": [
+            "cellular"
+          ],
+          "internet": true,
+          "validated": true,
+          "captivePortal": false,
+          "notSuspended": true,
+          "notMetered": false,
+          "trusted": true,
+          "activeAtSnapshotStart": true
+        }
+      ]
+    },
+    "userUnlocked": true,
+    "deviceProvisionedSetting": "1",
+    "userSetupCompleteSetting": "1"
+  },
+  "preparation": {
+    "phase": "preparing",
+    "wifiEnabled": true,
+    "mobileDataEnabled": true,
+    "activeNetwork": true,
+    "cellularRequestRegistered": true,
+    "cellularAvailableCallbacks": 1,
+    "cellularLostCallbacks": 0,
+    "cellularUnavailableCallbacks": 0,
+    "wifiRequestRegistered": true,
+    "wifiAvailableCallbacks": 1,
+    "wifiLostCallbacks": 0,
+    "wifiUnavailableCallbacks": 0,
+    "cellularDataState": 2,
+    "simState": 5,
+    "hasDefaultDataSubscription": true,
+    "airplaneModeSetting": "0",
+    "mobileDataAlwaysOnSetting": "1",
+    "internetNetworkCount": 2,
+    "backendReachable": true,
+    "activeInternetTransports": [
+      "cellular"
+    ],
+    "internetTransports": [
+      "wifi",
+      "cellular"
+    ],
+    "capabilityObservation": {
+      "schemaVersion": 1,
+      "scope": "read-only-network-capabilities-not-selection-reason-or-flow-proof",
+      "sampledAtElapsedRealtimeMs": 128205,
+      "atomicObservation": false,
+      "active": {
+        "transports": [
+          "cellular"
+        ],
+        "internet": true,
+        "validated": true,
+        "captivePortal": false,
+        "notSuspended": true,
+        "notMetered": false,
+        "trusted": true
+      },
+      "available": [
+        {
+          "transports": [
+            "wifi"
+          ],
+          "internet": true,
+          "validated": false,
+          "captivePortal": false,
+          "notSuspended": true,
+          "notMetered": true,
+          "trusted": true,
+          "activeAtSnapshotStart": false
+        },
+        {
+          "transports": [
+            "cellular"
+          ],
+          "internet": true,
+          "validated": true,
+          "captivePortal": false,
+          "notSuspended": true,
+          "notMetered": false,
+          "trusted": true,
+          "activeAtSnapshotStart": true
+        }
+      ]
+    }
+  },
+  "preparationFailure": {
+    "phase": "preparation-failed",
+    "wifiEnabled": true,
+    "mobileDataEnabled": true,
+    "activeNetwork": true,
+    "cellularRequestRegistered": true,
+    "cellularAvailableCallbacks": 1,
+    "cellularLostCallbacks": 0,
+    "cellularUnavailableCallbacks": 0,
+    "wifiRequestRegistered": true,
+    "wifiAvailableCallbacks": 1,
+    "wifiLostCallbacks": 0,
+    "wifiUnavailableCallbacks": 0,
+    "cellularDataState": 2,
+    "simState": 5,
+    "hasDefaultDataSubscription": true,
+    "airplaneModeSetting": "0",
+    "mobileDataAlwaysOnSetting": "1",
+    "internetNetworkCount": 2,
+    "backendReachable": true,
+    "activeInternetTransports": [
+      "cellular"
+    ],
+    "internetTransports": [
+      "wifi",
+      "cellular"
+    ],
+    "capabilityObservation": {
+      "schemaVersion": 1,
+      "scope": "read-only-network-capabilities-not-selection-reason-or-flow-proof",
+      "sampledAtElapsedRealtimeMs": 158212,
+      "atomicObservation": false,
+      "active": {
+        "transports": [
+          "cellular"
+        ],
+        "internet": true,
+        "validated": true,
+        "captivePortal": false,
+        "notSuspended": true,
+        "notMetered": false,
+        "trusted": true
+      },
+      "available": [
+        {
+          "transports": [
+            "wifi"
+          ],
+          "internet": true,
+          "validated": false,
+          "captivePortal": false,
+          "notSuspended": true,
+          "notMetered": true,
+          "trusted": true,
+          "activeAtSnapshotStart": false
+        },
+        {
+          "transports": [
+            "cellular"
+          ],
+          "internet": true,
+          "validated": true,
+          "captivePortal": false,
+          "notSuspended": true,
+          "notMetered": false,
+          "trusted": true,
+          "activeAtSnapshotStart": true
+        }
+      ]
+    }
+  },
+  "failedPhase": "network-preparation",
+  "cellularRequestReleased": true,
+  "wifiRequestReleased": true
+}

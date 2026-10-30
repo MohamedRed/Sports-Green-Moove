@@ -9,8 +9,11 @@ import {openBookingReceiptLossProxy} from './booking-receipt-loss-proxy.mjs';
 import {snapshotSessionRestorationRecords} from './session-restoration-records.mjs';
 import {verifyDirectBookingCheckpoint, directBookingPhoneTripId} from './direct-booking-phone-checkpoints.mjs';
 import {withLocalAdminCleanup} from './local-admin-lifecycle.mjs';
+import {bookingReceiptPlan, assertBookingReceiptPhase} from './booking-receipt-checkpoint-plan.mjs';
 
 const [handoffPath, appSessionPath, output, apk] = process.argv.slice(2);
+assert([6, 7].includes(process.argv.length));
+const plan = bookingReceiptPlan(process.argv[6]);
 assert([handoffPath, appSessionPath, output, apk].every(path => isAbsolute(path ?? '')) && process.stdin.isTTY);
 for (const path of [handoffPath, dirname(handoffPath), output]) assert.equal(statSync(path).mode & 0o077, 0);
 assert(!existsSync(appSessionPath));
@@ -21,11 +24,12 @@ const {auth, db} = await import('./local-flow-client.mjs');
 const {seedLocalUiFixtures} = await import('./local-ui-fixtures.mjs');
 const {bookingIntentRevision, bookingSnapshotRevision, bookingIntentSnapshotSchema} = await import('../../functions/lib/domain/bookingIntent.js');
 const sources = ['scripts/qa/manual-booking-receipt-loss-session.mjs', 'scripts/qa/booking-receipt-loss-proxy.mjs',
+  'scripts/qa/booking-receipt-checkpoint-plan.mjs',
   'scripts/qa/direct-booking-phone-checkpoints.mjs', 'scripts/qa/session-restoration-records.mjs', 'functions/src/domain/bookingIntent.ts'];
 const hashSources = () => Object.fromEntries(sources.map(file => [file,
   createHash('sha256').update(readFileSync(resolve(import.meta.dirname, '../..', file))).digest('hex')]));
 const sourceFiles = hashSources(), checks = [];
-const phases = ['parent-ready', 'confirmation-open', 'receipt-lost', 'retry-ready', 'confirmed', 'reopened', 'process-restarted', 'other-card', 'signed-out'];
+const phases = plan.phases;
 const input = createInterface({input: process.stdin, terminal: false}), stop = () => input.close();
 process.once('SIGINT', stop); process.once('SIGTERM', stop);
 const save = (name, value) => writeFileSync(resolve(output, name + '.json'), JSON.stringify(value, null, 2) + '\n', {flag: 'wx', mode: 0o600});
@@ -52,15 +56,11 @@ try {
     for await (const line of input) {
       const phase = line.trim(); if (phase === 'stop') break;
       if (phase === 'finish') {assert.equal(checks.length, phases.length); completed = true; break;}
-      assert.equal(phase, phases[checks.length]); assert.equal(proxy.receipt.failed, false);
+      assertBookingReceiptPhase(plan, phase, checks.length, proxy.receipt);
       const state = await snapshot(), committed = checks.length >= 2;
       const result = verifyDirectBookingCheckpoint(committed ? 'confirmed' : 'opened-no-write', baseline, state, bookingId);
       if (committed) {assert(bookingId); assert.deepEqual(state, firstCommittedState);}
-      const acknowledged = proxy.receipt.attempts.filter(row => row.upstreamAcknowledged);
-      if (committed) assert.equal(acknowledged[0].responseReleased, false);
-      if (phase === 'receipt-lost' || phase === 'retry-ready') assert.equal(proxy.receipt.phase, 'lost');
-      if (phase === 'retry-ready') proxy.recover();
-      if (checks.length >= 4) {assert.equal(acknowledged.length, 2); assert.equal(acknowledged[1].responseReleased, true);}
+      if (phase === plan.retryPhase) proxy.recover();
       const check = {runId: handoff.runId, phase, observedAt: new Date().toISOString(), status: 'passed', result, state,
         originalRecordsAndClaimsPreserved: true, committedFieldsAndTimestampsUnchanged: committed,
         proxy: structuredClone(proxy.receipt), phoneUiProvenByObserver: false};
@@ -73,7 +73,7 @@ finally {input.close(); await proxy?.close(); process.removeListener('SIGINT', s
   delete process.env.SGM_QA_PASSWORD; delete process.env.SGM_LOCAL_RUN_ID; delete process.env.SGM_LOCAL_UI_SESSION_FILE;}
 const sourceFilesUnchanged = JSON.stringify(sourceFiles) === JSON.stringify(hashSources());
 if (!sourceFilesUnchanged) failure ??= Object.assign(new Error('Source changed'), {code: 'SOURCE_CHANGED'});
-save('session-results', {runId: handoff.runId, projectId: handoff.projectId, completed: completed && !failure, checks,
+save('session-results', {runId: handoff.runId, projectId: handoff.projectId, scenario: plan.name, completed: completed && !failure, checks,
   failedCheckpoint: failure ? phases[checks.length] ?? 'finish' : null, failureKind: failure?.code ?? failure?.name ?? null,
   proxy: proxy?.receipt ?? null, sourceFiles, sourceFilesUnchanged, adminClientClosed, firestoreClientTerminated,
   fixtureSubmittedAdultBooking: false, controllerSubmittedBooking: false, phoneUiProvenByObserver: false,

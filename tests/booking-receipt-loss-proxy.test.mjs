@@ -90,5 +90,5 @@ test('web smoke runs the isolated guards, not a phone session or a booking fixtu
   assert.equal(source.split('"tests/booking-receipt-loss-proxy.test.mjs"').length - 1, 2);
   const step = parse(source).jobs.smoke.steps.filter(row => row.name === 'Test isolated booking reply-loss guards');
   assert.equal(step.length, 1);
-  assert.equal(step[0].run, 'node --test tests/booking-receipt-loss-proxy.test.mjs tests/booking-receipt-phone-evidence.test.mjs');
+  assert.equal(step[0].run, 'node --test tests/booking-receipt-loss-proxy.test.mjs tests/booking-receipt-phone-evidence.test.mjs tests/booking-receipt-checkpoint-plan.test.mjs tests/booking-before-ack-phone-evidence.test.mjs');
 });

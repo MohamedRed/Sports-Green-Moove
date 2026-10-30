@@ -22,8 +22,14 @@ import {reviewRecoveryProgress} from './review-submission-recovery.mjs';
 import {reviewNetworkProgress} from './review-network-phone.mjs';
 import {reviewReceiptProgress} from './review-receipt-phone.mjs';
 import {bookingReceiptProgress} from './booking-receipt-phone.mjs';
+import {bookingBeforeAckProgress} from './booking-before-ack-phone.mjs';
 
 export const currentProgress = [
+  bookingBeforeAckProgress,
+  {date: '2026-10-30', title: 'La coupure du chat reste à rejouer',
+    text: 'Le nouvel essai s’arrête pendant la préparation de la connexion, avant la coupure et le renvoi. Cet essai n’est pas validé.',
+    flow: 'messages', source: 'docs/release/evidence/chat-network-preparation-4714198/README.md',
+    checksums: 'docs/release/evidence/chat-network-preparation-4714198/artifact-sha256.json'},
   bookingReceiptProgress,
   {date: '2026-10-30', title: 'L’échec de capture reste à expliquer',
     text: 'Les essais séparés passent. L’essai complet reste à valider ; les nouveaux relevés serviront à comprendre où il s’arrête.',

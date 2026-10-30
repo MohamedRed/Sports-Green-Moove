@@ -17,6 +17,7 @@ import {validateReviewNetworkPhone} from '../scripts/qa/review-network-phone-evi
 import {validateReviewReceiptPhone} from '../scripts/qa/review-receipt-phone-evidence.mjs';
 import {validateCaptureLateSampling} from '../scripts/qa/capture-late-sampling-evidence.mjs';
 import {validateBookingReceiptPhone} from '../scripts/qa/booking-receipt-phone-evidence.mjs';
+import {validateBookingBeforeAck} from '../scripts/qa/booking-before-ack-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -38,4 +39,5 @@ export function validateCurrentChecks(root, content) {
   validateReviewReceiptPhone(root, content.reviewReceiptPhone);
   validateCaptureLateSampling(root);
   validateBookingReceiptPhone(root, content.flows.find(row => row.id === 'booking').bookingReceiptPhone);
+  validateBookingBeforeAck(root, content.flows.find(row => row.id === 'booking').bookingBeforeAckPhone);
 }

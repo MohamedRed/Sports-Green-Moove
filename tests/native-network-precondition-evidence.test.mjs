@@ -5,10 +5,37 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { content } from '../partner-portal/content.mjs';
+import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
+import {resolve} from 'node:path';
 
 const base = 'docs/release/evidence/native-network-precondition-2026-10-19/';
 const bytes = (path) => readFileSync(new URL('../' + path, import.meta.url));
 const json = (file) => JSON.parse(bytes(base + file));
+
+test('the later 4714198 focused case remains an unvalidated-Wi-Fi setup failure, not an offline-send result', () => {
+  const folder = 'docs/release/evidence/chat-network-preparation-4714198/';
+  assertEvidenceBundleChecksums(resolve(process.cwd(), folder));
+  const report = JSON.parse(bytes(folder + 'result.json'));
+  assert.equal(report.runId, 'd366d97be6f9764f0aa06589993a3916');
+  assert.equal(report.completed, false); assert.equal(report.failedPhase, 'network-preparation');
+  assert.deepEqual(report.network, []); assert.equal(report.offlineSendUnconfirmed, undefined);
+  assert.equal(report.recoveredSendConfirmed, undefined);
+  for (const key of ['initialNetwork', 'preparation', 'preparationFailure']) {
+    const sample = report[key]; assert.equal(sample.backendReachable, true);
+    assert.deepEqual(sample.activeInternetTransports, ['cellular']);
+    const capabilities = sample.capabilityObservation.available;
+    assert.equal(capabilities.find(row => row.transports.includes('wifi')).validated, false);
+    assert.equal(capabilities.find(row => row.transports.includes('cellular')).validated, true);
+  }
+  assert.equal(report.cellularRequestReleased, true); assert.equal(report.wifiRequestReleased, true);
+  const disposal = JSON.parse(bytes(folder + 'disposal.json'));
+  assert.equal(disposal.restored, true); assert.equal(disposal.verified, true);
+  assert.equal(disposal.restoration.installAdmin.authorizationRemoved, true);
+  const transcript = bytes(folder + 'instrumentation.txt').toString();
+  assert.match(transcript, /LocalChatNetworkFlowTest.kt:82/);
+  assert.match(transcript, /Tests run: 1,  Failures: 1/);
+  assert(content.updates.some(row => row.source === folder + 'README.md'));
+});
 
 test('the failed native run retains original artifacts and its dated source bindings', () => {
   const hashes = json('artifact-sha256.json');

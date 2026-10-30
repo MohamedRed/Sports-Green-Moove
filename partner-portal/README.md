@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The second 30 October booking trial retains nine checkpoints for restart before
+acknowledgement. One real isolated callable commit is followed by a withheld
+reply, Android Force stop and relaunch without login. Home, Mes trajets and the
+reservation list recover one adult pending request without resubmission. Four
+reviewed 200x444 session crops are added without replacing earlier galleries or
+the four-step tour. Android system UI documents force stop; this trial has no
+independent PID measurement. All sources are hash-bound and disposal is checked.
+Child/search recovery, multiple phones and release/provider scope remain open.
+
 The later 30 October adult booking reply-loss trial completes nine independent
 record checkpoints on one physical Android phone. The actual callable commits
 one request, receipt and driver notice before its success reply is withheld.

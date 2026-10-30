@@ -81,5 +81,5 @@ test('web smoke validates retained evidence without starting another phone or cr
   const source = read('.github/workflows/web-integration-smoke.yml');
   assert.equal(source.split('"tests/booking-receipt-phone-evidence.test.mjs"').length - 1, 2);
   const step = parse(source).jobs.smoke.steps.find(row => row.name === 'Test isolated booking reply-loss guards');
-  assert.equal(step.run, 'node --test tests/booking-receipt-loss-proxy.test.mjs tests/booking-receipt-phone-evidence.test.mjs');
+  assert.equal(step.run, 'node --test tests/booking-receipt-loss-proxy.test.mjs tests/booking-receipt-phone-evidence.test.mjs tests/booking-receipt-checkpoint-plan.test.mjs tests/booking-before-ack-phone-evidence.test.mjs');
 });

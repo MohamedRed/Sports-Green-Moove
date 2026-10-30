@@ -44,7 +44,7 @@ export const blockers = [
     next: 'Débloquer sur téléphone l’ouverture du numéro, sans appeler. Terminer l’accès de l’enfant pendant son trajet.', source: 'docs/release/evidence/emergency-dialer-samsung-2026-10-24/README.md' },
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
     text: 'Réessayer retrouve la demande malgré une confirmation perdue. Elle revient aussi après fermeture complète.',
-    next: 'Fermer avant de réessayer, puis reprendre depuis la recherche et entre deux téléphones.', source: 'docs/release/evidence/booking-receipt-phone-2026-10-30/README.md' },
+    next: 'Rejouer la fermeture avant confirmation pour un enfant, puis depuis la recherche et entre deux téléphones.', source: 'docs/release/evidence/booking-receipt-phone-2026-10-30/README.md' },
   { id: 'cancellation-race', title: 'Rejouer le conflit d’annulation sur téléphone',
     text: 'Les essais locaux passent après correction.',
     next: 'Rejouer sur téléphone. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-contention-2026-10-17/README.md' },

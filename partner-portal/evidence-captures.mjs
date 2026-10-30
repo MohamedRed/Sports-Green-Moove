@@ -22,8 +22,10 @@ import {reviewRecoveryCaptures} from './review-submission-recovery.mjs';
 import {reviewNetworkCaptures} from './review-network-phone.mjs';
 import {reviewReceiptCaptures} from './review-receipt-phone.mjs';
 import {bookingReceiptCaptures} from './booking-receipt-phone.mjs';
+import {bookingBeforeAckCaptures} from './booking-before-ack-phone.mjs';
 
 export const captures = {
+  ...bookingBeforeAckCaptures,
   ...bookingReceiptCaptures,
   ...reviewNetworkCaptures,
   ...reviewReceiptCaptures,
