@@ -200,7 +200,7 @@ test('the original capture method, image validation and single-operation excepti
   assert(wrapper.includes('throw failure')); assert(wrapper.includes('primaryFailure?.addSuppressed(diagnosticFailure)'));
   assert(!wrapper.includes('captureToImage')); assert(!wrapper.includes('PixelCopy.request')); assert(!wrapper.includes('repeat('));
   const probe = read(base + 'PrimaryCaptureProbe.kt');
-  assert(probe.includes('listOf(250L, 600L, 900L)')); assert(probe.includes('handler.removeCallbacks(heartbeat)'));
+  assert(probe.includes('listOf(250L, 1_200L, 1_600L)')); assert(probe.includes('handler.removeCallbacks(heartbeat)'));
   assert(probe.includes('executor.shutdownNow()')); assert(!probe.includes('Thread.sleep')); assert(!probe.includes('Bitmap'));
 });
 test('only the ordinary disposable-device job opts in and web smoke protects the diagnostic protocol', () => {

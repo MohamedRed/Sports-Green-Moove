@@ -25,18 +25,19 @@ function frames(rows) {
 }
 
 export function validatePrimaryCaptureDiagnostic(value) {
-  assert([1, 2].includes(value.schemaVersion));
+  assert([1, 2, 3].includes(value.schemaVersion));
   keys(value, ['schemaVersion', 'scope', 'captureName', 'sdkInvocations', 'primaryOutcome', 'errorCategory', 'elapsedMs',
     'callerIsMain', 'mainPostAccepted', 'heartbeatDelaysMs', 'maxMainQueueDelayMs', 'samples', 'sampleFailures',
     'observerClosed', 'observerMayAffectScheduling', 'imagesWrittenByObserver', 'primaryStartOffsetMs', 'primaryElapsedMs', 'heartbeatAtMs',
-    ...(value.schemaVersion === 2 ? ['observerTerminationVerified'] : [])]);
+    ...(value.schemaVersion >= 2 ? ['observerTerminationVerified'] : []),
+    ...(value.schemaVersion === 3 ? ['sampleScheduleMs'] : [])]);
   assert.equal(value.scope, captureDiagnosticScope);
   assert(requiredTripCaptureNames.includes(value.captureName));
   assert(['prepared', 'returned', 'threw'].includes(value.primaryOutcome));
   assert.equal(value.sdkInvocations, value.primaryOutcome === 'prepared' ? 0 : 1);
   assert(value.primaryOutcome === 'threw' ? ['pixelcopy-callback-wait', 'other'].includes(value.errorCategory) : value.errorCategory === 'none');
   number(value.elapsedMs); bool(value.callerIsMain); bool(value.mainPostAccepted); bool(value.observerClosed);
-  if (value.schemaVersion === 2) {
+  if (value.schemaVersion >= 2) {
     if (value.observerClosed) bool(value.observerTerminationVerified);
     else assert.equal(value.observerTerminationVerified, null);
   }
@@ -53,11 +54,13 @@ export function validatePrimaryCaptureDiagnostic(value) {
   value.heartbeatAtMs.forEach((at, index, rows) => { number(at); if (index) assert(at >= rows[index - 1]); });
   assert.equal(value.maxMainQueueDelayMs, value.heartbeatDelaysMs.length ? Math.max(...value.heartbeatDelaysMs) : null);
   assert(Array.isArray(value.samples) && value.samples.length <= 3);
+  const offsets = value.schemaVersion === 3 ? [250, 1200, 1600] : [250, 600, 900];
+  if (value.schemaVersion === 3) assert.deepEqual(value.sampleScheduleMs, offsets);
   const scheduled = new Set();
   for (const sample of value.samples) {
     keys(sample, ['atMs', 'scheduledMs', 'offsetMs', 'observerDelayMs', 'mainState', 'mainFrames', 'callerFrames']);
     number(sample.atMs); number(sample.observerDelayMs);
-    assert([250, 600, 900].includes(sample.offsetMs) && !scheduled.has(sample.offsetMs)); scheduled.add(sample.offsetMs);
+    assert(offsets.includes(sample.offsetMs) && !scheduled.has(sample.offsetMs)); scheduled.add(sample.offsetMs);
     number(sample.scheduledMs); assert(sample.scheduledMs >= sample.offsetMs);
     assert.equal(sample.observerDelayMs, Math.max(0, sample.atMs - sample.scheduledMs));
     assert(['NEW', 'RUNNABLE', 'BLOCKED', 'WAITING', 'TIMED_WAITING', 'TERMINATED'].includes(sample.mainState));

@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The later 30 October capture investigation retains the failed 60814d7 trace:
+all three stack samples precede the final callback wait. Version three moves
+two samples into the later interval; one primary call, its deadline, quality and
+failure rules stay unchanged. The new APK builds but its schedule has not yet
+executed. Publish one concise partial-progress line only, with no raw diagnostics
+or new images. Keep the full-gate blocker, public audience and existing galleries.
+
 The later 30 October post-commit reply-loss trial completes seven independent
 record checkpoints on one physical Android phone. The real callable stores the
 five-star review before its exact success reply is withheld; explicit retry

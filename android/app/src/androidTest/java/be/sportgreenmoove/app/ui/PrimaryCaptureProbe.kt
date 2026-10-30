@@ -9,6 +9,8 @@ import java.io.File
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
+internal val primaryCaptureSampleOffsetsMs = listOf(250L, 1_200L, 1_600L)
+
 internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObservation {
     private val start = System.nanoTime()
     private val caller = Thread.currentThread()
@@ -59,7 +61,7 @@ internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObs
         try {
             writeSnapshot()
             posted = handler.post(heartbeat)
-            for (at in listOf(250L, 600L, 900L)) {
+            for (at in primaryCaptureSampleOffsetsMs) {
                 val scheduledAt = System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(at)
                 executor.schedule({
                     try { sample(at, scheduledAt) }
@@ -116,7 +118,8 @@ internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObs
 
     private fun writeSnapshot() {
         val value = synchronized(lock) {
-            JSONObject().put("schemaVersion", 2).put("scope", "primary-compose-capture-observation-not-flow-or-root-cause-proof")
+            JSONObject().put("schemaVersion", 3).put("scope", "primary-compose-capture-observation-not-flow-or-root-cause-proof")
+                .put("sampleScheduleMs", JSONArray(primaryCaptureSampleOffsetsMs))
                 .put("captureName", name).put("sdkInvocations", if (outcome == "prepared") 0 else 1).put("primaryOutcome", outcome)
                 .put("errorCategory", category).put("elapsedMs", duration).put("callerIsMain", caller === main)
                 .put("primaryStartOffsetMs", primaryStartOffset ?: JSONObject.NULL)

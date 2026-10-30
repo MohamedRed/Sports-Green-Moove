@@ -4,6 +4,10 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class PrimaryCaptureDiagnosticsTest {
+    @Test fun sampleScheduleCoversRedrawAndTheLaterCallbackWaitWithoutAddingSamples() {
+        assertEquals(listOf(250L, 1_200L, 1_600L), primaryCaptureSampleOffsetsMs)
+        assertEquals(3, primaryCaptureSampleOffsetsMs.distinct().size)
+    }
     @Test fun thePrimaryOperationRunsOnceAndReturnsTheSameObject() {
         val observer = Observation(); val expected = Any(); var calls = 0
         val actual = observePrimaryCapture("trip-change-test.png", true, {
