@@ -2,8 +2,8 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   {id: 'native-current-gate', title: 'Terminer la nouvelle série de vérifications',
-    text: 'La capture d’une modification de trajet échoue. La récupération des images s’interrompt aussi.',
-    next: 'Stabiliser les captures et reprendre la série complète.', source: 'docs/release/evidence/test-runner-security-2026-10-30/README.md'},
+    text: 'La série complète reste à valider. La récupération des captures interrompt encore un essai.',
+    next: 'Stabiliser les captures et reprendre la série complète.', source: 'docs/release/evidence/capture-window-calibration-2026-10-30/README.md'},
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',
     next: 'Vérifier sur iPhone et avec une coupure pendant un vrai déplacement.', source: 'docs/release/evidence/review-receipt-phone-2026-10-30/README.md'},

@@ -4,6 +4,7 @@ export const captureDiagnosticScope = 'primary-compose-capture-observation-not-f
 export const requiredTripCaptureNames = ['trip-change-driver-proposed.png', 'trip-change-parent-review-large-text.png',
   'trip-change-parent-accepted.png', 'trip-change-close-pinned-large-text.png', 'trip-change-parent-declined.png',
   'trip-change-applied-balance-due.png'];
+const schedules = { 1: [250, 600, 900], 2: [250, 600, 900], 3: [250, 1200, 1600], 4: [250, 750, 1600] };
 const keys = (object, names) => assert.deepEqual(Object.keys(object).sort(), names.slice().sort());
 const number = value => assert(Number.isSafeInteger(value) && value >= 0 && value <= 300_000);
 const bool = value => assert.equal(typeof value, 'boolean');
@@ -25,12 +26,12 @@ function frames(rows) {
 }
 
 export function validatePrimaryCaptureDiagnostic(value) {
-  assert([1, 2, 3].includes(value.schemaVersion));
+  assert([1, 2, 3, 4].includes(value.schemaVersion));
   keys(value, ['schemaVersion', 'scope', 'captureName', 'sdkInvocations', 'primaryOutcome', 'errorCategory', 'elapsedMs',
     'callerIsMain', 'mainPostAccepted', 'heartbeatDelaysMs', 'maxMainQueueDelayMs', 'samples', 'sampleFailures',
     'observerClosed', 'observerMayAffectScheduling', 'imagesWrittenByObserver', 'primaryStartOffsetMs', 'primaryElapsedMs', 'heartbeatAtMs',
     ...(value.schemaVersion >= 2 ? ['observerTerminationVerified'] : []),
-    ...(value.schemaVersion === 3 ? ['sampleScheduleMs'] : [])]);
+    ...(value.schemaVersion >= 3 ? ['sampleScheduleMs'] : [])]);
   assert.equal(value.scope, captureDiagnosticScope);
   assert(requiredTripCaptureNames.includes(value.captureName));
   assert(['prepared', 'returned', 'threw'].includes(value.primaryOutcome));
@@ -54,8 +55,8 @@ export function validatePrimaryCaptureDiagnostic(value) {
   value.heartbeatAtMs.forEach((at, index, rows) => { number(at); if (index) assert(at >= rows[index - 1]); });
   assert.equal(value.maxMainQueueDelayMs, value.heartbeatDelaysMs.length ? Math.max(...value.heartbeatDelaysMs) : null);
   assert(Array.isArray(value.samples) && value.samples.length <= 3);
-  const offsets = value.schemaVersion === 3 ? [250, 1200, 1600] : [250, 600, 900];
-  if (value.schemaVersion === 3) assert.deepEqual(value.sampleScheduleMs, offsets);
+  const offsets = schedules[value.schemaVersion];
+  if (value.schemaVersion >= 3) assert.deepEqual(value.sampleScheduleMs, offsets);
   const scheduled = new Set();
   for (const sample of value.samples) {
     keys(sample, ['atMs', 'scheduledMs', 'offsetMs', 'observerDelayMs', 'mainState', 'mainFrames', 'callerFrames']);

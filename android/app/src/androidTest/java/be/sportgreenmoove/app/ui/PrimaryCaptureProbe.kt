@@ -9,9 +9,13 @@ import java.io.File
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-internal val primaryCaptureSampleOffsetsMs = listOf(250L, 1_200L, 1_600L)
+internal val primaryCaptureSampleOffsetsMs = listOf(250L, 750L, 1_600L)
 
-internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObservation {
+internal class PrimaryCaptureProbe(
+    private val name: String,
+    directory: File = File(InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null),
+        "primary-capture-diagnostics"),
+) : PrimaryCaptureObservation {
     private val start = System.nanoTime()
     private val caller = Thread.currentThread()
     private val main = Looper.getMainLooper().thread
@@ -53,8 +57,6 @@ internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObs
 
     init {
         check(Regex("trip-change-[a-z0-9-]+\\.png").matches(name))
-        val directory = File(InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null),
-            "primary-capture-diagnostics")
         check(directory.isDirectory || directory.mkdirs())
         output = File(directory, "${name.removeSuffix(".png")}-${java.lang.Long.toUnsignedString(start)}.json")
         check(!output.exists())
@@ -118,7 +120,7 @@ internal class PrimaryCaptureProbe(private val name: String) : PrimaryCaptureObs
 
     private fun writeSnapshot() {
         val value = synchronized(lock) {
-            JSONObject().put("schemaVersion", 3).put("scope", "primary-compose-capture-observation-not-flow-or-root-cause-proof")
+            JSONObject().put("schemaVersion", 4).put("scope", "primary-compose-capture-observation-not-flow-or-root-cause-proof")
                 .put("sampleScheduleMs", JSONArray(primaryCaptureSampleOffsetsMs))
                 .put("captureName", name).put("sdkInvocations", if (outcome == "prepared") 0 else 1).put("primaryOutcome", outcome)
                 .put("errorCategory", category).put("elapsedMs", duration).put("callerIsMain", caller === main)

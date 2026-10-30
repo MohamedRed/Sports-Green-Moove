@@ -27,8 +27,10 @@ import {latestChatNetworkProgress} from './chat-network-latest.mjs';
 import {nativeFollowupProgress, nativeFollowupGateProgress} from './native-followup.mjs';
 import {rejectedCaptureProgress} from './rejected-capture-probe.mjs';
 import {testRunnerSecurityProgress} from './test-runner-security.mjs';
+import {captureWindowProgress} from './capture-window-calibration.mjs';
 
 export const currentProgress = [
+  captureWindowProgress,
   testRunnerSecurityProgress,
   rejectedCaptureProgress,
   nativeFollowupGateProgress,

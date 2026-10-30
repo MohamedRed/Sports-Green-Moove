@@ -1,0 +1,50 @@
+  private static final void generateBitmapFromPixelCopy(android.view.Window, android.graphics.Rect, android.graphics.Bitmap);
+    Code:
+       0: new           #193                // class java/util/concurrent/CountDownLatch
+       3: dup
+       4: iconst_1
+       5: invokespecial #196                // Method java/util/concurrent/CountDownLatch."<init>":(I)V
+       8: astore_3
+       9: new           #198                // class kotlin/jvm/internal/Ref$IntRef
+      12: dup
+      13: invokespecial #199                // Method kotlin/jvm/internal/Ref$IntRef."<init>":()V
+      16: astore        4
+      18: aload         4
+      20: aload_3
+      21: invokedynamic #209,  0            // InvokeDynamic #3:onPixelCopyFinished:(Lkotlin/jvm/internal/Ref$IntRef;Ljava/util/concurrent/CountDownLatch;)Landroid/view/PixelCopy$OnPixelCopyFinishedListener;
+      26: astore        5
+      28: getstatic     #215                // Field androidx/compose/ui/test/android/PixelCopyHelper.INSTANCE:Landroidx/compose/ui/test/android/PixelCopyHelper;
+      31: aload_0
+      32: aload_1
+      33: aload_2
+      34: aload         5
+      36: new           #126                // class android/os/Handler
+      39: dup
+      40: invokestatic  #221                // Method android/os/Looper.getMainLooper:()Landroid/os/Looper;
+      43: invokespecial #224                // Method android/os/Handler."<init>":(Landroid/os/Looper;)V
+      46: invokevirtual #228                // Method androidx/compose/ui/test/android/PixelCopyHelper.request:(Landroid/view/Window;Landroid/graphics/Rect;Landroid/graphics/Bitmap;Landroid/view/PixelCopy$OnPixelCopyFinishedListener;Landroid/os/Handler;)V
+      49: aload_3
+      50: lconst_1
+      51: getstatic     #234                // Field java/util/concurrent/TimeUnit.SECONDS:Ljava/util/concurrent/TimeUnit;
+      54: invokevirtual #238                // Method java/util/concurrent/CountDownLatch.await:(JLjava/util/concurrent/TimeUnit;)Z
+      57: ifne          70
+      60: new           #240                // class java/lang/AssertionError
+      63: dup
+      64: ldc           #242                // String Failed waiting for PixelCopy!
+      66: invokespecial #245                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+      69: athrow
+      70: aload         4
+      72: getfield      #247                // Field kotlin/jvm/internal/Ref$IntRef.element:I
+      75: ifeq          94
+      78: new           #65                 // class androidx/compose/ui/test/android/PixelCopyException
+      81: dup
+      82: aload         4
+      84: getfield      #247                // Field kotlin/jvm/internal/Ref$IntRef.element:I
+      87: aconst_null
+      88: iconst_2
+      89: aconst_null
+      90: invokespecial #250                // Method androidx/compose/ui/test/android/PixelCopyException."<init>":(ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+      93: athrow
+      94: return
+
+  private static final void waitUntil(androidx.compose.ui.test.MainTestClock, long, kotlin.jvm.functions.Function0<java.lang.Boolean>);

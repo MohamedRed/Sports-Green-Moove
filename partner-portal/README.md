@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The later 30 October observer-window calibration retains two expected baseline
+calibration failures, then eight passing native cases on another disposable
+emulator. The actual parent-consent component passes in both trials. Only the
+middle diagnostic sample moves; the real CI failure, capture API/deadline and
+quality guard are unchanged. Publish one concise local component note without
+new media or flow promotion. Preserve the full native blocker, public audience,
+all historical galleries and the separate physical/release requirements. See
+`docs/release/evidence/capture-window-calibration-2026-10-30/README.md`.
+
 The later 30 October test-runner security change removes the deprecated pool and
 its three reproduced inherited-option paths. The full workspace audit has zero
 critical findings but retains twelve high/eighteen moderate findings. Rule,

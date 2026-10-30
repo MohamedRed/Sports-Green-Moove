@@ -42,13 +42,13 @@ for (const [name, change] of [
   ['a fourth sample', value => {value.samples.push(sample(1600));}],
   ['a duplicate offset', value => {value.samples[1] = sample(250);}],
   ['unproven observer termination', value => {value.observerTerminationVerified = null;}],
-  ['a future unrecognised version', value => {value.schemaVersion = 4;}],
+  ['a future unrecognised version', value => {value.schemaVersion = 5;}],
 ]) test('rejects ' + name, () => {const value = record(); change(value); assert.throws(() => validatePrimaryCaptureDiagnostic(value));});
 
 test('the probe changes sample times only, retaining one call and the existing shutdown bound', () => {
   const source = readFileSync(new URL('../android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureProbe.kt', import.meta.url), 'utf8');
   assert(source.includes('for (at in primaryCaptureSampleOffsetsMs)'));
-  assert(source.includes('.put("schemaVersion", 3)')); assert(source.includes('.put("sampleScheduleMs", JSONArray(primaryCaptureSampleOffsetsMs))'));
+  assert(source.includes('.put("schemaVersion", 4)')); assert(source.includes('.put("sampleScheduleMs", JSONArray(primaryCaptureSampleOffsetsMs))'));
   assert(source.includes('samples.size < 3')); assert(source.includes('executor.awaitTermination(100, TimeUnit.MILLISECONDS)'));
   assert(!/captureToImage|PixelCopy.request|Thread.sleep/.test(source));
 });

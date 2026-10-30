@@ -33,6 +33,7 @@ on:
       - "tests/primary-capture-diagnostics.test.mjs"
       - "tests/rejected-primary-captures.test.mjs"
       - "tests/primary-capture-late-samples.test.mjs"
+      - "tests/capture-window-calibration.test.mjs"
       - "tests/android-junit-transcript.test.mjs"
       - "tests/android-matrix-preparation.test.mjs"
       - "tests/manual-trip-components.test.mjs"
@@ -555,6 +556,7 @@ on:
       - "tests/primary-capture-diagnostics.test.mjs"
       - "tests/rejected-primary-captures.test.mjs"
       - "tests/primary-capture-late-samples.test.mjs"
+      - "tests/capture-window-calibration.test.mjs"
       - "tests/android-junit-transcript.test.mjs"
       - "tests/android-matrix-preparation.test.mjs"
       - "tests/manual-trip-components.test.mjs"
@@ -1085,7 +1087,7 @@ jobs:
         run: node --test tests/web-smoke-sharding.test.mjs
 
       - name: Test primary capture observation protocol
-        run: node --test tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs
+        run: node --test tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs tests/capture-window-calibration.test.mjs
 
       - name: Test Functions
         run: npm test --workspace functions
