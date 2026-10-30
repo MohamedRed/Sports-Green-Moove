@@ -25,8 +25,10 @@ import {bookingReceiptProgress} from './booking-receipt-phone.mjs';
 import {bookingBeforeAckProgress} from './booking-before-ack-phone.mjs';
 import {latestChatNetworkProgress} from './chat-network-latest.mjs';
 import {nativeFollowupProgress, nativeFollowupGateProgress} from './native-followup.mjs';
+import {rejectedCaptureProgress} from './rejected-capture-probe.mjs';
 
 export const currentProgress = [
+  rejectedCaptureProgress,
   nativeFollowupGateProgress,
   nativeFollowupProgress,
   latestChatNetworkProgress,

@@ -14,7 +14,7 @@ test('full native execution preserves its one failed ordinary capture beside for
   const result = validateNativeFollowupMain(root);
   assert.equal(result.nativeGatePassed, false); assert.equal(result.ordinary.failed, 1);
   assert.equal(result.replayCases, 40); assert.equal(result.primaryCopies, 17);
-  const update = content.updates.find(row => row.flow === 'native-startup');
+  const update = content.updates.find(row => row.flow === 'native-startup' && row.source === identity.folder + 'README.md');
   assert.equal(update.source, identity.folder + 'README.md'); assert.match(update.text, /reste en échec/);
 });
 for (const [file, mutate] of [

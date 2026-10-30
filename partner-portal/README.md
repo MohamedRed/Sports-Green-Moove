@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The later 30 October rejected-capture investigation preserves the original
+three-case local baseline, the failed candidate startup and the fresh seven-case
+calibration. The rejected-bitmap observer is opt-in, named and diagnostic-only;
+the same primary API, deadline, threshold and failure remain. Publish one short
+local-result update without new media. No actual rejected CI bitmap, root cause
+or renderer repair is accepted. The pre-diagnostic 1cc8f12 ordinary matrix passes
+199 cases/54 skips, but component copying sees an offline bridge and the replay
+cannot prepare cellular service. Update that full-gate blocker without deleting
+earlier failures. Keep all phone/gallery dates and the public audience unchanged.
+
 The 30 October 9bb6346 independent team and chat-network cases pass with primary
 transfers, source archives, saved-state checks and separate verified disposal.
 The new validation-history observer executes in this network case; it does not

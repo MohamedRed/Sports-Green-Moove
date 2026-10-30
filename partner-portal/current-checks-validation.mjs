@@ -20,10 +20,12 @@ import {validateBookingReceiptPhone} from '../scripts/qa/booking-receipt-phone-e
 import {validateBookingBeforeAck} from '../scripts/qa/booking-before-ack-evidence.mjs';
 import {validateNativeFollowup} from '../scripts/qa/native-followup-evidence.mjs';
 import {validateNativeFollowupMain} from '../scripts/qa/native-followup-main-evidence.mjs';
+import {validateRejectedCaptureProbe} from '../scripts/qa/rejected-capture-probe-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateNativeFollowup(root, content.flows.find(row => row.id === 'team-conversation').nativeRecheck);
   validateNativeFollowupMain(root);
+  validateRejectedCaptureProbe(root, content.rejectedCaptureRecheck);
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
   validateDependencyPatchEvidence(root, content.dependencyPatchRecheck);
   validateNativeGateRecheck(root, content.nativeGateRecheck);

@@ -84,6 +84,9 @@ jobs:
       - name: Test private Android network validation history
         run: node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs tests/native-followup-evidence.test.mjs
 
+      - name: Test rejected primary bitmap diagnostic isolation
+        run: node --test tests/rejected-primary-captures.test.mjs
+
       - name: Validate initial network observation before test-only transport requests
         run: node --test tests/network-start-observation.test.mjs
 

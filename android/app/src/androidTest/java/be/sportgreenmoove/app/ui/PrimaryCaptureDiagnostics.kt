@@ -8,7 +8,7 @@ internal interface PrimaryCaptureObservation {
     fun close()
 }
 
-private fun primaryCaptureDiagnosticsEnabled(): Boolean {
+internal fun primaryCaptureDiagnosticsEnabled(): Boolean {
     val value = InstrumentationRegistry.getArguments().getString("sgmPrimaryCaptureDiagnostics")
     check(value == null || value in setOf("true", "false"))
     return value == "true"

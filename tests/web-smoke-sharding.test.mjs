@@ -51,7 +51,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(added[0].run, 'npm run test:child-account-approval && node --test tests/child-contact-discovery.test.mjs');
   assert.equal(added[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/child-contact-discovery.json');
   const capture = workflow.jobs.smoke.steps.filter(step => step.name === 'Test primary capture observation protocol');
-  assert.equal(capture.length, 1); assert.equal(capture[0].run, 'node --test tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs');
+  assert.equal(capture.length, 1); assert.equal(capture[0].run, 'node --test tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs');
   const invitation = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test parent-shared child invitations without adult-role signup');
   assert.equal(invitation.length, 1);
   assert.equal(invitation[0].run, 'npm run test:child-invitation && node --test tests/child-invitation-contract.test.mjs');

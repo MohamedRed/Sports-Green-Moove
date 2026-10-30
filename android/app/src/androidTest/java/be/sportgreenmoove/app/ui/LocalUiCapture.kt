@@ -24,6 +24,7 @@ internal fun captureLocalUi(compose: ComposeTestRule, name: String, landscape: B
         for (x in 0 until bitmap.width step 16) {
             for (y in 0 until bitmap.height step 16) colors += bitmap.getPixel(x, y)
         }
+        if (colors.size <= 16) retainRejectedPrimaryBitmap(name, bitmap, colors)
         check(colors.size > 16) { "Blank test capture rejected; use a rendering-enabled device image." }
         output.outputStream().use { check(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
     } finally { bitmap.recycle() }
