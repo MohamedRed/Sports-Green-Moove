@@ -72,6 +72,8 @@ test('current map captures are linked without replacing older clipped or unavail
   }
   assert.match(captures['trip-real-map-visible'], /completed-display/);
   assert.match(captures['trip-real-route-applied'], /completed-application/);
-  assert(flow.tour.every(step => /^cancel-phone-/.test(step.image)));
+  assert.equal(flow.tour.length, 10);
+  assert(flow.tour.slice(0, 5).every(step => /^cancel-stale-phone-/.test(step.image)));
+  assert(flow.tour.slice(5).every(step => /^cancel-phone-/.test(step.image)));
   assert.equal(flow.ui.checkedAt, '2026-10-18');
 });

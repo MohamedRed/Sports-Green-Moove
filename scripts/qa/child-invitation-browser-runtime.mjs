@@ -43,6 +43,11 @@ const inspect = async phase => {
     assert.equal(profile.get('childInvitationHash'), invitation.invitationHash);
     assert.equal(record.get('accountUserId'), user.uid); assert.equal(record.get('status'), 'accepted');
     assert.equal(record.get('attemptCount'), 1, 'One browser submit must issue one redemption');
+    if (process.env.SGM_INVITATION_PHONE_SESSION_FILE) writeFileSync(process.env.SGM_INVITATION_PHONE_SESSION_FILE,
+      JSON.stringify({projectId: 'demo-sgm-local-qa', runId: process.env.SGM_LOCAL_RUN_ID, password: process.env.SGM_QA_PASSWORD,
+        fixtureProvenance: 'isolated-browser-created-child', fixture: {parentUid: parent.uid, childUid: user.uid,
+          childId: target.childId, clubId: target.clubId, childInstanceId: target.expectedChildInstanceId,
+          childName: view.childName, parentEmail: 'p@example.test', childEmail: user.email}}), {flag: 'wx', mode: 0o600});
   } else {
     assert.equal(users.length, baseline.size); assert.equal(record.get('status'), 'pending');
     assert.equal(record.get('attemptCount') ?? 0, 0);
@@ -88,6 +93,9 @@ const server = await createServer({ root: resolve(root, 'admin'),
 });
 try {
   await server.listen();
+  if (process.env.SGM_INVITATION_PHONE_SESSION_FILE) writeFileSync(process.env.SGM_INVITATION_PHONE_SESSION_FILE + '.signup',
+    JSON.stringify({projectId: 'demo-sgm-local-qa', runId: process.env.SGM_LOCAL_RUN_ID,
+      password: process.env.SGM_QA_PASSWORD, email: 'browser-child@example.test'}), {flag: 'wx', mode: 0o600});
   writeFileSync(resolve(output, 'controller.json'), JSON.stringify({ runId: process.env.SGM_LOCAL_RUN_ID }), { flag: 'wx', mode: 0o600 });
   console.log('Connected invitation browser ready at http://127.0.0.1:4185/__qa/invitation-mobile');
   await new Promise(resolveStop => {

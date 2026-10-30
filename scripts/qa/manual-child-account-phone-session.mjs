@@ -61,11 +61,14 @@ finally {
   input.close(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); delete process.env.SGM_QA_PASSWORD;
 }
 const paths = ['scripts/qa/manual-child-account-phone-session.mjs', 'scripts/qa/child-account-phone-checkpoints.mjs',
-  'scripts/qa/child-account-phone-fixture.mjs', 'scripts/qa/child-account-phone-runtime.mjs', 'scripts/qa/start-child-account-phone.mjs'];
+  ...(session.fixtureProvenance === 'isolated-browser-created-child' ?
+    ['scripts/qa/child-invitation-browser-runtime.mjs', 'scripts/qa/start-child-invitation-browser.mjs'] :
+    ['scripts/qa/child-account-phone-fixture.mjs', 'scripts/qa/child-account-phone-runtime.mjs', 'scripts/qa/start-child-account-phone.mjs'])];
 writeFileSync(resolve(output, 'session-results.json'), JSON.stringify({ projectId: session.projectId, runId: session.runId,
   testedAt: new Date().toISOString(), scope: 'independent-child-account-phone-records-not-ui-proof',
   completed: completed && !failure, checkpoints, adminClientClosed, firestoreClientTerminated,
   productionWrites: false, physicalUiProvenByThisReport: false, signupProven: false, trackingProven: false,
+  fixtureProvenance: session.fixtureProvenance ?? 'preseeded-isolated-child-account',
   sourceFiles: Object.fromEntries(paths.map(file => [file,
     createHash('sha256').update(readFileSync(resolve(import.meta.dirname, '../..', file))).digest('hex')])),
 }, null, 2) + '\n', { flag: 'wx', mode: 0o600 });

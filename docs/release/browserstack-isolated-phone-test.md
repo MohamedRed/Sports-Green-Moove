@@ -73,6 +73,25 @@ the listener has closed, then close only the input tab created for this trial.
 This prepares authentication; it does not prove a connected phone or user flow.
 
 Only ports 5001, 8080, 9000 and 9099 on `127.0.0.1` and `localhost` are approved.
+The separate `--child-invitation-signup-approved` launcher option adds only port
+4185 on those same two loopback hosts. Use it only for an explicitly approved
+invitation-page trial, then stop that connection; it never changes the default
+four-service scope. It cannot be combined with the startup-diagnostic option.
+No other hostname, port, force-local mode, workspace folder or request logging
+is enabled. The 30 October trial reached an enabled Local toolbar but Android
+Chrome refused both loopback page addresses before the form. Its helper later
+exited without a requested stop, with no close timestamp proving when. Preserve
+that incomplete result separately from application defects or a working browser
+connection. No signup or approval occurred. See
+`evidence/invitation-phone-connection-2026-10-30/README.md`.
+
+`start-child-invitation-browser.mjs` accepts an optional private phone-session
+path outside its evidence output in an owner-only directory. Its temporary signup
+input is never exported; the post-creation handoff requires the actual isolated
+child UID, exact child-only roles and no existing parent link. This post-creation
+branch was not exercised by the failed phone connection. Both private paths are
+removed on verified runtime disposal. Do not collect them as evidence.
+
 The 21 October scoped launch reached App Live's active local-testing toolbar,
 installed the pinned isolated team-chat APK and signed in the synthetic parent.
 Its first independent conversation checkpoint failed because the new controller

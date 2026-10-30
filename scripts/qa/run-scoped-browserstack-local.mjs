@@ -1,9 +1,12 @@
 import { runScopedLocalBinary } from './scoped-browserstack-local.mjs';
 import { readPrivateCredentialPipe } from './read-private-credential-pipe.mjs';
+import assert from 'node:assert/strict';
 
 const [binary, pipe, configPipe] = process.argv.slice(2), controller = new AbortController();
 const startupDiagnostic = process.argv[5] === '--startup-diagnostic-approved';
+const invitationSignupApproved = process.argv[5] === '--child-invitation-signup-approved';
 const logPipe = startupDiagnostic ? process.argv[6] : undefined;
+assert(process.argv.length === (startupDiagnostic ? 7 : invitationSignupApproved ? 6 : 5));
 const interrupt = () => controller.abort('SIGINT'), terminate = () => controller.abort('SIGTERM');
 process.once('SIGINT', interrupt); process.once('SIGTERM', terminate);
 let phase = 'private-input';
@@ -13,7 +16,8 @@ try {
   try { accessKey = await readPrivateCredentialPipe(pipe, controller.signal); }
   finally { clearTimeout(timeout); }
   phase = 'vendor-launch';
-  const pending = runScopedLocalBinary(binary, accessKey, { signal: controller.signal, env: process.env, configPipe, logPipe, startupDiagnostic,
+  const pending = runScopedLocalBinary(binary, accessKey, { signal: controller.signal, env: process.env, configPipe, logPipe,
+    startupDiagnostic, invitationSignupApproved,
     onSpawn: pid => console.log(JSON.stringify({ scope: 'scoped-helper-process-not-connection-proof', pid,
       credentialInArguments: false, credentialInEnvironment: false, dashboardDisabled: true })) });
   accessKey = '';

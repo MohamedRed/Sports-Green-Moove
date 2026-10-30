@@ -23,6 +23,7 @@ on:
   pull_request:
     paths:
       - "tests/native-build-before-boot.test.mjs"
+      - "tests/hosted-android-disk.test.mjs"
       - "tests/primary-capture-diagnostics.test.mjs"
       - "tests/rejected-primary-captures.test.mjs"
       - "tests/primary-capture-late-samples.test.mjs"
@@ -158,6 +159,7 @@ on:
       - main
     paths:
       - "tests/native-build-before-boot.test.mjs"
+      - "tests/hosted-android-disk.test.mjs"
       - "tests/primary-capture-diagnostics.test.mjs"
       - "tests/rejected-primary-captures.test.mjs"
       - "tests/primary-capture-late-samples.test.mjs"
@@ -335,6 +337,8 @@ jobs:
 
       - name: Validate sanitized host transport observations
         run: node --test tests/adb-host-health.test.mjs tests/native-build-before-boot.test.mjs tests/emulator-host-observation.test.mjs tests/disposable-launcher-cleanup.test.mjs tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs tests/capture-window-calibration.test.mjs
+      - name: Test hosted Android disk capacity guard
+        run: node --test tests/hosted-android-disk.test.mjs
 
       - name: Validate preinstalled full-matrix APKs and complete raw JUnit inventory
         run: node --test tests/android-junit-transcript.test.mjs tests/android-matrix-preparation.test.mjs tests/manual-trip-components.test.mjs
@@ -433,6 +437,9 @@ jobs:
           SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
         run: node scripts/qa/build-android-matrix-apks.mjs
 
+      - name: Reserve disk space for the unchanged disposable Android device
+        run: node scripts/qa/prepare-hosted-android-disk.mjs
+
       - name: Select one validated full-matrix renderer
         id: matrix_renderer
         env:
@@ -474,6 +481,7 @@ jobs:
         with:
           name: android-connected-ui-test-results
           path: |
+            android/app/build/outputs/host-disk-capacity.json
             android/app/build/outputs/matrix-renderer.json
             android/app/build/reports/androidTests/connected/**
             android/app/build/outputs/androidTest-results/connected/**

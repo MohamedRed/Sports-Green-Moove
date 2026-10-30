@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { isolatedPorts, isolatedLocalAllowlist, assertIsolatedTunnelSettings } from '../scripts/qa/browserstack-local-policy.mjs';
+import { isolatedPorts, isolatedLocalAllowlist, invitationSignupAllowlist, assertIsolatedTunnelSettings } from '../scripts/qa/browserstack-local-policy.mjs';
+import {scopedLocalArguments} from '../scripts/qa/scoped-browserstack-local.mjs';
 
 const settings = { onlyAllow: isolatedLocalAllowlist, forceLocal: false, verbose: false,
   enableLoggingForApi: false, mitmProxy: false, folderTesting: '', includeHosts: '', excludeHosts: '' };
@@ -24,6 +25,22 @@ test('extra ports, hosts, file access, force-local and request logging fail clos
   for (const onlyAllow of ['', 'localhost,5001,0', isolatedLocalAllowlist + ',localhost,4185,0',
     isolatedLocalAllowlist + ',192.168.1.1,443,1'])
     assert.throws(() => assertIsolatedTunnelSettings({ ...settings, onlyAllow }));
+});
+
+test('the separately approved invitation trial adds only 4185 and never changes the default four-service scope', () => {
+  const selected = {...settings, onlyAllow: invitationSignupAllowlist};
+  assert.throws(() => assertIsolatedTunnelSettings(selected));
+  assertIsolatedTunnelSettings(selected, true);
+  assert.throws(() => assertIsolatedTunnelSettings(settings, true));
+  for (const onlyAllow of [invitationSignupAllowlist + ',localhost,4186,0',
+    invitationSignupAllowlist.replace('127.0.0.1,4185,0', '0.0.0.0,4185,0'),
+    invitationSignupAllowlist.replace('localhost,4185,0', 'localhost,4185,1')])
+    assert.throws(() => assertIsolatedTunnelSettings({...selected, onlyAllow}, true));
+  for (const key of ['forceLocal', 'verbose', 'mitmProxy', 'enableLoggingForApi'])
+    assert.throws(() => assertIsolatedTunnelSettings({...selected, [key]: true}, true));
+  assert.equal(scopedLocalArguments('/private/config.pipe')[3], isolatedLocalAllowlist);
+  assert.equal(scopedLocalArguments('/private/config.pipe', false, undefined, true)[3], invitationSignupAllowlist);
+  assert.throws(() => scopedLocalArguments('/private/config.pipe', false, undefined, 'yes'));
 });
 
 test('private tunnel checks run in web smoke without starting a paid device', () => {

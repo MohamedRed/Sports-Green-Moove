@@ -40,9 +40,12 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
     .filter(step => step.name !== 'Test child booking receipt recovery without map requests')
     .filter(step => step.name !== 'Validate private input and stale cancellation phone evidence')
+    .filter(step => step.name !== 'Validate hosted Android disk capacity guard')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
+  const disk = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate hosted Android disk capacity guard');
+  assert.equal(disk.length, 1); assert.equal(disk[0].run, 'node --test tests/hosted-android-disk.test.mjs tests/preparation-failure-evidence.test.mjs');
   const privatePhone = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate private input and stale cancellation phone evidence');
   assert.equal(privatePhone.length, 1);
   assert.equal(privatePhone[0].run, 'node --test tests/private-credential-form.test.mjs tests/cancellation-stale-phone.test.mjs');

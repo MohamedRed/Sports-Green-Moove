@@ -1,6 +1,8 @@
 import { nativeVerification } from './native-verification.mjs';
+import {preparationBlockers} from './preparation-failures.mjs';
 
 export const blockers = [
+  ...preparationBlockers,
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',
     next: 'Vérifier sur iPhone et avec une coupure pendant un vrai déplacement.', source: 'docs/release/evidence/review-receipt-phone-2026-10-30/README.md'},

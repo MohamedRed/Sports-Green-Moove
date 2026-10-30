@@ -1,29 +1,32 @@
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { isAbsolute } from 'node:path';
-import { isolatedLocalAllowlist, assertIsolatedTunnelSettings } from './browserstack-local-policy.mjs';
+import { isolatedLocalAllowlist, invitationSignupAllowlist, assertIsolatedTunnelSettings } from './browserstack-local-policy.mjs';
 import { assertPrivatePipe } from './read-private-credential-pipe.mjs';
 import { writePrivateConfigPipe } from './write-private-config-pipe.mjs';
 import { capturePrivateStartupLog } from './private-startup-log-pipe.mjs';
 
 export const scopedLocalSettings = Object.freeze({ onlyAllow: isolatedLocalAllowlist, forceLocal: false,
   verbose: false, enableLoggingForApi: false, mitmProxy: false, folderTesting: '', includeHosts: '', excludeHosts: '' });
+export const invitationSignupSettings = Object.freeze({...scopedLocalSettings, onlyAllow: invitationSignupAllowlist});
 export const allowedHelperEnvironment = Object.freeze(['PATH', 'USER', 'LOGNAME', 'TMPDIR', 'HOME', 'XDG_CONFIG_HOME',
   '__CF_USER_TEXT_ENCODING']);
 
-export function scopedLocalArguments(configPipe, startupDiagnostic = false, logPipe) {
+export function scopedLocalArguments(configPipe, startupDiagnostic = false, logPipe, invitationSignupApproved = false) {
   assert(isAbsolute(configPipe ?? ''));
   assert.equal(typeof startupDiagnostic, 'boolean');
   if (startupDiagnostic) assert(isAbsolute(logPipe ?? ''), 'Approved diagnostics require a private log pipe');
   else assert.equal(logPipe, undefined, 'Normal operation cannot capture a startup log');
-  assertIsolatedTunnelSettings(scopedLocalSettings);
+  const settings = invitationSignupApproved ? invitationSignupSettings : scopedLocalSettings;
+  assertIsolatedTunnelSettings(settings, invitationSignupApproved);
   // The vendor timeout is ten minutes of inactivity, not a startup deadline.
-  return ['--config-file', configPipe, '--only', isolatedLocalAllowlist, '--verbose', startupDiagnostic ? '1' : '0',
+  return ['--config-file', configPipe, '--only', settings.onlyAllow, '--verbose', startupDiagnostic ? '1' : '0',
     '--log-file', startupDiagnostic ? logPipe : '/dev/null', '--disable-dashboard', '--timeout', '10'];
 }
 
 // The vendor cannot read inherited descriptors; a private FIFO keeps config bytes off disk.
-export async function runScopedLocalBinary(binary, accessKey, { signal, env, configPipe, logPipe, startupDiagnostic = false, spawnImpl = spawn, onSpawn = () => {} }) {
+export async function runScopedLocalBinary(binary, accessKey, { signal, env, configPipe, logPipe, startupDiagnostic = false,
+  invitationSignupApproved = false, spawnImpl = spawn, onSpawn = () => {} }) {
   assert(isAbsolute(binary)); assert(signal instanceof AbortSignal);
   assert.equal(typeof accessKey, 'string'); assert(/^[A-Za-z0-9]{20,256}$/.test(accessKey), 'Invalid credential shape');
   assert(Object.keys(env).every(key => allowedHelperEnvironment.includes(key)),
@@ -31,7 +34,7 @@ export async function runScopedLocalBinary(binary, accessKey, { signal, env, con
   assert(!Object.values(env).some(value => String(value).includes(accessKey)), 'A credential cannot enter the helper environment');
   if (signal.aborted) return { spawned: false, stopped: true, code: 0, signal: null };
   assertPrivatePipe(configPipe);
-  const args = scopedLocalArguments(configPipe, startupDiagnostic, logPipe);
+  const args = scopedLocalArguments(configPipe, startupDiagnostic, logPipe, invitationSignupApproved);
   if (startupDiagnostic) { assert.notEqual(logPipe, configPipe); assertPrivatePipe(logPipe); }
   const transfer = new AbortController();
   const child = spawnImpl(binary, args, { env, stdio: ['ignore', 'pipe', 'pipe'] });

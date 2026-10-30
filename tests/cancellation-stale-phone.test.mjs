@@ -69,9 +69,8 @@ test('the public portal adds five accurate phone steps without promoting content
     assert.equal(captures[row.file], staleCancellationFolder + 'captures/' + row.file.slice('cancel-stale-phone-'.length) + '-phone.png');
   }
   assert.match(flow.remaining, /simultanées entre deux téléphones/);
-  assert.equal(content.updates[0].source, staleCancellationFolder + 'README.md');
-  assert.equal(content.updates[1].flow, 'native-startup');
-  assert.equal(content.updates[1].source, staleCancellationFolder + 'README.md');
+  assert(content.updates.some(row => row.flow === 'publication' && row.source === staleCancellationFolder + 'README.md'));
+  assert(content.updates.some(row => row.flow === 'native-startup' && row.source === staleCancellationFolder + 'README.md'));
   assert(content.updates.some(row => row.source === 'docs/release/evidence/native-transfer-91c4a09-2026-10-30/README.md'));
   assert.match(content.blockers.find(row => row.id === 'cancellation-race').next, /simultanément entre deux téléphones/);
   assert.doesNotMatch(JSON.stringify(flow), /BrowserStack|Firebase|SDK|Pixel|ABORTED/);

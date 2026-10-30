@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 30 October invitation attempt fails before the form on the physical
+Android browser, for both approved loopback addresses. No child account,
+redemption or parent approval occurs. The helper later exits without a requested
+stop; its unknown close time does not establish the browser errors' cause.
+Publish one brief incomplete-result note without new diagnostic images, status
+promotion or changed gallery dates. Separately, the e64555e complete native gate
+fails before emulator boot because its userdata allocation lacks hosted disk.
+Publish this new pre-screen failure separately from earlier capture-copy failures
+and passing gates. The capacity guard still requires actual CI verification.
+Keep public access and the previously accepted cancellation phone proof unchanged.
+
 The 30 October physical Android stale-cancellation preview passes eight isolated
 record checkpoints. A separate authenticated service session approves a booking
 after the phone opens its review. The phone refuses the old confirmation,

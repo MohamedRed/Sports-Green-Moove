@@ -34,8 +34,11 @@ import {childBookingReceiptProgress, latestChatPreparationProgress, latestGenera
 import {chatNetworkRepeatProgress} from './chat-network-repeat.mjs';
 import {nativeTimeBudgetProgress, nativeBudgetExecutionProgress} from './native-time-budget.mjs';
 import {staleCancellationProgress, cancellationBaselineProgress} from './cancellation-stale-phone.mjs';
+import {invitationConnectionProgress, nativeCapacityProgress} from './preparation-failures.mjs';
 
 export const currentProgress = [
+  invitationConnectionProgress,
+  nativeCapacityProgress,
   staleCancellationProgress,
   cancellationBaselineProgress,
   nativeBudgetExecutionProgress,

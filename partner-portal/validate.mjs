@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {validateCurrentChecks} from './current-checks-validation.mjs';
+import {validateInvitationConnectionFailure, validateNativeCapacityFailure} from '../scripts/qa/preparation-failure-evidence.mjs';
 import { validatePublicationEvidence } from './publication-evidence.mjs';
 import { validateChildInvitationEvidence } from '../scripts/qa/child-invitation-evidence.mjs';
 import { validateChildDiscoveryEvidence } from '../scripts/qa/child-contact-discovery-evidence.mjs';
@@ -68,6 +69,7 @@ export function validate(root) {
   assert.equal(content.nativeClockCiRecheck.checksums, dirname(content.nativeClockCiRecheck.source) + '/artifact-sha256.json');
   validateNativeClockCi(root, dirname(content.nativeClockCiRecheck.source));
   validateNativeStatus(root, content.blockers);
+  validateInvitationConnectionFailure(root); validateNativeCapacityFailure(root);
   const assertDate = (s) => assert.match(s, /^\d{4}-\d{2}-\d{2}$/);
   assertDate(content.updatedAt);
   assertDate(content.lastVerifiedAt);

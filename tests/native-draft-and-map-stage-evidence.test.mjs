@@ -132,8 +132,10 @@ test('package-update interruption cannot accept fitted-map or application comple
 
 test('private portal adds the fitted map without promoting the historical clipped map or physical scope', () => {
   const flow = content.flows.find((f) => f.id === 'publication'); assert.equal(flow.status, 'partial');
-  const historical = flow.images.filter(image => !/^(consent|draft|cancel)-phone-/.test(image.file));
-  assert.equal(historical.length, 25); assert.equal(new Set(flow.images.map((i) => i.file)).size, 41);
+  const historical = flow.images.filter(image => !/^(consent|draft|cancel|cancel-stale)-phone-/.test(image.file));
+  assert.equal(historical.length, 25);
+  assert.equal(new Set(flow.images.filter(image => !image.file.startsWith('cancel-stale-phone-')).map(image => image.file)).size, 41);
+  assert.equal(new Set(flow.images.filter(image => image.file.startsWith('cancel-stale-phone-')).map(image => image.file)).size, 5);
   assert.deepEqual(historical.slice(0, 4).map((i) => i.file), ['trip-framed-map-visible', 'trip-framed-route-applied', 'trip-framed-places-selected', 'trip-real-map-visible']);
   assert.match(historical[0].alt, /Deux repères entièrement visibles/); assert.match(historical[1].alt, /appliqué après les deux accords/);
   assert.match(flow.images.find((i) => i.file === 'trip-real-map-visible').alt, /Ancien essai.*coupé/);

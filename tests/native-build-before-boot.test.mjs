@@ -35,7 +35,7 @@ for (const [file, mutate] of [
   assert.throws(() => validateNativeBudgetExecution(root));
 });
 
-test('the outer job receives bounded preparation headroom without changing a single execution or evidence step', () => {
+test('bounded preparation headroom and capacity reservation preserve every original execution and evidence step', () => {
   const report = validateNativeTimeout(new URL('..', import.meta.url).pathname);
   assert.deepEqual(report, {ordinaryPassed: 205, ordinarySkipped: 54, partialPrimaryCopies: 10, fullGatePassed: false, deviceCleanupVerified: false});
   assert.deepEqual(validateNativeBudgetFollowup(new URL('..', import.meta.url).pathname),
@@ -43,6 +43,14 @@ test('the outer job receives bounded preparation headroom without changing a sin
   const prior = YAML.parse(read(nativeTimeoutFolder + 'source-native-ci.yml.txt')).jobs['android-native-ui'];
   const current = YAML.parse(read('.github/workflows/native-ci.yml')).jobs['android-native-ui'];
   const {'timeout-minutes': oldLimit, ...oldBody} = prior, {'timeout-minutes': newLimit, ...newBody} = current;
+  const capacityName = 'Reserve disk space for the unchanged disposable Android device';
+  assert.deepEqual(newBody.steps.filter(step => step.name === capacityName),
+    [{name: capacityName, run: 'node scripts/qa/prepare-hosted-android-disk.mjs'}]);
+  newBody.steps = newBody.steps.filter(step => step.name !== capacityName);
+  const upload = newBody.steps.find(step => step.name === 'Upload Android instrumentation reports');
+  const paths = upload.with.path.split('\n'), added = 'android/app/build/outputs/host-disk-capacity.json';
+  assert.equal(paths.filter(path => path === added).length, 1);
+  upload.with.path = paths.filter(path => path !== added).join('\n');
   assert.equal(oldLimit, 35); assert.equal(newLimit, 50); assert.deepEqual(newBody, oldBody);
   assert.equal(YAML.parse(read('.github/workflows/native-focused-ui.yml')).jobs['focused-case']['timeout-minutes'], 25);
 });
