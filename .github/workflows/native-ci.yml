@@ -146,6 +146,7 @@ on:
       - "tests/network-bootstrap-observation.test.mjs"
       - "tests/local-network-validation-diagnostics.test.mjs"
       - "tests/chat-network-latest-evidence.test.mjs"
+      - "tests/native-followup-evidence.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
       - "scripts/check-ios-native-plan.sh"
@@ -278,6 +279,7 @@ on:
       - "tests/network-bootstrap-observation.test.mjs"
       - "tests/local-network-validation-diagnostics.test.mjs"
       - "tests/chat-network-latest-evidence.test.mjs"
+      - "tests/native-followup-evidence.test.mjs"
       - "tests/chat-process-restart.test.mjs"
       - "tests/session-restoration.test.mjs"
       - "scripts/check-ios-native-plan.sh"
@@ -363,7 +365,7 @@ jobs:
         run: node --test tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs
 
       - name: Test private Android network validation history
-        run: node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs
+        run: node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs tests/native-followup-evidence.test.mjs
 
       - name: Validate initial network observation before test-only transport requests
         run: node --test tests/network-start-observation.test.mjs tests/network-bootstrap-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs tests/continuous-disposable-device.test.mjs

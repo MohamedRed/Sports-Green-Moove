@@ -455,6 +455,7 @@ on:
       - "tests/network-bootstrap-observation.test.mjs"
       - "tests/local-network-validation-diagnostics.test.mjs"
       - "tests/chat-network-latest-evidence.test.mjs"
+      - "tests/native-followup-evidence.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/web-smoke-sharding.test.mjs"
       - "tests/local-replay-33-evidence.test.mjs"
@@ -969,6 +970,7 @@ on:
       - "tests/network-bootstrap-observation.test.mjs"
       - "tests/local-network-validation-diagnostics.test.mjs"
       - "tests/chat-network-latest-evidence.test.mjs"
+      - "tests/native-followup-evidence.test.mjs"
       - "tests/pr-user-flow-checks.test.mjs"
       - "tests/web-smoke-sharding.test.mjs"
       - "tests/local-replay-33-evidence.test.mjs"
@@ -1194,7 +1196,7 @@ jobs:
         run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs
 
       - name: Test private Android network validation history
-        run: node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs
+        run: node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs tests/native-followup-evidence.test.mjs
 
       - name: Validate initial network observation before test-only transport requests
         run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs

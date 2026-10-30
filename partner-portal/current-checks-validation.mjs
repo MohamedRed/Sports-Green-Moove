@@ -18,8 +18,12 @@ import {validateReviewReceiptPhone} from '../scripts/qa/review-receipt-phone-evi
 import {validateCaptureLateSampling} from '../scripts/qa/capture-late-sampling-evidence.mjs';
 import {validateBookingReceiptPhone} from '../scripts/qa/booking-receipt-phone-evidence.mjs';
 import {validateBookingBeforeAck} from '../scripts/qa/booking-before-ack-evidence.mjs';
+import {validateNativeFollowup} from '../scripts/qa/native-followup-evidence.mjs';
+import {validateNativeFollowupMain} from '../scripts/qa/native-followup-main-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
+  validateNativeFollowup(root, content.flows.find(row => row.id === 'team-conversation').nativeRecheck);
+  validateNativeFollowupMain(root);
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
   validateDependencyPatchEvidence(root, content.dependencyPatchRecheck);
   validateNativeGateRecheck(root, content.nativeGateRecheck);

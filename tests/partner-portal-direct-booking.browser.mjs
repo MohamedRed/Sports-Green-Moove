@@ -6,12 +6,15 @@ export async function verifyDirectBookingTour({browser, base, output}) {
   page.on('pageerror', error => failures.push(error.message));
   page.on('response', response => {if (response.status() >= 400) failures.push(response.status());});
   const flow = content.flows.find(row => row.id === 'booking');
+  assert.equal(flow.checkedAt, '2026-10-30');
+  assert.equal(flow.bookingBeforeAckPhone.checkedAt, flow.checkedAt);
+  assert.equal(flow.directBookingPhone.checkedAt, '2026-10-28');
   try {
     for (const width of [1440, 768, 390, 320]) {
       await page.setViewportSize({width, height: 1000});
       await page.goto(base + '/#parcours/booking/visite/1');
       await page.getByRole('dialog').waitFor();
-      await page.locator('.detail-heading .date').filter({hasText: 'Essai sur téléphone du 28 octobre 2026'}).waitFor();
+      await page.locator('.detail-heading .date').filter({hasText: 'Essai sur téléphone du 30 octobre 2026'}).waitFor();
       for (const [index, step] of flow.tour.entries()) {
         const image = flow.images.find(row => row.file === step.image);
         await page.getByRole('img', {name: image.alt, exact: true}).waitFor();

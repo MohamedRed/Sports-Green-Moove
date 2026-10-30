@@ -2,8 +2,8 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   {id: 'native-current-gate', title: 'Terminer la nouvelle série de vérifications',
-    text: 'L’échec d’un test de capture reste à expliquer. Les essais séparés passent.',
-    next: 'Comprendre l’échec et terminer l’essai complet.', source: 'docs/release/evidence/capture-late-sampling-2026-10-30/README.md'},
+    text: 'Les parcours rejoués passent, mais une capture de conversation est rejetée comme vide.',
+    next: 'Comprendre cette capture rejetée et terminer la série complète.', source: 'docs/release/evidence/native-followup-9bb6346-2026-10-30/README.md'},
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',
     next: 'Vérifier sur iPhone et avec une coupure pendant un vrai déplacement.', source: 'docs/release/evidence/review-receipt-phone-2026-10-30/README.md'},

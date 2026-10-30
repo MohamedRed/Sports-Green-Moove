@@ -2,6 +2,23 @@
 
 ## Current Publication Policy
 
+The 30 October 9bb6346 independent team and chat-network cases pass with primary
+transfers, source archives, saved-state checks and separate verified disposal.
+The new validation-history observer executes in this network case; it does not
+establish the preceding intermittent connection failures' root cause. Publish
+one concise local-recheck update without new media; keep the 21 October team
+phone gallery and every older date. Physical multi-phone/push work and the
+separate full native gate are not accepted by this follow-up. Public access stays
+unchanged. See `docs/release/evidence/native-followup-9bb6346-2026-10-30/README.md`.
+
+The separate terminal 9bb6346 main gate fails one of 253 ordinary cases: 198
+passed, 54 skipped, one team-chat confirmed capture rejected by the blank-image
+guard after its send/retry assertions. All forty integrated replay cases,
+seventeen primary copies, restoration and the six observed trip-change captures
+pass. Retain these scopes separately, keep the whole-gate blocker, and publish
+one concise failed-capture update without new media. The rejected bitmap itself
+is unavailable; neither a blank product screen nor a renderer repair is proven.
+
 The 30 October independent chat replay on 2ffa582 passes its strict radio
 sequence, one retry and reply, primary copy, two-message/two-notification/no-
 duplicate verification and independent disposal. The earlier 4714198 network

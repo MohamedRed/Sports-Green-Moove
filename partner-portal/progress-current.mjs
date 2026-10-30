@@ -24,8 +24,11 @@ import {reviewReceiptProgress} from './review-receipt-phone.mjs';
 import {bookingReceiptProgress} from './booking-receipt-phone.mjs';
 import {bookingBeforeAckProgress} from './booking-before-ack-phone.mjs';
 import {latestChatNetworkProgress} from './chat-network-latest.mjs';
+import {nativeFollowupProgress, nativeFollowupGateProgress} from './native-followup.mjs';
 
 export const currentProgress = [
+  nativeFollowupGateProgress,
+  nativeFollowupProgress,
   latestChatNetworkProgress,
   bookingBeforeAckProgress,
   {date: '2026-10-30', title: 'La coupure du chat reste à rejouer',

@@ -122,7 +122,7 @@ test('all relevant CI paths run the diagnostic contracts without a radio or appl
     const source = readFileSync('.github/workflows/' + name, 'utf8'), workflow = parse(source);
     const steps = Object.values(workflow.jobs).flatMap(job => job.steps ?? []);
     assert(steps.some(step => step.name === 'Test private Android network validation history' &&
-      step.run === 'node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs'));
+      step.run === 'node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs tests/native-followup-evidence.test.mjs'));
     if (name !== 'backend-ci.yml') assert.equal(source.split('"tests/local-network-validation-diagnostics.test.mjs"').length - 1, 2);
   }
 });

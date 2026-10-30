@@ -1,0 +1,152 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "12e97046573bd459f2edf89bae8d312d",
+  "scope": "local-native-team-conversation-with-sdk-peers-not-physical-or-push",
+  "checks": [
+    {
+      "id": "approved-team-discovery",
+      "status": "passed"
+    },
+    {
+      "id": "no-pre-admission-parent-history",
+      "status": "passed"
+    },
+    {
+      "id": "driver-sdk-message-received",
+      "status": "passed"
+    },
+    {
+      "id": "parent-ui-message-independently-read",
+      "status": "passed"
+    },
+    {
+      "id": "draft-survives-activity-recreation",
+      "status": "passed"
+    },
+    {
+      "id": "revocation-in-background-hides-thread-on-return",
+      "status": "passed"
+    },
+    {
+      "id": "revoked-team-not-discoverable",
+      "status": "passed"
+    },
+    {
+      "id": "driver-account-does-not-recover-parent-draft",
+      "status": "passed"
+    },
+    {
+      "id": "driver-ui-send-after-account-switch",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "team-chat-native-parent.png": "18ddcf7c5621d8b3a287c71d8af68b8b144a302ae68ba52c65d077de32412b02",
+    "team-chat-native-parent-window.png": "5de689a6aa6adbf6268abcdd4df8cb8de36d5486df6fdccde8c7858cb5094f01",
+    "team-chat-native-exchange.png": "47582ae8c9777f3da6aeba797e5da816cfdb20bc1704ee43ce0a9388e35a8454",
+    "team-chat-native-exchange-window.png": "1bca6758d93b3c0318e91e3bd6cb5420b20b0f5b419171fb989bd6bfd368cbac",
+    "team-chat-native-draft.png": "6f1440ced791452e458721f541f5ff108e9ae26b4e540f6e11a95fe0ded89fe8",
+    "team-chat-native-draft-window.png": "87a471ca7e877639ea3eae86842324b27a5d45f5675ea2e8f5d08d497fee07ce",
+    "team-chat-native-revoked.png": "04a77252e3431038df0fb876d5a9972f4ba2610a3199beab48a7854183d92ee3",
+    "team-chat-native-revoked-window.png": "1a4bfdf27759cf5c9adea39924c1bb59ed93eebfbe3375ff6facd9360d2b62db",
+    "team-chat-native-driver.png": "11464c6584476348a915832d84238609ab62d84af624891cc9ad6cb61cc56aef",
+    "team-chat-native-driver-window.png": "df4332b41f7fcaa40d1d21b8f361d168068bc249ad8c3624af49a25ada15a0aa"
+  },
+  "peerMessageId": "c7b4bfd004465b90802f75abb3d7c19f36ae68b1b4cb400c481a51ed69d2eb08",
+  "parentMessageId": "61efdf7cb6d1bc6337a62014722e17929a866055acee9e91affa59a1e4295381",
+  "guardianRevokeRequestId": "04011142-8252-482f-8f41-e8366626a1f4",
+  "testedAt": "2026-10-30T12:09:33.208Z",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "steps": [
+    {
+      "id": "team-conversation-connected-native-ui",
+      "status": "passed"
+    }
+  ],
+  "nativeUiExecuted": true,
+  "apkPreparation": {
+    "method": "single-case-continuous-installation-guard-not-flow-proof",
+    "case": "team-conversation",
+    "receiptSha256": "9feff3848138b79cc795053d1a3d0aa22467aa004d48d9d0b1da4d885c37e021",
+    "apkHashes": {
+      "be.sportgreenmoove.app.local": "5c8d31bf849caa82153f75d3f4f068b7fbb8ad6d5542d2bee761f9bba35f4be2",
+      "be.sportgreenmoove.app.local.test": "d1c4a958787d3209a3b069cdbaf3a3f5176ce10426f4942fdbde0e1e641ed304"
+    },
+    "installationsRemainedBlocked": true
+  },
+  "primaryEvidencePhase": "team-conversation",
+  "transcriptSha256": "b0ba723d7022d7973ca1c1331e8c1e22d0a3b8fd47df6190b1d288f453f2a0c8",
+  "cleanupMode": "destroy-owned-local-environment",
+  "adminClientClosed": true,
+  "localPackagesRemoved": true,
+  "fixtureIsolation": {
+    "protectedBaselinePreserved": true,
+    "originalClaimsUnchanged": true,
+    "expectedProfileTimestampUpdatesOnly": true,
+    "protectedRecordCount": 158,
+    "committedMessages": 5,
+    "messageOperations": 5,
+    "noDraftPersisted": true,
+    "parentRevocationPersisted": true,
+    "otherVerifiedParentRetainsAccess": true,
+    "driverAndChildEnrollmentUnchanged": true
+  },
+  "productionWrites": false,
+  "physicalDevice": false,
+  "notificationsVerified": false,
+  "unreadStateVerified": true,
+  "fullProcessRestartProven": false,
+  "externalSdkTrafficVerified": false,
+  "sourceFiles": {
+    "scripts/qa/install-disposable-test-apks.mjs": "b7afd091155134cb3af2ebedcf2cc96d3bdefc83caf364b0d78f64805359a351",
+    "scripts/qa/android-case-apks.mjs": "ce5fd0144d472f41a4656c62a52316c97fb671213cd19955f2179832d05931fd",
+    "scripts/qa/preinstalled-disposable-apks.mjs": "c5c3b5d94e3edaf456041595e00f492a138074283e3c44beec4d71a75a7d527d",
+    "scripts/qa/continuous-disposable-device.mjs": "90a7a74f1714d3d35bd2201dae47c2ab7666fca791fe5551c3d57fe75aac3876",
+    "scripts/qa/configure-continuous-disposable.mjs": "e9b2481a6a423aee1f1e1c4c8cac84c62f0d407f0d5de1b7ed5d1c81c28e27c8",
+    "scripts/qa/restore-continuous-disposable.mjs": "2ababe4bce84097651e4c08c27b8194e3d3e159031c14c91da4cf17045550c53",
+    "scripts/qa/reset-disposable-local-apps.mjs": "5bdff5e8e0a710de1451e8644f8101a2e9fb3674a48f870e7b135a87ad07fda6",
+    "scripts/qa/disposable-installations.mjs": "a035333bc0d3e96b718e14405957c5d1c41d92c8513749ee4120d6dd685f8dfc",
+    "scripts/qa/disposable-install-admin.mjs": "8ce818e2ede793f0ef8282e56769dad84067fe944c5df04cb9b83197122c9c94",
+    "scripts/run-focused-android-ui.sh": "e4ad586c48c32ea77d63c5c6c9c9c397692e58fe81bdd115d988eed7ffaa3d1e",
+    ".github/workflows/native-focused-ui.yml": "22138ca8cb1e07d7d3128ae078949990519523afa00ab1d66d1f9eef3c128fa3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DisposableAndroidJUnitRunner.kt": "a39059103b7b43d45809e115c24823b57f4aa57414d720f9be26dc8c5fef184b",
+    "scripts/qa/local-team-conversation-ui.mjs": "160aa392c3fdc14790473c54d0f1308f94207df51bfea77e01ba569abe7f9a70",
+    "scripts/qa/run-local-team-conversation-ui.mjs": "128a87b5ee5e15f5ff3ce6484f7fea6ccf426b7cbfb17b8ea023238ff44e3c72",
+    "scripts/qa/run-isolated-ride-ui.mjs": "5a374021261cc64c6843e68d6f1c747670af29a221b519e4d7a59d816bd8b6f8",
+    "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+    "scripts/qa/team-chat-native-records.mjs": "4f2a521c203c536a28d009bc4257cc26cb5f57470a3c3b9747849b18abc42093",
+    "scripts/qa/team-chat-native-evidence.mjs": "02369e829972685806234da9ab0cf8724213acccd81c8a235fa6b6e3e6c2dc6d",
+    "functions/src/services/teamConversation.ts": "b8476cb9f1d9d62ee951d6807219061d0e9266f96fb2250b5e1d275eb616caf8",
+    "functions/src/services/teamConversationAuthority.ts": "e8b52e882fa874ac6d89d38a58f9fb60c6330d73b694a444f52347f85a534e8e",
+    "functions/src/services/teamConversationOptions.ts": "7b726d5c7d592e9a419d10538dc8a38a23196e137946775d75189a78d11bc4c6",
+    "functions/src/callables/teamConversation.ts": "5a86d842cb26e5cdae75b30e240501daf772d76643360f4d0ef19b9b285e8a01",
+    "functions/src/domain/teamConversationRead.ts": "1461121905e2d6788ed2811d8e92f9ac8c4a492eb9273f17b3530c048773fda4",
+    "functions/src/services/teamConversationRead.ts": "11656304858210fdf621db3ed8a25b5aa213314e9f17460e55df648378ef20d3",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversationDirectory.kt": "1f07a27d708ebfd18bd4ba9ffae93a952833abea0da7744de323e30a5dd8ec04",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversationRoute.kt": "6b0f0304247343aa9b78f5254db25a90987508ec200aa50ea9642efd6fc97fce",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversationScreen.kt": "499d8bff979dcb836409ce3c887cb5b86b15800e6e6cd92652fb1eda564426fd",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversationState.kt": "8a9b8678bb34aa4104f38071d1f25769e9d695b6f6a3f9d595332ce6a47d118c",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ConversationComposerState.kt": "2947bd301a45b28e0c982719385771d4b0b7eea4566302b23dd1ded50068333e",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamConversationGateway.kt": "bee8e8d0db4b8e3915c29ab66332d9bb56b012fb82888395cdba66327ed6ddd6",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/TeamConversationWire.kt": "cc8fb005fb83266c627d38562243a953999594987ce2ccb97e49f313880090c9",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamConversationFlowTest.kt": "2a15c082905b76aef40d9ec52cf26116cae44582da49e8a20acc8dc3cd3de7ea",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamChatPeer.kt": "daa5378de988caacf0357860cb28152ec2192ca47899a2097388bbbb5ccfbc17",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamChatUi.kt": "5055d76b629aab137e6e6409dbd4d5f400dce8fc326331335573ccf014e806f0",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NativeTeamMessageInput.kt": "d5e3c8fc3fa708b61b85cd13e8cddadca12392712f55826ac085b57f39acfa11",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadiness.kt": "0b0adc6db92a39cbc9d63587bb2f8afc3fb8aebf6d803d8f00ca76628e7e7ffb",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalComposeRule.kt": "c0c3716209d799ceb3ce0d1648d522be73fd85a512d5ab4caa5e4fccb96030ae"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorCliExitedSuccessfully": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}
