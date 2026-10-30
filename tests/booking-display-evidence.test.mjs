@@ -103,7 +103,7 @@ test('native receipts are JVM and Foundation checks, not promoted to phone UI ev
   assert.equal(content.flows.find((item) => item.id === 'booking').status, 'partial');
   assert(content.updates.some((item) => item.flow === 'booking' && /25 contrôles locaux/.test(item.text)));
   assert.equal(content.blockers.find((item) => item.id === 'booking-retry-devices').source,
-    'docs/release/evidence/direct-booking-confirmation-2026-10-28/README.md');
+    'docs/release/evidence/booking-receipt-phone-2026-10-30/README.md');
 });
 
 test('smoke CI executes fresh handler and wire checks without weakening native gates', () => {

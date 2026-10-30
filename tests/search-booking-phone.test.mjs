@@ -42,7 +42,7 @@ test('phone tours use all seven reviewed originals without replacing older evide
   for (const id of ['search', 'booking']) {
     const flow = content.flows.find(row => row.id === id);
     assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.status, 'partial');
-    assert.equal(flow.checkedAt, id === 'booking' ? '2026-10-28' : '2026-10-24');
+    assert.equal(flow.checkedAt, id === 'booking' ? '2026-10-30' : '2026-10-24');
     assert(flow.tour.every(step => step.image.startsWith(id === 'booking' ? 'booking-direct-' : 'search-phone-')));
     assert.equal(flow.searchBookingPhone.checkedAt, '2026-10-24');
     for (const image of flow.images.filter(row => row.file.startsWith('search-phone-'))) published.add(basename(captures[image.file]));

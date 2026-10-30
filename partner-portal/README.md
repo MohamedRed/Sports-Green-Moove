@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The later 30 October adult booking reply-loss trial completes nine independent
+record checkpoints on one physical Android phone. The actual callable commits
+one request, receipt and driver notice before its success reply is withheld.
+Explicit retry uses the exact request identity and retains all stored fields and
+timestamps. PID/no-process/new-PID observations confirm a restart after the reply
+has been acknowledged; the pending request returns from Home and Mes trajets.
+Publish five reviewed 200x444 phone crops, retaining full original 1200x596 session
+captures and all older galleries/tour. Keep restart before acknowledgement,
+search-screen recovery, multiple devices, payments and release requirements open.
+Only the parent's phone UI was inspected; the driver notice is stored-state proof.
+No installed-byte, package-removal, iOS or real-world radio-loss proof is implied.
+The uncommitted trial controllers are bound by exact retained source hashes on
+base 2467e06. Public audience and concise technology-free French copy stay unchanged.
+
 The later 30 October capture investigation retains the failed 60814d7 trace:
 all three stack samples precede the final callback wait. Version three moves
 two samples into the later interval; one primary call, its deadline, quality and

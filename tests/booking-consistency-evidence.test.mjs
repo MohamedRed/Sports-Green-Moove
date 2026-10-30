@@ -120,7 +120,7 @@ test('smoke CI covers the harness and Android recovery while release status rema
   for (const name of ['booking-review-required.png', 'booking-review-narrow.png']) assert(collector.includes(name));
   assert.equal(content.flows.find((item) => item.id === 'booking').status, 'partial');
   assert.equal(content.blockers.find((item) => item.id === 'booking-retry-devices').source,
-    'docs/release/evidence/direct-booking-confirmation-2026-10-28/README.md');
+    'docs/release/evidence/booking-receipt-phone-2026-10-30/README.md');
   assert.match(read(base + 'README.md'), /does not bind a request to the terms previously displayed/);
 });
 

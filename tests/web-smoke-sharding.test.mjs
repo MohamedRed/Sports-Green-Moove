@@ -25,6 +25,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate partial team connection recovery evidence')
     .filter(step => step.name !== 'Validate seven physical team process restarts')
     .filter(step => step.name !== 'Validate direct booking confirmation and phone restart')
+    .filter(step => step.name !== 'Test isolated booking reply-loss guards')
     .filter(step => step.name !== 'Test runtime compressed request parsing and size limits')
     .filter(step => step.name !== 'Verify committed publication artifacts')
     .filter(step => step.name !== 'Validate isolated network recovery recheck without promoting physical readiness')

@@ -10,7 +10,7 @@ const flow=content.flows.find(row=>row.id==='booking'),record=flow.requestNotice
 test('request notices retain actual local records, concurrency, privacy and separate dated phone evidence',()=>{
   const run=validateBookingRequestNoticeEvidence(process.cwd(),record);
   assert.equal(run.steps.length,20); assert.equal(run.protectedRecordCount,158);
-  assert.equal(flow.status,'partial'); assert.equal(flow.checkedAt,'2026-10-28');
+  assert.equal(flow.status,'partial'); assert.equal(flow.checkedAt,'2026-10-30');
   assert.equal(flow.requestNoticeChecks.checkedAt,'2026-10-23');
   assert.equal(flow.decisionPhone.checkedAt,'2026-10-22');
   assert(flow.images.filter(row=>row.file.startsWith('booking-decision-phone-')).every(row=>row.alt.includes('22 octobre')));

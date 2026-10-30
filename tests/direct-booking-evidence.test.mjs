@@ -67,13 +67,15 @@ test('both parent shortcuts use explicit account-owned confirmation rather than 
 });
 test('the current short tour uses four dated session captures and preserves the earlier two-seat phone gallery', () => {
   const flow = content.flows.find(row => row.id === 'booking');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-28'); assert.equal(flow.tour.length, 4);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.directBookingPhone.checkedAt, '2026-10-28'); assert.equal(flow.tour.length, 4);
   assert.equal(flow.directBookingPhone.source, folder + '/summary.json');
-  for (const image of flow.images.slice(0, 4)) {
+  const originalImages = flow.images.filter(image => image.file.startsWith('booking-direct-'));
+  assert.equal(originalImages.length, 4);
+  for (const image of originalImages) {
     assert.match(image.alt, /capture de session du 28 octobre/); assert(captures[image.file].startsWith(folder + '/captures/'));
   }
   assert.equal(flow.searchBookingPhone.checkedAt, '2026-10-24');
   assert.equal(flow.images.filter(row => row.file.startsWith('search-phone-')).length, 5);
-  assert.match(flow.remaining, /réponses perdues.*recherche/); assert.match(flow.remaining, /deux téléphones/);
+  assert.match(flow.remaining, /fermeture avant confirmation.*recherche/); assert.match(flow.remaining, /deux téléphones/);
   assert.doesNotMatch(JSON.stringify(flow), /BrowserStack|Firebase|SDK|Kotlin|Pixel/);
 });

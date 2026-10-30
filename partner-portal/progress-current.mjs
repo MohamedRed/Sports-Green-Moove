@@ -21,8 +21,10 @@ import {reviewReplayProgress, reviewContextGateProgress} from './review-context-
 import {reviewRecoveryProgress} from './review-submission-recovery.mjs';
 import {reviewNetworkProgress} from './review-network-phone.mjs';
 import {reviewReceiptProgress} from './review-receipt-phone.mjs';
+import {bookingReceiptProgress} from './booking-receipt-phone.mjs';
 
 export const currentProgress = [
+  bookingReceiptProgress,
   {date: '2026-10-30', title: 'L’échec de capture reste à expliquer',
     text: 'Les essais séparés passent. L’essai complet reste à valider ; les nouveaux relevés serviront à comprendre où il s’arrête.',
     flow: 'native-startup', source: 'docs/release/evidence/capture-late-sampling-2026-10-30/README.md',

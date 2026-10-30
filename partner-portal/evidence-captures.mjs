@@ -21,8 +21,10 @@ import {reviewReplayCaptures} from './review-context-replay.mjs';
 import {reviewRecoveryCaptures} from './review-submission-recovery.mjs';
 import {reviewNetworkCaptures} from './review-network-phone.mjs';
 import {reviewReceiptCaptures} from './review-receipt-phone.mjs';
+import {bookingReceiptCaptures} from './booking-receipt-phone.mjs';
 
 export const captures = {
+  ...bookingReceiptCaptures,
   ...reviewNetworkCaptures,
   ...reviewReceiptCaptures,
   ...reviewRecoveryCaptures,

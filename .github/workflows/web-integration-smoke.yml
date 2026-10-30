@@ -76,6 +76,8 @@ on:
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
       - "tests/booking-ui-loss.test.mjs"
+      - "tests/booking-receipt-loss-proxy.test.mjs"
+      - "tests/booking-receipt-phone-evidence.test.mjs"
       - "tests/booking-search-feedback-evidence.test.mjs"
       - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
@@ -586,6 +588,8 @@ on:
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
       - "tests/booking-recovery-evidence.test.mjs"
       - "tests/booking-ui-loss.test.mjs"
+      - "tests/booking-receipt-loss-proxy.test.mjs"
+      - "tests/booking-receipt-phone-evidence.test.mjs"
       - "tests/booking-search-feedback-evidence.test.mjs"
       - "tests/subscription-diagnosis-evidence.test.mjs"
       - "tests/booking-request-rules.test.ts"
@@ -1351,6 +1355,9 @@ jobs:
         run: node --test tests/team-process-restart-phone-evidence.test.mjs
       - name: Validate direct booking confirmation and phone restart
         run: node --test tests/direct-booking-evidence.test.mjs
+
+      - name: Test isolated booking reply-loss guards
+        run: node --test tests/booking-receipt-loss-proxy.test.mjs tests/booking-receipt-phone-evidence.test.mjs
       - name: Validate physical trip cancellation evidence and observer boundaries
         run: node --test tests/trip-cancellation-phone-checkpoints.test.mjs tests/trip-cancellation-phone-evidence.test.mjs
       - name: Test runtime compressed request parsing and size limits
