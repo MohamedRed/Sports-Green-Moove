@@ -86,6 +86,6 @@ private fun TripMeta(icon: SgmIcon, text: String) {
 private fun PassengerBubble(initials: String) {
     Box(Modifier.size(24.dp).clip(CircleShape).background(SgmColor.Green).border(BorderStroke(2.dp, Sgm.colors.bgCard), CircleShape),
         contentAlignment = Alignment.Center) {
-        Text(initials.take(2).uppercase(), style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 8.sp, fontWeight = FontWeight.Bold))
+        Text(initials.take(2).uppercase(), style = SgmType.BodyXS.copy(color = SgmColor.TextOnAccent, fontSize = 8.sp, fontWeight = FontWeight.Bold))
     }
 }

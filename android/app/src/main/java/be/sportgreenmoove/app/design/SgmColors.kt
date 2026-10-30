@@ -12,6 +12,7 @@ object SgmColor {
     val OrangeLight = Color(0xFFFB923C)
     val Red         = Color(0xFFEF4444)
     val TextOnGreen = Color.White
+    val TextOnAccent = Color(0xFF0C1B0E)
 
     val HeroStart = Color(0xFF0D2A18)
     val HeroEnd = Color(0xFF163D24)
@@ -29,6 +30,7 @@ class SgmSemanticColors(
     val textPrimary: Color,
     val textSecondary: Color,
     val textMuted: Color,
+    val textAccent: Color,
     val textInverse: Color,
     val border: Color,
     val borderStrong: Color,
@@ -43,6 +45,7 @@ val SgmLightColors = SgmSemanticColors(
     textPrimary   = Color(0xFF0C1B0E),
     textSecondary = Color(0xFF3A5640),
     textMuted     = Color(0xFF56735E),
+    textAccent    = Color(0xFF176F37),
     textInverse   = Color(0xFFFFFFFF),
     border        = Color(0xFFD0E8D8),
     borderStrong  = Color(0xFF9EC9A9),
@@ -57,6 +60,7 @@ val SgmDarkColors = SgmSemanticColors(
     textPrimary   = Color(0xFFEEF8F1),
     textSecondary = Color(0xFF90B898),
     textMuted     = Color(0xFF8AA892),
+    textAccent    = SgmColor.Green,
     textInverse   = Color(0xFF0C1B0E),
     border        = Color(0xFF1E3022),
     borderStrong  = Color(0xFF2E4A32),

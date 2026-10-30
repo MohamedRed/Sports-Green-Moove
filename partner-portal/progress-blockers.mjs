@@ -74,6 +74,7 @@ export const blockers = [
     text: 'La ville est enregistrée puis effacée sur téléphone. La commission reste à choisir ; le montant fixe est retiré des réglages.',
     next: 'Choisir la commission avant les paiements et vérifier la ville sur iPhone. Pas encore en ligne dans l’app.', source: 'docs/release/evidence/profile-ledger-phone-2026-10-24/README.md' },
   { id: 'contrast', title: 'Lisibilité des écrans',
-    text: 'Les textes secondaires de Recherche et Mes trajets sont revus sur huit vues agrandies, en simulation.',
-    next: 'Revoir les boutons colorés, les dates des réservations, les marges et l’accessibilité sur téléphone.', source: 'docs/release/evidence/neutral-text-visual-2026-10-30/README.md' },
+    text: 'Les boutons verts et orange, les sélections et la navigation sont revus sur téléphone.',
+    next: 'Revoir les autres textes colorés, les dates des réservations, les marges et l’accessibilité, dont l’iPhone.',
+    source: 'docs/release/evidence/accent-controls-phone-2026-10-30/README.md' },
 ];

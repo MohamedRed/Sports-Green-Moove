@@ -79,6 +79,6 @@ private fun ProfilePill(text: String, selected: Boolean) {
             .then(if (selected) Modifier else Modifier.border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(999.dp)))
             .padding(horizontal = 12.dp, vertical = 3.dp),
     ) {
-        Text(text, style = SgmType.Label.copy(color = if (selected) SgmColor.TextOnGreen else SgmColor.Green, fontSize = 11.sp, letterSpacing = 0.04.em))
+        Text(text, style = SgmType.Label.copy(color = if (selected) SgmColor.TextOnAccent else Sgm.colors.textAccent, fontSize = 11.sp, letterSpacing = 0.04.em))
     }
 }

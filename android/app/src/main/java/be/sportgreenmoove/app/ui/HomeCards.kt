@@ -228,7 +228,7 @@ private fun PassengerBadge(initials: String) {
             .border(BorderStroke(2.dp, Sgm.colors.bgCard), CircleShape),
         contentAlignment = Alignment.Center,
     ) {
-        Text(initials, style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 8.sp, fontWeight = FontWeight.Bold))
+        Text(initials, style = SgmType.BodyXS.copy(color = SgmColor.TextOnAccent, fontSize = 8.sp, fontWeight = FontWeight.Bold))
     }
 }
 

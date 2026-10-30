@@ -78,10 +78,10 @@ internal fun ConversationComposer(
                 modifier = Modifier.size(48.dp).sgmTestTag(SgmTestTags.ChatSendAction).semantics {
                     contentDescription = if (locked && error != null) "Réessayer l'envoi" else "Envoyer le message"
                 }, colors = IconButtonDefaults.filledIconButtonColors(containerColor = SgmColor.Green,
-                    contentColor = SgmColor.TextOnGreen, disabledContainerColor = Sgm.colors.bgElevated,
+                    contentColor = SgmColor.TextOnAccent, disabledContainerColor = Sgm.colors.bgElevated,
                     disabledContentColor = Sgm.colors.textSecondary)) {
                 SgmLineIcon(SgmIcon.ArrowRight, tint = if (enabled && !sending && validLength && draft.isNotBlank())
-                    SgmColor.TextOnGreen else Sgm.colors.textSecondary, modifier = Modifier.size(20.dp))
+                    SgmColor.TextOnAccent else Sgm.colors.textSecondary, modifier = Modifier.size(20.dp))
             }
         }
     }

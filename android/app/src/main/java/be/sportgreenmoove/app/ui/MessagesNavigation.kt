@@ -52,7 +52,7 @@ private fun MessageTabButton(tab: MessageTab, selected: Boolean, onClick: () -> 
         .background(if (selected) SgmColor.Green else Sgm.colors.bgCard)
         .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(999.dp)).clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
-        Text(tab.label, style = SgmType.Label.copy(color = if (selected) SgmColor.TextOnGreen else Sgm.colors.textMuted,
+        Text(tab.label, style = SgmType.Label.copy(color = if (selected) SgmColor.TextOnAccent else Sgm.colors.textMuted,
             fontSize = 10.sp, letterSpacing = 0.06.em))
         if (tab.count > 0) { Spacer(Modifier.size(4.dp)); MessageTabBadge(tab.count.toString(), selected) }
     }

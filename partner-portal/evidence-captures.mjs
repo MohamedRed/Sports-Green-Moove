@@ -1,4 +1,5 @@
 import {appearanceCaptures} from './appearance-flow.mjs';
+import {accentControlCaptures} from './accent-controls-flow.mjs';
 import {tripConsentPhoneCaptures} from './trip-consent-phone.mjs';
 import {supportSubmissionCaptures} from './support-submission-captures.mjs';
 import {tripDraftPhoneCaptures} from './trip-draft-phone.mjs';
@@ -28,6 +29,7 @@ import {bookingReceiptCaptures} from './booking-receipt-phone.mjs';
 import {bookingBeforeAckCaptures} from './booking-before-ack-phone.mjs';
 
 export const captures = {
+  ...accentControlCaptures,
   ...appearanceCaptures,
   ...staleCancellationCaptures,
   ...bookingBeforeAckCaptures,

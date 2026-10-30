@@ -389,6 +389,7 @@ on:
       - "tests/native-recheck-evidence.test.mjs"
       - "tests/native-copy-failure-b158.test.mjs"
       - "tests/neutral-text-contrast.test.mjs"
+      - "tests/accent-controls.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/design/Sgm*.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/design/SgmTextContrastTest.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralText*.kt"
@@ -915,6 +916,7 @@ on:
       - "tests/native-recheck-evidence.test.mjs"
       - "tests/native-copy-failure-b158.test.mjs"
       - "tests/neutral-text-contrast.test.mjs"
+      - "tests/accent-controls.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/design/Sgm*.kt"
       - "android/app/src/test/java/be/sportgreenmoove/app/design/SgmTextContrastTest.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralText*.kt"
@@ -1158,6 +1160,8 @@ jobs:
         run: node --test tests/native-recheck-evidence.test.mjs tests/native-copy-failure-b158.test.mjs
       - name: Validate neutral text contrast and native capture scope
         run: node --test tests/neutral-text-contrast.test.mjs
+      - name: Validate role-specific accent controls and phone evidence
+        run: node --test tests/accent-controls.test.mjs
 
       - name: Validate approved disposable-phone installation policy
         run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs

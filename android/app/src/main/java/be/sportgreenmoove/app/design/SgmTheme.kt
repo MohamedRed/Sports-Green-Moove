@@ -136,21 +136,23 @@ fun SgmTheme(
     val sgmColors = if (darkTheme) SgmDarkColors else SgmLightColors
 
     val materialScheme = if (darkTheme) darkColorScheme(
-        primary = SgmColor.Green,
+        primary = sgmColors.textAccent,
         secondary = SgmColor.Orange,
         background = sgmColors.bgApp,
         surface = sgmColors.bgSurface,
         error = SgmColor.Red,
-        onPrimary = SgmColor.TextOnGreen,
+        onPrimary = SgmColor.TextOnAccent,
+        onSecondary = SgmColor.TextOnAccent,
         onBackground = sgmColors.textPrimary,
         onSurface = sgmColors.textPrimary,
     ) else lightColorScheme(
-        primary = SgmColor.Green,
+        primary = sgmColors.textAccent,
         secondary = SgmColor.Orange,
         background = sgmColors.bgApp,
         surface = sgmColors.bgSurface,
         error = SgmColor.Red,
         onPrimary = SgmColor.TextOnGreen,
+        onSecondary = SgmColor.TextOnAccent,
         onBackground = sgmColors.textPrimary,
         onSurface = sgmColors.textPrimary,
     )

@@ -15,15 +15,15 @@ export async function verifyAppearanceGallery({browser, base, output}) {
       const dialog = page.getByRole('dialog');
       await dialog.getByRole('heading', {name: flow.title, exact: true}).waitFor();
       await dialog.getByText(flow.remaining, {exact: true}).waitFor();
-      for (const image of flow.images.slice(0, 8)) {
+      for (const image of flow.images.filter(image => /^(neutral-text-|accent-control-)/.test(image.file))) {
         const picture = dialog.getByRole('img', {name: image.alt, exact: true});
         await picture.waitFor();
         await page.waitForFunction(() => {
           const image = document.querySelector('.media-stage img');
           return image?.complete && image.naturalWidth > 0;
         });
-        assert.deepEqual(await picture.evaluate(image => [image.naturalWidth, image.naturalHeight]),
-          image.landscape ? [900, 600] : [960, 2100]);
+        const expected = image.file.startsWith('accent-control-') ? [196, 439] : image.landscape ? [900, 600] : [960, 2100];
+        assert.deepEqual(await picture.evaluate(image => [image.naturalWidth, image.naturalHeight]), expected);
         assert(await dialog.getByText(image.alt, {exact: true}).isVisible());
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
         assert(await dialog.evaluate(element => element.scrollWidth <= element.clientWidth));
@@ -35,9 +35,9 @@ export async function verifyAppearanceGallery({browser, base, output}) {
         await page.screenshot({path: `${output}/${image.file}-${width}.png`, fullPage: false});
         await dialog.getByRole('button', {name: 'Preuve suivante', exact: true}).click();
       }
-      await dialog.getByRole('img', {name: flow.images[8].alt, exact: true}).waitFor();
+      await dialog.getByRole('img', {name: flow.images.at(-2).alt, exact: true}).waitFor();
     }
     assert.deepEqual(errors, []);
-    console.log('Eight enlarged-text viewports display complete at 320, 390, 768 and 1440 pixels; old gallery preserved.');
+    console.log('Five phone captures and eight historical viewports display complete at 320, 390, 768 and 1440 pixels; old gallery preserved.');
   } finally {await page.close();}
 }

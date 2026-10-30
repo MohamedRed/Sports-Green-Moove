@@ -86,7 +86,7 @@ internal fun MessageAvatar(initials: String, size: Int, muted: Boolean = false) 
             .background(if (muted) Sgm.colors.bgElevated else SgmColor.Green),
         contentAlignment = Alignment.Center,
     ) {
-        Text(initials.take(2).uppercase(), style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 11.sp, fontWeight = FontWeight.Bold))
+        Text(initials.take(2).uppercase(), style = SgmType.BodyXS.copy(color = if (muted) Sgm.colors.textPrimary else SgmColor.TextOnAccent, fontSize = 11.sp, fontWeight = FontWeight.Bold))
     }
 }
 
@@ -99,7 +99,7 @@ fun MessageTabBadge(text: String, selected: Boolean) {
             .background(if (selected) SgmColor.TextOnGreen.copy(alpha = 0.30f) else SgmColor.Orange),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text, style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 9.sp, fontWeight = FontWeight.Bold))
+        Text(text, style = SgmType.BodyXS.copy(color = SgmColor.TextOnAccent, fontSize = 9.sp, fontWeight = FontWeight.Bold))
     }
 }
 
@@ -113,6 +113,6 @@ private fun MessageUnreadBadge(text: String, fullCount: Long) {
             .background(SgmColor.Green),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text, style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 10.sp, fontWeight = FontWeight.Bold))
+        Text(text, style = SgmType.BodyXS.copy(color = SgmColor.TextOnAccent, fontSize = 10.sp, fontWeight = FontWeight.Bold))
     }
 }

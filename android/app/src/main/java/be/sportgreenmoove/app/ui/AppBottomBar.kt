@@ -102,7 +102,7 @@ private fun PublishNavButton(onClick: () -> Unit, modifier: Modifier = Modifier)
                 .clickable(onClick = onClick),
             contentAlignment = Alignment.Center,
         ) {
-            SgmLineIcon(icon = SgmIcon.Plus, tint = SgmColor.TextOnGreen, modifier = Modifier.size(22.dp))
+            SgmLineIcon(icon = SgmIcon.Plus, tint = SgmColor.TextOnAccent, modifier = Modifier.size(22.dp))
         }
     }
 }
@@ -120,14 +120,14 @@ private fun BottomNavButton(item: NavItem, selected: Boolean, onClick: () -> Uni
     ) {
         SgmLineIcon(
             icon = item.icon,
-            tint = if (selected) SgmColor.Green else Sgm.colors.textMuted,
+            tint = if (selected) Sgm.colors.textAccent else Sgm.colors.textMuted,
             modifier = Modifier.size(if (selected) 22.dp else 20.dp),
         )
         Spacer(Modifier.height(3.dp))
         Text(
             item.label,
             style = SgmType.NavLabel.copy(
-                color = if (selected) SgmColor.Green else Sgm.colors.textMuted,
+                color = if (selected) Sgm.colors.textAccent else Sgm.colors.textMuted,
                 fontSize = 9.sp,
                 fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
             ),

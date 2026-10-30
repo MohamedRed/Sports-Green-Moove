@@ -128,7 +128,7 @@ fun V2CircleIconButton(icon: SgmIcon, onClick: () -> Unit = {}, size: Int = 36, 
     ) {
         SgmLineIcon(
             icon = icon,
-            tint = if (selected) SgmColor.TextOnGreen else Sgm.colors.textSecondary,
+            tint = if (selected) SgmColor.TextOnAccent else Sgm.colors.textSecondary,
             modifier = Modifier.size(16.dp),
         )
     }
@@ -151,7 +151,7 @@ fun V2SectionLabel(title: String, action: String? = null, onAction: (() -> Unit)
             overflow = TextOverflow.Ellipsis,
         )
         if (action != null && onAction != null) {
-            Text(action, style = SgmType.BodyXS.copy(color = SgmColor.Green, fontSize = 12.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.clickable(onClick = onAction))
+            Text(action, style = SgmType.BodyXS.copy(color = Sgm.colors.textAccent, fontSize = 12.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.clickable(onClick = onAction))
         }
     }
 }
@@ -174,9 +174,9 @@ fun V2Button(
         V2ButtonVariant.Orange -> SgmColor.Orange
     }
     val fg = when (variant) {
-        V2ButtonVariant.Primary, V2ButtonVariant.Orange -> SgmColor.TextOnGreen
+        V2ButtonVariant.Primary, V2ButtonVariant.Orange -> SgmColor.TextOnAccent
         V2ButtonVariant.Secondary -> Sgm.colors.textPrimary
-        V2ButtonVariant.Ghost -> SgmColor.Green
+        V2ButtonVariant.Ghost -> Sgm.colors.textAccent
     }
     val border = when (variant) {
         V2ButtonVariant.Primary, V2ButtonVariant.Orange -> null
@@ -212,14 +212,14 @@ fun V2Chip(text: String, selected: Boolean, onClick: () -> Unit = {}, modifier: 
             .padding(horizontal = 14.dp, vertical = 6.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text, style = SgmType.Label.copy(color = if (selected) SgmColor.TextOnGreen else Sgm.colors.textMuted, fontSize = 11.sp, letterSpacing = 0.04.em), maxLines = 1)
+        Text(text, style = SgmType.Label.copy(color = if (selected) SgmColor.TextOnAccent else Sgm.colors.textMuted, fontSize = 11.sp, letterSpacing = 0.04.em), maxLines = 1)
     }
 }
 
 @Composable
-fun V2Avatar(initials: String, size: Int = 32, color: Color = SgmColor.Green) {
-    Box(modifier = Modifier.size(size.dp).clip(CircleShape).background(color), contentAlignment = Alignment.Center) {
-        Text(initials.take(2).uppercase(), style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = (size * 0.30f).sp, fontWeight = FontWeight.Bold))
+fun V2Avatar(initials: String, size: Int = 32) {
+    Box(modifier = Modifier.size(size.dp).clip(CircleShape).background(SgmColor.Green), contentAlignment = Alignment.Center) {
+        Text(initials.take(2).uppercase(), style = SgmType.BodyXS.copy(color = SgmColor.TextOnAccent, fontSize = (size * 0.30f).sp, fontWeight = FontWeight.Bold))
     }
 }
 

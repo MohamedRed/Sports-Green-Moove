@@ -173,7 +173,7 @@ private fun TripsTab(id: String, label: String, selected: String, onSelected: (S
         Text(
             label,
             style = SgmType.Label.copy(
-                color = if (isSelected) SgmColor.TextOnGreen else Sgm.colors.textMuted,
+                color = if (isSelected) SgmColor.TextOnAccent else Sgm.colors.textMuted,
                 fontSize = 10.sp,
                 letterSpacing = 0.06.em,
             ),
@@ -212,6 +212,6 @@ private fun TabBadge(text: String) {
             .background(SgmColor.Orange),
         contentAlignment = Alignment.Center,
     ) {
-        Text(text, style = SgmType.BodyXS.copy(color = SgmColor.TextOnGreen, fontSize = 8.sp, fontWeight = FontWeight.Bold))
+        Text(text, style = SgmType.BodyXS.copy(color = SgmColor.TextOnAccent, fontSize = 8.sp, fontWeight = FontWeight.Bold))
     }
 }

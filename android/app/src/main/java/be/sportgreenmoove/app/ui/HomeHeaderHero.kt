@@ -126,7 +126,7 @@ private fun HomeHeroBadge() {
     ) {
         Text(
             "PROCHAINE COURSE",
-            style = SgmType.Eyebrow.copy(color = SgmColor.TextOnGreen, fontSize = 11.sp, lineHeight = 11.sp, letterSpacing = 0.14.em),
+            style = SgmType.Eyebrow.copy(color = SgmColor.TextOnAccent, fontSize = 11.sp, lineHeight = 11.sp, letterSpacing = 0.14.em),
             maxLines = 1,
         )
     }

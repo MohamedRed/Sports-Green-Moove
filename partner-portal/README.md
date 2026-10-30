@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The later 30 October accent-control correction retains eleven measured failures,
+twenty passing role measurements and a physical Android visual trial. Publish
+five reviewed session crops for Search, Trips and Rewards, before the eight older
+component views and two October 15 images. Appearance remains partial. No reward
+withdrawal, payment, map search, production write, full accessibility, iOS or
+release acceptance is implied. Preserve the earlier captures, scopes and dates.
+The phone was signed out, uninstallation acknowledged, session ended and private
+runtime/helper independently disposed. Installed bytes and package absence were
+not independently measured. Public access stays unchanged.
+
 The 30 October neutral-text visual review accepts eight original Search/Trips
 component viewports with enlarged text in both themes and two fixed formats.
 Keep Appearance partial, retain the two older images with their October 15 dates,
