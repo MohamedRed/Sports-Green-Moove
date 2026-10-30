@@ -225,7 +225,8 @@ test('retained independent network pass binds the native case, primary copy, sav
   for (const [id, file] of Object.entries(result.publishedCaptures)) assert.equal(captures[id], chatNetworkIsolatedFolder + file);
   assert(content.updates.some(row => row.flow === 'messages' && row.source === chatNetworkIsolatedFolder + 'README.md'));
   assert.equal(content.updates.find(row => row.flow === 'messages').source,
-    'docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md');
+    'docs/release/evidence/chat-network-repeat-9abc639-2026-10-30/README.md');
+  assert(content.updates.some(row => row.source === 'docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md'));
   assert(content.updates.some(row => row.source === 'docs/release/evidence/chat-network-recheck-2ffa582-2026-10-30/README.md'));
   assert(content.updates.some(row => row.source === 'docs/release/evidence/chat-network-preparation-4714198/README.md'));
   assert(content.updates.some(row => row.source === 'docs/release/evidence/chat-network-recheck-7417e22-2026-10-28/README.md'));

@@ -31,8 +31,10 @@ import {captureWindowProgress} from './capture-window-calibration.mjs';
 import {releaseRecheckProgress} from './release-recheck.mjs';
 import {supportRecoveryRecheckProgress, latestCopyRecheckProgress} from './support-recovery-recheck.mjs';
 import {childBookingReceiptProgress, latestChatPreparationProgress, latestGeneratedCopyProgress} from './child-booking-receipt.mjs';
+import {chatNetworkRepeatProgress} from './chat-network-repeat.mjs';
 
 export const currentProgress = [
+  chatNetworkRepeatProgress,
   childBookingReceiptProgress,
   latestChatPreparationProgress,
   latestGeneratedCopyProgress,

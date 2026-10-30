@@ -5,6 +5,7 @@ import {tmpdir} from 'node:os';
 import {dirname, resolve} from 'node:path';
 import test from 'node:test';
 import {latestNetworkRecheckIdentity as identity, validateLatestChatNetworkRecheck as validate} from '../scripts/qa/chat-network-latest-evidence.mjs';
+import {networkRepeatIdentity, validateChatNetworkRepeat} from '../scripts/qa/chat-network-repeat-evidence.mjs';
 import {content} from '../partner-portal/content.mjs';
 
 const root = resolve(import.meta.dirname, '..'), folder = identity.folder;
@@ -48,8 +49,17 @@ test('latest progress preserves the failed attempt and all older proof/media dat
   assert(flow.images.every(image => /27 octobre|17 octobre|16 octobre|15 octobre/.test(image.alt)));
   assert(content.updates.some(row => row.source === 'docs/release/evidence/chat-network-preparation-4714198/README.md'));
   const update = content.updates.find(row => row.flow === 'messages');
-  assert.equal(update.source, 'docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md');
-  assert.match(update.text, /avant la coupure/);
+  assert.equal(update.source, networkRepeatIdentity.folder + 'README.md');
+  assert.match(update.text, /En simulation/);
+  assert(content.updates.some(row => row.source === 'docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md' && /avant la coupure/.test(row.text)));
   assert(content.updates.some(row => row.flow === 'messages' && row.source === folder + 'README.md' && /essai local/.test(row.text)));
   assert.doesNotMatch(update.text, /BrowserStack|Firebase|SDK|Android/);
+});
+test('the later repeated radio trial has its own retained proof and predates the passive prerequisite', () => {
+  const reference = {source: networkRepeatIdentity.folder + 'chat-network-recovery-results.json', checkedAt: networkRepeatIdentity.date};
+  const run = validateChatNetworkRepeat(root, reference);
+  assert.equal(run.network.messageCount, 2); assert.equal(run.network.duplicateMessages, 0);
+  assert.equal(run.physicalDevice, false); assert.equal(run.isolatedEnvironmentDestroyed, true);
+  assert.deepEqual(content.flows.find(row => row.id === 'messages').networkRecoveryRepeat, reference);
+  assert(content.blockers.some(row => row.id === 'chat-send-stability'));
 });

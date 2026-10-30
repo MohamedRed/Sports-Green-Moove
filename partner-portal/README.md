@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The later 30 October `9abc639` independent chat-network repeat passes its strict
+handover/offline/retry/reply UI case, primary copy, two-message/two-notification
+stored-state checks and full independent disposal. Publish one concise simulated
+chat result, retain older failed attempts and all original gallery dates, and
+keep Messages partial. This precedes the later passive prerequisite, so no
+network repair is claimed. No new media, physical proof, audience change or
+whole-gate promotion is accepted by this update. See
+`docs/release/evidence/chat-network-repeat-9abc639-2026-10-30/README.md`.
+
 The final b8886ec automated recheck passes its full native gate, all eleven
 independent jobs, backend and web checks. Retain the 205 ordinary passes/54 skips,
 forty integrated cases/seventeen primary copies, complete restoration and 41

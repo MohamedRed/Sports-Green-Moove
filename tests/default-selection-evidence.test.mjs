@@ -90,7 +90,8 @@ test('current captures and dates cannot promote this comparison to physical or s
   assert.equal(flow.ui.source, current + 'replay/results.json'); assert.equal(flow.source, current + 'README.md');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');
   assert.equal(blocker.source, content.nativeVerification.source);
-  assert.match(blocker.text, /avant la coupure/); assert.match(blocker.text, /échecs précédents restent documentés/);
+  assert.match(blocker.text, /en simulation/); assert.match(blocker.text, /échecs précédents restent documentés/);
+  assert(content.updates.some(row => row.flow === 'messages' && /avant la coupure/.test(row.text)));
   for (const [id, file] of [['chat-network-current-draft', 'local-chat-network-unconfirmed.png'],
     ['chat-network-current-reply', 'local-chat-network-received.png']]) {
     assert.equal(captures[id], latest + 'completed/' + file);

@@ -25,12 +25,13 @@ import {validateTestRunnerSecurity} from '../scripts/qa/test-runner-security-evi
 import {validateCaptureWindowEvidence} from '../scripts/qa/capture-window-evidence.mjs';
 import {validateReleaseRecheck} from '../scripts/qa/release-recheck-evidence.mjs';
 import {childBookingReceiptFolder, validateChildBookingReceiptEvidence, validateLatestPreparationDiagnostics} from '../scripts/qa/child-booking-receipt-evidence.mjs';
+import {networkRepeatIdentity} from '../scripts/qa/chat-network-repeat-evidence.mjs';
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
   validateChildBookingReceiptEvidence(root); validateLatestPreparationDiagnostics(root);
   assert.equal(content.flows.find(row => row.id === 'booking').childBookingReceiptRecheck.source, childBookingReceiptFolder + 'services.json');
-  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, childBookingReceiptFolder + 'README.md');
+  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, networkRepeatIdentity.folder + 'README.md');
   validateReleaseRecheck(root);
   validateCaptureWindowEvidence(root);
   validateTestRunnerSecurity(root);
