@@ -42,9 +42,12 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate private input and stale cancellation phone evidence')
     .filter(step => step.name !== 'Validate hosted Android disk capacity guard')
     .filter(step => step.name !== 'Validate role-specific accent controls and phone evidence')
+    .filter(step => step.name !== 'Test custom TLS certificate verification and retained scope')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
+  const tls = workflow.jobs.smoke.steps.filter(step => step.name === 'Test custom TLS certificate verification and retained scope');
+  assert.equal(tls.length, 1); assert.equal(tls[0].run, 'node --test tests/tls-agent-security.test.mjs tests/tls-agent-evidence.test.mjs');
   const accent = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate role-specific accent controls and phone evidence');
   assert.equal(accent.length, 1); assert.equal(accent[0].run, 'node --test tests/accent-controls.test.mjs');
   const disk = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate hosted Android disk capacity guard');

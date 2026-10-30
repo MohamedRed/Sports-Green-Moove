@@ -1,0 +1,19 @@
+2026-10-30T21:55:01.2266616Z Emulator booted.
+2026-10-30T21:55:01.2301737Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+2026-10-30T21:55:01.2461127Z ##[endgroup]
+2026-10-30T21:55:01.2462026Z ##[group]Terminate Emulator
+2026-10-30T21:55:01.2480365Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2026-10-30T21:55:01.2527375Z OK: killing emulator, bye bye
+2026-10-30T21:55:01.2531850Z OK
+2026-10-30T21:55:01.2534175Z INFO         | Wait for emulator (pid 3204) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+2026-10-30T21:55:01.2535218Z 
+2026-10-30T21:55:01.2553300Z ##[endgroup]
+2026-10-30T21:55:01.2578308Z ##[error]The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 255
+2026-10-30T21:55:01.2745102Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: ''
+2026-10-30T21:55:01.2747997Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+2026-10-30T21:55:01.2748788Z INFO         | Saving snapshot 'default_boot' took 0 ms
+2026-10-30T21:55:01.4351545Z ERROR        | stop: Not implemented
+2026-10-30T21:55:01.4352140Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
+2026-10-30T21:55:01.4517228Z INFO         | removeAll
+2026-10-30T21:55:01.4878225Z WARNING      | Netsim Wifi dns:///localhost:44107 is gone due to CANCELLED
+2026-10-30T21:55:01.5970256Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device 'emulator-5554' not found'

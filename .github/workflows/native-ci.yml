@@ -77,6 +77,9 @@ on:
       - "tests/native-copy-failure-b158.test.mjs"
       - "tests/neutral-text-contrast.test.mjs"
       - "tests/accent-controls.test.mjs"
+      - "tests/tls-agent-security.test.mjs"
+      - "tests/tls-agent-evidence.test.mjs"
+      - "tests/helpers/tls-agent-probe.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
@@ -214,6 +217,9 @@ on:
       - "tests/native-copy-failure-b158.test.mjs"
       - "tests/neutral-text-contrast.test.mjs"
       - "tests/accent-controls.test.mjs"
+      - "tests/tls-agent-security.test.mjs"
+      - "tests/tls-agent-evidence.test.mjs"
+      - "tests/helpers/tls-agent-probe.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
@@ -364,6 +370,8 @@ jobs:
         run: node --test tests/neutral-text-contrast.test.mjs
       - name: Validate role-specific accent controls and phone evidence
         run: node --test tests/accent-controls.test.mjs
+      - name: Test custom TLS certificate verification and retained scope
+        run: node --test tests/tls-agent-security.test.mjs tests/tls-agent-evidence.test.mjs
       - name: Validate disposable Android isolation
         run: node --test tests/disposable-emulator-selection.test.mjs tests/android-support-call-trace.test.mjs tests/support-process-restart-phone-evidence.test.mjs
 

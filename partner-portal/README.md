@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The later 30 October local CLI transport check reproduces two failures where a
+custom TLS verifier is lost, then passes three real loopback TLS cases with the
+compatible maintenance update. All other lock entries remain unchanged. Publish
+one short security note, preserving previous critical fixes and every phone
+gallery/date/status. The audit still has eleven high and eighteen moderate
+findings. No production vulnerability, deployment, phone or release acceptance
+is implied. The base-source team-read lane independently fails during emulator
+unlock before tests; that preparation failure is not repaired by this update.
+Keep public access unchanged.
+
 The later 30 October accent-control correction retains eleven measured failures,
 twenty passing role measurements and a physical Android visual trial. Publish
 five reviewed session crops for Search, Trips and Rewards, before the eight older

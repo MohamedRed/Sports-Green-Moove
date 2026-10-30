@@ -1,4 +1,5 @@
 import {appearanceProgress} from './appearance-flow.mjs';
+import {tlsAgentSecurityProgress} from './tls-agent-security.mjs';
 import {accentControlProgress} from './accent-controls-flow.mjs';
 import { tripDraftPhoneProgress } from './trip-draft-phone.mjs';
 import { chatNetworkRecoveryProgress, chatNetworkRecheckProgress } from './chat-network-recovery.mjs';
@@ -39,6 +40,7 @@ import {staleCancellationProgress, cancellationBaselineProgress} from './cancell
 import {invitationConnectionProgress, nativeCapacityProgress} from './preparation-failures.mjs';
 
 export const currentProgress = [
+  tlsAgentSecurityProgress,
   accentControlProgress,
   appearanceProgress,
   invitationConnectionProgress,

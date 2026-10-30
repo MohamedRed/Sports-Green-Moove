@@ -22,6 +22,7 @@ import {validateNativeFollowup} from '../scripts/qa/native-followup-evidence.mjs
 import {validateNativeFollowupMain} from '../scripts/qa/native-followup-main-evidence.mjs';
 import {validateRejectedCaptureProbe} from '../scripts/qa/rejected-capture-probe-evidence.mjs';
 import {validateTestRunnerSecurity} from '../scripts/qa/test-runner-security-evidence.mjs';
+import {tlsAgentSecurityFolder, validateTlsAgentSecurity} from '../scripts/qa/tls-agent-security-evidence.mjs';
 import {validateCaptureWindowEvidence} from '../scripts/qa/capture-window-evidence.mjs';
 import {validateReleaseRecheck} from '../scripts/qa/release-recheck-evidence.mjs';
 import {childBookingReceiptFolder, validateChildBookingReceiptEvidence, validateLatestPreparationDiagnostics} from '../scripts/qa/child-booking-receipt-evidence.mjs';
@@ -35,6 +36,9 @@ export function validateCurrentChecks(root, content) {
   validateReleaseRecheck(root);
   validateCaptureWindowEvidence(root);
   validateTestRunnerSecurity(root);
+  validateTlsAgentSecurity(root);
+  assert(content.updates.some(row => row.source === tlsAgentSecurityFolder + 'README.md'));
+  assert.equal(content.blockers.find(row => row.id === 'dependency-security').latestSource, tlsAgentSecurityFolder + 'README.md');
   validateNativeFollowup(root, content.flows.find(row => row.id === 'team-conversation').nativeRecheck);
   validateNativeFollowupMain(root);
   validateRejectedCaptureProbe(root, content.rejectedCaptureRecheck);
