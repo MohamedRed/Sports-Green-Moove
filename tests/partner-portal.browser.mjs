@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {verifyAppearanceGallery} from './partner-portal-appearance.browser.mjs';
 import { mkdirSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { content } from '../partner-portal/content.mjs';
@@ -272,6 +273,7 @@ try {
   await verifyTeamRestartGallery({ browser, base, output });
   await verifyDirectBookingTour({ browser, base, output });
   await verifyTripCancellationTour({browser, base, output});
+  await verifyAppearanceGallery({browser, base, output});
   for (const width of [1440, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(`${base}/#suite`);

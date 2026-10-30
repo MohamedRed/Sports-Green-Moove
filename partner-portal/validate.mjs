@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {validateAppearanceEvidence} from './appearance-evidence.mjs';
 import {validateCurrentChecks} from './current-checks-validation.mjs';
 import {validateInvitationConnectionFailure, validateNativeCapacityFailure} from '../scripts/qa/preparation-failure-evidence.mjs';
 import { validatePublicationEvidence } from './publication-evidence.mjs';
@@ -63,6 +64,7 @@ import { validateUiScope } from './ui-scope-validation.mjs';
 export { validateUiScope } from './ui-scope-validation.mjs';
 
 export function validate(root) {
+  validateAppearanceEvidence(root, content.flows.find(flow => flow.id === 'appearance'), captures);
   validateNativeSocketDisconnect(root);
   validateChildInvitationEvidence(root);
   validatePublicationEvidence(root, content.flows.find(flow => flow.id === 'publication'));

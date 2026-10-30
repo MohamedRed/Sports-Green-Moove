@@ -22,12 +22,14 @@ test('terminal full native failure is specifically a capacity failure before UI,
   assert.deepEqual(validateNativeCapacityFailure(root), {failurePhase: 'emulator-capacity-before-tests', acceptedTestCases: 0, releaseComplete: false});
 });
 test('public progress keeps earlier successful phone galleries and adds no diagnostic screenshots or readiness promotion', () => {
-  assert.equal(content.updates[0].source, invitationConnectionFolder + 'README.md');
-  assert.equal(content.updates[0].flow, 'child-emergency');
+  const update = content.updates.find(row => row.source === invitationConnectionFolder + 'README.md');
+  assert(update); assert.equal(update.flow, 'child-emergency');
   const flow = content.flows.find(row => row.id === 'child-emergency');
   assert.equal(flow.status, 'partial'); assert.notEqual(flow.checkedAt, '2026-10-30');
   assert(!Object.values(captures).some(path => path.startsWith(invitationConnectionFolder)));
   assert(content.blockers.some(row => row.id === 'child-invitation-browser'));
   assert(content.blockers.some(row => row.id === 'native-device-capacity'));
-  for (const row of content.updates.slice(0, 2)) assert.doesNotMatch(row.title + row.text, /BrowserStack|Firebase|SDK|localhost|port|APK/);
+  const capacityUpdate = content.updates.find(row => row.source === 'docs/release/evidence/native-capacity-e64555e-2026-10-30/README.md');
+  assert(capacityUpdate);
+  for (const row of [update, capacityUpdate]) assert.doesNotMatch(row.title + row.text, /BrowserStack|Firebase|SDK|localhost|port|APK/);
 });

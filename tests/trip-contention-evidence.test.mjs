@@ -121,8 +121,9 @@ test('the regression is mandatory in smoke CI and has no broadened race acceptan
   assert(!read('scripts/qa/local-trip-cancellation-races.mjs').includes("['ABORTED', 'FAILED_PRECONDITION', 'INTERNAL']"));
   assert.equal(content.flows.find((item) => item.id === 'publication').status, 'partial');
   const followup = content.blockers.find((item) => item.id === 'cancellation-race');
-  assert.equal(followup.source, base + 'README.md');
-  assert.match(followup.next, /téléphone/); assert.match(followup.next, /pas encore en ligne/);
+  assert.equal(followup.historical.source, base + 'README.md');
+  assert.equal(followup.source, 'docs/release/evidence/cancellation-stale-phone-2026-10-30/README.md');
+  assert.match(followup.next, /téléphone/); assert.match(followup.next, /pas encore en ligne/i);
 });
 
 test('synthetic payment reconciliation retains cancellation ordering and immutable invoices', () => {

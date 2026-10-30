@@ -45,11 +45,14 @@ test('mixed runs, missing checkpoints and changed displayed schedule are rejecte
 
 test('portal advances only schedule scope and keeps the old gallery dated', () => {
   const flow = content.flows.find(row => row.id === 'publication');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-28');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.scheduleDraftPhone.checkedAt, '2026-10-28');
+  assert.equal(flow.checkedAt, flow.staleCancellationPhone.checkedAt);
   assert.equal(flow.tripDraftPhone.checkedAt, '2026-10-26');
   assert.equal(flow.local.checkedAt, '2026-10-17'); assert.equal(flow.ui.checkedAt, '2026-10-18');
   assert.match(flow.remaining, /application du changement et la carte sur téléphone/);
-  assert.equal(flow.tour.length, 5); assert(!flow.images.some(image => /schedule-phone/.test(image.file)));
+  assert.equal(flow.tour.filter(step => step.image.startsWith('cancel-phone-')).length, 5);
+  assert.equal(flow.tour.filter(step => step.image.startsWith('cancel-stale-phone-')).length, 5);
+  assert.equal(flow.tour.length, 10); assert(!flow.images.some(image => /schedule-phone/.test(image.file)));
   assert(evidenceSourcePaths(content).includes(scheduleDraftPhone.checksums));
   const update = content.updates.find(row => row.source === scheduleDraftPhone.source);
   assert.equal(update.date, '2026-10-28'); assert.doesNotMatch(update.text, /BrowserStack|Firebase|APK|ENOSPC/i);

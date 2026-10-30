@@ -1,11 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { readFileSync, mkdtempSync, writeFileSync, rmSync, mkdirSync, cpSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { validateNeutralTextUnits, validateNeutralTextCaptureFiles, neutralTextCases } from '../scripts/qa/neutral-text-contrast-evidence.mjs';
+import {neutralVisualSource, validateNeutralTextVisualReview} from '../scripts/qa/neutral-text-visual-evidence.mjs';
+import {validateAppearanceEvidence} from '../partner-portal/appearance-evidence.mjs';
+import {content, captures} from '../partner-portal/content.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const read = path => readFileSync(resolve(root, path), 'utf8');
@@ -80,4 +83,50 @@ test('capture-integrity checks require all eight original frames, windows and co
     writeFileSync(path, JSON.stringify(original)); rmSync(resolve(directory, neutralTextCases[7] + '.png'));
     assert.throws(() => validateNeutralTextCaptureFiles(directory));
   } finally { rmSync(directory, { recursive: true, force: true }); }
+});
+
+test('eight reviewed original viewports bind to successful CI cases without physical or global contrast acceptance', () => {
+  const review = validateNeutralTextVisualReview(root);
+  assert.equal(review.reviewedViewports, 8); assert.equal(review.tokenMeasurements.pairs, 30);
+  assert.equal(review.tokenMeasurements.currentFailures, 0);
+  validateAppearanceEvidence(root, content.flows.find(flow => flow.id === 'appearance'), captures);
+});
+
+test('even freshly checksummed reviews cannot promote the bounded viewports to broader proof', () => {
+  const temporary = mkdtempSync(resolve(tmpdir(), 'sgm-neutral-review-negative-'));
+  const evidence = resolve(temporary, 'docs/release/evidence'); mkdirSync(evidence, {recursive: true});
+  cpSync(resolve(root, neutralVisualSource), resolve(temporary, neutralVisualSource), {recursive: true});
+  for (const name of ['source-archive', 'neutral-text-contrast-2026-10-20'])
+    symlinkSync(resolve(root, 'docs/release/evidence', name), resolve(evidence, name));
+  const folder = resolve(temporary, neutralVisualSource), original = JSON.parse(readFileSync(resolve(folder, 'review.json')));
+  const hashes = JSON.parse(readFileSync(resolve(folder, 'artifact-sha256.json')));
+  const change = transform => {
+    const review = structuredClone(original); transform(review);
+    const bytes = JSON.stringify(review, null, 2) + '\n';
+    writeFileSync(resolve(folder, 'review.json'), bytes);
+    writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify({...hashes,
+      'review.json': createHash('sha256').update(bytes).digest('hex')}));
+  };
+  try {
+    validateNeutralTextVisualReview(temporary);
+    for (const key of ['physicalDevice', 'connectedFlow', 'screenReaderVerified', 'accentContrastAccepted',
+      'systemInsetsAccepted', 'releaseAccepted', 'mediaEdits', 'neutralTextOverlapObserved']) {
+      change(review => {review[key] = true;}); assert.throws(() => validateNeutralTextVisualReview(temporary), key);
+    }
+    for (const mutate of [review => {review.cases.pop();}, review => {review.sourceCommit = '0'.repeat(40);},
+      review => {review.fontScale = 1;}, review => {review.sourceFiles = {};}, review => {review.reviewedAt = '2026-10-31';}]) {
+      change(mutate); assert.throws(() => validateNeutralTextVisualReview(temporary));
+    }
+  } finally {rmSync(temporary, {recursive: true, force: true});}
+});
+
+test('appearance preserves historical dates and cannot turn a partial visual review into a completed flow', () => {
+  const original = content.flows.find(flow => flow.id === 'appearance');
+  assert.deepEqual(original.images.slice(-2).map(image => image.checkedAt), ['2026-10-15', '2026-10-15']);
+  for (const mutate of [flow => {flow.status = 'verified';}, flow => {flow.ui.checkedAt = '2026-10-30';},
+    flow => {flow.images.pop();}, flow => {flow.images[0].landscape = true;}]) {
+    const flow = structuredClone(original); mutate(flow); assert.throws(() => validateAppearanceEvidence(root, flow, captures));
+  }
+  const browserCopy = JSON.stringify({flow: original, progress: content.updates.filter(entry => entry.flow === 'appearance')});
+  assert(!/BrowserStack|Firebase|Compose|Jetpack|Playwright/.test(browserCopy));
 });

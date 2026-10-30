@@ -26,6 +26,7 @@ import { createNavigationFlow, createSearchFlow } from './parent-phone-flows.mjs
 import { createEmergencyFlow } from './emergency-flow.mjs';
 import { createChildEmergencyFlow } from './child-emergency-flow.mjs';
 import { createEmergencyProfileFlow } from './emergency-profile-flow.mjs';
+import { createAppearanceFlow } from './appearance-flow.mjs';
 import { createSessionRestorationFlow } from './session-restoration-flow.mjs';
 import { createSessionDisconnectFlow } from './session-disconnect-flow.mjs';
 import { createNotificationSettingsFlow } from './notification-settings-flow.mjs';
@@ -248,13 +249,7 @@ export const content = {
     createProfileCityFlow(),
     createUrgentSupportFlow(shot),
     createSupportSubmissionFlow(shot),
-    { id: 'appearance', title: 'Affichage et thème sombre', status: 'partial', checkedAt: '2026-10-15',
-      summary: 'La connexion passe en paysage et le thème est conservé après relancement.',
-      verified: 'Connexion en paysage et conservation du thème après fermeture complète vérifiées en local.',
-      remaining: 'Revoir le contraste des textes secondaires et vérifier l’accessibilité sur téléphone.',
-      ui: ui(['landscape-login-ui', 'theme-process-restart-ui']),
-      images: [shot('local-landscape', 'Formulaire de connexion en paysage, après défilement'),
-        shot('local-theme', 'Thème sombre conservé après relancement complet')], source: uiReport },
+    createAppearanceFlow(ui, shot),
     { id: 'social-auth', title: 'Connexion via un autre compte', status: 'deferred',
       summary: 'Prévue après la connexion par e-mail.',
       verified: 'Pas encore testé.',

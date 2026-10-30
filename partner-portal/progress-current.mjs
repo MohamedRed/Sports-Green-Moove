@@ -1,3 +1,4 @@
+import {appearanceProgress} from './appearance-flow.mjs';
 import { tripDraftPhoneProgress } from './trip-draft-phone.mjs';
 import { chatNetworkRecoveryProgress, chatNetworkRecheckProgress } from './chat-network-recovery.mjs';
 import { scheduleDraftPhoneProgress } from './schedule-draft-phone.mjs';
@@ -37,6 +38,7 @@ import {staleCancellationProgress, cancellationBaselineProgress} from './cancell
 import {invitationConnectionProgress, nativeCapacityProgress} from './preparation-failures.mjs';
 
 export const currentProgress = [
+  appearanceProgress,
   invitationConnectionProgress,
   nativeCapacityProgress,
   staleCancellationProgress,

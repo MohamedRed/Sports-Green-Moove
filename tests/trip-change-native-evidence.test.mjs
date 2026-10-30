@@ -87,7 +87,8 @@ test('seven component cases passed while the broader cancellation regression and
 
 test('partner progress stays partial, dates historical captures and excludes unapproved map images', () => {
   const flow = content.flows.find((item) => item.id === 'publication');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-28'); assert.equal(flow.local.checkedAt, '2026-10-17');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, flow.staleCancellationPhone.checkedAt);
+  assert.equal(flow.staleCancellationPhone.checkedAt, '2026-10-30'); assert.equal(flow.local.checkedAt, '2026-10-17');
   assert.equal(flow.ui.checkedAt, '2026-10-18');
   assert.equal(flow.source, 'docs/release/evidence/real-maps-native-2026-10-18/README.md');
   assert.equal(flow.local.source, base + 'services.json');

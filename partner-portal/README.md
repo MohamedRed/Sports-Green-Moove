@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The 30 October neutral-text visual review accepts eight original Search/Trips
+component viewports with enlarged text in both themes and two fixed formats.
+Keep Appearance partial, retain the two older images with their October 15 dates,
+and publish one concise simulated-review note. The separate thirty token ratios
+do not accept brand-colored controls, full-app accessibility, physical phones or
+system insets. Original window frames remain evidence, not additional public
+gallery images. The source-specific successful dcd7a5e run is not a current-head
+CI acceptance. Public access remains unchanged.
+
 The later 30 October invitation attempt fails before the form on the physical
 Android browser, for both approved loopback addresses. No child account,
 redemption or parent approval occurs. The helper later exits without a requested

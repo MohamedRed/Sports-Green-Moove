@@ -49,7 +49,8 @@ export const blockers = [
   { id: 'cancellation-race', title: 'Rejouer deux actions simultanées',
     text: 'Sur téléphone, une réservation modifiée bloque l’ancienne confirmation d’annulation. L’actualisation permet de confirmer sans doublon.',
     next: 'Rejouer l’acceptation et l’annulation simultanément entre deux téléphones. Pas encore en ligne.',
-    source: 'docs/release/evidence/cancellation-stale-phone-2026-10-30/README.md' },
+    source: 'docs/release/evidence/cancellation-stale-phone-2026-10-30/README.md',
+    historical: {source: 'docs/release/evidence/local-trip-contention-2026-10-17/README.md'} },
   { id: 'session-restoration', title: 'Reprendre la session après une erreur',
     text: 'Réessayer retrouve le même compte en local. Se déconnecter garde l’app déconnectée après relancement.',
     next: 'Rejouer sur téléphone avec une vraie coupure.', source: 'docs/release/evidence/session-disconnect-native-2026-10-20/README.md' },
@@ -73,6 +74,6 @@ export const blockers = [
     text: 'La ville est enregistrée puis effacée sur téléphone. La commission reste à choisir ; le montant fixe est retiré des réglages.',
     next: 'Choisir la commission avant les paiements et vérifier la ville sur iPhone. Pas encore en ligne dans l’app.', source: 'docs/release/evidence/profile-ledger-phone-2026-10-24/README.md' },
   { id: 'contrast', title: 'Lisibilité des écrans',
-    text: 'Le thème est conservé, mais certains textes secondaires restent peu contrastés.',
-    next: 'Revoir les contrastes, les dates des réservations et les marges en haut de l’écran.', source: 'docs/release/evidence/local-ui-2026-10-15/README.md' },
+    text: 'Les textes secondaires de Recherche et Mes trajets sont revus sur huit vues agrandies, en simulation.',
+    next: 'Revoir les boutons colorés, les dates des réservations, les marges et l’accessibilité sur téléphone.', source: 'docs/release/evidence/neutral-text-visual-2026-10-30/README.md' },
 ];
