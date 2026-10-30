@@ -21,9 +21,9 @@ test('the eight-checkpoint phone replay closes auth/process recovery but not net
   assert.equal(result.gate.contextualComponentCases, 3);
   const flow = content.flows.find(row => row.id === 'ratings');
   assert.equal(flow.status, 'partial'); assert.equal(flow.tour.length, 4);
-  assert.equal(flow.images.filter(row => !row.file.startsWith('review-network-phone-')).length, 38);
+  assert.equal(flow.images.filter(row => !['review-network-phone-', 'review-receipt-phone-'].some(prefix => row.file.startsWith(prefix))).length, 38);
   assert(flow.tour.every(row => row.image.startsWith('review-page-')));
-  assert.match(flow.remaining, /confirmation après enregistrement/); assert.match(flow.remaining, /iPhone/);
+  assert.match(flow.remaining, /iPhone/);
   const current = flow.images.filter(row => row.file.startsWith('review-trip-replay-')); assert.equal(current.length, 7);
   for (const row of current) {assert(captures[row.file].startsWith(contextReplayFolder)); assert.match(row.alt, /comptes de test, capture de session du 29 octobre/);}
   assert(!content.blockers.some(row => row.id === 'native-primary-capture'));

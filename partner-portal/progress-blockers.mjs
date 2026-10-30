@@ -2,11 +2,11 @@ import { nativeVerification } from './native-verification.mjs';
 
 export const blockers = [
   {id: 'native-current-gate', title: 'Terminer la nouvelle série de vérifications',
-    text: 'La nouvelle série a été interrompue avant la fin. Les contrôles séparés passent.',
+    text: 'Un contrôle de capture échoue dans la dernière série terminée. Un nouvel essai est en cours.',
     next: 'Terminer la série complète avec les nouveaux correctifs.', source: 'docs/release/evidence/review-network-phone-2026-10-30/README.md'},
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
-    text: 'La coupure puis la nouvelle tentative passent sur téléphone, sans doublon et pour la bonne date.',
-    next: 'Rejouer la perte de confirmation après enregistrement, puis l’iPhone.', source: 'docs/release/evidence/review-network-phone-2026-10-30/README.md'},
+    text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',
+    next: 'Vérifier sur iPhone et avec une coupure pendant un vrai déplacement.', source: 'docs/release/evidence/review-receipt-phone-2026-10-30/README.md'},
   {id: 'tracking-reconnect-display', title: 'Rejouer le suivi en direct',
     text: 'L’essai séparé confirme un blocage de la connexion privée de test.',
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',

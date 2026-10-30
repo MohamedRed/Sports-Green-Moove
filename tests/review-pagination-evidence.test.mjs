@@ -22,7 +22,7 @@ test('new 31-ride phone and 320-ride service proof close the gap without replaci
   const flow = content.flows.find(row => row.id === 'ratings');
   assert.equal(flow.status, 'partial'); assert.equal(content.reviewPaginationRecheck.checkedAt, '2026-10-29'); assert.equal(flow.tour.length, 4);
   assert(flow.tour.every(row => row.image.startsWith('review-page-')));
-  assert.match(flow.remaining, /confirmation après enregistrement/); assert.match(flow.remaining, /iPhone/);
+  assert.match(flow.remaining, /iPhone/);
   assert(!content.blockers.some(row => row.id === 'review-history-window'));
   assert(content.blockers.some(row => row.id === 'review-trip-context'));
   assert.equal(flow.images.filter(row => row.file.startsWith('received-rating-')).length, 5);

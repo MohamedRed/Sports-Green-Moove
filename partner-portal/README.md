@@ -2,6 +2,22 @@
 
 ## Current Publication Policy
 
+The later 30 October post-commit reply-loss trial completes seven independent
+record checkpoints on one physical Android phone. The real callable stores the
+five-star review before its exact success reply is withheld; explicit retry
+retains one immutable record. PID/no-process/new-PID observations corroborate
+Force stop/reopen. The driver sees 5/5 for one review and two separate requests.
+Publish five reviewed phone crops with their full original session images retained.
+Preserve the initial five-checkpoint failed setup and its full driver error image;
+its read allowlist omitted driver requests. The fresh trial includes that read and
+passes without the banner. Original timestamps were compared in the observer,
+not exported as raw rating data. No real-world radio loss, iOS, installed-byte
+verification, package-removal proof or release completion is claimed. Preserve
+all earlier media/tour, public access and concise technology-free French copy.
+The 60814d7 full gate terminates with 197 ordinary passes, 54 skips and one
+PixelCopy failure; its separate integrated replay passes. Do not call it green
+or attribute a renderer repair to this evidence-only change.
+
 The 30 October controlled offline review replay uses one physical Android phone
 and two isolated accounts. Publish five reviewed original session-window JPEGs:
 inline failure retains both dated trips, explicit retry stores one exact review,

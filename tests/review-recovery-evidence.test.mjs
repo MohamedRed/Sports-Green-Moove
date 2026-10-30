@@ -13,11 +13,11 @@ test('recovery evidence proves scoped components and loopback faults without phy
   assert.equal(validateReviewRecovery(root, content.reviewSubmissionRecovery).nativeComponentCases, 11);
   const flow = content.flows.find(row => row.id === 'ratings');
   assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
-  assert.equal(flow.images.filter(row => !row.file.startsWith('review-network-phone-')).length, 38);
+  assert.equal(flow.images.filter(row => !['review-network-phone-', 'review-receipt-phone-'].some(prefix => row.file.startsWith(prefix))).length, 38);
   assert.equal(flow.tour.length, 4); assert(flow.tour.every(row => row.image.startsWith('review-page-')));
   const images = flow.images.filter(row => row.file.startsWith('review-trip-network-')); assert.equal(images.length, 3);
   for (const row of images) {assert.match(row.alt, /simulation du 29 octobre/); assert(captures[row.file].startsWith(reviewRecoveryFolder));}
-  assert.match(flow.remaining, /confirmation après enregistrement/); assert.match(flow.remaining, /iPhone/);
+  assert.match(flow.remaining, /iPhone/);
   assert(content.blockers.some(row => row.id === 'native-current-gate'));
 });
 for (const key of ['physicalNetworkLossProven', 'physicalDeviceTested', 'iosUiExecuted', 'productionDeployed',

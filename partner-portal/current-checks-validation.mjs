@@ -14,6 +14,7 @@ import {validateContextPhoneAttempt} from '../scripts/qa/review-context-phone-ev
 import {validateContextReplayEvidence} from '../scripts/qa/review-context-replay-evidence.mjs';
 import {validateReviewRecovery} from '../scripts/qa/review-recovery-evidence.mjs';
 import {validateReviewNetworkPhone} from '../scripts/qa/review-network-phone-evidence.mjs';
+import {validateReviewReceiptPhone} from '../scripts/qa/review-receipt-phone-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
   validateRequestSafetyEvidence(root, content.requestSafetyRecheck);
@@ -32,4 +33,5 @@ export function validateCurrentChecks(root, content) {
   validateContextReplayEvidence(root, content.reviewContextPhoneReplay);
   validateReviewRecovery(root, content.reviewSubmissionRecovery);
   validateReviewNetworkPhone(root, content.reviewNetworkPhone);
+  validateReviewReceiptPhone(root, content.reviewReceiptPhone);
 }

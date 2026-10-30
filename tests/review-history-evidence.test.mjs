@@ -13,7 +13,7 @@ test('an unchanged 104-rating regression fails with the old handler and passes w
   const flow = content.flows.find(row => row.id === 'ratings');
   assert.equal(flow.status, 'partial'); assert.equal(content.reviewHistoryRecheck.checkedAt, '2026-10-29');
   assert.deepEqual(flow.images.slice(-4).map(row => row.file), ['ride-phone-review-prompt', 'ride-phone-reviewed', 'ride-review', 'ride-review-sent']);
-  assert.match(flow.images.at(-4).alt, /23 octobre/); assert.match(flow.remaining, /confirmation après enregistrement/);
+  assert.match(flow.images.at(-4).alt, /23 octobre/); assert.match(flow.remaining, /iPhone/);
 });
 for (const [index, file, mutate] of [
   [0, 'before.json', value => {value.completed = true;}],

@@ -16,7 +16,7 @@ test('retained phone review history has seven original captures and independent 
   assert.equal(validateReviewPhoneEvidence(root).completedCheckpoints, 7);
   const flow = content.flows.find(row => row.id === 'ratings');
   assert.equal(content.reviewHistoryPhone.checkedAt, '2026-10-29'); assert.equal(flow.status, 'partial'); assert.equal(flow.tour.length, 4);
-  assert.match(flow.remaining, /confirmation après enregistrement/); assert.match(flow.remaining, /iPhone/);
+  assert.match(flow.remaining, /iPhone/);
   assert.equal(flow.images.filter(row => row.file.startsWith('review-history-')).length, 7);
   for (const phase of reviewPhonePhases) {
     assert.equal(captures['review-history-' + phase], reviewPhoneDirectory + 'captures/' + phase + '.jpg');

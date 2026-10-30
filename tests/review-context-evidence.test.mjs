@@ -15,9 +15,9 @@ test('the local context proof stays separate from the later partial phone attemp
   assert.equal(validateReviewContextEvidence(root).nativeComponentCases, 9);
   const flow = content.flows.find(row => row.id === 'ratings');
   assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
-  assert.equal(flow.images.filter(row => !row.file.startsWith('review-network-phone-')).length, 38);
+  assert.equal(flow.images.filter(row => !['review-network-phone-', 'review-receipt-phone-'].some(prefix => row.file.startsWith(prefix))).length, 38);
   assert.equal(flow.tour.length, 4); assert(flow.tour.every(row => row.image.startsWith('review-page-')));
-  assert.match(flow.remaining, /confirmation après enregistrement/); assert.match(flow.remaining, /iPhone/);
+  assert.match(flow.remaining, /iPhone/);
   assert.equal(flow.images.filter(row => row.file.startsWith('review-history-')).length, 7);
   assert.equal(flow.images.filter(row => row.file.startsWith('received-rating-')).length, 5);
   for (const name of reviewContextCaptures) assert.equal(captures['review-trip-' + name], reviewContextFolder + 'review-trip-context-' + name + '.png');

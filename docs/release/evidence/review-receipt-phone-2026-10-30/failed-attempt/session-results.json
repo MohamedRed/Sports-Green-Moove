@@ -1,0 +1,198 @@
+{
+  "runId": "72a37027509b2f9f62cae56682a97881",
+  "projectId": "demo-sgm-local-qa",
+  "completed": false,
+  "checks": [
+    {
+      "phase": "parent-ready",
+      "observedAt": "2026-10-30T09:45:13.419Z",
+      "status": "passed",
+      "ratingCount": 0,
+      "parentRequests": 2,
+      "driverRequests": 2,
+      "originalTimestampAndFieldsPreserved": false,
+      "originalRecordsAndClaimsPreserved": true,
+      "proxy": {
+        "scope": "isolated-callable-response-withholding-not-radio-loss-or-phone-ui-proof",
+        "runId": "72a37027509b2f9f62cae56682a97881",
+        "phase": "armed",
+        "attempts": [],
+        "failed": false
+      },
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "receipt-lost",
+      "observedAt": "2026-10-30T09:46:12.875Z",
+      "status": "passed",
+      "ratingCount": 1,
+      "parentRequests": 1,
+      "driverRequests": 2,
+      "originalTimestampAndFieldsPreserved": true,
+      "originalRecordsAndClaimsPreserved": true,
+      "proxy": {
+        "scope": "isolated-callable-response-withholding-not-radio-loss-or-phone-ui-proof",
+        "runId": "72a37027509b2f9f62cae56682a97881",
+        "phase": "lost",
+        "attempts": [
+          {
+            "method": "submitRating",
+            "phase": "armed",
+            "uid": "sgm-qa-parent",
+            "upstreamAcknowledged": true,
+            "responseReleased": false,
+            "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+            "upstreamStatus": 200
+          }
+        ],
+        "failed": false
+      },
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "retry-ready",
+      "observedAt": "2026-10-30T09:46:19.771Z",
+      "status": "passed",
+      "ratingCount": 1,
+      "parentRequests": 1,
+      "driverRequests": 2,
+      "originalTimestampAndFieldsPreserved": true,
+      "originalRecordsAndClaimsPreserved": true,
+      "proxy": {
+        "scope": "isolated-callable-response-withholding-not-radio-loss-or-phone-ui-proof",
+        "runId": "72a37027509b2f9f62cae56682a97881",
+        "phase": "recover",
+        "attempts": [
+          {
+            "method": "submitRating",
+            "phase": "armed",
+            "uid": "sgm-qa-parent",
+            "upstreamAcknowledged": true,
+            "responseReleased": false,
+            "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+            "upstreamStatus": 200
+          }
+        ],
+        "failed": false
+      },
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "parent-confirmed",
+      "observedAt": "2026-10-30T09:47:25.878Z",
+      "status": "passed",
+      "ratingCount": 1,
+      "parentRequests": 1,
+      "driverRequests": 2,
+      "originalTimestampAndFieldsPreserved": true,
+      "originalRecordsAndClaimsPreserved": true,
+      "proxy": {
+        "scope": "isolated-callable-response-withholding-not-radio-loss-or-phone-ui-proof",
+        "runId": "72a37027509b2f9f62cae56682a97881",
+        "phase": "recover",
+        "attempts": [
+          {
+            "method": "submitRating",
+            "phase": "armed",
+            "uid": "sgm-qa-parent",
+            "upstreamAcknowledged": true,
+            "responseReleased": false,
+            "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+            "upstreamStatus": 200
+          },
+          {
+            "method": "submitRating",
+            "phase": "recover",
+            "uid": "sgm-qa-parent",
+            "upstreamAcknowledged": true,
+            "responseReleased": true,
+            "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+            "upstreamStatus": 200
+          }
+        ],
+        "failed": false
+      },
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "parent-restored",
+      "observedAt": "2026-10-30T09:54:12.567Z",
+      "status": "passed",
+      "ratingCount": 1,
+      "parentRequests": 1,
+      "driverRequests": 2,
+      "originalTimestampAndFieldsPreserved": true,
+      "originalRecordsAndClaimsPreserved": true,
+      "proxy": {
+        "scope": "isolated-callable-response-withholding-not-radio-loss-or-phone-ui-proof",
+        "runId": "72a37027509b2f9f62cae56682a97881",
+        "phase": "recover",
+        "attempts": [
+          {
+            "method": "submitRating",
+            "phase": "armed",
+            "uid": "sgm-qa-parent",
+            "upstreamAcknowledged": true,
+            "responseReleased": false,
+            "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+            "upstreamStatus": 200
+          },
+          {
+            "method": "submitRating",
+            "phase": "recover",
+            "uid": "sgm-qa-parent",
+            "upstreamAcknowledged": true,
+            "responseReleased": true,
+            "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+            "upstreamStatus": 200
+          }
+        ],
+        "failed": false
+      },
+      "phoneUiProvenByObserver": false
+    }
+  ],
+  "failedCheckpoint": "driver-summary",
+  "failureKind": "ERR_ASSERTION",
+  "proxy": {
+    "scope": "isolated-callable-response-withholding-not-radio-loss-or-phone-ui-proof",
+    "runId": "72a37027509b2f9f62cae56682a97881",
+    "phase": "recover",
+    "attempts": [
+      {
+        "method": "submitRating",
+        "phase": "armed",
+        "uid": "sgm-qa-parent",
+        "upstreamAcknowledged": true,
+        "responseReleased": false,
+        "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+        "upstreamStatus": 200
+      },
+      {
+        "method": "submitRating",
+        "phase": "recover",
+        "uid": "sgm-qa-parent",
+        "upstreamAcknowledged": true,
+        "responseReleased": true,
+        "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+        "upstreamStatus": 200
+      }
+    ],
+    "failed": true
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "fixtureSubmittedRatings": 0,
+  "controllerSubmittedRatings": false,
+  "phoneUiProvenByObserver": false,
+  "realWorldRadioLossProven": false,
+  "installedBytesIndependentlyVerified": false,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPayments": false,
+  "sourceApkSha256": "21d325914327eee4c883c5378d263ec31ba425fb3c628690f4c2c3f866666942",
+  "sourceFiles": {
+    "scripts/qa/manual-review-receipt-loss-session.mjs": "894d9bbd2b518a963e0d0f76c6b64353610d599ce18d6d7bc6c3efd66e4d3707",
+    "scripts/qa/review-receipt-loss-proxy.mjs": "2ff1f87c98eff0c497a47f5f8dfcbd02cb86c230fe2c2d52a148894253f4a032"
+  }
+}

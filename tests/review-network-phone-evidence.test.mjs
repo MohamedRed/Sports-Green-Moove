@@ -25,10 +25,10 @@ for (const [name, mutate] of [
   const summary = load('summary'), phone = load('records/session-results'); mutate(summary, phone);
   assert.throws(() => assertReviewNetworkPhone(summary, phone));
 });
-test('portal preserves earlier images, dates and remaining confirmation-loss/iPhone scope', () => {
+test('portal preserves earlier images, dates and remaining iPhone scope', () => {
   const flow = content.flows.find(row => row.id === 'ratings');
   assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.checkedAt, '2026-10-30');
-  assert.equal(flow.images.length, 43); assert.match(flow.remaining, /confirmation.*enregistrement.*iPhone/);
+  assert.equal(flow.images.filter(row => !row.file.startsWith('review-receipt-phone-')).length, 43); assert.match(flow.remaining, /iPhone/);
   for (const name of ['offline-failed', 'parent-rated', 'parent-restored', 'driver-summary', 'driver-requests']) {
     const id = 'review-network-phone-' + name;
     assert.equal(captures[id], reviewNetworkPhoneFolder + 'captures/' + name + '.jpg');

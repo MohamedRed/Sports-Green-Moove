@@ -14,6 +14,7 @@ import {reviewContextPhoneAttempt} from './review-context-phone.mjs';
 import {reviewContextPhoneReplay} from './review-context-replay.mjs';
 import {reviewSubmissionRecovery} from './review-submission-recovery.mjs';
 import {reviewNetworkPhone} from './review-network-phone.mjs';
+import {reviewReceiptPhone} from './review-receipt-phone.mjs';
 import {createRatingsFlow} from './ratings-flow.mjs';
 import { createPublicationFlow } from './publication-flow.mjs';
 import { createBookingFlow } from './booking-flow.mjs';
@@ -81,6 +82,7 @@ export const content = {
   reviewContextPhoneReplay,
   reviewSubmissionRecovery,
   reviewNetworkPhone,
+  reviewReceiptPhone,
   reviewBaselineGateRecheck,
   boundedValidationRecheck: { source: 'docs/release/evidence/bounded-validation-2026-10-24/summary.json',
     checkedAt: '2026-10-24', checksums: 'docs/release/evidence/bounded-validation-2026-10-24/artifact-sha256.json' },
