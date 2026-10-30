@@ -10,6 +10,7 @@ output_dir="$repo_root/android/app/build/outputs/focused-safety-ui/$phase"
 mkdir -p "$output_dir" || exit 1
 if [[ "$phase" == chat-network-recovery ]]; then
   node "$repo_root/scripts/qa/observe-network-bootstrap.mjs" "$output_dir/network-bootstrap" || exit 1
+  node "$repo_root/scripts/qa/wait-disposable-wifi.mjs" "$output_dir/network-readiness" || exit 1
 fi
 device_receipt="$output_dir/disposable-device-setup.json"
 node "$repo_root/scripts/qa/configure-continuous-disposable.mjs" > "$device_receipt" || exit 1

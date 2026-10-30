@@ -387,14 +387,28 @@ and [NetworkStackService](https://android.googlesource.com/platform/packages/mod
 The independent `chat-network-recovery` lane uses a fresh disposable device and
 the unchanged `LocalChatNetworkFlowTest`, `replayWithNetworkCleanup` and
 `verifyChatNetworkUi`. It observes bootstrap state before test-app installation,
-then prepares refused/cancelled picker history through isolated callables rather
+then passively observes default Wi-Fi capabilities for at most 180 seconds before
+installing test apps. This prerequisite issues no new network requests, changes
+no settings, and fails closed if Wi-Fi is not the validated default network.
+Sanitized samples and existing validation history are retained independently;
+readiness is not accepted as a user-flow result or a network repair. A failed
+prerequisite does not start or publish an app-flow outcome. The runner then
+prepares refused/cancelled picker history through isolated callables rather
 than relying on earlier UI cases. A primary evidence-copy failure, failed radio
 prerequisite, duplicate message or failed cleanup still fails the lane. Recovery
 copies cannot rescue a failed primary copy. The original full matrix still runs
 and remains required; this extra lane does not replace or weaken it. Both lanes
-use the existing 30-second cellular preparation deadline, not a longer wait,
+use the existing 30-second in-app cellular preparation deadline, not a longer wait,
 forced subscription choice or substitute connection. No physical network-loss,
 GPS or release readiness is established by a simulated device.
+
+The 30 October macOS read-only Android 35 observation exhausted that passive
+180-second budget with 59 unready samples; no app was installed or flow run.
+This older Google APIs AVD is not equivalent to the fresh Linux CI device.
+Waiting alone did not restore Wi-Fi in this trial. Independently, the preceding
+`9abc639` focused CI chat job passed without this prerequisite; neither result
+proves the intermittent validation problem is fixed. See
+`docs/release/evidence/wifi-prerequisite-2026-10-30/README.md`.
 
 The ride case needs a Google APIs image with functioning Play services. It grants
 permissions only to `.local`, then injects a synthetic location through the

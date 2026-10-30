@@ -18,6 +18,7 @@ function run(t, phase, overrides = {}) {
   cpSync(new URL('../scripts/run-focused-android-ui.sh', import.meta.url), join(root, 'scripts/run.sh'));
   const commands = [
     '*observe-network-bootstrap.mjs) echo bootstrap >> "$CALL_LOG"; exit "$BOOTSTRAP_STATUS";;',
+    '*wait-disposable-wifi.mjs) echo readiness >> "$CALL_LOG"; exit "$READINESS_STATUS";;',
     '*configure-continuous-disposable.mjs) echo setup >> "$CALL_LOG"; echo "{}"; exit "$SETUP_STATUS";;',
     '*restore-continuous-disposable.mjs) echo restore >> "$CALL_LOG"; echo "{}"; exit "$RESTORE_STATUS";;',
     '*observe-emulator-shutdown.mjs) echo observe >> "$CALL_LOG"; exit "$OBSERVER_STATUS";;',
@@ -27,7 +28,7 @@ function run(t, phase, overrides = {}) {
   const log = join(root, 'calls');
   const result = spawnSync('bash', [join(root, 'scripts/run.sh'), ...(phase == null ? [] : [phase])], {
     encoding: 'utf8', env: { ...process.env, PATH: join(root, 'bin') + ':' + process.env.PATH,
-      CALL_LOG: log, SETUP_STATUS: '0', RESTORE_STATUS: '0', FLOW_STATUS: '0', OBSERVER_STATUS: '0', BOOTSTRAP_STATUS: '0',
+      CALL_LOG: log, SETUP_STATUS: '0', RESTORE_STATUS: '0', FLOW_STATUS: '0', OBSERVER_STATUS: '0', BOOTSTRAP_STATUS: '0', READINESS_STATUS: '0',
       GITHUB_ACTIONS: 'false', ...overrides },
   });
   assert.equal(result.error, undefined);
@@ -36,7 +37,7 @@ function run(t, phase, overrides = {}) {
   return { ...result, calls: existsSync(log) ? readFileSync(log, 'utf8').trim().split('\n') : [],
     outcome: existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : null };
 }
-const lifecycle = phase => [...(phase === 'chat-network-recovery' ? ['bootstrap'] : []), 'setup', phase, 'restore'];
+const lifecycle = phase => [...(phase === 'chat-network-recovery' ? ['bootstrap', 'readiness'] : []), 'setup', phase, 'restore'];
 for (const phase of focusedCases) {
   for (const [name, env, expected] of [
     ['passes', {}, 0], ['retains its failure', { FLOW_STATUS: '41' }, 41],
@@ -52,6 +53,11 @@ for (const phase of focusedCases) {
 test('unsafe setup executes no flow and owns its rollback', (t) => {
   const result = run(t, 'emergency-identity', { SETUP_STATUS: '3' });
   assert.equal(result.status, 1); assert.deepEqual(result.calls, ['setup']); assert.equal(result.outcome, null);
+});
+test('failed passive Wi-Fi readiness stops the fresh network case before installation or a flow result', t => {
+  const result = run(t, 'chat-network-recovery', {READINESS_STATUS: '41'});
+  assert.equal(result.status, 1); assert.deepEqual(result.calls, ['bootstrap', 'readiness']);
+  assert.equal(result.outcome, null);
 });
 test('CI observes host shutdown only after restored policy and never replaces the original outcome', t => {
   for (const [flow, restore, observer, expected] of [['0', '0', '0', 0], ['41', '0', '3', 41], ['0', '0', '3', 0], ['0', '13', '0', 13]]) {
