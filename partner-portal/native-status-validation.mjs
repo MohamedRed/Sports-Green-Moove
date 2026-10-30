@@ -3,11 +3,13 @@ import {readFileSync} from 'node:fs';
 import {dirname, resolve} from 'node:path';
 import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
 import {parseAndroidJUnitTranscript} from '../scripts/qa/android-junit-transcript.mjs';
-import {supportRecheckFolder, validateSupportRecheckCi} from '../scripts/qa/support-recovery-recheck-evidence.mjs';
+import {validateSupportRecheckCi} from '../scripts/qa/support-recovery-recheck-evidence.mjs';
+import {nativeTimeoutFolder, validateNativeTimeout, validateNativeBudgetFollowup} from '../scripts/qa/native-timeout-evidence.mjs';
 
 export function validateNativeStatus(root, blockers) {
   const blocker = blockers.find(row => row.id === 'native-evidence-copy');
-  assert.equal(blocker.latestSource, supportRecheckFolder + 'README.md'); validateSupportRecheckCi(root);
+  assert.equal(blocker.latestSource, nativeTimeoutFolder + 'README.md'); validateNativeTimeout(root); validateSupportRecheckCi(root);
+  validateNativeBudgetFollowup(root);
   const source = blocker?.source;
   assert.equal(source, 'docs/release/evidence/native-renderer-recheck-2026-10-25/README.md');
   assert.equal(blocker.checksums, dirname(source) + '/artifact-sha256.json');

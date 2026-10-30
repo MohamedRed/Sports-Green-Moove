@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -10,6 +10,34 @@ import { createHash } from 'node:crypto';
 import { validateSdkImagePreparation } from '../scripts/qa/sdk-image-preparation-evidence.mjs';
 import { renderNetworkGateFolder, validateRenderNetworkGate } from '../scripts/qa/render-network-gate-evidence.mjs';
 import { matrixRendererConfiguration } from '../scripts/qa/select-matrix-renderer.mjs';
+import {nativeTimeoutFolder, validateNativeTimeout, validateNativeBudgetFollowup} from '../scripts/qa/native-timeout-evidence.mjs';
+
+test('the outer job receives bounded preparation headroom without changing a single execution or evidence step', () => {
+  const report = validateNativeTimeout(new URL('..', import.meta.url).pathname);
+  assert.deepEqual(report, {ordinaryPassed: 205, ordinarySkipped: 54, partialPrimaryCopies: 10, fullGatePassed: false, deviceCleanupVerified: false});
+  assert.deepEqual(validateNativeBudgetFollowup(new URL('..', import.meta.url).pathname),
+    {fullGatePassed: true, groups: 37, nativeCases: 40, primaryCopies: 17, newBudgetApplied: false, releaseAccepted: false});
+  const prior = YAML.parse(read(nativeTimeoutFolder + 'source-native-ci.yml.txt')).jobs['android-native-ui'];
+  const current = YAML.parse(read('.github/workflows/native-ci.yml')).jobs['android-native-ui'];
+  const {'timeout-minutes': oldLimit, ...oldBody} = prior, {'timeout-minutes': newLimit, ...newBody} = current;
+  assert.equal(oldLimit, 35); assert.equal(newLimit, 50); assert.deepEqual(newBody, oldBody);
+  assert.equal(YAML.parse(read('.github/workflows/native-focused-ui.yml')).jobs['focused-case']['timeout-minutes'], 25);
+});
+for (const [file, mutate] of [
+  ['summary.json', row => {row.fullGatePassed = true;}],
+  ['summary.json', row => {row.deviceCleanupVerified = true;}],
+  ['job.json', row => {row.conclusion = 'success';}],
+  ['annotations.json', row => {row.splice(0, row.length);}],
+  ['following-checks.json', row => {row.statusCheckRollup.find(item => item.name === 'Functions and Firebase rules').conclusion = 'SKIPPED';}],
+  ['following-main/device-restore.json', row => {row.verified = false;}],
+]) test('rehashed timeout evidence cannot invent acceptance: ' + file + ' ' + mutate, t => {
+  const root = mkdtempSync(join(tmpdir(), 'sgm-native-timeout-')); t.after(() => rmSync(root, {recursive: true, force: true}));
+  const base = join(root, nativeTimeoutFolder); cpSync(new URL('../' + nativeTimeoutFolder, import.meta.url), base, {recursive: true});
+  const path = join(base, file), row = JSON.parse(readFileSync(path)); mutate(row); writeFileSync(path, JSON.stringify(row));
+  const hashesPath = join(base, 'artifact-sha256.json'), hashes = JSON.parse(readFileSync(hashesPath));
+  hashes[file] = createHash('sha256').update(readFileSync(path)).digest('hex'); writeFileSync(hashesPath, JSON.stringify(hashes));
+  assert.throws(() => file.startsWith('following-') ? validateNativeBudgetFollowup(root) : validateNativeTimeout(root));
+});
 
 test('latest capture and cellular precondition failures remain distinct from successful copying and safety lanes', () => {
   assert(read('.gitattributes').includes(renderNetworkGateFolder + '** -text -whitespace'));

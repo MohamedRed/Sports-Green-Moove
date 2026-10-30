@@ -32,8 +32,10 @@ import {releaseRecheckProgress} from './release-recheck.mjs';
 import {supportRecoveryRecheckProgress, latestCopyRecheckProgress} from './support-recovery-recheck.mjs';
 import {childBookingReceiptProgress, latestChatPreparationProgress, latestGeneratedCopyProgress} from './child-booking-receipt.mjs';
 import {chatNetworkRepeatProgress} from './chat-network-repeat.mjs';
+import {nativeTimeBudgetProgress} from './native-time-budget.mjs';
 
 export const currentProgress = [
+  nativeTimeBudgetProgress,
   chatNetworkRepeatProgress,
   childBookingReceiptProgress,
   latestChatPreparationProgress,

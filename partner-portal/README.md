@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The 30 October `9abc639` complete native job times out at its outer 35-minute
+limit after 205 ordinary passes/54 skips and ten completed primary copies. Final
+replay, suite outcome and independent restoration receipts are absent. The later
+`13767b4` full gate passes with all eleven independent jobs, 37 groups/40 cases,
+seventeen primary copies and verified device restoration. Publish one concise
+complete local result, without media or flow promotion. Retain the
+successful independent chat repeat, all older failures and gallery dates. Only
+the outer job budget changes to 50 minutes; no inner deadline, case, quality
+guard or evidence requirement changes, and no APK transfer artifact is added.
+That success precedes the budget change; the new-budget gate still needs to execute. See
+`docs/release/evidence/native-timeout-9abc639-2026-10-30/README.md`.
+
 The later 30 October `9abc639` independent chat-network repeat passes its strict
 handover/offline/retry/reply UI case, primary copy, two-message/two-notification
 stored-state checks and full independent disposal. Publish one concise simulated

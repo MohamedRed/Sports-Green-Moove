@@ -401,7 +401,7 @@ jobs:
     name: ${{ github.event_name == 'workflow_dispatch' && inputs.full_matrix_renderer == 'swiftshader' && 'Android renderer comparison (not release)' || github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && 'Offline UI matrix (not requested)' || 'Android native UI tests' }}
     if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking) }}
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 50
 
     permissions:
       contents: read
