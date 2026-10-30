@@ -1,4 +1,5 @@
 import {tripConsentPhoneCaptures} from './trip-consent-phone.mjs';
+import {supportSubmissionCaptures} from './support-submission-captures.mjs';
 import {tripDraftPhoneCaptures} from './trip-draft-phone.mjs';
 import {trackingAttemptCaptures} from './tracking-phone-attempt.mjs';
 import {trackingClockCaptures} from './tracking-clock-replay.mjs';
@@ -70,18 +71,7 @@ export const captures = {
     'notification-phone-' + phase, 'docs/release/evidence/notification-settings-phone-2026-10-23/captures/' + phase + '.jpg'])),
   ...Object.fromEntries(['started', 'picked-up', 'dropped-off', 'stable', 'completed', 'parent-history', 'review-prompt', 'reviewed'].map(phase => [
     'ride-phone-' + phase, 'docs/release/evidence/ride-completion-recheck-2026-10-23/captures/' + phase + '.jpg'])),
-  ...Object.fromEntries(['prepared', 'pending', 'confirmed', 'reopened'].map(id => ['support-confirmed-phone-' + id,
-    'docs/release/evidence/support-confirmed-restart-phone-2026-10-23/captures/' + id + '.png'])),
-  ...Object.fromEntries([['prepared', '01-prepared'], ['uncertain', '02-unconfirmed-before-stop'],
-    ['restored', '04-draft-restored-new-process'], ['confirmed', '05-confirmed-after-explicit-retry'],
-    ['history', '06-single-matching-history-item'], ['details', '07-original-urgent-request-details']]
-    .map(([id, file]) => ['support-restart-phone-' + id,
-      'docs/release/evidence/support-process-restart-phone-2026-10-22/captures/' + file + '.png'])),
-  ...Object.fromEntries([['prepared', '01-prepared'], ['unconfirmed', '05-unconfirmed-offline'],
-    ['history', '07-requester-history'], ['details', '08-saved-details']].map(([id, file]) => ['support-recovery-phone-' + id,
-    'docs/release/evidence/support-recovery-phone-attempt-2026-10-22/captures/' + file + '.png'])),
-  ...Object.fromEntries(['unconfirmed', 'restored', 'confirmed', 'storage-error'].map(name => ['support-submission-' + name,
-    'docs/release/evidence/support-submission-recovery-2026-10-22/images/support-submission-' + name + '.png'])),
+  ...supportSubmissionCaptures,
   ...Object.fromEntries(['prepared', 'approved', 'declined', 'parent-inbox', 'parent-capacity', 'cancelled', 'restored-capacity', 'driver-inbox']
     .map(id => ['booking-decision-phone-' + id, 'docs/release/evidence/booking-decisions-phone-2026-10-22/' + id + '-device.jpg'])),
   ...Object.fromEntries(['initial', 'revoked', 'renewed', 'new-message', 'replied'].map(id => ['team-authority-phone-' + id,

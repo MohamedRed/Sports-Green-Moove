@@ -19,8 +19,8 @@ test('both native force-stop stages retain all ten independent checkpoints witho
   for (const key of ['processIdsMeasured', 'sdkCallsMeasured', 'realNetworkLossVerified', 'urgentEscalationVerified',
     'finalPhysicalHistoryReadVerified', 'appUninstallVerified', 'videoRecorded', 'releaseComplete'])
     assert.throws(() => validateConfirmedSupportScope({ ...report, [key]: true }));
-  assert.equal(flow.checkedAt, '2026-10-23'); assert.equal(flow.submissionRestartPhone.checkedAt, '2026-10-22');
-  assert(flow.images[0].file.startsWith('support-confirmed-phone-')); assert.equal(flow.status, 'partial');
+  assert.equal(flow.submissionConfirmedRestartPhone.checkedAt, '2026-10-23'); assert.equal(flow.submissionRestartPhone.checkedAt, '2026-10-22');
+  assert(flow.images.some(image => image.file.startsWith('support-confirmed-phone-'))); assert.equal(flow.status, 'partial');
 });
 test('the historical failed collection stays failed after a later complete replay', () => {
   const record = content.nativeTransferRecheck, report = validateNativeTransferRecheck(process.cwd(), record);

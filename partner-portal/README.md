@@ -1242,3 +1242,27 @@ remains a separate partial flow. Public copy names no test technology or device.
 The new evidence validator is included in Web Integration Smoke. The full local
 Node suite passes (2,392 tests), as do the final portal build and browser checks
 at 320, 390, 768 and 1440 pixels. The public access policy is unchanged.
+
+## Support Recovery Recheck, 30 October
+
+The physical Android retry trial now retains all eight independent record
+checkpoints, three process probes (running / absent / new PID), account isolation,
+package removal and separate host disposal. One genuine response was held while
+the supported session Offline Mode was applied. One explicit Retry after full
+process restart returned the original request without duplication. This is not
+physical-radio, tracking, production, urgent-email, iOS or release acceptance.
+See `docs/release/evidence/support-recovery-recheck-2026-10-30/README.md`.
+
+One original session crop of the parent's history is added. It shows one new
+request beside one protected preexisting fixture request. The earlier galleries
+and simulated-confirmation video remain unchanged. No new video was recorded.
+
+The same-source native run a1d0d96 failed in primary image transfer, after passing
+ordinary instrumentation and all eleven focused jobs. The incomplete replay is
+not promoted by its passing observed transcripts or failure-cleanup copy. The
+existing copy blocker points to this latest evidence while retaining its original
+historical source. The b8886ec complete success remains source-specific.
+
+Existing support evidence tests and portal validation in Web Integration Smoke
+cover the new proof and negative scope-promotion assertions. No workflow command,
+infrastructure, audience, real account or production configuration is changed.

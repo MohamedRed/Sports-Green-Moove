@@ -10,8 +10,18 @@ import { validateSupportProcessRestartPhone } from '../scripts/qa/support-proces
 import { validateConfirmedSupportPhone } from '../scripts/qa/support-confirmed-restart-phone-evidence.mjs';
 import { validateUrgentSupportEvidence } from '../scripts/qa/support-urgent-evidence.mjs';
 import { validateUrgentPhoneEvidence } from '../scripts/qa/support-urgent-phone-evidence.mjs';
+import {validateSupportRecheck} from '../scripts/qa/support-recovery-recheck-evidence.mjs';
 
 export function validateSupportEvidence(root, flow, captures) {
+  if (flow.submissionRecoveryRecheck) {
+    const proof = validateSupportRecheck(root), record = flow.submissionRecoveryRecheck;
+    assert.equal(flow.id, 'support-submission'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
+    assert.equal(flow.checkedAt, proof.checkedAt); assert.equal(record.checkedAt, proof.checkedAt);
+    assert.equal(record.checksums, dirname(record.source) + '/artifact-sha256.json');
+    for (const [id, file] of Object.entries(proof.publishedCaptures)) {
+      assert(flow.images.some(image => image.file === id)); assert.equal(captures[id], dirname(record.source) + '/' + file);
+    }
+  }
   if (flow.urgentSupport) {
     const proof = validateUrgentSupportEvidence(root, flow.urgentSupport.source);
     assert.equal(flow.id, 'support-urgent'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, flow.urgentPhone ? 'phone' : 'local');
@@ -34,7 +44,8 @@ export function validateSupportEvidence(root, flow, captures) {
   if (flow.submissionConfirmedRestartPhone) {
     const record = flow.submissionConfirmedRestartPhone, proof = validateConfirmedSupportPhone(root, record.source);
     assert.equal(flow.id, 'support-submission'); assert.equal(flow.status, 'partial');
-    assert.equal(flow.checkedAt, proof.checkedAt); assert.equal(record.checkedAt, proof.checkedAt);
+    if (!flow.submissionRecoveryRecheck) assert.equal(flow.checkedAt, proof.checkedAt);
+    assert.equal(record.checkedAt, proof.checkedAt);
     assert.equal(record.checksums, dirname(record.source) + '/artifact-sha256.json');
     for (const [id, file] of Object.entries(proof.publishedCaptures)) {
       assert(flow.images.some(image => image.file === id)); assert.equal(captures[id], dirname(record.source) + '/' + file);

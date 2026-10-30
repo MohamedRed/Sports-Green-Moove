@@ -3,18 +3,21 @@ const phone = 'docs/release/evidence/support-recovery-phone-attempt-2026-10-22/'
 const diagnostics = 'docs/release/evidence/support-recovery-diagnostics-2026-10-22/';
 const restart = 'docs/release/evidence/support-process-restart-phone-2026-10-22/';
 const confirmed = 'docs/release/evidence/support-confirmed-restart-phone-2026-10-23/';
+const recheck = 'docs/release/evidence/support-recovery-recheck-2026-10-30/';
 export function createSupportSubmissionFlow(shot) {
-  return { id: 'support-submission', title: 'Reprendre une demande de support', status: 'partial', checkedAt: '2026-10-23', latestEvidence: 'phone',
+  return { id: 'support-submission', title: 'Reprendre une demande de support', status: 'partial', checkedAt: '2026-10-30', latestEvidence: 'phone',
     summary: 'La demande revient après fermeture ; réessayer ne la crée pas deux fois.',
-    verified: 'Après un arrêt complet de l’app, le texte et Urgent reviennent. Réessayer confirme la même demande sans doublon. Une seconde fermeture garde le formulaire vide.',
-    remaining: 'Rejouer une vraie coupure sur téléphone réel et expliquer les renvois précédents. La vidéo locale utilise une confirmation simulée.',
+    verified: 'Après une coupure contrôlée et un arrêt complet de l’app, Réessayer retrouve la même demande sans doublon. Elle reste privée entre deux comptes. L’essai précédent vérifie aussi la seconde fermeture.',
+    remaining: 'Rejouer une vraie coupure en déplacement sur téléphone réel et expliquer les renvois précédents. La vidéo locale utilise une confirmation simulée.',
+    submissionRecoveryRecheck: {source: recheck + 'summary.json', checksums: recheck + 'artifact-sha256.json', checkedAt: '2026-10-30'},
     submissionRecovery: { source: base + 'summary.json', checksums: base + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     submissionPhoneAttempt: { source: phone + 'summary.json', checksums: phone + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     submissionDiagnostics: { source: diagnostics + 'summary.json', checksums: diagnostics + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     submissionRestartPhone: { source: restart + 'summary.json', checksums: restart + 'artifact-sha256.json', checkedAt: '2026-10-22' },
     submissionConfirmedRestartPhone: { source: confirmed + 'summary.json', checksums: confirmed + 'artifact-sha256.json', checkedAt: '2026-10-23' },
     clips: ['support-submission-retry'],
-    images: [shot('support-confirmed-phone-prepared', 'Demande prête, essai sur téléphone du 23 octobre'),
+    images: [shot('support-recheck-history', 'Demande retrouvée après fermeture et changement de compte, capture de session sur téléphone du 30 octobre'),
+      shot('support-confirmed-phone-prepared', 'Demande prête, essai sur téléphone du 23 octobre'),
       shot('support-confirmed-phone-pending', 'Texte et Urgent retrouvés après fermeture, essai sur téléphone du 23 octobre'),
       shot('support-confirmed-phone-confirmed', 'Même demande confirmée sans doublon, essai sur téléphone du 23 octobre'),
       shot('support-confirmed-phone-reopened', 'Formulaire vide après la seconde fermeture, essai sur téléphone du 23 octobre'),
@@ -32,10 +35,11 @@ export function createSupportSubmissionFlow(shot) {
       shot('support-submission-restored', 'Texte et choix Urgent retrouvés, essai local du 22 octobre'),
       shot('support-submission-confirmed', 'Confirmation après un nouvel essai, essai local du 22 octobre'),
       shot('support-submission-storage-error', 'Envoi bloqué si la demande ne peut pas être retrouvée, essai local du 22 octobre')],
-    source: confirmed + 'README.md' };
+    source: recheck + 'README.md' };
 }
 export function supportSubmissionSteps(image, clip) {
-  return [image('support-confirmed-phone-prepared', 'Préparer la demande', 'Le texte est rempli et Urgent est activé.'),
+  return [image('support-recheck-history', 'Retrouver sa demande', 'Après une coupure contrôlée et fermeture complète, Réessayer retrouve la même demande. Elle reste privée entre deux comptes. La seconde demande était déjà présente avant cet essai.'),
+    image('support-confirmed-phone-prepared', 'Revoir l’essai du 23 octobre', 'Le texte est rempli et Urgent est activé.'),
     image('support-confirmed-phone-pending', 'Retrouver le brouillon', 'Après fermeture complète, le texte et Urgent reviennent sans les retaper. Le téléphone n’a pas été mis hors ligne.'),
     image('support-confirmed-phone-confirmed', 'Confirmer une seule demande', 'Réessayer confirme la demande d’origine, sans doublon.'),
     image('support-confirmed-phone-reopened', 'Rouvrir après confirmation', 'Après une seconde fermeture complète, aucun brouillon ne revient. La demande reste enregistrée.'),
