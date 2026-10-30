@@ -81,6 +81,9 @@ jobs:
       - name: Validate network run evidence and temporary administration cleanup
         run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs
 
+      - name: Test private Android network validation history
+        run: node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs
+
       - name: Validate initial network observation before test-only transport requests
         run: node --test tests/network-start-observation.test.mjs
 

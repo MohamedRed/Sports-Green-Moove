@@ -370,6 +370,21 @@ flag, and prints their presence separately in its dump:
 [CarrierConfigLoader](https://android.googlesource.com/platform/packages/services/Telephony/+/refs/tags/android-15.0.0_r1/src/com/android/phone/CarrierConfigLoader.java).
 
 The independent `chat-network-recovery` lane uses a fresh disposable device and
+the read-only validation-history collector before and after instrumentation.
+It reads Android 15 NetworkStack and connectivity dumps only into memory,
+joins their ephemeral network IDs and emits transport enums, DNS outcomes,
+HTTP status numbers and allowlisted exception categories. Targets, addresses,
+network/SIM names, IDs, headers and raw dumps are never retained. Unmatched
+historical networks remain explicitly unmatched; samples are non-atomic and
+history may be truncated. These are observations of Android's existing probes,
+not newly issued requests or proof of current validation/selection. Missing
+expected dump framing rejects collection, and independent cleanup still runs.
+The native Wi-Fi-default acceptance and 30-second deadline remain unchanged.
+Format references: Android 15
+[NetworkMonitor](https://android.googlesource.com/platform/packages/modules/NetworkStack/+/refs/tags/android-15.0.0_r1/src/com/android/server/connectivity/NetworkMonitor.java)
+and [NetworkStackService](https://android.googlesource.com/platform/packages/modules/NetworkStack/+/refs/tags/android-15.0.0_r1/src/com/android/server/NetworkStackService.java).
+
+The independent `chat-network-recovery` lane uses a fresh disposable device and
 the unchanged `LocalChatNetworkFlowTest`, `replayWithNetworkCleanup` and
 `verifyChatNetworkUi`. It observes bootstrap state before test-app installation,
 then prepares refused/cancelled picker history through isolated callables rather

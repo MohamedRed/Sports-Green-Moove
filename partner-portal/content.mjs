@@ -46,6 +46,7 @@ import { createTeamReviewFlow } from './team-review-flow.mjs';
 import { createTeamConversationFlow } from './team-conversation-flow.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
+import {latestChatNetworkRecheck} from './chat-network-latest.mjs';
 import { blockers } from './progress-blockers.mjs';
 
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
@@ -193,12 +194,13 @@ export const content = {
     createPublicationFlow(local, shot),
     createBookingFlow(local, shot),
     createTeamConversationFlow(),
-    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-28',
+    { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-30',
       summary: 'Le brouillon reste présent après une coupure et le renvoi ne crée pas de doublon, en simulation.',
-      verified: 'Le nouvel essai du 28 octobre confirme le renvoi unique et la réponse. Les captures affichées datent du 27 octobre ou des essais précédents.',
+      verified: 'L’essai local du 30 octobre confirme le renvoi unique et la réponse. Les captures affichées datent du 27 octobre ou des essais précédents.',
       remaining: 'Rejouer le clavier. Répéter les essais de coupure sur téléphones, vérifier les groupes, les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
       networkRecovery: chatNetworkRecovery,
       networkRecoveryRecheck: chatNetworkRecheck,
+      networkRecoveryLatest: latestChatNetworkRecheck,
       local: { ...local(['messages-notifications', 'chat-delivery-safety', 'chat-directory-safety', 'chat-post-commit-response-loss'], [
         'Le parent et le conducteur échangent des messages.',
         'Après une confirmation perdue, deux renvois gardent un seul message et une seule notification.',

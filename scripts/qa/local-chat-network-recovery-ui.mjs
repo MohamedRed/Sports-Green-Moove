@@ -82,6 +82,7 @@ const sources = [...disposableApkSourceFiles,
   ...['local-chat-network-recovery-ui.mjs', 'run-local-chat-network-recovery-ui.mjs', 'chat-network-history-fixture.mjs',
     'local-chat-network-ui.mjs', 'local-network-replay.mjs', 'chat-network-evidence.mjs', 'network-start-evidence.mjs',
     'local-carrier-diagnostics.mjs', 'local-subscription-diagnostics.mjs', 'local-default-selection-diagnostics.mjs',
+    'local-network-validation-diagnostics.mjs',
     'run-isolated-ride-ui.mjs', 'local-ui-fixtures.mjs'].map(file => 'scripts/qa/' + file),
   ...['LocalChatNetworkFlowTest.kt', 'LocalEmulatorNetwork.kt', 'LocalRequestedTransport.kt',
     'LocalInitialNetworkObservation.kt', 'LocalNetworkStartObservation.kt', 'LocalNetworkCapabilitySnapshot.kt']

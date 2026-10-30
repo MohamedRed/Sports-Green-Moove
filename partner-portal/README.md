@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The 30 October independent chat replay on 2ffa582 passes its strict radio
+sequence, one retry and reply, primary copy, two-message/two-notification/no-
+duplicate verification and independent disposal. The earlier 4714198 network
+preparation failure remains historical negative evidence. Keep Messages partial,
+retain its 27 October images and 28 October proof, and distinguish this emulator
+case from physical radio loss and the still-running full native matrix.
+
 The second 30 October booking trial retains nine checkpoints for restart before
 acknowledgement. One real isolated callable commit is followed by a withheld
 reply, Android Force stop and relaunch without login. Home, Mes trajets and the

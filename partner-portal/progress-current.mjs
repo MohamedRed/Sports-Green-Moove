@@ -23,8 +23,10 @@ import {reviewNetworkProgress} from './review-network-phone.mjs';
 import {reviewReceiptProgress} from './review-receipt-phone.mjs';
 import {bookingReceiptProgress} from './booking-receipt-phone.mjs';
 import {bookingBeforeAckProgress} from './booking-before-ack-phone.mjs';
+import {latestChatNetworkProgress} from './chat-network-latest.mjs';
 
 export const currentProgress = [
+  latestChatNetworkProgress,
   bookingBeforeAckProgress,
   {date: '2026-10-30', title: 'La coupure du chat reste à rejouer',
     text: 'Le nouvel essai s’arrête pendant la préparation de la connexion, avant la coupure et le renvoi. Cet essai n’est pas validé.',

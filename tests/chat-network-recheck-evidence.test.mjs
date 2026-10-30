@@ -43,7 +43,7 @@ for (const [file, mutate] of mutations) test('rechecks reject changed ' + file +
 });
 test('current copy keeps phone scope partial and earlier captures dated without crediting the later observer', () => {
   const flow = content.flows.find(row => row.id === 'messages');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, identity.date);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.networkRecoveryRecheck.checkedAt, identity.date);
   assert.deepEqual(flow.networkRecoveryRecheck, reference); assert.equal(flow.networkRecovery.checkedAt, '2026-10-27');
   const news = content.updates.find(row => row.source === folder + 'README.md');
   assert.match(news.text, /téléphone réel/); assert.doesNotMatch(news.text, /BrowserStack|Firebase|Android|SDK|9da2228/);
