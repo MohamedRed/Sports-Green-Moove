@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {createServer} from 'node:http';
 import {once} from 'node:events';
+import {assertBookingReceiptInput, bookingReceiptTarget} from './booking-receipt-target.mjs';
 
 const prefix = '/demo-sgm-local-qa/us-central1/';
 const reads = new Set(['initializeUserProfile', 'getActiveRide', 'getProfileCity', 'getImpactSummary',
@@ -38,10 +39,7 @@ export async function openBookingReceiptLossProxy({runId, verifyIdentity, verify
       if (booking) {
         assert(chosen); assert.equal(identity.uid, 'sgm-qa-parent'); assert(!active);
         const data = input.data;
-        assert.deepEqual(Object.keys(data).sort(), ['clientRequestId', 'expectedBookingIntent', 'requesterUserId', 'seats', 'tripId']);
-        assert.equal(data.tripId, chosen.tripId); assert.equal(data.seats, 1); assert.equal(data.requesterUserId, identity.uid);
-        assert.match(data.clientRequestId, /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/);
-        assert.equal(verifyIntent(data.expectedBookingIntent), chosen.intentRevision);
+        assertBookingReceiptInput(data, chosen, identity.uid, verifyIntent);
         if (firstInput) assert.deepEqual(data, firstInput); else firstInput = structuredClone(data);
         if (receipt.phase === 'lost') {
           receipt.attempts.push({phase: 'lost', blockedBeforeForwarding: true, upstreamAcknowledged: false, responseReleased: false});
@@ -73,8 +71,7 @@ export async function openBookingReceiptLossProxy({runId, verifyIdentity, verify
   });
   server.requestTimeout = 25_000; server.headersTimeout = 25_000; server.listen(port, '127.0.0.1'); await once(server, 'listening');
   return {port: server.address().port, receipt,
-    arm(value) {assert.equal(receipt.phase, 'preparation'); assert.equal(value.tripId, 'sgm-qa-trip-u8-wavre-bruxelles');
-      assert.match(value.intentRevision, /^[a-f0-9]{64}$/); chosen = structuredClone(value); receipt.phase = 'armed';},
+    arm(value) {assert.equal(receipt.phase, 'preparation'); chosen = bookingReceiptTarget(value); receipt.phase = 'armed';},
     recover() {assert.equal(receipt.phase, 'lost'); assert(!active); receipt.phase = 'recover';},
     async close() {const closed = once(server, 'close'); server.close(); server.closeAllConnections(); await closed;},
   };

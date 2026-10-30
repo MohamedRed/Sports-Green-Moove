@@ -38,6 +38,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Test immutable rating retries after connection loss')
     .filter(step => step.name !== 'Validate physical trip cancellation evidence and observer boundaries')
     .filter(step => step.name !== 'Test parent-shared child invitations without adult-role signup')
+    .filter(step => step.name !== 'Test child booking receipt recovery without map requests')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -55,6 +56,10 @@ test('all 111 original workload steps retain their exact commands, environments,
   const invitation = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test parent-shared child invitations without adult-role signup');
   assert.equal(invitation.length, 1);
   assert.equal(invitation[0].run, 'npm run test:child-invitation && node --test tests/child-invitation-contract.test.mjs');
+  const childBooking = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test child booking receipt recovery without map requests');
+  assert.equal(childBooking.length, 1);
+  assert.equal(childBooking[0].run, 'node scripts/qa/run-local-child-booking-receipt.mjs && node --test tests/booking-receipt-loss-proxy.test.mjs');
+  assert.equal(childBooking[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/child-booking-receipt.json');
   const schedule = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate physical draft and consent evidence boundaries');
   assert.equal(schedule.length, 1);
   assert.equal(schedule[0].run, 'node --test tests/schedule-draft-phone-evidence.test.mjs tests/trip-consent-restart-phone-evidence.test.mjs');
@@ -114,7 +119,8 @@ test('original and added evidence uploads follow their owning tests', () => {
       if (step.with.name === 'ledger-history-services') assert(steps.some(row => row.env?.SGM_LOCAL_FLOW_OUTPUT?.endsWith('/ledger-history-services.json')));
     }
   }
-  assert.equal(names.length, 16); assert.equal(new Set(names).size, 16);
+  assert.equal(names.length, 17); assert.equal(new Set(names).size, 17);
+  assert(names.includes('child-booking-receipt-results'));
   assert(names.includes('review-recovery-results'));
   assert(names.includes('review-context-results'));
   assert(names.includes('received-rating-summary-results'));

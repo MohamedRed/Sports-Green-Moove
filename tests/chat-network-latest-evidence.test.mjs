@@ -48,6 +48,8 @@ test('latest progress preserves the failed attempt and all older proof/media dat
   assert(flow.images.every(image => /27 octobre|17 octobre|16 octobre|15 octobre/.test(image.alt)));
   assert(content.updates.some(row => row.source === 'docs/release/evidence/chat-network-preparation-4714198/README.md'));
   const update = content.updates.find(row => row.flow === 'messages');
-  assert.equal(update.source, folder + 'README.md'); assert.match(update.text, /essai local/);
+  assert.equal(update.source, 'docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md');
+  assert.match(update.text, /avant la coupure/);
+  assert(content.updates.some(row => row.flow === 'messages' && row.source === folder + 'README.md' && /essai local/.test(row.text)));
   assert.doesNotMatch(update.text, /BrowserStack|Firebase|SDK|Android/);
 });

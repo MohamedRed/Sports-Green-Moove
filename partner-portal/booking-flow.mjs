@@ -2,6 +2,7 @@ import {searchBookingPhone, bookingSearchPhoneImages} from './search-booking-pho
 import {directBookingPhone, directBookingImages} from './direct-booking.mjs';
 import {bookingReceiptPhone, bookingReceiptImages} from './booking-receipt-phone.mjs';
 import {bookingBeforeAckPhone, bookingBeforeAckImages} from './booking-before-ack-phone.mjs';
+import {childBookingReceiptRecheck} from './child-booking-receipt.mjs';
 
 export function createBookingFlow(local, shot) {
   return { id: 'booking', title: 'Réservations', status: 'partial', checkedAt: '2026-10-30', latestEvidence: 'phone',
@@ -9,6 +10,7 @@ export function createBookingFlow(local, shot) {
     verified: 'Pour un adulte, la demande revient après fermeture complète, même sans confirmation reçue. Elle reste en attente depuis l’accueil et Mes trajets, sans nouvel envoi.',
     remaining: 'Rejouer la fermeture avant confirmation pour un enfant et depuis la recherche, puis deux téléphones ensemble, les changements de trajet, les alertes hors de l’app et les remboursements. Pas encore en ligne.',
     bookingBeforeAckPhone,
+    childBookingReceiptRecheck,
     bookingReceiptPhone,
     directBookingPhone,
     searchBookingPhone,

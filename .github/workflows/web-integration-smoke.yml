@@ -1612,6 +1612,11 @@ jobs:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-invitation.json
         run: npm run test:child-invitation && node --test tests/child-invitation-contract.test.mjs
 
+      - name: Test child booking receipt recovery without map requests
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-booking-receipt.json
+        run: node scripts/qa/run-local-child-booking-receipt.mjs && node --test tests/booking-receipt-loss-proxy.test.mjs
+
       - name: Test authoritative team enrollment without granting conversation access
         run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
 
@@ -1664,6 +1669,14 @@ jobs:
         with:
           name: child-invitation-results
           path: ${{ runner.temp }}/child-invitation.json*
+          if-no-files-found: error
+
+      - name: Retain child booking receipt trial and disposal
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: child-booking-receipt-results
+          path: ${{ runner.temp }}/child-booking-receipt.json*
           if-no-files-found: error
 
   integration-gate:

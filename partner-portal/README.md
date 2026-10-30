@@ -1266,3 +1266,23 @@ historical source. The b8886ec complete success remains source-specific.
 Existing support evidence tests and portal validation in Web Integration Smoke
 cover the new proof and negative scope-promotion assertions. No workflow command,
 infrastructure, audience, real account or production configuration is changed.
+
+## Child Booking Receipt Services, 30 October
+
+Seven new local-service checks retain a two-seat child request across a genuine
+lost response, fresh authentication and explicit retry, without duplication.
+They protect the complete captured top-level baseline, account claims and live
+trips. They do not prove search UI or whole-process restart on a phone. The
+booking flow remains partial, with all previous images, dates and tours retained.
+See `docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md`.
+
+The same evidence folder retains a separate failed focused chat preparation
+and generated-file transfer diagnostic at ef8b998. Wi-Fi validation history has
+DNS failures; no actual chat handover or resend occurs in that failed trial.
+The unrelated transfer test stops after 28 verified copies, with remote test-file
+cleanup unverified. Neither failure is promoted or attributed to an unproven cause.
+
+Web Integration Smoke runs the new service trial and retains its cleanup record
+in the existing people/safety group. Every original workload command stays intact.
+Public copy mentions no stack. No new media, production, billing, infrastructure
+or audience change accompanies this result.

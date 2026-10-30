@@ -13,7 +13,7 @@ assert.deepEqual(reports.map(report => report.with.name).sort(), [
   'team-club-identity-results', 'trip-history-results', 'booking-recovery-results',
   'booking-display-results', 'booking-consistency-results', 'trip-contention-results',
   'web-booking-notices', 'ledger-history-services', 'search-booking-notice-services',
-  'child-contact-discovery-results', 'child-invitation-results',
+  'child-contact-discovery-results', 'child-invitation-results', 'child-booking-receipt-results',
   'review-history-results', 'received-rating-summary-results', 'review-pagination-results', 'review-context-results',
   'review-recovery-results',
 ].sort());

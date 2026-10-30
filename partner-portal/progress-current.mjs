@@ -30,8 +30,12 @@ import {testRunnerSecurityProgress} from './test-runner-security.mjs';
 import {captureWindowProgress} from './capture-window-calibration.mjs';
 import {releaseRecheckProgress} from './release-recheck.mjs';
 import {supportRecoveryRecheckProgress, latestCopyRecheckProgress} from './support-recovery-recheck.mjs';
+import {childBookingReceiptProgress, latestChatPreparationProgress, latestGeneratedCopyProgress} from './child-booking-receipt.mjs';
 
 export const currentProgress = [
+  childBookingReceiptProgress,
+  latestChatPreparationProgress,
+  latestGeneratedCopyProgress,
   supportRecoveryRecheckProgress,
   latestCopyRecheckProgress,
   releaseRecheckProgress,
