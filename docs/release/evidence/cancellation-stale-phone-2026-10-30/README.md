@@ -83,4 +83,11 @@ UI, the wire-level ABORTED code, remote push, real refunds/payments, physical GP
 iOS and release completion. Earlier cancellation/restart/parent phone evidence
 and failed native transfers remain separate and unchanged.
 
+The earlier controlled transaction-conflict results remain in
+`docs/release/evidence/local-trip-contention-2026-10-17/README.md`, including the
+original service failure retained at
+`docs/release/evidence/local-session-restoration-2026-10-16/screen-recheck/README.md`.
+This later sequential phone trial does not replace those failures, repeat their
+transaction-lock setup, or extend their root-cause conclusions to phone behavior.
+
 Validation: `node --test tests/cancellation-stale-phone.test.mjs`.
