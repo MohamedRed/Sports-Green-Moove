@@ -4,6 +4,7 @@ import {resolve} from 'node:path';
 import test from 'node:test';
 import {content, captures} from '../partner-portal/content.mjs';
 import {assertReviewRecovery, reviewRecoveryFolder, validateReviewRecovery} from '../scripts/qa/review-recovery-evidence.mjs';
+import {validateReleaseRecheck} from '../scripts/qa/release-recheck-evidence.mjs';
 
 const root = resolve(import.meta.dirname, '..'), base = resolve(root, reviewRecoveryFolder);
 const read = name => JSON.parse(readFileSync(resolve(base, name + '.json')));
@@ -18,7 +19,8 @@ test('recovery evidence proves scoped components and loopback faults without phy
   const images = flow.images.filter(row => row.file.startsWith('review-trip-network-')); assert.equal(images.length, 3);
   for (const row of images) {assert.match(row.alt, /simulation du 29 octobre/); assert(captures[row.file].startsWith(reviewRecoveryFolder));}
   assert.match(flow.remaining, /iPhone/);
-  assert(content.blockers.some(row => row.id === 'native-current-gate'));
+  assert.equal(validateReleaseRecheck(root).releaseComplete, false);
+  assert(!content.blockers.some(row => row.id === 'native-current-gate'));
 });
 for (const key of ['physicalNetworkLossProven', 'physicalDeviceTested', 'iosUiExecuted', 'productionDeployed',
   'productionWrites', 'fullNativeGatePassed', 'releaseComplete']) test('refuses promotion of ' + key, () => {

@@ -23,8 +23,10 @@ import {validateNativeFollowupMain} from '../scripts/qa/native-followup-main-evi
 import {validateRejectedCaptureProbe} from '../scripts/qa/rejected-capture-probe-evidence.mjs';
 import {validateTestRunnerSecurity} from '../scripts/qa/test-runner-security-evidence.mjs';
 import {validateCaptureWindowEvidence} from '../scripts/qa/capture-window-evidence.mjs';
+import {validateReleaseRecheck} from '../scripts/qa/release-recheck-evidence.mjs';
 
 export function validateCurrentChecks(root, content) {
+  validateReleaseRecheck(root);
   validateCaptureWindowEvidence(root);
   validateTestRunnerSecurity(root);
   validateNativeFollowup(root, content.flows.find(row => row.id === 'team-conversation').nativeRecheck);

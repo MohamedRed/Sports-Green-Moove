@@ -12,12 +12,30 @@ import { assertChatNetworkReceipt, assertTransportRequestSetup } from '../script
 import { validateNativeStartupReport } from '../scripts/qa/native-startup-retained-evidence.mjs';
 import { validateRemoteRideStopReport } from '../scripts/qa/remote-ride-stop-evidence.mjs';
 import { validateRideObservationReport } from '../scripts/qa/ride-observation-retained-evidence.mjs';
+import { assertReleaseRecheckScope, releaseRecheckFolder, validateReleaseRecheck } from '../scripts/qa/release-recheck-evidence.mjs';
+import { content } from '../partner-portal/content.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const base = resolve(root, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19');
 const bytes = (file) => readFileSync(resolve(base, file));
 const json = (file) => JSON.parse(bytes(file));
 const hashes = json('artifact-sha256.json'), run = json('replay/results.json');
+test('the later complete b8886ec gate removes only its finished blocker and retains release limits', () => {
+  assert.deepEqual(validateReleaseRecheck(root), {ordinaryPassed: 205, ordinarySkipped: 54, replayCases: 40,
+    primaryCopies: 17, focusedJobs: 11, supportChecks: 41, releaseComplete: false});
+  assert(!content.blockers.some(row => row.id === 'native-current-gate'));
+  for (const id of ['emergency-contact', 'support-urgent-email', 'tracking-live-display', 'shared-testing'])
+    assert(content.blockers.some(row => row.id === id));
+  assert.equal(content.flows.find(row => row.id === 'tracking').status, 'partial');
+  assert.equal(content.flows.find(row => row.id === 'support').status, 'partial');
+  assert(content.updates.some(row => row.source === releaseRecheckFolder + 'README.md'));
+});
+for (const key of ['releaseComplete', 'physicalDeviceAccepted', 'rootCauseProven', 'productionWrites', 'realEmailSent']) {
+  test('the complete local gate cannot accept ' + key, () => {
+    const summary = JSON.parse(readFileSync(resolve(root, releaseRecheckFolder, 'summary.json')));
+    summary[key] = true; assert.throws(() => assertReleaseRecheckScope(summary));
+  });
+}
 test('the complete source-specific native run preserves original artifacts and all declared source bindings', () => {
   assert.equal(Object.keys(hashes).length, 262);
   for (const [file, expected] of Object.entries(hashes)) {

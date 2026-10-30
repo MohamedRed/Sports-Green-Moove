@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The final b8886ec automated recheck passes its full native gate, all eleven
+independent jobs, backend and web checks. Retain the 205 ordinary passes/54 skips,
+forty integrated cases/seventeen primary copies, complete restoration and 41
+additional isolated support checks separately from physical/release proof. Publish
+one short result note and remove only the completed `native-current-gate` blocker.
+Do not promote flow statuses or replace old media; preserve public access and
+all remaining limitations. No renderer/transport root cause is accepted.
+See `docs/release/evidence/release-recheck-b8886ec-2026-10-30/README.md`.
+
 The later 30 October observer-window calibration retains two expected baseline
 calibration failures, then eight passing native cases on another disposable
 emulator. The actual parent-consent component passes in both trials. Only the
