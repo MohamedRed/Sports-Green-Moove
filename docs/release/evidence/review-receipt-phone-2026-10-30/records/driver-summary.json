@@ -1,0 +1,351 @@
+{
+  "phase": "driver-summary",
+  "observedAt": "2026-10-30T10:12:19.029Z",
+  "status": "passed",
+  "ratingCount": 1,
+  "parentRequests": 1,
+  "driverRequests": 2,
+  "originalTimestampAndFieldsPreserved": true,
+  "originalRecordsAndClaimsPreserved": true,
+  "proxy": {
+    "scope": "isolated-callable-response-withholding-not-radio-loss-or-phone-ui-proof",
+    "runId": "5b7bbb61d00c6c420fa6a141c688749b",
+    "phase": "recover",
+    "attempts": [
+      {
+        "method": "submitRating",
+        "phase": "armed",
+        "uid": "sgm-qa-parent",
+        "upstreamAcknowledged": true,
+        "responseReleased": false,
+        "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+        "upstreamStatus": 200
+      },
+      {
+        "method": "submitRating",
+        "phase": "recover",
+        "uid": "sgm-qa-parent",
+        "upstreamAcknowledged": true,
+        "responseReleased": true,
+        "ratingId": "sgm-receipt-loss-29_sgm-qa-parent_sgm-qa-driver",
+        "upstreamStatus": 200
+      }
+    ],
+    "requests": [
+      {
+        "method": "createTrip",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getActiveRide",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getImpactSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getRewardSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "submitRating",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "lost",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "lost",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "lost",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "lost",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "lost",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "lost",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "lost",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "lost",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "submitRating",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getActiveRide",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getImpactSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getRewardSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getProfileCity",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getActiveRide",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getImpactSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getRewardSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listDriverBookingRequests",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getProfileCity",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      }
+    ],
+    "failed": false
+  },
+  "phoneUiProvenByObserver": false
+}

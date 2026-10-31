@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.design.SgmTextContrastTest" tests="30" skipped="0" failures="0" errors="0" timestamp="2026-10-25T18:26:34.285Z" hostname="MRRs-MacBook-Air.local" time="0.014">
+  <properties/>
+  <testcase name="normalTextMeetsMinimumContrast[light-primary-app]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.007"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-primary-surface]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.001"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-primary-card]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-primary-elevated]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-primary-input]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-secondary-app]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-secondary-surface]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-secondary-card]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-secondary-elevated]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-secondary-input]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-muted-app]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-muted-surface]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.001"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-muted-card]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-muted-elevated]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[light-muted-input]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-primary-app]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-primary-surface]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-primary-card]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-primary-elevated]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.001"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-primary-input]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-secondary-app]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-secondary-surface]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-secondary-card]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-secondary-elevated]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-secondary-input]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-muted-app]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-muted-surface]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-muted-card]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.001"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-muted-elevated]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <testcase name="normalTextMeetsMinimumContrast[dark-muted-input]" classname="be.sportgreenmoove.app.design.SgmTextContrastTest" time="0.0"/>
+  <system-out><![CDATA[{"case":"light-primary-app","contrastRatio":16.510182953835695}
+{"case":"light-primary-surface","contrastRatio":17.815528827104494}
+{"case":"light-primary-card","contrastRatio":15.774649358726466}
+{"case":"light-primary-elevated","contrastRatio":17.815528827104494}
+{"case":"light-primary-input","contrastRatio":16.366125168859593}
+{"case":"light-secondary-app","contrastRatio":7.52839461401664}
+{"case":"light-secondary-surface","contrastRatio":8.12361266031107}
+{"case":"light-secondary-card","contrastRatio":7.193002379337487}
+{"case":"light-secondary-elevated","contrastRatio":8.12361266031107}
+{"case":"light-secondary-input","contrastRatio":7.462706435057406}
+{"case":"light-muted-app","contrastRatio":4.85367000908249}
+{"case":"light-muted-surface","contrastRatio":5.237416096832076}
+{"case":"light-muted-card","contrastRatio":4.637437556587171}
+{"case":"light-muted-elevated","contrastRatio":5.237416096832076}
+{"case":"light-muted-input","contrastRatio":4.811319845400571}
+{"case":"dark-primary-app","contrastRatio":17.800510942384342}
+{"case":"dark-primary-surface","contrastRatio":16.58997082134414}
+{"case":"dark-primary-card","contrastRatio":15.379019632092389}
+{"case":"dark-primary-elevated","contrastRatio":13.179566694899652}
+{"case":"dark-primary-input","contrastRatio":13.889570737101582}
+{"case":"dark-secondary-app","contrastRatio":8.742966014200627}
+{"case":"dark-secondary-surface","contrastRatio":8.148392567891273}
+{"case":"dark-secondary-card","contrastRatio":7.553617219770524}
+{"case":"dark-secondary-elevated","contrastRatio":6.473325629155425}
+{"case":"dark-secondary-input","contrastRatio":6.822053889316538}
+{"case":"dark-muted-app","contrastRatio":7.455125731859939}
+{"case":"dark-muted-surface","contrastRatio":6.948133048614699}
+{"case":"dark-muted-card","contrastRatio":6.440968203726946}
+{"case":"dark-muted-elevated","contrastRatio":5.519803735967903}
+{"case":"dark-muted-input","contrastRatio":5.817164268026606}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

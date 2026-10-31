@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-24",
+  "retainedAt": "2026-10-24T00:59:15.098Z",
+  "scope": "bounded-schema-validation-work-not-production-exploit-or-whole-security-clearance",
+  "beforeVersion": "4.4.3",
+  "afterVersion": "4.6.7",
+  "unchangedTestFile": true,
+  "testSha256": "a80242ad8bab6e7ba47ee34a2ca3f22518294442aff159aca38699669e3d82da",
+  "backendUnitCasesPassed": 440,
+  "productionExploitReproduced": false,
+  "outOfMemoryAttackExecuted": false,
+  "securityAuditClear": false,
+  "productionDeployed": false,
+  "physicalDeviceAccepted": false,
+  "nativeReplayAccepted": false,
+  "releaseComplete": false,
+  "localServiceGroupsPassed": 24,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

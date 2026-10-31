@@ -1,0 +1,119 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e7019cb20312a44c95c79fb7954b60ad",
+  "testedAt": "2026-10-22T15:07:24.818Z",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "reportCount": 0,
+      "replyCount": 0,
+      "status": null
+    },
+    {
+      "phase": "submitted",
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "reportCount": 1,
+      "replyCount": 0,
+      "status": "open",
+      "privateNotesAbsentFromRequesterView": true,
+      "foreignAccountChecked": false
+    },
+    {
+      "phase": "awaiting",
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "reportCount": 1,
+      "replyCount": 0,
+      "status": "open",
+      "privateNotesAbsentFromRequesterView": true,
+      "foreignAccountChecked": false
+    },
+    {
+      "phase": "answered",
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "reportCount": 1,
+      "replyCount": 1,
+      "status": "reviewing",
+      "privateNotesAbsentFromRequesterView": true,
+      "foreignAccountChecked": false
+    },
+    {
+      "phase": "closed",
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "reportCount": 1,
+      "replyCount": 2,
+      "status": "closed",
+      "privateNotesAbsentFromRequesterView": true,
+      "foreignAccountChecked": false
+    },
+    {
+      "phase": "reopened",
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "reportCount": 1,
+      "replyCount": 2,
+      "status": "closed",
+      "privateNotesAbsentFromRequesterView": true,
+      "foreignAccountChecked": false
+    },
+    {
+      "phase": "foreign",
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "reportCount": 1,
+      "replyCount": 2,
+      "status": "closed",
+      "privateNotesAbsentFromRequesterView": true,
+      "foreignAccountChecked": true
+    },
+    {
+      "phase": "restored",
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "reportCount": 1,
+      "replyCount": 2,
+      "status": "closed",
+      "privateNotesAbsentFromRequesterView": true,
+      "foreignAccountChecked": false
+    }
+  ],
+  "receipts": [
+    {
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "replyId": "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+      "reply": {
+        "id": "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+        "text": "Votre demande est prise en charge.",
+        "sequence": 1,
+        "sentAtMillis": 1792680881774
+      },
+      "status": "reviewing",
+      "reused": false
+    },
+    {
+      "reportId": "GlFQk50tS4zVLQraH13W",
+      "replyId": "736066a1395fb98c7f17175dccdd98301ae91e41cbab924484b54d1592033b44",
+      "reply": {
+        "id": "736066a1395fb98c7f17175dccdd98301ae91e41cbab924484b54d1592033b44",
+        "text": "Votre demande est maintenant resolue.",
+        "sequence": 2,
+        "sentAtMillis": 1792680926114
+      },
+      "status": "closed",
+      "reused": false
+    }
+  ],
+  "protectedRecordCount": 158,
+  "scope": "independent-support-followup-record-checkpoints-not-phone-ui-proof",
+  "adminClientClosed": true,
+  "fixtureEnvironmentDestroyed": false,
+  "productionWrites": false,
+  "adminResponsesViaService": 2,
+  "pushDeliveryVerified": false,
+  "processIdentityVerified": false,
+  "sourceFiles": {
+    "scripts/qa/manual-support-followup-session.mjs": "b7bec036f1f183f100ae076a765c054dc89f7d5d96eee4ccaafc3a8c191e8e0f",
+    "scripts/qa/manual-support-followup-checkpoints.mjs": "b9c7e6e298caab792b90c65b7cd1f09861d9cd11ddc18d31da12bf3736ca80e1",
+    "functions/src/services/supportReports.ts": "ff132be5d6d46ae7d5007fab32e1432b6f7bddc7bf7a8802fc5e5169c8550d51",
+    "functions/src/domain/supportReports.ts": "db830231be90a75420cf5a697761fcb30a5dd37c29a4968a299537f1e153950e",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SupportInboxScreen.kt": "94c6c019cfa5ede3cd6c67c3b9be267320ae8e58d88cb2568cb2213eb296705b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SupportInboxState.kt": "d62cde3e810058cae6bed3e9183af88a95afbd2942520c97087a15ed17d73050"
+  }
+}

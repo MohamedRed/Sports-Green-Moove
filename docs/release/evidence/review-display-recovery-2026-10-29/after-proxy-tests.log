@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: two explicit failures precede one-way recovery without forwarding or retaining credentials
+ok 1 - two explicit failures precede one-way recovery without forwarding or retaining credentials
+  ---
+  duration_ms: 59.077167
+  type: 'test'
+  ...
+# Subtest: the proxy cannot target production or another fixture identity
+ok 2 - the proxy cannot target production or another fixture identity
+  ---
+  duration_ms: 1.459208
+  type: 'test'
+  ...
+# Subtest: complete ledger summaries are allowed only for the restored parent
+ok 3 - complete ledger summaries are allowed only for the restored parent
+  ---
+  duration_ms: 20.320959
+  type: 'test'
+  ...
+# Subtest: the recovered profile can read its received review summary through the same scoped proxy
+ok 4 - the recovered profile can read its received review summary through the same scoped proxy
+  ---
+  duration_ms: 14.245416
+  type: 'test'
+  ...
+# Subtest: received review reads still reject early access, foreign accounts, foreign upstream owners and write-shaped requests
+ok 5 - received review reads still reject early access, foreign accounts, foreign upstream owners and write-shaped requests
+  ---
+  duration_ms: 20.922833
+  type: 'test'
+  ...
+# Subtest: the recovered parent can read its profile city without allowing a profile write
+ok 6 - the recovered parent can read its profile city without allowing a profile write
+  ---
+  duration_ms: 8.6455
+  type: 'test'
+  ...
+# Subtest: a profile city read cannot run before restoration or use another account
+ok 7 - a profile city read cannot run before restoration or use another account
+  ---
+  duration_ms: 14.535542
+  type: 'test'
+  ...
+# Subtest: a recovered city read rejects write-shaped payloads and foreign upstream owners
+ok 8 - a recovered city read rejects write-shaped payloads and foreign upstream owners
+  ---
+  duration_ms: 11.048042
+  type: 'test'
+  ...
+# Subtest: an automatic third restoration attempt is a failed trial, never a hidden recovery
+ok 9 - an automatic third restoration attempt is a failed trial, never a hidden recovery
+  ---
+  duration_ms: 6.024333
+  type: 'test'
+  ...
+# Subtest: premature recovery cannot be accepted
+ok 10 - premature recovery cannot be accepted
+  ---
+  duration_ms: 3.181084
+  type: 'test'
+  ...
+# Subtest: a second recovery transition cannot be accepted
+ok 11 - a second recovery transition cannot be accepted
+  ---
+  duration_ms: 14.693875
+  type: 'test'
+  ...
+# Subtest: the selected parent cannot be replaced by a different authenticated user
+ok 12 - the selected parent cannot be replaced by a different authenticated user
+  ---
+  duration_ms: 1.591666
+  type: 'test'
+  ...
+# Subtest: unknown methods, non-empty profile writes and incorrect control run IDs fail closed
+ok 13 - unknown methods, non-empty profile writes and incorrect control run IDs fail closed
+  ---
+  duration_ms: 6.340458
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 354.674

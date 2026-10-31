@@ -1,0 +1,283 @@
+{
+  "id": 121701133944,
+  "name": "People and safety service smoke",
+  "status": "completed",
+  "conclusion": "cancelled",
+  "started_at": "2026-10-26T16:29:20Z",
+  "completed_at": "2026-10-26T16:49:38Z",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:29:21Z",
+      "completed_at": "2026-10-26T16:29:24Z"
+    },
+    {
+      "name": "Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:29:24Z",
+      "completed_at": "2026-10-26T16:29:28Z"
+    },
+    {
+      "name": "Set up Node",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:29:28Z",
+      "completed_at": "2026-10-26T16:29:30Z"
+    },
+    {
+      "name": "Set up Java",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:29:30Z",
+      "completed_at": "2026-10-26T16:29:31Z"
+    },
+    {
+      "name": "Install dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:29:31Z",
+      "completed_at": "2026-10-26T16:29:40Z"
+    },
+    {
+      "name": "Build Functions",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:29:40Z",
+      "completed_at": "2026-10-26T16:29:43Z"
+    },
+    {
+      "name": "Install media inspection tools",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "started_at": "2026-10-26T16:29:43Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test private requester support replies and explicit retry",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Validate terminal native copy failure and passing support components",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify requester support submission recovery and urgent flag in isolation",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify support-only urgent alerts and idempotent mail delivery in isolation",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Validate private real-phone support recovery observation safeguards",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Validate isolated device readiness and private support call diagnostics",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test team-only adult conversations and admission-scoped history",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test multi-child grants and cross-team conversation isolation",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify isolated team conversation directory",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify isolated team read state and retained evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test isolated guardian verification authority and lifecycle",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test guardian review permissions, pagination and decision state",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test parent verification choices and authoritative state reads",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test private emergency contact ownership and revocation",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify private profile-only city persistence and concurrent edits",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify complete owned ledger summaries and bounded history",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test child emergency reading with preseeded private account links",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test immutable child contact identity and independently verified fixtures",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test child contact discovery through verified-parent approval",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test authoritative team enrollment without granting conversation access",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Test team enrollment across club recreation with verified disposal",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Validate recreated child contact UI evidence contract",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify observation freshness through isolated authenticated location calls",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify atomic observation ordering through concurrent location calls",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Verify selected ride observer authorization and remote lifecycle responses",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Upload club identity trial and disposal evidence",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Retain ledger summary and disposal results",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Retain child contact discovery and disposal evidence",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:34Z"
+    },
+    {
+      "name": "Post Set up Java",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:49:34Z",
+      "completed_at": "2026-10-26T16:49:35Z"
+    },
+    {
+      "name": "Post Set up Node",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-10-26T16:49:35Z",
+      "completed_at": "2026-10-26T16:49:35Z"
+    },
+    {
+      "name": "Post Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:49:35Z",
+      "completed_at": "2026-10-26T16:49:35Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-26T16:49:35Z",
+      "completed_at": "2026-10-26T16:49:35Z"
+    }
+  ]
+}

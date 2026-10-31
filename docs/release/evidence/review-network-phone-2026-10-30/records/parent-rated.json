@@ -1,0 +1,27 @@
+{
+  "phase": "parent-rated",
+  "status": "passed",
+  "parentRequests": 1,
+  "driverRequests": 2,
+  "ratingCount": 1,
+  "exactTripAndTargetsPreserved": true,
+  "physicalNetworkLossProvenByObserver": false,
+  "phoneUiProvenByObserver": false,
+  "processRestartProvenByObserver": false,
+  "runId": "9a534e9d1a4cdad80702b95c7236866c",
+  "observedAt": "2026-10-30T00:05:01.413Z",
+  "originalRecordsAndClaimsPreserved": true,
+  "protectedRecordCount": 158,
+  "summaries": [
+    {
+      "userId": "sgm-qa-parent",
+      "count": 0,
+      "average": null
+    },
+    {
+      "userId": "sgm-qa-driver",
+      "count": 1,
+      "average": 5
+    }
+  ]
+}

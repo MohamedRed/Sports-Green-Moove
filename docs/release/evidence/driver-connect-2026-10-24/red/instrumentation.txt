@@ -1,0 +1,102 @@
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest:
+INSTRUMENTATION_STATUS: test=parentPaymentScreensDoNotOfferDriverAccountCreation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=parentPaymentScreensDoNotOfferDriverAccountCreation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=openingDisablesTheAccountActionAndBlocksRepeatedTaps
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #44 at (l=237.0, t=847.0, r=985.0, b=942.0)px, Tag: 'payments.connect.action'
+Focused = 'false'
+Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+Text = '[OUVERTURE...]'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Has 3 siblings
+Selector used: (TestTag = 'payments.connect.action')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:67)
+	at be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest.openingDisablesTheAccountActionAndBlocksRepeatedTaps(PaymentsConnectLayoutTest.kt:32)
+
+INSTRUMENTATION_STATUS: stream=
+Error in openingDisablesTheAccountActionAndBlocksRepeatedTaps(be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest):
+java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #44 at (l=237.0, t=847.0, r=985.0, b=942.0)px, Tag: 'payments.connect.action'
+Focused = 'false'
+Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+Text = '[OUVERTURE...]'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Has 3 siblings
+Selector used: (TestTag = 'payments.connect.action')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:67)
+	at be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest.openingDisablesTheAccountActionAndBlocksRepeatedTaps(PaymentsConnectLayoutTest.kt:32)
+
+INSTRUMENTATION_STATUS: test=openingDisablesTheAccountActionAndBlocksRepeatedTaps
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=theAccountActionFitsANarrowScreenWithLargerText
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=theAccountActionFitsANarrowScreenWithLargerText
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 122.794
+There was 1 failure:
+1) openingDisablesTheAccountActionAndBlocksRepeatedTaps(be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest)
+java.lang.AssertionError: Failed to assert the following: (is not enabled)
+Semantics of the node:
+Node #44 at (l=237.0, t=847.0, r=985.0, b=942.0)px, Tag: 'payments.connect.action'
+Focused = 'false'
+Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+Text = '[OUVERTURE...]'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Has 3 siblings
+Selector used: (TestTag = 'payments.connect.action')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertIsNotEnabled(Assertions.kt:67)
+	at be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest.openingDisablesTheAccountActionAndBlocksRepeatedTaps(PaymentsConnectLayoutTest.kt:32)
+
+FAILURES!!!
+Tests run: 3,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

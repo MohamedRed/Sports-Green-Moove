@@ -1,0 +1,22 @@
+{
+  "scope": "physical-phone-simulated-network-loss-incomplete-display-recovery",
+  "testedAt": "2026-10-25T18:07:09.483Z",
+  "runId": "d54ec2cdc65388c39b6d95521cbcd549",
+  "uploadRecoveryObserved": true,
+  "staleWarningObserved": true,
+  "manualScreenRefreshObserved": true,
+  "signedOutUiObserved": true,
+  "continuousDisplayProven": false,
+  "automaticDisplayRecoveryProven": false,
+  "overallFlowAccepted": false,
+  "rootCauseConfirmed": false,
+  "productionWrites": false,
+  "releaseScenariosAccepted": false,
+  "realNetworkLossProven": false,
+  "realMovementProven": false,
+  "childTrackingProven": false,
+  "parentPhoneProven": false,
+  "mapsDisplayProven": false,
+  "videoRecorded": false,
+  "routeProviderRequests": 0
+}

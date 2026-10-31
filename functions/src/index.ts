@@ -1,8 +1,35 @@
-export { setUserRoles } from "./callables/adminUsers.js";
+import "./options.js";
+
+export { initializeUserProfile, setUserRoles } from "./callables/adminUsers.js";
+export { getProfileCity, saveProfileCity } from "./callables/profileCity.js";
+export { getReceivedRatingSummary } from "./callables/receivedRatings.js";
+export { getPendingReviews } from "./callables/pendingReviews.js";
+export { getImpactSummary, getRewardSummary } from "./callables/ledgerSummaries.js";
 export { approveBooking, cancelBooking, listDriverBookingRequests, requestBooking } from "./callables/bookings.js";
+export { declineBooking, listReservations } from "./callables/reservations.js";
+export { resolveBookingRequest } from "./callables/bookingRequestResolution.js";
 export { createReport, reviewReport, submitRating } from "./callables/feedback.js";
+export { submitSupportReport } from "./callables/supportSubmission.js";
+export { sendUrgentSupportEmail, retryUrgentSupportEmail } from "./supportUrgentEmail.js";
+export { listMySupportReports, getMySupportReport, respondToReport } from "./callables/supportReports.js";
 export { writeLocationBatch } from "./callables/locations.js";
-export { getInbox, sendChatMessage } from "./callables/messages.js";
+export { requestClubMembership } from "./callables/memberships.js";
+export { listMembershipReviewClubs, listClubMemberships } from "./callables/membershipLists.js";
+export { reviewClubMembership } from "./callables/membershipReview.js";
+export { transitionGuardianVerification } from "./callables/guardianVerification.js";
+export { listGuardianReviewClubs, listMyGuardianVerifications, listClubGuardianVerifications } from "./callables/guardianLists.js";
+export { listGuardianParentOptions, getMyGuardianVerification } from "./callables/guardianParent.js";
+export { getCurrentChildRideEmergencyContact, getChildRideEmergencyContact, getEmergencyContact, saveEmergencyContact } from "./callables/emergencyContact.js";
+export { createChildAccountLinkCode, approveChildAccountLink } from "./callables/childAccountApproval.js";
+export { createChildInvitation, revokeChildInvitation, getChildInvitation, redeemChildInvitation } from "./callables/childInvitations.js";
+export { getTeamEnrollmentView, requestTeamEnrollment, transitionTeamEnrollment, listTeamEnrollments } from "./callables/teamEnrollment.js";
+export { listTeamEnrollmentOptions } from "./callables/teamEnrollmentOptions.js";
+export { listTeamEnrollmentReviewTeams } from "./callables/teamEnrollmentReview.js";
+export { listOwnedTeamEnrollments, getOwnedTeamEnrollmentView } from "./callables/teamEnrollmentHistory.js";
+export { getInbox, sendChatMessage, getChatConversation, markChatMessagesRead } from "./callables/messages.js";
+export { markNotificationRead } from "./callables/notificationRead.js";
+export { listChatConversations, listChatBookingOptions } from "./callables/chatDirectory.js";
+export { sendTeamChatMessage, getTeamChatMessages, listTeamChatOptions, markTeamChatMessagesRead } from "./callables/teamConversation.js";
 export {
   createRidePaymentIntent,
   createStripeAccount,
@@ -12,4 +39,11 @@ export {
 export { resolvePlace, suggestPlaces } from "./callables/places.js";
 export { endRide, getActiveRide, markDropoff, markPickup, startRide } from "./callables/rides.js";
 export { createTrip, listTrips, searchTrips } from "./callables/trips.js";
+export { getTripCancellation, cancelTrip } from "./callables/tripCancellation.js";
+export { getTripChangePreview, proposeTripChanges, getTripChangeReview, respondToTripChanges, withdrawTripChanges } from "./callables/tripChanges.js";
+export { getTripChangeApplicationQuote, applyTripChanges, resolveTripChangeProposal } from "./callables/tripChanges.js";
+export { getTripChangePaymentStatus, createTripChangePaymentIntent } from "./callables/tripChangePayments.js";
+export { getRidePaymentStatus } from "./callables/ridePaymentStatus.js";
+export { getTripChangeHistory } from "./callables/tripChangeHistory.js";
 export { radarWebhook, stripeWebhook } from "./webhooks.js";
+export { stripeConnectReturn, stripeConnectRefresh } from "./stripeOnboardingCallbacks.js";

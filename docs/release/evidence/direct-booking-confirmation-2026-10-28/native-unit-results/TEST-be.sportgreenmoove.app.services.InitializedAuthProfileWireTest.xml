@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.InitializedAuthProfileWireTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-28T16:40:11.963Z" hostname="MRRs-MacBook-Air.local" time="0.002">
+  <properties/>
+  <testcase name="childAndAdultRoleCombinationsAreRejectedRatherThanPartiallyParsed" classname="be.sportgreenmoove.app.services.InitializedAuthProfileWireTest" time="0.001"/>
+  <testcase name="aChildRemainsAChildWithoutAnAdultDefault" classname="be.sportgreenmoove.app.services.InitializedAuthProfileWireTest" time="0.0"/>
+  <testcase name="missingContradictoryAndUnrecognizedRoleFlagsCannotOverrideTheRoleList" classname="be.sportgreenmoove.app.services.InitializedAuthProfileWireTest" time="0.0"/>
+  <testcase name="missingEmptyUnknownDuplicatedOrNonStringRolesCannotBecomeParent" classname="be.sportgreenmoove.app.services.InitializedAuthProfileWireTest" time="0.0"/>
+  <testcase name="everySupportedAdultRoleAndLegitimateAdultCombinationIsPreserved" classname="be.sportgreenmoove.app.services.InitializedAuthProfileWireTest" time="0.0"/>
+  <testcase name="missingOrUnrelatedAccountProfilesAreRejected" classname="be.sportgreenmoove.app.services.InitializedAuthProfileWireTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

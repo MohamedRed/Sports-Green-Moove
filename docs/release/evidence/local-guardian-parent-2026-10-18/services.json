@@ -1,0 +1,78 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "2d8dcd75f0a49550daddca977b0a7b36",
+  "testedAt": "2026-10-18T16:55:35.704Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "checks": [
+    {
+      "id": "signed-out-and-admin-only-accounts-cannot-read-parent-options-or-targets",
+      "status": "passed"
+    },
+    {
+      "id": "parent-identity-cannot-be-supplied-or-overridden-in-read-inputs",
+      "status": "passed"
+    },
+    {
+      "id": "eligible-absent-request-is-explicit-null-at-revision-zero-without-writes",
+      "status": "passed"
+    },
+    {
+      "id": "another-parent-cannot-infer-a-child-or-create-a-request-for-it",
+      "status": "passed"
+    },
+    {
+      "id": "request-refusal-reopen-verification-withdrawal-and-revocation-use-fresh-versions",
+      "status": "passed"
+    },
+    {
+      "id": "removed-parent-link-hides-current-child-name-in-the-owned-history-read",
+      "status": "passed"
+    },
+    {
+      "id": "leaving-or-archiving-the-club-prevents-grants-but-not-removing-existing-verification",
+      "status": "passed"
+    },
+    {
+      "id": "children-and-active-clubs-are-paged-without-silent-first-page-limits",
+      "status": "passed"
+    },
+    {
+      "id": "option-cursors-cannot-cross-list-kind-or-parent-account",
+      "status": "passed"
+    },
+    {
+      "id": "a-record-beyond-first-history-page-is-never-returned-as-a-new-request",
+      "status": "passed"
+    },
+    {
+      "id": "inactive-and-forged-memberships-do-not-offer-request-clubs",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-stored-verification-fails-closed-in-targeted-reads",
+      "status": "passed"
+    },
+    {
+      "id": "option-and-point-reads-do-not-mutate-any-fixture-or-audit-record",
+      "status": "passed"
+    }
+  ],
+  "testCount": 13,
+  "steps": [
+    {
+      "id": "guardian-parent-services",
+      "status": "passed"
+    }
+  ],
+  "providerRequests": 0,
+  "productionWrites": false,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "teamChatImplemented": false,
+  "childEmergencyImplemented": false,
+  "sourceFiles": {
+    "functions/src/services/guardianParent.ts": "c59048e4f93dc6d2f795d64f8d6e0830d2821319ec8d700a354469a5dd657668",
+    "functions/src/callables/guardianParent.ts": "bf699bc30d24e23a98238817a074f14c154b734973232ecfd41346891c348c38",
+    "scripts/qa/local-guardian-parent-suite.mjs": "be863118ccd1ed88c2ab9be7c0ac2ad8831cd26f642f13ae8d2ee8f348f41701"
+  }
+}

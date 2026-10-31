@@ -1,0 +1,18 @@
+{
+  "scope": "owned-local-visual-trial-disposal-not-phone-proof",
+  "observedAt": "2026-10-30T21:36:09.872Z",
+  "privateSessionAbsent": true,
+  "runtimeDirectoryAbsent": true,
+  "helperDirectoryAbsent": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099,
+      59093
+    ],
+    "closed": true
+  }
+}

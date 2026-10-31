@@ -1,0 +1,34 @@
+{
+  "scope": "read-only-public-callback-health-not-payment-or-onboarding",
+  "testedAt": "2026-10-22T21:55:16.606Z",
+  "observations": [
+    {
+      "kind": "return",
+      "checkedAt": "2026-10-22T21:55:14.323Z",
+      "url": "https://sports-green-moove-prod.web.app/payments/return?health=1",
+      "method": "GET",
+      "requestContainsCredentials": false,
+      "httpStatus": 500,
+      "callbackMarker": null,
+      "cacheControl": null,
+      "passed": false,
+      "failure": "SGM_STRIPE_CONNECT_RETURN_URL callback returned HTTP 500."
+    },
+    {
+      "kind": "refresh",
+      "checkedAt": "2026-10-22T21:55:15.973Z",
+      "url": "https://sports-green-moove-prod.web.app/payments/refresh?health=1",
+      "method": "GET",
+      "requestContainsCredentials": false,
+      "httpStatus": 500,
+      "callbackMarker": null,
+      "cacheControl": null,
+      "passed": false,
+      "failure": "SGM_STRIPE_CONNECT_REFRESH_URL callback returned HTTP 500."
+    }
+  ],
+  "productionWrites": false,
+  "paymentsCreated": false,
+  "providerConfigurationChanged": false,
+  "rootCauseConfirmed": false
+}

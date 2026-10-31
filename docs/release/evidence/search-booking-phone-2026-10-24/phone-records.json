@@ -1,0 +1,79 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "cea9c66b05b22ac7e0ee899b990d6df7",
+  "recordedAt": "2026-10-24T15:27:27.418Z",
+  "scope": "independent-search-booking-phone-records-not-ui-proof",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "requested",
+      "result": {
+        "phase": "requested",
+        "bookingId": "GXCONuiTTPswv45tFbyM",
+        "tripId": "3u0pE5wDsFvJM9uQMlu8",
+        "seats": 2,
+        "seatsAvailable": 4,
+        "committedRequestReceipts": 1,
+        "notificationCount": 1
+      }
+    },
+    {
+      "phase": "approved",
+      "result": {
+        "phase": "approved",
+        "bookingId": "GXCONuiTTPswv45tFbyM",
+        "tripId": "3u0pE5wDsFvJM9uQMlu8",
+        "seats": 2,
+        "seatsAvailable": 2,
+        "committedRequestReceipts": 1,
+        "notificationCount": 2
+      }
+    },
+    {
+      "phase": "parent-returned",
+      "result": {
+        "phase": "approved",
+        "bookingId": "GXCONuiTTPswv45tFbyM",
+        "tripId": "3u0pE5wDsFvJM9uQMlu8",
+        "seats": 2,
+        "seatsAvailable": 2,
+        "committedRequestReceipts": 1,
+        "notificationCount": 2
+      }
+    },
+    {
+      "phase": "cancelled",
+      "result": {
+        "phase": "cancelled",
+        "bookingId": "GXCONuiTTPswv45tFbyM",
+        "tripId": "3u0pE5wDsFvJM9uQMlu8",
+        "seats": 2,
+        "seatsAvailable": 4,
+        "committedRequestReceipts": 1,
+        "notificationCount": 3
+      }
+    }
+  ],
+  "isolation": {
+    "unrelatedDocumentsUnchanged": true,
+    "allClaimsUnchanged": true,
+    "liveTripsUnchanged": true,
+    "ownNewBookings": 1,
+    "ownNewRequestReceipts": 1,
+    "ownNewNotifications": 3
+  },
+  "bookingId": "GXCONuiTTPswv45tFbyM",
+  "physicalUiProven": false,
+  "productionWrites": false,
+  "realPayment": false,
+  "sourceFiles": {
+    "scripts/qa/manual-search-booking-phone-session.mjs": "19fdbe49cf4772662a8d3b127b8aa2bc9ce6d839ec35cc7645dc5fb4886ce089",
+    "scripts/qa/search-booking-phone-runtime.mjs": "17640a8f7c63787893bd912adffd60c5c530363dac119e938d4dcb7eaef1d72b",
+    "scripts/qa/start-search-booking-phone.mjs": "d1a409029b8dc89dbd46ff94ec42f9328b4ce37a5f6d78db7acd890529f11ae3",
+    "scripts/qa/search-booking-checkpoint.mjs": "b6bb827d793b6d0a66a74fda934edc7e5b1528245540487c35837c71d25597b6",
+    "scripts/qa/search-booking-records.mjs": "8bee216345554e405b4fc3211064db9665fedbc2634c04b8e13c903b345c2fd8",
+    "scripts/qa/search-booking-fixture.mjs": "30c7468bb9c21ca166e4186053400e174fdc5dc889317c8cc6602f6e1bafb7f9",
+    "scripts/qa/search-maps-fetch.mjs": "c1675684e82cf555c9fa7452e1c4d98ff1758ef77a38d29267a442c79df5bbd9",
+    "scripts/qa/search-maps-policy.mjs": "5df7d3c46b0155921c7b0cdb7dacba45c59c3751866884526f3f9544b8dcb064"
+  }
+}

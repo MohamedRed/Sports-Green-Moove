@@ -1,0 +1,25 @@
+{
+  "scope": "local-session-restoration-ui-not-physical-network-loss",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "41d5d800dc9ced46a1b3baa1c0bd28f7",
+  "uid": "sgm-qa-parent",
+  "screenshots": {
+    "local-session-restoration-error.png": "a326e9454be84e03f53966634b18daf4abe48d6f18b1a3d417e10f2fb7c94a2e",
+    "local-session-restoration-rotated-error.png": "8243ff5c1bdfb6003569b83a73ed0acfd06a557241ab928d78aec197414f418a",
+    "local-session-restoration-recovered.png": "e2db23647082959d3096d2bc5617a5ab1fe0e3d33248263f279d396b24810143",
+    "local-session-restoration-restored.png": "b53498c5f0825e3dbb98f490f3e64b664e27d753cb2348c9c9896b3a6271180f",
+    "local-session-restoration-identity.png": "b3857710a1c0b581631eec681937b1be8a411f215e67325a91588f13c296671e"
+  },
+  "initialFailureVisible": true,
+  "failureSurvivedRotation": true,
+  "explicitRetryRecoveredSameParent": true,
+  "healthyRotationRestoredSameParent": true,
+  "profileIdentityVerified": true,
+  "restorationAttempts": 4,
+  "orientationRestored": true,
+  "parentSignedOut": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "realNetworkLossVerified": false,
+  "completed": true
+}

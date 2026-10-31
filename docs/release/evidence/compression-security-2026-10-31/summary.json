@@ -1,0 +1,20 @@
+{
+  "scope": "isolated-cli-compression-resource-cleanup-not-production-or-release",
+  "checkedAt": "2026-10-31",
+  "baseHead": "986f15535b4464ef3aeefc49c7ae0dff0aa4e20e",
+  "beforeVersion": "1.8.1",
+  "afterVersion": "1.8.2",
+  "reproducedFailures": 3,
+  "correctedPassingCases": 7,
+  "regressionSourcesUnchanged": true,
+  "externalRequestsInReproduction": 0,
+  "productionRuntimeChanged": false,
+  "productionDeployed": false,
+  "physicalDeviceAccepted": false,
+  "providerDeliveryAccepted": false,
+  "fullNativeGateAccepted": false,
+  "nativeInstabilityFixed": false,
+  "releaseAccepted": false,
+  "cleanAudit": false,
+  "publishedMedia": []
+}

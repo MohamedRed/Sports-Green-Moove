@@ -1,0 +1,101 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {deleteApp} from 'firebase-admin/app';
+import {auth, call, db, denied, signIn} from './local-flow-client.mjs';
+import {seedLocalUiFixtures} from './local-ui-fixtures.mjs';
+import {createReviewHistoryFixture, createCompletedReviewRide} from './review-history-fixture.mjs';
+import {fetchLocalQa} from './local-http-request.mjs';
+import {withLocalAdminCleanup} from './local-admin-lifecycle.mjs';
+
+const checks = [], observations = [], root = resolve(import.meta.dirname, '../..');
+let failure, adminClientClosed = false, firestoreClientTerminated = false, protectedRecordCount = 0;
+const check = async (id, action) => {
+  try { await action(); checks.push({id, status: 'passed'}); }
+  catch (error) { checks.push({id, status: 'failed', error: error.code ?? error.name}); throw error; }
+  finally { console.log(`${id}: ${checks.at(-1).status}`); }
+};
+try {
+  await withLocalAdminCleanup(async () => {
+    await seedLocalUiFixtures();
+    const driver = await signIn('d@example.test'), parent = await signIn('p@example.test'), manager = await signIn('c@example.test');
+    const protectedRows = new Map();
+    for (const collection of await db.listCollections()) for (const row of (await collection.get()).docs)
+      protectedRows.set(row.ref.path, row.data());
+    const claims = await Promise.all([driver, parent, manager].map(async actor => (await auth.getUser(actor.uid)).customClaims));
+    const read = actor => call('getReceivedRatingSummary', actor);
+    await check('empty-is-null-not-a-fabricated-zero-or-five-star-score', async () => {
+      assert.deepEqual(await read(driver), {userId: driver.uid, count: 0, average: null});
+      assert.deepEqual(await read(parent), {userId: parent.uid, count: 0, average: null});
+    });
+    await check('unauthenticated-and-client-selected-account-or-limit-are-rejected', async () => {
+      await denied('getReceivedRatingSummary', null, {}, 'UNAUTHENTICATED');
+      for (const data of [{uid: parent.uid}, {userId: parent.uid}, {ratedUserId: parent.uid}, {limit: 100}, {includeComments: true}])
+        await denied('getReceivedRatingSummary', driver, data, 'INVALID_ARGUMENT');
+    });
+    const fixture = await createReviewHistoryFixture(driver, parent);
+    const authors = [parent, ...await Promise.all(fixture.peers.slice(1).map(uid => signIn(uid + '@example.test')))];
+    let total = 0, count = 0;
+    await check('all-104-received-reviews-count-not-the-first-100-or-the-authored-total', async () => {
+      for (const rideSessionId of fixture.rides) for (const author of authors) {
+        const score = count < 46 ? 4 : 3;
+        await call('submitRating', author, {rideSessionId, ratedUserId: driver.uid, score, comment: 'Synthetic private review'});
+        count++; total += score;
+      }
+      assert.equal(count, 104); assert.equal(total, 358);
+      const result = await read(driver); assert.deepEqual(result, {userId: driver.uid, count: 104, average: 358 / 104});
+      observations.push({phase: '104-received', result});
+    });
+    await check('different-recipients-remain-separate-without-returning-raw-review-fields', async () => {
+      const result = await read(parent); assert.deepEqual(result, {userId: parent.uid, count: 26, average: 4});
+      assert.deepEqual(await read(manager), {userId: manager.uid, count: 0, average: null});
+      observations.push({phase: 'parent', result});
+    });
+    await check('a-new-valid-review-updates-count-and-weighted-average-on-the-next-read', async () => {
+      await createCompletedReviewRide(fixture);
+      await call('submitRating', parent, {rideSessionId: fixture.freshRide, ratedUserId: driver.uid, score: 5});
+      const result = await read(driver); assert.deepEqual(result, {userId: driver.uid, count: 105, average: 363 / 105});
+      observations.push({phase: '105-received', result});
+    });
+    await check('duplicate-forbidden-and-invalid-ratings-cannot-inflate-the-summary', async () => {
+      const before = await read(driver);
+      await denied('submitRating', parent, {rideSessionId: fixture.freshRide, ratedUserId: driver.uid, score: 1}, 'ALREADY_EXISTS');
+      await denied('submitRating', manager, {rideSessionId: fixture.freshRide, ratedUserId: driver.uid, score: 5}, 'PERMISSION_DENIED');
+      for (const score of [0, 6, 2.5]) await denied('submitRating', driver,
+        {rideSessionId: fixture.freshRide, ratedUserId: parent.uid, score}, 'INVALID_ARGUMENT');
+      assert.deepEqual(await read(driver), before);
+    });
+    await check('raw-review-get-list-update-and-delete-are-not-public-to-recipients-or-other-accounts', async () => {
+      const host = process.env.FIRESTORE_EMULATOR_HOST; assert(/^127\.0\.0\.1:\d+$/.test(host));
+      const base = `http://${host}/v1/projects/demo-sgm-local-qa/databases/(default)/documents/ratings`;
+      const ratingId = `${fixture.rides[0]}_${parent.uid}_${driver.uid}`;
+      for (const actor of [null, driver, manager, parent]) for (const [suffix, method] of [['', 'GET'],
+        ['/' + ratingId, 'GET'], ['/' + ratingId, 'DELETE'], ['/' + ratingId, 'PATCH']]) {
+        const response = await fetchLocalQa(base + suffix, {method, headers: {'content-type': 'application/json',
+          ...(actor ? {authorization: `Bearer ${actor.token}`} : {})},
+          ...(method === 'PATCH' ? {body: JSON.stringify({fields: {score: {integerValue: '5'}}})} : {})});
+        assert.equal(response.status, actor === parent && method === 'GET' && suffix ? 200 : 403);
+        await response.arrayBuffer();
+      }
+    });
+    await check('reading-and-refreshing-does-not-change-reviews-trust-fields-bookings-or-claims', async () => {
+      const before = (await db.collection('ratings').get()).docs.map(row => ({id: row.id, data: row.data()}));
+      for (let i = 0; i < 3; i++) assert.deepEqual(await read(driver), {userId: driver.uid, count: 105, average: 363 / 105});
+      assert.deepEqual((await db.collection('ratings').get()).docs.map(row => ({id: row.id, data: row.data()})), before);
+      for (const [path, data] of protectedRows) assert.deepEqual((await db.doc(path).get()).data(), data, path);
+      assert.deepEqual(await Promise.all([driver, parent, manager].map(async actor => (await auth.getUser(actor.uid)).customClaims)), claims);
+      protectedRecordCount = protectedRows.size;
+    });
+  }, {firestore: {terminate: async () => {await db.terminate(); firestoreClientTerminated = true;}},
+    closeApp: async app => {await deleteApp(app); adminClientClosed = true;}});
+} catch (error) {failure = error;}
+const files = ['scripts/qa/local-received-ratings.mjs', 'scripts/qa/review-history-fixture.mjs',
+  'functions/src/domain/receivedRatings.ts', 'functions/src/callables/receivedRatings.ts', 'functions/src/callables/feedback.ts',
+  'firestore.rules', 'firestore.indexes.json'];
+writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT, JSON.stringify({projectId: 'demo-sgm-local-qa', runId: process.env.SGM_LOCAL_RUN_ID,
+  testedAt: new Date().toISOString(), scope: 'authenticated-isolated-received-rating-summary-not-phone-or-release', completed: !failure,
+  checks, observations, protectedRecordCount, adminClientClosed, firestoreClientTerminated, productionWrites: false,
+  providerRequests: 0, phoneUiExecuted: false,
+  sourceFiles: Object.fromEntries(files.map(file => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]))}, null, 2) + '\n', {flag: 'wx'});
+if (failure) throw new Error('Received rating summary failed; retain the sanitized original result.');

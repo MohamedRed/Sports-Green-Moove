@@ -1,0 +1,23 @@
+--------- beginning of system
+I/ActivityManager(  564): Background started FGS: Allowed [callingPackage: be.sportgreenmoove.app.local; callingUid: 10219; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=be.sportgreenmoove.app.local/be.sportgreenmoove.app.services.ActiveRideLocationService (has extras) }; code:PROC_STATE_TOP; tempAllowListReason:<null>; targetSdkVersion:36; callerTargetSdkVersion:36; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+W/ActivityManager(  564): Slow operation: 92ms so far, now at startProcess: done creating new process record
+W/ActivityManager(  564): Slow operation: 92ms so far, now at startProcess: stepping in to startProcess
+W/ActivityManager(  564): Slow operation: 111ms so far, now at startProcess: done starting proc!
+I/ActivityManager(  564): Killing 1920:com.android.externalstorage/u0a95 (adj 985): empty #17
+W/ActivityManager(  564): Slow operation: 778ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  564): Slow operation: 779ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  564): Slow operation: 780ms so far, now at startProcess: building log message
+I/ActivityManager(  564): Start proc 7246:be.sportgreenmoove.app.local.test/u0a220 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+W/ActivityManager(  564): Slow operation: 780ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  564): Slow operation: 783ms so far, now at startProcess: done updating pids map
+W/ActivityManager(  564): Slow operation: 52ms so far, now at attachApplicationLocked: after updateOomAdjLocked
+W/ActivityManager(  564): Slow operation: 231ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  564): Slow operation: 234ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  564): Slow operation: 235ms so far, now at startProcess: building log message
+I/ActivityManager(  564): Start proc 7258:com.google.android.dialer/u0a133 for service {com.google.android.dialer/androidx.work.impl.background.systemjob.SystemJobService}
+W/ActivityManager(  564): Slow operation: 236ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  564): Slow operation: 236ms so far, now at startProcess: done updating pids map
+I/ActivityManager(  564): Force stopping be.sportgreenmoove.app.local appid=10219 user=0: finished inst
+E/ActivityManager(  564): Unable to freeze binder for 7112: -11
+I/ActivityManager(  564): Killing 7112:be.sportgreenmoove.app.local/u0a219 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  564): setHasOverlayUi called on unknown pid: 7112

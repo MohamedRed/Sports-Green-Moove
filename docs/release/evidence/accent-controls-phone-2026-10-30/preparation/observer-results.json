@@ -1,0 +1,17 @@
+{
+  "scope": "independent-visual-trial-records-not-phone-ui-or-full-accessibility",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "bc508ae0a4d7abf8284bb5372e5468b0",
+  "completed": false,
+  "failure": true,
+  "checkpoints": [],
+  "observedAt": "2026-10-30T21:26:08.133Z",
+  "physicalUiProven": false,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "sourceFiles": {
+    "scripts/qa/manual-accent-appearance-phone.mjs": "c0c86772752bab316e0f451307b9bbc2b20f825940a59fbdeaf55a6575114356",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802"
+  }
+}

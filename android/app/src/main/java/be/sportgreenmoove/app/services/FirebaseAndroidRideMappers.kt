@@ -4,8 +4,10 @@ import be.sportgreenmoove.app.data.LiveRideSnapshot
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.data.BookingIntentSnapshot
+import be.sportgreenmoove.app.domain.tripDateLabel
+import be.sportgreenmoove.app.domain.tripTimeLabel
 import com.google.firebase.Timestamp
-import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.Date
 import java.util.Locale
@@ -13,8 +15,8 @@ import java.util.Locale
 internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
     val departure = dateValue(data["departureAt"])
     val seats = (data["seatsAvailable"] as? Number)?.toInt() ?: 0
-    val dateLabel = departure?.let(::formatDateLabel) ?: "DATE À CONFIRMER"
-    val timeLabel = departure?.let(::formatTimeLabel) ?: "--h--"
+    val dateLabel = departure?.toInstant()?.let(::tripDateLabel) ?: "DATE À CONFIRMER"
+    val timeLabel = departure?.toInstant()?.let(::tripTimeLabel) ?: "--h--"
     val distanceKm = (data["distanceKm"] as? Number)?.toDouble()
 
     return TripSummary(
@@ -34,18 +36,38 @@ internal fun mapTrip(id: String, data: Map<String, Any>): TripSummary {
             if (seats > 1) "$seats places" else "$seats place",
             "Suivi véhicule disponible",
         ),
-        status = if (departure != null && departure.before(Date())) TripStatus.Past else TripStatus.Upcoming,
+        status = if (data["status"] == "completed" || data["status"] == "cancelled" ||
+            (departure != null && departure.before(Date()))) TripStatus.Past else TripStatus.Upcoming,
+        mapPreview = mapRoutePreviewFromTripData(data),
+        departureAtIso = departure?.toInstant()?.toString(),
+        driverUserId = data["driverUserId"] as? String,
+        cancelled = data["status"] == "cancelled",
+        pendingChangeId = tripChangeReferenceOrNull(data["pendingChangeId"]),
+        appliedChangeId = tripChangeReferenceOrNull(data["appliedChangeId"]),
+        bookingIntent = BookingIntentSnapshot.fromTripData(data + listOf("departureAt", "arrivalBy").associateWith { key ->
+            when (val value = data[key]) {
+                is Timestamp -> value.toDate().toInstant().toString()
+                is Date -> value.toInstant().toString()
+                else -> value
+            }
+        }),
     )
 }
+
+private fun tripChangeReferenceOrNull(value: Any?): String? = value?.let { TripChangeWire.hash(it) }
 
 internal fun mapRide(data: Map<*, *>): LiveRideSnapshot =
     LiveRideSnapshot(
         rideSessionId = data["rideSessionId"] as? String ?: "",
+        tripId = data["tripId"] as? String,
+        driverUserId = data["driverUserId"] as? String,
         status = data["status"] as? String ?: "Actif",
         vehicleLastUpdateLabel = data["vehicleLastUpdateLabel"] as? String ?: "En attente du premier point GPS",
         childLastUpdateLabel = data["childLastUpdateLabel"] as? String,
         etaLabel = data["etaLabel"] as? String ?: "ETA à calculer",
         stale = data["stale"] as? Boolean ?: true,
+        observation = mapRideObservation(data["observation"]),
+        vehiclePoint = mapVehicleMapPoint(data["vehiclePoint"]),
         passengers = (data["passengers"] as? List<*>)
             ?.mapNotNull { it as? Map<*, *> }
             ?.map(::mapRidePassenger)
@@ -68,15 +90,6 @@ private fun dateValue(value: Any?): Date? =
         is String -> runCatching { Date.from(Instant.parse(value)) }.getOrNull()
         else -> null
     }
-
-private fun formatDateLabel(date: Date): String =
-    SimpleDateFormat("EEE dd MMM", BelgianFrenchLocale)
-        .format(date)
-        .replace(".", "")
-        .uppercase(BelgianFrenchLocale)
-
-private fun formatTimeLabel(date: Date): String =
-    SimpleDateFormat("HH'h'mm", BelgianFrenchLocale).format(date)
 
 private fun priceLabel(cents: Int): String =
     if (cents == 0) {

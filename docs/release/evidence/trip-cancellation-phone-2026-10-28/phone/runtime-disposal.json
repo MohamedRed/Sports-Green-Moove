@@ -1,0 +1,62 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ba4fa4587cedfc8c4c4dd14d1924a266",
+  "observedAt": "2026-10-28T18:44:46.791Z",
+  "listenerIdentityObservedBeforeStop": true,
+  "listeners": [
+    {
+      "pid": 84918,
+      "ports": [
+        5001,
+        9099
+      ]
+    },
+    {
+      "pid": 84948,
+      "ports": [
+        8080
+      ]
+    },
+    {
+      "pid": 84950,
+      "ports": [
+        9000
+      ]
+    }
+  ],
+  "helperPid": 85006,
+  "ownedProcessesAbsent": true,
+  "ports": [
+    {
+      "port": 5001,
+      "available": true
+    },
+    {
+      "port": 8080,
+      "available": true
+    },
+    {
+      "port": 9000,
+      "available": true
+    },
+    {
+      "port": 9099,
+      "available": true
+    },
+    {
+      "port": 45690,
+      "available": true
+    },
+    {
+      "port": 45691,
+      "available": true
+    }
+  ],
+  "runtimeAbsent": true,
+  "helperDirectoryAbsent": true,
+  "privateSessionAbsent": true,
+  "observerExitCode": 0,
+  "runtimeExitCode": 130,
+  "helperExitCode": 130,
+  "stopMethod": "operator-requested-SIGINT-supervised-launchers-then-independent-pid-path-and-port-checks"
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TripChangeStateTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2026-10-28T16:40:12.515Z" hostname="MRRs-MacBook-Air.local" time="0.027">
+  <properties/>
+  <testcase name="closingIgnoresLatePreviewAndCannotRestoreADraft" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="closingDropsPrivateDataAndIgnoresLateWrite" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.002"/>
+  <testcase name="uncertainDecisionReusesIntentAndRecordedReviewDoesNotWriteAgain" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.003"/>
+  <testcase name="overlappingActionsCannotWriteTwiceAndWithdrawalPreservesOriginal" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.002"/>
+  <testcase name="refreshFindsCommittedProposalEvenWhenBothAcknowledgementAndListRefreshWereLost" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="onlyExplicitValidChangedDriverTermsCanBeProposed" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="eachParentDecisionIsExplicitAndDoesNotApplyTheChange" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="proposalStatusCanArriveBeforeRefreshReleasesTheWithdrawalAction" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.002"/>
+  <testcase name="uncertainProposalRequiresRefreshAndReusesExactRequest" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.003"/>
+  <testcase name="failedResolutionNeverFallsThroughToAnotherPreviewOrWrite" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="provenReceiptSurvivesRefreshFailureAndPreventsDuplicateApplication" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="changedSourceRevisionKeepsDraftButRequiresExplicitResetAndFreshRequest" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="uncertainApplyKeepsExactRequestAndQuoteAfterExplicitRefresh" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.002"/>
+  <testcase name="outdatedReviewDisablesDecisionAndApplication" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="unknownQuoteResponseIsRetriedWithSameIdentityUnlessServerConfirmsExpiry" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="wrongActorReceiptCannotClaimApplication" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="expiryRequiresANewExplicitCalculationWithANewIdentity" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <testcase name="foreignReviewCannotReplaceTheCurrentTripOrUnlockActions" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.0"/>
+  <testcase name="confirmationRequiresCurrentRouteAndExplicitApplication" classname="be.sportgreenmoove.app.ui.TripChangeStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

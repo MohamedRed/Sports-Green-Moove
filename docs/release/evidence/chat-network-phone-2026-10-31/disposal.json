@@ -1,0 +1,16 @@
+{
+  "observedAt": "2026-10-31T12:26:07.594Z",
+  "observerExitCode": 0,
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "helperGroupExitVerified": true,
+  "privateSessionAbsent": true,
+  "runtimeAbsent": true,
+  "helperDirectoryAbsent": true,
+  "closedPorts": [
+    5001,
+    8080,
+    9000,
+    9099
+  ]
+}

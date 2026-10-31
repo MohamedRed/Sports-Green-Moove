@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "scope": "primary-compose-capture-observation-not-flow-or-root-cause-proof",
+  "captureName": "trip-change-parent-review-large-text.png",
+  "sdkInvocations": 1,
+  "primaryOutcome": "returned",
+  "errorCategory": "none",
+  "elapsedMs": 208,
+  "callerIsMain": false,
+  "primaryStartOffsetMs": 7,
+  "primaryElapsedMs": 200,
+  "mainPostAccepted": true,
+  "heartbeatDelaysMs": [
+    0,
+    0,
+    39
+  ],
+  "heartbeatAtMs": [
+    52,
+    102,
+    191
+  ],
+  "maxMainQueueDelayMs": 39,
+  "samples": [],
+  "sampleFailures": 0,
+  "observerClosed": true,
+  "observerMayAffectScheduling": true,
+  "imagesWrittenByObserver": false
+}

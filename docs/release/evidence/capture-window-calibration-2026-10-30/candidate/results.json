@@ -1,0 +1,127 @@
+{
+  "scope": "controlled-observer-calibration-and-one-component-not-full-matrix-proof",
+  "mode": "candidate",
+  "testedAt": "2026-10-30T14:17:06.376Z",
+  "completed": true,
+  "allTestsPassed": true,
+  "report": {
+    "scope": "complete-android-junit-instrumentation-not-physical-or-release-proof",
+    "complete": true,
+    "guardConfirmed": true,
+    "caseCount": 8,
+    "passed": 8,
+    "skipped": 0,
+    "failed": 0,
+    "cases": [
+      {
+        "className": "be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest",
+        "name": "aLongerOperationStillRetainsTheLateSampleWithExactlyThreeSamples",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "className": "be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest",
+        "name": "aShortOperationObservesTheLaterBlockedMainThreadBeforeItFinishes",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "className": "be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest",
+        "name": "thePrimaryOperationRunsOnceAndReturnsTheSameObject",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "className": "be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest",
+        "name": "anObserverFailureCannotReplaceEitherPrimaryOutcome",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "className": "be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest",
+        "name": "theOriginalCaptureFailureIsRethrownWithoutRetry",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "className": "be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest",
+        "name": "sampleScheduleCoversShortAndLongOperationsWithoutAddingSamples",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "className": "be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest",
+        "name": "disabledAndUnselectedCapturesDoNotCreateAnObserver",
+        "status": "passed",
+        "reason": null
+      },
+      {
+        "className": "be.sportgreenmoove.app.ui.TripChangeFlowTest",
+        "name": "largeTextParentSeesBothVersionsAndAcceptsWithoutApplying",
+        "status": "passed",
+        "reason": null
+      }
+    ]
+  },
+  "sourceFiles": {
+    "scripts/qa/run-capture-window-probe.mjs": "86ccbad412420aa1f8c8f028621899bfec9bd578313520a26a8f7071ee34fcae",
+    "scripts/qa/primary-capture-diagnostic-schema.mjs": "e2de7dbaa3b2d31ee88fb2300102b7d9e95ff32bc6ba14bffc7093c4aa9f68d6",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureProbe.kt": "48867d71c8b724fc062a8c80495c26df46c1199d061c0dbf0a85555b6284619c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnostics.kt": "4b7e428fc7af971d550c3951da3658e0f687181bd304c87e2e4d4d5674773dd9",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnosticsTest.kt": "bc63deae0bdc3ca8e2f7df5b97e12d5ecc168ec1771243a605848b88ef72fb5f",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureWindowCalibrationTest.kt": "45815fc0943791e13a0bb2d886304ebe1a0a46819b8124e8155d7a0d9aca3f2f",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f954c52324a786bbf2cd98de9d49cec2750ea70ad48bd2d9f57a30248bf67af",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeFlowTest.kt": "1f1e5be3363b7331ca3b7b4a413c3eb4644307e5c0a4b2fc67a7d4e67bc36463"
+  },
+  "apkPreparation": {
+    "method": "single-case-continuous-installation-guard-not-flow-proof",
+    "case": "trip-change-components",
+    "receiptSha256": "a10034c136531bc1239248ede7995e1c2e196a76fcf5dff564566eff052991c4",
+    "apkHashes": {
+      "be.sportgreenmoove.app": "96c874c2cdf1b7855c036a5741082f4e350c295099d1fe5846ffe3fa10dc9bad",
+      "be.sportgreenmoove.app.test": "6a600f516840d703045ac8f591b5e60e625eba1d33ab13fbd0fa91a4baa1bba5"
+    },
+    "installationsRemainedBlocked": true
+  },
+  "diagnostic": {
+    "scope": "capture-observation-collection-not-flow-or-root-cause-proof",
+    "ok": true,
+    "ordinaryPassed": false,
+    "copyStatus": 0,
+    "copySignal": null,
+    "errorCode": null,
+    "traces": [
+      {
+        "captureName": "trip-change-parent-accepted.png",
+        "primaryOutcome": "returned",
+        "errorCategory": "none",
+        "elapsedMs": 148,
+        "primaryElapsedMs": 145,
+        "primaryStartOffsetMs": 2,
+        "complete": true
+      },
+      {
+        "captureName": "trip-change-parent-review-large-text.png",
+        "primaryOutcome": "returned",
+        "errorCategory": "none",
+        "elapsedMs": 206,
+        "primaryElapsedMs": 204,
+        "primaryStartOffsetMs": 2,
+        "complete": true
+      }
+    ],
+    "files": {
+      "primary-capture-diagnostics/trip-change-parent-accepted-140632937358.json": "916b89286f1f8ad11faa883a570ee2e98a056f7d1794b11676e64af42e136051",
+      "primary-capture-diagnostics/trip-change-parent-review-large-text-138888340566.json": "832bdf412376a6fea1b5f8a18a3376453c057e3ac446fc5a2adfd1053af34471"
+    }
+  },
+  "deviceRestorationVerified": true,
+  "failureCategories": [],
+  "realCiFailureReproduced": false,
+  "rootCauseProven": false,
+  "backendConnected": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "fullGateAccepted": false,
+  "newPublicMediaAccepted": false
+}

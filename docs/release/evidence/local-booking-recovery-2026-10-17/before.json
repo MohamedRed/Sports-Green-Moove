@@ -1,0 +1,301 @@
+{
+  "runId": "6be3428f9893016cd4a6498b54042674",
+  "testedAt": "2026-10-17T05:30:54.533Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-http-booking-post-commit-response-loss-not-native-ui",
+  "sourceSha256": {
+    "callables/bookingRequests.ts": "8b891578c7e7a536eab6e840339d5e4b623cf2fe36f46b138ca210fb773a07a1",
+    "domain/bookingIntent.ts": "44e3955b2ee8679f6e44ec5fce03778dd8c81f0889e813de5906005f0e700cea"
+  },
+  "passed": false,
+  "checks": [
+    {
+      "id": "independently-saved-before-lost-response",
+      "status": "passed"
+    },
+    {
+      "id": "same-request-recovers-original-identity",
+      "status": "failed",
+      "message": "The expression evaluated to a falsy value:\n\n  assert(retries.every((retry) => retry.status === 200 && retry.bookingId === original.bookingId))\n"
+    },
+    {
+      "id": "one-booking-after-two-explicit-retries",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\n3 !== 1\n"
+    },
+    {
+      "id": "requests-do-not-reserve-seats-before-approval",
+      "status": "passed"
+    },
+    {
+      "id": "approval-does-not-turn-replay-into-another-request",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'r1RGG9AuifqQNXZuIC35'\n- 'V2M9TIJe3eQTDz9fVrQv'\n"
+    },
+    {
+      "id": "approval-retains-the-correct-two-seat-allocation",
+      "status": "passed"
+    },
+    {
+      "id": "cancelled-request-replay-does-not-create-a-new-booking",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'ir1vtbUMveoavcNDz8bp'\n- 'V2M9TIJe3eQTDz9fVrQv'\n"
+    },
+    {
+      "id": "cancelled-booking-stays-closed-and-capacity-is-restored",
+      "status": "passed"
+    },
+    {
+      "id": "same-identity-cannot-be-reused-for-different-seats",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\n200 !== 409\n"
+    },
+    {
+      "id": "anonymous-replay-remains-denied",
+      "status": "passed"
+    }
+  ],
+  "clientRequestId": "296a07d3-befb-470c-944a-16d509dd4cdc",
+  "original": {
+    "bookingId": "V2M9TIJe3eQTDz9fVrQv",
+    "bookingCount": 1,
+    "createdAtMillis": 1792215053046,
+    "seats": 2
+  },
+  "firstError": {
+    "code": "ECONNRESET",
+    "responseReceived": false
+  },
+  "retries": [
+    {
+      "phase": "before-decision",
+      "status": 200,
+      "bookingId": "j6iJ9oRJM8KO5JEzRtHu"
+    },
+    {
+      "phase": "before-decision",
+      "status": 200,
+      "bookingId": "ie5yTb0pg85zrvMdbjmy"
+    },
+    {
+      "phase": "after-approval",
+      "status": 200,
+      "bookingId": "r1RGG9AuifqQNXZuIC35"
+    },
+    {
+      "phase": "after-cancellation",
+      "status": 200,
+      "bookingId": "ir1vtbUMveoavcNDz8bp"
+    }
+  ],
+  "stages": {
+    "beforeDecision": {
+      "seatsAvailable": 4,
+      "bookings": [
+        {
+          "id": "V2M9TIJe3eQTDz9fVrQv",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053046
+        },
+        {
+          "id": "ie5yTb0pg85zrvMdbjmy",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053112
+        },
+        {
+          "id": "j6iJ9oRJM8KO5JEzRtHu",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053092
+        }
+      ]
+    },
+    "afterApproval": {
+      "seatsAvailable": 2,
+      "bookings": [
+        {
+          "id": "V2M9TIJe3eQTDz9fVrQv",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "approved",
+          "createdAtMillis": 1792215053046
+        },
+        {
+          "id": "ie5yTb0pg85zrvMdbjmy",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053112
+        },
+        {
+          "id": "j6iJ9oRJM8KO5JEzRtHu",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053092
+        },
+        {
+          "id": "r1RGG9AuifqQNXZuIC35",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053759
+        }
+      ]
+    },
+    "afterCancellation": {
+      "seatsAvailable": 4,
+      "bookings": [
+        {
+          "id": "V2M9TIJe3eQTDz9fVrQv",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "cancelled",
+          "createdAtMillis": 1792215053046
+        },
+        {
+          "id": "ie5yTb0pg85zrvMdbjmy",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053112
+        },
+        {
+          "id": "ir1vtbUMveoavcNDz8bp",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215054489
+        },
+        {
+          "id": "j6iJ9oRJM8KO5JEzRtHu",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053092
+        },
+        {
+          "id": "r1RGG9AuifqQNXZuIC35",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053759
+        }
+      ]
+    },
+    "afterConflict": {
+      "seatsAvailable": 4,
+      "bookings": [
+        {
+          "id": "FPOwU3odZPFOVEq9c8tA",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 3,
+          "status": "requested",
+          "createdAtMillis": 1792215054515
+        },
+        {
+          "id": "V2M9TIJe3eQTDz9fVrQv",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "cancelled",
+          "createdAtMillis": 1792215053046
+        },
+        {
+          "id": "ie5yTb0pg85zrvMdbjmy",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053112
+        },
+        {
+          "id": "ir1vtbUMveoavcNDz8bp",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215054489
+        },
+        {
+          "id": "j6iJ9oRJM8KO5JEzRtHu",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053092
+        },
+        {
+          "id": "r1RGG9AuifqQNXZuIC35",
+          "parentUserId": "sgm-qa-parent",
+          "childId": "sgm-qa-child-lina",
+          "seats": 2,
+          "status": "requested",
+          "createdAtMillis": 1792215053759
+        }
+      ]
+    }
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": true,
+      "commit": {
+        "bookingId": "V2M9TIJe3eQTDz9fVrQv",
+        "bookingCount": 1,
+        "createdAtMillis": 1792215053046,
+        "seats": 2
+      }
+    },
+    {
+      "number": 2,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    },
+    {
+      "number": 3,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    },
+    {
+      "number": 4,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    },
+    {
+      "number": 5,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    },
+    {
+      "number": 6,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    }
+  ],
+  "conflict": {
+    "status": 200,
+    "bookingId": "FPOwU3odZPFOVEq9c8tA"
+  },
+  "livePayment": false,
+  "productionDeployed": false
+}

@@ -32,7 +32,8 @@ import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
-fun HomeHeader() {
+fun HomeHeader(displayName: String?) {
+    val firstName = displayName?.trim()?.split(Regex("\\s+"))?.firstOrNull()?.ifBlank { null }
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,10 +43,10 @@ fun HomeHeader() {
         Column(modifier = Modifier.weight(1f)) {
             Row(verticalAlignment = Alignment.Bottom) {
                 Text("Bonjour, ", style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary, fontWeight = FontWeight.Bold))
-                Text("Olivier", style = SgmType.BodyBase.copy(color = SgmColor.Green, fontWeight = FontWeight.Bold))
+                Text(firstName ?: "Green-Mover", style = SgmType.BodyBase.copy(color = SgmColor.Green, fontWeight = FontWeight.Bold))
             }
             Text(
-                "Mardi 07 Novembre 2022",
+                java.time.LocalDate.now().format(java.time.format.DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy", java.util.Locale.forLanguageTag("fr-BE"))),
                 style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontWeight = FontWeight.Medium),
             )
         }
@@ -65,6 +66,7 @@ fun HomeHeroCard(trip: TripSummary?, onClick: () -> Unit) {
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
             .height(172.dp)
+            .sgmTestTag(SgmTestTags.HomeRideAction)
             .clip(RoundedCornerShape(20.dp))
             .background(SgmColor.HeroGradient)
             .clickable(onClick = onClick),
@@ -124,7 +126,7 @@ private fun HomeHeroBadge() {
     ) {
         Text(
             "PROCHAINE COURSE",
-            style = SgmType.Eyebrow.copy(color = SgmColor.TextOnGreen, fontSize = 11.sp, lineHeight = 11.sp, letterSpacing = 0.14.em),
+            style = SgmType.Eyebrow.copy(color = SgmColor.TextOnAccent, fontSize = 11.sp, lineHeight = 11.sp, letterSpacing = 0.14.em),
             maxLines = 1,
         )
     }

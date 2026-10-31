@@ -1,0 +1,24 @@
+{
+  "scope": "verified-local-team-draft-loss-after-process-stop-not-completed-flow",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4e2b123d20c3be7dbfe9c8a5cdc78ada",
+  "testedAt": "2026-10-21T16:15:37Z",
+  "sourceCommit": "b92ba8682be612ba2fd4666f80a47df50d629971",
+  "workflowRunId": 39631451016,
+  "jobId": 119330428472,
+  "artifactId": 12360112244,
+  "draftLossObserved": true,
+  "firstProcessRestartObserved": true,
+  "firstStagePassed": true,
+  "draftRestored": false,
+  "parentSendReached": false,
+  "thirdProcessReached": false,
+  "fullFlowVerified": false,
+  "postFailureStoredStateVerified": false,
+  "physicalDevice": false,
+  "productionDataTouched": false,
+  "publishedCaptures": {
+    "team-draft-loss-before": "team-draft-before-window.png",
+    "team-draft-loss-reopened": "team-draft-reopened-window.png"
+  }
+}

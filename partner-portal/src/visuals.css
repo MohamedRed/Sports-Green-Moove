@@ -1,0 +1,19 @@
+.flow-preview { display: flex; align-items: center; justify-content: center; min-width: 0; height: 105px; background: var(--bg-surface); overflow: hidden; }
+.flow-preview img { height: 100%; width: 100%; min-height: 0; object-fit: contain; }
+.no-preview { color: var(--text-muted); font-size: 11px; }
+.detail-modes { display: flex; gap: 24px; padding: 0 32px 22px; font-size: 14px; }
+.detail-modes a { color: var(--text-secondary); text-decoration: none; padding-bottom: 5px; }
+.detail-modes a[aria-current] { color: var(--c-green-dark); font-weight: 700; text-decoration: underline; }
+.tour-progress { color: var(--text-secondary); font-size: 13px; margin-bottom: 18px; }
+.tour-instruction { margin-top: 22px; }
+.tour-instruction h3 { font-size: 20px; margin-bottom: 10px; }
+.tour-instruction p { color: var(--text-secondary); font-size: 14px; }
+.tour-navigation { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; }
+.tour-navigation a { display: inline-flex; flex-shrink: 0; max-width: 100%; align-items: center; gap: 6px; font-size: 14px; }
+.tour-next { margin-left: auto; color: var(--c-green-dark); font-weight: 700; }
+@media (max-width: 800px) {
+  .detail-modes { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 520px) {
+  .detail-modes { padding: 0 20px 20px; gap: 18px; font-size: 13px; }
+}

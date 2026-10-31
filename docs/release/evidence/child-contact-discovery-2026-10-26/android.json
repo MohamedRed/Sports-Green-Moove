@@ -1,0 +1,18 @@
+{
+  "scope": "jvm-and-test-apk-build-not-component-or-phone-execution",
+  "testApkBuildSucceeded": true,
+  "componentExecuted": false,
+  "physicalDevice": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyState.kt": "f8569f91f26f399eef74c85cbb97b57bbf725d2e03367d729fe7de0455091d02",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyRoute.kt": "b4da5059359257717454cd780fe0049a26838c3e7824b64a17a500dd8a6ecc47",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt": "d732bf0cc36f57e5d81bd13431a79b4884cb8a6e129cf2d228d9ac26001e3ffa",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "a31c507ab4b84472a431897987dd271afef722f2ed1a1db9fc6d238bd5fa6378",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TripsScreen.kt": "80725a56b96db62ace5b950b480742d2e516f58bb605f43bafa7947c37080003",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactGateway.kt": "a8c749df45b01997f1c13dfbd463584dfc032a2f0896554e64e443ffc111f64f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt": "26c9d6a36607e2f1bb2df96d407238edec82cdb48a6c926977cc8ab13aaa68f1",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt": "7360baa986c9ca48f0df4a6bd45c421645609217e83927490bfc0b8c279d8b74",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/ChildRideEmergencyStateTest.kt": "f4adf6557d9da567079e332ff4b84749efd58c7e3bc7102e193f709fade75d2a",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/ChildRideEmergencyWireTest.kt": "9b0065ed16fe4ca162e4ff718adeefcb460d34c35229923e6c867e888305ad0f"
+  }
+}

@@ -1,0 +1,51 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8417411Z     AssertionError [ERR_ASSERTION]: Maps runtime changed during the test
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8417771Z     + actual - expected
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8417967Z     
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8418129Z       {
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8418376Z         playServicesEnabled: true,
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8418721Z     +   playServicesVersion: '26.40.32',
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8419400Z     -   playServicesVersion: '24.23.35',
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8419742Z         playStoreEnabled: true
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8419954Z       }
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8420150Z     
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8420716Z         at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/disposable-store-pause.mjs:75:12
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8421293Z         at inspect (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/disposable-store-pause.mjs:65:28)
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8421905Z         at restoreDisposableStore (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/disposable-store-pause.mjs:73:3)
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8422494Z         at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/restore-disposable-store.mjs:11:36
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8422908Z         at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8423274Z         at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8423687Z         at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8423974Z       generatedMessage: false,
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8424151Z       code: 'ERR_ASSERTION',
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8424311Z       actual: {
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8424477Z         playStoreEnabled: true,
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8424672Z         playServicesEnabled: true,
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8424874Z         playServicesVersion: '26.40.32'
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8425034Z       },
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8425167Z       expected: {
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8425331Z         playStoreEnabled: true,
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8425524Z         playServicesEnabled: true,
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8425966Z         playServicesVersion: '24.23.35'
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8426119Z       },
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8426277Z       operator: 'deepStrictEqual',
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8426447Z       diff: 'simple'
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8426575Z     }
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8426689Z   ]
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8426808Z }
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8426874Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8426941Z Node.js v22.23.3
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8483772Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8524375Z ##[group]Terminate Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8524780Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8525098Z OK: killing emulator, bye bye
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8525252Z OK
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8525452Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8526098Z INFO         | Wait for emulator (pid 2745) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8526507Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8763636Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:21.8764656Z INFO         | Saving snapshot 'default_boot' took 0 ms
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:22.8245950Z ERROR        | stop: Not implemented
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:22.8246882Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:22.8363370Z INFO         | removeAll
+Android native UI tests	Run Android Compose UI tests	2026-10-18T02:23:22.9252115Z WARNING      | Netsim Wifi dns:///localhost:33417 is gone due to Stream removed (CANCELLED)
+

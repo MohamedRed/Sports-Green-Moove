@@ -8,9 +8,10 @@ struct MessagesScreen: View {
     @State private var submittingReviewId: String?
     @State private var error: String?
     @State private var notice: String?
+    @State private var reviews = PendingReviewsState()
 
     var body: some View {
-        SGMScreen(spacing: 0) {
+        SGMScreen(spacing: 0, testID: UITestIdentifier.messagesScreen) {
             SGMTopBar(title: "MESSAGES")
             MessageTabs(tabs: tabs, selected: selectedTab) { selectedTab = $0 }
             VStack(spacing: 10) {
@@ -26,7 +27,9 @@ struct MessagesScreen: View {
                     case "notifs":
                         notificationContent
                     case "avis":
-                        reviewContent
+                        PendingReviewsContent(state: reviews, submittingId: submittingReviewId, gateway: appState.firebase) { review, score in
+                            Task { await submitReview(review, score: score) }
+                        }
                     default:
                         chatContent
                     }
@@ -36,13 +39,14 @@ struct MessagesScreen: View {
             .padding(.top, 14)
         }
         .task { await loadInbox() }
+        .onDisappear { reviews.close() }
     }
 
     private var tabs: [MessageTab] {
         [
             MessageTab(id: "notifs", label: "Notifs", count: inbox.notifications.filter(\.unread).count),
             MessageTab(id: "chats", label: "Chats", count: inbox.chats.reduce(0) { $0 + $1.unreadCount }),
-            MessageTab(id: "avis", label: "Avis", count: inbox.reviews.count),
+            MessageTab(id: "avis", label: "Avis", count: reviews.items.count),
         ]
     }
 
@@ -66,26 +70,14 @@ struct MessagesScreen: View {
         }
     }
 
-    private var reviewContent: some View {
-        Group {
-            if inbox.reviews.isEmpty {
-                MessageEmptyCard(message: "Aucun avis en attente.")
-            } else {
-                ForEach(inbox.reviews) { review in
-                    ReviewCard(review: review, submitting: submittingReviewId == review.id) { score in
-                        Task { await submitReview(review, score: score) }
-                    }
-                }
-            }
-        }
-    }
-
     private func loadInbox() async {
         loading = true
         error = nil
         defer { loading = false }
         do {
             inbox = try await appState.firebase.getInbox()
+            try Task.checkCancellation()
+            reviews.replace(inbox)
         } catch {
             self.error = error.localizedDescription
         }
@@ -103,7 +95,8 @@ struct MessagesScreen: View {
                 score: score,
                 comment: nil
             )
-            inbox = try await appState.firebase.getInbox()
+            try Task.checkCancellation()
+            reviews.submitted(review.id)
             notice = "Avis envoyé."
         } catch {
             self.error = error.localizedDescription
@@ -125,7 +118,7 @@ private struct MessageTabs: View {
     var body: some View {
         HStack(spacing: 6) {
             ForEach(tabs) { tab in
-                SGMChip(text: tab.label, selected: selected == tab.id, badge: tab.count > 0 ? "\(tab.count)" : nil) {
+                SGMChip(text: tab.label, selected: selected == tab.id, badge: tab.count > 0 ? "\(tab.count)" : nil, testID: tab.testID) {
                     onSelect(tab.id)
                 }
             }
@@ -196,7 +189,7 @@ private struct NotificationCard: View {
     }
 }
 
-private struct ReviewCard: View {
+struct ReviewCard: View {
     let review: InboxReviewPrompt
     let submitting: Bool
     let onRate: (Int) -> Void
@@ -208,6 +201,14 @@ private struct ReviewCard: View {
                 Text(review.title)
                     .font(.sgmBody(13, weight: .bold))
                     .foregroundStyle(SGM.textPrimary)
+            }
+            if let trip = review.tripContext {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(trip.title).font(.sgmBody(14, weight: .semibold)).foregroundStyle(SGM.textPrimary)
+                    Text(trip.departureLabel).font(.sgmBody(13)).foregroundStyle(SGM.textSecondary)
+                }
+            } else {
+                Text("Détails du trajet indisponibles").font(.sgmBody(13)).foregroundStyle(SGM.textSecondary)
             }
             Text(review.prompt)
                 .font(.sgmBody(13))
@@ -223,15 +224,27 @@ private struct ReviewCard: View {
                         SGMIconView(icon: .star, size: 18, color: SGM.orange)
                     }
                     .buttonStyle(.plain)
+                    .sgmUITestIdentifier("\(UITestIdentifier.ratingPromptAction).\(score)")
                     .disabled(submitting)
                 }
             }
         }
         .messageCardStyle()
+        .sgmUITestIdentifier(UITestIdentifier.ratingPromptAction)
     }
 }
 
-private struct MessageEmptyCard: View {
+private extension MessageTab {
+    var testID: String? {
+        switch id {
+        case "chats": UITestIdentifier.chatTab
+        case "avis": UITestIdentifier.ratingTab
+        default: nil
+        }
+    }
+}
+
+struct MessageEmptyCard: View {
     let message: String
 
     var body: some View {

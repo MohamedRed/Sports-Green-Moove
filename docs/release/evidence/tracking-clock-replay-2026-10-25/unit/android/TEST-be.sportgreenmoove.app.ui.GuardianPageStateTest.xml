@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.GuardianPageStateTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-25T16:06:43.922Z" hostname="MRRs-MacBook-Air.local" time="0.079">
+  <properties/>
+  <testcase name="filteredEmptyPagesKeepTheContinuationAndDoNotPretendExhaustion" classname="be.sportgreenmoove.app.ui.GuardianPageStateTest" time="0.03"/>
+  <testcase name="disposedPagesCannotPublishThePreviousAccountsResults" classname="be.sportgreenmoove.app.ui.GuardianPageStateTest" time="0.023"/>
+  <testcase name="repeatingCursorsAndDuplicateRowsClearThePageRatherThanSilentlyTruncate" classname="be.sportgreenmoove.app.ui.GuardianPageStateTest" time="0.026"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

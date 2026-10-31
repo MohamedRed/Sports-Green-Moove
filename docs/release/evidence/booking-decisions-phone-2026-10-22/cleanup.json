@@ -1,0 +1,32 @@
+{
+  "verifiedAt": "2026-10-22T11:53:51.830Z",
+  "backendExit": 130,
+  "helperExit": 130,
+  "adminClientClosed": true,
+  "phoneAppUninstallConfirmedByProvider": true,
+  "phoneSessionStopped": true,
+  "independentPackageInventoryRead": false,
+  "devicePolicyChanged": false,
+  "locationPermissionGranted": false,
+  "backendDirectoryRemoved": true,
+  "privateSessionRemoved": true,
+  "helperDirectoryRemoved": true,
+  "firstAttemptBackendDirectoryRemoved": true,
+  "firstAttemptPrivateSessionRemoved": true,
+  "firstAttemptPhoneStopped": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099,
+      45690,
+      45691
+    ],
+    "closed": true
+  },
+  "fixtureEnvironmentDestroyed": true,
+  "credentialDiscarded": true,
+  "hostClipboardRestored": true
+}

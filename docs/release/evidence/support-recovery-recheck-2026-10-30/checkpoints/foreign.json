@@ -1,0 +1,177 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "afaec8436c5b20796cace62d9bf3d576",
+  "recordedAt": "2026-10-30T16:09:03.653Z",
+  "fixture": {
+    "runId": "afaec8436c5b20796cace62d9bf3d576",
+    "parentUid": "sgm-qa-parent",
+    "foreignUid": "sgm-qa-driver",
+    "foreignReadDenied": true,
+    "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+    "requestId": "a177f322-a6cc-432b-8256-d2ea2321d245",
+    "originalReport": {
+      "id": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+      "subjectType": "other",
+      "subjectId": null,
+      "reason": "Support coupure QA",
+      "description": "Demande de test avant une coupure.",
+      "emergency": true,
+      "reporterUserId": "sgm-qa-parent",
+      "status": "open",
+      "publicReplyCount": 0,
+      "lastPublicReply": null,
+      "createdAt": {
+        "_seconds": 1793375568,
+        "_nanoseconds": 255000000
+      },
+      "updatedAt": {
+        "_seconds": 1793375568,
+        "_nanoseconds": 255000000
+      }
+    },
+    "originalOperation": {
+      "id": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+      "requesterUserId": "sgm-qa-parent",
+      "clientRequestId": "a177f322-a6cc-432b-8256-d2ea2321d245",
+      "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+      "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+      "createdAt": {
+        "_seconds": 1793375568,
+        "_nanoseconds": 255000000
+      }
+    }
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+        "subjectType": "other",
+        "subjectId": null,
+        "reason": "Support coupure QA",
+        "description": "Demande de test avant une coupure.",
+        "emergency": true,
+        "reporterUserId": "sgm-qa-parent",
+        "status": "open",
+        "publicReplyCount": 0,
+        "lastPublicReply": null,
+        "createdAt": {
+          "_seconds": 1793375568,
+          "_nanoseconds": 255000000
+        },
+        "updatedAt": {
+          "_seconds": 1793375568,
+          "_nanoseconds": 255000000
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+        "requesterUserId": "sgm-qa-parent",
+        "clientRequestId": "a177f322-a6cc-432b-8256-d2ea2321d245",
+        "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "createdAt": {
+          "_seconds": 1793375568,
+          "_nanoseconds": 255000000
+        }
+      }
+    ],
+    "attempts": [
+      {
+        "runId": "afaec8436c5b20796cace62d9bf3d576",
+        "recordedAt": "2026-10-30T16:01:02.495Z",
+        "receipt": {
+          "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+          "clientRequestId": "a177f322-a6cc-432b-8256-d2ea2321d245",
+          "requesterUserId": "sgm-qa-parent",
+          "status": "open",
+          "reused": true
+        },
+        "committed": {
+          "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+          "operationId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+          "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+          "originalContentVerified": true
+        }
+      },
+      {
+        "runId": "afaec8436c5b20796cace62d9bf3d576",
+        "recordedAt": "2026-10-30T15:52:48.362Z",
+        "receipt": {
+          "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+          "clientRequestId": "a177f322-a6cc-432b-8256-d2ea2321d245",
+          "requesterUserId": "sgm-qa-parent",
+          "status": "open",
+          "reused": false
+        },
+        "committed": {
+          "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+          "operationId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+          "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+          "originalContentVerified": true
+        }
+      }
+    ],
+    "held": {
+      "runId": "afaec8436c5b20796cace62d9bf3d576",
+      "recordedAt": "2026-10-30T15:52:48.362Z",
+      "receipt": {
+        "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+        "clientRequestId": "a177f322-a6cc-432b-8256-d2ea2321d245",
+        "requesterUserId": "sgm-qa-parent",
+        "status": "open",
+        "reused": false
+      },
+      "committed": {
+        "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+        "operationId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "originalContentVerified": true
+      }
+    },
+    "released": {
+      "runId": "afaec8436c5b20796cace62d9bf3d576",
+      "releasedAt": "2026-10-30T15:54:03.469Z",
+      "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+      "handlerClosedBeforeReleaseAt": null,
+      "receiptUnchanged": true
+    },
+    "expired": false,
+    "notifications": [],
+    "requesterView": {
+      "report": {
+        "id": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+        "reason": "Support coupure QA",
+        "description": "Demande de test avant une coupure.",
+        "emergency": true,
+        "status": "open",
+        "createdAtMillis": 1793375568255,
+        "updatedAtMillis": 1793375568255,
+        "replyCount": 0,
+        "lastReply": null
+      },
+      "replies": {
+        "items": [],
+        "nextCursor": null
+      }
+    },
+    "foreignList": {
+      "items": [],
+      "nextCursor": null
+    },
+    "replies": []
+  },
+  "result": {
+    "phase": "foreign",
+    "reportId": "6f583981c11656d99dcfef9a57dd2e5e11595b88e2ef45eb66105bb4777dc370",
+    "requestId": "a177f322-a6cc-432b-8256-d2ea2321d245",
+    "reportCount": 1,
+    "operationCount": 1,
+    "attemptCount": 2,
+    "urgent": true,
+    "originalContentUnchanged": true
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true
+}

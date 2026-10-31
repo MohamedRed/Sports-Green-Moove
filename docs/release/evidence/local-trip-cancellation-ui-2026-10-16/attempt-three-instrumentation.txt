@@ -1,0 +1,23 @@
+
+be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest:
+Error in driverCancelsAndParentSeesClosedReservationsAndPendingRefund(be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest.waitFor(LocalTripCancellationFlowTest.kt:132)
+	at be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest.driverCancelsAndParentSeesClosedReservationsAndPendingRefund(LocalTripCancellationFlowTest.kt:78)
+
+
+Time: 78.51
+There was 1 failure:
+1) driverCancelsAndParentSeesClosedReservationsAndPendingRefund(be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest.waitFor(LocalTripCancellationFlowTest.kt:132)
+	at be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest.driverCancelsAndParentSeesClosedReservationsAndPendingRefund(LocalTripCancellationFlowTest.kt:78)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

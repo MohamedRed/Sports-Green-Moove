@@ -1,0 +1,26 @@
+import { liveLocationPayload } from "../domain/liveLocationPayload.js";
+import { hasValidLocationCapture, shouldReplaceLiveLocation } from "../domain/liveLocationOrder.js";
+import { realtimeDb } from "./firebase.js";
+export async function writeLiveLocation(update) {
+    return await writeLiveLocationOutcome(update) === "written";
+}
+export async function writeLiveLocationOutcome(update) {
+    const path = update.role === "driver"
+        ? `liveTrips/${update.rideSessionId}/vehicle`
+        : `liveTrips/${update.rideSessionId}/children/${update.userId}`;
+    const payload = liveLocationPayload(update);
+    // A contended transaction may be reevaluated after a newer capture arrives.
+    let outcome = "invalid";
+    const result = await realtimeDb.ref(path).transaction((current) => {
+        const now = Date.now();
+        if (process.env.GCLOUD_PROJECT === "demo-sgm-local-qa")
+            console.info("SGM_QA_CLOCK_ONLY", JSON.stringify({serverNow: now, capturedAt: update.capturedAt,
+                futureDeltaMs: update.capturedAt - now, captureValid: hasValidLocationCapture(update, now)}));
+        if (shouldReplaceLiveLocation(current, update, now))
+            return payload;
+        outcome = hasValidLocationCapture(update, now) ? "retained" : "invalid";
+        return undefined;
+    }, undefined, false);
+    return result.committed ? "written" : outcome;
+}
+//# sourceMappingURL=liveTrips.js.map

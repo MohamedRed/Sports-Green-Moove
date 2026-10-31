@@ -1,0 +1,35 @@
+{
+  "scope": "restored-android-local-unit-execution-not-device-or-provider-proof",
+  "command": [
+    "./gradlew",
+    ":app:testDebugUnitTest",
+    "-PSGM_USE_FIREBASE_EMULATOR=true",
+    "-PSGM_FIREBASE_EMULATOR_HOST=10.0.2.2",
+    "--no-daemon",
+    "--rerun-tasks",
+    "--max-workers=2",
+    "--console=plain"
+  ],
+  "verifiedAt": "2026-10-25T10:45:58.660Z",
+  "exitCode": 0,
+  "signal": null,
+  "completed": true,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/services/StripeConnectCoordinator.kt": "16af36919e3c151bd8546f217244e4b574a2fdddadbf13b7c1fd6567981c2350",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/RidePaymentCoordinator.kt": "412d350ff5a8cc0e915d790e6e48f10002024b4220753075f888000c4b3637e4",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsRoute.kt": "51eee8141770a7c76a9867ee404da9143de52335ef664dbc6cc5b1118e4ba8ba",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsConnectCard.kt": "3364f4f108c2c03028986280f99d8320aa21187aa5c322ad1faf621c2c513012",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsScreen.kt": "65ad9961f21493f221e3cbc99c1d28bcd352ca9d876d72462ba2faa50ceb0750",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt": "c66606b03870be6bf94e6d3577bb566a93eb02fb0e74e17cf0e23611d2cff7d6",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "ddba5f411e46728b306f56ba26cdb9b338ec0a7a4d5925800ce36bb5bc064802",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/StripeConnectCoordinatorTest.kt": "a24ba0e918551be4f4f5978f97b99c6976c839928941ab724849039d2bcba7d7"
+  },
+  "productionWrites": false,
+  "providerRequests": 0,
+  "counts": {
+    "tests": 543,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

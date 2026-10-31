@@ -1,0 +1,510 @@
+[
+  {
+    "phase": "initial-process",
+    "observedAt": "2026-10-28T15:10:37.512Z",
+    "pid": 9248,
+    "source": "package-scoped-meminfo-visible-console",
+    "package": "be.sportgreenmoove.app.local"
+  },
+  {
+    "phase": "parent-signed-in",
+    "observedAt": "2026-10-28T15:16:56.111Z",
+    "homeSeen": true,
+    "account": "p@example.test"
+  },
+  {
+    "phase": "self-requested-before-stop",
+    "observedAt": "2026-10-28T15:20:26.831Z",
+    "requestAcknowledged": true,
+    "status": "En attente"
+  },
+  {
+    "phase": "self-requested-process-before-stop",
+    "observedAt": "2026-10-28T15:22:51.215Z",
+    "pid": 9248,
+    "source": "second-completed-package-scoped-meminfo-visible-console",
+    "package": "be.sportgreenmoove.app.local"
+  },
+  {
+    "phase": "self-requested-native-stop",
+    "observedAt": "2026-10-28T15:23:57.892Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "androidForceStopConfirmed": true,
+    "forceStopControlDisabledObserved": true
+  },
+  {
+    "phase": "self-requested-process-stopped",
+    "observedAt": "2026-10-28T15:24:24.422Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "result": "No process found for: be.sportgreenmoove.app.local",
+    "processAbsent": true
+  },
+  {
+    "phase": "self-requested-home-restored",
+    "observedAt": "2026-10-28T15:25:30.516Z",
+    "homeSeen": true,
+    "credentialsReentered": false
+  },
+  {
+    "phase": "self-requested-restored",
+    "observedAt": "2026-10-28T15:27:00.978Z",
+    "route": "Mes demandes",
+    "status": "En attente",
+    "credentialsReentered": false,
+    "newRequestSubmitted": false
+  },
+  {
+    "phase": "self-requested-process-restarted",
+    "observedAt": "2026-10-28T15:27:09.789Z",
+    "pid": 18938,
+    "previousPid": 9248,
+    "source": "fresh-package-scoped-meminfo-visible-console",
+    "package": "be.sportgreenmoove.app.local"
+  },
+  {
+    "phase": "self-refused-manager",
+    "observedAt": "2026-10-28T15:28:27.340Z",
+    "club": "Club inscriptions QA",
+    "team": "Equipe inscriptions QA",
+    "subject": "Hermes Parent QA",
+    "status": "Demande refusée",
+    "confirmationThroughUi": true
+  },
+  {
+    "phase": "self-refused-before-stop",
+    "observedAt": "2026-10-28T15:29:05.326Z",
+    "route": "Mes demandes",
+    "status": "Inscription refusée"
+  },
+  {
+    "phase": "self-refused-process-before-stop",
+    "requestedAt": "2026-10-28T15:30:00.975Z",
+    "observedAt": "2026-10-28T15:30:05.392Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 18938,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-refused-native-stop",
+    "observedAt": "2026-10-28T15:30:37.779Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "androidForceStopConfirmationClicked": true
+  },
+  {
+    "phase": "self-refused-process-stopped",
+    "requestedAt": "2026-10-28T15:30:38.789Z",
+    "observedAt": "2026-10-28T15:30:43.213Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": true,
+    "pid": null,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-refused-home-restored",
+    "observedAt": "2026-10-28T15:31:17.068Z",
+    "homeSeen": true,
+    "credentialsReentered": false
+  },
+  {
+    "phase": "self-refused-restored",
+    "observedAt": "2026-10-28T15:31:38.826Z",
+    "route": "Mes demandes",
+    "status": "Inscription refusée",
+    "credentialsReentered": false,
+    "newRequestSubmitted": false
+  },
+  {
+    "phase": "self-refused-process-restarted",
+    "requestedAt": "2026-10-28T15:31:39.953Z",
+    "observedAt": "2026-10-28T15:31:45.349Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 26873,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-requested-again-before-capture",
+    "observedAt": "2026-10-28T15:36:26.414Z",
+    "capture": "self-requested-again-before-context.png",
+    "method": "browser-session-window-not-native-export",
+    "deviceRectangle": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    }
+  },
+  {
+    "phase": "self-requested-again-before-stop",
+    "observedAt": "2026-10-28T15:37:02.064Z",
+    "requestAcknowledged": true,
+    "status": "En attente",
+    "newRequestExplicitlyConfirmed": true
+  },
+  {
+    "phase": "self-requested-again-process-before-stop",
+    "requestedAt": "2026-10-28T15:37:25.930Z",
+    "observedAt": "2026-10-28T15:37:30.818Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 26873,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-requested-again-native-stop",
+    "observedAt": "2026-10-28T15:37:49.528Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "androidForceStopConfirmationClicked": true
+  },
+  {
+    "phase": "self-requested-again-process-stopped",
+    "requestedAt": "2026-10-28T15:37:50.404Z",
+    "observedAt": "2026-10-28T15:37:58.147Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": true,
+    "pid": null,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-requested-again-home-restored",
+    "observedAt": "2026-10-28T15:38:38.580Z",
+    "homeSeen": true,
+    "credentialsReentered": false
+  },
+  {
+    "phase": "self-requested-again-restored",
+    "observedAt": "2026-10-28T15:39:27.406Z",
+    "route": "Mes demandes",
+    "status": "En attente",
+    "credentialsReentered": false,
+    "newRequestSubmitted": false,
+    "capture": "self-requested-again-restored-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "self-requested-again-process-restarted",
+    "requestedAt": "2026-10-28T15:39:28.800Z",
+    "observedAt": "2026-10-28T15:39:41.348Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 9299,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-approved-manager",
+    "observedAt": "2026-10-28T15:40:26.870Z",
+    "subject": "Hermes Parent QA",
+    "club": "Club inscriptions QA",
+    "team": "Equipe inscriptions QA",
+    "status": "Inscription approuvée",
+    "confirmationThroughUi": true
+  },
+  {
+    "phase": "self-approved-before-stop",
+    "observedAt": "2026-10-28T15:40:38.072Z",
+    "status": "Inscription approuvée",
+    "capture": "self-approved-before-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "self-approved-process-before-stop",
+    "requestedAt": "2026-10-28T15:42:04.866Z",
+    "observedAt": "2026-10-28T15:42:10.083Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 9299,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-approved-native-stop",
+    "observedAt": "2026-10-28T15:42:29.374Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "androidForceStopConfirmationClicked": true
+  },
+  {
+    "phase": "self-approved-process-stopped",
+    "requestedAt": "2026-10-28T15:42:30.245Z",
+    "observedAt": "2026-10-28T15:42:36.057Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": true,
+    "pid": null,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-approved-home-restored",
+    "observedAt": "2026-10-28T15:43:20.120Z",
+    "homeSeen": true,
+    "credentialsReentered": false
+  },
+  {
+    "phase": "self-approved-restored",
+    "observedAt": "2026-10-28T15:43:53.299Z",
+    "status": "Inscription approuvée",
+    "credentialsReentered": false,
+    "capture": "self-approved-restored-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "self-approved-process-restarted",
+    "requestedAt": "2026-10-28T15:43:54.312Z",
+    "observedAt": "2026-10-28T15:44:11.157Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 6415,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-withdrawn-before-stop",
+    "observedAt": "2026-10-28T15:45:18.421Z",
+    "status": "Inscription retirée",
+    "withdrawalAcknowledged": true,
+    "capture": "self-withdrawn-before-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "self-withdrawn-process-before-stop",
+    "requestedAt": "2026-10-28T15:45:43.467Z",
+    "observedAt": "2026-10-28T15:45:49.126Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 6415,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-withdrawn-native-stop",
+    "observedAt": "2026-10-28T15:46:00.451Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "androidForceStopConfirmationClicked": true
+  },
+  {
+    "phase": "self-withdrawn-process-stopped",
+    "requestedAt": "2026-10-28T15:46:01.420Z",
+    "observedAt": "2026-10-28T15:46:07.127Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": true,
+    "pid": null,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "self-withdrawn-home-restored",
+    "observedAt": "2026-10-28T15:46:45.443Z",
+    "homeSeen": true,
+    "credentialsReentered": false
+  },
+  {
+    "phase": "self-withdrawn-restored",
+    "observedAt": "2026-10-28T15:47:15.957Z",
+    "status": "Inscription retirée",
+    "credentialsReentered": false,
+    "capture": "self-withdrawn-restored-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "self-withdrawn-process-restarted",
+    "requestedAt": "2026-10-28T15:47:17.109Z",
+    "observedAt": "2026-10-28T15:47:42.157Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 28237,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "child-requested-before-stop",
+    "observedAt": "2026-10-28T15:51:53.115Z",
+    "subject": "Enfant inscriptions QA",
+    "status": "En attente",
+    "requestAcknowledged": true,
+    "capture": "child-requested-before-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "child-requested-actions",
+    "observedAt": "2026-10-28T15:52:37.600Z",
+    "lowerActionReachableByScroll": true,
+    "withdrawalSubmitted": false,
+    "capture": "child-requested-action-visible-context.png"
+  },
+  {
+    "phase": "child-requested-process-before-stop",
+    "requestedAt": "2026-10-28T15:53:03.824Z",
+    "observedAt": "2026-10-28T15:53:09.336Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 28237,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "child-requested-native-stop",
+    "observedAt": "2026-10-28T15:53:21.052Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "androidForceStopConfirmationClicked": true
+  },
+  {
+    "phase": "child-requested-process-stopped",
+    "requestedAt": "2026-10-28T15:53:21.991Z",
+    "observedAt": "2026-10-28T15:53:28.001Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": true,
+    "pid": null,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "child-requested-home-restored",
+    "observedAt": "2026-10-28T15:54:41.006Z",
+    "homeSeen": true,
+    "credentialsReentered": false
+  },
+  {
+    "phase": "child-requested-restored",
+    "observedAt": "2026-10-28T15:55:07.764Z",
+    "childStatus": "En attente",
+    "parentStatus": "Inscription retirée",
+    "credentialsReentered": false,
+    "newRequestSubmitted": false,
+    "capture": "child-requested-restored-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "child-requested-process-restarted",
+    "requestedAt": "2026-10-28T15:55:09.130Z",
+    "observedAt": "2026-10-28T15:55:22.958Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 11947,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "child-approved-manager",
+    "observedAt": "2026-10-28T15:56:24.326Z",
+    "subject": "Enfant inscriptions QA",
+    "status": "Inscription approuvée",
+    "parentStatus": "Demande retirée",
+    "confirmationThroughUi": true
+  },
+  {
+    "phase": "child-approved-before-stop",
+    "observedAt": "2026-10-28T15:56:43.589Z",
+    "childStatus": "Inscription approuvée",
+    "parentStatus": "Inscription retirée",
+    "capture": "child-approved-before-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "child-approved-process-before-stop",
+    "requestedAt": "2026-10-28T15:57:09.337Z",
+    "observedAt": "2026-10-28T15:57:14.521Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 11947,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "child-approved-native-stop",
+    "observedAt": "2026-10-28T15:57:29.058Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "androidForceStopConfirmationClicked": true
+  },
+  {
+    "phase": "child-approved-process-stopped",
+    "requestedAt": "2026-10-28T15:57:31.375Z",
+    "observedAt": "2026-10-28T15:57:38.099Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": true,
+    "pid": null,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "child-approved-home-restored",
+    "observedAt": "2026-10-28T15:58:22.273Z",
+    "homeSeen": true,
+    "credentialsReentered": false
+  },
+  {
+    "phase": "child-approved-restored",
+    "observedAt": "2026-10-28T15:58:50.981Z",
+    "childStatus": "Inscription approuvée",
+    "parentStatus": "Inscription retirée",
+    "credentialsReentered": false,
+    "capture": "child-approved-restored-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "child-approved-process-restarted",
+    "requestedAt": "2026-10-28T15:58:53.045Z",
+    "observedAt": "2026-10-28T15:59:09.223Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 6108,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "manager-signed-out",
+    "observedAt": "2026-10-28T16:01:06.620Z",
+    "blankLoginFormObserved": true
+  },
+  {
+    "phase": "parent-signed-out",
+    "observedAt": "2026-10-28T16:01:47.135Z",
+    "blankLoginFormObserved": true
+  },
+  {
+    "phase": "native-uninstall-requested",
+    "observedAt": "2026-10-28T16:02:37.474Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "uninstallControlClicked": true,
+    "confirmationDialogObserved": false,
+    "homeScreenObserved": true
+  },
+  {
+    "phase": "native-uninstall-incomplete",
+    "observedAt": "2026-10-28T16:04:17.860Z",
+    "package": "be.sportgreenmoove.app.local",
+    "user0Installed": true,
+    "firstInstallTimeUnchanged": "2026-10-28 15:08:00",
+    "packageAbsenceVerified": false,
+    "confirmationDialogObserved": false
+  },
+  {
+    "phase": "provider-uninstall-acknowledged",
+    "observedAt": "2026-10-28T16:05:33.422Z",
+    "confirmationThroughUi": true,
+    "result": "Succesfully uninstalled your app(s)!"
+  },
+  {
+    "phase": "package-absence-verified",
+    "runId": "614b78d6896cf1e31a2323ff23ce1b2f",
+    "projectId": "demo-sgm-local-qa",
+    "observedAt": "2026-10-28T16:06:08.199Z",
+    "scope": "package-scoped-console-removal-observation-not-release-proof",
+    "command": "dumpsys package be.sportgreenmoove.app.local",
+    "output": "Unable to find package: be.sportgreenmoove.app.local",
+    "initialNativeRemovalCompleted": false,
+    "providerUninstallAcknowledged": true,
+    "packageAbsenceIndependentlyObserved": true
+  },
+  {
+    "phase": "phone-session-released",
+    "observedAt": "2026-10-28T16:06:49.397Z",
+    "idleDashboardObserved": true,
+    "providerSessionEnded": true
+  }
+]

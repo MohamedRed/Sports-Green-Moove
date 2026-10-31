@@ -1,0 +1,26 @@
+{
+  "scope": "manual-session-ui-review-separate-from-independent-summary-records",
+  "emptyDriver": true,
+  "historicalMeanAndCount": true,
+  "updatedMeanAndCount": true,
+  "separateParent": true,
+  "emptyThirdAccount": true,
+  "landscapeSummaryAccessible": true,
+  "blankLoginAfterSignOut": true,
+  "remoteClipboardReplaced": true,
+  "localClipboardRestored": true,
+  "idleDashboardAfterStop": true,
+  "syntheticContentOnly": true,
+  "publicAudienceUnchanged": true,
+  "notes": [
+    "One physical Pixel 9 Pro / Android 15, three sequential isolated accounts.",
+    "Driver: no received reviews, then 3,4 / 5 with 104 reviews, then 3,5 / 5 with 105 reviews after explicit refresh.",
+    "Parent: 4,0 / 5 with 26 reviews; club manager: no received reviews. Neither inherited the driver summary.",
+    "In landscape, the profile summary remained accessible by scrolling without overlap. Portrait was restored before subsequent sign-ins.",
+    "All received reviews were fixture-submitted through authenticated local service calls, not sent through the phone in this run.",
+    "All three accounts signed out. The final login fields were blank.",
+    "Seven original JPEG session-window crops were retained, not native exports or a recording. Five are selected for publication.",
+    "The remote clipboard was replaced with test-session-ended, then the original local clipboard was restored.",
+    "Provider returned to the idle dashboard after Stop Session. No process-restart, installed-byte, production, iOS, map or payment proof is claimed."
+  ]
+}

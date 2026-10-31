@@ -1,0 +1,26 @@
+{
+  "observedAt": "2026-10-23T17:49:30.335Z",
+  "scope": "original-build-evidence-fingerprint-coverage-not-rendering-or-test-proof",
+  "requiredCount": 164,
+  "originalCount": 148,
+  "originalDataSha256": "f2e847bf1c5fb561483b64d6c3af226813660bfa55b873da01745392e995adc2",
+  "missing": [
+    "docs/release/evidence/booking-decisions-phone-2026-10-22/README.md",
+    "docs/release/evidence/emergency-dialer-preflight-2026-10-21/README.md",
+    "docs/release/evidence/local-booking-search-feedback-2026-10-17/README.md",
+    "docs/release/evidence/local-schedule-draft-native-2026-10-18/README.md",
+    "docs/release/evidence/local-trip-contention-2026-10-17/README.md",
+    "docs/release/evidence/local-trip-history-2026-10-18/README.md",
+    "docs/release/evidence/local-ui-collection-2026-10-16/README.md",
+    "docs/release/evidence/multipart-security-2026-10-20/README.md",
+    "docs/release/evidence/native-terminal-80c88d0c-2026-10-23/artifact-sha256.json",
+    "docs/release/evidence/native-terminal-80c88d0c-2026-10-23/run.json",
+    "docs/release/evidence/notification-settings-phone-2026-10-23/artifact-sha256.json",
+    "docs/release/evidence/notification-settings-phone-2026-10-23/summary.json",
+    "docs/release/evidence/payout-accounting-2026-10-23/summary.json",
+    "docs/release/evidence/support-urgent-2026-10-23/services.json",
+    "docs/release/evidence/support-urgent-phone-2026-10-23/summary.json",
+    "docs/release/evidence/vehicle-map-display-pass-2026-10-19/README.md"
+  ],
+  "complete": false
+}

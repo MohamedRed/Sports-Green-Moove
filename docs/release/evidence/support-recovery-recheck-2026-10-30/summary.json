@@ -1,0 +1,29 @@
+{
+  "scope": "physical-support-retry-after-controlled-offline-and-process-stop-not-radio-or-release-proof",
+  "checkedAt": "2026-10-30",
+  "sourceCommit": "a1d0d9616c1b2f6db0e9e86b117fd6c81db97adc",
+  "apkSha256": "3837331ce85b2cddadc39145f6ae2713f504ac590114a7c97d89763a3adc6642",
+  "physicalDevice": true,
+  "nativeProcessStopVerified": true,
+  "draftRestoredWithoutRetyping": true,
+  "explicitRetryObserved": true,
+  "originalReportUnchanged": true,
+  "accountIsolationObserved": true,
+  "controlledOfflineObserved": true,
+  "hostDisposalVerified": true,
+  "physicalRadioLossVerified": false,
+  "trackingNetworkLossVerified": false,
+  "urgentEscalationVerified": false,
+  "realEmailSent": false,
+  "earlierReplayRootCauseEstablished": false,
+  "handlerClosedBeforeReleaseVerified": false,
+  "installedBytesIndependentlyHashed": false,
+  "fullCiPassed": false,
+  "releaseComplete": false,
+  "productionWrites": false,
+  "videoRecorded": false,
+  "iosPhysicalUiVerified": false,
+  "publishedCaptures": {
+    "support-recheck-history": "captures/10-parent-history-session.png"
+  }
+}

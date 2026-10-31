@@ -1,0 +1,16 @@
+{
+  "scope": "terminal-native-emulator-capacity-failure-before-app-tests",
+  "sourceCommit": "e64555e7d8c2d23b34bc05e2e952625a6c44ca05",
+  "runId": 41120151150,
+  "jobId": 124284519409,
+  "availableMb": 6926.72,
+  "requiredMb": 7372.8,
+  "emulatorVersion": "37.2.13.0",
+  "emulatorStarted": false,
+  "appUiExecuted": false,
+  "acceptedTestCases": 0,
+  "originalLogSha256": "a5f09e526b5b5122e4fa0b5ceb7e5a79b758dcf5e69d304cc3da090cf9f12b26",
+  "capacityCorrectionExecutedOnHostedRunner": false,
+  "earlierTransferRootCauseProven": false,
+  "releaseComplete": false
+}

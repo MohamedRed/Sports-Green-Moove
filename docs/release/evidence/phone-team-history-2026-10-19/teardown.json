@@ -1,0 +1,14 @@
+{
+  "scope": "observed-owned-history-phone-resource-cleanup-not-release-proof",
+  "recordedAt": "2026-10-19T12:28:12Z",
+  "fixtureCleanupVerified": true,
+  "phoneReleasedObserved": true,
+  "tunnelDisconnectedObserved": true,
+  "helperProcessesStopped": true,
+  "privateSessionFileRemoved": true,
+  "temporaryRuntimeRemoved": true,
+  "clipboardRestoredObserved": true,
+  "loopbackPortsRefused": [5001, 8080, 9000, 9099, 45454],
+  "runtimeShutdown": "interactive-interrupt-left-two-owned-java-processes-and-private-file; verified-owned-processes-terminated-and-runtime-files-removed-explicitly",
+  "helperShutdown": "launcher-and-child-processes-stopped-after-confirmed-disconnect"
+}

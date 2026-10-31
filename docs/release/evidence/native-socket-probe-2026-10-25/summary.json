@@ -1,0 +1,51 @@
+{
+  "scope": "independent-physical-phone-loopback-transport-probe-not-app-flow-proof",
+  "testedAt": "2026-10-25T19:17:52.576Z",
+  "device": {
+    "model": "Pixel 9 Pro",
+    "os": "Android 15",
+    "physical": true
+  },
+  "observedVia": "reviewed-unscaled-streamed-phone-viewport",
+  "httpResult": "VERIFIED_204",
+  "nativeSocketResult": "ECONNREFUSED",
+  "elapsedMs": 202,
+  "ownedServerRequestCount": 1,
+  "configuredHost": "127.0.0.1",
+  "configuredPort": 9000,
+  "uploadedApkSha256": "54f25643a103934430a2fbf6c2e29f6a93dec1bf56a37aeb34055645c7d11613",
+  "sourceFiles": {
+    "settings.gradle.kts": "6573d734f1026d2b55605591d7350910ae171b64eeec2ee1de1d2685347b743c",
+    "build.gradle.kts": "e5b4d8ef374ce9fcb50de81dc1e358e05a989501e3ace48a31698aeb14270f0b",
+    "app/build.gradle.kts": "fea43b9d2005fa229ba37f4e0ce8afd61bd0e2134030466f6ea14cd6b2ae709b",
+    "app/src/main/AndroidManifest.xml": "4e373e5d153be087e2e26a10549b06931bb65018b9fe7b14ee21cd8a9e94418c",
+    "app/src/main/java/be/sportgreenmoove/qa/connectivity/ProbeActivity.java": "eefddb06d7a97b339717c99abf72d6e4c5599324d3f30b24a327b4d3f172715c",
+    "server.mjs": "7f94593a3e477b5e466fbc4596c6625643f21e168290fa9144c51eb63927aa5a"
+  },
+  "sdk": {
+    "artifact": "com.google.firebase:firebase-database:22.0.1",
+    "aarSha256": "294ac0b216c768bf24c30297d677a480aa2668ec35edfd86afb7b86f72a4a49a",
+    "plainWebSocketUsesDirectSocketConstructor": true
+  },
+  "isolatedTransportMismatchObserved": true,
+  "productionBugProven": false,
+  "providerWideLimitationProven": false,
+  "mainAppCodeChanged": false,
+  "workaroundInstalled": false,
+  "trackingFlowAccepted": false,
+  "productionWrites": false,
+  "accountsUsed": 0,
+  "paymentRequests": 0,
+  "routeProviderRequests": 0,
+  "releaseScenariosAccepted": false,
+  "publicMedia": [],
+  "cleanup": {
+    "uninstallAcknowledged": true,
+    "packageAbsenceProven": false,
+    "phoneSessionStopped": true,
+    "helperGroupStopped": true,
+    "helperHandoffRemoved": true,
+    "ownedServerStopped": true,
+    "loopbackPortsClosed": true
+  }
+}

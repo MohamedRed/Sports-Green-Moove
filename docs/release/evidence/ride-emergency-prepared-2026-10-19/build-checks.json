@@ -1,0 +1,22 @@
+{
+  "scope": "compiled-active-ride-contact-test-not-executed-native-flow",
+  "compiledLogFileModifiedAt": "2026-10-19T14:11:52.721Z",
+  "sourceBaseCommit": "26bb6647c7c28a94d6a0b28a32aafa2cbcd752c2",
+  "preparedWorktreeSources": true,
+  "nativeTestApkCompiled": true,
+  "testApkSha256": "aecad6a2e30247615b4509611e2467991e35b142bbd4985339ea66f34a44e108",
+  "nativeUiExecuted": false,
+  "dialerOpened": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideEmergencyUi.kt": "617a39a0df046155a2b8f05c43911c4f3693645043ee0354995d711d1c405bb4",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideFlowTest.kt": "c6a3a7ee070d6fc0195e463a24664c663ba35d84a376f9fc4ac3ea15a40e5a73",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyEvidence.kt": "e298ac1aac60290b5b734c6fc2f6952d8cab35832ac071c05921423e98ef4c19",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt": "5cbb386efc1dcf47240f4e2d9a1e3a0da7d730bb199c9468699b99ea766fda74",
+    "scripts/qa/ride-emergency-evidence.mjs": "5e67f4561de8fb4319be3f21da9f5607eccddf599350158700aed04351aacb28",
+    "scripts/qa/verify-ride-emergency-ui.mjs": "65f0f193bb62c397d7b63abc9d5898cac66086d4a2bd4ab6771ccbbbe0a4203d",
+    "scripts/qa/verify-local-ride-ui.mjs": "76c085754e48ae6dddc1af4f67bfad6e4a243d8da5ec6efe2a979c0f9f8d5ab0",
+    "scripts/qa/local-android-session.mjs": "fd9e3680b1a6eff1c637294c59be24d838cb2072a169555eac743d5428866c64"
+  }
+}

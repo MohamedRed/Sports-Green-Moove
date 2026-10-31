@@ -1,0 +1,40 @@
+{
+  "scope": "controlled-isolated-reproduction-of-open-review-window-gap-not-a-passing-flow",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "97691d38cf8e99cdd5a2d596f28a1d7f",
+  "observedAt": "2026-10-29T18:30:38.132Z",
+  "gapReproduced": true,
+  "completedRideCount": 31,
+  "immutableRatingCount": 30,
+  "expectedDriverPrompts": 1,
+  "observedDriverPrompts": 0,
+  "expectedParentPrompts": 31,
+  "observedParentPrompts": 30,
+  "omittedRideId": "sgm-review-window-030",
+  "omittedRatingId": "sgm-review-window-030_sgm-qa-driver_sgm-qa-parent",
+  "omittedRideCompleted": true,
+  "omittedDriverRatingAbsent": true,
+  "protectedRecordCount": 158,
+  "originalRecordsAndClaimsUnchanged": true,
+  "productionWrites": false,
+  "phoneUiExecuted": false,
+  "providerRequests": 0,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "scripts/qa/review-request-window-probe.mjs": "be396e6e4da639949df17aba76c215ddc6a5f1bbb4057832c10a64c7a97e6d64",
+    "functions/src/callables/inbox.ts": "6883853b00d17e5372a34e33c1970787d317ac7b2e5d478221379e3443de39b1",
+    "functions/src/domain/inbox.ts": "85ebfc1216b77a99be92a096ccbf033fb9974f22dd05efeed4835c4eecc220e9"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

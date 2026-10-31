@@ -1,0 +1,29 @@
+.payout-action button {
+  max-width: 100%;
+  margin-right: 0;
+  white-space: normal;
+}
+
+.payout-action [role="status"] {
+  max-width: 32rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .payout-table table { min-width: 0; }
+  .payout-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .payout-table tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .payout-table td { border: 0; padding: 8px 0; overflow-wrap: anywhere; }
+  .payout-table td:nth-child(2) { text-align: right; }
+  .payout-table td:nth-child(3), .payout-table .payout-action { grid-column: 1 / -1; }
+}

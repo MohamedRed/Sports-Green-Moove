@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.BookingIntentMappingTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-29T23:23:54.389Z" hostname="MRRs-MacBook-Air.local" time="0.024">
+  <properties/>
+  <testcase name="publishedAndSearchResultsCarryTheirDisplayedTermsIntoTheRequest" classname="be.sportgreenmoove.app.services.BookingIntentMappingTest" time="0.02"/>
+  <testcase name="aPreviewWithoutValidTermsCannotBeSilentlyRequotedAtDispatch" classname="be.sportgreenmoove.app.services.BookingIntentMappingTest" time="0.001"/>
+  <testcase name="existingTimestampAndDateDocumentsRemainBookable" classname="be.sportgreenmoove.app.services.BookingIntentMappingTest" time="0.002"/>
+  <testcase name="inconsistentResultIdentityFailsRatherThanBookingAnotherTrip" classname="be.sportgreenmoove.app.services.BookingIntentMappingTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,39 @@
+{
+  "scope": "isolated-physical-phone-live-observation-diagnostics-not-release-proof",
+  "testedAt": "2026-10-25",
+  "diagnosticBuildOnly": true,
+  "productionBehaviorChanged": false,
+  "tracingEnabledInRelease": false,
+  "traceSequencesComplete": true,
+  "databaseConnectionEstablished": false,
+  "locationInvalidationsObserved": 0,
+  "completedRefreshes": 4,
+  "listenerLifetimesMs": [
+    470107,
+    135537
+  ],
+  "firstAttemptCompleted": false,
+  "secondNetworkCheckpointRunCompleted": false,
+  "offlineBoundaryAccepted": false,
+  "supplementalSignedOutStabilityObserved": true,
+  "continuousDisplayProven": false,
+  "overallFlowAccepted": false,
+  "transportRootCauseConfirmed": false,
+  "productionWrites": false,
+  "realMovementProven": false,
+  "parentPhoneProven": false,
+  "childTrackingProven": false,
+  "releaseScenariosAccepted": false,
+  "routeProviderRequests": 0,
+  "publicMedia": [],
+  "ci": {
+    "headSha": "566a994ead3e4925e15ff818d2304d9399f54afc",
+    "runId": 40220500194,
+    "focusedJobsPassed": 10,
+    "ordinaryPassed": 165,
+    "ordinarySkipped": 54,
+    "ordinaryFailed": 1,
+    "mainAccepted": false,
+    "rootCauseConfirmed": false
+  }
+}

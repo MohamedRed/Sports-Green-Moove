@@ -1,30 +1,46 @@
 import Foundation
 
-#if canImport(FirebaseCore) && canImport(FirebaseFunctions)
+#if canImport(FirebaseCore) && canImport(FirebaseFunctions) && canImport(FirebaseAuth)
 import FirebaseFunctions
+import FirebaseAuth
 
 extension FirebaseBackendGateway {
     func getInbox() async throws -> InboxSummary {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable("getInbox").call([:]) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let payload = result?.data as? [String: Any],
-                          let inbox = payload["inbox"] as? [String: Any] {
-                    continuation.resume(returning: mapInbox(inbox))
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse inbox invalide."))
-                }
-            }
-        }
+        guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }
+        let payload = try await inboxFunction("getInbox", data: [:], uid: uid)
+        guard let inbox = payload["inbox"] as? [String: Any] else { throw ProviderConfigurationError(message: "Inbox manquante.") }
+        return try mapInbox(inbox, uid: uid)
+    }
+    func loadPendingReviews(cursor: String) async throws -> PendingReviewPage {
+        guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }
+        let page = try PendingReviewWire.parse(await inboxFunction("getPendingReviews", data: ["cursor": cursor], uid: uid), uid: uid)
+        guard page.nextCursor != cursor else { throw ProviderConfigurationError(message: "Réponse avis invalide.") }
+        return page
     }
 }
 
-private func mapInbox(_ data: [String: Any]) -> InboxSummary {
-    InboxSummary(
+private func inboxFunction(_ name: String, data: [String: Any], uid: String) async throws -> [String: Any] {
+    let payload: [String: Any] = try await withCheckedThrowingContinuation { continuation in
+        Functions.functions().httpsCallable(name).call(data) { result, error in
+            if let error { continuation.resume(throwing: error) }
+            else if let payload = result?.data as? [String: Any] { continuation.resume(returning: payload) }
+            else { continuation.resume(throwing: ProviderConfigurationError(message: "Réponse inbox invalide.")) }
+        }
+    }
+    try Task.checkCancellation()
+    guard Auth.auth().currentUser?.uid == uid else { throw CancellationError() }
+    return payload
+}
+
+private func mapInbox(_ data: [String: Any], uid: String) throws -> InboxSummary {
+    guard let userId = data["reviewsUserId"], let items = data["reviews"], let cursor = data["reviewsNextCursor"] else {
+        throw ProviderConfigurationError(message: "Réponse avis invalide.")
+    }
+    let page = try PendingReviewWire.parse(["userId": userId, "items": items, "nextCursor": cursor], uid: uid)
+    return InboxSummary(
         notifications: array(data["notifications"]).compactMap(mapInboxNotification),
         chats: array(data["chats"]).compactMap(mapInboxChat),
-        reviews: array(data["reviews"]).compactMap(mapInboxReview)
+        reviews: page.items, reviewsNextCursor: page.nextCursor, reviewsUserId: uid
     )
 }
 
@@ -51,21 +67,6 @@ private func mapInboxChat(_ data: [String: Any]) -> InboxChatSummary? {
         dateLabel: data["dateLabel"] as? String ?? "",
         unreadCount: (data["unreadCount"] as? NSNumber)?.intValue ?? 0,
         initials: data["initials"] as? String ?? "CH"
-    )
-}
-
-private func mapInboxReview(_ data: [String: Any]) -> InboxReviewPrompt? {
-    guard let id = data["id"] as? String,
-          let rideSessionId = data["rideSessionId"] as? String,
-          let ratedUserId = data["ratedUserId"] as? String
-    else { return nil }
-    return InboxReviewPrompt(
-        id: id,
-        rideSessionId: rideSessionId,
-        ratedUserId: ratedUserId,
-        title: data["title"] as? String ?? "Avis de course",
-        prompt: data["prompt"] as? String ?? "",
-        initials: data["initials"] as? String ?? "AV"
     )
 }
 

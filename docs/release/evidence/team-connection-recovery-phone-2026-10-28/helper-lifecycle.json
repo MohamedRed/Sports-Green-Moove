@@ -1,0 +1,24 @@
+{
+  "scope": "helper-exit-and-retained-source-observations-not-interruption-root-cause-proof",
+  "versions": {
+    "original": {
+      "sha256": "771cdba010569c7227b65c3f3684b06ed884bbf85e5a5abb2037377e91d80b4a"
+    },
+    "corrected": {
+      "sha256": "2f06bb1cf2a364894df6b4acd203d5de1e72e796bd266b73acb34c993ec05424"
+    }
+  },
+  "first": {
+    "exitCode": 0,
+    "ownerStopRequested": false,
+    "acceptedAsExpectedShutdown": false,
+    "causeConfirmed": false
+  },
+  "second": {
+    "exitCode": 130,
+    "ownerStopRequested": true
+  },
+  "inactivityTimeoutMinutes": 10,
+  "unchangedNetworkRestrictions": true,
+  "automaticReconnectAdded": false
+}

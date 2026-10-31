@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamEnrollmentWireTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-19T17:35:45.858Z" hostname="MRRs-MacBook-Air.local" time="0.006">
+  <properties/>
+  <testcase name="malformedOwnershipIdentityVersionAndCapabilityNeverProduceAConfirmedView" classname="be.sportgreenmoove.app.services.TeamEnrollmentWireTest" time="0.002"/>
+  <testcase name="receiptsMustAdvanceThisExactEnrollmentIdentity" classname="be.sportgreenmoove.app.services.TeamEnrollmentWireTest" time="0.002"/>
+  <testcase name="selfAndChildResponsesBindExactTargetAndSeparateStatusFromEligibility" classname="be.sportgreenmoove.app.services.TeamEnrollmentWireTest" time="0.0"/>
+  <testcase name="requestPayloadCarriesOnlyViewedIdentityVersionAndOperationId" classname="be.sportgreenmoove.app.services.TeamEnrollmentWireTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

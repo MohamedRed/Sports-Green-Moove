@@ -1,0 +1,172 @@
+import { supportFollowupSteps } from './support-followup-tour.mjs';
+import { chatNetworkRecoveryTour } from './chat-network-recovery.mjs';
+import {chatNetworkPhoneTour} from './chat-network-phone.mjs';
+import { supportSubmissionSteps } from './support-submission-flow.mjs';
+import { searchPhoneTour } from './search-booking-phone.mjs';
+import { directBookingTour } from './direct-booking.mjs';
+import {tripCancellationTour} from './trip-cancellation-phone.mjs';
+import {staleCancellationTour} from './cancellation-stale-phone.mjs';
+import {driverConnectTour} from './driver-connect.mjs';
+import {trackingClockTour} from './tracking-clock-replay.mjs';
+import {trackingNetworkTour} from './tracking-network-phone.mjs';
+import { teamRestartTour } from './team-process-restart.mjs';
+import {reviewPaginationTour} from './review-pagination.mjs';
+
+const image = (file, title, text) => ({ image: file, title, text });
+const clip = (file, title, text) => ({ clip: file, title, text });
+
+export const tours = {
+  tracking: trackingClockTour,
+  'tracking-network': trackingNetworkTour,
+  payments: driverConnectTour,
+  'notification-settings': [
+    image('notification-read-phone-unread', 'Ouvrir les alertes', 'Trois alertes sont non lues.'),
+    image('notification-read-phone-read', 'Marquer une alerte comme lue', 'Les deux autres restent non lues.'),
+    image('notification-read-phone-driver', 'Changer de compte', 'Le conducteur ne voit que ses propres alertes.'),
+    image('notification-read-phone-parent-return', 'Revenir au compte parent', 'La lecture est conservée.'),
+    image('notification-phone-profile-blocked', 'Voir le statut du téléphone', 'Le profil indique que les notifications sont bloquées.'),
+    image('notification-phone-os-blocked', 'Ouvrir le réglage', 'Le bouton mène aux notifications de cette app.'),
+    image('notification-phone-os-allowed', 'Autoriser les notifications', 'Le réglage est activé sur le téléphone de test.'),
+    image('notification-phone-profile-allowed', 'Revenir au profil', 'Le nouveau statut apparaît au retour.'),
+    image('notification-phone-options-blocked', 'Retirer l’autorisation', 'Dans les paramètres aussi, le statut se met à jour.'),
+    image('notification-phone-profile-restored', 'Retrouver le même statut', 'Le profil confirme le retour à l’autorisation initiale.'),
+  ],
+  support: supportFollowupSteps(image),
+  'support-urgent': [
+    image('support-urgent-phone-prepared', 'Signaler une urgence', 'Le parent remplit sa demande et active Urgent.'),
+    image('support-urgent-phone-answer', 'Lire la réponse', 'Le support répond depuis son espace. Le parent retrouve le texte et le statut En cours.'),
+    image('support-urgent-phone-closed', 'Retrouver la clôture', 'La même demande affiche Clôturée avec sa réponse.'),
+    image('support-urgent-phone-foreign', 'Changer de compte', 'L’autre compte ne voit pas la demande du parent.'),
+    image('support-urgent-phone-restored', 'Revenir au compte du parent', 'La demande clôturée et sa réponse sont toujours là.'),
+  ],
+  'support-submission': supportSubmissionSteps(image, clip),
+  'team-conversation': [
+    image('team-authority-phone-initial', 'Avant le retrait', 'Avec des données de test, le parent retrouve le message reçu après son admission.'),
+    image('team-authority-phone-revoked', 'Retirer l’accès', 'La conversation et la saisie disparaissent sur le téléphone.'),
+    image('team-authority-phone-renewed', 'Donner un nouvel accord', 'Après actualisation, la conversation se rouvre sans les anciens messages.'),
+    image('team-authority-phone-new-message', 'Recevoir un nouveau message', 'Seul le message envoyé après le nouvel accord apparaît.'),
+    image('team-authority-phone-replied', 'Répondre', 'Le parent envoie une seule réponse. Les anciens messages restent masqués.'),
+    image('team-read-phone-initial-unread', 'Voir le message non lu', 'Avec des données de test, le parent retrouve un message à lire sur le téléphone.'),
+    image('team-read-phone-parent-read', 'Ouvrir la conversation', 'Le message est lu. L’historique antérieur à l’arrivée du parent reste masqué.'),
+    image('team-read-phone-new-unread', 'Recevoir un nouveau message', 'Après actualisation, le compteur revient à un message non lu.'),
+    image('team-read-phone-parent-read-again', 'Lire le nouveau message', 'Le parent retrouve les deux messages reçus depuis son arrivée.'),
+    image('team-read-phone-parent-sent', 'Répondre une seule fois', 'La réponse est envoyée. Elle n’ajoute pas de message non lu à son auteur.'),
+    image('team-read-phone-driver-unread', 'Passer au conducteur', 'Sur le même téléphone, l’autre compte retrouve un message non lu.'),
+    image('team-read-phone-driver-read', 'Lire la réponse', 'Le conducteur ouvre le message du parent. Sa lecture est enregistrée séparément.'),
+    image('team-read-phone-parent-returned', 'Revenir au parent', 'Après reconnexion, les messages déjà lus ne redeviennent pas non lus.'),
+    image('team-read-verified-count', 'Retrouver le compteur', 'Dans un essai local simulé, le nom d’équipe et le compteur restent lisibles sur petit écran, avec texte agrandi.'),
+    image('team-read-verified-visible', 'Lire les messages visibles', 'Seuls les messages affichés sont marqués comme lus.'),
+    image('team-read-verified-error', 'Voir l’erreur de lecture', 'Une lecture non confirmée reste à réessayer.'),
+    image('team-read-verified-retry', 'Réessayer', 'La lecture est enregistrée. Les messages non affichés restent non lus.'),
+    image('team-read-verified-revoked', 'Retirer l’accès', 'La conversation et la saisie disparaissent.'),
+    image('team-draft-phone-initial', 'Ouvrir son équipe', 'Dans un autre essai sur téléphone, le parent retrouve le message envoyé après son admission, sans l’ancien historique.'),
+    image('team-draft-phone-unsent', 'Garder un brouillon', 'Le parent écrit sans envoyer.'),
+    image('team-draft-phone-reopened', 'Fermer et rouvrir l’app', 'Le même parent retrouve le texte dans la même équipe, sans le retaper.'),
+    image('team-draft-phone-sent', 'Envoyer une seule fois', 'Un appui envoie le message. Le champ de saisie se vide.'),
+    image('team-draft-phone-cleared', 'Rouvrir une seconde fois', 'Le message reste envoyé et le brouillon ne revient pas.'),
+    image('team-draft-phone-private-parent', 'Garder un second brouillon privé', 'Le parent écrit un autre texte, sans l’envoyer.'),
+    image('team-draft-phone-other-account', 'Passer au compte conducteur', 'Sur le même téléphone, le conducteur voit le message reçu, mais pas le brouillon privé du parent.'),
+    image('team-draft-phone-returned-parent', 'Revenir au compte parent', 'Son second brouillon revient. Il n’a pas été envoyé ni supprimé lors du changement de compte.'),
+    image('team-access-verified-initial', 'Ouvrir l’équipe d’un enfant', 'Dans un autre essai local, le parent retrouve l’équipe de son premier enfant, sans les anciens messages.'),
+    image('team-access-verified-remaining', 'Garder le second accès', 'Le premier accord est retiré. Le second enfant conserve l’accès, avec son propre historique.'),
+    image('team-access-verified-revoked', 'Retirer le dernier accord', 'Sans accord valide, la conversation et la saisie disparaissent.'),
+    image('team-access-verified-renewed', 'Revenir après un nouvel accord', 'L’équipe se rouvre, sans retrouver les messages antérieurs à ce nouvel accord.'),
+    image('team-access-verified-other', 'Répondre dans une autre équipe', 'Après un accord séparé, le parent reçoit un message et répond dans la seconde équipe.'),
+    image('team-access-verified-isolated', 'Retrouver la première équipe', 'Ses messages restent séparés de ceux de la seconde équipe. Le champ de saisie est vide.'),
+  ],
+  'session-disconnect': [
+    image('session-disconnect-error', 'Depuis l’erreur', 'L’app propose de réessayer ou de se déconnecter.'),
+    image('session-disconnect-signed-out', 'Se déconnecter', 'Le parent choisit Se déconnecter et retrouve la connexion.'),
+    image('session-disconnect-reopened', 'Relancer l’app', 'Après fermeture complète, la connexion est toujours demandée.'),
+  ],
+  'session-restoration': [
+    image('session-recheck-error', 'Voir l’erreur', 'L’essai provoque une erreur au démarrage. L’app propose de réessayer ou de se déconnecter.'),
+    image('session-recheck-rotated-error', 'Tourner l’écran', 'Le message et les deux choix restent accessibles en paysage.'),
+    image('session-recheck-recovered', 'Réessayer', 'Une fois le service de test rétabli, le parent retrouve son accueil.'),
+    image('session-recheck-restored', 'Revenir en portrait', 'Le même compte reste connecté au retour.'),
+  ],
+  'team-enrollment': teamRestartTour,
+  'emergency-contact': [
+    image('emergency-phone-empty', 'Choisir son contact', 'Le nouvel essai sur téléphone commence sans contact enregistré.'),
+    image('emergency-phone-saved', 'Enregistrer le contact', 'Le parent enregistre un nom et un numéro fictifs.'),
+    image('emergency-phone-restored', 'Fermer et relancer l’app', 'Le même contact revient après fermeture complète.'),
+    image('emergency-phone-child', 'Choisir pour son enfant', 'Le parent vérifié enregistre un autre contact pour son enfant de test.'),
+    image('emergency-phone-revoked', 'Retirer le droit parent', 'Au prochain essai d’ouverture, le contact est masqué et son utilisation bloquée.'),
+    image('emergency-phone-cancelled', 'Revenir sans supprimer', 'Annuler la suppression conserve le contact du parent.'),
+    image('emergency-phone-removed', 'Confirmer la suppression', 'Le contact disparaît après confirmation.'),
+    image('emergency-phone-other-account', 'Changer de compte', 'L’autre compte ne retrouve aucun contact du parent.'),
+  ],
+  'emergency-profile': [
+    image('emergency-profile-original', 'Le contact du profil initial', 'Le parent a choisi cet enfant et enregistré son contact fictif.'),
+    image('emergency-profile-denied', 'Refuser l’ancien formulaire', 'Le profil est recréé pour l’essai. L’ancien formulaire ne peut plus enregistrer.'),
+    image('emergency-profile-empty', 'Ne pas reprendre l’ancien numéro', 'Un nouvel accord est donné pour l’essai. Le nouveau profil ne récupère pas l’ancien contact.'),
+    image('emergency-profile-restored', 'Retrouver le nouveau contact', 'Le parent enregistre un nouveau numéro fictif. Il revient après réouverture de l’écran.'),
+  ],
+  'ride-observation': [
+    image('vehicle-map-first', 'Voir le véhicule sur la carte', 'Le 19 octobre, une première position de test apparaît côté parent.'),
+    image('vehicle-map-moved', 'Recevoir la position suivante', 'Le 19 octobre, le véhicule bouge ; la carte et les repères restent fixes.'),
+    image('ride-recheck-fresh', 'Recevoir une position', 'Le 21 octobre, une position de test arrive sur le trajet ouvert côté parent.'),
+    image('ride-recheck-stale', 'Attendre sans nouveau point', 'Après environ 90 secondes, la position passe à vérifier.'),
+    image('ride-recheck-recovered', 'Recevoir le point suivant', 'Une nouvelle position de test enlève l’alerte.'),
+    image('ride-recheck-pickup', 'Voir la prise en charge', 'Le statut change sans quitter le trajet.'),
+    image('ride-recheck-resumed', 'Revenir dans l’app', 'La dépose est visible au retour.'),
+    image('ride-recheck-ended', 'Recevoir la fin du trajet', 'Le parent ne voit plus de course active.'),
+    image('ride-recheck-history', 'Retrouver le trajet terminé', 'Le trajet apparaît dans les trajets passés.'),
+  ],
+  'native-startup': [
+    image('native-startup-started', 'Reprendre un trajet', 'Une position déjà reçue permet de reprendre le suivi, en local.'),
+    image('native-startup-signed-out', 'Se déconnecter', 'Le suivi s’arrête et l’écran de connexion revient.'),
+  ],
+  'ride-emergency': [
+    image('ride-emergency-driver-entry', 'Depuis le trajet conducteur', 'Le contact est accessible sans quitter le trajet.'),
+    image('ride-emergency-driver-saved', 'Choisir son contact', 'Le conducteur enregistre son numéro fictif.'),
+    image('ride-emergency-driver-dialer', 'Ouvrir le téléphone', 'Le bon numéro apparaît. Aucun appel n’est lancé.'),
+    image('ride-emergency-driver-returned', 'Revenir au trajet', 'Le conducteur retrouve le même trajet et ses passagers.'),
+    image('ride-emergency-parent-entry', 'Passer au compte parent', 'Le parent retrouve le trajet, sans les commandes conducteur.'),
+    image('ride-emergency-parent-saved', 'Choisir un autre contact', 'Le parent enregistre son propre numéro fictif.'),
+    image('ride-emergency-parent-dialer', 'Ouvrir le téléphone côté parent', 'Seul le numéro du parent apparaît. Aucun appel n’est lancé.'),
+    image('ride-emergency-parent-returned', 'Retrouver le trajet côté parent', 'Le parent revient au même trajet, sans modifier les passagers.'),
+  ],
+  'auth-validation': [
+    image('login-empty', 'Renseigner l’adresse e-mail', 'Le formulaire signale une adresse manquante.'),
+    image('signup-name', 'Renseigner le nom', 'La création du compte demande un nom.'),
+    image('signup-email', 'Vérifier l’adresse', 'Une adresse mal formée est refusée.'),
+    image('signup-short', 'Choisir le mot de passe', 'Un mot de passe trop court est refusé. La création du compte reste à retester.'),
+  ],
+  signout: [
+    clip('signout-action', 'Se déconnecter', 'La vidéo montre le retour à l’écran de connexion.'),
+    clip('signed-out-relaunch', 'Relancer l’app', 'Après fermeture et relancement, la connexion est à nouveau demandée.'),
+  ],
+  navigation: [
+    image('phone-session-restored', 'Rouvrir l’app', 'Sur téléphone, le parent retrouve l’accueil sans se reconnecter après fermeture complète.'),
+    image('local-home', 'Consulter l’accueil', 'Le trajet de test apparaît dans l’accueil.'),
+    image('local-calendar', 'Consulter le calendrier', 'Le calendrier affiche le mois de l’essai et permet de changer de mois.'),
+  ],
+  search: searchPhoneTour,
+  publication: [...staleCancellationTour, ...tripCancellationTour],
+  booking: directBookingTour,
+  messages: [...chatNetworkPhoneTour, ...chatNetworkRecoveryTour],
+  clubs: [
+    image('guardian-parent-requested', 'Demander la vérification', 'Le parent choisit son enfant et son club. La demande apparaît en attente, dans l’essai local.'),
+    image('guardian-parent-verified', 'Voir la réponse du responsable', 'Après l’accord du responsable, le parent retrouve le statut vérifié dans l’app.'),
+    image('guardian-parent-restored', 'Retrouver la demande', 'Le statut revient après réouverture de l’écran. La fermeture complète de l’app reste à tester.'),
+    image('guardian-parent-revoked', 'Voir le retrait de la vérification', 'Le retrait est visible et une nouvelle demande peut être proposée.'),
+    image('guardian-parent-other-account', 'Changer de compte', 'L’autre compte ne retrouve ni la demande ni le nom de l’enfant précédent.'),
+    image('guardian-review-confirmation', 'Confirmer le lien parent-enfant', 'Dans l’espace de gestion local, le responsable confirme le parent et l’enfant concernés.'),
+    image('guardian-review-verified', 'Retrouver le parent vérifié', 'Dans un essai séparé de l’espace de gestion, le résultat est visible après confirmation.'),
+    image('membership-manager', 'Examiner les adhésions', 'Le responsable du club accepte ou refuse les demandes dans son espace.'),
+    image('membership-parent', 'Voir la décision dans l’app', 'Le parent retrouve les acceptations et les refus.'),
+    image('membership-reopened', 'Revenir aux adhésions', 'Les décisions restent visibles après réouverture de l’écran.'),
+  ],
+  'ride-lifecycle': [
+    image('ride-phone-started', 'Démarrer le trajet', 'Sur téléphone, avec un enfant inscrit pour deux places.'),
+    image('ride-phone-picked-up', 'Confirmer la prise en charge', 'La dépose devient disponible.'),
+    image('ride-phone-dropped-off', 'Confirmer la dépose', 'Les deux confirmations restent affichées.'),
+    image('ride-phone-stable', 'Terminer le trajet', 'Le bouton reste disponible après actualisation.'),
+    image('ride-phone-completed', 'Recevoir la confirmation', 'La course est terminée, sans paiement réel.'),
+    image('ride-phone-parent-history', 'Passer au compte parent', 'Le trajet apparaît dans les trajets passés.'),
+    image('ride-delivered', 'Déposer les passagers', 'L’essai local vérifie les déposes avant la fin du trajet.'),
+    image('ride-history', 'Retrouver le trajet terminé', 'Le trajet terminé apparaît dans l’historique du parent.'),
+  ],
+  ratings: reviewPaginationTour,
+};

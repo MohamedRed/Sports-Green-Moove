@@ -1,0 +1,23 @@
+{
+  "scope": "failed-native-process-launch-not-tracking-acceptance",
+  "sourceRevisionBase": "f3aef02ee28bbdccdff2c729fbd0f46c6cb11077",
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeTrackingStartupTest.kt": "c700b9d84ffb2e0cc7390bd905e0da90c4958540d432ea270ebd15ae0f181a72",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocation.kt": "ecedc3f0f8be45528e17c9aab2e42803b3e9e2b0948a5c7aa0a5ca4e4129567f",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocationFeed.kt": "646786a7f59962d5ff7328f00986415bf837d652ef70da11b2ca5326d37dd19f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "b71645e21f0c3f88242d674a665eb1e9d8a8aab297986e38d70c6bc492c2db4e",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/NativeCaptureClock.kt": "2143b39be2f82f80d1ec0693630fbe2b1b62ecf12e961a5be7d7c497b828becd",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/NativeLocationPayloads.kt": "e8f5acc7cfdc97e2ccee3ded8d110ec914b8e3af398d1ae6e4d85ef2076ec449",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNativeLocationStartup.kt": "d8ead6abcf8461c3de94339f2e3ba04ebae908846d927a334918ea984db91c3c",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt": "a01cfe78df8e4f0fbd8834e3675f87da41a77b7d655909abd8d6ab4b686c42cb",
+    "scripts/qa/local-native-startup-ui.mjs": "d3a5de7d90c173caa1f41f6a31c6ed9a643756e6c6be7948d7e35e3831693d44",
+    "scripts/qa/native-clock-startup-evidence.mjs": "c12d601dcafcb6b520fbbfbd1550242efe1017b3a31090fd3051bd1ea338a4c6"
+  },
+  "completed": false,
+  "nativeUiCompletionProven": false,
+  "rootCauseConfirmed": false,
+  "finalApkHashes": {
+    "be.sportgreenmoove.app.local": "0b6553d925f54958ce5f93ce6665ea75cc8e516e4816ccb5dfc9b635f1bc1a4b",
+    "be.sportgreenmoove.app.local.test": "bc25b480648aa4d70455b91bc1d32efec3da6afdc705ffaa9ae7c39bffa7d578"
+  }
+}

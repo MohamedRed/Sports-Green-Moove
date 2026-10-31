@@ -1,0 +1,132 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "35aa7b7053653b5c43210400a660cb88",
+  "testedAt": "2026-10-19T21:38:04.959Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "team-club-identity-not-chat-or-native-ui",
+  "testCount": 10,
+  "steps": [
+    {
+      "id": "current-team-and-separately-verified-parent-are-eligible",
+      "status": "passed"
+    },
+    {
+      "id": "editing-stored-club-createdAt-does-not-invalidate-server-identity",
+      "status": "passed"
+    },
+    {
+      "id": "old-adult-team-cannot-be-approved-by-the-recreated-club",
+      "status": "passed"
+    },
+    {
+      "id": "team-choice-cursors-cannot-cross-the-clubs-server-creation-identity",
+      "status": "passed"
+    },
+    {
+      "id": "manager-team-cursors-cannot-cross-the-clubs-server-creation-identity",
+      "status": "passed"
+    },
+    {
+      "id": "old-parent-verification-does-not-grant-a-new-team-in-the-recreated-club",
+      "status": "passed"
+    },
+    {
+      "id": "new-club-choices-and-manager-lists-do-not-expose-orphaned-teams",
+      "status": "passed"
+    },
+    {
+      "id": "new-club-manager-cannot-read-the-old-team-roster-or-refuse-its-request",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-parent-verification-and-current-team-explicit-approval-restore-child-access",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-parent-verification-still-cannot-revive-the-orphaned-team",
+      "status": "passed"
+    }
+  ],
+  "checks": [
+    {
+      "id": "current-team-and-separately-verified-parent-are-eligible",
+      "status": "passed"
+    },
+    {
+      "id": "editing-stored-club-createdAt-does-not-invalidate-server-identity",
+      "status": "passed"
+    },
+    {
+      "id": "old-adult-team-cannot-be-approved-by-the-recreated-club",
+      "status": "passed"
+    },
+    {
+      "id": "team-choice-cursors-cannot-cross-the-clubs-server-creation-identity",
+      "status": "passed"
+    },
+    {
+      "id": "manager-team-cursors-cannot-cross-the-clubs-server-creation-identity",
+      "status": "passed"
+    },
+    {
+      "id": "old-parent-verification-does-not-grant-a-new-team-in-the-recreated-club",
+      "status": "passed"
+    },
+    {
+      "id": "new-club-choices-and-manager-lists-do-not-expose-orphaned-teams",
+      "status": "passed"
+    },
+    {
+      "id": "new-club-manager-cannot-read-the-old-team-roster-or-refuse-its-request",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-parent-verification-and-current-team-explicit-approval-restore-child-access",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-parent-verification-still-cannot-revive-the-orphaned-team",
+      "status": "passed"
+    }
+  ],
+  "observed": {
+    "clubCreationChanged": true,
+    "oldAdultEligible": false,
+    "oldGuardianAccepted": false,
+    "oldTeamOffered": false
+  },
+  "baselineRecordsPreserved": true,
+  "baselineCollections": [
+    "users",
+    "memberships",
+    "children",
+    "trips",
+    "bookings",
+    "rideSessions",
+    "messages",
+    "chatInboxes",
+    "notifications",
+    "co2Ledger",
+    "rewardLedger",
+    "clubs",
+    "teams",
+    "guardianVerifications"
+  ],
+  "claimsUnchanged": true,
+  "adminClientClosed": true,
+  "teamChatImplemented": false,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "functions/src/domain/teamEnrollment.ts": "ac715ec1017d2353fcda844b998213f0ccd12625246f63e4d2717f113bb166ea",
+    "functions/src/services/teamEnrollmentAuthority.ts": "f52978e570d4cd2d1ff5885721b1d0b4066a2173ce3f21831b30b26ea0a47c8c",
+    "functions/src/services/teamEnrollment.ts": "29782f9dfc58143b83fa0a9052814e38ea3669a480787794226438f6fff518da",
+    "functions/src/services/teamEnrollmentViews.ts": "a2406d4b2209bea911595f6024265aff93bac7873bb19bef8b972c59081251cc",
+    "functions/src/services/teamEnrollmentReview.ts": "b03b0800ae19f5541f0554733e7e0d2336be49d3bb8d53740dd44b099801c76c",
+    "functions/src/services/teamEnrollmentOptions.ts": "e55e03696349ecd22d1bc50dfbf1fc5ffc0bf975ce592f451a10f7b9b860e9a2",
+    "scripts/qa/local-team-club-identity.mjs": "10ff195dff7d06bb7eb81ac944d805ce549694b5b9a8d93d0e59cedd5b4a8542",
+    "scripts/qa/run-local-team-club-identity.mjs": "0f15e8c3c5304ea5990437d737a6ee2970f59fca728c9cf2044482687beff980"
+  }
+}

@@ -1,0 +1,79 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:58:00.3374339Z ERROR        | Failed to find ColorBuffer: 4308
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:58:00.3409685Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:58:01.0501409Z ERROR        | Failed to find ColorBuffer: 4320
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:58:01.0524479Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:58:10.2288857Z Ordinary Android matrix: 147 passed, 50 skipped, 0 failed; 197 cases observed.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T23:58:10.8579697Z /sdcard/Download/sgm-store-review/: 8 files pulled, 0 skipped. 14.2 MB/s (1534085 bytes in 0.103s)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:21.7672040Z [36m[1mi  functions:[22m[39m Beginning execution of "us-central1-listDriverBookingRequests"
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:21.7697466Z [90m> [39m {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:21.7895221Z [36m[1mi  functions:[22m[39m Finished "us-central1-listDriverBookingRequests" in 22.061069ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:21.8089170Z [36m[1mi  functions:[22m[39m Beginning execution of "us-central1-getTripChangeReview"
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:21.8113627Z [90m> [39m {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:21.8557519Z [36m[1mi  functions:[22m[39m Finished "us-central1-getTripChangeReview" in 41.775987ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8264893Z INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8319684Z INSTRUMENTATION_STATUS_CODE: 0
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8344048Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8364138Z be.sportgreenmoove.app.ui.LocalTripChangeFlowTest:.
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8383396Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8413670Z Time: 47.242
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8436069Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8473893Z OK (1 test)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8512002Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8512246Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:22.8512431Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4846422Z file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/collect-local-ui-evidence.mjs:69
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4854429Z     throw new EvidenceCollectionError(phase, status, signal, receiptPath);
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4855136Z           ^
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4855333Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4858231Z EvidenceCollectionError: Local evidence collection failed during trip-change-parent-confirmation; status=1, signal=null. See /home/runner/work/Sports-Green-Moove/Sports-Green-Moove/android/app/build/outputs/local-ui-evidence/1e1b1bb3e40dead258285d0199fbd32f/adb-pull-trip-change-parent-confirmation.json
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4861355Z     at collectLocalUiEvidence (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/collect-local-ui-evidence.mjs:69:11)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4863476Z     at collectEvidence (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:75:36)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4865153Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:125:3
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4866980Z     at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4867714Z   status: 1,
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4868082Z   signal: null,
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4869986Z   receiptPath: '/home/runner/work/Sports-Green-Moove/Sports-Green-Moove/android/app/build/outputs/local-ui-evidence/1e1b1bb3e40dead258285d0199fbd32f/adb-pull-trip-change-parent-confirmation.json'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4871399Z }
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4871579Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4871758Z Node.js v22.23.3
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.4955693Z [33m[1m⚠ [22m[39m Script exited unsuccessfully (code 1)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.9955871Z [36m[1mi  emulators:[22m[39m Shutting down emulators.
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:24.9959053Z [36m[1mi  functions:[22m[39m Stopping Functions Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.0034358Z [36m[1mi  database:[22m[39m Stopping Database Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.5438868Z [36m[1mi  firestore:[22m[39m Stopping Firestore Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.8786966Z [36m[1mi  auth:[22m[39m Stopping Authentication Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.8788351Z [36m[1mi  eventarc:[22m[39m Stopping Eventarc Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.8790478Z [36m[1mi  tasks:[22m[39m Stopping Cloud Tasks Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.8792642Z [36m[1mi  hub:[22m[39m Stopping emulator hub
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.8796317Z [36m[1mi  logging:[22m[39m Stopping Logging Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.8825750Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:25.8828061Z [1m[31mError:[39m[22m Script "[1mexec '/opt/hostedtoolcache/node/22.23.3/x64/bin/node' '/home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs'[22m" exited with code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2128485Z file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-runtime.mjs:27
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2129813Z     if (result.status !== 0) throw new Error(`${command} failed (${result.status})`);
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2130653Z                                    ^
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2130966Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2131517Z Error: /opt/hostedtoolcache/node/22.23.3/x64/bin/node failed (1)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2132833Z     at Object.run (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-runtime.mjs:27:36)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2134718Z     at runEmulatorEntry (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-runtime.mjs:55:11)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2136159Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/run-local-android-flows.mjs:32:3
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2136923Z     at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2137601Z     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2138317Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2138652Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2138771Z Node.js v22.23.3
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:26.2587655Z Ordinary tests: 0; component evidence: 0; local replay: 1
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.5663691Z Read-only CI host observation started; no shutdown or flow success is implied.
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.5936408Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6005531Z ##[group]Terminate Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6006719Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6007626Z OK: killing emulator, bye bye
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6008084Z OK
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6008690Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6010745Z INFO         | Wait for emulator (pid 3598) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6012067Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6235728Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:29.6254437Z INFO         | Saving snapshot 'default_boot' took 0 ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:30.5543392Z ERROR        | stop: Not implemented
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:30.5544719Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:30.5684368Z INFO         | removeAll
+Android native UI tests	Run Android Compose UI tests	2026-10-23T00:05:30.6695160Z WARNING      | Netsim Wifi dns:///localhost:38581 is gone due to Stream removed (CANCELLED)

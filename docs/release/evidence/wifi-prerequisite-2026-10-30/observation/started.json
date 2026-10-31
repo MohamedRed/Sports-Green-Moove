@@ -1,0 +1,17 @@
+{
+  "runId": "3ae7d5dacebccb54f592be3a45c28758",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "bounded-passive-disposable-wifi-prerequisite-not-user-flow-or-repair",
+  "testAppsAbsent": true,
+  "settingsChanged": false,
+  "radioChanged": false,
+  "loggingChanged": false,
+  "newProbesIssued": false,
+  "flowCompleted": false,
+  "physicalDevice": false,
+  "rootCauseFixed": false,
+  "budgetMs": 180000,
+  "intervalMs": 3000,
+  "recordedAt": "2026-10-30T17:21:21.896Z",
+  "completed": false
+}

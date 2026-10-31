@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.MapRoutePreview
 import be.sportgreenmoove.app.data.RidePassengerStatus
 import be.sportgreenmoove.app.design.Sgm
 import be.sportgreenmoove.app.design.SgmColor
@@ -33,26 +33,36 @@ import be.sportgreenmoove.app.design.SgmType
 @Composable
 fun RideMonitorScreen(
     activeRide: LiveRideSnapshot?,
+    canManageRide: Boolean,
+    routePreview: MapRoutePreview?,
     onBack: () -> Unit,
     onPickup: (RidePassengerStatus) -> Unit,
     onDropoff: (RidePassengerStatus) -> Unit,
     onEndRide: () -> Unit,
+    onEmergencyContact: () -> Unit,
+    observation: ActiveRideObservationState? = null,
 ) {
-    V2Screen {
+    V2Screen(testTag = SgmTestTags.ActiveRideScreen) {
         V2TopBar("COURSE ACTIVE", onBack = onBack)
         if (activeRide == null) {
             RideEmptyState(onBack)
+        } else if (observation != null && observation.phase != RideObservationPhase.Live) {
+            RideObservationNotice(observation)
         } else {
-            RideMapCard(activeRide)
+            GoogleMapsRoutePreviewCard(ride = activeRide, preview = routePreview)
             RideLiveCard(activeRide)
             V2SectionLabel("STATUTS")
             RidePassengerStatusCard(
                 ride = activeRide,
+                canManageRide = canManageRide,
                 onPickup = onPickup,
                 onDropoff = onDropoff,
             )
-            RideEndCard(onEndRide = onEndRide)
-            RideEmergencyCard()
+            if (canManageRide) RideEndCard(
+                readyToComplete = activeRide.passengers.all { it.pickupStatus == "pickedUp" && it.dropoffStatus == "droppedOff" },
+                onEndRide = onEndRide,
+            )
+            RideEmergencyAction(onEmergencyContact)
         }
     }
 }
@@ -87,32 +97,6 @@ private fun RideEmptyState(onBack: () -> Unit) {
 }
 
 @Composable
-private fun RideMapCard(ride: LiveRideSnapshot) {
-    Box(
-        modifier = Modifier
-            .padding(horizontal = 20.dp)
-            .fillMaxWidth()
-            .height(250.dp)
-            .clip(RoundedCornerShape(22.dp))
-            .background(SgmColor.HeroGradient),
-    ) {
-        SgmGridTexture()
-        RideRouteDot(Modifier.align(Alignment.CenterStart).padding(start = 56.dp), "V")
-        RideRouteDot(Modifier.align(Alignment.CenterEnd).padding(end = 56.dp), "A")
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            Text("SUIVI EN DIRECT", style = SgmType.Eyebrow.copy(color = SgmColor.GreenLight, fontSize = 11.sp, letterSpacing = 0.14.em))
-            Text("Itinéraire en cours", style = SgmType.DisplayXL.copy(color = SgmColor.TextOnGreen, fontSize = 24.sp, letterSpacing = 0.04.em))
-            Text(ride.etaLabel, style = SgmType.BodySM.copy(color = SgmColor.TextOnGreen.copy(alpha = 0.76f), fontWeight = FontWeight.SemiBold))
-        }
-    }
-}
-
-@Composable
 private fun RideLiveCard(ride: LiveRideSnapshot) {
     Column(
         modifier = Modifier
@@ -131,46 +115,33 @@ private fun RideLiveCard(ride: LiveRideSnapshot) {
             }
             RideStatusPill(if (ride.stale) "À VÉRIFIER" else "LIVE", warning = ride.stale)
         }
-        RideInfoLine(SgmIcon.Location, "Véhicule", ride.vehicleLastUpdateLabel)
+        RideInfoLine(SgmIcon.Location, "Véhicule", ride.vehicleLastUpdateLabel, SgmTestTags.ActiveRideVehicleUpdate)
         RideInfoLine(SgmIcon.Profile, "Enfant", ride.childLastUpdateLabel ?: "Non disponible")
-        if (ride.stale) Text("Position à vérifier avant confirmation.", style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold))
-    }
-}
-
-@Composable
-private fun RideEmergencyCard() {
-    Row(
-        modifier = Modifier
-            .padding(horizontal = 20.dp)
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(18.dp))
-            .background(SgmColor.Orange.copy(alpha = 0.12f))
-            .border(BorderStroke(1.dp, SgmColor.Orange.copy(alpha = 0.28f)), RoundedCornerShape(18.dp))
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        V2Avatar("!", size = 42, color = SgmColor.Orange)
-        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text("Contact urgence", style = SgmType.BodyBase.copy(color = Sgm.colors.textPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold))
-            Text("Action directe disponible pendant toute course active.", style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary, fontSize = 12.sp, fontWeight = FontWeight.SemiBold))
+        RideInfoLine(SgmIcon.Location, "Arrivée estimée", ride.etaLabel)
+        if (ride.stale) {
+            Text(
+                "Position à vérifier avant confirmation.",
+                style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+                modifier = Modifier.sgmTestTag(SgmTestTags.ActiveRideStaleWarning),
+            )
         }
     }
 }
 
 @Composable
-private fun RideInfoLine(icon: SgmIcon, label: String, value: String) {
-    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        SgmLineIcon(icon, tint = Sgm.colors.textMuted, modifier = Modifier.size(14.dp))
-        Text(label, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.weight(1f))
-        Text(value, style = SgmType.BodyXS.copy(color = Sgm.colors.textPrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold))
+private fun RideEmergencyAction(onOpen: () -> Unit) {
+    Box(Modifier.padding(horizontal = 20.dp)) {
+        EmergencyContactButton("Contact d’urgence", SgmTestTags.EmergencyContact, true, onOpen, SgmIcon.Profile)
     }
 }
 
 @Composable
-private fun RideRouteDot(modifier: Modifier, text: String) {
-    Box(modifier = modifier.size(44.dp).clip(CircleShape).background(SgmColor.TextOnGreen), contentAlignment = Alignment.Center) {
-        Text(text, style = SgmType.DisplayLG.copy(color = SgmColor.GreenDark, fontSize = 18.sp))
+private fun RideInfoLine(icon: SgmIcon, label: String, value: String, tag: String? = null) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        SgmLineIcon(icon, tint = Sgm.colors.textMuted, modifier = Modifier.size(14.dp))
+        Text(label, style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.SemiBold), modifier = Modifier.weight(1f))
+        Text(value, style = SgmType.BodyXS.copy(color = Sgm.colors.textPrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+            textAlign = TextAlign.End, modifier = Modifier.weight(2f).sgmOptionalTestTag(tag))
     }
 }
 

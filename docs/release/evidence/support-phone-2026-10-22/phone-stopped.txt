@@ -1,0 +1,89 @@
+Browser tab: 1621933415, Title: "App Live Dashboard", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 429, 483-498
++				502 container react-root
++					503 container promotional-asset-modal
++						504 container
++							505 image Join us at the world's largest virtual QA Leadership Summit.
++							506 button Close dialog
++						507 button Register Now Button
+~										427 row sgm-team-reads-isolated-458318c-20261021.apk v0.1.0 15 hours ago by me App Settings for sgm-team-reads-isolated-458318c-20261021.apk Select sgm-team-reads-isolated-458318c-20261021.apk for deletion
+~											428 cell (selected) sgm-team-reads-isolated-458318c-20261021.apk
++												508 text sgm-team-reads-isolated-458318c-20261021.apk
++												509 text v0.1.0 15 hours ago by me
++												510 container
++													511 button App Settings for sgm-team-reads-isolated-458318c-20261021.apk
++														512 image Settings
++													513 checkbox (settable, integer) Description: Select sgm-team-reads-isolated-458318c-20261021.apk for deletion, Value: 0
+~										430 row sgm-team-chat-isolated-70daee2-20261021.apk v0.1.0 19 hours ago by me Select sgm-team-chat-isolated-70daee2-20261021.apk for deletion
+~											431 cell (selectable) sgm-team-chat-isolated-70daee2-20261021.apk
++												514 text sgm-team-chat-isolated-70daee2-20261021.apk
++												515 text v0.1.0 19 hours ago by me
+~												432 checkbox (settable, integer) Description: Select sgm-team-chat-isolated-70daee2-20261021.apk for deletion, Value: 0
+~										433 row sgm-emergency-isolated-c710048-20261021.apk v0.1.0 Yesterday at 0:07 by me Select sgm-emergency-isolated-c710048-20261021.apk for deletion
+~											434 cell (selectable) sgm-emergency-isolated-c710048-20261021.apk
++												516 text sgm-emergency-isolated-c710048-20261021.apk
++												517 text v0.1.0 Yesterday at 0:07 by me
+~												435 checkbox (settable, integer) Description: Select sgm-emergency-isolated-c710048-20261021.apk for deletion, Value: 0
+~										436 row app-debug.apk v0.1.0 Oct 19 at 14:58 by me Select app-debug.apk for deletion
+~											437 cell (selectable) app-debug.apk
++												518 text app-debug.apk
++												519 text v0.1.0 Oct 19 at 14:58 by me
+~												438 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										439 row app-debug.apk v0.1.0 Oct 19 at 14:28 by me Select app-debug.apk for deletion
+~											440 cell (selectable) app-debug.apk
++												520 text app-debug.apk
++												521 text v0.1.0 Oct 19 at 14:28 by me
+~												441 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										442 row sgm-emergency-isolated-685c508-20261019.apk v0.1.0 Oct 19 at 13:32 by me Select sgm-emergency-isolated-685c508-20261019.apk for deletion
+~											443 cell (selectable) sgm-emergency-isolated-685c508-20261019.apk
++												522 text sgm-emergency-isolated-685c508-20261019.apk
++												523 text v0.1.0 Oct 19 at 13:32 by me
+~												444 checkbox (settable, integer) Description: Select sgm-emergency-isolated-685c508-20261019.apk for deletion, Value: 0
+~										445 row app-debug.apk v0.1.0 Oct 19 at 13:32 by me Select app-debug.apk for deletion
+~											446 cell (selectable) app-debug.apk
++												524 text app-debug.apk
++												525 text v0.1.0 Oct 19 at 13:32 by me
+~												447 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										448 row app-debug.apk v0.1.0 Oct 19 at 12:59 by me Select app-debug.apk for deletion
+~											449 cell (selectable) app-debug.apk
++												526 text app-debug.apk
++												527 text v0.1.0 Oct 19 at 12:59 by me
+~												450 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										451 row app-debug.apk v0.1.0 Oct 19 at 12:15 by me Select app-debug.apk for deletion
+~											452 cell (selectable) app-debug.apk
++												528 text app-debug.apk
++												529 text v0.1.0 Oct 19 at 12:15 by me
+~												453 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										454 row sgm-history-isolated-e3ddba1-20261019.apk v0.1.0 Oct 19 at 12:14 by me Select sgm-history-isolated-e3ddba1-20261019.apk for deletion
+~											455 cell (selectable) sgm-history-isolated-e3ddba1-20261019.apk
++												530 text sgm-history-isolated-e3ddba1-20261019.apk
++												531 text v0.1.0 Oct 19 at 12:14 by me
+~												456 checkbox (settable, integer) Description: Select sgm-history-isolated-e3ddba1-20261019.apk for deletion, Value: 0
+~										457 row app-debug.apk v0.1.0 Oct 19 at 11:38 by me Select app-debug.apk for deletion
+~											458 cell (selectable) app-debug.apk
++												532 text app-debug.apk
++												533 text v0.1.0 Oct 19 at 11:38 by me
+~												459 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										460 row sgm-team-isolated-21190ff-20261019.apk v0.1.0 Oct 19 at 10:04 by me Select sgm-team-isolated-21190ff-20261019.apk for deletion
+~											461 cell (selectable) sgm-team-isolated-21190ff-20261019.apk
++												534 text sgm-team-isolated-21190ff-20261019.apk
++												535 text v0.1.0 Oct 19 at 10:04 by me
+~												462 checkbox (settable, integer) Description: Select sgm-team-isolated-21190ff-20261019.apk for deletion, Value: 0
++									536 button Description: Pixel 6 12, ID: device-item-link-Pixel-6-12
++									537 button Description: Pixel 9 15, ID: device-item-link-Pixel-9-15
++									538 button Description: Pixel 9 Pro XL 15, ID: device-item-link-Pixel-9-Pro-XL-15
++									539 button Description: Pixel 9 Pro 15, ID: device-item-link-Pixel-9-Pro-15
++									540 button Description: Pixel 10 16, ID: device-item-link-Pixel-10-16
++									541 button Description: Pixel 7 13, ID: device-item-link-Pixel-7-13
++									542 button Description: Pixel 8 Pro 14, ID: device-item-link-Pixel-8-Pro-14
++									543 button Description: Pixel 10 Pro 16, ID: device-item-link-Pixel-10-Pro-16
++									544 button Description: Pixel 10 Pro XL 16, ID: device-item-link-Pixel-10-Pro-XL-16
++									545 button Description: Pixel 11 Pro XL 17, ID: device-item-link-Pixel-11-Pro-XL-17
++									546 button Description: Pixel 11 Pro 17, ID: device-item-link-Pixel-11-Pro-17
++									547 button Description: Pixel 11 17, ID: device-item-link-Pixel-11-17
++									548 button Description: Pixel 9 17, ID: device-item-link-Pixel-9-17
++									549 button Description: Pixel 7 Pro 13, ID: device-item-link-Pixel-7-Pro-13
++									550 button Description: Pixel 9 16, ID: device-item-link-Pixel-9-16
++									551 button Description: Pixel 8 14, ID: device-item-link-Pixel-8-14
+The focused UI element is 506 button Close dialog

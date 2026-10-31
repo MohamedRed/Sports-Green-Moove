@@ -1,0 +1,220 @@
+{
+  "scope": "independent-visual-trial-records-not-phone-ui-or-full-accessibility",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "bc508ae0a4d7abf8284bb5372e5468b0",
+  "completed": true,
+  "failure": false,
+  "checkpoints": [
+    {
+      "phase": "before",
+      "recordedAt": "2026-10-30T21:27:39.650Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "home",
+      "recordedAt": "2026-10-30T21:29:56.813Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "search-light",
+      "recordedAt": "2026-10-30T21:30:44.049Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "search-dark",
+      "recordedAt": "2026-10-30T21:31:08.003Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "trips-dark",
+      "recordedAt": "2026-10-30T21:31:25.941Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "rewards-dark",
+      "recordedAt": "2026-10-30T21:32:12.257Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "rewards-light",
+      "recordedAt": "2026-10-30T21:32:39.453Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "signed-out",
+      "recordedAt": "2026-10-30T21:33:28.352Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    }
+  ],
+  "observedAt": "2026-10-30T21:33:28.371Z",
+  "physicalUiProven": false,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "scripts/qa/manual-accent-appearance-phone.mjs": "3074d247faa686ce3b1d55516327e8588dd774f5f0d72408006218524187ed9b",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802"
+  }
+}

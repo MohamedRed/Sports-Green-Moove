@@ -1,0 +1,10 @@
+{
+  "method": "single-case-continuous-installation-guard-not-flow-proof",
+  "case": "trip-change-components",
+  "receiptSha256": "8a63817ab87a19e4966f579e02f8069b8f63c52052890f5284ea50e73ab9dd3a",
+  "apkHashes": {
+    "be.sportgreenmoove.app": "0a256e0e52e9b5c5a0ecc72255dd62342c442b427466ee0993e20abcfd88dcbc",
+    "be.sportgreenmoove.app.test": "ec68cc6c7568b8f61ca9c5e99a0ad4e15d88007fc28dcf35291d58cf29919ee7"
+  },
+  "installationsRemainedBlocked": true
+}

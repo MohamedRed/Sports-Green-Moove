@@ -1,0 +1,16 @@
+{
+  "scope": "subsequent-native-ci-component-execution-not-another-phone-run-or-release-clearance",
+  "sourceCommit": "c898253fbfc494546cdd41b885cf2c2344b584d3",
+  "nativeRunId": 40735408854,
+  "nativeCiPassed": true,
+  "ordinaryCases": 237,
+  "ordinaryPassed": 183,
+  "ordinarySkipped": 54,
+  "directBookingCasesPassed": 2,
+  "allThreeNativeSuiteExitCodesZero": true,
+  "physicalResponseLossVerified": false,
+  "intermittentTransferRootCauseProven": false,
+  "overallPrChecksPassed": false,
+  "webEvidenceArtifactMissingFromCommit": true,
+  "releaseComplete": false
+}

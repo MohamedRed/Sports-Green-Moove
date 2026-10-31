@@ -1,0 +1,280 @@
+TAP version 13
+# Subtest: approved setup proves real policy authority and removes its own test-only administration afterward
+ok 1 - approved setup proves real policy authority and removes its own test-only administration afterward
+  ---
+  duration_ms: 4.2045
+  type: 'test'
+  ...
+# Subtest: no approval, absent build, physical device, other user, owner, existing helper or restriction refuses mutation
+ok 2 - no approval, absent build, physical device, other user, owner, existing helper or restriction refuses mutation
+  ---
+  duration_ms: 19.874833
+  type: 'test'
+  ...
+# Subtest: denied authority, rejected commands and ignored policy writes roll back instead of retrying without protection
+ok 3 - denied authority, rejected commands and ignored policy writes roll back instead of retrying without protection
+  ---
+  duration_ms: 6.84525
+  type: 'test'
+  ...
+# Subtest: restoration can remove the owner without relying on a working policy receiver
+ok 4 - restoration can remove the owner without relying on a working policy receiver
+  ---
+  duration_ms: 0.849792
+  type: 'test'
+  ...
+# Subtest: a failed component removal or an unexpected replacement owner never becomes a clean restoration
+ok 5 - a failed component removal or an unexpected replacement owner never becomes a clean restoration
+  ---
+  duration_ms: 2.039875
+  type: 'test'
+  ...
+# Subtest: owner confirmation rejects profile owners, additional owners and missing authority
+ok 6 - owner confirmation rejects profile owners, additional owners and missing authority
+  ---
+  duration_ms: 0.24275
+  type: 'test'
+  ...
+# Subtest: admin cleanup still runs after failed store verification, retaining the original failure
+ok 7 - admin cleanup still runs after failed store verification, retaining the original failure
+  ---
+  duration_ms: 0.186375
+  type: 'test'
+  ...
+# Subtest: failed admin cleanup cannot overwrite a failed test/store result or produce a verified receipt
+ok 8 - failed admin cleanup cannot overwrite a failed test/store result or produce a verified receipt
+  ---
+  duration_ms: 0.086375
+  type: 'test'
+  ...
+# Subtest: the helper is test-only, without network/destructive capabilities, and protected from normal app broadcasts
+ok 9 - the helper is test-only, without network/destructive capabilities, and protected from normal app broadcasts
+  ---
+  duration_ms: 1.944208
+  type: 'test'
+  ...
+# Subtest: the original admin trial proves cleanup, not a completed instrumentation replay
+ok 10 - the original admin trial proves cleanup, not a completed instrumentation replay
+  ---
+  duration_ms: 6.285834
+  type: 'test'
+  ...
+# Subtest: installation-policy evidence requires observed protection and verified removal, without claiming user-flow success
+ok 11 - installation-policy evidence requires observed protection and verified removal, without claiming user-flow success
+  ---
+  duration_ms: 1.806417
+  type: 'test'
+  ...
+# Subtest: an unfinished boot policy scan is awaited read-only before the one provisioning attempt
+ok 12 - an unfinished boot policy scan is awaited read-only before the one provisioning attempt
+  ---
+  duration_ms: 2.245959
+  type: 'test'
+  ...
+# Subtest: unknown boot readiness times out without installing a helper or attempting device ownership
+ok 13 - unknown boot readiness times out without installing a helper or attempting device ownership
+  ---
+  duration_ms: 1.378125
+  type: 'test'
+  ...
+# Subtest: account-count diagnostics exclude private account fields and unknown formats never imply an empty device
+ok 14 - account-count diagnostics exclude private account fields and unknown formats never imply an empty device
+  ---
+  duration_ms: 0.313541
+  type: 'test'
+  ...
+# Subtest: the first boot-readiness refusal keeps its original pre-suite failure rather than becoming a flow pass
+ok 15 - the first boot-readiness refusal keeps its original pre-suite failure rather than becoming a flow pass
+  ---
+  duration_ms: 1.908709
+  type: 'test'
+  ...
+# Subtest: a pre-install admin readiness failure survives outer cleanup without claiming a prepared device
+ok 16 - a pre-install admin readiness failure survives outer cleanup without claiming a prepared device
+  ---
+  duration_ms: 11.282792
+  type: 'test'
+  ...
+# Subtest: approved store-only stop preserves enabled maps/location and restores original state
+ok 17 - approved store-only stop preserves enabled maps/location and restores original state
+  ---
+  duration_ms: 1.371709
+  type: 'test'
+  ...
+# Subtest: already-stopped store remains stopped after cleanup
+ok 18 - already-stopped store remains stopped after cleanup
+  ---
+  duration_ms: 0.5235
+  type: 'test'
+  ...
+# Subtest: the approved installation guard records the actual baseline and restores it after a guarded run
+ok 19 - the approved installation guard records the actual baseline and restores it after a guarded run
+  ---
+  duration_ms: 0.2085
+  type: 'test'
+  ...
+# Subtest: an unactivated guard fails verification but still restores the exact original policy
+ok 20 - an unactivated guard fails verification but still restores the exact original policy
+  ---
+  duration_ms: 0.473
+  type: 'test'
+  ...
+# Subtest: the approved preparation never clears a pre-existing install prohibition
+ok 21 - the approved preparation never clears a pre-existing install prohibition
+  ---
+  duration_ms: 0.259584
+  type: 'test'
+  ...
+# Subtest: bare AOSP permission/changed-package user headings are not a second package state
+ok 22 - bare AOSP permission/changed-package user headings are not a second package state
+  ---
+  duration_ms: 0.600375
+  type: 'test'
+  ...
+# Subtest: unsafe or incompatible preconditions refuse mutation without retrying
+ok 23 - unsafe or incompatible preconditions refuse mutation without retrying
+  ---
+  duration_ms: 0.90125
+  type: 'test'
+  ...
+# Subtest: failed pause or changed runtime rolls back without hiding the failure
+ok 24 - failed pause or changed runtime rolls back without hiding the failure
+  ---
+  duration_ms: 2.549625
+  type: 'test'
+  ...
+# Subtest: failed initial stop retains its actual false observation and successful rollback without claiming verification
+ok 25 - failed initial stop retains its actual false observation and successful rollback without claiming verification
+  ---
+  duration_ms: 0.734417
+  type: 'test'
+  ...
+# Subtest: a failed rollback remains separate from the original stop failure
+ok 26 - a failed rollback remains separate from the original stop failure
+  ---
+  duration_ms: 2.105041
+  type: 'test'
+  ...
+# Subtest: outer device setup retains the failed store observation rather than losing it as null cleanup
+ok 27 - outer device setup retains the failed store observation rather than losing it as null cleanup
+  ---
+  duration_ms: 1.344041
+  type: 'test'
+  ...
+# Subtest: a store service waking does not release the independently verified background restriction
+ok 28 - a store service waking does not release the independently verified background restriction
+  ---
+  duration_ms: 0.668042
+  type: 'test'
+  ...
+# Subtest: lost background policy fails verification, preserves a typed failure receipt and still restores both operations
+ok 29 - lost background policy fails verification, preserves a typed failure receipt and still restores both operations
+  ---
+  duration_ms: 1.097666
+  type: 'test'
+  ...
+# Subtest: background-mode reads accept only declared OS defaults or exact package operations, never UID-wide policy
+ok 30 - background-mode reads accept only declared OS defaults or exact package operations, never UID-wide policy
+  ---
+  duration_ms: 0.4385
+  type: 'test'
+  ...
+# Subtest: setup refuses physical and unapproved targets before any store operation
+ok 31 - setup refuses physical and unapproved targets before any store operation
+  ---
+  duration_ms: 0.180209
+  type: 'test'
+  ...
+# Subtest: both CI entry points run store-pause guards and only the disposable native image opts in
+ok 32 - both CI entry points run store-pause guards and only the disposable native image opts in
+  ---
+  duration_ms: 1.633416
+  type: 'test'
+  ...
+# Subtest: SIGINT reaches the entry directly through the actual POSIX shell
+ok 33 - SIGINT reaches the entry directly through the actual POSIX shell
+  ---
+  duration_ms: 57.050708
+  type: 'test'
+  ...
+# Subtest: SIGTERM reaches the entry directly through the actual POSIX shell
+ok 34 - SIGTERM reaches the entry directly through the actual POSIX shell
+  ---
+  duration_ms: 45.876542
+  type: 'test'
+  ...
+# Subtest: shell metacharacters in an entry path remain literal rather than becoming commands
+ok 35 - shell metacharacters in an entry path remain literal rather than becoming commands
+  ---
+  duration_ms: 3.645292
+  type: 'test'
+  ...
+# Subtest: the real emulator launcher uses the shell-replacing command without loosening exit checks
+ok 36 - the real emulator launcher uses the shell-replacing command without loosening exit checks
+  ---
+  duration_ms: 0.175708
+  type: 'test'
+  ...
+# Subtest: the corrected actual shutdown keeps both signals and the original remote refusal in their own scopes
+ok 37 - the corrected actual shutdown keeps both signals and the original remote refusal in their own scopes
+  ---
+  duration_ms: 4.804792
+  type: 'test'
+  ...
+# Subtest: SIGINT stops the owned launcher and worker before acknowledging shutdown
+ok 38 - SIGINT stops the owned launcher and worker before acknowledging shutdown
+  ---
+  duration_ms: 119.566334
+  type: 'test'
+  ...
+# Subtest: SIGTERM stops the owned launcher and worker before acknowledging shutdown
+ok 39 - SIGTERM stops the owned launcher and worker before acknowledging shutdown
+  ---
+  duration_ms: 89.420917
+  type: 'test'
+  ...
+# Subtest: normal success and nonzero failure remain different outcomes
+ok 40 - normal success and nonzero failure remain different outcomes
+  ---
+  duration_ms: 72.184875
+  type: 'test'
+  ...
+# Subtest: a spawn error is surfaced rather than accepted as an intentional stop
+ok 41 - a spawn error is surfaced rather than accepted as an intentional stop
+  ---
+  duration_ms: 0.817042
+  type: 'test'
+  ...
+# Subtest: a stop requested before startup never spawns a service
+ok 42 - a stop requested before startup never spawns a service
+  ---
+  duration_ms: 0.35025
+  type: 'test'
+  ...
+# Subtest: an actual service failure cannot be converted to success by a simultaneous shutdown request
+ok 43 - an actual service failure cannot be converted to success by a simultaneous shutdown request
+  ---
+  duration_ms: 69.105459
+  type: 'test'
+  ...
+# Subtest: a launcher that exits while leaving its worker fails even after explicit owned-group cleanup
+ok 44 - a launcher that exits while leaving its worker fails even after explicit owned-group cleanup
+  ---
+  duration_ms: 121.708709
+  type: 'test'
+  ...
+# Subtest: both original actual emulator shutdowns removed their private sessions and released every isolated port
+ok 45 - both original actual emulator shutdowns removed their private sessions and released every isolated port
+  ---
+  duration_ms: 3.140125
+  type: 'test'
+  ...
+1..45
+# tests 45
+# suites 0
+# pass 45
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 552.397416

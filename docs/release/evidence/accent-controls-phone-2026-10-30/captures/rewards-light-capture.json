@@ -1,0 +1,21 @@
+{
+  "scope": "unscaled-session-window-crop-not-native-export",
+  "phase": "rewards-light",
+  "capturedAt": "2026-10-30T21:32:31.995Z",
+  "original": {
+    "file": "rewards-light-session.jpg",
+    "width": 1200,
+    "height": 596,
+    "sha256": "bd3e2868a534d53094b93dfbdd9379b01e625392d26b470221f5b4200fbb64d8"
+  },
+  "crop": {
+    "file": "rewards-light.png",
+    "left": 486,
+    "top": 108,
+    "width": 196,
+    "height": 439,
+    "sha256": "473d69c4042843e1db5725f7b1a55386089e1c77b85edb3207969155e0b00282"
+  },
+  "rescaled": false,
+  "redacted": false
+}

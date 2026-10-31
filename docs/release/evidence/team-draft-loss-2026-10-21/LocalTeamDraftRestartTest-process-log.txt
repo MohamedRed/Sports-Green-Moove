@@ -1,0 +1,11 @@
+--------- beginning of system
+I/ActivityManager(  541): Process com.android.carrierconfig (pid 1884) has died: cch+99 CEM 
+I/ActivityManager(  541): Process com.google.android.onetimeinitializer (pid 3014) has died: cch+99 CEM 
+I/ActivityManager(  541): Process com.android.cellbroadcastreceiver (pid 2361) has died: cch+99 CEM 
+I/ActivityManager(  541): Process com.android.externalstorage (pid 2645) has died: cch+99 CEM 
+I/ActivityManager(  541): Process com.android.keychain (pid 1566) has died: cch+99 CEM 
+I/ActivityManager(  541): Process com.android.localtransport (pid 1739) has died: cch+99 CEM 
+I/ActivityManager(  541): Force stopping be.sportgreenmoove.app.local appid=10210 user=0: finished inst
+E/ActivityManager(  541): Unable to freeze binder for 5287: -11
+I/ActivityManager(  541): Killing 5287:be.sportgreenmoove.app.local/u0a210 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  541): Unable to start service Intent { cmp=com.google.android.apps.tachyon/.clientapi.ClientApiService } U=0: not found

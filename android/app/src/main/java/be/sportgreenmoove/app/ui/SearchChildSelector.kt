@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.design.Sgm
-import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
@@ -56,7 +55,7 @@ fun SearchChildSelector(
         Text(
             selectedChildLabel(children, selectedChildId),
             style = SgmType.BodyXS.copy(
-                color = SgmColor.Green,
+                color = Sgm.colors.textAccent,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
             ),

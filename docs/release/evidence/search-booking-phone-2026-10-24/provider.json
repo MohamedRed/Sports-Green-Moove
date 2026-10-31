@@ -1,0 +1,144 @@
+{
+  "policy": "approved-parent-search-eight-requests",
+  "approvedRequestLimit": 8,
+  "requests": [
+    {
+      "operation": "autocomplete",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "place-details",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "autocomplete",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "place-details",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "route-matrix",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "compute-route",
+      "status": 200,
+      "completed": true
+    }
+  ],
+  "facts": [
+    {
+      "operation": "autocomplete",
+      "firstPlaceId": "ChIJ6-fuiHZ9wUcRpFNMSdpAfTM"
+    },
+    {
+      "operation": "place-details",
+      "placeId": "ChIJ6-fuiHZ9wUcRpFNMSdpAfTM",
+      "location": {
+        "latitude": 50.71606070000001,
+        "longitude": 4.6055674
+      }
+    },
+    {
+      "operation": "autocomplete",
+      "firstPlaceId": "ChIJtRMdzH_Ew0cR-pwkSnChsUA"
+    },
+    {
+      "operation": "place-details",
+      "placeId": "ChIJtRMdzH_Ew0cR-pwkSnChsUA",
+      "location": {
+        "latitude": 50.845504,
+        "longitude": 4.3570964
+      }
+    },
+    {
+      "operation": "route-matrix",
+      "elements": [
+        {
+          "originIndex": 1,
+          "destinationIndex": 0,
+          "duration": "0s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        },
+        {
+          "originIndex": 2,
+          "destinationIndex": 1,
+          "duration": "0s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        },
+        {
+          "originIndex": 0,
+          "destinationIndex": 0,
+          "distanceMeters": 1196,
+          "duration": "318s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        },
+        {
+          "originIndex": 1,
+          "destinationIndex": 1,
+          "distanceMeters": 26165,
+          "duration": "2480s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        },
+        {
+          "originIndex": 2,
+          "destinationIndex": 0,
+          "distanceMeters": 26631,
+          "duration": "2640s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        },
+        {
+          "originIndex": 0,
+          "destinationIndex": 1,
+          "distanceMeters": 26632,
+          "duration": "2537s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        },
+        {
+          "originIndex": 2,
+          "destinationIndex": 2,
+          "distanceMeters": 978,
+          "duration": "290s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        },
+        {
+          "originIndex": 1,
+          "destinationIndex": 2,
+          "distanceMeters": 26840,
+          "duration": "2669s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        },
+        {
+          "originIndex": 0,
+          "destinationIndex": 2,
+          "distanceMeters": 27307,
+          "duration": "2728s",
+          "condition": "ROUTE_EXISTS",
+          "statusCode": 0
+        }
+      ]
+    },
+    {
+      "operation": "compute-route",
+      "distanceMeters": 28339,
+      "duration": "3100s",
+      "polylineSha256": "c7492e8105fcedc18342fa7c5e022e46b53d2328b80d1d326ffee552da9790c7"
+    }
+  ],
+  "stopped": false
+}

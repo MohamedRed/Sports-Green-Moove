@@ -1,0 +1,280 @@
+TAP version 13
+# Subtest: unchanged dependency regressions and complete local compatibility remain independently retained
+ok 1 - unchanged dependency regressions and complete local compatibility remain independently retained
+  ---
+  duration_ms: 15.519875
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish productionExploitProven
+ok 2 - dependency maintenance cannot establish productionExploitProven
+  ---
+  duration_ms: 0.783292
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish allSecurityFindingsResolved
+ok 3 - dependency maintenance cannot establish allSecurityFindingsResolved
+  ---
+  duration_ms: 0.214083
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish productionDeployed
+ok 4 - dependency maintenance cannot establish productionDeployed
+  ---
+  duration_ms: 0.139875
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish physicalUiVerified
+ok 5 - dependency maintenance cannot establish physicalUiVerified
+  ---
+  duration_ms: 0.1155
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish realPayments
+ok 6 - dependency maintenance cannot establish realPayments
+  ---
+  duration_ms: 0.184834
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish releaseComplete
+ok 7 - dependency maintenance cannot establish releaseComplete
+  ---
+  duration_ms: 0.155917
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish nativeNetworkPreparationCauseProven
+ok 8 - dependency maintenance cannot establish nativeNetworkPreparationCauseProven
+  ---
+  duration_ms: 0.09575
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish nativeFailureRepairedByDependencyPatch
+ok 9 - dependency maintenance cannot establish nativeFailureRepairedByDependencyPatch
+  ---
+  duration_ms: 0.373125
+  type: 'test'
+  ...
+# Subtest: changed original audit data is rejected even with an unchanged summary
+ok 10 - changed original audit data is rejected even with an unchanged summary
+  ---
+  duration_ms: 11.001041
+  type: 'test'
+  ...
+# Subtest: public progress keeps security partial and retains the unsuccessful network preparation separately
+ok 11 - public progress keeps security partial and retains the unsuccessful network preparation separately
+  ---
+  duration_ms: 0.213334
+  type: 'test'
+  ...
+# Subtest: the same parser cases retain two original worker crashes, the patch and both service outcomes
+ok 12 - the same parser cases retain two original worker crashes, the patch and both service outcomes
+  ---
+  duration_ms: 26.507958
+  type: 'test'
+  ...
+# Subtest: local dependency proof cannot become a production exploit, phone, root-cause or full-security claim
+ok 13 - local dependency proof cannot become a production exploit, phone, root-cause or full-security claim
+  ---
+  duration_ms: 1.339833
+  type: 'test'
+  ...
+# Subtest: altering the retained failed result invalidates the evidence instead of erasing the first attempt
+ok 14 - altering the retained failed result invalidates the evidence instead of erasing the first attempt
+  ---
+  duration_ms: 14.273041
+  type: 'test'
+  ...
+# Subtest: request security and runtime disposal stay in both required CI workflows with concise public scope
+ok 15 - request security and runtime disposal stay in both required CI workflows with concise public scope
+  ---
+  duration_ms: 1.647708
+  type: 'test'
+  ...
+# Subtest: media addresses are content-addressed and missing or unsafe manifest entries fail closed
+ok 16 - media addresses are content-addressed and missing or unsafe manifest entries fail closed
+  ---
+  duration_ms: 1.079875
+  type: 'test'
+  ...
+# Subtest: media fingerprints cover actual bytes and publication rejects changed or missing output
+ok 17 - media fingerprints cover actual bytes and publication rejects changed or missing output
+  ---
+  duration_ms: 3.38675
+  type: 'test'
+  ...
+# Subtest: previews, gallery, tours, posters and downloads all use the same versioned media resolver
+ok 18 - previews, gallery, tours, posters and downloads all use the same versioned media resolver
+  ---
+  duration_ms: 1.177291
+  type: 'test'
+  ...
+# Subtest: smoke workflow covers portal source, evidence changes and validation
+ok 19 - smoke workflow covers portal source, evidence changes and validation
+  ---
+  duration_ms: 0.253875
+  type: 'test'
+  ...
+# Subtest: rendered content is escaped and native accessible controls remain present
+ok 20 - rendered content is escaped and native accessible controls remain present
+  ---
+  duration_ms: 26.454958
+  type: 'test'
+  ...
+# Subtest: portal code modules remain below 300 lines
+ok 21 - portal code modules remain below 300 lines
+  ---
+  duration_ms: 1.611083
+  type: 'test'
+  ...
+# Subtest: frontend bundles are versioned together and stale generated source is rejected
+ok 22 - frontend bundles are versioned together and stale generated source is rejected
+  ---
+  duration_ms: 8.656584
+  type: 'test'
+  ...
+# Subtest: partner copy stays brief and recording context is optional
+ok 23 - partner copy stays brief and recording context is optional
+  ---
+  duration_ms: 27.444375
+  type: 'test'
+  ...
+# Subtest: partner-facing pages do not name the implementation or testing stack
+ok 24 - partner-facing pages do not name the implementation or testing stack
+  ---
+  duration_ms: 18.198958
+  type: 'test'
+  ...
+# Subtest: guided tours reference reviewed flow evidence and reject invented steps
+ok 25 - guided tours reference reviewed flow evidence and reject invented steps
+  ---
+  duration_ms: 1850.151833
+  type: 'test'
+  ...
+# Subtest: overview stays focused while the catalogue exposes every tour and screenshot
+ok 26 - overview stays focused while the catalogue exposes every tour and screenshot
+  ---
+  duration_ms: 22.979042
+  type: 'test'
+  ...
+# Subtest: overview selects the newest result per flow without losing previous results
+ok 27 - overview selects the newest result per flow without losing previous results
+  ---
+  duration_ms: 0.680875
+  type: 'test'
+  ...
+# Subtest: update partition handles empty, repeated and more than six distinct flows
+ok 28 - update partition handles empty, repeated and more than six distinct flows
+  ---
+  duration_ms: 0.309375
+  type: 'test'
+  ...
+# Subtest: every flow has truthful, dated evidence and explicit remaining scope
+ok 29 - every flow has truthful, dated evidence and explicit remaining scope
+  ---
+  duration_ms: 632.655666
+  type: 'test'
+  ...
+# Subtest: dated native rechecks remain modular and all their exact evidence paths are fingerprinted by the build
+ok 30 - dated native rechecks remain modular and all their exact evidence paths are fingerprinted by the build
+  ---
+  duration_ms: 2.059875
+  type: 'test'
+  ...
+# Subtest: later public callback recovery does not promote older local payment evidence or attribute an unconfirmed cause
+ok 31 - later public callback recovery does not promote older local payment evidence or attribute an unconfirmed cause
+  ---
+  duration_ms: 0.166667
+  type: 'test'
+  ...
+# Subtest: new phone consent keeps dated local application and restart evidence separate
+ok 32 - new phone consent keeps dated local application and restart evidence separate
+  ---
+  duration_ms: 0.140209
+  type: 'test'
+  ...
+# Subtest: older local results retain their own date when a newer app replay is added
+ok 33 - older local results retain their own date when a newer app replay is added
+  ---
+  duration_ms: 832.478875
+  type: 'test'
+  ...
+# Subtest: excerpts are bounded, original recordings retained and no audio exported
+ok 34 - excerpts are bounded, original recordings retained and no audio exported
+  ---
+  duration_ms: 0.211708
+  type: 'test'
+  ...
+# Subtest: new form checks do not imply signup or completed participant flows
+ok 35 - new form checks do not imply signup or completed participant flows
+  ---
+  duration_ms: 0.166083
+  type: 'test'
+  ...
+# Subtest: portal has no production app hosting rewrite or client-side auth substitute
+ok 36 - portal has no production app hosting rewrite or client-side auth substitute
+  ---
+  duration_ms: 0.468666
+  type: 'test'
+  ...
+# Subtest: local results are backed by successful evidence and are not presented as phone recordings
+ok 37 - local results are backed by successful evidence and are not presented as phone recordings
+  ---
+  duration_ms: 3.290667
+  type: 'test'
+  ...
+# Subtest: manual screen evidence stays scoped and cannot complete a phone requirement
+ok 38 - manual screen evidence stays scoped and cannot complete a phone requirement
+  ---
+  duration_ms: 970.228167
+  type: 'test'
+  ...
+# Subtest: app screenshots require a completed scoped run and retain product gaps
+ok 39 - app screenshots require a completed scoped run and retain product gaps
+  ---
+  duration_ms: 0.251208
+  type: 'test'
+  ...
+# Subtest: ride integrity claims use the new eleven-group evidence without promoting phone readiness
+ok 40 - ride integrity claims use the new eleven-group evidence without promoting phone readiness
+  ---
+  duration_ms: 0.092875
+  type: 'test'
+  ...
+# Subtest: message service claims use the refreshed 24-group evidence and retain history
+ok 41 - message service claims use the refreshed 24-group evidence and retain history
+  ---
+  duration_ms: 1.123875
+  type: 'test'
+  ...
+# Subtest: search claims distinguish passing unit and simulated-screen evidence from real accounts
+ok 42 - search claims distinguish passing unit and simulated-screen evidence from real accounts
+  ---
+  duration_ms: 1.500959
+  type: 'test'
+  ...
+# Subtest: current conversation evidence retains the full replay and the dated historical captures
+ok 43 - current conversation evidence retains the full replay and the dated historical captures
+  ---
+  duration_ms: 1.066166
+  type: 'test'
+  ...
+# Subtest: new ride captures use a completed seven-case UI run and keep old evidence intact
+ok 44 - new ride captures use a completed seven-case UI run and keep old evidence intact
+  ---
+  duration_ms: 0.175666
+  type: 'test'
+  ...
+# Subtest: current native status keeps completed replay separate from both failed gates
+ok 45 - current native status keeps completed replay separate from both failed gates
+  ---
+  duration_ms: 5.413
+  type: 'test'
+  ...
+1..45
+# tests 45
+# suites 0
+# pass 45
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4826.939708

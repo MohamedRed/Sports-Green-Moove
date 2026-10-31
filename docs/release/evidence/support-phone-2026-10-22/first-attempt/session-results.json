@@ -1,0 +1,33 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b945a331490c718b3e3f8fb05ad3a9a0",
+  "testedAt": "2026-10-22T12:31:53.794Z",
+  "completed": false,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "reportCount": 0,
+      "status": null,
+      "requesterResponseRecorded": false
+    },
+    {
+      "phase": "invalid",
+      "reportCount": 0,
+      "status": null,
+      "requesterResponseRecorded": false
+    }
+  ],
+  "protectedRecordCount": 158,
+  "scope": "independent-support-record-checkpoints-not-phone-ui-proof",
+  "adminClientClosed": true,
+  "fixtureEnvironmentDestroyed": false,
+  "productionWrites": false,
+  "adminReviewViaService": false,
+  "requesterResponseVerified": false,
+  "sourceFiles": {
+    "scripts/qa/manual-support-phone-session.mjs": "a09551159d341ee384528a9f382c0f4580f524be681885df77a45e170b4f0a89",
+    "scripts/qa/manual-support-phone-checkpoints.mjs": "f27fe337fcc0c7c54440d756946f6d6e2788f14c9a87759ae887122e0fdcfde8",
+    "functions/src/callables/feedback.ts": "d420378109dd80e733e929f210c2a238ce71983dc6e0937c1686614879cff97f",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsReportCard.kt": "707052922044b017779dab06097e924bdabdf2c1d10093e5324e14e96d1900d3"
+  }
+}

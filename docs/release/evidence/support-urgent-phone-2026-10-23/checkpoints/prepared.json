@@ -1,0 +1,33 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ceabbd242cecff629223b003000f1d8b",
+  "recordedAt": "2026-10-23T12:29:58.792Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "foreignUid": "sgm-qa-driver",
+    "managerUid": "sgm-qa-club-manager",
+    "foreignReadDenied": false
+  },
+  "state": {
+    "reports": [],
+    "operations": [],
+    "outbox": [],
+    "replyOperations": [],
+    "replies": [],
+    "requesterView": null,
+    "foreignList": null,
+    "notifications": []
+  },
+  "result": {
+    "phase": "prepared",
+    "reportCount": 0,
+    "replyCount": 0,
+    "providerAttempts": 0
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "physicalUiVerifiedByObserver": false,
+  "adminWritesByObserver": 0,
+  "realEmailSent": false
+}

@@ -3,7 +3,7 @@
  * SPORTS GREEN-mOOVe Design System — Jetpack Compose token bridge
  *
  * Generated from tokens/colors.css, tokens/typography.css, tokens/spacing.css.
- * This file is the ONLY place colors/fonts/spacing may be defined.
+ * Palette definitions live in SgmColors.kt; fonts and spacing live here.
  * Never inline hex values or font names in screen code.
  *
  * Fonts: place bebas_neue_regular.ttf, dm_sans_regular.ttf, dm_sans_medium.ttf,
@@ -14,7 +14,7 @@ package be.sportgreenmoove.app.design
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
@@ -24,7 +24,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -34,75 +33,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import be.sportgreenmoove.app.R
-
-// ─────────────────────────────────────────────────────────────
-// Fixed brand colors (identical in light & dark)
-// ─────────────────────────────────────────────────────────────
-
-object SgmColor {
-    val Green       = Color(0xFF3EBD6C)   // primary
-    val GreenLight  = Color(0xFF60E896)   // hover / highlight
-    val GreenDark   = Color(0xFF1A8A44)   // pressed / deep
-    val Lime        = Color(0xFFA8F038)   // energy accent
-    val Orange      = Color(0xFFF97316)   // CO₂ / reward CTA
-    val OrangeLight = Color(0xFFFB923C)
-    val Red         = Color(0xFFEF4444)   // error / destructive
-    val TextOnGreen = Color.White
-
-    // Hero gradients (dark zones in BOTH modes)
-    val HeroStart = Color(0xFF0D2A18)
-    val HeroEnd = Color(0xFF163D24)
-    val HeroGradient = Brush.linearGradient(listOf(HeroStart, HeroEnd))
-    val RewardGradient = Brush.linearGradient(
-        listOf(Color(0xFF2A1505), Color(0xFF3D2410)))
-}
-
-// ─────────────────────────────────────────────────────────────
-// Adaptive semantic colors
-// ─────────────────────────────────────────────────────────────
-
-@Suppress("PropertyName")
-class SgmSemanticColors(
-    val bgApp: Color,
-    val bgSurface: Color,
-    val bgCard: Color,
-    val bgElevated: Color,
-    val bgInput: Color,
-    val textPrimary: Color,
-    val textSecondary: Color,
-    val textMuted: Color,
-    val textInverse: Color,
-    val border: Color,
-    val borderStrong: Color,
-)
-
-val SgmLightColors = SgmSemanticColors(
-    bgApp         = Color(0xFFF1F8F3),
-    bgSurface     = Color(0xFFFFFFFF),
-    bgCard        = Color(0xFFE8F4ED),
-    bgElevated    = Color(0xFFFFFFFF),
-    bgInput       = Color(0xFFF0F7F2),
-    textPrimary   = Color(0xFF0C1B0E),
-    textSecondary = Color(0xFF3A5640),
-    textMuted     = Color(0xFF7A9E82),
-    textInverse   = Color(0xFFFFFFFF),
-    border        = Color(0xFFD0E8D8),
-    borderStrong  = Color(0xFF9EC9A9),
-)
-
-val SgmDarkColors = SgmSemanticColors(
-    bgApp         = Color(0xFF0A0F0B),
-    bgSurface     = Color(0xFF111815),
-    bgCard        = Color(0xFF172019),
-    bgElevated    = Color(0xFF1E2E20),
-    bgInput       = Color(0xFF1A2A1C),
-    textPrimary   = Color(0xFFEEF8F1),
-    textSecondary = Color(0xFF90B898),
-    textMuted     = Color(0xFF4E6E56),
-    textInverse   = Color(0xFF0C1B0E),
-    border        = Color(0xFF1E3022),
-    borderStrong  = Color(0xFF2E4A32),
-)
 
 val LocalSgmColors = staticCompositionLocalOf { SgmLightColors }
 
@@ -206,21 +136,23 @@ fun SgmTheme(
     val sgmColors = if (darkTheme) SgmDarkColors else SgmLightColors
 
     val materialScheme = if (darkTheme) darkColorScheme(
-        primary = SgmColor.Green,
+        primary = sgmColors.textAccent,
         secondary = SgmColor.Orange,
         background = sgmColors.bgApp,
         surface = sgmColors.bgSurface,
         error = SgmColor.Red,
-        onPrimary = SgmColor.TextOnGreen,
+        onPrimary = SgmColor.TextOnAccent,
+        onSecondary = SgmColor.TextOnAccent,
         onBackground = sgmColors.textPrimary,
         onSurface = sgmColors.textPrimary,
     ) else lightColorScheme(
-        primary = SgmColor.Green,
+        primary = sgmColors.textAccent,
         secondary = SgmColor.Orange,
         background = sgmColors.bgApp,
         surface = sgmColors.bgSurface,
         error = SgmColor.Red,
         onPrimary = SgmColor.TextOnGreen,
+        onSecondary = SgmColor.TextOnAccent,
         onBackground = sgmColors.textPrimary,
         onSurface = sgmColors.textPrimary,
     )
@@ -247,12 +179,12 @@ object Sgm {
 // ─────────────────────────────────────────────────────────────
 
 @Composable
-fun SgmGridTexture(
+fun BoxScope.SgmGridTexture(
     modifier: Modifier = Modifier,
     spacing: Float = 24f,
     lineColor: Color = SgmColor.Green.copy(alpha = 0.07f),
 ) {
-    Canvas(modifier = modifier.fillMaxSize()) {
+    Canvas(modifier = modifier.matchParentSize()) {
         var x = 0f
         while (x <= size.width) {
             drawLine(lineColor, Offset(x, 0f), Offset(x, size.height), strokeWidth = 1f)

@@ -1,0 +1,5 @@
+--------- beginning of system
+I/ActivityManager(  561): Force stopping be.sportgreenmoove.app.local appid=10207 user=0: finished inst
+E/ActivityManager(  561): Unable to freeze binder for 3396: -11
+I/ActivityManager(  561): Killing 3396:be.sportgreenmoove.app.local/u0a207 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  561): setHasOverlayUi called on unknown pid: 3396

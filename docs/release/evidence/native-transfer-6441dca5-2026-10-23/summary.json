@@ -1,0 +1,20 @@
+{
+  "scope": "terminal-native-recheck-with-incomplete-full-replay-during-evidence-transfer",
+  "checkedAt": "2026-10-23",
+  "sourceCommit": "6441dca55622ea8370051361047f779a9b7b26f2",
+  "runId": 39873579268,
+  "matrixJobId": 120153608819,
+  "ordinaryCases": 197,
+  "ordinaryPassed": 147,
+  "ordinarySkipped": 50,
+  "focusedCasesPassed": 10,
+  "failedCollectionPhase": "trip-change-parent-confirmation",
+  "fullNativeReplayCompleted": false,
+  "fullCiPassed": false,
+  "transferRootCauseEstablished": false,
+  "allRestorationVerified": false,
+  "physicalDeviceAccepted": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "newCapturesPublished": []
+}

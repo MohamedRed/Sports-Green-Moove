@@ -1,0 +1,35 @@
+{
+  "sourceCommit": "61dc4cbbfe7be43b14f878f86e358b17bd53d2e7",
+  "ciRunId": "39345199425",
+  "scope": "executed-independent-local-safety-and-full-replay-not-release-readiness",
+  "cases": {
+    "emergency-identity": {
+      "runId": "717b151ab76691421008b941c5d97e5c",
+      "report": "emergency-identity/emergency-identity-results.json"
+    },
+    "ride-observation": {
+      "runId": "ae1adbbb68010bce9366dd9a57bc7401",
+      "report": "ride-observation/ride-observation-results.json"
+    },
+    "native-startup": {
+      "runId": "3d015c61d13f16589bc4623f83c306e9",
+      "report": "native-startup/native-startup-results.json"
+    },
+    "remote-ride-stop": {
+      "runId": "d5f1c1041e399a3af1ac1c3fa35c2819",
+      "report": "remote-ride-stop/remote-ride-stop-results.json"
+    }
+  },
+  "mainRunId": "90d707cb99fed8218b24cb7fa2e5e56f",
+  "physicalDevice": false,
+  "productionWrites": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "childOwnAccountVerified": false,
+  "reviewedCaptures": [
+    "emergency-identity/emergency-identity-original.png",
+    "emergency-identity/emergency-identity-stale-denied.png",
+    "emergency-identity/emergency-identity-fresh-empty.png",
+    "emergency-identity/emergency-identity-fresh-restored.png"
+  ]
+}

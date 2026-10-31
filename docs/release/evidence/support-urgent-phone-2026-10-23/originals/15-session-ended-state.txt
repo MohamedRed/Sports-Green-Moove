@@ -1,0 +1,67 @@
+Browser tab: 1621933481, Title: "App Live Dashboard", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 224
+~										222 row sgm-support-call-trace-000ed178-dirty-20261022.apk v0.1.0 13 hours ago by me App Settings for sgm-support-call-trace-000ed178-dirty-20261022.apk Select sgm-support-call-trace-000ed178-dirty-20261022.apk for deletion
+~											223 cell (selected) sgm-support-call-trace-000ed178-dirty-20261022.apk
++												297 text sgm-support-call-trace-000ed178-dirty-20261022.apk
++												298 text v0.1.0 13 hours ago by me
++												299 container
++													300 button App Settings for sgm-support-call-trace-000ed178-dirty-20261022.apk
++														301 image Settings
++													302 checkbox (settable, integer) Description: Select sgm-support-call-trace-000ed178-dirty-20261022.apk for deletion, Value: 0
+~										225 row sgm-team-reads-isolated-458318c-20261021.apk v0.1.0 Yesterday at 21:27 by me Select sgm-team-reads-isolated-458318c-20261021.apk for deletion
+~											226 cell (selectable) sgm-team-reads-isolated-458318c-20261021.apk
++												303 text sgm-team-reads-isolated-458318c-20261021.apk
++												304 text v0.1.0 Yesterday at 21:27 by me
+~												227 checkbox (settable, integer) Description: Select sgm-team-reads-isolated-458318c-20261021.apk for deletion, Value: 0
+~										228 row sgm-team-chat-isolated-70daee2-20261021.apk v0.1.0 Yesterday at 17:45 by me Select sgm-team-chat-isolated-70daee2-20261021.apk for deletion
+~											229 cell (selectable) sgm-team-chat-isolated-70daee2-20261021.apk
++												305 text sgm-team-chat-isolated-70daee2-20261021.apk
++												306 text v0.1.0 Yesterday at 17:45 by me
+~												230 checkbox (settable, integer) Description: Select sgm-team-chat-isolated-70daee2-20261021.apk for deletion, Value: 0
+~										231 row sgm-emergency-isolated-c710048-20261021.apk v0.1.0 Oct 21 at 0:07 by me Select sgm-emergency-isolated-c710048-20261021.apk for deletion
+~											232 cell (selectable) sgm-emergency-isolated-c710048-20261021.apk
++												307 text sgm-emergency-isolated-c710048-20261021.apk
++												308 text v0.1.0 Oct 21 at 0:07 by me
+~												233 checkbox (settable, integer) Description: Select sgm-emergency-isolated-c710048-20261021.apk for deletion, Value: 0
+~										234 row app-debug.apk v0.1.0 Oct 19 at 14:58 by me Select app-debug.apk for deletion
+~											235 cell (selectable) app-debug.apk
++												309 text app-debug.apk
++												310 text v0.1.0 Oct 19 at 14:58 by me
+~												236 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										237 row app-debug.apk v0.1.0 Oct 19 at 14:28 by me Select app-debug.apk for deletion
+~											238 cell (selectable) app-debug.apk
++												311 text app-debug.apk
++												312 text v0.1.0 Oct 19 at 14:28 by me
+~												239 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										240 row sgm-emergency-isolated-685c508-20261019.apk v0.1.0 Oct 19 at 13:32 by me Select sgm-emergency-isolated-685c508-20261019.apk for deletion
+~											241 cell (selectable) sgm-emergency-isolated-685c508-20261019.apk
++												313 text sgm-emergency-isolated-685c508-20261019.apk
++												314 text v0.1.0 Oct 19 at 13:32 by me
+~												242 checkbox (settable, integer) Description: Select sgm-emergency-isolated-685c508-20261019.apk for deletion, Value: 0
+~										243 row app-debug.apk v0.1.0 Oct 19 at 13:32 by me Select app-debug.apk for deletion
+~											244 cell (selectable) app-debug.apk
++												315 text app-debug.apk
++												316 text v0.1.0 Oct 19 at 13:32 by me
+~												245 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										246 row app-debug.apk v0.1.0 Oct 19 at 12:59 by me Select app-debug.apk for deletion
+~											247 cell (selectable) app-debug.apk
++												317 text app-debug.apk
++												318 text v0.1.0 Oct 19 at 12:59 by me
+~												248 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										249 row app-debug.apk v0.1.0 Oct 19 at 12:15 by me Select app-debug.apk for deletion
+~											250 cell (selectable) app-debug.apk
++												319 text app-debug.apk
++												320 text v0.1.0 Oct 19 at 12:15 by me
+~												251 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+~										252 row sgm-history-isolated-e3ddba1-20261019.apk v0.1.0 Oct 19 at 12:14 by me Select sgm-history-isolated-e3ddba1-20261019.apk for deletion
+~											253 cell (selectable) sgm-history-isolated-e3ddba1-20261019.apk
++												321 text sgm-history-isolated-e3ddba1-20261019.apk
++												322 text v0.1.0 Oct 19 at 12:14 by me
+~												254 checkbox (settable, integer) Description: Select sgm-history-isolated-e3ddba1-20261019.apk for deletion, Value: 0
+~										255 row app-debug.apk v0.1.0 Oct 19 at 11:38 by me Select app-debug.apk for deletion
+~											256 cell (selectable) app-debug.apk
++												323 text app-debug.apk
++												324 text v0.1.0 Oct 19 at 11:38 by me
+~												257 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+The focused UI element is 0 AXWebArea App Live Dashboard, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1

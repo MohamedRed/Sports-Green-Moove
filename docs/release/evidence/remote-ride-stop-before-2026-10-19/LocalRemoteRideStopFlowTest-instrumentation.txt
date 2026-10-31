@@ -1,0 +1,29 @@
+
+be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest:
+Error in completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 20000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns$lambda$2$0$0(LocalRemoteRideStopFlowTest.kt:65)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.$r8$lambda$LL05PWgvfzFxd7uVzAYdmZu6ivM(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:18)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(LocalRemoteRideStopFlowTest.kt:53)
+
+
+Time: 71.889
+There was 1 failure:
+1) completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 20000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns$lambda$2$0$0(LocalRemoteRideStopFlowTest.kt:65)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.$r8$lambda$LL05PWgvfzFxd7uVzAYdmZu6ivM(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:18)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(LocalRemoteRideStopFlowTest.kt:53)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

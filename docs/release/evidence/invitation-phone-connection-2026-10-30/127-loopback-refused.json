@@ -1,0 +1,16 @@
+{
+  "phase": "127-loopback-refused",
+  "source": "session-window-not-native-export",
+  "observedAt": "2026-10-30T20:22:19.317Z",
+  "original": "127-loopback-refused.jpg",
+  "originalWidth": 1440,
+  "originalHeight": 722,
+  "originalSha256": "97bda968638f83f017cd367740cb6462f2531c5553700952ac83e5883bddb13b",
+  "crop": {
+    "left": 625,
+    "top": 107,
+    "width": 254,
+    "height": 564
+  },
+  "cropSha256": "25d767d7e990b174eafd10bd5dcf1d8fca1501b48203c1a3754ae86becf18bc8"
+}

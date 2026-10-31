@@ -1,0 +1,23 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalVehicleMapFlowTest:
+Error in parentSeesActualVehicleMarkerMoveAfterAuthenticatedDriverPoints(be.sportgreenmoove.app.ui.LocalVehicleMapFlowTest):
+java.lang.IllegalStateException: A single actual route anchor is required
+	at be.sportgreenmoove.app.ui.VehicleMarkerDisplayEvidenceKt.routeMarkerBounds(VehicleMarkerDisplayEvidence.kt:41)
+	at be.sportgreenmoove.app.ui.VehicleMarkerDisplayEvidenceKt.captureVehicleMarkerDisplay(VehicleMarkerDisplayEvidence.kt:56)
+	at be.sportgreenmoove.app.ui.LocalVehicleMapFlowTest.parentSeesActualVehicleMarkerMoveAfterAuthenticatedDriverPoints(LocalVehicleMapFlowTest.kt:76)
+
+
+Time: 31.314
+There was 1 failure:
+1) parentSeesActualVehicleMarkerMoveAfterAuthenticatedDriverPoints(be.sportgreenmoove.app.ui.LocalVehicleMapFlowTest)
+java.lang.IllegalStateException: A single actual route anchor is required
+	at be.sportgreenmoove.app.ui.VehicleMarkerDisplayEvidenceKt.routeMarkerBounds(VehicleMarkerDisplayEvidence.kt:41)
+	at be.sportgreenmoove.app.ui.VehicleMarkerDisplayEvidenceKt.captureVehicleMarkerDisplay(VehicleMarkerDisplayEvidence.kt:56)
+	at be.sportgreenmoove.app.ui.LocalVehicleMapFlowTest.parentSeesActualVehicleMarkerMoveAfterAuthenticatedDriverPoints(LocalVehicleMapFlowTest.kt:76)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

@@ -1,0 +1,18 @@
+{
+  "scope": "failed-initial-auth-and-passing-two-process-disconnect-not-instability-repair",
+  "checkedAt": "2026-10-31",
+  "sameBoundSourceFiles": true,
+  "originalArchiveDigestsVerified": true,
+  "failedInitialAuthAttempts": 1,
+  "passedNativeCases": 2,
+  "localDisconnectReplayAccepted": true,
+  "priorAuthFailureFixed": false,
+  "rootCauseConfirmed": false,
+  "newDiagnosticsExercised": false,
+  "fullNativeGateAccepted": false,
+  "physicalDeviceAccepted": false,
+  "realNetworkLossVerified": false,
+  "productionWrites": false,
+  "releaseAccepted": false,
+  "publishedMedia": []
+}

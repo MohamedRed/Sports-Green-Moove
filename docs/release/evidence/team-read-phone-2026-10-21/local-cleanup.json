@@ -1,0 +1,20 @@
+{
+  "verifiedAt": "2026-10-21T21:52:09.113Z",
+  "privateSessionRemoved": true,
+  "privateHandoffRemoved": true,
+  "ownedRuntimeRemoved": true,
+  "ownedProcessesAbsent": true,
+  "loopbackPortsRefused": [
+    5001,
+    8080,
+    9000,
+    9099
+  ],
+  "devicePolicyChanged": false,
+  "initialRuntimeCleanupExitCode": 1,
+  "initialFailure": "ENOTEMPTY on remaining cli-config directory",
+  "remainingCliConfigRemovedAfterProcessExit": true,
+  "helperExitCode": 130,
+  "controllerExitCode": 0,
+  "packageInventoryIndependentlyRead": false
+}

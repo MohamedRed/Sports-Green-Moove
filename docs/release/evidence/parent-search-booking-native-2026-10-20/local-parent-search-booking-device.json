@@ -1,0 +1,36 @@
+{
+  "scope": "local-parent-search-two-seat-booking-not-physical-or-payment",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b44e417a2b9f4e7dca4958f6a226b77a",
+  "tripId": "ujbFFZ9ta1A7bLrtD2oy",
+  "bookingId": "S1vxmHA85bBrE0ExA1xU",
+  "selectedPlaceIds": [
+    "ChIJ6-fuiHZ9wUcRpFNMSdpAfTM",
+    "ChIJtRMdzH_Ew0cR-pwkSnChsUA"
+  ],
+  "requestedSeats": 2,
+  "childId": "sgm-qa-child-lina",
+  "screenshots": {
+    "local-parent-search-booking-choices.png": "b5b137b27a483669895b78585e509a27a21d793dfe8bcd5338cd8c58aea7e0ef",
+    "local-parent-search-booking-match.png": "1ee834608a7223b0b872972695df9a8a453d00fd1c8594e1570af3841a16a15d",
+    "local-parent-search-booking-requested.png": "24f71cbef4d00ac678664313c7af71392a7e9ef792625bb31f57beb576d60aae",
+    "local-parent-search-booking-driver-approved.png": "f34e7d76e5d005b6d473f5a606c091d8438532287f242a569b531e7608ff9df7",
+    "local-parent-search-booking-parent-approved.png": "ff84435522007d7e469198b54193fc168452da41de54343b4bd8cbda21529e2a",
+    "local-parent-search-booking-cancelled.png": "cf182d19fa03a2bed571f4db838e15d3b3fbd4fd0bbaf78d26e56f32f636ca8a"
+  },
+  "parentRequestedInApp": true,
+  "driverApprovedInApp": true,
+  "parentCancelledInApp": true,
+  "capacitySequence": [
+    4,
+    4,
+    2,
+    2,
+    4
+  ],
+  "parentSignedOut": true,
+  "firestoreClientTerminated": true,
+  "completed": true,
+  "physicalDevice": false,
+  "paymentExercised": false
+}

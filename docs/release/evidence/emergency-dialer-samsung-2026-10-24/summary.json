@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-24",
+  "observedAt": "2026-10-24T00:46:32.766Z",
+  "scope": "system-phone-prerequisite-not-app-emergency-flow",
+  "device": {
+    "manufacturer": "Samsung",
+    "model": "Galaxy S24",
+    "android": "14.0",
+    "sim": "none"
+  },
+  "selectedApk": "sgm-notification-read-localhost-87082b10-20261023.apk",
+  "sourceCommit": "13a5b1e27e63133c6e7dcebf53a75f25a93e852f",
+  "installedApkBytesIndependentlyVerified": false,
+  "appLoginScreenObserved": true,
+  "accountSignedIn": false,
+  "privateTunnelStarted": false,
+  "localBackendStarted": false,
+  "productionWrites": false,
+  "phoneLaunches": [
+    {
+      "entry": "system-home-shortcut",
+      "result": "returned-to-home"
+    },
+    {
+      "entry": "labelled-app-drawer-phone",
+      "result": "returned-to-home"
+    }
+  ],
+  "phoneNumberEntered": false,
+  "callPlaced": false,
+  "dialerHandoffAccepted": false,
+  "rootCauseConfirmed": false,
+  "policyChanged": false,
+  "permissionsChanged": false,
+  "subscriptionChanged": false,
+  "browserRestarted": false,
+  "packageAbsenceVerified": true,
+  "phoneSessionStopped": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  },
+  "publicGalleryAssetsAdded": [],
+  "releaseComplete": false,
+  "appSourceCommit": "87082b10b44db59943089a21f82606f5a153be2b",
+  "captures": [
+    "01-app-login.jpg",
+    "02-system-home.jpg",
+    "03-after-phone-shortcut.jpg",
+    "04-labelled-phone-drawer.jpg",
+    "05-after-labelled-phone.jpg"
+  ],
+  "providerUninstallAcknowledged": true
+}

@@ -1,0 +1,26 @@
+{
+  "reviewedAt": "2026-10-22",
+  "scope": "terminal-ci-service-recheck-and-incomplete-native-phone-attempts",
+  "sourceCommit": "87ec649ea41d0203ea591bc3a4b5380c881c2b0c",
+  "serviceGroupsPassed": 24,
+  "fullNativeReplayCompleted": false,
+  "newPhoneFlowCompleted": false,
+  "newCapturesAccepted": [],
+  "physicalTrackingAccepted": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "phoneHelperOutcome": {
+    "code": 126,
+    "signal": null,
+    "diagnostics": {
+      "authenticationRejected": false,
+      "duplicateConnection": false,
+      "portUnavailable": false,
+      "networkFailure": false,
+      "configurationRejected": false
+    },
+    "rootCauseEstablished": false,
+    "verboseDiagnosticApproved": false,
+    "ownedGroupExitVerified": true
+  }
+}

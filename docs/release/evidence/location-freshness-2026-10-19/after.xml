@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="20" failures="0" errors="0" time="0.058896375">
+    <testsuite name="src/__tests__/client-trips.test.ts" timestamp="2026-10-19T15:02:21.365Z" hostname="MRRs-MacBook-Air.local" tests="5" failures="0" errors="0" skipped="0" time="0.03970125">
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; maps Firestore trips to native app DTOs" time="0.032340709">
+        </testcase>
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; maps live trip state to source-aware ride snapshots" time="0.003381583">
+        </testcase>
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; marks active rides stale until a fresh vehicle update exists" time="0.000404125">
+        </testcase>
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; keeps booking-specific status authoritative over a historical child-level override" time="0.000115875">
+        </testcase>
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; applies passenger status overrides from the ride session" time="0.000223166">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/location-freshness.test.ts" timestamp="2026-10-19T15:02:21.370Z" hostname="MRRs-MacBook-Air.local" tests="10" failures="0" errors="0" skipped="0" time="0.005664583">
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps a two-minute-old position stale when it arrives just now" time="0.002159209">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; cannot refresh an old position with a future client upload timestamp" time="0.000420416">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps the exact existing ninety-second freshness boundary" time="0.0001115">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; never calls a missing observation time fresh just because receipt time exists" time="0.000149041">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; does not label malformed observation times as just now" time="0.000458625">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps future observations unverified rather than clamping their age to zero" time="0.000217667">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; still shows a recently observed real timestamp as recent" time="0.000076292">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; orders child observations by when they were captured, not when they arrived" time="0.0000985">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps the missing first-point state distinct from a malformed received point" time="0.000352458">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; sets native receipt time on the server instead of trusting an optional client value" time="0.00023325">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/locations.test.ts" timestamp="2026-10-19T15:02:21.377Z" hostname="MRRs-MacBook-Air.local" tests="5" failures="0" errors="0" skipped="0" time="0.013530542">
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; binds fallback updates to the authenticated user" time="0.003163125">
+        </testcase>
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; accepts JSON-encoded location batches for Swift callable clients" time="0.006250334">
+        </testcase>
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; rejects invalid JSON-encoded location batches" time="0.001124458">
+        </testcase>
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; omits undefined optional fields before writing live trip locations" time="0.001249833">
+        </testcase>
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; allows only active ride drivers and child participants to write live locations" time="0.000277708">
+        </testcase>
+    </testsuite>
+</testsuites>

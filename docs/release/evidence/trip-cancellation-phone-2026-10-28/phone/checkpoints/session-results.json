@@ -1,0 +1,173 @@
+{
+  "scope": "independent-whole-trip-cancellation-records-not-phone-ui-or-race-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ba4fa4587cedfc8c4c4dd14d1924a266",
+  "testedAt": "2026-10-28T18:40:59.931Z",
+  "completed": true,
+  "fixture": {
+    "tripId": "VOmFcMNWG0C3rN4Ga8bL",
+    "title": "Annulation familles QA",
+    "driverUid": "sgm-qa-driver",
+    "parentUids": [
+      "sgm-qa-parent",
+      "sgm-qa-cancel-parent-two"
+    ],
+    "activeBookingIds": [
+      "I50dKoDqk4MHIaBbhl0O",
+      "nFR2RcXyy5WG7VEqecg7"
+    ],
+    "approvedBookingId": "I50dKoDqk4MHIaBbhl0O",
+    "pendingBookingId": "nFR2RcXyy5WG7VEqecg7",
+    "alreadyClosedBookingId": "Wjfi97ePkjsJJY6daYmZ",
+    "secondParentEmail": "cancel-parent-two@example.test",
+    "initialPreview": {
+      "tripId": "VOmFcMNWG0C3rN4Ga8bL",
+      "status": "ready",
+      "revision": "e0f44bb62d7bee2a90c17bd1cd2a72f222bb4126081db3662bf93c6bea0ac415",
+      "bookingCount": 2,
+      "refundPendingCount": 0
+    },
+    "preparationMethod": "authenticated-isolated-services-not-phone-booking-or-consent-proof",
+    "syntheticPaidMetadata": false,
+    "realPaymentExercised": false,
+    "providerRequests": 0
+  },
+  "checkpoints": [
+    {
+      "phase": "driver-signed-in",
+      "cancelledBookings": 0,
+      "newCancellationReceipts": 0,
+      "newNotices": 0,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "preview-visible",
+      "cancelledBookings": 0,
+      "newCancellationReceipts": 0,
+      "newNotices": 0,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "preview-dismissed",
+      "cancelledBookings": 0,
+      "newCancellationReceipts": 0,
+      "newNotices": 0,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "preview-reopened",
+      "cancelledBookings": 0,
+      "newCancellationReceipts": 0,
+      "newNotices": 0,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "cancellation-confirmed",
+      "cancelledBookings": 2,
+      "newCancellationReceipts": 1,
+      "newNotices": 2,
+      "returnedSeats": 2,
+      "seatsAvailable": 4,
+      "refundRequired": false,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "driver-history",
+      "cancelledBookings": 2,
+      "newCancellationReceipts": 1,
+      "newNotices": 2,
+      "returnedSeats": 2,
+      "seatsAvailable": 4,
+      "refundRequired": false,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "process-restarted",
+      "cancelledBookings": 2,
+      "newCancellationReceipts": 1,
+      "newNotices": 2,
+      "returnedSeats": 2,
+      "seatsAvailable": 4,
+      "refundRequired": false,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "parent-reservations",
+      "cancelledBookings": 2,
+      "newCancellationReceipts": 1,
+      "newNotices": 2,
+      "returnedSeats": 2,
+      "seatsAvailable": 4,
+      "refundRequired": false,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "parent-inbox",
+      "cancelledBookings": 2,
+      "newCancellationReceipts": 1,
+      "newNotices": 2,
+      "returnedSeats": 2,
+      "seatsAvailable": 4,
+      "refundRequired": false,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "second-parent-reservations",
+      "cancelledBookings": 2,
+      "newCancellationReceipts": 1,
+      "newNotices": 2,
+      "returnedSeats": 2,
+      "seatsAvailable": 4,
+      "refundRequired": false,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "second-parent-inbox",
+      "cancelledBookings": 2,
+      "newCancellationReceipts": 1,
+      "newNotices": 2,
+      "returnedSeats": 2,
+      "seatsAvailable": 4,
+      "refundRequired": false,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProven": false
+    },
+    {
+      "phase": "signed-out",
+      "cancelledBookings": 2,
+      "newCancellationReceipts": 1,
+      "newNotices": 2,
+      "returnedSeats": 2,
+      "seatsAvailable": 4,
+      "refundRequired": false,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProven": false
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "physicalUiProven": false,
+  "failure": null,
+  "wholeProcessRestartProven": false,
+  "concurrentRaceProven": false,
+  "pushDeliveryVerified": false,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/manual-trip-cancellation-phone-session.mjs": "c0e67b9b1c961c457bbdc7c7a303f7ab57f36473ad453bd8f5877c8c0103f462",
+    "scripts/qa/trip-cancellation-phone-fixture.mjs": "2d596d32caf92a2dcf852ca031affd192f752b18d8af7715acf52f7abedc2bc5",
+    "scripts/qa/trip-cancellation-phone-checkpoints.mjs": "f83087659e3599723e73f3bcae5b85d732f7e97211765fbd54705ef0b9400a9c",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TripCancellationState.kt": "1d06c1aa6c1f703f63246a45447b084eec7946fdf859d98e8cb9b4f190683d55",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TripCancellationDialog.kt": "fe856f6ae6751657ea12e9c29342325a7ca8262f7bf4c2984194f73346ff3f7d",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TripsRoute.kt": "66980da2237cf11c025ae96944c25ae6fbb7ccc8539c390436119eb29eac966a",
+    "functions/src/services/tripCancellation.ts": "502237a1c8449664b27213e8e599dddf631b03d836f9da1165bcb0e876ae4e9e"
+  }
+}

@@ -1,0 +1,129 @@
+[
+  {
+    "phase": "parent-signed-in",
+    "observedAt": "2026-10-28T16:50:36.768Z",
+    "homeSeen": true,
+    "syntheticParent": true
+  },
+  {
+    "phase": "opened-no-write",
+    "observedAt": "2026-10-28T16:51:12.587Z",
+    "confirmationVisible": true,
+    "tripTitle": "U 7/8 · Green Wavre QA Club",
+    "traveller": "Pour vous",
+    "seats": 1,
+    "price": "3,50 EUR",
+    "capture": "opened-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "dismissed-no-write",
+    "observedAt": "2026-10-28T16:51:30.010Z",
+    "homeSeen": true,
+    "confirmationDismissed": true
+  },
+  {
+    "phase": "confirmed",
+    "observedAt": "2026-10-28T16:52:08.046Z",
+    "acknowledgement": "Demande envoyée.",
+    "sendActionAbsent": true,
+    "capture": "confirmed-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "reopened",
+    "observedAt": "2026-10-28T16:53:01.664Z",
+    "status": "Votre demande est en attente.",
+    "sendActionAbsent": true,
+    "capture": "reopened-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "process-before-stop",
+    "observedAt": "2026-10-28T16:53:45.722Z",
+    "previousCount": 0,
+    "requestedAt": "2026-10-28T16:53:40.057Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 28390,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "native-stop",
+    "observedAt": "2026-10-28T16:55:25.936Z",
+    "appInfoName": "SPORTS GREEN-mOOVe",
+    "androidForceStopConfirmationClicked": true
+  },
+  {
+    "phase": "process-stopped",
+    "observedAt": "2026-10-28T16:55:32.539Z",
+    "previousCount": 1,
+    "requestedAt": "2026-10-28T16:55:27.025Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": true,
+    "pid": null,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "home-restored",
+    "observedAt": "2026-10-28T16:56:13.470Z",
+    "homeSeen": true,
+    "credentialsReentered": false
+  },
+  {
+    "phase": "process-restarted",
+    "observedAt": "2026-10-28T16:56:27.116Z",
+    "status": "Votre demande est en attente.",
+    "credentialsReentered": false,
+    "newRequestSubmitted": false,
+    "sendActionAbsent": true,
+    "capture": "restarted-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "process-after-restart",
+    "observedAt": "2026-10-28T16:56:32.789Z",
+    "previousCount": 2,
+    "requestedAt": "2026-10-28T16:56:28.016Z",
+    "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+    "package": "be.sportgreenmoove.app.local",
+    "processAbsent": false,
+    "pid": 16709,
+    "source": "fresh-package-scoped-meminfo-visible-console"
+  },
+  {
+    "phase": "other-card",
+    "observedAt": "2026-10-28T16:57:28.888Z",
+    "screen": "Mes trajets",
+    "status": "Votre demande est en attente.",
+    "sendActionAbsent": true,
+    "newRequestSubmitted": false,
+    "capture": "other-card-context.png",
+    "captureMethod": "browser-session-window-not-native-export"
+  },
+  {
+    "phase": "signed-out",
+    "observedAt": "2026-10-28T16:58:16.896Z",
+    "blankLoginFormObserved": true
+  },
+  {
+    "phase": "uninstall-acknowledged",
+    "observedAt": "2026-10-28T16:59:51.518Z",
+    "providerAcknowledgementObserved": true
+  },
+  {
+    "phase": "package-absent",
+    "observedAt": "2026-10-28T17:00:06.810Z",
+    "command": "dumpsys package be.sportgreenmoove.app.local",
+    "output": "Unable to find package: be.sportgreenmoove.app.local",
+    "independentlyObserved": true
+  },
+  {
+    "phase": "phone-released",
+    "observedAt": "2026-10-28T17:00:15.126Z",
+    "idleDashboardObserved": true,
+    "providerSessionEnded": true
+  }
+]

@@ -194,7 +194,7 @@ private struct BookingRequestCard: View {
                     .lineLimit(2)
             }
             if request.status == "requested" {
-                SGMButton(title: "APPROUVER", full: false) {
+                SGMButton(title: "APPROUVER", full: false, testID: UITestIdentifier.bookingApproveAction) {
                     Task { await appState.approveBooking(request) }
                 }
             }

@@ -1,4 +1,5 @@
 import Foundation
+import CoreFoundation
 
 #if canImport(FirebaseFunctions)
 import FirebaseFunctions
@@ -81,6 +82,22 @@ struct FirebaseStripePaymentsGateway: StripePaymentsGateway {
     }
 }
 
+extension FirebaseStripePaymentsGateway {
+    func ridePaymentStatus(bookingId: String, paymentIntentId: String) async throws -> RidePaymentState {
+        try await withCheckedThrowingContinuation { continuation in
+            Functions.functions().httpsCallable("getRidePaymentStatus")
+                .call(["bookingId": bookingId, "paymentIntentId": paymentIntentId]) { result, error in
+                    if let error { continuation.resume(throwing: error); return }
+                    guard let payload = result?.data as? [String: Any] else {
+                        continuation.resume(throwing: ProviderConfigurationError(message: "Réponse paiement invalide.")); return
+                    }
+                    do { continuation.resume(returning: try mapRidePaymentState(payload, bookingId: bookingId, paymentIntentId: paymentIntentId)) }
+                    catch { continuation.resume(throwing: error) }
+                }
+        }
+    }
+}
+
 private func mapPaymentSheetConfig(_ payload: [String: Any]) throws -> PaymentSheetConfig {
     guard let bookingId = payload["bookingId"] as? String,
           let paymentIntentId = payload["paymentIntentId"] as? String,
@@ -103,9 +120,9 @@ private func mapPaymentSheetConfig(_ payload: [String: Any]) throws -> PaymentSh
 }
 
 private func intValue(_ value: Any?) -> Int? {
-    if let int = value as? Int { return int }
-    if let number = value as? NSNumber { return number.intValue }
-    if let double = value as? Double { return Int(double) }
-    return nil
+    guard let number = value as? NSNumber, CFGetTypeID(number) != CFBooleanGetTypeID() else { return nil }
+    let amount = number.doubleValue
+    guard amount.isFinite, amount > 0, amount <= Double(Int32.max), amount.rounded(.towardZero) == amount else { return nil }
+    return Int(amount)
 }
 #endif

@@ -1,0 +1,29 @@
+--------- beginning of system
+I/ActivityManager(  542): Killing 3821:com.google.android.settings.intelligence/u0a139 (adj 975): empty #17
+I/ActivityManager(  542): Killing 1835:com.google.android.partnersetup/u0a131 (adj 985): empty #18
+I/ActivityManager(  542): Killing 2913:com.android.chrome/u0a145 (adj 985): empty #19
+I/ActivityManager(  542): Killing 2351:com.google.android.tts/u0a150 (adj 995): empty #20
+I/ActivityManager(  542): Killing 2045:com.google.android.as.oss/u0a142 (adj 995): empty #21
+I/ActivityManager(  542): Killing 2153:com.google.android.apps.wallpaper/u0a180 (adj 999): empty #22
+I/ActivityManager(  542): Killing 1469:com.google.android.cellbroadcastreceiver/u0a190 (adj 999): empty #23
+I/ActivityManager(  542): Killing 3095:com.google.android.healthconnect.controller/u0a200 (adj 999): empty #24
+I/ActivityManager(  542): Killing 2500:com.android.traceur/u0a117 (adj 999): empty #25
+I/ActivityManager(  542): Killing 1553:com.android.providers.calendar/u0a92 (adj 999): empty #26
+I/ActivityManager(  542): Killing 2450:com.google.android.documentsui/u0a108 (adj 999): empty #27
+I/ActivityManager(  542): Killing 2195:com.android.imsserviceentitlement/u0a141 (adj 999): empty #28
+I/ActivityManager(  542): Killing 2834:com.google.android.ondevicepersonalization.services/u0a186 (adj 999): empty #29
+I/ActivityManager(  542): Killing 2785:com.google.android.federatedcompute/u0a187 (adj 999): empty #30
+I/ActivityManager(  542): Killing 2604:com.android.carrierdefaultapp/u0a112 (adj 999): empty #31
+I/ActivityManager(  542): Killing 2717:com.android.shell/2000 (adj 999): empty #32
+I/ActivityManager(  542): Killing 2692:com.android.dynsystem:dynsystem/1000 (adj 999): empty #33
+I/ActivityManager(  542): Killing 2668:com.android.dynsystem/1000 (adj 999): empty #34
+I/ActivityManager(  542): Killing 2652:com.android.camera2/u0a151 (adj 999): empty #35
+I/ActivityManager(  542): Killing 2223:com.android.managedprovisioning/u0a101 (adj 999): empty #36
+I/ActivityManager(  542): Killing 2629:com.google.android.onetimeinitializer/u0a128 (adj 999): empty #37
+I/ActivityManager(  542): Killing 1736:com.android.carrierconfig/u0a176 (adj 999): empty #38
+I/ActivityManager(  542): Killing 2257:com.android.externalstorage/u0a94 (adj 999): empty #39
+I/ActivityManager(  542): Killing 1579:com.android.cellbroadcastreceiver/u0a102 (adj 999): empty #40
+I/ActivityManager(  542): Killing 1628:com.android.keychain/1000 (adj 999): empty #41
+I/ActivityManager(  542): Killing 1461:com.google.android.googlesdksetup/u0a172 (adj 999): empty #42
+I/ActivityManager(  542): Killing 1435:com.android.printspooler/u0a113 (adj 999): empty #43
+W/ActivityManager(  542): SLOW OOM ADJ: 251ms for pid 1141 = 100

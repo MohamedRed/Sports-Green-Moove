@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-23T15:37:39.632Z",
+  "credentialsRemoved": true,
+  "portsClosed": [
+    5001,
+    8080,
+    9000,
+    9099,
+    45690,
+    45691
+  ],
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "helperDirectoryRemoved": true,
+  "phoneSignedOutObserved": true,
+  "phoneSessionStoppedObserved": true,
+  "uninstallVerified": false,
+  "phonePolicyChanged": false,
+  "limitation": "Provider reported no removable user apps; native uninstall did not establish removal. Session explicitly stopped."
+}

@@ -1,0 +1,15 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "33d063637a59367f67318a001c48565e",
+  "phase": "failure-cleanup",
+  "recordedAt": "2026-10-21T23:38:36.416Z",
+  "scope": "local-adb-file-sync-command-not-flow-verification",
+  "serial": "emulator-5554",
+  "version": "Android Debug Bridge version 1.0.41\nVersion 37.0.1-15733141\nInstalled as /usr/local/lib/android/sdk/platform-tools/adb\nRunning on Linux 6.17.0-1022-azure (x86_64)\n",
+  "status": 0,
+  "signal": null,
+  "errorCode": null,
+  "stdout": "",
+  "stderr": "10-21 23:38:35.897  6876  6876 D adb     : adb_client.cpp:355 adb_connect: service: host-serial:emulator-5554:features\n10-21 23:38:35.897  6876  6876 D adb     : adb_client.cpp:157 _adb_connect: host:version\n10-21 23:38:35.897  6876  6876 D adb     : adb_client.cpp:157 _adb_connect: host-serial:emulator-5554:features\n10-21 23:38:35.897  6876  6876 D adb     : adb_client.cpp:355 adb_connect: service: sync:\n10-21 23:38:35.897  6876  6876 D adb     : adb_client.cpp:157 _adb_connect: sync:\n10-21 23:38:35.897  6876  6876 D adb     : adb_client.cpp:116 Switch transport in progress: host:tport:serial:emulator-5554\n/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/./: 108 files pulled, 0 skipped. 24.9 MB/s (13459313 bytes in 0.515s)\n",
+  "completed": true
+}

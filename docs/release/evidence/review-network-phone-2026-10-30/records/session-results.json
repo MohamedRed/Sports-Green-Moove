@@ -1,0 +1,242 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9a534e9d1a4cdad80702b95c7236866c",
+  "testedAt": "2026-10-30T00:10:29.948Z",
+  "scope": "independent-review-network-record-checkpoints-not-ui-or-release-proof",
+  "completed": true,
+  "checks": [
+    {
+      "phase": "parent-ready",
+      "status": "passed",
+      "parentRequests": 2,
+      "driverRequests": 2,
+      "ratingCount": 0,
+      "exactTripAndTargetsPreserved": true,
+      "physicalNetworkLossProvenByObserver": false,
+      "phoneUiProvenByObserver": false,
+      "processRestartProvenByObserver": false,
+      "runId": "9a534e9d1a4cdad80702b95c7236866c",
+      "observedAt": "2026-10-30T00:00:16.092Z",
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158,
+      "summaries": [
+        {
+          "userId": "sgm-qa-parent",
+          "count": 0,
+          "average": null
+        },
+        {
+          "userId": "sgm-qa-driver",
+          "count": 0,
+          "average": null
+        }
+      ]
+    },
+    {
+      "phase": "offline-sending",
+      "status": "passed",
+      "parentRequests": 2,
+      "driverRequests": 2,
+      "ratingCount": 0,
+      "exactTripAndTargetsPreserved": true,
+      "physicalNetworkLossProvenByObserver": false,
+      "phoneUiProvenByObserver": false,
+      "processRestartProvenByObserver": false,
+      "runId": "9a534e9d1a4cdad80702b95c7236866c",
+      "observedAt": "2026-10-30T00:04:00.985Z",
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158,
+      "summaries": [
+        {
+          "userId": "sgm-qa-parent",
+          "count": 0,
+          "average": null
+        },
+        {
+          "userId": "sgm-qa-driver",
+          "count": 0,
+          "average": null
+        }
+      ]
+    },
+    {
+      "phase": "offline-failed",
+      "status": "passed",
+      "parentRequests": 2,
+      "driverRequests": 2,
+      "ratingCount": 0,
+      "exactTripAndTargetsPreserved": true,
+      "physicalNetworkLossProvenByObserver": false,
+      "phoneUiProvenByObserver": false,
+      "processRestartProvenByObserver": false,
+      "runId": "9a534e9d1a4cdad80702b95c7236866c",
+      "observedAt": "2026-10-30T00:04:01.408Z",
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158,
+      "summaries": [
+        {
+          "userId": "sgm-qa-parent",
+          "count": 0,
+          "average": null
+        },
+        {
+          "userId": "sgm-qa-driver",
+          "count": 0,
+          "average": null
+        }
+      ]
+    },
+    {
+      "phase": "online-before-retry",
+      "status": "passed",
+      "parentRequests": 2,
+      "driverRequests": 2,
+      "ratingCount": 0,
+      "exactTripAndTargetsPreserved": true,
+      "physicalNetworkLossProvenByObserver": false,
+      "phoneUiProvenByObserver": false,
+      "processRestartProvenByObserver": false,
+      "runId": "9a534e9d1a4cdad80702b95c7236866c",
+      "observedAt": "2026-10-30T00:04:44.412Z",
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158,
+      "summaries": [
+        {
+          "userId": "sgm-qa-parent",
+          "count": 0,
+          "average": null
+        },
+        {
+          "userId": "sgm-qa-driver",
+          "count": 0,
+          "average": null
+        }
+      ]
+    },
+    {
+      "phase": "parent-rated",
+      "status": "passed",
+      "parentRequests": 1,
+      "driverRequests": 2,
+      "ratingCount": 1,
+      "exactTripAndTargetsPreserved": true,
+      "physicalNetworkLossProvenByObserver": false,
+      "phoneUiProvenByObserver": false,
+      "processRestartProvenByObserver": false,
+      "runId": "9a534e9d1a4cdad80702b95c7236866c",
+      "observedAt": "2026-10-30T00:05:01.413Z",
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158,
+      "summaries": [
+        {
+          "userId": "sgm-qa-parent",
+          "count": 0,
+          "average": null
+        },
+        {
+          "userId": "sgm-qa-driver",
+          "count": 1,
+          "average": 5
+        }
+      ]
+    },
+    {
+      "phase": "parent-restored",
+      "status": "passed",
+      "parentRequests": 1,
+      "driverRequests": 2,
+      "ratingCount": 1,
+      "exactTripAndTargetsPreserved": true,
+      "physicalNetworkLossProvenByObserver": false,
+      "phoneUiProvenByObserver": false,
+      "processRestartProvenByObserver": false,
+      "runId": "9a534e9d1a4cdad80702b95c7236866c",
+      "observedAt": "2026-10-30T00:07:20.268Z",
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158,
+      "summaries": [
+        {
+          "userId": "sgm-qa-parent",
+          "count": 0,
+          "average": null
+        },
+        {
+          "userId": "sgm-qa-driver",
+          "count": 1,
+          "average": 5
+        }
+      ]
+    },
+    {
+      "phase": "driver-summary",
+      "status": "passed",
+      "parentRequests": 1,
+      "driverRequests": 2,
+      "ratingCount": 1,
+      "exactTripAndTargetsPreserved": true,
+      "physicalNetworkLossProvenByObserver": false,
+      "phoneUiProvenByObserver": false,
+      "processRestartProvenByObserver": false,
+      "runId": "9a534e9d1a4cdad80702b95c7236866c",
+      "observedAt": "2026-10-30T00:09:17.575Z",
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158,
+      "summaries": [
+        {
+          "userId": "sgm-qa-parent",
+          "count": 0,
+          "average": null
+        },
+        {
+          "userId": "sgm-qa-driver",
+          "count": 1,
+          "average": 5
+        }
+      ]
+    },
+    {
+      "phase": "signed-out",
+      "status": "passed",
+      "parentRequests": 1,
+      "driverRequests": 2,
+      "ratingCount": 1,
+      "exactTripAndTargetsPreserved": true,
+      "physicalNetworkLossProvenByObserver": false,
+      "phoneUiProvenByObserver": false,
+      "processRestartProvenByObserver": false,
+      "runId": "9a534e9d1a4cdad80702b95c7236866c",
+      "observedAt": "2026-10-30T00:10:29.943Z",
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158,
+      "summaries": [
+        {
+          "userId": "sgm-qa-parent",
+          "count": 0,
+          "average": null
+        },
+        {
+          "userId": "sgm-qa-driver",
+          "count": 1,
+          "average": 5
+        }
+      ]
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "fixtureSubmittedRatings": 0,
+  "controllerSubmittedRatings": false,
+  "phoneUiProvenByObserver": false,
+  "physicalNetworkLossProvenByObserver": false,
+  "sourceApkSha256": "21d325914327eee4c883c5378d263ec31ba425fb3c628690f4c2c3f866666942",
+  "installedBytesIndependentlyVerified": false,
+  "sourceFiles": {
+    "scripts/qa/manual-review-network-phone.mjs": "de3787f606db75b7c6ccdf1af474737cb8058b05515e94d338615b7176fab829",
+    "scripts/qa/review-network-phone-checkpoints.mjs": "a11d8abeca30264c2362625976b44e99f725d49fe0deef04a2a5fb1fb6450c10",
+    "functions/src/callables/feedback.ts": "2e83755f98569ada11aaef30fd8e80c903cadd64bf76c0bb081198d83e3585c5",
+    "functions/src/services/ratingSubmission.ts": "1dfc8ed5173233d92faec023e3468e615b8d12c6bb7955079870f0e4e523aaf0",
+    "functions/src/domain/ratingSubmission.ts": "fab16cabe530182c8facfbbcf78eaddc45ba8eba774764c3cbb3d46c3c0bd71b"
+  }
+}

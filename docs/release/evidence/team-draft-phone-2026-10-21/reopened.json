@@ -1,0 +1,21 @@
+{
+  "scope": "independent-isolated-record-checkpoint-not-phone-ui-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e12f1ad1f209312e7e5c9f2fcc7637a5",
+  "recordedAt": "2026-10-21T18:21:44.896Z",
+  "phase": "reopened",
+  "messageId": null,
+  "persisted": {
+    "protectedBaselinePreserved": true,
+    "originalClaimsUnchanged": true,
+    "expectedProfileTimestampUpdatesOnly": true,
+    "protectedRecordCount": 158,
+    "messageCount": 2,
+    "messageOperationCount": 2,
+    "unsentDraftNotSubmitted": true,
+    "exactlyOneExplicitParentSend": false
+  },
+  "preAdmissionMessageHiddenForParent": true,
+  "separateDriverServiceRead": true,
+  "phoneUiProven": false
+}

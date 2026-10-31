@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ChildInvitationStateTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-26T17:01:21.831Z" hostname="MRRs-MacBook-Air.local" time="0.017">
+  <properties/>
+  <testcase name="theSelectedProfileAndApprovedHttpsFragmentCannotBeChangedByAResponse" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.006"/>
+  <testcase name="doubleTapsCannotCreateParallelInvitations" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.002"/>
+  <testcase name="anUncertainResponseRequiresAStatusRefreshAndNeverAssumesAnInvitationIsUsable" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.001"/>
+  <testcase name="aStatusRefreshDoesNotReconstructOrCacheTheInvitationSecret" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.001"/>
+  <testcase name="sharingRequiresAnExplicitCreationAndKeepsApprovalSeparate" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.001"/>
+  <testcase name="revocationUsesTheDisplayedFingerprintAndErasesTheUsableLink" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.002"/>
+  <testcase name="anExpiredLinkCannotBeShared" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.001"/>
+  <testcase name="aLateResponseCannotRestoreTheSecretAfterLeavingForeground" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.001"/>
+  <testcase name="aConsumedInvitationCannotBeReplacedRevokedOrSharedFromOldState" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.001"/>
+  <testcase name="closingDisablesAllFutureMutationsAndSharing" classname="be.sportgreenmoove.app.ui.ChildInvitationStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

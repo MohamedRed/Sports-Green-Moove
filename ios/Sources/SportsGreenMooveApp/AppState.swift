@@ -8,13 +8,27 @@ final class AppState {
     var overlay: AppOverlay?
     var selectedRole: AppRole = .parent
     var darkTheme = false
-    var session: AuthSession?
+    var session: AuthSession? {
+        didSet {
+            if session?.uid != oldValue?.uid {
+                pendingRidePayment = nil
+                noticeMessage = nil
+                errorMessage = nil
+            }
+        }
+    }
+    var pendingRidePayment: RidePaymentTarget?
+    var ridePaymentBusy = false
+    var ridePaymentState: RidePaymentState = .pending
     var trips: [TripSummary] = []
     var children: [ChildSummary] = []
+    var clubSummaries: [ClubSummary] = []
     var activeRide: LiveRideSnapshot?
     var activeRideTrip: TripSummary?
     var payableBookings: [PayableBookingSummary] = []
     var driverBookingRequests: [BookingRequestSummary] = []
+    var impactSummary: ImpactSummary = .empty
+    var rewardSummary: RewardSummary = .empty
     var searchOrigin: ResolvedPlace?
     var searchDestination: ResolvedPlace?
     var originSuggestions: [PlaceSuggestion] = []
@@ -24,11 +38,11 @@ final class AppState {
     var loading = false
     var errorMessage: String?
     var noticeMessage: String?
+    var activeRidePermissionDisclosure: ActiveRidePermissionDisclosure?
 
     let auth: AuthGateway
     let firebase: FirebaseGateway
     let radar: RadarTrackingGateway
-    let googleRoutes: GoogleRoutesGateway
     let stripe: StripePaymentsGateway
 
     var isConfigured: Bool {
@@ -39,13 +53,11 @@ final class AppState {
         auth: AuthGateway,
         firebase: FirebaseGateway,
         radar: RadarTrackingGateway = UnconfiguredRadarTrackingGateway(),
-        googleRoutes: GoogleRoutesGateway = UnconfiguredGoogleRoutesGateway(),
         stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway()
     ) {
         self.auth = auth
         self.firebase = firebase
         self.radar = radar
-        self.googleRoutes = googleRoutes
         self.stripe = stripe
     }
 
@@ -77,16 +89,23 @@ final class AppState {
         await authenticate { try await auth.signInWithGoogle() }
     }
 
+    func signInWithFacebook() async {
+        await authenticate { try await auth.signInWithFacebook() }
+    }
+
     func signOut() {
         do {
             try auth.signOut()
             session = nil
             trips = []
             children = []
+            clubSummaries = []
             activeRide = nil
             activeRideTrip = nil
             payableBookings = []
             driverBookingRequests = []
+            impactSummary = .empty
+            rewardSummary = .empty
             selectedTab = .home
             overlay = nil
         } catch {
@@ -117,8 +136,14 @@ final class AppState {
         do {
             trips = try await firebase.searchTrips()
             children = selectedRole == .parent ? try await firebase.listChildren() : []
+            clubSummaries = try await firebase.listClubSummaries()
             activeRide = try await firebase.getActiveRide()
+            activeRideTrip = activeRide?.tripId.flatMap { tripId in
+                activeRideTrip?.id == tripId ? activeRideTrip : trips.first { $0.id == tripId }
+            }
             payableBookings = try await firebase.getPayableBookings()
+            impactSummary = try await firebase.getImpactSummary()
+            rewardSummary = try await firebase.getRewardSummary()
             driverBookingRequests = selectedRole == .driver
                 ? try await firebase.getDriverBookingRequests()
                 : []
@@ -129,17 +154,24 @@ final class AppState {
 
     func handleTripAction(tripId: String) async {
         if selectedRole == .driver {
-            await startRide(tripId: tripId)
+            requestActiveRideStart(tripId: tripId)
+        } else if selectedRole == .child {
+            requestActiveRideTracking()
         } else {
-            await requestBooking(tripId: tripId, childId: nil)
+            guard let trip = trips.first(where: { $0.id == tripId }) else { return }
+            await requestBooking(trip: trip, childId: nil, seats: 1)
         }
     }
 
-    func requestBooking(tripId: String, childId: String?) async {
+    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async {
+        let uid = session?.uid
         do {
-            let bookingId = try await firebase.requestBooking(tripId: tripId, childId: childId)
+            let bookingId = try await firebase.requestBooking(trip: trip, childId: childId, seats: seats)
+            guard session?.uid == uid else { return }
             noticeMessage = "Demande envoyée: \(bookingId)"
         } catch {
+            guard session?.uid == uid else { return }
+            if error is BookingReviewRequiredError { searchMatches.removeAll { $0.summary == trip } }
             errorMessage = error.localizedDescription
         }
     }
@@ -209,8 +241,9 @@ final class AppState {
         }
     }
 
-    func requestSearchMatch(_ match: TripMatchSummary, childId: String?) async {
-        await requestBooking(tripId: match.tripId, childId: childId)
+    func requestSearchMatch(_ match: TripMatchSummary, childId: String?, seats: Int) async {
+        guard searchMatches.contains(match), match.tripId == match.summary.id else { return }
+        await requestBooking(trip: match.summary, childId: childId, seats: seats)
     }
 
     func approveBooking(_ request: BookingRequestSummary) async {

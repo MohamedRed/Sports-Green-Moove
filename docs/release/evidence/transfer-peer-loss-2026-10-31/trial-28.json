@@ -1,0 +1,24 @@
+{
+  "index": 28,
+  "startedAt": "2026-10-31T13:44:52.949Z",
+  "elapsedMs": 47,
+  "status": 1,
+  "signal": null,
+  "errorCode": null,
+  "signals": {
+    "deviceOffline": false,
+    "deviceMissing": false,
+    "transportClosed": false,
+    "permissionDenied": false,
+    "noSpace": false,
+    "timedOut": false
+  },
+  "outputCoverage": {
+    "present": true,
+    "byteCount": 643,
+    "recognizedFailure": false,
+    "unclassifiedFailure": true
+  },
+  "commandCompleted": false,
+  "integrityVerified": false
+}

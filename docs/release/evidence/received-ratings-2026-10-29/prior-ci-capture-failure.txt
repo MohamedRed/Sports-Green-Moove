@@ -1,0 +1,30 @@
+There was 1 failure:
+1) agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement(be.sportgreenmoove.app.ui.TripChangeFlowTest)
+java.lang.AssertionError: Failed waiting for PixelCopy!
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmapFromPixelCopy(WindowCapture.android.kt:157)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmap(WindowCapture.android.kt:135)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0$0(WindowCapture.android.kt:51)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs(Unknown Source:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.withDrawingEnabled(WindowCapture.android.kt:89)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0(WindowCapture.android.kt:47)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A(Unknown Source:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4.invoke(D8$$SyntheticClass:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.runWithRetryWhenNoData(WindowCapture.android.kt:64)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage(WindowCapture.android.kt:45)
+	at androidx.compose.ui.test.AndroidImageHelpers_androidKt.captureToImage(AndroidImageHelpers.android.kt:101)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi$lambda$0(LocalUiCapture.kt:20)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.$r8$lambda$KTsChHeezMjh5xFx_wbL1QlG6u0(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsKt.observePrimaryCapture(PrimaryCaptureDiagnostics.kt:28)
+	at be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsKt.observePrimaryCapture$default(PrimaryCaptureDiagnostics.kt:17)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi(LocalUiCapture.kt:20)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi$default(LocalUiCapture.kt:12)
+	at be.sportgreenmoove.app.ui.TripChangeFlowTest.capture(TripChangeFlowTest.kt:213)
+	at be.sportgreenmoove.app.ui.TripChangeFlowTest.agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement(TripChangeFlowTest.kt:188)
+
+FAILURES!!!
+Tests run: 241,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,31 @@
+{
+  "scope": "unit-verified-compiled-native-account-repair-not-replayed-ui",
+  "sourceBaseCommit": "7dc5a99ab425858bad2f138d989437b2235528a7",
+  "preparedWorktreeSources": true,
+  "unitCaseCount": 18,
+  "unitFailures": 0,
+  "nativeTestApkCompiled": true,
+  "testApkSha256": "4a52bcea4a4c5b53037a2bcfc0019a36924877885a77b95e2dbcf2633c248db7",
+  "nativeUiExecuted": false,
+  "activeRideJourneyPassed": false,
+  "providerStopExecuted": false,
+  "providerResumeExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "storeReviewAccepted": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationLease.kt": "24cfffe087de539f953a88988ca20432361fc216fe1af08457e4dd5c1a4b99d0",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt": "143e1ca640021f1d136bbef870af3f70ca09371f78c7c0b056517e24be4e8b41",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/NativeTrackingAuthorization.kt": "fbc86cd72de3516340ba14d38e157fb69d6c6d30ef1a4def674b528aa57ebe79",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideResume.kt": "1d5e06ac2748615a959c6299571cd8a0df93c8ba8bb4a5e29cac72feda48f97f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt": "be6d983a4a5daee790802f2e3cddf30986bb5e000a23a182785b028f94fab039",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "8cc1577dd4f9526c668841d197e584a4183dbc91116357a4aac716a5ca30ca74",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideStartup.kt": "5188f20acfa6a4cba7149de8f3a23b1abff41a2d5b735c3a2577adc5e2618177",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideResumeAction.kt": "dd7d45ef624a0c81c18124e3864b308b0856cd02f78a44408ae39079087eef50",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppSessionShutdown.kt": "df50b02bf4b3c15a073fd165ee219f7c05f913648e5c641152a2076bf7a9620d",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "e80081750b18c9f7465b28dfe90e1c02cde075f5199dc8b0ffc18a1713e90b4d",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/ActiveRideLocationLeaseTest.kt": "f594cf481f229b7f71f8b8db62e37387551f0b779cf170633791e8f2c9677c82",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/ActiveRideResumeTest.kt": "6f86e85119a75221276bba2c004fcf6c44bab433f7c4a09ff4adf57abffc3ab1",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/AppSessionShutdownTest.kt": "2811eab76aa0ee42792596142e7c901073fc0a0751ddeb7cd637f64020dd75c2"
+  }
+}

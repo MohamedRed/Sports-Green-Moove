@@ -1,0 +1,8 @@
+2026-10-26T22:29:20.2627950Z Installing system images.
+2026-10-26T22:29:20.2644380Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-35;google_apis_playstore;x86_64' --channel=0 > /dev/null
+2026-10-26T22:29:39.3080647Z Warning: An error occurred while preparing SDK package Google Play Intel x86_64 Atom System Image: Error on ZipFile unknown archive.
+2026-10-26T22:29:39.5944721Z ##[group]Terminate Emulator
+2026-10-26T22:29:39.5969085Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+2026-10-26T22:29:39.8356149Z error: could not connect to TCP port 5554: Connection refused
+2026-10-26T22:29:39.8397594Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+2026-10-26T22:29:40.0713536Z No files were found with the provided path: android/app/build/outputs/focused-safety-ui/**

@@ -1,0 +1,137 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e6f16834f97c8f08095cdcdea11f3e6a",
+  "testedAt": "2026-10-26T22:00:58.576Z",
+  "scope": "independent-private-trip-draft-records-not-storage-or-process-proof",
+  "completed": true,
+  "fixture": {
+    "tripId": "RlnhTxdNhyGyCoU4zZsB",
+    "otherTripId": "nWNvtLBwAiYCMDqTVcMQ",
+    "bookingIds": [
+      "St8VXDF5p5IFG3wGUzXX",
+      "0DQJuh2Ggl5xuAJkM9Lw"
+    ],
+    "driverUid": "sgm-qa-driver",
+    "driverEmail": "d@example.test",
+    "preparationMethod": "authenticated-local-service",
+    "providerRequests": 0,
+    "productionWrites": false
+  },
+  "checkpoints": [
+    {
+      "phase": "driver-signed-in",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "draft-entered",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "other-trip-clean",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "draft-returned",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "force-stopped",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "draft-reopened",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "other-trip-reopened",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "draft-returned-after-stop",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "signed-out",
+      "status": "passed",
+      "sharedRecordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "liveDataUnchanged": true,
+      "proposalCreated": false,
+      "physicalUiProvenByThisCheckpoint": false,
+      "processStopProvenByThisCheckpoint": false,
+      "draftStorageProvenByThisCheckpoint": false
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "physicalUiProvenByThisReport": false,
+  "wholeProcessRestartProvenByThisReport": false,
+  "draftStorageProvenByThisReport": false,
+  "proposalCreated": false,
+  "realPaymentExercised": false,
+  "sourceFiles": {
+    "scripts/qa/manual-trip-draft-phone-session.mjs": "f8f6a87028854ea22e44b703f2d266cb260b90526c2671eec09c222194ebddc9",
+    "scripts/qa/trip-draft-phone-checkpoints.mjs": "46e86d2eb818b1779d2888cd632692c652b2b2e6a45893235dffdf688b11524b",
+    "scripts/qa/local-trip-draft-restart.mjs": "14311bdce195b7fde2798ae82146cc6b627820a179aab5f2ee204daa687bdb05",
+    "scripts/qa/local-trip-input.mjs": "3277c597a1fdfc14e44d4de771d678720a72ca5a1b564967efdeaf86a84e7499",
+    "scripts/qa/start-child-account-phone.mjs": "a78e97e9d99747a948c825788a1ef660474fccfbc88ac2416488718ad4c6a44d"
+  }
+}

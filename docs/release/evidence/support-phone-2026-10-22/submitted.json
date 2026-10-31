@@ -1,0 +1,48 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "fc5cd70102fdccb2e271cba37e9ff542",
+  "recordedAt": "2026-10-22T12:41:07.103Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "reportId": "a4vuj5Mztz7gAv2OGiHv"
+  },
+  "input": {
+    "reason": "Support telephone QA",
+    "description": "Demande isolee envoyee depuis le telephone de test.",
+    "subjectType": "other",
+    "emergency": false
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "a4vuj5Mztz7gAv2OGiHv",
+        "subjectType": "other",
+        "reason": "Support telephone QA",
+        "description": "Demande isolee envoyee depuis le telephone de test.",
+        "emergency": false,
+        "reporterUserId": "sgm-qa-parent",
+        "status": "open",
+        "createdAt": {
+          "_seconds": 1792672846,
+          "_nanoseconds": 234000000
+        },
+        "updatedAt": {
+          "_seconds": 1792672846,
+          "_nanoseconds": 234000000
+        }
+      }
+    ],
+    "notifications": []
+  },
+  "result": {
+    "phase": "submitted",
+    "reportId": "a4vuj5Mztz7gAv2OGiHv",
+    "reportCount": 1,
+    "status": "open",
+    "requesterResponseRecorded": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "adminReviewViaService": false
+}

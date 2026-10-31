@@ -1,0 +1,14 @@
+{
+  "scope": "local-evidence-and-publication-checks-not-new-head-ci-or-release-proof",
+  "nodeBefore": {"tests": 2481, "passed": 2477, "failed": 4},
+  "nodeAfter": {"tests": 2481, "passed": 2481, "failed": 0},
+  "browserViewports": [1440, 768, 390, 320],
+  "browserPassed": true,
+  "cancellationTourSteps": 5,
+  "reviewedDesktopAndMobileScreenshots": true,
+  "baselineCiCommit": "ce93e568b7f636c0d6ce39f91daec4c4b80d72e7",
+  "baselineChecksPassed": 22,
+  "baselineChecksIntentionallySkipped": 5,
+  "newHeadCiProven": false,
+  "releaseComplete": false
+}

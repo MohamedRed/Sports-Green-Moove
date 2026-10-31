@@ -1,0 +1,106 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ceabbd242cecff629223b003000f1d8b",
+  "testedAt": "2026-10-23T13:02:55.997Z",
+  "scope": "independent-urgent-support-record-checkpoints-not-phone-or-management-ui-proof",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "reportCount": 0,
+      "replyCount": 0,
+      "providerAttempts": 0
+    },
+    {
+      "phase": "submitted",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "reportCount": 1,
+      "replyCount": 0,
+      "status": "open",
+      "providerAttempts": 0,
+      "emailStatus": "needs_configuration",
+      "supportOnlyAudience": true,
+      "privateFieldsAbsentFromRequesterView": true
+    },
+    {
+      "phase": "reviewed",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "reportCount": 1,
+      "replyCount": 0,
+      "status": "reviewing",
+      "providerAttempts": 0,
+      "emailStatus": "needs_configuration",
+      "supportOnlyAudience": true,
+      "privateFieldsAbsentFromRequesterView": true
+    },
+    {
+      "phase": "answered",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "reportCount": 1,
+      "replyCount": 1,
+      "status": "reviewing",
+      "providerAttempts": 0,
+      "emailStatus": "needs_configuration",
+      "supportOnlyAudience": true,
+      "privateFieldsAbsentFromRequesterView": true
+    },
+    {
+      "phase": "closed",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "reportCount": 1,
+      "replyCount": 1,
+      "status": "closed",
+      "providerAttempts": 0,
+      "emailStatus": "needs_configuration",
+      "supportOnlyAudience": true,
+      "privateFieldsAbsentFromRequesterView": true
+    },
+    {
+      "phase": "reopened",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "reportCount": 1,
+      "replyCount": 1,
+      "status": "closed",
+      "providerAttempts": 0,
+      "emailStatus": "needs_configuration",
+      "supportOnlyAudience": true,
+      "privateFieldsAbsentFromRequesterView": true
+    },
+    {
+      "phase": "foreign",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "reportCount": 1,
+      "replyCount": 1,
+      "status": "closed",
+      "providerAttempts": 0,
+      "emailStatus": "needs_configuration",
+      "supportOnlyAudience": true,
+      "privateFieldsAbsentFromRequesterView": true
+    },
+    {
+      "phase": "restored",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "reportCount": 1,
+      "replyCount": 1,
+      "status": "closed",
+      "providerAttempts": 0,
+      "emailStatus": "needs_configuration",
+      "supportOnlyAudience": true,
+      "privateFieldsAbsentFromRequesterView": true
+    }
+  ],
+  "input": {
+    "subjectType": "other",
+    "reason": "Support urgent QA",
+    "description": "Je souhaite une reponse pour cette urgence de test.",
+    "emergency": true
+  },
+  "reply": "Votre demande urgente est bien prise en charge.",
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "adminWritesByObserver": 0,
+  "realEmailSent": false,
+  "productionWrites": false,
+  "physicalUiVerifiedByObserver": false,
+  "fixtureEnvironmentDestroyed": false
+}

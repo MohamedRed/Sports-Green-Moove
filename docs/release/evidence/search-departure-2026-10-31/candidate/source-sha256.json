@@ -1,0 +1,18 @@
+{
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchScreen.kt": "edfe3cbfeed4f0d3610b5331fb67fe95ed26403f9da851c07d5b0ad6ca0806d9",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchDepartureField.kt": "d4551406074f1a4fc7c18297ba3cd185150498826646be0d049e5bf2d03e46a1",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchDepartureInput.kt": "79b6b67d83a8cda1ebc3dd72e1b83b0cbc9fbf7d7fec7fc5e188221270d9c67e",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchController.kt": "23e7cd484a208af2b0be45f77cc8b10f3016dee4046c61c263dafbd8a41b7c60",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchFormState.kt": "00cda96e2cf65297c1f42f83b94146e2393592ceb2086cf9a8dcda0c3dd590ce",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/SgmTestTags.kt": "912fde1ec927efc766a92e76a3df1a5a20d7729100cc04f568e2bc7777a1ea33",
+  "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt": "883e4cadd2c63df59f382ff46e9b04d0ec437d2e7c10a56ab0bc2aabb9bda572",
+  "android/app/src/main/java/be/sportgreenmoove/app/domain/TripDateLabels.kt": "4af5215c7b30a6bb00185c05dfa8ac48c7133c14c2c6ddf5add41ffc750c121f",
+  "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchDepartureInputTest.kt": "f82582fce078e1e793833c65ffebe60d72487bb82e267032df094ead032b3ff5",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchDepartureFlowTest.kt": "7ea6b4e016055292f2aa64bb63cfcfcea5fce2bec4dfc3f22b6cde9d662a2680",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchDepartureLayoutTest.kt": "224707355bd42672872610c83d14e4d88dd7e19b6c0f3290967610fc6a5e2156",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchDeparturePickerInput.kt": "4c8fee05e8fe8f9dcc228e5bce74a962405974f9d42dee465269b9ca1c61394d",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchCriteriaFlowTest.kt": "0bca9bdd5480d6a5606220b6000aa9d649bebceb30bccab3fffbef9c7c9e3e99",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalParentSearchBookingTest.kt": "553e41ce461348f735c51d671bc70a4e63c127dea7597834f424b135287d8520",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NativeDatePickerInput.kt": "2838de5c8519dc4c2bd1a2bcb92f5c6c0c68633814e5bbab739fe8ca96c93e0a",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NativeTimePickerInput.kt": "4adece5618e2005d7db6d4fbc372cbf2fe9e0c9f5b636ddea1e2d29877ae1015"
+}

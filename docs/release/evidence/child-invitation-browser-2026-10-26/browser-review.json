@@ -1,0 +1,24 @@
+{
+  "scope": "manual-browser-review-with-real-local-gateway-not-phone-proof",
+  "browserTabId": "1621934900",
+  "component": "admin/src/ChildInvitationPage.tsx",
+  "submitHandlerInjected": false,
+  "accountFormSubmittedInIframe": false,
+  "mobileFrameWidth": 390,
+  "desktopViewportWidth": 1440,
+  "observedStates": [
+    "Créer mon compte enfant",
+    "Les mots de passe ne correspondent pas.",
+    "Création…",
+    "Compte créé",
+    "Invitation indisponible"
+  ],
+  "parentApprovalReminderVisible": true,
+  "secretAbsentFromFinalAddress": true,
+  "phoneTested": false,
+  "nativeShareChooserOpened": false,
+  "appLinkOpened": false,
+  "newGalleryMediaAccepted": false,
+  "applicationDeployed": false,
+  "releaseAccepted": false
+}

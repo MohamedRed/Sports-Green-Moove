@@ -22,7 +22,7 @@ struct PublishPlaceStep: View {
             .frame(height: 110)
             .overlay(SGMGridTexture())
             .overlay(Text("GREEN SMARTMAP").font(.sgmDisplay(14)).tracking(.sgmWide(for: 14)).foregroundStyle(SGM.textOnGreen.opacity(0.42)))
-        SGMButton(title: "SUIVANT", action: onNext)
+        SGMButton(title: "SUIVANT", testID: UITestIdentifier.publishNextAction, action: onNext)
     }
 }
 
@@ -45,7 +45,7 @@ struct PublishDetailsStep: View {
         PublishSeatsRow(seats: $seats)
         PublishChoiceRow(label: "Fréquence", values: publishFrequencies, selected: $frequency)
         PublishTextRow(icon: .award, placeholder: "Prix estimé", text: $price)
-        SGMButton(title: "SUIVANT", action: onNext)
+        SGMButton(title: "SUIVANT", testID: UITestIdentifier.publishNextAction, action: onNext)
     }
 }
 
@@ -83,7 +83,7 @@ struct PublishConfirmStep: View {
         }
         .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
         .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
-        SGMButton(title: loading ? "PUBLICATION..." : "PUBLIER CE TRAJET", action: onPublish)
+        SGMButton(title: loading ? "PUBLICATION..." : "PUBLIER CE TRAJET", testID: UITestIdentifier.publishSubmitAction, action: onPublish)
     }
 
     private func summary(_ label: String, _ value: String) -> some View {

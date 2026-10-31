@@ -1,0 +1,15 @@
+{
+  "scope": "supplemental-read-only-sign-out-stability-not-original-run-completion",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "82b07105b7035296ce543e321e81b574",
+  "recordedAt": "2026-10-25T17:08:56.239Z",
+  "passed": false,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "originalObserverCompleted": false,
+  "sourceSha256": "af508902a31a7ea8aa8a8a234dae0f21bb76349a858dfa6b18da860d6e1cdc58",
+  "productionWrites": false,
+  "realMovementProven": false,
+  "childTrackingProven": false,
+  "phoneUiProven": false
+}

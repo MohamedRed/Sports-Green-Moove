@@ -1,0 +1,1975 @@
+{
+  "runId": "82ed2ffdb924fb62dcb1563a3de77184",
+  "testedAt": "2026-10-28T19:11:37.046Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "controlled-local-production-handlers-not-phone-ui",
+  "sourceSha256": "6e69ede12240604c4ff0efc93535baef6bae2f532f9ffe10dbd4b3da15b12bb0",
+  "firestoreConfigSha256": "3d1248d4bff0beb4ed9c9674f17147d44a916b1cf33d733187c0d24b2ebb5a5a",
+  "passed": true,
+  "rounds": 12,
+  "cases": [
+    {
+      "round": 0,
+      "tripId": "sgm-qa-controlled-contention-0",
+      "bookingId": "sgm-qa-controlled-contention-0-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-0",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-0",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-0-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-0-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-0",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-0",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-0",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-0",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-0-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-0-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-0",
+            "expectedRevision": "ebed67677e4c9402da397ad0e05d0d1c4d413fa55e73615edff8144dc54ef38c",
+            "requestId": "50ba4852-765a-4858-a726-533d0dad01f8",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:01.751Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-0-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 1,
+      "tripId": "sgm-qa-controlled-contention-1",
+      "bookingId": "sgm-qa-controlled-contention-1-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-1",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-1",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-1-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-1-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-1",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-1",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-1",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-1",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-1-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-1-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-1",
+            "expectedRevision": "691c4ac1dee233e8a75139d0ed98142e6f04a3c8338c40168c93dd4454422fa4",
+            "requestId": "c2d0e67f-45b3-4cda-8193-be38f7f4a052",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:06.396Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-1-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 2,
+      "tripId": "sgm-qa-controlled-contention-2",
+      "bookingId": "sgm-qa-controlled-contention-2-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-2",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-2",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-2-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-2-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-2",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-2",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-2",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-2",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-2-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-2-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-2",
+            "expectedRevision": "de546d94c0ced150f715ce7f78301cae990dddb3448ddfefeb8a47bfabc86ce6",
+            "requestId": "5c66d2e3-360c-4a26-874c-8fe53eae784c",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:09.851Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-2-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 3,
+      "tripId": "sgm-qa-controlled-contention-3",
+      "bookingId": "sgm-qa-controlled-contention-3-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-3",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-3",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-3-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-3-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-3",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-3",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-3",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-3",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-3-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-3-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-3",
+            "expectedRevision": "7750bb5dfb60fba9c5ee5e2918ec90b2afe7af9f9966d462104516a188502fdb",
+            "requestId": "25914f0f-9594-4678-b357-736cd1c1bb09",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:12.633Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-3-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 4,
+      "tripId": "sgm-qa-controlled-contention-4",
+      "bookingId": "sgm-qa-controlled-contention-4-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-4",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-4",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-4-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-4-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-4",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-4",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-4",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-4",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-4-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-4-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-4",
+            "expectedRevision": "3e59354d04fc63098a5850580d302ca5fcf203c5dc37d7961f9881a20fcd05d7",
+            "requestId": "40057313-1a5e-4280-96a9-9c59b03fe5a8",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:15.609Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-4-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 5,
+      "tripId": "sgm-qa-controlled-contention-5",
+      "bookingId": "sgm-qa-controlled-contention-5-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-5",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-5",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-5-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-5-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-5",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-5",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-5",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-5",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "failed",
+          "code": 10,
+          "message": "10 ABORTED: Transaction lock timeout."
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-5-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-5-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-5",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-5",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-5",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-5",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-5",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-5",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 10,
+          "details": "Transaction lock timeout."
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "rejected",
+          "code": "aborted",
+          "message": "Trip or reservations changed. Review cancellation again."
+        },
+        {
+          "status": "fulfilled",
+          "result": {
+            "bookingId": "sgm-qa-controlled-contention-5-booking",
+            "status": "approved"
+          }
+        }
+      ],
+      "tripStatus": "published",
+      "bookingStatus": "approved",
+      "seatsAvailable": 3,
+      "notificationCount": 1,
+      "cancellationReceiptExists": false
+    },
+    {
+      "round": 6,
+      "tripId": "sgm-qa-controlled-contention-6",
+      "bookingId": "sgm-qa-controlled-contention-6-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-6",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-6",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-6-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-6-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-6",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-6",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-6",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-6",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-6-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-6-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-6",
+            "expectedRevision": "dd10f2d27fb3bd214bdc00ac43bce3ca368bdc6477cdec23cf53f87d0f515bfc",
+            "requestId": "756cade7-5184-46b9-884d-3d32fd885eb8",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:21.184Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-6-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 7,
+      "tripId": "sgm-qa-controlled-contention-7",
+      "bookingId": "sgm-qa-controlled-contention-7-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-7",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-7",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-7-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-7-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-7",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-7",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-7",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-7",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-7-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-7-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-7",
+            "expectedRevision": "80254437aa9eab256220738f4e548fb0325e7e08be71d49f9f686fab5f0930c7",
+            "requestId": "c42d6336-6182-4f2c-8c99-01def6ae134b",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:23.976Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-7-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 8,
+      "tripId": "sgm-qa-controlled-contention-8",
+      "bookingId": "sgm-qa-controlled-contention-8-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-8",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-8",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-8-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-8-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-8",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-8",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-8",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-8",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-8-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-8-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-8",
+            "expectedRevision": "e81920ddf051f65428e165d3589a221ee65be3c93dcbf413176b53709ad60c21",
+            "requestId": "ab79005d-574d-46b1-a78d-fd71cb1b2cbe",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:27.123Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-8-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 9,
+      "tripId": "sgm-qa-controlled-contention-9",
+      "bookingId": "sgm-qa-controlled-contention-9-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-9",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-9",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-9-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-9-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-9",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-9",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-9",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-9",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-9-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-9-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-9",
+            "expectedRevision": "3dcc28597300067feab2564c0dc346e3a72258f33e2120cbb414ec0c3525ef19",
+            "requestId": "a6080de7-b2f0-4817-9cbd-bb22f2c6f950",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:30.052Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-9-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 10,
+      "tripId": "sgm-qa-controlled-contention-10",
+      "bookingId": "sgm-qa-controlled-contention-10-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-10",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-10",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-10-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-10-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-10",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-10",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-10",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-10",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-10-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-10-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-10",
+            "expectedRevision": "eadceef4efd05096b12d8602abf1533ffc42b565cf7774f2b2d6a161e3b8ed44",
+            "requestId": "5da8654c-d9e5-49b3-81cc-c969c51b15d3",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:32.888Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-10-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    },
+    {
+      "round": 11,
+      "tripId": "sgm-qa-controlled-contention-11",
+      "bookingId": "sgm-qa-controlled-contention-11-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-11",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-11",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-11-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-11-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-11",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-11",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-11",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-11",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "failed",
+          "code": 10,
+          "message": "10 ABORTED: Transaction lock timeout."
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-11",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-11",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-11",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-11",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-11-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-11-booking",
+          "phase": "completed"
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 10,
+          "details": "Transaction lock timeout."
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "result": {
+            "tripId": "sgm-qa-controlled-contention-11",
+            "expectedRevision": "ddb16d3267550aaec617b2c90aff135793135e27a40efe673113fdc0a2cb328c",
+            "requestId": "afca1321-43cc-47dc-b95d-b58529106b85",
+            "reason": "Annulation du contrôle isolé",
+            "actorUserId": "sgm-qa-contention-driver",
+            "cancelledAt": "2026-10-28T19:11:36.918Z",
+            "bookingIds": [
+              "sgm-qa-controlled-contention-11-booking"
+            ],
+            "refundPendingCount": 0,
+            "seatsAvailable": 4,
+            "status": "cancelled",
+            "bookingCount": 1
+          }
+        },
+        {
+          "status": "rejected",
+          "code": "failed-precondition",
+          "message": "Booking is not pending."
+        }
+      ],
+      "tripStatus": "cancelled",
+      "bookingStatus": "cancelled",
+      "seatsAvailable": 4,
+      "notificationCount": 1,
+      "cancellationReceiptExists": true
+    }
+  ],
+  "livePayment": false,
+  "productionDeployed": false
+}

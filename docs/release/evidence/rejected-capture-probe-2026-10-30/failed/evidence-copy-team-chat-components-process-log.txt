@@ -1,0 +1,43 @@
+--------- beginning of system
+I/ActivityManager(  573): dumpStackTraces pids=null
+I/ActivityManager(  573): Collecting stacks for pid 4302 into temporary file temp_anr_179498358937850318.txt
+I/ActivityManager(  573): Dumping to /data/anr/anr_2026-10-30-14-06-21-327
+I/ActivityManager(  573): dumpStackTraces nativepids=null
+I/ActivityManager(  573): dumpStackTraces extraPids=null
+I/ActivityManager(  573): Done dumping
+E/ActivityManager(  573): ANR in be.sportgreenmoove.app.local
+E/ActivityManager(  573): PID: 4302
+E/ActivityManager(  573): Reason: Process ProcessRecord{6812697 4302:be.sportgreenmoove.app.local/u0a208} failed to complete startup
+E/ActivityManager(  573): ErrorId: 7c9d38ca-60f3-481c-aadf-c56e8b8fb416
+E/ActivityManager(  573): Frozen: false
+E/ActivityManager(  573): Load: 0.0 / 0.0 / 0.0
+E/ActivityManager(  573): ----- Output from /proc/pressure/memory -----
+E/ActivityManager(  573): some avg10=8.93 avg60=5.89 avg300=2.92 total=12277411
+E/ActivityManager(  573): full avg10=0.70 avg60=0.63 avg300=0.34 total=2035698
+E/ActivityManager(  573): ----- End output from /proc/pressure/memory -----
+E/ActivityManager(  573): ----- Output from /proc/pressure/cpu -----
+E/ActivityManager(  573): some avg10=85.17 avg60=77.29 avg300=33.65 total=126800205
+E/ActivityManager(  573): full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+E/ActivityManager(  573): ----- End output from /proc/pressure/cpu -----
+E/ActivityManager(  573): ----- Output from /proc/pressure/io -----
+E/ActivityManager(  573): some avg10=17.83 avg60=18.40 avg300=8.70 total=34240427
+E/ActivityManager(  573): full avg10=1.26 avg60=1.93 avg300=1.22 total=5945331
+E/ActivityManager(  573): ----- End output from /proc/pressure/io -----
+E/ActivityManager(  573): 
+E/ActivityManager(  573): CPU usage from 140716ms to -19ms ago (2026-10-30 14:04:00.600 to 2026-10-30 14:06:21.335):
+E/ActivityManager(  573):   42% 573/system_server: 23% user + 18% kernel / faults: 227604 minor 1307 major
+E/ActivityManager(  573):   31% 1011/com.android.settings: 4% user + 27% kernel / faults: 59493 minor 595 major
+E/ActivityManager(  573):   21% 1078/com.google.android.gms.persistent: 14% user + 6.3% kernel / faults: 221836 minor 603 major
+E/ActivityManager(  573):   15% 414/surfaceflinger: 2.7% user + 13% kernel / faults: 7295 minor 163 major
+E/ActivityManager(  573):   13% 395/android.hardware.graphics.composer3-service.ranchu: 0.6% user + 12% kernel / faults: 568 minor 129 major
+E/ActivityManager(  573):   6.6% 7/kworker/0:0-kdmflush/254:44: 0% user + 6.6% kernel
+E/ActivityManager(  573):   6% 842/com.android.systemui: 3.6% user + 2.4% kernel / faults: 100648 minor 399 major
+E/ActivityManager(  573):   4.1% 425/kworker/0:2: 0% user + 4.1% kernel
+E/ActivityManager(  573):   4% 444/logcat: 0.2% user + 3.7% kernel / faults: 164 minor 7 major
+E/ActivityManager(  573):   3.8% 15/ksoftirqd/0: 0% user + 3.8% kernel
+E/ActivityManager(  573): 94% TOTAL: 26% user + 37% kernel + 2.6% iowait + 24% irq + 3.6% softirq
+E/ActivityManager(  573): CPU usage from 168872ms to 168872ms ago (1970-01-01 00:00:00.000 to 1970-01-01 00:00:00.000) with 0% awake:
+E/ActivityManager(  573): 0% TOTAL: 0% user + 0% kernel
+I/ActivityManager(  573): Killing 4302:be.sportgreenmoove.app.local/u0a208 (adj 0): bg anr
+W/ActivityManager(  573): Crash of app be.sportgreenmoove.app.local running instrumentation ComponentInfo{be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner}
+I/ActivityManager(  573): Force stopping be.sportgreenmoove.app.local appid=10208 user=0: finished inst

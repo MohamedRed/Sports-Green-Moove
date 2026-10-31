@@ -1,0 +1,13 @@
+--------- beginning of system
+10-25 12:37:41.699   544   576 E PackageManager: Optimistic bind failed.
+10-25 12:37:41.699   544   576 E PackageManager: java.util.concurrent.TimeoutException: [Optimistic Bind] Didn't bind to resolver in time!
+10-25 12:37:41.699   544   576 E PackageManager: 	at com.android.server.pm.InstantAppResolverConnection.waitForBindLocked(InstantAppResolverConnection.java:160)
+10-25 12:37:41.699   544   576 E PackageManager: 	at com.android.server.pm.InstantAppResolverConnection.bind(InstantAppResolverConnection.java:230)
+10-25 12:37:41.699   544   576 E PackageManager: 	at com.android.server.pm.InstantAppResolverConnection.lambda$optimisticBind$0(InstantAppResolverConnection.java:260)
+10-25 12:37:41.699   544   576 E PackageManager: 	at com.android.server.pm.InstantAppResolverConnection.$r8$lambda$66W2s2mMKe4pk_xXCScH9RCqav8(InstantAppResolverConnection.java:0)
+10-25 12:37:41.699   544   576 E PackageManager: 	at com.android.server.pm.InstantAppResolverConnection$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:0)
+10-25 12:37:41.699   544   576 E PackageManager: 	at android.os.Handler.handleCallback(Handler.java:959)
+10-25 12:37:41.699   544   576 E PackageManager: 	at android.os.Handler.dispatchMessage(Handler.java:100)
+10-25 12:37:41.699   544   576 E PackageManager: 	at android.os.Looper.loopOnce(Looper.java:232)
+10-25 12:37:41.699   544   576 E PackageManager: 	at android.os.Looper.loop(Looper.java:317)
+10-25 12:37:41.699   544   576 E PackageManager: 	at android.os.HandlerThread.run(HandlerThread.java:85)

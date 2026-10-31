@@ -1,0 +1,43 @@
+package be.sportgreenmoove.app.design
+
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
+import org.junit.Assert.assertTrue
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
+import kotlin.math.max
+import kotlin.math.min
+
+@RunWith(Parameterized::class)
+class SgmAccentContrastTest(private val label: String, private val foregroundArgb: Int,
+    private val backgroundArgb: Int, private val minimum: Double) {
+    @Test fun roleMeetsItsContrastThreshold() {
+        val background = Color(backgroundArgb)
+        val first = Color(foregroundArgb).compositeOver(background).luminance().toDouble()
+        val second = background.luminance().toDouble()
+        val ratio = (max(first, second) + 0.05) / (min(first, second) + 0.05)
+        println("{\"case\":\"$label\",\"minimum\":$minimum,\"contrastRatio\":$ratio}")
+        assertTrue("$label: $ratio is below $minimum:1", ratio >= minimum)
+    }
+
+    companion object {
+        @JvmStatic @Parameterized.Parameters(name = "{0}") fun cases(): Collection<Array<Any>> =
+            listOf("light" to SgmLightColors, "dark" to SgmDarkColors).flatMap { (mode, palette) ->
+                mapOf("app" to palette.bgApp, "surface" to palette.bgSurface, "card" to palette.bgCard,
+                    "elevated" to palette.bgElevated, "input" to palette.bgInput).map { (name, background) ->
+                    arrayOf<Any>("$mode-accent-text-$name", SgmColor.Green.toArgb(), background.toArgb(), 4.5)
+                }
+            } + mapOf("green" to SgmColor.Green, "orange" to SgmColor.Orange,
+                "green-light" to SgmColor.GreenLight, "orange-light" to SgmColor.OrangeLight).map { (name, background) ->
+                arrayOf<Any>("on-$name-text", SgmColor.TextOnGreen.toArgb(), background.toArgb(), 4.5)
+            } + listOf(
+                arrayOf<Any>("on-green-icon", SgmColor.TextOnGreen.toArgb(), SgmColor.Green.toArgb(), 3.0),
+                arrayOf<Any>("on-orange-icon", SgmColor.TextOnGreen.toArgb(), SgmColor.Orange.toArgb(), 3.0),
+                arrayOf<Any>("hero-start-text", SgmColor.TextOnGreen.toArgb(), SgmColor.HeroStart.toArgb(), 4.5),
+                arrayOf<Any>("hero-end-text", SgmColor.TextOnGreen.toArgb(), SgmColor.HeroEnd.toArgb(), 4.5),
+            )
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "physicalPhoneUiReviewed": true,
+  "sameNamedTripsDistinguished": true,
+  "explicitLegacyDetailsObserved": true,
+  "driverReconnectedWithoutPrompt": true,
+  "parentReconnected": true,
+  "parentRestartedWithSession": true,
+  "parentSummaryObserved": true,
+  "parentSummary": {
+    "displayedMean": "4,0 / 5",
+    "count": 32,
+    "fixtureRatings": 31,
+    "phoneRatings": 1
+  },
+  "finalSignOutObserved": true,
+  "remoteClipboardReplaced": true,
+  "hostClipboardRestored": true,
+  "providerUninstallObserved": true,
+  "providerIdleObserved": true,
+  "scope": "manual-review-of-original-session-window-and-provider-terminal-observations-not-native-exports"
+}

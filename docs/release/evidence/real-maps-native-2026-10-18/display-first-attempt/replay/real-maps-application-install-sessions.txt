@@ -1,0 +1,117 @@
+{
+  "scope": "typed-install-session-diagnostic-not-cause-or-flow-verification",
+  "sections": [
+    {
+      "kind": "active",
+      "sessions": []
+    },
+    {
+      "kind": "finalized",
+      "sessions": []
+    },
+    {
+      "kind": "historical",
+      "sessions": [
+        {
+          "id": 733969478,
+          "mOriginalInstallerPackageName": "com.android.vending",
+          "installerPackageName": "com.android.vending",
+          "installInitiatingPackageName": "com.android.vending",
+          "createdMillis": 1792316204201,
+          "updatedMillis": 1792316216235,
+          "committedMillis": 1792316205700,
+          "appPackageName": "com.android.vending",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        },
+        {
+          "id": 443753954,
+          "mOriginalInstallerPackageName": "com.android.vending",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.vending",
+          "createdMillis": 1792316226332,
+          "updatedMillis": 1792316261748,
+          "committedMillis": 1792316245948,
+          "appPackageName": "com.google.android.gms",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        },
+        {
+          "id": 1780732609,
+          "mOriginalInstallerPackageName": "com.android.vending",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.vending",
+          "createdMillis": 1792316361697,
+          "updatedMillis": 1792316368763,
+          "committedMillis": 1792316366919,
+          "appPackageName": "com.google.android.gms",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        },
+        {
+          "id": 1096451309,
+          "mOriginalInstallerPackageName": "null",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.shell",
+          "createdMillis": 1792316434550,
+          "updatedMillis": 1792316434737,
+          "committedMillis": 1792316434691,
+          "appPackageName": "null",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        },
+        {
+          "id": 1383170597,
+          "mOriginalInstallerPackageName": "null",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.shell",
+          "createdMillis": 1792316434753,
+          "updatedMillis": 1792316434874,
+          "committedMillis": 1792316434812,
+          "appPackageName": "null",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        }
+      ]
+    },
+    {
+      "kind": "legacy",
+      "sessions": []
+    }
+  ]
+}

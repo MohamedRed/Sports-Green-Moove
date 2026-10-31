@@ -1,0 +1,15 @@
+@font-face { font-family: "Invitation DM Sans"; src: url("/fonts/dm_sans_regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Invitation Bebas Neue"; src: url("/fonts/bebas_neue_regular.ttf") format("truetype"); font-display: swap; }
+.child-invitation-page {
+  --c-green: #3ebd6c;
+  --c-green-dark: #1a8a44;
+  --c-orange: #f97316;
+  --bg-app: #f1f8f3;
+  --bg-surface: #ffffff;
+  --text-primary: #0c1b0e;
+  --text-secondary: #3a5640;
+  --text-on-green: #ffffff;
+  --border: #d0e8d8;
+  --font-body: "Invitation DM Sans", sans-serif;
+  --font-display: "Invitation Bebas Neue", sans-serif;
+}

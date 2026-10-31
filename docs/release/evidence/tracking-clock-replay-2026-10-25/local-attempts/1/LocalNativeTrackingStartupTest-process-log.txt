@@ -1,0 +1,12 @@
+--------- beginning of system
+W/ActivityManager(  540): Unable to start service Intent { act=android.intent.action.QUICKSTEP_SERVICE pkg=com.google.android.apps.nexuslauncher } U=0: not found
+W/ActivityManager(  540): Slow operation: 137ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  540): Slow operation: 148ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  540): Slow operation: 149ms so far, now at startProcess: building log message
+I/ActivityManager(  540): Start proc 6133:be.sportgreenmoove.app.local.test/u0a209 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+W/ActivityManager(  540): Slow operation: 149ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  540): Slow operation: 149ms so far, now at startProcess: done updating pids map
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app.local appid=10208 user=0: finished inst
+E/ActivityManager(  540): Unable to freeze binder for 5903: -11
+I/ActivityManager(  540): Killing 5903:be.sportgreenmoove.app.local/u0a208 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  540): setHasOverlayUi called on unknown pid: 5903

@@ -1,0 +1,32 @@
+
+> sports-green-moove@0.1.0 test:rules
+> firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage "vitest run tests/security-rules.test.ts tests/chat-inbox-rules.test.ts tests/membership-rules.test.ts tests/trip-capacity-rules.test.ts tests/team-ownership-rules.test.ts tests/trip-cancellation-rules.test.ts tests/trip-details-rules.test.ts tests/trip-change-rules.test.ts tests/booking-request-rules.test.ts tests/child-account-link-rules.test.ts"
+
+i  emulators: Starting emulators: firestore, database, storage
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+i  database: Database Emulator logging to database-debug.log
+i  Running script: vitest run tests/security-rules.test.ts tests/chat-inbox-rules.test.ts tests/membership-rules.test.ts tests/trip-capacity-rules.test.ts tests/team-ownership-rules.test.ts tests/trip-cancellation-rules.test.ts tests/trip-details-rules.test.ts tests/trip-change-rules.test.ts tests/booking-request-rules.test.ts tests/child-account-link-rules.test.ts
+
+ RUN  v4.1.12 /Users/mrr/.codex/projects/sports-green-moove-recovery-20261025
+
+
+ Test Files  10 passed (10)
+      Tests  208 passed (208)
+   Start at  22:58:23
+   Duration  7.65s (transform 217ms, setup 0ms, import 2.53s, tests 33.23s, environment 9ms)
+
+✔  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  database: Stopping Database Emulator
+i  firestore: Stopping Firestore Emulator
+i  storage: Stopping Storage Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

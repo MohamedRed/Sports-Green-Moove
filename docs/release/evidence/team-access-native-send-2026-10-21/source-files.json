@@ -1,0 +1,11 @@
+{
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamAccessFlowTest.kt": "7b38a7deef1864a2060894c3ed7b8893967198dd7a17c2c96128b36253a1dbb0",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamChatUi.kt": "d0605ae0f9936487cc7c00cb935b6afaebc897bac3707cd696a9c807879d7f39",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamChatPeer.kt": "10d91b463bba9159c9c029c5716dd4fd564c2daea94b83c5b50b49b5f42a0b6a",
+  "scripts/qa/local-team-access-ui.mjs": "d43248a0b9fea4c97ba40fdca99ad7f12f69a272a957ccd9c022c58437aa4935",
+  "scripts/qa/team-chat-access-ui-fixture.mjs": "aa475db82d562298a68969b960ab3736f13e049760ab77a6826e5e1adfa70d6b",
+  "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+  "functions/src/services/teamConversation.ts": "f75d80c05d73ebd730eaf871b5ba071b96938c43d8dc8c2dfb0c4378159a4937",
+  "functions/src/services/teamConversationAuthority.ts": "e5e11764043d7838708e9682acdb9d416b2720c5bb52366c1875421020c4ecec",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversationState.kt": "52f23d21624842c9d81e173d272f259854e4502931920d694b6d7fad544b0c01"
+}

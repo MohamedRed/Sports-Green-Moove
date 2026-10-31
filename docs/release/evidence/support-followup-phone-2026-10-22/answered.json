@@ -1,0 +1,127 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e7019cb20312a44c95c79fb7954b60ad",
+  "recordedAt": "2026-10-22T14:55:20.551Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "foreignUid": "sgm-qa-driver",
+    "replyIds": [
+      "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af"
+    ],
+    "foreignReadDenied": false,
+    "reportId": "GlFQk50tS4zVLQraH13W"
+  },
+  "input": {
+    "subjectType": "other",
+    "reason": "Support suivi QA",
+    "description": "Je souhaite suivre cette demande de test.",
+    "emergency": false
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "GlFQk50tS4zVLQraH13W",
+        "subjectType": "other",
+        "reason": "Support suivi QA",
+        "description": "Je souhaite suivre cette demande de test.",
+        "emergency": false,
+        "reporterUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792680759,
+          "_nanoseconds": 263000000
+        },
+        "reviewNote": "INTERNAL-SUPPORT-FOLLOWUP-QA",
+        "closedAt": null,
+        "reviewedByUserId": "sgm-qa-admin",
+        "status": "reviewing",
+        "reviewEvents": [
+          {
+            "status": "reviewing",
+            "reviewerUserId": "sgm-qa-admin",
+            "note": "INTERNAL-SUPPORT-FOLLOWUP-QA",
+            "reviewedAt": {
+              "_seconds": 1792680880,
+              "_nanoseconds": 984000000
+            }
+          }
+        ],
+        "publicReplyCount": 1,
+        "reviewedAt": {
+          "_seconds": 1792680881,
+          "_nanoseconds": 774000000
+        },
+        "lastPublicReply": {
+          "id": "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+          "text": "Votre demande est prise en charge.",
+          "sequence": 1,
+          "sentAt": {
+            "_seconds": 1792680881,
+            "_nanoseconds": 774000000
+          }
+        },
+        "updatedAt": {
+          "_seconds": 1792680881,
+          "_nanoseconds": 774000000
+        }
+      }
+    ],
+    "replies": [
+      {
+        "id": "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+        "text": "Votre demande est prise en charge.",
+        "sequence": 1,
+        "sentAt": {
+          "_seconds": 1792680881,
+          "_nanoseconds": 774000000
+        },
+        "authorUid": "sgm-qa-admin",
+        "previousStatus": "reviewing",
+        "status": "reviewing"
+      }
+    ],
+    "notifications": [],
+    "requesterView": {
+      "report": {
+        "id": "GlFQk50tS4zVLQraH13W",
+        "reason": "Support suivi QA",
+        "description": "Je souhaite suivre cette demande de test.",
+        "emergency": false,
+        "status": "reviewing",
+        "createdAtMillis": 1792680759263,
+        "updatedAtMillis": 1792680881774,
+        "replyCount": 1,
+        "lastReply": {
+          "id": "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+          "text": "Votre demande est prise en charge.",
+          "sequence": 1,
+          "sentAtMillis": 1792680881774
+        }
+      },
+      "replies": {
+        "items": [
+          {
+            "id": "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+            "text": "Votre demande est prise en charge.",
+            "sequence": 1,
+            "sentAtMillis": 1792680881774
+          }
+        ],
+        "nextCursor": null
+      }
+    },
+    "foreignList": null
+  },
+  "result": {
+    "phase": "answered",
+    "reportId": "GlFQk50tS4zVLQraH13W",
+    "reportCount": 1,
+    "replyCount": 1,
+    "status": "reviewing",
+    "privateNotesAbsentFromRequesterView": true,
+    "foreignAccountChecked": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "adminResponsesViaService": 1
+}

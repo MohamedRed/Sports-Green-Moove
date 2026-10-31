@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: unchanged dependency regressions and complete local compatibility remain independently retained
+ok 1 - unchanged dependency regressions and complete local compatibility remain independently retained
+  ---
+  duration_ms: 48.546125
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish productionExploitProven
+ok 2 - dependency maintenance cannot establish productionExploitProven
+  ---
+  duration_ms: 1.180167
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish allSecurityFindingsResolved
+ok 3 - dependency maintenance cannot establish allSecurityFindingsResolved
+  ---
+  duration_ms: 0.258917
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish productionDeployed
+ok 4 - dependency maintenance cannot establish productionDeployed
+  ---
+  duration_ms: 0.297625
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish physicalUiVerified
+ok 5 - dependency maintenance cannot establish physicalUiVerified
+  ---
+  duration_ms: 0.150583
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish realPayments
+ok 6 - dependency maintenance cannot establish realPayments
+  ---
+  duration_ms: 1.392042
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish releaseComplete
+ok 7 - dependency maintenance cannot establish releaseComplete
+  ---
+  duration_ms: 0.244167
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish nativeNetworkPreparationCauseProven
+ok 8 - dependency maintenance cannot establish nativeNetworkPreparationCauseProven
+  ---
+  duration_ms: 0.259375
+  type: 'test'
+  ...
+# Subtest: dependency maintenance cannot establish nativeFailureRepairedByDependencyPatch
+ok 9 - dependency maintenance cannot establish nativeFailureRepairedByDependencyPatch
+  ---
+  duration_ms: 0.561417
+  type: 'test'
+  ...
+# Subtest: changed original audit data is rejected even with an unchanged summary
+ok 10 - changed original audit data is rejected even with an unchanged summary
+  ---
+  duration_ms: 22.766833
+  type: 'test'
+  ...
+# Subtest: public progress keeps security partial and retains the unsuccessful network preparation separately
+ok 11 - public progress keeps security partial and retains the unsuccessful network preparation separately
+  ---
+  duration_ms: 0.515875
+  type: 'test'
+  ...
+# Subtest: installed root multipart encoder escapes hostile field metadata
+ok 12 - installed root multipart encoder escapes hostile field metadata
+  ---
+  duration_ms: 147.7015
+  type: 'test'
+  ...
+# Subtest: installed root multipart encoder escapes hostile filename metadata
+ok 13 - installed root multipart encoder escapes hostile filename metadata
+  ---
+  duration_ms: 117.499917
+  type: 'test'
+  ...
+# Subtest: installed cli multipart encoder escapes hostile field metadata
+ok 14 - installed cli multipart encoder escapes hostile field metadata
+  ---
+  duration_ms: 110.065
+  type: 'test'
+  ...
+# Subtest: installed cli multipart encoder escapes hostile filename metadata
+ok 15 - installed cli multipart encoder escapes hostile filename metadata
+  ---
+  duration_ms: 89.139625
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size 0
+ok 16 - build-resolved secure ID generator terminates with size 0
+  ---
+  duration_ms: 68.66575
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size -1
+ok 17 - build-resolved secure ID generator terminates with size -1
+  ---
+  duration_ms: 58.749667
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size 8
+ok 18 - build-resolved secure ID generator terminates with size 8
+  ---
+  duration_ms: 81.038167
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size 0
+ok 19 - build-resolved nonsecure ID generator terminates with size 0
+  ---
+  duration_ms: 64.224375
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size -1
+ok 20 - build-resolved nonsecure ID generator terminates with size -1
+  ---
+  duration_ms: 68.945875
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size 8
+ok 21 - build-resolved nonsecure ID generator terminates with size 8
+  ---
+  duration_ms: 53.812125
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size 0
+ok 22 - build-resolved customRandom ID generator terminates with size 0
+  ---
+  duration_ms: 58.674334
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size -1
+ok 23 - build-resolved customRandom ID generator terminates with size -1
+  ---
+  duration_ms: 60.430291
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size 8
+ok 24 - build-resolved customRandom ID generator terminates with size 8
+  ---
+  duration_ms: 62.522834
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects large offsets before expanding lines
+ok 25 - build-resolved source map rejects large offsets before expanding lines
+  ---
+  duration_ms: 97.487125
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects fractional offsets before expanding lines
+ok 26 - build-resolved source map rejects fractional offsets before expanding lines
+  ---
+  duration_ms: 64.777417
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects nested offsets before expanding lines
+ok 27 - build-resolved source map rejects nested offsets before expanding lines
+  ---
+  duration_ms: 65.923709
+  type: 'test'
+  ...
+# Subtest: ordinary source-map sections are still accepted
+ok 28 - ordinary source-map sections are still accepted
+  ---
+  duration_ms: 68.287292
+  type: 'test'
+  ...
+# Subtest: untrusted CSS cannot read an arbitrary synthetic map when from is omitted
+ok 29 - untrusted CSS cannot read an arbitrary synthetic map when from is omitted
+  ---
+  duration_ms: 93.832208
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1538.286625

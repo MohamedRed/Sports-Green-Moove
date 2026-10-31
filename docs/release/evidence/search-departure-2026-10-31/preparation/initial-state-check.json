@@ -1,0 +1,9 @@
+{
+  "observedAt": "2026-10-31T09:57:29.329Z",
+  "scope": "post-failure-observer-preparation-not-product-defect",
+  "exitCode": 1,
+  "errorType": "AssertionError",
+  "observedMismatch": "serialized baseline timestamps compared with live Timestamp instances",
+  "rawStderrRetained": false,
+  "phoneFlowAccepted": false
+}

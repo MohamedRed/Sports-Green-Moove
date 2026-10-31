@@ -1,0 +1,41 @@
+{
+  "scope": "reviewed-neutral-text-components-not-full-app-accessibility",
+  "sourceCommit": "dcd7a5e68ce860488db046bc86ea5dc0cda05593",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41110977694",
+  "reviewedAt": "2026-10-30",
+  "cases": [
+    "search-light-phone",
+    "search-light-wide",
+    "search-dark-phone",
+    "search-dark-wide",
+    "trips-light-phone",
+    "trips-light-wide",
+    "trips-dark-phone",
+    "trips-dark-wide"
+  ],
+  "fontScale": 1.3,
+  "reviewedViewports": 8,
+  "neutralTextOverlapObserved": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmColors.kt": "b353c7224a1f1ed3b9085e61e5e038382c513db52cd8f41a1bfe5c51892c9276",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmTheme.kt": "016df412fe4a14226241cb4e309f58d16638ac3cb64731ef706e058d17084f76",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/DesignTokens.kt": "670e71556230dca329ad465322264807f0820a9fe563dfdc8156f143738ee922",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchScreen.kt": "2f73763f2723fa5219efaf4018b17eebb4cf6a21dce027edf4b832720a2b56f2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchPlaceFields.kt": "a529edfc8aa1ee8054fec8050e3f4b3e3a9da34209022ac4d2a15e85f2e28859",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchChildSelector.kt": "308e23d3047332526ccf12b519bf5d2eb30fc05cb69c64cdd5f37ebe26b39e4e",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchMatchCard.kt": "135148ed6a3f5ff82ddb5cbfa41a610ac3b924d0f442b4f4699575d52490bc1e",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchFormState.kt": "00cda96e2cf65297c1f42f83b94146e2393592ceb2086cf9a8dcda0c3dd590ce",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TripsScreen.kt": "80725a56b96db62ace5b950b480742d2e516f58bb605f43bafa7947c37080003",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt": "c66606b03870be6bf94e6d3577bb566a93eb02fb0e74e17cf0e23611d2cff7d6",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralTextLayoutTest.kt": "c8a5200af56b8a80a1e18b848ba3b0aa0ab8dfd3749cde4997e21be883aad388",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralTextCapture.kt": "a67c9af6e132253989d7656fb0265ed9e7e47db7fc9a1baa911c186c11669a3a",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/UiFlowFixtures.kt": "59441fb1dbcef644fc2bf05bf979ffdc4194354e54fd99efc5863172effd2661"
+  },
+  "physicalDevice": false,
+  "connectedFlow": false,
+  "screenReaderVerified": false,
+  "accentContrastAccepted": false,
+  "systemInsetsAccepted": false,
+  "releaseAccepted": false,
+  "mediaEdits": false
+}

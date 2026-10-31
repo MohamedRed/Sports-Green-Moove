@@ -1,0 +1,69 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b9568cc71ef6d04b63f2b0a48eb21d04",
+  "scope": "native-ui-with-disposable-os-network-control",
+  "completed": false,
+  "network": [],
+  "setupMethod": "requested-wifi-and-cellular-networks",
+  "transportSetupVersion": 2,
+  "handoverObservationVersion": 1,
+  "preparation": {
+    "phase": "preparing",
+    "wifiEnabled": true,
+    "mobileDataEnabled": true,
+    "activeNetwork": true,
+    "cellularRequestRegistered": true,
+    "cellularAvailableCallbacks": 1,
+    "cellularLostCallbacks": 0,
+    "cellularUnavailableCallbacks": 0,
+    "wifiRequestRegistered": true,
+    "wifiAvailableCallbacks": 1,
+    "wifiLostCallbacks": 0,
+    "wifiUnavailableCallbacks": 0,
+    "cellularDataState": 2,
+    "simState": 5,
+    "hasDefaultDataSubscription": true,
+    "airplaneModeSetting": "0",
+    "mobileDataAlwaysOnSetting": "1",
+    "internetNetworkCount": 2,
+    "backendReachable": true,
+    "activeInternetTransports": [
+      "cellular"
+    ],
+    "internetTransports": [
+      "wifi",
+      "cellular"
+    ]
+  },
+  "preparationFailure": {
+    "phase": "preparation-failed",
+    "wifiEnabled": true,
+    "mobileDataEnabled": true,
+    "activeNetwork": true,
+    "cellularRequestRegistered": true,
+    "cellularAvailableCallbacks": 1,
+    "cellularLostCallbacks": 0,
+    "cellularUnavailableCallbacks": 0,
+    "wifiRequestRegistered": true,
+    "wifiAvailableCallbacks": 1,
+    "wifiLostCallbacks": 0,
+    "wifiUnavailableCallbacks": 0,
+    "cellularDataState": 2,
+    "simState": 5,
+    "hasDefaultDataSubscription": true,
+    "airplaneModeSetting": "0",
+    "mobileDataAlwaysOnSetting": "1",
+    "internetNetworkCount": 2,
+    "backendReachable": true,
+    "activeInternetTransports": [
+      "cellular"
+    ],
+    "internetTransports": [
+      "wifi",
+      "cellular"
+    ]
+  },
+  "failedPhase": "network-preparation",
+  "cellularRequestReleased": true,
+  "wifiRequestReleased": true
+}
