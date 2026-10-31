@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The corrected 31 October unsent-draft replay accepts preservation after a directly
+observed Android App info force-stop confirmation and reopening the installed
+app on one physical Pixel. Publish only its two reviewed session crops first;
+retain the original negative trial, all earlier images/tours/dates and partial
+status. Provider kill completion and independent process IDs are not accepted.
+Seven stored-state checkpoints prove no chat writes, not UI or process death.
+Account switching, pending-send restart, peer phones, radio loss, iOS, production
+and release remain unverified. Preserve the public audience. The current-head
+chat-network failure is an outdated owner-draft assertion; its updated contract
+has local checks but no completed UI replay yet. A separate session-restoration
+timeout after a successful proxy response remains unexplained and unrepaired.
+See `docs/release/evidence/chat-draft-replay-phone-2026-10-31/README.md` and
+`docs/release/evidence/chat-draft-ci-contract-2026-10-31/README.md`.
+
 The later 31 October physical unsent-chat trial confirms loss after an independently
 observed process restart, while same-conversation reopening restores the text.
 Publish three reviewed original session crops after the four controlled-network

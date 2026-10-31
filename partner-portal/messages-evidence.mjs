@@ -5,6 +5,7 @@ import {validateLatestChatNetworkRecheck} from '../scripts/qa/chat-network-lates
 import {validateChatNetworkRepeat} from '../scripts/qa/chat-network-repeat-evidence.mjs';
 import {chatNetworkPhoneFolder, validateChatNetworkPhone} from '../scripts/qa/chat-network-phone-evidence.mjs';
 import {chatDraftPhoneFolder, validateChatDraftPhone} from '../scripts/qa/chat-draft-phone-evidence.mjs';
+import {chatDraftReplayPhoneFolder, validateChatDraftReplayPhone} from '../scripts/qa/chat-draft-replay-phone-evidence.mjs';
 
 export function validateMessagesEvidence(root, flow, captures) {
   if (flow.id !== 'messages') return;
@@ -14,6 +15,8 @@ export function validateMessagesEvidence(root, flow, captures) {
   validateChatNetworkPhone(root);
   assert.equal(flow.unsentDraftPhone.source, chatDraftPhoneFolder + 'review.json');
   validateChatDraftPhone(root);
+  assert.equal(flow.unsentDraftReplayPhone.source, chatDraftReplayPhoneFolder + 'review.json');
+  validateChatDraftReplayPhone(root);
   validateChatNetworkRecheck(root, flow.networkRecoveryRecheck);
   validateLatestChatNetworkRecheck(root, flow.networkRecoveryLatest);
   validateChatNetworkRepeat(root, flow.networkRecoveryRepeat);

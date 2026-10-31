@@ -197,11 +197,14 @@ test('message service claims use the refreshed 24-group evidence and retain hist
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
   assert.equal(flow.status, 'partial');
   assert.equal(content.flows.find(item => item.id === 'team-conversation').status, 'partial');
-  assert.match(flow.summary, /clavier/);
+  assert.match(flow.summary, /brouillon revient/);
   const draftReview = JSON.parse(source(flow.unsentDraftPhone.source));
   assert.equal(draftReview.keyboardAndComposerVisible, true);
   assert.equal(draftReview.draftRestoredAfterProcessRestart, false);
   assert.equal(draftReview.phoneCorrectionAccepted, false);
+  const replayReview = JSON.parse(source(flow.unsentDraftReplayPhone.source));
+  assert.equal(replayReview.sameVisibleDraftRestored, true);
+  assert.equal(replayReview.stopMechanism, 'android-app-info-force-stop-confirmation');
   const baseline = JSON.parse(source('docs/release/evidence/local-chat-2026-10-15/baseline-failed.json'));
   assert.equal(baseline.steps.find((step) => step.id === 'chat-delivery-safety').status, 'failed');
 });

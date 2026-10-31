@@ -8,6 +8,10 @@ export function assertChatNetworkReceipt(ui) {
   for (const key of ['offlineSendUnconfirmed', 'offlineDraftRetained', 'recoveredSendConfirmed', 'accountDraftCleared', 'replyReceived']) {
     assert.equal(ui[key], true, `The app replay must prove ${key}`);
   }
+  if (ui.privateDraftPersistenceVersion !== undefined) {
+    assert.equal(ui.privateDraftPersistenceVersion, 1);
+    assert.equal(ui.parentDraftRestored, true, 'The private draft must return only to its owner');
+  }
   const phases = ui.network.map((state) => state.phase);
   const hasHandover = phases.includes('cellular-ready');
   assert.deepEqual(phases, hasHandover ? ['before', 'cellular-ready', 'offline', 'restored'] : ['before', 'offline', 'restored']);

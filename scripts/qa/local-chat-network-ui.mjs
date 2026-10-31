@@ -23,6 +23,7 @@ export async function seedChatNetworkUiFixture() {
 export async function verifyChatNetworkUi(fixture, evidenceDir) {
   const ui = JSON.parse(readFileSync(resolve(evidenceDir, 'local-chat-network-ui.json'), 'utf8'));
   assertChatNetworkReceipt(ui);
+  assert.equal(ui.privateDraftPersistenceVersion, 1, 'A fresh replay must verify durable account-scoped drafts');
   assertTransportRequestSetup(ui);
   assertNetworkStartReceipt(ui);
   assert.equal(ui.runId, process.env.SGM_LOCAL_RUN_ID);
@@ -56,7 +57,7 @@ export async function verifyChatNetworkUi(fixture, evidenceDir) {
   }
   return { method: ui.scope, sourceId: fixture.bookingId, messageCount: messages.size, notificationCount: 2,
     duplicateMessages: 0, bookingStatuses: fixture.bookingStatuses,
-    offlineDraftRetained: true, accountDraftCleared: true, networkRestored: true,
+    offlineDraftRetained: true, accountDraftCleared: true, parentDraftRestored: true, networkRestored: true,
     limits: ['Network disabled before the first attempt, not after a server commit.',
       'No process restart, token expiry, physical device or push delivery tested.'] };
 }

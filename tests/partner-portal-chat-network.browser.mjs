@@ -13,7 +13,8 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
       const dialog = page.getByRole('dialog');
       await dialog.getByText(flow.verified, {exact: true}).waitFor();
       await dialog.getByText(flow.remaining, {exact: true}).waitFor();
-      for (const image of flow.images.slice(0, 7)) {
+      const phoneImages = flow.images.filter(image => image.file.startsWith('chat-phone-') || image.file.startsWith('chat-draft-'));
+      for (const image of phoneImages) {
         const picture = dialog.getByRole('img', {name: image.alt, exact: true}); await picture.waitFor();
         await page.waitForFunction(() => {
           const image = document.querySelector('.media-stage img'); return image?.complete && image.naturalWidth > 0;
@@ -29,7 +30,7 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
         await page.screenshot({path: `${output}/${image.file}-${width}.png`, fullPage: false});
         await dialog.getByRole('button', {name: 'Preuve suivante', exact: true}).click();
       }
-      await dialog.getByRole('img', {name: flow.images[7].alt, exact: true}).waitFor();
+      await dialog.getByRole('img', {name: flow.images[phoneImages.length].alt, exact: true}).waitFor();
       await dialog.getByRole('link', {name: 'Visite guidée', exact: true}).click();
       for (const step of flow.tour) {
         await dialog.getByRole('heading', {name: step.title, exact: true}).waitFor();
@@ -38,6 +39,6 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
       }
     }
     assert.deepEqual(errors, []);
-    console.log('Four controlled chat captures and three negative draft captures fit all four widths; older tour and gallery preserved.');
+    console.log('Corrected and original phone draft captures fit all four widths; older network proof, tour and gallery preserved.');
   } finally {await page.close();}
 }

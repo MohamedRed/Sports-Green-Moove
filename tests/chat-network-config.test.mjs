@@ -5,6 +5,7 @@ import ts from 'typescript';
 import { assertChatNetworkReceipt, assertCellularRequestSetup, assertObservedCellularHandover } from '../scripts/qa/chat-network-evidence.mjs';
 import { networkRestoreCommands } from '../scripts/qa/local-network-replay.mjs';
 import { finishDisposableCleanup, waitForDisposableDevice } from '../scripts/qa/disposable-device-cleanup.mjs';
+import {registerDraftContractTests} from './chat-network-draft-cases.mjs';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const native = (name) => read(`android/app/src/androidTest/java/be/sportgreenmoove/app/ui/${name}.kt`);
@@ -18,6 +19,7 @@ function receipt() {
       { phase: 'offline', wifiEnabled: false, mobileDataEnabled: false, activeNetwork: false,
         backendReachable: false, internetNetworkCount: 0 }, { phase: 'restored', ...connected }] };
 }
+registerDraftContractTests({receipt, native, read});
 
 test('network evidence accepts only a complete offline and restored app replay', () => {
   assertChatNetworkReceipt(receipt());

@@ -2,9 +2,9 @@ import { nativeVerification } from './native-verification.mjs';
 import {preparationBlockers} from './preparation-failures.mjs';
 
 export const blockers = [
-  {id: 'chat-unsent-draft', title: 'Conserver le brouillon après fermeture complète',
-    text: 'Sur téléphone, le texte revient à la réouverture de la conversation, mais disparaît après arrêt complet de l’app.',
-    next: 'Rejouer sur téléphone la correction qui passe les tests locaux.', source: 'docs/release/evidence/chat-draft-phone-2026-10-31/README.md'},
+  {id: 'chat-pending-restart', title: 'Reprendre un envoi interrompu après fermeture',
+    text: 'Le brouillon revient après fermeture complète sur téléphone. Aucun message n’est envoyé tout seul.',
+    next: 'Vérifier un envoi interrompu puis relancé, le changement de compte et iPhone.', source: 'docs/release/evidence/chat-draft-replay-phone-2026-10-31/README.md'},
   ...preparationBlockers,
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',
@@ -56,8 +56,9 @@ export const blockers = [
     source: 'docs/release/evidence/cancellation-stale-phone-2026-10-30/README.md',
     historical: {source: 'docs/release/evidence/local-trip-contention-2026-10-17/README.md'} },
   { id: 'session-restoration', title: 'Reprendre la session après une erreur',
-    text: 'Réessayer retrouve le même compte en local. Se déconnecter garde l’app déconnectée après relancement.',
-    next: 'Rejouer sur téléphone avec une vraie coupure.', source: 'docs/release/evidence/session-disconnect-native-2026-10-20/README.md' },
+    text: 'Un nouvel essai reste bloqué en local après « Réessayer ». Les précédents résultats restent dans l’historique.',
+    next: 'Comprendre l’échec, puis rejouer sur téléphone avec une vraie coupure.', source: 'docs/release/evidence/session-disconnect-native-2026-10-20/README.md',
+    latestSource: 'docs/release/evidence/chat-draft-ci-contract-2026-10-31/README.md' },
   { id: 'chat-send-stability', title: 'Vérifier la reprise sur plusieurs essais',
     text: 'Le renvoi passe sur téléphone après une coupure contrôlée. La séquence principale passe en simulation, mais un essai séparé ne démarre pas.',
     next: 'Fiabiliser les contrôles et rejouer les coupures réelles entre téléphones.', source: nativeVerification.source,

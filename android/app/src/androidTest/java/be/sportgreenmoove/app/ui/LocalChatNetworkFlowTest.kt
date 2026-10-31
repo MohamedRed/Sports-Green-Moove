@@ -52,6 +52,7 @@ class LocalChatNetworkFlowTest {
         result.put("transportSetupVersion", 2)
         result.put("handoverObservationVersion", 1)
         result.put("initialNetworkObservationVersion", 1)
+        result.put("privateDraftPersistenceVersion", 1)
         var phase = "login"
         var networkControl: LocalEmulatorNetwork? = null
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
@@ -159,7 +160,8 @@ class LocalChatNetworkFlowTest {
                 openConversation(reply)
                 waitForText(body)
                 waitForText(reply)
-                assertDraft("")
+                assertDraft(privateDraft)
+                result.put("parentDraftRestored", true)
                 waitForReadAcknowledgement(context)
                 result.put("replyReceived", true).put("completed", true)
                 captureLocalUi(compose, "local-chat-network-received.png")
