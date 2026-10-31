@@ -84,6 +84,8 @@ on:
       - "tests/search-departure*.test.mjs"
       - "tests/tls-agent-evidence.test.mjs"
       - "tests/helpers/tls-agent-probe.mjs"
+      - "tests/compression-close-security*.test.mjs"
+      - "tests/helpers/compression-close-probe.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
@@ -229,6 +231,8 @@ on:
       - "tests/search-departure*.test.mjs"
       - "tests/tls-agent-evidence.test.mjs"
       - "tests/helpers/tls-agent-probe.mjs"
+      - "tests/compression-close-security*.test.mjs"
+      - "tests/helpers/compression-close-probe.mjs"
       - "tests/independent-native-evidence.test.mjs"
       - "tests/fixtures/continuous-disposable-device.mjs"
       - "scripts/run-vehicle-map-android-ui.sh"
@@ -382,6 +386,8 @@ jobs:
         run: node --test tests/accent-controls.test.mjs
       - name: Test custom TLS certificate verification and retained scope
         run: node --test tests/tls-agent-security.test.mjs tests/tls-agent-evidence.test.mjs
+      - name: Test premature response compression cleanup
+        run: node --test tests/compression-close-security.test.mjs tests/compression-close-security-evidence.test.mjs
       - name: Validate native search departure controls and blocked phone evidence
         run: node --test tests/search-departure-contract.test.mjs tests/search-departure-evidence.test.mjs
       - name: Validate physical calendar retry and latest native copy evidence

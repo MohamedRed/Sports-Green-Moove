@@ -32,9 +32,12 @@ import {validateReleaseRecheck} from '../scripts/qa/release-recheck-evidence.mjs
 import {childBookingReceiptFolder, validateChildBookingReceiptEvidence, validateLatestPreparationDiagnostics} from '../scripts/qa/child-booking-receipt-evidence.mjs';
 import {networkRepeatIdentity} from '../scripts/qa/chat-network-repeat-evidence.mjs';
 import {disconnectRecheckFolder, validateDisconnectRecheck} from '../scripts/qa/session-disconnect-recheck-evidence.mjs';
+import {compressionSecurityFolder, validateCompressionSecurity} from '../scripts/qa/compression-security-evidence.mjs';
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateCompressionSecurity(root);
+  assert(content.updates.some(row => row.source === compressionSecurityFolder + 'README.md'));
   validateDisconnectRecheck(root);
   assert(content.updates.some(row => row.source === disconnectRecheckFolder + 'README.md'));
   validateSearchDepartureEvidence(root);
@@ -54,7 +57,7 @@ export function validateCurrentChecks(root, content) {
   validateTestRunnerSecurity(root);
   validateTlsAgentSecurity(root);
   assert(content.updates.some(row => row.source === tlsAgentSecurityFolder + 'README.md'));
-  assert.equal(content.blockers.find(row => row.id === 'dependency-security').latestSource, tlsAgentSecurityFolder + 'README.md');
+  assert.equal(content.blockers.find(row => row.id === 'dependency-security').latestSource, compressionSecurityFolder + 'README.md');
   validateNativeFollowup(root, content.flows.find(row => row.id === 'team-conversation').nativeRecheck);
   validateNativeFollowupMain(root);
   validateRejectedCaptureProbe(root, content.rejectedCaptureRecheck);

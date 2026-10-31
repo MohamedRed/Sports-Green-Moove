@@ -14,7 +14,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 test('retained TLS failure, corrected requests and all compatibility results preserve their scope', () => {
   assert.deepEqual(validateTlsAgentSecurity(root), {findingsRemaining: 29, localTlsCasesPassed: 3, releaseAccepted: false});
   assert(content.updates.some(row => row.source === tlsAgentSecurityFolder + 'README.md'));
-  assert.equal(content.blockers.find(row => row.id === 'dependency-security').latestSource, tlsAgentSecurityFolder + 'README.md');
+  assert.notEqual(content.blockers.find(row => row.id === 'dependency-security').latestSource, tlsAgentSecurityFolder + 'README.md');
 });
 for (const key of ['productionRuntimeChanged', 'productionDeployed', 'physicalDeviceAccepted', 'providerDeliveryAccepted',
   'releaseAccepted', 'cleanAudit', 'baseNativeFailureRepaired']) test(`rehashing cannot promote local TLS proof to ${key}`, () => {

@@ -10,7 +10,7 @@ test('runner security evidence retains reproduction, compatibility and the remai
   assert(content.updates.some(row => row.source === testRunnerSecurityFolder + 'README.md'));
   const blocker = content.blockers.find(row => row.id === 'dependency-security');
   assert.equal(blocker.source, testRunnerSecurityFolder + 'README.md');
-  assert.match(blocker.text, /D’autres alertes restent/);
+  assert.match(blocker.text, /D’autres alertes élevées restent/);
   const workflow = readFileSync(new URL('../.github/workflows/web-integration-smoke.yml', import.meta.url), 'utf8');
   for (const file of ['tests/test-runner-security-contract.test.mjs', 'tests/test-runner-security-evidence.test.mjs'])
     assert(workflow.includes(`node --test ${file}`) || workflow.includes(` ${file}`));

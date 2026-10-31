@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The 31 October compression follow-up reproduces three leaked local response
+streams, applies the compatible development-only package patch and passes the
+same seven real-response regressions. Builds, Functions, rules and payment checks
+pass. Preserve the first notification timeout alongside the unchanged later
+19-case pass; it is not repaired or hidden. The audit still has ten high and
+28 moderate findings. Add one concise security note with no technology names,
+new media, changed flow statuses or audience. The main native failure, provider,
+physical and release gaps remain separate. See
+`docs/release/evidence/compression-security-2026-10-31/README.md`.
+
 The 31 October disconnect recheck retains one failed initial-auth attempt and a
 later successful two-process app replay, with byte-identical bound source files
 at their two commits. It accepts only that local replay, not an instability
