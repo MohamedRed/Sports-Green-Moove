@@ -1,6 +1,10 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -20,7 +24,9 @@ class SearchDepartureFlowTest {
     private val value = mutableStateOf("2026-11-01T16:30:00Z")
     private val edits = mutableListOf<String>()
     private fun host() = compose.setSgmUiTestContent {
-        SearchDepartureField(value.value) { value.value = it; edits += it }
+        Column(Modifier.verticalScroll(rememberScrollState())) {
+            SearchDepartureField(value.value) { value.value = it; edits += it }
+        }
     }
     @Test fun nativeDateAndTimePickersProduceTheExpectedWireInstant() {
         host()
