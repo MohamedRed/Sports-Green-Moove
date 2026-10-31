@@ -222,8 +222,9 @@ test('search claims distinguish passing unit and simulated-screen evidence from 
   assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
   assert.match(run.search.limitation, /host identity\/navigation changes, not real provider matching/);
   assert(flow.ui.groups.includes('search-session-ui') && flow.ui.groups.includes('search-input-ui'));
-  assert.equal(flow.images.filter(image => !image.file.startsWith('search-booking-') && !image.file.startsWith('search-phone-')).length, 8);
-  assert.deepEqual(flow.images.slice(0, 3).map(image => image.file), ['search-phone-choices', 'search-phone-match', 'search-phone-requested']);
+  const historicalImages = flow.images.filter(image => !image.file.startsWith('search-departure-'));
+  assert.equal(historicalImages.filter(image => !image.file.startsWith('search-booking-') && !image.file.startsWith('search-phone-')).length, 8);
+  assert.deepEqual(historicalImages.slice(0, 3).map(image => image.file), ['search-phone-choices', 'search-phone-match', 'search-phone-requested']);
   assert(flow.images.some(image => image.file === 'search-booking-choices' && image.alt.includes('20 octobre')));
   assert.equal(flow.ui.checkedAt, '2026-10-16');
   assert(flow.images.some(image => /essai local simulé du 16 octobre/.test(image.alt)));

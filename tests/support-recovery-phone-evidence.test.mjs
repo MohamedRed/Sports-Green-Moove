@@ -11,8 +11,7 @@ test('later phone retry retains all eight original checkpoints, independent proc
   assert.equal(flow.images[0].file, 'support-recheck-history'); assert.equal(flow.images.length, 19);
   assert.equal(flow.submissionRecoveryRecheck.source, supportRecheckFolder + 'summary.json');
   assert.deepEqual(validateSupportRecheckCi(process.cwd()), {ordinaryPassed: 205, focusedJobs: 11, observedReplayTranscripts: 17, fullGatePassed: false});
-  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestSource,
-    'docs/release/evidence/native-transfer-91c4a09-2026-10-30/README.md');
+  assert(content.updates.some(row => row.source === 'docs/release/evidence/native-transfer-91c4a09-2026-10-30/README.md'));
   assert(content.updates.some(row => row.source === supportRecheckFolder + 'README.md'));
 });
 for (const key of ['physicalRadioLossVerified', 'trackingNetworkLossVerified', 'urgentEscalationVerified', 'realEmailSent',

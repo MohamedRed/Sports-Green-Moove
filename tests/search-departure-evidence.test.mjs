@@ -17,9 +17,8 @@ test('real native cases and failed physical authentication retain separate sourc
   assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-24'); assert.equal(flow.latestEvidence, 'phone');
   assert.equal(flow.searchDepartureReview.source, searchDepartureFolder + 'review.json');
   assert(content.updates.some(row => row.source === searchDepartureFolder + 'README.md'));
-  assert.equal(content.updates.find(row => row.flow === 'messages').source, searchDepartureFolder + 'README.md');
-  assert.equal(content.blockers.find(row => row.id === 'search-departure-phone').source, searchDepartureFolder + 'README.md');
-  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, searchDepartureFolder + 'README.md');
+  assert(content.updates.some(row => row.flow === 'messages' && row.source === searchDepartureFolder + 'README.md'));
+  assert.equal(content.blockers.some(row => row.id === 'search-departure-phone'), false);
 });
 function shadowEvidence() {
   const temp = mkdtempSync(resolve(tmpdir(), 'sgm-search-date-evidence-'));

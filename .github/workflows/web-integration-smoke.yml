@@ -1174,6 +1174,8 @@ jobs:
         run: node --test tests/tls-agent-security.test.mjs tests/tls-agent-evidence.test.mjs
       - name: Validate native search departure controls and blocked phone evidence
         run: node --test tests/search-departure-contract.test.mjs tests/search-departure-evidence.test.mjs
+      - name: Validate physical calendar retry and latest native copy evidence
+        run: node --test tests/search-departure-phone.test.mjs tests/search-departure-ci.test.mjs
 
       - name: Validate approved disposable-phone installation policy
         run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs

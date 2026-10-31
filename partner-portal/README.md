@@ -2,6 +2,25 @@
 
 ## Current Publication Policy
 
+The 5d69928 follow-up passes the strict chat instrumentation and then fails its
+primary network-recovery file copy. Retain that named failure, the later successful
+cleanup copy, complete device restoration and all previous preparation failures
+separately. Publish one concise incomplete-result note; update the latest-copy
+and chat blockers without accepting full replay, stored chat records, physical
+network recovery or release. No new media comes from this failed CI attempt.
+
+The later 31 October physical calendar retry passes all twelve stored-state
+checkpoints and actual date/time selection, cancellation, return-to-search and
+dark Search observations. Publish five reviewed original session crops first,
+preserve the October 24 whole-search tour/date/status, and remove only the now
+completed calendar-phone blocker. Keep the earlier failed authentication and
+unrequested helper exit unchanged and unexplained. No search request, maps,
+booking, payment, production, iOS, full-process restart or release is accepted.
+The phone is signed out and its session ends. The uninstall command reports no
+user apps found; do not claim package removal. Observer/backend/helper stop and
+their private files/directories are independently absent. Public access stays
+unchanged. See `docs/release/evidence/search-departure-phone-2026-10-31/README.md`.
+
 The 31 October search-date follow-up retains ten passing time-conversion cases,
 nine new simulated native picker/layout cases and both migrated option cases.
 Publish short calendar and incomplete-sequence results, preserving the October 24 physical-search

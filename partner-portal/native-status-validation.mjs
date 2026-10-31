@@ -5,11 +5,12 @@ import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-check
 import {parseAndroidJUnitTranscript} from '../scripts/qa/android-junit-transcript.mjs';
 import {validateSupportRecheckCi} from '../scripts/qa/support-recovery-recheck-evidence.mjs';
 import {validateNativeTimeout, validateNativeBudgetFollowup} from '../scripts/qa/native-timeout-evidence.mjs';
-import {nativeBudgetExecutionFolder, validateNativeBudgetExecution} from '../scripts/qa/native-budget-execution-evidence.mjs';
+import {validateNativeBudgetExecution} from '../scripts/qa/native-budget-execution-evidence.mjs';
+import {nativeCopyFollowupFolder} from '../scripts/qa/native-copy-followup-evidence.mjs';
 
 export function validateNativeStatus(root, blockers) {
   const blocker = blockers.find(row => row.id === 'native-evidence-copy');
-  assert.equal(blocker.latestSource, nativeBudgetExecutionFolder + 'README.md'); validateNativeTimeout(root); validateSupportRecheckCi(root);
+  assert.equal(blocker.latestSource, nativeCopyFollowupFolder + 'README.md'); validateNativeTimeout(root); validateSupportRecheckCi(root);
   validateNativeBudgetFollowup(root);
   validateNativeBudgetExecution(root);
   const source = blocker?.source;

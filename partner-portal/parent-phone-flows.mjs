@@ -1,5 +1,6 @@
 import {searchBookingPhone, searchPhoneImages} from './search-booking-phone.mjs';
 import {searchDepartureReview} from './search-departure.mjs';
+import {searchDeparturePhone, searchDeparturePhoneImages} from './search-departure-phone.mjs';
 
 const proof = 'docs/release/evidence/browserstack-parent-search-2026-10-18/';
 const shot = (file, alt) => ({ file, alt });
@@ -22,14 +23,15 @@ export function createSearchFlow() {
   return { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-24', latestEvidence: 'phone',
     summary: 'De vraies adresses à une demande de deux places sur téléphone.',
     verified: 'Wavre et Bruxelles-Central sont retrouvés. Le parent choisit Lina, deux places et son consentement, puis envoie une seule demande. Comptes et trajet de test.',
-    remaining: 'Rejouer le calendrier sur téléphone. Vérifier plusieurs trajets, le classement, les coupures et iPhone. Pas encore en ligne.',
+    remaining: 'Vérifier plusieurs trajets, le classement, les coupures et iPhone. Pas encore en ligne.',
+    searchDeparturePhone,
     searchDepartureReview,
     searchBookingPhone,
     phone: { ...phone, checkedAt: '2026-10-18' },
     searchBookingUi: { source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json', checkedAt: '2026-10-20' },
     ui: { source: 'docs/release/evidence/local-search-options-ui-2026-10-16/results.json',
       groups: ['search-input-ui', 'search-session-ui', 'search-criteria-ui', 'search-retention-ui'], checkedAt: '2026-10-16' },
-    images: [...searchPhoneImages, shot('search-booking-choices', 'Adresses choisies, Lina, deux places et consentement, essai local du 20 octobre'),
+    images: [...searchDeparturePhoneImages, ...searchPhoneImages, shot('search-booking-choices', 'Adresses choisies, Lina, deux places et consentement, essai local du 20 octobre'),
       shot('search-booking-requested', 'Un trajet trouvé et une seule demande envoyée, essai local du 20 octobre'),
       shot('phone-child-two-seats-consent', 'Enfant et deux places sélectionnés, sur téléphone le 18 octobre'),
       shot('phone-child-consent-reset', 'Consentement remis à zéro au changement de choix, sur téléphone le 18 octobre'),
