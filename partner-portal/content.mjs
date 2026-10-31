@@ -63,8 +63,8 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
-  updatedAt: '2026-10-30',
-  lastVerifiedAt: '2026-10-30',
+  updatedAt: '2026-10-31',
+  lastVerifiedAt: '2026-10-31',
   nativeClockCiRecheck: {source: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/summary.json',
     checksums: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/artifact-sha256.json', checkedAt: '2026-10-25'},
   ...nativeRechecks,

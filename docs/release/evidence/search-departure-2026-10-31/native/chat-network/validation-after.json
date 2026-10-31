@@ -1,0 +1,207 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "31c53c811db40113e924455179fd1834",
+  "phase": "after",
+  "recordedAt": "2026-10-31T11:01:59.272Z",
+  "scope": "read-only-disposable-network-validation-history",
+  "schemaVersion": 1,
+  "source": "bounded-android-validation-history-not-current-capabilities-or-selection-reason",
+  "atomicObservation": false,
+  "groupCount": 2,
+  "groups": [
+    {
+      "ordinal": 1,
+      "transportMatched": true,
+      "transports": [
+        "cellular"
+      ],
+      "probeLineCount": 16,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        }
+      ]
+    },
+    {
+      "ordinal": 2,
+      "transportMatched": true,
+      "transports": [
+        "wifi"
+      ],
+      "probeLineCount": 20,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "http",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "https",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "fallback",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "https",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "http",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "fallback",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "https",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "http",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "fallback",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "http",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "https",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "fallback",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        }
+      ]
+    }
+  ],
+  "identifiersRetained": false,
+  "addressesRetained": false,
+  "probeTargetsRetained": false,
+  "rawLogsRetained": false,
+  "newProbesIssued": false,
+  "flowCompleted": false
+}

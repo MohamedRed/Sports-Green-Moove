@@ -2,6 +2,23 @@
 
 ## Current Publication Policy
 
+The 31 October search-date follow-up retains ten passing time-conversion cases,
+nine new simulated native picker/layout cases and both migrated option cases.
+Publish short calendar and incomplete-sequence results, preserving the October 24 physical-search
+gallery, date and status. The October 30 phone attempt is interrupted before
+login; the fresh October 31 phone attempt displays a credentials-rejected message
+before Home/calendar. Its original timeout capture label is not a diagnosis. Neither
+accepts physical date choice, search/child-booking recovery or release readiness.
+Post-failure fixture records/claims remain unchanged, the app is uninstalled with
+provider acknowledgment, and the session, services and private inputs are closed.
+Keep the public audience unchanged; publish no new diagnostic capture. Retain
+the preparation failures separately from actual product and native-case results.
+The hosted ordinary matrix passes 214 cases with 54 explicit skips and all
+eleven independent safety jobs pass. The main replay later fails during chat
+network preparation before disconnect/offline sending. Keep that sequence
+blocked, preserve the older passing repeat as historical proof, and do not claim
+a primary-copy failure, chat product regression or established root cause.
+
 The later 30 October local CLI transport check reproduces two failures where a
 custom TLS verifier is lost, then passes three real loopback TLS cases with the
 compatible maintenance update. All other lock entries remain unchanged. Publish

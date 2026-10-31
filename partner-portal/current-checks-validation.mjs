@@ -22,6 +22,7 @@ import {validateNativeFollowup} from '../scripts/qa/native-followup-evidence.mjs
 import {validateNativeFollowupMain} from '../scripts/qa/native-followup-main-evidence.mjs';
 import {validateRejectedCaptureProbe} from '../scripts/qa/rejected-capture-probe-evidence.mjs';
 import {validateTestRunnerSecurity} from '../scripts/qa/test-runner-security-evidence.mjs';
+import {searchDepartureFolder, validateSearchDepartureEvidence} from '../scripts/qa/search-departure-evidence.mjs';
 import {tlsAgentSecurityFolder, validateTlsAgentSecurity} from '../scripts/qa/tls-agent-security-evidence.mjs';
 import {validateCaptureWindowEvidence} from '../scripts/qa/capture-window-evidence.mjs';
 import {validateReleaseRecheck} from '../scripts/qa/release-recheck-evidence.mjs';
@@ -30,9 +31,13 @@ import {networkRepeatIdentity} from '../scripts/qa/chat-network-repeat-evidence.
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateSearchDepartureEvidence(root);
+  assert.equal(content.flows.find(row => row.id === 'search').searchDepartureReview.source, searchDepartureFolder + 'review.json');
+  assert(content.updates.some(row => row.source === searchDepartureFolder + 'README.md'));
   validateChildBookingReceiptEvidence(root); validateLatestPreparationDiagnostics(root);
   assert.equal(content.flows.find(row => row.id === 'booking').childBookingReceiptRecheck.source, childBookingReceiptFolder + 'services.json');
-  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, networkRepeatIdentity.folder + 'README.md');
+  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').lastPassingSource, networkRepeatIdentity.folder + 'README.md');
+  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, searchDepartureFolder + 'README.md');
   validateReleaseRecheck(root);
   validateCaptureWindowEvidence(root);
   validateTestRunnerSecurity(root);

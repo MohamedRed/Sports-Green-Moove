@@ -1,4 +1,5 @@
 import {searchBookingPhone, searchPhoneImages} from './search-booking-phone.mjs';
+import {searchDepartureReview} from './search-departure.mjs';
 
 const proof = 'docs/release/evidence/browserstack-parent-search-2026-10-18/';
 const shot = (file, alt) => ({ file, alt });
@@ -21,7 +22,8 @@ export function createSearchFlow() {
   return { id: 'search', title: 'Recherche de trajets', status: 'partial', checkedAt: '2026-10-24', latestEvidence: 'phone',
     summary: 'De vraies adresses à une demande de deux places sur téléphone.',
     verified: 'Wavre et Bruxelles-Central sont retrouvés. Le parent choisit Lina, deux places et son consentement, puis envoie une seule demande. Comptes et trajet de test.',
-    remaining: 'Vérifier plusieurs trajets, le classement, les coupures et iPhone. Simplifier le choix de date. Pas encore en ligne.',
+    remaining: 'Rejouer le calendrier sur téléphone. Vérifier plusieurs trajets, le classement, les coupures et iPhone. Pas encore en ligne.',
+    searchDepartureReview,
     searchBookingPhone,
     phone: { ...phone, checkedAt: '2026-10-18' },
     searchBookingUi: { source: 'docs/release/evidence/parent-search-booking-native-2026-10-20/search-booking-results.json', checkedAt: '2026-10-20' },

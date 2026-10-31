@@ -1,0 +1,21 @@
+{
+  "observedAt": "2026-10-31T09:55:34.361Z",
+  "scope": "session-window-crop-not-native-export",
+  "phase": "authentication-timeout-before-calendar",
+  "source": {
+    "file": "auth-timeout-session.jpg",
+    "width": 1200,
+    "height": 596,
+    "sha256": "d57c6bde021c6f0aa9bad9ef24afc3a3c5be01cab07444d029be5bc7376cebff"
+  },
+  "crop": {
+    "file": "auth-timeout.png",
+    "left": 460,
+    "top": 108,
+    "width": 198,
+    "height": 439,
+    "scaled": false,
+    "sha256": "39aa09190f7ac33a1ed165c0dc9c626cb86ec6ff760b2f24369824941a762e1b"
+  },
+  "published": false
+}

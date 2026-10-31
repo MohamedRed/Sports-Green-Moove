@@ -1,6 +1,20 @@
 import assert from 'node:assert/strict';
 
-export const searchDepartureCandidate = '8e0b1c5ceeb25145a4ecbb36985c03ae55086a76';
+export const searchDepartureCandidate = '03b8d23bbdc0aa4e1c924a17d01eea7baea69410';
+const ordinary = 'outputs/store-review-screenshots/';
+const replay = 'outputs/local-ui-evidence/31c53c811db40113e924455179fd1834/';
+export const searchDepartureArchiveMembers = Object.freeze({
+  'ordinary-results.json': ordinary + 'ordinary-results.json',
+  'ordinary-instrumentation.txt': ordinary + 'ordinary-instrumentation.txt',
+  'ordinary-process.json': ordinary + 'ordinary-process.json',
+  'native-suite-status.json': ordinary + 'native-suite-status.json',
+  'disposable-store-restore.json': ordinary + 'disposable-store-restore.json',
+  'chat-network/ui.json': replay + 'local-chat-network-ui.json',
+  'chat-network/instrumentation.txt': replay + 'LocalChatNetworkFlowTest-instrumentation.txt',
+  'chat-network/validation-before.json': replay + 'chat-network-validation-before.json',
+  'chat-network/validation-after.json': replay + 'chat-network-validation-after.json',
+  'chat-network/failure-cleanup-copy.json': replay + 'adb-pull-failure-cleanup.json',
+});
 export function assertSearchDepartureNativeCases(report) {
   assert.equal(report.scope, 'complete-android-junit-instrumentation-not-physical-or-release-proof');
   assert.equal(report.complete, true); assert.equal(report.guardConfirmed, true);

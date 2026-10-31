@@ -1,0 +1,51 @@
+{
+  "scope": "search-date-time-component-ui-and-failed-physical-auth-not-complete-search-or-release",
+  "reviewedAt": "2026-10-31",
+  "sourceCommit": "03b8d23bbdc0aa4e1c924a17d01eea7baea69410",
+  "nativeRunId": 41193370066,
+  "nativeJobId": 124514507012,
+  "nativeWorkflowSucceeded": false,
+  "nativeMainJobSucceeded": false,
+  "supersededRunsAccepted": false,
+  "fullNativeGateAccepted": false,
+  "offlineChatSequenceAccepted": false,
+  "networkPreparationCauseEstablished": false,
+  "unitCasesPassed": 10,
+  "newNativeCasesPassed": 9,
+  "migratedNativeCasesPassed": 2,
+  "supplementalLocalNativeCasesPassed": 11,
+  "supplementalLocalGuardConfirmed": false,
+  "phoneAuthenticationObservation": {
+    "visibleMessage": "E-mail ou mot de passe incorrect.",
+    "originalCapturePhase": "authentication-timeout-before-calendar",
+    "originalLabelIsDiagnosis": false,
+    "underlyingErrorCodeObserved": false,
+    "typedSecretIndependentlyVerified": false
+  },
+  "physicalDateChoiceAccepted": false,
+  "physicalSearchRecoveryAccepted": false,
+  "physicalBookingRecoveryAccepted": false,
+  "authenticationFailureCauseEstablished": false,
+  "authenticationTimeoutEstablished": false,
+  "previousCaptureFailureRepaired": false,
+  "iOSUiAccepted": false,
+  "realMapsExercised": false,
+  "realPaymentsExercised": false,
+  "productionWrites": false,
+  "screenReaderAccepted": false,
+  "releaseAccepted": false,
+  "mapRequests": 0,
+  "publishedCaptures": [],
+  "privateHelperScope": {
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "forceLocal": false,
+    "aliasEnabled": false,
+    "invitationPagePortEnabled": false,
+    "requestLoggingEnabled": false
+  }
+}

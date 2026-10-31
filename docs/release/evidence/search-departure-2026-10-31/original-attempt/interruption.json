@@ -1,0 +1,35 @@
+{
+  "scope": "interrupted-before-authentication-not-product-or-phone-flow-result",
+  "observedAt": "2026-10-31T09:46:18.573Z",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "7f50a6c0b556405534bbacd10ee54335",
+  "completedRecordPhases": [
+    "before"
+  ],
+  "stoppedHandleIds": [
+    66317,
+    77034,
+    74397
+  ],
+  "originalExitCodesObserved": false,
+  "originalProcessesIndependentlyAbsent": true,
+  "originalRuntimeDirectoryAbsent": true,
+  "originalHelperDirectoryAbsent": true,
+  "closedPorts": [
+    5001,
+    8080,
+    9000,
+    9099,
+    49418
+  ],
+  "privateFixtureCredentialRemoved": true,
+  "authenticatedPhoneObserved": false,
+  "datePickerExercised": false,
+  "providerSessionEndedByAgent": false,
+  "phoneUninstallIndependentlyVerified": false,
+  "originalClipboardRestorationVerified": false,
+  "interruptionCauseEstablished": false,
+  "searchSubmitted": false,
+  "mapRequests": 0,
+  "releaseAccepted": false
+}

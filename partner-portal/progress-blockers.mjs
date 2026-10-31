@@ -2,6 +2,10 @@ import { nativeVerification } from './native-verification.mjs';
 import {preparationBlockers} from './preparation-failures.mjs';
 
 export const blockers = [
+  {id: 'search-departure-phone', title: 'Rejouer le calendrier sur téléphone',
+    text: 'Le nouvel essai bloque à la connexion, avant le choix de date.',
+    next: 'Débloquer la connexion, puis vérifier le choix et l’annulation.',
+    source: 'docs/release/evidence/search-departure-2026-10-31/README.md'},
   ...preparationBlockers,
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',
@@ -56,9 +60,10 @@ export const blockers = [
     text: 'Réessayer retrouve le même compte en local. Se déconnecter garde l’app déconnectée après relancement.',
     next: 'Rejouer sur téléphone avec une vraie coupure.', source: 'docs/release/evidence/session-disconnect-native-2026-10-20/README.md' },
   { id: 'chat-send-stability', title: 'Vérifier la reprise sur plusieurs essais',
-    text: 'Le nouvel essai passe en simulation. Les échecs précédents restent documentés.',
-    next: 'Répéter la coupure et le renvoi sur téléphone.', source: nativeVerification.source,
-    latestSource: 'docs/release/evidence/chat-network-repeat-9abc639-2026-10-30/README.md' },
+    text: 'L’essai séparé passe en simulation. La séquence complète bloque avant la coupure réseau ; les échecs précédents restent documentés.',
+    next: 'Débloquer la préparation, puis rejouer la séquence et le renvoi sur téléphone.', source: nativeVerification.source,
+    latestSource: 'docs/release/evidence/search-departure-2026-10-31/README.md',
+    lastPassingSource: 'docs/release/evidence/chat-network-repeat-9abc639-2026-10-30/README.md' },
   { id: 'group-conversation', title: 'Terminer la conversation d’équipe',
     text: 'La conversation reste réservée aux membres adultes d’une même équipe et aux parents vérifiés. Un nouvel accord ne rouvre pas les anciens messages.',
     next: 'Ajouter les notifications et vérifier les échanges entre téléphones.', source: 'docs/release/evidence/team-authority-phone-2026-10-21/README.md' },

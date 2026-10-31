@@ -48,7 +48,7 @@ test('latest progress preserves the failed attempt and all older proof/media dat
   assert.equal(flow.networkRecovery.checkedAt, '2026-10-27');
   assert(flow.images.every(image => /27 octobre|17 octobre|16 octobre|15 octobre/.test(image.alt)));
   assert(content.updates.some(row => row.source === 'docs/release/evidence/chat-network-preparation-4714198/README.md'));
-  const update = content.updates.find(row => row.flow === 'messages');
+  const update = content.updates.find(row => row.flow === 'messages' && row.source === networkRepeatIdentity.folder + 'README.md');
   assert.equal(update.source, networkRepeatIdentity.folder + 'README.md');
   assert.match(update.text, /En simulation/);
   assert(content.updates.some(row => row.source === 'docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md' && /avant la coupure/.test(row.text)));
