@@ -38,7 +38,7 @@ fun MessagesScreen(firebase: FirebaseGateway, conversations: ConversationGateway
                 val title = contextTitle
                 val label = contextTripLabel
                 val context = if (title != null && label != null) ConversationContext(title, label) else null
-                ConversationRoute(ref, conversations, context) {
+                ConversationRoute(userId, ref, conversations, context) {
                     selectedType = null; selectedId = null; choosingBooking = false; selectedTab = "chats"
                 }
             }

@@ -1,0 +1,19 @@
+{
+  "observedAt": "2026-10-31T20:47:35.515Z",
+  "scope": "owned-phone-trial-disposal-not-product-pass",
+  "helperGroupExitVerified": true,
+  "backendExitCode": 130,
+  "privateSessionAbsent": true,
+  "runtimeAbsent": true,
+  "helperDirectoryAbsent": true,
+  "ports": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

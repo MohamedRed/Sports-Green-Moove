@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 31 October physical unsent-chat trial confirms loss after an independently
+observed process restart, while same-conversation reopening restores the text.
+Publish three reviewed original session crops after the four controlled-network
+phone images, preserving every older gallery/tour/date and the partial status.
+The new account/source-scoped local-storage candidate passes nine state cases,
+seven existing composer cases and ten team cases; five instrumentation cases
+compile but have not run. Do not present this as physical repair, message sending,
+group/peer-phone/radio proof, production deployment or release acceptance. Keep
+the public audience and original failing phone evidence unchanged. See
+`docs/release/evidence/chat-draft-phone-2026-10-31/README.md`.
+
 The 31 October child-invitation service recheck passes all eighteen groups at
 9b058d6 with explicit parent approval and child-only roles. Publish one short
 dated local-result note. Preserve the phone connection failure, partial status,

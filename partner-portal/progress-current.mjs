@@ -1,4 +1,5 @@
 import {appearanceProgress} from './appearance-flow.mjs';
+import {chatDraftPhoneProgress} from './chat-draft-phone.mjs';
 import {searchDeparturePhoneProgress} from './search-departure-phone.mjs';
 import {chatNetworkPhoneProgress} from './chat-network-phone.mjs';
 import {transferLifecycleProgress} from './transfer-lifecycle.mjs';
@@ -48,6 +49,7 @@ import {staleCancellationProgress, cancellationBaselineProgress} from './cancell
 import {invitationConnectionProgress, nativeCapacityProgress} from './preparation-failures.mjs';
 
 export const currentProgress = [
+  chatDraftPhoneProgress,
   {date: '2026-10-31', title: 'L’invitation enfant repasse les contrôles locaux',
     text: 'Création du compte et accord séparé du parent : les 18 contrôles passent. L’ouverture du lien sur téléphone reste à débloquer.',
     flow: 'child-emergency', source: 'docs/release/evidence/child-invitation-recheck-2026-10-31/README.md'},

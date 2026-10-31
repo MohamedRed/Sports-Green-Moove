@@ -13,12 +13,13 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
       const dialog = page.getByRole('dialog');
       await dialog.getByText(flow.verified, {exact: true}).waitFor();
       await dialog.getByText(flow.remaining, {exact: true}).waitFor();
-      for (const image of flow.images.slice(0, 4)) {
+      for (const image of flow.images.slice(0, 7)) {
         const picture = dialog.getByRole('img', {name: image.alt, exact: true}); await picture.waitFor();
         await page.waitForFunction(() => {
           const image = document.querySelector('.media-stage img'); return image?.complete && image.naturalWidth > 0;
         });
-        assert.deepEqual(await picture.evaluate(image => [image.naturalWidth, image.naturalHeight]), [216, 457]);
+        assert.deepEqual(await picture.evaluate(image => [image.naturalWidth, image.naturalHeight]),
+          image.file.startsWith('chat-draft-') ? [200, 435] : [216, 457]);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
         assert(await dialog.evaluate(element => element.scrollWidth <= element.clientWidth));
         assert(await page.locator('.media-stage').evaluate(stage => {
@@ -28,7 +29,7 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
         await page.screenshot({path: `${output}/${image.file}-${width}.png`, fullPage: false});
         await dialog.getByRole('button', {name: 'Preuve suivante', exact: true}).click();
       }
-      await dialog.getByRole('img', {name: flow.images[4].alt, exact: true}).waitFor();
+      await dialog.getByRole('img', {name: flow.images[7].alt, exact: true}).waitFor();
       await dialog.getByRole('link', {name: 'Visite guidée', exact: true}).click();
       for (const step of flow.tour) {
         await dialog.getByRole('heading', {name: step.title, exact: true}).waitFor();
@@ -37,6 +38,6 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
       }
     }
     assert.deepEqual(errors, []);
-    console.log('Four controlled chat phone captures fit all four widths; the older simulated tour and gallery remain available.');
+    console.log('Four controlled chat captures and three negative draft captures fit all four widths; older tour and gallery preserved.');
   } finally {await page.close();}
 }

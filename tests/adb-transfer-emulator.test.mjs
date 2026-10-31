@@ -107,7 +107,7 @@ test('the real failed transfer retains surviving host identities without accepti
   assert.deepEqual(validateTransferPeerLoss(repositoryRoot), {passedPrimaryTransfers: 28, failedPrimaryAttempt: 29,
     sameHostProcessesObserved: true, rootCauseConfirmed: false, releaseAccepted: false});
   assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestSource, transferPeerLossFolder + 'README.md');
-  assert.equal(content.updates.find(row => row.flow === 'messages').source, transferPeerLossFolder + 'README.md');
+  assert(content.updates.some(row => row.flow === 'messages' && row.source === transferPeerLossFolder + 'README.md'));
 });
 for (const key of ['guestBootStateKnown', 'guestAdbdStateKnown', 'hostProcessContinuityFullyObserved',
   'newParentAndStateFieldsExercised', 'remoteCleanupVerified', 'runnerDisposalIndependentlyVerified', 'rootCauseConfirmed',

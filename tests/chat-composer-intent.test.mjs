@@ -3,9 +3,22 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { XMLParser, XMLValidator } from 'fast-xml-parser';
 import { content } from '../partner-portal/content.mjs';
+import {fileURLToPath} from 'node:url';
+import {chatDraftPhoneFolder, validateChatDraftPhone, validateChatDraftPhoneReview} from '../scripts/qa/chat-draft-phone-evidence.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const directory = 'docs/release/evidence/local-chat-intent-2026-10-16/';
+test('the original phone draft loss remains negative despite the passing local candidate', () => {
+  validateChatDraftPhone(fileURLToPath(new URL('..', import.meta.url)));
+  const load = name => JSON.parse(read(chatDraftPhoneFolder + name + '.json'));
+  const review = load('review'), before = load('process-before'), stopped = load('process-stopped'), after = load('process-after');
+  for (const field of ['draftRestoredAfterProcessRestart', 'phoneCorrectionAccepted', 'candidateInstrumentationExecuted',
+    'actualMessageSendAccepted', 'trackingAccepted', 'productionWrites', 'releaseAccepted']) {
+    assert.throws(() => validateChatDraftPhoneReview({...review, [field]: true}, before, stopped, after));
+  }
+  assert.throws(() => validateChatDraftPhoneReview(review, before, {...stopped, noProcessFound: false}, after));
+  assert.throws(() => validateChatDraftPhoneReview(review, before, stopped, {...after, pid: before.pid}));
+});
 const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '', parseAttributeValue: true,
   processEntities: false, isArray: (name) => name === 'testcase' || name === 'failure' });
 function report(name) {
@@ -36,12 +49,19 @@ test('the preserved failures reproduce discarded pending identity and a late err
   assert.deepEqual(passed.testcase.map((item) => item.name).sort(), expanded.testcase.map((item) => item.name).sort());
 });
 
-test('the actual route delegates to the tested controller while retaining separate saved draft and identity holders', () => {
+test('the actual route delegates to the tested controller with account-scoped durable draft and identity storage', () => {
   const root = 'android/app/src/main/java/be/sportgreenmoove/app/ui/';
   const route = read(root + 'ConversationRoute.kt'), state = read(root + 'ConversationComposerState.kt');
-  assert.match(route, /val draftState = rememberSaveable\(ref.key\)/);
-  assert.match(route, /val pendingState = rememberSaveable\(ref.key\)/);
-  assert.match(route, /ConversationComposerState\(draftState, pendingState\)/);
+  assert.match(route, /ConversationDraftState\(uid, ref, storage\)/);
+  assert.match(route, /remember\(uid, ref, storage\)/);
+  assert.match(route, /val composer = draft.composer/);
+  assert(!route.includes('rememberSaveable'));
+  const persistence = read(root + 'ConversationDraftState.kt');
+  assert.match(persistence, /saved\?\.body.orEmpty\(\)/);
+  assert.match(persistence, /saved\?\.requestId/);
+  assert.match(persistence, /storage.write\(uid, ref,/);
+  assert.match(persistence, /catch \(_: Exception\) \{ error =/);
+  assert.match(read(root + 'MessagesRoute.kt'), /ConversationRoute\(userId, ref,/);
   assert.match(route, /composer.send\(ref, gateway, ::acknowledged\)/);
   assert(!route.includes('definitelyRejected')); assert(!route.includes('UUID.randomUUID'));
   assert.match(state, /val retryingUnconfirmed = pendingId != null/);

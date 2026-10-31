@@ -2,12 +2,14 @@ import {chatNetworkRecovery, chatNetworkRecheck} from './chat-network-recovery.m
 import {latestChatNetworkRecheck} from './chat-network-latest.mjs';
 import {chatNetworkRepeat} from './chat-network-repeat.mjs';
 import {chatNetworkPhone, chatNetworkPhoneImages} from './chat-network-phone.mjs';
+import {chatDraftPhone, chatDraftPhoneImages} from './chat-draft-phone.mjs';
 
 export function createMessagesFlow(local, shot) {
   return { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-31', latestEvidence: 'phone',
-    summary: 'Sur téléphone, le renvoi après une coupure contrôlée ne crée pas de doublon.',
-    verified: 'Le texte reste présent pendant la coupure. Le parent réessaie une fois : un seul message est enregistré, puis une réponse de test du conducteur arrive.',
-    remaining: 'Rejouer le clavier. Répéter les essais de coupure sur téléphones, vérifier les groupes, les brouillons après fermeture et les coupures réelles pendant l’envoi. Pas encore en ligne.',
+    summary: 'Le clavier reste utilisable, mais le brouillon disparaît après un arrêt complet.',
+    verified: 'Le renvoi après coupure contrôlée reste vérifié. Le brouillon revient à la réouverture de la conversation, mais pas après l’arrêt complet de l’app.',
+    remaining: 'Rejouer le clavier et la correction des brouillons après fermeture sur téléphone. Répéter les essais de coupure entre téléphones, puis vérifier les groupes, les coupures réelles pendant l’envoi et iPhone. Pas encore en ligne.',
+    unsentDraftPhone: chatDraftPhone,
     networkRecovery: chatNetworkRecovery,
     networkRecoveryRecheck: chatNetworkRecheck,
     networkRecoveryLatest: latestChatNetworkRecheck,
@@ -22,7 +24,7 @@ export function createMessagesFlow(local, shot) {
       'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
     ], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json'), checkedAt: '2026-10-17' },
     ui: { source: 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json', checkedAt: '2026-10-19', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
-    images: [...chatNetworkPhoneImages, shot('chat-network-isolated-draft', 'Brouillon conservé pendant la coupure, simulation du 27 octobre'),
+    images: [...chatNetworkPhoneImages, ...chatDraftPhoneImages, shot('chat-network-isolated-draft', 'Brouillon conservé pendant la coupure, simulation du 27 octobre'),
       shot('chat-network-isolated-reply', 'Message renvoyé et réponse reçue, simulation du 27 octobre'),
       shot('chat-network-current-draft', 'Brouillon conservé pendant la coupure, essai local du 17 octobre'),
       shot('chat-network-current-reply', 'Message renvoyé et réponse reçue, essai local du 17 octobre'),

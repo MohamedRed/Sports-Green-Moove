@@ -2,6 +2,9 @@ import { nativeVerification } from './native-verification.mjs';
 import {preparationBlockers} from './preparation-failures.mjs';
 
 export const blockers = [
+  {id: 'chat-unsent-draft', title: 'Conserver le brouillon après fermeture complète',
+    text: 'Sur téléphone, le texte revient à la réouverture de la conversation, mais disparaît après arrêt complet de l’app.',
+    next: 'Rejouer sur téléphone la correction qui passe les tests locaux.', source: 'docs/release/evidence/chat-draft-phone-2026-10-31/README.md'},
   ...preparationBlockers,
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',

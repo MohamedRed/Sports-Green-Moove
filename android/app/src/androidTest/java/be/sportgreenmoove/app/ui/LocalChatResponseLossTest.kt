@@ -70,7 +70,7 @@ class LocalChatResponseLossTest {
             assertEquals("sgm-qa-parent", auth.currentUser?.uid)
             val gateway = FirebaseAndroidConversationGateway(firestore, functions, auth)
             compose.setSgmUiTestContent {
-                if (visible.value) ConversationRoute(ConversationRef(ConversationKind.Booking, bookingId), gateway, onBack = {})
+                if (visible.value) ConversationRoute("sgm-qa-parent", ConversationRef(ConversationKind.Booking, bookingId), gateway, onBack = {})
             }
             waitForText("Aucun message.")
             compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsEnabled()

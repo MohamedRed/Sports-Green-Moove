@@ -22,18 +22,20 @@ import org.junit.Test
 import org.junit.Before
 import org.junit.After
 import java.io.IOException
+import java.util.UUID
 
 class ConversationFlowTest {
     @get:Rule val compose = createAndroidComposeRule<ComponentActivity>()
     private lateinit var interactions: ConversationTestInteractions
     private val ref = ConversationRef(ConversationKind.Booking, "booking-1")
+    private val draftUid = "conversation-flow-${UUID.randomUUID()}"
     @Before fun prepareInteractions() { interactions = ConversationTestInteractions(compose) }
     @After fun releaseInteractions() { if (::interactions.isInitialized) interactions.close() }
 
     @Test fun aConversationOpensSendsAndKeepsItsDraftWhenReturningToTheInbox() {
         val gateway = UiFlowConversationGateway()
         val firebase = UiFlowFirebaseGateway()
-        compose.setSgmUiTestContent { MessagesScreen(firebase, gateway, "parent") }
+        compose.setSgmUiTestContent { MessagesScreen(firebase, gateway, draftUid) }
         waitFor(SgmTestTags.ChatOpenAction)
         compose.onNodeWithTag(SgmTestTags.ChatOpenAction).performClick()
         waitFor(SgmTestTags.ChatMessageInput)
@@ -115,14 +117,14 @@ class ConversationFlowTest {
 
     @Test fun anUnavailableThreadShowsRetryInsteadOfAFabricatedEmptyConversation() {
         val gateway = UiFlowConversationGateway().apply { observeFailure = IllegalStateException("Access denied") }
-        compose.setSgmUiTestContent { ConversationRoute(ref, gateway, onBack = {}) }
+        compose.setSgmUiTestContent { ConversationRoute(draftUid, ref, gateway, onBack = {}) }
         waitFor(SgmTestTags.ChatRetryAction)
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertDoesNotExist()
         compose.onNodeWithText("Aucun message.").assertDoesNotExist()
     }
 
     private fun show(gateway: UiFlowConversationGateway) {
-        compose.setSgmUiTestContent { ConversationRoute(ref, gateway, onBack = {}) }
+        compose.setSgmUiTestContent { ConversationRoute(draftUid, ref, gateway, onBack = {}) }
         waitFor(SgmTestTags.ChatMessageInput)
         waitForText("Départ confirmé.")
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsEnabled()
