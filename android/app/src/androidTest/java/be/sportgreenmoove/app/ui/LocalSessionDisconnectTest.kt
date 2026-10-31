@@ -32,13 +32,19 @@ class LocalSessionDisconnectTest {
         val functions = FirebaseFunctions.getInstance()
         val port = InstrumentationRegistry.getArguments().getString("sessionFaultPort")!!.toInt()
         check(port in 1024..65535)
+        directory(context)
+        val transport = LocalSessionTransportDiagnostics(context,
+            UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()), session, port)
         val screenshots = JSONObject()
         var failure: Throwable? = null
         try {
+            transport.checkpoint("before-sign-in")
             runtime.auth.signOut()
             runBlocking { runtime.auth.signIn(session.getString("parent"), session.getString("password")) }
+            transport.checkpoint("signed-in")
             assertEquals("sgm-qa-parent", FirebaseAuth.getInstance().currentUser?.uid)
             functions.useEmulator(BuildConfig.SGM_FIREBASE_EMULATOR_HOST, port)
+            transport.checkpoint("launching-app")
             ActivityScenario.launch(MainActivity::class.java).use {
                 waitFor("session.restore.error")
                 compose.onNodeWithTag("session.restore.error").assertIsDisplayed()
@@ -47,6 +53,7 @@ class LocalSessionDisconnectTest {
                 compose.onNodeWithTag(SgmTestTags.HomeScreen).assertDoesNotExist()
                 compose.onNodeWithText("private-qa-session-error-detail", substring = true).assertDoesNotExist()
                 assertEquals("sgm-qa-parent", FirebaseAuth.getInstance().currentUser?.uid)
+                transport.checkpoint("initial-error")
                 capture(context, screenshots, "error")
                 compose.onNodeWithTag("session.restore.disconnect").performScrollTo().performClick()
                 signedOutScreen()
@@ -60,7 +67,10 @@ class LocalSessionDisconnectTest {
                 File(context.filesDir, "local-session-disconnect-checkpoint.json").writeText(checkpoint.toString(2))
                 File(directory(context), "local-session-disconnect-before.json").writeText(checkpoint.toString(2))
             }
-        } catch (error: Throwable) { failure = error }
+        } catch (error: Throwable) {
+            try { transport.checkpoint("failure") } catch (diagnostic: Throwable) { error.addSuppressed(diagnostic) }
+            failure = error
+        }
         finally {
             fun cleanup(action: () -> Unit) {
                 try { action() } catch (error: Throwable) {

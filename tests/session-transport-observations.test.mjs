@@ -69,3 +69,26 @@ test('native diagnostics only observe local sockets and do not weaken original U
     assert(text.includes('node --test tests/session-transport-observations.test.mjs '));
   }
 });
+
+test('the disconnect flow reuses the bounded prefix without claiming the longer restoration sequence', () => {
+  const receipt = fixture(sessionTransportPhases.slice(0, 4));
+  assert.deepEqual(validateSessionTransportObservations(receipt, runId), {scope: receipt.scope,
+    observationCount: 4, failureObserved: false});
+  assert.throws(() => validateSessionTransportObservations(receipt, runId, {complete: true}));
+  const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+  const native = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionDisconnectTest.kt');
+  const observer = native.indexOf('val transport = LocalSessionTransportDiagnostics(');
+  assert(native.indexOf('directory(context)') < observer);
+  assert.equal((native.match(/runtime\.auth\.signIn\(/g) ?? []).length, 1);
+  for (const phase of [...sessionTransportPhases.slice(0, 4), 'failure']) assert(native.includes(`transport.checkpoint("${phase}")`));
+  assert(native.indexOf('transport.checkpoint("before-sign-in")') < native.indexOf('runtime.auth.signIn('));
+  assert(native.indexOf('transport.checkpoint("initial-error")') < native.indexOf('.performClick()'));
+  assert(native.includes('error.addSuppressed(diagnostic)')); assert(native.includes('failure?.let { throw it }'));
+  const host = read('scripts/qa/local-session-disconnect-ui.mjs');
+  assert(host.includes("transport = validateSessionTransportObservations(json('session-transport-observations.json'), session.runId)"));
+  assert(host.includes('assert.equal(transport.failureObserved, false)'));
+  assert(host.includes('assert.equal(transport.observationCount, 4)'));
+  assert(host.includes('LocalSessionTransportDiagnostics.kt')); assert(host.includes('session-transport-observations.mjs'));
+  assert(host.indexOf('assertSessionDisconnectStage(') < host.indexOf('if (failure) throw failure;'));
+  assert(host.includes('verifySessionRestorationRecords(baseline,'));
+});

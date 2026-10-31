@@ -17,6 +17,7 @@ import { prepareDisposableTestApks, usePreinstalledTestApks, installationGuardAr
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
+import { validateSessionTransportObservations } from './session-transport-observations.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), android = resolve(root, 'android');
 const serial = process.env.SGM_LOCAL_ANDROID_SERIAL; assert.match(serial, /^emulator-\d+$/);
@@ -27,7 +28,7 @@ const read = name => readFileSync(resolve(directory, name));
 const json = name => JSON.parse(read(name));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 mkdirSync(directory, { recursive: true });
-let session, marker, before, stopped, failure, isolation, apkPreparation, proxy;
+let session, marker, before, stopped, failure, isolation, apkPreparation, proxy, transport;
 const transcripts = {};
 try {
   session = await seedLocalUiFixtures();
@@ -59,6 +60,8 @@ try {
   before = json('local-session-disconnect-before.json');
   await instrument('reopenSignedOutSessionInNewProcess');
   collectLocalUiEvidence({ adb, serial, evidenceDir: directory, phase: 'session-disconnect', runId: session.runId, password: session.password });
+  transport = validateSessionTransportObservations(json('session-transport-observations.json'), session.runId);
+  assert.equal(transport.failureObserved, false); assert.equal(transport.observationCount, 4);
   marker = json('local-session-disconnect-device.json');
   assert.deepEqual(json('local-session-disconnect-before.json'), before);
   assertSessionDisconnectStage(before, stopped, marker, proxy.receipt, session.runId);
@@ -88,17 +91,18 @@ for (const [label, cleanup] of [
 if (failure) throw failure;
 const paths = [...disposableApkSourceFiles,
   ...['local-session-disconnect-ui.mjs', 'run-local-session-disconnect-ui.mjs', 'session-disconnect-evidence.mjs',
-    'session-restoration-fault-proxy.mjs', 'session-restoration-records.mjs', 'local-disposable-process-stop.mjs',
+    'session-restoration-fault-proxy.mjs', 'session-restoration-records.mjs', 'session-transport-observations.mjs', 'local-disposable-process-stop.mjs',
     'run-isolated-ride-ui.mjs', 'local-emulator-lifecycle.mjs', 'local-ui-fixtures.mjs'].map(file => 'scripts/qa/' + file),
   'functions/src/callables/adminUsers.ts',
   'android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt',
   ...['SessionRestoration.kt', 'SessionRestorationState.kt', 'SportsGreenMooveApp.kt', 'AppDataState.kt', 'AppSessionShutdown.kt']
     .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
-  ...['LocalSessionDisconnectTest.kt', 'LocalUiCapture.kt'].map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
+  ...['LocalSessionDisconnectTest.kt', 'LocalSessionTransportDiagnostics.kt', 'LocalUiCapture.kt']
+    .map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 writeFileSync(resolve(directory, 'session-disconnect-app-results.json'), JSON.stringify({ ...marker,
   testedAt: new Date().toISOString(), testCount: 1, nativeCaseCount: 2,
   steps: [{ id: 'session-disconnect-process-restart', status: 'passed' }], nativeUiExecuted: true,
-  native: { before, stopped }, transcripts, apkPreparation, primaryEvidencePhase: 'session-disconnect',
+  native: { before, stopped }, transportObservations: transport, transcripts, apkPreparation, primaryEvidencePhase: 'session-disconnect',
   cleanupMode: 'destroy-owned-local-environment', proxyClosed: true, adminClientClosed: true, localPackagesRemoved: true,
   fixtureIsolation: isolation, productionWrites: false, safetyAuditAccepted: false, storeReviewAccepted: false,
   sourceFiles: Object.fromEntries(paths.map(file => [file, sha(readFileSync(resolve(root, file)))]))
