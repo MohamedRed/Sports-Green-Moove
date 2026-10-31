@@ -1,0 +1,20 @@
+{
+  "id": 13042779053,
+  "node_id": "MDg6QXJ0aWZhY3QxMzA0Mjc3OTA1Mw==",
+  "name": "android-generated-transfer-diagnostic",
+  "size_in_bytes": 15683,
+  "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13042779053",
+  "archive_download_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13042779053/zip",
+  "expired": false,
+  "digest": "sha256:f918c6a6409d6589e90ffb3578a2299fd2b5965209f6ff2831c1143f0549a80c",
+  "created_at": "2026-10-31T12:46:19Z",
+  "updated_at": "2026-10-31T12:46:19Z",
+  "expires_at": "2027-01-29T12:43:44Z",
+  "workflow_run": {
+    "id": 41202387017,
+    "repository_id": 1265168151,
+    "head_repository_id": 1265168151,
+    "head_branch": "codex/implement-plan",
+    "head_sha": "51c183e7af60a79c3096d55e65eb0b33ce1b0d26"
+  }
+}

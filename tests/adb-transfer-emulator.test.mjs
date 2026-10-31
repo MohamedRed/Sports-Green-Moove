@@ -1,10 +1,14 @@
 import assert from 'node:assert/strict';
-import {mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync} from 'node:fs';
+import {cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {dirname, join} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import test from 'node:test';
 import {parseDocument} from 'yaml';
 import {assertTransferEmulatorIdentity, observeTransferEmulator} from '../scripts/diagnostics/adb-transfer-emulator.mjs';
+import {transferLifecycleFolder, validateTransferLifecycle} from '../scripts/qa/transfer-lifecycle-evidence.mjs';
+import {content} from '../partner-portal/content.mjs';
 
 const identity = {pid: 80, startedTicks: '123456', executable: 'qemu-system-x86_64-headless', port: 5554, avd: 'test'};
 const statLine = (ticks = identity.startedTicks, state = 'S') => `80 (private process name) ${[state, 1, ...Array(17).fill(0), ticks].join(' ')}`;
@@ -87,5 +91,38 @@ test('both native and web gates run the new observations and watch their source 
       assert(workflow.on[event].paths.includes('scripts/diagnostics/adb-transfer-*.mjs'));
       assert(workflow.on[event].paths.includes('tests/adb-transfer*.test.mjs'));
     }
+  }
+});
+
+const repositoryRoot = fileURLToPath(new URL('..', import.meta.url));
+test('retained passing lifecycle observations do not repair the prior failure or pass the whole native gate', () => {
+  assert.deepEqual(validateTransferLifecycle(repositoryRoot), {beforeTransferPasses: 24, candidateTransferPasses: 32,
+    mainGroups: 37, fullNativeGateAccepted: false, releaseAccepted: false});
+  assert.equal(content.updates.find(row => row.flow === 'messages').source, transferLifecycleFolder + 'README.md');
+  for (const id of ['native-evidence-copy', 'chat-send-stability'])
+    assert.equal(content.blockers.find(row => row.id === id).latestSource, transferLifecycleFolder + 'README.md');
+});
+test('recomputed evidence checksums cannot promote scope or pass counts', t => {
+  const root = mkdtempSync(join(tmpdir(), 'sgm-transfer-lifecycle-'));
+  t.after(() => rmSync(root, {recursive: true, force: true}));
+  const folder = join(root, transferLifecycleFolder);
+  cpSync(join(repositoryRoot, transferLifecycleFolder), folder, {recursive: true});
+  const archive = join(root, 'docs/release/evidence/source-archive'); mkdirSync(dirname(archive), {recursive: true});
+  symlinkSync(join(repositoryRoot, 'docs/release/evidence/source-archive'), archive);
+  const prior = 'docs/release/evidence/native-timeout-9abc639-2026-10-30/following-main/results.json';
+  mkdirSync(dirname(join(root, prior)), {recursive: true}); cpSync(join(repositoryRoot, prior), join(root, prior));
+  validateTransferLifecycle(root);
+  const original = JSON.parse(readFileSync(join(folder, 'review.json')));
+  const hashes = JSON.parse(readFileSync(join(folder, 'artifact-sha256.json')));
+  for (const [key, value] of [
+    ...['candidateFailureReproduced', 'realFailureLifecycleDistinguished', 'nativeMainArchiveDigestVerified',
+      'underlyingCauseConfirmed', 'earlierCopyFailureRepaired', 'passAttributedToObservation', 'retryAdded', 'deadlinesChanged',
+      'productCodeChanged', 'fullNativeGateAccepted', 'physicalDeviceAccepted', 'productionWrites', 'releaseAccepted'].map(key => [key, true]),
+    ['beforeTransferPasses', 25], ['candidateTransferPasses', 33], ['mainReplayGroups', 40],
+  ]) {
+    const bytes = JSON.stringify({...original, [key]: value}); writeFileSync(join(folder, 'review.json'), bytes);
+    writeFileSync(join(folder, 'artifact-sha256.json'), JSON.stringify({...hashes,
+      'review.json': createHash('sha256').update(bytes).digest('hex')}));
+    assert.throws(() => validateTransferLifecycle(root), new RegExp(key));
   }
 });

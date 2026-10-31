@@ -24,7 +24,8 @@ import {validateRejectedCaptureProbe} from '../scripts/qa/rejected-capture-probe
 import {validateTestRunnerSecurity} from '../scripts/qa/test-runner-security-evidence.mjs';
 import {searchDepartureFolder, validateSearchDepartureEvidence} from '../scripts/qa/search-departure-evidence.mjs';
 import {searchDeparturePhoneFolder, validateSearchDeparturePhone} from '../scripts/qa/search-departure-phone-evidence.mjs';
-import {nativeCopyFollowupFolder, validateNativeCopyFollowup} from '../scripts/qa/native-copy-followup-evidence.mjs';
+import {validateNativeCopyFollowup} from '../scripts/qa/native-copy-followup-evidence.mjs';
+import {transferLifecycleFolder, validateTransferLifecycle} from '../scripts/qa/transfer-lifecycle-evidence.mjs';
 import {tlsAgentSecurityFolder, validateTlsAgentSecurity} from '../scripts/qa/tls-agent-security-evidence.mjs';
 import {validateCaptureWindowEvidence} from '../scripts/qa/capture-window-evidence.mjs';
 import {validateReleaseRecheck} from '../scripts/qa/release-recheck-evidence.mjs';
@@ -36,13 +37,15 @@ export function validateCurrentChecks(root, content) {
   validateSearchDepartureEvidence(root);
   validateSearchDeparturePhone(root);
   validateNativeCopyFollowup(root);
+  validateTransferLifecycle(root);
+  assert(content.updates.some(row => row.source === transferLifecycleFolder + 'README.md'));
   assert.equal(content.flows.find(row => row.id === 'search').searchDeparturePhone.source, searchDeparturePhoneFolder + 'review.json');
   assert.equal(content.flows.find(row => row.id === 'search').searchDepartureReview.source, searchDepartureFolder + 'review.json');
   assert(content.updates.some(row => row.source === searchDepartureFolder + 'README.md'));
   validateChildBookingReceiptEvidence(root); validateLatestPreparationDiagnostics(root);
   assert.equal(content.flows.find(row => row.id === 'booking').childBookingReceiptRecheck.source, childBookingReceiptFolder + 'services.json');
   assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').lastPassingSource, networkRepeatIdentity.folder + 'README.md');
-  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, nativeCopyFollowupFolder + 'README.md');
+  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, transferLifecycleFolder + 'README.md');
   validateReleaseRecheck(root);
   validateCaptureWindowEvidence(root);
   validateTestRunnerSecurity(root);

@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 31 October sequence follow-up accepts the 5fa6fc4 main replay's 37
+groups/40 cases and seventeen primary copies, but not its whole Native workflow:
+one separate chat device fails to boot and its aggregate fails. The same-source
+account-free probe passes 24 pulls before failing the 25th. The new 51c183e probe
+passes 32 pulls with actual bound process/socket observations. No root cause or
+repair is established; the observation was not exercised during a real failure.
+Publish one concise simulated-sequence note, update the open control blockers,
+and retain every older failed copy, gallery, physical scope and tour. Add no new
+media or release acceptance; keep public access unchanged. See
+`docs/release/evidence/transfer-lifecycle-2026-10-31/README.md`.
+
 The later 31 October controlled offline chat trial passes on one physical Android
 phone, with eight independent stored-state checkpoints. One explicit parent retry
 stores one message and notification; one service-driven driver reply is received

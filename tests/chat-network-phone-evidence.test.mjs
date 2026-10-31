@@ -21,7 +21,7 @@ test('physical controlled retry retains exact stored records separately from rea
   assert.deepEqual(flow.tour.slice(4).map(row => row.image), ['chat-network-isolated-draft', 'chat-network-isolated-reply']);
   const review = JSON.parse(readFileSync(resolve(root, flow.networkRecoveryPhone.source)));
   for (const [name, path] of Object.entries(review.publishedCaptures)) assert.equal(captures[name], chatNetworkPhoneFolder + path);
-  assert.equal(content.updates.find(row => row.flow === 'messages').source, chatNetworkPhoneFolder + 'README.md');
+  assert(content.updates.some(row => row.flow === 'messages' && row.source === chatNetworkPhoneFolder + 'README.md'));
   assert.match(flow.remaining, /téléphones/);
 });
 for (const key of ['realWorldRadioLossAccepted', 'lostResponseAfterCommitAccepted', 'physicalTrackingAccepted',
