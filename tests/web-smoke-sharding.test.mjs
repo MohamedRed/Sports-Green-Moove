@@ -45,9 +45,13 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Test custom TLS certificate verification and retained scope')
     .filter(step => step.name !== 'Validate native search departure controls and blocked phone evidence')
     .filter(step => step.name !== 'Validate physical calendar retry and latest native copy evidence')
+    .filter(step => step.name !== 'Validate controlled chat phone records and evidence')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
+  const chatPhone = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate controlled chat phone records and evidence');
+  assert.equal(chatPhone.length, 1);
+  assert.equal(chatPhone[0].run, 'node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs');
   const phoneRetry = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate physical calendar retry and latest native copy evidence');
   assert.equal(phoneRetry.length, 1);
   assert.equal(phoneRetry[0].run, 'node --test tests/search-departure-phone.test.mjs tests/search-departure-ci.test.mjs');

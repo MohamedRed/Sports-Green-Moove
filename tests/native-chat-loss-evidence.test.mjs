@@ -47,7 +47,7 @@ test('published captures and copy retain controlled local scope and all older ev
   assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/README.md');
   assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json'); assert(flow.ui.groups.includes('chat-post-commit-response-loss-ui'));
   assert(flow.images.some(image => image.file === 'chat-network-current-draft'));
-  const retained = flow.images.filter((image) => !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply', 'chat-network-isolated-draft', 'chat-network-isolated-reply'].includes(image.file));
+  const retained = flow.images.filter(image => !image.file.startsWith('chat-phone-') && !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply', 'chat-network-isolated-draft', 'chat-network-isolated-reply'].includes(image.file));
   assert.equal(retained[0].file, 'chat-loss-confirmed'); assert.equal(retained[1].file, 'chat-loss-rejected-retry');
   for (const name of ['confirmed', 'rejected-retry']) {
     assert.equal(captures['chat-loss-' + name], published + 'accepted-run/local-chat-loss-' + name + '.png');

@@ -68,7 +68,7 @@ test('reviewed captures use this run while physical, stability and draft-restart
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
   }
   for (const remaining of [/Répéter/, /brouillons après fermeture/, /téléphones/, /groupes/, /Pas encore en ligne/]) assert.match(flow.remaining, remaining);
-  assert(content.blockers.some((item) => item.id === 'chat-send-stability' && /précédents/.test(item.text)));
+  assert(content.blockers.some(item => item.id === 'chat-send-stability' && item.source !== item.latestSource));
   assert(content.updates.some((item) => item.title === 'La coupure et la reprise passent'));
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
 });

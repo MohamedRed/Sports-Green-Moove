@@ -158,6 +158,7 @@ test('the subsequent complete replay requires every transcript, strict receipts 
   assert.match(read(base + 'README.md'), /no transaction-order root fix/);
   assert(content.lastVerifiedAt >= '2026-10-17');
   assert(content.blockers.some((item) => item.id === 'cancellation-race'));
-  assert.match(content.blockers.find((item) => item.id === 'chat-send-stability').text, /précédents/);
+  const chatBlocker = content.blockers.find(item => item.id === 'chat-send-stability');
+  assert.notEqual(chatBlocker.source, chatBlocker.latestSource);
   assert(content.updates.some((item) => item.date === '2026-10-17' && item.title === 'Les échanges reprennent après coupure'));
 });

@@ -251,7 +251,7 @@ test('current conversation evidence retains the full replay and the dated histor
   assert.equal(run.directory.secondPageCount, 8);
   assert.equal(run.directory.messageCount, 2);
   assert.equal(run.directory.readNotificationCount, 2);
-  assert.equal(flow.images.filter((image) => !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply', 'chat-network-isolated-draft', 'chat-network-isolated-reply'].includes(image.file)).length, 11);
+  assert.equal(flow.images.filter(image => !image.file.startsWith('chat-phone-') && !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply', 'chat-network-isolated-draft', 'chat-network-isolated-reply'].includes(image.file)).length, 11);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-ui-2026-10-15/results.json')).testCount, 9);
   assert.equal(JSON.parse(source('docs/release/evidence/local-chat-ui-2026-10-15/results.json')).testCount, 8);
   assert(!Object.values(captures).some((path) => /directory-(first-message|reply)\.png/.test(path)));

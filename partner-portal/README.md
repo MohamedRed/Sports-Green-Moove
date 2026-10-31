@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The later 31 October controlled offline chat trial passes on one physical Android
+phone, with eight independent stored-state checkpoints. One explicit parent retry
+stores one message and notification; one service-driven driver reply is received
+and read on the phone. Publish four reviewed original session crops and their
+short tour before the older two simulated steps. Keep all old images/dates and
+the partial status. This does not accept peer phone UI, real-world radio loss,
+tracking, process restart, push, iOS, actual payment or release. The prior CI copy
+failure remains separate. Network defaults and clipboard are restored; provider
+uninstall acknowledgment and session closure are observed, while independent
+package absence is not measured. The owned private runtime/helper are disposed.
+Public access stays unchanged. See `docs/release/evidence/chat-network-phone-2026-10-31/README.md`.
+
 The 5d69928 follow-up passes the strict chat instrumentation and then fails its
 primary network-recovery file copy. Retain that named failure, the later successful
 cleanup copy, complete device restoration and all previous preparation failures

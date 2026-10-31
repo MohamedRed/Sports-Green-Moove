@@ -1,5 +1,6 @@
 import {appearanceCaptures} from './appearance-flow.mjs';
 import {searchDeparturePhoneCaptures} from './search-departure-phone.mjs';
+import {chatNetworkPhoneCaptures} from './chat-network-phone.mjs';
 import {accentControlCaptures} from './accent-controls-flow.mjs';
 import {tripConsentPhoneCaptures} from './trip-consent-phone.mjs';
 import {supportSubmissionCaptures} from './support-submission-captures.mjs';
@@ -30,6 +31,7 @@ import {bookingReceiptCaptures} from './booking-receipt-phone.mjs';
 import {bookingBeforeAckCaptures} from './booking-before-ack-phone.mjs';
 
 export const captures = {
+  ...chatNetworkPhoneCaptures,
   ...searchDeparturePhoneCaptures,
   ...accentControlCaptures,
   ...appearanceCaptures,

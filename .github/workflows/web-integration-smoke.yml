@@ -434,6 +434,7 @@ on:
       - "tests/disposable-install-admin.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
+      - "tests/chat-network-phone*.test.mjs"
       - "tests/chat-network-recheck-evidence.test.mjs"
       - "tests/native-gate-recheck-evidence.test.mjs"
       - "tests/published-media-seek-evidence.test.mjs"
@@ -965,6 +966,7 @@ on:
       - "tests/disposable-install-admin.test.mjs"
       - "tests/native-membership-config.test.mjs"
       - "tests/chat-network-config.test.mjs"
+      - "tests/chat-network-phone*.test.mjs"
       - "tests/chat-network-recheck-evidence.test.mjs"
       - "tests/native-gate-recheck-evidence.test.mjs"
       - "tests/published-media-seek-evidence.test.mjs"
@@ -1176,6 +1178,8 @@ jobs:
         run: node --test tests/search-departure-contract.test.mjs tests/search-departure-evidence.test.mjs
       - name: Validate physical calendar retry and latest native copy evidence
         run: node --test tests/search-departure-phone.test.mjs tests/search-departure-ci.test.mjs
+      - name: Validate controlled chat phone records and evidence
+        run: node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs
 
       - name: Validate approved disposable-phone installation policy
         run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs

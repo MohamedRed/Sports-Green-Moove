@@ -103,7 +103,7 @@ test('private progress keeps local scope and instability explicit, with unchange
   assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json');
   const blocker = content.blockers.find((item) => item.id === 'chat-send-stability');
   assert.equal(blocker.source, content.nativeVerification.source);
-  assert.match(blocker.text, /en simulation/); assert.match(blocker.text, /échecs précédents restent documentés/);
+  assert.match(blocker.text, /en simulation/); assert.notEqual(blocker.source, blocker.latestSource);
   assert(content.updates.some(row => row.flow === 'messages' && /avant la coupure/.test(row.text)));
   assert(content.updates.some((item) => item.title === 'Le nouvel essai complet passe'));
   const report = text('README.md');

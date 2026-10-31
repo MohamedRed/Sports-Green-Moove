@@ -1,0 +1,57 @@
+{
+  "scope": "physical-android-controlled-offline-chat-retry-with-sdk-peer-not-real-radio-loss",
+  "reviewedAt": "2026-10-31",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d7c994e5008757e4d45e068d427a762a",
+  "device": {
+    "model": "Google Pixel 9 Pro",
+    "android": "15.0",
+    "physical": true
+  },
+  "checkpointCount": 8,
+  "physicalControlledOfflineRetryAccepted": true,
+  "independentStoredMessages": 2,
+  "independentStoredNotifications": 2,
+  "automaticSendBeforeRetryObserved": false,
+  "parentMessageSentByController": false,
+  "driverReplySentByController": true,
+  "captureKind": "original-session-window-crops-not-native-device-exports",
+  "captureClip": {
+    "x": 452,
+    "y": 98,
+    "width": 216,
+    "height": 457
+  },
+  "publishedCaptures": {
+    "chat-phone-offline-unconfirmed": "captures/offline-unconfirmed.jpg",
+    "chat-phone-online-before-retry": "captures/online-before-retry.jpg",
+    "chat-phone-parent-sent": "captures/parent-sent.jpg",
+    "chat-phone-reply-read": "captures/reply-read.jpg"
+  },
+  "privateHelperScope": {
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "forceLocal": false,
+    "aliasEnabled": false,
+    "requestLoggingEnabled": false
+  },
+  "realWorldRadioLossAccepted": false,
+  "lostResponseAfterCommitAccepted": false,
+  "physicalTrackingAccepted": false,
+  "independentProcessRestartAccepted": false,
+  "peerPhoneAccepted": false,
+  "pushDeliveryAccepted": false,
+  "installedBytesIndependentlyAttested": false,
+  "packageAbsenceIndependentlyMeasured": false,
+  "mapsRequests": 0,
+  "realPaymentsExercised": false,
+  "productionWrites": false,
+  "iOSAccepted": false,
+  "fullNativeGateAccepted": false,
+  "priorCopyFailureFixed": false,
+  "releaseAccepted": false
+}

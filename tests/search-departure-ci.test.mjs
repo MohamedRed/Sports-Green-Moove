@@ -13,7 +13,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 test('latest failed primary copy stays distinct from passing instrumentation and cleanup copy', () => {
   assert.deepEqual(validateNativeCopyFollowup(root), {fullNativeGateAccepted: false,
     networkInstrumentationPassed: true, primaryCopyAccepted: false});
-  assert.equal(content.updates.find(row => row.flow === 'messages').source, nativeCopyFollowupFolder + 'README.md');
+  assert(content.updates.some(row => row.flow === 'messages' && row.source === nativeCopyFollowupFolder + 'README.md'));
   assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestSource, nativeCopyFollowupFolder + 'README.md');
   assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, nativeCopyFollowupFolder + 'README.md');
 });
