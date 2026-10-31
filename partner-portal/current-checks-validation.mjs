@@ -31,9 +31,12 @@ import {validateCaptureWindowEvidence} from '../scripts/qa/capture-window-eviden
 import {validateReleaseRecheck} from '../scripts/qa/release-recheck-evidence.mjs';
 import {childBookingReceiptFolder, validateChildBookingReceiptEvidence, validateLatestPreparationDiagnostics} from '../scripts/qa/child-booking-receipt-evidence.mjs';
 import {networkRepeatIdentity} from '../scripts/qa/chat-network-repeat-evidence.mjs';
+import {disconnectRecheckFolder, validateDisconnectRecheck} from '../scripts/qa/session-disconnect-recheck-evidence.mjs';
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateDisconnectRecheck(root);
+  assert(content.updates.some(row => row.source === disconnectRecheckFolder + 'README.md'));
   validateSearchDepartureEvidence(root);
   validateSearchDeparturePhone(root);
   validateNativeCopyFollowup(root);

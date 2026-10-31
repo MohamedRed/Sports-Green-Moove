@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-10-23",
+  "generatedAt": "2026-10-31",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -295,9 +295,12 @@
       {
         "id": "emergency_contact_action_screenshot",
         "status": "pending",
-        "description": "The historical screenshot shows a static emergency-contact panel, not an actionable contact flow. The current ride panel has no click handler and Options displays a fixed example number. A configured target, enabled action and verified dialer handoff are still required; screenshot dimensions alone cannot accept this item.",
+        "description": "Saved-contact management and two-actor active-ride dial-only handoffs passed in isolated native replay. Later physical trials retrieved the child's saved contact with location denied, but both the app's Open Phone action and the independent system Phone entry returned Home. No physical dialer handoff or cause is established. Keep pending until actual active-ride action-to-dialer evidence is retained on a phone, without placing a call; neither a static panel nor simulated-device proof accepts this requirement.",
         "evidenceRefs": [
           "../contracts/emergency-contact.md",
+          "evidence/ride-emergency-pass-2026-10-19/README.md",
+          "evidence/emergency-dialer-samsung-2026-10-24/README.md",
+          "evidence/child-emergency-phone-2026-10-26/README.md",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/27694823687/artifacts/7697882254"
         ]
       },

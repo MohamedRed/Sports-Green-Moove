@@ -1,7 +1,13 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { readFileSync } from 'node:fs';
+import {cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {dirname, resolve} from 'node:path';
+import {tmpdir} from 'node:os';
+import {fileURLToPath} from 'node:url';
 import { sessionTransportPhases, validateSessionTransportObservations } from '../scripts/qa/session-transport-observations.mjs';
+import {disconnectRecheckFolder, validateDisconnectRecheck} from '../scripts/qa/session-disconnect-recheck-evidence.mjs';
+import {content} from '../partner-portal/content.mjs';
 
 const runId = 'a'.repeat(32);
 function fixture(phases = sessionTransportPhases) {
@@ -92,3 +98,29 @@ test('the disconnect flow reuses the bounded prefix without claiming the longer 
   assert(host.indexOf('assertSessionDisconnectStage(') < host.indexOf('if (failure) throw failure;'));
   assert(host.includes('verifySessionRestorationRecords(baseline,'));
 });
+
+const root = fileURLToPath(new URL('..', import.meta.url));
+test('a passing disconnect replay retains its preceding auth failure and the original dated gallery', () => {
+  assert.deepEqual(validateDisconnectRecheck(root), {failedInitialAuthAttempts: 1, passedNativeCases: 2,
+    localDisconnectReplayAccepted: true, releaseAccepted: false});
+  assert(content.updates.some(row => row.flow === 'session-disconnect' && row.source === disconnectRecheckFolder + 'README.md'));
+  const flow = content.flows.find(row => row.id === 'session-disconnect');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-20');
+  assert.equal(flow.ui.source, 'docs/release/evidence/session-disconnect-native-2026-10-20/session-disconnect-results.json');
+  assert.equal(flow.images.length, 3); assert.equal(flow.tour.length, 3);
+});
+for (const key of ['priorAuthFailureFixed', 'rootCauseConfirmed', 'newDiagnosticsExercised', 'fullNativeGateAccepted',
+  'physicalDeviceAccepted', 'realNetworkLossVerified', 'productionWrites', 'releaseAccepted'])
+  test('rehashing the new replay cannot promote ' + key, t => {
+    const temp = mkdtempSync(resolve(tmpdir(), 'sgm-disconnect-recheck-')); t.after(() => rmSync(temp, {recursive: true, force: true}));
+    const folder = resolve(temp, disconnectRecheckFolder); cpSync(resolve(root, disconnectRecheckFolder), folder, {recursive: true});
+    const archive = resolve(temp, 'docs/release/evidence/source-archive'); mkdirSync(dirname(archive), {recursive: true});
+    symlinkSync(resolve(root, 'docs/release/evidence/source-archive'), archive);
+    validateDisconnectRecheck(temp);
+    const review = JSON.parse(readFileSync(resolve(folder, 'review.json'))); review[key] = true;
+    const bytes = JSON.stringify(review); writeFileSync(resolve(folder, 'review.json'), bytes);
+    const hashes = JSON.parse(readFileSync(resolve(folder, 'artifact-sha256.json')));
+    hashes['review.json'] = createHash('sha256').update(bytes).digest('hex');
+    writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify(hashes));
+    assert.throws(() => validateDisconnectRecheck(temp), new RegExp(key));
+  });

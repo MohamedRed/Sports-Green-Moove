@@ -35,7 +35,9 @@ assert.ok(!report.storeReviewEvidence.passed.includes("emergency_contact_action_
 const emergency = report.manifest.data.storeReviewEvidence.items.find((item) => item.id === "emergency_contact_action_screenshot");
 assert.equal(emergency.status, "pending");
 assert.ok(emergency.evidenceRefs.includes("../contracts/emergency-contact.md"));
-assert.match(emergency.description, /no click handler/);
+assert.match(emergency.description, /No physical dialer handoff or cause is established/);
+assert.doesNotMatch(emergency.description, /current ride panel has no click handler|Options displays a fixed/);
+assert.ok(emergency.evidenceRefs.includes("evidence/child-emergency-phone-2026-10-26/README.md"));
 assert.ok(
   report.providerEnvironment.presentFromSecretInventory.includes("STRIPE_WEBHOOK_SECRET"),
   "Default release gap report should count configured GitHub secret names from the checked-in inventory.",

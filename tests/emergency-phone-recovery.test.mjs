@@ -17,7 +17,11 @@ test('a failed system-dialer prerequisite adds no accepted app capture, handoff 
   assert.equal(flow.status, 'partial'); assert.equal(flow.dialerPreflight.source, preflight);
   assert(flow.images.every(image => !image.file.includes('preflight')));
   const manifest = JSON.parse(readFileSync(new URL('../docs/release/evidence-manifest.json', import.meta.url)));
-  assert.equal(manifest.storeReviewEvidence.items.find(item => item.id === 'emergency_contact_action_screenshot').status, 'pending');
+  const emergency = manifest.storeReviewEvidence.items.find(item => item.id === 'emergency_contact_action_screenshot');
+  assert.equal(emergency.status, 'pending');
+  assert.match(emergency.description, /No physical dialer handoff or cause is established/);
+  assert.doesNotMatch(emergency.description, /current ride panel has no click handler|Options displays a fixed/);
+  assert(emergency.evidenceRefs.includes('evidence/child-emergency-phone-2026-10-26/README.md'));
   assert.equal(archivedProgress.length, 85);
   assert(archivedProgress.every(item => item.date <= '2026-10-18'));
   assert(recentProgress.length > archivedProgress.length);

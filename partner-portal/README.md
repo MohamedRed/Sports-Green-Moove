@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The 31 October disconnect recheck retains one failed initial-auth attempt and a
+later successful two-process app replay, with byte-identical bound source files
+at their two commits. It accepts only that local replay, not an instability
+repair, physical outage, new observer execution or full Native gate. Add a short
+dated note without replacing the original 20 October gallery, tour or dates.
+Keep the Site public. Both original ZIP digests were verified; whole archives
+remain private and only selected, checksummed members enter the evidence bundle.
+See `docs/release/evidence/session-disconnect-recheck-2026-10-31/README.md`.
+
 The later 31 October sequence follow-up accepts the 5fa6fc4 main replay's 37
 groups/40 cases and seventeen primary copies, but not its whole Native workflow:
 one separate chat device fails to boot and its aggregate fails. The same-source

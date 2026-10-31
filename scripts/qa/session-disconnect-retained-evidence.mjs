@@ -36,7 +36,7 @@ export function validateSessionDisconnectReport(report) {
     'android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt']) assert(report.sourceFiles[file]);
 }
 
-export function validateRetainedSessionDisconnect(root, source) {
+export function validateSessionDisconnectArtifactFiles(root, source) {
   const directory = dirname(resolve(root, source)), read = file => readFileSync(resolve(directory, file));
   const json = file => JSON.parse(read(file)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
   const report = JSON.parse(readFileSync(resolve(root, source)));
@@ -63,6 +63,14 @@ export function validateRetainedSessionDisconnect(root, source) {
     assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert(bytes.length > 24 && bytes.readUInt32BE(16) >= 300 && bytes.readUInt32BE(20) > bytes.readUInt32BE(16));
   }
+  assertRetainedSourceFiles(root, report.sourceFiles);
+  return report;
+}
+
+export function validateRetainedSessionDisconnect(root, source) {
+  const report = validateSessionDisconnectArtifactFiles(root, source);
+  const directory = dirname(resolve(root, source)), read = file => readFileSync(resolve(directory, file));
+  const json = file => JSON.parse(read(file)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
   const context = json('retained-context.json'), ci = json('native-ci-run.json'), artifact = json('artifact-metadata.json');
   assert.equal(context.runId, report.runId);
   assert.equal(context.scope, 'single-local-session-disconnect-native-trial-not-complete-release');
@@ -83,7 +91,6 @@ export function validateRetainedSessionDisconnect(root, source) {
   }
   assert.equal(artifact.id, context.artifactId); assert(Number.isSafeInteger(artifact.id) && artifact.id > 0);
   assert.equal(artifact.name, 'android-focused-safety-ui-session-disconnect'); assert.match(artifact.digest, /^sha256:[a-f0-9]{64}$/);
-  assertRetainedSourceFiles(root, report.sourceFiles);
   const hashes = json('artifact-sha256.json');
   assert.deepEqual(Object.keys(hashes).sort(), [...sessionDisconnectCaptures, ...sessionDisconnectTranscripts,
     'local-session-disconnect-before.json', 'local-session-disconnect-stop.json', 'local-session-disconnect-device.json',

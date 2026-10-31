@@ -2,6 +2,7 @@ import {appearanceProgress} from './appearance-flow.mjs';
 import {searchDeparturePhoneProgress} from './search-departure-phone.mjs';
 import {chatNetworkPhoneProgress} from './chat-network-phone.mjs';
 import {transferLifecycleProgress} from './transfer-lifecycle.mjs';
+import {disconnectRecheckProgress} from './session-disconnect-recheck.mjs';
 import {nativeCopyFollowupProgress} from './native-copy-followup.mjs';
 import {searchDepartureProgress, searchDepartureSequenceProgress} from './search-departure.mjs';
 import {tlsAgentSecurityProgress} from './tls-agent-security.mjs';
@@ -45,6 +46,7 @@ import {staleCancellationProgress, cancellationBaselineProgress} from './cancell
 import {invitationConnectionProgress, nativeCapacityProgress} from './preparation-failures.mjs';
 
 export const currentProgress = [
+  disconnectRecheckProgress,
   transferLifecycleProgress,
   chatNetworkPhoneProgress,
   searchDeparturePhoneProgress,
