@@ -47,10 +47,11 @@ import {childBookingReceiptProgress, latestChatPreparationProgress, latestGenera
 import {chatNetworkRepeatProgress} from './chat-network-repeat.mjs';
 import {nativeTimeBudgetProgress, nativeBudgetExecutionProgress} from './native-time-budget.mjs';
 import {staleCancellationProgress, cancellationBaselineProgress} from './cancellation-stale-phone.mjs';
-import {invitationConnectionProgress, nativeCapacityProgress} from './preparation-failures.mjs';
+import {invitationConnectionProgress, nativeCapacityProgress, invitationRecheckProgress} from './preparation-failures.mjs';
 import {sessionRecoveryProgress, chatOwnerDraftProgress, recoveryGateProgress} from './session-recovery-recheck.mjs';
 
 export const currentProgress = [
+  invitationRecheckProgress,
   sessionRecoveryProgress,
   chatOwnerDraftProgress,
   recoveryGateProgress,

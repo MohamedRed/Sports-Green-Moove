@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The fresh 31 October invitation browser trial still fails on both approved
+loopback names before the form, despite later live host/helper observations.
+All original accounts/roles and the pending invitation remain unchanged. The
+helper now stops on request, the session ends, and the five-port runtime scope
+is removed. Publish one short incomplete-result note, without public diagnostic
+images, new account/approval acceptance, alias, audience or gallery/date changes.
+See `docs/release/evidence/invitation-connection-recheck-2026-10-31/README.md`.
+
 The later 31 October 89fda8c rechecks pass session restoration and the corrected
 owner-private chat-draft contract on virtual devices. The original session timeout
 remains unexplained; five critical sources match, not the whole APK. Publish short

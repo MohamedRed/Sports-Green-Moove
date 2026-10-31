@@ -1,0 +1,47 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "f3e1b7d6e1b4a972cf7ac37d27ce7c22",
+  "observedAt": "2026-10-31T22:31:34.132Z",
+  "accountCount": 3,
+  "childAccountExists": false,
+  "invitationStatus": "pending",
+  "redemptionCount": 0,
+  "approvalRequestCount": 0,
+  "accountLinkCount": 0,
+  "claims": [
+    {
+      "uid": "sgm-qa-club-manager",
+      "claims": {
+        "roleKeys": [
+          "clubManager",
+          "parent"
+        ]
+      }
+    },
+    {
+      "uid": "sgm-qa-driver",
+      "claims": {
+        "roleKeys": [
+          "driver",
+          "parent"
+        ]
+      }
+    },
+    {
+      "uid": "sgm-qa-parent",
+      "claims": {
+        "roleKeys": [
+          "parent"
+        ]
+      }
+    }
+  ],
+  "scope": "independent-records-after-phone-connection-failure-not-ui-or-root-cause-proof",
+  "browserFormReached": false,
+  "signupProven": false,
+  "parentApprovalProven": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true
+}

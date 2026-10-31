@@ -4,6 +4,7 @@ import {resolve} from 'node:path';
 import {imageSize} from 'image-size';
 import {assertEvidenceBundleChecksums} from './evidence-bundle-checksums.mjs';
 import {assertRetainedSourceFiles} from './retained-source-evidence.mjs';
+import {validateInvitationConnectionRecheck} from './invitation-connection-recheck-evidence.mjs';
 
 export const invitationConnectionFolder = 'docs/release/evidence/invitation-phone-connection-2026-10-30/';
 export const nativeCapacityFolder = 'docs/release/evidence/native-capacity-e64555e-2026-10-30/';
@@ -39,6 +40,7 @@ export function assertInvitationConnectionFailure(summary, observation, records,
     'temporaryDeviceAdministratorUsed', 'devicePolicyChanged']) assert.equal(phone[key], false, key);
 }
 export function validateInvitationConnectionFailure(root) {
+  validateInvitationConnectionRecheck(root);
   const base = resolve(root, invitationConnectionFolder), get = file => json(resolve(base, file + '.json'));
   assertEvidenceBundleChecksums(base);
   assertInvitationConnectionFailure(get('summary'), get('observations'), get('connection-blocked-records'), get('disposal'), get('phone-disposal'));
