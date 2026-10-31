@@ -50,7 +50,7 @@ class SearchCriteriaFlowTest {
         option("2 places")
         option("Grand")
         option("Retour")
-        compose.onNodeWithTag(SgmTestTags.SearchDateInput).performScrollTo().performTextReplacement("2026-10-17T16:30:00Z")
+        chooseSearchDeparture(compose, "2026-10-17T16:30:00Z")
         search()
         capture("local-search-retained-options.png")
         compose.onNodeWithTag(SgmTestTags.BackAction).performClick()
@@ -61,7 +61,8 @@ class SearchCriteriaFlowTest {
         choice("Suivi enfant").assertIsSelected()
         choice("Consentement").assertIsSelected()
         choice("Enfant B QA").performScrollTo().assertIsSelected()
-        compose.onNodeWithTag(SgmTestTags.SearchDateInput).assertTextEquals("2026-10-17T16:30:00Z")
+        compose.onNodeWithTag(SgmTestTags.SearchDateInput).assertTextEquals("17/10/2026")
+        compose.onNodeWithTag(SgmTestTags.SearchTimeInput).assertTextEquals("18:30 · Bruxelles")
         compose.onNodeWithTag(SgmTestTags.SearchOriginInput).performScrollTo().assertTextEquals("Départ options QA")
         compose.onNodeWithTag(SgmTestTags.SearchDestinationInput).assertTextEquals("Arrivée options QA")
         compose.onNodeWithTag(SgmTestTags.BookingRequestAction).performScrollTo().performClick()
@@ -70,6 +71,7 @@ class SearchCriteriaFlowTest {
             assertEquals(Triple(UiFlowFixtures.match.tripId, "child-b", 2), bookings.single())
             assertEquals(2, searches.single().seatsNeeded)
             assertEquals("large", searches.single().baggage)
+            assertEquals("2026-10-17T16:30:00Z", searches.single().desiredDepartureAtIso)
             assertTrue(searches.single().returnTrip && searches.single().guardianConsent)
         }
     }
@@ -82,7 +84,7 @@ class SearchCriteriaFlowTest {
             { option("2 places") }, { option("Grand") }, { option("Retour") }, { option("Enfant B QA") },
             { option("Suivi enfant") }, { option("Consentement") },
             { val next = Instant.parse(current.form.desiredDepartureAtIso).plusSeconds(3600).toString()
-                compose.onNodeWithTag(SgmTestTags.SearchDateInput).performScrollTo().performTextReplacement(next) },
+                chooseSearchDeparture(compose, next) },
         )
         for (change in changes) {
             search()
@@ -115,6 +117,9 @@ class SearchCriteriaFlowTest {
             current = rememberSearchController(providers, rememberCoroutineScope(), "criteria-parent", { error.value = it }, {}, {})
             if (visible.value) SearchRoute(current, children, error.value, { visible.value = false })
             else V2Button("Revenir à la recherche", { visible.value = true }, testTag = "search.returnFromHost")
+        }
+        compose.runOnIdle {
+            current.updateForm(current.form.copy(desiredDepartureAtIso = "2026-10-16T16:30:00Z"))
         }
     }
     private fun selectPlaces() {

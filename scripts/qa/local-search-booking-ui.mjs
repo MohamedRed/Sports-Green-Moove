@@ -71,8 +71,11 @@ if (failure) throw failure;
 const sourcePaths = ['local-search-booking-ui.mjs', 'search-booking-fixture.mjs', 'search-booking-records.mjs',
   'search-booking-checkpoint.mjs', 'search-booking-evidence.mjs', 'search-maps-policy.mjs', 'search-maps-fetch.mjs',
   'map-broker-server.mjs', 'real-maps-runtime.mjs', 'real-maps-function-bridge.mjs'].map(name => 'scripts/qa/' + name);
-sourcePaths.push(...['LocalParentSearchBookingTest.kt', 'SearchBookingCheckpoint.kt', 'LocalUiCapture.kt']
+sourcePaths.push(...['LocalParentSearchBookingTest.kt', 'SearchBookingCheckpoint.kt', 'LocalUiCapture.kt',
+  'SearchDeparturePickerInput.kt', 'NativeDatePickerInput.kt', 'NativeTimePickerInput.kt']
   .map(name => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + name));
+sourcePaths.push(...['SearchDepartureField.kt', 'SearchDepartureInput.kt']
+  .map(name => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + name));
 save('search-booking-app-results.json', { ...native, fixtureIsolation: isolation, primaryEvidencePhase: 'parent-search-booking',
   primaryCopy: primary, apkPreparation, localPackagesRemoved: true, adminClientClosed: true, checkpointServerClosed: true,
   cleanupMode: 'destroy-owned-local-environment', sourceCommit: run('git', ['rev-parse', 'HEAD']).trim(),

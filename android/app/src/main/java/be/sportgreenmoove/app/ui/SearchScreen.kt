@@ -53,8 +53,8 @@ fun SearchScreen(
                 onSuggestOrigin, onSelectOrigin, SgmTestTags.SearchOriginInput)
             PlaceSearchField("Destination", destinationInput, destination, destinationSuggestions, onDestinationChanged,
                 onSuggestDestination, onSelectDestination, SgmTestTags.SearchDestinationInput)
-            SearchInput("Date et heure de départ", form.desiredDepartureAtIso,
-                { onFormChange(form.copy(desiredDepartureAtIso = it)) }, testTag = SgmTestTags.SearchDateInput)
+            SearchDepartureField(form.desiredDepartureAtIso,
+                { onFormChange(form.copy(desiredDepartureAtIso = it)) })
             SearchChildSelector(
                 children = children,
                 selectedChildId = form.childUserId,

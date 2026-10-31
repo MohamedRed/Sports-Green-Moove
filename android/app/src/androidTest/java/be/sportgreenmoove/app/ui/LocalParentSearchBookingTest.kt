@@ -82,7 +82,7 @@ class LocalParentSearchBookingTest {
                     waitFor("$tag.resolved")
                     compose.onNodeWithTag("$tag.resolved").performScrollTo().assertIsDisplayed()
                 }
-                compose.onNodeWithTag(SgmTestTags.SearchDateInput).performScrollTo().performTextReplacement(departure)
+                chooseSearchDeparture(compose, departure)
                 compose.onNodeWithText("Aucun").performScrollTo().performClick().assertIsSelected()
                 compose.onNodeWithText("Lina QA").performScrollTo().performClick().assertIsSelected()
                 compose.onNodeWithText("2 places").performScrollTo().performClick().assertIsSelected()

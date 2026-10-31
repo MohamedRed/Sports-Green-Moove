@@ -31,6 +31,7 @@ object SgmTestTags {
     const val SearchOriginInput = "search.origin.input"
     const val SearchDestinationInput = "search.destination.input"
     const val SearchDateInput = "search.date.input"
+    const val SearchTimeInput = "search.time.input"
     const val BookingRequestAction = "booking.request.action"
     const val BookingRequestConfirmed = "booking.request.confirmed"
     const val GuardianConsentDisclosure = "store.guardian-consent-disclosure"
