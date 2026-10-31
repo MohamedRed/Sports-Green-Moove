@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 31 October source 5091ec5 passes the complete Native workflow, all eleven
+focused lanes and every non-skipped check at that source. Its 37 replay groups,
+40 instrumented cases and 17 primary copies pass with independently verified
+archive provenance. Publish one concise simulation-result note; keep all partial
+flows, historical failures, galleries, dates, tours and public audience. Record
+the complete pass separately from the still-unexplained intermittent copy failures.
+The e7a1e34 account-free probe executes the new guest observer and passes 32 exact
+transfers, with matching sampled guest identities; it does not reproduce failure
+or prove continuous execution, root cause, repair, physical or release readiness.
+See `docs/release/evidence/full-native-5091ec5-2026-10-31/README.md`.
+
 The 31 October ecd9b67 main trial starts, passes 222 ordinary cases/54 skips and
 component captures, then fails its primary trip-change copy. All eleven separate
 jobs and their post-image capacity steps pass. Remove only the obsolete hosted

@@ -50,8 +50,10 @@ import {staleCancellationProgress, cancellationBaselineProgress} from './cancell
 import {invitationConnectionProgress, nativeCapacityProgress, invitationRecheckProgress} from './preparation-failures.mjs';
 import {sessionRecoveryProgress, chatOwnerDraftProgress, recoveryGateProgress} from './session-recovery-recheck.mjs';
 import {copyReconnectProgress} from './copy-reconnect.mjs';
+import {fullNativePassProgress} from './full-native-pass.mjs';
 
 export const currentProgress = [
+  fullNativePassProgress,
   copyReconnectProgress,
   invitationRecheckProgress,
   sessionRecoveryProgress,

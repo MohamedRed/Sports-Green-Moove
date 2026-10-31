@@ -48,6 +48,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate physical calendar retry and latest native copy evidence')
     .filter(step => step.name !== 'Validate controlled chat phone records and evidence')
     .filter(step => step.name !== 'Test bound emulator transfer observations')
+    .filter(step => step.name !== 'Validate complete native pass without release promotion')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -57,6 +58,8 @@ test('all 111 original workload steps retain their exact commands, environments,
   const transport = workflow.jobs.smoke.steps.filter(step => step.name === 'Test bound emulator transfer observations');
   assert.equal(transport.length, 1);
   assert.equal(transport[0].run, 'node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-transfer-emulator.test.mjs');
+  const complete = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate complete native pass without release promotion');
+  assert.equal(complete.length, 1); assert.equal(complete[0].run, 'node --test tests/native-full-gate-pass.test.mjs');
   const chatPhone = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate controlled chat phone records and evidence');
   assert.equal(chatPhone.length, 1);
   assert.equal(chatPhone[0].run, 'node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs');

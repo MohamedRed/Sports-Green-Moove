@@ -8,9 +8,11 @@ import {validateNativeTimeout, validateNativeBudgetFollowup} from '../scripts/qa
 import {validateNativeBudgetExecution} from '../scripts/qa/native-budget-execution-evidence.mjs';
 import {transferPeerLossFolder} from '../scripts/qa/transfer-peer-loss-evidence.mjs';
 import {copyReconnectFolder,validateCopyReconnect} from '../scripts/qa/copy-reconnect-evidence.mjs';
+import {fullNativePassFolder,validateFullNativePass} from '../scripts/qa/full-native-pass-evidence.mjs';
 
 export function validateNativeStatus(root, blockers) {
   const blocker = blockers.find(row => row.id === 'native-evidence-copy');
+  assert.equal(blocker.latestPassingSource,fullNativePassFolder+'README.md');validateFullNativePass(root);
   assert.equal(blocker.latestSource, copyReconnectFolder + 'README.md'); validateCopyReconnect(root);
   assert(!blockers.some(row=>row.id==='native-device-capacity'));
   assert.equal(blocker.previousSource, transferPeerLossFolder + 'README.md'); validateNativeTimeout(root); validateSupportRecheckCi(root);
