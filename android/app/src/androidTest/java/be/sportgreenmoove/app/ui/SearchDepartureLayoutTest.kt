@@ -49,7 +49,7 @@ class SearchDepartureLayoutTest(private val dark: Boolean, private val width: In
         }
     }
     companion object {
-        @JvmStatic @Parameterized.Parameters(name = "dark={0},width={1}") fun cases(): Collection<Array<Any>> =
+        @JvmStatic @Parameterized.Parameters(name = "dark-{0}-width-{1}") fun cases(): Collection<Array<Any>> =
             listOf(false, true).flatMap { dark -> listOf(arrayOf<Any>(dark, 320, 3f), arrayOf<Any>(dark, 900, 1f)) }
     }
 }
