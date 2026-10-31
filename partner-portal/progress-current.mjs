@@ -1,6 +1,7 @@
 import {appearanceProgress} from './appearance-flow.mjs';
 import {chatDraftPhoneProgress} from './chat-draft-phone.mjs';
 import {chatDraftReplayProgress} from './chat-draft-replay-phone.mjs';
+import {chatPendingRestartProgress} from './chat-pending-restart-phone.mjs';
 import {searchDeparturePhoneProgress} from './search-departure-phone.mjs';
 import {chatNetworkPhoneProgress} from './chat-network-phone.mjs';
 import {transferLifecycleProgress} from './transfer-lifecycle.mjs';
@@ -53,6 +54,7 @@ import {copyReconnectProgress} from './copy-reconnect.mjs';
 import {fullNativePassProgress} from './full-native-pass.mjs';
 
 export const currentProgress = [
+  chatPendingRestartProgress,
   fullNativePassProgress,
   copyReconnectProgress,
   invitationRecheckProgress,

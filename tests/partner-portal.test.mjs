@@ -197,7 +197,10 @@ test('message service claims use the refreshed 24-group evidence and retain hist
   assert(content.blockers.some((item) => item.id === 'account-switch-stability'));
   assert.equal(flow.status, 'partial');
   assert.equal(content.flows.find(item => item.id === 'team-conversation').status, 'partial');
-  assert.match(flow.summary, /brouillon revient/);
+  assert.match(flow.summary, /message en attente revient/);
+  const pendingReview = JSON.parse(source(flow.pendingSendRestartPhone.source));
+  assert.equal(pendingReview.pendingTextRestored, true);
+  assert.equal(pendingReview.postCommitResponseLossAccepted, false);
   const draftReview = JSON.parse(source(flow.unsentDraftPhone.source));
   assert.equal(draftReview.keyboardAndComposerVisible, true);
   assert.equal(draftReview.draftRestoredAfterProcessRestart, false);

@@ -55,7 +55,7 @@ test('published captures and copy retain controlled local scope and all older ev
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
   }
   assert(flow.images.some((image) => image.file === 'chat-restart-reply'));
-  assert.match(flow.remaining, /un envoi interrompu puis relancé/); assert.match(flow.remaining, /téléphones/);
+  assert.match(flow.remaining, /confirmation perdue/); assert.match(flow.remaining, /téléphones/);
   assert.match(flow.unsentDraftReplayPhone.source, /chat-draft-replay-phone-2026-10-31/);
   assert.match(flow.remaining, /coupures réelles/);
   assert.match(read('README.md'), /not full-app navigation/);

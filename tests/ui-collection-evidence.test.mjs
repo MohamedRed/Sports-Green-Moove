@@ -79,7 +79,7 @@ test('the updated portal uses only the completed replay and retains remaining gr
   assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/README.md');
   assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json');
   for (const name of ['confirmed', 'rejected-retry']) assert.equal(captures['chat-loss-' + name], directory + 'accepted-run/local-chat-loss-' + name + '.png');
-  assert.match(flow.remaining, /groupes/); assert.match(flow.remaining, /téléphones/); assert.match(flow.remaining, /un envoi interrompu puis relancé/);
+  assert.match(flow.remaining, /groupes/); assert.match(flow.remaining, /téléphones/); assert.match(flow.remaining, /confirmation perdue/);
   assert.match(read(directory + 'README.md'), /One passing run does not establish why/);
   const workflow = read('.github/workflows/web-integration-smoke.yml');
   assert.equal(workflow.split('"tests/ui-collection-evidence.test.mjs"').length - 1, 2);

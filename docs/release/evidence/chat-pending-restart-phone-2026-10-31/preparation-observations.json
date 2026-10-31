@@ -1,0 +1,21 @@
+{
+  "initialHelperPrivateInputFailed": true,
+  "followupClipboardReadReturnedEmpty": true,
+  "initialHelperFailureCode": "ERR_ASSERTION",
+  "initialHelperFailureRootCauseConfirmed": false,
+  "initialHelperGroupExitVerified": true,
+  "initialHelperDirectoryAbsent": true,
+  "secretPrinted": false,
+  "credentialRotated": false,
+  "directPrivateCredentialTransferSucceeded": true,
+  "credentialMaskedAgain": true,
+  "privateScopeExpanded": false,
+  "emailInputCorrectedBeforeSuccessfulSignIn": true,
+  "remoteKeyboardTextCorrectedBeforeFirstSend": true,
+  "videoRecordingStarted": false,
+  "videoFailureModal": "Video recording failed to start",
+  "videoModalRequestedScreenSharingPermission": true,
+  "videoFailureRootCauseConfirmed": false,
+  "screenSharingPermissionsChanged": false,
+  "chromeRestarted": false
+}

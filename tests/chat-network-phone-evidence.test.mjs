@@ -16,11 +16,12 @@ test('physical controlled retry retains exact stored records separately from rea
   const flow = content.flows.find(row => row.id === 'messages');
   assert.equal(flow.checkedAt, '2026-10-31'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
   assert.equal(flow.networkRecoveryPhone.source, chatNetworkPhoneFolder + 'review.json');
-  assert.equal(flow.images.filter(image => !image.file.startsWith('chat-draft-replay-')).length, 23);
+  assert.equal(flow.images.filter(image => !image.file.startsWith('chat-draft-replay-') && !image.file.startsWith('chat-phone-pending-')).length, 23);
   assert.equal(flow.images.filter(image => image.file.startsWith('chat-draft-replay-')).length, 2);
-  assert.equal(flow.tour.length, 6);
-  assert(flow.tour.slice(0, 4).every(row => row.image.startsWith('chat-phone-')));
-  assert.deepEqual(flow.tour.slice(4).map(row => row.image), ['chat-network-isolated-draft', 'chat-network-isolated-reply']);
+  const originalTour = flow.tour.filter(row => !row.image.startsWith('chat-phone-pending-'));
+  assert.equal(originalTour.length, 6);
+  assert(originalTour.slice(0, 4).every(row => row.image.startsWith('chat-phone-')));
+  assert.deepEqual(originalTour.slice(4).map(row => row.image), ['chat-network-isolated-draft', 'chat-network-isolated-reply']);
   const review = JSON.parse(readFileSync(resolve(root, flow.networkRecoveryPhone.source)));
   for (const [name, path] of Object.entries(review.publishedCaptures)) assert.equal(captures[name], chatNetworkPhoneFolder + path);
   assert(content.updates.some(row => row.flow === 'messages' && row.source === chatNetworkPhoneFolder + 'README.md'));
@@ -50,7 +51,7 @@ test('both workflows run controlled phone records and retained evidence without 
     const workflow = parseDocument(readFileSync(resolve(root, '.github/workflows', name + '.yml'), 'utf8')).toJSON();
     const steps = Object.values(workflow.jobs).flatMap(job => job.steps ?? []).filter(row => row.name === 'Validate controlled chat phone records and evidence');
     assert.equal(steps.length, 1);
-    assert.equal(steps[0].run, 'node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs');
+    assert.equal(steps[0].run, 'node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs tests/chat-pending-restart-checkpoints.test.mjs tests/chat-pending-restart-phone.test.mjs');
     assert.equal(steps[0].if, undefined); assert.equal(steps[0]['continue-on-error'], undefined);
     for (const event of ['push', 'pull_request']) assert(workflow.on[event].paths.includes('tests/chat-network-phone*.test.mjs'));
   }

@@ -6,9 +6,11 @@ import {validateChatNetworkRepeat} from '../scripts/qa/chat-network-repeat-evide
 import {chatNetworkPhoneFolder, validateChatNetworkPhone} from '../scripts/qa/chat-network-phone-evidence.mjs';
 import {chatDraftPhoneFolder, validateChatDraftPhone} from '../scripts/qa/chat-draft-phone-evidence.mjs';
 import {chatDraftReplayPhoneFolder, validateChatDraftReplayPhone} from '../scripts/qa/chat-draft-replay-phone-evidence.mjs';
+import {chatPendingRestartPhoneFolder,validateChatPendingRestartPhone} from '../scripts/qa/chat-pending-restart-phone-evidence.mjs';
 
 export function validateMessagesEvidence(root, flow, captures) {
   if (flow.id !== 'messages') return;
+  assert.equal(flow.pendingSendRestartPhone.source,chatPendingRestartPhoneFolder+'review.json');validateChatPendingRestartPhone(root);
   assert.equal(flow.status, 'partial'); assert.equal(flow.networkRecovery.checkedAt, '2026-10-27');
   assert.equal(flow.checkedAt, flow.networkRecoveryPhone.checkedAt);
   assert.equal(flow.networkRecoveryPhone.source, chatNetworkPhoneFolder + 'review.json');

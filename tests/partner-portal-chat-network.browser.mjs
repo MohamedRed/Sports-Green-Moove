@@ -20,7 +20,7 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
           const image = document.querySelector('.media-stage img'); return image?.complete && image.naturalWidth > 0;
         });
         assert.deepEqual(await picture.evaluate(image => [image.naturalWidth, image.naturalHeight]),
-          image.file.startsWith('chat-draft-') ? [200, 435] : [216, 457]);
+          image.file.startsWith('chat-draft-') ? [200, 435] : image.file.startsWith('chat-phone-pending-') ? [216, 458] : [216, 457]);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
         assert(await dialog.evaluate(element => element.scrollWidth <= element.clientWidth));
         assert(await page.locator('.media-stage').evaluate(stage => {
@@ -39,6 +39,6 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
       }
     }
     assert.deepEqual(errors, []);
-    console.log('Corrected and original phone draft captures fit all four widths; older network proof, tour and gallery preserved.');
+    console.log('Pending restart, corrected and original phone draft captures fit all four widths; older network proof, tour and gallery preserved.');
   } finally {await page.close();}
 }

@@ -1,5 +1,17 @@
 # Local Multi-Person Flow Checks
 
+`manual-chat-pending-restart-phone.mjs <private-session-path> <fresh-output-directory>`
+prepares an isolated approved booking but never submits a chat message. Submit the
+nine names from `chat-pending-restart-checkpoints.mjs` only after observing their
+phone actions. All seven pre-retry states must contain no messages or notices;
+the final two require exactly one message, one addressed notice and consistent
+conversation indexes. Non-chat records, claims and live trips stay protected.
+`finish` requires every ordered checkpoint; stop/EOF retains an incomplete trial.
+The record observer cannot prove UI, process death, the original pending UUID,
+post-commit response loss or physical radio loss. Stop the phone/helper/backend
+separately and independently check disposal. The 31 October retained trial accepts
+only controlled pre-commit pending-text recovery and one explicit phone retry.
+
 Use `npm run test:local-flow-isolation`, then `npm run test:local-flows` with Node
 22 and Java 21 available. Set `SGM_LOCAL_FLOW_OUTPUT` to an absolute destination
 outside the temporary runtime when retaining evidence.

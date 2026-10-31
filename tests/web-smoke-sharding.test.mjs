@@ -62,7 +62,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(complete.length, 1); assert.equal(complete[0].run, 'node --test tests/native-full-gate-pass.test.mjs');
   const chatPhone = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate controlled chat phone records and evidence');
   assert.equal(chatPhone.length, 1);
-  assert.equal(chatPhone[0].run, 'node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs');
+  assert.equal(chatPhone[0].run, 'node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs tests/chat-pending-restart-checkpoints.test.mjs tests/chat-pending-restart-phone.test.mjs');
   const phoneRetry = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate physical calendar retry and latest native copy evidence');
   assert.equal(phoneRetry.length, 1);
   assert.equal(phoneRetry[0].run, 'node --test tests/search-departure-phone.test.mjs tests/search-departure-ci.test.mjs');

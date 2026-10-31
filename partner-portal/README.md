@@ -2,6 +2,19 @@
 
 ## Current Publication Policy
 
+The later 31 October physical pending-send trial cuts the connection before the
+server commit, observes Android App info force-stop and restores the same pending
+text after one session retry without signing in again. All seven pre-send-retry
+checkpoints stay empty; one explicit phone retry creates exactly one message and
+one notification. Publish only its three reviewed original session crops, prepend
+their tour, and preserve every old image, tour step and date. Messages remains
+partial. Post-commit reply loss, original pending UUID, account-switch and peer
+phone proof remain excluded. The video fails to start; no permission or browser
+restart is used. Uninstall reports no user apps; package absence is not verified.
+The session and owned four-service runtime/helper close. The clipboard is cleared,
+not independently proven restored. Preserve public access. See
+`docs/release/evidence/chat-pending-restart-phone-2026-10-31/README.md`.
+
 The later 31 October source 5091ec5 passes the complete Native workflow, all eleven
 focused lanes and every non-skipped check at that source. Its 37 replay groups,
 40 instrumented cases and 17 primary copies pass with independently verified

@@ -2,9 +2,11 @@ import { nativeVerification } from './native-verification.mjs';
 import {preparationBlockers} from './preparation-failures.mjs';
 
 export const blockers = [
-  {id: 'chat-pending-restart', title: 'Reprendre un envoi interrompu après fermeture',
-    text: 'Le brouillon revient après fermeture complète sur téléphone. Aucun message n’est envoyé tout seul.',
-    next: 'Vérifier un envoi interrompu puis relancé, le changement de compte et iPhone.', source: 'docs/release/evidence/chat-draft-replay-phone-2026-10-31/README.md'},
+  {id: 'chat-pending-restart', title: 'Vérifier les autres reprises d’envoi',
+    text: 'Le message en attente revient après fermeture complète. Réessayer ne crée qu’un message.',
+    next: 'Tester une confirmation perdue après enregistrement, le changement de compte et iPhone.',
+    source: 'docs/release/evidence/chat-pending-restart-phone-2026-10-31/README.md',
+    previousSource: 'docs/release/evidence/chat-draft-replay-phone-2026-10-31/README.md'},
   ...preparationBlockers,
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',
