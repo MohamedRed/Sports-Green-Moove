@@ -49,8 +49,10 @@ import {nativeTimeBudgetProgress, nativeBudgetExecutionProgress} from './native-
 import {staleCancellationProgress, cancellationBaselineProgress} from './cancellation-stale-phone.mjs';
 import {invitationConnectionProgress, nativeCapacityProgress, invitationRecheckProgress} from './preparation-failures.mjs';
 import {sessionRecoveryProgress, chatOwnerDraftProgress, recoveryGateProgress} from './session-recovery-recheck.mjs';
+import {copyReconnectProgress} from './copy-reconnect.mjs';
 
 export const currentProgress = [
+  copyReconnectProgress,
   invitationRecheckProgress,
   sessionRecoveryProgress,
   chatOwnerDraftProgress,

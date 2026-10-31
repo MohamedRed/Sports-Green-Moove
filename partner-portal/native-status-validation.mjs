@@ -7,11 +7,12 @@ import {validateSupportRecheckCi} from '../scripts/qa/support-recovery-recheck-e
 import {validateNativeTimeout, validateNativeBudgetFollowup} from '../scripts/qa/native-timeout-evidence.mjs';
 import {validateNativeBudgetExecution} from '../scripts/qa/native-budget-execution-evidence.mjs';
 import {transferPeerLossFolder} from '../scripts/qa/transfer-peer-loss-evidence.mjs';
-import {recoveryRecheckFolder} from '../scripts/qa/session-recovery-recheck-evidence.mjs';
+import {copyReconnectFolder,validateCopyReconnect} from '../scripts/qa/copy-reconnect-evidence.mjs';
 
 export function validateNativeStatus(root, blockers) {
   const blocker = blockers.find(row => row.id === 'native-evidence-copy');
-  assert.equal(blocker.latestSource, recoveryRecheckFolder + 'README.md');
+  assert.equal(blocker.latestSource, copyReconnectFolder + 'README.md'); validateCopyReconnect(root);
+  assert(!blockers.some(row=>row.id==='native-device-capacity'));
   assert.equal(blocker.previousSource, transferPeerLossFolder + 'README.md'); validateNativeTimeout(root); validateSupportRecheckCi(root);
   validateNativeBudgetFollowup(root);
   validateNativeBudgetExecution(root);

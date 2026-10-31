@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The 31 October ecd9b67 main trial starts, passes 222 ordinary cases/54 skips and
+component captures, then fails its primary trip-change copy. All eleven separate
+jobs and their post-image capacity steps pass. Remove only the obsolete hosted
+boot-capacity blocker; keep the copy blocker and all historical failures, media,
+dates/tours and public access. Publish one short local-result note. Guest logs
+show the same PID across connection retirement/recreation, not measured boot or
+process-birth continuity. The new account-free guest observer is not executed by
+this old artifact and is not a repair. See
+`docs/release/evidence/copy-reconnect-ecd9b67-2026-10-31/README.md`.
+
 The fresh 31 October invitation browser trial still fails on both approved
 loopback names before the form, despite later live host/helper observations.
 All original accounts/roles and the pending invitation remain unchanged. The

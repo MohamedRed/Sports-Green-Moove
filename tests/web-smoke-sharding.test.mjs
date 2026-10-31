@@ -56,7 +56,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(compression[0].run, 'node --test tests/compression-close-security.test.mjs tests/compression-close-security-evidence.test.mjs');
   const transport = workflow.jobs.smoke.steps.filter(step => step.name === 'Test bound emulator transfer observations');
   assert.equal(transport.length, 1);
-  assert.equal(transport[0].run, 'node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-emulator.test.mjs');
+  assert.equal(transport[0].run, 'node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-transfer-emulator.test.mjs');
   const chatPhone = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate controlled chat phone records and evidence');
   assert.equal(chatPhone.length, 1);
   assert.equal(chatPhone[0].run, 'node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs');

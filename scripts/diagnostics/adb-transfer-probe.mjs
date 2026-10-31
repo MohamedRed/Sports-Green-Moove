@@ -7,6 +7,7 @@ import { readTransferTrace } from './adb-transfer-trace.mjs';
 import { transferCommandOutcome as commandOutcome } from './adb-transfer-outcome.mjs';
 import { observeAdbHostProcesses } from '../qa/adb-host-health.mjs';
 import {assertTransferEmulatorIdentity, observeTransferEmulator} from './adb-transfer-emulator.mjs';
+import {compareTransferGuests, observeTransferGuest} from './adb-transfer-guest.mjs';
 
 export const transferTrialCount = 32;
 export const fixtureSizes = [147456, 1048576, 4194304];
@@ -16,6 +17,7 @@ const completed = row => row.status === 0 && row.signal === null && row.errorCod
 export function runTransferProbe({ adb, serial, output, runId, emulatorIdentity }, {
   run = spawnSync, trace = readTransferTrace, bytes = randomBytes, observeHost = observeAdbHostProcesses,
   observeEmulator = observeTransferEmulator,
+  observeGuest = observeTransferGuest,
 } = {}) {
   assert(isAbsolute(adb) && isAbsolute(output)); assert.match(serial, /^emulator-\d+$/);
   assert.match(runId, /^[a-f0-9]{32}$/);
@@ -63,6 +65,7 @@ export function runTransferProbe({ adb, serial, output, runId, emulatorIdentity 
     check('push-generated-files', ['push', source, remote]);
     report.stage = 'transfers'; report.hostBefore = observeHost(); report.traceBefore = trace();
     report.emulatorBefore = observeEmulator(emulatorIdentity);
+    report.guestBefore = observeGuest(adb, serial, run);
     for (let index = 0; index < transferTrialCount; index++) {
       const name = `trial-${String(index).padStart(2, '0')}`, destination = join(output, name);
       mkdirSync(destination, { mode: 0o700 });
@@ -89,6 +92,12 @@ export function runTransferProbe({ adb, serial, output, runId, emulatorIdentity 
   finally {
     report.traceAfter = trace(); report.hostAfter = observeHost();
     if (report.emulatorBefore) report.emulatorAfter = observeEmulator(emulatorIdentity);
+    if (report.guestBefore) {
+      // Observation cannot replace a failed primary command or skip owned cleanup.
+      try { report.guestAfter = observeGuest(adb, serial, run); }
+      catch { report.guestAfter = {completed:false, identity:null, observationError:'unavailable', rawLogsRetained:false}; }
+      report.guestComparison = compareTransferGuests(report.guestBefore, report.guestAfter);
+    }
     report.cleanup = { remoteCreatedOrPartiallyCreated: remoteOwned, removed: false, absenceVerified: false };
     if (remoteOwned) {
       const removal = commandOutcome(command(['shell', 'rm', '-rf', remote]));

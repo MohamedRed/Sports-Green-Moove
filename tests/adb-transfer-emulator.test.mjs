@@ -86,7 +86,7 @@ test('both native and web gates run the new observations and watch their source 
     const workflow = parseDocument(readFileSync(new URL('../.github/workflows/' + name + '.yml', import.meta.url), 'utf8')).toJSON();
     const steps = Object.values(workflow.jobs).flatMap(job => job.steps ?? []).filter(step => step.name === 'Test bound emulator transfer observations');
     assert.equal(steps.length, 1);
-    assert.equal(steps[0].run, 'node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-emulator.test.mjs');
+    assert.equal(steps[0].run, 'node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-transfer-emulator.test.mjs');
     assert.equal(steps[0].if, undefined); assert.equal(steps[0]['continue-on-error'], undefined);
     for (const event of ['push', 'pull_request']) {
       assert(workflow.on[event].paths.includes('scripts/diagnostics/adb-transfer-*.mjs'));

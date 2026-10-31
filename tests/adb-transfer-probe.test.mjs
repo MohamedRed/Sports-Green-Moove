@@ -12,11 +12,11 @@ import { resolve } from 'node:path';
 import { parseDocument } from 'yaml';
 
 function fixture(t, { failAt = -1, corruptAt = -1, remoteExists = false, cleanupFails = false,
-  pathCheckOffline = false } = {}) {
+  pathCheckOffline = false, guestThrowsAfter = false } = {}) {
   const directory = mkdtempSync(join(tmpdir(), 'sgm-generated-transfer-'));
   t.after(() => rmSync(directory, { recursive: true, force: true }));
   const output = join(directory, 'result'), calls = [], hostObservations = [], emulatorObservations = [];
-  let source, pulls = 0;
+  let source, pulls = 0, guestSamples = 0;
   const run = (adb, full, options) => {
     assert.equal(adb, '/sdk/platform-tools/adb'); assert.deepEqual(full.slice(0, 2), ['-s', 'emulator-5554']);
     assert.equal(options.timeout, 30000); assert.equal(options.maxBuffer, 8 * 1024 * 1024);
@@ -46,6 +46,10 @@ function fixture(t, { failAt = -1, corruptAt = -1, remoteExists = false, cleanup
   const options = { adb: '/sdk/platform-tools/adb', serial: 'emulator-5554', output, runId: 'a'.repeat(32),
     emulatorIdentity: {pid: 80, startedTicks: '123456', executable: 'qemu-system-x86_64-headless', port: 5554, avd: 'test'} };
   const execute = () => runTransferProbe(options, { run,
+    observeGuest: () => {
+      if (++guestSamples === 2 && guestThrowsAfter) throw new Error('PRIVATE-SECRET');
+      return {completed:false, identity:null, rawLogsRetained:false};
+    },
     observeEmulator: identity => {
       assert.deepEqual(identity, options.emulatorIdentity); emulatorObservations.push(calls.length);
       return {processState: 'present', socketsObserved: true, connections: []};
@@ -98,6 +102,15 @@ test('command diagnostics are fixed classifications, never paths, credentials or
     permissionDenied: true, noSpace: true, timedOut: true});
   assert.doesNotMatch(JSON.stringify(result), /PRIVATE|stderr|stdout|ETIMEDOUT/);
   assert(Object.values(transferCommandOutcome({status: 0}).signals).every(value => value === false));
+});
+
+test('a guest-observation failure cannot replace the failed primary transfer or prevent cleanup',t=>{
+  const result=fixture(t,{failAt:2,guestThrowsAfter:true}).execute();
+  assert.equal(result.trials.length,3); assert.equal(result.trials[2].commandCompleted,false);
+  assert.equal(result.completed,false); assert.equal(result.success,false);
+  assert.equal(result.cleanup.absenceVerified,true); assert.equal(result.guestAfter.observationError,'unavailable');
+  assert.equal(result.guestComparison.sameAdbdBirthObserved,null); assert.equal(result.guestComparison.rootCauseConfirmed,false);
+  assert.doesNotMatch(JSON.stringify(result),/PRIVATE-SECRET/);
 });
 
 test('unclassified failure remains explicit even when no existing error category matches', () => {
@@ -204,7 +217,7 @@ test('the isolated diagnostic installs locked transitive test dependencies befor
   const workflow = parseDocument(readFileSync(new URL('../.github/workflows/android-transport-probe.yml', import.meta.url), 'utf8')).toJSON();
   const steps = workflow.jobs['generated-file-transfer'].steps;
   const install = steps.findIndex(step => step.run === 'npm ci');
-  const contracts = steps.findIndex(step => step.run === 'node --test tests/adb-transfer-probe.test.mjs tests/adb-host-health.test.mjs tests/adb-transfer-emulator.test.mjs');
+  const contracts = steps.findIndex(step => step.run === 'node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-host-health.test.mjs tests/adb-transfer-emulator.test.mjs');
   assert(install >= 0 && contracts > install);
   assert(steps.findIndex(step => step.uses?.startsWith('reactivecircus/android-emulator-runner@')) > contracts);
 });

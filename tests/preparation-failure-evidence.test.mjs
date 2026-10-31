@@ -46,7 +46,7 @@ test('public progress keeps earlier successful phone galleries and adds no diagn
   assert.equal(flow.status, 'partial'); assert.notEqual(flow.checkedAt, '2026-10-30');
   assert(!Object.values(captures).some(path => path.startsWith(invitationConnectionFolder)));
   assert(content.blockers.some(row => row.id === 'child-invitation-browser'));
-  assert(content.blockers.some(row => row.id === 'native-device-capacity'));
+  assert(!content.blockers.some(row => row.id === 'native-device-capacity'));
   const capacityUpdate = content.updates.find(row => row.source === 'docs/release/evidence/native-capacity-e64555e-2026-10-30/README.md');
   assert(capacityUpdate);
   for (const row of [update, capacityUpdate]) assert.doesNotMatch(row.title + row.text, /BrowserStack|Firebase|SDK|localhost|port|APK/);

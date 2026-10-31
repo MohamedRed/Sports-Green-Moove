@@ -16,7 +16,4 @@ export const preparationBlockers = [
   {id: 'child-invitation-browser', title: 'L’inscription enfant sur téléphone',
     text: 'La page ne s’ouvre pas sur l’appareil d’essai.',
     next: 'Rétablir l’accès, puis vérifier la création du compte et l’accord du parent.', source: invitation + 'README.md', latestSource:recheck + 'README.md'},
-  {id: 'native-device-capacity', title: 'Reprendre le contrôle complet',
-    text: 'Le dernier essai s’arrête avant l’ouverture de l’appareil.',
-    next: 'Vérifier la nouvelle préparation, puis rejouer tous les écrans.', source: capacity + 'README.md'},
 ];
