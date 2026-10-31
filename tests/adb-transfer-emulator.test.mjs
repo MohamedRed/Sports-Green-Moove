@@ -8,6 +8,7 @@ import test from 'node:test';
 import {parseDocument} from 'yaml';
 import {assertTransferEmulatorIdentity, observeTransferEmulator} from '../scripts/diagnostics/adb-transfer-emulator.mjs';
 import {transferLifecycleFolder, validateTransferLifecycle} from '../scripts/qa/transfer-lifecycle-evidence.mjs';
+import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/transfer-peer-loss-evidence.mjs';
 import {content} from '../partner-portal/content.mjs';
 
 const identity = {pid: 80, startedTicks: '123456', executable: 'qemu-system-x86_64-headless', port: 5554, avd: 'test'};
@@ -98,10 +99,31 @@ const repositoryRoot = fileURLToPath(new URL('..', import.meta.url));
 test('retained passing lifecycle observations do not repair the prior failure or pass the whole native gate', () => {
   assert.deepEqual(validateTransferLifecycle(repositoryRoot), {beforeTransferPasses: 24, candidateTransferPasses: 32,
     mainGroups: 37, fullNativeGateAccepted: false, releaseAccepted: false});
-  assert.equal(content.updates.find(row => row.flow === 'messages').source, transferLifecycleFolder + 'README.md');
-  for (const id of ['native-evidence-copy', 'chat-send-stability'])
-    assert.equal(content.blockers.find(row => row.id === id).latestSource, transferLifecycleFolder + 'README.md');
+  assert(content.updates.some(row => row.flow === 'messages' && row.source === transferLifecycleFolder + 'README.md'));
+  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, transferLifecycleFolder + 'README.md');
 });
+
+test('the real failed transfer retains surviving host identities without accepting guest state or repaired copies', () => {
+  assert.deepEqual(validateTransferPeerLoss(repositoryRoot), {passedPrimaryTransfers: 28, failedPrimaryAttempt: 29,
+    sameHostProcessesObserved: true, rootCauseConfirmed: false, releaseAccepted: false});
+  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestSource, transferPeerLossFolder + 'README.md');
+  assert.equal(content.updates.find(row => row.flow === 'messages').source, transferPeerLossFolder + 'README.md');
+});
+for (const key of ['guestBootStateKnown', 'guestAdbdStateKnown', 'hostProcessContinuityFullyObserved',
+  'newParentAndStateFieldsExercised', 'remoteCleanupVerified', 'runnerDisposalIndependentlyVerified', 'rootCauseConfirmed',
+  'earlierCopyFailureRepaired', 'productCodeChanged', 'retryAdded', 'deadlinesChanged', 'fullNativeGateAccepted',
+  'physicalDeviceAccepted', 'productionWrites', 'releaseAccepted'])
+  test('rehashing the failed transfer cannot promote ' + key, t => {
+    const root = mkdtempSync(join(tmpdir(), 'sgm-transfer-peer-loss-')); t.after(() => rmSync(root, {recursive: true, force: true}));
+    const folder = join(root, transferPeerLossFolder); cpSync(join(repositoryRoot, transferPeerLossFolder), folder, {recursive: true});
+    const archive = join(root, 'docs/release/evidence/source-archive'); mkdirSync(dirname(archive), {recursive: true});
+    symlinkSync(join(repositoryRoot, 'docs/release/evidence/source-archive'), archive); validateTransferPeerLoss(root);
+    const review = JSON.parse(readFileSync(join(folder, 'review.json'))); review[key] = true;
+    const bytes = JSON.stringify(review); writeFileSync(join(folder, 'review.json'), bytes);
+    const hashes = JSON.parse(readFileSync(join(folder, 'artifact-sha256.json'))); hashes['review.json'] = createHash('sha256').update(bytes).digest('hex');
+    writeFileSync(join(folder, 'artifact-sha256.json'), JSON.stringify(hashes));
+    assert.throws(() => validateTransferPeerLoss(root), new RegExp(key));
+  });
 test('recomputed evidence checksums cannot promote scope or pass counts', t => {
   const root = mkdtempSync(join(tmpdir(), 'sgm-transfer-lifecycle-'));
   t.after(() => rmSync(root, {recursive: true, force: true}));

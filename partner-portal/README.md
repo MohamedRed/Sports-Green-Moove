@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 31 October generated-file trial fails its 29th primary transfer after
+28 exact passes. Unlike the earlier failure, it observes the same bound host
+emulator process and host connection server/listener after losing their peer
+socket. Guest boot/daemon state and the cause remain unknown; remote cleanup is
+not verified. Preserve the original ZIP/JSON failure and every earlier passing
+or failed report. Publish one short note, update only the copy blocker's latest
+source, keep chat/phone dates and galleries unchanged, and accept no product,
+physical or full-gate repair. The next diagnostic adds stat parent/state fields
+without arguments, environment, new device commands, retries or deadline changes.
+See `docs/release/evidence/transfer-peer-loss-2026-10-31/README.md`.
+
 The 31 October compression follow-up reproduces three leaked local response
 streams, applies the compatible development-only package patch and passes the
 same seven real-response regressions. Builds, Functions, rules and payment checks

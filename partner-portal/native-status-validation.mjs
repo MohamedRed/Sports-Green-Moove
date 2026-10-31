@@ -6,11 +6,11 @@ import {parseAndroidJUnitTranscript} from '../scripts/qa/android-junit-transcrip
 import {validateSupportRecheckCi} from '../scripts/qa/support-recovery-recheck-evidence.mjs';
 import {validateNativeTimeout, validateNativeBudgetFollowup} from '../scripts/qa/native-timeout-evidence.mjs';
 import {validateNativeBudgetExecution} from '../scripts/qa/native-budget-execution-evidence.mjs';
-import {transferLifecycleFolder} from '../scripts/qa/transfer-lifecycle-evidence.mjs';
+import {transferPeerLossFolder} from '../scripts/qa/transfer-peer-loss-evidence.mjs';
 
 export function validateNativeStatus(root, blockers) {
   const blocker = blockers.find(row => row.id === 'native-evidence-copy');
-  assert.equal(blocker.latestSource, transferLifecycleFolder + 'README.md'); validateNativeTimeout(root); validateSupportRecheckCi(root);
+  assert.equal(blocker.latestSource, transferPeerLossFolder + 'README.md'); validateNativeTimeout(root); validateSupportRecheckCi(root);
   validateNativeBudgetFollowup(root);
   validateNativeBudgetExecution(root);
   const source = blocker?.source;

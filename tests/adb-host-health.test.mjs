@@ -132,7 +132,8 @@ test('socket ownership distinguishes the server listener and clients without pro
       mkdirSync(resolve(root, String(pid), 'fd'), { recursive: true });
       mkdirSync(resolve(root, String(pid), 'ns')); symlinkSync('net:[99]', resolve(root, String(pid), 'ns/net'));
       writeFileSync(resolve(root, String(pid), 'comm'), 'adb\n');
-      writeFileSync(resolve(root, String(pid), 'stat'), `${pid} (adb) ` + [...Array(19).fill('0'), String(pid * 100)].join(' '));
+      writeFileSync(resolve(root, String(pid), 'stat'), `${pid} (adb) ` +
+        [pid === 55 ? 'S' : 'T', pid === 55 ? 1 : 55, ...Array(17).fill('0'), String(pid * 100)].join(' '));
     }
     symlinkSync('socket:[11]', resolve(root, '55/fd/10')); symlinkSync('socket:[12]', resolve(root, '55/fd/11'));
     symlinkSync('socket:[12]', resolve(root, '55/fd/12')); symlinkSync('/private/secret-token', resolve(root, '55/fd/13'));
@@ -142,6 +143,12 @@ test('socket ownership distinguishes the server listener and clients without pro
     assert.equal(result.completed, true); assert.equal(result.processes.length, 2);
     assert.equal(result.processes[0].connections.length, 2); assert.equal(result.processes[0].connections[0].listening, true);
     assert.equal(result.processes[1].connections[0].remotePort, 5037);
+    assert.equal(result.atomicObservation, false);
+    assert.deepEqual(result.processes.map(({pid, startTicks, stateBefore, stateAfter, parentPidBefore, parentPidAfter}) =>
+      ({pid, startTicks, stateBefore, stateAfter, parentPidBefore, parentPidAfter})), [
+      {pid: 55, startTicks: '5500', stateBefore: 'S', stateAfter: 'S', parentPidBefore: 1, parentPidAfter: 1},
+      {pid: 56, startTicks: '5600', stateBefore: 'T', stateAfter: 'T', parentPidBefore: 55, parentPidAfter: 55},
+    ]);
     assert.equal(result.argumentsRead, false); assert.equal(result.environmentRead, false); assert.equal(result.deviceCommandRequested, false);
     assert.doesNotMatch(JSON.stringify(result), /secret|token|private|socket:\[/);
     writeFileSync(resolve(root, '56/comm'), 'unrelated-private-process');

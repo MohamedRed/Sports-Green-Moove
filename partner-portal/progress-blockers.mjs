@@ -13,7 +13,7 @@ export const blockers = [
   { id: 'native-evidence-copy', title: 'Fiabiliser la récupération des captures',
     text: 'Des essais s’interrompent pendant la récupération des captures.',
     next: 'Comprendre la coupure et vérifier sa correction.', source: 'docs/release/evidence/native-renderer-recheck-2026-10-25/README.md',
-    latestSource: 'docs/release/evidence/transfer-lifecycle-2026-10-31/README.md',
+    latestSource: 'docs/release/evidence/transfer-peer-loss-2026-10-31/README.md',
     diagnosticSource: 'docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md',
     checksums: 'docs/release/evidence/native-renderer-recheck-2026-10-25/artifact-sha256.json' },
   { id: 'support-urgent-email', title: 'Activer les e-mails du support',

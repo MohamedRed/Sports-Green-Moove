@@ -33,9 +33,12 @@ import {childBookingReceiptFolder, validateChildBookingReceiptEvidence, validate
 import {networkRepeatIdentity} from '../scripts/qa/chat-network-repeat-evidence.mjs';
 import {disconnectRecheckFolder, validateDisconnectRecheck} from '../scripts/qa/session-disconnect-recheck-evidence.mjs';
 import {compressionSecurityFolder, validateCompressionSecurity} from '../scripts/qa/compression-security-evidence.mjs';
+import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/transfer-peer-loss-evidence.mjs';
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateTransferPeerLoss(root);
+  assert(content.updates.some(row => row.source === transferPeerLossFolder + 'README.md'));
   validateCompressionSecurity(root);
   assert(content.updates.some(row => row.source === compressionSecurityFolder + 'README.md'));
   validateDisconnectRecheck(root);

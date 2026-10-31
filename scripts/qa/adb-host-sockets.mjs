@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, readlinkSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
+import {parseHostStat} from './emulator-host-observation.mjs';
 
 const scope = 'same-user-adb-loopback-socket-ownership-not-disconnect-cause';
 const loopbacks = new Set(['0100007F', '00000000000000000000000001000000', '0000000000000000FFFF00000100007F']);
@@ -34,14 +35,14 @@ function processIdentity(root, pid, uid) {
   assert.equal(readFileSync(resolve(path, 'comm'), 'utf8').trim(), 'adb', 'Process identity changed');
   const status = readFileSync(resolve(path, 'stat'), 'utf8');
   const match = /^(\d+) \(adb\) ([\s\S]+)$/.exec(status); assert(match && Number(match[1]) === pid);
-  const ticks = match[2].trim().split(/\s+/)[19]; assert(/^\d+$/.test(ticks));
-  return ticks;
+  const identity = parseHostStat(status); assert.equal(identity.pid, pid);
+  return identity;
 }
 
 export function observeAdbSockets(processes, { root = '/proc', platform = process.platform,
   uid = typeof process.getuid === 'function' ? process.getuid() : null } = {}) {
   const result = { scope, completed: false, deviceCommandRequested: false, rawNetworkTablesRetained: false,
-    argumentsRead: false, environmentRead: false, processes: [], unavailableProcessCount: 0 };
+    argumentsRead: false, environmentRead: false, atomicObservation: false, processes: [], unavailableProcessCount: 0 };
   if (platform !== 'linux') return { ...result, unavailableReason: 'unsupported-host' };
   try {
     assert(Array.isArray(processes) && processes.length <= 16);
@@ -53,7 +54,7 @@ export function observeAdbSockets(processes, { root = '/proc', platform = proces
     const byInode = new Map(sockets.map(row => [row.inode, row]));
     for (const { pid } of processes) {
       try {
-        const startTicks = processIdentity(root, pid, uid), directory = resolve(root, String(pid), 'fd');
+        const before = processIdentity(root, pid, uid), directory = resolve(root, String(pid), 'fd');
         assert.equal(readlinkSync(resolve(root, String(pid), 'ns/net')), namespace, 'Network namespace differs');
         const descriptors = readdirSync(directory); assert(descriptors.length <= 256);
         const connections = new Map();
@@ -62,8 +63,11 @@ export function observeAdbSockets(processes, { root = '/proc', platform = proces
           const target = readlinkSync(resolve(directory, fd)), inode = /^socket:\[(\d+)\]$/.exec(target)?.[1];
           if (inode && byInode.has(inode)) connections.set(inode, byInode.get(inode));
         }
-        assert.equal(processIdentity(root, pid, uid), startTicks, 'Process changed during observation');
-        result.processes.push({ pid, startTicks, connections: [...connections.values()].sort((a, b) =>
+        const after = processIdentity(root, pid, uid);
+        assert.equal(after.startedTicks, before.startedTicks, 'Process changed during observation');
+        result.processes.push({ pid, startTicks: before.startedTicks, stateBefore: before.state, stateAfter: after.state,
+          parentPidBefore: before.parentPid, parentPidAfter: after.parentPid,
+          connections: [...connections.values()].sort((a, b) =>
           a.localPort - b.localPort || a.remotePort - b.remotePort || a.inode.localeCompare(b.inode)) });
       } catch { result.unavailableProcessCount++; }
     }
