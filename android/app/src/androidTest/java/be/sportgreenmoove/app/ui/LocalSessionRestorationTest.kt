@@ -55,6 +55,7 @@ class LocalSessionRestorationTest {
         }
         var orientationRestored = false
         var failure: Throwable? = null
+        var phase = "launching-app"
         try {
             transport.checkpoint("before-sign-in")
             runtime.auth.signOut()
@@ -63,14 +64,18 @@ class LocalSessionRestorationTest {
             assertEquals("sgm-qa-parent", auth.currentUser?.uid)
             functions.useEmulator(BuildConfig.SGM_FIREBASE_EMULATOR_HOST, port)
             transport.checkpoint("launching-app")
-            ActivityScenario.launch(MainActivity::class.java).use { activity ->
+            ActivityScenario.launch(MainActivity::class.java).useWithFailureObservation({ activity ->
+                captureSessionFailureBeforeClose(context, device, session, compose, phase, activity.state.name)
+            }) { activity ->
                 var initialActivity: MainActivity? = null
                 activity.onActivity { initialActivity = it }
                 failedScreen()
+                phase = "initial-error"
                 transport.checkpoint("initial-error")
                 assertEquals(1, control(port, session, "state").getInt("restorationAttempts"))
                 capture("error", false)
                 device.setOrientationLeft()
+                phase = "rotated-error"
                 orientation(context, device, Configuration.ORIENTATION_LANDSCAPE)
                 compose.waitUntil(60_000) {
                     control(port, session, "state").getInt("restorationAttempts") == 2 &&
@@ -79,12 +84,15 @@ class LocalSessionRestorationTest {
                 activity.onActivity { assertNotSame(initialActivity, it) }
                 failedScreen(); transport.checkpoint("rotated-error"); capture("rotated-error", true)
                 assertEquals("recover", control(port, session, "recover").getString("phase"))
+                phase = "retry"
                 compose.onNodeWithTag("session.restore.retry").performScrollTo().performClick()
                 readyScreen(); transport.checkpoint("recovered"); capture("recovered", true)
+                phase = "recovered"
                 assertEquals(3, control(port, session, "state").getInt("restorationAttempts"))
                 var landscapeActivity: MainActivity? = null
                 activity.onActivity { landscapeActivity = it }
                 device.setOrientationNatural()
+                phase = "restored"
                 orientation(context, device, Configuration.ORIENTATION_PORTRAIT)
                 compose.waitUntil(60_000) {
                     control(port, session, "state").getInt("restorationAttempts") == 4 &&
@@ -96,6 +104,7 @@ class LocalSessionRestorationTest {
                 assertEquals(4, control(port, session, "state").getInt("restorationAttempts"))
                 capture("restored", false)
                 compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
+                phase = "identity"
                 compose.onNodeWithText("HERMES PARENT QA").assertIsDisplayed()
                 compose.onNodeWithText(session.getString("parent"), substring = true).assertIsDisplayed()
                 assertEquals("sgm-qa-parent", auth.currentUser?.uid)

@@ -3,6 +3,7 @@ import {execFileSync} from 'node:child_process';
 import {existsSync, lstatSync, mkdirSync, realpathSync, statfsSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
+import {focusedCases} from './android-case-apks.mjs';
 
 export const emulatorDiskReserveBytes = 11 * 1024 ** 3;
 export const unusedHostedDotnet = '/usr/share/dotnet';
@@ -13,7 +14,8 @@ export function prepareHostedAndroidDisk({env = process.env, platform = process.
   remove = path => execFileSync('sudo', ['rm', '-rf', '--', path], {stdio: 'pipe'})} = {}) {
   assert.equal(platform, 'linux'); assert.equal(env.CI, 'true'); assert.equal(env.GITHUB_ACTIONS, 'true');
   assert.equal(env.RUNNER_ENVIRONMENT, 'github-hosted'); assert.equal(env.RUNNER_OS, 'Linux');
-  assert.equal(env.GITHUB_JOB, 'android-native-ui');
+  assert(['android-native-ui', 'focused-case'].includes(env.GITHUB_JOB), 'Only the selected native device jobs may reclaim hosted capacity');
+  if (env.GITHUB_JOB === 'focused-case') assert(focusedCases.includes(env.SGM_FOCUSED_UI_CASE), 'One known focused device case is required');
   assert(typeof env.GITHUB_WORKSPACE === 'string' && env.GITHUB_WORKSPACE.startsWith('/home/runner/work/'));
   const workspace = realpath(env.GITHUB_WORKSPACE);
   assert(workspace.startsWith('/home/runner/work/')); assert(!workspace.startsWith(unusedHostedDotnet + '/'));

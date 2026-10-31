@@ -48,8 +48,12 @@ import {chatNetworkRepeatProgress} from './chat-network-repeat.mjs';
 import {nativeTimeBudgetProgress, nativeBudgetExecutionProgress} from './native-time-budget.mjs';
 import {staleCancellationProgress, cancellationBaselineProgress} from './cancellation-stale-phone.mjs';
 import {invitationConnectionProgress, nativeCapacityProgress} from './preparation-failures.mjs';
+import {sessionRecoveryProgress, chatOwnerDraftProgress, recoveryGateProgress} from './session-recovery-recheck.mjs';
 
 export const currentProgress = [
+  sessionRecoveryProgress,
+  chatOwnerDraftProgress,
+  recoveryGateProgress,
   chatDraftReplayProgress,
   chatDraftPhoneProgress,
   {date: '2026-10-31', title: 'L’invitation enfant repasse les contrôles locaux',

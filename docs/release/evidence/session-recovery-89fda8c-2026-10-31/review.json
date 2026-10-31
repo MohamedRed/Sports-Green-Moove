@@ -1,0 +1,19 @@
+{
+  "scope": "passing-focused-session-and-chat-rechecks-not-release-or-instability-repair",
+  "sourceCommit": "89fda8c3f0555a3c77366a77af6e419ab92c5e42",
+  "workflowRunId": 41244943224,
+  "sourceLayout": "transport-observed",
+  "restoredParentVerified": true,
+  "ownerDraftRestored": true,
+  "isolatedDriverDraftEmpty": true,
+  "priorSessionFailureFixed": false,
+  "rootCauseOfSessionFailureConfirmed": false,
+  "fullNativeGateAccepted": false,
+  "newFailureCaptureExercisedDuringSessionFailure": false,
+  "diskGuardCiVerified": false,
+  "physicalDeviceAccepted": false,
+  "realNetworkLossVerified": false,
+  "productionWrites": false,
+  "releaseAccepted": false,
+  "publishedMedia": []
+}

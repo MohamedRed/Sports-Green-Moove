@@ -8,6 +8,8 @@ import {fileURLToPath} from 'node:url';
 import { sessionTransportPhases, validateSessionTransportObservations } from '../scripts/qa/session-transport-observations.mjs';
 import {disconnectRecheckFolder, validateDisconnectRecheck} from '../scripts/qa/session-disconnect-recheck-evidence.mjs';
 import {content} from '../partner-portal/content.mjs';
+import {validateRecoveryRecheck, recoveryRecheckFolder} from '../scripts/qa/session-recovery-recheck-evidence.mjs';
+import {assertSessionRestorationSourceLayout} from '../scripts/qa/session-restoration-source-layouts.mjs';
 
 const runId = 'a'.repeat(32);
 function fixture(phases = sessionTransportPhases) {
@@ -99,7 +101,67 @@ test('the disconnect flow reuses the bounded prefix without claiming the longer 
   assert(host.includes('verifySessionRestorationRecords(baseline,'));
 });
 
+test('restoration failures retain the live screen before activity closure without changing the replay', () => {
+  const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+  const base = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
+  const capture = read(base + 'SessionFailureObservation.kt');
+  for (const guard of ['BuildConfig.DEBUG && BuildConfig.SGM_USE_FIREBASE_EMULATOR', 'demo-sgm-local-qa',
+    'disposableEmulator', 'getprop ro.kernel.qemu', 'check(!file.exists())', 'check(!screenshot.exists())']) assert(capture.includes(guard));
+  assert.match(capture, /use \{ activity ->[\s\S]*try \{ block\(activity\) \}[\s\S]*observe\(activity\)/);
+  assert(capture.includes('failure.addSuppressed(diagnostic)')); assert(capture.includes('throw failure'));
+  assert(capture.indexOf('device.takeScreenshot(screenshot)') < capture.indexOf('fetchSemanticsNodes()'));
+  assert(capture.indexOf('file.writeText(report.toString(2))') < capture.indexOf('fetchSemanticsNodes()'));
+  assert(!/getIdToken|signIn\(|retry\(|svc |settings put|logcat|\.message|EditableText|\.text\b/.test(capture));
+  const replay = read(base + 'LocalSessionRestorationTest.kt');
+  assert(replay.includes('.useWithFailureObservation({ activity ->'));
+  assert(replay.includes('captureSessionFailureBeforeClose(context, device, session, compose, phase, activity.state.name)'));
+  assert(replay.includes('phase = "retry"')); assert(replay.includes('compose.waitUntil(60_000)'));
+  assert.equal((replay.match(/runtime\.auth\.signIn\(/g) ?? []).length, 1);
+  assert(read('scripts/qa/local-session-restoration-ui.mjs').includes('assertInstrumentationPassed(transcript, 1)'));
+  const cases = read(base + 'SessionFailureObservationTest.kt');
+  for (const name of ['originalFailureIsObservedWhileResumedAndRethrownAfterClosing',
+    'failedObservationCannotReplaceTheOriginalFailureOrSkipClosing', 'successClosesWithoutGeneratingAFailureObservation']) assert(cases.includes(name));
+  assert(cases.includes('assertSame(original, failure)')); assert(cases.includes('Lifecycle.State.DESTROYED'));
+  for (const workflow of ['native-ci', 'web-integration-smoke']) {
+    assert.equal(read('.github/workflows/' + workflow + '.yml').split('"android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionFailureObservation*.kt"').length - 1, 2);
+  }
+});
+
 const root = fileURLToPath(new URL('..', import.meta.url));
+test('current session and owner-draft rechecks preserve separate failures and partial phone scope', () => {
+  assert.deepEqual(validateRecoveryRecheck(root), {passedRestorationCases:1, passedChatCases:1,
+    passedDiagnosticCases:3, fullNativeGateAccepted:false, releaseAccepted:false});
+  const report = JSON.parse(readFileSync(resolve(root, recoveryRecheckFolder, 'restoration/session-restoration-results.json')));
+  assertSessionRestorationSourceLayout(report.sourceFiles, 'transport-observed');
+  assert.throws(() => assertSessionRestorationSourceLayout(report.sourceFiles));
+  assert.throws(() => assertSessionRestorationSourceLayout(report.sourceFiles, 'failure-observed'));
+  assert.throws(() => assertSessionRestorationSourceLayout(report.sourceFiles, 'unknown'));
+  const original = {...report.sourceFiles};
+  for (const key of Object.keys(original).filter(key => /android-case-apks|session-transport-observations|LocalSessionTransportDiagnostics/.test(key))) delete original[key];
+  assertSessionRestorationSourceLayout(original);
+  const candidate = {...report.sourceFiles, ['android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionFailureObservation.kt']:'a'.repeat(64)};
+  assertSessionRestorationSourceLayout(candidate, 'failure-observed');
+  assert.throws(() => assertSessionRestorationSourceLayout({...candidate, 'extra.kt':'a'.repeat(64)}, 'failure-observed'));
+  const flow = content.flows.find(row => row.id === 'messages'); assert.equal(flow.status, 'partial');
+  assert.equal(flow.images.length, 25); assert.equal(flow.unsentDraftReplayPhone.checkedAt, '2026-10-31');
+  assert.equal(flow.ownerDraftRecheck.checkedAt, '2026-10-31');
+  for (const id of ['messages','session-restoration']) assert(content.updates.some(row => row.flow === id && row.source === recoveryRecheckFolder + 'README.md'));
+});
+for (const key of ['priorSessionFailureFixed','rootCauseOfSessionFailureConfirmed','fullNativeGateAccepted',
+  'newFailureCaptureExercisedDuringSessionFailure','diskGuardCiVerified','physicalDeviceAccepted',
+  'realNetworkLossVerified','productionWrites','releaseAccepted']) test('a rehashed recheck cannot promote ' + key, t => {
+  const temp = mkdtempSync(resolve(tmpdir(), 'sgm-recovery-recheck-')); t.after(() => rmSync(temp, {recursive:true,force:true}));
+  const folder = resolve(temp, recoveryRecheckFolder); cpSync(resolve(root, recoveryRecheckFolder), folder, {recursive:true});
+  const archive = resolve(temp, 'docs/release/evidence/source-archive');
+  symlinkSync(resolve(root, 'docs/release/evidence/source-archive'), archive);
+  validateRecoveryRecheck(temp);
+  const review = JSON.parse(readFileSync(resolve(folder,'review.json'))); review[key] = true;
+  const bytes = JSON.stringify(review); writeFileSync(resolve(folder,'review.json'),bytes);
+  const hashes = JSON.parse(readFileSync(resolve(folder,'artifact-sha256.json')));
+  hashes['review.json'] = createHash('sha256').update(bytes).digest('hex');
+  writeFileSync(resolve(folder,'artifact-sha256.json'),JSON.stringify(hashes));
+  assert.throws(() => validateRecoveryRecheck(temp), new RegExp(key));
+});
 test('a passing disconnect replay retains its preceding auth failure and the original dated gallery', () => {
   assert.deepEqual(validateDisconnectRecheck(root), {failedInitialAuthAttempts: 1, passedNativeCases: 2,
     localDisconnectReplayAccepted: true, releaseAccepted: false});

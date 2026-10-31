@@ -35,6 +35,17 @@ test('personal hosts, self-hosted runners, other jobs and invalid workspaces can
     const f = fixture(); assert.throws(() => prepareHostedAndroidDisk({...f.options, ...patch})); assert.deepEqual(f.removed, []);
   }
 });
+test('focused capacity cleanup requires the exact hosted job and a known selected case', () => {
+  const f = fixture();
+  f.options.env = {...env, GITHUB_JOB: 'focused-case', SGM_FOCUSED_UI_CASE: 'team-read-components'};
+  assert.equal(prepareHostedAndroidDisk(f.options).ready, true);
+  assert.deepEqual(f.removed, [pinned]);
+  for (const patch of [{GITHUB_JOB: 'focused-case'}, {GITHUB_JOB: 'focused-case', SGM_FOCUSED_UI_CASE: 'unknown'},
+    {GITHUB_JOB: 'other', SGM_FOCUSED_UI_CASE: 'team-read-components'}]) {
+    const denied = fixture(); denied.options.env = {...env, ...patch};
+    assert.throws(() => prepareHostedAndroidDisk(denied.options)); assert.deepEqual(denied.removed, []);
+  }
+});
 test('symlinks, non-directories, failed removal and invalid filesystem readings fail closed', () => {
   for (const patch of [{inspect: () => ({isDirectory: () => true, isSymbolicLink: () => true})},
     {inspect: () => ({isDirectory: () => false, isSymbolicLink: () => false})},
@@ -52,4 +63,17 @@ test('the complete native job reclaims capacity after compilation and before unc
   assert(job.includes('target: google_apis_playstore')); assert(job.includes('profile: pixel_6'));
   assert(job.includes('timeout-minutes: 50')); assert(!job.includes('disk-size:'));
   assert(job.includes('android/app/build/outputs/host-disk-capacity.json'));
+});
+test('each focused case installs its device image before the fail-closed capacity step and keeps its storage and workload', () => {
+  const workflow = readFileSync(new URL('../.github/workflows/native-focused-ui.yml', import.meta.url), 'utf8');
+  const compile = workflow.indexOf('Compile isolated app before starting the device');
+  const image = workflow.indexOf("sdkmanager --install 'system-images;android-35;google_apis_playstore;x86_64'");
+  const reserve = workflow.indexOf('run: node scripts/qa/prepare-hosted-android-disk.mjs');
+  const launch = workflow.indexOf('uses: reactivecircus/android-emulator-runner@v2');
+  assert(compile < image && image < reserve && reserve < launch);
+  assert(workflow.includes('SGM_FOCUSED_UI_CASE: ${{ matrix.case }}'));
+  assert(workflow.includes('android/app/build/outputs/host-disk-capacity.json'));
+  assert(workflow.includes('timeout-minutes: 25')); assert(!workflow.includes('disk-size:'));
+  assert(!workflow.includes('pre-emulator-launch-script:'));
+  assert(workflow.includes('case: [emergency-identity, ride-observation, native-startup, remote-ride-stop, session-restoration, session-disconnect, team-conversation, team-access, team-draft, team-read-components, chat-network-recovery]'));
 });

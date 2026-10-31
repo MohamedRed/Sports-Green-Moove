@@ -95,7 +95,7 @@ const paths = [...disposableApkSourceFiles,
   'android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt',
   ...['SessionRestoration.kt', 'SessionRestorationState.kt', 'SportsGreenMooveApp.kt', 'AppDataState.kt', 'AppSessionShutdown.kt']
     .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
-  ...['LocalSessionRestorationTest.kt', 'LocalSessionTransportDiagnostics.kt', 'LocalUiCapture.kt']
+  ...['LocalSessionRestorationTest.kt', 'LocalSessionTransportDiagnostics.kt', 'SessionFailureObservation.kt', 'LocalUiCapture.kt']
     .map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 writeFileSync(resolve(directory, 'session-restoration-app-results.json'), JSON.stringify({ ...marker,
   testedAt: new Date().toISOString(), testCount: 1, nativeCaseCount: 1, steps: [{ id: 'session-restoration', status: 'passed' }],

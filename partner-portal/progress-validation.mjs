@@ -1,8 +1,12 @@
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
+import {validateRecoveryRecheck, recoveryRecheckFolder} from '../scripts/qa/session-recovery-recheck-evidence.mjs';
 
 export function validateProgressEntries(root, content, flowIds) {
+  validateRecoveryRecheck(root);
+  assert(content.updates.some(update => update.flow === 'session-restoration' && update.source === recoveryRecheckFolder + 'README.md'));
+  assert(content.updates.some(update => update.flow === 'messages' && update.source === recoveryRecheckFolder + 'README.md'));
   const evidenceRoot = resolve(root, 'docs/release/evidence') + sep;
   for (const update of content.updates) {
     assert.match(update.date, /^\d{4}-\d{2}-\d{2}$/);

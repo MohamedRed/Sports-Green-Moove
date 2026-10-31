@@ -4,6 +4,7 @@ import {chatNetworkRepeat} from './chat-network-repeat.mjs';
 import {chatNetworkPhone, chatNetworkPhoneImages} from './chat-network-phone.mjs';
 import {chatDraftPhone, chatDraftPhoneImages} from './chat-draft-phone.mjs';
 import {chatDraftReplayPhone, chatDraftReplayImages} from './chat-draft-replay-phone.mjs';
+import {chatOwnerDraftRecheck} from './session-recovery-recheck.mjs';
 
 export function createMessagesFlow(local, shot) {
   return { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-10-31', latestEvidence: 'phone',
@@ -12,6 +13,7 @@ export function createMessagesFlow(local, shot) {
     remaining: 'Vérifier le changement de compte sur téléphone, un envoi interrompu puis relancé, les groupes et le clavier sur iPhone. Répéter les essais de coupure entre téléphones, avec des coupures réelles pendant l’envoi. Pas encore en ligne.',
     unsentDraftPhone: chatDraftPhone,
     unsentDraftReplayPhone: chatDraftReplayPhone,
+    ownerDraftRecheck: chatOwnerDraftRecheck,
     networkRecovery: chatNetworkRecovery,
     networkRecoveryRecheck: chatNetworkRecheck,
     networkRecoveryLatest: latestChatNetworkRecheck,

@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The later 31 October 89fda8c rechecks pass session restoration and the corrected
+owner-private chat-draft contract on virtual devices. The original session timeout
+remains unexplained; five critical sources match, not the whole APK. Publish short
+local-result notes, preserve every dated gallery/tour and partial status, and keep
+the public audience. The full native gate fails a primary capture copy; team-read
+fails before boot due to disk. The new focused capacity guard and pre-close screen
+observer are candidates, not current CI repair or physical proof. Three actual
+diagnostic lifecycle cases pass; a fresh full local replay cannot start for lack
+of disk. See `docs/release/evidence/session-recovery-89fda8c-2026-10-31/README.md`.
+
 The corrected 31 October unsent-draft replay accepts preservation after a directly
 observed Android App info force-stop confirmation and reopening the installed
 app on one physical Pixel. Publish only its two reviewed session crops first;

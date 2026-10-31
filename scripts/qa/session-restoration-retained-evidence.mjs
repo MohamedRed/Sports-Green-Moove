@@ -5,12 +5,13 @@ import { createHash } from 'node:crypto';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
 import { assertRetainedSourceFiles } from './retained-source-evidence.mjs';
 import { validateContinuousDeviceEvidence } from './continuous-device-evidence.mjs';
+import {assertSessionRestorationSourceLayout} from './session-restoration-source-layouts.mjs';
 
 export const sessionRestorationScope = 'local-session-restoration-ui-not-physical-network-loss';
 export const sessionRestorationCaptures = ['error', 'rotated-error', 'recovered', 'restored', 'identity']
   .map(id => `local-session-restoration-${id}.png`);
 export const publishedSessionRestorationCaptures = sessionRestorationCaptures.slice(0, 4);
-export function validateSessionRestorationReport(report) {
+export function validateSessionRestorationReport(report, sourceLayout = 'original') {
   assert.equal(report.scope, sessionRestorationScope); assert.equal(report.projectId, 'demo-sgm-local-qa');
   assert.match(report.runId, /^[a-f0-9]{32}$/); assert.equal(report.uid, 'sgm-qa-parent');
   assert.equal(report.testCount, 1); assert.equal(report.nativeCaseCount, 1); assert.equal(report.restorationAttempts, 4);
@@ -30,31 +31,41 @@ export function validateSessionRestorationReport(report) {
       messages: 121, notifications: 1, reports: 1, rewardLedger: 1, teams: 1, trips: 2, users: 9 }, accountCount: 5,
   });
   assert.deepEqual(Object.keys(report.screenshots).sort(), [...sessionRestorationCaptures].sort());
-  assert.equal(Object.keys(report.sourceFiles).length, 27);
+  assertSessionRestorationSourceLayout(report.sourceFiles, sourceLayout);
   for (const file of ['scripts/qa/local-session-restoration-ui.mjs', 'scripts/qa/session-restoration-fault-proxy.mjs',
     'scripts/qa/session-restoration-records.mjs', 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionRestorationTest.kt',
     'android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt']) assert(report.sourceFiles[file]);
 }
 
-export function validateSessionRestorationProxy(report, proxy) {
+export function validateSessionRestorationProxy(report, proxy, sourceLayout = 'original') {
   assert.equal(proxy.scope, 'local-session-restoration-controlled-callable-rejection-not-network-loss');
   assert.equal(proxy.projectId, report.projectId); assert.equal(proxy.runId, report.runId); assert.equal(proxy.uid, report.uid);
   assert.equal(proxy.failed, undefined); assert.equal(proxy.phase, 'recover');
   assert.deepEqual(proxy.transitions, [{ from: 'reject', to: 'recover' }]);
-  assert.deepEqual(proxy.attempts, [
+  assert(['original', 'transport-observed', 'failure-observed'].includes(sourceLayout));
+  const recovered = sourceLayout === 'original' ? ['initializeUserProfile', 'getActiveRide', 'initializeUserProfile', 'getActiveRide'] :
+    ['initializeUserProfile', 'getActiveRide', 'getImpactSummary', 'getRewardSummary',
+      'initializeUserProfile', 'getActiveRide', 'getImpactSummary', 'getRewardSummary'];
+  const expected = [
     ...Array.from({ length: 2 }, () => ({ phase: 'reject', method: 'initializeUserProfile', uid: report.uid,
       injectedRejection: true, downstreamStatus: 503 })),
-    ...['initializeUserProfile', 'getActiveRide', 'initializeUserProfile', 'getActiveRide']
+    ...recovered
       .map(method => ({ phase: 'recover', method, uid: report.uid, upstreamStatus: 200, downstreamStatus: 200 })),
-  ]);
+  ];
+  if (sourceLayout !== 'original') {
+    assert.deepEqual(proxy.attempts.slice(-2).map(row => row.method).sort(), ['getProfileCity', 'getReceivedRatingSummary']);
+    expected.push(...proxy.attempts.slice(-2).map(({method}) =>
+      ({phase: 'recover', method, uid: report.uid, upstreamStatus: 200, downstreamStatus: 200})));
+  }
+  assert.deepEqual(proxy.attempts, expected);
 }
 
-export function validateSessionRestorationDeviceBundle(root, source) {
+export function validateSessionRestorationDeviceBundle(root, source, sourceLayout = 'original') {
   const directory = dirname(resolve(root, source)), read = file => readFileSync(resolve(directory, file));
   const json = file => JSON.parse(read(file)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
   const report = JSON.parse(readFileSync(resolve(root, source)));
-  validateSessionRestorationReport(report);
-  validateSessionRestorationProxy(report, json('session-restoration-proxy.json'));
+  validateSessionRestorationReport(report, sourceLayout);
+  validateSessionRestorationProxy(report, json('session-restoration-proxy.json'), sourceLayout);
   const marker = json('local-session-restoration-device.json');
   for (const [key, value] of Object.entries(marker)) assert.deepEqual(report[key], value);
   const { isolatedEnvironmentDestroyed, emulatorCliExitedSuccessfully, emulatorEndpoints, ...app } = report;

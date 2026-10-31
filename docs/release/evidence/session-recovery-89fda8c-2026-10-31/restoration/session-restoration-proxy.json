@@ -1,0 +1,99 @@
+{
+  "scope": "local-session-restoration-controlled-callable-rejection-not-network-loss",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b197c7575d68ed9fd69375f586b8ce59",
+  "uid": "sgm-qa-parent",
+  "phase": "recover",
+  "attempts": [
+    {
+      "phase": "reject",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "injectedRejection": true,
+      "downstreamStatus": 503
+    },
+    {
+      "phase": "reject",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "injectedRejection": true,
+      "downstreamStatus": 503
+    },
+    {
+      "phase": "recover",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getActiveRide",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getImpactSummary",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getRewardSummary",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "initializeUserProfile",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getActiveRide",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getImpactSummary",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getRewardSummary",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getProfileCity",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    },
+    {
+      "phase": "recover",
+      "method": "getReceivedRatingSummary",
+      "uid": "sgm-qa-parent",
+      "upstreamStatus": 200,
+      "downstreamStatus": 200
+    }
+  ],
+  "transitions": [
+    {
+      "from": "reject",
+      "to": "recover"
+    }
+  ]
+}

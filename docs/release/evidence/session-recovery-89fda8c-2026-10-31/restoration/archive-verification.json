@@ -1,0 +1,24 @@
+{
+  "providerDigestVerified": true,
+  "originalArchivePublished": false,
+  "digest": "sha256:7cb1a6dc310f5f019b79a43c6116f8bc53ba0595a20c630879bb078847b79e62",
+  "sizeBytes": 1131639,
+  "selectedMemberSha256": {
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/LocalSessionRestorationTest-instrumentation.txt": "630e6f0dc28c755a15ce4283b234df570bca5c217cb46a7f034b38e0a31dc4a9",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/adb-pull-session-restoration.json": "35b59e554e7375e295f0ab78f61f3b6ad47dd25ef3521356a238f2839d060039",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/local-session-restoration-device.json": "c3f8cfa3e852938f34c8d011c5b837ac6e2d9b8403127fd6511c940d6513659e",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/local-session-restoration-error.png": "835fbb78333e6dbbf4dce0f55dc2cb7e5012205ab61201c5bc91204cefbc24a1",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/local-session-restoration-identity.png": "a9d9bf7ee7801277f1c315a087782f620f8a1e694979caa425cde9df274bf3d2",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/local-session-restoration-recovered.png": "94be80930d92386b02aaffd95f0110786bfe12d11bef355d52d796a2701449b1",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/local-session-restoration-restored.png": "ff32325b7d3efea8505acf894b0e179a200a69bca6c81455113132921632aa91",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/local-session-restoration-rotated-error.png": "3776f61dd3a64de34f14e1598e2890a8a9dc1804c16a748a88180868d63ef1dd",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/session-restoration-app-results.json": "c85c112e2c14f9392ed06d66b96808e20dc594614da8da8960b16c1802d14a20",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/session-restoration-proxy.json": "8972f76519e864f2d266c5a0bec6b96d13786d4af17284c11a4fd2f8b1d60d3e",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/session-restoration-results.json": "5171dc40cc34c81cb88c99fb13dd8a2d1bb5affbeab82096226d64de0e4ea38b",
+    "local-ui-evidence/b197c7575d68ed9fd69375f586b8ce59/session-transport-observations.json": "1b80299bb570416f716ae71a22796a24002bb9859efe3b8cc13ed0c2179883ba",
+    "focused-safety-ui/session-restoration/disposable-device-setup.json": "8ac1fa469b9f28258eb219169e5444b5f1e1178061293f55911a58cac92afcd2",
+    "focused-safety-ui/session-restoration/disposable-device-setup.json.claimed": "19302763e2bff1e35da0a42834a772c055519952c343717f116dd335c3175f73",
+    "focused-safety-ui/session-restoration/disposable-device-restore.json": "ce0609a9e5f2dd24722dfa5fa8dd49ff54d61e6e3344a50ab8e7a7804195f48f",
+    "focused-safety-ui/session-restoration/session-restoration-suite-status.json": "66c1bcb4a4945c635073aa81ea248d0616e9159090a5f3c0aec35841e31156d2"
+  }
+}
