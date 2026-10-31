@@ -11,8 +11,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.uiautomator.UiDevice
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -41,7 +39,7 @@ class SearchDepartureFlowTest {
         enterNativePickerDate(LocalDate.of(2026, 11, 1), LocalDate.of(2026, 11, 2), confirm = false)
         compose.onNodeWithTag(SgmTestTags.SearchDateInput).assertTextEquals("01/11/2026")
         compose.onNodeWithTag(SgmTestTags.SearchTimeInput).performClick()
-        check(UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack())
+        enterNativePickerTime(LocalTime.of(18, 45), confirm = false)
         compose.onNodeWithTag(SgmTestTags.SearchTimeInput).assertTextEquals("17:30 · Bruxelles")
         compose.runOnIdle { assertTrue(edits.isEmpty()); assertEquals("2026-11-01T16:30:00Z", value.value) }
     }

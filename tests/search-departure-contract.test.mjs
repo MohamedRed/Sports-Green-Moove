@@ -31,6 +31,7 @@ test('existing full search and option-retention cases use real picker actions, w
   assert(helper.includes('enterNativePickerTime(target.time)'));
   const host = read(native + 'SearchDepartureFlowTest.kt');
   assert(host.includes('Column(Modifier.verticalScroll(rememberScrollState()))'));
+  assert(host.includes('enterNativePickerTime(LocalTime.of(18, 45), confirm = false)'));
   const runner = read('scripts/qa/local-search-booking-ui.mjs');
   for (const source of ['SearchDeparturePickerInput.kt', 'NativeDatePickerInput.kt', 'NativeTimePickerInput.kt',
     'SearchDepartureField.kt', 'SearchDepartureInput.kt']) assert(runner.includes(source));
