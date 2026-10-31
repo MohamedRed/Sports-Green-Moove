@@ -46,9 +46,13 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate native search departure controls and blocked phone evidence')
     .filter(step => step.name !== 'Validate physical calendar retry and latest native copy evidence')
     .filter(step => step.name !== 'Validate controlled chat phone records and evidence')
+    .filter(step => step.name !== 'Test bound emulator transfer observations')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
+  const transport = workflow.jobs.smoke.steps.filter(step => step.name === 'Test bound emulator transfer observations');
+  assert.equal(transport.length, 1);
+  assert.equal(transport[0].run, 'node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-emulator.test.mjs');
   const chatPhone = workflow.jobs.smoke.steps.filter(step => step.name === 'Validate controlled chat phone records and evidence');
   assert.equal(chatPhone.length, 1);
   assert.equal(chatPhone[0].run, 'node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs');

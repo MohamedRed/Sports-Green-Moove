@@ -1,6 +1,6 @@
 export function transferCommandOutcome(result) {
   const text = typeof result.stderr === 'string' ? result.stderr : '';
-  return {
+  const outcome = {
     status: Number.isInteger(result.status) ? result.status : null,
     signal: result.signal ?? null,
     errorCode: result.error ? 'COMMAND_ERROR' : null,
@@ -13,4 +13,8 @@ export function transferCommandOutcome(result) {
       timedOut: result.error?.code === 'ETIMEDOUT',
     },
   };
+  const failed = outcome.status !== 0 || outcome.signal !== null || outcome.errorCode !== null;
+  return {...outcome, outputCoverage: {present: text.length > 0, byteCount: Buffer.byteLength(text),
+    recognizedFailure: failed && Object.values(outcome.signals).some(Boolean),
+    unclassifiedFailure: failed && !Object.values(outcome.signals).some(Boolean)}};
 }

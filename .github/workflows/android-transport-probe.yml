@@ -10,9 +10,11 @@ on:
       - "scripts/qa/adb-host-health.mjs"
       - "scripts/qa/adb-host-sockets.mjs"
       - "scripts/qa/adb-daemon-events.mjs"
+      - "scripts/qa/emulator-host-observation.mjs"
       - "tests/adb-host-health.test.mjs"
       - "docs/release/evidence/generated-transfer-failure-063efab-2026-10-28/**"
       - "tests/adb-transfer-probe.test.mjs"
+      - "tests/adb-transfer-emulator.test.mjs"
 
 permissions:
   contents: read
@@ -30,7 +32,7 @@ jobs:
       - name: Install locked diagnostic test dependencies
         run: npm ci
       - name: Test diagnostic boundaries without a device
-        run: node --test tests/adb-transfer-probe.test.mjs tests/adb-host-health.test.mjs
+        run: node --test tests/adb-transfer-probe.test.mjs tests/adb-host-health.test.mjs tests/adb-transfer-emulator.test.mjs
       - uses: android-actions/setup-android@v4
       - name: Enable disposable virtual-device acceleration
         run: |

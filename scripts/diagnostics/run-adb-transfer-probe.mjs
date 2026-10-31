@@ -3,6 +3,7 @@ import { randomBytes } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { isAbsolute, join, resolve } from 'node:path';
 import { runTransferProbe } from './adb-transfer-probe.mjs';
+import {selectEmulatorHost} from '../qa/emulator-host-observation.mjs';
 
 assert.equal(process.platform, 'linux');
 assert.equal(process.env.GITHUB_ACTIONS, 'true');
@@ -16,7 +17,8 @@ const versions = Object.fromEntries(['emulator', 'platform-tools'].map(name => {
   const version = /^Pkg.Revision\s*=\s*([\d.]+)\s*$/m.exec(properties)?.[1];
   assert(version, 'SDK package version is required for comparison'); return [name, version];
 }));
-const result = runTransferProbe({ adb: join(process.env.ANDROID_HOME, 'platform-tools/adb'), serial,
+const emulatorIdentity = await selectEmulatorHost({port: Number(serial.slice('emulator-'.length)), avd: 'test'});
+const result = runTransferProbe({ adb: join(process.env.ANDROID_HOME, 'platform-tools/adb'), serial, emulatorIdentity,
   output: resolve('android/app/build/outputs/transport-probe'), runId: randomBytes(16).toString('hex') });
 writeFileSync(resolve('android/app/build/outputs/transport-probe/environment.json'), JSON.stringify({
   versions, nodeVersion: process.versions.node, apiLevel: 35, selectedRenderer: 'software',

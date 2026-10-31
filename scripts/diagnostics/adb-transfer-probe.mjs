@@ -6,17 +6,20 @@ import { dirname, isAbsolute, join } from 'node:path';
 import { readTransferTrace } from './adb-transfer-trace.mjs';
 import { transferCommandOutcome as commandOutcome } from './adb-transfer-outcome.mjs';
 import { observeAdbHostProcesses } from '../qa/adb-host-health.mjs';
+import {assertTransferEmulatorIdentity, observeTransferEmulator} from './adb-transfer-emulator.mjs';
 
 export const transferTrialCount = 32;
 export const fixtureSizes = [147456, 1048576, 4194304];
 const digest = value => createHash('sha256').update(value).digest('hex');
 const completed = row => row.status === 0 && row.signal === null && row.errorCode === null;
 
-export function runTransferProbe({ adb, serial, output, runId }, {
+export function runTransferProbe({ adb, serial, output, runId, emulatorIdentity }, {
   run = spawnSync, trace = readTransferTrace, bytes = randomBytes, observeHost = observeAdbHostProcesses,
+  observeEmulator = observeTransferEmulator,
 } = {}) {
   assert(isAbsolute(adb) && isAbsolute(output)); assert.match(serial, /^emulator-\d+$/);
   assert.match(runId, /^[a-f0-9]{32}$/);
+  assertTransferEmulatorIdentity(emulatorIdentity, serial);
   mkdirSync(dirname(output), { recursive: true, mode: 0o700 });
   mkdirSync(output, { mode: 0o700 });
   const save = (name, value) => writeFileSync(join(output, name + '.json'), JSON.stringify(value, null, 2) + '\n',
@@ -59,6 +62,7 @@ export function runTransferProbe({ adb, serial, output, runId }, {
     remoteOwned = true;
     check('push-generated-files', ['push', source, remote]);
     report.stage = 'transfers'; report.hostBefore = observeHost(); report.traceBefore = trace();
+    report.emulatorBefore = observeEmulator(emulatorIdentity);
     for (let index = 0; index < transferTrialCount; index++) {
       const name = `trial-${String(index).padStart(2, '0')}`, destination = join(output, name);
       mkdirSync(destination, { mode: 0o700 });
@@ -84,6 +88,7 @@ export function runTransferProbe({ adb, serial, output, runId }, {
   } catch { failure = true; }
   finally {
     report.traceAfter = trace(); report.hostAfter = observeHost();
+    if (report.emulatorBefore) report.emulatorAfter = observeEmulator(emulatorIdentity);
     report.cleanup = { remoteCreatedOrPartiallyCreated: remoteOwned, removed: false, absenceVerified: false };
     if (remoteOwned) {
       const removal = commandOutcome(command(['shell', 'rm', '-rf', remote]));

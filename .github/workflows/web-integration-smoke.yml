@@ -42,6 +42,9 @@ on:
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
+      - "tests/adb-transfer*.test.mjs"
+      - "scripts/diagnostics/adb-transfer-*.mjs"
+      - "scripts/diagnostics/run-adb-transfer-probe.mjs"
       - "tests/emulator-host-observation.test.mjs"
       - "tests/disposable-launcher-cleanup.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
@@ -576,6 +579,9 @@ on:
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
+      - "tests/adb-transfer*.test.mjs"
+      - "scripts/diagnostics/adb-transfer-*.mjs"
+      - "scripts/diagnostics/run-adb-transfer-probe.mjs"
       - "tests/emulator-host-observation.test.mjs"
       - "tests/disposable-launcher-cleanup.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
@@ -1180,6 +1186,8 @@ jobs:
         run: node --test tests/search-departure-phone.test.mjs tests/search-departure-ci.test.mjs
       - name: Validate controlled chat phone records and evidence
         run: node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs
+      - name: Test bound emulator transfer observations
+        run: node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-emulator.test.mjs
 
       - name: Validate approved disposable-phone installation policy
         run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs

@@ -15,7 +15,7 @@ function fixture(t, { failAt = -1, corruptAt = -1, remoteExists = false, cleanup
   pathCheckOffline = false } = {}) {
   const directory = mkdtempSync(join(tmpdir(), 'sgm-generated-transfer-'));
   t.after(() => rmSync(directory, { recursive: true, force: true }));
-  const output = join(directory, 'result'), calls = [], hostObservations = [];
+  const output = join(directory, 'result'), calls = [], hostObservations = [], emulatorObservations = [];
   let source, pulls = 0;
   const run = (adb, full, options) => {
     assert.equal(adb, '/sdk/platform-tools/adb'); assert.deepEqual(full.slice(0, 2), ['-s', 'emulator-5554']);
@@ -43,15 +43,20 @@ function fixture(t, { failAt = -1, corruptAt = -1, remoteExists = false, cleanup
     if (args[1] === 'rm') return { ...done(), status: cleanupFails ? 1 : 0 };
     assert.fail('Unexpected device command');
   };
-  const options = { adb: '/sdk/platform-tools/adb', serial: 'emulator-5554', output, runId: 'a'.repeat(32) };
+  const options = { adb: '/sdk/platform-tools/adb', serial: 'emulator-5554', output, runId: 'a'.repeat(32),
+    emulatorIdentity: {pid: 80, startedTicks: '123456', executable: 'qemu-system-x86_64-headless', port: 5554, avd: 'test'} };
   const execute = () => runTransferProbe(options, { run,
+    observeEmulator: identity => {
+      assert.deepEqual(identity, options.emulatorIdentity); emulatorObservations.push(calls.length);
+      return {processState: 'present', socketsObserved: true, connections: []};
+    },
     observeHost: () => {
       hostObservations.push(calls.length);
       return {scope: 'host-adb-process-and-log-counts-not-server-identity-or-root-cause',
         deviceCommandRequested: false, rawLogsRetained: false, adbProcesses: [{pid: 42}]};
     },
     trace: () => ({ available: false, rawLogsRetained: false }), bytes: size => Buffer.alloc(size, 42) });
-  return { calls, execute, output, options, run, hostObservations };
+  return { calls, execute, output, options, run, hostObservations, emulatorObservations };
 }
 
 test('fixed independent transfers verify exact bytes without accepting a product flow or retaining logs', t => {
@@ -63,6 +68,7 @@ test('fixed independent transfers verify exact bytes without accepting a product
   assert.equal(result.cleanup.absenceVerified, true);
   assert.deepEqual(result.hostBefore, result.hostAfter);
   assert.equal(f.hostObservations.length, 2);
+  assert.equal(f.emulatorObservations.length, 2);
   assert.equal(f.calls.filter(args => args[0] === 'pull').length, 32);
   assert.equal(new Set(f.calls.filter(args => args[0] === 'pull').map(args => args[2])).size, 32);
   assert(readdirSync(f.output).every(name => name.endsWith('.json')));
@@ -78,6 +84,7 @@ test('first command failure is immutable, stops the sequence and cannot be rescu
   assert.equal(result.trials[2].signals.deviceOffline, true);
   assert.equal(f.hostObservations.length, 2);
   assert.equal(f.calls[f.hostObservations[1] - 1][0], 'pull', 'Host observation precedes cleanup commands');
+  assert.equal(f.calls[f.emulatorObservations[1] - 1][0], 'pull', 'Emulator identity and sockets are sampled before cleanup');
   assert.equal(result.cleanup.absenceVerified, true);
   assert.equal(f.calls.filter(args => args[0] === 'pull').length, 3);
   assert.equal(JSON.parse(readFileSync(join(f.output, 'trial-02.json'))).commandCompleted, false);
@@ -91,6 +98,25 @@ test('command diagnostics are fixed classifications, never paths, credentials or
     permissionDenied: true, noSpace: true, timedOut: true});
   assert.doesNotMatch(JSON.stringify(result), /PRIVATE|stderr|stdout|ETIMEDOUT/);
   assert(Object.values(transferCommandOutcome({status: 0}).signals).every(value => value === false));
+});
+
+test('unclassified failure remains explicit even when no existing error category matches', () => {
+  for (const text of ['', 'private unknown error', 'pull: building file list...']) {
+    const result = transferCommandOutcome({status: 1, stderr: text});
+    assert.equal(result.outputCoverage.unclassifiedFailure, true);
+    assert.equal(result.outputCoverage.recognizedFailure, false);
+    assert.equal(result.outputCoverage.byteCount, Buffer.byteLength(text));
+    assert.doesNotMatch(JSON.stringify(result), /private|unknown error|building file/);
+  }
+  assert.equal(transferCommandOutcome({status: 0}).outputCoverage.unclassifiedFailure, false);
+});
+
+test('a missing or mismatched emulator binding is rejected before any device command', t => {
+  const f = fixture(t);
+  for (const emulatorIdentity of [undefined, {...f.options.emulatorIdentity, port: 5556},
+    {...f.options.emulatorIdentity, avd: 'personal-device'}, {...f.options.emulatorIdentity, startedTicks: 'bad'}])
+    assert.throws(() => runTransferProbe({...f.options, emulatorIdentity}, {run: f.run}));
+  assert.equal(f.calls.length, 0);
 });
 
 test('a clean checkout needs no app build to create the diagnostic output parent', t => {
@@ -178,7 +204,7 @@ test('the isolated diagnostic installs locked transitive test dependencies befor
   const workflow = parseDocument(readFileSync(new URL('../.github/workflows/android-transport-probe.yml', import.meta.url), 'utf8')).toJSON();
   const steps = workflow.jobs['generated-file-transfer'].steps;
   const install = steps.findIndex(step => step.run === 'npm ci');
-  const contracts = steps.findIndex(step => step.run === 'node --test tests/adb-transfer-probe.test.mjs tests/adb-host-health.test.mjs');
+  const contracts = steps.findIndex(step => step.run === 'node --test tests/adb-transfer-probe.test.mjs tests/adb-host-health.test.mjs tests/adb-transfer-emulator.test.mjs');
   assert(install >= 0 && contracts > install);
   assert(steps.findIndex(step => step.uses?.startsWith('reactivecircus/android-emulator-runner@')) > contracts);
 });

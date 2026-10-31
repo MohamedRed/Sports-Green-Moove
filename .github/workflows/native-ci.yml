@@ -34,6 +34,9 @@ on:
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
+      - "tests/adb-transfer*.test.mjs"
+      - "scripts/diagnostics/adb-transfer-*.mjs"
+      - "scripts/diagnostics/run-adb-transfer-probe.mjs"
       - "tests/emulator-host-observation.test.mjs"
       - "tests/disposable-launcher-cleanup.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
@@ -176,6 +179,9 @@ on:
       - "tests/native-current-matrix-evidence.test.mjs"
       - "tests/disposable-installation-activation.test.mjs"
       - "tests/adb-host-health.test.mjs"
+      - "tests/adb-transfer*.test.mjs"
+      - "scripts/diagnostics/adb-transfer-*.mjs"
+      - "scripts/diagnostics/run-adb-transfer-probe.mjs"
       - "tests/emulator-host-observation.test.mjs"
       - "tests/disposable-launcher-cleanup.test.mjs"
       - "tests/team-enrollment-sdk.test.mjs"
@@ -382,6 +388,8 @@ jobs:
         run: node --test tests/search-departure-phone.test.mjs tests/search-departure-ci.test.mjs
       - name: Validate controlled chat phone records and evidence
         run: node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs
+      - name: Test bound emulator transfer observations
+        run: node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-emulator.test.mjs
       - name: Validate disposable Android isolation
         run: node --test tests/disposable-emulator-selection.test.mjs tests/android-support-call-trace.test.mjs tests/support-process-restart-phone-evidence.test.mjs
 
