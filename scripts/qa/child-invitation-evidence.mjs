@@ -7,6 +7,7 @@ import { assertRetainedSourceFiles } from './retained-source-evidence.mjs';
 import { validateChildInvitationBindingEvidence } from './child-invitation-binding-evidence.mjs';
 import { validateChildInvitationBrowserEvidence } from './child-invitation-browser-evidence.mjs';
 import { validateChildInvitationNativeEvidence } from './child-invitation-native-evidence.mjs';
+import {validateChildInvitationRecheck} from './child-invitation-recheck-evidence.mjs';
 
 export const childInvitationFolder = 'docs/release/evidence/child-invitation-2026-10-26/';
 export function validateChildInvitationReport(report) {
@@ -21,6 +22,7 @@ export function validateChildInvitationReport(report) {
 }
 
 export function validateChildInvitationEvidence(root) {
+  validateChildInvitationRecheck(root);
   validateChildInvitationBindingEvidence(root);
   validateChildInvitationBrowserEvidence(root);
   validateChildInvitationNativeEvidence(root);

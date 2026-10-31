@@ -48,6 +48,9 @@ import {staleCancellationProgress, cancellationBaselineProgress} from './cancell
 import {invitationConnectionProgress, nativeCapacityProgress} from './preparation-failures.mjs';
 
 export const currentProgress = [
+  {date: '2026-10-31', title: 'L’invitation enfant repasse les contrôles locaux',
+    text: 'Création du compte et accord séparé du parent : les 18 contrôles passent. L’ouverture du lien sur téléphone reste à débloquer.',
+    flow: 'child-emergency', source: 'docs/release/evidence/child-invitation-recheck-2026-10-31/README.md'},
   transferPeerLossProgress,
   compressionSecurityProgress,
   disconnectRecheckProgress,

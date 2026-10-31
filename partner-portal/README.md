@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The 31 October child-invitation service recheck passes all eighteen groups at
+9b058d6 with explicit parent approval and child-only roles. Publish one short
+dated local-result note. Preserve the phone connection failure, partial status,
+all original galleries/tours/dates and public audience. This is not browser or
+phone execution, production signup or release acceptance. Both service lanes
+already run this trial and validate the new retained report through its contract.
+
 The later 31 October generated-file trial fails its 29th primary transfer after
 28 exact passes. Unlike the earlier failure, it observes the same bound host
 emulator process and host connection server/listener after losing their peer

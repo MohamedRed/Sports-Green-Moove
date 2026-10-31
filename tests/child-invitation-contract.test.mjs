@@ -13,8 +13,23 @@ import { childInvitationPhone } from '../partner-portal/child-invitation-phone.m
 import { validateChildInvitationEvidence, validateChildInvitationReport } from '../scripts/qa/child-invitation-evidence.mjs';
 import { validateChildBindingReport } from '../scripts/qa/child-invitation-binding-evidence.mjs';
 import { validateChildInvitationBrowserEvidence, validateConnectedInvitationReport, validateInvitationBrowserReview } from '../scripts/qa/child-invitation-browser-evidence.mjs';
+import {invitationRecheckFolder, validateChildInvitationRecheck, validateInvitationServiceRecheck} from '../scripts/qa/child-invitation-recheck-evidence.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+test('current invitation service recheck preserves parent authority and incomplete phone scope', () => {
+  validateChildInvitationRecheck(fileURLToPath(new URL('..', import.meta.url)));
+  const report = JSON.parse(read(invitationRecheckFolder + 'services.json'));
+  const disposal = JSON.parse(read(invitationRecheckFolder + 'disposal.json'));
+  const baseline = JSON.parse(read('docs/release/evidence/child-invitation-2026-10-26/services.json'));
+  for (const mutate of [r => r.physicalDevice = true, r => r.browserUiExecuted = true,
+    r => r.bindingBypassObserved = true, r => r.defaultParentPromotionObserved = true,
+    r => r.parentApprovalSeparate = false, r => r.steps.pop(), r => r.providerRequests = 1,
+    r => r.emulatorEndpoints.closed = false]) {
+    const changed = structuredClone(report); mutate(changed);
+    assert.throws(() => validateInvitationServiceRecheck(changed, disposal, baseline));
+  }
+  assert.throws(() => validateInvitationServiceRecheck(report, {...disposal, runId: '0'.repeat(32)}, baseline));
+});
 test('physical invitation records and manual share review retain delivery, signup and public deployment gaps', () => {
   validateInvitationPhoneArtifacts(fileURLToPath(new URL('..', import.meta.url)), childInvitationPhone);
 });
