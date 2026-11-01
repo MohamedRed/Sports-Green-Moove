@@ -14,6 +14,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 data class AndroidProviderSet(
     val auth: AuthGateway,
@@ -106,19 +108,38 @@ private class FirebaseAndroidAuthGateway(private val context: Context) : AuthGat
     private val functions = FirebaseFunctions.getInstance()
     override val isConfigured: Boolean = true
 
-    override suspend fun currentSession(): AuthSession? =
-        auth.currentUser?.let { initializeUserProfile(it) }
+    override suspend fun currentSession(): AuthSession? {
+        val user = auth.currentUser ?: return null
+        if (AndroidTeamPushRuntime.requiresSignOut(context, user.uid)) { signOut(); return null }
+        return initializeUserProfile(user)
+    }
 
     override suspend fun signIn(email: String, password: String): AuthSession {
         val result = auth.signInWithEmailAndPassword(email, password).await()
         val user = result.user ?: throw ProviderConfigurationException("Réponse Firebase Auth invalide.")
-        return initializeUserProfile(user)
+        return explicitSignIn(user)
     }
 
     override suspend fun signUp(name: String, email: String, password: String): AuthSession {
         val result = auth.createUserWithEmailAndPassword(email, password).await()
         val user = result.user ?: throw ProviderConfigurationException("Réponse Firebase Auth invalide.")
-        return initializeUserProfile(user, displayName = name)
+        return explicitSignIn(user, displayName = name)
+    }
+    override suspend fun completeSocialSignIn(expectedUid: String): AuthSession {
+        val user = auth.currentUser ?: throw ProviderConfigurationException("Session de connexion absente.")
+        check(user.uid == expectedUid) { "Social sign-in account changed" }
+        return explicitSignIn(user)
+    }
+    private suspend fun explicitSignIn(user: FirebaseUser, displayName: String? = null): AuthSession {
+        val session = initializeUserProfile(user, displayName)
+        check(auth.currentUser?.uid == session.uid) { "Sign-in account changed" }
+        AndroidTeamPushRuntime.authorizeSignIn(context, session.uid)
+        return session
+    }
+
+    override suspend fun prepareSignOut(): SessionExitResult {
+        withContext(Dispatchers.Main.immediate) { stopDeviceLocationForSignOut(context) }
+        return AndroidTeamPushRuntime.prepareSignOut(context)
     }
 
     override fun signOut() {

@@ -15,6 +15,22 @@ internal class TeamPushJournal(private val storage: TeamPushStorage, private val
     private fun next(value: Long): Long { check(value < teamPushMaximumRevision); return value + 1 }
     fun current(): TeamPushRecord = storage.read()?.also { it.validate() } ?: change { it }
 
+    fun beginSignOut(uid: String?): TeamPushRecord {
+        uid?.let(::teamPushUid)
+        return change { old ->
+            val marker = uid ?: old.signOutUid ?: old.ownerUid ?: old.pending?.uid
+            if (old.ownerUid == null) old.copy(signOutUid = marker)
+            else old.copy(revision = next(old.revision), epoch = next(old.epoch), ownerUid = null, signOutUid = marker,
+                confirmed = null, needsTokenDeletion = true,
+                pending = TeamPushCommand(old.identity, old.ownerUid, old.epoch, next(old.revision), null))
+        }
+    }
+    fun authorizeSignIn(uid: String) {
+        teamPushUid(uid)
+        change { it.copy(signOutUid = null) }
+        selectOwner(uid)
+    }
+
     fun selectOwner(uid: String?): TeamPushRecord {
         uid?.let(::teamPushUid)
         return change { old -> if (old.ownerUid == uid) old else old.copy(revision = next(old.revision), epoch = next(old.epoch),

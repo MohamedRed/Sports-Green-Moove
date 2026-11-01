@@ -42,9 +42,12 @@ class LocalTeamConversationFlowTest {
         context.getSharedPreferences("appearance", Context.MODE_PRIVATE).edit().putBoolean("darkTheme", false).commit()
         UiDevice.getInstance(instrumentation).setOrientationNatural()
         var peerMessageId = ""; var parentMessageId = ""; var revokeRequestId = ""
+        var phoneSignOut: JSONObject? = null
+        LocalTeamPushSignOutContract(context, providers.auth, session.getString("runId")).use { phone ->
         // Keep both SDK peers alive until the activity and all account operations have closed.
         runBlocking { LocalTeamChatPeer.open(context, session, "driver") }.use { driver ->
             runBlocking { LocalTeamChatPeer.open(context, session, "manager") }.use { manager ->
+                LocalTeamTestContent(context, providers.copy(auth = phone.gateway)).use {
                 ActivityScenario.launch(MainActivity::class.java).use { activity ->
                     login(session, "parent")
                     val parentUid = "sgm-qa-parent"
@@ -88,8 +91,16 @@ class LocalTeamConversationFlowTest {
                     compose.onNodeWithText("Brouillon privé parent QA").assertDoesNotExist()
                     send("Message conducteur après changement QA")
                     capture("team-chat-native-driver")
+                    runBlocking { phone.activateDriver() }
+                    click(SgmTestTags.BottomNavProfileAction)
+                    compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
+                    waitFor(hasTestTag(SgmTestTags.AuthEmailAction))
+                    compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed()
+                    phoneSignOut = phone.receipt()
+                }
                 }
             }
+        }
         }
         val directory = File(context.getExternalFilesDir(null), "local-ui-evidence"); val hashes = JSONObject()
         for (stem in listOf("parent", "exchange", "draft", "revoked", "driver")) for (suffix in listOf(".png", "-window.png")) {
@@ -105,5 +116,7 @@ class LocalTeamConversationFlowTest {
             .put("runId", session.getString("runId")).put("scope", "local-native-team-conversation-with-sdk-peers-not-physical-or-push")
             .put("checks", checks).put("screenshots", hashes).put("peerMessageId", peerMessageId)
             .put("parentMessageId", parentMessageId).put("guardianRevokeRequestId", revokeRequestId).toString(2))
+        File(directory, "team-push-signout-device.json").writeText(checkNotNull(phoneSignOut).put("runId", session.getString("runId"))
+            .put("projectId", "demo-sgm-local-qa").toString(2))
     }
 }

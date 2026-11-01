@@ -10,7 +10,7 @@ internal object TeamPushRecordCodec {
     fun encode(record: TeamPushRecord): String {
         record.validate()
         val pending = record.pending; val confirmed = record.confirmed
-        val values = mapOf("version" to "1", "installationId" to record.identity.id, "proof" to record.identity.proof,
+        val values = mapOf("version" to "2", "signOutUid" to record.signOutUid.orEmpty(), "installationId" to record.identity.id, "proof" to record.identity.proof,
             "revision" to record.revision.toString(), "ownerUid" to record.ownerUid.orEmpty(), "epoch" to record.epoch.toString(),
             "needsTokenDeletion" to record.needsTokenDeletion.toString(),
             "pendingKind" to when { pending == null -> "none"; pending.token == null -> "remove"; else -> "active" },
@@ -31,10 +31,11 @@ internal object TeamPushRecordCodec {
             override fun put(key: Any, value: Any): Any? {
                 check(!containsKey(key)); return super.put(key, value)
             }
-        }.apply { StringReader(raw).use { load(it) } }; check(values.keys == keys)
+        }.apply { StringReader(raw).use { load(it) } }
         fun text(key: String) = values.getProperty(key) ?: error("Invalid private phone registration")
         fun number(key: String): Long = text(key).let { check(it.matches(Regex("0|[1-9][0-9]{0,15}"))); it.toLong() }
-        check(text("version") == "1")
+        val version = text("version"); check(version in setOf("1", "2"))
+        check(values.keys == if (version == "1") keys else keys + "signOutUid")
         val identity = TeamPushIdentity(text("installationId"), text("proof"))
         val pending = when (text("pendingKind")) {
             "none" -> { check(text("pendingUid").isEmpty() && number("pendingRevision") == 0L && number("pendingEpoch") == 0L && text("pendingToken").isEmpty()); null }
@@ -46,6 +47,10 @@ internal object TeamPushRecordCodec {
             check(number("confirmedRevision") == 0L && number("confirmedEpoch") == 0L && text("confirmedTokenHash").isEmpty()); null
         } else TeamPushConfirmed(text("confirmedUid"), number("confirmedEpoch"), number("confirmedRevision"), text("confirmedTokenHash"))
         val deletion = when (text("needsTokenDeletion")) { "true" -> true; "false" -> false; else -> error("Invalid private phone removal state") }
-        return TeamPushRecord(identity, number("revision"), text("ownerUid").takeIf(String::isNotEmpty), number("epoch"), deletion, pending, confirmed).also { it.validate() }
+        val owner = text("ownerUid").takeIf(String::isNotEmpty)
+        // Version 1 already distinguished a signed-out pending removal from an owner's permission removal.
+        val signOutUid = if (version == "1") pending?.takeIf { owner == null && it.token == null }?.uid
+            else text("signOutUid").takeIf(String::isNotEmpty)
+        return TeamPushRecord(identity, number("revision"), owner, number("epoch"), deletion, pending, confirmed, signOutUid).also { it.validate() }
     }
 }

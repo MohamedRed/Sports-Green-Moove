@@ -40,7 +40,10 @@ test('search ownership is bound to the session and logout invalidates pending ha
   const requests = read('SearchRequests');
   assert.match(app, /sessionUid = session\?\.uid/);
   assert.match(app, /searchController.close\(\)/);
-  assert(app.indexOf('searchController.close()') < app.indexOf('signOutProviders(providers)'));
+  assert(app.includes('shutdown.start(before = {'));
+  assert(app.indexOf('searchController.close()') < app.indexOf('}, finished = { failed ->'));
+  const exitState = read('SessionShutdownState');
+  assert(exitState.includes('try { before() } finally { finish() }'));
   const shutdown = read('AppSessionShutdown');
   assert(shutdown.includes('finally { providers.auth.signOut() }'));
   assert.match(owner, /remember\(providers, scope, sessionUid\)/);

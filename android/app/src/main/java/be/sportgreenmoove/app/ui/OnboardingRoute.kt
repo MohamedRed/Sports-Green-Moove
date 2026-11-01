@@ -59,7 +59,7 @@ fun OnboardingRoute(
                 setError(null)
                 runCatching {
                     val session = providers.googleAuth.signIn(activity)
-                    val initializedSession = providers.auth.currentSession() ?: session
+                    val initializedSession = providers.auth.completeSocialSignIn(session.uid)
                     setSession(initializedSession)
                     refreshAppData()
                 }.onFailure { setError(AuthFormPolicy.userMessageFor(it)) }
@@ -77,7 +77,7 @@ fun OnboardingRoute(
                 setError(null)
                 runCatching {
                     val session = providers.facebookAuth.signIn(activity)
-                    val initializedSession = providers.auth.currentSession() ?: session
+                    val initializedSession = providers.auth.completeSocialSignIn(session.uid)
                     setSession(initializedSession)
                     refreshAppData()
                 }.onFailure { setError(AuthFormPolicy.userMessageFor(it)) }

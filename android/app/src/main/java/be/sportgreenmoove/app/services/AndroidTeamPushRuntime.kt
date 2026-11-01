@@ -22,6 +22,19 @@ internal object AndroidTeamPushRuntime {
     fun resumed(context: Context) { start(context); runtime?.request() }
     fun tokenRefreshed(context: Context) { start(context); runtime?.request(refresh = true) }
     fun beforeSignOut(context: Context) { start(context); runtime?.signOut() }
+    fun requiresSignOut(context: Context, uid: String): Boolean {
+        if (BuildConfig.SGM_USE_FIREBASE_EMULATOR) return false
+        start(context); return checkNotNull(runtime).requiresSignOut(uid)
+    }
+    fun authorizeSignIn(context: Context, uid: String) {
+        if (BuildConfig.SGM_USE_FIREBASE_EMULATOR) return
+        start(context); checkNotNull(runtime).authorizeSignIn(uid)
+    }
+    suspend fun prepareSignOut(context: Context): SessionExitResult {
+        if (BuildConfig.SGM_USE_FIREBASE_EMULATOR) return SessionExitResult.NoRegistration
+        start(context)
+        return checkNotNull(runtime).prepareSignOut()
+    }
     fun afterSignOut(context: Context) { start(context); runtime?.accountChanged() }
 }
 
@@ -66,8 +79,14 @@ private class RegistrationRuntime(private val context: Context) {
         try { lifecycle.signedOut(); request() }
         catch (_: Exception) { failed() }
     }
+    suspend fun prepareSignOut(): SessionExitResult = try { lifecycle.prepareSignOut() }
+        catch (cancelled: CancellationException) { throw cancelled }
+        catch (_: Exception) { failed(); throw ProviderConfigurationException("Impossible de confirmer la déconnexion.") }
+        finally { request() }
     fun accountChanged() {
         try { lifecycle.accountChanged(auth.currentUser?.uid); request(refresh = true) }
         catch (_: Exception) { failed() }
     }
+    fun requiresSignOut(uid: String): Boolean = lifecycle.requiresSignOut(uid)
+    fun authorizeSignIn(uid: String) { lifecycle.authorizeSignIn(uid); request(refresh = true) }
 }

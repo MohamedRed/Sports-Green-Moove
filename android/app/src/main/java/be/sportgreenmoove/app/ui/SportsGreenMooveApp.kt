@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,12 +24,14 @@ import be.sportgreenmoove.app.design.SgmTheme
 import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.domain.canManageRide
 import be.sportgreenmoove.app.services.AndroidRuntime
+import be.sportgreenmoove.app.services.AndroidProviderSet
 import kotlinx.coroutines.launch
 @Composable
-fun SportsGreenMooveApp() {
+fun SportsGreenMooveApp(providerFactory: (Context) -> AndroidProviderSet = AndroidRuntime::create) {
     val context = LocalContext.current
-    val providers = remember { AndroidRuntime.create(context.applicationContext) }
+    val providers = remember { providerFactory(context.applicationContext) }
     val scope = rememberCoroutineScope()
+    val shutdown = rememberSessionShutdown(providers)
     var screen by rememberSaveable { mutableStateOf(AppScreen.Home) }
     var contactReturn by rememberSaveable { mutableStateOf(AppScreen.Options) }
     val messagesState = rememberSaveableStateHolder()
@@ -115,18 +118,22 @@ fun SportsGreenMooveApp() {
         )
     }
     fun logout() {
-        directBooking.close()
-        searchController.close()
-        session?.uid?.let { messagesState.removeState(it) }
-        signOutProviders(providers)
-        session = null
-        role = AppRole.Parent
-        appData.clear()
-        loading = false
-        noticeMessage = null
-        errorMessage = null
-        screen = AppScreen.Home
-        contactReturn = AppScreen.Options
+        shutdown.start(before = {
+            directBooking.close()
+            searchController.close()
+            session?.uid?.let { messagesState.removeState(it) }
+            session = null
+            appData.clear()
+        }, finished = { failed ->
+            session = null
+            role = AppRole.Parent
+            appData.clear()
+            loading = false
+            noticeMessage = null
+            errorMessage = if (failed) "Déconnexion non confirmée. Réessayez." else null
+            screen = AppScreen.Home
+            contactReturn = AppScreen.Options
+        })
     }
     val restoration = rememberSessionRestoration(providers.auth, providers.isConfigured) { restored ->
         session = restored
@@ -146,148 +153,130 @@ fun SportsGreenMooveApp() {
         AppSystemBars(darkBackground = darkTheme)
         V2ThemeToggleProvider(darkTheme = darkTheme, onToggle = { darkTheme = !darkTheme }) {
             DirectBookingDialog(directBooking)
-            if (!providers.isConfigured) {
-                ConfigurationRequiredScreen()
-                return@V2ThemeToggleProvider
-            }
-            if (restoration.phase != SessionRestorationPhase.Ready) {
-                SessionRestorationScreen(restoration, ::logout) { session = it }
-                return@V2ThemeToggleProvider
-            }
-            if (session == null) {
-                OnboardingRoute(
-                    loading = loading,
+            AppAccessGate(providers, restoration, session, shutdown.pending, loading, errorMessage, scope, ::logout,
+                { loading = it }, { errorMessage = it }, { session = it }, { refreshAppData() }) {
+                SportsGreenMooveScaffold(
+                    currentScreen = screen,
+                    onNavigate = { destination -> screen = destination },
+                    notice = noticeMessage,
                     error = errorMessage,
-                    providers = providers,
-                    scope = scope,
-                    setLoading = { loading = it },
-                    setError = { errorMessage = it },
-                    setSession = { session = it },
-                    refreshAppData = { refreshAppData() },
-                )
-                return@V2ThemeToggleProvider
-            }
-            SportsGreenMooveScaffold(
-                currentScreen = screen,
-                onNavigate = { destination -> screen = destination },
-                notice = noticeMessage,
-                error = errorMessage,
-                onDismissMessage = {
-                    noticeMessage = null
-                    errorMessage = null
-                },
-            ) { padding ->
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Sgm.colors.bgApp)
-                        .padding(padding),
-                ) {
-                    when (screen) {
-                        AppScreen.Home -> HomeRoute(
-                            displayName = session?.displayName, data = appData,
-                            onNavigate = { screen = it }, onTripAction = ::runTripAction,
-                        )
-                        AppScreen.Trips -> TripsRoute(
-                            uid = requireNotNull(session).uid, role = role, gateway = providers.firebase,
-                            onChanged = { refreshAppData() },
-                            trips = trips,
-                            activeRide = activeRide,
-                            pendingCount = driverBookingRequests.count { it.status == "requested" },
-                            onTripAction = ::runTripAction,
-                            onOpenSearch = { screen = AppScreen.Search },
-                            onEmergencyContact = if (AppRole.Child in requireNotNull(session).roles)
-                                ({ contactReturn = AppScreen.Trips; screen = AppScreen.EmergencyContacts }) else null,
-                            onOpenRide = { launchActiveRideResume(scope, providers, role, activeRide, activeRidePermissionGate,
-                                { session?.uid }, { activeRide = it }, { screen = it }, { errorMessage = it }) },
-                            reservationContent = {
-                                ReservationManagementRoute(requireNotNull(session).uid, role, providers.reservations, providers.firebase) { refreshAppData() }
-                            },
-                        )
-                        AppScreen.Publish -> PublishScreen(
-                            role = role,
-                            firebase = providers.firebase,
-                            memberClubs = clubs.filter { it.isMember },
-                            initialOrigin = searchController.origin,
-                            initialDestination = searchController.destination,
-                            onError = { errorMessage = it },
-                            onNotice = { noticeMessage = it },
-                            onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } } },
-                        )
-                        AppScreen.Messages -> session?.uid?.let { uid ->
-                            messagesState.SaveableStateProvider(uid) {
-                                MessagesScreen(firebase = providers.firebase, conversations = providers.conversations,
-                                    userId = uid,
-                                    teamConversations = providers.teamConversations,
-                                    teamUserId = uid.takeIf { canManageTeamEnrollment(requireNotNull(session).roles) })
+                    onDismissMessage = {
+                        noticeMessage = null
+                        errorMessage = null
+                    },
+                ) { padding ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(Sgm.colors.bgApp)
+                            .padding(padding),
+                    ) {
+                        when (screen) {
+                            AppScreen.Home -> HomeRoute(
+                                displayName = session?.displayName, data = appData,
+                                onNavigate = { screen = it }, onTripAction = ::runTripAction,
+                            )
+                            AppScreen.Trips -> TripsRoute(
+                                uid = requireNotNull(session).uid, role = role, gateway = providers.firebase,
+                                onChanged = { refreshAppData() },
+                                trips = trips,
+                                activeRide = activeRide,
+                                pendingCount = driverBookingRequests.count { it.status == "requested" },
+                                onTripAction = ::runTripAction,
+                                onOpenSearch = { screen = AppScreen.Search },
+                                onEmergencyContact = if (AppRole.Child in requireNotNull(session).roles)
+                                    ({ contactReturn = AppScreen.Trips; screen = AppScreen.EmergencyContacts }) else null,
+                                onOpenRide = { launchActiveRideResume(scope, providers, role, activeRide, activeRidePermissionGate,
+                                    { session?.uid }, { activeRide = it }, { screen = it }, { errorMessage = it }) },
+                                reservationContent = {
+                                    ReservationManagementRoute(requireNotNull(session).uid, role, providers.reservations, providers.firebase) { refreshAppData() }
+                                },
+                            )
+                            AppScreen.Publish -> PublishScreen(
+                                role = role,
+                                firebase = providers.firebase,
+                                memberClubs = clubs.filter { it.isMember },
+                                initialOrigin = searchController.origin,
+                                initialDestination = searchController.destination,
+                                onError = { errorMessage = it },
+                                onNotice = { noticeMessage = it },
+                                onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } } },
+                            )
+                            AppScreen.Messages -> session?.uid?.let { uid ->
+                                messagesState.SaveableStateProvider(uid) {
+                                    MessagesScreen(firebase = providers.firebase, conversations = providers.conversations,
+                                        userId = uid,
+                                        teamConversations = providers.teamConversations,
+                                        teamUserId = uid.takeIf { canManageTeamEnrollment(requireNotNull(session).roles) })
+                                }
                             }
+                            AppScreen.Profile -> ProfileRoute(
+                                cityGateway = providers.profileCity,
+                                ratingsGateway = providers.receivedRatings,
+                                role = role,
+                                availableRoles = session?.roles ?: setOf(AppRole.Parent),
+                                session = session,
+                                clubs = clubs,
+                                ledgerSummaries = ledgerSummaries,
+                                onRoleChange = {
+                                    role = it
+                                    scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } }
+                                },
+                                onGroups = { screen = AppScreen.Groups },
+                                onImpact = { screen = AppScreen.Impact },
+                                onRewards = { screen = AppScreen.Rewards },
+                                onPayments = { screen = AppScreen.Payments },
+                                onOptions = { screen = AppScreen.Options },
+                                onLogout = ::logout,
+                            )
+                            AppScreen.Search -> SearchRoute(
+                                searchController = searchController,
+                                children = children,
+                                error = errorMessage,
+                                onBack = { screen = AppScreen.Home },
+                            )
+                            AppScreen.Groups -> GroupsRoute(
+                                sessionUid = requireNotNull(session).uid,
+                                providers = providers,
+                                onBack = { screen = AppScreen.Profile },
+                                onClubsLoaded = appData::replaceClubs,
+                                onGuardianVerification = if (AppRole.Parent in requireNotNull(session).roles) ({ screen = AppScreen.Guardians }) else null,
+                                onTeamEnrollment = if (canManageTeamEnrollment(requireNotNull(session).roles)) ({ screen = AppScreen.TeamEnrollments }) else null,
+                            )
+                            AppScreen.Guardians -> GuardianVerificationRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Groups }
+                            AppScreen.TeamEnrollments -> TeamEnrollmentRoute(requireNotNull(session).uid, providers.firebase, AppRole.Parent in requireNotNull(session).roles) { screen = AppScreen.Groups }
+                            AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
+                            AppScreen.Rewards -> RewardsRoute(
+                                summary = ledgerSummaries.rewards,
+                                availableRoles = session?.roles ?: setOf(AppRole.Parent),
+                                onBack = { screen = AppScreen.Profile },
+                                onOpenPayments = { payoutRole ->
+                                    role = payoutRole
+                                    screen = AppScreen.Payments
+                                },
+                                setError = { errorMessage = it },
+                            )
+                            AppScreen.Options -> OptionsScreen(uid = requireNotNull(session).uid, firebase = providers.firebase, onBack = { screen = AppScreen.Profile },
+                                onSupport = { screen = AppScreen.Support },
+                                onEmergencyContact = { contactReturn = AppScreen.Options; screen = AppScreen.EmergencyContacts })
+                            AppScreen.Support -> SupportInboxRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Options }
+                            AppScreen.EmergencyContacts -> EmergencyContactRoute(requireNotNull(session).uid, requireNotNull(session).roles,
+                                providers.emergencyContacts, providers.firebase, { screen = contactReturn },
+                                accountLinks = providers.childAccountLinks, invitations = providers.childInvitations,
+                                rideSessionId = emergencyRideSessionId(requireNotNull(session).roles, activeRide, contactReturn == AppScreen.Ride))
+                            AppScreen.Payments -> PaymentsRoute(role = role, sessionUid = session?.uid, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, onBack = { screen = AppScreen.Profile }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
+                            AppScreen.Ride -> RideMonitorScreen(
+                                activeRide = activeRide,
+                                canManageRide = canManageRide(role, session, activeRide) && rideObservation.phase == RideObservationPhase.Live,
+                                observation = rideObservation,
+                                routePreview = activeRideTrip?.mapPreview,
+                                onBack = { screen = AppScreen.Trips },
+                                onPickup = { updatePassengerStatus(it, pickup = true) },
+                                onDropoff = { updatePassengerStatus(it, pickup = false) },
+                                onEndRide = ::endActiveRide,
+                                onEmergencyContact = { contactReturn = AppScreen.Ride; screen = AppScreen.EmergencyContacts },
+                            )
                         }
-                        AppScreen.Profile -> ProfileRoute(
-                            cityGateway = providers.profileCity,
-                            ratingsGateway = providers.receivedRatings,
-                            role = role,
-                            availableRoles = session?.roles ?: setOf(AppRole.Parent),
-                            session = session,
-                            clubs = clubs,
-                            ledgerSummaries = ledgerSummaries,
-                            onRoleChange = {
-                                role = it
-                                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } }
-                            },
-                            onGroups = { screen = AppScreen.Groups },
-                            onImpact = { screen = AppScreen.Impact },
-                            onRewards = { screen = AppScreen.Rewards },
-                            onPayments = { screen = AppScreen.Payments },
-                            onOptions = { screen = AppScreen.Options },
-                            onLogout = ::logout,
-                        )
-                        AppScreen.Search -> SearchRoute(
-                            searchController = searchController,
-                            children = children,
-                            error = errorMessage,
-                            onBack = { screen = AppScreen.Home },
-                        )
-                        AppScreen.Groups -> GroupsRoute(
-                            sessionUid = requireNotNull(session).uid,
-                            providers = providers,
-                            onBack = { screen = AppScreen.Profile },
-                            onClubsLoaded = appData::replaceClubs,
-                            onGuardianVerification = if (AppRole.Parent in requireNotNull(session).roles) ({ screen = AppScreen.Guardians }) else null,
-                            onTeamEnrollment = if (canManageTeamEnrollment(requireNotNull(session).roles)) ({ screen = AppScreen.TeamEnrollments }) else null,
-                        )
-                        AppScreen.Guardians -> GuardianVerificationRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Groups }
-                        AppScreen.TeamEnrollments -> TeamEnrollmentRoute(requireNotNull(session).uid, providers.firebase, AppRole.Parent in requireNotNull(session).roles) { screen = AppScreen.Groups }
-                        AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
-                        AppScreen.Rewards -> RewardsRoute(
-                            summary = ledgerSummaries.rewards,
-                            availableRoles = session?.roles ?: setOf(AppRole.Parent),
-                            onBack = { screen = AppScreen.Profile },
-                            onOpenPayments = { payoutRole ->
-                                role = payoutRole
-                                screen = AppScreen.Payments
-                            },
-                            setError = { errorMessage = it },
-                        )
-                        AppScreen.Options -> OptionsScreen(uid = requireNotNull(session).uid, firebase = providers.firebase, onBack = { screen = AppScreen.Profile },
-                            onSupport = { screen = AppScreen.Support },
-                            onEmergencyContact = { contactReturn = AppScreen.Options; screen = AppScreen.EmergencyContacts })
-                        AppScreen.Support -> SupportInboxRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Options }
-                        AppScreen.EmergencyContacts -> EmergencyContactRoute(requireNotNull(session).uid, requireNotNull(session).roles,
-                            providers.emergencyContacts, providers.firebase, { screen = contactReturn },
-                            accountLinks = providers.childAccountLinks, invitations = providers.childInvitations,
-                            rideSessionId = emergencyRideSessionId(requireNotNull(session).roles, activeRide, contactReturn == AppScreen.Ride))
-                        AppScreen.Payments -> PaymentsRoute(role = role, sessionUid = session?.uid, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, onBack = { screen = AppScreen.Profile }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
-                        AppScreen.Ride -> RideMonitorScreen(
-                            activeRide = activeRide,
-                            canManageRide = canManageRide(role, session, activeRide) && rideObservation.phase == RideObservationPhase.Live,
-                            observation = rideObservation,
-                            routePreview = activeRideTrip?.mapPreview,
-                            onBack = { screen = AppScreen.Trips },
-                            onPickup = { updatePassengerStatus(it, pickup = true) },
-                            onDropoff = { updatePassengerStatus(it, pickup = false) },
-                            onEndRide = ::endActiveRide,
-                            onEmergencyContact = { contactReturn = AppScreen.Ride; screen = AppScreen.EmergencyContacts },
-                        )
                     }
                 }
             }

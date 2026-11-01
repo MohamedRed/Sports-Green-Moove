@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.domain.RideAccessPolicyTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:54.763Z" hostname="local-test-host" time="0.0">
+  <properties></properties>
+  <testcase name="onlyTheAuthenticatedOwnerInDriverModeHasControls" classname="be.sportgreenmoove.app.domain.RideAccessPolicyTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

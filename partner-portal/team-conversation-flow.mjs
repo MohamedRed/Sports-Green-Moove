@@ -12,6 +12,7 @@ import {notificationRetryPhone, notificationRetryImages} from './notification-re
 import {teamPushRegistration,teamPushRegressions} from './team-push-registration.mjs';
 import {teamPushJournal} from './team-push-journal.mjs';
 import {teamPushLifecycle} from './team-push-lifecycle.mjs';
+import {teamPushSignOut} from './team-push-signout.mjs';
 const historical = source => ({source, checkedAt: '2026-10-21'});
 
 export function createTeamConversationFlow() {
@@ -28,6 +29,7 @@ export function createTeamConversationFlow() {
     pushRegressions: teamPushRegressions,
     pushJournal: teamPushJournal,
     pushLifecycle: teamPushLifecycle,
+    pushSignOut: teamPushSignOut,
     authorityPhone: historical('docs/release/evidence/team-authority-phone-2026-10-21/results.json'),
     readPhone: historical('docs/release/evidence/team-read-phone-2026-10-21/results.json'),
     connected: historical(connected + 'team-conversation-results.json'),

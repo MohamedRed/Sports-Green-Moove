@@ -14,6 +14,8 @@ import { prepareDisposableTestApks, usePreinstalledTestApks, installationGuardAr
 import { collectLocalUiEvidence } from './collect-local-ui-evidence.mjs';
 import { collectNativeProcessFailure } from './native-process-failure-evidence.mjs';
 import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
+import {verifyTeamPushSignOutRecords} from './team-push-signout-records.mjs';
+import {db} from './local-flow-client.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), android = resolve(root, 'android');
 const serial = process.env.SGM_LOCAL_ANDROID_SERIAL; assert.match(serial, /^emulator-\d+$/);
@@ -21,7 +23,7 @@ const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-too
 const execute = promisify(execFile), directory = process.env.SGM_LOCAL_UI_OUTPUT;
 const run = (cmd, args) => execFileSync(cmd, args, { cwd: root, env: process.env, stdio: 'inherit', timeout: 120_000 });
 mkdirSync(directory, { recursive: true });
-let session, fixture, marker, transcript, failure, isolation, apkPreparation;
+let session, fixture, marker, transcript, failure, isolation, apkPreparation, phoneSignOut, phoneSignOutRecords;
 try {
   session = await seedLocalUiFixtures(); fixture = await prepareTeamChatUiFixture();
   session.teamChat = { clubId: fixture.clubId, teamId: fixture.teamId, childId: fixture.childId, teamInstanceId: fixture.target.expectedTeamInstanceId };
@@ -43,6 +45,8 @@ try {
   marker = JSON.parse(readFileSync(resolve(directory, 'team-conversation-device.json')));
   validateTeamChatNativeDevice(marker, receipt, session.runId, file => readFileSync(resolve(directory, file)));
   isolation = await verifyTeamChatNativeRecords(fixture, marker);
+  phoneSignOut = JSON.parse(readFileSync(resolve(directory, 'team-push-signout-device.json')));
+  phoneSignOutRecords = await verifyTeamPushSignOutRecords(db, phoneSignOut, {uid: fixture.driver.uid, runId: session.runId});
 } catch (error) {
   failure = new Error(String(error.message ?? 'Connected team conversation trial failed')
     .replaceAll(process.env.SGM_QA_PASSWORD, '[REDACTED]'));
@@ -71,11 +75,20 @@ const paths = [...disposableApkSourceFiles, 'scripts/qa/local-team-conversation-
     .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
   'android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamConversationGateway.kt',
   'android/app/src/main/java/be/sportgreenmoove/app/services/TeamConversationWire.kt',
-  ...['LocalTeamConversationFlowTest.kt', 'LocalTeamChatPeer.kt', 'LocalTeamChatUi.kt', 'NativeTeamMessageInput.kt', 'InputWindowReadiness.kt', 'LocalComposeRule.kt']
-    .map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
+  'scripts/qa/team-push-signout-records.mjs',
+  ...['ProviderContracts.kt', 'SessionExitResult.kt', 'FirebaseAndroidRuntime.kt', 'TeamPushJournal.kt', 'TeamPushLifecycle.kt',
+    'TeamPushRegistration.kt', 'TeamPushRecordCodec.kt', 'FileTeamPushStorage.kt', 'FirebaseAndroidTeamPushRegistration.kt']
+    .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/services/' + file),
+  ...['domain', 'services', 'callables'].map(folder => 'functions/src/' + folder + '/teamPushRegistration.ts'),
+  ...['SportsGreenMooveApp.kt', 'AppAccessGate.kt', 'SessionShutdownState.kt', 'AppSessionShutdown.kt', 'OnboardingRoute.kt']
+    .map(file => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + file),
+  ...['LocalTeamConversationFlowTest.kt', 'LocalTeamChatPeer.kt', 'LocalTeamChatUi.kt', 'NativeTeamMessageInput.kt', 'InputWindowReadiness.kt', 'LocalComposeRule.kt', 'LocalTeamTestContent.kt']
+    .map(file => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file),
+  'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamPushSignOutContract.kt'];
 writeFileSync(resolve(directory, 'team-conversation-app-results.json'), JSON.stringify({ ...marker, testedAt: new Date().toISOString(),
   testCount: 1, nativeCaseCount: 1, steps: [{ id: 'team-conversation-connected-native-ui', status: 'passed' }], nativeUiExecuted: true,
   apkPreparation, primaryEvidencePhase: 'team-conversation', transcriptSha256: createHash('sha256').update(transcript).digest('hex'),
+  phoneSignOut, phoneSignOutRecords,
   cleanupMode: 'destroy-owned-local-environment', adminClientClosed: true, localPackagesRemoved: true, fixtureIsolation: isolation,
   productionWrites: false, physicalDevice: false, notificationsVerified: false, unreadStateVerified: true, fullProcessRestartProven: false, externalSdkTrafficVerified: false,
   sourceFiles: Object.fromEntries(paths.map(file => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]))

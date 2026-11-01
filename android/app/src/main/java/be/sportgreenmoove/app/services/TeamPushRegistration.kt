@@ -41,9 +41,11 @@ internal data class TeamPushCommand(val identity: TeamPushIdentity, val uid: Str
 internal data class TeamPushReceipt(val uid: String, val revision: Long, val active: Boolean, val reused: Boolean)
 internal data class TeamPushConfirmed(val uid: String, val epoch: Long, val revision: Long, val tokenHash: String)
 internal data class TeamPushRecord(val identity: TeamPushIdentity, val revision: Long = 0, val ownerUid: String? = null,
-    val epoch: Long = 0, val needsTokenDeletion: Boolean = false, val pending: TeamPushCommand? = null, val confirmed: TeamPushConfirmed? = null) {
+    val epoch: Long = 0, val needsTokenDeletion: Boolean = false, val pending: TeamPushCommand? = null, val confirmed: TeamPushConfirmed? = null,
+    val signOutUid: String? = null) {
     fun validate() {
         identity.validate(); ownerUid?.let(::teamPushUid)
+        signOutUid?.let { teamPushUid(it); require(it != ownerUid) }
         require(revision in 0..teamPushMaximumRevision && epoch in 0..revision)
         require(epoch > 0 || ownerUid == null && pending == null && confirmed == null)
         pending?.let {

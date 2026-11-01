@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:54.882Z" hostname="local-test-host" time="0.001">
+  <properties></properties>
+  <testcase name="contradictoryFractionalOrUnboundedCountsAreRejected" classname="be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest" time="0.001"></testcase>
+  <testcase name="anAuthenticatedRetainedPositionDoesNotNeedAnotherCommitToStartTracking" classname="be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest" time="0.0"></testcase>
+  <testcase name="mismatchedIdentityAndCaptureAreRejected" classname="be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest" time="0.0"></testcase>
+  <testcase name="anOldServerCountAloneIsNotAnAcknowledgement" classname="be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest" time="0.0"></testcase>
+  <testcase name="ignoredInvalidCaptureCannotMasqueradeAsARetainedPoint" classname="be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest" time="0.0"></testcase>
+  <testcase name="aSingleStartupPointCannotAcceptAnEmptyOrMultiPointResponse" classname="be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

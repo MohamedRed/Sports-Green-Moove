@@ -29,7 +29,7 @@ class TeamPushStorageTest {
         val journal = TeamPushJournal(FileTeamPushStorage(temporary.newFolder())); journal.selectOwner("parent")
         val raw = TeamPushRecordCodec.encode(journal.current())
         for (bad in listOf(raw + "ownerUid=other\n", raw + "extra=value\n", raw.replace("revision=1", "revision=1.5"),
-            raw.replace("needsTokenDeletion=false", "needsTokenDeletion=maybe"), raw.replace("version=1", "version=2")))
+            raw.replace("needsTokenDeletion=false", "needsTokenDeletion=maybe"), raw.replace("version=2", "version=3")))
             assertThrows(IllegalStateException::class.java) { TeamPushRecordCodec.decode(bad) }
     }
     @Test fun logoutRemovalAndDeletionBarrierSurviveNewStorageInstances() {

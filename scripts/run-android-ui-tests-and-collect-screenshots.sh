@@ -46,7 +46,7 @@ collect_component_evidence() {
 
   if [[ "$test_status" -ne 0 ]]; then
     mkdir -p "$output_dir/partial-components" || return 1
-    for name in received-ratings-large-text.png review-trip-context-large-text.png review-trip-context-unavailable.png review-trip-context-choices.png; do
+    for name in received-ratings-large-text.png review-trip-context-large-text.png review-trip-context-unavailable.png review-trip-context-choices.png session-exit-narrow.png session-exit-wide-dark.png; do
       component_capture="/sdcard/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/$name"
       if adb shell test -s "$component_capture"; then
         adb pull "$component_capture" "$output_dir/partial-components/$name" || \
@@ -133,7 +133,7 @@ collect_component_evidence() {
       fi
     done
     adb pull /sdcard/Download/sgm-payment-confirmation "$output_dir" || return 1
-    for name in connect-narrow.png connect-opening.png received-ratings-large-text.png review-trip-context-large-text.png review-trip-context-unavailable.png review-trip-context-choices.png; do
+    for name in connect-narrow.png connect-opening.png received-ratings-large-text.png review-trip-context-large-text.png review-trip-context-unavailable.png review-trip-context-choices.png session-exit-narrow.png session-exit-wide-dark.png; do
       adb pull "/sdcard/Android/data/be.sportgreenmoove.app/files/local-ui-evidence/$name" "$output_dir/$name" || return 1
       if [[ ! -s "$output_dir/$name" ]]; then
         echo "Missing profile or driver account component capture: $name" >&2

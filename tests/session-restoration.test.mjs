@@ -19,10 +19,13 @@ test('startup failures are gated before onboarding and cannot silently become si
   const app = read(ui + 'SportsGreenMooveApp.kt'), state = read(ui + 'SessionRestorationState.kt');
   assert(!app.includes('session = providers.auth.currentSession()'));
   assert(app.includes('rememberSessionRestoration(providers.auth, providers.isConfigured)'));
-  assert(app.indexOf('restoration.phase != SessionRestorationPhase.Ready') < app.indexOf('if (session == null)'));
-  assert(app.includes('SessionRestorationScreen(restoration, ::logout)'));
+  const access = read(ui + 'AppAccessGate.kt');
+  assert(access.indexOf('shutdownPending ->') < access.indexOf('restoration.phase != SessionRestorationPhase.Ready'));
+  assert(access.indexOf('restoration.phase != SessionRestorationPhase.Ready') < access.indexOf('session == null ->'));
+  assert(access.includes('SessionRestorationScreen(restoration, logout)'));
+  assert(app.includes('AppAccessGate(providers, restoration, session, shutdown.pending'));
   assert(app.includes('onLogout = ::logout'));
-  assert.equal((app.match(/signOutProviders\(providers\)/g) ?? []).length, 1);
+  assert.equal((read(ui + 'SessionShutdownState.kt').match(/signOutProviders\(providers\)/g) ?? []).length, 1);
   const shutdown = read(ui + 'AppSessionShutdown.kt');
   assert.equal((shutdown.match(/providers\.auth\.signOut\(\)/g) ?? []).length, 1);
   assert(shutdown.includes('finally { providers.auth.signOut() }'));
@@ -34,7 +37,7 @@ test('startup failures are gated before onboarding and cannot silently become si
   assert(gate.includes('onDispose { state.close() }'));
   assert(gate.includes('LaunchedEffect(state, state.attempt, enabled)'));
   assert(gate.includes('state::retry')); assert(gate.includes('state.disconnect(onDisconnect, accept)'));
-  for (const name of ['SportsGreenMooveApp', 'SessionRestorationState', 'SessionRestoration']) {
+  for (const name of ['SportsGreenMooveApp', 'SessionRestorationState', 'SessionRestoration', 'AppAccessGate', 'SessionShutdownState']) {
     assert(read(ui + name + '.kt').split('\n').length < 300, name);
   }
 });

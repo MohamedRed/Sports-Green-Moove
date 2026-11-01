@@ -28,6 +28,8 @@ interface AuthGateway {
     suspend fun currentSession(): AuthSession?
     suspend fun signIn(email: String, password: String): AuthSession
     suspend fun signUp(name: String, email: String, password: String): AuthSession
+    suspend fun prepareSignOut(): SessionExitResult
+    suspend fun completeSocialSignIn(expectedUid: String): AuthSession
     fun signOut()
 }
 
@@ -87,6 +89,9 @@ class UnconfiguredAuthGateway : AuthGateway {
         throw ProviderConfigurationException("Firebase Android n'est pas configuré.")
     }
 
+    override suspend fun prepareSignOut() = SessionExitResult.NoRegistration
+    override suspend fun completeSocialSignIn(expectedUid: String): AuthSession =
+        throw ProviderConfigurationException("Firebase Android n'est pas configuré.")
     override fun signOut() = Unit
 }
 

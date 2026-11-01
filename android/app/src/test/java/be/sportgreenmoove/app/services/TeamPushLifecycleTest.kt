@@ -8,35 +8,10 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Test
 
+private typealias Fixture = TeamPushTestFixture
+
 @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
 class TeamPushLifecycleTest {
-    private class Memory : TeamPushStorage {
-        var value: TeamPushRecord? = null
-        override fun read() = value
-        override fun update(change: (TeamPushRecord?) -> TeamPushRecord) = change(value).also { value = it }
-    }
-    private class Fixture {
-        var uid: String? = "parent"
-        var adult = true
-        var autoInit = false
-        var retrieved = 0
-        var deleted = 0
-        val token = "synthetic_" + "T".repeat(80)
-        val journal = TeamPushJournal(Memory())
-        val calls = mutableListOf<TeamPushCommand>()
-        var tokenAction: suspend () -> String = { token }
-        var deleteAction: suspend () -> Unit = {}
-        var callAction: suspend (TeamPushCommand) -> TeamPushReceipt = {
-            TeamPushReceipt(it.uid, it.revision, it.token != null, false)
-        }
-        val source = object : TeamPushTokenSource {
-            override fun setAutoInit(enabled: Boolean) { autoInit = enabled }
-            override suspend fun token(): String { retrieved++; return tokenAction() }
-            override suspend fun deleteToken() { deleted++; deleteAction() }
-        }
-        val lifecycle = TeamPushLifecycle(journal, source, { uid }, { adult }) { calls += it; callAction(it) }
-        fun account(value: String?) { uid = value; lifecycle.accountChanged(value) }
-    }
     @Test fun aGrantedAdultRegistersAndOrdinaryResumeDoesNotAllocateAnotherRevision() = runTest {
         val f = Fixture()
         assertEquals(TeamPushSyncResult.Registered, f.lifecycle.synchronize(true))
@@ -91,7 +66,7 @@ class TeamPushLifecycleTest {
         assertNull(f.journal.current().ownerUid)
         assertEquals(TeamPushSyncResult.Inactive, f.lifecycle.synchronize(true, true))
         assertEquals(1, f.calls.size); assertEquals(1, f.retrieved); assertEquals(1, f.deleted); assertFalse(f.autoInit)
-        f.account(null); f.account("parent"); f.lifecycle.synchronize(true)
+        f.account(null); f.account("parent"); f.lifecycle.authorizeSignIn("parent"); f.lifecycle.synchronize(true)
         assertNull(f.calls[1].token); assertTrue(f.journal.confirmedFor("parent"))
     }
     @Test fun anOfflineLogoutDoesNotReplayThePreviousOwnersRemovalAsTheNextUser() = runTest {

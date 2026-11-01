@@ -3,6 +3,8 @@ import {alertCaptureFailureFolder,validateAlertCaptureFailure} from '../scripts/
 import {notificationSamplingFolder,validateNotificationSampling} from '../scripts/qa/notification-sampling-evidence.mjs';
 import {notificationGateFolder,validateNotificationGate} from '../scripts/qa/notification-gate-pass-evidence.mjs';
 import {teamPushNativeGateFolder,validateTeamPushNativeGate} from '../scripts/qa/team-push-native-gate-evidence.mjs';
+import {nativeNetworkPreparationFolder,validateTeamPushNetworkGate} from '../scripts/qa/team-push-network-gate-evidence.mjs';
+import {nativeTeamPushSignOutFolder,validateNativeTeamPushSignOut} from '../scripts/qa/native-team-push-signout-evidence.mjs';
 import {validateDependencyPatchEvidence} from '../scripts/qa/dependency-patch-evidence.mjs';
 import {validateNativeGateRecheck} from '../scripts/qa/native-gate-recheck-evidence.mjs';
 import {validatePublishedMediaSeek} from '../scripts/qa/published-media-seek-evidence.mjs';
@@ -63,10 +65,16 @@ export function validateCurrentChecks(root, content) {
   for (const id of ['chat-send-stability','native-evidence-copy'])
     assert.equal(content.blockers.find(row => row.id === id).samplingHistory.source, notificationSamplingFolder + 'README.md');
   for (const id of ['chat-send-stability','native-evidence-copy']) {
-    assert.equal(content.blockers.find(row => row.id === id).latestSource, teamPushNativeGateFolder + 'README.md');
+    assert.equal(content.blockers.find(row => row.id === id).latestSource, nativeNetworkPreparationFolder + 'README.md');
+    assert.equal(content.blockers.find(row => row.id === id).pixelCopyHistory.source, teamPushNativeGateFolder + 'README.md');
     assert.equal(content.blockers.find(row => row.id === id).latestPassingSource, notificationGateFolder + 'README.md');
   }
   validateTeamPushNativeGate(root);
+  validateTeamPushNetworkGate(root);
+  validateNativeTeamPushSignOut(root);
+  assert.equal(content.flows.find(row => row.id === 'team-conversation').pushSignOut.source, nativeTeamPushSignOutFolder + 'review.json');
+  for (const folder of [nativeNetworkPreparationFolder, nativeTeamPushSignOutFolder])
+    assert(content.updates.some(row => row.source === folder + 'README.md'));
   validateNotificationGate(root);
   validateNotificationSampling(root);
   assert(content.updates.some(row => row.source === notificationSamplingFolder + 'README.md'));

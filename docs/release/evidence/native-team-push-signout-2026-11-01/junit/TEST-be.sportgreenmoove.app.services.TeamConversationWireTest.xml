@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamConversationWireTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.017Z" hostname="local-test-host" time="0.003">
+  <properties></properties>
+  <testcase name="malformedMessagesAndDuplicateOrUnorderedPagesAreRejected" classname="be.sportgreenmoove.app.services.TeamConversationWireTest" time="0.001"></testcase>
+  <testcase name="optionsBindCurrentAccountClubModeAndImmutableTeamIdentity" classname="be.sportgreenmoove.app.services.TeamConversationWireTest" time="0.001"></testcase>
+  <testcase name="readFlagsAndReceiptsCannotInventAnotherAccountOrWindow" classname="be.sportgreenmoove.app.services.TeamConversationWireTest" time="0.001"></testcase>
+  <testcase name="anotherAccountTeamOrHistoryPolicyCannotProduceMessages" classname="be.sportgreenmoove.app.services.TeamConversationWireTest" time="0.0"></testcase>
+  <testcase name="responseBindsAccountTeamHistoryAndMessageRequestIdentity" classname="be.sportgreenmoove.app.services.TeamConversationWireTest" time="0.0"></testcase>
+  <testcase name="aSendReceiptCannotConfirmAnotherAccountOrTeam" classname="be.sportgreenmoove.app.services.TeamConversationWireTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

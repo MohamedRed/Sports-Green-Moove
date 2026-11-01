@@ -5,12 +5,17 @@ import {existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync} from 'n
 import {homedir} from 'node:os';
 import {isAbsolute, resolve} from 'node:path';
 import {XMLParser, XMLBuilder} from 'fast-xml-parser';
-import {nativeTeamPushSources, nativeTeamPushCases, nativeTeamPushLifecycleSources, nativeTeamPushLifecycleCases} from './native-team-push-sources.mjs';
+import {nativeTeamPushSources, nativeTeamPushCases, nativeTeamPushLifecycleSources, nativeTeamPushLifecycleCases,
+  nativeTeamPushSignOutSources, nativeTeamPushSignOutCases, nativeTeamPushSuiteName} from './native-team-push-sources.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), output = process.argv[2];
-const lifecycle = process.argv[3] === '--lifecycle'; assert(process.argv.length === (lifecycle ? 4 : 3));
-const sources = lifecycle ? nativeTeamPushLifecycleSources : nativeTeamPushSources;
-const cases = lifecycle ? nativeTeamPushLifecycleCases : nativeTeamPushCases;
+const mode = process.argv[3]; assert(mode === undefined || ['--lifecycle', '--signout'].includes(mode));
+assert(process.argv.length === (mode ? 4 : 3));
+const signout = mode === '--signout', lifecycle = signout || mode === '--lifecycle';
+const sources = signout ? nativeTeamPushSignOutSources : lifecycle ? nativeTeamPushLifecycleSources : nativeTeamPushSources;
+const cases = signout ? nativeTeamPushSignOutCases : lifecycle ? nativeTeamPushLifecycleCases : nativeTeamPushCases;
+const retained = resolve(root, 'docs/release/evidence/native-team-push-' + (signout ? 'signout' : lifecycle ? 'lifecycle' : 'journal') + '-2026-11-01');
+if (existsSync(retained)) assert.deepEqual(readdirSync(retained), ['README.md']);
 const focused = Object.values(cases).reduce((sum, count) => sum + count, 0);
 assert(isAbsolute(output ?? ''), 'Use a new absolute output directory');
 assert(!existsSync(output), 'Never overwrite a trial'); mkdirSync(output, {recursive: true});
@@ -37,10 +42,9 @@ for (const file of readdirSync(folder).filter(name => name.endsWith('.xml')).sor
   suites.push({name: suite['@_name'], tests: Number(suite['@_tests'])});
 }
 for (const [name, count] of Object.entries(cases))
-  assert.equal(suites.find(row => row.name === 'be.sportgreenmoove.app.services.' + name)?.tests, count);
-const total = suites.reduce((sum, row) => sum + row.tests, 0); assert.equal(total, lifecycle ? 746 : 722);
+  assert.equal(suites.find(row => row.name === nativeTeamPushSuiteName(name))?.tests, count);
+const total = suites.reduce((sum, row) => sum + row.tests, 0); assert.equal(total, signout ? 770 : lifecycle ? 746 : 722);
 // Keep failed trials private; only retain the reviewed, successful source-bound result.
-const retained = resolve(root, 'docs/release/evidence/' + (lifecycle ? 'native-team-push-lifecycle' : 'native-team-push-journal') + '-2026-11-01');
 if (existsSync(retained)) assert.deepEqual(readdirSync(retained), ['README.md']); else mkdirSync(retained);
 const archive = resolve(root, 'docs/release/evidence/source-archive');
 for (const [file, hash] of Object.entries(sourceFiles)) {
@@ -48,7 +52,7 @@ for (const [file, hash] of Object.entries(sourceFiles)) {
   if (!existsSync(path)) writeFileSync(path, bytes, {flag: 'wx'}); else assert.equal(sha(readFileSync(path)), hash);
 }
 const apk = file => { const bytes = readFileSync(resolve(root, 'android/app/build/outputs/apk', file)); return {sha256: sha(bytes), bytes: bytes.length}; };
-const report = {scope: lifecycle ? 'native-registration-lifecycle-jvm-and-build-only' : 'native-registration-journal-jvm-and-build-only', startedAt, testedAt: new Date().toISOString(),
+const report = {scope: signout ? 'native-signout-ordering-and-durable-intent-jvm-and-build-only' : lifecycle ? 'native-registration-lifecycle-jvm-and-build-only' : 'native-registration-journal-jvm-and-build-only', startedAt, testedAt: new Date().toISOString(),
   sourceUnchangedDuringBuild: true, unitTests: total, unitSuites: suites.length, focusedUnitTests: focused, focusedSuites: cases,
   appCompiled: true, instrumentationCompiled: true, instrumentationExecuted: false, nativeLifecycleImplemented: lifecycle,
   realPhoneTokenRegistered: false, dispatcherImplemented: false, pushDeliveryVerified: false, tapNavigationVerified: false,
@@ -70,6 +74,9 @@ if (lifecycle) {
   Object.assign(report, {isolatedBuild: true, realSdkCallsExecuted: false, runtimeCallbacksExecuted: false,
     authenticatedSignoutRemovalVerified: false, messagingSdkVersion: '25.0.2', automaticRetry: false});
 }
+if (signout) Object.assign(report, {signOutIntentSchemaVersion: 2, authenticatedRemovalModelVerified: true,
+  restartIntentModelVerified: true, explicitSignInRequired: true, signOutUiCasesCompiled: 3, signOutUiCasesExecuted: false,
+  syntheticTokenConnectedContractCompiled: true, syntheticTokenConnectedContractExecuted: false});
 put('review.json', JSON.stringify(report, null, 2) + '\n');
 put('build-success.txt', log.split(homedir()).join('<home>').split('\n').map(line => line.trimEnd()).join('\n'));
 for (const file of Object.keys(artifacts)) {

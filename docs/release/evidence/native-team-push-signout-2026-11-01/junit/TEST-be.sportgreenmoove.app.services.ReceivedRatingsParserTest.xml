@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.ReceivedRatingsParserTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:54.946Z" hostname="local-test-host" time="0.001">
+  <properties></properties>
+  <testcase name="emptyAndPopulatedResponsesRemainDistinct" classname="be.sportgreenmoove.app.services.ReceivedRatingsParserTest" time="0.001"></testcase>
+  <testcase name="invalidCountsAndAveragesAreNeverRepairedOrClamped" classname="be.sportgreenmoove.app.services.ReceivedRatingsParserTest" time="0.0"></testcase>
+  <testcase name="anotherAccountsSummaryAndUnexpectedFieldsAreRejected" classname="be.sportgreenmoove.app.services.ReceivedRatingsParserTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

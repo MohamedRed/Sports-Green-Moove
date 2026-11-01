@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The later e2bb5d2 source passes the main Native UI job (232 passes/54 skips),
+but fails the focused chat-network lane before radio loss/message retry, during
+requested-network preparation. Publish this latest result without overriding the
+older capture failures or d476cce complete pass. No new public media or physical,
+root-cause, closed-app delivery or release acceptance is added. See
+`docs/release/evidence/native-network-preparation-e2bb5d2-2026-11-01/README.md`.
+
+The later local sign-out proof passes 79 focused/770 total JVM cases, compiling
+three exit-screen cases and a synthetic-token connected contract. Only models
+and compilation pass here: actual native UI execution, real messaging token
+removal/delivery/tap remain unverified. Publish a brief local-result note without
+changing phone dates, galleries/tours, partial status or public access. See
+`docs/release/evidence/native-team-push-signout-2026-11-01/README.md`.
+
 The d476cce source passes the complete Native workflow and every non-skipped
 source check: 231 ordinary passes/54 intentional skips, all notification cases,
 37 replay groups/40 native cases, seventeen primary copies and eleven focused

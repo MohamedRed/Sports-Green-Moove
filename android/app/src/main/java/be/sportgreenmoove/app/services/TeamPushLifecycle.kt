@@ -3,6 +3,8 @@ package be.sportgreenmoove.app.services
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.TimeoutCancellationException
+import kotlinx.coroutines.withTimeout
 
 internal interface TeamPushTokenSource {
     fun setAutoInit(enabled: Boolean)
@@ -20,29 +22,46 @@ internal class TeamPushLifecycle(
 ) {
     private val mutex = Mutex()
     private val transitions = Any()
-    @Volatile private var signingOutUid: String? = null
+    fun requiresSignOut(uid: String?): Boolean = uid != null && journal.current().signOutUid == uid
 
     // Auth callbacks invalidate durable ownership before queued asynchronous work can finish.
     fun accountChanged(uid: String?) = synchronized(transitions) {
-        if (uid != null && uid == signingOutUid) return@synchronized journal.current()
-        if (uid != signingOutUid) signingOutUid = null
+        if (requiresSignOut(uid)) { tokens.setAutoInit(false); return@synchronized journal.selectOwner(null) }
         if (journal.current().ownerUid != uid) tokens.setAutoInit(false)
         journal.selectOwner(uid)
     }
 
     fun signedOut() = synchronized(transitions) {
-        signingOutUid = currentUid()
         tokens.setAutoInit(false)
-        val owner = journal.current().ownerUid
-        if (owner != null) journal.remove(owner)
-        journal.selectOwner(null)
+        journal.beginSignOut(currentUid())
+    }
+    fun authorizeSignIn(uid: String) = synchronized(transitions) {
+        check(currentUid() == uid)
+        journal.authorizeSignIn(uid)
+    }
+
+    suspend fun prepareSignOut(): SessionExitResult {
+        val record = signedOut()
+        val command = record.pending?.takeIf { it.token == null && it.uid == currentUid() }
+            ?: return if (record.pending == null) SessionExitResult.NoRegistration else SessionExitResult.Pending
+        return try {
+            withTimeout(2_500L) {
+                if (currentUid() != command.uid) throw CancellationException("Sign-out account changed")
+                val receipt = register(command)
+                if (currentUid() != command.uid) throw CancellationException("Sign-out account changed")
+                journal.acknowledge(command, receipt)
+            }
+            SessionExitResult.Confirmed
+        } catch (_: TimeoutCancellationException) { SessionExitResult.Pending }
+        catch (cancelled: CancellationException) { throw cancelled }
+        catch (_: Exception) { SessionExitResult.Pending }
     }
 
     suspend fun synchronize(allowed: Boolean, refreshToken: Boolean = false): TeamPushSyncResult = mutex.withLock {
         try {
             val uid = currentUid()
             val signingOut = synchronized(transitions) {
-                if (uid != null && uid == signingOutUid) true else { journal.selectOwner(uid); false }
+                if (requiresSignOut(uid)) { journal.selectOwner(null); true } else { journal.selectOwner(uid); false }
             }
             tokens.setAutoInit(false)
             if (uid == null || signingOut) { deleteIfRequired(); return@withLock TeamPushSyncResult.Inactive }
@@ -87,7 +106,7 @@ internal class TeamPushLifecycle(
         journal.confirmTokenDeletion(ticket)
     }
     private fun requireCurrent(uid: String) {
-        if (currentUid() != uid || journal.current().ownerUid != uid || uid == signingOutUid)
+        if (currentUid() != uid || journal.current().ownerUid != uid || requiresSignOut(uid))
             throw CancellationException("Team phone account changed during synchronization")
     }
 }

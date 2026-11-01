@@ -48,7 +48,10 @@ test('sign-out invalidates pending starts and ends local sensing even for the sa
   const auth = service('FirebaseAndroidRuntime');
   assert(auth.includes('try { stopDeviceLocationForSignOut(context) }'));
   assert(auth.includes('finally { auth.signOut(); AndroidTeamPushRuntime.afterSignOut(context) }'));
-  assert(auth.indexOf('AndroidTeamPushRuntime.beforeSignOut(context)') < auth.indexOf('stopDeviceLocationForSignOut(context)'));
+  const forced = auth.slice(auth.indexOf('override fun signOut()'), auth.indexOf('private suspend fun initializeUserProfile'));
+  assert(forced.indexOf('AndroidTeamPushRuntime.beforeSignOut(context)') < forced.indexOf('stopDeviceLocationForSignOut(context)'));
+  const preparation = auth.slice(auth.indexOf('override suspend fun prepareSignOut()'), auth.indexOf('override fun signOut()'));
+  assert(preparation.indexOf('stopDeviceLocationForSignOut(context)') < preparation.indexOf('AndroidTeamPushRuntime.prepareSignOut(context)'));
   const shutdown = service('NativeTrackingAuthorization');
   assert(shutdown.indexOf('NativeTrackingAuthorization.revoke()') < shutdown.indexOf('context.stopService'));
   assert(shutdown.includes('Radar.stopTracking()')); assert(!shutdown.includes('completeTrip(')); assert(!shutdown.includes('cancelTrip('));
