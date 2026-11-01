@@ -323,7 +323,13 @@
   "operationalUserFlowEvidence": {
     "items": [
       { "id": "urgent_support_space_alert", "status": "pending", "description": "Retain an app-origin production support-only urgent alert.", "evidenceRefs": ["../contracts/support-urgent.md"] },
-      { "id": "urgent_support_email_receipt", "status": "pending", "description": "Retain actual receipt at the approved support inbox; provider acceptance alone is insufficient.", "evidenceRefs": ["../contracts/support-urgent.md"] }
+      { "id": "urgent_support_email_receipt", "status": "pending", "description": "Retain actual receipt at the approved support inbox; provider acceptance alone is insufficient.", "evidenceRefs": ["../contracts/support-urgent.md"] },
+      { "id": "team_push_closed_app_delivery", "status": "pending", "description": "Observe actual closed-app receipt on both release platforms, not just provider acceptance.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
+      { "id": "team_push_notification_tap", "status": "pending", "description": "Observe authenticated tap, fresh admission authority and no implicit read acknowledgement.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
+      { "id": "team_push_current_account_isolation", "status": "pending", "description": "Observe current-account isolation across switches, re-login, disabled/child accounts and restart.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
+      { "id": "team_push_revocation_suppression", "status": "pending", "description": "Observe current team/guardian authority at send, display and tap on both release platforms.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
+      { "id": "team_push_permission_lifecycle", "status": "pending", "description": "Observe permission/channel denial, grant and revocation/regrant without duplicate registration.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
+      { "id": "team_push_signout_cleanup", "status": "pending", "description": "Observe authenticated online removal and offline cleanup, actual SDK deletion and no delayed reactivation.", "evidenceRefs": ["../contracts/team-push-notifications.md"] }
     ]
   },
   "safetyAuditEvidence": {

@@ -40,9 +40,10 @@ creating an extra binding. The query index is declared in `firestore.indexes.jso
 
 ## Native Registration Journal
 
-The Android journal and callable gateway now have 27 JVM tests and a compiled
-private-storage instrumented test. No application lifecycle callback invokes
-them yet. They are not token registration or closed-app delivery proof.
+The Android journal and callable gateway have 27 JVM tests and a compiled
+private-storage instrumented test. The lifecycle coordinator adds 21 cases and
+the SDK-task queue adds three. This is local model/build evidence, not actual
+provider token registration or closed-app delivery proof.
 
 The journal stores an installation UUID and cryptographic proof in private
 no-backup storage. Synchronized atomic writes allocate a durable revision before
@@ -63,12 +64,32 @@ not implement cross-process locking. All sensitive values remain absent from
 diagnostic strings. The response boundary checks the Firebase current UID before
 and after its call and accepts only the exact receipt schema.
 
+`SgmApplication`, the Auth ID-token listener, foreground resume and new-token
+service now invoke the production coordinator. Local emulator builds skip that
+runtime completely and disable the service. Auto-init and notification delegation
+start disabled. Only a permitted adult registration enables auto-init. Permission
+checks include the app setting and team channel; stale callback tokens themselves
+are not trusted. The server still checks current account and admission authority.
+
+Each worker attempt is bounded to 20 seconds, with no automatic retry loop.
+Subsequent real lifecycle events can retry the durable request. The token queue
+keeps an uncancelled SDK task across a cancelled await and waits for its terminal
+effects before another SDK token operation begins. Errors disable auto-init.
+The existing Firebase BOM selects Messaging 25.0.2 and its supported legacy token
+API; no newer installation-ID mode is enabled by assumption.
+
+Sign-out intent disables auto-init, persists a removal, clears local authority
+and blocks reactivation before Firebase Auth clears its user. The post-sign-out
+hook explicitly records that cleared account. SDK deletion runs asynchronously.
+An authenticated server-removal acknowledgement before sign-out is still missing;
+the pending removal cannot be replayed as a different user. Neither the runtime
+hooks nor actual SDK registration/deletion have physical evidence yet.
+
 ## Remaining Delivery Work
 
-Native token refresh, permission changes, sign-out removal and account-switch
-callbacks must call the journal and server boundary. SDK token deletion, retries
-and cancellation still require runtime coordination. Do not add a native success
-claim until the actual phone path runs.
+Complete authenticated online sign-out removal and verify the existing native
+callbacks, permissions, SDK token lifecycle and offline cleanup on actual phones.
+Do not infer these outcomes from the compiled adapter or injected SDK-task tests.
 
 The outbox dispatcher must recheck current account status, current team identity,
 adult/guardian admission and the message's admission-time boundary before sending.
@@ -83,6 +104,12 @@ It is a server contract trial, not real token registration or closed-app proof.
 Actual Android delivery/tap/account-switch/permission/revocation trials and iOS
 coverage remain required before release acceptance. There is no deployed change
 or new paid infrastructure in this work.
+
+The release manifest now requires six explicit operational proofs: closed-app
+delivery, tap navigation, current-account isolation, revocation suppression,
+permission lifecycle and sign-out cleanup. All remain pending on both release
+platforms. In-app alerts, local models, SDK compilation and provider acceptance
+cannot satisfy these requirements.
 
 ## Screenshot Decision
 

@@ -9,9 +9,15 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import be.sportgreenmoove.app.services.FacebookActivityResultBridge
+import be.sportgreenmoove.app.services.AndroidTeamPushRuntime
 import be.sportgreenmoove.app.ui.SportsGreenMooveApp
 
 class MainActivity : ComponentActivity() {
+    override fun onResume() {
+        super.onResume()
+        AndroidTeamPushRuntime.resumed(applicationContext)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) setRecentsScreenshotEnabled(false)

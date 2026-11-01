@@ -22,8 +22,10 @@ const output = execFileSync(
 const report = JSON.parse(output);
 
 assert.equal(report.ok, false, "Current release gap report must not claim public-launch completion.");
-assert.deepEqual(report.operationalUserFlowEvidence.missing, ["urgent_support_space_alert", "urgent_support_email_receipt"],
-  "Local urgent support and provider acceptance must not complete production alerts or actual email receipt.");
+assert.deepEqual(report.operationalUserFlowEvidence.missing, ["urgent_support_space_alert", "urgent_support_email_receipt",
+  "team_push_closed_app_delivery", "team_push_notification_tap", "team_push_current_account_isolation",
+  "team_push_revocation_suppression", "team_push_permission_lifecycle", "team_push_signout_cleanup"],
+  "Local registration and alert tests must not complete real delivery, authority, permission or cleanup evidence.");
 assert.equal(report.manifest.exists, true, "In-progress release evidence manifest should be read.");
 assert.equal(report.manifest.data.manifestStatus, "in-progress", "Release evidence manifest must not claim completion.");
 assert.equal(report.secretInventory.exists, true, "Default release gap report should read the checked-in secret inventory.");

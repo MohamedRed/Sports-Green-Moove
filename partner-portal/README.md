@@ -1385,6 +1385,19 @@ records keep their own dates. The nine-step tour distinguishes both dates.
 
 ## Content And Evidence
 
+The latest 94a3ffb full native gate fails two trip-change PixelCopy waits while
+the eleven focused lanes and one private-storage case pass. Publish the concise
+failure note and update current blocker sources. Keep d476cce as the retained
+last complete passing source, not the latest result. No new screenshots or root
+cause are accepted. See `docs/release/evidence/team-push-native-gate-94a3ffb-2026-11-01/README.md`.
+
+The later 1 November lifecycle update adds 24 model/task-queue cases, bringing the
+complete Android JVM suite to 746. Production callbacks compile, but no real SDK
+registration or closed-app delivery is accepted. Online sign-out acknowledgement
+is still missing. The six corresponding operational release proofs remain pending.
+Publish only the concise local-result note, with no new media or date promotion.
+See `docs/release/evidence/native-team-push-lifecycle-2026-11-01/README.md`.
+
 The 1 November native registration journal adds 27 local JVM checks and a
 compiled, unexecuted private-storage device test. Its brief progress note does
 not promote actual phone registration or closed-app delivery. Preserve the

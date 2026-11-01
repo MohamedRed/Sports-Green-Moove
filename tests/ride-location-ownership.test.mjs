@@ -46,7 +46,9 @@ test('native service and queued callbacks use immutable owner/session leases rat
 });
 test('sign-out invalidates pending starts and ends local sensing even for the same user logging in again', () => {
   const auth = service('FirebaseAndroidRuntime');
-  assert(auth.includes('try { stopDeviceLocationForSignOut(context) } finally { auth.signOut() }'));
+  assert(auth.includes('try { stopDeviceLocationForSignOut(context) }'));
+  assert(auth.includes('finally { auth.signOut(); AndroidTeamPushRuntime.afterSignOut(context) }'));
+  assert(auth.indexOf('AndroidTeamPushRuntime.beforeSignOut(context)') < auth.indexOf('stopDeviceLocationForSignOut(context)'));
   const shutdown = service('NativeTrackingAuthorization');
   assert(shutdown.indexOf('NativeTrackingAuthorization.revoke()') < shutdown.indexOf('context.stopService'));
   assert(shutdown.includes('Radar.stopTracking()')); assert(!shutdown.includes('completeTrip(')); assert(!shutdown.includes('cancelTrip('));

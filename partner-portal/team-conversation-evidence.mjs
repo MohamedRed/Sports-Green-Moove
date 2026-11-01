@@ -23,8 +23,15 @@ import {validateNotificationRetryPhone} from '../scripts/qa/notification-retry-p
 import {validateTeamPushRegistration} from '../scripts/qa/team-push-registration-evidence.mjs';
 import {validateTeamAccountRegressions} from '../scripts/qa/team-account-regressions-evidence.mjs';
 import {validateNativeTeamPushJournal} from '../scripts/qa/native-team-push-journal-evidence.mjs';
+import {validateNativeTeamPushLifecycle} from '../scripts/qa/native-team-push-lifecycle-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if (flow.pushLifecycle) {
+    const run = validateNativeTeamPushLifecycle(root, dirname(flow.pushLifecycle.source));
+    assert.equal(flow.pushLifecycle.checkedAt, run.testedAt.slice(0, 10));
+    assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+  }
   if (flow.pushJournal) {
     const run = validateNativeTeamPushJournal(root, dirname(flow.pushJournal.source));
     assert.equal(flow.pushJournal.checkedAt, run.testedAt.slice(0, 10));

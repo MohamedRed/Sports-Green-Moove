@@ -327,6 +327,36 @@
         "status": "pending",
         "description": "Both urgent channels are required. The isolated loopback provider proves retry safety only, not real email. Approve/configure a verified sender, activate server secrets and retain actual receipt at the privately confirmed support inbox, without publishing its address.",
         "evidenceRefs": ["../contracts/support-urgent.md", "evidence/support-urgent-2026-10-23/README.md"]
+      },
+      {
+        "id": "team_push_closed_app_delivery", "status": "pending",
+        "description": "Both release platforms require observed team-message receipt with the app closed. Local inbox, registration, SDK compilation and provider acceptance do not prove delivery.",
+        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+      },
+      {
+        "id": "team_push_notification_tap", "status": "pending",
+        "description": "Observe authenticated tap navigation with fresh team authority, current admission-time history and no implicit read acknowledgement on both release platforms.",
+        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+      },
+      {
+        "id": "team_push_current_account_isolation", "status": "pending",
+        "description": "Observe queued and late notifications across account switches, same-account re-login, child/disabled accounts and process restart. No previous-account content or registration may be reused.",
+        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+      },
+      {
+        "id": "team_push_revocation_suppression", "status": "pending",
+        "description": "Observe team/guardian revocation and renewed admission before send, display and tap; stale queued notifications must not reveal prior history on either release platform.",
+        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+      },
+      {
+        "id": "team_push_permission_lifecycle", "status": "pending",
+        "description": "Observe denial, grant, channel blocking and later revocation/regrant on each release platform without fabricated permission state or duplicate registration.",
+        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+      },
+      {
+        "id": "team_push_signout_cleanup", "status": "pending",
+        "description": "Observe online authenticated installation removal and offline pending cleanup, actual SDK deletion and no delayed reactivation after logout or restart. Local coordinator tests alone are insufficient.",
+        "evidenceRefs": ["../contracts/team-push-notifications.md"]
       }
     ]
   },

@@ -55,6 +55,7 @@ object AndroidRuntime {
             AndroidProviderSet(auth = UnconfiguredAuthGateway(), firebase = UnconfiguredFirebaseGateway())
         } else {
             FirebaseAndroidEmulatorConfig.configureIfRequested()
+            AndroidTeamPushRuntime.start(context.applicationContext)
             AndroidProviderSet(
                 auth = FirebaseAndroidAuthGateway(context.applicationContext),
                 firebase = FirebaseAndroidBackendGateway(context.applicationContext),
@@ -121,7 +122,11 @@ private class FirebaseAndroidAuthGateway(private val context: Context) : AuthGat
     }
 
     override fun signOut() {
-        try { stopDeviceLocationForSignOut(context) } finally { auth.signOut() }
+        try { AndroidTeamPushRuntime.beforeSignOut(context) }
+        finally {
+            try { stopDeviceLocationForSignOut(context) }
+            finally { auth.signOut(); AndroidTeamPushRuntime.afterSignOut(context) }
+        }
     }
 
     private suspend fun initializeUserProfile(user: FirebaseUser, displayName: String? = null): AuthSession {

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamPushJournalTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:43:53.734Z" hostname="local-test-host" time="0.012">
+  <properties></properties>
+  <testcase name="invalidAccountIdentifiersNeverCreateOrChangeAnInstallation" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.001"></testcase>
+  <testcase name="aCallbackCannotReactivateAnAlreadyAcknowledgedRevision" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.002"></testcase>
+  <testcase name="malformedOrForeignAcknowledgementsNeverConfirmThePendingRequest" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.001"></testcase>
+  <testcase name="laterTokenRetrievalWinsAndAnOlderCallbackCannotReplaceIt" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.0"></testcase>
+  <testcase name="exhaustedCountersCannotWrapOrReinitializeTheInstallation" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.001"></testcase>
+  <testcase name="confirmedRegistrationRequiresAnActualMatchingAcknowledgement" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.0"></testcase>
+  <testcase name="unconfirmedRequestsSurviveReconstructionWithoutAllocatingAnotherRevision" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.001"></testcase>
+  <testcase name="removalSurvivesLogoutButCannotBeSentWithAnotherAccount" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.001"></testcase>
+  <testcase name="invalidTokensDoNotReplaceTheCurrentPendingCommandAndSensitiveObjectsAreRedacted" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.002"></testcase>
+  <testcase name="returningToTheSameAccountDoesNotAcceptItsEarlierSessionCallback" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.0"></testcase>
+  <testcase name="anOlderDeletionCompletionCannotClearANewerDeletionBarrier" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.001"></testcase>
+  <testcase name="duplicateCallbacksCannotChangeThePayloadOfAnAlreadyPersistedRevision" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.0"></testcase>
+  <testcase name="failedDurableWriteDoesNotPublishAnUnpersistedCommandOrAdvanceTheCounter" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.0"></testcase>
+  <testcase name="delayedRemovalCannotAcknowledgeOrClearTheNewOwnersActivation" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.001"></testcase>
+  <testcase name="accountSwitchDropsAnOldActivationAndRequiresProviderTokenDeletion" classname="be.sportgreenmoove.app.services.TeamPushJournalTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 4,
+  "scope": "primary-compose-capture-observation-not-flow-or-root-cause-proof",
+  "sampleScheduleMs": [
+    250,
+    750,
+    1600
+  ],
+  "captureName": "trip-change-parent-review-large-text.png",
+  "sdkInvocations": 1,
+  "primaryOutcome": "returned",
+  "errorCategory": "none",
+  "elapsedMs": 1552,
+  "callerIsMain": false,
+  "primaryStartOffsetMs": 8,
+  "primaryElapsedMs": 1543,
+  "mainPostAccepted": true,
+  "heartbeatDelaysMs": [
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "heartbeatAtMs": [
+    59,
+    108,
+    159,
+    211,
+    261,
+    311,
+    362,
+    412,
+    462,
+    512,
+    562,
+    612,
+    663,
+    714,
+    763,
+    814,
+    864,
+    914,
+    965,
+    1015,
+    1065,
+    1115,
+    1166,
+    1216,
+    1267,
+    1317,
+    1367,
+    1417,
+    1468,
+    1519
+  ],
+  "maxMainQueueDelayMs": 2,
+  "samples": [
+    {
+      "atMs": 264,
+      "scheduledMs": 258,
+      "offsetMs": 250,
+      "observerDelayMs": 6,
+      "mainState": "RUNNABLE",
+      "mainFrames": [
+        {
+          "className": "android.os.MessageQueue",
+          "methodName": "nativePollOnce",
+          "fileName": "MessageQueue.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "android.os.MessageQueue",
+          "methodName": "next",
+          "fileName": "MessageQueue.java",
+          "lineNumber": 346
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loopOnce",
+          "fileName": "Looper.java",
+          "lineNumber": 189
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loop",
+          "fileName": "Looper.java",
+          "lineNumber": 317
+        },
+        {
+          "className": "android.app.ActivityThread",
+          "methodName": "main",
+          "fileName": "ActivityThread.java",
+          "lineNumber": 8705
+        },
+        {
+          "className": "java.lang.reflect.Method",
+          "methodName": "invoke",
+          "fileName": "Method.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "com.android.internal.os.RuntimeInit$MethodAndArgsCaller",
+          "methodName": "run",
+          "fileName": "RuntimeInit.java",
+          "lineNumber": 580
+        },
+        {
+          "className": "com.android.internal.os.ZygoteInit",
+          "methodName": "main",
+          "fileName": "ZygoteInit.java",
+          "lineNumber": 886
+        }
+      ],
+      "callerFrames": [
+        {
+          "className": "android.os.MessageQueue",
+          "methodName": "nativeWake",
+          "fileName": "MessageQueue.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "android.os.MessageQueue",
+          "methodName": "enqueueMessage",
+          "fileName": "MessageQueue.java",
+          "lineNumber": 693
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "enqueueMessage",
+          "fileName": "Handler.java",
+          "lineNumber": 787
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "sendMessageAtTime",
+          "fileName": "Handler.java",
+          "lineNumber": 736
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "sendMessageDelayed",
+          "fileName": "Handler.java",
+          "lineNumber": 706
+        },
+        {
+          "className": "android.os.Handler",
+          "methodName": "post",
+          "fileName": "Handler.java",
+          "lineNumber": 436
+        },
+        {
+          "className": "android.app.Instrumentation",
+          "methodName": "runOnMainSync",
+          "fileName": "Instrumentation.java",
+          "lineNumber": 488
+        },
+        {
+          "className": "androidx.test.runner.MonitoringInstrumentation",
+          "methodName": "runOnMainSync",
+          "fileName": "MonitoringInstrumentation.java",
+          "lineNumber": 485
+        },
+        {
+          "className": "androidx.compose.ui.test.AndroidSynchronization_androidKt",
+          "methodName": "runOnUiThread",
+          "fileName": "AndroidSynchronization.android.kt",
+          "lineNumber": 40
+        },
+        {
+          "className": "androidx.compose.ui.test.MainTestClockImpl$1",
+          "methodName": "invoke",
+          "fileName": "MainTestClockImpl.android.kt",
+          "lineNumber": 32
+        },
+        {
+          "className": "androidx.compose.ui.test.MainTestClockImpl$1",
+          "methodName": "invoke",
+          "fileName": "MainTestClockImpl.android.kt",
+          "lineNumber": 32
+        },
+        {
+          "className": "androidx.compose.ui.test.AbstractMainTestClock",
+          "methodName": "advanceScheduler",
+          "fileName": "AbstractMainTestClock.jvm.kt",
+          "lineNumber": 101
+        },
+        {
+          "className": "androidx.compose.ui.test.AbstractMainTestClock",
+          "methodName": "advanceTimeByFrame",
+          "fileName": "AbstractMainTestClock.jvm.kt",
+          "lineNumber": 41
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "waitUntil",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 173
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "forceRedraw",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 124
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 49
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "withDrawingEnabled",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 89
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 47
+        }
+      ]
+    },
+    {
+      "atMs": 766,
+      "scheduledMs": 758,
+      "offsetMs": 750,
+      "observerDelayMs": 8,
+      "mainState": "RUNNABLE",
+      "mainFrames": [
+        {
+          "className": "android.os.MessageQueue",
+          "methodName": "nativePollOnce",
+          "fileName": "MessageQueue.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "android.os.MessageQueue",
+          "methodName": "next",
+          "fileName": "MessageQueue.java",
+          "lineNumber": 346
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loopOnce",
+          "fileName": "Looper.java",
+          "lineNumber": 189
+        },
+        {
+          "className": "android.os.Looper",
+          "methodName": "loop",
+          "fileName": "Looper.java",
+          "lineNumber": 317
+        },
+        {
+          "className": "android.app.ActivityThread",
+          "methodName": "main",
+          "fileName": "ActivityThread.java",
+          "lineNumber": 8705
+        },
+        {
+          "className": "java.lang.reflect.Method",
+          "methodName": "invoke",
+          "fileName": "Method.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "com.android.internal.os.RuntimeInit$MethodAndArgsCaller",
+          "methodName": "run",
+          "fileName": "RuntimeInit.java",
+          "lineNumber": 580
+        },
+        {
+          "className": "com.android.internal.os.ZygoteInit",
+          "methodName": "main",
+          "fileName": "ZygoteInit.java",
+          "lineNumber": 886
+        }
+      ],
+      "callerFrames": [
+        {
+          "className": "java.lang.Thread",
+          "methodName": "sleep",
+          "fileName": "Thread.java",
+          "lineNumber": -2
+        },
+        {
+          "className": "java.lang.Thread",
+          "methodName": "sleep",
+          "fileName": "Thread.java",
+          "lineNumber": 450
+        },
+        {
+          "className": "java.lang.Thread",
+          "methodName": "sleep",
+          "fileName": "Thread.java",
+          "lineNumber": 355
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "waitUntil",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 176
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "forceRedraw",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 124
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 49
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "withDrawingEnabled",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 89
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage$lambda$0",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 47
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "runWithRetryWhenNoData",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 64
+        },
+        {
+          "className": "androidx.compose.ui.test.android.WindowCapture_androidKt",
+          "methodName": "captureRegionToImage",
+          "fileName": "WindowCapture.android.kt",
+          "lineNumber": 45
+        },
+        {
+          "className": "androidx.compose.ui.test.AndroidImageHelpers_androidKt",
+          "methodName": "captureToImage",
+          "fileName": "AndroidImageHelpers.android.kt",
+          "lineNumber": 101
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt",
+          "methodName": "captureLocalUi$lambda$0",
+          "fileName": "LocalUiCapture.kt",
+          "lineNumber": 20
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt",
+          "methodName": "$r8$lambda$KTsChHeezMjh5xFx_wbL1QlG6u0",
+          "fileName": "",
+          "lineNumber": 0
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.LocalUiCaptureKt$$ExternalSyntheticLambda0",
+          "methodName": "invoke",
+          "fileName": "D8$$SyntheticClass",
+          "lineNumber": 0
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsKt",
+          "methodName": "observePrimaryCapture",
+          "fileName": "PrimaryCaptureDiagnostics.kt",
+          "lineNumber": 28
+        },
+        {
+          "className": "be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsKt",
+          "methodName": "observePrimaryCapture$default",
+          "fileName": "PrimaryCaptureDiagnostics.kt",
+          "lineNumber": 17
+        }
+      ]
+    }
+  ],
+  "sampleFailures": 0,
+  "observerClosed": true,
+  "observerTerminationVerified": true,
+  "observerMayAffectScheduling": true,
+  "imagesWrittenByObserver": false
+}

@@ -56,6 +56,12 @@ export const requiredAuditEvidence = [
 export const requiredOperationalEvidence = [
   "urgent_support_space_alert",
   "urgent_support_email_receipt",
+  "team_push_closed_app_delivery",
+  "team_push_notification_tap",
+  "team_push_current_account_isolation",
+  "team_push_revocation_suppression",
+  "team_push_permission_lifecycle",
+  "team_push_signout_cleanup",
 ];
 
 export const requiredProviderEnvironmentVariables = [
