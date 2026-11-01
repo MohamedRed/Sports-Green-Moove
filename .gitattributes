@@ -287,3 +287,4 @@ docs/release/evidence/foreground-return-intent-b9a9000-2026-11-01/*.txt -text -w
 docs/release/evidence/foreground-return-pass-93d9138-2026-11-01/*.txt -text -whitespace
 docs/release/evidence/team-push-invalidation-2026-11-01/*.txt -text -whitespace
 docs/release/evidence/toolchain-notification-recheck-2026-11-01/*.txt -text -whitespace
+docs/release/evidence/network-preparation-3eae535-2026-11-01/*/instrumentation.txt -text -whitespace
