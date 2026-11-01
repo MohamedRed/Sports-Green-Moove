@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The Android alert consumer has twenty focused/790 total JVM passes and eleven
+compiled native cases at the source-bound isolated build. Publish a short local
+preparation note, without media or changed phone dates/tours/status/audience.
+No native case, worker, SDK token, notification or tap is executed by that build;
+the focused existing phone will test them separately with injected resolution and
+independent permission restoration. The dispatcher and all six operational push
+proofs remain pending. See
+`docs/release/evidence/native-team-push-alert-consumer-2026-11-01/README.md`.
+
 The 1 November current-device alert resolver passes sixteen isolated callable
 cases with synthetic tokens and no provider sends. Publish one concise local
 preparation note, no media or changed phone dates/tours/status/audience. The

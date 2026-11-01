@@ -1669,7 +1669,7 @@ jobs:
       - name: Test current-device team alert resolution
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-push-alert-services.json
-        run: npm run test:team-push-alert && node --test tests/team-push-alert-contract.test.mjs
+        run: npm run test:team-push-alert && node --test tests/team-push-alert-contract.test.mjs tests/team-push-native-consumer.test.mjs
       - name: Test multi-child grants and cross-team conversation isolation
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json

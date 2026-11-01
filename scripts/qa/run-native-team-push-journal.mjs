@@ -7,14 +7,15 @@ import {isAbsolute, resolve} from 'node:path';
 import {XMLParser, XMLBuilder} from 'fast-xml-parser';
 import {nativeTeamPushSources, nativeTeamPushCases, nativeTeamPushLifecycleSources, nativeTeamPushLifecycleCases,
   nativeTeamPushSignOutSources, nativeTeamPushSignOutCases, nativeTeamPushSuiteName} from './native-team-push-sources.mjs';
+import {nativeTeamAlertSources,nativeTeamAlertCases} from './native-team-alert-sources.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), output = process.argv[2];
-const mode = process.argv[3]; assert(mode === undefined || ['--lifecycle', '--signout'].includes(mode));
+const mode = process.argv[3]; assert(mode === undefined || ['--lifecycle', '--signout','--alerts'].includes(mode));
 assert(process.argv.length === (mode ? 4 : 3));
-const signout = mode === '--signout', lifecycle = signout || mode === '--lifecycle';
-const sources = signout ? nativeTeamPushSignOutSources : lifecycle ? nativeTeamPushLifecycleSources : nativeTeamPushSources;
-const cases = signout ? nativeTeamPushSignOutCases : lifecycle ? nativeTeamPushLifecycleCases : nativeTeamPushCases;
-const retained = resolve(root, 'docs/release/evidence/native-team-push-' + (signout ? 'signout' : lifecycle ? 'lifecycle' : 'journal') + '-2026-11-01');
+const alerts = mode === '--alerts', signout = mode === '--signout', lifecycle = alerts || signout || mode === '--lifecycle';
+const sources = alerts ? nativeTeamAlertSources : signout ? nativeTeamPushSignOutSources : lifecycle ? nativeTeamPushLifecycleSources : nativeTeamPushSources;
+const cases = alerts ? nativeTeamAlertCases : signout ? nativeTeamPushSignOutCases : lifecycle ? nativeTeamPushLifecycleCases : nativeTeamPushCases;
+const retained = resolve(root, 'docs/release/evidence/native-team-push-' + (alerts ? 'alert-consumer' : signout ? 'signout' : lifecycle ? 'lifecycle' : 'journal') + '-2026-11-01');
 if (existsSync(retained)) assert.deepEqual(readdirSync(retained), ['README.md']);
 const focused = Object.values(cases).reduce((sum, count) => sum + count, 0);
 assert(isAbsolute(output ?? ''), 'Use a new absolute output directory');
@@ -43,7 +44,7 @@ for (const file of readdirSync(folder).filter(name => name.endsWith('.xml')).sor
 }
 for (const [name, count] of Object.entries(cases))
   assert.equal(suites.find(row => row.name === nativeTeamPushSuiteName(name))?.tests, count);
-const total = suites.reduce((sum, row) => sum + row.tests, 0); assert.equal(total, signout ? 770 : lifecycle ? 746 : 722);
+const total = suites.reduce((sum, row) => sum + row.tests, 0); assert.equal(total, alerts ? 790 : signout ? 770 : lifecycle ? 746 : 722);
 // Keep failed trials private; only retain the reviewed, successful source-bound result.
 if (existsSync(retained)) assert.deepEqual(readdirSync(retained), ['README.md']); else mkdirSync(retained);
 const archive = resolve(root, 'docs/release/evidence/source-archive');
@@ -52,7 +53,7 @@ for (const [file, hash] of Object.entries(sourceFiles)) {
   if (!existsSync(path)) writeFileSync(path, bytes, {flag: 'wx'}); else assert.equal(sha(readFileSync(path)), hash);
 }
 const apk = file => { const bytes = readFileSync(resolve(root, 'android/app/build/outputs/apk', file)); return {sha256: sha(bytes), bytes: bytes.length}; };
-const report = {scope: signout ? 'native-signout-ordering-and-durable-intent-jvm-and-build-only' : lifecycle ? 'native-registration-lifecycle-jvm-and-build-only' : 'native-registration-journal-jvm-and-build-only', startedAt, testedAt: new Date().toISOString(),
+const report = {scope: alerts ? 'native-alert-consumer-jvm-and-isolated-build-only' : signout ? 'native-signout-ordering-and-durable-intent-jvm-and-build-only' : lifecycle ? 'native-registration-lifecycle-jvm-and-build-only' : 'native-registration-journal-jvm-and-build-only', startedAt, testedAt: new Date().toISOString(),
   sourceUnchangedDuringBuild: true, unitTests: total, unitSuites: suites.length, focusedUnitTests: focused, focusedSuites: cases,
   appCompiled: true, instrumentationCompiled: true, instrumentationExecuted: false, nativeLifecycleImplemented: lifecycle,
   realPhoneTokenRegistered: false, dispatcherImplemented: false, pushDeliveryVerified: false, tapNavigationVerified: false,
@@ -77,6 +78,9 @@ if (lifecycle) {
 if (signout) Object.assign(report, {signOutIntentSchemaVersion: 2, authenticatedRemovalModelVerified: true,
   restartIntentModelVerified: true, explicitSignInRequired: true, signOutUiCasesCompiled: 3, signOutUiCasesExecuted: false,
   syntheticTokenConnectedContractCompiled: true, syntheticTokenConnectedContractExecuted: false});
+if (alerts) Object.assign(report, {nativeConsumerImplemented: true, nativeUiCasesCompiled: 11, nativeUiCasesExecuted: false,
+  workerCompiled: true, workerExecuted: false, nativeNotificationPosted: false, nativeNotificationTapVerified: false,
+  genericPayloadOnly: true, notificationPermissionTestPrepared: true});
 put('review.json', JSON.stringify(report, null, 2) + '\n');
 put('build-success.txt', log.split(homedir()).join('<home>').split('\n').map(line => line.trimEnd()).join('\n'));
 for (const file of Object.keys(artifacts)) {

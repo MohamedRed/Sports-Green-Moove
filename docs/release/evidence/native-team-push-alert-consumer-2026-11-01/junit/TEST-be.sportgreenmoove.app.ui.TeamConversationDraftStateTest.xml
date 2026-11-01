@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.535Z" hostname="local-test-host" time="0.012">
+  <properties></properties>
+  <testcase name="theIntentIsDurableBeforeSendingAndCancellationRestoresTheSameLockedRequest" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.003"></testcase>
+  <testcase name="aRejectedRetryCannotEraseAnEarlierUncertainIntent" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.003"></testcase>
+  <testcase name="invalidRecordIdentitiesAndUnboundedStoredTextAreRejected" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.0"></testcase>
+  <testcase name="aFirstDefinitiveRejectionRemovesOnlyThePendingIdAndStillRestoresTheText" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.001"></testcase>
+  <testcase name="aFailedEditKeepsTypedTextAndPreventsNetworkSubmissionUntilStorageWorks" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.001"></testcase>
+  <testcase name="anUnsentDraftIsRecoveredByANewStateWithoutAnyAutomaticSend" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.0"></testcase>
+  <testcase name="aSuccessfulSendClearsDurableStateAndANewInstanceStaysEmpty" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.001"></testcase>
+  <testcase name="anUnreadableDraftCannotCreateAnEmptyComposerOrOverwriteTheRecord" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.0"></testcase>
+  <testcase name="accountsTeamsAndRecreatedTeamInstancesCannotLoadEachOthersDrafts" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.0"></testcase>
+  <testcase name="failureToPersistAnAcknowledgementKeepsItsOriginalIdentityAndNeverSendsAutomatically" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

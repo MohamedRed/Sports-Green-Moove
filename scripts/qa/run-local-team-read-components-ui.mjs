@@ -14,3 +14,5 @@ execFileSync(process.execPath, [resolve(import.meta.dirname, 'run-team-chat-comp
   '--reads', '--focused-shell-restores'], { env: process.env, stdio: 'inherit', timeout: 12 * 60_000 });
 execFileSync(process.execPath, [resolve(import.meta.dirname, 'run-session-shutdown-components.mjs'), receipt,
   resolve(parent, randomBytes(16).toString('hex'))], {env: process.env, stdio: 'inherit', timeout: 10 * 60_000});
+execFileSync(process.execPath, [resolve(import.meta.dirname, 'run-team-alert-components.mjs'), receipt,
+  resolve(parent, randomBytes(16).toString('hex'))], {env: process.env, stdio: 'inherit', timeout: 15 * 60_000});

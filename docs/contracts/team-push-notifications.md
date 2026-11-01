@@ -89,6 +89,29 @@ nor actual SDK registration/deletion have physical evidence yet.
 
 ## Remaining Delivery Work
 
+The Android receiving service now accepts exactly `type=teamMessage` plus an
+opaque `notificationId`, with no notification payload. It enqueues normal durable
+WorkManager work rather than starting an unowned asynchronous network request.
+Both worker display and authenticated activity opening obtain a current confirmed
+installation lease, call the resolver below, then recheck account epoch/revision
+before consuming the result. New token synchronization is serialized with this
+resolution; sign-out and permission withdrawal synchronously invalidate it.
+
+Only generic native copy is posted. Its immutable explicit activity intent
+contains no team destination or message text. A cold start, warm intent, second
+tap of the same alert, foreground return and explicit read retry all revalidate
+before showing the team route; the route separately checks current history access.
+Logical withdrawal is unavailable, while transient read failures offer explicit
+retry. No alert or message read is implicit. Native cleanup removes only the app's
+team alerts and cancels their queued work, not ride-service notifications.
+
+Normal work can be delayed by the OS; no alternate transport or expedited-quota
+fallback is added. Unfinished duplicates coalesce, and a stable tag updates an
+existing visible alert, not an exactly-once guarantee after dismissal or process
+interruption. The dispatcher and its provider retry/uncertainty policy remain to
+be implemented. Native UI/platform cases are compiled locally but still need
+execution, followed by actual provider/phone tests; no delivery proof is accepted.
+
 `resolveTeamPushAlert` is the read-only server boundary for future native display
 and tap handling. It requires authentication, the installation's private proof
 and its current registration revision, an active account-owned registration, and

@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.services
 
+import be.sportgreenmoove.app.data.TeamConversationTarget
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -35,13 +36,20 @@ internal class TeamPushLifecycle(
         tokens.setAutoInit(false)
         journal.beginSignOut(currentUid())
     }
+    fun notificationsDisabled() = synchronized(transitions) {
+        tokens.setAutoInit(false)
+        val record = journal.current()
+        if (record.ownerUid != null && record.ownerUid == currentUid() &&
+            (record.confirmed != null || record.pending?.token != null)) journal.remove(record.ownerUid)
+    }
     fun authorizeSignIn(uid: String) = synchronized(transitions) {
         check(currentUid() == uid)
         journal.authorizeSignIn(uid)
     }
 
-    suspend fun prepareSignOut(): SessionExitResult {
+    suspend fun prepareSignOut(afterIntent: () -> Unit = {}): SessionExitResult {
         val record = signedOut()
+        afterIntent()
         val command = record.pending?.takeIf { it.token == null && it.uid == currentUid() }
             ?: return if (record.pending == null) SessionExitResult.NoRegistration else SessionExitResult.Pending
         return try {
@@ -97,6 +105,33 @@ internal class TeamPushLifecycle(
         val command = journal.current().pending?.takeIf { it.uid == uid } ?: return
         requireCurrent(uid); val receipt = register(command); requireCurrent(uid)
         journal.acknowledge(command, receipt)
+    }
+    fun alertRequest(notificationId: String): TeamPushOpenRequest? = synchronized(transitions) {
+        teamPushAlertId(notificationId)
+        val uid = currentUid() ?: return@synchronized null
+        val record = journal.current()
+        if (record.ownerUid != uid || record.signOutUid != null || record.needsTokenDeletion) return@synchronized null
+        TeamPushOpenRequest(notificationId, uid, record.epoch)
+    }
+    fun acceptsAlert(request: TeamPushOpenRequest): Boolean = synchronized(transitions) {
+        val record = journal.current()
+        currentUid() == request.uid && record.ownerUid == request.uid && record.epoch == request.epoch && record.signOutUid == null
+    }
+    suspend fun resolveAlert(request: TeamPushOpenRequest, purpose: TeamPushAlertPurpose,
+        resolve: suspend (TeamPushAlertLease, String, TeamPushAlertPurpose) -> Any?,
+        consume: (TeamConversationTarget) -> Unit): Boolean = mutex.withLock {
+        val lease = synchronized(transitions) {
+            if (!acceptsAlert(request) || !journal.confirmedFor(request.uid)) return@withLock false
+            val record = journal.current()
+            TeamPushAlertLease(record.identity, request.uid, request.epoch, record.revision)
+        }
+        val target = parseTeamPushAlert(resolve(lease, request.notificationId, purpose), request.notificationId) ?: return@withLock false
+        synchronized(transitions) {
+            if (!acceptsAlert(request) || !journal.confirmedFor(request.uid) || journal.current().revision != lease.revision)
+                return@withLock false
+            consume(target)
+        }
+        true
     }
     private suspend fun deleteIfRequired() {
         if (!journal.current().needsTokenDeletion) return

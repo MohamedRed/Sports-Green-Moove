@@ -26,6 +26,7 @@ data class AndroidProviderSet(
     val stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway(),
     val conversations: ConversationGateway = UnconfiguredConversationGateway(),
     val teamConversations: TeamConversationGateway? = null,
+    val teamPushAlerts: TeamPushAlertGateway? = null,
     val reservations: ReservationGateway = UnconfiguredReservationGateway(),
     val emergencyContacts: EmergencyContactGateway = UnconfiguredEmergencyContactGateway(),
     val rides: RideObservationGateway = UnconfiguredRideObservationGateway(),
@@ -63,6 +64,9 @@ object AndroidRuntime {
                 firebase = FirebaseAndroidBackendGateway(context.applicationContext),
                 conversations = FirebaseAndroidConversationGateway(),
                 teamConversations = FirebaseAndroidTeamConversationGateway(),
+                teamPushAlerts = if (BuildConfig.SGM_USE_FIREBASE_EMULATOR) null else object : TeamPushAlertGateway {
+                    override suspend fun open(request: TeamPushOpenRequest) = AndroidTeamPushRuntime.openAlert(context.applicationContext, request)
+                },
                 reservations = FirebaseAndroidReservationGateway(),
                 emergencyContacts = FirebaseAndroidEmergencyContactGateway(),
                 profileCity = FirebaseAndroidProfileCityGateway(),

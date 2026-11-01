@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ReviewSubmissionStateTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.350Z" hostname="local-test-host" time="0.01">
+  <properties></properties>
+  <testcase name="explicitRetryReusesTheSameTripAndOnlyRemovesItsAcknowledgedReview" classname="be.sportgreenmoove.app.ui.ReviewSubmissionStateTest" time="0.002"></testcase>
+  <testcase name="overlappingClicksCannotSubmitAnotherTripUntilTheFirstSendSettles" classname="be.sportgreenmoove.app.ui.ReviewSubmissionStateTest" time="0.003"></testcase>
+  <testcase name="accountDisposalRejectsLateAcknowledgementsAndLateErrors" classname="be.sportgreenmoove.app.ui.ReviewSubmissionStateTest" time="0.002"></testcase>
+  <testcase name="cancellationKeepsTheReviewWithoutPretendingTheServerRejectedOrAcknowledgedIt" classname="be.sportgreenmoove.app.ui.ReviewSubmissionStateTest" time="0.002"></testcase>
+  <testcase name="failedSendKeepsAllContextAndContinuationWithoutReplacingTheInboxWithAnError" classname="be.sportgreenmoove.app.ui.ReviewSubmissionStateTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

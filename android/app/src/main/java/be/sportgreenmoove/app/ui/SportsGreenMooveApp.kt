@@ -25,9 +25,11 @@ import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
 import be.sportgreenmoove.app.domain.canManageRide
 import be.sportgreenmoove.app.services.AndroidRuntime
 import be.sportgreenmoove.app.services.AndroidProviderSet
+import be.sportgreenmoove.app.services.TeamPushOpenRequest
 import kotlinx.coroutines.launch
 @Composable
-fun SportsGreenMooveApp(providerFactory: (Context) -> AndroidProviderSet = AndroidRuntime::create) {
+fun SportsGreenMooveApp(teamAlertRequest: TeamPushOpenRequest? = null, teamAlertAttempt: Long = 0, onTeamAlertConsumed: () -> Unit = {},
+    providerFactory: (Context) -> AndroidProviderSet = AndroidRuntime::create) {
     val context = LocalContext.current
     val providers = remember { providerFactory(context.applicationContext) }
     val scope = rememberCoroutineScope()
@@ -119,6 +121,7 @@ fun SportsGreenMooveApp(providerFactory: (Context) -> AndroidProviderSet = Andro
     }
     fun logout() {
         shutdown.start(before = {
+            onTeamAlertConsumed()
             directBooking.close()
             searchController.close()
             session?.uid?.let { messagesState.removeState(it) }
@@ -157,7 +160,7 @@ fun SportsGreenMooveApp(providerFactory: (Context) -> AndroidProviderSet = Andro
                 { loading = it }, { errorMessage = it }, { session = it }, { refreshAppData() }) {
                 SportsGreenMooveScaffold(
                     currentScreen = screen,
-                    onNavigate = { destination -> screen = destination },
+                    onNavigate = { destination -> onTeamAlertConsumed(); screen = destination },
                     notice = noticeMessage,
                     error = errorMessage,
                     onDismissMessage = {
@@ -171,7 +174,11 @@ fun SportsGreenMooveApp(providerFactory: (Context) -> AndroidProviderSet = Andro
                             .background(Sgm.colors.bgApp)
                             .padding(padding),
                     ) {
-                        when (screen) {
+                        if (teamAlertRequest != null) TeamPushOpenRoute(teamAlertRequest, requireNotNull(session).uid,
+                            canManageTeamEnrollment(requireNotNull(session).roles), providers.teamPushAlerts, providers.teamConversations,
+                            attempt = teamAlertAttempt,
+                            onClose = { onTeamAlertConsumed(); screen = AppScreen.Messages })
+                        else when (screen) {
                             AppScreen.Home -> HomeRoute(
                                 displayName = session?.displayName, data = appData,
                                 onNavigate = { screen = it }, onTripAction = ::runTripAction,
@@ -202,14 +209,7 @@ fun SportsGreenMooveApp(providerFactory: (Context) -> AndroidProviderSet = Andro
                                 onNotice = { noticeMessage = it },
                                 onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } } },
                             )
-                            AppScreen.Messages -> session?.uid?.let { uid ->
-                                messagesState.SaveableStateProvider(uid) {
-                                    MessagesScreen(firebase = providers.firebase, conversations = providers.conversations,
-                                        userId = uid,
-                                        teamConversations = providers.teamConversations,
-                                        teamUserId = uid.takeIf { canManageTeamEnrollment(requireNotNull(session).roles) })
-                                }
-                            }
+                            AppScreen.Messages -> MessagesAppArea(session, providers, messagesState)
                             AppScreen.Profile -> ProfileRoute(
                                 cityGateway = providers.profileCity,
                                 ratingsGateway = providers.receivedRatings,
