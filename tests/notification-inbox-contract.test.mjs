@@ -21,6 +21,7 @@ test('foreground notification polling is an independent primary transport with e
   const route=read('android/app/src/main/java/be/sportgreenmoove/app/ui/MessagesInboxRoute.kt');
   assert(route.includes('repeatOnLifecycle(Lifecycle.State.STARTED)'));
   assert(route.includes('notificationInboxItems(state.notificationInbox'));
+  assert(route.includes('onRetry = { scope.launch { state.notificationInbox.refresh() } }'));
 });
 test('account-bound strict native parsing never substitutes an empty inbox for malformed or foreign data',()=>{
   const source=read('android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNotificationInboxGateway.kt');

@@ -266,5 +266,8 @@ docs/release/evidence/team-alert-services-2026-11-01/services-failure.txt -text 
 docs/release/evidence/team-alert-services-2026-11-01/services-third-failure.txt -text -whitespace
 docs/release/evidence/notification-inbox-phone-2026-11-01/**/*.txt -text -whitespace
 docs/release/evidence/notification-inbox-phone-2026-11-01/**/*.xml -text -whitespace
+docs/release/evidence/notification-retry-phone-2026-11-01/**/*.txt -text -whitespace
+docs/release/evidence/notification-retry-phone-2026-11-01/**/*.xml -text -whitespace
+docs/release/evidence/notification-sampling-59dbd3c-2026-11-01/**/*.txt -text -whitespace
 docs/release/evidence/alert-capture-failure-406e414-2026-11-01/*.txt -text -whitespace
 docs/release/evidence/alert-capture-failure-406e414-2026-11-01/*.xml -text -whitespace

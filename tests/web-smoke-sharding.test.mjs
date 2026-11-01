@@ -62,7 +62,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(teamAlerts[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/team-alerts-services.json');
   const notificationInbox = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test foreground notification inbox authority');
   assert.equal(notificationInbox.length, 1);
-  assert.equal(notificationInbox[0].run, 'npm run test:notification-inbox && node --test tests/notification-inbox-contract.test.mjs tests/notification-inbox-phone-checkpoints.test.mjs tests/notification-inbox-evidence.test.mjs');
+  assert.equal(notificationInbox[0].run, 'npm run test:notification-inbox && node --test tests/notification-inbox-contract.test.mjs tests/notification-inbox-phone-checkpoints.test.mjs tests/notification-inbox-evidence.test.mjs tests/notification-retry-phone-checkpoints.test.mjs tests/notification-retry-phone-evidence.test.mjs');
   assert.equal(notificationInbox[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/notification-inbox-services.json');
   const compression = workflow.jobs.smoke.steps.filter(step => step.name === 'Test premature response compression cleanup');
   assert.equal(compression.length, 1);

@@ -15,9 +15,9 @@ test('portal publishes only four bounded phone crops and preserves historical da
   assert.equal(team.phone.checkedAt,'2026-10-21');assert.equal(team.readPhone.checkedAt,'2026-10-21');
   const fresh=team.images.filter(row=>row.file.startsWith('team-alert-phone-'));
   assert.equal(fresh.length,4);assert(fresh.every(row=>row.checkedAt==='2026-11-01'&&row.alt.includes('1 novembre')));
-  assert(team.images.filter(row=>!fresh.includes(row)).every(row=>row.checkedAt==='2026-10-21'));
-  assert.equal(tours['team-conversation'].length,36);
-  assert.deepEqual(team.images.slice(0,4).map(row=>row.file),fresh.map(row=>row.file));
+  assert(team.images.filter(row=>!fresh.includes(row)&&!row.file.startsWith('team-alert-retry-')).every(row=>row.checkedAt==='2026-10-21'));
+  assert.equal(tours['team-conversation'].length,39);
+  assert.deepEqual(team.images.slice(3,7).map(row=>row.file),fresh.map(row=>row.file));
   const update=content.updates.find(row=>row.source===dirname(notificationInboxEvidence)+'/README.md');assert(update);
   assert.match(update.text,/app fermée reste à faire/);assert.match(team.remaining,/app fermée/);
   assert.doesNotMatch(JSON.stringify([update,fresh]),/browserstack|firebase|android|kotlin|polling/i);

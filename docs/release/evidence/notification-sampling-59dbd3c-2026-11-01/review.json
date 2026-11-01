@@ -1,0 +1,19 @@
+{
+  "scope": "retained-failed-gate-with-proven-sparse-sampling-false-rejection",
+  "headSha": "59dbd3c292a767ded035826fd2a9f8630f1a4620",
+  "workflowId": 41299644811,
+  "testedAt": "2026-11-01",
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f954c52324a786bbf2cd98de9d49cec2750ea70ad48bd2d9f57a30248bf67af",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NotificationInboxFlowTest.kt": "6e3061508e8645fca21386867c87e477c90404f91136ea51f1c30d1536594de2",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RejectedPrimaryBitmap.kt": "9c73338085f5693a1ff244efd267160c97001b3a494d6fab587cb34ec514c2e7"
+  },
+  "rejectedBitmapRetained": true,
+  "samplingFalseRejectionProven": true,
+  "repairVerified": false,
+  "downloadedArchiveDigestIndependentlyVerified": false,
+  "wholeHeadAttested": false,
+  "pushDeliveryVerified": false,
+  "releaseAccepted": false,
+  "publishedCaptures": {}
+}

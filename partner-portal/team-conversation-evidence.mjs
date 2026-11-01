@@ -19,8 +19,19 @@ import { validateTeamReadPhone } from '../scripts/qa/team-read-phone-evidence.mj
 import { validateTeamAuthorityPhone } from '../scripts/qa/team-authority-phone-evidence.mjs';
 import {validateRetainedTeamAlerts} from '../scripts/qa/team-alert-evidence.mjs';
 import {validateNotificationInboxPhone} from '../scripts/qa/notification-inbox-phone-evidence.mjs';
+import {validateNotificationRetryPhone} from '../scripts/qa/notification-retry-phone-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if (flow.retryPhone) {
+    const run = validateNotificationRetryPhone(root, dirname(flow.retryPhone.source));
+    assert.equal(flow.retryPhone.checkedAt, run.testedAt.slice(0, 10));
+    assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+    assert.deepEqual(flow.images.filter(image => image.file.startsWith('team-alert-retry-')).map(image => image.file).sort(),
+      Object.keys(run.publishedCaptures).sort());
+    for (const [id, file] of Object.entries(run.publishedCaptures))
+      assert.equal(captures[id], dirname(flow.retryPhone.source) + '/' + file);
+  }
   if (flow.alertPhone) {
     const run = validateNotificationInboxPhone(root, flow.alertPhone.source);
     assert.equal(flow.checkedAt, flow.alertPhone.checkedAt);

@@ -1,5 +1,6 @@
 import {appearanceCaptures} from './appearance-flow.mjs';
 import {notificationInboxPhoneCaptures} from './notification-inbox-phone.mjs';
+import {notificationRetryCaptures} from './notification-retry-phone.mjs';
 import {searchDeparturePhoneCaptures} from './search-departure-phone.mjs';
 import {chatNetworkPhoneCaptures} from './chat-network-phone.mjs';
 import {chatDraftPhoneCaptures} from './chat-draft-phone.mjs';
@@ -35,6 +36,7 @@ import {bookingReceiptCaptures} from './booking-receipt-phone.mjs';
 import {bookingBeforeAckCaptures} from './booking-before-ack-phone.mjs';
 
 export const recentCaptures = {
+  ...notificationRetryCaptures,
   ...notificationInboxPhoneCaptures,
   ...chatAccountSwitchCaptures,
   ...chatPendingRestartCaptures,

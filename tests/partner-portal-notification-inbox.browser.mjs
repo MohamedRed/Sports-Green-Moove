@@ -12,7 +12,10 @@ export async function verifyNotificationInboxGallery({browser, base, output}) {
       await page.goto(base + '/#parcours/team-conversation');
       const dialog = page.getByRole('dialog');
       await dialog.getByText(flow.remaining, {exact: true}).waitFor();
-      for (const image of flow.images.slice(0, 4)) {
+      const phoneImages = flow.images.filter(image => /^team-alert-(phone|retry)-/.test(image.file));
+      assert.equal(phoneImages.length, 7);
+      assert.deepEqual(flow.images.slice(0, 7), phoneImages);
+      for (const image of phoneImages) {
         const picture = dialog.getByRole('img', {name: image.alt, exact: true}); await picture.waitFor();
         await page.waitForFunction(() => {
           const image = document.querySelector('.media-stage img'); return image?.complete && image.naturalWidth > 0;
@@ -23,7 +26,7 @@ export async function verifyNotificationInboxGallery({browser, base, output}) {
         await page.screenshot({path: `${output}/${image.file}-${width}.png`, fullPage: false});
         await dialog.getByRole('button', {name: 'Preuve suivante', exact: true}).click();
       }
-      await dialog.getByRole('img', {name: flow.images[4].alt, exact: true}).waitFor();
+      await dialog.getByRole('img', {name: flow.images[7].alt, exact: true}).waitFor();
       await dialog.getByRole('link', {name: 'Visite guidée', exact: true}).click();
       for (const [index, step] of flow.tour.entries()) {
         await dialog.getByRole('heading', {name: step.title, exact: true}).waitFor();
@@ -32,6 +35,6 @@ export async function verifyNotificationInboxGallery({browser, base, output}) {
       }
     }
     assert.deepEqual(errors, []);
-    console.log('Four in-app alert crops and all thirty-two older team tour steps pass at four widths.');
+    console.log('Seven in-app alert crops and all thirty-two older team tour steps pass at four widths.');
   } finally {await page.close();}
 }

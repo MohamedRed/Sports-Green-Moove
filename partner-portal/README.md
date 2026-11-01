@@ -2,6 +2,27 @@
 
 ## Current Publication Policy
 
+The 59dbd3c full gate fails only its notification-withdrawal capture. The original
+bitmap is retained and decoded: 260 actual colors but only ten on the 16-pixel
+lattice. This proves that capture's sparse-sampling false rejection, not the cause
+of other historical failures. The candidate now checks all pixels of one primary
+image with the same >16 threshold; no recapture, fallback or replacement. The
+connected replay's 37 groups/40 cases and seventeen copies pass, not the whole
+gate. Publish a short note without diagnostic media or readiness promotion.
+Preserve prior negative records and public access. See
+`docs/release/evidence/notification-sampling-59dbd3c-2026-11-01/README.md`.
+
+The 1 November notification-only retry trial passes seven checkpoints on a
+physical phone: failed retry remains an error, successful retry preserves the
+confirmed read state, and a later alert arrives automatically. Publish only its
+three reviewed session crops before all existing media/tours, preserving every
+historical date and partial status. The authority-read error is simulated, not a
+radio outage. Review pagination is covered by JVM tests, not exercised on phone.
+The 14 focused/695 total JVM cases pass; the actual-route test only compiles
+locally. No push, peer phone, installed APK/whole-head or release proof is added.
+Keep public access and the separate full-gate failure. See
+`docs/release/evidence/notification-retry-phone-2026-11-01/README.md`.
+
 The later 1 November full gate at 406e414 fails: one notification withdrawal
 component capture is rejected, and the connected replay's confirmed-restart
 primary copy loses transport. Eleven isolated lanes pass but do not repair the

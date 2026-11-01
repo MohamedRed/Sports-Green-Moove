@@ -90,7 +90,8 @@ test('a failed file copy does not trigger another copy or replace the applicatio
 test('the successful capture path, quality threshold and original failure remain unchanged', () => {
   const base = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
   const capture = readFileSync(resolve(root, base, 'LocalUiCapture.kt'), 'utf8');
-  assert(capture.includes('if (colors.size <= 16) retainRejectedPrimaryBitmap(name, bitmap, colors)'));
+  assert(capture.includes('val colors = primaryCaptureColors(bitmap)'));
+  assert(capture.includes('if (colors.size <= 16) retainRejectedPrimaryBitmap(name, bitmap, rejectedBitmapSamples(bitmap))'));
   assert(capture.indexOf('window.captureToImage()') < capture.indexOf('retainRejectedPrimaryBitmap('));
   assert(capture.indexOf('retainRejectedPrimaryBitmap(') < capture.indexOf('check(colors.size > 16)'));
   assert(capture.indexOf('check(colors.size > 16)') < capture.indexOf('bitmap.compress('));

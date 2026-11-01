@@ -15,8 +15,8 @@ test('the complete failed source preserves one rejected notification image and a
   assert.equal(team.checkedAt,'2026-11-01');assert.equal(team.phone.checkedAt,'2026-10-21');
   const note=content.updates.find(row=>row.source===folder+'README.md');assert(note);
   assert.doesNotMatch(note.title+note.text,/BrowserStack|Firebase|SDK|APK|adbd|CI|Linux/);
-  assert.equal(content.blockers.find(row=>row.id==='native-evidence-copy').latestSource,folder+'README.md');
-  assert.equal(content.blockers.find(row=>row.id==='chat-send-stability').latestSource,folder+'README.md');
+  assert.equal(content.blockers.find(row=>row.id==='native-evidence-copy').captureHistory.source,folder+'README.md');
+  assert.equal(content.blockers.find(row=>row.id==='chat-send-stability').captureHistory.source,folder+'README.md');
   assert.equal(team.images.filter(row=>row.file.startsWith('team-alert-phone-')).length,4);
 });
 for(const [file,mutate]of [
@@ -37,7 +37,7 @@ test('both native and web gates validate the failed source and retain the unchan
   for(const file of ['native-ci.yml','web-integration-smoke.yml']){
     const workflow=parseDocument(readFileSync(resolve('.github/workflows',file),'utf8')).toJSON();
     for(const event of ['push','pull_request'])assert(workflow.on[event].paths.includes('tests/alert-capture-failure.test.mjs'));
-    assert(Object.values(workflow.jobs).some(job=>job.steps?.some(step=>step.run==='node --test tests/alert-capture-failure.test.mjs')));
+    assert(Object.values(workflow.jobs).some(job=>job.steps?.some(step=>step.run?.startsWith('node --test tests/alert-capture-failure.test.mjs'))));
   }
   const capture=readFileSync('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt','utf8');
   assert(capture.includes('check(colors.size > 16)'));assert.equal(capture.match(/captureToImage\(/g).length,1);

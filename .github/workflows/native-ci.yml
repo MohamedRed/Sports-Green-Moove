@@ -27,6 +27,7 @@ on:
       - "tests/primary-capture-diagnostics.test.mjs"
       - "tests/rejected-primary-captures.test.mjs"
       - "tests/alert-capture-failure.test.mjs"
+      - "tests/notification-sampling-evidence.test.mjs"
       - "tests/primary-capture-late-samples.test.mjs"
       - "tests/capture-window-calibration.test.mjs"
       - "tests/android-junit-transcript.test.mjs"
@@ -180,6 +181,7 @@ on:
       - "tests/primary-capture-diagnostics.test.mjs"
       - "tests/rejected-primary-captures.test.mjs"
       - "tests/alert-capture-failure.test.mjs"
+      - "tests/notification-sampling-evidence.test.mjs"
       - "tests/primary-capture-late-samples.test.mjs"
       - "tests/capture-window-calibration.test.mjs"
       - "tests/android-junit-transcript.test.mjs"
@@ -413,7 +415,7 @@ jobs:
       - name: Validate complete native pass without release promotion
         run: node --test tests/native-full-gate-pass.test.mjs
       - name: Validate failed notification capture and unchanged quality gate
-        run: node --test tests/alert-capture-failure.test.mjs
+        run: node --test tests/alert-capture-failure.test.mjs tests/notification-sampling-evidence.test.mjs
       - name: Validate disposable Android isolation
         run: node --test tests/disposable-emulator-selection.test.mjs tests/android-support-call-trace.test.mjs tests/support-process-restart-phone-evidence.test.mjs
 

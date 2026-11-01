@@ -350,3 +350,21 @@ Post-phone review also adds a unit-tested successful-retry wake-up: polling stay
 paused after an error or failed retry and resumes only after an explicit retry
 succeeds. This later change is not retroactively included in the retained phone
 APK hashes or physical claims.
+
+## Notification Retry Route, 1 November 2026
+
+The production Messages route now calls `notificationInbox.refresh()` directly
+for notification Retry, rather than restarting the full inbox observation.
+Review pages and cursor, directory metadata and confirmed read receipts survive.
+The integration regression covers failed retry, successful retry and subsequent
+automatic arrival with unchanged unrelated gateway call counts. Four integration,
+eight state and two wire JVM cases pass; the actual-route instrumented test
+compiles locally but has not been executed locally.
+
+`notification-retry-phone-2026-11-01/README.md` records a new seven-checkpoint
+physical trial of this source with isolated data. It observes failed then successful
+retry, preserved read state and subsequent automatic arrival. All 198 protected
+records remain unchanged and unrelated list counters do not increase. Review
+pagination was not exercised physically. This is a simulated authority-read error,
+not a radio outage. Three reviewed session crops are public; closed-app push,
+installed APK/whole-head identity, peer/manager UI and release remain unverified.

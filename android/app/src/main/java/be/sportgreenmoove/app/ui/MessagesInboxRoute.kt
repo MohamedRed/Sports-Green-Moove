@@ -63,7 +63,8 @@ internal fun MessagesInboxRoute(uid: String, firebase: FirebaseGateway, gateway:
                     }
                 }
             } else if (selected == "notifs") {
-                notificationInboxItems(state.notificationInbox, state.notificationReads, onRetry = { refresh += 1 }) { notice ->
+                notificationInboxItems(state.notificationInbox, state.notificationReads,
+                    onRetry = { scope.launch { state.notificationInbox.refresh() } }) { notice ->
                     scope.launch { state.notificationReads.markRead(notice) }
                 }
             } else when {

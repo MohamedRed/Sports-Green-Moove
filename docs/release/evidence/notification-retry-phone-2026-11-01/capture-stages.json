@@ -1,0 +1,107 @@
+[
+  {
+    "stage": "initial",
+    "observedAt": "2026-11-01T11:21:31.917Z",
+    "source": "observed-physical-phone-session-crop-not-native-export",
+    "requestedCrop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "actualDimensions": {
+      "width": 198,
+      "height": 442
+    }
+  },
+  {
+    "stage": "arrived",
+    "observedAt": "2026-11-01T11:22:12.156Z",
+    "source": "observed-physical-phone-session-crop-not-native-export",
+    "requestedCrop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "actualDimensions": {
+      "width": 198,
+      "height": 442
+    }
+  },
+  {
+    "stage": "read",
+    "observedAt": "2026-11-01T11:22:56.756Z",
+    "source": "observed-physical-phone-session-crop-not-native-export",
+    "requestedCrop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "actualDimensions": {
+      "width": 198,
+      "height": 442
+    }
+  },
+  {
+    "stage": "error",
+    "observedAt": "2026-11-01T11:23:26.322Z",
+    "source": "observed-physical-phone-session-crop-not-native-export",
+    "requestedCrop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "actualDimensions": {
+      "width": 198,
+      "height": 442
+    }
+  },
+  {
+    "stage": "retry-failed",
+    "observedAt": "2026-11-01T11:23:58.590Z",
+    "source": "observed-physical-phone-session-crop-not-native-export",
+    "requestedCrop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "actualDimensions": {
+      "width": 198,
+      "height": 442
+    }
+  },
+  {
+    "stage": "recovered",
+    "observedAt": "2026-11-01T11:25:30.123Z",
+    "source": "observed-physical-phone-session-crop-not-native-export",
+    "requestedCrop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "actualDimensions": {
+      "width": 198,
+      "height": 442
+    }
+  },
+  {
+    "stage": "next-arrived",
+    "observedAt": "2026-11-01T11:26:16.957Z",
+    "source": "observed-physical-phone-session-crop-not-native-export",
+    "requestedCrop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "actualDimensions": {
+      "width": 198,
+      "height": 442
+    }
+  }
+]

@@ -41,6 +41,32 @@ class MessagesNotificationPollingTest {
         assertNotNull(state.error);assertNull(state.notificationInbox.error);assertEquals(listOf(notice),state.displayedInbox.notifications)
         advanceTimeBy(4_000);runCurrent();assertEquals(2,calls);job.cancelAndJoin()
     }
+    @Test fun explicitNotificationRetryKeepsReviewPagesDirectoryAndConfirmedReadThenResumesPolling() = runTest {
+        var metadataCalls=0;var directoryCalls=0;var notificationCalls=0;var fail=false;var rows=listOf(notice)
+        val firebase=object : FirebaseGateway by UnconfiguredFirebaseGateway() {
+            override suspend fun getInbox():InboxSummary { metadataCalls++;return InboxSummary(reviews=listOf(review("first")),reviewsNextCursor="one") }
+            override suspend fun loadPendingReviews(cursor:String)=PendingReviewPage("parent",listOf(review("second")),null)
+            override suspend fun loadNotificationInbox(uid:String):List<InboxNotificationSummary> { notificationCalls++;check(!fail);return rows }
+            override suspend fun markNotificationRead(uid:String,notificationId:String) {}
+        }
+        val directory=object : ConversationGateway by conversations() {
+            override suspend fun loadConversations(cursor:String?):ConversationDirectoryPage {
+                directoryCalls++;return ConversationDirectoryPage(emptyList(),null,null,null)
+            }
+        }
+        val state=MessagesInboxState("parent",firebase,directory);val job=launch { state.observe() };runCurrent()
+        state.reviews.loadMore();state.notificationReads.markRead(notice)
+        fail=true;advanceTimeBy(4_000);runCurrent();state.notificationInbox.refresh()
+        assertTrue(state.displayedInbox.notifications.isEmpty());assertNotNull(state.notificationInbox.error)
+        assertEquals(3,notificationCalls);assertEquals(1,metadataCalls);assertEquals(1,directoryCalls)
+        fail=false;state.notificationInbox.refresh();runCurrent()
+        assertFalse(state.displayedInbox.notifications.single().unread)
+        rows=listOf(notice.copy(id="teamChat_after_retry"));advanceTimeBy(4_000);runCurrent()
+        assertEquals("teamChat_after_retry",state.displayedInbox.notifications.single().id)
+        assertEquals(5,notificationCalls);assertEquals(1,metadataCalls);assertEquals(1,directoryCalls)
+        assertEquals(listOf("first","second"),state.reviews.items.map { it.id });assertNull(state.reviews.nextCursor)
+        job.cancelAndJoin();state.close()
+    }
     @Test fun endingTheObservationClearsReadConfirmationsBeforeTheNextOwner() = runTest {
         val firebase=object : FirebaseGateway by UnconfiguredFirebaseGateway() {
             override suspend fun getInbox()=InboxSummary()

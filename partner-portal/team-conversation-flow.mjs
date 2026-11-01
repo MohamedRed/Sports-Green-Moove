@@ -8,17 +8,19 @@ const nativeAccess = 'docs/release/evidence/team-access-native-2026-10-21/';
 import {teamNativeRecheck} from './native-followup.mjs';
 import {teamAlertRecheck} from './team-alerts.mjs';
 import {notificationInboxPhone, notificationInboxPhoneImages} from './notification-inbox-phone.mjs';
+import {notificationRetryPhone, notificationRetryImages} from './notification-retry-phone.mjs';
 const historical = source => ({source, checkedAt: '2026-10-21'});
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-11-01',
-    summary: 'Les alertes arrivent dans l’app sans rafraîchir.',
-    verified: 'Arrivée, lecture et retrait d’accès vérifiés sur téléphone. Les lectures restent séparées entre les comptes. Un nouvel accord ne rouvre pas les anciennes alertes ni les anciens messages.',
+    summary: 'Les alertes arrivent et reprennent après une erreur.',
+    verified: 'Arrivée, lecture, retrait d’accès et reprise après erreur simulée vérifiés sur téléphone. Les lectures restent séparées entre les comptes. Un nouvel accord ne rouvre pas l’ancien historique.',
     remaining: 'Terminer les notifications app fermée et vérifier les échanges entre téléphones.',
     latestEvidence: 'phone',
     nativeRecheck: teamNativeRecheck,
     alertServices: teamAlertRecheck,
     alertPhone: notificationInboxPhone,
+    retryPhone: notificationRetryPhone,
     authorityPhone: historical('docs/release/evidence/team-authority-phone-2026-10-21/results.json'),
     readPhone: historical('docs/release/evidence/team-read-phone-2026-10-21/results.json'),
     connected: historical(connected + 'team-conversation-results.json'),
@@ -49,6 +51,7 @@ export function createTeamConversationFlow() {
       'Les comptes enfants restent exclus.', 'Le retrait bloque aussi l’envoi et les anciennes pages.',
       'Une réinscription ne rouvre pas l’ancien historique.'] },
     images: [
+      ...notificationRetryImages,
       ...notificationInboxPhoneImages,
       ...[
       ...[
@@ -116,5 +119,5 @@ export function createTeamConversationFlow() {
       { file: 'team-chat-confirmed', alt: 'Une seule réponse après le renvoi, essai local simulé du 21 octobre' },
       { file: 'team-chat-denied', alt: 'Conversation et saisie masquées après une erreur de vérification, essai local simulé du 21 octobre' },
       ].map(image => ({...image, checkedAt: '2026-10-21'})),
-    ], source: 'docs/release/evidence/notification-inbox-phone-2026-11-01/README.md' };
+    ], source: 'docs/release/evidence/notification-retry-phone-2026-11-01/README.md' };
 }

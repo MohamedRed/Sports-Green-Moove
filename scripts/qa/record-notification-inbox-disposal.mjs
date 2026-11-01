@@ -14,6 +14,11 @@ assert(!existsSync(resolve(trial,'session.json'))&&!existsSync(handoff));
 const ui=readFileSync(resolve(trial,'device-release-ax.txt'),'utf8');
 assert(ui.includes('App Live Dashboard')&&ui.includes('Succesfully uninstalled'));
 assert(!ui.includes('Description: Stop Session'));
+const clipboard=JSON.parse(readFileSync(resolve(trial,'clipboard-state.json')));
+assert.equal(clipboard.scope,'browser-api-clipboard-restoration-not-device-proof');
+assert.equal(clipboard.hostOriginalClipboardRestored,true);
+assert.equal(clipboard.deviceClipboardStateIndependentlyVerified,false);
+assert.equal(clipboard.credentialEntryScreenshotsRetained,false);
 const log=readFileSync(resolve(trial,'backend.log'),'utf8');
 assert(log.includes('Shutting down emulators')&&log.includes('Stopping Logging Emulator'));
 const marker=log.split('\n').filter(line=>line.startsWith('{')).map(line=>JSON.parse(line))
@@ -28,7 +33,8 @@ writeFileSync(resolve(trial,'disposal.json'),JSON.stringify({recordedAt:new Date
   helperHandoffRemoved:true,phoneReleaseDashboardObserved:true,providerUninstallReportedSuccess:true,
   installedPackageAbsenceIndependentlyVerified:false,runtimeDirectoryAbsenceIndependentlyBound:Boolean(marker),
   ...(marker?{runtimeDirectory:marker.runtimeDirectory,runtimeDirectoryRemoved:true}:{}),
-  endpoints:await assertLocalEndpointsClosed([9099,8080,9000,5001]),clipboardCleared:true,originalClipboardRestored:false,
+  endpoints:await assertLocalEndpointsClosed([9099,8080,9000,5001]),clipboardCleared:false,
+  originalClipboardRestored:clipboard.hostOriginalClipboardRestored,deviceClipboardStateIndependentlyVerified:false,
   realAccountsModified:false,productionWrites:false
 },null,2)+'\n',{flag:'wx'});
 console.log('Verified owned process/service shutdown, private input removal and observed device release.');

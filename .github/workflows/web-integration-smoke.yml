@@ -16,6 +16,8 @@ on:
       - "tests/team-conversation-contract.test.mjs"
       - "tests/team-alerts*.test.mjs"
       - "tests/notification-inbox*.test.mjs"
+      - "tests/notification-retry*.test.mjs"
+      - "tests/notification-sampling-evidence.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "tests/emergency-dialer-recheck.test.mjs"
       - "tests/system-phone-prerequisite-evidence.test.mjs"
@@ -576,6 +578,8 @@ on:
       - "tests/team-conversation-contract.test.mjs"
       - "tests/team-alerts*.test.mjs"
       - "tests/notification-inbox*.test.mjs"
+      - "tests/notification-retry*.test.mjs"
+      - "tests/notification-sampling-evidence.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "tests/emergency-dialer-recheck.test.mjs"
       - "tests/system-phone-prerequisite-evidence.test.mjs"
@@ -1231,7 +1235,7 @@ jobs:
       - name: Validate complete native pass without release promotion
         run: node --test tests/native-full-gate-pass.test.mjs
       - name: Validate failed notification capture and unchanged quality gate
-        run: node --test tests/alert-capture-failure.test.mjs
+        run: node --test tests/alert-capture-failure.test.mjs tests/notification-sampling-evidence.test.mjs
 
       - name: Validate approved disposable-phone installation policy
         run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs
@@ -1657,7 +1661,7 @@ jobs:
       - name: Test foreground notification inbox authority
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/notification-inbox-services.json
-        run: npm run test:notification-inbox && node --test tests/notification-inbox-contract.test.mjs tests/notification-inbox-phone-checkpoints.test.mjs tests/notification-inbox-evidence.test.mjs
+        run: npm run test:notification-inbox && node --test tests/notification-inbox-contract.test.mjs tests/notification-inbox-phone-checkpoints.test.mjs tests/notification-inbox-evidence.test.mjs tests/notification-retry-phone-checkpoints.test.mjs tests/notification-retry-phone-evidence.test.mjs
       - name: Test multi-child grants and cross-team conversation isolation
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json
