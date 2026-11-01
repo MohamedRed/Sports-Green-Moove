@@ -69,10 +69,10 @@ for (const [area, file, mutate] of [
 });
 test('progress keeps physical media historical and independent passes separate from release acceptance', () => {
   const team = content.flows.find(row => row.id === 'team-conversation');
-  assert.equal(team.status, 'partial'); assert.equal(team.checkedAt, '2026-10-21'); assert.equal(team.phone.checkedAt, '2026-10-21');
+  assert.equal(team.status, 'partial'); assert.equal(team.checkedAt, '2026-11-01'); assert.equal(team.phone.checkedAt, '2026-10-21');
   assert.equal(team.nativeRecheck.checkedAt, identity.date);
   assert.equal(team.nativeRecheck.source, identity.folder + 'team/team-conversation-results.json');
-  assert(team.images.every(image => image.alt.includes('21 octobre')));
+  assert(team.images.filter(image => !image.file.startsWith('team-alert-phone-')).every(image => image.alt.includes('21 octobre') && image.checkedAt === '2026-10-21'));
   const update = content.updates.find(row => row.flow === 'team-conversation' && row.source === identity.folder + 'README.md');
   assert.equal(update.source, identity.folder + 'README.md'); assert.match(update.text, /en local/);
   assert.doesNotMatch(update.text, /BrowserStack|Firebase|SDK|Android/);

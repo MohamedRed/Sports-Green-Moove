@@ -320,3 +320,31 @@ not management screens. Owned phone, helper and backend cleanup are verified.
 This one-child trial does not prove physical multi-child authority changes,
 two-phone delivery, push notifications, other platforms, tracking, production
 deployment or release readiness. Earlier records retain their original scope.
+
+## In-App Alerts, 1 November 2026
+
+The dedicated authenticated `getNotificationInbox` reader rechecks current team
+authority without refreshing reviews. Android polls it while the Messages route
+is observed. Failed authority reads clear alerts and require explicit retry;
+late replies from another account or observation generation cannot repopulate them.
+The legacy inbox remains available to existing callers, not a polling fallback.
+
+`notification-inbox-phone-2026-11-01/README.md` retains seven callable cases and
+two physical nine-checkpoint sessions. Arrival without refresh, confirmed read,
+idempotent resend, withdrawal, renewed admission with no old alerts, a new alert
+and return from background are observed with isolated data. Independent reads
+preserve ordinary alerts, other accounts and protected records. Driver/manager
+actions use services, not another phone or management screens.
+
+The first session reveals stale task-preview content. The Android 13+ Activity
+preview control is rechecked on Android 15; in-app captures still work. The older
+Android screenshot-blocking policy awaits the owner's decision. No phone push
+dispatcher, native token lifecycle, closed-app delivery or tap navigation is
+implemented or accepted by this result. Component tests compile but are not
+executed locally; installed APK and whole-head identity are not independently
+attested. Production, tracking and release evidence remain unchanged.
+
+Post-phone review also adds a unit-tested successful-retry wake-up: polling stays
+paused after an error or failed retry and resumes only after an explicit retry
+succeeds. This later change is not retroactively included in the retained phone
+APK hashes or physical claims.

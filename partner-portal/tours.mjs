@@ -1,4 +1,5 @@
 import { supportFollowupSteps } from './support-followup-tour.mjs';
+import {notificationInboxPhoneSteps} from './notification-inbox-phone.mjs';
 import { chatNetworkRecoveryTour } from './chat-network-recovery.mjs';
 import {chatNetworkPhoneTour} from './chat-network-phone.mjs';
 import {chatPendingRestartTour} from './chat-pending-restart-phone.mjs';
@@ -43,6 +44,7 @@ export const tours = {
   ],
   'support-submission': supportSubmissionSteps(image, clip),
   'team-conversation': [
+    ...notificationInboxPhoneSteps(image),
     image('team-authority-phone-initial', 'Avant le retrait', 'Avec des données de test, le parent retrouve le message reçu après son admission.'),
     image('team-authority-phone-revoked', 'Retirer l’accès', 'La conversation et la saisie disparaissent sur le téléphone.'),
     image('team-authority-phone-renewed', 'Donner un nouvel accord', 'Après actualisation, la conversation se rouvre sans les anciens messages.'),

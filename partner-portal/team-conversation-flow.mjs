@@ -7,33 +7,36 @@ const accessAttempt = 'docs/release/evidence/team-access-native-send-2026-10-21/
 const nativeAccess = 'docs/release/evidence/team-access-native-2026-10-21/';
 import {teamNativeRecheck} from './native-followup.mjs';
 import {teamAlertRecheck} from './team-alerts.mjs';
+import {notificationInboxPhone, notificationInboxPhoneImages} from './notification-inbox-phone.mjs';
+const historical = source => ({source, checkedAt: '2026-10-21'});
 
 export function createTeamConversationFlow() {
-  return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
-    summary: 'Sur téléphone, un nouvel accord ne rouvre pas les anciens messages.',
-    verified: 'Le retrait masque la conversation. Un nouvel accord ne rouvre pas les anciens messages. Les lectures restent séparées entre les comptes.',
-    remaining: 'Ajouter les notifications et vérifier les échanges entre téléphones.',
+  return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-11-01',
+    summary: 'Les alertes arrivent dans l’app sans rafraîchir.',
+    verified: 'Arrivée, lecture et retrait d’accès vérifiés sur téléphone. Les lectures restent séparées entre les comptes. Un nouvel accord ne rouvre pas les anciennes alertes ni les anciens messages.',
+    remaining: 'Terminer les notifications app fermée et vérifier les échanges entre téléphones.',
     latestEvidence: 'phone',
     nativeRecheck: teamNativeRecheck,
     alertServices: teamAlertRecheck,
-    authorityPhone: { source: 'docs/release/evidence/team-authority-phone-2026-10-21/results.json' },
-    readPhone: { source: 'docs/release/evidence/team-read-phone-2026-10-21/results.json' },
-    connected: { source: connected + 'team-conversation-results.json' },
-    readServices: { source: 'docs/release/evidence/team-read-services-2026-10-21/services.json' },
-    readConnected: { source: 'docs/release/evidence/team-read-connected-2026-10-21/team-conversation-results.json' },
-    readAttempt: { source: 'docs/release/evidence/team-read-component-attempt-2026-10-21/results.json' },
-    readComponents: { source: 'docs/release/evidence/team-read-components-2026-10-21/results.json' },
-    accessChanges: { source: accessChanges + 'results.json' },
-    accessAttempt: { source: accessAttempt + 'results.json' },
-    nativeAccess: { source: nativeAccess + 'team-access-results.json' },
-    draftAttempt: { source: 'docs/release/evidence/team-draft-pre-ui-2026-10-21/results.json' },
-    draftRegression: { source: 'docs/release/evidence/team-draft-loss-2026-10-21/results.json' },
-    draftRestart: { source: 'docs/release/evidence/team-draft-native-2026-10-21/team-draft-results.json' },
-    draftErrorChecks: { source: 'docs/release/evidence/team-draft-error-capture-2026-10-21/results.json' },
-    draftErrorRecovery: { source: 'docs/release/evidence/team-draft-error-components-2026-10-21/results.json' },
+    alertPhone: notificationInboxPhone,
+    authorityPhone: historical('docs/release/evidence/team-authority-phone-2026-10-21/results.json'),
+    readPhone: historical('docs/release/evidence/team-read-phone-2026-10-21/results.json'),
+    connected: historical(connected + 'team-conversation-results.json'),
+    readServices: historical('docs/release/evidence/team-read-services-2026-10-21/services.json'),
+    readConnected: historical('docs/release/evidence/team-read-connected-2026-10-21/team-conversation-results.json'),
+    readAttempt: historical('docs/release/evidence/team-read-component-attempt-2026-10-21/results.json'),
+    readComponents: historical('docs/release/evidence/team-read-components-2026-10-21/results.json'),
+    accessChanges: historical(accessChanges + 'results.json'),
+    accessAttempt: historical(accessAttempt + 'results.json'),
+    nativeAccess: historical(nativeAccess + 'team-access-results.json'),
+    draftAttempt: historical('docs/release/evidence/team-draft-pre-ui-2026-10-21/results.json'),
+    draftRegression: historical('docs/release/evidence/team-draft-loss-2026-10-21/results.json'),
+    draftRestart: historical('docs/release/evidence/team-draft-native-2026-10-21/team-draft-results.json'),
+    draftErrorChecks: historical('docs/release/evidence/team-draft-error-capture-2026-10-21/results.json'),
+    draftErrorRecovery: historical('docs/release/evidence/team-draft-error-components-2026-10-21/results.json'),
     phone: { source: 'docs/release/evidence/team-draft-phone-2026-10-21/results.json', checkedAt: '2026-10-21' },
-    attempt: { source: partial + 'results.json' },
-    ui: { source: screens + 'results.json', groups: ['team-chat-entry-and-narrow-layout',
+    attempt: historical(partial + 'results.json'),
+    ui: { source: screens + 'results.json', checkedAt: '2026-10-21', groups: ['team-chat-entry-and-narrow-layout',
       'team-chat-authorization-failure-hides-thread', 'team-chat-unconfirmed-send-reuses-one-intent'] },
     local: { source: base + 'services.json', checkedAt: '2026-10-21', groups: [
       'verified-parent-joins-approved-child-team-without-earlier-history',
@@ -46,6 +49,8 @@ export function createTeamConversationFlow() {
       'Les comptes enfants restent exclus.', 'Le retrait bloque aussi l’envoi et les anciennes pages.',
       'Une réinscription ne rouvre pas l’ancien historique.'] },
     images: [
+      ...notificationInboxPhoneImages,
+      ...[
       ...[
         ['initial', 'Le parent retrouve le message reçu après son admission'],
         ['revoked', 'Le retrait masque la conversation et la saisie'],
@@ -110,5 +115,6 @@ export function createTeamConversationFlow() {
       { file: 'team-chat-unconfirmed', alt: 'Envoi non confirmé, message conservé pour réessayer, essai local simulé du 21 octobre' },
       { file: 'team-chat-confirmed', alt: 'Une seule réponse après le renvoi, essai local simulé du 21 octobre' },
       { file: 'team-chat-denied', alt: 'Conversation et saisie masquées après une erreur de vérification, essai local simulé du 21 octobre' },
-    ], source: 'docs/release/evidence/team-authority-phone-2026-10-21/README.md' };
+      ].map(image => ({...image, checkedAt: '2026-10-21'})),
+    ], source: 'docs/release/evidence/notification-inbox-phone-2026-11-01/README.md' };
 }

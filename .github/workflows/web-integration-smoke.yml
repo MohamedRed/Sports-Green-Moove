@@ -15,6 +15,7 @@ on:
       - "tests/team-chat-*.test.mjs"
       - "tests/team-conversation-contract.test.mjs"
       - "tests/team-alerts*.test.mjs"
+      - "tests/notification-inbox*.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "tests/emergency-dialer-recheck.test.mjs"
       - "tests/system-phone-prerequisite-evidence.test.mjs"
@@ -573,6 +574,7 @@ on:
       - "tests/team-chat-*.test.mjs"
       - "tests/team-conversation-contract.test.mjs"
       - "tests/team-alerts*.test.mjs"
+      - "tests/notification-inbox*.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "tests/emergency-dialer-recheck.test.mjs"
       - "tests/system-phone-prerequisite-evidence.test.mjs"
@@ -1648,6 +1650,10 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-alerts-services.json
         run: npm run test:team-alerts && node --test tests/team-alerts-contract.test.mjs
+      - name: Test foreground notification inbox authority
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/notification-inbox-services.json
+        run: npm run test:notification-inbox && node --test tests/notification-inbox-contract.test.mjs tests/notification-inbox-phone-checkpoints.test.mjs tests/notification-inbox-evidence.test.mjs
       - name: Test multi-child grants and cross-team conversation isolation
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json
@@ -1771,6 +1777,14 @@ jobs:
         with:
           name: team-alert-services-results
           path: ${{ runner.temp }}/team-alerts-services.json
+          if-no-files-found: error
+
+      - name: Retain notification inbox services and disposal
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: notification-inbox-services-results
+          path: ${{ runner.temp }}/notification-inbox-services.json
           if-no-files-found: error
 
   integration-gate:

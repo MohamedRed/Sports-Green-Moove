@@ -18,13 +18,25 @@ import { validateRetainedTeamReadComponents } from '../scripts/qa/team-read-comp
 import { validateTeamReadPhone } from '../scripts/qa/team-read-phone-evidence.mjs';
 import { validateTeamAuthorityPhone } from '../scripts/qa/team-authority-phone-evidence.mjs';
 import {validateRetainedTeamAlerts} from '../scripts/qa/team-alert-evidence.mjs';
+import {validateNotificationInboxPhone} from '../scripts/qa/notification-inbox-phone-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if (flow.alertPhone) {
+    const run = validateNotificationInboxPhone(root, flow.alertPhone.source);
+    assert.equal(flow.checkedAt, flow.alertPhone.checkedAt);
+    assert.equal(run.testedAt.slice(0, 10), flow.alertPhone.checkedAt);
+    assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+    assert.deepEqual(flow.images.filter(image => image.file.startsWith('team-alert-phone-')).map(image => image.file).sort(),
+      Object.keys(run.publishedCaptures).sort());
+    for (const [id, file] of Object.entries(run.publishedCaptures))
+      assert.equal(captures[id], dirname(flow.alertPhone.source) + '/' + file);
+  }
   if(flow.alertServices) {
     const run=validateRetainedTeamAlerts(root,flow.alertServices.source);
     assert.equal(flow.id,'team-conversation');assert.equal(flow.status,'partial');
     assert.equal(run.testedAt.slice(0,10),flow.alertServices.checkedAt);
-    assert.equal(flow.checkedAt,'2026-10-21');assert.equal(flow.latestEvidence,'phone');
+    assert.equal(flow.checkedAt,'2026-11-01');assert.equal(flow.phone.checkedAt,'2026-10-21');assert.equal(flow.latestEvidence,'phone');
     assert.match(flow.remaining,/notifications.*téléphones/);
   }
   if (flow.readComponents) assert.equal(flow.latestEvidence, flow.readPhone ? 'phone' : 'local');
@@ -50,7 +62,7 @@ export function validateTeamConversationRecords(root, flow, captures) {
   for (const [record, validate, prefix] of records) {
     if (!record) continue;
     assert.equal(flow.id, 'team-conversation'); assert.equal(flow.status, 'partial');
-    const run = validate(root, record.source); assert.equal(run.testedAt.slice(0, 10), flow.checkedAt);
+    const run = validate(root, record.source); assert.equal(run.testedAt.slice(0, 10), record.checkedAt);
     if (prefix) {
       assert.deepEqual(flow.images.filter(image => image.file.startsWith(prefix)).map(image => image.file).sort(),
         Object.keys(run.publishedCaptures).sort());

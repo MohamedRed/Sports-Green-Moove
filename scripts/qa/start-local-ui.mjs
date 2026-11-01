@@ -19,5 +19,8 @@ try {
   if (result.stopped) process.exitCode = controller.signal.reason === 'SIGINT' ? 130 : 143;
 } finally {
   rmSync(path, { force: true }); runtime?.cleanup();
+  assert(!existsSync(path) && (!runtime || !existsSync(runtime.temp)), 'Owned runtime disposal must complete');
+  console.log(JSON.stringify({scope:'owned-local-ui-runtime-disposal',sessionFileRemoved:true,
+    runtimeDirectory:runtime?.temp??null,runtimeDirectoryRemoved:!runtime||!existsSync(runtime.temp)}));
   process.removeListener('SIGINT', interrupt); process.removeListener('SIGTERM', terminate);
 }

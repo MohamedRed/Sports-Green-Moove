@@ -1,0 +1,123 @@
+[
+  {
+    "stage": "initial",
+    "observedAt": "2026-11-01T09:34:01.157Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "arrived",
+    "observedAt": "2026-11-01T09:34:34.333Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "read",
+    "observedAt": "2026-11-01T09:35:04.116Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "retried",
+    "observedAt": "2026-11-01T09:35:20.871Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "revoked",
+    "observedAt": "2026-11-01T09:36:16.763Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "renewed",
+    "observedAt": "2026-11-01T09:39:08.488Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "new-arrived",
+    "observedAt": "2026-11-01T09:39:23.240Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "background-ready",
+    "observedAt": "2026-11-01T09:39:34.240Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "background-home",
+    "observedAt": "2026-11-01T09:39:45.278Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "recents-protected-preview",
+    "observedAt": "2026-11-01T09:40:33.907Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  },
+  {
+    "stage": "returned",
+    "observedAt": "2026-11-01T09:40:41.698Z",
+    "crop": {
+      "left": 460,
+      "top": 107,
+      "width": 198,
+      "height": 443
+    },
+    "source": "observed-physical-phone-session-crop-not-native-export"
+  }
+]

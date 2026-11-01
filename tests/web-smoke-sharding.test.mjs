@@ -22,6 +22,7 @@ test('all 111 original workload steps retain their exact commands, environments,
       step.name !== 'Test child contact discovery through verified-parent approval')
     .filter(step => step.name !== 'Test primary capture observation protocol')
     .filter(step => step.name !== 'Test team alerts and pending phone delivery')
+    .filter(step => step.name !== 'Test foreground notification inbox authority')
     .filter(step => step.name !== 'Validate physical draft and consent evidence boundaries')
     .filter(step => step.name !== 'Validate partial team connection recovery evidence')
     .filter(step => step.name !== 'Validate seven physical team process restarts')
@@ -58,6 +59,10 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(teamAlerts.length, 1);
   assert.equal(teamAlerts[0].run, 'npm run test:team-alerts && node --test tests/team-alerts-contract.test.mjs');
   assert.equal(teamAlerts[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/team-alerts-services.json');
+  const notificationInbox = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test foreground notification inbox authority');
+  assert.equal(notificationInbox.length, 1);
+  assert.equal(notificationInbox[0].run, 'npm run test:notification-inbox && node --test tests/notification-inbox-contract.test.mjs tests/notification-inbox-phone-checkpoints.test.mjs tests/notification-inbox-evidence.test.mjs');
+  assert.equal(notificationInbox[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/notification-inbox-services.json');
   const compression = workflow.jobs.smoke.steps.filter(step => step.name === 'Test premature response compression cleanup');
   assert.equal(compression.length, 1);
   assert.equal(compression[0].run, 'node --test tests/compression-close-security.test.mjs tests/compression-close-security-evidence.test.mjs');
@@ -162,7 +167,8 @@ test('original and added evidence uploads follow their owning tests', () => {
       if (step.with.name === 'ledger-history-services') assert(steps.some(row => row.env?.SGM_LOCAL_FLOW_OUTPUT?.endsWith('/ledger-history-services.json')));
     }
   }
-  assert.equal(names.length, 18); assert.equal(new Set(names).size, 18);
+  assert.equal(names.length, 19); assert.equal(new Set(names).size, 19);
+  assert(names.includes('notification-inbox-services-results'));
   assert(names.includes('team-alert-services-results'));
   assert(names.includes('child-booking-receipt-results'));
   assert(names.includes('review-recovery-results'));

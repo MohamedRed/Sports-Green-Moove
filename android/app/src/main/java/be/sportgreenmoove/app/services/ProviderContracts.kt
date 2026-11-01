@@ -31,7 +31,7 @@ interface AuthGateway {
     fun signOut()
 }
 
-interface FirebaseGateway : TripCancellationGateway, TripChangeGateway, GuardianVerificationGateway, TeamEnrollmentGateway, SupportGateway, NotificationReadGateway, PendingReviewGateway {
+interface FirebaseGateway : TripCancellationGateway, TripChangeGateway, GuardianVerificationGateway, TeamEnrollmentGateway, SupportGateway, NotificationReadGateway, NotificationInboxGateway, PendingReviewGateway {
     val isConfigured: Boolean
     suspend fun searchTrips(): List<TripSummary>
     suspend fun listChildren(): List<ChildSummary>
@@ -90,7 +90,7 @@ class UnconfiguredAuthGateway : AuthGateway {
     override fun signOut() = Unit
 }
 
-class UnconfiguredFirebaseGateway : FirebaseGateway, GuardianVerificationGateway by UnconfiguredGuardianVerificationGateway(),
+class UnconfiguredFirebaseGateway : FirebaseGateway, NotificationInboxGateway by UnconfiguredNotificationInboxGateway(), GuardianVerificationGateway by UnconfiguredGuardianVerificationGateway(),
     TeamEnrollmentGateway by UnconfiguredTeamEnrollmentGateway(), SupportGateway by UnconfiguredSupportGateway(),
     NotificationReadGateway by UnconfiguredNotificationReadGateway() {
     override suspend fun tripChangeHistory(tripId: String, cursor: String?): be.sportgreenmoove.app.data.TripChangeHistoryPage =

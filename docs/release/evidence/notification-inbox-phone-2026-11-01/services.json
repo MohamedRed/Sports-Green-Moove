@@ -1,0 +1,71 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "47136bd62d45fc6a3a920c537ea94a30",
+  "testedAt": "2026-11-01T08:57:34.962Z",
+  "scope": "local-notification-inbox-callables-not-native-or-push-delivery",
+  "completed": true,
+  "steps": [
+    {
+      "id": "authenticated-notification-only-read-preserves-existing-alerts-and-rejects-owner-injection",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-callable-read-receives-one-generic-team-alert-without-message-or-team-metadata",
+      "status": "passed"
+    },
+    {
+      "id": "read-confirmation-is-reflected-without-changing-team-message-read-state-or-its-first-timestamp",
+      "status": "passed"
+    },
+    {
+      "id": "revocation-and-renewed-admission-remove-old-alerts-without-affecting-another-member",
+      "status": "passed"
+    },
+    {
+      "id": "only-a-message-after-the-current-admission-returns-in-the-authoritative-refresh",
+      "status": "passed"
+    },
+    {
+      "id": "corrupt-private-alert-metadata-fails-closed-and-a-fresh-explicit-read-recovers",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-team-hides-old-alerts-and-keeps-ordinary-notifications-unchanged",
+      "status": "passed"
+    }
+  ],
+  "isolation": {
+    "protectedBaselinePreserved": true
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "pushDeliveryVerified": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "mapRequests": 0,
+  "realPayments": false,
+  "sourceFiles": {
+    "functions/src/callables/notificationInbox.ts": "b86251df5df24c06c31487229431c5000ffb032482682ee79c8385589ee4f502",
+    "functions/src/index.ts": "70b0a4adb25dedd4f30595d2158ef9c0a9fa4f3bed37d26f22a14a7f23762d33",
+    "functions/src/services/teamNotificationAccess.ts": "bc9060c03c4b12b534ebea91b7dc3be6341bd2b7f08b384bc4b936f0fae027ef",
+    "functions/src/services/teamConversationAuthority.ts": "99ed993f388e6fa9ccf25ed5967cfbb75e5cfe64e1e5f15a5db334d13ced3d35",
+    "functions/src/services/teamEnrollmentAuthority.ts": "bc378c9f2b345401b1e2d8397452a170501992092caebcea563624c66e6152e0",
+    "functions/src/domain/inbox.ts": "5e4b1465df655a27ccb34d4f64892209ac5696a6c7f48ab8a20a7e964010cbf3",
+    "scripts/qa/team-alert-fixture.mjs": "ec98442dbeb89790f4c675b77232f1680c5d4045afad64b03215cc06c5734cde",
+    "scripts/qa/local-notification-inbox-suite.mjs": "a3c594e859acd351ad9cac340cff9ef22445fe713abb3088242741a05a3b3ac4",
+    "scripts/qa/run-local-team-conversation.mjs": "36e9ab67ee6ee55156d746165a530cdca918537d751d56471981c8f912fb2303"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

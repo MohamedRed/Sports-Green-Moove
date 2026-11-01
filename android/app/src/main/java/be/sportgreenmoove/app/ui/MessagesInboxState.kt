@@ -19,8 +19,9 @@ internal class MessagesInboxState(uid: String, private val firebase: FirebaseGat
     private var closed = false
     val conversations = ConversationDirectoryState(gateway)
     val notificationReads = NotificationReadState(uid, firebase)
+    val notificationInbox = NotificationInboxState(uid, firebase, notificationReads::reconcile)
     val reviews = PendingReviewsState(uid, firebase)
-    val displayedInbox get() = inbox.copy(notifications = inbox.notifications.map(notificationReads::display), reviews = reviews.items)
+    val displayedInbox get() = inbox.copy(notifications = notificationInbox.items.map(notificationReads::display), reviews = reviews.items)
     var inbox by mutableStateOf(InboxSummary())
         private set
     var loading by mutableStateOf(true)
@@ -34,7 +35,13 @@ internal class MessagesInboxState(uid: String, private val firebase: FirebaseGat
     var reviewFailure by mutableStateOf<ReviewSubmissionFailure?>(null)
         private set
 
-    suspend fun observe() {
+    suspend fun observe() = coroutineScope {
+        val metadata = launch { observeMetadata() }
+        try { notificationInbox.observe() }
+        finally { metadata.cancel(); notificationReads.clear() }
+    }
+
+    private suspend fun observeMetadata() {
         try {
             gateway.observeInboxChanges().onStart { emit(Unit) }.collectLatest {
                 coroutineScope {
@@ -75,13 +82,12 @@ internal class MessagesInboxState(uid: String, private val firebase: FirebaseGat
     }
 
     private fun updateInbox(value: InboxSummary) {
-        notificationReads.reconcile(value.notifications)
         reviews.replace(value.reviews, value.reviewsNextCursor)
-        inbox = value
+        inbox = value.copy(notifications = emptyList())
     }
 
     fun close() {
-        closed = true; reviews.close(); notificationReads.clear()
+        closed = true; reviews.close(); notificationReads.clear(); notificationInbox.close()
         reviewFailure = null; submittingReviewId = null; notice = null
     }
 }

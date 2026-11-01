@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.NotificationInboxStateTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:59:05.571Z" hostname="MRRs-MacBook-Air.local" time="0.079">
+  <properties/>
+  <testcase name="accountDisposalIgnoresLateRowsAndCannotStartAnotherRead" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.02"/>
+  <testcase name="anUnverifiedReadHidesExistingRowsAndRequiresExplicitRetry" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.01"/>
+  <testcase name="primaryPollingAddsAndRemovesRowsWithoutDuplicatesWhileActive" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.01"/>
+  <testcase name="pauseRejectsAnUncooperativeLateFailureWithoutHidingTheNewResult" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.014"/>
+  <testcase name="onlySuccessfulCurrentRowsReachReadReconciliation" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.01"/>
+  <testcase name="overlappingReadsDoNotDuplicateRequestsAndCancellationCannotPublish" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.008"/>
+  <testcase name="pauseClearsPrivateRowsAndRejectsAnUncooperativeLateResponse" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -50,10 +50,10 @@ test('the dedicated trial and CI do not promote a pending envelope to phone deli
 });
 test('public follow-up keeps prior phone dates, galleries and partial notification scope',()=>{
   const team=content.flows.find(row=>row.id==='team-conversation');
-  assert.equal(team.status,'partial');assert.equal(team.checkedAt,'2026-10-21');
+  assert.equal(team.status,'partial');assert.equal(team.checkedAt,'2026-11-01');
   assert.equal(team.phone.checkedAt,'2026-10-21');assert.equal(team.latestEvidence,'phone');
   assert.equal(team.alertServices.checkedAt,'2026-11-01');
-  assert(team.images.every(image=>image.alt.includes('21 octobre')));
+  assert(team.images.filter(image=>!image.file.startsWith('team-alert-phone-')).every(image=>image.alt.includes('21 octobre')&&image.checkedAt==='2026-10-21'));
   assert.match(team.remaining,/notifications.*téléphones/);
   const update=content.updates.find(row=>row.source==='docs/release/evidence/team-alert-services-2026-11-01/README.md');
   assert.match(update.text,/locaux/);assert.match(update.text,/reste à terminer/);

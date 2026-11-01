@@ -264,3 +264,5 @@ docs/release/evidence/full-native-5091ec5-2026-10-31/**/*-instrumentation.txt -t
 docs/release/evidence/chat-account-switch-phone-2026-11-01/ci/LocalChatNetworkFlowTest-instrumentation.txt -text -whitespace
 docs/release/evidence/team-alert-services-2026-11-01/services-failure.txt -text -whitespace
 docs/release/evidence/team-alert-services-2026-11-01/services-third-failure.txt -text -whitespace
+docs/release/evidence/notification-inbox-phone-2026-11-01/**/*.txt -text -whitespace
+docs/release/evidence/notification-inbox-phone-2026-11-01/**/*.xml -text -whitespace

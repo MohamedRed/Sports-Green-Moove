@@ -5,7 +5,10 @@ import { prepareLocalRuntime, runEmulatorEntry } from './local-runtime.mjs';
 import { assertLocalEndpointsClosed } from './local-emulator-lifecycle.mjs';
 
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
-const mode = process.argv[2]; assert(mode === undefined || ['--directory','--reads','--alerts'].includes(mode), 'Select the message, directory, read or alert suite');
+const mode = process.argv[2];
+const suites = new Map([[undefined,'local-team-conversation-suite.mjs'],['--directory','local-team-chat-options-suite.mjs'],
+  ['--reads','local-team-read-suite.mjs'],['--alerts','local-team-alert-suite.mjs'],['--inbox-alerts','local-notification-inbox-suite.mjs']]);
+assert(suites.has(mode), 'Select the message, directory, read, alert or notification inbox suite');
 assert(isAbsolute(output ?? '') && !existsSync(output), 'A fresh absolute output path is required');
 const runtime = prepareLocalRuntime(), ports = [9099, 8080, 9000, 5001];
 let report, failure, endpoints;
@@ -13,11 +16,11 @@ try {
   await assertLocalEndpointsClosed(ports);
   runtime.env.SGM_LOCAL_UI_SESSION_FILE = resolve(runtime.temp, 'session.json');
   runtime.env.SGM_LOCAL_FLOW_OUTPUT = resolve(runtime.temp, 'team-conversation-results.json');
-  runEmulatorEntry(runtime, mode === '--alerts' ? 'local-team-alert-suite.mjs' : mode === '--reads' ? 'local-team-read-suite.mjs' : mode === '--directory' ? 'local-team-chat-options-suite.mjs' : 'local-team-conversation-suite.mjs');
+  runEmulatorEntry(runtime, suites.get(mode));
   report = JSON.parse(readFileSync(runtime.env.SGM_LOCAL_FLOW_OUTPUT));
   assert.equal(report.runId, runtime.env.SGM_LOCAL_RUN_ID);
   assert.equal(mode ? report.isolation.protectedBaselinePreserved : report.protectedBaselinePreserved, true);
-  if (mode === '--reads' || mode === '--alerts') assert.equal(report.completed, true);
+  if (['--reads','--alerts','--inbox-alerts'].includes(mode)) assert.equal(report.completed, true);
   assert.equal(report.adminClientClosed, true);
 } catch (error) { failure = error; }
 finally {

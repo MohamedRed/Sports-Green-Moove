@@ -2,9 +2,21 @@
 
 ## Current Publication Policy
 
+The 1 November in-app alert trial retains two nine-checkpoint physical sessions:
+arrival without refresh, explicit confirmed read, replay, guardian withdrawal,
+renewal, fresh arrival and foreground return. The first trial exposes stale
+Recents content; the Android 13+ task-preview correction is rechecked on Android
+15. Publish only the four reviewed recheck session crops, not credential-entry
+views or the failed preview. Advance only the latest team phone date to 1 November;
+preserve each historical record/image date, all old tours and partial status.
+Closed-app push, tap navigation, older-device preview policy, manager UI, peer
+phone, installed-APK hash, whole-head and release acceptance remain unproven.
+Public access is unchanged. See
+`docs/release/evidence/notification-inbox-phone-2026-11-01/README.md`.
+
 The 1 November team-alert service trial passes eleven callable cases for generic
 eligible-recipient alerts, deduplication and current-admission privacy. Publish
-only a short local-data result. Preserve the team flow's 21 October phone date,
+only a short local-data result. This earlier trial preserves the 21 October phone date,
 all galleries/tours and partial status. No new screen, immediate in-app arrival,
 closed-app push, token registration, dispatcher, production or release acceptance
 is added. A pending delivery envelope is not sent push. Public access is unchanged.

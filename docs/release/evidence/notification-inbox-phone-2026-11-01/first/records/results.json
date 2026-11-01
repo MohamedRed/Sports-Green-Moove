@@ -1,0 +1,139 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "48c356f0a99d6b9ab306f431756cb97f",
+  "identity": {
+    "teamId": "sgm-qa-team-alerts",
+    "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "otherUid": "sgm-qa-team-alert-adult",
+    "verificationId": "e605553067511959da675b5cb8c900f15d84fa4c675a2d3aa9b3948bc89a1369",
+    "firstMessageId": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+    "firstNoticeId": "teamChat_860f514acc74e9691e058d05385d79d64980b98ccaba734c457d2694897ed27e",
+    "firstReadAt": {
+      "_seconds": 1793524747,
+      "_nanoseconds": 635000000
+    },
+    "newMessageId": "f07c21ba966ae4041601bdd37f501e4f2a86ca73446a23d2d19bc7ca919a7f11",
+    "newNoticeId": "teamChat_dde8e8b6ce11034c68669901b67a80d0da4db7aa74e415c615d9ceb90727e076"
+  },
+  "observedAt": "2026-11-01T09:23:08.387Z",
+  "scope": "independent-notification-records-not-native-arrival-or-background-push-proof",
+  "completed": true,
+  "failed": false,
+  "checkpoints": [
+    {
+      "id": "ready",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "arrived",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "read",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "retried",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "revoked",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "renewed",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "new-arrived",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "background-ready",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "returned",
+      "status": "passed",
+      "protectedRecordCount": 197,
+      "originalClaimsAndDisabledStatesUnchanged": true,
+      "liveTripsUnchanged": true,
+      "teamMessageReadReceipts": 0,
+      "phoneUiProven": false,
+      "pushDeliveryVerified": false
+    }
+  ],
+  "actions": [
+    "publish",
+    "replay",
+    "revoke",
+    "renew",
+    "publish-new",
+    "revoke-background"
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPayments": false,
+  "phoneUiProvenByObserver": false,
+  "pushDeliveryVerified": false,
+  "managerUiProven": false,
+  "sourceFiles": {
+    "scripts/qa/manual-notification-inbox-phone.mjs": "cdefc2ce898a33d97ec2e4ac53c8d57e9ffec712c84e532f5a2a72cc8ddc2dcf",
+    "scripts/qa/notification-inbox-phone-checkpoints.mjs": "91d31c3514049bb9a20af4e177b2d80dcee4da8868df6d2aa68428e76c1d322c",
+    "scripts/qa/team-alert-fixture.mjs": "ec98442dbeb89790f4c675b77232f1680c5d4045afad64b03215cc06c5734cde",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "functions/src/callables/notificationInbox.ts": "b86251df5df24c06c31487229431c5000ffb032482682ee79c8385589ee4f502"
+  }
+}

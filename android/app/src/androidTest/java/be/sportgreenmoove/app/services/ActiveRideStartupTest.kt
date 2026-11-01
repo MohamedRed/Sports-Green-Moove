@@ -87,6 +87,7 @@ class ActiveRideStartupTest {
 }
 
 private class RecordingFirebaseGateway : FirebaseGateway, TripChangeGateway by be.sportgreenmoove.app.ui.UnusedTripChanges,
+    NotificationInboxGateway by UnconfiguredNotificationInboxGateway(),
     GuardianVerificationGateway by UnconfiguredGuardianVerificationGateway(),
     TeamEnrollmentGateway by UnconfiguredTeamEnrollmentGateway(), SupportGateway by UnconfiguredSupportGateway() {
     val events = mutableListOf<String>()

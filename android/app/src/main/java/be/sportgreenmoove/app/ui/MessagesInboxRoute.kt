@@ -62,18 +62,13 @@ internal fun MessagesInboxRoute(uid: String, firebase: FirebaseGateway, gateway:
                         }
                     }
                 }
+            } else if (selected == "notifs") {
+                notificationInboxItems(state.notificationInbox, state.notificationReads, onRetry = { refresh += 1 }) { notice ->
+                    scope.launch { state.notificationReads.markRead(notice) }
+                }
             } else when {
                 state.loading -> item { MessagesEmptyCard("Chargement...") }
                 state.error != null -> item { MessagesEmptyCard(state.error.orEmpty()); V2Button("Réessayer", onClick = { refresh += 1 }) }
-                selected == "notifs" -> {
-                    if (state.inbox.notifications.isEmpty()) item { MessagesEmptyCard("Aucune notification.") }
-                    items(state.displayedInbox.notifications, key = { it.id }) { notice ->
-                        NotificationCard(notice, state.notificationReads.pendingId != null,
-                            state.notificationReads.pendingId == notice.id, state.notificationReads.errors[notice.id]) {
-                            scope.launch { state.notificationReads.markRead(notice) }
-                        }
-                    }
-                }
                 else -> {
                     state.notice?.let { notice -> item { MessagesEmptyCard(notice) } }
                     if (state.reviews.items.isEmpty() && state.reviews.nextCursor == null) item { MessagesEmptyCard("Aucun avis en attente.") }
