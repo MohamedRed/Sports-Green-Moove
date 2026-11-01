@@ -2,11 +2,19 @@ name: Android Transport Diagnostic
 
 on:
   workflow_dispatch:
+    inputs:
+      platform_tools:
+        description: "Explicit disposable diagnostic only; does not change the app test gate"
+        type: choice
+        options: [sdk-default, "36.0.2"]
+        default: sdk-default
   pull_request:
     paths:
       - ".github/workflows/android-transport-probe.yml"
       - "scripts/diagnostics/adb-transfer-*.mjs"
       - "scripts/diagnostics/run-adb-transfer-probe.mjs"
+      - "scripts/diagnostics/transfer-toolchain.mjs"
+      - "tests/diagnostic-toolchain.test.mjs"
       - "scripts/qa/adb-host-health.mjs"
       - "scripts/qa/adb-host-sockets.mjs"
       - "scripts/qa/adb-daemon-events.mjs"
@@ -34,6 +42,8 @@ jobs:
         run: npm ci
       - name: Test diagnostic boundaries without a device
         run: node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-host-health.test.mjs tests/adb-transfer-emulator.test.mjs
+      - name: Test explicit diagnostic toolchain selection
+        run: node --test tests/diagnostic-toolchain.test.mjs
       - uses: android-actions/setup-android@v4
       - name: Enable disposable virtual-device acceleration
         run: |
@@ -45,12 +55,15 @@ jobs:
         env:
           SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
           ADB_TRACE: transport
+          SGM_TRANSFER_TOOLCHAIN: ${{ inputs.platform_tools || 'sdk-default' }}
+          SGM_TRANSFER_TOOLCHAIN_RECEIPT: ${{ runner.temp }}/sgm-transfer-toolchain-selection.json
         with:
           api-level: 35
           target: google_apis_playstore
           arch: x86_64
           profile: pixel_6
           emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim
+          pre-emulator-launch-script: node scripts/diagnostics/transfer-toolchain.mjs "$SGM_TRANSFER_TOOLCHAIN"
           script: node scripts/diagnostics/run-adb-transfer-probe.mjs
       - name: Retain only sanitized command outcomes and trace counts
         if: ${{ always() }}

@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "scripts/diagnostics/transfer-toolchain.mjs"
+      - "tests/diagnostic-toolchain.test.mjs"
       - "tests/ledger-summary*.test.mjs"
       - "scripts/qa/*ledger-history*.mjs"
       - "scripts/qa/*profile-ledger*.mjs"
@@ -569,6 +571,8 @@ on:
     branches:
       - main
     paths:
+      - "scripts/diagnostics/transfer-toolchain.mjs"
+      - "tests/diagnostic-toolchain.test.mjs"
       - "tests/ledger-summary*.test.mjs"
       - "scripts/qa/*ledger-history*.mjs"
       - "scripts/qa/*profile-ledger*.mjs"
@@ -1238,6 +1242,8 @@ jobs:
         run: node --test tests/chat-account-switch-checkpoints.test.mjs tests/chat-account-switch-phone.test.mjs
       - name: Test bound emulator transfer observations
         run: node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-transfer-emulator.test.mjs
+      - name: Test explicit diagnostic toolchain selection
+        run: node --test tests/diagnostic-toolchain.test.mjs
       - name: Validate complete native pass without release promotion
         run: node --test tests/native-full-gate-pass.test.mjs
       - name: Validate failed notification capture and unchanged quality gate
