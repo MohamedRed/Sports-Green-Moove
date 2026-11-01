@@ -3,13 +3,19 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, isAbsolute } from 'node:path';
 import { prepareLocalRuntime, runEmulatorEntry } from './local-runtime.mjs';
 import { assertLocalEndpointsClosed } from './local-emulator-lifecycle.mjs';
+import {createHash} from 'node:crypto';
+import {teamPushRegistrationSources} from './team-push-registration-sources.mjs';
 
 const output = process.env.SGM_LOCAL_FLOW_OUTPUT;
 const mode = process.argv[2];
 const suites = new Map([[undefined,'local-team-conversation-suite.mjs'],['--directory','local-team-chat-options-suite.mjs'],
-  ['--reads','local-team-read-suite.mjs'],['--alerts','local-team-alert-suite.mjs'],['--inbox-alerts','local-notification-inbox-suite.mjs']]);
-assert(suites.has(mode), 'Select the message, directory, read, alert or notification inbox suite');
+  ['--reads','local-team-read-suite.mjs'],['--alerts','local-team-alert-suite.mjs'],['--inbox-alerts','local-notification-inbox-suite.mjs'],
+  ['--push-registration','local-team-push-registration-suite.mjs']]);
+assert(suites.has(mode), 'Select a supported team conversation or notification suite');
 assert(isAbsolute(output ?? '') && !existsSync(output), 'A fresh absolute output path is required');
+const hashSources=()=>Object.fromEntries(teamPushRegistrationSources.map(file=>[file,
+  createHash('sha256').update(readFileSync(resolve(import.meta.dirname,'../..',file))).digest('hex')]));
+const registrationSources=mode==='--push-registration'?hashSources():null;
 const runtime = prepareLocalRuntime(), ports = [9099, 8080, 9000, 5001];
 let report, failure, endpoints;
 try {
@@ -20,8 +26,9 @@ try {
   report = JSON.parse(readFileSync(runtime.env.SGM_LOCAL_FLOW_OUTPUT));
   assert.equal(report.runId, runtime.env.SGM_LOCAL_RUN_ID);
   assert.equal(mode ? report.isolation.protectedBaselinePreserved : report.protectedBaselinePreserved, true);
-  if (['--reads','--alerts','--inbox-alerts'].includes(mode)) assert.equal(report.completed, true);
+  if (['--reads','--alerts','--inbox-alerts','--push-registration'].includes(mode)) assert.equal(report.completed, true);
   assert.equal(report.adminClientClosed, true);
+  if(registrationSources){assert.deepEqual(report.sourceFiles,registrationSources);assert.deepEqual(hashSources(),registrationSources);}
 } catch (error) { failure = error; }
 finally {
   try { runtime.cleanup(); assert(!existsSync(runtime.temp)); endpoints = await assertLocalEndpointsClosed(ports); }

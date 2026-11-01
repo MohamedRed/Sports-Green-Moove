@@ -29,6 +29,7 @@ export { listOwnedTeamEnrollments, getOwnedTeamEnrollmentView } from "./callable
 export { getInbox, sendChatMessage, getChatConversation, markChatMessagesRead } from "./callables/messages.js";
 export { markNotificationRead } from "./callables/notificationRead.js";
 export { getNotificationInbox } from "./callables/notificationInbox.js";
+export { registerTeamPushDevice } from "./callables/teamPushRegistration.js";
 export { listChatConversations, listChatBookingOptions } from "./callables/chatDirectory.js";
 export { sendTeamChatMessage, getTeamChatMessages, listTeamChatOptions, markTeamChatMessagesRead } from "./callables/teamConversation.js";
 export {

@@ -20,8 +20,18 @@ import { validateTeamAuthorityPhone } from '../scripts/qa/team-authority-phone-e
 import {validateRetainedTeamAlerts} from '../scripts/qa/team-alert-evidence.mjs';
 import {validateNotificationInboxPhone} from '../scripts/qa/notification-inbox-phone-evidence.mjs';
 import {validateNotificationRetryPhone} from '../scripts/qa/notification-retry-phone-evidence.mjs';
+import {validateTeamPushRegistration} from '../scripts/qa/team-push-registration-evidence.mjs';
+import {validateTeamAccountRegressions} from '../scripts/qa/team-account-regressions-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if (flow.pushRegistration) {
+    const run = validateTeamPushRegistration(root, dirname(flow.pushRegistration.source));
+    assert.equal(flow.pushRegistration.checkedAt, run.testedAt.slice(0, 10));
+    assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+    const regressions = validateTeamAccountRegressions(root, dirname(flow.pushRegressions.source));
+    assert.equal(regressions.testedAt.slice(0,10), flow.pushRegressions.checkedAt);
+  }
   if (flow.retryPhone) {
     const run = validateNotificationRetryPhone(root, dirname(flow.retryPhone.source));
     assert.equal(flow.retryPhone.checkedAt, run.testedAt.slice(0, 10));

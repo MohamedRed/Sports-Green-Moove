@@ -11,6 +11,7 @@ import { membershipCursorSchema, membershipPageCursor, parseMembershipPageCursor
 import { requireTeamConversationAccess, requireTeamConversationAdult } from "./teamConversationAuthority.js";
 import { teamContext } from "./teamEnrollmentAuthority.js";
 import { currentTeamUnreadCount } from "./teamConversationRead.js";
+import {teamConversationAccounts} from "./teamConversationAccounts.js";
 
 export const teamChatOptionsSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("clubs"), cursor: membershipCursorSchema.optional() }).strict(),
@@ -18,7 +19,8 @@ export const teamChatOptionsSchema = z.discriminatedUnion("kind", [
 ]);
 export async function teamConversationOptions(uid: string, token: unknown, input: z.infer<typeof teamChatOptionsSchema>) {
   return firestore.runTransaction(async transaction => {
-    await requireTeamConversationAdult(transaction, uid, token);
+    const accounts = teamConversationAccounts(transaction);
+    await requireTeamConversationAdult(transaction, uid, token, accounts);
     const clubId = input.kind === "teams" ? input.clubId : null;
     let clubIdentity: unknown = null;
     if (clubId) {
@@ -48,7 +50,7 @@ export async function teamConversationOptions(uid: string, token: unknown, input
         const team = teamContext(snapshot);
         try {
           const access = await requireTeamConversationAccess(transaction, uid, token,
-            { teamId: snapshot.id, expectedTeamInstanceId: team.teamInstanceId });
+            { teamId: snapshot.id, expectedTeamInstanceId: team.teamInstanceId }, undefined, accounts);
           if (access.clubId !== clubId) throw new HttpsError("failed-precondition", "Team club identity changed.");
           const unreadCount = await currentTeamUnreadCount(transaction, uid, access.teamInstanceId, access.availableAfter);
           items.push({ id: snapshot.id, name: teamConversationLabel(access.title), teamInstanceId: access.teamInstanceId, unreadCount });

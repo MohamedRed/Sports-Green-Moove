@@ -2,6 +2,28 @@
 
 ## Current Publication Policy
 
+The d476cce source passes the complete Native workflow and every non-skipped
+source check: 231 ordinary passes/54 intentional skips, all notification cases,
+37 replay groups/40 native cases, seventeen primary copies and eleven focused
+lanes. Publish a short simulation-result note, without new media or phone-date
+and partial-status changes. This verifies the sparse-capture correction at that
+source, not later current-account work or an intermittency/physical/release fix.
+Preserve prior failures and the public audience. See
+`docs/release/evidence/notification-gate-d476cce-2026-11-01/README.md`.
+
+The later 1 November server registration recheck passes nineteen isolated callable
+cases, 571 unit cases and twenty rules/acknowledgement cases. It rejects an old
+adult login after current child/disabled status, through the shared team guard.
+Publish one concise local
+preparation note without new media, changed phone dates, tours or status. Native
+lifecycle calls, dispatch and closed-app receipt remain unfinished; no real token,
+provider send, production deployment or release proof is added. Retain the first
+expanded fixture's overly broad failed assertion beside its scoped correction.
+The owner now explicitly preserves screenshots/recording on Android 12 and older;
+do not add FLAG_SECURE or claim task-preview protection on those versions. Keep
+the Site public. See
+`docs/release/evidence/team-push-registration-recheck-2026-11-01/README.md`.
+
 The 59dbd3c full gate fails only its notification-withdrawal capture. The original
 bitmap is retained and decoded: 260 actual colors but only ten on the 16-pixel
 lattice. This proves that capture's sparse-sampling false rejection, not the cause

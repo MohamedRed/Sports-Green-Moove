@@ -1,4 +1,5 @@
 import type { QueryDocumentSnapshot, Transaction } from "firebase-admin/firestore";
+import type { UserRecord } from "firebase-admin/auth";
 import { HttpsError } from "firebase-functions/v2/https";
 import { chatDocumentIdSchema } from "../domain/chatReference.js";
 import { teamAlertRecipientLimit } from "../domain/teamConversationAlerts.js";
@@ -31,7 +32,7 @@ export async function teamConversationAlertAudience(transaction: Transaction, se
       for (const uid of new Set(guardians as string[])) add(uid, snapshot);
     }
   }
-  const users = new Map<string, { disabled: boolean; customClaims?: Record<string, unknown> }>();
+  const users = new Map<string, UserRecord>();
   const ids = [...candidates.keys()];
   for (let offset = 0; offset < ids.length; offset += 100) {
     const page = await auth.getUsers(ids.slice(offset, offset + 100).map(uid => ({ uid })));
@@ -41,6 +42,7 @@ export async function teamConversationAlertAudience(transaction: Transaction, se
   for (const [uid, approvals] of candidates) {
     const user = users.get(uid);
     if (!user || user.disabled) continue;
+    scope.accounts.users.set(uid, Promise.resolve(user));
     try {
       await requireTeamConversationAccess(transaction, uid, user.customClaims ?? {}, target, { ...scope, approvals });
       recipients.push(uid);

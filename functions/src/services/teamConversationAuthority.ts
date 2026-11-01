@@ -8,22 +8,27 @@ import { timestampAtOrAfter } from "../domain/teamEnrollment.js";
 import { firestore } from "../lib/firestore.js";
 import { hasRole } from "../lib/https.js";
 import { readTeamEnrollment, teamBelongsToCurrentClub, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
+import {currentTeamConversationAccount,teamConversationAccounts,type TeamConversationAccounts} from "./teamConversationAccounts.js";
 
-export async function requireTeamConversationAdult(transaction: Transaction, uid: string, token: unknown) {
+export async function requireTeamConversationAdult(transaction: Transaction, uid: string, token: unknown,
+  accounts = teamConversationAccounts(transaction)) {
+  const account = await currentTeamConversationAccount(transaction, uid, accounts);
   const [profile, childLogin] = await transaction.getAll(firestore.collection("users").doc(uid),
     firestore.collection("childAccountLinks").doc(uid));
-  if (childLogin.exists || !adultTeamChatAccount(token, profile.data()))
+  if (childLogin.exists || !adultTeamChatAccount(token, profile.data()) || !adultTeamChatAccount(account.customClaims, profile.data()))
     throw new HttpsError("permission-denied", "Team conversations are restricted to adult member accounts.");
   return profile;
 }
 export type TeamConversationAuthorityScope = {
   transaction: Transaction; team: DocumentSnapshot; club: DocumentSnapshot; approvals: QueryDocumentSnapshot[];
+  accounts: TeamConversationAccounts;
 };
 export async function requireTeamConversationAccess(transaction: Transaction, uid: string, token: unknown,
-  input: TeamConversationTarget, prepared?: TeamConversationAuthorityScope) {
+  input: TeamConversationTarget, prepared?: TeamConversationAuthorityScope,
+  accounts = prepared?.accounts ?? teamConversationAccounts(transaction)) {
   if (prepared && (prepared.transaction !== transaction || prepared.team.id !== input.teamId))
     throw new HttpsError("failed-precondition", "Conversation authority must use the current transaction.");
-  const profile = await requireTeamConversationAdult(transaction, uid, token);
+  const profile = await requireTeamConversationAdult(transaction, uid, token, accounts);
   const team = prepared?.team ?? await transaction.get(firestore.collection("teams").doc(input.teamId));
   const context = teamContext(team);
   const membershipRef = firestore.collection("memberships").doc(membershipDocumentId(uid, context.clubId));
@@ -69,6 +74,6 @@ export async function requireTeamConversationAccess(transaction: Transaction, ui
   if (!admissions.length) throw new HttpsError("permission-denied", "Approved team membership or verified parent authority is required.");
   const availableAfter = earliestCurrentAdmission(admissions);
   return { ...context, availableAfter, accessVersion: digest([uid, identities]),
-    authorityScope: { transaction, team, club, approvals },
+    authorityScope: { transaction, team, club, approvals, accounts },
     title: typeof team.get("name") === "string" ? team.get("name") as string : null };
 }

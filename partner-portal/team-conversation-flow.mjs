@@ -9,6 +9,7 @@ import {teamNativeRecheck} from './native-followup.mjs';
 import {teamAlertRecheck} from './team-alerts.mjs';
 import {notificationInboxPhone, notificationInboxPhoneImages} from './notification-inbox-phone.mjs';
 import {notificationRetryPhone, notificationRetryImages} from './notification-retry-phone.mjs';
+import {teamPushRegistration,teamPushRegressions} from './team-push-registration.mjs';
 const historical = source => ({source, checkedAt: '2026-10-21'});
 
 export function createTeamConversationFlow() {
@@ -21,6 +22,8 @@ export function createTeamConversationFlow() {
     alertServices: teamAlertRecheck,
     alertPhone: notificationInboxPhone,
     retryPhone: notificationRetryPhone,
+    pushRegistration: teamPushRegistration,
+    pushRegressions: teamPushRegressions,
     authorityPhone: historical('docs/release/evidence/team-authority-phone-2026-10-21/results.json'),
     readPhone: historical('docs/release/evidence/team-read-phone-2026-10-21/results.json'),
     connected: historical(connected + 'team-conversation-results.json'),

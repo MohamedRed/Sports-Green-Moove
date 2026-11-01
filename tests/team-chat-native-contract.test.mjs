@@ -22,10 +22,12 @@ test('component trial rejects non-isolated packages before test preparation with
 
 test('team directory is authenticated, bounded and evaluated through current authority', () => {
   const service = read('functions/src/services/teamConversationOptions.ts');
-  for (const marker of ['requireTeamConversationAdult(transaction, uid, token)', 'membershipDocumentId(uid, clubId)',
+  for (const marker of ['const accounts = teamConversationAccounts(transaction)',
+    'requireTeamConversationAdult(transaction, uid, token, accounts)', 'membershipDocumentId(uid, clubId)',
     'timestampAtOrAfter(member.get("updatedAt"), club.createTime)', 'requireTeamConversationAccess(transaction, uid, token,',
     'input.kind, clubId, clubIdentity', 'query.limit(6)', 'error.code !== "permission-denied"']) assert(service.includes(marker), marker);
   assert(read('.github/workflows/web-integration-smoke.yml').includes('npm run test:team-chat-options'));
+  assert(service.indexOf('firestore.runTransaction(async transaction => {') < service.indexOf('const accounts = teamConversationAccounts(transaction)'));
 });
 test('native access binds every callable to the current actor without direct document access', () => {
   const gateway = native('services/FirebaseAndroidTeamConversationGateway.kt');

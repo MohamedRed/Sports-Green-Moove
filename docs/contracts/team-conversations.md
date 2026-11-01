@@ -340,7 +340,9 @@ actions use services, not another phone or management screens.
 
 The first session reveals stale task-preview content. The Android 13+ Activity
 preview control is rechecked on Android 15; in-app captures still work. The older
-Android screenshot-blocking policy awaits the owner's decision. No phone push
+Android screenshot blocking is explicitly declined for now: on 1 November the
+owner chose to preserve screenshots and recording on Android 12 and earlier.
+Those versions do not gain task-preview protection. No phone push
 dispatcher, native token lifecycle, closed-app delivery or tap navigation is
 implemented or accepted by this result. Component tests compile but are not
 executed locally; installed APK and whole-head identity are not independently

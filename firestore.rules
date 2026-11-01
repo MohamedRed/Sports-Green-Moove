@@ -171,6 +171,12 @@ service cloud.firestore {
     match /teamPushOutbox/{eventId} {
       allow read, write: if false;
     }
+    match /teamPushInstallations/{installationId} {
+      allow read, write: if false;
+    }
+    match /teamPushTokens/{tokenHash} {
+      allow read, write: if false;
+    }
 
     match /messages/{messageId} {
       allow read: if signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]);

@@ -1,6 +1,14 @@
 {
   "indexes": [
     {
+      "collectionGroup": "teamPushInstallations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "userId", "order": "ASCENDING" },
+        { "fieldPath": "active", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "rideSessions",
       "queryScope": "COLLECTION",
       "fields": [

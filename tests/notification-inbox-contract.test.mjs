@@ -35,5 +35,5 @@ test('supported task snapshots are disabled before private content without chang
   assert(source.includes('Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU'));
   assert(source.includes('setRecentsScreenshotEnabled(false)'));
   assert(source.indexOf('setRecentsScreenshotEnabled(false)')<source.indexOf('setContent {'));
-  assert(!source.includes('FLAG_SECURE'),'Legacy screenshot policy still requires the product owner decision');
+  assert(!source.includes('FLAG_SECURE'),'The owner explicitly keeps screenshots on Android 12 and earlier');
 });

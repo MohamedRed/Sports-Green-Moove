@@ -269,5 +269,11 @@ docs/release/evidence/notification-inbox-phone-2026-11-01/**/*.xml -text -whites
 docs/release/evidence/notification-retry-phone-2026-11-01/**/*.txt -text -whitespace
 docs/release/evidence/notification-retry-phone-2026-11-01/**/*.xml -text -whitespace
 docs/release/evidence/notification-sampling-59dbd3c-2026-11-01/**/*.txt -text -whitespace
+docs/release/evidence/team-push-registration-2026-11-01/*.txt -text -whitespace
+docs/release/evidence/team-push-registration-2026-11-01/*.xml -text -whitespace
+docs/release/evidence/team-push-registration-recheck-2026-11-01/*.txt -text -whitespace
+docs/release/evidence/team-push-registration-recheck-2026-11-01/*.xml -text -whitespace
+docs/release/evidence/notification-gate-d476cce-2026-11-01/**/*.txt -text -whitespace
+docs/release/evidence/notification-gate-d476cce-2026-11-01/**/*.xml -text -whitespace
 docs/release/evidence/alert-capture-failure-406e414-2026-11-01/*.txt -text -whitespace
 docs/release/evidence/alert-capture-failure-406e414-2026-11-01/*.xml -text -whitespace

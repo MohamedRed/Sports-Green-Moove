@@ -1,0 +1,6 @@
+export const teamPushRegistrationSources = [
+  'functions/src/domain/teamPushRegistration.ts', 'functions/src/services/teamPushRegistration.ts',
+  'functions/src/callables/teamPushRegistration.ts', 'functions/src/index.ts', 'firestore.rules', 'firestore.indexes.json',
+  'scripts/qa/local-team-push-registration-suite.mjs', 'scripts/qa/run-local-team-conversation.mjs',
+  'scripts/qa/team-push-registration-sources.mjs',
+];

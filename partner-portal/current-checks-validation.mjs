@@ -1,6 +1,7 @@
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
 import {alertCaptureFailureFolder,validateAlertCaptureFailure} from '../scripts/qa/alert-capture-failure-evidence.mjs';
 import {notificationSamplingFolder,validateNotificationSampling} from '../scripts/qa/notification-sampling-evidence.mjs';
+import {notificationGateFolder,validateNotificationGate} from '../scripts/qa/notification-gate-pass-evidence.mjs';
 import {validateDependencyPatchEvidence} from '../scripts/qa/dependency-patch-evidence.mjs';
 import {validateNativeGateRecheck} from '../scripts/qa/native-gate-recheck-evidence.mjs';
 import {validatePublishedMediaSeek} from '../scripts/qa/published-media-seek-evidence.mjs';
@@ -59,7 +60,10 @@ export function validateCurrentChecks(root, content) {
   assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').transportHistory.source, transferLifecycleFolder + 'README.md');
   assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').captureHistory.source, alertCaptureFailureFolder + 'README.md');
   for (const id of ['chat-send-stability','native-evidence-copy'])
-    assert.equal(content.blockers.find(row => row.id === id).latestSource, notificationSamplingFolder + 'README.md');
+    assert.equal(content.blockers.find(row => row.id === id).samplingHistory.source, notificationSamplingFolder + 'README.md');
+  for (const id of ['chat-send-stability','native-evidence-copy'])
+    assert.equal(content.blockers.find(row => row.id === id).latestSource, notificationGateFolder + 'README.md');
+  validateNotificationGate(root);
   validateNotificationSampling(root);
   assert(content.updates.some(row => row.source === notificationSamplingFolder + 'README.md'));
   validateAlertCaptureFailure(root);

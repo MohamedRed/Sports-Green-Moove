@@ -2,6 +2,8 @@ import {appearanceProgress} from './appearance-flow.mjs';
 import {alertCaptureFailureProgress} from './alert-capture-failure.mjs';
 import {notificationRetryProgress} from './notification-retry-phone.mjs';
 import {notificationSamplingProgress} from './notification-sampling.mjs';
+import {teamPushRegistrationProgress} from './team-push-registration.mjs';
+import {notificationGateProgress} from './notification-gate-pass.mjs';
 import {notificationInboxPhoneProgress} from './notification-inbox-phone.mjs';
 import {chatDraftPhoneProgress} from './chat-draft-phone.mjs';
 import {chatDraftReplayProgress} from './chat-draft-replay-phone.mjs';
@@ -60,6 +62,8 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  teamPushRegistrationProgress,
+  notificationGateProgress,
   notificationRetryProgress,
   notificationSamplingProgress,
   alertCaptureFailureProgress,
