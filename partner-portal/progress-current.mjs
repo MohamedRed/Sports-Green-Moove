@@ -1,4 +1,5 @@
 import {appearanceProgress} from './appearance-flow.mjs';
+import {teamPushAlertProgress} from './team-push-alert.mjs';
 import {alertCaptureFailureProgress} from './alert-capture-failure.mjs';
 import {notificationRetryProgress} from './notification-retry-phone.mjs';
 import {notificationSamplingProgress} from './notification-sampling.mjs';
@@ -70,6 +71,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  teamPushAlertProgress,
   sessionExitComponentsProgress,
   teamPushExitGateProgress,
   teamPushSignOutConnectedProgress,

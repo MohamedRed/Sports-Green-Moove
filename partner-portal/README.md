@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The 1 November current-device alert resolver passes sixteen isolated callable
+cases with synthetic tokens and no provider sends. Publish one concise local
+preparation note, no media or changed phone dates/tours/status/audience. The
+dispatcher and native display/tap consumers remain unfinished; all six operational
+push proofs, physical tracking and safety audits stay pending. See
+`docs/release/evidence/team-push-alert-authorization-2026-11-01/README.md`.
+
 The f8a3990 independent lane passes the original three read cases and all three
 exit component cases. Both original narrow/light and actual landscape/dark PNGs
 are reviewed and retained. Publish a short simulation note without new Site media,

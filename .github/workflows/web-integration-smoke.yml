@@ -1666,6 +1666,10 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/notification-inbox-services.json
         run: npm run test:notification-inbox && node --test tests/notification-inbox-contract.test.mjs tests/notification-inbox-phone-checkpoints.test.mjs tests/notification-inbox-evidence.test.mjs tests/notification-retry-phone-checkpoints.test.mjs tests/notification-retry-phone-evidence.test.mjs
+      - name: Test current-device team alert resolution
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-push-alert-services.json
+        run: npm run test:team-push-alert && node --test tests/team-push-alert-contract.test.mjs
       - name: Test multi-child grants and cross-team conversation isolation
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json
@@ -1791,6 +1795,7 @@ jobs:
           path: |
             ${{ runner.temp }}/team-alerts-services.json
             ${{ runner.temp }}/team-push-registration-services.json
+            ${{ runner.temp }}/team-push-alert-services.json
           if-no-files-found: error
 
       - name: Retain notification inbox services and disposal

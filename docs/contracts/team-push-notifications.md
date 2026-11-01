@@ -81,13 +81,36 @@ API; no newer installation-ID mode is enabled by assumption.
 Sign-out intent disables auto-init, persists a removal, clears local authority
 and blocks reactivation before Firebase Auth clears its user. The post-sign-out
 hook explicitly records that cleared account. SDK deletion runs asynchronously.
-An authenticated server-removal acknowledgement before sign-out is still missing;
-the pending removal cannot be replayed as a different user. Neither the runtime
-hooks nor actual SDK registration/deletion have physical evidence yet.
+Authenticated server removal is now attempted before clearing Auth, with a bounded
+deadline and a durable sign-out intent. The connected isolated test confirms this
+acknowledgement using a synthetic token; real SDK removal remains unverified. A
+pending removal cannot be replayed as a different user. Neither the runtime hooks
+nor actual SDK registration/deletion have physical evidence yet.
 
 ## Remaining Delivery Work
 
-Complete authenticated online sign-out removal and verify the existing native
+`resolveTeamPushAlert` is the read-only server boundary for future native display
+and tap handling. It requires authentication, the installation's private proof
+and its current registration revision, an active account-owned registration, and
+an exact reverse token binding. It reuses current adult and team-notification
+authority in one transaction, including the message identity, current team
+instance and admission-time boundary. Missing, foreign and withdrawn alerts all
+return only `{status: "suppressed"}`. Malformed registration/index/owned-alert
+metadata fails closed; nothing is repaired or silently re-registered.
+
+An available result contains only generic copy, the alert ID and a validated team
+reference. No message text, names, child identities, token, proof or URL is returned.
+The required `purpose` distinguishes `display` from `open`: already-read alerts
+are suppressed for display, while an authorized tap may still open the current
+conversation. Neither purpose acknowledges the alert or message. Resolution does
+not send push, render a notification or open a native screen. Native consumers
+must also reject stale account/lifecycle callbacks before display/navigation and
+re-resolve on every tap; a previously available result is not lasting authority.
+After token refresh, a new attempt uses the latest local revision; an opaque alert
+is not permanently bound to the old token revision. The isolated callable trial
+uses synthetic registrations and no provider calls, not real closed-app evidence.
+
+Verify authenticated online sign-out removal and the existing native
 callbacks, permissions, SDK token lifecycle and offline cleanup on actual phones.
 Do not infer these outcomes from the compiled adapter or injected SDK-task tests.
 

@@ -24,8 +24,15 @@ import {validateTeamPushRegistration} from '../scripts/qa/team-push-registration
 import {validateTeamAccountRegressions} from '../scripts/qa/team-account-regressions-evidence.mjs';
 import {validateNativeTeamPushJournal} from '../scripts/qa/native-team-push-journal-evidence.mjs';
 import {validateNativeTeamPushLifecycle} from '../scripts/qa/native-team-push-lifecycle-evidence.mjs';
+import {validateTeamPushAlertAuthorization} from './team-push-alert-validation.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if(flow.pushAlertAuthorization){
+    const run=validateTeamPushAlertAuthorization(root,dirname(flow.pushAlertAuthorization.source));
+    assert.equal(flow.pushAlertAuthorization.checkedAt,run.testedAt.slice(0,10));
+    assert.equal(flow.latestEvidence,'phone');assert.equal(flow.status,'partial');
+    assert.match(flow.remaining,/notifications app fermée.*téléphones/);
+  }
   if (flow.pushLifecycle) {
     const run = validateNativeTeamPushLifecycle(root, dirname(flow.pushLifecycle.source));
     assert.equal(flow.pushLifecycle.checkedAt, run.testedAt.slice(0, 10));
