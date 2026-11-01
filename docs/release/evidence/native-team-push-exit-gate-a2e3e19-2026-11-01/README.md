@@ -20,3 +20,16 @@ offline-message failure or replace it with the independent lane's pass.
 Device restoration verifies cleanup. Raw ZIP digest matching is not performed
 for this main artifact. No new Site media, real SDK delivery, physical validation,
 capture-transfer repair or release acceptance is added.
+
+## Later Transfer Triage
+
+The retained primary receipt shows the same host daemon PID while its loopback
+device socket disappears. Separate failure diagnostics report an offline device
+and guest transport write failures. This establishes connection retirement, not
+its cause or continuous guest-daemon execution.
+
+The nearby `MSG_PEEK` close message belongs to app-process/JDWP metadata handling
+in the [upstream source](https://android.googlesource.com/platform/packages/modules/adb/+/master/libs/adbconnection/adbconnection_server.cpp),
+not direct evidence that the file-transfer peer closed first. That upstream blob
+was inspected on 1 November; it is not matched to the installed guest build.
+No downgrade, alternate transport, retry or inferred repair was introduced.

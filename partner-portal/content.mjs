@@ -49,6 +49,7 @@ import { createTeamConversationFlow } from './team-conversation-flow.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
+import {sessionExitComponents} from './session-exit-components.mjs';
 
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
@@ -183,6 +184,7 @@ export const content = {
         shot('signup-email', 'Adresse e-mail invalide'), shot('signup-password', 'Mot de passe obligatoire'),
         shot('signup-short', 'Mot de passe trop court')], source: validation },
     { id: 'signout', title: 'Déconnexion et relancement', status: 'verified', checkedAt: '2026-10-13',
+      exitComponents: sessionExitComponents,
       summary: 'L’app reste déconnectée après relancement.',
       verified: 'Déconnexion, fermeture de l’app et relancement : retour à la connexion.',
       remaining: 'Tester séparément le redémarrage pendant un trajet.',

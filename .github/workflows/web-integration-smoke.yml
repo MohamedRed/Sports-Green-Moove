@@ -1661,7 +1661,7 @@ jobs:
       - name: Test team alerts and pending phone delivery
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-alerts-services.json
-        run: npm run test:team-alerts && node --test tests/team-alerts-contract.test.mjs && SGM_LOCAL_FLOW_OUTPUT=${{ runner.temp }}/team-push-registration-services.json npm run test:team-push-registration && node --test tests/team-push-registration-contract.test.mjs tests/team-push-registration-evidence.test.mjs tests/team-push-native-journal.test.mjs tests/team-push-lifecycle.test.mjs tests/team-push-native-gate.test.mjs tests/team-push-signout-contract.test.mjs tests/team-push-signout-connected.test.mjs
+        run: npm run test:team-alerts && node --test tests/team-alerts-contract.test.mjs && SGM_LOCAL_FLOW_OUTPUT=${{ runner.temp }}/team-push-registration-services.json npm run test:team-push-registration && node --test tests/team-push-registration-contract.test.mjs tests/team-push-registration-evidence.test.mjs tests/team-push-native-journal.test.mjs tests/team-push-lifecycle.test.mjs tests/team-push-native-gate.test.mjs tests/team-push-signout-contract.test.mjs tests/team-push-signout-connected.test.mjs tests/team-push-exit-components.test.mjs
       - name: Test foreground notification inbox authority
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/notification-inbox-services.json

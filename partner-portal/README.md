@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The f8a3990 independent lane passes the original three read cases and all three
+exit component cases. Both original narrow/light and actual landscape/dark PNGs
+are reviewed and retained. Publish a short simulation note without new Site media,
+phone dates, tours, audience or status changes. The shared capture guard is
+unchanged; only the test's expected orientation was corrected. Keep the older
+full-gate/copy failure and all real-token, phone and release requirements open.
+See `docs/release/evidence/session-exit-components-f8a3990-2026-11-01/README.md`.
+
 The later completed a2e3e19 full gate fails its wide-exit capture orientation
 contract and a network evidence transfer, despite all eleven independent lanes
 passing. The source has a known test-call mismatch (landscape versus the capture

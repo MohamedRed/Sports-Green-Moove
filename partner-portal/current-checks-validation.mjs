@@ -7,6 +7,7 @@ import {nativeNetworkPreparationFolder,validateTeamPushNetworkGate} from '../scr
 import {nativeTeamPushSignOutFolder,validateNativeTeamPushSignOut} from '../scripts/qa/native-team-push-signout-evidence.mjs';
 import {signOutConnectedFolder,validateSignOutConnected} from './team-push-signout-connected-validation.mjs';
 import {exitGateFolder,validateExitGate} from './team-push-exit-gate-validation.mjs';
+import {sessionExitComponentsFolder,validateSessionExitComponents} from './session-exit-components-validation.mjs';
 import {validateDependencyPatchEvidence} from '../scripts/qa/dependency-patch-evidence.mjs';
 import {validateNativeGateRecheck} from '../scripts/qa/native-gate-recheck-evidence.mjs';
 import {validatePublishedMediaSeek} from '../scripts/qa/published-media-seek-evidence.mjs';
@@ -77,6 +78,9 @@ export function validateCurrentChecks(root, content) {
   validateNativeTeamPushSignOut(root);
   validateSignOutConnected(root);
   validateExitGate(root);
+  validateSessionExitComponents(root);
+  assert.equal(content.flows.find(row => row.id === 'signout').exitComponents.source, sessionExitComponentsFolder + 'review.json');
+  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').exitLayoutRecheck.source, sessionExitComponentsFolder + 'README.md');
   assert(content.updates.some(row => row.source === exitGateFolder + 'README.md'));
   assert.equal(content.flows.find(row => row.id === 'team-conversation').pushSignOutConnected.source, signOutConnectedFolder + 'review.json');
   assert(content.updates.some(row => row.source === signOutConnectedFolder + 'README.md'));
