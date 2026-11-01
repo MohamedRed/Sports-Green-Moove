@@ -8,6 +8,7 @@ import {chatOwnerDraftRecheck} from './session-recovery-recheck.mjs';
 import {chatPendingRestartPhone,chatPendingRestartImages} from './chat-pending-restart-phone.mjs';
 import {chatAccountSwitchPhone,chatAccountSwitchImages} from './chat-account-switch-phone.mjs';
 import {chatReceiptPhone, chatReceiptImages} from './chat-receipt-loss-phone.mjs';
+import {networkPreparationRecheck} from './network-preparation-recheck.mjs';
 
 export function createMessagesFlow(local, shot) {
   return { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-11-01', latestEvidence: 'phone',
@@ -15,6 +16,7 @@ export function createMessagesFlow(local, shot) {
     verified: 'Le parent retrouve un seul message après réouverture. Le conducteur le reçoit et le lit. L’envoi en attente reste aussi privé entre comptes.',
     remaining: 'À tester entre deux téléphones, avec de vraies coupures, puis pour les groupes et le clavier sur iPhone. Pas encore en ligne.',
     postCommitReceiptLossPhone: chatReceiptPhone,
+    networkPreparationRecheck,
     pendingSendAccountSwitchPhone: chatAccountSwitchPhone,
     pendingSendRestartPhone: chatPendingRestartPhone,
     unsentDraftPhone: chatDraftPhone,

@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The current focused chat network case passes at 3eae535 with its original
+instrumentation, primary copy, record checks and independent disposal. Retain the
+earlier 8369af5 preparation failure: no default mobile selection was available
+before app installation. All 31 critical sources are identical; no repair or cause
+is established. Add one short simulation progress note and source metadata, without
+changing any phone gallery, dates, tours, videos, partial status or public access.
+See `docs/release/evidence/network-preparation-3eae535-2026-11-01/README.md`.
+
 The 1 November physical chat confirmation-loss trial passes eight independent
 checkpoints on one phone with two isolated accounts. The live listener resolves
 one committed message without an explicit resend; reopening, driver receipt and

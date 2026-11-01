@@ -459,6 +459,8 @@ on:
       - "tests/chat-network-draft-cases.mjs"
       - "tests/chat-network-phone*.test.mjs"
       - "tests/chat-receipt-loss*.test.mjs"
+      - "tests/network-preparation-recheck.test.mjs"
+      - "scripts/diagnostics/retain-network-preparation-recheck.mjs"
       - "tests/chat-network-recheck-evidence.test.mjs"
       - "tests/native-gate-recheck-evidence.test.mjs"
       - "tests/published-media-seek-evidence.test.mjs"
@@ -1020,6 +1022,8 @@ on:
       - "tests/chat-network-draft-cases.mjs"
       - "tests/chat-network-phone*.test.mjs"
       - "tests/chat-receipt-loss*.test.mjs"
+      - "tests/network-preparation-recheck.test.mjs"
+      - "scripts/diagnostics/retain-network-preparation-recheck.mjs"
       - "tests/chat-network-recheck-evidence.test.mjs"
       - "tests/native-gate-recheck-evidence.test.mjs"
       - "tests/published-media-seek-evidence.test.mjs"
@@ -1244,6 +1248,8 @@ jobs:
         run: node --test tests/chat-account-switch-checkpoints.test.mjs tests/chat-account-switch-phone.test.mjs
       - name: Test post-commit chat confirmation loss guards
         run: node --test tests/chat-receipt-loss-proxy.test.mjs tests/chat-receipt-loss-checkpoints.test.mjs tests/chat-receipt-loss-phone.test.mjs
+      - name: Validate paired native network preparation observations
+        run: node --test tests/network-preparation-recheck.test.mjs
       - name: Test bound emulator transfer observations
         run: node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-transfer-emulator.test.mjs
       - name: Test explicit diagnostic toolchain selection

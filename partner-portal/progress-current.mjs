@@ -1,6 +1,7 @@
 import {appearanceProgress} from './appearance-flow.mjs';
 import {notificationRemovalProgress} from './toolchain-notification-recheck.mjs';
 import {chatReceiptProgress} from './chat-receipt-loss-phone.mjs';
+import {networkPreparationProgress as pairedNetworkPreparationProgress} from './network-preparation-recheck.mjs';
 import {teamPushAlertProgress} from './team-push-alert.mjs';
 import {teamPushNativeConsumerProgress} from './team-push-native-consumer.mjs';
 import {nativeAlertFirstRunProgress} from './native-alert-first-run.mjs';
@@ -78,6 +79,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  pairedNetworkPreparationProgress,
   chatReceiptProgress,
   notificationRemovalProgress,
   pushCleanupProgress,
