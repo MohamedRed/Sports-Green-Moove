@@ -1,9 +1,12 @@
 package be.sportgreenmoove.app.domain
 
+import java.time.Clock
+import java.time.Instant
 import java.time.YearMonth
 import java.time.ZoneId
 import java.util.TimeZone
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -22,6 +25,26 @@ class TripCalendarTest {
     fun missingOrInvalidDatesAreNotInvented() {
         assertFalse(tripFallsInMonth(null, YearMonth.of(2026, 10), brussels))
         assertFalse(tripFallsInMonth("invalid", YearMonth.of(2026, 10), brussels))
+    }
+
+    @Test
+    fun navigationFixtureMonthMatchesBelgianCalendarAtUtcMonthAndYearBoundaries() {
+        for (instant in listOf("2026-10-31T23:30:00Z", "2026-12-31T23:30:00Z")) {
+            val clock = Clock.fixed(Instant.parse(instant), ZoneId.of("UTC"))
+            val deviceMonth = YearMonth.now(clock)
+            val calendarMonth = YearMonth.now(clock.withZone(BelgianTripZone))
+            assertEquals(deviceMonth.plusMonths(1), calendarMonth)
+            val wrongDeparture = deviceMonth.atDay(15).atTime(12, 0)
+                .atZone(clock.zone).toInstant().toString()
+            assertFalse(tripFallsInMonth(wrongDeparture, calendarMonth))
+            for (offset in 0L..1L) {
+                val fixtureMonth = calendarMonth.plusMonths(offset)
+                val departure = fixtureMonth.atDay(15).atTime(12, 0)
+                    .atZone(BelgianTripZone).toInstant().toString()
+                assertTrue(tripFallsInMonth(departure, fixtureMonth))
+                assertFalse(tripFallsInMonth(departure, fixtureMonth.plusMonths(1)))
+            }
+        }
     }
 
     @Test

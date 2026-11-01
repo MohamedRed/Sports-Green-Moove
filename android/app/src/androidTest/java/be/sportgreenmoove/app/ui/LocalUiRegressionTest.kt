@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import be.sportgreenmoove.app.domain.BelgianTripZone
 import org.junit.Assert.assertFalse
 import org.junit.Rule
 import org.junit.Test
@@ -17,9 +18,9 @@ class LocalUiRegressionTest {
 
     @Test
     fun calendarFiltersTripsAndNavigatesAcrossMonths() {
-        val month = YearMonth.now()
-        val now = UiFlowFixtures.trip.copy(title = "Current month", departureAtIso = month.atDay(15).atTime(12, 0).atZone(java.time.ZoneId.systemDefault()).toInstant().toString())
-        val next = now.copy(id = "next-month", title = "Next month", departureAtIso = month.plusMonths(1).atDay(15).atTime(12, 0).atZone(java.time.ZoneId.systemDefault()).toInstant().toString())
+        val month = YearMonth.now(BelgianTripZone)
+        val now = UiFlowFixtures.trip.copy(title = "Current month", departureAtIso = month.atDay(15).atTime(12, 0).atZone(BelgianTripZone).toInstant().toString())
+        val next = now.copy(id = "next-month", title = "Next month", departureAtIso = month.plusMonths(1).atDay(15).atTime(12, 0).atZone(BelgianTripZone).toInstant().toString())
         compose.setSgmUiTestContent {
             TripsScreen(listOf(now, next), null, 0, {}, {}, {}, {})
         }

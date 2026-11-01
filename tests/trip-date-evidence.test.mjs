@@ -8,6 +8,15 @@ const base = 'docs/release/evidence/local-trip-dates-2026-10-18/';
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const report = (name) => JSON.parse(read(base + name + '.json'));
 
+test('calendar navigation fixtures use the same explicit Belgian month and zone as the screen', () => {
+  const regression = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiRegressionTest.kt');
+  const screen = read('android/app/src/main/java/be/sportgreenmoove/app/ui/TripsScreen.kt');
+  assert.match(screen, /YearMonth\.now\(BelgianTripZone\)/);
+  assert.match(regression, /YearMonth\.now\(BelgianTripZone\)/);
+  assert.equal((regression.match(/atZone\(BelgianTripZone\)/g) ?? []).length, 2);
+  assert.doesNotMatch(regression, /YearMonth\.now\(\)|ZoneId\.systemDefault\(\)/);
+});
+
 test('the reported timezone bug fails before the fix and the same 15 cases pass in three processes', () => {
   const before = report('before-utc');
   assert.equal(before.numTotalTests, 15); assert.equal(before.numFailedTests, 14); assert.equal(before.success, false);
