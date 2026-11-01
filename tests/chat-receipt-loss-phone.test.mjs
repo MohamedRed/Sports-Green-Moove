@@ -6,6 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import test from 'node:test';
+import {assertExactRgbFrames} from './helpers/exact-rgb-frames.mjs';
 import {content, captures} from '../partner-portal/content.mjs';
 import {chatReceiptCaptures} from '../partner-portal/chat-receipt-loss-phone.mjs';
 import {chatReceiptPhoneFolder, chatReceiptPhoneImages, assertChatReceiptPhoneReview, validateChatReceiptPhone}
@@ -38,8 +39,8 @@ test('public session crops retain the exact pixels of their original browser cap
   for (const name of chatReceiptPhoneImages) {
     const decode = (file, filters = []) => execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error',
       '-i', join(base, file), ...filters, '-frames:v', '1', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], {maxBuffer: 1_000_000});
-    assert.deepEqual(decode('captures/' + name + '.png'), decode('original-session-captures/' + name + '.png',
-      ['-vf', 'crop=274:618:615:109:exact=1']));
+    assertExactRgbFrames(decode('captures/' + name + '.png'), decode('original-session-captures/' + name + '.png',
+      ['-vf', 'crop=274:618:615:109:exact=1']), 274 * 618 * 3);
   }
 });
 for (const key of ['explicitRetryExercised', 'processRestartAccepted', 'peerPhoneAccepted', 'realRadioLossAccepted',

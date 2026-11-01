@@ -1,5 +1,9 @@
 # Generated-File Transport Diagnostic
 
+The independent [chat proof diagnostic](chat-proof-diagnostic.md) investigates
+runner shutdown during original-image pixel checks. It does not replace either
+the complete smoke gate or this Android transport diagnostic.
+
 This independent job investigates the repeated primary `adb pull` disconnect.
 It is not a replacement for Native CI, an app flow, or release evidence. It uses
 the same Android 35 Play Store image, Pixel 6 profile and supported software
