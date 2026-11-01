@@ -4,9 +4,9 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
 import androidx.compose.ui.test.*
-import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.runner.lifecycle.Stage
 import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.services.ActiveRideLocationService
@@ -44,6 +44,8 @@ class LocalRemoteRideStopFlowTest {
         try {
             LocalMockLocation(context).use { mock ->
                 ActivityScenario.launch(MainActivity::class.java).use { activity ->
+                    lateinit var trackedActivity: MainActivity
+                    activity.onActivity { trackedActivity = it }
                     waitFor(SgmTestTags.AuthEmailAction)
                     compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performTextInput(session.getString("driver"))
                     compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performTextInput(session.getString("password"))
@@ -55,19 +57,19 @@ class LocalRemoteRideStopFlowTest {
                         waitFor(SgmTestTags.ActiveRidePickupAction); compose.waitUntil(15_000) { serviceRunning(context) }
                         capture("started", SgmTestTags.ActiveRideScreen)
                         activity.onActivity { assertTrue("The task must move behind the launcher", it.moveTaskToBack(true)) }
-                        compose.waitUntil(15_000) { activity.state == Lifecycle.State.CREATED }
+                        compose.waitUntil(15_000) { observedActivityStage(trackedActivity) == Stage.STOPPED }
                         assertTrue(serviceRunning(context))
                         runBlocking { LocalRideCompletionPeer.open(context, session).use { it.complete(rideId, bookingId, childId) } }
                         File(directory, "local-remote-ride-stop-checkpoint.json").writeText(JSONObject()
                             .put("runId", session.getString("runId")).put("rideSessionId", rideId).put("peerCompletionAcknowledged", true)
-                            .put("appBackgrounded", activity.state == Lifecycle.State.CREATED)
+                            .put("appBackgrounded", observedActivityStage(trackedActivity) == Stage.STOPPED)
                             .put("serviceRunningImmediatelyAfterCompletion", serviceRunning(context)).toString(2))
                         compose.waitUntil(20_000) { !serviceRunning(context) }
-                        assertEquals(Lifecycle.State.CREATED, activity.state)
+                        assertEquals(Stage.STOPPED, observedActivityStage(trackedActivity))
                         assertEquals("sgm-qa-driver", FirebaseAuth.getInstance().currentUser?.uid)
                     }
                     activity.onActivity { it.startActivity(Intent(it, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)) }
-                    compose.waitUntil(15_000) { activity.state == Lifecycle.State.RESUMED }
+                    compose.waitUntil(15_000) { observedActivityStage(trackedActivity) == Stage.RESUMED }
                     waitFor(SgmTestTags.ActiveRideScreen)
                     compose.waitUntil(60_000) { compose.onAllNodesWithText("AUCUNE COURSE ACTIVE").fetchSemanticsNodes().isNotEmpty() }
                     capture("ended", SgmTestTags.ActiveRideScreen)

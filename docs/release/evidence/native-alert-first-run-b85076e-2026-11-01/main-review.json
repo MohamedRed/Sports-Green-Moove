@@ -1,0 +1,36 @@
+{
+  "scope": "failed-main-native-gate-not-verified-login-or-transport-cause",
+  "sourceCommit": "b85076e033da6d09b8fa297cba2124fb1a6a981b",
+  "runId": 41345045637,
+  "jobId": 124962966296,
+  "reviewedAt": "2026-11-01T20:34:42.388Z",
+  "archive": {
+    "id": 13099119008,
+    "sha256": "2f832d1a6676b4c349362494b59c4a6011d28ffdbd7ff425099a36b97cd83dd9"
+  },
+  "ordinary": {
+    "total": 300,
+    "passed": 243,
+    "skipped": 55,
+    "failed": 2
+  },
+  "failedOrdinaryCases": [
+    "narrowLargeTextRetryScreenFitsItsFrame",
+    "wideDarkUnavailableScreenFitsItsActualLandscapeFrame"
+  ],
+  "guardian": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "firstAuthScreenReached": false,
+    "rootCauseVerified": false
+  },
+  "cleanupCopy": {
+    "completed": false,
+    "remoteDirectoryMissing": true,
+    "transportFailureProven": false
+  },
+  "fullGatePassed": false,
+  "releaseAccepted": false,
+  "publishedCaptures": {}
+}

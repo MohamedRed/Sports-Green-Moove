@@ -63,6 +63,23 @@ class TeamPushOpenFlowTest {
         compose.runOnIdle { hold.complete(null) }; waitFor(hasText("Cette notification n’est plus disponible.")); privateContentAbsent()
         compose.runOnIdle { assertEquals(2, calls) }
     }
+    @Test fun rootSelectsMessagesForAnAlertAndLeavingItClearsTheAlertContext() {
+        var opened by mutableStateOf(true)
+        val providers = AndroidProviderSet(
+            auth = object : AuthGateway by UnconfiguredAuthGateway() {
+                override val isConfigured = true
+                override suspend fun currentSession() = AuthSession(request.uid, null, "Parent QA")
+            },
+            firebase = object : FirebaseGateway by UiFlowFirebaseGateway() { override suspend fun getActiveRide(): LiveRideSnapshot? = null },
+            teamConversations = conversations(), teamPushAlerts = alerts { target },
+        )
+        compose.setContent { SportsGreenMooveApp(teamAlertRequest = request.takeIf { opened }, onTeamAlertConsumed = { opened = false }) { providers } }
+        waitFor(hasText("Message après admission QA"))
+        compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).assertIsSelected()
+        compose.onNodeWithTag(SgmTestTags.BottomNavHomeAction).assertIsNotSelected().performClick()
+        waitFor(hasTestTag(SgmTestTags.HomeScreen)); compose.runOnIdle { assertFalse(opened) }
+        privateContentAbsent(); compose.onNodeWithTag(SgmTestTags.BottomNavHomeAction).assertIsSelected()
+    }
     @Test fun narrowLargeTextRetryScreenFitsItsFrame() = frame(false, "team-alert-retry-narrow.png")
     @Test fun wideDarkUnavailableScreenFitsItsActualLandscapeFrame() {
         val instrumentation = InstrumentationRegistry.getInstrumentation(); val context = instrumentation.targetContext
@@ -80,14 +97,14 @@ class TeamPushOpenFlowTest {
     }
     private fun frame(dark: Boolean, capture: String) {
         val gateway = alerts { if (dark) null else error("Synthetic read failure") }
-        compose.setContent { SgmTheme(darkTheme = dark) {
+        compose.setContent { SgmTheme(darkTheme = dark) { V2ThemeToggleProvider(darkTheme = dark, onToggle = {}) {
             val density = LocalDensity.current
             CompositionLocalProvider(LocalDensity provides Density(density.density, 1.5f)) {
                 Box(Modifier.width(if (dark) 600.dp else 280.dp).sgmTestTag("team-alert.frame")) {
                     TeamPushOpenRoute(request, "parent", true, gateway, conversations()) {}
                 }
             }
-        } }
+        } } }
         waitFor(if (dark) hasText("Cette notification n’est plus disponible.") else hasTestTag("team-alert.retry"))
         val frame = compose.onNodeWithTag("team-alert.frame").fetchSemanticsNode().boundsInRoot
         if (dark) assertTrue(frame.width > frame.height)

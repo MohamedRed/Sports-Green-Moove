@@ -21,8 +21,9 @@ test('the native case completes a real isolated ride while the driver remains si
   const stop = source.indexOf('compose.waitUntil(20_000) { !serviceRunning(context) }');
   assert(source.indexOf('it.moveTaskToBack(true)') < completion); assert(completion < stop);
   assert(stop < source.indexOf('Intent.FLAG_ACTIVITY_REORDER_TO_FRONT'));
-  assert(source.includes('activity.state == Lifecycle.State.RESUMED'));
-  assert(source.includes('assertEquals(Lifecycle.State.CREATED, activity.state)'));
+  assert(source.includes('observedActivityStage(trackedActivity) == Stage.RESUMED'));
+  assert(source.includes('assertEquals(Stage.STOPPED, observedActivityStage(trackedActivity))'));
+  assert(!source.includes('activity.state'));
   assert(source.includes('assertEquals("sgm-qa-driver", FirebaseAuth.getInstance().currentUser?.uid)'));
   const peer = text('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideCompletionPeer.kt');
   for (const name of ['markPickup', 'markDropoff', 'endRide']) assert(peer.includes(`call("${name}"`));

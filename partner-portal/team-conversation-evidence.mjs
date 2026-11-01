@@ -26,8 +26,15 @@ import {validateNativeTeamPushJournal} from '../scripts/qa/native-team-push-jour
 import {validateNativeTeamPushLifecycle} from '../scripts/qa/native-team-push-lifecycle-evidence.mjs';
 import {validateTeamPushAlertAuthorization} from './team-push-alert-validation.mjs';
 import {validateNativeTeamAlertConsumer} from './team-push-native-consumer-validation.mjs';
+import {validateNativeAlertFirstRun} from './native-alert-first-run-validation.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if(flow.pushFirstNativeAttempt){
+    const run=validateNativeAlertFirstRun(root,dirname(flow.pushFirstNativeAttempt.source));
+    assert.equal(flow.pushFirstNativeAttempt.checkedAt,run.testedAt.slice(0,10));
+    assert.equal(flow.latestEvidence,'phone');assert.equal(flow.status,'partial');
+    assert.match(flow.remaining,/notifications app fermée.*téléphones/);
+  }
   if(flow.pushNativeConsumer){
     const run=validateNativeTeamAlertConsumer(root,dirname(flow.pushNativeConsumer.source));
     assert.equal(flow.pushNativeConsumer.checkedAt,run.testedAt.slice(0,10));

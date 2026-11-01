@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The b85076e first alert trial passes five of seven route cases, then fails both
+layout hosts before capture; platform/worker tests are never reached. The theme
+host correction and root Messages-selection case compile in a source-bound
+790-case JVM recheck. A separate ride-stop trial fails the scenario getter during
+foreground return; its candidate reads real lifecycle stages without a fallback.
+Keep both primary failures and independently verified permission/device cleanup.
+The main run also times out before its first login control; its cause is unknown.
+The subsequent copy finds no evidence directory, not a proven connection outage.
+Publish a short incomplete simulation note, without new media, phone dates, tours,
+status or audience changes. No notification or physical/release proof is added.
+See `docs/release/evidence/native-alert-first-run-b85076e-2026-11-01/README.md`.
+
 The Android alert consumer has twenty focused/790 total JVM passes and eleven
 compiled native cases at the source-bound isolated build. Publish a short local
 preparation note, without media or changed phone dates/tours/status/audience.

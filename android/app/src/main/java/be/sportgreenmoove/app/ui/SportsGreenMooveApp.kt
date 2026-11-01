@@ -159,7 +159,7 @@ fun SportsGreenMooveApp(teamAlertRequest: TeamPushOpenRequest? = null, teamAlert
             AppAccessGate(providers, restoration, session, shutdown.pending, loading, errorMessage, scope, ::logout,
                 { loading = it }, { errorMessage = it }, { session = it }, { refreshAppData() }) {
                 SportsGreenMooveScaffold(
-                    currentScreen = screen,
+                    currentScreen = if (teamAlertRequest != null) AppScreen.Messages else screen,
                     onNavigate = { destination -> onTeamAlertConsumed(); screen = destination },
                     notice = noticeMessage,
                     error = errorMessage,

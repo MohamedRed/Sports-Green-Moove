@@ -46,7 +46,7 @@ test('web smoke runs and retains the authorization trial alongside all existing 
   const steps=workflow.jobs['people-safety'].steps;
   const step=steps.find(row=>row.name==='Test current-device team alert resolution');
   assert.equal(step.env.SGM_LOCAL_FLOW_OUTPUT,'${{ runner.temp }}/team-push-alert-services.json');
-  assert.equal(step.run,'npm run test:team-push-alert && node --test tests/team-push-alert-contract.test.mjs tests/team-push-native-consumer.test.mjs');
+  assert.equal(step.run,'npm run test:team-push-alert && node --test tests/team-push-alert-contract.test.mjs tests/team-push-native-consumer.test.mjs tests/native-alert-first-run.test.mjs');
   const existing=steps.find(row=>row.name==='Test team alerts and pending phone delivery');
   assert(existing.run.includes('npm run test:team-alerts'));assert(existing.run.includes('npm run test:team-push-registration'));
   assert(steps.find(row=>row.with?.name==='team-alert-services-results').with.path.includes('team-push-alert-services.json'));

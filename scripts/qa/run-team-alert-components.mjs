@@ -19,7 +19,8 @@ assert.equal(setup.case,'team-read-components');assert.equal(process.env.SGM_FOC
 assert.equal(process.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT,receiptPath);
 const adb=resolve(process.env.ANDROID_HOME,'platform-tools/adb'),runId=randomBytes(16).toString('hex');
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
-const snapshot=()=>Object.fromEntries(nativeTeamAlertSources.map(file=>[file,sha(readFileSync(resolve(root,file)))]));
+const sources=[...nativeTeamAlertSources,'android/app/src/main/java/be/sportgreenmoove/app/ui/AppBottomBar.kt'];
+const snapshot=()=>Object.fromEntries(sources.map(file=>[file,sha(readFileSync(resolve(root,file)))]));
 const sourceFiles=snapshot();mkdirSync(directory);
 assertLocalApkIdentity(resolve(root,'android'),process.env.ANDROID_HOME);assertContinuousDevice(device,setup);
 const instrument=(name,count,extra=[])=>{
@@ -33,7 +34,7 @@ const instrument=(name,count,extra=[])=>{
   assert(!/^INSTRUMENTATION_STATUS_CODE:\s*-\d+\s*$/m.test(transcript),'Focused alert cases cannot be skipped or failed');
 };
 const trial=withDisposableNotificationPermission(device,()=>{
-  instrument('be.sportgreenmoove.app.ui.TeamPushOpenFlowTest',7);
+  instrument('be.sportgreenmoove.app.ui.TeamPushOpenFlowTest',8);
   instrument('be.sportgreenmoove.app.services.TeamPushPlatformFlowTest',4,['-e','sgmTeamAlertPlatform','true']);
   collectLocalUiEvidence({adb,serial:device.serial,evidenceDir:directory,phase:'team-alert-opening',runId,password:randomBytes(24).toString('hex')});
 });
@@ -44,7 +45,7 @@ const screenshots=Object.fromEntries(['team-alert-retry-narrow.png','team-alert-
   .map(file=>[file,sha(readFileSync(resolve(directory,file)))]));
 writeFileSync(resolve(directory,'team-alert-components-results.json'),JSON.stringify({
   scope:'isolated-native-alert-consumer-with-injected-resolver-not-provider-receipt',projectId:'demo-sgm-local-qa',runId,
-  testedAt:new Date().toISOString(),componentCaseCount:7,platformCaseCount:4,nativeUiExecuted:true,
+  testedAt:new Date().toISOString(),componentCaseCount:8,platformCaseCount:4,nativeUiExecuted:true,
   nativeNotificationPosted:true,workerInvokedWithInjectedResolver:true,realMessagingSdkCalls:0,
   physicalDevice:false,pushDeliveryVerified:false,nativeNotificationTapVerified:false,productionWrites:false,
   sourceFiles,screenshots,setupReceiptSha256:sha(readFileSync(receiptPath)),notificationPermissionRestored:true,

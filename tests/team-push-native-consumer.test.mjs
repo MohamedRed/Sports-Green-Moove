@@ -55,7 +55,7 @@ test('the existing focused device runs both old suites then the new route and pl
   assert(runner.indexOf('run-session-shutdown-components.mjs')<runner.indexOf('run-team-alert-components.mjs'));
   const extra=read('scripts/qa/run-team-alert-components.mjs');
   assert(extra.includes('Focused alert cases cannot be skipped or failed'));
-  for(const marker of ["TeamPushOpenFlowTest',7","TeamPushPlatformFlowTest',4",'notification-permission-restoration.json',
+  for(const marker of ["TeamPushOpenFlowTest',8","TeamPushPlatformFlowTest',4",'notification-permission-restoration.json',
     'assert.deepEqual(snapshot(),sourceFiles)','pushDeliveryVerified:false','nativeNotificationTapVerified:false','realMessagingSdkCalls:0'])
     assert(extra.includes(marker),marker);
   const workflow=parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();
