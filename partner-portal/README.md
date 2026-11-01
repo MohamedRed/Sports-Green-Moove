@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The b9a9000 manual-finish candidate fails in scenario disposal again. Installed
+library/source inspection supports an intent-filter mismatch on foreground return.
+The replacement preserves the launch filters and uses only REORDER_TO_FRONT;
+the unused manual-finish candidate is removed. Two framework regression cases
+compile and are added before the existing connected ride case on the same focused
+device. Publish a short incomplete recheck note, no new media or changed phone
+dates/tours/status/audience. Execution and the whole gate remain unverified. See
+`docs/release/evidence/foreground-return-intent-b9a9000-2026-11-01/README.md`.
+
 The durable team push dispatcher passes fourteen isolated service cases with an
 injected transport and twenty-two focused/611 backend units, without deployment or
 provider calls. At 11c423b, eight native routes and four platform/worker cases pass

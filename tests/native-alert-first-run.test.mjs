@@ -36,7 +36,7 @@ test('corrected candidate preserves strict layout hosts, real lifecycle waits an
   assert(alerts.includes('V2ThemeToggleProvider(darkTheme = dark'));
   assert(alerts.includes('BottomNavMessagesAction).assertIsSelected()'));
   assert(alerts.includes('privateContentAbsent(); compose.onNodeWithTag(SgmTestTags.BottomNavHomeAction).assertIsSelected()'));
-  const remote=read(ui+'LocalRemoteRideStopFlowTest.kt');assert(!remote.includes('activity.state'));
+  const remote=read(ui+'LocalRemoteRideStopFlowTest.kt');assert(!remote.includes('waitUntil(15_000) { activity.state'));
   assert(remote.includes('Stage.STOPPED'));assert(remote.includes('Stage.RESUMED'));
   assert(!read(ui+'ObservedActivityStage.kt').includes('catch'));
 });

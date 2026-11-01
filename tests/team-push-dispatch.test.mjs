@@ -47,11 +47,12 @@ test('service smoke exercises the new dispatch mode separately and retains its d
   assert.equal(step.env.SGM_LOCAL_FLOW_OUTPUT,'${{ runner.temp }}/team-push-dispatch-services.json');
   assert(steps.find(row=>row.with?.name==='team-alert-services-results').with.path.includes('team-push-dispatch-services.json'));
 });
-test('remote teardown explicitly observes destruction rather than ignoring a failed scenario close',()=>{
+test('remote foreground return preserves the launch identity and checks both lifecycle observers before normal disposal',()=>{
   const source=read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt');
-  assert(source.includes('instrumentation.runOnMainSync { trackedActivity.finish() }'));
-  assert(source.includes('observedActivityStage(trackedActivity) == Stage.DESTROYED'));
-  assert(source.indexOf('capture("ended"')<source.indexOf('trackedActivity.finish()'));
+  assert(source.includes('returnToForegroundIntent(launchIntent)'));
+  assert(source.includes('trackedActivity.intent.filterEquals(launchIntent)'));
+  assert(source.includes('assertEquals(Lifecycle.State.RESUMED, activity.state)'));
+  assert(!source.includes('trackedActivity.finish()'));
   assert(!source.includes('catch'));assert(source.includes('Stage.STOPPED'));assert(source.includes('Stage.RESUMED'));
 });
 for(const [file,key,value]of [['review.json','productionDeployed',true],['review.json','pushDeliveryVerified',true],

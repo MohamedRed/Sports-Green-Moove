@@ -22,6 +22,16 @@ const run = (cmd, args) => execFileSync(cmd, args, { cwd: root, env: process.env
 const shell = (...args) => execFileSync(adb, ['-s', serial, 'shell', ...args], { encoding: 'utf8', timeout: 30_000 });
 mkdirSync(directory, { recursive: true });
 let session, fixture, marker, transcript, failure, originalMockMode, completion, isolation, apkPreparation;
+const instrument = async (name, count, extra = []) => {
+  const {stdout} = await execute(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '240000',
+    ...installationGuardArguments(), '-e', 'class', `be.sportgreenmoove.app.ui.${name}`, ...extra,
+    `be.sportgreenmoove.app.local.test/${disposableTestRunner}`],
+  {env: process.env, encoding: 'utf8', timeout: 8 * 60_000, maxBuffer: 4 * 1024 * 1024});
+  const transcript = stdout.replaceAll(session.password, '[REDACTED]'); console.log(transcript);
+  writeFileSync(resolve(directory, `${name}-instrumentation.txt`), transcript, {flag: 'wx'});
+  assertInstrumentationPassed(transcript, count);
+  return transcript;
+};
 try {
   session = await seedLocalUiFixtures(); fixture = await seedRideObservationFixture();
   if (!usePreinstalledTestApks()) {
@@ -34,13 +44,10 @@ try {
   for (const permission of ['ACCESS_COARSE_LOCATION', 'ACCESS_FINE_LOCATION', 'ACCESS_BACKGROUND_LOCATION', 'POST_NOTIFICATIONS'])
     shell('pm', 'grant', 'be.sportgreenmoove.app.local', `android.permission.${permission}`);
   originalMockMode = readLocalMockPermission(shell); setLocalMockPermission(shell, 'allow');
-  ({ stdout: transcript } = await execute(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-e', 'timeout_msec', '240000',
-    ...installationGuardArguments(), '-e', 'class', 'be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest',
+  await instrument('ForegroundReturnIntentTest', 2);
+  transcript = await instrument('LocalRemoteRideStopFlowTest', 1, [
     '-e', 'liveRideId', fixture.rideSessionId, '-e', 'liveBookingId', fixture.bookingId, '-e', 'liveChildId', fixture.childId,
-    `be.sportgreenmoove.app.local.test/${disposableTestRunner}`], { env: process.env, encoding: 'utf8', timeout: 8 * 60_000, maxBuffer: 4 * 1024 * 1024 }));
-  transcript = transcript.replaceAll(session.password, '[REDACTED]'); console.log(transcript);
-  writeFileSync(resolve(directory, 'LocalRemoteRideStopFlowTest-instrumentation.txt'), transcript, { flag: 'wx' });
-  assertInstrumentationPassed(transcript, 1);
+  ]);
   collectLocalUiEvidence({ adb, serial, evidenceDir: directory, phase: 'remote-ride-stop', runId: session.runId, password: session.password });
   marker = JSON.parse(readFileSync(resolve(directory, 'local-remote-ride-stop-device.json')));
   assert.equal(marker.scope, 'local-remote-completion-service-stop-not-physical-background-gps');
@@ -80,7 +87,8 @@ const paths = [...disposableApkSourceFiles, 'scripts/qa/local-remote-ride-stop-u
   'scripts/qa/local-ride-observation-fixture.mjs', 'scripts/qa/isolated-ride-records.mjs', 'scripts/qa/local-mock-location-permission.mjs',
   ...['ActiveRideLocationService.kt', 'ActiveRideLocationLease.kt', 'ActiveRideLifecycle.kt', 'ActiveRideLifecycleWatch.kt', 'FirebaseAndroidNativeLocationStartup.kt']
     .map((name) => 'android/app/src/main/java/be/sportgreenmoove/app/services/' + name),
-  ...['LocalRemoteRideStopFlowTest.kt', 'LocalRideCompletionPeer.kt', 'LocalMockLocation.kt', 'LocalMockLocationFeed.kt', 'LocalNativeStartupCapture.kt']
+  ...['LocalRemoteRideStopFlowTest.kt', 'ForegroundReturnIntent.kt', 'ForegroundReturnIntentTest.kt', 'ObservedActivityStage.kt',
+    'LocalRideCompletionPeer.kt', 'LocalMockLocation.kt', 'LocalMockLocationFeed.kt', 'LocalNativeStartupCapture.kt']
     .map((name) => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + name)];
 writeFileSync(resolve(directory, 'remote-ride-stop-app-results.json'), JSON.stringify({ ...marker, testedAt: new Date().toISOString(),
   testCount: 1, nativeCaseCount: 1, steps: [{ id: 'remote-ride-stop', status: 'passed' }], nativeUiExecuted: true,

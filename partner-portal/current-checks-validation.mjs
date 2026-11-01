@@ -1,4 +1,5 @@
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
+import {foregroundReturnFolder,validateForegroundReturnIntent} from './foreground-return-intent-validation.mjs';
 import {alertCaptureFailureFolder,validateAlertCaptureFailure} from '../scripts/qa/alert-capture-failure-evidence.mjs';
 import {notificationSamplingFolder,validateNotificationSampling} from '../scripts/qa/notification-sampling-evidence.mjs';
 import {notificationGateFolder,validateNotificationGate} from '../scripts/qa/notification-gate-pass-evidence.mjs';
@@ -46,6 +47,9 @@ import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/tr
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateForegroundReturnIntent(root);
+  assert.equal(content.flows.find(row=>row.id==='native-startup').foregroundReturnIntent.source,foregroundReturnFolder+'review.json');
+  assert(content.updates.some(row=>row.source===foregroundReturnFolder+'README.md'));
   validateTransferPeerLoss(root);
   assert(content.updates.some(row => row.source === transferPeerLossFolder + 'README.md'));
   validateCompressionSecurity(root);
