@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The original three chat session images have JPEG bytes despite their `.png`
+filenames. Preserve them and the old FFmpeg-dependent recrops unchanged. The
+separate RGB normalization bundle retains the Linux pixel mismatch, locks full
+JPEG decoding before lossless integer RGBA cropping, and checks every output
+pixel without tolerances. Publish only its three visually reviewed derivatives;
+keep all 34 gallery entries, 15 tour steps, phone dates, partial status and other
+flows unchanged. This is a capture correction, not a new phone trial or release
+acceptance. See `docs/release/evidence/chat-proof-rgb-normalization-2026-11-01/README.md`.
+
 The current focused chat network case passes at 3eae535 with its original
 instrumentation, primary copy, record checks and independent disposal. Retain the
 earlier 8369af5 preparation failure: no default mobile selection was available

@@ -6,22 +6,22 @@ import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import test from 'node:test';
 import {parse} from 'yaml';
-import {assertExactRgbFrames} from './helpers/exact-rgb-frames.mjs';
+import {assertExactPixelFrames} from '../scripts/lib/exact-pixel-frames.mjs';
 import {sampleProofResources} from '../scripts/diagnostics/ci-proof-resources.mjs';
-import {probeProofMedia, proofImages, proofMediaFolder} from '../scripts/diagnostics/chat-proof-media-probe.mjs';
+import {probeProofMedia, proofImages} from '../scripts/diagnostics/chat-proof-media-probe.mjs';
 import {chatProofCommands, runChatProofDiagnostic} from '../scripts/diagnostics/run-chat-proof-diagnostic.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 test('full-size pixel differences are rejected with a bounded diagnostic, not a huge array diff', () => {
   const frame = Buffer.alloc(274 * 618 * 3, 20), changed = Buffer.from(frame); changed[frame.length - 1] = 21;
-  assert.doesNotThrow(() => assertExactRgbFrames(frame, Buffer.from(frame), frame.length));
-  assert.throws(() => assertExactRgbFrames(frame, changed, frame.length), error => {
+  assert.doesNotThrow(() => assertExactPixelFrames(frame, Buffer.from(frame), frame.length));
+  assert.throws(() => assertExactPixelFrames(frame, changed, frame.length), error => {
     assert(error.message.length < 350); assert.match(error.message, /firstDifferentByte":507995/);
     assert.match(error.message, /actualSha256/); assert.match(error.message, /expectedSha256/); return true;
   });
   for (const [actual, expected, length] of [[frame.subarray(1), frame, frame.length],
     [frame, frame.subarray(1), frame.length], [frame, frame, 0], [[], frame, frame.length]])
-    assert.throws(() => assertExactRgbFrames(actual, expected, length));
+    assert.throws(() => assertExactPixelFrames(actual, expected, length));
 });
 test('host samples retain only explicit memory counters, never raw files or arbitrary fields', () => {
   const paths = [], sample = sampleProofResources({platform: 'linux', now: () => 'fixed', read: path => {
@@ -42,32 +42,19 @@ test('unsupported and unavailable counters are explicit, without an alternate co
   assert.equal(sample.unavailable.length, 5); assert.deepEqual(sample.resources, {});
   assert.doesNotMatch(JSON.stringify(sample), /private data/);
 });
-test('the media probe exercises exactly six original decoder commands without changing threads or limits', () => {
-  const calls = [], events = [], pixels = Buffer.alloc(274 * 618 * 3, 12);
-  const result = probeProofMedia(root, {emit: row => events.push(row), execute: (command, args, options) => {
-    calls.push({command, args, options}); return pixels;
+test('the media probe delegates to the exact portable verifier once without alternate decoding', () => {
+  let calls = 0; const events = [], expected = {captures: 3, exactRgbaPixels: true, releaseAccepted: false};
+  const result = probeProofMedia(root, {emit: row => events.push(row), verify: selected => {
+    assert.equal(selected, root); calls++; return expected;
   }});
-  assert.equal(calls.length, 6); assert.equal(events.length, 12);
-  for (const [index, call] of calls.entries()) {
-    assert.equal(call.command, 'ffmpeg'); assert.deepEqual(call.options, {maxBuffer: 1_000_000});
-    const input = (index % 2 === 1 ? 'original-session-captures/' : 'captures/') + proofImages[Math.floor(index / 2)] + '.png';
-    assert.deepEqual(call.args, ['-hide_banner', '-loglevel', 'error', '-i', join(root, proofMediaFolder, input),
-      ...(index % 2 === 1 ? ['-vf', 'crop=274:618:615:109:exact=1'] : []),
-      '-frames:v', '1', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-']);
-    assert.equal(call.args.includes('crop=274:618:615:109:exact=1'), index % 2 === 1);
-    assert(!call.args.includes('-threads')); assert(!call.args.includes('-timeout'));
-  }
-  assert.deepEqual(result.comparisons.map(row => row.image), proofImages);
-  assert.equal(result.physicalFlowAccepted, false); assert.equal(result.releaseAccepted, false);
+  assert.equal(calls, 1); assert.deepEqual(result, expected);
+  assert.deepEqual(events[0], {phase: 'portable-crop-validation-start', images: proofImages});
+  assert.deepEqual(events[1], {phase: 'portable-crop-validation-complete', ...expected});
 });
 for (const kind of ['truncated', 'changed', 'decoder-error']) test('pixel comparison fails closed: ' + kind, () => {
   let calls = 0;
-  assert.throws(() => probeProofMedia(root, {emit() {}, execute: () => {
-    calls++;
-    if (kind === 'decoder-error') throw new Error('decoder failed');
-    return Buffer.alloc(kind === 'truncated' ? 1 : 274 * 618 * 3, kind === 'changed' ? calls : 0);
-  }}));
-  assert(calls <= 2, 'Do not retry or move to another image after failure');
+  assert.throws(() => probeProofMedia(root, {emit() {}, verify: () => {calls++; throw new Error(kind);}}), new RegExp(kind));
+  assert.equal(calls, 1, 'No alternate decoder or retry after verification fails');
 });
 for (const failure of [null, 'nonzero', 'signal', 'launch']) test('diagnostic retains exact outcomes without replacing smoke: ' + failure, async t => {
   const folder = mkdtempSync(join(tmpdir(), 'sgm-chat-proof-test-')); t.after(() => rmSync(folder, {recursive: true, force: true}));
@@ -119,5 +106,5 @@ test('workflow uses the same runner, Node and tests, no credentials, emulators, 
     assert.doesNotMatch(JSON.stringify(step), /secrets\.|emulator|retry|kill-server|--test-name-pattern/);
   }
   for (const event of ['push', 'pull_request']) assert(smoke.on[event].paths.includes('tests/chat-proof-diagnostic.test.mjs'));
-  assert(smoke.jobs.smoke.steps.some(row => row.run === 'node --test tests/chat-proof-diagnostic.test.mjs'));
+  assert(smoke.jobs.smoke.steps.some(row => row.run === 'node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs'));
 });

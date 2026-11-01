@@ -1,12 +1,11 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {execFileSync} from 'node:child_process';
 import {cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import test from 'node:test';
-import {assertExactRgbFrames} from './helpers/exact-rgb-frames.mjs';
+import {validateChatRgbNormalization} from '../partner-portal/chat-proof-rgb-validation.mjs';
 import {content, captures} from '../partner-portal/content.mjs';
 import {chatReceiptCaptures} from '../partner-portal/chat-receipt-loss-phone.mjs';
 import {chatReceiptPhoneFolder, chatReceiptPhoneImages, assertChatReceiptPhoneReview, validateChatReceiptPhone}
@@ -35,13 +34,8 @@ test('the new three-image tour retains all 31 prior images and 12 prior steps, w
   assert.equal(content.blockers.find(row => row.id === 'chat-pending-restart').accountSwitchHistory.source,
     'docs/release/evidence/chat-account-switch-phone-2026-11-01/README.md');
 });
-test('public session crops retain the exact pixels of their original browser captures', () => {
-  for (const name of chatReceiptPhoneImages) {
-    const decode = (file, filters = []) => execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error',
-      '-i', join(base, file), ...filters, '-frames:v', '1', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], {maxBuffer: 1_000_000});
-    assertExactRgbFrames(decode('captures/' + name + '.png'), decode('original-session-captures/' + name + '.png',
-      ['-vf', 'crop=274:618:615:109:exact=1']), 274 * 618 * 3);
-  }
+test('public session crops retain every RGBA pixel from the fixed full-frame JPEG decode', () => {
+  assert.equal(validateChatRgbNormalization(root).captures, 3);
 });
 for (const key of ['explicitRetryExercised', 'processRestartAccepted', 'peerPhoneAccepted', 'realRadioLossAccepted',
   'trackingAccepted', 'iOSAccepted', 'pushDeliveryAccepted', 'productionWrites', 'realPayments', 'applicationDeployed',

@@ -9,6 +9,7 @@ import {chatPendingRestartPhone,chatPendingRestartImages} from './chat-pending-r
 import {chatAccountSwitchPhone,chatAccountSwitchImages} from './chat-account-switch-phone.mjs';
 import {chatReceiptPhone, chatReceiptImages} from './chat-receipt-loss-phone.mjs';
 import {networkPreparationRecheck} from './network-preparation-recheck.mjs';
+import {chatRgbNormalization} from './chat-proof-rgb-normalization.mjs';
 
 export function createMessagesFlow(local, shot) {
   return { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-11-01', latestEvidence: 'phone',
@@ -17,6 +18,7 @@ export function createMessagesFlow(local, shot) {
     remaining: 'À tester entre deux téléphones, avec de vraies coupures, puis pour les groupes et le clavier sur iPhone. Pas encore en ligne.',
     postCommitReceiptLossPhone: chatReceiptPhone,
     networkPreparationRecheck,
+    captureNormalization: chatRgbNormalization,
     pendingSendAccountSwitchPhone: chatAccountSwitchPhone,
     pendingSendRestartPhone: chatPendingRestartPhone,
     unsentDraftPhone: chatDraftPhone,

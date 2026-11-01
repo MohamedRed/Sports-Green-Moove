@@ -1,0 +1,71 @@
+{
+  "scope": "portable-lossless-rgb-crops-of-existing-session-images-not-new-phone-trial",
+  "checkedAt": "2026-11-01",
+  "generatedAt": "2026-11-01T23:53:26.613Z",
+  "decoder": {
+    "jpeg-js": "0.4.4",
+    "pngjs": "7.0.0"
+  },
+  "clip": {
+    "x": 615,
+    "y": 109,
+    "width": 274,
+    "height": 618
+  },
+  "images": [
+    {
+      "name": "parent-confirmed",
+      "source": "docs/release/evidence/chat-receipt-loss-phone-2026-11-01/original-session-captures/parent-confirmed.png",
+      "originalMediaType": "image/jpeg",
+      "originalSha256": "b141c33ea7070d741a982ce96cb54ec11e6d6b64a39aaebf419ed127e9cac9c0",
+      "decodedRgbaSha256": "f4e3376d87a44ba73fe2c10bb00ba2a3ad52310023f131d4261f7f853916b4c5",
+      "cropRgbaSha256": "4867909d0e6de07d6f2ed3ca7021ee31b0445b2ad65bf4eeb2fa88a0ce36ae33",
+      "cropPngSha256": "262a4ff83ce823dac53db49f7219d56e016597c9d49ffe35642c9ac78c54e562",
+      "previousCapture": "docs/release/evidence/chat-receipt-loss-phone-2026-11-01/captures/parent-confirmed.png",
+      "previousCaptureSha256": "623f622000463aa6900b5efb37d0a404b930f72fe0666432d866cbc043b6e324"
+    },
+    {
+      "name": "parent-reopened",
+      "source": "docs/release/evidence/chat-receipt-loss-phone-2026-11-01/original-session-captures/parent-reopened.png",
+      "originalMediaType": "image/jpeg",
+      "originalSha256": "5fcd023518fa5534d3e6d541c4c6304bab34b43e4cc821639454dcce3e88750e",
+      "decodedRgbaSha256": "42564d0c9e77c51529d352b62dcf0feb2d4f5f73041b540cd49753d70a725a50",
+      "cropRgbaSha256": "7a8d0472da4d11f926815fe9067922ad8823fac4c76f4c07ecdc13f256247c20",
+      "cropPngSha256": "f3eccfde96095ca5410deece7ad59a9affcb994bb84b7f36237e529d8aa6d987",
+      "previousCapture": "docs/release/evidence/chat-receipt-loss-phone-2026-11-01/captures/parent-reopened.png",
+      "previousCaptureSha256": "0cc7d1fe56d47caed30a1bf6e48255e77ea21384e120407ee4ebc98c7d05c7ba"
+    },
+    {
+      "name": "driver-visible",
+      "source": "docs/release/evidence/chat-receipt-loss-phone-2026-11-01/original-session-captures/driver-visible.png",
+      "originalMediaType": "image/jpeg",
+      "originalSha256": "e36cbf97eace8a0f35d567892864bcd5220e8a1609c219624928d50f3488e843",
+      "decodedRgbaSha256": "f5d6dbfde5e71366883dda874dd331e17db972799f3c0e55055e20b15049d301",
+      "cropRgbaSha256": "b6c90bf626cefd8869236631703085f1740a3db50e6a81fe9e8b1c11a062b282",
+      "cropPngSha256": "1010991f677f74eee20d4211f3a4b9767760a332ebb2dadfa9d46d9a073ee1cd",
+      "previousCapture": "docs/release/evidence/chat-receipt-loss-phone-2026-11-01/captures/driver-visible.png",
+      "previousCaptureSha256": "aa9e137dd2f98b8a17a52990d103fb7dbdd2ab9dd2a607d58aadee86f8ee08c4"
+    }
+  ],
+  "previousCapturesPreserved": true,
+  "originalBytesPreserved": true,
+  "previousFfmpegCropPixelClaimSuperseded": true,
+  "reviewedForPublication": true,
+  "newPhoneTrial": false,
+  "physicalFlowNewlyAccepted": false,
+  "fullSmokeAccepted": false,
+  "originalShutdownCauseProven": false,
+  "releaseAccepted": false,
+  "failedProducer": {
+    "run": 41363818773,
+    "job": 125019644410,
+    "artifact": 13106396725,
+    "commit": "b0720539aa2cf33f95e9b596370ec29dc0360e9a",
+    "conclusion": "failure",
+    "archiveSha256": "f703ae97c13214b15ef91d459d25ab052277b7652595e01c9e8a05057bde6047",
+    "bytes": 507996,
+    "firstDifferentByte": 79,
+    "actualSha256": "d7eab5dac3b892363dac88ceb90d158f1ffc29ac53c2439099e51163bf0b8ea4",
+    "expectedSha256": "49e8f4a60eb594f6bcf4a8824bbb23bd709de2cf03c924c9825620615e1babc6"
+  }
+}

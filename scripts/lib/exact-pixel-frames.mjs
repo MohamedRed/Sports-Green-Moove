@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 
-export function assertExactRgbFrames(actual, expected, expectedBytes) {
+export function assertExactPixelFrames(actual, expected, expectedBytes) {
   assert(Buffer.isBuffer(actual) && Buffer.isBuffer(expected), 'Decoded frames must be buffers');
   assert(Number.isSafeInteger(expectedBytes) && expectedBytes > 0, 'A complete frame size is required');
   assert.equal(actual.length, expectedBytes, 'Actual RGB frame length');

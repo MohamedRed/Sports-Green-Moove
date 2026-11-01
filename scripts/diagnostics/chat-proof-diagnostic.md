@@ -15,12 +15,20 @@ The exact-frame invariant is unchanged. This bounds failure formatting; it does
 not prove that this caused the original hosted runner shutdown or repair any
 underlying pixel mismatch. The hosted diagnostic must expose those separately.
 
-This independent short job uses the primary lane's Ubuntu runner, Node 22,
-locked dependencies and media package. It first executes the same six original
-FFmpeg decode/crop commands, comparing every RGB pixel of the three reviewed
-captures. Per-image start/end markers identify incomplete decodes. It then runs
-the unchanged exact primary three-file test command. No service, app, emulator,
-account, secret, provider request or payment is started.
+The first independent Linux job, 41363818773 at b072053, reproduced a real pixel
+mismatch at byte 79 and exited normally. Its result and resource observations
+remain failed under `docs/release/evidence/chat-proof-rgb-normalization-2026-11-01/`.
+The default FFmpeg recrop is now superseded, not retried into acceptance. The
+original files are JPEG despite their `.png` names; cropping the subsampled
+colour planes before RGB conversion was not a portable exact-pixel procedure.
+
+The independent short job now uses the primary lane's Ubuntu runner, Node 22
+and locked dependencies to verify fixed full-frame JPEG decoding followed by
+lossless RGBA cropping. It then runs the same exact primary three-file command.
+The primary pixel assertion uses that same strict verifier. Old originals and
+derivatives stay immutable; only three separately reviewed portable recrops are
+published. No tolerance, alternate decoder or fallback is added. No service,
+app, emulator, account, secret, provider request or payment is started.
 
 A bounded sampler records only host memory counters and cgroup memory/event
 counters every half-second, at most 600 samples. Unsupported counters are

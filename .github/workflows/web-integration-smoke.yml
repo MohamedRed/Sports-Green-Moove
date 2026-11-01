@@ -461,7 +461,10 @@ on:
       - "tests/chat-receipt-loss*.test.mjs"
       - "tests/network-preparation-recheck.test.mjs"
       - "tests/chat-proof-diagnostic.test.mjs"
-      - "tests/helpers/exact-rgb-frames.mjs"
+      - "tests/chat-proof-rgb-normalization.test.mjs"
+      - "scripts/lib/session-image-crop.mjs"
+      - "scripts/diagnostics/retain-chat-proof-rgb-normalization.mjs"
+      - "scripts/lib/exact-pixel-frames.mjs"
       - "scripts/diagnostics/ci-proof-resources.mjs"
       - "scripts/diagnostics/chat-proof-media-probe.mjs"
       - "scripts/diagnostics/run-chat-proof-diagnostic.mjs"
@@ -1030,7 +1033,10 @@ on:
       - "tests/chat-receipt-loss*.test.mjs"
       - "tests/network-preparation-recheck.test.mjs"
       - "tests/chat-proof-diagnostic.test.mjs"
-      - "tests/helpers/exact-rgb-frames.mjs"
+      - "tests/chat-proof-rgb-normalization.test.mjs"
+      - "scripts/lib/session-image-crop.mjs"
+      - "scripts/diagnostics/retain-chat-proof-rgb-normalization.mjs"
+      - "scripts/lib/exact-pixel-frames.mjs"
       - "scripts/diagnostics/ci-proof-resources.mjs"
       - "scripts/diagnostics/chat-proof-media-probe.mjs"
       - "scripts/diagnostics/run-chat-proof-diagnostic.mjs"
@@ -1182,7 +1188,7 @@ jobs:
       - name: Validate complete smoke partitioning
         run: node --test tests/web-smoke-sharding.test.mjs
       - name: Test isolated chat proof diagnostic
-        run: node --test tests/chat-proof-diagnostic.test.mjs
+        run: node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs
 
       - name: Test primary capture observation protocol
         run: node --test tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs tests/capture-window-calibration.test.mjs
