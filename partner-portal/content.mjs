@@ -1,4 +1,5 @@
 import { tours } from './tours.mjs';
+import {alertCaptureFailure} from './alert-capture-failure.mjs';
 import {requestSafetyRecheck} from './request-safety.mjs';
 import {dependencyPatchRecheck} from './dependency-patch.mjs';
 import {nativeGateRecheck} from './native-gate-recheck.mjs';
@@ -63,6 +64,7 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
+  alertCaptureFailure,
   updatedAt: '2026-11-01',
   lastVerifiedAt: '2026-11-01',
   nativeClockCiRecheck: {source: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/summary.json',

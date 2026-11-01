@@ -37,8 +37,8 @@ try {
   writeFileSync(resolve(directory, 'instrumentation.txt'), result.stdout ?? '', {flag: 'wx'});
   assert.equal(result.status, 0); assert.equal(result.signal, null); assert(!result.error);
   report = parseAndroidJUnitTranscript(result.stdout); assert.equal(report.failed, 0); assert.equal(report.skipped, 0);
-  assert.equal(report.caseCount, 7); assert.equal(report.passed, 7);
-  for (const [name, count] of [['RejectedPrimaryBitmapTest', 4], ['TeamConversationFlowTest', 3]])
+  assert.equal(report.caseCount, 8); assert.equal(report.passed, 8);
+  for (const [name, count] of [['RejectedPrimaryBitmapTest', 5], ['TeamConversationFlowTest', 3]])
     assert.equal(report.cases.filter(row => row.className === 'be.sportgreenmoove.app.ui.' + name).length, count);
   assertContinuousDevice(device, setup);
 } catch (failure) {errors.push(failure);}
@@ -64,4 +64,4 @@ writeFileSync(resolve(directory, 'results.json'), JSON.stringify({scope: 'reject
   rootCauseProven: false, realCiRejectionReproduced: false, productionWrites: false, newMediaAccepted: false,
 }, null, 2) + '\n', {flag: 'wx'});
 if (errors.length) throw new AggregateError(errors, 'Capture diagnostic probe failed; exact attempt retained');
-console.log('Four diagnostic calibration cases and three unchanged team components passed; no rejected CI bitmap or root cause accepted.');
+console.log('Five diagnostic calibration cases and three unchanged team components passed; no rejected CI bitmap or root cause accepted.');

@@ -7,9 +7,11 @@ is closed. The 1 November isolated server foundation is retained in
 `../release/evidence/team-alert-services-2026-11-01/README.md`. Generic alerts and
 pending delivery envelopes are atomic with the message and use current approved
 adult/verified-parent authority. Alert reads recheck current admission. Direct
-client reads are denied. A pending envelope is not delivered push: token ownership,
-dispatch, native reception, immediate foreground refresh and tap navigation remain
-unfinished. Existing phone galleries do not verify these new alerts.
+client reads are denied. The later 1 November phone trial separately verifies
+automatic in-app refresh, confirmed read and current-admission withdrawal. A
+pending envelope is not delivered push: token ownership, dispatch, closed-app
+native reception and tap navigation remain unfinished. The full native gate's
+later capture/copy failures remain separate from the phone result.
 
 On 2026-10-16 the product owner selected members of one team, not all members
 of the club, as the audience for group messages. This is a product decision,
@@ -27,7 +29,7 @@ Android exchanges, multi-child access changes and durable draft recovery now hav
 local native evidence. A later physical trial verifies draft recovery and
 sequential parent/driver accounts on one phone. Later one-phone trials verify
 unread/read state and a guardian's revoked/renewed access, as described below.
-Simultaneous phone exchanges, iOS entry and notifications remain unfinished.
+Simultaneous phone exchanges, iOS entry and closed-app notifications remain unfinished.
 The enrollment service alone does not grant message access. Club membership
 alone must not grant it.
 

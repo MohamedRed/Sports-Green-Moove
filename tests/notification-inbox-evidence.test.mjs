@@ -18,7 +18,7 @@ test('portal publishes only four bounded phone crops and preserves historical da
   assert(team.images.filter(row=>!fresh.includes(row)).every(row=>row.checkedAt==='2026-10-21'));
   assert.equal(tours['team-conversation'].length,36);
   assert.deepEqual(team.images.slice(0,4).map(row=>row.file),fresh.map(row=>row.file));
-  const update=content.updates[0];assert.equal(update.source,dirname(notificationInboxEvidence)+'/README.md');
+  const update=content.updates.find(row=>row.source===dirname(notificationInboxEvidence)+'/README.md');assert(update);
   assert.match(update.text,/app fermée reste à faire/);assert.match(team.remaining,/app fermée/);
   assert.doesNotMatch(JSON.stringify([update,fresh]),/browserstack|firebase|android|kotlin|polling/i);
 });

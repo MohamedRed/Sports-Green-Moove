@@ -5,6 +5,7 @@ import {existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync} from 'n
 import {isAbsolute, resolve} from 'node:path';
 
 export const rejectedBitmapScope = 'rejected-primary-bitmap-diagnostic-not-accepted-evidence';
+export const rejectedCaptureNames = ['team-chat-confirmed.png', 'notification-inbox-revoked.png'];
 const keys = ['schemaVersion', 'scope', 'captureName', 'imageFile', 'imageSha256', 'width', 'height', 'sampleStride',
   'minimumDistinctSampledColorsExclusive', 'sampledColorCount', 'sampledColorsArgb', 'imageAccepted', 'flowVerified',
   'replacementCaptureUsed', 'recordedAtEpochMillis'];
@@ -12,13 +13,14 @@ export function validateRejectedPrimaryBitmaps(directory) {
   const entries = readdirSync(directory, {withFileTypes: true});
   assert(entries.length > 0 && entries.length <= 16 && entries.every(entry => entry.isFile()));
   const names = entries.map(entry => entry.name).sort();
-  assert(names.every(name => /^team-chat-confirmed-[0-9]{1,20}\.(?:png|json)$/.test(name)));
+  assert(names.every(name => /^(?:team-chat-confirmed|notification-inbox-revoked)-[0-9]{1,20}\.(?:png|json)$/.test(name)));
   const markers = names.filter(name => name.endsWith('.json')); assert.equal(names.length, markers.length * 2);
   for (const name of markers) {
     const bytes = readFileSync(resolve(directory, name)); assert(bytes.length <= 16_384);
     const marker = JSON.parse(bytes); assert.deepEqual(Object.keys(marker).sort(), [...keys].sort());
     assert.equal(marker.schemaVersion, 1); assert.equal(marker.scope, rejectedBitmapScope);
-    assert.equal(marker.captureName, 'team-chat-confirmed.png');
+    assert(rejectedCaptureNames.includes(marker.captureName));
+    assert(name.startsWith(marker.captureName.replace(/\.png$/, '') + '-'));
     assert.equal(marker.imageFile, name.replace(/\.json$/, '.png'));
     for (const key of ['imageAccepted', 'flowVerified', 'replacementCaptureUsed']) assert.equal(marker[key], false, key);
     assert.equal(marker.sampleStride, 16); assert.equal(marker.minimumDistinctSampledColorsExclusive, 16);

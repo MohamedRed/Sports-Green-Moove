@@ -9,6 +9,7 @@ import java.io.File
 import java.security.MessageDigest
 
 internal const val rejectedPrimaryBitmapScope = "rejected-primary-bitmap-diagnostic-not-accepted-evidence"
+internal val rejectedPrimaryCaptureNames = setOf("team-chat-confirmed.png", "notification-inbox-revoked.png")
 
 internal fun retainRejectedPrimaryBitmap(
     name: String,
@@ -18,19 +19,21 @@ internal fun retainRejectedPrimaryBitmap(
     persist: (Bitmap, Set<Int>) -> Unit = { image, samples ->
         val directory = File(InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null),
             "rejected-primary-captures")
-        writeRejectedPrimaryBitmap(directory, image, samples, java.lang.Long.toUnsignedString(System.nanoTime()))
+        writeRejectedPrimaryBitmap(directory, image, samples, java.lang.Long.toUnsignedString(System.nanoTime()), name)
     },
 ) {
-    if (!enabled || name != "team-chat-confirmed.png") return
+    if (!enabled || name !in rejectedPrimaryCaptureNames) return
     try { persist(bitmap, colors) }
     catch (_: Throwable) { Log.w("SGMRejectedCapture", "Rejected bitmap diagnostic unavailable; original quality failure unchanged") }
 }
 
-internal fun writeRejectedPrimaryBitmap(directory: File, bitmap: Bitmap, colors: Set<Int>, id: String) {
+internal fun writeRejectedPrimaryBitmap(directory: File, bitmap: Bitmap, colors: Set<Int>, id: String,
+    captureName: String = "team-chat-confirmed.png") {
     require(colors.size in 1..16)
     require(Regex("[0-9]{1,20}").matches(id))
+    require(captureName in rejectedPrimaryCaptureNames)
     check(directory.isDirectory || directory.mkdirs())
-    val stem = "team-chat-confirmed-$id"
+    val stem = "${captureName.removeSuffix(".png")}-$id"
     val image = File(directory, "$stem.png")
     val marker = File(directory, "$stem.json")
     check(!image.exists() && !marker.exists())
@@ -38,7 +41,7 @@ internal fun writeRejectedPrimaryBitmap(directory: File, bitmap: Bitmap, colors:
     image.outputStream().use { check(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
     val digest = MessageDigest.getInstance("SHA-256").digest(image.readBytes()).joinToString("") { "%02x".format(it) }
     val record = JSONObject().put("schemaVersion", 1).put("scope", rejectedPrimaryBitmapScope)
-        .put("captureName", "team-chat-confirmed.png").put("imageFile", image.name).put("imageSha256", digest)
+        .put("captureName", captureName).put("imageFile", image.name).put("imageSha256", digest)
         .put("width", bitmap.width).put("height", bitmap.height)
         .put("sampleStride", 16).put("minimumDistinctSampledColorsExclusive", 16)
         .put("sampledColorCount", colors.size)

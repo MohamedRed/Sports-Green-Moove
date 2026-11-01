@@ -42,6 +42,26 @@ class RejectedPrimaryBitmapTest {
             assertEquals("Blank test capture rejected; use a rendering-enabled device image.", failure.message)
         } finally { image.recycle() }
     }
+    @Test fun rejectedNotificationCaptureUsesItsOwnDiagnosticIdentityWithoutAnotherCapture() {
+        val parent = InstrumentationRegistry.getInstrumentation().targetContext.cacheDir
+        val directory = File(parent, "rejected-notification-fixture-${System.nanoTime()}")
+        val image = Bitmap.createBitmap(32, 48, Bitmap.Config.ARGB_8888)
+        try {
+            var calls = 0
+            retainRejectedPrimaryBitmap("notification-inbox-revoked.png", image, setOf(0), true) { actual, colors ->
+                calls++; assertSame(image, actual)
+                writeRejectedPrimaryBitmap(directory, actual, colors, "1", "notification-inbox-revoked.png")
+            }
+            assertEquals(1, calls)
+            val marker = JSONObject(File(directory, "notification-inbox-revoked-1.json").readText())
+            assertEquals("notification-inbox-revoked.png", marker.getString("captureName"))
+            assertFalse(marker.getBoolean("imageAccepted")); assertFalse(marker.getBoolean("replacementCaptureUsed"))
+            assertFalse(File(directory, "team-chat-confirmed-1.json").exists())
+            assertThrows(IllegalArgumentException::class.java) {
+                writeRejectedPrimaryBitmap(directory, image, setOf(0), "2", "private-login.png")
+            }
+        } finally { image.recycle(); directory.deleteRecursively() }
+    }
     @Test fun rejectedPngAndDigestRemainSeparateFromAcceptedScreenshots() {
         val parent = InstrumentationRegistry.getInstrumentation().targetContext.cacheDir
         val directory = File(parent, "rejected-capture-fixture-${System.nanoTime()}")

@@ -100,7 +100,7 @@ test('retained passing lifecycle observations do not repair the prior failure or
   assert.deepEqual(validateTransferLifecycle(repositoryRoot), {beforeTransferPasses: 24, candidateTransferPasses: 32,
     mainGroups: 37, fullNativeGateAccepted: false, releaseAccepted: false});
   assert(content.updates.some(row => row.flow === 'messages' && row.source === transferLifecycleFolder + 'README.md'));
-  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').latestSource, transferLifecycleFolder + 'README.md');
+  assert.equal(content.blockers.find(row => row.id === 'chat-send-stability').transportHistory.source, transferLifecycleFolder + 'README.md');
 });
 
 test('the real failed transfer retains surviving host identities without accepting guest state or repaired copies', () => {

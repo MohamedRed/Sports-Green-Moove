@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import be.sportgreenmoove.app.data.InboxNotificationSummary
 import be.sportgreenmoove.app.services.NotificationInboxGateway
 import be.sportgreenmoove.app.services.NotificationReadGateway
+import kotlinx.coroutines.launch
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -47,6 +48,9 @@ class NotificationInboxFlowTest {
         compose.onNodeWithTag("notification.inbox.retry").performClick();waitFor("notification.${notice.id}")
         compose.onAllNodesWithTag("notification.${notice.id}").assertCountEquals(1)
         captureLocalUi(compose,"notification-inbox-recovered.png")
+        compose.runOnIdle { gateway.rows=listOf(notice.copy(id="teamChat_after_retry")) }
+        waitFor("notification.teamChat_after_retry")
+        compose.onNodeWithTag("notification.${notice.id}").assertDoesNotExist()
     }
     @Test fun narrowLargeTextKeepsTheReceivedCardAndReadActionInsideTheList() {
         show(Fixture().apply { rows=listOf(notice) },narrow=true);waitFor("notification.${notice.id}")
@@ -64,12 +68,12 @@ class NotificationInboxFlowTest {
                 override suspend fun markNotificationRead(uid:String,notificationId:String) { error("No read action in this fixture") }
             }) }
             val state=remember { NotificationInboxState("parent",gateway,reads::reconcile) }
-            var retry by remember { mutableIntStateOf(0) }
-            LaunchedEffect(state,retry) { state.observe() }
+            val scope=rememberCoroutineScope()
+            LaunchedEffect(state) { state.observe() }
             CompositionLocalProvider(LocalDensity provides Density(density.density,if(narrow)1.5f else density.fontScale)) {
                 Box(Modifier.fillMaxSize()) {
                     LazyColumn(Modifier.width(if(narrow)280.dp else 360.dp).testTag("notification.inbox.frame")) {
-                        notificationInboxItems(state,reads,onRetry={retry++}) {}
+                        notificationInboxItems(state,reads,onRetry={scope.launch { state.refresh() }}) {}
                     }
                 }
             }

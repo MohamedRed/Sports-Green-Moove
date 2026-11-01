@@ -103,7 +103,7 @@ test('the capacity recheck preserves the failed primary and later cleanup copy a
     primaryCopyPassed:false,fullNativeGateAccepted:false});
   assert(!content.blockers.some(row=>row.id==='native-device-capacity'));
   assert(content.updates.some(row=>row.source===copyReconnectFolder+'README.md'));
-  assert.equal(content.blockers.find(row=>row.id==='native-evidence-copy').latestSource,copyReconnectFolder+'README.md');
+  assert.equal(content.blockers.find(row=>row.id==='native-evidence-copy').reconnectHistory.source,copyReconnectFolder+'README.md');
   assert.equal(content.flows.find(row=>row.id==='messages').status,'partial');
 });
 for(const key of ['unusedToolRemovalExercised','previousCapacityFailureBlocksThisRun','guestBirthObserved',

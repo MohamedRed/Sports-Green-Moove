@@ -13,7 +13,7 @@ import {fullNativePassFolder,validateFullNativePass} from '../scripts/qa/full-na
 export function validateNativeStatus(root, blockers) {
   const blocker = blockers.find(row => row.id === 'native-evidence-copy');
   assert.equal(blocker.latestPassingSource,fullNativePassFolder+'README.md');validateFullNativePass(root);
-  assert.equal(blocker.latestSource, copyReconnectFolder + 'README.md'); validateCopyReconnect(root);
+  assert.equal(blocker.reconnectHistory.source, copyReconnectFolder + 'README.md'); validateCopyReconnect(root);
   assert(!blockers.some(row=>row.id==='native-device-capacity'));
   assert.equal(blocker.previousSource, transferPeerLossFolder + 'README.md'); validateNativeTimeout(root); validateSupportRecheckCi(root);
   validateNativeBudgetFollowup(root);

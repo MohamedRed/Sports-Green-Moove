@@ -5,7 +5,7 @@ import {tmpdir} from 'node:os';
 import {dirname, resolve} from 'node:path';
 import test from 'node:test';
 import {parseDocument} from 'yaml';
-import {collectRejectedPrimaryBitmaps, rejectedBitmapScope, validateRejectedPrimaryBitmaps} from '../scripts/qa/rejected-primary-captures.mjs';
+import {collectRejectedPrimaryBitmaps, rejectedBitmapScope, rejectedCaptureNames, validateRejectedPrimaryBitmaps} from '../scripts/qa/rejected-primary-captures.mjs';
 import {rejectedCaptureFolder, validateRejectedCaptureProbe} from '../scripts/qa/rejected-capture-probe-evidence.mjs';
 import {content} from '../partner-portal/content.mjs';
 
@@ -16,13 +16,14 @@ function temporary(t) {
   const directory = mkdtempSync(resolve(tmpdir(), 'sgm-rejected-primary-'));
   t.after(() => rmSync(directory, {recursive: true, force: true})); return directory;
 }
-function fixture(directory, mutate = () => {}) {
-  const marker = {schemaVersion: 1, scope: rejectedBitmapScope, captureName: 'team-chat-confirmed.png',
-    imageFile: 'team-chat-confirmed-1.png', imageSha256: digest(png), width: 1, height: 1,
+function fixture(directory, mutate = () => {}, captureName = 'team-chat-confirmed.png') {
+  const stem = captureName.replace(/\.png$/, '') + '-1';
+  const marker = {schemaVersion: 1, scope: rejectedBitmapScope, captureName,
+    imageFile: stem + '.png', imageSha256: digest(png), width: 1, height: 1,
     sampleStride: 16, minimumDistinctSampledColorsExclusive: 16, sampledColorCount: 1, sampledColorsArgb: ['00000000'],
     imageAccepted: false, flowVerified: false, replacementCaptureUsed: false, recordedAtEpochMillis: 1};
-  mutate(marker); writeFileSync(resolve(directory, 'team-chat-confirmed-1.png'), png);
-  writeFileSync(resolve(directory, 'team-chat-confirmed-1.json'), JSON.stringify(marker));
+  mutate(marker); writeFileSync(resolve(directory, stem + '.png'), png);
+  writeFileSync(resolve(directory, stem + '.json'), JSON.stringify(marker));
 }
 function env(t) {
   for (const key of ['SGM_LOCAL_DISPOSABLE_EMULATOR', 'SGM_PRIMARY_CAPTURE_DIAGNOSTICS']) {
@@ -34,6 +35,16 @@ test('a rejected diagnostic verifies only its container header and digest, never
   const directory = temporary(t); fixture(directory);
   assert.deepEqual(validateRejectedPrimaryBitmaps(directory), {pairCount: 1, containerHeaderAndDigestVerified: true,
     pixelsIndependentlyDecoded: false, imageAccepted: false, flowVerified: false});
+});
+test('only the two reviewed capture names can retain diagnostic-only bytes with matching identities', t => {
+  const directory = temporary(t);
+  assert.deepEqual(rejectedCaptureNames, ['team-chat-confirmed.png', 'notification-inbox-revoked.png']);
+  for (const name of rejectedCaptureNames) fixture(directory, () => {}, name);
+  assert.equal(validateRejectedPrimaryBitmaps(directory).pairCount, 2);
+  const marker = resolve(directory, 'notification-inbox-revoked-1.json');
+  const value = JSON.parse(readFileSync(marker)); value.captureName = 'team-chat-confirmed.png';
+  writeFileSync(marker, JSON.stringify(value));
+  assert.throws(() => validateRejectedPrimaryBitmaps(directory));
 });
 for (const [name, mutate] of [
   ['accepted image', r => r.imageAccepted = true], ['passed flow', r => r.flowVerified = true],
@@ -86,7 +97,8 @@ test('the successful capture path, quality threshold and original failure remain
   assert(capture.includes('Blank test capture rejected')); assert(!capture.includes('catch'));
   const writer = readFileSync(resolve(root, base, 'RejectedPrimaryBitmap.kt'), 'utf8');
   assert.doesNotMatch(writer, /captureToImage|takeScreenshot|PixelCopy|Thread\.sleep|repeat\(/);
-  assert(writer.includes('name != "team-chat-confirmed.png"')); assert(writer.includes('if (!enabled'));
+  assert(writer.includes('name !in rejectedPrimaryCaptureNames')); assert(writer.includes('if (!enabled'));
+  for (const name of rejectedCaptureNames) assert(writer.includes('"' + name + '"'));
   assert(writer.includes('"rejected-primary-captures"')); assert(writer.includes('original quality failure unchanged'));
   assert(readFileSync(resolve(root, 'scripts/qa/collect-ordinary-android-failure.mjs'), 'utf8').includes('collectRejectedPrimaryBitmaps'));
 });

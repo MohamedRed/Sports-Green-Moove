@@ -27,7 +27,7 @@ test('the public note preserves previous failures and partial phone flow statuse
   assert.doesNotMatch(note.title+note.text,/BrowserStack|Firebase|SDK|APK|adbd|CI|Linux/);
   const blocker=content.blockers.find(row=>row.id==='native-evidence-copy');assert(blocker);
   assert.equal(blocker.latestPassingSource,fullNativePassFolder+'README.md');
-  assert.equal(blocker.latestSource,'docs/release/evidence/copy-reconnect-ecd9b67-2026-10-31/README.md');
+  assert.equal(blocker.reconnectHistory.source,'docs/release/evidence/copy-reconnect-ecd9b67-2026-10-31/README.md');
   const chat=content.blockers.find(row=>row.id==='chat-send-stability');assert(chat);
   assert.equal(chat.latestPassingSource,fullNativePassFolder+'README.md');assert.doesNotMatch(chat.text,/ne démarre pas/);
   for(const id of ['messages','team-conversation','native-startup']) assert.equal(content.flows.find(row=>row.id===id).status,'partial');

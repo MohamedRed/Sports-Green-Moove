@@ -23,6 +23,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Test primary capture observation protocol')
     .filter(step => step.name !== 'Test team alerts and pending phone delivery')
     .filter(step => step.name !== 'Test foreground notification inbox authority')
+    .filter(step => step.name !== 'Validate failed notification capture and unchanged quality gate')
     .filter(step => step.name !== 'Validate physical draft and consent evidence boundaries')
     .filter(step => step.name !== 'Validate partial team connection recovery evidence')
     .filter(step => step.name !== 'Validate seven physical team process restarts')

@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The later 1 November full gate at 406e414 fails: one notification withdrawal
+component capture is rejected, and the connected replay's confirmed-restart
+primary copy loses transport. Eleven isolated lanes pass but do not repair the
+gate. Retain the original negative records; the rejected bitmap was not retained
+by that source's narrower allowlist. Publish one short failure note, no new media,
+no repaired-capture/root-cause claim, no phone-date change and no promotion of
+closed-app push or release. Preserve public access and all historical passes.
+See `docs/release/evidence/alert-capture-failure-406e414-2026-11-01/README.md`.
+
 The 1 November in-app alert trial retains two nine-checkpoint physical sessions:
 arrival without refresh, explicit confirmed read, replay, guardian withdrawal,
 renewal, fresh arrival and foreground return. The first trial exposes stale
