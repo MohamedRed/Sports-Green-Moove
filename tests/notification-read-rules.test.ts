@@ -30,4 +30,18 @@ describe("notification privacy and server-owned acknowledgement", () => {
     await assertFails(owner.doc("notifications/private-notice").delete());
     await assertFails(owner.doc("notifications/forged").set({ userId: "parent", read: true }));
   });
+  it("keeps team alert metadata and pending deliveries inaccessible even to recipients", async () => {
+    for (const collection of ["teamChatNotifications", "teamPushOutbox"]) {
+      await env.withSecurityRulesDisabled(async context => {
+        await context.firestore().doc(`${collection}/private-team-alert`).set({userId: "parent", status: "pending"});
+      });
+      for (const context of [env.authenticatedContext("parent"), env.authenticatedContext("manager", {roleKeys: ["clubManager"]}),
+        env.unauthenticatedContext()]) {
+        const store=context.firestore(), ref=store.doc(`${collection}/private-team-alert`);
+        await assertFails(ref.get());await assertFails(store.collection(collection).where("userId", "==", "parent").get());
+        await assertFails(ref.update({read: true}));await assertFails(ref.delete());
+        await assertFails(store.doc(`${collection}/forged`).set({userId: "parent"}));
+      }
+    }
+  });
 });

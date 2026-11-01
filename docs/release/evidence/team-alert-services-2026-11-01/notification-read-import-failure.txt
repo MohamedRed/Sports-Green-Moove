@@ -1,0 +1,45 @@
+
+> sports-green-moove@0.1.0 test:notification-reads
+> firebase emulators:exec --project sports-green-moove-rules-test --only firestore "vitest run tests/notification-read-flow.test.ts tests/notification-read-rules.test.ts --no-file-parallelism"
+
+i  emulators: Starting emulators: firestore
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: vitest run tests/notification-read-flow.test.ts tests/notification-read-rules.test.ts --no-file-parallelism
+
+ RUN  v4.1.12 /Users/mrr/.codex/projects/sports-green-moove-recovery-20261025
+
+ ❯ tests/notification-read-flow.test.ts (17 tests | 17 skipped) 210ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/notification-read-flow.test.ts [ tests/notification-read-flow.test.ts ]
+Error: Can't determine Firebase Database URL.
+ ❯ DatabaseService.ensureUrl node_modules/firebase-admin/lib/database/database.js:127:15
+ ❯ DatabaseService.getDatabase node_modules/firebase-admin/lib/database/database.js:67:28
+ ❯ getDatabaseInstance node_modules/firebase-admin/lib/database/index.js:102:22
+ ❯ getDatabase node_modules/firebase-admin/lib/database/index.js:64:12
+ ❯ functions/src/lib/firebase.ts:6:27
+      4|
+      5| export const auth = getAuth();
+      6| export const realtimeDb = getDatabase();
+       |                           ^
+      7|
+ ❯ functions/src/services/teamNotificationAccess.ts:6:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  3 passed | 17 skipped (20)
+   Start at  09:40:58
+   Duration  2.93s (transform 128ms, setup 0ms, import 448ms, tests 2.23s, environment 0ms)
+
+⚠  Script exited unsuccessfully (code 1)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+
+Error: Script "vitest run tests/notification-read-flow.test.ts tests/notification-read-rules.test.ts --no-file-parallelism" exited with code 1

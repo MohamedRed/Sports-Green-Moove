@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The 1 November team-alert service trial passes eleven callable cases for generic
+eligible-recipient alerts, deduplication and current-admission privacy. Publish
+only a short local-data result. Preserve the team flow's 21 October phone date,
+all galleries/tours and partial status. No new screen, immediate in-app arrival,
+closed-app push, token registration, dispatcher, production or release acceptance
+is added. A pending delivery envelope is not sent push. Public access is unchanged.
+See `docs/release/evidence/team-alert-services-2026-11-01/README.md`.
+
 The 1 November physical pending-send account-switch trial keeps the parent's
 text invisible in the driver's same-booking composer. The parent signs in again,
 recovers the pending text, and explicitly sends exactly one message/notification.

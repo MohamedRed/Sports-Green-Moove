@@ -53,8 +53,10 @@ import {invitationConnectionProgress, nativeCapacityProgress, invitationRecheckP
 import {sessionRecoveryProgress, chatOwnerDraftProgress, recoveryGateProgress} from './session-recovery-recheck.mjs';
 import {copyReconnectProgress} from './copy-reconnect.mjs';
 import {fullNativePassProgress} from './full-native-pass.mjs';
+import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  teamAlertProgress,
   chatAccountSwitchProgress,
   chatPendingRestartProgress,
   fullNativePassProgress,

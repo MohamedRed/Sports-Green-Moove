@@ -5,6 +5,8 @@ import { firestore } from "../lib/firebase.js";
 import { membershipPageCursor, parseMembershipPageCursor } from "../lib/membershipPageCursor.js";
 import { requireTeamConversationAccess } from "./teamConversationAuthority.js";
 import { teamMessageReadFlags } from "./teamConversationRead.js";
+import { teamAlertBody, teamAlertId, teamAlertTitle } from "../domain/teamConversationAlerts.js";
+import { teamConversationAlertAudience } from "./teamConversationAlerts.js";
 
 export async function sendTeamConversationMessage(uid: string, token: unknown, input: SendTeamMessage) {
   return firestore.runTransaction(async transaction => {
@@ -30,10 +32,20 @@ export async function sendTeamConversationMessage(uid: string, token: unknown, i
     if (!Number.isSafeInteger(sequence) || sequence < 0 || sequence >= Number.MAX_SAFE_INTEGER ||
         conversation.exists && (conversation.get("teamId") !== access.teamId || conversation.get("clubId") !== access.clubId))
       throw new HttpsError("failed-precondition", "Conversation metadata requires review.");
+    const recipientUserIds = await teamConversationAlertAudience(transaction, uid, input, access.authorityScope);
     const createdAt = FieldValue.serverTimestamp();
     transaction.create(message, { senderUserId: uid, body: input.body, clientMessageId: input.clientMessageId, sequence: sequence + 1, createdAt });
     transaction.create(operation, { actorUserId: uid, fingerprint, teamInstanceId: access.teamInstanceId, createdAt });
     transaction.set(root, { teamId: access.teamId, clubId: access.clubId, lastSequence: sequence + 1, updatedAt: createdAt });
+    for (const userId of recipientUserIds) transaction.create(firestore.collection("teamChatNotifications").doc(teamAlertId(operationId, userId)), {
+      type: "teamMessage", title: teamAlertTitle, body: teamAlertBody, teamId: access.teamId,
+      teamInstanceId: access.teamInstanceId, messageId: operationId, messageCreatedAt: createdAt,
+      userId, read: false, createdAt,
+    });
+    if (recipientUserIds.length) transaction.create(firestore.collection("teamPushOutbox").doc(operationId), {
+      schemaVersion: 1, status: "pending", messageId: operationId, teamId: access.teamId,
+      teamInstanceId: access.teamInstanceId, recipientUserIds, createdAt,
+    });
     return { messageId: operationId, sequence: sequence + 1, reused: false, teamInstanceId: access.teamInstanceId, currentUserId: uid };
   });
 }

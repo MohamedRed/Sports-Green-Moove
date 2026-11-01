@@ -48,6 +48,10 @@ type NotificationDocument = {
   createdAt?: unknown;
 };
 
+export function compareInboxNotificationTimes(a: InboxDocument<NotificationDocument>, b: InboxDocument<NotificationDocument>): number {
+  return millis(b.data.createdAt) - millis(a.data.createdAt);
+}
+
 type MessageDocument = {
   sourceType?: unknown;
   sourceId?: unknown;

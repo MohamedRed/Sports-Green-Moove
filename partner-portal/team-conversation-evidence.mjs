@@ -17,8 +17,16 @@ import { validateTeamReadComponentAttempt } from '../scripts/qa/team-read-compon
 import { validateRetainedTeamReadComponents } from '../scripts/qa/team-read-component-evidence.mjs';
 import { validateTeamReadPhone } from '../scripts/qa/team-read-phone-evidence.mjs';
 import { validateTeamAuthorityPhone } from '../scripts/qa/team-authority-phone-evidence.mjs';
+import {validateRetainedTeamAlerts} from '../scripts/qa/team-alert-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if(flow.alertServices) {
+    const run=validateRetainedTeamAlerts(root,flow.alertServices.source);
+    assert.equal(flow.id,'team-conversation');assert.equal(flow.status,'partial');
+    assert.equal(run.testedAt.slice(0,10),flow.alertServices.checkedAt);
+    assert.equal(flow.checkedAt,'2026-10-21');assert.equal(flow.latestEvidence,'phone');
+    assert.match(flow.remaining,/notifications.*téléphones/);
+  }
   if (flow.readComponents) assert.equal(flow.latestEvidence, flow.readPhone ? 'phone' : 'local');
   const records = [
     [flow.attempt, validateTeamChatNativeAttempt, 'team-chat-native-'],

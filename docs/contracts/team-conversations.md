@@ -2,6 +2,15 @@
 
 ## Agreed Audience
 
+The owner also selected both in-app alerts and phone notifications while the app
+is closed. The 1 November isolated server foundation is retained in
+`../release/evidence/team-alert-services-2026-11-01/README.md`. Generic alerts and
+pending delivery envelopes are atomic with the message and use current approved
+adult/verified-parent authority. Alert reads recheck current admission. Direct
+client reads are denied. A pending envelope is not delivered push: token ownership,
+dispatch, native reception, immediate foreground refresh and tap navigation remain
+unfinished. Existing phone galleries do not verify these new alerts.
+
 On 2026-10-16 the product owner selected members of one team, not all members
 of the club, as the audience for group messages. This is a product decision,
 not evidence that the flow is implemented or tested.

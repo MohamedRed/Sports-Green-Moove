@@ -20,6 +20,7 @@ test('team conversation access is transaction-bound and not added to legacy chat
   assert(service.includes('transaction.create(operation'));
   assert(!read('functions/src/domain/chatReference.ts').includes('"team"'));
   assert(!service.includes('collection("messages")')); assert(!service.includes('collection("notifications")'));
+  assert(service.includes('collection("teamChatNotifications")'));
 });
 test('isolated trial is included in smoke and cannot be presented as app or notification proof', () => {
   const workflow = read('.github/workflows/web-integration-smoke.yml');

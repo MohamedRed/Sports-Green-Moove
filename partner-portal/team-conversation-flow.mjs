@@ -6,6 +6,7 @@ const accessChanges = 'docs/release/evidence/team-chat-access-2026-10-21/';
 const accessAttempt = 'docs/release/evidence/team-access-native-send-2026-10-21/';
 const nativeAccess = 'docs/release/evidence/team-access-native-2026-10-21/';
 import {teamNativeRecheck} from './native-followup.mjs';
+import {teamAlertRecheck} from './team-alerts.mjs';
 
 export function createTeamConversationFlow() {
   return { id: 'team-conversation', title: 'Conversation d’équipe', status: 'partial', checkedAt: '2026-10-21',
@@ -14,6 +15,7 @@ export function createTeamConversationFlow() {
     remaining: 'Ajouter les notifications et vérifier les échanges entre téléphones.',
     latestEvidence: 'phone',
     nativeRecheck: teamNativeRecheck,
+    alertServices: teamAlertRecheck,
     authorityPhone: { source: 'docs/release/evidence/team-authority-phone-2026-10-21/results.json' },
     readPhone: { source: 'docs/release/evidence/team-read-phone-2026-10-21/results.json' },
     connected: { source: connected + 'team-conversation-results.json' },

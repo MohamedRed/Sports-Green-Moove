@@ -1,11 +1,11 @@
-import { Timestamp, type Transaction } from "firebase-admin/firestore";
+import { Timestamp, type DocumentSnapshot, type QueryDocumentSnapshot, type Transaction } from "firebase-admin/firestore";
 import { HttpsError } from "firebase-functions/v2/https";
 import { guardianVerificationId, guardianVerificationSchema, isActiveGuardianClubMember } from "../domain/guardianVerification.js";
 import { membershipDocumentId } from "../domain/memberships.js";
 import { isGuardianOfChild } from "../domain/searchAccess.js";
 import { adultTeamChatAccount, digest, earliestCurrentAdmission, latestAdmission, type TeamConversationTarget } from "../domain/teamConversation.js";
 import { timestampAtOrAfter } from "../domain/teamEnrollment.js";
-import { firestore } from "../lib/firebase.js";
+import { firestore } from "../lib/firestore.js";
 import { hasRole } from "../lib/https.js";
 import { readTeamEnrollment, teamBelongsToCurrentClub, teamContext, teamEnrollmentEligibility } from "./teamEnrollmentAuthority.js";
 
@@ -16,24 +16,31 @@ export async function requireTeamConversationAdult(transaction: Transaction, uid
     throw new HttpsError("permission-denied", "Team conversations are restricted to adult member accounts.");
   return profile;
 }
-export async function requireTeamConversationAccess(transaction: Transaction, uid: string, token: unknown, input: TeamConversationTarget) {
+export type TeamConversationAuthorityScope = {
+  transaction: Transaction; team: DocumentSnapshot; club: DocumentSnapshot; approvals: QueryDocumentSnapshot[];
+};
+export async function requireTeamConversationAccess(transaction: Transaction, uid: string, token: unknown,
+  input: TeamConversationTarget, prepared?: TeamConversationAuthorityScope) {
+  if (prepared && (prepared.transaction !== transaction || prepared.team.id !== input.teamId))
+    throw new HttpsError("failed-precondition", "Conversation authority must use the current transaction.");
   const profile = await requireTeamConversationAdult(transaction, uid, token);
-  const team = await transaction.get(firestore.collection("teams").doc(input.teamId));
+  const team = prepared?.team ?? await transaction.get(firestore.collection("teams").doc(input.teamId));
   const context = teamContext(team);
-  const [club, membership] = await transaction.getAll(firestore.collection("clubs").doc(context.clubId),
-    firestore.collection("memberships").doc(membershipDocumentId(uid, context.clubId)));
+  const membershipRef = firestore.collection("memberships").doc(membershipDocumentId(uid, context.clubId));
+  const [club, membership] = prepared ? [prepared.club, await transaction.get(membershipRef)]
+    : await transaction.getAll(firestore.collection("clubs").doc(context.clubId), membershipRef);
   if (context.teamInstanceId !== input.expectedTeamInstanceId || !context.open || !teamBelongsToCurrentClub(context, club) ||
       !["public", "private"].includes(club.get("status")) || !isActiveGuardianClubMember(membership.data(), uid, context.clubId) ||
       !timestampAtOrAfter(membership.get("updatedAt"), club.createTime))
     throw new HttpsError("permission-denied", "Current team and club membership are required.");
   // A current approval is the history boundary, never a client-supplied date or legacy teamIds array.
-  const approvals = await transaction.get(firestore.collection("teamEnrollments")
-    .where("teamInstanceId", "==", context.teamInstanceId).where("status", "==", "approved").limit(201));
-  if (approvals.size > 200) throw new HttpsError("resource-exhausted", "This team exceeds the supported conversation enrollment limit.");
+  const approvals = prepared?.approvals ?? (await transaction.get(firestore.collection("teamEnrollments")
+    .where("teamInstanceId", "==", context.teamInstanceId).where("status", "==", "approved").limit(201))).docs;
+  if (approvals.length > 200) throw new HttpsError("resource-exhausted", "This team exceeds the supported conversation enrollment limit.");
   const admissions: Timestamp[] = [], identities: unknown[] = [];
-  for (const snapshot of approvals.docs) {
+  for (const snapshot of approvals) {
     const entry = readTeamEnrollment(snapshot)!;
-    if (entry.teamId !== context.teamId || entry.clubId !== context.clubId || entry.teamInstanceId !== context.teamInstanceId)
+    if (entry.status !== "approved" || entry.teamId !== context.teamId || entry.clubId !== context.clubId || entry.teamInstanceId !== context.teamInstanceId)
       throw new HttpsError("failed-precondition", "The team enrollment identity requires review.");
     if (entry.subjectKind === "member" && entry.subjectId !== uid) continue;
     let guardianAt: Timestamp | undefined, childMembershipAt: Timestamp | undefined, guardianRevision: number | undefined;
@@ -62,5 +69,6 @@ export async function requireTeamConversationAccess(transaction: Transaction, ui
   if (!admissions.length) throw new HttpsError("permission-denied", "Approved team membership or verified parent authority is required.");
   const availableAfter = earliestCurrentAdmission(admissions);
   return { ...context, availableAfter, accessVersion: digest([uid, identities]),
+    authorityScope: { transaction, team, club, approvals },
     title: typeof team.get("name") === "string" ? team.get("name") as string : null };
 }

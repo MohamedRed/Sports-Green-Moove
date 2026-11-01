@@ -6,7 +6,7 @@ import { isActiveClubManager } from "../domain/membershipReview.js";
 import { membershipDocumentId } from "../domain/memberships.js";
 import { isGuardianOfChild } from "../domain/searchAccess.js";
 import { teamEnrollmentId, teamEnrollmentRecordSchema, teamInstanceId, timestampAtOrAfter, type TeamEnrollmentRecord } from "../domain/teamEnrollment.js";
-import { firestore } from "../lib/firebase.js";
+import { firestore } from "../lib/firestore.js";
 import { hasRole, requireAnyRole, requireRole } from "../lib/https.js";
 
 export function teamContext(snapshot: DocumentSnapshot) {

@@ -73,7 +73,7 @@ test('progress keeps physical media historical and independent passes separate f
   assert.equal(team.nativeRecheck.checkedAt, identity.date);
   assert.equal(team.nativeRecheck.source, identity.folder + 'team/team-conversation-results.json');
   assert(team.images.every(image => image.alt.includes('21 octobre')));
-  const update = content.updates.find(row => row.flow === 'team-conversation');
+  const update = content.updates.find(row => row.flow === 'team-conversation' && row.source === identity.folder + 'README.md');
   assert.equal(update.source, identity.folder + 'README.md'); assert.match(update.text, /en local/);
   assert.doesNotMatch(update.text, /BrowserStack|Firebase|SDK|Android/);
   assert(content.updates.some(row => row.source === 'docs/release/evidence/chat-network-preparation-4714198/README.md'));

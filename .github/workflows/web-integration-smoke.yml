@@ -14,6 +14,7 @@ on:
       - "ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift"
       - "tests/team-chat-*.test.mjs"
       - "tests/team-conversation-contract.test.mjs"
+      - "tests/team-alerts*.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "tests/emergency-dialer-recheck.test.mjs"
       - "tests/system-phone-prerequisite-evidence.test.mjs"
@@ -571,6 +572,7 @@ on:
       - "ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift"
       - "tests/team-chat-*.test.mjs"
       - "tests/team-conversation-contract.test.mjs"
+      - "tests/team-alerts*.test.mjs"
       - "tests/emergency-phone-recovery.test.mjs"
       - "tests/emergency-dialer-recheck.test.mjs"
       - "tests/system-phone-prerequisite-evidence.test.mjs"
@@ -1642,6 +1644,10 @@ jobs:
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-conversation-services.json
         run: npm run test:team-conversation && node --test tests/team-conversation-contract.test.mjs
+      - name: Test team alerts and pending phone delivery
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-alerts-services.json
+        run: npm run test:team-alerts && node --test tests/team-alerts-contract.test.mjs
       - name: Test multi-child grants and cross-team conversation isolation
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json
@@ -1757,6 +1763,14 @@ jobs:
         with:
           name: child-booking-receipt-results
           path: ${{ runner.temp }}/child-booking-receipt.json*
+          if-no-files-found: error
+
+      - name: Retain team alert services and disposal
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: team-alert-services-results
+          path: ${{ runner.temp }}/team-alerts-services.json
           if-no-files-found: error
 
   integration-gate:
