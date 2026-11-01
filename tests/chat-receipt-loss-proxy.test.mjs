@@ -131,5 +131,5 @@ test('manual observer never sends messages and uses existing four-port runtime w
   for (const event of ['push', 'pull_request']) assert(workflow.on[event].paths.includes('tests/chat-receipt-loss*.test.mjs'));
   const steps = workflow.jobs.smoke.steps.filter(row => row.name === 'Test post-commit chat confirmation loss guards');
   assert.equal(steps.length, 1);
-  assert.equal(steps[0].run, 'node --test tests/chat-receipt-loss-proxy.test.mjs tests/chat-receipt-loss-checkpoints.test.mjs');
+  assert.equal(steps[0].run, 'node --test tests/chat-receipt-loss-proxy.test.mjs tests/chat-receipt-loss-checkpoints.test.mjs tests/chat-receipt-loss-phone.test.mjs');
 });

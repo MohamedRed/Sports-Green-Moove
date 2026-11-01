@@ -47,7 +47,7 @@ test('published captures and copy retain controlled local scope and all older ev
   assert.equal(flow.status, 'partial'); assert.equal(flow.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/README.md');
   assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json'); assert(flow.ui.groups.includes('chat-post-commit-response-loss-ui'));
   assert(flow.images.some(image => image.file === 'chat-network-current-draft'));
-  const retained = flow.images.filter(image => !image.file.startsWith('chat-account-phone-') && !image.file.startsWith('chat-phone-') && !image.file.startsWith('chat-draft-') && !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply', 'chat-network-isolated-draft', 'chat-network-isolated-reply'].includes(image.file));
+  const retained = flow.images.filter(image => !image.file.startsWith('chat-receipt-phone-') && !image.file.startsWith('chat-account-phone-') && !image.file.startsWith('chat-phone-') && !image.file.startsWith('chat-draft-') && !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply', 'chat-network-isolated-draft', 'chat-network-isolated-reply'].includes(image.file));
   assert.equal(retained[0].file, 'chat-loss-confirmed'); assert.equal(retained[1].file, 'chat-loss-rejected-retry');
   for (const name of ['confirmed', 'rejected-retry']) {
     assert.equal(captures['chat-loss-' + name], published + 'accepted-run/local-chat-loss-' + name + '.png');
@@ -55,9 +55,9 @@ test('published captures and copy retain controlled local scope and all older ev
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
   }
   assert(flow.images.some((image) => image.file === 'chat-restart-reply'));
-  assert.match(flow.remaining, /confirmation perdue/); assert.match(flow.remaining, /téléphones/);
+  assert.match(flow.remaining, /vraies coupures/); assert.match(flow.remaining, /téléphones/);
   assert.match(flow.unsentDraftReplayPhone.source, /chat-draft-replay-phone-2026-10-31/);
-  assert.match(flow.remaining, /coupures réelles/);
+  assert.match(flow.remaining, /vraies coupures/);
   assert.match(read('README.md'), /not full-app navigation/);
   assert.match(read('README.md'), /No production/);
 });

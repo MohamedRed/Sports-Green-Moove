@@ -5,6 +5,7 @@ import { chatNetworkRecoveryTour } from './chat-network-recovery.mjs';
 import {chatNetworkPhoneTour} from './chat-network-phone.mjs';
 import {chatPendingRestartTour} from './chat-pending-restart-phone.mjs';
 import {chatAccountSwitchTour} from './chat-account-switch-phone.mjs';
+import {chatReceiptTour} from './chat-receipt-loss-phone.mjs';
 import { supportSubmissionSteps } from './support-submission-flow.mjs';
 import { searchPhoneTour } from './search-booking-phone.mjs';
 import { directBookingTour } from './direct-booking.mjs';
@@ -151,7 +152,7 @@ export const tours = {
   search: searchPhoneTour,
   publication: [...staleCancellationTour, ...tripCancellationTour],
   booking: directBookingTour,
-  messages: [...chatAccountSwitchTour, ...chatPendingRestartTour, ...chatNetworkPhoneTour, ...chatNetworkRecoveryTour],
+  messages: [...chatReceiptTour, ...chatAccountSwitchTour, ...chatPendingRestartTour, ...chatNetworkPhoneTour, ...chatNetworkRecoveryTour],
   clubs: [
     image('guardian-parent-requested', 'Demander la vérification', 'Le parent choisit son enfant et son club. La demande apparaît en attente, dans l’essai local.'),
     image('guardian-parent-verified', 'Voir la réponse du responsable', 'Après l’accord du responsable, le parent retrouve le statut vérifié dans l’app.'),

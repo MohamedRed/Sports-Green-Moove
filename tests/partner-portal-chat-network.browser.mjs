@@ -13,14 +13,14 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
       const dialog = page.getByRole('dialog');
       await dialog.getByText(flow.verified, {exact: true}).waitFor();
       await dialog.getByText(flow.remaining, {exact: true}).waitFor();
-      const phoneImages = flow.images.filter(image => image.file.startsWith('chat-phone-') || image.file.startsWith('chat-draft-') || image.file.startsWith('chat-account-phone-'));
+      const phoneImages = flow.images.filter(image => image.file.startsWith('chat-phone-') || image.file.startsWith('chat-draft-') || image.file.startsWith('chat-account-phone-') || image.file.startsWith('chat-receipt-phone-'));
       for (const image of phoneImages) {
         const picture = dialog.getByRole('img', {name: image.alt, exact: true}); await picture.waitFor();
         await page.waitForFunction(() => {
           const image = document.querySelector('.media-stage img'); return image?.complete && image.naturalWidth > 0;
         });
         assert.deepEqual(await picture.evaluate(image => [image.naturalWidth, image.naturalHeight]),
-          image.file.startsWith('chat-account-phone-') ? [198, 443] : image.file.startsWith('chat-draft-') ? [200, 435] : image.file.startsWith('chat-phone-pending-') ? [216, 458] : [216, 457]);
+          image.file.startsWith('chat-receipt-phone-') ? [274, 618] : image.file.startsWith('chat-account-phone-') ? [198, 443] : image.file.startsWith('chat-draft-') ? [200, 435] : image.file.startsWith('chat-phone-pending-') ? [216, 458] : [216, 457]);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
         assert(await dialog.evaluate(element => element.scrollWidth <= element.clientWidth));
         assert(await page.locator('.media-stage').evaluate(stage => {
@@ -39,6 +39,6 @@ export async function verifyChatNetworkPhoneGallery({browser, base, output}) {
       }
     }
     assert.deepEqual(errors, []);
-    console.log('Account-switch, pending restart and original phone captures fit all four widths; all older network proof and tour preserved.');
+    console.log('Lost confirmation, account-switch, pending restart and original phone captures fit all four widths; older proof and tours preserved.');
   } finally {await page.close();}
 }

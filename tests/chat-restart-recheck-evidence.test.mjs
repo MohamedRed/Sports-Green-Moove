@@ -96,7 +96,7 @@ test('new raw evidence is byte-pinned and the ordinary component pass stays sepa
 test('the private update retains verified restart captures and keeps earlier interruptions explicit', () => {
   const flow = content.flows.find((item) => item.id === 'messages');
   assert.equal(flow.status, 'partial'); assert.match(flow.remaining, /clavier/);
-  assert.match(flow.remaining, /Répéter les essais de coupure/);
+  assert.match(flow.remaining, /deux téléphones/);
   assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json');
   const issue = content.blockers.find((item) => item.id === 'chat-send-stability');
   assert.equal(issue.source, content.nativeVerification.source);

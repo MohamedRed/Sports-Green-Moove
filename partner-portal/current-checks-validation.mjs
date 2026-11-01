@@ -1,4 +1,5 @@
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
+import {chatReceiptPhoneFolder, validateChatReceiptPhone} from '../scripts/qa/chat-receipt-loss-phone-evidence.mjs';
 import {validateToolchainNotificationRecheck,toolchainNotificationFolder} from './toolchain-notification-validation.mjs';
 import {validatePushCleanup,validateReturnPass,pushCleanupFolder,returnPassFolder} from './push-cleanup-and-return-validation.mjs';
 import {foregroundReturnFolder,validateForegroundReturnIntent} from './foreground-return-intent-validation.mjs';
@@ -49,6 +50,9 @@ import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/tr
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateChatReceiptPhone(root);
+  assert.equal(content.flows.find(row => row.id === 'messages').postCommitReceiptLossPhone.source, chatReceiptPhoneFolder + 'review.json');
+  assert(content.updates.some(row => row.source === chatReceiptPhoneFolder + 'README.md'));
   validateToolchainNotificationRecheck(root);
   for(const [id,key]of [['team-conversation','pushRemovalObservation'],['native-startup','transferToolchainComparison']])
     assert.equal(content.flows.find(row=>row.id===id)[key].source,toolchainNotificationFolder+'review.json');

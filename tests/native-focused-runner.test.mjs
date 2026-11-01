@@ -220,7 +220,7 @@ test('retained independent network pass binds the native case, primary copy, sav
   assert.equal(flow.networkRecovery.checkedAt, '2026-10-27');
   assert.equal(flow.networkRecoveryRecheck.checkedAt, '2026-10-28');
   assert.equal(flow.ui.checkedAt, '2026-10-19');
-  assert.deepEqual(flow.tour.filter(row => !row.image.startsWith('chat-account-phone-') && !row.image.startsWith('chat-phone-')).map(row => row.image), Object.keys(result.publishedCaptures));
+  assert.deepEqual(flow.tour.filter(row => !row.image.startsWith('chat-receipt-phone-') && !row.image.startsWith('chat-account-phone-') && !row.image.startsWith('chat-phone-')).map(row => row.image), Object.keys(result.publishedCaptures));
   assert(flow.images.some(row => row.file === 'chat-network-current-draft'));
   for (const [id, file] of Object.entries(result.publishedCaptures)) assert.equal(captures[id], chatNetworkIsolatedFolder + file);
   assert(content.updates.some(row => row.flow === 'messages' && row.source === chatNetworkIsolatedFolder + 'README.md'));

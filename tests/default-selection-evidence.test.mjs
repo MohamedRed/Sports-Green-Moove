@@ -134,5 +134,5 @@ test('the subsequent recheck stays failed with no inferred controller readiness 
   const current = content.flows.find((flow) => flow.id === 'messages');
   assert.equal(current.status, 'partial');
   assert.match(current.remaining, /clavier/);
-  assert.match(current.remaining, /Répéter les essais de coupure/);
+  assert.match(current.remaining, /deux téléphones/);
 });

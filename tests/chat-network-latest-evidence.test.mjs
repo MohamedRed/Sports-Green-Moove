@@ -46,7 +46,7 @@ test('latest progress preserves the failed attempt and all older proof/media dat
   assert.deepEqual(flow.networkRecoveryLatest, reference);
   assert.equal(flow.networkRecoveryRecheck.checkedAt, '2026-10-28');
   assert.equal(flow.networkRecovery.checkedAt, '2026-10-27');
-  assert(flow.images.filter(image => !image.file.startsWith('chat-account-phone-') && !image.file.startsWith('chat-phone-') && !image.file.startsWith('chat-draft-')).every(image => /27 octobre|17 octobre|16 octobre|15 octobre/.test(image.alt)));
+  assert(flow.images.filter(image => !image.file.startsWith('chat-receipt-phone-') && !image.file.startsWith('chat-account-phone-') && !image.file.startsWith('chat-phone-') && !image.file.startsWith('chat-draft-')).every(image => /27 octobre|17 octobre|16 octobre|15 octobre/.test(image.alt)));
   assert(content.updates.some(row => row.source === 'docs/release/evidence/chat-network-preparation-4714198/README.md'));
   const update = content.updates.find(row => row.flow === 'messages' && row.source === networkRepeatIdentity.folder + 'README.md');
   assert.equal(update.source, networkRepeatIdentity.folder + 'README.md');

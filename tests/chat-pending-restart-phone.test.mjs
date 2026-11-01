@@ -19,9 +19,9 @@ test('the actual phone pre-commit pending restart retains nine protected checkpo
 test('three reviewed phone captures precede every historical chat image and tour without promoting the whole flow',()=>{
   const flow=content.flows.find(row=>row.id==='messages');assert.equal(flow.status,'partial');assert.equal(flow.pendingSendRestartPhone.checkedAt,'2026-10-31');
   assert.equal(flow.pendingSendRestartPhone.source,chatPendingRestartPhoneFolder+'review.json');
-  assert.match(flow.remaining,/confirmation perdue/);assert.match(flow.remaining,/clavier sur iPhone/);
-  const images=flow.images.filter(row=>!row.file.startsWith('chat-account-phone-'));
-  const tour=flow.tour.filter(row=>!row.image.startsWith('chat-account-phone-'));
+  assert.match(flow.remaining,/deux téléphones/);assert.match(flow.remaining,/clavier sur iPhone/);
+  const images=flow.images.filter(row=>!row.file.startsWith('chat-account-phone-')&&!row.file.startsWith('chat-receipt-phone-'));
+  const tour=flow.tour.filter(row=>!row.image.startsWith('chat-account-phone-')&&!row.image.startsWith('chat-receipt-phone-'));
   const files=Object.keys(chatPendingRestartCaptures);assert.equal(files.length,3);assert.equal(images.length,28);
   assert.deepEqual(images.slice(0,3).map(row=>row.file),files);assert.deepEqual(tour.slice(0,3).map(row=>row.image),files);
   for(const [id,path]of Object.entries(chatPendingRestartCaptures))assert.equal(captures[id],path);

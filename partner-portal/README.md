@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The 1 November physical chat confirmation-loss trial passes eight independent
+checkpoints on one phone with two isolated accounts. The live listener resolves
+one committed message without an explicit resend; reopening, driver receipt and
+read acknowledgement pass. Add three reviewed session crops and concise progress
+copy. Retain the earlier incomplete facade-preparation trial, all historical media,
+phone dates and tours; keep the flow partial and public access unchanged. No video,
+peer-phone/radio, production, tracking, safety-audit or release claim is added. See
+`docs/release/evidence/chat-receipt-loss-phone-2026-11-01/README.md`.
+
 The a55ed57 account-free default and explicit pinned comparison both pass 32
 primary transfers. This does not establish a version cause or repair application
 copies; the product toolchain stays unchanged. Separately, 84cb6b2 passes all eight

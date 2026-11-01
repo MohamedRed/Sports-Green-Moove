@@ -7,12 +7,14 @@ import {chatDraftReplayPhone, chatDraftReplayImages} from './chat-draft-replay-p
 import {chatOwnerDraftRecheck} from './session-recovery-recheck.mjs';
 import {chatPendingRestartPhone,chatPendingRestartImages} from './chat-pending-restart-phone.mjs';
 import {chatAccountSwitchPhone,chatAccountSwitchImages} from './chat-account-switch-phone.mjs';
+import {chatReceiptPhone, chatReceiptImages} from './chat-receipt-loss-phone.mjs';
 
 export function createMessagesFlow(local, shot) {
   return { id: 'messages', title: 'Messages et notifications', status: 'partial', checkedAt: '2026-11-01', latestEvidence: 'phone',
-    summary: 'L’envoi en attente reste privé entre comptes.',
-    verified: 'L’envoi en attente revient après fermeture et reste privé entre comptes. Le parent le retrouve puis l’envoie une seule fois.',
-    remaining: 'Rejouer une confirmation perdue après enregistrement, les groupes et le clavier sur iPhone. Répéter les essais de coupure entre téléphones, avec des coupures réelles pendant l’envoi. Pas encore en ligne.',
+    summary: 'Une confirmation perdue ne double pas le message.',
+    verified: 'Le parent retrouve un seul message après réouverture. Le conducteur le reçoit et le lit. L’envoi en attente reste aussi privé entre comptes.',
+    remaining: 'À tester entre deux téléphones, avec de vraies coupures, puis pour les groupes et le clavier sur iPhone. Pas encore en ligne.',
+    postCommitReceiptLossPhone: chatReceiptPhone,
     pendingSendAccountSwitchPhone: chatAccountSwitchPhone,
     pendingSendRestartPhone: chatPendingRestartPhone,
     unsentDraftPhone: chatDraftPhone,
@@ -32,7 +34,7 @@ export function createMessagesFlow(local, shot) {
       'Lire les 50 derniers messages laisse les 70 plus anciens comptés comme non lus.',
     ], 'docs/release/evidence/local-booking-recovery-2026-10-17/services.json'), checkedAt: '2026-10-17' },
     ui: { source: 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json', checkedAt: '2026-10-19', groups: ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui'] },
-    images: [...chatAccountSwitchImages, ...chatPendingRestartImages, ...chatDraftReplayImages, ...chatNetworkPhoneImages, ...chatDraftPhoneImages, shot('chat-network-isolated-draft', 'Brouillon conservé pendant la coupure, simulation du 27 octobre'),
+    images: [...chatReceiptImages, ...chatAccountSwitchImages, ...chatPendingRestartImages, ...chatDraftReplayImages, ...chatNetworkPhoneImages, ...chatDraftPhoneImages, shot('chat-network-isolated-draft', 'Brouillon conservé pendant la coupure, simulation du 27 octobre'),
       shot('chat-network-isolated-reply', 'Message renvoyé et réponse reçue, simulation du 27 octobre'),
       shot('chat-network-current-draft', 'Brouillon conservé pendant la coupure, essai local du 17 octobre'),
       shot('chat-network-current-reply', 'Message renvoyé et réponse reçue, essai local du 17 octobre'),

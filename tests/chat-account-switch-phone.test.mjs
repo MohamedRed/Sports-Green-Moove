@@ -22,10 +22,12 @@ test('the physical account switch retains eleven protected checkpoints and one e
 test('three reviewed account-switch captures precede all 28 older chat images and nine tour steps',()=>{
   const flow=content.flows.find(row=>row.id==='messages');assert.equal(flow.status,'partial');assert.equal(flow.checkedAt,'2026-11-01');
   assert.equal(flow.pendingSendAccountSwitchPhone.source,chatAccountSwitchPhoneFolder+'review.json');
-  assert.match(flow.remaining,/confirmation perdue après enregistrement/);assert.match(flow.remaining,/iPhone/);
-  const files=Object.keys(chatAccountSwitchCaptures);assert.equal(files.length,3);assert.equal(flow.images.length,31);
-  assert.deepEqual(flow.images.slice(0,3).map(row=>row.file),files);assert.deepEqual(flow.tour.slice(0,3).map(row=>row.image),files);
-  assert.equal(flow.images.filter(row=>!files.includes(row.file)).length,28);assert.equal(flow.tour.length,12);
+  assert.match(flow.remaining,/deux téléphones/);assert.match(flow.remaining,/iPhone/);
+  const images=flow.images.filter(row=>!row.file.startsWith('chat-receipt-phone-'));
+  const tour=flow.tour.filter(row=>!row.image.startsWith('chat-receipt-phone-'));
+  const files=Object.keys(chatAccountSwitchCaptures);assert.equal(files.length,3);assert.equal(images.length,31);
+  assert.deepEqual(images.slice(0,3).map(row=>row.file),files);assert.deepEqual(tour.slice(0,3).map(row=>row.image),files);
+  assert.equal(images.filter(row=>!files.includes(row.file)).length,28);assert.equal(tour.length,12);
   for(const [id,path]of Object.entries(chatAccountSwitchCaptures))assert.equal(captures[id],path);
   assert.equal(flow.pendingSendRestartPhone.checkedAt,'2026-10-31');assert.equal(flow.networkRecoveryPhone.checkedAt,'2026-10-31');
   const progress=content.updates.find(row=>row.source===chatAccountSwitchPhoneFolder+'README.md');assert(progress);

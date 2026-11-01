@@ -7,6 +7,7 @@ import {chatDraftPhoneCaptures} from './chat-draft-phone.mjs';
 import {chatDraftReplayCaptures} from './chat-draft-replay-phone.mjs';
 import {chatPendingRestartCaptures} from './chat-pending-restart-phone.mjs';
 import {chatAccountSwitchCaptures} from './chat-account-switch-phone.mjs';
+import {chatReceiptCaptures} from './chat-receipt-loss-phone.mjs';
 import {accentControlCaptures} from './accent-controls-flow.mjs';
 import {tripConsentPhoneCaptures} from './trip-consent-phone.mjs';
 import {tripDraftPhoneCaptures} from './trip-draft-phone.mjs';
@@ -39,6 +40,7 @@ export const recentCaptures = {
   ...notificationRetryCaptures,
   ...notificationInboxPhoneCaptures,
   ...chatAccountSwitchCaptures,
+  ...chatReceiptCaptures,
   ...chatPendingRestartCaptures,
   ...chatDraftReplayCaptures,
   ...chatDraftPhoneCaptures,

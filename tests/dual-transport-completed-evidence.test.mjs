@@ -67,7 +67,7 @@ test('reviewed captures use this run while physical, stability and draft-restart
     const png = bytes(name); assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert.equal(png.readUInt32BE(16), 1080); assert.equal(png.readUInt32BE(20), 2400);
   }
-  for (const remaining of [/Répéter/, /confirmation perdue/, /téléphones/, /groupes/, /Pas encore en ligne/]) assert.match(flow.remaining, remaining);
+  for (const remaining of [/deux téléphones/, /vraies coupures/, /téléphones/, /groupes/, /Pas encore en ligne/]) assert.match(flow.remaining, remaining);
   assert(content.blockers.some(item => item.id === 'chat-send-stability' && item.source !== item.latestSource));
   assert(content.updates.some((item) => item.title === 'La coupure et la reprise passent'));
   assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');

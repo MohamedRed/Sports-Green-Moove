@@ -111,6 +111,6 @@ test('retained service evidence proves a saved message before the reset without 
   assert(flow.local.groups.includes('chat-post-commit-response-loss'));
   assert.equal(flow.ui.source, 'docs/release/evidence/native-matrix-67ab59c-2026-10-19/replay/results.json');
   assert(!flow.ui.groups.includes('chat-post-commit-response-loss'));
-  assert.match(flow.remaining, /coupures réelles pendant l’envoi/);
+  assert.match(flow.remaining, /vraies coupures/);
   assert.match(read(directory + 'README.md'), /not a native retry/);
 });
