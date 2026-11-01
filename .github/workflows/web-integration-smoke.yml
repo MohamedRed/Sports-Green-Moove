@@ -1675,7 +1675,7 @@ jobs:
       - name: Test durable team push dispatch without provider sends
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-push-dispatch-services.json
-        run: node scripts/qa/run-local-team-conversation.mjs --push-dispatch && node --test tests/team-push-dispatch.test.mjs
+        run: node scripts/qa/run-local-team-conversation.mjs --push-dispatch && node --test tests/team-push-dispatch.test.mjs tests/team-push-invalidation.test.mjs
       - name: Test multi-child grants and cross-team conversation isolation
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json

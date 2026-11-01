@@ -20,6 +20,8 @@ test('the durable dispatcher keeps provider calls outside transactions and isola
   assert(delivery.includes('row.leaseId!==leaseId'));assert(delivery.includes('row.attempts>=teamPushAttemptLimit'));
   assert(delivery.indexOf('if(!claim)return;')<delivery.indexOf('await send(claim.token'));
   assert(!delivery.includes('console.'));assert(!delivery.includes('transaction.delete'));
+  assert(delivery.indexOf('row.leaseId!==leaseId')<delivery.indexOf('await retireRejectedTeamPushBinding'));
+  assert(delivery.includes('if(result.reason==="invalid_token")await retireRejectedTeamPushBinding'));
   const recipient=read(prefix+'teamPushDispatch.ts');assert(recipient.includes('Promise.allSettled'));
   const provider=read(prefix+'teamPushProvider.ts');
   assert(provider.includes('data:{type:"teamMessage",notificationId}'));
@@ -43,7 +45,7 @@ test('service smoke exercises the new dispatch mode separately and retains its d
   for(const event of ['push','pull_request'])assert(workflow.on[event].paths.includes('tests/team-push*.test.mjs'));
   const steps=workflow.jobs['people-safety'].steps;
   const step=steps.find(row=>row.name==='Test durable team push dispatch without provider sends');
-  assert.equal(step.run,'node scripts/qa/run-local-team-conversation.mjs --push-dispatch && node --test tests/team-push-dispatch.test.mjs');
+  assert.equal(step.run,'node scripts/qa/run-local-team-conversation.mjs --push-dispatch && node --test tests/team-push-dispatch.test.mjs tests/team-push-invalidation.test.mjs');
   assert.equal(step.env.SGM_LOCAL_FLOW_OUTPUT,'${{ runner.temp }}/team-push-dispatch-services.json');
   assert(steps.find(row=>row.with?.name==='team-alert-services-results').with.path.includes('team-push-dispatch-services.json'));
 });

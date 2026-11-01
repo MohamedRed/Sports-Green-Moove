@@ -1,4 +1,5 @@
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
+import {validatePushCleanup,validateReturnPass,pushCleanupFolder,returnPassFolder} from './push-cleanup-and-return-validation.mjs';
 import {foregroundReturnFolder,validateForegroundReturnIntent} from './foreground-return-intent-validation.mjs';
 import {alertCaptureFailureFolder,validateAlertCaptureFailure} from '../scripts/qa/alert-capture-failure-evidence.mjs';
 import {notificationSamplingFolder,validateNotificationSampling} from '../scripts/qa/notification-sampling-evidence.mjs';
@@ -47,6 +48,10 @@ import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/tr
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validatePushCleanup(root);validateReturnPass(root);
+  assert.equal(content.flows.find(row=>row.id==='team-conversation').pushInvalidation.source,pushCleanupFolder+'review.json');
+  assert.equal(content.flows.find(row=>row.id==='native-startup').foregroundReturnPass.source,returnPassFolder+'review.json');
+  for(const folder of [pushCleanupFolder,returnPassFolder])assert(content.updates.some(row=>row.source===folder+'README.md'));
   validateForegroundReturnIntent(root);
   assert.equal(content.flows.find(row=>row.id==='native-startup').foregroundReturnIntent.source,foregroundReturnFolder+'review.json');
   assert(content.updates.some(row=>row.source===foregroundReturnFolder+'README.md'));

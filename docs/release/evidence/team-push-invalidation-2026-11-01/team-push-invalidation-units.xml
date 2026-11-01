@@ -1,0 +1,14 @@
+<testsuite name="src/__tests__/team-push-invalidation.test.ts" timestamp="2026-11-01T21:34:36.016Z" hostname="local-test-host" tests="12" failures="0" errors="0" skipped="0" time="0.012414875">
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; atomically removes only the current token index and preserves a valid revision tombstone" time="0.005338458"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; does not mutate a replacement binding: userId" time="0.0003965"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; does not mutate a replacement binding: revision" time="0.0003555"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; does not mutate a replacement binding: fingerprint" time="0.000283459"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; does not mutate a replacement binding: token" time="0.000202083"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; does not mutate a replacement binding: active,token" time="0.000559"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; does not recreate a missing installation" time="0.000357875"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; fails closed without deleting a conflicting reverse owner: userId" time="0.000966167"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; fails closed without deleting a conflicting reverse owner: revision" time="0.000838958"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; fails closed without deleting a conflicting reverse owner: installationId" time="0.000218958"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; fails closed if the current reverse owner is missing" time="0.000288667"></testcase>
+  <testcase classname="src/__tests__/team-push-invalidation.test.ts" name="invalid team push binding retirement &gt; checks stored identity rather than trusting the delivery fingerprint" time="0.000172458"></testcase>
+</testsuite>

@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The isolated invalid-registration defect is reproduced and corrected, with 22
+frozen-source service passes and 12 focused/623 backend unit passes. Retain the
+intermediate source-inventory rejection; it is not accepted as a passing run.
+The 93d9138 remote-return lane independently passes two framework cases and its
+connected ride case, primary copy and device/environment disposal. Publish two
+short local/simulation notes without changing any historical media, phone dates,
+tours, partial statuses or public access. Neither result accepts real messaging,
+physical tracking, safety audits, production deployment or the full native gate.
+See `docs/release/evidence/team-push-invalidation-2026-11-01/README.md` and
+`docs/release/evidence/foreground-return-pass-93d9138-2026-11-01/README.md`.
+
 The b9a9000 manual-finish candidate fails in scenario disposal again. Installed
 library/source inspection supports an intent-filter mismatch on foreground return.
 The replacement preserves the launch filters and uses only REORDER_TO_FRONT;

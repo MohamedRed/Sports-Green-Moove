@@ -1,0 +1,21 @@
+{
+  "scope": "isolated-native-foreground-return-pass-not-physical-or-full-gate",
+  "testedAt": "2026-11-01T21:31:25.274Z",
+  "sourceCommit": "93d9138f71f9db4c315f6733448666d19e2e638b",
+  "runId": 41351599563,
+  "jobId": 124982776166,
+  "jobConclusion": "success",
+  "archive": {
+    "id": 13101791762,
+    "sha256": "adccffd0c00ce84d2c16a2240691aa74ca40d766b4d30f00bfb6390ff91aa53d"
+  },
+  "frameworkCases": 2,
+  "connectedRideCases": 1,
+  "correctedRemoteTrialPassed": true,
+  "wholeGatePassed": false,
+  "physicalDevice": false,
+  "providerTrackingVerified": false,
+  "releaseAccepted": false,
+  "productionWrites": false,
+  "publishedCaptures": {}
+}

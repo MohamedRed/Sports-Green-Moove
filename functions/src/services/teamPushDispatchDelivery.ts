@@ -7,6 +7,7 @@ import {teamPushRegistrationFingerprint,teamPushRegistrationRecordSchema,teamPus
   teamPushTokenOwnerSchema} from "../domain/teamPushRegistration.js";
 import {firestore} from "../lib/firestore.js";
 import {currentDispatchEnvelope,dispatchAlertIsCurrent} from "./teamPushDispatchAuthority.js";
+import {retireRejectedTeamPushBinding} from "./teamPushInvalidation.js";
 
 export class TeamPushRetryRequired extends Error {
   constructor(){super("Team push dispatch remains pending");}
@@ -57,6 +58,7 @@ export async function dispatchTeamPushDelivery(messageId:string,deliveryId:strin
       if(!result.providerId || result.providerId.length>512)throw new Error("Team push provider receipt requires review");
       transaction.update(ref,{status:"accepted",providerId:result.providerId,updatedAt});return false;
     }
+    if(result.reason==="invalid_token")await retireRejectedTeamPushBinding(transaction,row,claim.token,updatedAt);
     const terminal=result.reason==="invalid_token" || result.reason==="configuration" || row.attempts>=teamPushAttemptLimit;
     transaction.update(ref,{status:result.reason==="invalid_token"?"invalid_token":terminal?"failed":"queued",
       lastError:result.reason,updatedAt});return !terminal;

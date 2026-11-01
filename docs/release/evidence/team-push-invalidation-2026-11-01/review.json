@@ -1,0 +1,23 @@
+{
+  "scope": "isolated-invalid-token-cleanup-not-provider-or-phone-proof",
+  "testedAt": "2026-11-01T21:35:15.678Z",
+  "previousSourceCommit": "93d9138f71f9db4c315f6733448666d19e2e638b",
+  "serviceCases": 22,
+  "invalidationCases": 8,
+  "unitTests": 623,
+  "focusedUnitTests": 12,
+  "defectReproduced": true,
+  "initialSourceFiles": {
+    "scripts/qa/local-team-push-dispatch-suite.mjs": "e217a41a6c546a81c51e789f53fe059db2eebe49038a36f35c580cdd294450c4",
+    "scripts/qa/team-push-invalidation-checks.mjs": "806e4005febe67cd0fc4c4048ba17330ad3189c9dedcdc12eb7a7acbc7b96b09",
+    "functions/src/services/teamPushDispatchDelivery.ts": "09c9d260dadf0556076712548e3e8e5fbad35abb012bc36f05b4be7ee8bf8e94"
+  },
+  "intermediateSourceDriftRejected": true,
+  "providerRequests": 0,
+  "productionDeployed": false,
+  "productionWrites": false,
+  "physicalDevice": false,
+  "pushDeliveryVerified": false,
+  "releaseAccepted": false,
+  "publishedCaptures": {}
+}

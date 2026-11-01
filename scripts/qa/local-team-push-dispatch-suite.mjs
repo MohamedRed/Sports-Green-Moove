@@ -10,6 +10,7 @@ import {withLocalAdminCleanup} from './local-admin-lifecycle.mjs';
 import {prepareTeamAlertFixture} from './team-alert-fixture.mjs';
 import {teamPushDispatchSources} from './team-push-dispatch-sources.mjs';
 import {fetchLocalQa} from './local-http-request.mjs';
+import {runTeamPushInvalidationChecks} from './team-push-invalidation-checks.mjs';
 const {queueTeamPushRecipients,planTeamPushRecipient}=await import('../../functions/lib/services/teamPushDispatchPlan.js');
 const {dispatchTeamPushRecipient}=await import('../../functions/lib/services/teamPushDispatch.js');
 const {dispatchTeamPushDelivery}=await import('../../functions/lib/services/teamPushDispatchDelivery.js');
@@ -101,6 +102,12 @@ await withLocalAdminCleanup(async()=>{
       await dispatchTeamPushDelivery(m.id,ids[i],async()=>({status:'rejected',reason}));
       const before=fakeCalls;await dispatchTeamPushDelivery(m.id,ids[i],sender);assert.equal(fakeCalls,before);
       assert.equal((await delivery(m,ids[i]).get()).get('status'),reason==='invalid_token'?'invalid_token':'failed');
+      if(reason==='invalid_token'){
+        const installationId=(await delivery(m,ids[i]).get()).get('installationId');
+        const position=devices.findIndex(device=>teamPushInstallationId(device.installationId)===installationId);assert(position>=0);
+        devices[position]={...devices[position],revision:devices[position].revision+1,token:fresh().token};
+        await call('registerTeamPushDevice',parent,devices[position]);
+      }
     }
   });
   await check('expired-alerts-suppress-before-planning-and-again-before-a-provider-claim',async()=>{
@@ -117,16 +124,16 @@ await withLocalAdminCleanup(async()=>{
   });
   await check('current-account-switch-suppresses-only-the-old-device-binding',async()=>{
     const m=await newMessage();await plan(m);
-    await call('registerTeamPushDevice',otherAdult,{...devices[0],revision:2});
+    await call('registerTeamPushDevice',otherAdult,{...devices[0],revision:devices[0].revision+1});
     const before=fakeCalls;await dispatchTeamPushRecipient(m.id,m.parent,sender);assert.equal(fakeCalls-before,1);
     const rows=(await m.root.collection('deliveries').get()).docs;assert.equal(rows.filter(row=>row.get('status')==='suppressed').length,1);
-    devices[0]={...devices[0],revision:3};await call('registerTeamPushDevice',parent,devices[0]);
+    devices[0]={...devices[0],revision:devices[0].revision+2};await call('registerTeamPushDevice',parent,devices[0]);
   });
   await check('signout-tombstone-between-plan-and-send-never-sends-to-the-removed-token',async()=>{
-    const m=await newMessage();await plan(m);devices[0]={...devices[0],revision:4};
+    const m=await newMessage();await plan(m);devices[0]={...devices[0],revision:devices[0].revision+1};
     await call('registerTeamPushDevice',parent,{...devices[0],token:null});
     const before=fakeCalls;await dispatchTeamPushRecipient(m.id,m.parent,sender);assert.equal(fakeCalls-before,1);
-    devices[0]={...devices[0],revision:5};await call('registerTeamPushDevice',parent,devices[0]);
+    devices[0]={...devices[0],revision:devices[0].revision+1};await call('registerTeamPushDevice',parent,devices[0]);
   });
   await check('read-notification-disabled-account-and-current-child-role-stop-both-planning-and-dispatch',async()=>{
     const m=await newMessage();await plan(m);
@@ -158,6 +165,7 @@ await withLocalAdminCleanup(async()=>{
     await f.guardian(parent,'request',3);await f.guardian(parent,'verify',4);assert.deepEqual(await plan(n),[]);
     const p=await newMessage();assert.equal((await plan(p)).length,2);
   });
+  await runTeamPushInvalidationChecks({check,db,call,parent,otherAdult,newMessage,plan,delivery,dispatch:dispatchTeamPushDelivery});
   const owned=new Set([`guardianVerifications/${f.parentVerificationId}`]);
   for(const [path,data]of baseline)if(!owned.has(path))assert.deepEqual((await db.doc(path).get()).data(),data,path);
   assert.deepEqual((await auth.listUsers(1000)).users.map(row=>({uid:row.uid,claims:row.customClaims??{},disabled:row.disabled})),originalUsers);
