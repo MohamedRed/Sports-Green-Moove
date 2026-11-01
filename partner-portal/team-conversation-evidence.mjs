@@ -22,8 +22,15 @@ import {validateNotificationInboxPhone} from '../scripts/qa/notification-inbox-p
 import {validateNotificationRetryPhone} from '../scripts/qa/notification-retry-phone-evidence.mjs';
 import {validateTeamPushRegistration} from '../scripts/qa/team-push-registration-evidence.mjs';
 import {validateTeamAccountRegressions} from '../scripts/qa/team-account-regressions-evidence.mjs';
+import {validateNativeTeamPushJournal} from '../scripts/qa/native-team-push-journal-evidence.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if (flow.pushJournal) {
+    const run = validateNativeTeamPushJournal(root, dirname(flow.pushJournal.source));
+    assert.equal(flow.pushJournal.checkedAt, run.testedAt.slice(0, 10));
+    assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+  }
   if (flow.pushRegistration) {
     const run = validateTeamPushRegistration(root, dirname(flow.pushRegistration.source));
     assert.equal(flow.pushRegistration.checkedAt, run.testedAt.slice(0, 10));

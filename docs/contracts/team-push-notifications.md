@@ -38,11 +38,37 @@ metadata fails closed even on identical replay. Twenty active installations per
 account bound fanout work; registration beyond the limit is rejected without
 creating an extra binding. The query index is declared in `firestore.indexes.json`.
 
+## Native Registration Journal
+
+The Android journal and callable gateway now have 27 JVM tests and a compiled
+private-storage instrumented test. No application lifecycle callback invokes
+them yet. They are not token registration or closed-app delivery proof.
+
+The journal stores an installation UUID and cryptographic proof in private
+no-backup storage. Synchronized atomic writes allocate a durable revision before
+asynchronous token retrieval. Exact pending requests survive reconstruction;
+only a matching authenticated receipt clears them. A duplicate callback cannot
+alter a persisted revision's payload. Confirmed state keeps only the token hash.
+Account epochs reject stale callbacks even after returning to the same account.
+
+Changing accounts or removing registration clears local confirmation and sets a
+provider-token-deletion barrier. Only actual SDK success may clear that barrier;
+the lifecycle controller still needs to perform this operation. A server removal
+can remain unconfirmed after offline logout and cannot be replayed as a different
+user. Neither local confirmation nor a deleted token proves remote delivery or
+message authority. Corrupt private state fails without reinitializing identity.
+
+The file journal assumes Android's default single application process. It does
+not implement cross-process locking. All sensitive values remain absent from
+diagnostic strings. The response boundary checks the Firebase current UID before
+and after its call and accepts only the exact receipt schema.
+
 ## Remaining Delivery Work
 
-Native installation-proof storage, serialized revision allocation, token refresh,
-permission changes, sign-out removal and account-switch handling must call this
-boundary. Do not add a native success claim until the actual phone path runs.
+Native token refresh, permission changes, sign-out removal and account-switch
+callbacks must call the journal and server boundary. SDK token deletion, retries
+and cancellation still require runtime coordination. Do not add a native success
+claim until the actual phone path runs.
 
 The outbox dispatcher must recheck current account status, current team identity,
 adult/guardian admission and the message's admission-time boundary before sending.

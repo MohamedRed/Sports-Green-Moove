@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.RideObservationWireTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:05:22.569Z" hostname="local-test-host" time="0.0">
+  <properties></properties>
+  <testcase name="invalidAgesAndUnknownSourcesAreNotGuessed" classname="be.sportgreenmoove.app.services.RideObservationWireTest" time="0.0"></testcase>
+  <testcase name="readsStructuredServerAgesWithoutReadingThePhoneClock" classname="be.sportgreenmoove.app.services.RideObservationWireTest" time="0.0"></testcase>
+  <testcase name="anAbsentProtocolRemainsExplicitlyAbsentForTheObserverToRefuse" classname="be.sportgreenmoove.app.services.RideObservationWireTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

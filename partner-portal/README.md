@@ -1385,6 +1385,12 @@ records keep their own dates. The nine-step tour distinguishes both dates.
 
 ## Content And Evidence
 
+The 1 November native registration journal adds 27 local JVM checks and a
+compiled, unexecuted private-storage device test. Its brief progress note does
+not promote actual phone registration or closed-app delivery. Preserve the
+62-image team gallery, 39-step tour, all historical dates and partial status.
+See `docs/release/evidence/native-team-push-journal-2026-11-01/README.md`.
+
 `tours.mjs` defines guided steps using only each flow’s reviewed images or clips.
 The overview contains progress totals and the newest update for up to six distinct
 flows. A completed cross-flow trial may list the flows it supersedes, so older
