@@ -1,5 +1,15 @@
 # Local Multi-Person Flow Checks
 
+`manual-chat-account-switch-phone.mjs <private-session-path> <fresh-output-directory>`
+observes eleven ordered checkpoints around a controlled offline send, sign-out,
+the other participant's empty composer, and restoration of the original account's
+pending text. Only the phone sends chat. All nine pre-retry checkpoints must have
+zero messages/notices; the final retry and sign-out must retain exactly one.
+The existing parent initialization timestamp exclusion and the driver's
+initialization timestamp are the only profile exceptions. Records cannot prove
+phone UI isolation or the original pending request ID: review actual screens
+separately. Use only the four-service private allowlist, with no invitation port.
+
 `manual-chat-pending-restart-phone.mjs <private-session-path> <fresh-output-directory>`
 prepares an isolated approved booking but never submits a chat message. Submit the
 nine names from `chat-pending-restart-checkpoints.mjs` only after observing their

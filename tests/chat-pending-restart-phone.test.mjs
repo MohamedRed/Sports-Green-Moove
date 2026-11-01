@@ -17,17 +17,19 @@ test('the actual phone pre-commit pending restart retains nine protected checkpo
     notifications:1,originalPendingIdentityAccepted:false,postCommitResponseLossAccepted:false,releaseAccepted:false});
 });
 test('three reviewed phone captures precede every historical chat image and tour without promoting the whole flow',()=>{
-  const flow=content.flows.find(row=>row.id==='messages');assert.equal(flow.status,'partial');assert.equal(flow.checkedAt,'2026-10-31');
+  const flow=content.flows.find(row=>row.id==='messages');assert.equal(flow.status,'partial');assert.equal(flow.pendingSendRestartPhone.checkedAt,'2026-10-31');
   assert.equal(flow.pendingSendRestartPhone.source,chatPendingRestartPhoneFolder+'review.json');
   assert.match(flow.remaining,/confirmation perdue/);assert.match(flow.remaining,/clavier sur iPhone/);
-  const files=Object.keys(chatPendingRestartCaptures);assert.equal(files.length,3);assert.equal(flow.images.length,28);
-  assert.deepEqual(flow.images.slice(0,3).map(row=>row.file),files);assert.deepEqual(flow.tour.slice(0,3).map(row=>row.image),files);
+  const images=flow.images.filter(row=>!row.file.startsWith('chat-account-phone-'));
+  const tour=flow.tour.filter(row=>!row.image.startsWith('chat-account-phone-'));
+  const files=Object.keys(chatPendingRestartCaptures);assert.equal(files.length,3);assert.equal(images.length,28);
+  assert.deepEqual(images.slice(0,3).map(row=>row.file),files);assert.deepEqual(tour.slice(0,3).map(row=>row.image),files);
   for(const [id,path]of Object.entries(chatPendingRestartCaptures))assert.equal(captures[id],path);
   assert.equal(flow.images.filter(row=>row.file.startsWith('chat-draft-replay-')).length,2);
   assert.equal(flow.images.filter(row=>row.file.startsWith('chat-draft-')&&!row.file.startsWith('chat-draft-replay-')).length,3);
   assert.equal(flow.images.filter(row=>row.file.startsWith('chat-phone-')&&!row.file.startsWith('chat-phone-pending-')).length,4);
-  assert.equal(flow.tour.filter(row=>!row.image.startsWith('chat-phone-pending-')).length,6);
-  assert.equal(content.blockers.find(row=>row.id==='chat-pending-restart').source,chatPendingRestartPhoneFolder+'README.md');
+  assert.equal(tour.filter(row=>!row.image.startsWith('chat-phone-pending-')).length,6);
+  assert.equal(content.blockers.find(row=>row.id==='chat-pending-restart').previousSource,chatPendingRestartPhoneFolder+'README.md');
   const progress=content.updates.find(row=>row.source===chatPendingRestartPhoneFolder+'README.md');assert(progress);
   assert.doesNotMatch(progress.title+progress.text,/BrowserStack|Firebase|SDK|APK|localhost|adbd/);
 });

@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The 1 November physical pending-send account-switch trial keeps the parent's
+text invisible in the driver's same-booking composer. The parent signs in again,
+recovers the pending text, and explicitly sends exactly one message/notification.
+All nine pre-retry checkpoints remain empty. Publish only its three reviewed
+session crops before the older images/tour, keep Messages partial, preserve all
+historical dates and the public audience. No original UUID, post-commit loss,
+process restart, peer-phone, real radio loss, iOS, push or release is accepted.
+The separate focused virtual trial fails cellular preparation; retain it without
+overriding it with this phone result. Uninstall reports no apps, not proven package
+absence; the second explicit stop closes the session. Owned services/private
+inputs are removed. See `docs/release/evidence/chat-account-switch-phone-2026-11-01/README.md`.
+
 The later 31 October physical pending-send trial cuts the connection before the
 server commit, observes Android App info force-stop and restores the same pending
 text after one session retry without signing in again. All seven pre-send-retry

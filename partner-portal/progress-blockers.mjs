@@ -3,10 +3,11 @@ import {preparationBlockers} from './preparation-failures.mjs';
 
 export const blockers = [
   {id: 'chat-pending-restart', title: 'Vérifier les autres reprises d’envoi',
-    text: 'Le message en attente revient après fermeture complète. Réessayer ne crée qu’un message.',
-    next: 'Tester une confirmation perdue après enregistrement, le changement de compte et iPhone.',
-    source: 'docs/release/evidence/chat-pending-restart-phone-2026-10-31/README.md',
-    previousSource: 'docs/release/evidence/chat-draft-replay-phone-2026-10-31/README.md'},
+    text: 'Le message en attente revient après fermeture et reste privé entre comptes. Réessayer ne crée qu’un message.',
+    next: 'Tester une confirmation perdue après enregistrement et iPhone.',
+    source: 'docs/release/evidence/chat-account-switch-phone-2026-11-01/README.md',
+    previousSource: 'docs/release/evidence/chat-pending-restart-phone-2026-10-31/README.md',
+    earlierSource: 'docs/release/evidence/chat-draft-replay-phone-2026-10-31/README.md'},
   ...preparationBlockers,
   {id: 'review-trip-context', title: 'Les avis après une coupure réseau',
     text: 'La confirmation perdue, la nouvelle tentative et la fermeture complète passent sur téléphone, sans doublon.',

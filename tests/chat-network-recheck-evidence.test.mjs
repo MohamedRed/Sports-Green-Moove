@@ -47,5 +47,5 @@ test('current copy keeps phone scope partial and earlier captures dated without 
   assert.deepEqual(flow.networkRecoveryRecheck, reference); assert.equal(flow.networkRecovery.checkedAt, '2026-10-27');
   const news = content.updates.find(row => row.source === folder + 'README.md');
   assert.match(news.text, /téléphone réel/); assert.doesNotMatch(news.text, /BrowserStack|Firebase|Android|SDK|9da2228/);
-  assert(flow.images.filter(image => !image.file.startsWith('chat-phone-') && !image.file.startsWith('chat-draft-')).every(image => /27 octobre|17 octobre|16 octobre|15 octobre/.test(image.alt)));
+  assert(flow.images.filter(image => !image.file.startsWith('chat-account-phone-') && !image.file.startsWith('chat-phone-') && !image.file.startsWith('chat-draft-')).every(image => /27 octobre|17 octobre|16 octobre|15 octobre/.test(image.alt)));
 });

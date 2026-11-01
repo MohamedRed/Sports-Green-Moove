@@ -143,7 +143,7 @@ test('current session and owner-draft rechecks preserve separate failures and pa
   assertSessionRestorationSourceLayout(candidate, 'failure-observed');
   assert.throws(() => assertSessionRestorationSourceLayout({...candidate, 'extra.kt':'a'.repeat(64)}, 'failure-observed'));
   const flow = content.flows.find(row => row.id === 'messages'); assert.equal(flow.status, 'partial');
-  assert.equal(flow.images.filter(row => !row.file.startsWith('chat-phone-pending-')).length, 25);
+  assert.equal(flow.images.filter(row => !row.file.startsWith('chat-account-phone-') && !row.file.startsWith('chat-phone-pending-')).length, 25);
   assert.equal(flow.pendingSendRestartPhone.checkedAt, '2026-10-31'); assert.equal(flow.unsentDraftReplayPhone.checkedAt, '2026-10-31');
   assert.equal(flow.ownerDraftRecheck.checkedAt, '2026-10-31');
   for (const id of ['messages','session-restoration']) assert(content.updates.some(row => row.flow === id && row.source === recoveryRecheckFolder + 'README.md'));

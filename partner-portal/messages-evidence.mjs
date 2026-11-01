@@ -7,12 +7,14 @@ import {chatNetworkPhoneFolder, validateChatNetworkPhone} from '../scripts/qa/ch
 import {chatDraftPhoneFolder, validateChatDraftPhone} from '../scripts/qa/chat-draft-phone-evidence.mjs';
 import {chatDraftReplayPhoneFolder, validateChatDraftReplayPhone} from '../scripts/qa/chat-draft-replay-phone-evidence.mjs';
 import {chatPendingRestartPhoneFolder,validateChatPendingRestartPhone} from '../scripts/qa/chat-pending-restart-phone-evidence.mjs';
+import {chatAccountSwitchPhoneFolder,validateChatAccountSwitchPhone} from '../scripts/qa/chat-account-switch-phone-evidence.mjs';
 
 export function validateMessagesEvidence(root, flow, captures) {
   if (flow.id !== 'messages') return;
+  assert.equal(flow.pendingSendAccountSwitchPhone.source,chatAccountSwitchPhoneFolder+'review.json');validateChatAccountSwitchPhone(root);
   assert.equal(flow.pendingSendRestartPhone.source,chatPendingRestartPhoneFolder+'review.json');validateChatPendingRestartPhone(root);
   assert.equal(flow.status, 'partial'); assert.equal(flow.networkRecovery.checkedAt, '2026-10-27');
-  assert.equal(flow.checkedAt, flow.networkRecoveryPhone.checkedAt);
+  assert.equal(flow.checkedAt, flow.pendingSendAccountSwitchPhone.checkedAt);
   assert.equal(flow.networkRecoveryPhone.source, chatNetworkPhoneFolder + 'review.json');
   validateChatNetworkPhone(root);
   assert.equal(flow.unsentDraftPhone.source, chatDraftPhoneFolder + 'review.json');

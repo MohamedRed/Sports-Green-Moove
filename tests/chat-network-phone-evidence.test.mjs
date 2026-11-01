@@ -14,11 +14,11 @@ test('physical controlled retry retains exact stored records separately from rea
   assert.deepEqual(validateChatNetworkPhone(root), {checkpoints: 8, messages: 2, notifications: 2,
     physicalControlledOfflineRetryAccepted: true, releaseAccepted: false});
   const flow = content.flows.find(row => row.id === 'messages');
-  assert.equal(flow.checkedAt, '2026-10-31'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
+  assert.equal(flow.networkRecoveryPhone.checkedAt, '2026-10-31'); assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'phone');
   assert.equal(flow.networkRecoveryPhone.source, chatNetworkPhoneFolder + 'review.json');
-  assert.equal(flow.images.filter(image => !image.file.startsWith('chat-draft-replay-') && !image.file.startsWith('chat-phone-pending-')).length, 23);
+  assert.equal(flow.images.filter(image => !image.file.startsWith('chat-account-phone-') && !image.file.startsWith('chat-draft-replay-') && !image.file.startsWith('chat-phone-pending-')).length, 23);
   assert.equal(flow.images.filter(image => image.file.startsWith('chat-draft-replay-')).length, 2);
-  const originalTour = flow.tour.filter(row => !row.image.startsWith('chat-phone-pending-'));
+  const originalTour = flow.tour.filter(row => !row.image.startsWith('chat-account-phone-') && !row.image.startsWith('chat-phone-pending-'));
   assert.equal(originalTour.length, 6);
   assert(originalTour.slice(0, 4).every(row => row.image.startsWith('chat-phone-')));
   assert.deepEqual(originalTour.slice(4).map(row => row.image), ['chat-network-isolated-draft', 'chat-network-isolated-reply']);

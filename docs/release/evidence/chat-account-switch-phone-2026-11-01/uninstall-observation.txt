@@ -1,0 +1,84 @@
+Browser tab: 1621936161, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 Pro 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		42 container
+			43 container content
+				175 container in-session-device-react
+					176 container
+					177 container
+						178 image
+						179 button Add Device
+							180 text Add Device
+							181 text PRO
+				171 text ;
+				421 content list
+					422 button Description: Switch Device, ID: switchBrowser
+					423 container
+						424 button Description: Local testing, ID: appLiveToolbarLocalTesting
+							425 image
+							426 image open content menu
+							427 text Local testing
+					428 menu zoomFeature
+						429 Description: zoom out, ID: zoom-out
+						430 Description: zoom in, ID: zoom-in
+						431 text Zoom
+					432 button Description: Record Session, ID: appLiveVideoRecording
+					433 button (disabled) Description: DevTools, ID: showDebuggingOptions
+					434 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					435 button Description: Settings, ID: appLiveSessionSettings
+						436 image open content menu
+						437 text Settings
+					438 button Description: Stop Session, ID: appLiveStopSession
+						439 image
+						440 text Stop Session
+				304 container vertical-toolbar-react
+					305 container vertical-toolbar-draggable
+						306 container
+							441 button toolbar drag icon
+							308 button (collapsed) Description: collapse toolbar, Secondary Actions: Expand
+						309 toolbar
+							310 content list
+								311 button Description: Add Device, ID: app-live-add-device
+									312 container app-live-add-device-lead-text-wrapper
+										313 text Add Device PRO
+								314 button Description: Show Home Screen, ID: dockHomeScreen
+									315 text Show Home Screen
+								316 button (collapsed) Description: Volume, ID: volume-buttons, Secondary Actions: Expand
+									317 text Volume
+								318 button Description: View Open Apps, ID: view-open-apps
+									319 text View Open Apps
+								320 button Description: Install New App, ID: switch-app
+									321 text Install New App
+								322 checkbox (collapsed) Description: performance-toolbar-icon, Value: 0, Secondary Actions: Expand
+									323 text PRO
+								324 button Description: Capture Screenshot, ID: get-screenshot
+									325 text Capture Screenshot
+								446 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									447 text Kill/Uninstall
+								328 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									329 container android-settings-lead-text-wrapper
+										330 text Android Settings PRO
+								331 button Rotate Device, ID: dockOrientationRealAndroid
+									332 text Rotate Device
+								333 button (collapsed) Description: Scroll speed, ID: appLiveScrollSensitivity, Secondary Actions: Expand
+									334 text Scroll speed
+								335 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									336 text Change Location
+								444 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									445 text Throttle Network
+								339 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									340 text Files & Media
+								341 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									342 text Change Language
+								343 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									344 text Screen Reader
+								345 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									346 text Google Pixel 9 Pro
+									347 text v15.0
+		448 container
+			449 text Checking for any user apps to uninstall...
+			450 image
+			451 text Checking for any user apps to uninstall...
+			452 button
+
+The focused UI element is 446 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
