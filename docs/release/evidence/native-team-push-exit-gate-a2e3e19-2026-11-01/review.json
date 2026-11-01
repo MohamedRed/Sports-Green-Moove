@@ -1,0 +1,40 @@
+{
+  "scope": "failed-wide-capture-contract-and-network-copy-not-release-proof",
+  "sourceCommit": "a2e3e19e3db59fdcb870fb92ca0a1d7438a814f2",
+  "testedAt": "2026-11-01T16:53:44Z",
+  "fullGatePassed": false,
+  "ordinary": {
+    "cases": 289,
+    "passed": 234,
+    "skipped": 54,
+    "failed": 1
+  },
+  "focused": {
+    "lanes": 11,
+    "passed": 11,
+    "failed": 0
+  },
+  "narrowExitCasePassed": true,
+  "pendingExitHidesAccountCasePassed": true,
+  "wideExitCasePassed": false,
+  "testCaptureOrientationCauseConfirmed": true,
+  "correctedLandscapeArgumentExecuted": false,
+  "networkInstrumentationPassed": true,
+  "networkEvidenceCopyCompleted": false,
+  "networkCopyRootCauseConfirmed": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionShutdownFlowTest.kt": "10c1fa0b645d51e615dfcac0000ae4b9b2d137590ef5735ece941b5136924dc3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f8931f8d4f8d33d4fe13ce59fd16b499a6e4be40c8036bcf9433c4be47a58e2",
+    "scripts/qa/collect-local-ui-evidence.mjs": "85ac5dd65e99e13be20c966fa8e8cc70b391fc08a20f511ac3bff8a66b7ecca0",
+    "scripts/qa/local-chat-network-ui.mjs": "1e730d8c292abf98470fc21d6740e449eb829f890a032023abdcbcf1c3bbc5d0"
+  },
+  "rawArchiveDigestIndependentlyMatched": false,
+  "physicalDevice": false,
+  "pushDeliveryVerified": false,
+  "releaseAccepted": false,
+  "publishedCaptures": {},
+  "visualReview": {
+    "narrowReadable": true,
+    "wideAvailable": false
+  }
+}

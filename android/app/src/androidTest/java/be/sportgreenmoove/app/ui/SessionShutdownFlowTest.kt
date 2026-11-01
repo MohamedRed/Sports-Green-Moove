@@ -82,6 +82,6 @@ class SessionShutdownFlowTest {
             val bounds = node.fetchSemanticsNode().boundsInRoot
             assertTrue(bounds.left >= frame.left && bounds.right <= frame.right)
         }
-        captureLocalUi(compose, capture)
+        captureLocalUi(compose, capture, landscape = frame.width > frame.height)
     }
 }

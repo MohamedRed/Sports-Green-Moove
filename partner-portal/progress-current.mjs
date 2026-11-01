@@ -8,6 +8,8 @@ import {teamPushLifecycleProgress} from './team-push-lifecycle.mjs';
 import {teamPushNativeGateProgress} from './team-push-native-gate.mjs';
 import {teamPushSignOutProgress} from './team-push-signout.mjs';
 import {nativeNetworkPreparationProgress} from './native-network-preparation.mjs';
+import {teamPushSignOutConnectedProgress} from './team-push-signout-connected.mjs';
+import {teamPushExitGateProgress} from './team-push-exit-gate.mjs';
 import {notificationGateProgress} from './notification-gate-pass.mjs';
 import {notificationInboxPhoneProgress} from './notification-inbox-phone.mjs';
 import {chatDraftPhoneProgress} from './chat-draft-phone.mjs';
@@ -67,6 +69,8 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  teamPushExitGateProgress,
+  teamPushSignOutConnectedProgress,
   nativeNetworkPreparationProgress,
   teamPushSignOutProgress,
   teamPushNativeGateProgress,

@@ -2,6 +2,23 @@
 
 ## Current Publication Policy
 
+The later completed a2e3e19 full gate fails its wide-exit capture orientation
+contract and a network evidence transfer, despite all eleven independent lanes
+passing. The source has a known test-call mismatch (landscape versus the capture
+helper's default portrait); its explicit-orientation correction has compiled but
+needs execution. Preserve the raw failure and the still-unexplained copy failure.
+Publish one concise incomplete-result note, no new media or changed phone dates,
+tours, partial status, public audience or release acceptance. See
+`docs/release/evidence/native-team-push-exit-gate-a2e3e19-2026-11-01/README.md`.
+
+The completed a2e3e19 team-conversation lane now proves the actual app's exit,
+authenticated acknowledgement and independently read inactive local record, using
+an explicit synthetic messaging token. Publish one concise simulation note, no
+new media or changed phone dates/tours/partial status. Preserve the earlier model
+proof and public audience. This is not real SDK token deletion, phone delivery,
+tap, process death or whole-workflow/release acceptance. See
+`docs/release/evidence/native-team-push-signout-connected-a2e3e19-2026-11-01/README.md`.
+
 The later e2bb5d2 source passes the main Native UI job (232 passes/54 skips),
 but fails the focused chat-network lane before radio loss/message retry, during
 requested-network preparation. Publish this latest result without overriding the

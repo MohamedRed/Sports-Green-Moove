@@ -58,7 +58,7 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(rows.length, 111);
   const teamAlerts = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test team alerts and pending phone delivery');
   assert.equal(teamAlerts.length, 1);
-  assert.equal(teamAlerts[0].run, 'npm run test:team-alerts && node --test tests/team-alerts-contract.test.mjs && SGM_LOCAL_FLOW_OUTPUT=${{ runner.temp }}/team-push-registration-services.json npm run test:team-push-registration && node --test tests/team-push-registration-contract.test.mjs tests/team-push-registration-evidence.test.mjs tests/team-push-native-journal.test.mjs tests/team-push-lifecycle.test.mjs tests/team-push-native-gate.test.mjs tests/team-push-signout-contract.test.mjs');
+  assert.equal(teamAlerts[0].run, 'npm run test:team-alerts && node --test tests/team-alerts-contract.test.mjs && SGM_LOCAL_FLOW_OUTPUT=${{ runner.temp }}/team-push-registration-services.json npm run test:team-push-registration && node --test tests/team-push-registration-contract.test.mjs tests/team-push-registration-evidence.test.mjs tests/team-push-native-journal.test.mjs tests/team-push-lifecycle.test.mjs tests/team-push-native-gate.test.mjs tests/team-push-signout-contract.test.mjs tests/team-push-signout-connected.test.mjs');
   assert.equal(teamAlerts[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/team-alerts-services.json');
   const notificationInbox = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test foreground notification inbox authority');
   assert.equal(notificationInbox.length, 1);

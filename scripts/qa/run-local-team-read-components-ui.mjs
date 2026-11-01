@@ -12,3 +12,5 @@ mkdirSync(parent, { recursive: true });
 const directory = resolve(parent, randomBytes(16).toString('hex'));
 execFileSync(process.execPath, [resolve(import.meta.dirname, 'run-team-chat-components.mjs'), receipt, directory,
   '--reads', '--focused-shell-restores'], { env: process.env, stdio: 'inherit', timeout: 12 * 60_000 });
+execFileSync(process.execPath, [resolve(import.meta.dirname, 'run-session-shutdown-components.mjs'), receipt,
+  resolve(parent, randomBytes(16).toString('hex'))], {env: process.env, stdio: 'inherit', timeout: 10 * 60_000});

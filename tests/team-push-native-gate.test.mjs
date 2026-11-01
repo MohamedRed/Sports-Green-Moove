@@ -6,13 +6,15 @@ import {resolve} from 'node:path';
 import {tmpdir} from 'node:os';
 import {teamPushNativeGateFolder as folder, validateTeamPushNativeGate} from '../scripts/qa/team-push-native-gate-evidence.mjs';
 import {nativeNetworkPreparationFolder, validateTeamPushNetworkGate} from '../scripts/qa/team-push-network-gate-evidence.mjs';
+import {exitGateFolder} from '../partner-portal/team-push-exit-gate-validation.mjs';
 import {content} from '../partner-portal/content.mjs';
 
 test('the older capture failure is retained separately from the latest failed network preparation', () => {
   const result = validateTeamPushNativeGate(process.cwd()); assert.equal(result.fullGatePassed, false);
   for (const id of ['native-evidence-copy', 'chat-send-stability']) {
     const blocker = content.blockers.find(row => row.id === id); assert.equal(blocker.pixelCopyHistory.source, folder + 'README.md');
-    assert.equal(blocker.latestSource, nativeNetworkPreparationFolder + 'README.md');
+    assert.equal(blocker.latestSource, exitGateFolder + 'README.md');
+    assert.equal(blocker.networkPreparationHistory.source, nativeNetworkPreparationFolder + 'README.md');
     assert.equal(blocker.latestPassingSource, 'docs/release/evidence/notification-gate-d476cce-2026-11-01/README.md');
   }
   const update = content.updates.find(row => row.source === folder + 'README.md'); assert(update);

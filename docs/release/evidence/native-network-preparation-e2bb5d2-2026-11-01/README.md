@@ -1,10 +1,10 @@
-# Complete Native Gate Recheck — 1 November 2026
+# Complete Native Gate Recheck - 1 November 2026
 
 Source `e2bb5d264a158137624ed041300acdc370061103`, completed run
 `41319436417`, is **failed**. The main native UI job passes: 232 ordinary passes,
 54 intentional skips, zero failures, component capture and connected replay exit
 statuses zero. The private-storage case passes. This does not execute the later
-uncommitted sign-out changes or prove that intermittent capture failures are fixed.
+sign-out implementation or prove that intermittent capture failures are fixed.
 
 Ten of eleven isolated lanes pass. `chat-network-recovery` fails at its 30-second
 network-preparation wait (`LocalChatNetworkFlowTest.kt:83`), before radio loss or

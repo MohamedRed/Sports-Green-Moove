@@ -1,4 +1,4 @@
-# Native Sign-Out Ordering and Durable Intent — 1 November 2026
+# Native Sign-Out Ordering and Durable Intent - 1 November 2026
 
 The source-bound local build passes 770 JVM cases in 113 suites, including 79
 focused registration/exit cases. App and instrumentation APKs compile with local
