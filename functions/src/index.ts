@@ -31,6 +31,7 @@ export { markNotificationRead } from "./callables/notificationRead.js";
 export { getNotificationInbox } from "./callables/notificationInbox.js";
 export { registerTeamPushDevice } from "./callables/teamPushRegistration.js";
 export { resolveTeamPushAlert } from "./callables/teamPushAlert.js";
+export { queueTeamMessagePush, sendTeamMessagePush } from "./teamPushDispatch.js";
 export { listChatConversations, listChatBookingOptions } from "./callables/chatDirectory.js";
 export { sendTeamChatMessage, getTeamChatMessages, listTeamChatOptions, markTeamChatMessagesRead } from "./callables/teamConversation.js";
 export {

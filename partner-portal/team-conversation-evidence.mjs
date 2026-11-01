@@ -27,8 +27,14 @@ import {validateNativeTeamPushLifecycle} from '../scripts/qa/native-team-push-li
 import {validateTeamPushAlertAuthorization} from './team-push-alert-validation.mjs';
 import {validateNativeTeamAlertConsumer} from './team-push-native-consumer-validation.mjs';
 import {validateNativeAlertFirstRun} from './native-alert-first-run-validation.mjs';
+import {validateTeamPushDispatch} from './team-push-dispatch-validation.mjs';
 
 export function validateTeamConversationRecords(root, flow, captures) {
+  if(flow.pushDispatch){
+    const run=validateTeamPushDispatch(root,dirname(flow.pushDispatch.source));
+    assert.equal(flow.pushDispatch.checkedAt,run.testedAt.slice(0,10));
+    assert.equal(flow.latestEvidence,'phone');assert.equal(flow.status,'partial');
+  }
   if(flow.pushFirstNativeAttempt){
     const run=validateNativeAlertFirstRun(root,dirname(flow.pushFirstNativeAttempt.source));
     assert.equal(flow.pushFirstNativeAttempt.checkedAt,run.testedAt.slice(0,10));

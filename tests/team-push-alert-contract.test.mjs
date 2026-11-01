@@ -38,7 +38,7 @@ test('isolated real-callable trial preserves explicit delivery exclusions and un
   assert(runner.includes("['--push-alert','local-team-push-alert-suite.mjs']"));
   assert(runner.includes('assert.deepEqual(report.sourceFiles,registrationSources)'));
   assert(runner.includes('assert.deepEqual(hashSources(),registrationSources)'));
-  assert(runner.includes("if(mode==='--push-alert')assert.equal(report.firestoreClientTerminated,true)"));
+  assert(runner.includes("if(['--push-alert','--push-dispatch'].includes(mode))assert.equal(report.firestoreClientTerminated,true)"));
 });
 test('web smoke runs and retains the authorization trial alongside all existing alert and device suites',()=>{
   const workflow=parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();

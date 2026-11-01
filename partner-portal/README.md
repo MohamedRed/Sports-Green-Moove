@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The durable team push dispatcher passes fourteen isolated service cases with an
+injected transport and twenty-two focused/611 backend units, without deployment or
+provider calls. At 11c423b, eight native routes and four platform/worker cases pass
+with independent permission/device restoration. A separate ride-stop trial still
+fails in scenario disposal after its final capture; its explicit activity-finish
+candidate compiles but is not executed. Publish concise simulation/preparation
+notes without new media, phone dates, tours, status or audience changes. All real
+delivery/tap and release requirements stay pending. See
+`docs/release/evidence/team-push-dispatch-2026-11-01/README.md`.
+
 The b85076e first alert trial passes five of seven route cases, then fails both
 layout hosts before capture; platform/worker tests are never reached. The theme
 host correction and root Messages-selection case compile in a source-bound

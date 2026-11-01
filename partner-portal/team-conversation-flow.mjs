@@ -17,6 +17,7 @@ import {teamPushSignOutConnected} from './team-push-signout-connected.mjs';
 import {teamPushAlertAuthorization} from './team-push-alert.mjs';
 import {teamPushNativeConsumer} from './team-push-native-consumer.mjs';
 import {nativeAlertFirstRun} from './native-alert-first-run.mjs';
+import {teamPushDispatch} from './team-push-dispatch.mjs';
 const historical = source => ({source, checkedAt: '2026-10-21'});
 
 export function createTeamConversationFlow() {
@@ -38,6 +39,7 @@ export function createTeamConversationFlow() {
     pushAlertAuthorization: teamPushAlertAuthorization,
     pushNativeConsumer: teamPushNativeConsumer,
     pushFirstNativeAttempt: nativeAlertFirstRun,
+    pushDispatch: teamPushDispatch,
     authorityPhone: historical('docs/release/evidence/team-authority-phone-2026-10-21/results.json'),
     readPhone: historical('docs/release/evidence/team-read-phone-2026-10-21/results.json'),
     connected: historical(connected + 'team-conversation-results.json'),
