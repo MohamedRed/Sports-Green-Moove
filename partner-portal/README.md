@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The a55ed57 account-free default and explicit pinned comparison both pass 32
+primary transfers. This does not establish a version cause or repair application
+copies; the product toolchain stays unchanged. Separately, 84cb6b2 passes all eight
+native alert-opening routes but fails the immediate removal assertion in one of
+four platform cases. Retain its original failure and verified permission/device
+restoration. The bounded, coherent-snapshot observation candidate compiles but has
+not executed. Publish one concise incomplete alert-removal note, without new media,
+changed phone dates/tours/partial status/audience or delivery/release promotion.
+See `docs/release/evidence/toolchain-notification-recheck-2026-11-01/README.md`.
+
 The isolated invalid-registration defect is reproduced and corrected, with 22
 frozen-source service passes and 12 focused/623 backend unit passes. Retain the
 intermediate source-inventory rejection; it is not accepted as a passing run.

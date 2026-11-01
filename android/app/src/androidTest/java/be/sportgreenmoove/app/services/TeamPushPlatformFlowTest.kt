@@ -3,6 +3,8 @@ package be.sportgreenmoove.app.services
 import android.app.Notification
 import android.app.NotificationManager
 import android.content.Context
+import android.os.SystemClock
+import android.service.notification.StatusBarNotification
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.work.ListenableWorker
 import androidx.work.WorkerFactory
@@ -22,6 +24,16 @@ import org.junit.Test
 class TeamPushPlatformFlowTest {
     private val context get() = InstrumentationRegistry.getInstrumentation().targetContext
     private val request = TeamPushOpenRequest("teamChat_" + "a".repeat(64), "synthetic-parent", 1)
+    private fun awaitNotifications(manager: NotificationManager, phase: String,
+        accepted: (List<StatusBarNotification>) -> Boolean): List<StatusBarNotification> {
+        val deadline = SystemClock.uptimeMillis() + 5_000
+        do {
+            val snapshot = manager.activeNotifications.toList()
+            if (accepted(snapshot)) return snapshot
+            SystemClock.sleep(25)
+        } while (SystemClock.uptimeMillis() < deadline)
+        throw AssertionError("Notification service did not acknowledge $phase")
+    }
     private fun worker(display: suspend (TeamPushOpenRequest) -> Boolean): TeamPushDeliveryWorker =
         TestListenableWorkerBuilder<TeamPushDeliveryWorker>(context).setInputData(workDataOf(
             "notificationId" to request.notificationId, "ownerUid" to request.uid, "epoch" to request.epoch))
@@ -61,14 +73,19 @@ class TeamPushPlatformFlowTest {
             manager.notify(control, 901, Notification.Builder(context, teamPushChannelId).setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setContentTitle("Contrôle QA").build())
             postTeamPushNotification(context, request); postTeamPushNotification(context, request)
-            val posted = manager.activeNotifications.filter { it.tag == teamPushWorkName(request) }; assertEquals(1, posted.size)
+            val posted = awaitNotifications(manager, "posting") { rows ->
+                rows.count { it.tag == teamPushWorkName(request) } == 1 && rows.any { it.tag == control }
+            }.filter { it.tag == teamPushWorkName(request) }; assertEquals(1, posted.size)
             val notification = posted.single().notification
             assertEquals(teamPushAlertTitle, notification.extras.getString(Notification.EXTRA_TITLE))
             assertEquals(teamPushAlertBody, notification.extras.getString(Notification.EXTRA_TEXT))
             assertTrue(notification.contentIntent.isImmutable); assertEquals(Notification.VISIBILITY_PRIVATE, notification.visibility)
             clearTeamPushNotifications(context)
-            assertTrue(manager.activeNotifications.none { it.tag?.startsWith(teamPushNotificationPrefix) == true })
-            assertTrue(manager.activeNotifications.any { it.tag == control })
+            val cleared = awaitNotifications(manager, "team-only removal") { rows ->
+                rows.none { it.tag?.startsWith(teamPushNotificationPrefix) == true } && rows.any { it.tag == control }
+            }
+            assertTrue(cleared.none { it.tag?.startsWith(teamPushNotificationPrefix) == true })
+            assertTrue(cleared.any { it.tag == control })
         } finally {
             manager.cancel(control, 901); clearTeamPushNotifications(context)
             if (originalChannel == null) manager.deleteNotificationChannel(teamPushChannelId)

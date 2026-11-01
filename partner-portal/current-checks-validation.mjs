@@ -1,4 +1,5 @@
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
+import {validateToolchainNotificationRecheck,toolchainNotificationFolder} from './toolchain-notification-validation.mjs';
 import {validatePushCleanup,validateReturnPass,pushCleanupFolder,returnPassFolder} from './push-cleanup-and-return-validation.mjs';
 import {foregroundReturnFolder,validateForegroundReturnIntent} from './foreground-return-intent-validation.mjs';
 import {alertCaptureFailureFolder,validateAlertCaptureFailure} from '../scripts/qa/alert-capture-failure-evidence.mjs';
@@ -48,6 +49,10 @@ import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/tr
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateToolchainNotificationRecheck(root);
+  for(const [id,key]of [['team-conversation','pushRemovalObservation'],['native-startup','transferToolchainComparison']])
+    assert.equal(content.flows.find(row=>row.id===id)[key].source,toolchainNotificationFolder+'review.json');
+  assert(content.updates.some(row=>row.source===toolchainNotificationFolder+'README.md'));
   validatePushCleanup(root);validateReturnPass(root);
   assert.equal(content.flows.find(row=>row.id==='team-conversation').pushInvalidation.source,pushCleanupFolder+'review.json');
   assert.equal(content.flows.find(row=>row.id==='native-startup').foregroundReturnPass.source,returnPassFolder+'review.json');

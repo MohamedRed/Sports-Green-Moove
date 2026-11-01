@@ -19,6 +19,7 @@ import {teamPushNativeConsumer} from './team-push-native-consumer.mjs';
 import {nativeAlertFirstRun} from './native-alert-first-run.mjs';
 import {teamPushDispatch} from './team-push-dispatch.mjs';
 import {teamPushInvalidation} from './push-cleanup-and-return.mjs';
+import {toolchainNotificationRecheck} from './toolchain-notification-recheck.mjs';
 const historical = source => ({source, checkedAt: '2026-10-21'});
 
 export function createTeamConversationFlow() {
@@ -42,6 +43,7 @@ export function createTeamConversationFlow() {
     pushFirstNativeAttempt: nativeAlertFirstRun,
     pushDispatch: teamPushDispatch,
     pushInvalidation: teamPushInvalidation,
+    pushRemovalObservation:toolchainNotificationRecheck,
     authorityPhone: historical('docs/release/evidence/team-authority-phone-2026-10-21/results.json'),
     readPhone: historical('docs/release/evidence/team-read-phone-2026-10-21/results.json'),
     connected: historical(connected + 'team-conversation-results.json'),

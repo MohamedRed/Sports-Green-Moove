@@ -1677,7 +1677,7 @@ jobs:
       - name: Test current-device team alert resolution
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-push-alert-services.json
-        run: npm run test:team-push-alert && node --test tests/team-push-alert-contract.test.mjs tests/team-push-native-consumer.test.mjs tests/native-alert-first-run.test.mjs
+        run: npm run test:team-push-alert && node --test tests/team-push-alert-contract.test.mjs tests/team-push-native-consumer.test.mjs tests/native-alert-first-run.test.mjs tests/team-push-removal-observation.test.mjs
       - name: Test durable team push dispatch without provider sends
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-push-dispatch-services.json
