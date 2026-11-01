@@ -55,6 +55,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate chat account-switch checkpoints')
     .filter(step => step.name !== 'Test bound emulator transfer observations')
     .filter(step => step.name !== 'Test explicit diagnostic toolchain selection')
+    .filter(step => step.name !== 'Test post-commit chat confirmation loss guards')
     .filter(step => step.name !== 'Validate complete native pass without release promotion')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.

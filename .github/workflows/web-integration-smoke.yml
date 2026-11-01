@@ -458,6 +458,7 @@ on:
       - "tests/chat-network-config.test.mjs"
       - "tests/chat-network-draft-cases.mjs"
       - "tests/chat-network-phone*.test.mjs"
+      - "tests/chat-receipt-loss*.test.mjs"
       - "tests/chat-network-recheck-evidence.test.mjs"
       - "tests/native-gate-recheck-evidence.test.mjs"
       - "tests/published-media-seek-evidence.test.mjs"
@@ -1018,6 +1019,7 @@ on:
       - "tests/chat-network-config.test.mjs"
       - "tests/chat-network-draft-cases.mjs"
       - "tests/chat-network-phone*.test.mjs"
+      - "tests/chat-receipt-loss*.test.mjs"
       - "tests/chat-network-recheck-evidence.test.mjs"
       - "tests/native-gate-recheck-evidence.test.mjs"
       - "tests/published-media-seek-evidence.test.mjs"
@@ -1240,6 +1242,8 @@ jobs:
         run: node --test tests/chat-network-phone-checkpoints.test.mjs tests/chat-network-phone-evidence.test.mjs tests/chat-pending-restart-checkpoints.test.mjs tests/chat-pending-restart-phone.test.mjs
       - name: Validate chat account-switch checkpoints
         run: node --test tests/chat-account-switch-checkpoints.test.mjs tests/chat-account-switch-phone.test.mjs
+      - name: Test post-commit chat confirmation loss guards
+        run: node --test tests/chat-receipt-loss-proxy.test.mjs tests/chat-receipt-loss-checkpoints.test.mjs
       - name: Test bound emulator transfer observations
         run: node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-transfer-emulator.test.mjs
       - name: Test explicit diagnostic toolchain selection
