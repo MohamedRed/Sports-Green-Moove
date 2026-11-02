@@ -317,6 +317,8 @@ on:
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Payment*.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
+      - "tests/invitation-private-alias.test.mjs"
+      - "scripts/qa/invitation-private-alias.mjs"
       - "tests/scoped-browserstack-local.test.mjs"
       - "tests/private-credential-form.test.mjs"
       - "tests/private-credential-form.browser.mjs"
@@ -889,6 +891,8 @@ on:
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Payment*.kt"
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
+      - "tests/invitation-private-alias.test.mjs"
+      - "scripts/qa/invitation-private-alias.mjs"
       - "tests/scoped-browserstack-local.test.mjs"
       - "tests/private-credential-form.test.mjs"
       - "tests/private-credential-form.browser.mjs"
@@ -1189,6 +1193,8 @@ jobs:
         run: node --test tests/web-smoke-sharding.test.mjs
       - name: Test isolated chat proof diagnostic
         run: node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs
+      - name: Test approved invitation private alias
+        run: node --test tests/invitation-private-alias.test.mjs
 
       - name: Test primary capture observation protocol
         run: node --test tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs tests/capture-window-calibration.test.mjs

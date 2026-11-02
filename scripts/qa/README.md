@@ -1,5 +1,26 @@
 # Local Multi-Person Flow Checks
 
+For a separately approved, single child-invitation phone trial, start
+`start-child-invitation-browser.mjs <fresh-output> <private-phone-session> --private-alias-approved`
+and the signed vendor helper through `start-scoped-browserstack-local.mjs
+<absolute-vendor-binary> --child-invitation-alias-approved`. These explicit flags
+add only HTTP `bs-local.com:4185` to the existing five-port invitation scope.
+Both processes verify that the alias resolves exclusively to loopback before
+starting. The web server remains bound to `127.0.0.1:4185` and permits that one
+Host value; the four SDK emulator endpoints remain unchanged. Default helpers
+do not permit the alias or invitation port. Do not enable Force Local, workspace
+folder serving, wildcard hosts, request logging or MITM.
+
+The private entry path is `/__qa/invitation-entry`, not an invitation token copied
+into diagnostics. Record the ordered browser observations independently. Only
+after actual signup creates the private phone handoff, use
+`manual-child-account-phone-session.mjs` for the child's code and parent approval
+checkpoints. `manual-child-invitation-phone-session.mjs` instead requires an empty
+invitation baseline and observes native sharing; it cannot observe this already
+created browser invitation. A successful browser trial alone proves neither
+native sharing nor the public production link. Stop and dispose of the phone,
+helper, private inputs and all five owned local services after the one trial.
+
 `manual-chat-account-switch-phone.mjs <private-session-path> <fresh-output-directory>`
 observes eleven ordered checkpoints around a controlled offline send, sign-out,
 the other participant's empty composer, and restoration of the original account's

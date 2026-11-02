@@ -7,10 +7,17 @@ import { createServer } from 'vite';
 import { deleteApp, getApp } from 'firebase-admin/app';
 import { auth, call, db, signIn } from './local-flow-client.mjs';
 import { verifyChildContactParent } from './child-emergency-fixture.mjs';
+import {assertInvitationAliasTarget, privateInvitationAlias} from './invitation-private-alias.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), output = process.env.SGM_INVITATION_BROWSER_OUTPUT;
 assert.equal(process.env.GCLOUD_PROJECT, 'demo-sgm-local-qa');
 assert(output?.startsWith('/'));
+const invitationAliasApproved = process.env.SGM_INVITATION_PHONE_ALIAS_APPROVED === 'true';
+assert(!process.env.SGM_INVITATION_PHONE_ALIAS_APPROVED || invitationAliasApproved);
+if (invitationAliasApproved) {
+  assert(process.env.SGM_INVITATION_PHONE_SESSION_FILE, 'A private alias requires its separate phone handoff');
+  await assertInvitationAliasTarget();
+}
 execFileSync(process.execPath, [resolve(import.meta.dirname, 'seed-firebase-emulator.mjs')],
   { env: process.env, stdio: ['ignore', 'pipe', 'pipe'], timeout: 90_000 });
 const parent = await signIn('p@example.test'), manager = await signIn('c@example.test');
@@ -26,6 +33,7 @@ const observations = [];
 const files = ['scripts/qa/start-child-invitation-browser.mjs', 'scripts/qa/child-invitation-browser-runtime.mjs',
   'admin/src/main.tsx', 'admin/src/ChildInvitationPage.tsx', 'admin/src/childInvitationLink.ts',
   'admin/src/childInvitationGateway.ts', 'admin/src/firebase.ts', 'admin/src/localFirebaseConfig.ts'];
+files.push('scripts/qa/invitation-private-alias.mjs');
 const sourceFiles = Object.fromEntries(files.map(file => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]));
 const inspect = async phase => {
   assert(['before', 'mismatch', 'created'].includes(phase));
@@ -68,7 +76,8 @@ const inspect = async phase => {
 };
 process.env.VITE_USE_FIREBASE_EMULATOR = 'true';
 const server = await createServer({ root: resolve(root, 'admin'),
-  server: { host: '127.0.0.1', port: 4185, strictPort: true },
+  server: { host: '127.0.0.1', port: 4185, strictPort: true,
+    ...(invitationAliasApproved ? {allowedHosts: [privateInvitationAlias]} : {}) },
   plugins: [{ name: 'isolated-invitation-entry-and-observation', configureServer(vite) {
     vite.middlewares.use((request, response, next) => {
       if (!request.url?.startsWith('/__qa/invitation-')) return next();

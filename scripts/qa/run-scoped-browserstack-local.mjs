@@ -4,7 +4,8 @@ import assert from 'node:assert/strict';
 
 const [binary, pipe, configPipe] = process.argv.slice(2), controller = new AbortController();
 const startupDiagnostic = process.argv[5] === '--startup-diagnostic-approved';
-const invitationSignupApproved = process.argv[5] === '--child-invitation-signup-approved';
+const invitationAliasApproved = process.argv[5] === '--child-invitation-alias-approved';
+const invitationSignupApproved = process.argv[5] === '--child-invitation-signup-approved' || invitationAliasApproved;
 const logPipe = startupDiagnostic ? process.argv[6] : undefined;
 assert(process.argv.length === (startupDiagnostic ? 7 : invitationSignupApproved ? 6 : 5));
 const interrupt = () => controller.abort('SIGINT'), terminate = () => controller.abort('SIGTERM');
@@ -17,7 +18,7 @@ try {
   finally { clearTimeout(timeout); }
   phase = 'vendor-launch';
   const pending = runScopedLocalBinary(binary, accessKey, { signal: controller.signal, env: process.env, configPipe, logPipe,
-    startupDiagnostic, invitationSignupApproved,
+    startupDiagnostic, invitationSignupApproved, invitationAliasApproved,
     onSpawn: pid => console.log(JSON.stringify({ scope: 'scoped-helper-process-not-connection-proof', pid,
       credentialInArguments: false, credentialInEnvironment: false, dashboardDisabled: true })) });
   accessKey = '';
