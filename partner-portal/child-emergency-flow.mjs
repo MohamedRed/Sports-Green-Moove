@@ -3,15 +3,17 @@ import { childAccountPhonePass } from './child-account-phone-pass.mjs';
 import { childInvitationPhone } from './child-invitation-phone.mjs';
 import { childEmergencyPhone } from './child-emergency-phone.mjs';
 import {invitationAliasPhone} from './invitation-alias-phone.mjs';
+import {approvedPrivateTrials} from './approved-private-trials.mjs';
 import { childPhoneStartupAttempt } from './progress-2026-10-26.mjs';
 const source = 'docs/release/evidence/child-contact-heading-pass-2026-10-19/';
 
 export function createChildEmergencyFlow() {
-  return { id: 'child-emergency', title: 'Contact d’urgence côté enfant', status: 'partial', checkedAt: '2026-10-26',
+  return { id: 'child-emergency', title: 'Contact d’urgence côté enfant', status: 'partial', checkedAt: '2026-11-02',
     latestEvidence: 'phone',
     summary: 'L’enfant retrouve son contact sur téléphone, même sans localisation.',
-    verified: 'Contact accessible sans localisation avec un compte et un trajet de test déjà préparés. Déconnexion vérifiée. L’invitation et l’accord du parent passent dans des essais séparés.',
-    remaining: 'Terminer la création du compte. Tester le partage du lien jusqu’à l’accord du parent, le suivi du trajet et l’ouverture réelle du téléphone.',
+    verified: 'Inscription et connexion du nouveau compte réussies sur téléphone. Le contact sans localisation et l’accord du parent passent dans des essais séparés.',
+    remaining: 'Terminer le partage du lien jusqu’à l’accord du parent avec ce nouveau compte, puis le suivi du trajet et l’ouverture réelle du téléphone.',
+    approvedPrivateTrials,
     invitationAliasPhone,
     phoneContact: childEmergencyPhone,
     phoneInvitation: childInvitationPhone,
@@ -49,5 +51,8 @@ export function createChildEmergencyFlow() {
       {file: 'invitation-alias-form-ready', alt: 'Formulaire enfant ouvert sur téléphone, capture de session du 2 novembre'},
       {file: 'invitation-alias-mismatch-refused', alt: 'Confirmation différente refusée, capture de session du 2 novembre'},
       {file: 'invitation-alias-signup-unconfirmed', alt: 'Création du compte non confirmée, capture de session du 2 novembre'},
+      {file: 'child-signup-mismatch', alt: 'Confirmation différente refusée lors du nouvel essai, capture de session du 2 novembre'},
+      {file: 'child-signup-created', alt: 'Compte enfant créé lors du nouvel essai privé, capture de session du 2 novembre'},
+      {file: 'child-signup-child-home', alt: 'Accueil du nouveau compte enfant après connexion, capture de session du 2 novembre'},
     ], source: source + 'README.md' };
 }

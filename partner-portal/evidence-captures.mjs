@@ -1,8 +1,10 @@
 import {supportSubmissionCaptures} from './support-submission-captures.mjs';
 import {recentCaptures} from './recent-evidence-captures.mjs';
 import {invitationAliasCaptures} from './invitation-alias-phone.mjs';
+import {approvedPrivateTrialCaptures} from './approved-private-trials.mjs';
 
 export const captures = {
+  ...approvedPrivateTrialCaptures,
   ...invitationAliasCaptures,
   ...recentCaptures,
   ...Object.fromEntries(['opening', 'narrow'].map(phase => [

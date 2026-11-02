@@ -7,7 +7,7 @@ export async function verifyChildContactGallery({ browser, base, output }) {
   page.on('response', (response) => { if (response.status() >= 400) failures.push(response.status()); });
   try {
     const flow = content.flows.find((item) => item.id === 'child-emergency');
-    assert.equal(flow.images.length, 13);
+    assert.equal(flow.images.length, 16);
     for (const width of [1440, 768, 390, 320]) {
       await page.setViewportSize({ width, height: 1000 });
       await page.goto(base + '/#parcours/child-emergency');

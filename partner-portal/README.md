@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The approved private child-signup trial creates exactly one child-only account on
+a real test phone and signs into the native app. Publish its three reviewed exact
+session crops and one concise note; keep all historical captures, tours and partial
+status. Parent approval stops at the observer's outdated invitation-bound schema;
+its original incomplete report is retained, not promoted by the checker fix.
+The separately approved simulated network observation collects all samples but
+fails property restoration. Keep its failed receipt and source unchanged and
+publish one short incomplete diagnostic note, no raw logs or cause/repair claim.
+Both isolated datasets, phone and helper are disposed. See
+`docs/release/evidence/approved-private-trials-2026-11-02/README.md`.
+
 The 30272e0 focused network trial fails before disconnection or sending because
 no default mobile data subscription is available. Retain its original failed
 instrumentation, before-app and later state, artifact provenance and verified
@@ -16,8 +27,8 @@ three web/service groups. Retain its immutable source boundary, original reports
 and device/environment restoration alongside the original d55a112 capture failure.
 Publish one concise simulation update and correct the two outdated latest-failure
 descriptions, without new media, changed phone dates/tours/status/audience or a
-claim that intermittency or release readiness is resolved. The physical child
-signup remains incomplete. See `docs/release/evidence/complete-checks-638066c-2026-11-02/README.md`.
+claim that intermittency or release readiness is resolved. At that earlier boundary
+the physical child signup remained incomplete. See `docs/release/evidence/complete-checks-638066c-2026-11-02/README.md`.
 
 The original three chat session images have JPEG bytes despite their `.png`
 filenames. Preserve them and the old FFmpeg-dependent recrops unchanged. The

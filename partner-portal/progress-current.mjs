@@ -1,4 +1,5 @@
 import {appearanceProgress} from './appearance-flow.mjs';
+import {approvedPrivateTrialProgress} from './approved-private-trials.mjs';
 import {chatPreparationFailureProgress} from './chat-preparation-failure.mjs';
 import {completeChecksProgress} from './complete-checks.mjs';
 import {invitationAliasProgress} from './invitation-alias-phone.mjs';
@@ -83,6 +84,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  ...approvedPrivateTrialProgress,
   chatPreparationFailureProgress,
   completeChecksProgress,
   invitationAliasProgress,

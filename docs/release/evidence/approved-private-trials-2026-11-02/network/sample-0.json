@@ -1,0 +1,13 @@
+{
+  "scope": "approved-temporary-network-startup-logging-not-flow-or-repair",
+  "runId": "46022c6011b6926519ee735db37cfd20",
+  "elapsedMs": 1663,
+  "testAppsAbsent": true,
+  "propertiesVerified": true,
+  "diagnosticScopes": [
+    "read-only-disposable-modem-registration",
+    "read-only-disposable-subscription-summary",
+    "read-only-disposable-default-selection-history",
+    "read-only-disposable-carrier-loader-state"
+  ]
+}

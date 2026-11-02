@@ -19,13 +19,13 @@ for (const key of ['installedApkIndependentlyHashed', 'childAccountCreated', 'pa
   });
 test('public progress keeps earlier phone evidence and adds only three reviewed partial-form captures', () => {
   const flow = content.flows.find(row => row.id === 'child-emergency');
-  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-10-26');
-  assert.equal(flow.invitationAliasPhone.checkedAt, '2026-11-02'); assert.equal(flow.images.length, 13);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.checkedAt, '2026-11-02');
+  assert.equal(flow.invitationAliasPhone.checkedAt, '2026-11-02'); assert.equal(flow.images.length, 16);
   for (const id of ['form-ready', 'mismatch-refused', 'signup-unconfirmed']) {
     assert.equal(captures['invitation-alias-' + id], invitationAliasFolder + 'captures/' + id + '.png');
     assert(flow.images.some(row => row.file === 'invitation-alias-' + id && row.alt.includes('capture de session')));
   }
-  assert.equal(content.blockers.find(row => row.id === 'child-invitation-browser').latestSource, invitationAliasFolder + 'README.md');
+  assert.equal(content.blockers.find(row => row.id === 'child-invitation-browser').previousLatestSource, invitationAliasFolder + 'README.md');
   const update = content.updates.find(row => row.source === invitationAliasFolder + 'README.md'); assert(update);
   assert.doesNotMatch(update.title + update.text, /BrowserStack|Firebase|SDK|localhost|port|APK/);
 });

@@ -13,8 +13,10 @@ export const nativeCapacityProgress = {date: '2026-10-30', title: 'Le nouvel ess
   text: 'L’appareil de test ne démarre pas. Les résultats précédents restent disponibles.',
   flow: 'native-startup', source: capacity + 'README.md', checksums: capacity + 'artifact-sha256.json'};
 export const preparationBlockers = [
-  {id: 'child-invitation-browser', title: 'L’inscription enfant sur téléphone',
-    text: 'Le formulaire s’ouvre, mais la création du compte n’aboutit pas.',
-    next: 'Débloquer l’inscription, puis vérifier l’accord du parent.', source: invitation + 'README.md',
-    connectionHistory: recheck + 'README.md', latestSource: 'docs/release/evidence/invitation-alias-phone-2026-11-02/README.md'},
+  {id: 'child-invitation-browser', title: 'Relier le nouveau compte au parent',
+    text: 'L’inscription et la connexion passent sur téléphone. La suite avec le parent reste à terminer.',
+    next: 'Reprendre la validation du parent, puis vérifier le parcours depuis le partage du lien.', source: invitation + 'README.md',
+    connectionHistory: recheck + 'README.md',
+    previousLatestSource: 'docs/release/evidence/invitation-alias-phone-2026-11-02/README.md',
+    latestSource: 'docs/release/evidence/approved-private-trials-2026-11-02/README.md'},
 ];

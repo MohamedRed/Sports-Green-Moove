@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { childPhoneInvitationHash } from './child-account-phone-binding.mjs';
 
 export const childAccountPhonePhases = ['child-signed-in', 'code-created', 'parent-review', 'parent-approved', 'child-return', 'signed-out'];
 export const childAccountPhoneCollections = ['childAccountLinks', 'childAccountApprovalOwners', 'childAccountApprovalRequests'];
@@ -14,6 +15,8 @@ export function verifyChildAccountPhoneCheckpoint(phase, baseline, current, fixt
   assert(childAccountPhonePhases.includes(phase));
   assert.notEqual(fixture.childUid, fixture.parentUid); assert.notEqual(fixture.childUid, fixture.childId);
   assert.match(fixture.childInstanceId, /^[a-f0-9]{64}$/);
+  const invitationHash = childPhoneInvitationHash(baseline, fixture);
+  const invitationFields = invitationHash === undefined ? [] : ['invitationHash'];
   const privateRows = state => Object.fromEntries(childAccountPhoneCollections.map(name => {
     assert(Array.isArray(state.documents[name])); return [name, state.documents[name]];
   }));
@@ -32,11 +35,12 @@ export function verifyChildAccountPhoneCheckpoint(phase, baseline, current, fixt
     assert.match(owner.data.codeHash, /^[a-f0-9]{64}$/); assert.equal(owner.data.codeHash, request.id);
     assert.deepEqual(Object.keys(owner.data).sort(), ['accountUserId', 'codeHash', 'createdAt']);
     assert.equal(request.data.accountUserId, fixture.childUid);
+    if (invitationHash !== undefined) assert.equal(request.data.invitationHash, invitationHash);
     assert.deepEqual(owner.data.createdAt, request.data.createdAt);
     assert.equal(Math.round(stamp(request.data.expiresAt) - stamp(request.data.createdAt)), 600_000);
     if (!approvedPhases.has(phase)) {
       assert.equal(rows.childAccountLinks.length, 0); assert.equal(request.data.status, 'pending');
-      assert.deepEqual(Object.keys(request.data).sort(), ['accountUserId', 'createdAt', 'expiresAt', 'status']);
+      assert.deepEqual(Object.keys(request.data).sort(), ['accountUserId', 'createdAt', 'expiresAt', 'status', ...invitationFields].sort());
     } else {
       assert.equal(rows.childAccountLinks.length, 1); const link = rows.childAccountLinks[0];
       assert.equal(link.id, fixture.childUid); assert.equal(link.data.accountUserId, fixture.childUid);
@@ -47,7 +51,7 @@ export function verifyChildAccountPhoneCheckpoint(phase, baseline, current, fixt
       assert.equal(request.data.childId, fixture.childId); assert.equal(request.data.childInstanceId, fixture.childInstanceId);
       assert.deepEqual(link.data.verifiedAt, request.data.approvedAt);
       assert.deepEqual(Object.keys(link.data).sort(), ['accountUserId', 'childId', 'childInstanceId', 'status', 'verifiedAt', 'verifiedByUserId']);
-      assert.deepEqual(Object.keys(request.data).sort(), ['accountUserId', 'approvedAt', 'approvedByUserId', 'childId', 'childInstanceId', 'createdAt', 'expiresAt', 'status']);
+      assert.deepEqual(Object.keys(request.data).sort(), ['accountUserId', 'approvedAt', 'approvedByUserId', 'childId', 'childInstanceId', 'createdAt', 'expiresAt', 'status', ...invitationFields].sort());
     }
   }
   if (phase === 'parent-review' || phase === 'child-return' || phase === 'signed-out') {

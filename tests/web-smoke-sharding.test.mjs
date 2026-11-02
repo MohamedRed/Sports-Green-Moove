@@ -63,6 +63,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate complete native pass without release promotion')
     .filter(step => step.name !== 'Test approved temporary network startup logging')
     .filter(step => step.name !== 'Test approved invitation same-origin transport')
+    .filter(step => step.name !== 'Test invitation-bound phone approval observations')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -215,8 +216,10 @@ test('the timeout correction preserves every current workload and artifact uploa
   assert.deepEqual(diagnostic, [{name: 'Test approved temporary network startup logging', run: 'node --test tests/network-startup-logging.test.mjs'}]);
   assert.deepEqual(steps.filter(step => step.name === 'Test approved invitation same-origin transport'),
     [{name: 'Test approved invitation same-origin transport', run: 'node --test tests/invitation-same-origin.test.mjs'}]);
+  assert.deepEqual(steps.filter(step => step.name === 'Test invitation-bound phone approval observations'),
+    [{name: 'Test invitation-bound phone approval observations', run: 'node --test tests/child-account-phone-binding.test.mjs tests/approved-private-trials.test.mjs'}]);
   for (const [rows, count, expected] of [
-    [steps.filter(step => step.run && !setup.has(step.name) && !['Test approved temporary network startup logging', 'Test approved invitation same-origin transport'].includes(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
+    [steps.filter(step => step.run && !setup.has(step.name) && !['Test approved temporary network startup logging', 'Test approved invitation same-origin transport', 'Test invitation-bound phone approval observations'].includes(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
     [steps.filter(step => step.uses?.startsWith('actions/upload-artifact@')), 19, 'ac04ddc85195eb2f779e94230aca82bb8d5f1c78587bfb2cbfa7ae6b5d8c9824'],
   ]) {
     assert.equal(rows.length, count);

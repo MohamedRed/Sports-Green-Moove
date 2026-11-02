@@ -49,7 +49,10 @@ try {
       const phase = command.trim(); if (phase === 'stop') break;
       if (phase === 'finish') { assert.equal(checkpoints.length, childAccountPhonePhases.length); completed = true; break; }
       assert.equal(phase, childAccountPhonePhases[checkpoints.length], 'Observe each phone checkpoint once, in order');
-      const state = await snapshot(); const result = verifyChildAccountPhoneCheckpoint(phase, baseline, state, session.fixture, previous);
+      const state = await snapshot();
+      writeFileSync(resolve(output, phase + '-observed.json'), JSON.stringify({ projectId: session.projectId, runId: session.runId,
+        recordedAt: new Date().toISOString(), state }, null, 2) + '\n', { flag: 'wx', mode: 0o600 });
+      const result = verifyChildAccountPhoneCheckpoint(phase, baseline, state, session.fixture, previous);
       writeFileSync(resolve(output, phase + '.json'), JSON.stringify({ projectId: session.projectId, runId: session.runId,
         recordedAt: new Date().toISOString(), state, result }, null, 2) + '\n', { flag: 'wx', mode: 0o600 });
       previous = state; checkpoints.push(result); console.log('Independent child-account checkpoint passed: ' + phase);
@@ -61,6 +64,7 @@ finally {
   input.close(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); delete process.env.SGM_QA_PASSWORD;
 }
 const paths = ['scripts/qa/manual-child-account-phone-session.mjs', 'scripts/qa/child-account-phone-checkpoints.mjs',
+  'scripts/qa/child-account-phone-binding.mjs',
   ...(session.fixtureProvenance === 'isolated-browser-created-child' ?
     ['scripts/qa/child-invitation-browser-runtime.mjs', 'scripts/qa/start-child-invitation-browser.mjs'] :
     ['scripts/qa/child-account-phone-fixture.mjs', 'scripts/qa/child-account-phone-runtime.mjs', 'scripts/qa/start-child-account-phone.mjs'])];
