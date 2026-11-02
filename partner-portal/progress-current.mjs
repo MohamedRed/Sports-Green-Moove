@@ -38,6 +38,7 @@ import {chatNetworkPhoneProgress} from './chat-network-phone.mjs';
 import {transferLifecycleProgress} from './transfer-lifecycle.mjs';
 import {disconnectRecheckProgress} from './session-disconnect-recheck.mjs';
 import {compressionSecurityProgress} from './compression-security.mjs';
+import {uriSecurityProgress} from './uri-security.mjs';
 import {transferPeerLossProgress} from './transfer-peer-loss.mjs';
 import {nativeCopyFollowupProgress} from './native-copy-followup.mjs';
 import {searchDepartureProgress, searchDepartureSequenceProgress} from './search-departure.mjs';
@@ -86,6 +87,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  uriSecurityProgress,
   parentApprovalInputStopProgress,
   focusedCopyFailureProgress,
   ...approvedPrivateTrialProgress,

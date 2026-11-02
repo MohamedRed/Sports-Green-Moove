@@ -1,4 +1,5 @@
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
+import {uriSecurityFolder, validateUriSecurityEvidence} from '../scripts/qa/uri-security-evidence.mjs';
 import {currentNativeFailureFolder, validateCurrentNativeFailure} from '../scripts/qa/focused-copy-failure-evidence.mjs';
 import {chatPreparationFolder, validateChatPreparationFailure} from '../scripts/qa/chat-preparation-failure-evidence.mjs';
 import {completeChecksFolder, validateCompleteChecks} from '../scripts/qa/complete-checks-evidence.mjs';
@@ -56,6 +57,9 @@ import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/tr
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateUriSecurityEvidence(root);
+  assert.equal(content.uriSecurity.source, uriSecurityFolder + 'summary.json');
+  assert.equal(content.blockers.find(row => row.id === 'dependency-security').uriRecheck.source, content.uriSecurity.source);
   validateCurrentNativeFailure(root);
   assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestCheck.source, currentNativeFailureFolder + 'review.json');
   validateChatPreparationFailure(root);

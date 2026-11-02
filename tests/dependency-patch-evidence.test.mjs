@@ -5,6 +5,8 @@ import {resolve} from 'node:path';
 import test from 'node:test';
 import {assertDependencyPatchSummary, validateDependencyPatchEvidence, dependencyPatchFolder as folder} from '../scripts/qa/dependency-patch-evidence.mjs';
 import {content} from '../partner-portal/content.mjs';
+import {uriSecurityFolder, validateUriSecurityEvidence, assertUriSecuritySummary} from '../scripts/qa/uri-security-evidence.mjs';
+import {uriSecurityProgress} from '../partner-portal/uri-security.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const report = () => JSON.parse(readFileSync(resolve(root, folder, 'summary.json')));
@@ -30,4 +32,18 @@ test('public progress keeps security partial and retains the unsuccessful networ
   assert.match(news.text, /autres alertes/); assert.doesNotMatch(news.text, /Firebase|BrowserStack|gRPC|SDK|npm|Vite|PostCSS/);
   assert(content.blockers.some(row => row.id === 'dependency-security'));
   assert(content.updates.some(row => row.source === folder + '/previous-ci/README.md'));
+});
+test('the compatible URI patch preserves both failed preparations and the corrected real-consumer comparison', () => {
+  assert.deepEqual(validateUriSecurityEvidence(root), {correctedUriCases: 12, remainingHighAlerts: 9,
+    childApprovalServiceCases: 10, childInvitationServiceCases: 18, parentApprovalPhoneAccepted: false, releaseAccepted: false});
+  assert.equal(content.uriSecurity.source, uriSecurityFolder + 'summary.json');
+  assert(content.updates.includes(uriSecurityProgress));
+  assert.doesNotMatch(uriSecurityProgress.title + uriSecurityProgress.text, /Firebase|BrowserStack|gRPC|SDK|npm|URI|AJV|fast-uri/);
+});
+test('URI maintenance cannot promote complete security, phone parent approval or repaired native capture', () => {
+  const original = JSON.parse(readFileSync(resolve(root, uriSecurityFolder, 'summary.json')));
+  for (const flag of ['productionExploitProven', 'productionDeployed', 'parentApprovalPhoneAccepted', 'physicalDeviceAccepted',
+    'allSecurityFindingsResolved', 'nativeInstabilityRepaired', 'postPatchNativeGateAccepted', 'releaseAccepted']) {
+    const value = structuredClone(original); value[flag] = true; assert.throws(() => assertUriSecuritySummary(value), flag);
+  }
 });

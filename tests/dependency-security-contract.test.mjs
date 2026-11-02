@@ -6,7 +6,8 @@ import test from 'node:test';
 const worker = fileURLToPath(new URL('./helpers/dependency-security-probe.mjs', import.meta.url));
 const probe = input => {
   const child = spawnSync(process.execPath, ['--max-old-space-size=64', worker], {input: JSON.stringify(input),
-    encoding: 'utf8', timeout: 2000, killSignal: 'SIGKILL', maxBuffer: 32 * 1024});
+    encoding: 'utf8', timeout: 2000, killSignal: 'SIGKILL', maxBuffer: 32 * 1024,
+    env: input.mode === 'uri' ? {PATH: process.env.PATH, TMPDIR: process.env.TMPDIR} : process.env});
   assert.ifError(child.error); assert.equal(child.signal, null); assert.equal(child.status, 0, child.stderr);
   return JSON.parse(child.stdout);
 };
@@ -28,4 +29,11 @@ test('ordinary source-map sections are still accepted', () => {
 });
 test('untrusted CSS cannot read an arbitrary synthetic map when from is omitted', () => {
   assert.deepEqual(probe({mode: 'source-map-read'}), {cssPreserved: true, syntheticFileExposed: false});
+});
+const uriReport = probe({mode: 'uri'});
+assert.equal(uriReport.actualConsumerMatched, true); assert.equal(uriReport.socketFetchAndLookupGuardActive, true);
+assert.equal(uriReport.networkAttempts, 0); assert.equal(uriReport.cases.length, 12);
+for (const row of uriReport.cases) test('the actual schema URI resolver: ' + row.id, () => {
+  assert.equal(row.unexpectedError, false, row.id);
+  assert.equal(row.passed, true, row.id);
 });

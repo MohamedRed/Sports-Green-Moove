@@ -3,6 +3,7 @@ import {preparationBlockers} from './preparation-failures.mjs';
 import {completeChecks} from './complete-checks.mjs';
 import {chatPreparationFailure} from './chat-preparation-failure.mjs';
 import {focusedCopyFailure, currentNativeFailure} from './focused-copy-failure.mjs';
+import {uriSecurity} from './uri-security.mjs';
 
 export const blockers = [
   {id: 'chat-pending-restart', title: 'Vérifier les autres reprises d’envoi',
@@ -55,6 +56,7 @@ export const blockers = [
     next: 'Confirmer ces changements de compte sur téléphone, pendant un trajet.', source: 'docs/release/evidence/ride-emergency-pass-2026-10-19/README.md' },
   { id: 'dependency-security', title: 'Terminer les contrôles de sécurité',
     text: 'Les alertes critiques sont levées. D’autres alertes élevées restent à traiter.',
+    uriRecheck: uriSecurity,
     next: 'Terminer les contrôles avant la mise en ligne.', source: 'docs/release/evidence/test-runner-security-2026-10-30/README.md',
     latestSource: 'docs/release/evidence/compression-security-2026-10-31/README.md' },
   { id: 'trip-consent-restart', title: 'Retrouver les accords après fermeture complète',

@@ -1,0 +1,69 @@
+{
+  "scope": "pure-real-ajv-uri-consumer-not-application-exploit-or-provider-proof",
+  "version": "3.1.9",
+  "actualConsumerMatched": true,
+  "socketFetchAndLookupGuardActive": true,
+  "networkAttempts": 0,
+  "cases": [
+    {
+      "id": "serialize-rejects-port-authority-injection",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "normalize-rejects-port-authority-injection",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "equal-rejects-port-authority-injection",
+      "passed": false,
+      "unexpectedError": false
+    },
+    {
+      "id": "normalize-keeps-percent-encoded-scheme-inert",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "resolve-keeps-percent-encoded-scheme-inert",
+      "passed": false,
+      "unexpectedError": true
+    },
+    {
+      "id": "normalize-keeps-unicode-escaped-scheme-inert",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "parse-does-not-promote-an-encoded-scheme",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "equal-distinguishes-encoded-and-live-schemes",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "valid-numeric-port-is-preserved",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "ordinary-relative-reference-is-preserved",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "ordinary-host-and-unreserved-normalization-is-preserved",
+      "passed": true,
+      "unexpectedError": false
+    },
+    {
+      "id": "real-schema-validator-resolves-relative-references",
+      "passed": true,
+      "unexpectedError": false
+    }
+  ]
+}

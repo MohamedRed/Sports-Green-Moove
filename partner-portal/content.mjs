@@ -2,6 +2,7 @@ import { tours } from './tours.mjs';
 import {alertCaptureFailure} from './alert-capture-failure.mjs';
 import {requestSafetyRecheck} from './request-safety.mjs';
 import {dependencyPatchRecheck} from './dependency-patch.mjs';
+import {uriSecurity} from './uri-security.mjs';
 import {nativeGateRecheck} from './native-gate-recheck.mjs';
 import {publishedMediaReview} from './published-media-review.mjs';
 import {publishedMediaPlayback} from './published-media-playback.mjs';
@@ -73,6 +74,7 @@ export const content = {
   ...nativeRechecks,
   requestSafetyRecheck,
   dependencyPatchRecheck,
+  uriSecurity,
   nativeGateRecheck,
   publishedMediaReview,
   publishedMediaPlayback,

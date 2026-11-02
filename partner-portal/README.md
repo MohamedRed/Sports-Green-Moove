@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The compatible URI dependency correction retains its incomplete first assertions
+and missing-output launch, then proves the corrected same-source comparison and
+six local compatibility groups. Publish one concise security note with the still-
+open audit limitation. Keep every flow, media item, phone date, tour and public
+access unchanged. Existing Web Integration Smoke commands run both extended test
+files; only source path triggers are added. No Terraform change is needed. See
+`docs/release/evidence/uri-security-2026-11-02/README.md`.
+
 The terminal 1030dac run passes 248 ordinary cases and nine focused jobs, but fails
 the main primary capture copy, native-startup login preparation and image install.
 Replace the existing failed-copy note and blocker text, retaining their earlier

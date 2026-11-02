@@ -3,11 +3,13 @@ import {createRequire} from 'node:module';
 import {readFileSync, mkdtempSync, writeFileSync, rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
+import {runUriSecurityProbe} from './uri-security-probe.mjs';
 
 const require = createRequire(import.meta.url), {mode, variant, size} = JSON.parse(readFileSync(0, 'utf8'));
 const postcssRequire = createRequire(require.resolve('postcss'));
 let result;
-if (mode === 'multipart') {
+if (mode === 'uri') result = runUriSecurityProbe();
+else if (mode === 'multipart') {
   assert(['root', 'cli'].includes(variant)); assert(['field', 'filename'].includes(size));
   const from = variant === 'cli' ? createRequire(require.resolve('firebase-tools/package.json')) : require;
   const FormData = from('form-data'), form = new FormData();
