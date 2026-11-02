@@ -318,6 +318,7 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/invitation-private-alias.test.mjs"
+      - "tests/invitation-same-origin.test.mjs"
       - "tests/private-fixture-input.test.mjs"
       - "tests/invitation-alias-phone.test.mjs"
       - "scripts/qa/private-fixture-input.mjs"
@@ -900,6 +901,7 @@ on:
       - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
       - "tests/browserstack-isolated-tunnel.test.mjs"
       - "tests/invitation-private-alias.test.mjs"
+      - "tests/invitation-same-origin.test.mjs"
       - "tests/private-fixture-input.test.mjs"
       - "tests/invitation-alias-phone.test.mjs"
       - "scripts/qa/private-fixture-input.mjs"
@@ -1294,6 +1296,8 @@ jobs:
         run: node --test tests/network-preparation-recheck.test.mjs
       - name: Test approved temporary network startup logging
         run: node --test tests/network-startup-logging.test.mjs
+      - name: Test approved invitation same-origin transport
+        run: node --test tests/invitation-same-origin.test.mjs
       - name: Test bound emulator transfer observations
         run: node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-transfer-emulator.test.mjs
       - name: Test explicit diagnostic toolchain selection

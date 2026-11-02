@@ -6,7 +6,8 @@ import { superviseLocalProcess } from './supervised-local-process.mjs';
 import { assertLocalEndpointsClosed } from './local-emulator-lifecycle.mjs';
 
 const [output, phoneSession] = process.argv.slice(2);
-const invitationAliasApproved = process.argv[4] === '--private-alias-approved';
+const invitationSameOriginApproved = process.argv[4] === '--same-origin-approved';
+const invitationAliasApproved = process.argv[4] === '--private-alias-approved' || invitationSameOriginApproved;
 assert([3, 4, 5].includes(process.argv.length));
 assert(process.argv.length !== 5 || invitationAliasApproved);
 assert(!invitationAliasApproved || phoneSession, 'The private alias is scoped to an approved phone trial');
@@ -27,6 +28,7 @@ try {
   runtime = prepareLocalRuntime();
   runtime.env.SGM_INVITATION_BROWSER_OUTPUT = output;
   if (invitationAliasApproved) runtime.env.SGM_INVITATION_PHONE_ALIAS_APPROVED = 'true';
+  if (invitationSameOriginApproved) runtime.env.SGM_INVITATION_SAME_ORIGIN_APPROVED = 'true';
   if (phoneSession) runtime.env.SGM_INVITATION_PHONE_SESSION_FILE = phoneSession;
   attempted = true;
   const result = await superviseLocalProcess({ command: process.execPath,

@@ -2,9 +2,13 @@ import { getApps, initializeApp } from "firebase/app";
 import { connectAuthEmulator, initializeAuth, inMemoryPersistence } from "firebase/auth";
 import { connectFunctionsEmulator, getFunctions, httpsCallable } from "firebase/functions";
 import { firebaseApp } from "./firebase";
+import { childInvitationTestEndpoints } from "./childInvitationTestEndpoints";
 
 let gateway: ((token: string, email: string, password: string) => Promise<void>) | undefined;
 export async function redeemInvitation(token: string, email: string, password: string) {
+  const endpoints = childInvitationTestEndpoints({approved: import.meta.env.VITE_INVITATION_SAME_ORIGIN_APPROVED,
+    development: import.meta.env.DEV, emulators: import.meta.env.VITE_USE_FIREBASE_EMULATOR === "true",
+    projectId: firebaseApp?.options.projectId, origin: window.location.origin});
   if (!gateway) {
     if (!firebaseApp) throw new Error("Invitation service unavailable");
     const name = "child-invitation-signup";
@@ -14,8 +18,8 @@ export async function redeemInvitation(token: string, email: string, password: s
     const functions = getFunctions(app);
     if (import.meta.env.VITE_USE_FIREBASE_EMULATOR === "true") {
       if (!import.meta.env.DEV || app.options.projectId !== "demo-sgm-local-qa") throw new Error("Isolated invitation configuration required");
-      connectAuthEmulator(auth, "http://127.0.0.1:9099", { disableWarnings: true });
-      connectFunctionsEmulator(functions, "127.0.0.1", 5001);
+      connectAuthEmulator(auth, endpoints.authUrl, { disableWarnings: true });
+      connectFunctionsEmulator(functions, endpoints.functionsHost, endpoints.functionsPort);
     }
     const redeem = httpsCallable(functions, "redeemChildInvitation");
     gateway = async (linkToken, address, chosenPassword) => {

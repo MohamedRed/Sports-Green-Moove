@@ -8,11 +8,15 @@ import { deleteApp, getApp } from 'firebase-admin/app';
 import { auth, call, db, signIn } from './local-flow-client.mjs';
 import { verifyChildContactParent } from './child-emergency-fixture.mjs';
 import {assertInvitationAliasTarget, privateInvitationAlias} from './invitation-private-alias.mjs';
+import {invitationSameOriginMiddleware} from './invitation-same-origin-proxy.mjs';
 
 const root = resolve(import.meta.dirname, '../..'), output = process.env.SGM_INVITATION_BROWSER_OUTPUT;
 assert.equal(process.env.GCLOUD_PROJECT, 'demo-sgm-local-qa');
 assert(output?.startsWith('/'));
 const invitationAliasApproved = process.env.SGM_INVITATION_PHONE_ALIAS_APPROVED === 'true';
+const invitationSameOriginApproved = process.env.SGM_INVITATION_SAME_ORIGIN_APPROVED === 'true';
+assert(!process.env.SGM_INVITATION_SAME_ORIGIN_APPROVED || invitationSameOriginApproved);
+assert(!invitationSameOriginApproved || invitationAliasApproved, 'Same-origin signup requires its explicitly approved private alias');
 assert(!process.env.SGM_INVITATION_PHONE_ALIAS_APPROVED || invitationAliasApproved);
 if (invitationAliasApproved) {
   assert(process.env.SGM_INVITATION_PHONE_SESSION_FILE, 'A private alias requires its separate phone handoff');
@@ -34,6 +38,7 @@ const files = ['scripts/qa/start-child-invitation-browser.mjs', 'scripts/qa/chil
   'admin/src/main.tsx', 'admin/src/ChildInvitationPage.tsx', 'admin/src/childInvitationLink.ts',
   'admin/src/childInvitationGateway.ts', 'admin/src/firebase.ts', 'admin/src/localFirebaseConfig.ts'];
 files.push('scripts/qa/invitation-private-alias.mjs');
+if (invitationSameOriginApproved) files.push('scripts/qa/invitation-same-origin-proxy.mjs', 'admin/src/childInvitationTestEndpoints.ts');
 const sourceFiles = Object.fromEntries(files.map(file => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]));
 const inspect = async phase => {
   assert(['before', 'mismatch', 'created'].includes(phase));
@@ -75,10 +80,14 @@ const inspect = async phase => {
   return observation;
 };
 process.env.VITE_USE_FIREBASE_EMULATOR = 'true';
+if (invitationSameOriginApproved) process.env.VITE_INVITATION_SAME_ORIGIN_APPROVED = 'true';
 const server = await createServer({ root: resolve(root, 'admin'),
   server: { host: '127.0.0.1', port: 4185, strictPort: true,
     ...(invitationAliasApproved ? {allowedHosts: [privateInvitationAlias]} : {}) },
   plugins: [{ name: 'isolated-invitation-entry-and-observation', configureServer(vite) {
+    if (invitationSameOriginApproved) vite.middlewares.use(invitationSameOriginMiddleware({
+      approved: true, projectId: process.env.GCLOUD_PROJECT,
+    }));
     vite.middlewares.use((request, response, next) => {
       if (!request.url?.startsWith('/__qa/invitation-')) return next();
       response.setHeader('Cache-Control', 'no-store'); response.setHeader('Referrer-Policy', 'no-referrer');
