@@ -1,0 +1,32 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "940392e133a7bbb3f059fa69948111c3",
+  "phase": "after",
+  "scope": "read-only-disposable-carrier-loader-state",
+  "recordedAt": "2026-11-02T12:42:57.137Z",
+  "source": "current-carrier-loader-state-not-default-selection-readiness",
+  "phoneCount": 1,
+  "configChangeSent": [
+    true
+  ],
+  "fromSystemUnlocked": [
+    false
+  ],
+  "serviceBoundForNoSimConfig": [
+    false
+  ],
+  "configBundlePresent": {
+    "defaultApp": [
+      true
+    ],
+    "carrierApp": [
+      false
+    ],
+    "persistentOverride": [
+      false
+    ],
+    "transientOverride": [
+      false
+    ]
+  }
+}

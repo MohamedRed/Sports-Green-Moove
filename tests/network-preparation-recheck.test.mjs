@@ -8,6 +8,7 @@ import test from 'node:test';
 import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {networkPreparationFolder, validateNetworkPreparationRecheck} from '../partner-portal/network-preparation-validation.mjs';
+import {chatPreparationFolder, validateChatPreparationFailure} from '../scripts/qa/chat-preparation-failure-evidence.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url)), base = join(root, networkPreparationFolder);
 const json = file => JSON.parse(readFileSync(join(base, file)));
@@ -69,5 +70,44 @@ test('the paired evidence check runs in smoke without bypasses and both path tri
   assert.equal(step.length, 1); assert.equal(step[0].run, 'node --test tests/network-preparation-recheck.test.mjs');
   assert.equal(step[0]['continue-on-error'], undefined); assert.equal(step[0].if, undefined);
   for (const event of ['push', 'pull_request']) for (const file of ['tests/network-preparation-recheck.test.mjs',
-    'scripts/diagnostics/retain-network-preparation-recheck.mjs']) assert(workflow.on[event].paths.includes(file));
+    'scripts/diagnostics/retain-network-preparation-recheck.mjs',
+    'scripts/diagnostics/retain-chat-preparation-failure.mjs']) assert(workflow.on[event].paths.includes(file));
 });
+
+test('the later focused failure stops before disconnection and preserves the earlier successes', () => {
+  assert.deepEqual(validateChatPreparationFailure(root), {preparationFailed: true, messageResendExecuted: false,
+    rootCauseConfirmed: false, releaseAccepted: false});
+  const blocker = content.blockers.find(row => row.id === 'chat-send-stability');
+  assert.equal(blocker.latestPreparation.source, chatPreparationFolder + 'review.json');
+  assert.match(blocker.completeRecheck.source, /complete-checks-638066c/);
+  assert.match(blocker.physicalControlledSource, /chat-network-phone-2026-10-31/);
+  const progress = content.updates.find(row => row.source === chatPreparationFolder + 'README.md');
+  assert(progress); assert.match(progress.title, /en simulation/);
+  assert.equal(content.flows.find(row => row.id === 'messages').status, 'partial');
+});
+
+function contradictPreparation(file, change, t) {
+  const temporary = mkdtempSync(join(tmpdir(), 'sgm-chat-preparation-'));
+  t.after(() => rmSync(temporary, {recursive: true, force: true}));
+  const folder = join(temporary, chatPreparationFolder); cpSync(join(root, chatPreparationFolder), folder, {recursive: true});
+  const read = name => JSON.parse(readFileSync(join(folder, name)));
+  const value = read(file); change(value); const bytes = JSON.stringify(value);
+  writeFileSync(join(folder, file), bytes);
+  const hashes = read('artifact-sha256.json'); hashes[file] = createHash('sha256').update(bytes).digest('hex');
+  if (file !== 'review.json') {
+    const archive = read('archive-verification.json'); archive.members[file].sha256 = hashes[file];
+    const encoded = JSON.stringify(archive); writeFileSync(join(folder, 'archive-verification.json'), encoded);
+    hashes['archive-verification.json'] = createHash('sha256').update(encoded).digest('hex');
+  }
+  writeFileSync(join(folder, 'artifact-sha256.json'), JSON.stringify(hashes));
+  assert.throws(() => validateChatPreparationFailure(temporary));
+}
+
+for (const key of ['messageResendExecuted', 'sourceSpecificFullGatePassed', 'rootCauseConfirmed',
+  'previousSuccessInvalidated', 'physicalDeviceAccepted', 'productionWrites', 'releaseAccepted'])
+  test('the later preparation failure cannot promote ' + key, t => contradictPreparation('review.json', row => {row[key] = true;}, t));
+for (const [file, change] of [
+  ['ui.json', row => {row.completed = true;}],
+  ['subscriptions-before.json', row => {row.defaultSubscriptionValid.defaultDataSubId = true;}],
+  ['device-restore.json', row => {row.verified = false;}],
+]) test('the later failure rejects rehashed contradictions: ' + file, t => contradictPreparation(file, change, t));

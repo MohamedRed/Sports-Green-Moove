@@ -1,6 +1,7 @@
 import { nativeVerification } from './native-verification.mjs';
 import {preparationBlockers} from './preparation-failures.mjs';
 import {completeChecks} from './complete-checks.mjs';
+import {chatPreparationFailure} from './chat-preparation-failure.mjs';
 
 export const blockers = [
   {id: 'chat-pending-restart', title: 'Vérifier les autres reprises d’envoi',
@@ -75,7 +76,8 @@ export const blockers = [
     next: 'Comprendre cet ancien échec, puis rejouer sur téléphone avec une vraie coupure.', source: 'docs/release/evidence/session-disconnect-native-2026-10-20/README.md',
     latestSource: 'docs/release/evidence/session-recovery-89fda8c-2026-10-31/README.md' },
   { id: 'chat-send-stability', title: 'Vérifier la reprise sur plusieurs essais',
-    text: 'Le renvoi passe sur téléphone après une coupure contrôlée. Le nouvel essai complet passe en simulation.',
+    text: 'Le renvoi passe sur téléphone après une coupure contrôlée. Le dernier essai en simulation bloque avant la coupure.',
+    latestPreparation: chatPreparationFailure,
     completeRecheck: completeChecks,
     next: 'Fiabiliser les contrôles et rejouer les coupures réelles entre téléphones.', source: nativeVerification.source,
     latestSource: 'docs/release/evidence/native-team-push-exit-gate-a2e3e19-2026-11-01/README.md',

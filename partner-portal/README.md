@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The 30272e0 focused network trial fails before disconnection or sending because
+no default mobile data subscription is available. Retain its original failed
+instrumentation, before-app and later state, artifact provenance and verified
+device/host disposal. Publish one concise preparation blocker without new media,
+changed flow status/phone dates or invalidating the separate complete 638066c
+success. The missing default's underlying cause remains unproven. See
+`docs/release/evidence/chat-preparation-30272e0-2026-11-02/README.md`.
+
 The complete 638066c automated run passes 248 ordinary cases, all 37 connected
 replay groups / 40 native cases, 17 primary copies, eleven focused jobs and all
 three web/service groups. Retain its immutable source boundary, original reports

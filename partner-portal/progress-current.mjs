@@ -1,4 +1,5 @@
 import {appearanceProgress} from './appearance-flow.mjs';
+import {chatPreparationFailureProgress} from './chat-preparation-failure.mjs';
 import {completeChecksProgress} from './complete-checks.mjs';
 import {invitationAliasProgress} from './invitation-alias-phone.mjs';
 import {notificationRemovalProgress} from './toolchain-notification-recheck.mjs';
@@ -82,6 +83,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  chatPreparationFailureProgress,
   completeChecksProgress,
   invitationAliasProgress,
   chatRgbProgress,
