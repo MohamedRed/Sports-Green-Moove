@@ -1,0 +1,20 @@
+{
+  "scope": "stopped-temporary-local-credential-input-not-an-application-or-parent-approval-result",
+  "observedOn": "2026-11-02",
+  "sourceCommit": "5d34c0f1fac1ba39571c4b420e0c4b81129de5d8",
+  "runId": "4a8797842602ef33d7aea11559f60a28",
+  "wrongDestinationObserved": "phone-browser-address-bar",
+  "sensitiveInputKind": "temporary-local-fixture-password",
+  "externalAutocompleteTransmission": "possible-not-independently-measured",
+  "sensitiveToolOutputOccurred": true,
+  "sensitiveFrameRetainedInRepository": false,
+  "sensitiveValueRetainedInReport": false,
+  "realCredentialAffected": false,
+  "exactRoutingCauseProven": false,
+  "unsafeCredentialReused": false,
+  "temporaryCredentialInvalidatedByDatasetDisposal": true,
+  "childAccountCreated": false,
+  "parentApprovalProven": false,
+  "correctedPhoneRetryExecuted": false,
+  "releaseComplete": false
+}

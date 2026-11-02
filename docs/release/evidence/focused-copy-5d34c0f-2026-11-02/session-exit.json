@@ -1,0 +1,29 @@
+{
+  "scope": "isolated-session-exit-components-not-phone-or-delivery",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "22ee4aefb9ce3da3cfbca4ef0755247d",
+  "testedAt": "2026-11-02T20:02:06.755Z",
+  "componentCaseCount": 3,
+  "nativeUiExecuted": true,
+  "sourceFiles": {
+    "scripts/qa/run-session-shutdown-components.mjs": "d88cb797835b881aadfa829f0c6ac6b9508328c61d41e09d1cd41908a35c0a29",
+    "scripts/qa/run-local-team-read-components-ui.mjs": "b5f17e7913bba51e98095d203c4e1d17e616d7a837af40d9cba1f7680fa55c42",
+    "scripts/qa/collect-local-ui-evidence.mjs": "cbd89acd570620e6e68890e1b0910016916d9965b9a91297ec098fb070742de3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionShutdownFlowTest.kt": "7868857b6658036af9a425b319368fc95582c5bbf53ab4ad83b7ba57066efdcc",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f8931f8d4f8d33d4fe13ce59fd16b499a6e4be40c8036bcf9433c4be47a58e2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppAccessGate.kt": "4f407f5788bd9f2ef3b419e11222c521158092ef4063654b45b86547f20603b8",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionShutdownState.kt": "f128939f9be0d35f50e480d186bc65f9e67785ffca844e886a3150c3865c17a8",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppSessionShutdown.kt": "74f0f3e66de7b4a3646a07675e34d8da4f73a5a9ba5d5a92e6af2a437f6fab7f"
+  },
+  "screenshots": {
+    "session-exit-narrow.png": "5757ee07682a5b541de0dd29c291ba1f34f4794f66c3dc8709494be40ab1adb6",
+    "session-exit-wide-dark.png": "e93ca8c8118c5bf52b84d84c6a4c6240d392ef8166d972ee7149837443c18be9"
+  },
+  "transcriptSha256": "dcc5055a995bdcd7d77c191da1e1e5afddc43bfd6277ccef6a73b82eeba52538",
+  "setupReceiptSha256": "53ed2571e9b884ab152870d51765b9640e4935dd9fd9814dcd1c08c65b072738",
+  "physicalDevice": false,
+  "productionWrites": false,
+  "realMessagingSdkCalls": 0,
+  "pushDeliveryVerified": false,
+  "cleanupOwner": "focused-shell-independent-restoration-receipt-required"
+}

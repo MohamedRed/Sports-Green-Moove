@@ -14,6 +14,10 @@ import {content} from '../partner-portal/content.mjs';
 const identity = {pid: 80, startedTicks: '123456', executable: 'qemu-system-x86_64-headless', port: 5554, avd: 'test'};
 const statLine = (ticks = identity.startedTicks, state = 'S') => `80 (private process name) ${[state, 1, ...Array(17).fill(0), ticks].join(' ')}`;
 const header = 'sl local_address rem_address st tx_queue rx_queue tr tm->when retrnsmt uid timeout inode';
+function assertScopedObservation(result) {
+  assert.doesNotMatch(JSON.stringify(result), /private|secret-token|0100000A|DO_NOT_READ/);
+  assert.deepEqual(result.connections.map(({localPort, remotePort}) => [localPort, remotePort]), [[5555, 48350]]);
+}
 function fixture(t) {
   const root = mkdtempSync(join(tmpdir(), 'sgm-transfer-emulator-')), uid = process.getuid();
   t.after(() => rmSync(root, {recursive: true, force: true}));
@@ -38,7 +42,15 @@ test('the exact process birth and owned device port are observed without retaini
   assert.deepEqual(result.identity, identity); assert.equal(result.atomicObservation, false);
   assert.equal(result.environmentRead, false); assert.equal(result.rawArgumentsRetained, false);
   assert.equal(result.deviceCommandsRequested, false);
-  assert.doesNotMatch(JSON.stringify(result), /private|secret-token|0100000A|DO_NOT_READ|5557/);
+  assertScopedObservation(result);
+});
+test('clock digits cannot masquerade as an unrelated socket while actual unrelated ports still fail', t => {
+  const result = fixture(t).observe();
+  for (const monotonicMs of [225.555708, 5557]) assertScopedObservation({...result, monotonicMs});
+  for (const field of ['localPort', 'remotePort']) {
+    const changed = structuredClone(result); changed.connections[0][field] = 5557;
+    assert.throws(() => assertScopedObservation(changed));
+  }
 });
 test('the original process can stay present while its device connection is absent', t => {
   const f = fixture(t); writeFileSync(join(f.root, 'net/tcp'), header + '\n');

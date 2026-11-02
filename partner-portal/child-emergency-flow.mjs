@@ -4,6 +4,7 @@ import { childInvitationPhone } from './child-invitation-phone.mjs';
 import { childEmergencyPhone } from './child-emergency-phone.mjs';
 import {invitationAliasPhone} from './invitation-alias-phone.mjs';
 import {approvedPrivateTrials} from './approved-private-trials.mjs';
+import {parentApprovalInputStop} from './parent-approval-input-stop.mjs';
 import { childPhoneStartupAttempt } from './progress-2026-10-26.mjs';
 const source = 'docs/release/evidence/child-contact-heading-pass-2026-10-19/';
 
@@ -14,6 +15,7 @@ export function createChildEmergencyFlow() {
     verified: 'Inscription et connexion du nouveau compte réussies sur téléphone. Le contact sans localisation et l’accord du parent passent dans des essais séparés.',
     remaining: 'Terminer le partage du lien jusqu’à l’accord du parent avec ce nouveau compte, puis le suivi du trajet et l’ouverture réelle du téléphone.',
     approvedPrivateTrials,
+    parentApprovalInputStop,
     invitationAliasPhone,
     phoneContact: childEmergencyPhone,
     phoneInvitation: childInvitationPhone,

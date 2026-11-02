@@ -2,6 +2,7 @@ import { nativeVerification } from './native-verification.mjs';
 import {preparationBlockers} from './preparation-failures.mjs';
 import {completeChecks} from './complete-checks.mjs';
 import {chatPreparationFailure} from './chat-preparation-failure.mjs';
+import {focusedCopyFailure} from './focused-copy-failure.mjs';
 
 export const blockers = [
   {id: 'chat-pending-restart', title: 'Vérifier les autres reprises d’envoi',
@@ -20,7 +21,8 @@ export const blockers = [
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',
     source: 'docs/release/evidence/native-socket-probe-2026-10-25/README.md'},
   { id: 'native-evidence-copy', title: 'Fiabiliser la récupération des captures',
-    text: 'Le nouvel essai complet récupère les captures. Les échecs précédents restent à expliquer.',
+    text: 'Le contrôle principal passe. Un essai séparé échoue encore pendant la copie des captures.',
+    latestFocusedFailure: focusedCopyFailure,
     completeRecheck: completeChecks,
     next: 'Fiabiliser le transfert des captures réseau.', source: 'docs/release/evidence/native-renderer-recheck-2026-10-25/README.md',
     exitLayoutRecheck: {source: 'docs/release/evidence/session-exit-components-f8a3990-2026-11-01/README.md'},

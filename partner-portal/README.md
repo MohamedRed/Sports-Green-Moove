@@ -2,6 +2,23 @@
 
 ## Current Publication Policy
 
+The 5d34c0f main native job passes, but its focused team-read job and required safety
+aggregator fail after 3 + 3 + 8 + 4 framework cases, at the primary alert capture
+copy. Retain the terminal rollup, original failed copy, guest/host disconnect
+observations and independent device/host restoration. Publish one short failed-copy
+note without media or physical/delivery/release promotion. The separate local
+clock-substring assertion correction is not a runtime or disconnect repair. See
+`docs/release/evidence/focused-copy-5d34c0f-2026-11-02/README.md`.
+
+The separately approved parent-approval retry at 5d34c0f stops before signup after
+temporary input reaches the phone browser address bar. Its local fixture is
+destroyed and all owned resources are disposed. Retain only sanitized negative
+records and one reviewed, masked form frame; never the sensitive frame/value.
+Publish one concise interrupted-preparation note, no new media or changed dates,
+tours, statuses, audience or earlier successful signup proof. The corrected manual
+input procedure is not a passing phone replay. See
+`docs/release/evidence/parent-approval-input-stop-2026-11-02/README.md`.
+
 The approved private child-signup trial creates exactly one child-only account on
 a real test phone and signs into the native app. Publish its three reviewed exact
 session crops and one concise note; keep all historical captures, tours and partial

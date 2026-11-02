@@ -1,5 +1,11 @@
 # Approved Private Invitation Trial
 
+Before any further manual trial, follow `private-phone-input.md`. The approved
+parent-approval retry at 5d34c0f was stopped before signup after a temporary
+credential reached the wrong input surface. Its dataset and connection were
+destroyed. It is not a failed application signup or completed parent approval;
+the earlier successful signup remains separate, source-bound evidence.
+
 The user approved a fresh private child-signup trial on 2 November 2026, after the
 earlier alias-only phone trial reached the form but never recorded a redemption.
 Use `start-child-invitation-browser.mjs <output> <private-session> --same-origin-approved`

@@ -1,0 +1,23 @@
+not ok 41 - the exact process birth and owned device port are observed without retaining unrelated connections
+  ---
+  duration_ms: 15.460458
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/adb-transfer-emulator.test.mjs:34:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /private|secret-token|0100000A|DO_NOT_READ|5557/. Input:
+    
+    '{"scope":"bound-emulator-process-and-loopback-sockets-not-guest-lifecycle-or-disconnect-cause","observedAt":"2026-11-02T20:13:31.225Z","monotonicMs":225.555708,"atomicObservation":false,"identity":{"pid":80,"startedTicks":"123456","executable":"qemu-system-x86_64-headless","port":5554,"avd":"test"},"processState":"present","socketsObserved":true,"connections":[{"inode":"11","state":"01","listening":false,"localPort":5555,"remotePort":48350,"localAddress":"loopback","remoteAddress":"loopback"}],"rawArgumentsRetained":false,"environmentRead":false,"deviceCommandsRequested":false}'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '{"scope":"bound-emulator-process-and-loopback-sockets-not-guest-lifecycle-or-disconnect-cause","observedAt":"2026-11-02T20:13:31.225Z","monotonicMs":225.555708,"atomicObservation":false,"identity":{"pid":80,"startedTicks":"123456","executable":"qemu-system-x86_64-headless","port":5554,"avd":"test"},"processState":"present","socketsObserved":true,"connections":[{"inode":"11","state":"01","listening":false,"localPort":5555,"remotePort":48350,"localAddress":"loopback","remoteAddress":"loopback"}],"rawArgumentsRetained":false,"environmentRead":false,"deviceCommandsRequested":false}'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/adb-transfer-emulator.test.mjs:41:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...

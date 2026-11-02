@@ -157,6 +157,7 @@ on:
       - "tests/child-account-phone-checkpoints.test.mjs"
       - "tests/child-account-phone-binding.test.mjs"
       - "tests/approved-private-trials.test.mjs"
+      - "tests/parent-approval-input-stop.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyRideAccess.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildAccountLink*"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*ChildAccountLink*"
@@ -743,6 +744,7 @@ on:
       - "tests/child-account-phone-checkpoints.test.mjs"
       - "tests/child-account-phone-binding.test.mjs"
       - "tests/approved-private-trials.test.mjs"
+      - "tests/parent-approval-input-stop.test.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyRideAccess.kt"
       - "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildAccountLink*"
       - "android/app/src/main/java/be/sportgreenmoove/app/services/*ChildAccountLink*"
@@ -1303,7 +1305,7 @@ jobs:
       - name: Test approved invitation same-origin transport
         run: node --test tests/invitation-same-origin.test.mjs
       - name: Test invitation-bound phone approval observations
-        run: node --test tests/child-account-phone-binding.test.mjs tests/approved-private-trials.test.mjs
+        run: node --test tests/child-account-phone-binding.test.mjs tests/approved-private-trials.test.mjs tests/parent-approval-input-stop.test.mjs
       - name: Test bound emulator transfer observations
         run: node --test tests/adb-transfer-probe.test.mjs tests/adb-transfer-guest.test.mjs tests/adb-transfer-emulator.test.mjs
       - name: Test explicit diagnostic toolchain selection
