@@ -61,6 +61,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Test approved invitation private alias')
     .filter(step => step.name !== 'Validate paired native network preparation observations')
     .filter(step => step.name !== 'Validate complete native pass without release promotion')
+    .filter(step => step.name !== 'Test approved temporary network startup logging')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -209,8 +210,10 @@ test('the unchanged required check only succeeds after all three complete groups
 
 test('the timeout correction preserves every current workload and artifact upload byte-for-byte', () => {
   const steps = smokeGroups.flatMap(key => workflow.jobs[key].steps);
+  const diagnostic = steps.filter(step => step.name === 'Test approved temporary network startup logging');
+  assert.deepEqual(diagnostic, [{name: 'Test approved temporary network startup logging', run: 'node --test tests/network-startup-logging.test.mjs'}]);
   for (const [rows, count, expected] of [
-    [steps.filter(step => step.run && !setup.has(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
+    [steps.filter(step => step.run && !setup.has(step.name) && step.name !== 'Test approved temporary network startup logging'), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
     [steps.filter(step => step.uses?.startsWith('actions/upload-artifact@')), 19, 'ac04ddc85195eb2f779e94230aca82bb8d5f1c78587bfb2cbfa7ae6b5d8c9824'],
   ]) {
     assert.equal(rows.length, count);

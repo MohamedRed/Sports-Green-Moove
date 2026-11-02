@@ -3,6 +3,10 @@ name: Android Transport Diagnostic
 on:
   workflow_dispatch:
     inputs:
+      network_startup:
+        description: "One explicitly approved temporary network-startup logging trial; no app or release acceptance"
+        type: boolean
+        default: false
       platform_tools:
         description: "Explicit disposable diagnostic only; does not change the app test gate"
         type: choice
@@ -30,6 +34,7 @@ permissions:
 
 jobs:
   generated-file-transfer:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.network_startup }}
     name: Generated-file transport (not release)
     runs-on: ubuntu-latest
     timeout-minutes: 12
@@ -72,3 +77,8 @@ jobs:
           name: android-generated-transfer-diagnostic
           path: android/app/build/outputs/transport-probe/*.json
           if-no-files-found: error
+  network-startup-logging:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.network_startup }}
+    uses: ./.github/workflows/network-startup-logging.yml
+    with:
+      approved: ${{ inputs.network_startup }}
