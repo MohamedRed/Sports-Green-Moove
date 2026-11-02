@@ -1741,6 +1741,58 @@ jobs:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-reads.json
         run: npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs tests/team-chat-read-evidence.test.mjs tests/team-chat-read-connected-evidence.test.mjs tests/team-chat-read-component-attempt.test.mjs tests/team-chat-read-components-evidence.test.mjs tests/team-chat-read-phone-evidence.test.mjs
 
+      - name: Retain team alert services and disposal
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: team-alert-services-results
+          path: |
+            ${{ runner.temp }}/team-alerts-services.json
+            ${{ runner.temp }}/team-push-registration-services.json
+            ${{ runner.temp }}/team-push-alert-services.json
+            ${{ runner.temp }}/team-push-dispatch-services.json
+          if-no-files-found: error
+
+      - name: Retain notification inbox services and disposal
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: notification-inbox-services-results
+          path: ${{ runner.temp }}/notification-inbox-services.json
+          if-no-files-found: error
+
+  guardian-safety:
+    name: Guardian, child, and tracking service smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Functions
+        run: npm run build --workspace functions
+
+      - name: Install media inspection tools
+        timeout-minutes: 5
+        run: node --test tests/ci-media-tools.test.mjs && node scripts/ci/install-media-tools.mjs
+
       - name: Test isolated guardian verification authority and lifecycle
         run: npm run test:guardian-verification
 
@@ -1845,37 +1897,18 @@ jobs:
           path: ${{ runner.temp }}/child-booking-receipt.json*
           if-no-files-found: error
 
-      - name: Retain team alert services and disposal
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: team-alert-services-results
-          path: |
-            ${{ runner.temp }}/team-alerts-services.json
-            ${{ runner.temp }}/team-push-registration-services.json
-            ${{ runner.temp }}/team-push-alert-services.json
-            ${{ runner.temp }}/team-push-dispatch-services.json
-          if-no-files-found: error
-
-      - name: Retain notification inbox services and disposal
-        if: always()
-        uses: actions/upload-artifact@v7
-        with:
-          name: notification-inbox-services-results
-          path: ${{ runner.temp }}/notification-inbox-services.json
-          if-no-files-found: error
-
   integration-gate:
     name: Functions, admin, and website smoke
     if: ${{ always() }}
-    needs: [smoke, people-safety]
+    needs: [smoke, people-safety, guardian-safety]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
       contents: read
     steps:
-      - name: Require both complete smoke groups
+      - name: Require all complete smoke groups
         env:
           SMOKE_RESULT: ${{ needs.smoke.result }}
           PEOPLE_RESULT: ${{ needs.people-safety.result }}
-        run: test "$SMOKE_RESULT" = success && test "$PEOPLE_RESULT" = success
+          GUARDIAN_RESULT: ${{ needs.guardian-safety.result }}
+        run: test "$SMOKE_RESULT" = success && test "$PEOPLE_RESULT" = success && test "$GUARDIAN_RESULT" = success

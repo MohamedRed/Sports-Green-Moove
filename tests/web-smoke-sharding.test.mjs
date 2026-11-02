@@ -11,13 +11,14 @@ import { childPhoneStartupAttempt } from '../partner-portal/progress-2026-10-26.
 const file = new URL('../.github/workflows/web-integration-smoke.yml', import.meta.url);
 const workflow = parseDocument(readFileSync(file, 'utf8')).toJSON();
 const setup = new Set(['Install dependencies', 'Build Functions', 'Install media inspection tools']);
+const smokeGroups = ['smoke', 'people-safety', 'guardian-safety'];
 
 test('original terminal CI outcomes and the zero-checkpoint phone attempt remain incomplete', () => {
   validateFlowCheckRecoveryEvidence(fileURLToPath(new URL('..', import.meta.url)), childPhoneStartupAttempt);
 });
 
 test('all 111 original workload steps retain their exact commands, environments, IDs and multiplicity', () => {
-  const rows = ['smoke', 'people-safety'].flatMap(key => workflow.jobs[key].steps)
+  const rows = smokeGroups.flatMap(key => workflow.jobs[key].steps)
     .filter(step => step.run && !setup.has(step.name) && step.name !== 'Validate complete smoke partitioning' &&
       step.name !== 'Test child contact discovery through verified-parent approval')
     .filter(step => step.name !== 'Test primary capture observation protocol')
@@ -103,16 +104,16 @@ test('all 111 original workload steps retain their exact commands, environments,
   assert.equal(cancellation[0].run, 'node --test tests/trip-cancellation-phone-checkpoints.test.mjs tests/trip-cancellation-phone-evidence.test.mjs');
   assert.equal(createHash('sha256').update(JSON.stringify(rows)).digest('hex'),
     '9cd670feeb2b0fa303212bd460b0f647499dac6264ad0830468354575dcbb1a2');
-  const added = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test child contact discovery through verified-parent approval');
+  const added = workflow.jobs['guardian-safety'].steps.filter(step => step.name === 'Test child contact discovery through verified-parent approval');
   assert.equal(added.length, 1);
   assert.equal(added[0].run, 'npm run test:child-account-approval && node --test tests/child-contact-discovery.test.mjs');
   assert.equal(added[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/child-contact-discovery.json');
   const capture = workflow.jobs.smoke.steps.filter(step => step.name === 'Test primary capture observation protocol');
   assert.equal(capture.length, 1); assert.equal(capture[0].run, 'node --test tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs tests/capture-window-calibration.test.mjs');
-  const invitation = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test parent-shared child invitations without adult-role signup');
+  const invitation = workflow.jobs['guardian-safety'].steps.filter(step => step.name === 'Test parent-shared child invitations without adult-role signup');
   assert.equal(invitation.length, 1);
   assert.equal(invitation[0].run, 'npm run test:child-invitation && node --test tests/child-invitation-contract.test.mjs');
-  const childBooking = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test child booking receipt recovery without map requests');
+  const childBooking = workflow.jobs['guardian-safety'].steps.filter(step => step.name === 'Test child booking receipt recovery without map requests');
   assert.equal(childBooking.length, 1);
   assert.equal(childBooking[0].run, 'node scripts/qa/run-local-child-booking-receipt.mjs && node --test tests/booking-receipt-loss-proxy.test.mjs');
   assert.equal(childBooking[0].env.SGM_LOCAL_FLOW_OUTPUT, '${{ runner.temp }}/child-booking-receipt.json');
@@ -146,7 +147,8 @@ test('all 111 original workload steps retain their exact commands, environments,
 test('service groups use separate runners and build their own unchanged backend before testing', () => {
   assert.equal(workflow.jobs.smoke['timeout-minutes'], 30);
   assert.equal(workflow.jobs['people-safety']['timeout-minutes'], 20);
-  for (const key of ['smoke', 'people-safety']) {
+  assert.equal(workflow.jobs['guardian-safety']['timeout-minutes'], 20);
+  for (const key of smokeGroups) {
     const job = workflow.jobs[key];
     assert.equal(job.needs, undefined); assert.equal(job['runs-on'], 'ubuntu-latest');
     assert.deepEqual(job.permissions, { contents: 'read' });
@@ -162,7 +164,7 @@ test('service groups use separate runners and build their own unchanged backend 
 
 test('original and added evidence uploads follow their owning tests', () => {
   const names = [];
-  for (const key of ['smoke', 'people-safety']) {
+  for (const key of smokeGroups) {
     const steps = workflow.jobs[key].steps;
     const uploads = steps.filter(step => step.uses?.startsWith('actions/upload-artifact@'));
     assert(steps.indexOf(uploads[0]) > steps.findLastIndex(step => step.run));
@@ -187,19 +189,34 @@ test('original and added evidence uploads follow their owning tests', () => {
   assert(names.includes('child-invitation-results'));
 });
 
-test('the unchanged required check only succeeds after both complete groups succeed', () => {
+test('the unchanged required check only succeeds after all three complete groups succeed', () => {
   const gate = workflow.jobs['integration-gate'];
   assert.equal(gate.name, 'Functions, admin, and website smoke');
-  assert.equal(gate.if, '${{ always() }}'); assert.deepEqual(gate.needs, ['smoke', 'people-safety']);
+  assert.equal(gate.if, '${{ always() }}'); assert.deepEqual(gate.needs, smokeGroups);
   assert.deepEqual(gate.permissions, { contents: 'read' }); assert.equal(gate.steps.length, 1);
   const step = gate.steps[0];
   assert.equal(step.env.SMOKE_RESULT, '${{ needs.smoke.result }}');
   assert.equal(step.env.PEOPLE_RESULT, '${{ needs.people-safety.result }}');
+  assert.equal(step.env.GUARDIAN_RESULT, '${{ needs.guardian-safety.result }}');
   for (const smoke of ['success', 'failure', 'cancelled', 'skipped', ''])
-    for (const people of ['success', 'failure', 'cancelled', 'skipped', '']) {
-      const result = spawnSync('/bin/sh', ['-c', step.run], { env: { SMOKE_RESULT: smoke, PEOPLE_RESULT: people } });
-      assert.equal(result.status === 0, smoke === 'success' && people === 'success');
-    }
+    for (const people of ['success', 'failure', 'cancelled', 'skipped', ''])
+      for (const guardian of ['success', 'failure', 'cancelled', 'skipped', '']) {
+        const result = spawnSync('/bin/sh', ['-c', step.run], { env: {
+          SMOKE_RESULT: smoke, PEOPLE_RESULT: people, GUARDIAN_RESULT: guardian } });
+        assert.equal(result.status === 0, smoke === 'success' && people === 'success' && guardian === 'success');
+      }
+});
+
+test('the timeout correction preserves every current workload and artifact upload byte-for-byte', () => {
+  const steps = smokeGroups.flatMap(key => workflow.jobs[key].steps);
+  for (const [rows, count, expected] of [
+    [steps.filter(step => step.run && !setup.has(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
+    [steps.filter(step => step.uses?.startsWith('actions/upload-artifact@')), 19, 'ac04ddc85195eb2f779e94230aca82bb8d5f1c78587bfb2cbfa7ae6b5d8c9824'],
+  ]) {
+    assert.equal(rows.length, count);
+    const normalized = rows.map(step => JSON.stringify(step)).sort();
+    assert.equal(createHash('sha256').update(JSON.stringify(normalized)).digest('hex'), expected);
+  }
 });
 
 test('every CI caller of the structured PR check installs the locked YAML dependency first', () => {

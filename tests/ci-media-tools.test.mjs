@@ -54,13 +54,13 @@ test('the installer refuses a personal-machine invocation before running any pac
     cwd: new URL('..', import.meta.url), env: { PATH: process.env.PATH, GITHUB_ACTIONS: 'false', RUNNER_OS: 'Linux' }, encoding: 'utf8' });
   assert.notEqual(result.status, 0); assert(result.stderr.includes('Do not install CI packages on a personal computer'));
 });
-test('both smoke lanes use the same bounded installer without widening their existing job deadlines', () => {
+test('all smoke lanes use the same bounded installer without widening job deadlines', () => {
   const workflow = parseDocument(readFileSync(new URL('../.github/workflows/web-integration-smoke.yml', import.meta.url), 'utf8')).toJSON();
   for (const event of ['pull_request', 'push']) {
     assert(workflow.on[event].paths.includes('scripts/ci/**'));
     assert(workflow.on[event].paths.includes('tests/ci-media-tools.test.mjs'));
   }
-  for (const [name, timeout] of [['smoke', 30], ['people-safety', 20]]) {
+  for (const [name, timeout] of [['smoke', 30], ['people-safety', 20], ['guardian-safety', 20]]) {
     const job = workflow.jobs[name], step = job.steps.find(row => row.name === 'Install media inspection tools');
     assert.equal(job['timeout-minutes'], timeout); assert.equal(step['timeout-minutes'], 5);
     assert.equal(step.run, 'node --test tests/ci-media-tools.test.mjs && node scripts/ci/install-media-tools.mjs');
