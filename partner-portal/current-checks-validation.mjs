@@ -1,4 +1,5 @@
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
+import {completeChecksFolder, validateCompleteChecks} from '../scripts/qa/complete-checks-evidence.mjs';
 import {invitationAliasFolder, validateInvitationAliasPhone} from '../scripts/qa/invitation-alias-phone-evidence.mjs';
 import {chatReceiptPhoneFolder, validateChatReceiptPhone} from '../scripts/qa/chat-receipt-loss-phone-evidence.mjs';
 import {networkPreparationFolder, validateNetworkPreparationRecheck} from './network-preparation-validation.mjs';
@@ -53,6 +54,11 @@ import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/tr
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateCompleteChecks(root);
+  assert.equal(content.completeChecks.source, completeChecksFolder + 'review.json');
+  assert(content.updates.some(row => row.source === completeChecksFolder + 'README.md'));
+  for (const id of ['native-evidence-copy', 'chat-send-stability'])
+    assert.equal(content.blockers.find(row => row.id === id).completeRecheck.source, completeChecksFolder + 'review.json');
   validateInvitationAliasPhone(root);
   assert.equal(content.flows.find(row => row.id === 'child-emergency').invitationAliasPhone.source, invitationAliasFolder + 'review.json');
   assert(content.updates.some(row => row.source === invitationAliasFolder + 'README.md'));

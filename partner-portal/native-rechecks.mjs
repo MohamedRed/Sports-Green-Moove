@@ -1,6 +1,8 @@
 import {rejectedCaptureRecheck} from './rejected-capture-probe.mjs';
+import {completeChecks} from './complete-checks.mjs';
 
 export const nativeRechecks = {
+  completeChecks,
   rejectedCaptureRecheck,
   nativeClientClosureRecheck: {source: 'docs/release/evidence/native-admin-close-13a5b1e2-2026-10-24/summary.json', checkedAt: '2026-10-24',
     checksums: 'docs/release/evidence/native-admin-close-13a5b1e2-2026-10-24/artifact-sha256.json'},

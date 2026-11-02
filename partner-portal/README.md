@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The complete 638066c automated run passes 248 ordinary cases, all 37 connected
+replay groups / 40 native cases, 17 primary copies, eleven focused jobs and all
+three web/service groups. Retain its immutable source boundary, original reports
+and device/environment restoration alongside the original d55a112 capture failure.
+Publish one concise simulation update and correct the two outdated latest-failure
+descriptions, without new media, changed phone dates/tours/status/audience or a
+claim that intermittency or release readiness is resolved. The physical child
+signup remains incomplete. See `docs/release/evidence/complete-checks-638066c-2026-11-02/README.md`.
+
 The original three chat session images have JPEG bytes despite their `.png`
 filenames. Preserve them and the old FFmpeg-dependent recrops unchanged. The
 separate RGB normalization bundle retains the Linux pixel mismatch, locks full

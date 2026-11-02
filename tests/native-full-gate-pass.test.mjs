@@ -7,9 +7,46 @@ import {fileURLToPath} from 'node:url';
 import {parseDocument} from 'yaml';
 import test from 'node:test';
 import {assertFullNativePassReview,fullNativePassFolder,validateFullNativePass} from '../scripts/qa/full-native-pass-evidence.mjs';
+import {assertCompleteChecksReview,completeChecksFolder,validateCompleteChecks} from '../scripts/qa/complete-checks-evidence.mjs';
 import {content} from '../partner-portal/content.mjs';
 const root=fileURLToPath(new URL('..',import.meta.url));
 const json=file=>JSON.parse(readFileSync(join(root,fullNativePassFolder,file)));
+test('the latest full gate retains the complete matrix, replay, primary copies, all groups and original failure',()=>{
+  assert.deepEqual(validateCompleteChecks(root), {sourceSpecificFullGatePassed:true,ordinaryPassed:248,replayGroups:37,
+    replayNativeCases:40,primaryCopies:17,focusedJobs:11,physicalDeviceAccepted:false,intermittencyRepaired:false,releaseAccepted:false});
+  assert.equal(content.completeChecks.source,completeChecksFolder+'review.json');
+  const note=content.updates.find(row=>row.source===completeChecksFolder+'README.md');assert(note);
+  assert.doesNotMatch(note.title+note.text,/BrowserStack|Firebase|SDK|APK|CI|Linux/);
+  for(const id of ['messages','team-conversation','native-startup','publication','child-emergency'])
+    assert.equal(content.flows.find(row=>row.id===id).status,'partial');
+  for(const id of ['native-evidence-copy','chat-send-stability']) {
+    const blocker=content.blockers.find(row=>row.id===id);assert(blocker);
+    assert.equal(blocker.completeRecheck.source,completeChecksFolder+'review.json');
+    assert.notEqual(blocker.latestSource,completeChecksFolder+'README.md');
+  }
+});
+for(const key of ['currentHeadGateAccepted','physicalDeviceAccepted','productionWrites','releaseAccepted',
+  'earlierFailureRepaired','underlyingCauseConfirmed','signupPhoneAccepted']) test('the latest success cannot promote '+key,()=>{
+  const review=JSON.parse(readFileSync(join(root,completeChecksFolder,'review.json')));review[key]=true;
+  assert.throws(()=>assertCompleteChecksReview(review),new RegExp(key));
+});
+for(const [file,change] of [
+  ['native-jobs.json',row=>{row.jobs.find(job=>job.id===125252512809).conclusion='failure';}],
+  ['archive-verification.json',row=>{delete row.members['main/replay/adb-pull-trip-change-parent-confirmation.json'];}],
+]) test('the latest recheck rejects rehashed contradictory '+file,t=>{
+  const temporary=mkdtempSync(join(tmpdir(),'sgm-complete-checks-'));t.after(()=>rmSync(temporary,{recursive:true,force:true}));
+  const folder=join(temporary,completeChecksFolder);cpSync(join(root,completeChecksFolder),folder,{recursive:true});
+  const prior='docs/release/evidence/full-native-5091ec5-2026-10-31/main/replay/results.json';
+  mkdirSync(dirname(join(temporary,prior)),{recursive:true});cpSync(join(root,prior),join(temporary,prior));
+  const sourceFiles=JSON.parse(readFileSync(join(folder,'source-files.json')));
+  const archive=join(temporary,'docs/release/evidence/source-archive');mkdirSync(archive,{recursive:true});
+  for(const hash of Object.values(sourceFiles))cpSync(join(root,'docs/release/evidence/source-archive',hash+'.txt'),join(archive,hash+'.txt'));
+  assert.doesNotThrow(()=>validateCompleteChecks(temporary));
+  const value=JSON.parse(readFileSync(join(folder,file)));change(value);const bytes=JSON.stringify(value);
+  writeFileSync(join(folder,file),bytes);const hashes=JSON.parse(readFileSync(join(folder,'artifact-sha256.json')));
+  hashes[file]=createHash('sha256').update(bytes).digest('hex');writeFileSync(join(folder,'artifact-sha256.json'),JSON.stringify(hashes));
+  assert.throws(()=>validateCompleteChecks(temporary));
+});
 test('both source events and both authoritative test lanes keep the complete-gate evidence contract',()=>{
   for(const file of ['native-ci.yml','web-integration-smoke.yml']) {
     const workflow=parseDocument(readFileSync(join(root,'.github/workflows',file),'utf8')).toJSON();

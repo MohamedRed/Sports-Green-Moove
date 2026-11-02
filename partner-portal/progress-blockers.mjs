@@ -1,5 +1,6 @@
 import { nativeVerification } from './native-verification.mjs';
 import {preparationBlockers} from './preparation-failures.mjs';
+import {completeChecks} from './complete-checks.mjs';
 
 export const blockers = [
   {id: 'chat-pending-restart', title: 'Vérifier les autres reprises d’envoi',
@@ -18,7 +19,8 @@ export const blockers = [
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',
     source: 'docs/release/evidence/native-socket-probe-2026-10-25/README.md'},
   { id: 'native-evidence-copy', title: 'Fiabiliser la récupération des captures',
-    text: 'La capture paysage passe dans le nouvel essai séparé en simulation. Le problème de transfert des captures réseau reste ouvert.',
+    text: 'Le nouvel essai complet récupère les captures. Les échecs précédents restent à expliquer.',
+    completeRecheck: completeChecks,
     next: 'Fiabiliser le transfert des captures réseau.', source: 'docs/release/evidence/native-renderer-recheck-2026-10-25/README.md',
     exitLayoutRecheck: {source: 'docs/release/evidence/session-exit-components-f8a3990-2026-11-01/README.md'},
     latestPassingSource: 'docs/release/evidence/notification-gate-d476cce-2026-11-01/README.md',
@@ -73,7 +75,8 @@ export const blockers = [
     next: 'Comprendre cet ancien échec, puis rejouer sur téléphone avec une vraie coupure.', source: 'docs/release/evidence/session-disconnect-native-2026-10-20/README.md',
     latestSource: 'docs/release/evidence/session-recovery-89fda8c-2026-10-31/README.md' },
   { id: 'chat-send-stability', title: 'Vérifier la reprise sur plusieurs essais',
-    text: 'Le renvoi passe sur téléphone après une coupure contrôlée. Le nouveau contrôle en simulation échoue lors de la récupération des captures.',
+    text: 'Le renvoi passe sur téléphone après une coupure contrôlée. Le nouvel essai complet passe en simulation.',
+    completeRecheck: completeChecks,
     next: 'Fiabiliser les contrôles et rejouer les coupures réelles entre téléphones.', source: nativeVerification.source,
     latestSource: 'docs/release/evidence/native-team-push-exit-gate-a2e3e19-2026-11-01/README.md',
     networkPreparationHistory: {source: 'docs/release/evidence/native-network-preparation-e2bb5d2-2026-11-01/README.md'},
