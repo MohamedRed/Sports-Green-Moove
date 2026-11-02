@@ -31,6 +31,12 @@ The diagnostic still cannot prove the root cause merely because a controller eve
 is absent. Do not repeat it, promote a pass or use it as an automatic retry without
 reviewing its actual result and obtaining approval for another trial when needed.
 
+The first approved run at `b46e048` recorded all three samples but failed restoration.
+Its original receipt remains failed. The empty original property must be passed
+as a quoted empty remote-shell argument: an empty host-side argv element is lost
+at the adb shell boundary. The corrected argument has a real shell-parsing test;
+it is not device-restoration evidence until a separately approved run verifies it.
+
 Web Integration Smoke adds one device-free contract test. Its 153 pre-existing
 commands and 19 uploads remain byte-identical; only the new test is excluded from
 the historical fingerprint and is independently checked by exact command.

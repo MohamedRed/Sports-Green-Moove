@@ -2,9 +2,10 @@ import assert from 'node:assert/strict';
 import {mkdtempSync, readFileSync, readdirSync, rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
+import {execFileSync} from 'node:child_process';
 import test from 'node:test';
 import {parseDocument} from 'yaml';
-import {observeNetworkStartupLogging, startupLogProperty} from '../scripts/qa/network-startup-logging.mjs';
+import {observeNetworkStartupLogging, startupLogProperty, loggingPropertyArgument} from '../scripts/qa/network-startup-logging.mjs';
 
 const approved = {SGM_LOCAL_DISPOSABLE_EMULATOR: 'true', SGM_NETWORK_STARTUP_LOGGING_APPROVED: 'true',
   SGM_NETWORK_DIAGNOSTIC_DEVICE_OWNED: 'true', GITHUB_ACTIONS: 'true', RUNNER_OS: 'Linux', RUNNER_ENVIRONMENT: 'github-hosted'};
@@ -22,8 +23,8 @@ function fixture(t, options = {}) {
     if (args[0] === 'pm') return options.installed ? 'package:be.sportgreenmoove.app.local' : '';
     if (args[0] === 'cat') {assert.equal(args[1], '/proc/sys/kernel/random/boot_id'); return boot;}
     assert.deepEqual(args.slice(0, 2), ['setprop', startupLogProperty]);
-    if (options.failRestore && args[2] === '') throw Error('private-sim-id-not-retained');
-    property = args[2]; return '';
+    if (options.failRestore && args[2] === '""') throw Error('private-sim-id-not-retained');
+    property = args[2] === '""' ? '' : args[2]; return '';
   };
   const command = (...args) => {
     calls.push(args);
@@ -48,7 +49,7 @@ test('one approved cold startup observes three bounded states and restores the s
   assert.equal(result.rebootRequests, 1); assert.equal(result.bootTransitionObserved, true);
   assert.equal(result.flowExecuted, false); assert.equal(result.radioSettingsChanged, false); assert.equal(f.property(), '');
   assert.equal(f.calls.filter(row => row[0] === 'reboot').length, 1);
-  assert.deepEqual(f.calls.filter(row => row[0] === 'setprop'), [['setprop', startupLogProperty, 'D'], ['setprop', startupLogProperty, '']]);
+  assert.deepEqual(f.calls.filter(row => row[0] === 'setprop'), [['setprop', startupLogProperty, 'D'], ['setprop', startupLogProperty, '""']]);
   assert.equal(readdirSync(f.output).filter(name => /^sample-\d.json$/.test(name)).length, 3);
   assert.equal(JSON.parse(readFileSync(join(f.output, 'sample-2.json'))).elapsedMs, 45_000);
   assert(!JSON.stringify(result).includes(oldBoot)); assert(!JSON.stringify(result).includes(newBoot));
@@ -72,6 +73,11 @@ test('restoration failure cannot be reported as a completed diagnostic', async t
   const f = fixture(t, {failRestore: true}); const result = await f.run();
   assert.equal(result.failed, true); assert.equal(result.restored, false); assert.equal(result.completed, false);
   assert.equal(result.releaseAccepted, false); assert.equal(result.rootCauseConfirmed, false);
+});
+test('the empty restoration argument survives the actual remote-shell parsing boundary', () => {
+  const argument = loggingPropertyArgument(''); assert.equal(argument, '""');
+  assert.equal(execFileSync('/bin/sh', ['-c', 'set -- ' + argument + '; printf "%s:%s" "$#" "$1"'], {encoding: 'utf8'}), '1:');
+  assert.equal(loggingPropertyArgument('D'), 'D'); assert.throws(() => loggingPropertyArgument('unapproved;value'));
 });
 test('the existing registered diagnostic entry point requires explicit dispatch and approval for startup logging', () => {
   const read = file => parseDocument(readFileSync(new URL('../' + file, import.meta.url), 'utf8')).toJSON();

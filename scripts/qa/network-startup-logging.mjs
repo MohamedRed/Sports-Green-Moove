@@ -11,6 +11,11 @@ import {collectDefaultSelectionDiagnostics} from './local-default-selection-diag
 import {collectCarrierDiagnostics} from './local-carrier-diagnostics.mjs';
 
 export const startupLogProperty = 'persist.log.tag.MultiSimSettingController';
+export function loggingPropertyArgument(value) {
+  parseLogEmissionProperty(value);
+  // adb shell joins remote arguments; an empty argv element otherwise disappears.
+  return value === '' ? '""' : value;
+}
 const packages = ['be.sportgreenmoove.app', 'be.sportgreenmoove.app.local', 'be.sportgreenmoove.qa.installguard'];
 const scope = 'approved-temporary-network-startup-logging-not-flow-or-repair';
 
@@ -52,15 +57,15 @@ export async function observeNetworkStartupLogging(output, env = process.env, {
     loggingSettingsChanged: false, radioSettingsChanged: false, rawLogsRetained: false,
     flowExecuted: false, rootCauseConfirmed: false, releaseAccepted: false, restored: false, completed: false};
   save('started.json', receipt);
-  let attempted = false, failed = false;
+  let attempted = false, failed = false, phase = 'enable-logging';
   try {
     signal?.throwIfAborted();
     attempted = true;
-    shell('setprop', startupLogProperty, 'D');
+    shell('setprop', startupLogProperty, loggingPropertyArgument('D'));
     assert.equal(shell('getprop', startupLogProperty), 'D');
     receipt.loggingSettingsChanged = original !== 'D';
     // One cold restart is necessary to observe selection decisions made during boot.
-    receipt.rebootRequests = 1; command('reboot');
+    phase = 'restart'; receipt.rebootRequests = 1; command('reboot');
     const deadline = now() + 120_000;
     while (!receipt.bootTransitionObserved) {
       signal?.throwIfAborted(); assert(now() < deadline, 'Diagnostic boot did not complete within its bound');
@@ -80,6 +85,7 @@ export async function observeNetworkStartupLogging(output, env = process.env, {
     const adb = env.ANDROID_HOME ? `${env.ANDROID_HOME}/platform-tools/adb` : 'adb';
     const started = now();
     for (const [index, offset] of [0, 15_000, 45_000].entries()) {
+      phase = 'collect-sample-' + index;
       signal?.throwIfAborted();
       const remaining = started + offset - now(); if (remaining > 0) await sleep(remaining, signal);
       assertAbsent();
@@ -93,15 +99,15 @@ export async function observeNetworkStartupLogging(output, env = process.env, {
     }
     receipt.completed = true;
   } catch {
-    failed = true;
+    failed = true; receipt.failureStage = signal?.aborted ? 'cancelled' : phase;
   } finally {
     if (attempted) {
       try {
         command('wait-for-device');
-        if (shell('getprop', startupLogProperty) !== original) shell('setprop', startupLogProperty, original);
+        if (shell('getprop', startupLogProperty) !== original) shell('setprop', startupLogProperty, loggingPropertyArgument(original));
         assert.equal(shell('getprop', startupLogProperty), original);
         assertAbsent(); receipt.restored = true;
-      } catch { failed = true; }
+      } catch { failed = true; receipt.restorationFailure = true; }
     }
     receipt.failed = failed;
     if (failed) receipt.completed = false;
