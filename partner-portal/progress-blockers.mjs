@@ -3,6 +3,7 @@ import {preparationBlockers} from './preparation-failures.mjs';
 import {completeChecks} from './complete-checks.mjs';
 import {chatPreparationFailure} from './chat-preparation-failure.mjs';
 import {focusedCopyFailure, currentNativeFailure} from './focused-copy-failure.mjs';
+import {c84Checks} from './c84-checks.mjs';
 import {uriSecurity} from './uri-security.mjs';
 
 export const blockers = [
@@ -22,7 +23,8 @@ export const blockers = [
     next: 'Adapter cette connexion, puis rejouer le trajet et la coupure.',
     source: 'docs/release/evidence/native-socket-probe-2026-10-25/README.md'},
   { id: 'native-evidence-copy', title: 'Fiabiliser la récupération des captures',
-    text: 'La série complète bloque à la récupération des captures, malgré les essais d’écran réussis.',
+    text: 'Les captures sont récupérées dans le dernier essai. Les échecs précédents restent à expliquer.',
+    latestResult: c84Checks,
     latestCheck: currentNativeFailure,
     latestFocusedFailure: focusedCopyFailure,
     completeRecheck: completeChecks,

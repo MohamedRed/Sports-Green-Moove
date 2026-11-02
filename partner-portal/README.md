@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The c84b8e4 main native matrix, full connected replay and all primary copies pass.
+The separate chat-network case fails before any disconnection/send, and the web
+job is cancelled at its deadline despite successful step records. Its last log
+line is orphan cleanup; the finalization cause remains unknown. Preserve both
+verified original ZIPs' selected members and all terminal first-attempt checks.
+Publish one concise simulation note and correct the capture blocker's latest
+description, with no new media, changed flow dates/status/tours or release claim.
+The separately approved web-only diagnostic retry is not a replacement for the
+initial cancelled result. See `docs/release/evidence/checks-c84b8e4-2026-11-02/README.md`.
+
 The compatible URI dependency correction retains its incomplete first assertions
 and missing-output launch, then proves the corrected same-source comparison and
 six local compatibility groups. Publish one concise security note with the still-
