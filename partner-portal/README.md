@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The terminal 1030dac run passes 248 ordinary cases and nine focused jobs, but fails
+the main primary capture copy, native-startup login preparation and image install.
+Replace the existing failed-copy note and blocker text, retaining their earlier
+source evidence, without adding another visible update or changing media, phone
+dates, tours, statuses or audience. The selected members are individually hashed;
+do not claim independent complete-archive verification. See
+`docs/release/evidence/native-checks-1030dac-2026-11-02/README.md`.
+
 The 5d34c0f main native job passes, but its focused team-read job and required safety
 aggregator fail after 3 + 3 + 8 + 4 framework cases, at the primary alert capture
 copy. Retain the terminal rollup, original failed copy, guest/host disconnect

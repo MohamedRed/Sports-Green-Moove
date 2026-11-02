@@ -6,7 +6,8 @@ import {resolve} from 'node:path';
 import {content} from '../partner-portal/content.mjs';
 import {parentApprovalInputStopProgress} from '../partner-portal/parent-approval-input-stop.mjs';
 import {assertParentApprovalInputStop, parentApprovalInputStopFolder, validateParentApprovalInputStop} from '../scripts/qa/parent-approval-input-stop-evidence.mjs';
-import {validateFocusedCopyFailure} from '../scripts/qa/focused-copy-failure-evidence.mjs';
+import {validateFocusedCopyFailure, validateCurrentNativeFailure, assertCurrentNativeFailureScope,
+  currentNativeFailureFolder} from '../scripts/qa/focused-copy-failure-evidence.mjs';
 import {focusedCopyFailureProgress} from '../partner-portal/focused-copy-failure.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -46,4 +47,21 @@ test('the real remote copy failure remains separate from the local clock-substri
   assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestFocusedFailure.source,
     'docs/release/evidence/focused-copy-5d34c0f-2026-11-02/review.json');
   assert.doesNotMatch(focusedCopyFailureProgress.title + focusedCopyFailureProgress.text, /BrowserStack|Firebase|SDK|ADB|localhost/);
+});
+test('the terminal current-source failure keeps ordinary passes separate from the incomplete whole gate', () => {
+  assert.deepEqual(validateCurrentNativeFailure(root), {ordinaryPassed: 248, focusedPassed: 9,
+    fullNativeGateAccepted: false, rootCauseConfirmed: false});
+  const blocker = content.blockers.find(row => row.id === 'native-evidence-copy');
+  assert.equal(blocker.latestCheck.source, currentNativeFailureFolder + 'review.json');
+  assert.doesNotMatch(blocker.text, /Le contrôle principal passe/);
+  assert.equal(focusedCopyFailureProgress.source, currentNativeFailureFolder + 'README.md');
+  assert.equal(content.updates.filter(row => row === focusedCopyFailureProgress).length, 1);
+});
+test('the latest report cannot promote cleanup copies, archive verification or parent and physical acceptance', () => {
+  const original = JSON.parse(readFileSync(resolve(root, currentNativeFailureFolder, 'review.json')));
+  for (const key of ['originalArchiveDigestIndependentlyVerified', 'fullNativeGateAccepted', 'primaryCopyRepaired',
+    'signupParentApprovalAccepted', 'physicalDeviceAccepted', 'releaseComplete', 'rootCauseConfirmed']) {
+    const changed = structuredClone(original); changed[key] = true;
+    assert.throws(() => assertCurrentNativeFailureScope(changed), key);
+  }
 });
