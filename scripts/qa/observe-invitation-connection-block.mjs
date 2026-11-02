@@ -4,12 +4,15 @@ import {isAbsolute, resolve} from 'node:path';
 import {deleteApp} from 'firebase-admin/app';
 import {withLocalAdminCleanup} from './local-admin-lifecycle.mjs';
 
-const [directory, privateInput] = process.argv.slice(2); assert.equal(process.argv.length, 4);
+const [directory, privateInput, mode] = process.argv.slice(2);
+const formUnconfirmed = mode === '--form-unconfirmed';
+assert.equal(process.argv.length, formUnconfirmed ? 5 : 4);
+assert(!mode || formUnconfirmed);
 assert([directory, privateInput].every(path => isAbsolute(path ?? ''))); assert.equal(statSync(privateInput).mode & 0o077, 0);
 const path = resolve(directory, 'connection-blocked-records.json'); assert(!existsSync(path));
 const before = JSON.parse(readFileSync(resolve(directory, 'observations.json')));
 assert.equal(before.projectId, 'demo-sgm-local-qa'); assert.match(before.runId, /^[a-f0-9]{32}$/);
-assert.deepEqual(before.observations.map(row => row.phase), ['before']);
+assert.deepEqual(before.observations.map(row => row.phase), formUnconfirmed ? ['before', 'mismatch'] : ['before']);
 const session = JSON.parse(readFileSync(privateInput)); assert.equal(session.projectId, before.projectId); assert.equal(session.runId, before.runId);
 process.env.SGM_QA_PASSWORD = session.password;
 const {auth, db} = await import('./local-flow-client.mjs');
@@ -26,8 +29,9 @@ await withLocalAdminCleanup(async () => {
     accountCount: 3, childAccountExists: false, invitationStatus: data.status, redemptionCount: 0,
     approvalRequestCount: 0, accountLinkCount: 0, claims: users.users.map(row => ({uid: row.uid, claims: row.customClaims ?? {}}))
       .sort((a, b) => a.uid.localeCompare(b.uid)),
-    scope: 'independent-records-after-phone-connection-failure-not-ui-or-root-cause-proof',
-    browserFormReached: false, signupProven: false, parentApprovalProven: false, productionWrites: false, releaseComplete: false};
+    scope: formUnconfirmed ? 'independent-records-after-phone-form-unconfirmed-not-ui-or-root-cause-proof' :
+      'independent-records-after-phone-connection-failure-not-ui-or-root-cause-proof',
+    browserFormReached: formUnconfirmed, signupProven: false, parentApprovalProven: false, productionWrites: false, releaseComplete: false};
 }, {firestore: {terminate: async () => {await db.terminate(); firestoreClientTerminated = true;}},
   closeApp: async app => {await deleteApp(app); adminClientClosed = true;}});
 writeFileSync(path, JSON.stringify({...result, adminClientClosed, firestoreClientTerminated}, null, 2) + '\n', {flag: 'wx', mode: 0o600});

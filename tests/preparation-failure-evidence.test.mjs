@@ -16,7 +16,7 @@ test('fresh phone errors keep host observations separate from routing, account c
   assert.equal(progress.flow,'child-emergency');
   assert.equal(content.flows.find(row=>row.id==='child-emergency').status,'partial');
   assert(!Object.values(captures).some(path=>path.startsWith(invitationConnectionRecheckFolder)));
-  assert.equal(content.blockers.find(row=>row.id==='child-invitation-browser').latestSource,invitationConnectionRecheckFolder+'README.md');
+  assert.equal(content.blockers.find(row=>row.id==='child-invitation-browser').connectionHistory,invitationConnectionRecheckFolder+'README.md');
 });
 for(const key of ['installedApkIndependentlyHashed','browserFormReached','childAccountCreated','parentApprovalProven',
   'nativeShareToSignupProven','helperConnectionContinuityProven','rootCauseConfirmed','browserAliasEnabled',

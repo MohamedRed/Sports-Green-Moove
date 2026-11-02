@@ -14,6 +14,7 @@ export const nativeCapacityProgress = {date: '2026-10-30', title: 'Le nouvel ess
   flow: 'native-startup', source: capacity + 'README.md', checksums: capacity + 'artifact-sha256.json'};
 export const preparationBlockers = [
   {id: 'child-invitation-browser', title: 'L’inscription enfant sur téléphone',
-    text: 'La page ne s’ouvre pas sur l’appareil d’essai.',
-    next: 'Rétablir l’accès, puis vérifier la création du compte et l’accord du parent.', source: invitation + 'README.md', latestSource:recheck + 'README.md'},
+    text: 'Le formulaire s’ouvre, mais la création du compte n’aboutit pas.',
+    next: 'Débloquer l’inscription, puis vérifier l’accord du parent.', source: invitation + 'README.md',
+    connectionHistory: recheck + 'README.md', latestSource: 'docs/release/evidence/invitation-alias-phone-2026-11-02/README.md'},
 ];

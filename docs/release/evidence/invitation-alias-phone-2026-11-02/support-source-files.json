@@ -1,0 +1,9 @@
+{
+  "scripts/qa/browserstack-local-policy.mjs": "a6f81f292271a46efd028871f1c6dd78d109fc6fabe14a87bb9e225ace924054",
+  "scripts/qa/scoped-browserstack-local.mjs": "7ebcbb9a3e749d8872ab88ec65d5e94aca86b6b9a502199ab1b6a7f13157ba84",
+  "scripts/qa/start-scoped-browserstack-local.mjs": "8912e45e18378bc15623a4a71a63763ac14ef13b808e5f60250e16b905aafb04",
+  "scripts/qa/run-scoped-browserstack-local.mjs": "9fcbf3b0429c65a9a88dc86044de5303938697dde3ff66e7b9a3a4cbf9f2ef2f",
+  "scripts/qa/observe-invitation-connection-block.mjs": "4a58a521b3c0d34102b84b400e51f32372721e0afbbc966c9d8ce74f09c705c5",
+  "scripts/qa/private-credential-form.mjs": "94b479e494c22617cdb0f276fe9e68247f54d87d653d5b25dcd1d65a920197de",
+  "scripts/qa/private-fixture-input.mjs": "03f40c555294890912bc90941b926bec924f69453f410c259ed310968fd0a76b"
+}

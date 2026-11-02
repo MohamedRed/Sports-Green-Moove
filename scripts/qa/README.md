@@ -21,6 +21,21 @@ created browser invitation. A successful browser trial alone proves neither
 native sharing nor the public production link. Stop and dispose of the phone,
 helper, private inputs and all five owned local services after the one trial.
 
+`private-fixture-input.mjs <private-demo-fixture>` opens one loopback-only page
+with an initially masked, read-only password and an explicit reveal control.
+It validates ownership, file modes, demo identity and a bounded credential shape;
+rejects foreign Host/Origin and cross-origin reads; permits top-level document
+navigation from the browser extension; and closes after one page or 180 seconds.
+Read only into private session memory, mask again, close the tab and clear the
+value when finished. Never print it, take a revealed capture or copy it to the
+desktop clipboard. This random input port is not forwarded to the phone.
+
+The 2 November alias trial reached the actual phone form and its mismatch
+rejection but not signup. The separate `--form-unconfirmed` mode of
+`observe-invitation-connection-block.mjs` requires both ordered before/mismatch
+records and independently enforces zero accounts, redemptions, approvals and
+links before retaining a negative report. Its default pre-form mode is unchanged.
+
 `manual-chat-account-switch-phone.mjs <private-session-path> <fresh-output-directory>`
 observes eleven ordered checkpoints around a controlled offline send, sign-out,
 the other participant's empty composer, and restoration of the original account's

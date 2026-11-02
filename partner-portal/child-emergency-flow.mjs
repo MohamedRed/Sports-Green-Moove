@@ -2,6 +2,7 @@ import { childAccountPhoneAttempt } from './child-account-phone-attempt.mjs';
 import { childAccountPhonePass } from './child-account-phone-pass.mjs';
 import { childInvitationPhone } from './child-invitation-phone.mjs';
 import { childEmergencyPhone } from './child-emergency-phone.mjs';
+import {invitationAliasPhone} from './invitation-alias-phone.mjs';
 import { childPhoneStartupAttempt } from './progress-2026-10-26.mjs';
 const source = 'docs/release/evidence/child-contact-heading-pass-2026-10-19/';
 
@@ -10,7 +11,8 @@ export function createChildEmergencyFlow() {
     latestEvidence: 'phone',
     summary: 'L’enfant retrouve son contact sur téléphone, même sans localisation.',
     verified: 'Contact accessible sans localisation avec un compte et un trajet de test déjà préparés. Déconnexion vérifiée. L’invitation et l’accord du parent passent dans des essais séparés.',
-    remaining: 'Mettre la page d’inscription en ligne. Tester le partage du lien jusqu’à l’inscription et l’accord du parent, le suivi du trajet et l’ouverture réelle du téléphone.',
+    remaining: 'Terminer la création du compte. Tester le partage du lien jusqu’à l’accord du parent, le suivi du trajet et l’ouverture réelle du téléphone.',
+    invitationAliasPhone,
     phoneContact: childEmergencyPhone,
     phoneInvitation: childInvitationPhone,
     phonePairing: childAccountPhonePass,
@@ -44,5 +46,8 @@ export function createChildEmergencyFlow() {
       { file: 'child-contact-narrow', alt: 'Titre complet et contact sur petit écran avec grand texte, essai simulé du 19 octobre' },
       { file: 'child-contact-denied', alt: 'Contact masqué après un refus simulé, essai d’écran du 19 octobre' },
       { file: 'child-contact-changed', alt: 'Numéro modifié et téléphone indisponible simulés, essai d’écran du 19 octobre', landscape: true },
+      {file: 'invitation-alias-form-ready', alt: 'Formulaire enfant ouvert sur téléphone, capture de session du 2 novembre'},
+      {file: 'invitation-alias-mismatch-refused', alt: 'Confirmation différente refusée, capture de session du 2 novembre'},
+      {file: 'invitation-alias-signup-unconfirmed', alt: 'Création du compte non confirmée, capture de session du 2 novembre'},
     ], source: source + 'README.md' };
 }

@@ -7,7 +7,7 @@ export async function verifyChildContactGallery({ browser, base, output }) {
   page.on('response', (response) => { if (response.status() >= 400) failures.push(response.status()); });
   try {
     const flow = content.flows.find((item) => item.id === 'child-emergency');
-    assert.equal(flow.images.length, 10);
+    assert.equal(flow.images.length, 13);
     for (const width of [1440, 768, 390, 320]) {
       await page.setViewportSize({ width, height: 1000 });
       await page.goto(base + '/#parcours/child-emergency');
@@ -19,7 +19,8 @@ export async function verifyChildContactGallery({ browser, base, output }) {
           return image?.complete && image.naturalWidth > 0;
         });
         if (index < 7) assert.match(image.alt, /(?:sur téléphone|du téléphone).*26 octobre/);
-        else assert.match(image.alt, /simulé.*19 octobre/);
+        else if (index < 10) assert.match(image.alt, /simulé.*19 octobre/);
+        else assert.match(image.alt, /capture de session du 2 novembre/);
         assert.equal(await page.locator('.media-stage.is-landscape').count(), image.landscape ? 1 : 0);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
         assert(await page.locator('dialog').evaluate((dialog) => dialog.scrollWidth <= dialog.clientWidth));

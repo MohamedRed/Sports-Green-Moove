@@ -1,7 +1,9 @@
 import {supportSubmissionCaptures} from './support-submission-captures.mjs';
 import {recentCaptures} from './recent-evidence-captures.mjs';
+import {invitationAliasCaptures} from './invitation-alias-phone.mjs';
 
 export const captures = {
+  ...invitationAliasCaptures,
   ...recentCaptures,
   ...Object.fromEntries(['opening', 'narrow'].map(phase => [
     'connect-safe-' + phase, 'docs/release/evidence/driver-connect-2026-10-24/layout/connect-' + phase + '.png'])),

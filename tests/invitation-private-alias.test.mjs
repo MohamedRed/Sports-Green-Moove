@@ -79,5 +79,5 @@ test('the web server and supervised entry points require explicit phone-only ali
     assert.match(read(file), /--child-invitation-alias-approved/);
   const workflow = parse(readFileSync(new URL('../.github/workflows/web-integration-smoke.yml', import.meta.url), 'utf8'));
   for (const event of ['push', 'pull_request']) assert(workflow.on[event].paths.includes('tests/invitation-private-alias.test.mjs'));
-  assert(workflow.jobs.smoke.steps.some(row => row.run === 'node --test tests/invitation-private-alias.test.mjs'));
+  assert(workflow.jobs.smoke.steps.some(row => row.run?.startsWith('node --test tests/invitation-private-alias.test.mjs ')));
 });

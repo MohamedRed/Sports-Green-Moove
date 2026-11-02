@@ -66,8 +66,8 @@ const shot = (file, alt) => ({ file, alt });
 
 export const content = {
   alertCaptureFailure,
-  updatedAt: '2026-11-01',
-  lastVerifiedAt: '2026-11-01',
+  updatedAt: '2026-11-02',
+  lastVerifiedAt: '2026-11-02',
   nativeClockCiRecheck: {source: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/summary.json',
     checksums: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/artifact-sha256.json', checkedAt: '2026-10-25'},
   ...nativeRechecks,
