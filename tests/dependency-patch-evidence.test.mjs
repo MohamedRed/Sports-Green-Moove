@@ -7,6 +7,7 @@ import {assertDependencyPatchSummary, validateDependencyPatchEvidence, dependenc
 import {content} from '../partner-portal/content.mjs';
 import {uriSecurityFolder, validateUriSecurityEvidence, assertUriSecuritySummary} from '../scripts/qa/uri-security-evidence.mjs';
 import {uriSecurityProgress} from '../partner-portal/uri-security.mjs';
+import './compatible-security-patches.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const report = () => JSON.parse(readFileSync(resolve(root, folder, 'summary.json')));

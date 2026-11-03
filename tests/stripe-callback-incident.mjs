@@ -70,12 +70,17 @@ test('the incomplete native transcript and original failed gate are not accepted
   for (const [member, sha] of Object.entries(selection.members)) assert.equal(sha, hashes[member.split('/').at(-1)]);
 });
 
-test('only the stale payment blocker and one short progress note change; earlier flows and history remain exact', () => {
-  const before = json('portal-before.json'), blocker = content.blockers.find(b => b.id === 'payment-return');
-  assert.equal(content.flows.length, 34); assert.equal(hash(content.flows), before.flowsSha256);
-  assert.equal(content.updates.length, before.updatesCount + 1);
-  assert.equal(hash(content.updates.filter(r => r !== paymentReturnIncidentProgress)), before.updatesSha256);
-  assert.equal(hash(content.blockers.filter(b => b.id !== 'payment-return')), before.blockersWithoutPaymentSha256);
+test('the payment publication preserves its exact earlier history while later dated updates can be appended', () => {
+  const bytes = readFileSync(resolve(root, 'docs/release/evidence/compatible-security-patches-2026-11-03/portal-v331.json'));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), '7dc398f9c8e7163c8ab2fa5c43e8c8a963ffe4104e93390c57edfc42607f7fcc');
+  const published = JSON.parse(bytes), before = json('portal-before.json');
+  const blocker = published.blockers.find(b => b.id === 'payment-return');
+  assert.equal(published.flows.length, 34); assert.equal(hash(published.flows), before.flowsSha256);
+  assert.equal(published.updates.length, before.updatesCount + 1);
+  assert.equal(hash(published.updates.filter(r => r.source !== paymentReturnIncidentProgress.source)), before.updatesSha256);
+  assert.equal(hash(published.blockers.filter(b => b.id !== 'payment-return')), before.blockersWithoutPaymentSha256);
+  const historical = new Set(published.updates.map(hash));
+  assert.deepEqual(content.updates.filter(row => historical.has(hash(row))), published.updates);
   assert.equal(blocker.source, paymentReturnIncident.source);
   assert.equal(blocker.previousRecovery.source, before.previousPaymentBlocker.source);
   assert.equal(content.flows.find(f => f.id === 'payments').status, 'partial');

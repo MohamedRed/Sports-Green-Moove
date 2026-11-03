@@ -4,6 +4,7 @@ import {bookingDateProgress} from './booking-date-attempt.mjs';
 import {bookingDateVisualProgress} from './booking-date-visual-flow.mjs';
 import {formFeedbackVisualProgress} from './form-feedback-visual-flow.mjs';
 import {paymentReturnIncidentProgress} from './payment-return-incident.mjs';
+import {compatibleSecurityProgress} from './compatible-security-patches.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
 import {c84ChecksProgress} from './c84-checks.mjs';
@@ -95,6 +96,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  compatibleSecurityProgress,
   paymentReturnIncidentProgress,
   formFeedbackVisualProgress,
   bookingDateVisualProgress,

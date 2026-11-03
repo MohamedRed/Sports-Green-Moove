@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The compatible security update changes twelve lock entries within existing
+ranges, builds all workspaces and passes 623 backend units plus 18 isolated
+invitation service cases. The audit falls from nine high findings to five, not
+zero. Add one short security note and evidence reference; preserve every flow,
+media item, phone date, status, tour and earlier update. The baseline main Android
+pass remains separate from its failed focused preparation jobs. No phone, real
+payment, complete security or release acceptance is added. See
+`docs/release/evidence/compatible-security-patches-2026-11-03/README.md`.
+
 The 9450ad0 web gate passes, but production callback readiness and the main native
 gate fail. Keep the callback timeout separate from later local health success,
 the temporally associated unavailable-instance server error and the denied
