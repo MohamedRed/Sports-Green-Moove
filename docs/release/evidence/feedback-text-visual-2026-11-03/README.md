@@ -1,5 +1,23 @@
 # Feedback Text Visual Review
 
+## Corrected Classification
+
+The initial incomplete-export classification below is retracted, not silently
+rewritten. A fresh review of the same unmodified originals shows the avatar's
+AC initials and all healthy-ride text. Every one of the twelve original viewport
+images also matches its corresponding original full-window region exactly, with
+zero changed RGBA pixels. `pixel-review.json` retains all dimensions, fixed
+regions, counts and decoded hashes; the validator recomputes every pixel without
+tolerance. Pixel equality establishes that the two originals agree; visual review
+and layout assertions establish their respective content and layout scope.
+
+Keep the same five public images and remove the incorrect three-capture blocker.
+No image is edited, replaced or regenerated; no new device trial, application fix
+or capture repair is claimed. The original `review.json`, raw images and first
+publication record remain unchanged so that the correction is auditable.
+
+## Original Execution
+
 The `c6c3eb452c8b3f8e771c9ec827cffbf2b9a6661d` main native job
 125732329925 succeeds. Its ordinary matrix passes 262 cases, intentionally skips
 55, and fails none. All twelve feedback layouts and both sampling regressions
@@ -14,7 +32,7 @@ reports, source metadata and checks remain retained. Twelve relevant files from
 the actual checked-out merge commit match the retained head-source bytes; this
 does not claim comparison of every external build input or dependency.
 
-## Visual Limits And Publication
+## Initial Visual Classification (Retracted)
 
 All twelve viewport originals were visually reviewed. Nine are complete. Three
 are not accepted as complete viewport images: `notices-dark-phone` omits the

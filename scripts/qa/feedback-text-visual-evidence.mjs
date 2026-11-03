@@ -6,10 +6,11 @@ import {XMLParser} from 'fast-xml-parser';
 import {assertEvidenceBundleChecksums} from './evidence-bundle-checksums.mjs';
 import {assertRetainedSourceFiles} from './retained-source-evidence.mjs';
 import {feedbackTextCases, validateFeedbackTextCaptureFiles, validateFeedbackTextUnits} from './feedback-text-evidence.mjs';
+import {validateFeedbackPixelReview} from './feedback-text-pixel-review.mjs';
 
 export const feedbackVisualFolder = 'docs/release/evidence/feedback-text-visual-2026-11-03/';
 export const feedbackVisualPublicCases = ['notices-light-phone', 'notices-dark-wide', 'ride-light-phone', 'input-light-phone', 'input-dark-phone'];
-export const feedbackIncompleteViewports = ['notices-dark-phone', 'ride-dark-phone', 'ride-dark-wide'];
+export const feedbackOriginallyRejectedViewports = ['notices-dark-phone', 'ride-dark-phone', 'ride-dark-wide'];
 
 export function validateFeedbackTextVisualReview(root) {
   const folder = resolve(root, feedbackVisualFolder), read = file => readFileSync(resolve(folder, file));
@@ -23,8 +24,8 @@ export function validateFeedbackTextVisualReview(root) {
   assert.equal(review.fontScale, 1.3); assert.deepEqual(review.cases, feedbackTextCases);
   assert.deepEqual(review.publishedCases, feedbackVisualPublicCases); assert.equal(review.mediaEdits, false);
   assert.equal(review.publishedCaptureKind, 'original-viewport'); assert.equal(review.completeViewportCaptures, 9);
-  assert.deepEqual(review.incompleteViewportCases, feedbackIncompleteViewports);
-  assert.deepEqual(review.comparisonWindowCases, feedbackIncompleteViewports);
+  assert.deepEqual(review.incompleteViewportCases, feedbackOriginallyRejectedViewports);
+  assert.deepEqual(review.comparisonWindowCases, feedbackOriginallyRejectedViewports);
   assert.equal(review.comparisonWindowsPublished, false); assert.equal(review.viewportExportIssueResolved, false);
   assert.equal(review.layoutAssertionsPassed, 12); assert.equal(review.fallbackAdded, false);
   assert(review.publishedCases.every(name => !review.incompleteViewportCases.includes(name)));
@@ -90,5 +91,9 @@ export function validateFeedbackTextVisualReview(root) {
   assert.equal(previous.allFlowFingerprint, 'b5772455f74ec402c5b25acfa5736917c7e8db4a3332725a416868d18cacadd8');
   assert.equal(previous.appearanceFlow.images.length, 15); assert.equal(previous.appearanceFlow.checkedAt, '2026-10-30');
   assert.equal(createHash('sha256').update(read('review.json')).digest('hex'), hashes['review.json']);
-  return {...review, previousAppearance: previous.appearanceFlow, measurements: validateFeedbackTextUnits(root)};
+  const correction = validateFeedbackPixelReview(folder, feedbackTextCases, feedbackOriginallyRejectedViewports);
+  return {...review, completeViewportCaptures: correction.completeViewportCaptures,
+    incompleteViewportCases: correction.incompleteViewportCases, initialCompleteViewportCaptures: review.completeViewportCaptures,
+    initialIncompleteViewportCases: review.incompleteViewportCases, correction,
+    previousAppearance: previous.appearanceFlow, measurements: validateFeedbackTextUnits(root)};
 }

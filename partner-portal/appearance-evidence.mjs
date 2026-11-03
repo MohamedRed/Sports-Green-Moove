@@ -12,7 +12,7 @@ export function validateAppearanceEvidence(root, flow, captures) {
   assert.equal(flow.accentControlReview.checkedAt, '2026-10-30'); assert.equal(flow.latestEvidence, 'local');
   const feedback = validateFeedbackTextVisualReview(root);
   assert.equal(flow.checkedAt, feedback.reviewedAt); assert.equal(flow.feedbackVisualReview.checkedAt, feedback.reviewedAt);
-  assert.equal(flow.feedbackVisualReview.source, feedbackVisualFolder + 'review.json');
+  assert.equal(flow.feedbackVisualReview.source, feedbackVisualFolder + 'pixel-review.json');
   assert.equal(flow.feedbackVisualReview.checksums, feedbackVisualFolder + 'artifact-sha256.json');
   assert.equal(flow.source, feedbackVisualFolder + 'README.md');
   const legacy = {...flow, images: flow.images.filter(image => !image.file.startsWith('feedback-text-'))};

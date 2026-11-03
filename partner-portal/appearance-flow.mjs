@@ -15,7 +15,7 @@ export function createAppearanceFlow(ui, shot) {
     latestEvidence: 'local',
     summary: 'Les alertes et erreurs sont revues en clair et en sombre, avec le texte agrandi.',
     verified: 'Alertes, avis, saisie et suivi revus avec le texte agrandi, sur des vues simulées.',
-    remaining: 'Restent les autres textes colorés, les dates des réservations, les marges système et les essais d’accessibilité, dont l’iPhone. Trois captures restent à reprendre.',
+    remaining: 'Restent les autres textes colorés, les dates des réservations, les marges système et les essais d’accessibilité, dont l’iPhone.',
     accentControlReview,
     feedbackVisualReview,
     ui: {...ui(['landscape-login-ui', 'theme-process-restart-ui']), checkedAt: '2026-10-15'},

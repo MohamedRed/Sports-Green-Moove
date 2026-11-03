@@ -6,15 +6,19 @@ import {cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, write
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {parseDocument} from 'yaml';
+import {PNG} from 'pngjs';
 import {feedbackTextCases, feedbackTextFolder, validateFeedbackTextUnits, validateFeedbackTextCaptureFiles} from '../scripts/qa/feedback-text-evidence.mjs';
 import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
 import {feedbackVisualFolder, feedbackVisualPublicCases, validateFeedbackTextVisualReview} from '../scripts/qa/feedback-text-visual-evidence.mjs';
 import {content, captures} from '../partner-portal/content.mjs';
 import {validateAppearanceEvidence} from '../partner-portal/appearance-evidence.mjs';
+import {compareFeedbackViewportPixels, validateFeedbackPixelReview} from '../scripts/qa/feedback-text-pixel-review.mjs';
 
-test('the successful source retains three incomplete exports and publishes only five complete original viewports', () => {
+test('the pixel-verified correction retains the original classification and publishes the same five viewports', () => {
   const review = validateFeedbackTextVisualReview(resolve(import.meta.dirname, '..'));
-  assert.equal(review.reviewedViewports, 12); assert.equal(review.completeViewportCaptures, 9);
+  assert.equal(review.reviewedViewports, 12); assert.equal(review.completeViewportCaptures, 12);
+  assert.equal(review.initialCompleteViewportCaptures, 9); assert.equal(review.initialIncompleteViewportCases.length, 3);
+  assert.deepEqual(review.incompleteViewportCases, []); assert.equal(review.correction.originalClassificationIncorrect, true);
   assert.equal(review.publishedCases.length, 5); assert.equal(review.viewportExportIssueResolved, false);
   const flow = content.flows.find(row => row.id === 'appearance');
   validateAppearanceEvidence(resolve(import.meta.dirname, '..'), flow, captures);
@@ -23,6 +27,39 @@ test('the successful source retains three incomplete exports and publishes only 
     feedbackVisualPublicCases.map(name => 'feedback-text-' + name));
   assert.equal(flow.images.filter(image => !image.file.startsWith('feedback-text-')).length, 15);
   assert(!flow.images.some(image => image.file.includes('-window')));
+  assert(!flow.remaining.includes('Trois captures'));
+});
+test('exact pixel comparison rejects changed colour, changed alpha, invalid bounds and incomplete PNG data', () => {
+  const image = new PNG({width: 4, height: 4}); image.data.fill(40);
+  const bytes = PNG.sync.write(image), region = {left: 0, top: 0};
+  assert.equal(compareFeedbackViewportPixels(bytes, bytes, region).changedPixels, 0);
+  for (const channel of [0, 1, 2, 3]) {
+    const changed = PNG.sync.read(bytes); changed.data[channel]++;
+    assert.equal(compareFeedbackViewportPixels(bytes, PNG.sync.write(changed), region).changedPixels, 1);
+  }
+  for (const bounds of [{left: -1, top: 0}, {left: .5, top: 0}, {left: 1, top: 0}, {left: 0, top: 1}])
+    assert.throws(() => compareFeedbackViewportPixels(bytes, bytes, bounds), {code: 'ERR_ASSERTION'});
+  assert.throws(() => compareFeedbackViewportPixels(bytes.subarray(0, 32), bytes, region));
+});
+test('the classification correction cannot accept a claimed pixel match, a new run or broader release proof', t => {
+  const temporary = mkdtempSync(resolve(tmpdir(), 'sgm-feedback-pixel-review-'));
+  t.after(() => rmSync(temporary, {recursive: true, force: true}));
+  const original = resolve(import.meta.dirname, '..', feedbackVisualFolder);
+  cpSync(original, temporary, {recursive: true});
+  const read = file => JSON.parse(readFileSync(resolve(temporary, file)));
+  const review = read('pixel-review.json'), initial = read('review.json');
+  for (const key of ['newDeviceRun', 'mediaEdits', 'captureMechanismChanged', 'fallbackAdded',
+    'physicalDeviceAccepted', 'fullAppAccessibilityAccepted', 'releaseAccepted']) {
+    writeFileSync(resolve(temporary, 'pixel-review.json'), JSON.stringify({...review, [key]: true}));
+    assert.throws(() => validateFeedbackPixelReview(temporary, initial.cases, initial.incompleteViewportCases), new RegExp(key));
+  }
+  const comparisons = structuredClone(review.comparisons); comparisons[0].changedPixels = 1;
+  writeFileSync(resolve(temporary, 'pixel-review.json'), JSON.stringify({...review, comparisons}));
+  assert.throws(() => validateFeedbackPixelReview(temporary, initial.cases, initial.incompleteViewportCases), {code: 'ERR_ASSERTION'});
+  writeFileSync(resolve(temporary, 'pixel-review.json'), JSON.stringify(review));
+  const path = resolve(temporary, 'captures/notices-light-phone.png'), changed = PNG.sync.read(readFileSync(path));
+  changed.data[0] ^= 1; writeFileSync(path, PNG.sync.write(changed));
+  assert.throws(() => validateFeedbackPixelReview(temporary, initial.cases, initial.incompleteViewportCases), {code: 'ERR_ASSERTION'});
 });
 test('visual review cannot accept comparison windows, incomplete exports or broader release proof', t => {
   const original = resolve(import.meta.dirname, '..'), temporary = mkdtempSync(resolve(tmpdir(), 'sgm-feedback-visual-scope-'));

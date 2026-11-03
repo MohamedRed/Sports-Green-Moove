@@ -3,11 +3,12 @@
 ## Current Publication Policy
 
 The c6c3eb4 source passes the full native gate and all executed checks. All twelve
-feedback layouts and two sampling cases pass, but visual review rejects three
-incomplete viewport exports. Publish only five complete, original viewports; the
-full-window comparison files are not replacements or public media. Update only
-the partial appearance flow, label its new evidence local, preserve all earlier
-images/dates/tours and move the old incomplete note into history. See
+feedback layouts and two sampling cases pass. The initial visual classification
+of three incomplete exports was incorrect: re-review sees the expected text, and
+all twelve original viewports match their full-window regions pixel for pixel.
+Retain that original review and its explicit correction, not a claimed capture
+repair or new execution. Keep the same five public viewports, all earlier media,
+dates/tours and partial status; remove the incorrect three-capture blocker. See
 `docs/release/evidence/feedback-text-visual-2026-11-03/README.md`.
 
 The feedback-text correction passes its thirty contrast measurements, but the
