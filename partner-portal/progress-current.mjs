@@ -1,4 +1,5 @@
 import {appearanceProgress} from './appearance-flow.mjs';
+import {webFinalizationProgress} from './web-finalization-followup.mjs';
 import {c84ChecksProgress} from './c84-checks.mjs';
 import {approvedPrivateTrialProgress} from './approved-private-trials.mjs';
 import {parentApprovalInputStopProgress} from './parent-approval-input-stop.mjs';
@@ -88,6 +89,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  webFinalizationProgress,
   c84ChecksProgress,
   uriSecurityProgress,
   parentApprovalInputStopProgress,

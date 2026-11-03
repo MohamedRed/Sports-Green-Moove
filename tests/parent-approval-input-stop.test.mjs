@@ -13,6 +13,8 @@ import {validateFocusedCopyFailure, validateCurrentNativeFailure, assertCurrentN
 import {focusedCopyFailureProgress} from '../partner-portal/focused-copy-failure.mjs';
 import {assertC84ChecksScope, c84ChecksFolder, validateC84Checks} from '../scripts/qa/c84-checks-evidence.mjs';
 import {c84ChecksProgress} from '../partner-portal/c84-checks.mjs';
+import {assertWebFinalizationScope, webFinalizationFolder, validateWebFinalization} from '../scripts/qa/web-finalization-followup-evidence.mjs';
+import {webFinalizationProgress} from '../partner-portal/web-finalization-followup.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 test('the interrupted preparation preserves no-signup records and verified credential invalidation', () => {
@@ -74,7 +76,7 @@ test('the later source passes the main matrix but preserves the separate network
     wholeWebGatePassed: false, releaseAccepted: false});
   assert(content.updates.includes(c84ChecksProgress));
   assert.doesNotMatch(c84ChecksProgress.title + c84ChecksProgress.text, /BrowserStack|Firebase|SDK|APK|CI|Linux/);
-  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestResult.source, c84ChecksFolder + 'review.json');
+  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').sourceBoundPass.source, c84ChecksFolder + 'review.json');
   assert.equal(createHash('sha256').update(JSON.stringify(content.flows)).digest('hex'),
     'b5772455f74ec402c5b25acfa5736917c7e8db4a3332725a416868d18cacadd8');
 });
@@ -103,4 +105,30 @@ for (const [file, mutate] of [
   hashes['archive-verification.json'] = sha(index);
   writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify(hashes));
   assert.throws(() => validateC84Checks(temporary));
+});
+test('the approved web diagnostic passes separately from its cancelled first attempt and later native failures', () => {
+  assert.deepEqual(validateWebFinalization(root), {webRecheckPassed: true, originalCancellationCauseProven: false,
+    fullNativeGatePassed: false, releaseAccepted: false});
+  assert(content.updates.includes(webFinalizationProgress));
+  assert(content.updates.includes(c84ChecksProgress));
+  assert.doesNotMatch(webFinalizationProgress.title + webFinalizationProgress.text, /BrowserStack|Firebase|SDK|APK|CI|Linux|Gradle/);
+  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestResult.source, webFinalizationFolder + 'review.json');
+});
+test('a web-only recheck cannot promote the original cancellation, native gate, parent approval or release', () => {
+  const original = JSON.parse(readFileSync(resolve(root, webFinalizationFolder, 'review.json')));
+  for (const key of ['originalCancellationAccepted', 'originalCancellationCauseProven', 'workflowOrDeadlinesChanged',
+    'nativeMainPassed', 'nativeChatPreparationPassed', 'fullNativeGatePassed', 'physicalDeviceAccepted',
+    'parentApprovalAccepted', 'productionWrites', 'releaseAccepted'])
+    assert.throws(() => assertWebFinalizationScope({...original, [key]: true}), new RegExp(key));
+});
+test('the finalization review rejects a rehashed failed second-attempt job', t => {
+  const temporary = mkdtempSync(resolve(tmpdir(), 'sgm-web-finalization-')); t.after(() => rmSync(temporary, {recursive: true, force: true}));
+  const folder = resolve(temporary, webFinalizationFolder); cpSync(resolve(root, webFinalizationFolder), folder, {recursive: true});
+  assert.doesNotThrow(() => validateWebFinalization(temporary));
+  const file = 'web-jobs-attempt2.json', jobs = JSON.parse(readFileSync(resolve(folder, file)));
+  jobs.jobs.find(row => row.id === 125595925328).conclusion = 'failure';
+  const bytes = JSON.stringify(jobs); writeFileSync(resolve(folder, file), bytes);
+  const hashes = JSON.parse(readFileSync(resolve(folder, 'artifact-sha256.json')));
+  hashes[file] = createHash('sha256').update(bytes).digest('hex'); writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify(hashes));
+  assert.throws(() => validateWebFinalization(temporary));
 });

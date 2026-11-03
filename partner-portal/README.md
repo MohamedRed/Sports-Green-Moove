@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The separately approved c84b8e4 web-only diagnostic completes successfully on its
+second attempt. Preserve the first cancellation and its unknown cause. The later
+8bd9f50 head passes the web gate but fails its main native primary copy and one
+focused build before phone startup. Add one concise web note and make the capture
+blocker describe intermittency rather than whichever run happened last. Retain
+the source-bound earlier pass and every flow/media/date/tour/status unchanged.
+Do not publish raw debug logs or attribute the earlier stop to a recovered socket
+error in the successful run. See `docs/release/evidence/web-finalization-2026-11-03/README.md`.
+
 The c84b8e4 main native matrix, full connected replay and all primary copies pass.
 The separate chat-network case fails before any disconnection/send, and the web
 job is cancelled at its deadline despite successful step records. Its last log

@@ -1,5 +1,6 @@
 import {validateRequestSafetyEvidence} from '../scripts/qa/http-body-parser-evidence.mjs';
 import {c84ChecksFolder, validateC84Checks} from '../scripts/qa/c84-checks-evidence.mjs';
+import {webFinalizationFolder, validateWebFinalization} from '../scripts/qa/web-finalization-followup-evidence.mjs';
 import {uriSecurityFolder, validateUriSecurityEvidence} from '../scripts/qa/uri-security-evidence.mjs';
 import {currentNativeFailureFolder, validateCurrentNativeFailure} from '../scripts/qa/focused-copy-failure-evidence.mjs';
 import {chatPreparationFolder, validateChatPreparationFailure} from '../scripts/qa/chat-preparation-failure-evidence.mjs';
@@ -58,8 +59,11 @@ import {transferPeerLossFolder, validateTransferPeerLoss} from '../scripts/qa/tr
 import assert from 'node:assert/strict';
 
 export function validateCurrentChecks(root, content) {
+  validateWebFinalization(root);
+  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestResult.source, webFinalizationFolder + 'review.json');
+  assert(content.updates.some(row => row.source === webFinalizationFolder + 'README.md'));
   validateC84Checks(root);
-  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').latestResult.source, c84ChecksFolder + 'review.json');
+  assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').sourceBoundPass.source, c84ChecksFolder + 'review.json');
   assert(content.updates.some(row => row.source === c84ChecksFolder + 'README.md'));
   validateUriSecurityEvidence(root);
   assert.equal(content.uriSecurity.source, uriSecurityFolder + 'summary.json');
