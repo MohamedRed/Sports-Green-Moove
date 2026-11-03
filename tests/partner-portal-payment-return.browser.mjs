@@ -7,7 +7,12 @@ export async function verifyPaymentReturnFollowup({page, base, output}) {
     await page.goto(`${base}/#suite`);
     const blocker = page.locator('.blocker').filter({hasText: 'Rejouer l’inscription conducteur'});
     await blocker.waitFor();
-    assert.match(await blocker.innerText(), /22 octobre/);
+    const expected = content.blockers.find(item => item.id === 'payment-return');
+    await blocker.getByText(expected.text, {exact: true}).waitFor();
+    await blocker.getByText(expected.next, {exact: true}).waitFor();
+    await blocker.scrollIntoViewIfNeeded();
+    assert.match(await blocker.innerText(), /reste irrégulier/);
+    assert(await blocker.evaluate(element => element.scrollWidth <= element.clientWidth));
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.screenshot({path: `${output}/payment-return-blocker-${width}.png`, fullPage: false});
     await page.goto(`${base}/#parcours/payments`);

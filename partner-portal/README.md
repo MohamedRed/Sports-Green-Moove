@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The 9450ad0 web gate passes, but production callback readiness and the main native
+gate fail. Keep the callback timeout separate from later local health success,
+the temporally associated unavailable-instance server error and the denied
+incident-time metrics. The native ordinary transcript is incomplete, not a new
+network replay. Update only the outdated payment-return blocker and add one short
+progress entry; retain all flow dates, statuses, media, tours and earlier evidence.
+No retry, scaling, deadline, billing or app change is made. See
+`docs/release/evidence/callback-capacity-2026-11-03/README.md`.
+
 The aab9ac0 ordinary matrix passes 349 cases (294 passed, 55 skipped), all four
 form sessions and twenty required views, with complete primary copies. Visual
 review accepts only the feedback labels and six original viewport inputs. The

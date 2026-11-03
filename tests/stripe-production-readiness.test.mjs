@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { checkStripeProductionReadiness } from "../scripts/lib/stripe-production-readiness.mjs";
+import './stripe-callback-incident.mjs';
 import { checkConnectCallback, stripeGet } from "../scripts/lib/stripe-readiness-http.mjs";
 
 const validEnv = {

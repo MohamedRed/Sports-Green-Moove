@@ -35,9 +35,11 @@ test('the foreground recheck preserves prior failure and proves the focused lane
     const update=content.updates.find(row=>row.source===folder+'README.md');assert(update);
     assert.doesNotMatch(update.title+update.text,/\b(?:firebase|browserstack|SDK|API|FCM|CI|provider)\b/i);
   }
-  const {recent,previous}=partitionUpdates(content.updates);
-  assert(recent.some(row=>row.source===returnPassFolder+'README.md'));
   const old='docs/release/evidence/foreground-return-intent-b9a9000-2026-11-01/README.md';
+  const returnHistory=content.updates.filter(row=>[returnPassFolder+'README.md',old].includes(row.source));
+  assert.equal(returnHistory.length,2);
+  const {recent,previous}=partitionUpdates(returnHistory);
+  assert(recent.some(row=>row.source===returnPassFolder+'README.md'));
   assert(!recent.some(row=>row.source===old));assert(previous.some(row=>row.source===old));
 });
 for(const [folder,validate,file,key,value]of [

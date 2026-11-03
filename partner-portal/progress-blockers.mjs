@@ -6,6 +6,7 @@ import {focusedCopyFailure, currentNativeFailure} from './focused-copy-failure.m
 import {c84Checks} from './c84-checks.mjs';
 import {webFinalization} from './web-finalization-followup.mjs';
 import {uriSecurity} from './uri-security.mjs';
+import {paymentReturnIncident} from './payment-return-incident.mjs';
 
 export const blockers = [
   {id: 'chat-pending-restart', title: 'Vérifier les autres reprises d’envoi',
@@ -47,8 +48,10 @@ export const blockers = [
     text: 'L’alerte et le suivi passent depuis le téléphone, avec les données isolées. Aucun e-mail réel n’a été envoyé.',
     next: 'Choisir une adresse d’expédition, puis confirmer la réception d’un e-mail.', source: 'docs/release/evidence/support-urgent-phone-2026-10-23/README.md' },
   { id: 'payment-return', title: 'Rejouer l’inscription conducteur',
-    text: 'Les deux pages de retour s’ouvrent à nouveau lors du contrôle du 22 octobre.',
-    next: 'Tester l’inscription conducteur, puis les paiements réels et remboursements sur téléphone.', source: 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md' },
+    text: 'Le retour du compte conducteur reste irrégulier : un contrôle échoue, puis les pages répondent à nouveau.',
+    next: 'Fiabiliser le retour, puis tester l’inscription conducteur, les paiements réels et remboursements sur téléphone.',
+    ...paymentReturnIncident,
+    previousRecovery: {source: 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md'} },
   { id: 'tracking-capture', title: 'Revoir l’affichage du trajet',
     text: 'La reprise fonctionne en local. Le bas de l’écran manque sur deux captures.',
     next: 'Vérifier le rendu sur téléphone et corriger l’affichage si le défaut se confirme.', source: 'docs/release/evidence/native-startup-pass-2026-10-19/README.md' },

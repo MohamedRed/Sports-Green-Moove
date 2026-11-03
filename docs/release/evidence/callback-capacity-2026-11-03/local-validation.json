@@ -1,0 +1,40 @@
+{
+  "scope": "local-publication-validation-not-ci-repair-or-release-proof",
+  "checkedAt": "2026-11-03",
+  "records": {
+    "nodeInitial": {
+      "sha256": "ab00de0681c77f5f6fcc337f7b946f0e7dd34a6afa285e99225276b09722d2f3",
+      "tests": 4160,
+      "passed": 4159,
+      "failed": 1
+    },
+    "nodeAfterCorrection": {
+      "sha256": "3802cf5cfdf565ad3c48d42dc101a250ed1755e7d7ed9030410bcf23082d14e7",
+      "tests": 4160,
+      "passed": 4160,
+      "failed": 0
+    },
+    "browserInitial": {
+      "sha256": "06317dc583d5f3e45d82979fcb6764a0e5c4234b674403e5a0270264578ff811",
+      "passed": false,
+      "noSpaceFailure": true
+    },
+    "browserAfterSpace": {
+      "sha256": "da81ce3ba2e48d58d646a6fdd2bdfb61cd8955fbe5fbb0b6104cf637c411e1be",
+      "passed": true,
+      "noSpaceFailure": false
+    }
+  },
+  "phoneLaunched": false,
+  "productionMutation": false,
+  "ciRerun": false,
+  "all34FlowsUnchanged": true,
+  "all532MediaHashesUnchanged": true,
+  "visualWidths": [
+    1440,
+    768,
+    390,
+    320
+  ],
+  "desktopAndMobileVisuallyReviewed": true
+}

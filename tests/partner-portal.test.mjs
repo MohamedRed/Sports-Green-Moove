@@ -36,7 +36,9 @@ test('later public callback recovery does not promote older local payment eviden
   assert.equal(flow.status, 'partial');
   assert.equal(flow.ui.source, 'docs/release/evidence/local-payment-layout-2026-10-18/results.json');
   assert.match(flow.remaining, /paiements réels sur téléphone/);
-  assert.equal(blocker.source, 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md');
+  assert.equal(blocker.previousRecovery.source, 'docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md');
+  assert.equal(blocker.source, 'docs/release/evidence/callback-capacity-2026-11-03/README.md');
+  assert.match(blocker.text, /reste irrégulier/);
   assert.match(blocker.next, /paiements réels/);
   assert(content.updates.some(item => item.flow === 'payments' && /cause reste à identifier/.test(item.text)));
   assert(content.updates.some(item => item.flow === 'payments' && /paiements réels restent à tester/.test(item.text)));
