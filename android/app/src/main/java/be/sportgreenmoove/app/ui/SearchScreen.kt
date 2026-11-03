@@ -15,7 +15,6 @@ import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.design.Sgm
-import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmType
 
 @Composable
@@ -75,7 +74,7 @@ fun SearchScreen(
                 guardianConsent = form.guardianConsent,
                 onGuardianConsent = { onFormChange(form.copy(guardianConsent = it)) },
             )
-            if (error != null) Text(error, style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontWeight = FontWeight.Bold))
+            if (error != null) Text(error, style = SgmType.BodyXS.copy(color = Sgm.colors.textError, fontWeight = FontWeight.Bold))
             V2Button(
                 if (loading) "RECHERCHE EN COURS" else "TROUVER UN TRAJET",
                 onClick = onSearch,

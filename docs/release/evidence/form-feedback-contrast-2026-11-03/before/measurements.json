@@ -1,0 +1,52 @@
+[
+  {
+    "case": "light-auth",
+    "contrastRatio": 2.5976747316252924,
+    "minimum": 4.5
+  },
+  {
+    "case": "light-search",
+    "contrastRatio": 2.5976747316252924,
+    "minimum": 4.5
+  },
+  {
+    "case": "light-chat-error",
+    "contrastRatio": 2.5976747316252924,
+    "minimum": 4.5
+  },
+  {
+    "case": "light-chat-limit",
+    "contrastRatio": 2.5976747316252924,
+    "minimum": 4.5
+  },
+  {
+    "case": "light-chat-sending",
+    "contrastRatio": 2.5976747316252924,
+    "minimum": 4.5
+  },
+  {
+    "case": "dark-auth",
+    "contrastRatio": 6.898119480073161,
+    "minimum": 4.5
+  },
+  {
+    "case": "dark-search",
+    "contrastRatio": 6.898119480073161,
+    "minimum": 4.5
+  },
+  {
+    "case": "dark-chat-error",
+    "contrastRatio": 6.898119480073161,
+    "minimum": 4.5
+  },
+  {
+    "case": "dark-chat-limit",
+    "contrastRatio": 6.898119480073161,
+    "minimum": 4.5
+  },
+  {
+    "case": "dark-chat-sending",
+    "contrastRatio": 6.898119480073161,
+    "minimum": 4.5
+  }
+]

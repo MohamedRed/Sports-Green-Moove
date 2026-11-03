@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-function fixture(t, { missingChatCapture, missingNotificationCapture, missingConnectCapture, missingRatingCapture = false, missingContextCapture, missingExitCapture, missingFeedbackCapture, missingBookingDateCapture } = {}) {
+function fixture(t, { missingChatCapture, missingNotificationCapture, missingConnectCapture, missingRatingCapture = false, missingContextCapture, missingExitCapture, missingFeedbackCapture, missingBookingDateCapture, missingFormCapture } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'sgm-suite-status-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   for (const dir of ['scripts', 'android', 'bin']) mkdirSync(join(root, dir));
@@ -65,7 +65,9 @@ function fixture(t, { missingChatCapture, missingNotificationCapture, missingCon
       ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`)))),
     'sgm-feedback-text': ['notices', 'ride', 'input'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
       ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`))))
-      .filter(name => name !== missingFeedbackCapture),
+      .concat(['auth', 'search', 'chat-error', 'chat-limit', 'chat-sending'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
+        ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `form-${screen}-${theme}-${format}${suffix}`)))))
+      .filter(name => name !== missingFeedbackCapture && name !== missingFormCapture),
     'sgm-booking-dates': ['requests', 'trips', 'payments'].flatMap(screen => ['scheduled', 'unknown'].flatMap(kind =>
       ['light', 'dark'].flatMap(theme => ['phone', 'wide'].flatMap(format =>
         ['.png', '-window.png', '.json'].map(suffix => `${screen}-${kind}-${theme}-${format}${suffix}`)))))
@@ -133,6 +135,14 @@ for (const screen of ['notices', 'ride', 'input']) for (const theme of ['light',
   for (const suffix of ['.png', '-window.png', '.json']) test(`missing feedback ${screen}-${theme}-${format}${suffix} fails closed`, t => {
     const name = `${screen}-${theme}-${format}${suffix}`, result = fixture(t, {missingFeedbackCapture: name})({});
     assert.equal(result.status, 1); assert(result.stderr.includes('Missing feedback text evidence: ' + name));
+    assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], [0, 1, 0]);
+    assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
+  });
+
+for (const screen of ['auth', 'search', 'chat-error', 'chat-limit', 'chat-sending']) for (const theme of ['light', 'dark'])
+  for (const format of ['phone', 'wide']) for (const suffix of ['.png', '-window.png', '.json']) test(`missing form feedback ${screen}-${theme}-${format}${suffix} fails closed`, t => {
+    const name = `form-${screen}-${theme}-${format}${suffix}`, result = fixture(t, {missingFormCapture: name})({});
+    assert.equal(result.status, 1); assert(result.stderr.includes('Missing form feedback evidence: ' + name));
     assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], [0, 1, 0]);
     assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
   });

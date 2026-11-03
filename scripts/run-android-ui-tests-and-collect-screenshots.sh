@@ -115,6 +115,18 @@ collect_component_evidence() {
         done
       done
     done
+    for screen in auth search chat-error chat-limit chat-sending; do
+      for theme in light dark; do
+        for format in phone wide; do
+          for suffix in .png -window.png .json; do
+            if [[ ! -s "$output_dir/sgm-feedback-text/form-$screen-$theme-$format$suffix" ]]; then
+              echo "Missing form feedback evidence: form-$screen-$theme-$format$suffix" >&2
+              return 1
+            fi
+          done
+        done
+      done
+    done
     adb pull /sdcard/Download/sgm-booking-dates "$output_dir" || return 1
     for screen in requests trips payments; do
       for kind in scheduled unknown; do

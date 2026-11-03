@@ -13,6 +13,64 @@ import {feedbackVisualFolder, feedbackVisualPublicCases, validateFeedbackTextVis
 import {content, captures} from '../partner-portal/content.mjs';
 import {validateAppearanceEvidence} from '../partner-portal/appearance-evidence.mjs';
 import {compareFeedbackViewportPixels, validateFeedbackPixelReview} from '../scripts/qa/feedback-text-pixel-review.mjs';
+import {formFeedbackFolder, formFeedbackCases, validateFormFeedbackUnits} from '../scripts/qa/form-feedback-evidence.mjs';
+
+test('form foregrounds retain five reproduced light failures then pass ten pairs without changing actions', () => {
+  const result = validateFormFeedbackUnits(resolve(import.meta.dirname, '..'));
+  assert.deepEqual({...result, minimumContrast: 0}, {beforeCases: 10, beforeFailures: 5, afterCases: 10,
+    afterFailures: 0, minimumContrast: 0, nativeLayoutsExecuted: false, releaseAccepted: false});
+  assert(result.minimumContrast >= 4.5);
+  const root = resolve(import.meta.dirname, '../android/app/src/main/java/be/sportgreenmoove/app/ui');
+  for (const file of ['OnboardingScreen.kt', 'SearchScreen.kt'])
+    assert(readFileSync(resolve(root, file), 'utf8').includes('SgmType.BodyXS.copy(color = Sgm.colors.textError'));
+  assert(readFileSync(resolve(root, 'ConversationMessageUi.kt'), 'utf8')
+    .includes('color = if (validLength && sending) Sgm.colors.textSecondary else Sgm.colors.textError'));
+});
+
+test('twenty actual form cases require complete measured text, correct semantic roles and sixty primary artifacts', () => {
+  const root = resolve(import.meta.dirname, '..'), read = file => readFileSync(resolve(root, file), 'utf8');
+  const prefix = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
+  const suite = read(prefix + 'FormFeedbackLayoutTest.kt'), capture = read(prefix + 'FormFeedbackCapture.kt');
+  assert.equal(formFeedbackCases.length, 20);
+  assert(suite.includes('for ((state, label) in labels)'));
+  assert(suite.includes('key(screen) { FeedbackFixture(screen, labels.getValue(screen)) }'));
+  for (const token of ['OnboardingScreen(', 'SearchScreen(', 'ConversationComposer(', 'assertMeasuredTextFits(reported)',
+    '320, 700, 3f', '900, 600, 1f', 'fontScale = 1.3f', 'Ancienne erreur.', 'action.assertIsEnabled()',
+    'action.assertIsNotEnabled()', 'check(contrast >= 4.5)', 'palette.textSecondary else palette.textError',
+    'bounds.left >= viewport.left', 'bounds.right <= viewport.right', 'bounds.top >= viewport.top', 'bounds.bottom <= viewport.bottom'])
+    assert(suite.includes(token), token);
+  assert(suite.indexOf('check(contrast >= 4.5)') < suite.indexOf('captureFormFeedbackViewport(compose'));
+  for (const token of ['AndroidRuntime.create', 'FirebaseAndroidGateway', 'GoogleMap(', 'Thread.sleep', 'retry(']) assert(!suite.includes(token));
+  for (const token of ['captureToImage()', 'device.takeScreenshot(window)', 'check(!image.exists())', 'check(!window.exists())',
+    'check(!record.exists())', 'requireFeedbackImageHasVariation(bitmap)', '"backendCalls", false', '"physicalDevice", false',
+    '"productionWrites", false', '"mapsRendered", false', '"sgm-feedback-text"']) assert(capture.includes(token));
+  const shell = read('scripts/run-android-ui-tests-and-collect-screenshots.sh');
+  assert(shell.includes('for screen in auth search chat-error chat-limit chat-sending'));
+  assert(shell.includes('Missing form feedback evidence: form-$screen-$theme-$format$suffix'));
+  for (const file of ['FormFeedbackLayoutTest.kt', 'FormFeedbackCapture.kt']) assert(read(prefix + file).split('\n').length < 300);
+  for (const event of ['push', 'pull_request']) {
+    const paths = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON().on[event].paths;
+    for (const path of ['android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FormFeedback*.kt',
+      'android/app/src/test/java/be/sportgreenmoove/app/design/SgmFormFeedbackContrastTest.kt']) assert(paths.includes(path));
+    for (const file of ['OnboardingScreen', 'SearchScreen', 'ConversationMessageUi'])
+      assert(paths.includes('android/app/src/main/java/be/sportgreenmoove/app/ui/' + file + '.kt'));
+  }
+});
+
+test('compiled form preparation cannot accept rendered layouts, authentication, search or message delivery', t => {
+  const root = resolve(import.meta.dirname, '..'), temporary = mkdtempSync(resolve(tmpdir(), 'sgm-form-feedback-scope-'));
+  t.after(() => rmSync(temporary, {recursive: true, force: true}));
+  const folder = resolve(temporary, formFeedbackFolder); cpSync(resolve(root, formFeedbackFolder), folder, {recursive: true});
+  symlinkSync(resolve(root, 'docs/release/evidence/source-archive'), resolve(temporary, 'docs/release/evidence/source-archive'));
+  const review = JSON.parse(readFileSync(resolve(folder, 'review.json'))), hashes = JSON.parse(readFileSync(resolve(folder, 'artifact-sha256.json')));
+  for (const key of ['nativeLayoutsExecuted', 'physicalDeviceAccepted', 'authenticationAccepted', 'searchAccepted',
+    'messageDeliveryAccepted', 'fullAppAccessibilityAccepted', 'releaseAccepted', 'fallbackAdded', 'deadlineChanged', 'thresholdReduced']) {
+    const value = JSON.stringify({...review, [key]: true}); writeFileSync(resolve(folder, 'review.json'), value);
+    writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify({...hashes,
+      'review.json': createHash('sha256').update(value).digest('hex')}));
+    assert.throws(() => validateFormFeedbackUnits(temporary), new RegExp(key));
+  }
+});
 
 test('the pixel-verified correction retains the original classification and publishes the same five viewports', () => {
   const review = validateFeedbackTextVisualReview(resolve(import.meta.dirname, '..'));

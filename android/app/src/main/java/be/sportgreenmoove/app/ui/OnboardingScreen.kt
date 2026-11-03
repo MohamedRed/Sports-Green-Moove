@@ -115,7 +115,7 @@ fun OnboardingScreen(
             if (error != null) {
                 Text(
                     error,
-                    style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+                    style = SgmType.BodyXS.copy(color = Sgm.colors.textError, fontSize = 12.sp, fontWeight = FontWeight.Bold),
                     modifier = Modifier.sgmTestTag(SgmTestTags.AuthError),
                 )
             }

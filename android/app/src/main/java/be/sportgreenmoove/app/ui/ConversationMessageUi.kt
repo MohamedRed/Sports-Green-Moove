@@ -60,7 +60,7 @@ internal fun ConversationComposer(
     Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         if (sending || error != null || !validLength) Text(
             when { !validLength -> "Maximum 1 000 caractères."; sending -> "Envoi en cours..."; else -> error.orEmpty() },
-            style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp),
+            style = SgmType.BodyXS.copy(color = if (validLength && sending) Sgm.colors.textSecondary else Sgm.colors.textError, fontSize = 12.sp),
         )
         Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             BasicTextField(value = draft, onValueChange = onDraft, readOnly = locked || sending, enabled = enabled,
