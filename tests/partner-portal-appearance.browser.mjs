@@ -18,7 +18,7 @@ export async function verifyAppearanceGallery({browser, base, output}) {
       const date = new Intl.DateTimeFormat('fr-BE', {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'})
         .format(new Date(flow.checkedAt));
       await dialog.getByText('Essai local du ' + date, {exact: true}).waitFor();
-      for (const image of flow.images.filter(image => /^(neutral-text-|accent-control-|feedback-text-)/.test(image.file))) {
+      for (const image of flow.images.filter(image => /^(booking-date-|neutral-text-|accent-control-|feedback-text-)/.test(image.file))) {
         const picture = dialog.getByRole('img', {name: image.alt, exact: true});
         await picture.waitFor();
         await page.waitForFunction(() => {
@@ -41,6 +41,6 @@ export async function verifyAppearanceGallery({browser, base, output}) {
       await dialog.getByRole('img', {name: flow.images.at(-2).alt, exact: true}).waitFor();
     }
     assert.deepEqual(errors, []);
-    console.log('Five new feedback captures, five earlier phone captures and eight historical viewports fit all four widths; old gallery preserved.');
+    console.log('Six date captures and all eighteen earlier reviewed images fit all four widths; old gallery preserved.');
   } finally {await page.close();}
 }

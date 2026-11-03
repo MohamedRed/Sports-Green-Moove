@@ -25,7 +25,8 @@ test('the pixel-verified correction retains the original classification and publ
   assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local'); assert.equal(flow.checkedAt, '2026-11-03');
   assert.deepEqual(flow.images.filter(image => image.file.startsWith('feedback-text-')).map(image => image.file),
     feedbackVisualPublicCases.map(name => 'feedback-text-' + name));
-  assert.equal(flow.images.filter(image => !image.file.startsWith('feedback-text-')).length, 15);
+  assert.equal(flow.images.filter(image => image.file.startsWith('booking-date-')).length, 6);
+  assert.equal(flow.images.filter(image => !/^(booking-date-|feedback-text-)/.test(image.file)).length, 15);
   assert(!flow.images.some(image => image.file.includes('-window')));
   assert(!flow.remaining.includes('Trois captures'));
 });

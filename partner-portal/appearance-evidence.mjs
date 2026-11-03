@@ -3,8 +3,10 @@ import {dirname} from 'node:path';
 import {neutralVisualSource, validateNeutralTextVisualReview} from '../scripts/qa/neutral-text-visual-evidence.mjs';
 import {accentControlsFolder, accentControlPublicPhases, validateAccentControlEvidence} from '../scripts/qa/accent-controls-evidence.mjs';
 import {feedbackVisualFolder, feedbackVisualPublicCases, validateFeedbackTextVisualReview} from '../scripts/qa/feedback-text-visual-evidence.mjs';
+import {validateBookingDateAppearance} from './booking-date-appearance-evidence.mjs';
 
-export function validateAppearanceEvidence(root, flow, captures) {
+export function validateAppearanceEvidence(root, currentFlow, captures) {
+  const flow = validateBookingDateAppearance(root, currentFlow, captures);
   assert.equal(flow.id, 'appearance'); assert.equal(flow.status, 'partial');
   validateAccentControlEvidence(root);
   assert.equal(flow.accentControlReview.source, accentControlsFolder + 'review.json');

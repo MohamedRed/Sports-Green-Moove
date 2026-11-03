@@ -116,6 +116,6 @@ export const blockers = [
     next: 'Choisir la commission avant les paiements et vérifier la ville sur iPhone. Pas encore en ligne dans l’app.', source: 'docs/release/evidence/profile-ledger-phone-2026-10-24/README.md' },
   { id: 'contrast', title: 'Lisibilité des écrans',
     text: 'Les boutons verts et orange, les sélections et la navigation sont revus sur téléphone.',
-    next: 'Revoir les autres textes colorés, les dates des réservations, les marges et l’accessibilité, dont l’iPhone.',
+    next: 'Les dates sont revues avec le texte agrandi, en simulation. Revoir les autres textes colorés, les marges et l’accessibilité, dont l’iPhone.',
     source: 'docs/release/evidence/accent-controls-phone-2026-10-30/README.md' },
 ];

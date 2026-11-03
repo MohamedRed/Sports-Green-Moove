@@ -35,3 +35,12 @@ already established measured-frame helper, records both reported and measured
 dimensions, and adds explicit vertical, ellipsis and non-wrapping rejection cases.
 This is a test-measurement candidate, not a production layout correction or proof
 that the rejected dates already fit. Its new native replay is still required.
+
+Follow-up: source edcd1e9 completes its native replay with 345 ordinary cases
+(290 passed, 55 skipped), all primary copies and the independent connected replay
+passing. All 24 date views and four measurement probes pass; every original
+viewport matches its window region exactly and visual review sees complete dates.
+The twenty reported width flags remain, confirming why that proxy was unsuitable
+for these actual measured frames. Preserve the first attempt above unchanged;
+the separate reviewed bundle is `docs/release/evidence/booking-date-visual-2026-11-03/`.
+These are simulated component views, not transaction or physical-release proof.

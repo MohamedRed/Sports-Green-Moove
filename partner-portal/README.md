@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The edcd1e9 native gate and all executed checks pass. All 24 booking-date views
+and four measured-frame regressions execute and pass; review finds complete
+dates and exact original viewport/window pixel matches. Add six original date
+viewports and one concise simulated-date note. Retain the first twenty reported-
+paragraph failures, every earlier image, flow status, phone date and tour. Remove
+only the date-label item from the appearance remainder; other coloured texts,
+system insets, physical/iOS accessibility and release evidence stay open. See
+`docs/release/evidence/booking-date-visual-2026-11-03/README.md`.
+
 The first 549c547 booking-date run executes 24 cases and rejects twenty at the
 reported-paragraph check. Keep those failures and the four partial payment
 capture triples private to the evidence bundle, not in the gallery. Publish one

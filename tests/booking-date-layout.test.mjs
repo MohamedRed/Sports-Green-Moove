@@ -1,26 +1,77 @@
 import assert from 'node:assert/strict';
-import {readFileSync, cpSync, mkdtempSync, writeFileSync, rmSync} from 'node:fs';
+import {readFileSync, cpSync, mkdtempSync, writeFileSync, rmSync, symlinkSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import test from 'node:test';
 import {parseDocument} from 'yaml';
+import {PNG} from 'pngjs';
 import {bookingDateAttemptFolder, validateBookingDateAttempt} from '../scripts/qa/booking-date-attempt-evidence.mjs';
-import {content} from '../partner-portal/content.mjs';
+import {bookingDateVisualFolder, bookingDatePublicCases, validateBookingDateVisualReview} from '../scripts/qa/booking-date-visual-evidence.mjs';
+import {content, captures} from '../partner-portal/content.mjs';
 import {bookingDateProgress} from '../partner-portal/booking-date-attempt.mjs';
+import {bookingDateVisualProgress} from '../partner-portal/booking-date-visual-flow.mjs';
+import {validateBookingDateAppearance} from '../partner-portal/booking-date-appearance-evidence.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const read = file => readFileSync(resolve(root, file), 'utf8');
 const native = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
 
-test('the public update keeps dates incomplete and never adds partial captures to the existing gallery', () => {
+test('the first incomplete note is retained while only separately reviewed original date images enter the gallery', () => {
   assert(content.updates.includes(bookingDateProgress));
   assert.equal(bookingDateProgress.source, bookingDateAttemptFolder + 'README.md');
   const appearance = content.flows.find(flow => flow.id === 'appearance');
-  assert.equal(appearance.status, 'partial'); assert.equal(appearance.images.length, 20);
-  assert(!appearance.images.some(image => /booking-date|payments-(scheduled|unknown)/.test(image.file)));
-  assert(appearance.remaining.includes('dates des réservations'));
+  assert.equal(appearance.status, 'partial'); assert.equal(appearance.images.length, 26);
+  assert(content.updates.includes(bookingDateVisualProgress));
+  assert(content.updates.indexOf(bookingDateVisualProgress) < content.updates.indexOf(bookingDateProgress));
+  assert.equal(bookingDateVisualProgress.source, bookingDateVisualFolder + 'README.md');
+  const prior = validateBookingDateAppearance(root, appearance, captures);
+  assert.equal(prior.images.length, 20); assert(prior.remaining.includes('dates des réservations'));
+  assert(!appearance.remaining.includes('dates des réservations'));
+  for (const image of appearance.images.filter(image => image.file.startsWith('booking-date-')))
+    assert(captures[image.file].startsWith(bookingDateVisualFolder + 'captures/'));
   assert.doesNotMatch(bookingDateProgress.title + bookingDateProgress.text, /BrowserStack|Firebase|SDK|APK|CI|Semantics/);
+  assert.doesNotMatch(bookingDateVisualProgress.title + bookingDateVisualProgress.text, /BrowserStack|Firebase|SDK|APK|CI|Semantics/);
+});
+
+test('the completed source-bound date review proves all 24 original viewports and four measurement regressions', () => {
+  const review = validateBookingDateVisualReview(root);
+  assert.equal(review.dateCasesPassed, 24); assert.equal(review.measurementCasesPassed, 4);
+  assert.equal(review.reportedOverflowCases, 20); assert.equal(review.completeViewportCaptures, 24);
+  assert.deepEqual(review.publishedCases, bookingDatePublicCases); assert(review.minimumContrast >= 4.5);
+  assert.equal(review.productionSourcesChanged, false); assert.equal(review.releaseAccepted, false);
+});
+
+test('date visual proof rejects widened claims, comparison windows, missing cases and modified original pixels', t => {
+  const temporary = mkdtempSync(resolve(tmpdir(), 'sgm-booking-date-visual-negative-'));
+  t.after(() => rmSync(temporary, {recursive: true, force: true}));
+  const folder = resolve(temporary, bookingDateVisualFolder); cpSync(resolve(root, bookingDateVisualFolder), folder, {recursive: true});
+  symlinkSync(resolve(root, 'docs/release/evidence/source-archive'), resolve(temporary, 'docs/release/evidence/source-archive'));
+  symlinkSync(resolve(root, bookingDateAttemptFolder), resolve(temporary, bookingDateAttemptFolder.replace(/\/$/, '')));
+  const readJson = name => JSON.parse(readFileSync(resolve(folder, name)));
+  const original = readJson('review.json'), originalHashes = readJson('artifact-sha256.json');
+  const replace = (name, bytes) => {
+    writeFileSync(resolve(folder, name), bytes);
+    writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify({...originalHashes,
+      [name]: createHash('sha256').update(bytes).digest('hex')}));
+  };
+  for (const key of ['physicalDeviceAccepted', 'backendFlowAccepted', 'paymentAccepted', 'mapsAccepted', 'screenReaderAccepted',
+    'systemInsetsAccepted', 'fullAppAccessibilityAccepted', 'releaseAccepted', 'mediaEdits', 'comparisonWindowsPublished',
+    'productionSourcesChanged', 'assertionThresholdReduced', 'deadlineChanged', 'fallbackAdded']) {
+    replace('review.json', JSON.stringify({...original, [key]: true}));
+    assert.throws(() => validateBookingDateVisualReview(temporary), new RegExp(key));
+  }
+  for (const change of [{dateCasesPassed: 23}, {measurementCasesPassed: 3}, {publishedCaptureKind: 'window'},
+    {publishedCases: bookingDatePublicCases.slice(1)}]) {
+    replace('review.json', JSON.stringify({...original, ...change}));
+    assert.throws(() => validateBookingDateVisualReview(temporary), {code: 'ERR_ASSERTION'});
+  }
+  writeFileSync(resolve(folder, 'review.json'), readFileSync(resolve(root, bookingDateVisualFolder, 'review.json')));
+  writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify(originalHashes));
+  const name = 'captures/requests-scheduled-light-phone.png';
+  const image = PNG.sync.read(readFileSync(resolve(folder, name))); image.data[0] ^= 1;
+  replace(name, PNG.sync.write(image));
+  assert.throws(() => validateBookingDateVisualReview(temporary), {code: 'ERR_ASSERTION'});
 });
 
 test('the first native run retains twenty rejected date cases and four unaccepted partial capture triples', () => {

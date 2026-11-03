@@ -1,0 +1,34 @@
+{
+  "headCommit": "edcd1e98ff53db6a276ce474c8c739aced88f5a4",
+  "checkoutCommit": "e67ea427900fde177904b76e522bf2c0d5fc395e",
+  "allSelectedFilesMatch": true,
+  "allBuildInputsCompared": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingDateLayoutTest.kt": "0a53a01a01760f9dd859379e2dc79ca132e32ace7feea57f00fb3ab931662456",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingDateCapture.kt": "9c5d189dce458ee9d2860105b314eabdc668460f1a3b5d67df9ea1363f65283e",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/MeasuredTextAssertions.kt": "1102af0f87a762c5ccbcbbdec7399cacb196b35e18a60b624913c75c8b74249d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackTextCapture.kt": "515bb819aca9ad23d575eb5a1346c31695bea9620be2682a2f5b8e84152caf5b",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/UiFlowFixtures.kt": "258dc2f251efe2a0d4ec3bfcbb0f69fd22c524510842254f5f5c07a47b64a154",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ReservationCards.kt": "b1cf5b4ba1951b11e8d4a2b882286ec93c03eda55f3a1bc45d2553b4b9b757de",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TripListCards.kt": "678284500010ad85d18fa7a91de5f81498498d810da471d3188ba5c052c55f91",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsScreen.kt": "65ad9961f21493f221e3cbc99c1d28bcd352ca9d876d72462ba2faa50ceb0750",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmColors.kt": "866061df8a5449c7a0c81cd7dab137a63a4f0ab9628a20198a536e845f108858",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmTheme.kt": "b6ba29d40fc5735fd380bff14d06835d87a1e8168baae847506af2fb92f7a21e",
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "7d780761b0fc6eeef6038cc47ef756b3f4f289b6395d77a165c4550b200be96e",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingDateMeasurementTest.kt": "cd2f1b63ec281ab7ff64cb5653eb84d7ede9bc0883af204083bdc6526ce9e26e"
+  },
+  "githubBlobShas": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingDateLayoutTest.kt": "1466ed280c8fd528498f1214a3399be2a4378662",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingDateCapture.kt": "dcf6f31aee016d425828b34768e17196a08fdfd7",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/MeasuredTextAssertions.kt": "427dfa3ac628f4d5481fca234e5618cdf502410d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackTextCapture.kt": "5e39ad26eabbeade3f16da9a73249741c0e5d53a",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/UiFlowFixtures.kt": "3676202aa7de28a14894e11ddc12e1c463fffdfc",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ReservationCards.kt": "a4d3b0aa60311a0ec48900f26b06bdb9bdc0cf24",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TripListCards.kt": "4c7e605d806d0a2dc8656a2d07de33d60b5c7ede",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsScreen.kt": "7d44c10709aa18f769b40c87d99e7dca7213453e",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmColors.kt": "2a0d98acf66d69ab170c4e9a0b203cc149948a66",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmTheme.kt": "7426b3d95688990a3df05bc575dedf64fff02ec8",
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "2512a06b9b921707fd51394a41475f4f689e9627",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingDateMeasurementTest.kt": "901fa07ccc129b80f9dcaa0a5c102042f33b2668"
+  }
+}
