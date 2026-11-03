@@ -14,6 +14,46 @@ import {content} from '../partner-portal/content.mjs';
 
 const root = resolve(import.meta.dirname, '..'), read = file => readFileSync(resolve(root, file), 'utf8');
 const main = 'android/app/src/main/java/be/sportgreenmoove/app/';
+test('eight component passes remain separate from four input allocation failures and the one-line fixture correction', () => {
+  const folder = 'docs/release/evidence/feedback-input-width-2026-11-03/';
+  assertEvidenceBundleChecksums(resolve(root, folder));
+  const json = file => JSON.parse(read(folder + file)), review = json('review.json');
+  assert.deepEqual(review.ordinary, {cases: 315, passed: 256, failed: 4, skipped: 55});
+  assert.equal(review.passedFeedbackCases, 8); assert.equal(review.failedFeedbackCases, 4);
+  assert.equal(json('job.json').id, 125716333182); assert.equal(json('job.json').conclusion, 'failure');
+  const selection = json('selection.json'), artifact = json('artifact.json');
+  assert.equal(artifact.id, 13204466928); assert.equal(artifact.workflow_run.head_sha, selection.sourceCommit);
+  assert.equal(artifact.digest, 'sha256:' + selection.originalArchiveSha256);
+  assert.equal(artifact.size_in_bytes, selection.originalArchiveBytes);
+  const suite = new XMLParser({ignoreAttributes: false}).parse(read(folder + 'TEST-guarded-components.xml')).testsuite;
+  assert.deepEqual([suite['@_tests'], suite['@_failures'], suite['@_skipped']], ['315', '4', '55']);
+  const cases = suite.testcase.filter(row => row['@_classname'].endsWith('.FeedbackTextLayoutTest'));
+  assert.equal(cases.length, 12); assert.equal(cases.filter(row => row.failure).length, 4);
+  for (const theme of ['light', 'dark']) for (const format of ['phone', 'wide']) {
+    const record = json('diagnostics/input-' + theme + '-' + format + '.json');
+    assert.equal(record.assertionsPassed, false);
+    const layout = record.textLayouts[0].layouts[0], expected = format === 'phone' ? [407, 744] : [139, 828];
+    assert.deepEqual([layout.widthPx, layout.paragraphWidthPx], expected);
+    assert.equal(layout.overflowWidth, true); assert.equal(layout.overflowHeight, false);
+  }
+  for (const theme of ['light', 'dark']) {
+    const row = json('diagnostics/notices-' + theme + '-wide.json').textLayouts.find(row => row.tag === 'review.submission.error').layouts[0];
+    assert.deepEqual([row.widthPx, row.paragraphWidthPx, row.overflowWidth, row.overflowHeight], [832, 832, false, false]);
+  }
+  const before = json('failed-source-files.json'), after = json('candidate-source-files.json');
+  for (const files of [before, after]) assertRetainedSourceFiles(root, files);
+  assert.equal(before[main + 'ui/ReviewCard.kt'], after[main + 'ui/ReviewCard.kt']);
+  const testPath = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackTextLayoutTest.kt';
+  const source = hash => read('docs/release/evidence/source-archive/' + hash + '.txt');
+  assert.equal(source(after[testPath]).replace('Modifier.fillMaxWidth().sgmTestTag("feedback.material-error")',
+    'Modifier.sgmTestTag("feedback.material-error")'), source(before[testPath]));
+  const checks = json('checks.json'); assert.equal(checks.headRefOid, '836a3c91e0fbf2b3b20f72147ceddaf85bb76a46');
+  assert(checks.statusCheckRollup.every(row => row.status === 'COMPLETED'));
+  assert.equal(checks.statusCheckRollup.find(row => row.name === 'Android native UI tests').conclusion, 'FAILURE');
+  assert.equal(review.candidate.testFixtureOnly, true); assert.equal(review.candidate.nativeExecuted, false);
+  assert.equal(review.inputGlyphClippingEstablished, false); assert.deepEqual(review.acceptedScreenshots, []);
+  for (const key of ['physicalDeviceAccepted', 'backendFlowAccepted', 'releaseAccepted']) assert.equal(review[key], false);
+});
 test('native diagnostics bind the finder mismatch and constrained review width without accepting the failed images', () => {
   const folder = 'docs/release/evidence/feedback-layout-diagnosis-2026-11-03/';
   assertEvidenceBundleChecksums(resolve(root, folder));
@@ -146,6 +186,7 @@ test('twelve layouts keep the input separate without changing themes, sizes or o
   assert.equal(feedbackTextCases.length, 12);
   assert(suite.includes('else if (screen == "input")'));
   assert(suite.includes('"input" -> listOf("feedback.material-error")'));
+  assert(suite.includes('Modifier.fillMaxWidth().sgmTestTag("feedback.material-error")'));
   assert(suite.indexOf('retainFeedbackLayoutDiagnostics(compose, name, tags)') < suite.indexOf('val node = compose.onNodeWithTag(tag, useUnmergedTree = true).assertIsDisplayed()'));
   assert(read(main + 'ui/ReviewCard.kt').includes('Modifier.fillMaxWidth().sgmTestTag("review.submission.error")'));
   const diagnostic = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackLayoutDiagnostics.kt');

@@ -64,7 +64,7 @@ class FeedbackTextLayoutTest(private val name: String, private val screen: Strin
                                 OutlinedTextField("Adresse incomplète", {}, modifier = Modifier.padding(horizontal = 20.dp)
                                     .fillMaxWidth(), isError = true, label = { Text("Adresse") },
                                     supportingText = { Text("Vérifiez l'adresse.", color = MaterialTheme.colorScheme.error,
-                                        modifier = Modifier.sgmTestTag("feedback.material-error")) })
+                                        modifier = Modifier.fillMaxWidth().sgmTestTag("feedback.material-error")) })
                             } else {
                                 Column(Modifier.padding(horizontal = 20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                                     val stale = LiveRideSnapshot("feedback-ride", status = "active",
