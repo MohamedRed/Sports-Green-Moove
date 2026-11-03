@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The first 549c547 booking-date run executes 24 cases and rejects twenty at the
+reported-paragraph check. Keep those failures and the four partial payment
+capture triples private to the evidence bundle, not in the gallery. Publish one
+short incomplete-date note without changing any flow status, images, dates or
+tours. The measured-frame candidate and four rejection probes still need their
+own native run. See `docs/release/evidence/booking-date-attempt-2026-11-03/README.md`.
+
 The c6c3eb4 source passes the full native gate and all executed checks. All twelve
 feedback layouts and two sampling cases pass. The initial visual classification
 of three incomplete exports was incorrect: re-review sees the expected text, and

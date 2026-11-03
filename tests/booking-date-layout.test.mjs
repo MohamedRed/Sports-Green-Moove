@@ -1,12 +1,48 @@
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync, cpSync, mkdtempSync, writeFileSync, rmSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import test from 'node:test';
 import {parseDocument} from 'yaml';
+import {bookingDateAttemptFolder, validateBookingDateAttempt} from '../scripts/qa/booking-date-attempt-evidence.mjs';
+import {content} from '../partner-portal/content.mjs';
+import {bookingDateProgress} from '../partner-portal/booking-date-attempt.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const read = file => readFileSync(resolve(root, file), 'utf8');
 const native = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
+
+test('the public update keeps dates incomplete and never adds partial captures to the existing gallery', () => {
+  assert(content.updates.includes(bookingDateProgress));
+  assert.equal(bookingDateProgress.source, bookingDateAttemptFolder + 'README.md');
+  const appearance = content.flows.find(flow => flow.id === 'appearance');
+  assert.equal(appearance.status, 'partial'); assert.equal(appearance.images.length, 20);
+  assert(!appearance.images.some(image => /booking-date|payments-(scheduled|unknown)/.test(image.file)));
+  assert(appearance.remaining.includes('dates des réservations'));
+  assert.doesNotMatch(bookingDateProgress.title + bookingDateProgress.text, /BrowserStack|Firebase|SDK|APK|CI|Semantics/);
+});
+
+test('the first native run retains twenty rejected date cases and four unaccepted partial capture triples', () => {
+  const result = validateBookingDateAttempt(root);
+  assert.deepEqual(result.dateCases, {executed: 24, passed: 4, failed: 20});
+  assert.equal(result.publishedCaptures, 0); assert.equal(result.candidateDateCasesExecuted, 0);
+});
+
+test('the first date attempt cannot accept a replay, a root cause, partial gallery images or release readiness', t => {
+  const temporary = mkdtempSync(resolve(tmpdir(), 'sgm-booking-date-negative-'));
+  t.after(() => rmSync(temporary, {recursive: true, force: true}));
+  const folder = resolve(temporary, bookingDateAttemptFolder); cpSync(resolve(root, bookingDateAttemptFolder), folder, {recursive: true});
+  const original = JSON.parse(readFileSync(resolve(folder, 'analysis.json')));
+  const hashes = JSON.parse(readFileSync(resolve(folder, 'artifact-sha256.json')));
+  for (const change of [{allDatesAccepted: true}, {rootCauseConfirmedForDateCases: true}, {physicalDeviceAccepted: true},
+    {releaseAccepted: true}, {publishedCaptures: 1}, {candidateDateCasesExecuted: 24}, {candidateMeasurementCasesExecuted: 4}]) {
+    const value = JSON.stringify({...original, ...change}); writeFileSync(resolve(folder, 'analysis.json'), value);
+    writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify({...hashes,
+      'analysis.json': createHash('sha256').update(value).digest('hex')}));
+    assert.throws(() => validateBookingDateAttempt(temporary), {code: 'ERR_ASSERTION'});
+  }
+});
 
 test('booking dates cover actual request, trip and payment components with both existing date states', () => {
   const suite = read(native + 'BookingDateLayoutTest.kt');
@@ -19,12 +55,21 @@ test('booking dates cover actual request, trip and payment components with both 
 
 test('date completeness, actual text contrast and viewport bounds must pass before capture acceptance', () => {
   const suite = read(native + 'BookingDateLayoutTest.kt');
-  for (const value of ['useUnmergedTree = true', 'performScrollTo().assertIsDisplayed()', 'GetTextLayoutResult',
-    'layouts.isNotEmpty() && layouts.none { it.hasVisualOverflow }', 'bounds.left >= viewport.left',
+  for (const value of ['useUnmergedTree = true', 'performScrollTo().assertIsDisplayed()', 'reportedTextLayout(node)',
+    'assertMeasuredTextFits(reported)', 'reported.layoutInput.text.text == label', 'bounds.left >= viewport.left',
     'bounds.right <= viewport.right', 'bounds.top >= viewport.top', 'bounds.bottom <= viewport.bottom',
-    'layout.layoutInput.style.color', 'color != Color.Unspecified', 'compositeOver(background)',
+    'reported.layoutInput.style.color', 'color != Color.Unspecified', 'compositeOver(background)',
     'SgmColor.HeroStart else palette.bgCard', 'check(contrast >= 4.5)']) assert(suite.includes(value), value);
   assert(suite.indexOf('check(contrast >= 4.5)') < suite.indexOf('captureBookingDateViewport(compose'));
+  assert(suite.indexOf('SGM_BOOKING_DATE_REPORTED') < suite.indexOf('assertMeasuredTextFits(reported)'));
+  const measured = read(native + 'MeasuredTextAssertions.kt');
+  for (const value of ['Constraints(maxWidth = reported.size.width)', '!measured.didExceedMaxLines',
+    'ceil(measured.height).toInt() <= reported.size.height', 'input.text.length, measured.getLineEnd',
+    'measured.getLineLeft(line) >= 0f', 'measured.getLineRight(line) <= reported.size.width']) assert(measured.includes(value), value);
+  const probes = read(native + 'BookingDateMeasurementTest.kt');
+  for (const value of ['completeWrappedDateKeepsEveryCharacter', 'verticallyClippedDateIsRejected',
+    'ellipsizedDateIsRejected', 'nonWrappingOverflowIsRejected']) assert(probes.includes(value));
+  assert.equal(probes.split('assertThrows(AssertionError::class.java)').length - 1, 3);
 });
 
 test('captures use original images, fixed dimensions and strict shared export without transaction claims', () => {

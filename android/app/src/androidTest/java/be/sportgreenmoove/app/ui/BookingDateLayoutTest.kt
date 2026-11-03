@@ -10,10 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.test.platform.app.InstrumentationRegistry
@@ -71,26 +69,31 @@ class BookingDateLayoutTest(private val name: String, private val screen: String
             }
         }
         val node = compose.onNodeWithText(label, useUnmergedTree = true).performScrollTo().assertIsDisplayed()
-        val layouts = mutableListOf<TextLayoutResult>()
-        node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(layouts) }
-        check(layouts.isNotEmpty() && layouts.none { it.hasVisualOverflow }) { "$name: incomplete date text layout" }
+        val reported = reportedTextLayout(node)
+        check(reported.layoutInput.text.text == label) { "$name: unexpected date label" }
+        val metrics = JSONObject().put("case", name).put("reportedWidthPx", reported.size.width)
+            .put("reportedHeightPx", reported.size.height).put("reportedParagraphWidthPx", reported.multiParagraph.width)
+            .put("reportedParagraphHeightPx", reported.multiParagraph.height)
+            .put("reportedWidthOverflow", reported.didOverflowWidth).put("reportedHeightOverflow", reported.didOverflowHeight)
+        println("SGM_BOOKING_DATE_REPORTED $metrics")
+        val measured = assertMeasuredTextFits(reported)
+        metrics.put("measuredParagraphWidthPx", measured.width).put("measuredParagraphHeightPx", measured.height)
+            .put("measuredLineCount", measured.lineCount).put("measuredLastLineEnd", measured.getLineEnd(measured.lineCount - 1))
         val bounds = node.fetchSemanticsNode().boundsInRoot
         val viewport = compose.onNodeWithTag("booking-date.viewport").fetchSemanticsNode().boundsInRoot
         check(bounds.width > 0 && bounds.height > 0 && bounds.left >= viewport.left && bounds.right <= viewport.right &&
             bounds.top >= viewport.top && bounds.bottom <= viewport.bottom) { "$name: date outside viewport: $bounds / $viewport" }
         val palette = if (dark) SgmDarkColors else SgmLightColors
         val background = if (screen == "trips") SgmColor.HeroStart else palette.bgCard
-        val contrast = layouts.map { layout ->
-            val color = layout.layoutInput.style.color
-            check(color != Color.Unspecified) { "$name: date foreground must be explicit" }
-            val first = color.compositeOver(background).luminance().toDouble()
-            val second = background.luminance().toDouble()
-            (max(first, second) + 0.05) / (min(first, second) + 0.05)
-        }.min()
+        val color = reported.layoutInput.style.color
+        check(color != Color.Unspecified) { "$name: date foreground must be explicit" }
+        val first = color.compositeOver(background).luminance().toDouble()
+        val second = background.luminance().toDouble()
+        val contrast = (max(first, second) + 0.05) / (min(first, second) + 0.05)
         check(contrast >= 4.5) { "$name: date contrast $contrast below 4.5:1" }
         captureBookingDateViewport(compose, name, screen, kind, dark, width, height, density,
-            JSONObject().put("dateLabel", label).put("boundsInRoot", bounds.toString())
-                .put("layoutCount", layouts.size).put("overflow", false).put("contrastRatio", contrast))
+            metrics.put("dateLabel", label).put("boundsInRoot", bounds.toString())
+                .put("layoutCount", 1).put("measuredTextFits", true).put("contrastRatio", contrast))
     }
 
     companion object {

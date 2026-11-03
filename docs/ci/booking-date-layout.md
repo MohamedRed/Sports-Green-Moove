@@ -27,3 +27,11 @@ the historical workload guards had not separated the one declared added step.
 The fixture is extended with 72 missing-file cases and a failed-primary-copy case;
 the original assertions and 111-step / 153-step fingerprints remain unchanged.
 These local results do not accept any of the 24 rendered date cases yet.
+
+The first native execution rejects twenty cases at the original reported-paragraph
+overflow check and passes four narrow payment views. Preserve its original bundle
+in `docs/release/evidence/booking-date-attempt-2026-11-03/`. The follow-up uses the
+already established measured-frame helper, records both reported and measured
+dimensions, and adds explicit vertical, ellipsis and non-wrapping rejection cases.
+This is a test-measurement candidate, not a production layout correction or proof
+that the rejected dates already fit. Its new native replay is still required.
