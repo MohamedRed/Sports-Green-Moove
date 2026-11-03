@@ -1,4 +1,5 @@
 import './feedback-text-history.mjs';
+import './form-feedback-visual.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {createHash} from 'node:crypto';
@@ -84,7 +85,8 @@ test('the pixel-verified correction retains the original classification and publ
   assert.deepEqual(flow.images.filter(image => image.file.startsWith('feedback-text-')).map(image => image.file),
     feedbackVisualPublicCases.map(name => 'feedback-text-' + name));
   assert.equal(flow.images.filter(image => image.file.startsWith('booking-date-')).length, 6);
-  assert.equal(flow.images.filter(image => !/^(booking-date-|feedback-text-)/.test(image.file)).length, 15);
+  assert.equal(flow.images.filter(image => image.file.startsWith('form-feedback-')).length, 6);
+  assert.equal(flow.images.filter(image => !/^(form-feedback-|booking-date-|feedback-text-)/.test(image.file)).length, 15);
   assert(!flow.images.some(image => image.file.includes('-window')));
   assert(!flow.remaining.includes('Trois captures'));
 });

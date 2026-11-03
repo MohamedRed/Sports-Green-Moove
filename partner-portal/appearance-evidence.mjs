@@ -4,9 +4,11 @@ import {neutralVisualSource, validateNeutralTextVisualReview} from '../scripts/q
 import {accentControlsFolder, accentControlPublicPhases, validateAccentControlEvidence} from '../scripts/qa/accent-controls-evidence.mjs';
 import {feedbackVisualFolder, feedbackVisualPublicCases, validateFeedbackTextVisualReview} from '../scripts/qa/feedback-text-visual-evidence.mjs';
 import {validateBookingDateAppearance} from './booking-date-appearance-evidence.mjs';
+import {validateFormFeedbackAppearance} from './form-feedback-appearance-evidence.mjs';
 
 export function validateAppearanceEvidence(root, currentFlow, captures) {
-  const flow = validateBookingDateAppearance(root, currentFlow, captures);
+  const priorDateView = validateFormFeedbackAppearance(root, currentFlow, captures);
+  const flow = validateBookingDateAppearance(root, priorDateView, captures);
   assert.equal(flow.id, 'appearance'); assert.equal(flow.status, 'partial');
   validateAccentControlEvidence(root);
   assert.equal(flow.accentControlReview.source, accentControlsFolder + 'review.json');

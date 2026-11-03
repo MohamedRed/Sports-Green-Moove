@@ -12,6 +12,7 @@ import {content, captures} from '../partner-portal/content.mjs';
 import {bookingDateProgress} from '../partner-portal/booking-date-attempt.mjs';
 import {bookingDateVisualProgress} from '../partner-portal/booking-date-visual-flow.mjs';
 import {validateBookingDateAppearance} from '../partner-portal/booking-date-appearance-evidence.mjs';
+import {validateFormFeedbackAppearance} from '../partner-portal/form-feedback-appearance-evidence.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const read = file => readFileSync(resolve(root, file), 'utf8');
@@ -21,11 +22,13 @@ test('the first incomplete note is retained while only separately reviewed origi
   assert(content.updates.includes(bookingDateProgress));
   assert.equal(bookingDateProgress.source, bookingDateAttemptFolder + 'README.md');
   const appearance = content.flows.find(flow => flow.id === 'appearance');
-  assert.equal(appearance.status, 'partial'); assert.equal(appearance.images.length, 26);
+  assert.equal(appearance.status, 'partial'); assert.equal(appearance.images.length, 32);
   assert(content.updates.includes(bookingDateVisualProgress));
   assert(content.updates.indexOf(bookingDateVisualProgress) < content.updates.indexOf(bookingDateProgress));
   assert.equal(bookingDateVisualProgress.source, bookingDateVisualFolder + 'README.md');
-  const prior = validateBookingDateAppearance(root, appearance, captures);
+  const dateBoundary = validateFormFeedbackAppearance(root, appearance, captures);
+  assert.equal(dateBoundary.images.length, 26);
+  const prior = validateBookingDateAppearance(root, dateBoundary, captures);
   assert.equal(prior.images.length, 20); assert(prior.remaining.includes('dates des réservations'));
   assert(!appearance.remaining.includes('dates des réservations'));
   for (const image of appearance.images.filter(image => image.file.startsWith('booking-date-')))

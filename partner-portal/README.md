@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The aab9ac0 ordinary matrix passes 349 cases (294 passed, 55 skipped), all four
+form sessions and twenty required views, with complete primary copies. Visual
+review accepts only the feedback labels and six original viewport inputs. The
+main native job still fails in independent network preparation before any cut or
+offline send; retain its result, Wi-Fi DNS observations and verified restoration,
+without a cause/repair or whole-gate claim. Add concise progress copy and preserve
+all earlier media, dates, tours and partial statuses. See
+`docs/release/evidence/form-feedback-visual-2026-11-03/README.md`.
+
 The edcd1e9 native gate and all executed checks pass. All 24 booking-date views
 and four measured-frame regressions execute and pass; review finds complete
 dates and exact original viewport/window pixel matches. Add six original date
