@@ -5,7 +5,9 @@ import {createHash} from 'node:crypto';
 import {tmpdir} from 'node:os';
 import {fileURLToPath} from 'node:url';
 import {resolve} from 'node:path';
-import {content} from '../partner-portal/content.mjs';
+import {content, captures} from '../partner-portal/content.mjs';
+import {validateAppearanceEvidence} from '../partner-portal/appearance-evidence.mjs';
+import {feedbackVisualFolder} from '../scripts/qa/feedback-text-visual-evidence.mjs';
 import {parentApprovalInputStopProgress} from '../partner-portal/parent-approval-input-stop.mjs';
 import {assertParentApprovalInputStop, parentApprovalInputStopFolder, validateParentApprovalInputStop} from '../scripts/qa/parent-approval-input-stop-evidence.mjs';
 import {validateFocusedCopyFailure, validateCurrentNativeFailure, assertCurrentNativeFailureScope,
@@ -77,7 +79,10 @@ test('the later source passes the main matrix but preserves the separate network
   assert(content.updates.includes(c84ChecksProgress));
   assert.doesNotMatch(c84ChecksProgress.title + c84ChecksProgress.text, /BrowserStack|Firebase|SDK|APK|CI|Linux/);
   assert.equal(content.blockers.find(row => row.id === 'native-evidence-copy').sourceBoundPass.source, c84ChecksFolder + 'review.json');
-  assert.equal(createHash('sha256').update(JSON.stringify(content.flows)).digest('hex'),
+  const previous = JSON.parse(readFileSync(resolve(root, feedbackVisualFolder, 'previous-publication.json')));
+  validateAppearanceEvidence(root, content.flows.find(flow => flow.id === 'appearance'), captures);
+  const priorBoundary = content.flows.map(flow => flow.id === 'appearance' ? previous.appearanceFlow : flow);
+  assert.equal(createHash('sha256').update(JSON.stringify(priorBoundary)).digest('hex'),
     'b5772455f74ec402c5b25acfa5736917c7e8db4a3332725a416868d18cacadd8');
 });
 test('a main-job pass cannot accept the whole gate, a root cause, parent approval or physical tracking', () => {

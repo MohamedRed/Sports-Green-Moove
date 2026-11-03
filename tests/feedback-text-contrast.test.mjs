@@ -8,6 +8,43 @@ import {resolve} from 'node:path';
 import {parseDocument} from 'yaml';
 import {feedbackTextCases, feedbackTextFolder, validateFeedbackTextUnits, validateFeedbackTextCaptureFiles} from '../scripts/qa/feedback-text-evidence.mjs';
 import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
+import {feedbackVisualFolder, feedbackVisualPublicCases, validateFeedbackTextVisualReview} from '../scripts/qa/feedback-text-visual-evidence.mjs';
+import {content, captures} from '../partner-portal/content.mjs';
+import {validateAppearanceEvidence} from '../partner-portal/appearance-evidence.mjs';
+
+test('the successful source retains three incomplete exports and publishes only five complete original viewports', () => {
+  const review = validateFeedbackTextVisualReview(resolve(import.meta.dirname, '..'));
+  assert.equal(review.reviewedViewports, 12); assert.equal(review.completeViewportCaptures, 9);
+  assert.equal(review.publishedCases.length, 5); assert.equal(review.viewportExportIssueResolved, false);
+  const flow = content.flows.find(row => row.id === 'appearance');
+  validateAppearanceEvidence(resolve(import.meta.dirname, '..'), flow, captures);
+  assert.equal(flow.status, 'partial'); assert.equal(flow.latestEvidence, 'local'); assert.equal(flow.checkedAt, '2026-11-03');
+  assert.deepEqual(flow.images.filter(image => image.file.startsWith('feedback-text-')).map(image => image.file),
+    feedbackVisualPublicCases.map(name => 'feedback-text-' + name));
+  assert.equal(flow.images.filter(image => !image.file.startsWith('feedback-text-')).length, 15);
+  assert(!flow.images.some(image => image.file.includes('-window')));
+});
+test('visual review cannot accept comparison windows, incomplete exports or broader release proof', t => {
+  const original = resolve(import.meta.dirname, '..'), temporary = mkdtempSync(resolve(tmpdir(), 'sgm-feedback-visual-scope-'));
+  t.after(() => rmSync(temporary, {recursive: true, force: true}));
+  const folder = resolve(temporary, feedbackVisualFolder); cpSync(resolve(original, feedbackVisualFolder), folder, {recursive: true});
+  symlinkSync(resolve(original, 'docs/release/evidence/source-archive'), resolve(temporary, 'docs/release/evidence/source-archive'));
+  const review = JSON.parse(readFileSync(resolve(folder, 'review.json'))), hashes = JSON.parse(readFileSync(resolve(folder, 'artifact-sha256.json')));
+  for (const key of ['physicalDeviceAccepted', 'backendFlowAccepted', 'mapsAccepted', 'screenReaderAccepted',
+    'systemInsetsAccepted', 'fullAppAccessibilityAccepted', 'releaseAccepted']) {
+    const bytes = JSON.stringify({...review, [key]: true}); writeFileSync(resolve(folder, 'review.json'), bytes);
+    writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify({...hashes,
+      'review.json': createHash('sha256').update(bytes).digest('hex')}));
+    assert.throws(() => validateFeedbackTextVisualReview(temporary), new RegExp(key));
+  }
+  for (const change of [{publishedCaptureKind: 'window'}, {publishedCases: [...review.publishedCases, 'ride-dark-phone']},
+    {comparisonWindowsPublished: true}, {viewportExportIssueResolved: true}]) {
+    const bytes = JSON.stringify({...review, ...change}); writeFileSync(resolve(folder, 'review.json'), bytes);
+    writeFileSync(resolve(folder, 'artifact-sha256.json'), JSON.stringify({...hashes,
+      'review.json': createHash('sha256').update(bytes).digest('hex')}));
+    assert.throws(() => validateFeedbackTextVisualReview(temporary), {code: 'ERR_ASSERTION'});
+  }
+});
 
 test('full-image observation keeps the colour threshold and cannot promote the superseded cancellation', () => {
   const folder = resolve(import.meta.dirname, '../docs/release/evidence/feedback-capture-sampling-2026-11-03');

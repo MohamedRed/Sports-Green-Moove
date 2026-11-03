@@ -15,7 +15,10 @@ export async function verifyAppearanceGallery({browser, base, output}) {
       const dialog = page.getByRole('dialog');
       await dialog.getByRole('heading', {name: flow.title, exact: true}).waitFor();
       await dialog.getByText(flow.remaining, {exact: true}).waitFor();
-      for (const image of flow.images.filter(image => /^(neutral-text-|accent-control-)/.test(image.file))) {
+      const date = new Intl.DateTimeFormat('fr-BE', {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'})
+        .format(new Date(flow.checkedAt));
+      await dialog.getByText('Essai local du ' + date, {exact: true}).waitFor();
+      for (const image of flow.images.filter(image => /^(neutral-text-|accent-control-|feedback-text-)/.test(image.file))) {
         const picture = dialog.getByRole('img', {name: image.alt, exact: true});
         await picture.waitFor();
         await page.waitForFunction(() => {
@@ -38,6 +41,6 @@ export async function verifyAppearanceGallery({browser, base, output}) {
       await dialog.getByRole('img', {name: flow.images.at(-2).alt, exact: true}).waitFor();
     }
     assert.deepEqual(errors, []);
-    console.log('Five phone captures and eight historical viewports display complete at 320, 390, 768 and 1440 pixels; old gallery preserved.');
+    console.log('Five new feedback captures, five earlier phone captures and eight historical viewports fit all four widths; old gallery preserved.');
   } finally {await page.close();}
 }
