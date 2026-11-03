@@ -24,9 +24,7 @@ internal fun captureFeedbackTextViewport(compose: ComposeTestRule, name: String,
     val bitmap = compose.onNodeWithTag("feedback.viewport").captureToImage().asAndroidBitmap()
     try {
         check(bitmap.width == (width * density).roundToInt() && bitmap.height == (height * density).roundToInt())
-        val colors = mutableSetOf<Int>()
-        for (x in 0 until bitmap.width step 16) for (y in 0 until bitmap.height step 16) colors.add(bitmap.getPixel(x, y))
-        check(colors.size > 16) { "Blank component capture rejected" }
+        requireFeedbackImageHasVariation(bitmap)
         image.outputStream().use { check(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
     } finally { bitmap.recycle() }
     val window = File(directory, "$name-window.png"); check(!window.exists())
@@ -40,6 +38,15 @@ internal fun captureFeedbackTextViewport(compose: ComposeTestRule, name: String,
         .put("capturedAtEpochMillis", System.currentTimeMillis())
         .put("viewportSha256", sha(image)).put("windowSha256", sha(window)).put("completed", true).toString(2))
     exportFeedbackFiles(device, listOf(image, window, record), "sgm-feedback-text")
+}
+
+internal fun requireFeedbackImageHasVariation(bitmap: Bitmap) {
+    val colors = mutableSetOf<Int>()
+    for (y in 0 until bitmap.height) for (x in 0 until bitmap.width) {
+        colors.add(bitmap.getPixel(x, y))
+        if (colors.size > 16) return
+    }
+    error("Blank component capture rejected")
 }
 
 internal fun exportFeedbackFiles(device: UiDevice, files: List<File>, folder: String) {
