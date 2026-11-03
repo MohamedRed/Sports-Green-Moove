@@ -53,7 +53,7 @@ collect_component_evidence() {
           echo "::warning::Could not retain the partial profile/review component capture: $name"
       fi
     done
-    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components sgm-neutral-text sgm-feedback-text sgm-feedback-diagnostics sgm-team-chat-components; do
+    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components sgm-neutral-text sgm-feedback-text sgm-feedback-diagnostics sgm-booking-dates sgm-team-chat-components; do
       if adb shell test -d "/sdcard/Download/$directory"; then
         if ! adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"; then
           echo "::warning::Could not collect partial component screenshots: $directory"
@@ -111,6 +111,21 @@ collect_component_evidence() {
               echo "Missing feedback text evidence: $screen-$theme-$format$suffix" >&2
               return 1
             fi
+          done
+        done
+      done
+    done
+    adb pull /sdcard/Download/sgm-booking-dates "$output_dir" || return 1
+    for screen in requests trips payments; do
+      for kind in scheduled unknown; do
+        for theme in light dark; do
+          for format in phone wide; do
+            for suffix in .png -window.png .json; do
+              if [[ ! -s "$output_dir/sgm-booking-dates/$screen-$kind-$theme-$format$suffix" ]]; then
+                echo "Missing booking date evidence: $screen-$kind-$theme-$format$suffix" >&2
+                return 1
+              fi
+            done
           done
         done
       done

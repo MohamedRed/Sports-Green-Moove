@@ -87,6 +87,7 @@ on:
       - "tests/native-copy-failure-b158.test.mjs"
       - "tests/neutral-text-contrast.test.mjs"
       - "tests/feedback-text-contrast.test.mjs"
+      - "tests/booking-date-layout.test.mjs"
       - "tests/feedback-text-history.mjs"
       - "tests/accent-controls.test.mjs"
       - "tests/tls-agent-security.test.mjs"
@@ -245,6 +246,7 @@ on:
       - "tests/neutral-text-contrast.test.mjs"
       - "tests/feedback-text-contrast.test.mjs"
       - "tests/feedback-text-history.mjs"
+      - "tests/booking-date-layout.test.mjs"
       - "tests/accent-controls.test.mjs"
       - "tests/tls-agent-security.test.mjs"
       - "tests/search-departure*.test.mjs"
@@ -404,6 +406,8 @@ jobs:
         run: node --test tests/neutral-text-contrast.test.mjs
       - name: Test readable status feedback and error colours
         run: node --test tests/feedback-text-contrast.test.mjs
+      - name: Test complete booking dates in enlarged native layouts
+        run: node --test tests/booking-date-layout.test.mjs
       - name: Validate role-specific accent controls and phone evidence
         run: node --test tests/accent-controls.test.mjs
       - name: Test custom TLS certificate verification and retained scope

@@ -65,9 +65,12 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Test approved invitation same-origin transport')
     .filter(step => step.name !== 'Test invitation-bound phone approval observations')
     .filter(step => step.name !== 'Test readable status feedback and error colours')
+    .filter(step => step.name !== 'Test complete booking dates in enlarged native layouts')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
+  assert.deepEqual(workflow.jobs.smoke.steps.filter(step => step.name === 'Test complete booking dates in enlarged native layouts'),
+    [{name: 'Test complete booking dates in enlarged native layouts', run: 'node --test tests/booking-date-layout.test.mjs'}]);
   const teamAlerts = workflow.jobs['people-safety'].steps.filter(step => step.name === 'Test team alerts and pending phone delivery');
   assert.equal(teamAlerts.length, 1);
   assert.equal(teamAlerts[0].run, 'npm run test:team-alerts && node --test tests/team-alerts-contract.test.mjs && SGM_LOCAL_FLOW_OUTPUT=${{ runner.temp }}/team-push-registration-services.json npm run test:team-push-registration && node --test tests/team-push-registration-contract.test.mjs tests/team-push-registration-evidence.test.mjs tests/team-push-native-journal.test.mjs tests/team-push-lifecycle.test.mjs tests/team-push-native-gate.test.mjs tests/team-push-signout-contract.test.mjs tests/team-push-signout-connected.test.mjs tests/team-push-exit-components.test.mjs');
@@ -220,7 +223,7 @@ test('the timeout correction preserves every current workload and artifact uploa
   assert.deepEqual(steps.filter(step => step.name === 'Test invitation-bound phone approval observations'),
     [{name: 'Test invitation-bound phone approval observations', run: 'node --test tests/child-account-phone-binding.test.mjs tests/approved-private-trials.test.mjs tests/parent-approval-input-stop.test.mjs'}]);
   for (const [rows, count, expected] of [
-    [steps.filter(step => step.run && !setup.has(step.name) && !['Test approved temporary network startup logging', 'Test approved invitation same-origin transport', 'Test invitation-bound phone approval observations', 'Test readable status feedback and error colours'].includes(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
+    [steps.filter(step => step.run && !setup.has(step.name) && !['Test approved temporary network startup logging', 'Test approved invitation same-origin transport', 'Test invitation-bound phone approval observations', 'Test readable status feedback and error colours', 'Test complete booking dates in enlarged native layouts'].includes(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
     [steps.filter(step => step.uses?.startsWith('actions/upload-artifact@')), 19, 'ac04ddc85195eb2f779e94230aca82bb8d5f1c78587bfb2cbfa7ae6b5d8c9824'],
   ]) {
     assert.equal(rows.length, count);

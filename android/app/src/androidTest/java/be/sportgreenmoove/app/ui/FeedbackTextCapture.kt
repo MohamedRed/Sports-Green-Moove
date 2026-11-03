@@ -50,7 +50,7 @@ internal fun requireFeedbackImageHasVariation(bitmap: Bitmap) {
 }
 
 internal fun exportFeedbackFiles(device: UiDevice, files: List<File>, folder: String) {
-    check(folder in setOf("sgm-feedback-text", "sgm-feedback-diagnostics"))
+    check(folder in setOf("sgm-feedback-text", "sgm-feedback-diagnostics", "sgm-booking-dates"))
     check(device.executeShellCommand("mkdir -p /sdcard/Download/$folder").isBlank())
     for (file in files) {
         check(Regex("[A-Za-z0-9/_.-]+").matches(file.absolutePath))
