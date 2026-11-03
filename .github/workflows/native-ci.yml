@@ -86,6 +86,7 @@ on:
       - "tests/native-recheck-evidence.test.mjs"
       - "tests/native-copy-failure-b158.test.mjs"
       - "tests/neutral-text-contrast.test.mjs"
+      - "tests/feedback-text-contrast.test.mjs"
       - "tests/accent-controls.test.mjs"
       - "tests/tls-agent-security.test.mjs"
       - "tests/search-departure*.test.mjs"
@@ -241,6 +242,7 @@ on:
       - "tests/native-recheck-evidence.test.mjs"
       - "tests/native-copy-failure-b158.test.mjs"
       - "tests/neutral-text-contrast.test.mjs"
+      - "tests/feedback-text-contrast.test.mjs"
       - "tests/accent-controls.test.mjs"
       - "tests/tls-agent-security.test.mjs"
       - "tests/search-departure*.test.mjs"
@@ -398,6 +400,8 @@ jobs:
         run: node --test tests/native-recheck-evidence.test.mjs tests/native-copy-failure-b158.test.mjs
       - name: Validate neutral text contrast and native capture scope
         run: node --test tests/neutral-text-contrast.test.mjs
+      - name: Test readable status feedback and error colours
+        run: node --test tests/feedback-text-contrast.test.mjs
       - name: Validate role-specific accent controls and phone evidence
         run: node --test tests/accent-controls.test.mjs
       - name: Test custom TLS certificate verification and retained scope

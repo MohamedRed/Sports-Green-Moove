@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.QueuedTeamPushTokenSourceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-03T01:30:24.971Z" hostname="MRRs-MacBook-Air.local" time="0.057">
+  <properties/>
+  <testcase name="cancelledDeletionAwaitCannotDeleteATokenFetchedForTheNextOwner" classname="be.sportgreenmoove.app.services.QueuedTeamPushTokenSourceTest" time="0.051"/>
+  <testcase name="cancelledTokenAwaitDoesNotAllowDeletionToOvertakeItsActualSdkCompletion" classname="be.sportgreenmoove.app.services.QueuedTeamPushTokenSourceTest" time="0.002"/>
+  <testcase name="aTerminalSdkFailureIsReportedAndOnlyALaterExplicitOperationCanProceed" classname="be.sportgreenmoove.app.services.QueuedTeamPushTokenSourceTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

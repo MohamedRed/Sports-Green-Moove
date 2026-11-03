@@ -44,7 +44,7 @@ fun ActiveRideEntryCard(ride: LiveRideSnapshot, onOpen: () -> Unit) {
         Text(
             "SUIVI EN DIRECT",
             style = SgmType.Eyebrow.copy(
-                color = if (ride.stale) SgmColor.Orange else SgmColor.GreenLight,
+                color = if (ride.stale) Sgm.colors.textWarning else SgmColor.GreenLight,
                 fontSize = 11.sp,
                 letterSpacing = 0.14.em,
             ),
@@ -60,7 +60,7 @@ fun ActiveRideEntryCard(ride: LiveRideSnapshot, onOpen: () -> Unit) {
         Text(
             "Véhicule · ${ride.vehicleLastUpdateLabel}",
             style = SgmType.BodyXS.copy(
-                color = if (ride.stale) SgmColor.Orange else SgmColor.TextOnGreen.copy(alpha = 0.72f),
+                color = if (ride.stale) Sgm.colors.textWarning else SgmColor.TextOnGreen.copy(alpha = 0.72f),
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
             ),

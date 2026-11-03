@@ -1,0 +1,27 @@
+{
+  "scope": "feedback-foreground-colours-and-compiled-capture-plan-not-whole-app-accessibility",
+  "workingTreeGitHead": "4a71fc24437f57871d4799f31cf1245378f6ade5",
+  "beforeCases": 28,
+  "beforeFailures": 18,
+  "afterCases": 30,
+  "afterFailures": 0,
+  "captureCases": [
+    "notices-light-phone",
+    "notices-light-wide",
+    "notices-dark-phone",
+    "notices-dark-wide",
+    "ride-light-phone",
+    "ride-light-wide",
+    "ride-dark-phone",
+    "ride-dark-wide"
+  ],
+  "nativeCapturePlanCompiled": true,
+  "nativeLayoutsExecuted": false,
+  "physicalDeviceAccepted": false,
+  "fullAppAccessibilityAccepted": false,
+  "systemInsetsAccepted": false,
+  "screenReaderAccepted": false,
+  "backendFlowAccepted": false,
+  "releaseAccepted": false,
+  "publishedMedia": []
+}

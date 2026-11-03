@@ -1,0 +1,27 @@
+Compiled from "FeedbackTextLayoutTest.kt"
+public final class be.sportgreenmoove.app.ui.FeedbackTextLayoutTest {
+  public static final be.sportgreenmoove.app.ui.FeedbackTextLayoutTest$Companion Companion;
+  private final java.lang.String name;
+  private final java.lang.String screen;
+  private final boolean dark;
+  private final int width;
+  private final int height;
+  private final float density;
+  private final androidx.compose.ui.test.junit4.ComposeContentTestRule compose;
+  public static final int $stable;
+  public be.sportgreenmoove.app.ui.FeedbackTextLayoutTest(java.lang.String, java.lang.String, boolean, int, int, float);
+  public final androidx.compose.ui.test.junit4.ComposeContentTestRule getCompose();
+  public final void feedbackTextFitsActualComponents();
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0$0$0$0$0$0$0();
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0$0$0$0$0$1$0();
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0$0$0$0$0$2$0$0(int);
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0$0$0$0$0$3$0(java.lang.String);
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0$0$0$0$0$4$0$0();
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0$0$0$0$0$4$1$0();
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0$0$0$0(be.sportgreenmoove.app.ui.FeedbackTextLayoutTest, androidx.compose.runtime.Composer, int);
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0$0(be.sportgreenmoove.app.ui.FeedbackTextLayoutTest, androidx.compose.runtime.Composer, int);
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$0(be.sportgreenmoove.app.ui.FeedbackTextLayoutTest, androidx.compose.runtime.Composer, int);
+  private static final kotlin.Unit feedbackTextFitsActualComponents$lambda$1(java.util.List, kotlin.jvm.functions.Function1);
+  public static final java.util.Collection<java.lang.Object[]> cases();
+  static {};
+}

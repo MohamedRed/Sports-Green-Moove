@@ -110,7 +110,7 @@ private fun RideLiveCard(ride: LiveRideSnapshot) {
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
-                Text("SESSION ${ride.rideSessionId.takeLast(6).uppercase()}", style = SgmType.Eyebrow.copy(color = SgmColor.Green, fontSize = 11.sp, letterSpacing = 0.14.em))
+                Text("SESSION ${ride.rideSessionId.takeLast(6).uppercase()}", style = SgmType.Eyebrow.copy(color = Sgm.colors.textAccent, fontSize = 11.sp, letterSpacing = 0.14.em))
                 Text(ride.status.uppercase(), style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 20.sp, letterSpacing = 0.04.em))
             }
             RideStatusPill(if (ride.stale) "À VÉRIFIER" else "LIVE", warning = ride.stale)
@@ -121,7 +121,7 @@ private fun RideLiveCard(ride: LiveRideSnapshot) {
         if (ride.stale) {
             Text(
                 "Position à vérifier avant confirmation.",
-                style = SgmType.BodyXS.copy(color = SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold),
+                style = SgmType.BodyXS.copy(color = Sgm.colors.textWarning, fontSize = 12.sp, fontWeight = FontWeight.Bold),
                 modifier = Modifier.sgmTestTag(SgmTestTags.ActiveRideStaleWarning),
             )
         }
@@ -146,13 +146,13 @@ private fun RideInfoLine(icon: SgmIcon, label: String, value: String, tag: Strin
 }
 
 @Composable
-private fun RideStatusPill(text: String, warning: Boolean) {
+internal fun RideStatusPill(text: String, warning: Boolean) {
     Box(
         modifier = Modifier
             .clip(RoundedCornerShape(999.dp))
             .background(if (warning) SgmColor.Orange.copy(alpha = 0.16f) else SgmColor.Green.copy(alpha = 0.16f))
             .padding(horizontal = 10.dp, vertical = 4.dp),
     ) {
-        Text(text, style = SgmType.Label.copy(color = if (warning) SgmColor.Orange else SgmColor.Green, fontSize = 10.sp, letterSpacing = 0.06.em))
+        Text(text, style = SgmType.Label.copy(color = if (warning) Sgm.colors.textWarning else Sgm.colors.textAccent, fontSize = 10.sp, letterSpacing = 0.06.em))
     }
 }

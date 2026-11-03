@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-function fixture(t, { missingChatCapture, missingNotificationCapture, missingConnectCapture, missingRatingCapture = false, missingContextCapture, missingExitCapture } = {}) {
+function fixture(t, { missingChatCapture, missingNotificationCapture, missingConnectCapture, missingRatingCapture = false, missingContextCapture, missingExitCapture, missingFeedbackCapture } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'sgm-suite-status-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   for (const dir of ['scripts', 'android', 'bin']) mkdirSync(join(root, dir));
@@ -19,6 +19,7 @@ function fixture(t, { missingChatCapture, missingNotificationCapture, missingCon
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-team-history && "$CAPTURE_FAILURE" == history ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-child-emergency-components && "$CAPTURE_FAILURE" == child ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-neutral-text && "$CAPTURE_FAILURE" == neutral ]]; then exit 9; fi',
+      'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-feedback-text && "$CAPTURE_FAILURE" == feedback ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-team-chat-components && "$CAPTURE_FAILURE" == chat ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == /sdcard/Download/sgm-notification-read && "$CAPTURE_FAILURE" == notification ]]; then exit 9; fi',
       'if [[ "$1" == pull && "$2" == */local-ui-evidence/connect-*.png && "$CAPTURE_FAILURE" == connect ]]; then exit 9; fi',
@@ -61,6 +62,9 @@ function fixture(t, { missingChatCapture, missingNotificationCapture, missingCon
     ].filter(name => name !== missingChatCapture),
     'sgm-neutral-text': ['search', 'trips'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
       ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`)))),
+    'sgm-feedback-text': ['notices', 'ride'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
+      ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`))))
+      .filter(name => name !== missingFeedbackCapture),
     'sgm-child-emergency-components': ['child-emergency-readonly-narrow', 'child-emergency-access-denied', 'child-emergency-landscape-changed']
       .flatMap((name) => [name + '.png', name + '-window.png']),
     'sgm-team-history': ['team-history-paging.png', 'team-history-paging-window.png', 'team-history-redacted-child.png', 'team-history-redacted-child-window.png'],
@@ -105,6 +109,7 @@ for (const [name, env, exit, statuses] of [
   ['stale owned-history component files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'history' }, 1, [0, 1, 0]],
   ['stale child contact files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'child' }, 1, [0, 1, 0]],
   ['stale neutral text files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'neutral' }, 1, [0, 1, 0]],
+  ['stale feedback text files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'feedback' }, 1, [0, 1, 0]],
   ['stale team chat files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'chat' }, 1, [0, 1, 0]],
   ['stale notification files cannot hide a failed fresh copy', { CAPTURE_FAILURE: 'notification' }, 1, [0, 1, 0]],
   ['isolated replay failure is never overwritten by ordinary success', { REPLAY_STATUS: '11' }, 11, [0, 0, 11]],
@@ -117,6 +122,14 @@ for (const [name, env, exit, statuses] of [
   assert.equal(result.statuses.scope, 'native-suite-exit-status-not-flow-verification');
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
 });
+
+for (const screen of ['notices', 'ride']) for (const theme of ['light', 'dark']) for (const format of ['phone', 'wide'])
+  for (const suffix of ['.png', '-window.png', '.json']) test(`missing feedback ${screen}-${theme}-${format}${suffix} fails closed`, t => {
+    const name = `${screen}-${theme}-${format}${suffix}`, result = fixture(t, {missingFeedbackCapture: name})({});
+    assert.equal(result.status, 1); assert(result.stderr.includes('Missing feedback text evidence: ' + name));
+    assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], [0, 1, 0]);
+    assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'host-health', 'replay', 'restore']);
+  });
 
 for (const name of ['connect-opening.png', 'connect-narrow.png'])
   test(`missing driver account ${name} fails collection but still replays and restores`, t => {
@@ -167,7 +180,7 @@ test('failed suites retain partial payment and other component captures without 
   const result = fixture(t)({ ORDINARY_STATUS: '7', CAPTURE_FAILURE: 'payments' });
   assert.equal(result.status, 7);
   assert.match(result.stdout, /Could not collect partial component screenshots: sgm-payment-confirmation/);
-  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history', 'sgm-neutral-text', 'sgm-team-chat-components']) {
+  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history', 'sgm-neutral-text', 'sgm-feedback-text', 'sgm-team-chat-components']) {
     assert(result.adbCalls.some((call) => call.startsWith('pull /sdcard/Download/' + name + ' ') && call.endsWith('/partial-components')));
   }
   assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
