@@ -9,9 +9,44 @@ import {XMLParser} from 'fast-xml-parser';
 import {feedbackTextCases, feedbackTextFolder, validateFeedbackTextUnits, validateFeedbackTextCaptureFiles} from '../scripts/qa/feedback-text-evidence.mjs';
 import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
 import {assertRetainedSourceFiles} from '../scripts/qa/retained-source-evidence.mjs';
+import {feedbackTextProgress} from '../partner-portal/feedback-text-progress.mjs';
+import {content} from '../partner-portal/content.mjs';
 
 const root = resolve(import.meta.dirname, '..'), read = file => readFileSync(resolve(root, file), 'utf8');
 const main = 'android/app/src/main/java/be/sportgreenmoove/app/';
+test('the split-fixture failure and preparation stops remain incomplete on the public progress site', () => {
+  const folder = 'docs/release/evidence/feedback-layout-recheck-2026-11-03/';
+  assertEvidenceBundleChecksums(resolve(root, folder));
+  const json = file => JSON.parse(read(folder + file));
+  const review = json('review.json'); assert.deepEqual(review.ordinary, {cases: 315, passed: 254, failed: 6, skipped: 55});
+  assert.equal(review.inputSplitResolvedAllFailures, false); assert.equal(review.wideFailureNode, 'review.submission.error');
+  assert.equal(review.newDiagnosticCompiled, true); assert.equal(review.newDiagnosticExecuted, false);
+  for (const key of ['productSourceChanged', 'measurementsOrThresholdsChanged', 'nativeLayoutsAccepted',
+    'physicalDeviceAccepted', 'releaseAccepted']) assert.equal(review[key], false, key);
+  assert.deepEqual(review.acceptedScreenshots, []);
+  for (const stage of ['failed', 'diagnostic']) assertRetainedSourceFiles(root, json(stage + '-source-files.json'));
+  for (const [file, id, failedStep] of [['native-job.json', 125687356041, 'Run Android Compose UI tests'],
+    ['web-job.json', 125687357144, 'Test isolated trip history access and paging'],
+    ['team-draft-job.json', 125687356797, 'Install the selected device image before reserving storage']]) {
+    const job = json(file); assert.equal(job.id, id); assert.equal(job.conclusion, 'failure');
+    assert.equal(job.steps.find(step => step.name === failedStep).conclusion, 'failure');
+  }
+  const selection = json('selection.json'), artifact = json('artifact.json');
+  assert.equal(selection.sourceCommit, '6e4ef9721a838502bb279352914a73d951ef8e96');
+  assert.equal(artifact.id, 13201140045); assert.equal(artifact.workflow_run.head_sha, selection.sourceCommit);
+  assert.equal(artifact.digest, 'sha256:' + selection.originalArchiveSha256);
+  assert.equal(artifact.size_in_bytes, selection.originalArchiveBytes);
+  for (const [member, hash] of Object.entries(selection.members))
+    assert.equal(createHash('sha256').update(read(folder + member.split('/').at(-1))).digest('hex'), hash);
+  const suite = new XMLParser({ignoreAttributes: false}).parse(read(folder + 'TEST-guarded-components.xml')).testsuite;
+  assert.deepEqual([suite['@_tests'], suite['@_failures'], suite['@_skipped']], ['315', '6', '55']);
+  const cases = suite.testcase.filter(row => row['@_classname'].endsWith('.FeedbackTextLayoutTest'));
+  assert.equal(cases.length, 12); assert.equal(cases.filter(row => row.failure).length, 6);
+  assert.equal(content.updates.filter(entry => entry.source === feedbackTextProgress.source).length, 1);
+  assert.equal(feedbackTextProgress.source, folder + 'README.md'); assert.equal(feedbackTextProgress.flow, 'appearance');
+  assert(!/BrowserStack|Firebase|Compose|Jetpack|Playwright|Android/.test(JSON.stringify(feedbackTextProgress)));
+  assert.equal(content.flows.find(flow => flow.id === 'appearance').status, 'partial');
+});
 test('the original four layout failures and separate primary-copy failure cannot become passing evidence', () => {
   const folder = 'docs/release/evidence/feedback-layout-attempt-2026-11-03/';
   assertEvidenceBundleChecksums(resolve(root, folder));
@@ -77,6 +112,11 @@ test('twelve layouts keep the input separate without changing themes, sizes or o
   assert.equal(feedbackTextCases.length, 12);
   assert(suite.includes('else if (screen == "input")'));
   assert(suite.includes('"input" -> listOf("feedback.material-error")'));
+  assert(suite.indexOf('retainFeedbackLayoutDiagnostics(compose, name, tags)') < suite.indexOf('val node = compose.onNodeWithTag(tag).assertIsDisplayed()'));
+  const diagnostic = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackLayoutDiagnostics.kt');
+  for (const token of ['pre-assertion-layout-diagnostic-not-accepted-evidence', '.put("assertionsPassed", false)',
+    'layout.didOverflowWidth', 'layout.didOverflowHeight', 'layout.layoutInput.constraints', 'printToString()',
+    '"sgm-feedback-diagnostics"']) assert(diagnostic.includes(token));
   for (const required of ['RuntimeNotice(', 'ReviewCard(', 'ActiveRideEntryCard(', 'RideStatusPill(', 'OutlinedTextField(',
     'fontScale = 1.3f', '320, 700, 3f', '900, 600, 1f', 'hasVisualOverflow', 'ro.kernel.qemu']) assert(suite.includes(required));
   for (const forbidden of ['AndroidRuntime.create', 'FirebaseGateway', 'GoogleMap(', 'RideMonitorScreen(']) assert(!suite.includes(forbidden));
@@ -135,7 +175,8 @@ test('both authoritative lanes run the new contract without removing earlier col
         assert(paths.includes(main + 'ui/' + component + '.kt'));
       for (const path of [main + 'design/Sgm*.kt', 'scripts/qa/**', 'scripts/run-android-ui-tests-and-collect-screenshots.sh',
         'android/app/src/test/java/be/sportgreenmoove/app/design/SgmFeedbackContrastTest.kt',
-        'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackText*.kt']) assert(paths.includes(path));
+        'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackText*.kt',
+        'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackLayoutDiagnostics.kt']) assert(paths.includes(path));
     }
     const steps = Object.values(workflow.jobs).flatMap(job => job.steps ?? []);
     assert.equal(steps.filter(step => step.run === 'node --test tests/feedback-text-contrast.test.mjs').length, 1);

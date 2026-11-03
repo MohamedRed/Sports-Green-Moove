@@ -91,6 +91,7 @@ class FeedbackTextLayoutTest(private val name: String, private val screen: Strin
             "input" -> listOf("feedback.material-error")
             else -> emptyList()
         }
+        retainFeedbackLayoutDiagnostics(compose, name, tags)
         for (tag in tags) {
             val node = compose.onNodeWithTag(tag).assertIsDisplayed()
             val layouts = mutableListOf<TextLayoutResult>()

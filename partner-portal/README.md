@@ -2,6 +2,12 @@
 
 ## Current Publication Policy
 
+The feedback-text correction passes its thirty contrast measurements, but the
+6e4ef97 visual recheck still fails six layouts. Publish one short incomplete-check
+note, no new media or changes to the 34 flows, dates, tours, status or audience.
+The pre-assertion diagnostic candidate is compiled, not executed or accepted.
+See `docs/release/evidence/feedback-layout-recheck-2026-11-03/README.md`.
+
 The separately approved c84b8e4 web-only diagnostic completes successfully on its
 second attempt. Preserve the first cancellation and its unknown cause. The later
 8bd9f50 head passes the web gate but fails its main native primary copy and one

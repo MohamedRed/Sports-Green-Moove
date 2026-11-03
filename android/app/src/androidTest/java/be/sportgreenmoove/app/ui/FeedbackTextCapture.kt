@@ -39,12 +39,18 @@ internal fun captureFeedbackTextViewport(compose: ComposeTestRule, name: String,
         .put("backendCalls", false).put("mapsRendered", false).put("productionWrites", false)
         .put("capturedAtEpochMillis", System.currentTimeMillis())
         .put("viewportSha256", sha(image)).put("windowSha256", sha(window)).put("completed", true).toString(2))
-    check(device.executeShellCommand("mkdir -p /sdcard/Download/sgm-feedback-text").isBlank())
-    for (file in listOf(image, window, record)) {
+    exportFeedbackFiles(device, listOf(image, window, record), "sgm-feedback-text")
+}
+
+internal fun exportFeedbackFiles(device: UiDevice, files: List<File>, folder: String) {
+    check(folder in setOf("sgm-feedback-text", "sgm-feedback-diagnostics"))
+    check(device.executeShellCommand("mkdir -p /sdcard/Download/$folder").isBlank())
+    for (file in files) {
         check(Regex("[A-Za-z0-9/_.-]+").matches(file.absolutePath))
-        val target = "/sdcard/Download/sgm-feedback-text/${file.name}"
+        val target = "/sdcard/Download/$folder/${file.name}"
         check(device.executeShellCommand("cp -n ${file.absolutePath} $target").isBlank())
         val observed = device.executeShellCommand("sha256sum $target").trim().split(Regex("\\s+"))
-        check(observed.size == 2 && observed[0] == sha(file) && observed[1] == target)
+        val expected = MessageDigest.getInstance("SHA-256").digest(file.readBytes()).joinToString("") { "%02x".format(it) }
+        check(observed.size == 2 && observed[0] == expected && observed[1] == target)
     }
 }

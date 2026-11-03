@@ -53,7 +53,7 @@ collect_component_evidence() {
           echo "::warning::Could not retain the partial profile/review component capture: $name"
       fi
     done
-    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components sgm-neutral-text sgm-feedback-text sgm-team-chat-components; do
+    for directory in sgm-trip-changes sgm-payment-confirmation sgm-session-restoration sgm-booking-review sgm-booking-feedback sgm-emergency-contact sgm-team-enrollment sgm-team-history sgm-child-emergency-components sgm-neutral-text sgm-feedback-text sgm-feedback-diagnostics sgm-team-chat-components; do
       if adb shell test -d "/sdcard/Download/$directory"; then
         if ! adb pull "/sdcard/Download/$directory" "$output_dir/partial-components"; then
           echo "::warning::Could not collect partial component screenshots: $directory"

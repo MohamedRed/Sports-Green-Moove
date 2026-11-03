@@ -180,7 +180,7 @@ test('failed suites retain partial payment and other component captures without 
   const result = fixture(t)({ ORDINARY_STATUS: '7', CAPTURE_FAILURE: 'payments' });
   assert.equal(result.status, 7);
   assert.match(result.stdout, /Could not collect partial component screenshots: sgm-payment-confirmation/);
-  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history', 'sgm-neutral-text', 'sgm-feedback-text', 'sgm-team-chat-components']) {
+  for (const name of ['sgm-trip-changes', 'sgm-payment-confirmation', 'sgm-session-restoration', 'sgm-booking-review', 'sgm-booking-feedback', 'sgm-emergency-contact', 'sgm-team-enrollment', 'sgm-team-history', 'sgm-neutral-text', 'sgm-feedback-text', 'sgm-feedback-diagnostics', 'sgm-team-chat-components']) {
     assert(result.adbCalls.some((call) => call.startsWith('pull /sdcard/Download/' + name + ' ') && call.endsWith('/partial-components')));
   }
   assert.deepEqual(result.calls, ['bootstrap', 'setup', 'ordinary', 'diagnostic', 'replay', 'restore']);
