@@ -14,7 +14,7 @@ import kotlin.math.roundToInt
 
 internal fun captureFeedbackTextViewport(compose: ComposeTestRule, name: String, screen: String,
     dark: Boolean, width: Int, height: Int, density: Float) {
-    check(name.matches(Regex("(notices|ride)-(light|dark)-(phone|wide)")))
+    check(name.matches(Regex("(notices|ride|input)-(light|dark)-(phone|wide)")))
     compose.waitForIdle()
     val instrumentation = InstrumentationRegistry.getInstrumentation()
     val device = UiDevice.getInstance(instrumentation)

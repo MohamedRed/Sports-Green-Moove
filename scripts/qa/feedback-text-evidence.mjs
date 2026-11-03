@@ -7,7 +7,9 @@ import {assertEvidenceBundleChecksums} from './evidence-bundle-checksums.mjs';
 import {assertRetainedSourceFiles} from './retained-source-evidence.mjs';
 
 export const feedbackTextFolder = 'docs/release/evidence/status-feedback-contrast-2026-11-03/';
-export const feedbackTextCases = ['notices', 'ride'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
+const compiledCases = ['notices', 'ride'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
+  ['phone', 'wide'].map(format => `${screen}-${theme}-${format}`)));
+export const feedbackTextCases = ['notices', 'ride', 'input'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
   ['phone', 'wide'].map(format => `${screen}-${theme}-${format}`)));
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 
@@ -46,7 +48,7 @@ export function validateFeedbackTextUnits(root) {
   assert.equal(normalized, archived('before', unit), 'Only actual foreground-role lookups and two on-error cases may change');
   const review = json('review.json');
   assert.equal(review.scope, 'feedback-foreground-colours-and-compiled-capture-plan-not-whole-app-accessibility');
-  assert.deepEqual(review.captureCases, feedbackTextCases); assert.equal(review.beforeCases, 28); assert.equal(review.beforeFailures, 18);
+  assert.deepEqual(review.captureCases, compiledCases); assert.equal(review.beforeCases, 28); assert.equal(review.beforeFailures, 18);
   assert.equal(review.afterCases, 30); assert.equal(review.afterFailures, 0); assert.equal(review.nativeCapturePlanCompiled, true);
   for (const key of ['nativeLayoutsExecuted', 'physicalDeviceAccepted', 'fullAppAccessibilityAccepted',
     'systemInsetsAccepted', 'screenReaderAccepted', 'backendFlowAccepted', 'releaseAccepted']) assert.equal(review[key], false, key);

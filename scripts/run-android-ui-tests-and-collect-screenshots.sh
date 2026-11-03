@@ -103,7 +103,7 @@ collect_component_evidence() {
       done
     done
     adb pull /sdcard/Download/sgm-feedback-text "$output_dir" || return 1
-    for screen in notices ride; do
+    for screen in notices ride input; do
       for theme in light dark; do
         for format in phone wide; do
           for suffix in .png -window.png .json; do

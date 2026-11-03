@@ -5,10 +5,44 @@ import {cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, write
 import {tmpdir} from 'node:os';
 import {resolve} from 'node:path';
 import {parseDocument} from 'yaml';
+import {XMLParser} from 'fast-xml-parser';
 import {feedbackTextCases, feedbackTextFolder, validateFeedbackTextUnits, validateFeedbackTextCaptureFiles} from '../scripts/qa/feedback-text-evidence.mjs';
+import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
+import {assertRetainedSourceFiles} from '../scripts/qa/retained-source-evidence.mjs';
 
 const root = resolve(import.meta.dirname, '..'), read = file => readFileSync(resolve(root, file), 'utf8');
 const main = 'android/app/src/main/java/be/sportgreenmoove/app/';
+test('the original four layout failures and separate primary-copy failure cannot become passing evidence', () => {
+  const folder = 'docs/release/evidence/feedback-layout-attempt-2026-11-03/';
+  assertEvidenceBundleChecksums(resolve(root, folder));
+  const json = file => JSON.parse(read(folder + file));
+  const job = json('job.json'); assert.equal(job.id, 125676799265); assert.equal(job.conclusion, 'failure');
+  assert.equal(job.run_id, 41562709680);
+  const selection = json('selection.json'), artifact = json('artifact.json');
+  assert.equal(selection.sourceCommit, '0dce1ea8604cbf52b85fe8c16c1c7b3915027b03');
+  assert.equal(artifact.workflow_run.head_sha, selection.sourceCommit); assert.equal(artifact.id, 13198720403);
+  assert.equal(artifact.digest, 'sha256:' + selection.originalArchiveSha256);
+  assert.equal(artifact.size_in_bytes, selection.originalArchiveBytes);
+  assert.equal(selection.originalArchiveRetainedPrivately, true); assert.equal(selection.selectedMembersComparedByteForByte, true);
+  for (const [member, hash] of Object.entries(selection.members))
+    assert.equal(createHash('sha256').update(read(folder + member.split('/').at(-1))).digest('hex'), hash);
+  const suite = new XMLParser({ignoreAttributes: false}).parse(read(folder + 'TEST-guarded-components.xml')).testsuite;
+  assert.deepEqual([suite['@_tests'], suite['@_failures'], suite['@_skipped']], ['311', '4', '55']);
+  const rows = suite.testcase.filter(row => row['@_classname'].endsWith('.FeedbackTextLayoutTest'));
+  assert.equal(rows.length, 8);
+  assert.equal(rows.filter(row => row.failure && row['@_name'].includes('[notices-')).length, 4);
+  assert.equal(rows.filter(row => !row.failure && row['@_name'].includes('[ride-')).length, 4);
+  assert.deepEqual(json('native-suite-status.json'), {scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 1, componentEvidence: 0, localReplay: 1});
+  const observed = json('observed-failures.json');
+  assert.equal(observed.replayFailure, 'primary-copy-booking-ui-response-loss');
+  for (const key of ['nativeLayoutsAccepted', 'physicalDeviceAccepted', 'releaseAccepted']) assert.equal(observed[key], false);
+  for (const stage of ['failed', 'candidate']) assertRetainedSourceFiles(root, json(stage + '-source-files.json'));
+  const candidate = json('candidate-review.json'); assert.equal(candidate.caseCount, 12);
+  assert.equal(candidate.nativeTestApkCompiled, true); assert.equal(candidate.nativeLayoutsExecuted, false);
+  assert.equal(candidate.productSourcesChanged, false); assert.equal(candidate.overflowChecksRetained, true);
+  assert.equal(candidate.physicalDeviceAccepted, false); assert.equal(candidate.releaseAccepted, false);
+});
 test('actual Kotlin feedback roles reproduce eighteen failures then pass all thirty measurements', () => {
   const result = validateFeedbackTextUnits(root);
   assert.deepEqual({...result, minimumTextContrast: 0}, {beforeCases: 28, originalFailures: 18, afterCases: 30,
@@ -37,10 +71,12 @@ test('the correction changes foreground roles without altering brand surfaces or
     ['ui/RideMonitorScreen.kt', 'Sgm.colors.textWarning'], ['ui/TripsActiveRideCard.kt', 'Sgm.colors.textWarning'],
     ['ui/ReviewCard.kt', 'Sgm.colors.textError']]) assert(read(main + file).includes(role));
 });
-test('eight planned layouts exercise real components in two themes and fixed narrow/wide enlarged viewports', () => {
+test('twelve layouts keep the input separate without changing themes, sizes or overflow requirements', () => {
   const suite = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackTextLayoutTest.kt');
   const capture = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackTextCapture.kt');
-  assert.equal(feedbackTextCases.length, 8);
+  assert.equal(feedbackTextCases.length, 12);
+  assert(suite.includes('else if (screen == "input")'));
+  assert(suite.includes('"input" -> listOf("feedback.material-error")'));
   for (const required of ['RuntimeNotice(', 'ReviewCard(', 'ActiveRideEntryCard(', 'RideStatusPill(', 'OutlinedTextField(',
     'fontScale = 1.3f', '320, 700, 3f', '900, 600, 1f', 'hasVisualOverflow', 'ro.kernel.qemu']) assert(suite.includes(required));
   for (const forbidden of ['AndroidRuntime.create', 'FirebaseGateway', 'GoogleMap(', 'RideMonitorScreen(']) assert(!suite.includes(forbidden));
@@ -68,7 +104,7 @@ test('integrity checks reject missing, mismatched or broader-scope component rec
       physicalDevice: false, backendCalls: false, mapsRendered: false, productionWrites: false, capturedAtEpochMillis: 1,
       viewportSha256: sha(viewport), windowSha256: sha(window), completed: true}));
   }
-  assert.equal(validateFeedbackTextCaptureFiles(directory).records.length, 8);
+  assert.equal(validateFeedbackTextCaptureFiles(directory).records.length, 12);
   const path = resolve(directory, feedbackTextCases[0] + '.json'), original = JSON.parse(readFileSync(path));
   for (const change of [r => r.physicalDevice = true, r => r.backendCalls = true, r => r.mapsRendered = true,
     r => r.productionWrites = true, r => r.fontScale = 1, r => r.viewportSha256 = '0'.repeat(64)]) {

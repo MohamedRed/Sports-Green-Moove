@@ -62,7 +62,7 @@ function fixture(t, { missingChatCapture, missingNotificationCapture, missingCon
     ].filter(name => name !== missingChatCapture),
     'sgm-neutral-text': ['search', 'trips'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
       ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`)))),
-    'sgm-feedback-text': ['notices', 'ride'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
+    'sgm-feedback-text': ['notices', 'ride', 'input'].flatMap(screen => ['light', 'dark'].flatMap(theme =>
       ['phone', 'wide'].flatMap(format => ['.png', '-window.png', '.json'].map(suffix => `${screen}-${theme}-${format}${suffix}`))))
       .filter(name => name !== missingFeedbackCapture),
     'sgm-child-emergency-components': ['child-emergency-readonly-narrow', 'child-emergency-access-denied', 'child-emergency-landscape-changed']
@@ -123,7 +123,7 @@ for (const [name, env, exit, statuses] of [
   assert.deepEqual([result.statuses.ordinaryTests, result.statuses.componentEvidence, result.statuses.localReplay], statuses);
 });
 
-for (const screen of ['notices', 'ride']) for (const theme of ['light', 'dark']) for (const format of ['phone', 'wide'])
+for (const screen of ['notices', 'ride', 'input']) for (const theme of ['light', 'dark']) for (const format of ['phone', 'wide'])
   for (const suffix of ['.png', '-window.png', '.json']) test(`missing feedback ${screen}-${theme}-${format}${suffix} fails closed`, t => {
     const name = `${screen}-${theme}-${format}${suffix}`, result = fixture(t, {missingFeedbackCapture: name})({});
     assert.equal(result.status, 1); assert(result.stderr.includes('Missing feedback text evidence: ' + name));

@@ -60,6 +60,7 @@ class FeedbackTextLayoutTest(private val name: String, private val screen: Strin
                                         "Avis conducteur", "Comment s'est passé le trajet ?", "AC"), false,
                                         error = "Envoi de l'avis non confirmé. Réessayez.", onRate = {})
                                 }
+                            } else if (screen == "input") {
                                 OutlinedTextField("Adresse incomplète", {}, modifier = Modifier.padding(horizontal = 20.dp)
                                     .fillMaxWidth(), isError = true, label = { Text("Adresse") },
                                     supportingText = { Text("Vérifiez l'adresse.", color = MaterialTheme.colorScheme.error,
@@ -85,14 +86,20 @@ class FeedbackTextLayoutTest(private val name: String, private val screen: Strin
             }
         }
         val viewport = compose.onNodeWithTag("feedback.viewport").fetchSemanticsNode().boundsInRoot
-        val tags = if (screen == "notices") listOf("feedback.info", "feedback.warning", "review.submission.error", "feedback.material-error") else emptyList()
+        val tags = when (screen) {
+            "notices" -> listOf("feedback.info", "feedback.warning", "review.submission.error")
+            "input" -> listOf("feedback.material-error")
+            else -> emptyList()
+        }
         for (tag in tags) {
             val node = compose.onNodeWithTag(tag).assertIsDisplayed()
             val layouts = mutableListOf<TextLayoutResult>()
             node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(layouts) }
-            check(layouts.isNotEmpty() && layouts.none { it.hasVisualOverflow })
+            check(layouts.isNotEmpty() && layouts.none { it.hasVisualOverflow }) { "$name/$tag: text overflow or missing layout" }
             val bounds = node.fetchSemanticsNode().boundsInRoot
-            check(bounds.left >= viewport.left && bounds.right <= viewport.right && bounds.top >= viewport.top && bounds.bottom <= viewport.bottom)
+            check(bounds.left >= viewport.left && bounds.right <= viewport.right && bounds.top >= viewport.top && bounds.bottom <= viewport.bottom) {
+                "$name/$tag: $bounds outside $viewport"
+            }
         }
         if (screen == "ride") {
             compose.onAllNodesWithTag(SgmTestTags.ActiveRideResumeAction).assertCountEquals(2)
@@ -105,7 +112,7 @@ class FeedbackTextLayoutTest(private val name: String, private val screen: Strin
 
     companion object {
         @JvmStatic @Parameterized.Parameters(name = "{0}") fun cases(): Collection<Array<Any>> =
-            listOf("notices", "ride").flatMap { screen -> listOf(false, true).flatMap { dark ->
+            listOf("notices", "ride", "input").flatMap { screen -> listOf(false, true).flatMap { dark ->
                 listOf(arrayOf<Any>("$screen-${if (dark) "dark" else "light"}-phone", screen, dark, 320, 700, 3f),
                     arrayOf<Any>("$screen-${if (dark) "dark" else "light"}-wide", screen, dark, 900, 600, 1f))
             } }
