@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "9576678af4efb0ea45ed6fe316452aa88e6898c6",
+  "originalArchiveBytes": 27236633,
+  "originalArchiveSha256": "db28fbc1aae11ef36c07a911ee79b1bc09f9884928b76a935f2a49c684b4e6a9",
+  "originalArchiveRetainedPrivately": true,
+  "selectedMembersComparedByteForByte": true,
+  "members": {
+    "outputs/androidTest-results/connected/debug/TEST-guarded-components.xml": "95b9d54001746fcdad999dd1f7629417c735960fd3149a3f307f539badf39d39",
+    "outputs/store-review-screenshots/native-suite-status.json": "2c4c2c3756e1e92db3b9a4234b5c17a24c859ccb8af65681f2157788c17cf0eb",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-light-wide.json": "a5e45a426dbcd125d4f74b3b395d76fbf4d4c607bf348ccf879d9e96af8dac45",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-light-wide.png": "0545e0f1af6d4bdbdcce325e848e5f921eadaef33679a74cb41ffbed734fd504",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-light-wide-window.png": "6378ddfd35a809001fbe4f8f64568211d796ba0b49e5338006348163e0dfcf27",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-dark-wide.json": "6869f01d184edef1bd77b3903ad92fe6a883814e654a1fb93677a0caab3df0ea",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-dark-wide.png": "4184c30abde72ed57d25360fc84197af121fdc42f785d540d1afb4f40404a0b1",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-dark-wide-window.png": "424e5bc80b87950d8f403298b6c211b422a90f35ab0ddc23ef19e058189bf46e",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-light-phone.json": "34d98ac1839e46def7a4a6191e4e31a2717500d8b8fdb85ab05a1412b732356e",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-light-phone.png": "adddcf99c93b067b68b6f8864e995a5a396c52c59ffae86b35e59a0816061ecd",
+    "outputs/store-review-screenshots/partial-components/sgm-feedback-diagnostics/notices-light-phone-window.png": "eb0cfb76c33d4af77285b8c38f28fbc9a042e881cc37a1366c909273da4678c2"
+  },
+  "rawTranscriptSha256": "bf18f0e3c276644f753588ced6ac03d01e100d9847bb2c0ca537b48d7a9faaa3",
+  "privateOriginalLogs": {
+    "original-job.log": "5eb342baf2bf32de940abbfc3afcb75cd8857c199132b840b2b22915fd6578dd",
+    "remote-stop-original.log": "66e163da45ec09570a40c91a4222eb7607b4e0e1ec8761f1e2181180a51cf4e1",
+    "chat-network-original.log": "32ea64718c5ead986607fcb71d644814073389e97983322b49bdb846ec40fdb5"
+  }
+}

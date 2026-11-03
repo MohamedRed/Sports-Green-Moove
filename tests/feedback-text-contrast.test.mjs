@@ -14,6 +14,40 @@ import {content} from '../partner-portal/content.mjs';
 
 const root = resolve(import.meta.dirname, '..'), read = file => readFileSync(resolve(root, file), 'utf8');
 const main = 'android/app/src/main/java/be/sportgreenmoove/app/';
+test('native diagnostics bind the finder mismatch and constrained review width without accepting the failed images', () => {
+  const folder = 'docs/release/evidence/feedback-layout-diagnosis-2026-11-03/';
+  assertEvidenceBundleChecksums(resolve(root, folder));
+  const json = file => JSON.parse(read(folder + file)), review = json('review.json');
+  assert.deepEqual(review.ordinary, {cases: 315, passed: 253, failed: 7, skipped: 55});
+  assert.deepEqual(review.input, {matchingMergedNodes: 0, matchingUnmergedNodes: 1, allFourCasesAffected: true});
+  for (const theme of ['light', 'dark']) {
+    const diagnostic = json('diagnostics/notices-' + theme + '-wide.json');
+    assert.equal(diagnostic.scope, 'pre-assertion-layout-diagnostic-not-accepted-evidence');
+    assert.equal(diagnostic.assertionsPassed, false);
+    const layout = diagnostic.textLayouts.find(row => row.tag === 'review.submission.error').layouts[0];
+    assert.equal(layout.widthPx, 318); assert.equal(layout.overflowWidth, true); assert.equal(layout.overflowHeight, false);
+    assert(layout.constraints.includes('maxWidth = 832'));
+  }
+  const summary = read(folder + 'layout-failure-summary.txt');
+  assert.equal(summary.split("the unmerged tree contains '1' node").length - 1, 4);
+  assert(summary.includes('Failed waiting for PixelCopy!'));
+  assert.equal(json('job.json').conclusion, 'failure'); assert.equal(json('job.json').id, 125701975362);
+  for (const stage of ['failed', 'candidate']) assertRetainedSourceFiles(root, json(stage + '-source-files.json'));
+  const selection = json('selection.json'), artifact = json('artifact.json');
+  assert.equal(selection.sourceCommit, '9576678af4efb0ea45ed6fe316452aa88e6898c6');
+  assert.equal(artifact.id, 13201764886); assert.equal(artifact.workflow_run.head_sha, selection.sourceCommit);
+  assert.equal(artifact.digest, 'sha256:' + selection.originalArchiveSha256);
+  assert.equal(artifact.size_in_bytes, selection.originalArchiveBytes);
+  for (const [member, hash] of Object.entries(selection.members)) {
+    const relative = member.includes('sgm-feedback-diagnostics/') ? 'diagnostics/' + member.split('/').at(-1) : member.split('/').at(-1);
+    assert.equal(createHash('sha256').update(readFileSync(resolve(root, folder + relative))).digest('hex'), hash);
+  }
+  assert.deepEqual(json('native-suite-status.json'), {scope: 'native-suite-exit-status-not-flow-verification',
+    ordinaryTests: 1, componentEvidence: 0, localReplay: 0});
+  assert.deepEqual(json('candidate-local-validation.json').jvm, {tests: 820, failures: 0, errors: 0, skipped: 0, suites: 116});
+  assert.equal(review.candidate.nativeExecuted, false); assert.deepEqual(review.acceptedScreenshots, []);
+  for (const key of ['physicalDeviceAccepted', 'backendFlowAccepted', 'releaseAccepted']) assert.equal(review[key], false);
+});
 test('the split-fixture failure and preparation stops remain incomplete on the public progress site', () => {
   const folder = 'docs/release/evidence/feedback-layout-recheck-2026-11-03/';
   assertEvidenceBundleChecksums(resolve(root, folder));
@@ -112,11 +146,13 @@ test('twelve layouts keep the input separate without changing themes, sizes or o
   assert.equal(feedbackTextCases.length, 12);
   assert(suite.includes('else if (screen == "input")'));
   assert(suite.includes('"input" -> listOf("feedback.material-error")'));
-  assert(suite.indexOf('retainFeedbackLayoutDiagnostics(compose, name, tags)') < suite.indexOf('val node = compose.onNodeWithTag(tag).assertIsDisplayed()'));
+  assert(suite.indexOf('retainFeedbackLayoutDiagnostics(compose, name, tags)') < suite.indexOf('val node = compose.onNodeWithTag(tag, useUnmergedTree = true).assertIsDisplayed()'));
+  assert(read(main + 'ui/ReviewCard.kt').includes('Modifier.fillMaxWidth().sgmTestTag("review.submission.error")'));
   const diagnostic = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackLayoutDiagnostics.kt');
   for (const token of ['pre-assertion-layout-diagnostic-not-accepted-evidence', '.put("assertionsPassed", false)',
     'layout.didOverflowWidth', 'layout.didOverflowHeight', 'layout.layoutInput.constraints', 'printToString()',
     '"sgm-feedback-diagnostics"']) assert(diagnostic.includes(token));
+  assert(diagnostic.includes('compose.onNodeWithTag(tag, useUnmergedTree = true)'));
   for (const required of ['RuntimeNotice(', 'ReviewCard(', 'ActiveRideEntryCard(', 'RideStatusPill(', 'OutlinedTextField(',
     'fontScale = 1.3f', '320, 700, 3f', '900, 600, 1f', 'hasVisualOverflow', 'ro.kernel.qemu']) assert(suite.includes(required));
   for (const forbidden of ['AndroidRuntime.create', 'FirebaseGateway', 'GoogleMap(', 'RideMonitorScreen(']) assert(!suite.includes(forbidden));

@@ -93,7 +93,7 @@ class FeedbackTextLayoutTest(private val name: String, private val screen: Strin
         }
         retainFeedbackLayoutDiagnostics(compose, name, tags)
         for (tag in tags) {
-            val node = compose.onNodeWithTag(tag).assertIsDisplayed()
+            val node = compose.onNodeWithTag(tag, useUnmergedTree = true).assertIsDisplayed()
             val layouts = mutableListOf<TextLayoutResult>()
             node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(layouts) }
             check(layouts.isNotEmpty() && layouts.none { it.hasVisualOverflow }) { "$name/$tag: text overflow or missing layout" }

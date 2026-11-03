@@ -44,7 +44,7 @@ fun ReviewCard(review: InboxReviewPrompt, submitting: Boolean, error: String? = 
         Text(review.prompt, style = SgmType.BodySM.copy(color = Sgm.colors.textSecondary))
         error?.let { message ->
             Text(message, style = SgmType.BodySM.copy(color = Sgm.colors.textError),
-                modifier = Modifier.sgmTestTag("review.submission.error"))
+                modifier = Modifier.fillMaxWidth().sgmTestTag("review.submission.error"))
         }
         Text(if (submitting) "Envoi de l'avis..." else "Touchez une note.",
             style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold))

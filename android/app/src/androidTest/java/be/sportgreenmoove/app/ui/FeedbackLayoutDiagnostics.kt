@@ -20,12 +20,13 @@ internal fun retainFeedbackLayoutDiagnostics(compose: ComposeTestRule, name: Str
     compose.waitForIdle()
     val rows = JSONArray()
     for (tag in tags) {
-        val node = compose.onNodeWithTag(tag)
+        val node = compose.onNodeWithTag(tag, useUnmergedTree = true)
         val layouts = mutableListOf<TextLayoutResult>()
         node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(layouts) }
         val bounds = node.fetchSemanticsNode().boundsInRoot
         rows.put(JSONObject().put("tag", tag).put("bounds", bounds.toString()).put("layouts", JSONArray().apply {
             for (layout in layouts) put(JSONObject().put("widthPx", layout.size.width).put("heightPx", layout.size.height)
+                .put("paragraphWidthPx", layout.multiParagraph.width).put("paragraphHeightPx", layout.multiParagraph.height)
                 .put("lineCount", layout.lineCount).put("overflowWidth", layout.didOverflowWidth)
                 .put("overflowHeight", layout.didOverflowHeight).put("constraints", layout.layoutInput.constraints.toString()))
         }))
