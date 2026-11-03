@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { XMLParser } from 'fast-xml-parser';
 import { parseAndroidJUnitTranscript, androidJUnitXml } from '../scripts/qa/android-junit-transcript.mjs';
+import './ordinary-process-observation.mjs';
 
 const guard = 'INSTRUMENTATION_STATUS: sgm_installations_blocked=true\nINSTRUMENTATION_STATUS_CODE: 0\n';
 const status = (current, total, code, name = 'case' + current) =>
