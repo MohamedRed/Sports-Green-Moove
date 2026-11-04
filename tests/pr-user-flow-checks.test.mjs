@@ -86,6 +86,23 @@ try {
   const failingReport = JSON.parse(failing.stdout);
   assert.equal(failingReport.ok, false);
   assert.deepEqual(failingReport.failed, ["Native CI / Android native UI tests"]);
+
+  for (const conclusion of ['SKIPPED', 'FAILURE', 'CANCELLED']) {
+    const input = join(tmpDir, `iphone-${conclusion}.json`);
+    writeFileSync(input, JSON.stringify(checkRollup({
+      workflowName: 'iOS MVP Verification', name: 'iPhone build and fixture screens', conclusion,
+    })));
+    const result = runVerifier(input);
+    assert.equal(result.status, 1, `The iPhone MVP check must not accept ${conclusion}.`);
+    assert.deepEqual(JSON.parse(result.stdout).failed, ['iOS MVP Verification / iPhone build and fixture screens']);
+  }
+  const missingPhone = checkRollup();
+  missingPhone.statusCheckRollup = missingPhone.statusCheckRollup.filter(check => check.workflowName !== 'iOS MVP Verification');
+  const missingPhoneInput = join(tmpDir, 'iphone-missing.json');
+  writeFileSync(missingPhoneInput, JSON.stringify(missingPhone));
+  const missingPhoneResult = runVerifier(missingPhoneInput);
+  assert.equal(missingPhoneResult.status, 1);
+  assert.deepEqual(JSON.parse(missingPhoneResult.stdout).missing, ['iOS MVP Verification / iPhone build and fixture screens']);
 } finally {
   rmSync(tmpDir, { recursive: true, force: true });
 }

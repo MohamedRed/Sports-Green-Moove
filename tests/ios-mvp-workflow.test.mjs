@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {test} from 'node:test';
+import {createHash} from 'node:crypto';
 import {parseDocument} from 'yaml';
+import {requiredUserFlowChecks} from '../scripts/release-evidence-requirements.mjs';
+import {content} from '../partner-portal/content.mjs';
+import {iosMvpBaseline, iosMvpProgress, iosMvpBlocker} from '../partner-portal/ios-mvp-baseline.mjs';
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const path = '.github/workflows/ios-mvp-verification.yml';
@@ -9,6 +13,29 @@ const text = read(path);
 const document = parseDocument(text);
 const workflow = document.toJSON();
 const job = workflow.jobs['ios-fixture-verification'];
+
+test('the two-platform baseline keeps logic proof separate from app, phone and release acceptance', () => {
+  const report = JSON.parse(read(iosMvpBaseline.source));
+  assert.deepEqual(report.requiredPlatforms, ['android', 'ios']);
+  assert.equal(report.localNativeChecks.exitCode, 0);
+  assert.equal(createHash('sha256').update(read('docs/release/evidence/ios-mvp-baseline-2026-11-04/native-checks.log')).digest('hex'),
+    report.localNativeChecks.logSha256);
+  assert.match(report.localNativeChecks.scope, /not an iOS application build/);
+  for (const key of ['iosAppBuildAccepted', 'iosFixtureUiAccepted', 'iosEndToEndFlowsAccepted',
+    'physicalDeviceEvidenceAccepted', 'productionWrites', 'realPaymentExercised', 'releaseComplete']) {
+    assert.equal(report[key], false, key);
+  }
+  assert.equal(report.hostedBuildStarted.statusAtObservation, 'in_progress');
+  assert.equal(report.sourceReviewGaps.length, 4);
+  assert.deepEqual(content.iosMvpBaseline, iosMvpBaseline);
+  assert.deepEqual(content.updates[0], iosMvpProgress);
+  assert(content.blockers.some(blocker => blocker.id === iosMvpBlocker.id));
+  for (const id of [iosMvpProgress.flow, ...iosMvpProgress.coversFlows]) {
+    assert(content.flows.some(flow => flow.id === id), id);
+  }
+  assert.doesNotMatch([iosMvpProgress.title, iosMvpProgress.text, iosMvpBlocker.title, iosMvpBlocker.text,
+    iosMvpBlocker.next].join(' '), /Firebase|BrowserStack|Xcode|SDK|Foundation|Swift|CI\b/i);
+});
 
 test('iPhone verification is bounded standard public compute, without paid storage or credentials', () => {
   assert.deepEqual(document.errors, []);
@@ -42,6 +69,9 @@ test('full SDK project and unchanged fixture tests run once without signing or p
 });
 
 test('iOS changes trigger verification and web smoke checks its constraints', () => {
+  assert.deepEqual(requiredUserFlowChecks.find(check => check.workflowName === workflow.name), {
+    workflowName: 'iOS MVP Verification', name: job.name, acceptableConclusions: ['SUCCESS'],
+  });
   for (const source of ['ios/**', 'scripts/check-ios-native-plan.sh', 'tests/ios-mvp-workflow.test.mjs', path]) {
     assert(workflow.on.pull_request.paths.includes(source), source);
   }

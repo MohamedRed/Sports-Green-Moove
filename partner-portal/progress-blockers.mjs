@@ -1,4 +1,5 @@
 import { nativeVerification } from './native-verification.mjs';
+import {iosMvpBlocker} from './ios-mvp-baseline.mjs';
 import {preparationBlockers} from './preparation-failures.mjs';
 import {completeChecks} from './complete-checks.mjs';
 import {chatPreparationFailure} from './chat-preparation-failure.mjs';
@@ -9,6 +10,7 @@ import {uriSecurity} from './uri-security.mjs';
 import {paymentReturnIncident} from './payment-return-incident.mjs';
 
 export const blockers = [
+  iosMvpBlocker,
   {id: 'chat-pending-restart', title: 'Vérifier les autres reprises d’envoi',
     text: 'La confirmation perdue ne double pas le message. L’envoi en attente reste privé entre comptes.',
     next: 'Rejouer entre deux téléphones, avec de vraies coupures, et sur iPhone.',

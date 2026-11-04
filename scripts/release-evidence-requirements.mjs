@@ -94,6 +94,11 @@ export const postponedSocialAuthEnvironmentVariables = [
 
 export const requiredUserFlowChecks = [
   {
+    workflowName: "iOS MVP Verification",
+    name: "iPhone build and fixture screens",
+    acceptableConclusions: ["SUCCESS"],
+  },
+  {
     workflowName: "Native CI",
     name: "Native UI flow coverage",
     acceptableConclusions: ["SUCCESS"],

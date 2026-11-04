@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-11-04",
+  "requiredPlatforms": ["android", "ios"],
+  "sourceCommit": "6948862840a3a7fc3f55b5ca4fb06673831f4529",
+  "localNativeChecks": {
+    "command": "bash scripts/check-ios-native-plan.sh",
+    "exitCode": 0,
+    "elapsedMs": 7142,
+    "host": "macOS arm64 with Apple Swift 6.0",
+    "log": "native-checks.log",
+    "logSha256": "c49e4739f01d9919c11be01469ceaf8fecac3dfa8c75bb18db6445d37c102963",
+    "scope": "Foundation-only native logic; not an iOS application build"
+  },
+  "hostedBuildStarted": {
+    "sourceCommit": "c1c2fa4deb853f7c200cb61f268dccf1f9f46d95",
+    "runId": 41830173404,
+    "jobId": 126575027249,
+    "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41830173404/job/126575027249",
+    "observedAt": "2026-11-04T12:38:45Z",
+    "statusAtObservation": "in_progress",
+    "completedSteps": ["native logic checks", "project generation", "simulator creation"],
+    "result": "not yet accepted; consult the source-bound terminal run separately"
+  },
+  "sourceReviewGaps": [
+    {"path": "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift", "finding": "Chat rows have no conversation-opening or sending action."},
+    {"path": "ios/Sources/SportsGreenMooveApp/OptionsScreen.swift", "finding": "Saved emergency-contact editing is absent; the displayed number is static example data."},
+    {"path": "ios/Sources/SportsGreenMooveApp/SecondaryScreens.swift", "finding": "The emergency panel displays APPELER without an actionable contact handoff."},
+    {"path": "ios/Sources/SportsGreenMooveApp/SearchScreen.swift", "finding": "Guardian consent starts selected and is not reset when the selected child changes."}
+  ],
+  "iosAppBuildAccepted": false,
+  "iosFixtureUiAccepted": false,
+  "iosEndToEndFlowsAccepted": false,
+  "physicalDeviceEvidenceAccepted": false,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "releaseComplete": false
+}

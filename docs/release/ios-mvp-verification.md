@@ -4,6 +4,9 @@ The owner confirmed Android **and iPhone** on 4 November 2026. No iOS release
 requirements are removed. Existing routine iOS jobs remain disabled; the separate
 `iOS MVP Verification` workflow checks the real SDK-linked Xcode project and its
 five existing fixture-screen tests on an isolated simulator.
+The PR user-flow verifier requires this separate check to succeed: missing,
+skipped, cancelled and failed runs are rejected. The old skipped routine lanes
+are retained for their original cost policy, not used as iPhone proof.
 
 The job runs only for a public repository on the standard `macos-26-intel` runner,
 with read-only repository access and a 35-minute deadline. It uploads no artifacts,

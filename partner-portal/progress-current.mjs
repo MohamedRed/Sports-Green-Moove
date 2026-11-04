@@ -7,6 +7,7 @@ import {paymentReturnIncidentProgress} from './payment-return-incident.mjs';
 import {compatibleSecurityProgress} from './compatible-security-patches.mjs';
 import {androidCutoffProgress} from './android-cutoff-recheck.mjs';
 import {nativeCopyProgress} from './native-copy-recheck.mjs';
+import {iosMvpProgress} from './ios-mvp-baseline.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
 import {c84ChecksProgress} from './c84-checks.mjs';
@@ -98,6 +99,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosMvpProgress,
   nativeCopyProgress,
   androidCutoffProgress,
   compatibleSecurityProgress,
