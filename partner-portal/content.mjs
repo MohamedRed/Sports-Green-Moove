@@ -16,6 +16,7 @@ import {iosLocationStop} from './ios-location-stop.mjs';
 import {iosProfileFixtureResult} from './ios-profile-fixture-result.mjs';
 import {iosRideOwnership} from './ios-ride-ownership.mjs';
 import {iosAccountWork} from './ios-account-work.mjs';
+import {iosPaymentOwnership} from './ios-payment-ownership.mjs';
 import {iosBuildTimeout} from './ios-build-timeout.mjs';
 import {nativeGateRecheck} from './native-gate-recheck.mjs';
 import {publishedMediaReview} from './published-media-review.mjs';
@@ -102,6 +103,7 @@ export const content = {
   iosProfileFixtureResult,
   iosRideOwnership,
   iosAccountWork,
+  iosPaymentOwnership,
   iosBuildTimeout,
   nativeGateRecheck,
   publishedMediaReview,

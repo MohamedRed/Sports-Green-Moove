@@ -4,10 +4,44 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { XMLParser } from 'fast-xml-parser';
 import { content, captures } from '../partner-portal/content.mjs';
+import {iosPaymentOwnership, iosPaymentOwnershipProgress} from '../partner-portal/ios-payment-ownership.mjs';
 
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const android = 'android/app/src/main/java/be/sportgreenmoove/app/';
 const ios = 'ios/Sources/SportsGreenMooveApp/';
+
+test('iPhone payment ownership evidence preserves the failing same-UID baseline and only accepts local callback isolation', () => {
+  const folder = 'docs/release/evidence/ios-payment-ownership-2026-11-04/';
+  const proof = JSON.parse(read(iosPaymentOwnership.source));
+  assert.equal(proof.baseline.sourceCommit, 'a23cb9d67f6163156150dbfd320aff7e7ae95835');
+  assert.equal(proof.baseline.exitCode, 133);
+  assert.equal(proof.baseline.restoredNotice, true);
+  assert.equal(proof.baseline.followupReads, 7);
+  assert.equal(proof.candidate.exitCode, 0);
+  assert.equal(proof.candidate.restoredNotice, false);
+  assert.equal(proof.candidate.followupReads, 0);
+  assert.equal(proof.candidate.delayedPaymentCases, 24);
+  assert.equal(proof.candidate.currentServerStates, 5);
+  for (const item of [proof.baseline, proof.candidate]) {
+    assert.equal(createHash('sha256').update(read(folder + item.log)).digest('hex'), item.logSha256);
+  }
+  assert.match(read(folder + proof.baseline.log), /restoredNotice=true, followups=7/);
+  assert.match(read(folder + proof.candidate.log), /restoredNotice=false, followups=0/);
+  assert.match(read(folder + proof.candidate.log), /24 delayed preparation\/status success\/error cases/);
+  for (const key of ['sdkLinkedBuildAccepted', 'sdkPaymentPresentationAccepted', 'fullSignOutAccepted',
+    'completeTransportDrainAccepted', 'livePayment', 'productionWrites', 'newNativeMediaPublished', 'releaseComplete']) {
+    assert.equal(proof[key], false, key);
+  }
+  const plan = read('scripts/check-ios-native-plan.sh');
+  for (const name of ['AppState+RidePayments', 'NativePaymentSheetFlow', 'StripePaymentSheetPresenter', 'RidePaymentOwnershipChecks']) {
+    assert(plan.includes(name + '.swift'));
+  }
+  assert(read('ios/Tests/SportsGreenMooveNativeChecks/main.swift').includes('try await checkRidePaymentOwnership()'));
+  assert.deepEqual(content.iosPaymentOwnership, iosPaymentOwnership);
+  assert.deepEqual(content.updates.filter(item => item.source === iosPaymentOwnershipProgress.source), [iosPaymentOwnershipProgress]);
+  assert.doesNotMatch(iosPaymentOwnershipProgress.title + iosPaymentOwnershipProgress.text, /Stripe|Firebase|BrowserStack|SDK|Swift|Xcode|CI\b/i);
+  assert.equal(content.flows.find(item => item.id === 'payments').status, 'partial');
+});
 
 test('payment status is an owning-parent read without provider requests or financial writes', () => {
   const source = read('functions/src/callables/ridePaymentStatus.ts');
@@ -29,7 +63,11 @@ test('native checkout completion delegates to an explicit server reconciliation 
   assert(swift.includes('guard session?.uid == target.ownerUid else { return }'));
   assert.match(read(ios + 'AppState.swift'), /didSet\s*\{[\s\S]*pendingRidePayment = nil\s+noticeMessage = nil\s+errorMessage = nil/);
   assert(coordinator.includes('if (state == RidePaymentState.Recorded) refresh()'));
-  assert(swift.includes('if state == .recorded { await refreshAppData() }'));
+  assert(swift.includes('if state == .recorded { await refreshAppData(access: access) }'));
+  assert.equal((swift.match(/let work = access.begin\(\)/g) ?? []).length, 2);
+  assert.equal((swift.match(/try access.requireCurrent\(work\)/g) ?? []).length, 3);
+  assert.equal((swift.match(/access.owns\(work\)/g) ?? []).length, 2);
+  assert.equal((swift.match(/access.finish\(work\)/g) ?? []).length, 2);
   assert(!read(android + 'ui/PaymentSheetResultHandler.kt').includes('Paiement confirmé.'));
   assert(!read(ios + 'PaymentsScreen.swift').includes('noticeMessage = "Paiement confirmé."'));
   assert(!read(android + 'ui/SportsGreenMooveRideActions.kt').includes('fun launchPayment('));

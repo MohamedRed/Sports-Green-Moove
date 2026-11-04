@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The original a23cb9d payment-status response changes a same-UID reauthenticated
+account and starts seven fresh reads in the controlled reproduction. The
+candidate retains account-generation leases, denies 24 delayed preparation/status
+boundaries and preserves five current status paths plus explicit retry. Publish
+one short local note, not real payment, full sign-out or SDK cleanup acceptance.
+Preserve all earlier flows, images, dates, tours, statuses, blockers and updates.
+See `docs/release/evidence/ios-payment-ownership-2026-11-04/README.md`.
+
 The original 20ca145 publication callback changes signed-out UI in the controlled
 regression; the account-bound candidate passes 42 delayed boundaries and current
 success/retry checks. Publish one short local note, not completed logout. Preserve
