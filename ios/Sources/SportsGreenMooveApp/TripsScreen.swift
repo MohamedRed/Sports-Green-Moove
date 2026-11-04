@@ -36,7 +36,7 @@ struct TripsScreen: View {
                                 await appState.handleTripAction(trip: trip, access: access)
                             }
                         }
-                        .disabled(appState.bookingBusy)
+                        .disabled(appState.tripActionBusy)
                     }
                 }
             }

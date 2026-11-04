@@ -133,6 +133,8 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         _ = rideSessionId
     }
     @MainActor func stopAllNativeLocationFallback() {}
+    @MainActor var nativeLocationWorkPending: Bool { false }
+    @MainActor func awaitNativeLocationShutdown() async {}
 }
 
 struct UnconfiguredRadarTrackingGateway: RadarTrackingGateway {

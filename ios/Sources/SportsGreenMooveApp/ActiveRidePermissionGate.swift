@@ -33,12 +33,12 @@ enum ActiveRidePermissionCopy {
 
 extension AppState {
     func requestActiveRideStart(tripId: String) {
-        guard selectedRole == .driver, session?.roles.contains(.driver) == true, !rideRequests.busy else { return }
+        guard selectedRole == .driver, session?.roles.contains(.driver) == true, !rideRequests.busy, !locationWorkUnsettled else { return }
         activeRidePermissionDisclosure = ActiveRidePermissionDisclosure(tripId: tripId)
     }
 
     func requestActiveRideTracking() {
-        guard selectedRole == .child, session?.roles.contains(.child) == true, !rideRequests.busy else { return }
+        guard selectedRole == .child, session?.roles.contains(.child) == true, !rideRequests.busy, !locationWorkUnsettled else { return }
         activeRidePermissionDisclosure = ActiveRidePermissionDisclosure(tripId: nil)
     }
 

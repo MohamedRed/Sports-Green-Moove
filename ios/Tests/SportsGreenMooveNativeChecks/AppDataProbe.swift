@@ -53,6 +53,7 @@ struct AppDataFixtureGateway: FirebaseGateway {
     var bookingStatus = "approved"
     var expectedBookingTrip: TripSummary? = nil
     var bookingReviewRequired = false
+    var locationShutdown: LocationSessionState? = nil
     private var unused: UnconfiguredFirebaseGateway { UnconfiguredFirebaseGateway() }
 
     func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
@@ -147,7 +148,9 @@ struct AppDataFixtureGateway: FirebaseGateway {
         try await unused.writeNativeLocationFallback(rideSessionId: rideSessionId, role: role)
     }
     @MainActor func stopNativeLocationFallback(rideSessionId: String) { unused.stopNativeLocationFallback(rideSessionId: rideSessionId) }
-    @MainActor func stopAllNativeLocationFallback() { rideStops?.native += 1 }
+    @MainActor func stopAllNativeLocationFallback() { rideStops?.native += 1; locationShutdown?.revoke() }
+    @MainActor var nativeLocationWorkPending: Bool { locationShutdown?.hasPendingWork ?? false }
+    @MainActor func awaitNativeLocationShutdown() async { await locationShutdown?.waitUntilIdle() }
     func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
         try await unused.supportReports(uid: uid, cursor: cursor)
     }

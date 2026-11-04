@@ -5,12 +5,35 @@ import {test} from 'node:test';
 import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {androidNodeReadiness, androidNodeReadinessProgress} from '../partner-portal/android-node-readiness.mjs';
+import {androidReadinessRecheck, androidReadinessRecheckProgress} from '../partner-portal/android-readiness-recheck.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const sha = value => createHash('sha256').update(value).digest('hex');
 const dir = 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/';
 const folder = 'docs/release/evidence/android-node-readiness-2026-11-04/';
 const report = JSON.parse(read(androidNodeReadiness.source));
+
+test('two actual readiness passes cannot accept the later incomplete ordinary command or lost parent interface', () => {
+  const folder = 'docs/release/evidence/android-node-readiness-2026-11-04/a226b3e/';
+  const proof = JSON.parse(read(androidReadinessRecheck.source));
+  assert.equal(proof.runId, 41920203762); assert.equal(proof.jobId, 126890385415);
+  assert.equal(proof.sourceCommit, 'a226b3e265c78f58d56af892a666ae2778afc50b');
+  assert.equal(proof.conclusion, 'failure'); assert.equal(proof.readinessCases.passed, 2);
+  const packets = read(folder + 'readiness-cases.txt');
+  assert.equal((packets.match(/^INSTRUMENTATION_STATUS_CODE: 0$/gm) ?? []).length, 2);
+  for (const name of proof.readinessCases.cases) assert(packets.includes('INSTRUMENTATION_STATUS: test=' + name));
+  assert.equal(proof.ordinary.complete, false); assert.equal(proof.ordinary.elapsedMs, 720003);
+  assert.equal(proof.ordinary.lastStartedIndex, 319); assert.equal(proof.ordinary.discoveredCases, 351);
+  assert.equal(proof.ordinary.completeParserRejection, 'One complete runner result is required');
+  assert.equal(proof.replay.failureAt, 'openGuardians:81 performScrollTo');
+  assert.equal(proof.replay.underlyingRootAbsenceCause, 'unknown');
+  assert.equal(proof.focusedLanesPassed, 12);
+  assert.equal(JSON.parse(read(folder + 'host-disposal.json')).finalState, 'gone');
+  for (const entry of proof.provenance.records) assert.equal(sha(read(folder + entry.file)), entry.sha256);
+  for (const key of ['fullGateAccepted', 'priorRootCauseConfirmed', 'physicalDeviceAccepted', 'newMediaPublished', 'releaseComplete']) assert.equal(proof[key], false);
+  assert.deepEqual(content.androidReadinessRecheck, androidReadinessRecheck);
+  assert.deepEqual(content.updates.filter(item => item.source === androidReadinessRecheckProgress.source), [androidReadinessRecheckProgress]);
+});
 
 test('positive readiness allows zero roots only while waiting for an actual matching node', () => {
   const helper = read(dir + 'ComposeNodeReadiness.kt');

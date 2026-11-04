@@ -5,6 +5,7 @@ enum UITestIdentifier {
     static let authEmailField = "auth.email.field"
     static let authPasswordField = "auth.password.field"
     static let profileScreen = "profile.screen"
+    static let profileSignOutAction = "profile.sign-out.action"
     static let profileName = "profile.name"
     static let authEmailAction = "auth.email.action"
     static let authFacebookAction = "auth.facebook.action"

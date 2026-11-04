@@ -46,6 +46,9 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
     nonisolated private let callbackOwner = OSAllocatedUnfairLock<LocationCallbackScope?>(initialState: nil)
     private var uploads: [UUID: Task<Void, Never>] = [:]
 
+    var hasPendingWork: Bool { state.hasPendingWork }
+    func awaitShutdown() async { await state.waitUntilIdle() }
+
     private override init() {
         super.init()
     }
@@ -124,7 +127,6 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         authorization?.resume(throwing: CancellationError())
         location?.resume(throwing: CancellationError())
         for task in uploads.values { task.cancel() }
-        uploads.removeAll()
     }
 
     private func ensureAuthorization(using manager: CLLocationManager) async throws {

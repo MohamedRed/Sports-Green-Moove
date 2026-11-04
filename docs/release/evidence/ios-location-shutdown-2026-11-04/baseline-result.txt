@@ -1,0 +1,2 @@
+Native shutdown reproduction: mode=start, pending=true, authenticationCalls=1
+baseline/main.swift:8: Fatal error: Authentication started before the previous location request settled

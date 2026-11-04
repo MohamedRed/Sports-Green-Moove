@@ -4,7 +4,8 @@ The owner confirmed Android **and iPhone** on 4 November 2026. No iOS release
 requirements are removed. Existing routine iOS jobs remain disabled; the separate
 `iOS MVP Verification` workflow checks the real SDK-linked Xcode project and
 all fixture-screen tests on an isolated simulator: five original identifier checks
-and two added search-consent cases.
+and two added search-consent cases. The later sign-out candidate adds a separate
+profile-to-authentication case; it requires all eight cases, not a reduced selection.
 The PR user-flow verifier requires this separate check to succeed: missing,
 skipped, cancelled and failed runs are rejected. The old skipped routine lanes
 are retained for their original cost policy, not used as iPhone proof.
@@ -26,9 +27,16 @@ At `3e7cd40`, run `41911781988` succeeds with the actual SDK build, all seven
 fixture tests and simulator disposal. This includes the later account-refresh,
 authentication, payment, publication, booking and permission-bridge source changes
 in the compiled app, not end-to-end behavioral acceptance of those features.
-The manifest accepts only the two source-bound automated entries. No captures
+At that checkpoint the manifest accepted only the two source-bound automated entries. No captures
 are retained by this PR run; all physical and operational requirements remain.
 See `evidence/ios-fixture-pass-3e7cd40-2026-11-04/`.
+
+Later native-location shutdown changes keep authentication closed until the old
+startup/upload callbacks actually settle and connect the profile sign-out button.
+Their controlled local checks do not extend the earlier SDK/fixture acceptance.
+Both automated entries are pending again until this changed source passes the
+complete SDK-linked build and all eight fixture tests. See
+`evidence/ios-location-shutdown-2026-11-04/`.
 
 The first run at `c1c2fa4` failed in support gateway compilation before UI tests.
 The candidate uses string-only inputs and validates Sendable models before

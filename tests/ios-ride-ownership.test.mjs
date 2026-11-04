@@ -65,7 +65,7 @@ test('a revoked account or role cannot own pending ride work even after an ABA t
   assert.match(app, /selectedRole != oldValue \{\s+appDataRefreshId = nil; invalidateRideWork\(\)/);
   const auth = read(root + 'AppState+Authentication.swift');
   assert.match(auth, /func signOut\(\) \{\s+accountWork.clear\(\)\s+invalidateRideWork\(\)/);
-  assert.match(auth, /guard !rideRequests.busy, !accountWork.busy else \{ return \}/);
+  assert.match(auth, /guard !rideRequests.busy, !accountWork.busy, !locationWorkUnsettled else \{ return \}/);
   assert.doesNotMatch(state + auth, /endRide\(|completeTrip\(|cancelTrip\(/);
 });
 

@@ -17,7 +17,9 @@ struct ProfileScreen: View {
             SGMSectionLabel("PARAMÈTRES")
             ProfileSettingsCard()
                 .padding(.horizontal, SGMSpace.padScreen)
-            SGMButton(title: "SE DÉCONNECTER", variant: .ghost) {}
+            SGMButton(title: "SE DÉCONNECTER", variant: .ghost, testID: UITestIdentifier.profileSignOutAction) {
+                appState.signOut()
+            }
                 .padding(.horizontal, SGMSpace.padScreen)
                 .padding(.top, 4)
         }

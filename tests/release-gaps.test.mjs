@@ -29,9 +29,9 @@ assert.deepEqual(report.operationalUserFlowEvidence.missing, ["urgent_support_sp
 assert.equal(report.manifest.exists, true, "In-progress release evidence manifest should be read.");
 assert.equal(report.manifest.data.manifestStatus, "in-progress", "Release evidence manifest must not claim completion.");
 assert.equal(report.secretInventory.exists, true, "Default release gap report should read the checked-in secret inventory.");
-assert.deepEqual(report.automatedFlowEvidence.missing, [],
-  "The source-bound iPhone build and fixture gate pass without accepting physical or operational requirements.");
-for (const id of ["ios_sdk_build_ci", "ios_fixture_ui_ci", "native_ui_flow_ci", "android_connected_ui_ci", "backend_live_smoke", "operations_live_smoke",
+assert.deepEqual(report.automatedFlowEvidence.missing, ["ios_sdk_build_ci", "ios_fixture_ui_ci"],
+  "The source-bound iPhone pass cannot accept later native shutdown and sign-out changes.");
+for (const id of ["native_ui_flow_ci", "android_connected_ui_ci", "backend_live_smoke", "operations_live_smoke",
   "firebase_rules_emulator", "stripe_webhook_emulator", "android_appetize_launch", "android_appetize_email_login"]) {
   assert(report.automatedFlowEvidence.passed.includes(id), `Preserve original scoped automated evidence: ${id}`);
 }

@@ -97,6 +97,7 @@ func checkControlledLocationLifecycle(_ provider: NativeLocationFallbackProvider
     require(await newCapture.value == "completed", "Old callbacks poisoned the new capture")
     require(await origin.latitudes == [50.7], "Old coordinates were attached to a new ride")
     provider.stopAllUpdates()
+    await checkControlledLocationDrain(provider)
     print("Controlled provider lifecycle passed: permission stop, capture stop, cancellation, serialized starts, exact-ride stop, old-manager isolation and upload failure; no device or network used")
 }
 #endif

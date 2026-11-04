@@ -15,6 +15,7 @@ on:
       - "scripts/check-ios-support-concurrency.sh"
       - "tests/fixtures/ios-support-concurrency/**"
       - "tests/ios-mvp-workflow.test.mjs"
+      - "tests/ios-location-shutdown.test.mjs"
       - "tests/ios-search-consent.test.mjs"
       - "tests/ios-app-data.test.mjs"
       - "tests/ios-authentication.test.mjs"

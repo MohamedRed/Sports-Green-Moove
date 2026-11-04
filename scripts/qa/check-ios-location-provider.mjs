@@ -34,7 +34,8 @@ try {
     const flags = mode === 'candidate' ? ['-D', 'CANDIDATE_LOCATION'] : [];
     const compile = run('swiftc', ['-swift-version', language, ...strict, ...flags, '-enable-bare-slash-regex', '-I', build,
       ...[...new Set(paths)].map(path => resolve(root, path)), copy, resolve(fixture, 'UploadProbe.swift'),
-      resolve(fixture, 'main.swift'), resolve(fixture, 'CandidateChecks.swift'), resolve(build, 'CoreLocation.o'), '-o', resolve(build, mode)]);
+      resolve(fixture, 'main.swift'), resolve(fixture, 'CandidateChecks.swift'), resolve(fixture, 'DrainChecks.swift'),
+      resolve(build, 'CoreLocation.o'), '-o', resolve(build, mode)]);
     if (compile.stderr) process.stderr.write(`${mode} compiler:\n${compile.stderr}`);
     const result = run(resolve(build, mode), []);
     console.log(mode + '\n' + result.stdout.trim());

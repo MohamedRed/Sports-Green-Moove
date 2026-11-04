@@ -5,6 +5,8 @@ final class LocationSessionState {
     private var owner: (id: UUID, ride: String)?
     private var pendingStarts: Set<UUID> = []
     private var pendingUploads: Set<UUID> = []
+    private var idleWaiters: [CheckedContinuation<Void, Never>] = []
+    var hasPendingWork: Bool { !pendingStarts.isEmpty || !pendingUploads.isEmpty }
 
     func begin(ride: String) throws -> UUID {
         try Task.checkCancellation()
@@ -23,14 +25,25 @@ final class LocationSessionState {
     }
 
     func owns(_ id: UUID) -> Bool { owner?.id == id }
-    func finishStart(_ id: UUID) { pendingStarts.remove(id) }
+    func finishStart(_ id: UUID) { pendingStarts.remove(id); notifyIdle() }
 
     func beginUpload(_ ownerId: UUID) throws -> UUID {
         try requireCurrent(ownerId)
         let id = UUID(); pendingUploads.insert(id); return id
     }
 
-    func finishUpload(_ id: UUID) { pendingUploads.remove(id) }
+    func finishUpload(_ id: UUID) { pendingUploads.remove(id); notifyIdle() }
+
+    func waitUntilIdle() async {
+        guard hasPendingWork else { return }
+        await withCheckedContinuation { idleWaiters.append($0) }
+    }
+
+    private func notifyIdle() {
+        guard !hasPendingWork else { return }
+        let completed = idleWaiters; idleWaiters.removeAll()
+        for waiter in completed { waiter.resume() }
+    }
 
     @discardableResult
     func revoke(ride: String? = nil) -> Bool {

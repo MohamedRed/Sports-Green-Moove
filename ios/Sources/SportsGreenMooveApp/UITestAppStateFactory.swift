@@ -227,6 +227,8 @@ private struct UITestFirebaseGateway: FirebaseGateway {
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {}
     @MainActor func stopNativeLocationFallback(rideSessionId: String) {}
     @MainActor func stopAllNativeLocationFallback() {}
+    @MainActor var nativeLocationWorkPending: Bool { false }
+    @MainActor func awaitNativeLocationShutdown() async {}
 }
 
 private struct UITestRadarGateway: RadarTrackingGateway {

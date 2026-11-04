@@ -28,6 +28,8 @@ protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGate
     @MainActor func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws
     @MainActor func stopNativeLocationFallback(rideSessionId: String)
     @MainActor func stopAllNativeLocationFallback()
+    @MainActor var nativeLocationWorkPending: Bool { get }
+    @MainActor func awaitNativeLocationShutdown() async
 }
 
 protocol RadarTrackingGateway: Sendable {

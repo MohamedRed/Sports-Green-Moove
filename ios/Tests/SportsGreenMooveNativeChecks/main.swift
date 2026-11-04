@@ -1,6 +1,7 @@
 import Foundation
 
 try ledgerSummaryChecks()
+await checkLocationShutdown()
 
 func check(_ condition: @autoclosure () -> Bool, _ message: String) {
     if !condition() {

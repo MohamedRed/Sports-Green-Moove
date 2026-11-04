@@ -67,8 +67,8 @@ test('account work retains unsettled tokens across revocation and binds immutabl
   assert.match(scope, /guard !Task.isCancelled, self.context == context/);
   assert.match(scope, /session.roles.contains\(role\)/);
   const auth = read(app + 'AppState+Authentication.swift');
-  assert.match(auth, /guard !rideRequests.busy, !accountWork.busy else/);
-  assert.match(auth, /session == nil && \(rideRequests.busy \|\| accountWork.busy\)/);
+  assert.match(auth, /guard !rideRequests.busy, !accountWork.busy, !locationWorkUnsettled else/);
+  assert.match(auth, /session == nil && \(rideRequests.busy \|\| accountWork.busy \|\| locationWorkUnsettled\)/);
   assert(auth.indexOf('accountWork.clear()') < auth.indexOf('authentication.signOut(using: auth)'));
   const refresh = read(app + 'AppState+Data.swift');
   assert.match(refresh, /func refreshAppData\(access: AccountAccess\) async/);

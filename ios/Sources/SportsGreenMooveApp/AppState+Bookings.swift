@@ -1,6 +1,10 @@
 import Foundation
 
 extension AppState {
+    var tripActionBusy: Bool {
+        bookingBusy || ((selectedRole == .driver || selectedRole == .child) && (rideRequests.busy || locationWorkUnsettled))
+    }
+
     func handleTripAction(trip: TripSummary, access: AccountAccess) async {
         guard access.isCurrent else { return }
         switch access.context.role {

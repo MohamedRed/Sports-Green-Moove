@@ -59,6 +59,7 @@ final class AppState {
     var errorMessage: String?
     var noticeMessage: String?
     var authenticationRestoreFailed = false
+    var nativeLocationShutdown: Task<Void, Never>?
     var activeRidePermissionDisclosure: ActiveRidePermissionDisclosure?
     let rideRequests = RideRequestState()
     let accountWork = AccountWorkScope()

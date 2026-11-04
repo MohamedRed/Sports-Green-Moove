@@ -12,7 +12,7 @@ struct HomeScreen: View {
                 guard let nextTrip else { return }
                 Task { await appState.handleTripAction(trip: nextTrip, access: access) }
             }
-            .disabled(nextTrip == nil || appState.bookingBusy)
+            .disabled(nextTrip == nil || appState.tripActionBusy)
             HomeStatsRow(summary: appState.impactSummary)
             SGMSectionLabel("SEMAINE À VENIR", action: "Tout voir") {
                 appState.selectTab(.trips)
@@ -30,7 +30,7 @@ struct HomeScreen: View {
                     ) {
                         Task { await appState.handleTripAction(trip: trip, access: access) }
                     }
-                    .disabled(appState.bookingBusy)
+                    .disabled(appState.tripActionBusy)
                 }
                 if appState.trips.isEmpty {
                     HomeEmptyTrips()

@@ -36,6 +36,7 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LogoutIntentStore.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AuthenticationState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Authentication.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+LocationShutdown.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Profile.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Data.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Search.swift" \
@@ -60,6 +61,7 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AuthenticationProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LocationSessionChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LocationShutdownChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift" \

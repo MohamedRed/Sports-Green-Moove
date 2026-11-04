@@ -188,6 +188,20 @@ struct FirebaseBackendGateway: FirebaseGateway {
         #endif
     }
 
+    @MainActor var nativeLocationWorkPending: Bool {
+        #if os(iOS) && canImport(CoreLocation)
+        NativeLocationFallbackProvider.shared.hasPendingWork
+        #else
+        false
+        #endif
+    }
+
+    @MainActor func awaitNativeLocationShutdown() async {
+        #if os(iOS) && canImport(CoreLocation)
+        await NativeLocationFallbackProvider.shared.awaitShutdown()
+        #endif
+    }
+
     private func trips(for query: Query) async throws -> [TripSummary] {
         let snapshot = try await documents(for: query)
         return snapshot.map { mapTrip(id: $0.documentID, data: $0.data()) }

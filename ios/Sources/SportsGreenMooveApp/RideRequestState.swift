@@ -40,10 +40,11 @@ extension AppState {
         ridePermissions.cancelPending()
         firebase.stopAllNativeLocationFallback()
         radar.stopLocalTracking()
+        drainNativeLocationWork()
     }
 
     func beginRideRequest() -> RideRequest? {
-        guard let session, session.isValid, session.roles.contains(selectedRole) else { return nil }
+        guard let session, session.isValid, session.roles.contains(selectedRole), !locationWorkUnsettled else { return nil }
         return rideRequests.begin(uid: session.uid, role: selectedRole)
     }
 

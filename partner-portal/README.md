@@ -2,6 +2,22 @@
 
 ## Current Publication Policy
 
+The a226b3e Android recheck is terminal failure: both readiness regressions pass,
+but the ordinary command times out at case 319 of 351 and parent replay loses its
+interface at the later guardian-opening scroll. Keep this separate from the
+historical pass and earlier login-wait failure; do not infer a root cause or accept
+the full gate. Publish one concise incomplete-parent note, no new media. See
+`docs/release/evidence/android-node-readiness-2026-11-04/a226b3e/README.md`.
+
+The a226b3e authentication-file substitution reproduces a login during unsettled
+native work. Controlled local checks pass for retained native-location shutdown;
+the profile button is connected, but its new UI case has not executed. Publish one
+short local-only sign-out note, with no new media. The changed iPhone source makes
+both automated entries pending again; the prior 3e7cd40 pass and all earlier
+flows, dates, tours, media, statuses, blockers and updates stay intact. Do not
+accept full logout, all SDK drainage or physical behavior. See
+`docs/release/evidence/ios-location-shutdown-2026-11-04/README.md`.
+
 The 3e7cd40 iPhone run now succeeds: the actual SDK build, all seven synthetic
 fixture cases and simulator disposal pass within the approved 50 minutes. Publish
 one short simulation-only note, without new media. Accept only the two matching

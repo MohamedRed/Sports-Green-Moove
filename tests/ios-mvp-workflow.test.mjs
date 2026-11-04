@@ -126,8 +126,7 @@ test('partial terminal iPhone proof preserves all seven outcomes without accepti
     assert(requiredAutomatedFlowEvidence.includes(id));
     for (const file of ['evidence-manifest.json', 'evidence-manifest.example.json']) {
       const manifest = JSON.parse(read(`docs/release/${file}`));
-      assert.equal(manifest.automatedUserFlowEvidence.items.find(item => item.id === id).status,
-        file === 'evidence-manifest.example.json' ? 'pending' : 'passed');
+      assert.equal(manifest.automatedUserFlowEvidence.items.find(item => item.id === id).status, 'pending');
     }
   }
   assert.deepEqual(content.iosFixtureObservation, iosFixtureObservation);
@@ -141,7 +140,7 @@ test('partial terminal iPhone proof preserves all seven outcomes without accepti
     /Firebase|BrowserStack|Xcode|SDK|Foundation|Swift|CI\b/i);
 });
 
-test('the current source-bound SDK and seven-case fixture pass accepts only the two automated entries', () => {
+test('the 3e7cd40 SDK and seven-case fixture pass remains historical when later iPhone sources change', () => {
   const folder = 'docs/release/evidence/ios-fixture-pass-3e7cd40-2026-11-04/';
   const report = JSON.parse(read(iosCurrentFixturePass.source));
   assert.equal(report.sourceCommit, '3e7cd40e62798ba503c383e044e25231dc3072bd');
@@ -160,8 +159,9 @@ test('the current source-bound SDK and seven-case fixture pass accepts only the 
   const sources = JSON.parse(read(iosCurrentFixturePass.checksums));
   assert.equal(sources.sourceCommit, report.sourceCommit);
   for (const item of sources.files) {
-    assert.equal(sha(readFileSync(new URL('../' + item.path, import.meta.url))), item.sha256, item.path);
+    assert.match(item.sha256, /^[a-f0-9]{64}$/);
   }
+  assert(sources.files.some(item => sha(readFileSync(new URL('../' + item.path, import.meta.url))) !== item.sha256));
   assert.equal(sha(read(folder + report.provenance.selectedResult)), report.provenance.selectedResultSha256);
   assert.equal(report.captureCollection.conclusion, 'skipped'); assert.equal(report.captureUpload.conclusion, 'skipped');
   for (const key of ['iosEndToEndFlowsAccepted', 'physicalDeviceEvidenceAccepted', 'productionWrites',
@@ -171,7 +171,7 @@ test('the current source-bound SDK and seven-case fixture pass accepts only the 
   const manifest = JSON.parse(read('docs/release/evidence-manifest.json'));
   for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) {
     const item = manifest.automatedUserFlowEvidence.items.find(item => item.id === id);
-    assert.equal(item.status, 'passed'); assert(item.evidenceRefs.includes(folder.replace('docs/release/', '') + 'summary.json'));
+    assert.equal(item.status, 'pending'); assert(item.evidenceRefs.includes(folder.replace('docs/release/', '') + 'summary.json'));
   }
   const previous = JSON.parse(read('docs/release/evidence/automated-user-flow-evidence-2026-06-16.json'));
   const index = JSON.parse(read('docs/release/evidence/automated-user-flow-evidence-2026-11-04.json'));
@@ -250,7 +250,7 @@ test('iOS changes trigger verification and web smoke checks its constraints', ()
     assert(smoke.on[event].paths.includes('tests/ios-mvp-workflow.test.mjs'));
   }
   assert(Object.values(smoke.jobs).some(group => group.steps.some(step =>
-    step.run === 'node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs tests/ios-location-stop.test.mjs tests/ios-fixture-launch.test.mjs tests/ios-ride-ownership.test.mjs tests/ios-account-work.test.mjs tests/ios-approved-captures.test.mjs')));
+    step.run === 'node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs tests/ios-location-stop.test.mjs tests/ios-fixture-launch.test.mjs tests/ios-ride-ownership.test.mjs tests/ios-account-work.test.mjs tests/ios-approved-captures.test.mjs tests/ios-location-shutdown.test.mjs')));
   const routine = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   for (const name of ['ios-native-checks', 'ios-native-ui']) {
     assert.equal(routine.jobs[name].if, '${{ false }}');
