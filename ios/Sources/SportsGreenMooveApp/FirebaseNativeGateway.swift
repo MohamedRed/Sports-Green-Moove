@@ -158,14 +158,15 @@ struct FirebaseBackendGateway: FirebaseGateway {
         return bookings
     }
 
-    func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
+    @MainActor func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
         #if os(iOS) && canImport(CoreLocation)
+        guard let uid = Auth.auth().currentUser?.uid, !uid.isEmpty else { throw CancellationError() }
         let locationRole = role == .child ? "child" : "driver"
         try await NativeLocationFallbackProvider.shared.startContinuousUpdates(
             rideSessionId: rideSessionId,
             role: locationRole
         ) { update in
-            try await uploadNativeLocationUpdate(update)
+            try await uploadNativeLocationUpdate(update, uid: uid)
         }
         #else
         _ = (rideSessionId, role)
@@ -173,34 +174,19 @@ struct FirebaseBackendGateway: FirebaseGateway {
         #endif
     }
 
-    func stopNativeLocationFallback(rideSessionId: String) {
+    @MainActor func stopNativeLocationFallback(rideSessionId: String) {
         #if os(iOS) && canImport(CoreLocation)
-        Task { @MainActor in
-            NativeLocationFallbackProvider.shared.stopContinuousUpdates(rideSessionId: rideSessionId)
-        }
+        NativeLocationFallbackProvider.shared.stopContinuousUpdates(rideSessionId: rideSessionId)
         #else
         _ = rideSessionId
         #endif
     }
 
-    #if os(iOS) && canImport(CoreLocation)
-    private func uploadNativeLocationUpdate(_ update: NativeLocationBatchUpdate) async throws {
-        let updatesJson = try update.callableBatchJson()
-        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            Functions.functions().httpsCallable("writeLocationBatch").call(["updatesJson": updatesJson]) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let payload = result?.data as? [String: Any],
-                          let written = payload["written"] as? Int,
-                          written > 0 {
-                    continuation.resume(returning: ())
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse localisation invalide."))
-                }
-            }
-        }
+    @MainActor func stopAllNativeLocationFallback() {
+        #if os(iOS) && canImport(CoreLocation)
+        NativeLocationFallbackProvider.shared.stopAllUpdates()
+        #endif
     }
-    #endif
 
     private func trips(for query: Query) async throws -> [TripSummary] {
         let snapshot = try await documents(for: query)

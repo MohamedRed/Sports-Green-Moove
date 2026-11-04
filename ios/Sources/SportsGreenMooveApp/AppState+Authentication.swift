@@ -1,10 +1,11 @@
 import Foundation
 
 extension AppState {
-    var authenticating: Bool { authentication.busy }
+    var authenticating: Bool { authentication.busy || (session == nil && rideRequests.busy) }
     var authenticationCleanupRequired: Bool { authentication.cleanupRequired }
     var authenticationStatus: String {
-        authentication.finishingSignOut ? "Déconnexion en cours..." : "Connexion en cours..."
+        authentication.finishingSignOut || (session == nil && rideRequests.busy)
+            ? "Déconnexion en cours..." : "Connexion en cours..."
     }
 
     func bootstrap() async {
@@ -41,6 +42,7 @@ extension AppState {
     }
 
     func signOut() {
+        invalidateRideWork()
         let cleared = authentication.signOut(using: auth)
         session = nil
         trips = []; children = []; clubSummaries = []
@@ -55,6 +57,7 @@ extension AppState {
 
     private func authenticate(changesIdentity: Bool = true, displayName: String? = nil,
         _ action: @MainActor () async throws -> AuthIdentity?) async {
+        guard !rideRequests.busy else { return }
         let result = await authentication.perform(using: auth, changesIdentity: changesIdentity,
             onBegin: { self.errorMessage = nil; self.authenticationRestoreFailed = false },
             action: action,

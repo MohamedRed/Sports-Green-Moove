@@ -16,6 +16,7 @@ import {iosAuthenticationProgress} from './ios-authentication.mjs';
 import {iosProfileInitializationProgress} from './ios-profile-initialization.mjs';
 import {iosLocationStopProgress} from './ios-location-stop.mjs';
 import {iosProfileFixtureResultProgress} from './ios-profile-fixture-result.mjs';
+import {iosRideOwnershipProgress} from './ios-ride-ownership.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
 import {c84ChecksProgress} from './c84-checks.mjs';
@@ -107,6 +108,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosRideOwnershipProgress,
   iosProfileFixtureResultProgress,
   iosLocationStopProgress,
   iosProfileInitializationProgress,

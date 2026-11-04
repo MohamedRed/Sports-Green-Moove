@@ -12,6 +12,7 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ProviderConfigurationError.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LocationSessionState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideRequestState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppDataGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SupportSubmission.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SupportSubmissionState.swift" \
@@ -51,6 +52,9 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AuthenticationProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LocationSessionChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ProfileInitializationProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ProfileInitializationChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AuthenticationChecks.swift" \

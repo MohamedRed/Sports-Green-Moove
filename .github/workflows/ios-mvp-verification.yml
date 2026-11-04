@@ -15,6 +15,7 @@ on:
       - "tests/ios-initialized-profile.test.mjs"
       - "tests/ios-location-stop.test.mjs"
       - "tests/ios-fixture-launch.test.mjs"
+      - "tests/ios-ride-ownership.test.mjs"
       - "scripts/qa/check-ios-location-provider.mjs"
       - "tests/fixtures/ios-location/**"
       - ".github/workflows/ios-mvp-verification.yml"

@@ -7,6 +7,13 @@ import RadarSDK
 struct FirebaseRadarTrackingGateway: RadarTrackingGateway {
     let isConfigured: Bool
 
+    @MainActor func stopLocalTracking() {
+        guard isConfigured, Radar.isInitialized else { return }
+        Radar.stopTracking()
+        Radar.setUserId(nil)
+        Radar.setMetadata(nil)
+    }
+
     init(publishableKey: String) {
         let key = publishableKey.trimmingCharacters(in: .whitespacesAndNewlines)
         self.isConfigured = !key.isEmpty
@@ -98,6 +105,7 @@ private func awaitRadarTripResult(
 #else
 struct FirebaseRadarTrackingGateway: RadarTrackingGateway {
     let isConfigured = false
+    @MainActor func stopLocalTracking() {}
 
     init(publishableKey: String) {
         _ = publishableKey

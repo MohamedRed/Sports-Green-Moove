@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The original 9936e65 ride start restores a ride and starts tracking after sign-out
+in the controlled regression. The candidate passes 72 startup and ten additional
+permission/passenger/end revocation cases, with synchronous local-stop calls and
+an owned location upload. This is not a completed native sign-out or real service
+teardown. Publish one short local result, preserving all media, flows, dates,
+tours, statuses, blockers and public access. See
+`docs/release/evidence/ios-ride-ownership-2026-11-04/README.md`.
+
 The terminal 84aa134 iPhone SDK-linked build succeeds, and the extended account
 profile fixture passes. The full gate fails: six cases pass, but the first launch
 times out before consent assertions. Its cause remains unknown. Publish one short

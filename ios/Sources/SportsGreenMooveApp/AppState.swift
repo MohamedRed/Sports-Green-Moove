@@ -7,11 +7,14 @@ final class AppState {
     var selectedTab: AppTab = .home
     var overlay: AppOverlay?
     var selectedRole: AppRole = .parent {
-        didSet { if selectedRole != oldValue { appDataRefreshId = nil } }
+        didSet {
+            if selectedRole != oldValue { appDataRefreshId = nil; invalidateRideWork() }
+        }
     }
     var darkTheme = false
     var session: AuthSession? {
         didSet {
+            if session?.uid != oldValue?.uid || session?.roles != oldValue?.roles { invalidateRideWork() }
             if session?.uid != oldValue?.uid {
                 appDataRefreshId = nil
                 invalidateSearch()
@@ -52,6 +55,8 @@ final class AppState {
     var noticeMessage: String?
     var authenticationRestoreFailed = false
     var activeRidePermissionDisclosure: ActiveRidePermissionDisclosure?
+    let rideRequests = RideRequestState()
+    let ridePermissions: any ActiveRidePermissionAuthorizing
 
     let auth: AuthGateway
     let firebase: FirebaseGateway
@@ -68,13 +73,15 @@ final class AppState {
         firebase: FirebaseGateway,
         radar: RadarTrackingGateway = UnconfiguredRadarTrackingGateway(),
         stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway(),
-        authentication: AuthenticationState? = nil
+        authentication: AuthenticationState? = nil,
+        ridePermissions: any ActiveRidePermissionAuthorizing = SystemRidePermissions()
     ) {
         self.auth = auth
         self.firebase = firebase
         self.radar = radar
         self.stripe = stripe
         self.authentication = authentication ?? AuthenticationState()
+        self.ridePermissions = ridePermissions
     }
 
     func selectTab(_ tab: AppTab) {

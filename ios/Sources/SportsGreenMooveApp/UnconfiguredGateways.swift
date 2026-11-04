@@ -129,13 +129,15 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Realtime Database iOS n'est pas configuré.")
     }
 
-    func stopNativeLocationFallback(rideSessionId: String) {
+    @MainActor func stopNativeLocationFallback(rideSessionId: String) {
         _ = rideSessionId
     }
+    @MainActor func stopAllNativeLocationFallback() {}
 }
 
 struct UnconfiguredRadarTrackingGateway: RadarTrackingGateway {
     let isConfigured = false
+    @MainActor func stopLocalTracking() {}
 
     func startTripTracking(rideSessionId: String, role: AppRole) async throws {
         _ = (rideSessionId, role)

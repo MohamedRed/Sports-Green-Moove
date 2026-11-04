@@ -25,14 +25,16 @@ protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGate
     func getInbox() async throws -> InboxSummary
     func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String
     func createReport(submission: SupportSubmission) async throws -> String
-    func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws
-    func stopNativeLocationFallback(rideSessionId: String)
+    @MainActor func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws
+    @MainActor func stopNativeLocationFallback(rideSessionId: String)
+    @MainActor func stopAllNativeLocationFallback()
 }
 
 protocol RadarTrackingGateway: Sendable {
     var isConfigured: Bool { get }
     func startTripTracking(rideSessionId: String, role: AppRole) async throws
     func stopTripTracking(rideSessionId: String) async throws
+    @MainActor func stopLocalTracking()
 }
 
 protocol StripePaymentsGateway: Sendable {

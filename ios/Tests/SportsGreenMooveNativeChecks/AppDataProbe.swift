@@ -46,6 +46,8 @@ struct AppDataFixtureGateway: FirebaseGateway {
     let isConfigured = true
     let probe: AppDataProbe
     var profiles: ProfileInitializationProbe? = nil
+    var rides: RideLifecycleProbe? = nil
+    var rideStops: RideLocalStops? = nil
     private var unused: UnconfiguredFirebaseGateway { UnconfiguredFirebaseGateway() }
 
     func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
@@ -62,7 +64,10 @@ struct AppDataFixtureGateway: FirebaseGateway {
         return [ChildSummary(id: "isolated-child", label: "Child", teamLabel: "Isolated team", trackingEnabled: true)]
     }
     func listClubSummaries() async throws -> [ClubSummary] { _ = try await probe.read("clubs"); return [] }
-    func getActiveRide() async throws -> LiveRideSnapshot? { _ = try await probe.read("ride"); return nil }
+    func getActiveRide() async throws -> LiveRideSnapshot? {
+        if let rides { try await rides.step("get-ride"); return isolatedRide() }
+        _ = try await probe.read("ride"); return nil
+    }
     func getPayableBookings() async throws -> [PayableBookingSummary] { _ = try await probe.read("payable"); return [] }
     func getImpactSummary() async throws -> ImpactSummary {
         _ = try await probe.read("impact")
@@ -86,16 +91,23 @@ struct AppDataFixtureGateway: FirebaseGateway {
     }
     func approveBooking(bookingId: String) async throws -> String { try await unused.approveBooking(bookingId: bookingId) }
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {
-        try await unused.startRide(tripId: tripId, bookingIds: bookingIds)
+        if let rides { try await rides.step("start-ride"); return isolatedRide() }
+        return try await unused.startRide(tripId: tripId, bookingIds: bookingIds)
     }
     func markPickup(rideSessionId: String, bookingId: String, childId: String) async throws -> String {
-        try await unused.markPickup(rideSessionId: rideSessionId, bookingId: bookingId, childId: childId)
+        if let rides { try await rides.step("pickup"); return "pickedUp" }
+        return try await unused.markPickup(rideSessionId: rideSessionId, bookingId: bookingId, childId: childId)
     }
     func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String {
-        try await unused.markDropoff(rideSessionId: rideSessionId, bookingId: bookingId, childId: childId)
+        if let rides { try await rides.step("dropoff"); return "droppedOff" }
+        return try await unused.markDropoff(rideSessionId: rideSessionId, bookingId: bookingId, childId: childId)
     }
     func endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int) async throws -> RideCompletionSummary {
-        try await unused.endRide(rideSessionId: rideSessionId, distanceMeters: distanceMeters, passengersSharing: passengersSharing)
+        if let rides {
+            try await rides.step("end-ride")
+            return RideCompletionSummary(rideSessionId: rideSessionId, co2SavedKg: 1, rewardCents: 1)
+        }
+        return try await unused.endRide(rideSessionId: rideSessionId, distanceMeters: distanceMeters, passengersSharing: passengersSharing)
     }
     func getInbox() async throws -> InboxSummary { try await unused.getInbox() }
     func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String {
@@ -103,9 +115,11 @@ struct AppDataFixtureGateway: FirebaseGateway {
     }
     func createReport(submission: SupportSubmission) async throws -> String { try await unused.createReport(submission: submission) }
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
+        if let rides { try await rides.step("native-start"); return }
         try await unused.writeNativeLocationFallback(rideSessionId: rideSessionId, role: role)
     }
-    func stopNativeLocationFallback(rideSessionId: String) { unused.stopNativeLocationFallback(rideSessionId: rideSessionId) }
+    @MainActor func stopNativeLocationFallback(rideSessionId: String) { unused.stopNativeLocationFallback(rideSessionId: rideSessionId) }
+    @MainActor func stopAllNativeLocationFallback() { rideStops?.native += 1 }
     func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
         try await unused.supportReports(uid: uid, cursor: cursor)
     }

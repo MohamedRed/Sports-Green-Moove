@@ -225,10 +225,12 @@ private struct UITestFirebaseGateway: FirebaseGateway {
     func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String { "rating-1" }
     func createReport(submission: SupportSubmission) async throws -> String { "report-1" }
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {}
-    func stopNativeLocationFallback(rideSessionId: String) {}
+    @MainActor func stopNativeLocationFallback(rideSessionId: String) {}
+    @MainActor func stopAllNativeLocationFallback() {}
 }
 
 private struct UITestRadarGateway: RadarTrackingGateway {
+    @MainActor func stopLocalTracking() {}
     var isConfigured: Bool { true }
     func startTripTracking(rideSessionId: String, role: AppRole) async throws {}
     func stopTripTracking(rideSessionId: String) async throws {}

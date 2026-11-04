@@ -32,7 +32,7 @@ test('account data is applied once, only after every currently owned read succee
 
 test('session and role transitions revoke work even when the same identity returns', () => {
   const state = read(base + 'AppState.swift');
-  assert.match(state, /didSet \{ if selectedRole != oldValue \{ appDataRefreshId = nil \} \}/);
+  assert.match(state, /didSet \{\s+if selectedRole != oldValue \{ appDataRefreshId = nil; invalidateRideWork\(\) \}/);
   assert.match(state, /if session\?\.uid != oldValue\?\.uid \{\s+appDataRefreshId = nil/);
   assert.doesNotMatch(state, /func refreshAppData\(/);
   assert.match(read(base + 'GatewayContracts.swift'), /protocol FirebaseGateway: AppDataGateway,/);
