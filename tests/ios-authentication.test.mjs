@@ -18,7 +18,7 @@ test('authentication serializes provider identity mutations and cleans abandoned
   assert.match(gate, /revision = id; pending = id/);
   assert.match(gate, /defer \{ if pending == id \{ pending = nil \} \}/);
   assert.match(gate, /policy.setRequiresSignOut\(true\)/);
-  assert(gate.indexOf('policy.setRequiresSignOut(true)') < gate.indexOf('session = try await action()'));
+  assert(gate.indexOf('policy.setRequiresSignOut(true)') < gate.indexOf('identity = try await action()'));
   assert.match(gate, /guard owns\(id\), !Task.isCancelled else/);
   assert.match(gate, /if changesIdentity \{ try policy.setRequiresSignOut\(false\) \}/);
   assert.match(gate, /cleanupRequired = !\(persisted && cleared\)/);
@@ -27,7 +27,7 @@ test('authentication serializes provider identity mutations and cleans abandoned
   assert.doesNotMatch(gate, /try\?|Task.sleep|@unchecked|@preconcurrency/);
   const app = read(base + 'AppState+Authentication.swift');
   assert.match(app, /authentication.perform\(using: auth/);
-  assert.match(app, /apply: \{ self.session = \$0 \}/);
+  assert.match(app, /apply: \{ self.acceptInitializedSession\(\$0\) \}/);
   assert.match(app, /authentication.owns\(id\), accepted != nil, session == accepted/);
   assert.match(app, /let cleared = authentication.signOut\(using: auth\)/);
   assert.doesNotMatch(read(base + 'AppState.swift'), /func (signIn|signUp|signOut|authenticate|bootstrap)\(/);

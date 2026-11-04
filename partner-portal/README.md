@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The initialized-profile work separates raw identity from verified session roles,
+forwards the signup name and replaces sample identity with account data. Its local
+strict parsing, delayed preparation, child authority and retry checks pass; the
+extended existing fixture test still needs native SDK/rendered verification.
+Publish one short local note, without new media or changed flows/statuses/dates,
+tours, blockers or audience. Profile logout/tracking teardown remain open. See
+`docs/release/evidence/ios-profile-initialization-2026-11-04/README.md`.
+
 The new authentication comparison reproduces visible and simulated provider
 identity restoration after logout at 91f9677. The candidate denies both locally,
 serializes callbacks through cleanup and retains credential-free logout intent

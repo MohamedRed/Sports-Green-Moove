@@ -16,6 +16,7 @@ done
 swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BUILD_DIR" -typecheck \
   "$FIXTURES/GatewayContext.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/Models.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/AuthSession.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PendingBookingStore.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/BookingRequestCoordinator.swift" \
@@ -29,6 +30,7 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BU
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/SupportModels.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/SupportWire.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseInitializedProfile.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift" \

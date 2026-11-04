@@ -10,11 +10,6 @@ enum AppRole: String, CaseIterable, Identifiable, Codable, Sendable {
     var id: String { rawValue }
 }
 
-struct AuthSession: Hashable, Sendable {
-    let uid: String
-    let email: String?
-}
-
 enum AppTab: String, CaseIterable, Identifiable, Sendable {
     case home
     case trips

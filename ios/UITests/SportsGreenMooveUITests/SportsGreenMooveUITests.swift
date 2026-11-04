@@ -7,6 +7,22 @@ final class SportsGreenMooveUITests: XCTestCase {
         assertExists("auth.email.action", in: app)
         assertExists("auth.facebook.action", in: app)
         assertExists("auth.google.action", in: app)
+        let email = app.textFields["auth.email.field"]
+        XCTAssertTrue(email.waitForExistence(timeout: 6))
+        email.tap(); email.typeText("parent@example.be")
+        let password = app.secureTextFields["auth.password.field"]
+        XCTAssertTrue(password.waitForExistence(timeout: 6))
+        password.tap(); password.typeText("fixture-only\n")
+        app.scrollViews.firstMatch.swipeUp()
+        app.buttons["auth.email.action"].tap()
+        assertExists("home.screen", in: app)
+        app.buttons["Profil"].tap()
+        assertExists("profile.screen", in: app)
+        XCTAssertEqual(app.staticTexts["profile.name"].label, "Parent Démo")
+        XCTAssertTrue(app.buttons["profile.role.parent"].exists)
+        XCTAssertTrue(app.buttons["profile.role.driver"].exists)
+        XCTAssertFalse(app.buttons["profile.role.child"].exists)
+        XCTAssertFalse(app.buttons["profile.role.clubManager"].exists)
     }
 
     @MainActor func testPublishSearchAndBookingIdentifiers() {

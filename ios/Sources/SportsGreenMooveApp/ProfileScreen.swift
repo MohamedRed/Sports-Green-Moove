@@ -4,7 +4,7 @@ struct ProfileScreen: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        SGMScreen(spacing: 0) {
+        SGMScreen(spacing: 0, testID: UITestIdentifier.profileScreen) {
             SGMTopBar(title: "MON PROFIL")
             ProfileIdentity()
             ProfileRoleSelector()
@@ -28,15 +28,8 @@ private struct ProfileRoleSelector: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        VStack(spacing: 6) {
-            HStack(spacing: 6) {
-                RoleChip("Parent", role: .parent)
-                RoleChip("Conducteur", role: .driver)
-            }
-            HStack(spacing: 6) {
-                RoleChip("Enfant", role: .child)
-                RoleChip("Club manager", role: .clubManager)
-            }
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
+            ForEach(appState.session?.roles ?? []) { role in RoleChip(role: role) }
         }
         .padding(.horizontal, SGMSpace.padScreen)
         .padding(.bottom, 14)
@@ -45,61 +38,13 @@ private struct ProfileRoleSelector: View {
 
 private struct RoleChip: View {
     @Environment(AppState.self) private var appState
-    let title: String
     let role: AppRole
 
-    init(_ title: String, role: AppRole) {
-        self.title = title
-        self.role = role
-    }
-
     var body: some View {
-        SGMChip(text: title, selected: appState.selectedRole == role) {
-            appState.selectedRole = role
-            Task { await appState.refreshAppData() }
+        SGMChip(text: role.profileTitle, selected: appState.selectedRole == role) {
+            Task { await appState.selectAuthorizedRole(role) }
         }
-    }
-}
-
-private struct ProfileIdentity: View {
-    @Environment(AppState.self) private var appState
-
-    var body: some View {
-        VStack(spacing: 10) {
-            Text("OB")
-                .font(.sgmDisplay(30))
-                .tracking(.sgmWide(for: 30))
-                .foregroundStyle(SGM.textOnGreen)
-                .frame(width: 80, height: 80)
-                .background(
-                    LinearGradient(colors: [SGM.green, SGM.greenDark], startPoint: .topLeading, endPoint: .bottomTrailing),
-                    in: Circle()
-                )
-                .shadow(color: SGM.green.opacity(0.24), radius: 10, y: 4)
-
-            VStack(spacing: 2) {
-                Text("BAKOMBA-NZOLUVONDA")
-                    .font(.sgmDisplay(22))
-                    .tracking(.sgmWide(for: 22))
-                    .foregroundStyle(SGM.textPrimary)
-                Text("Olivier · \(primaryClubLabel)")
-                    .font(.sgmBody(13, weight: .medium))
-                    .foregroundStyle(SGM.textMuted)
-            }
-
-            HStack(spacing: 6) {
-                ProfilePill("GREEN-MOOVER", selected: false)
-                ProfilePill("U8 NATIONAUX", selected: true)
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.top, 16)
-        .padding(.bottom, 10)
-    }
-
-    private var primaryClubLabel: String {
-        appState.clubSummaries.first(where: \.isMember)?.name ?? "Aucun club lié"
+        .accessibilityIdentifier("profile.role.\(role.rawValue)")
     }
 }
 
@@ -226,31 +171,10 @@ private struct ProfileSettingsCard: View {
         [
             ProfileSetting(.groups, "Mon club", appState.clubSummaries.first(where: \.isMember)?.name ?? "Aucun club lié", AppOverlay.groups),
             ProfileSetting(.award, "Paiements", "Stripe", AppOverlay.payments),
-            ProfileSetting(.location, "Ma ville", "Wavre, Belgique", AppOverlay.options),
-            ProfileSetting(.bell, "Notifications", "Activées", AppOverlay.options),
+            ProfileSetting(.location, "Ma ville", "", AppOverlay.options),
+            ProfileSetting(.bell, "Notifications", "", AppOverlay.options),
             ProfileSetting(.settings, "Paramètres", "", AppOverlay.options)
         ]
-    }
-}
-
-private struct ProfilePill: View {
-    let text: String
-    let selected: Bool
-
-    init(_ text: String, selected: Bool) {
-        self.text = text
-        self.selected = selected
-    }
-
-    var body: some View {
-        Text(text)
-            .font(.sgmBody(11, weight: .bold))
-            .tracking(.sgmWide(for: 11))
-            .foregroundStyle(selected ? SGM.textOnGreen : SGM.green)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 3)
-            .background(selected ? SGM.green : SGM.bgCard, in: Capsule())
-            .overlay(Capsule().stroke(selected ? .clear : SGM.border, lineWidth: 1))
     }
 }
 

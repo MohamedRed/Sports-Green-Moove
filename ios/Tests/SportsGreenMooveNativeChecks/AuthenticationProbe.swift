@@ -23,16 +23,16 @@ final class AuthenticationProbe: AuthGateway {
     private(set) var calls: [String] = []
     private(set) var signOutCalls = 0
     var failSignOut = false
-    private var pending: [Int: (Bool, CheckedContinuation<AuthSession?, Error>)] = [:]
+    private var pending: [Int: (Bool, CheckedContinuation<AuthIdentity?, Error>)] = [:]
     private var observers: [(Int, CheckedContinuation<Void, Never>)] = []
 
     init(providerUid: String? = nil) { self.providerUid = providerUid }
 
-    func currentSession() async throws -> AuthSession? { try await request("restore", mutates: false) }
-    func signIn(email: String, password: String) async throws -> AuthSession { try await identity("signIn") }
-    func signUp(name: String, email: String, password: String) async throws -> AuthSession { try await identity("signUp") }
-    func signInWithGoogle() async throws -> AuthSession { try await identity("google") }
-    func signInWithFacebook() async throws -> AuthSession { try await identity("facebook") }
+    func currentSession() async throws -> AuthIdentity? { try await request("restore", mutates: false) }
+    func signIn(email: String, password: String) async throws -> AuthIdentity { try await identity("signIn") }
+    func signUp(name: String, email: String, password: String) async throws -> AuthIdentity { try await identity("signUp") }
+    func signInWithGoogle() async throws -> AuthIdentity { try await identity("google") }
+    func signInWithFacebook() async throws -> AuthIdentity { try await identity("facebook") }
     func signOut() throws {
         signOutCalls += 1
         if failSignOut { throw AuthenticationFailure.storage }
@@ -50,15 +50,15 @@ final class AuthenticationProbe: AuthGateway {
         }
         if mutates { providerUid = uid }
         if fails { continuation.resume(throwing: AuthenticationFailure.storage) }
-        else { continuation.resume(returning: uid.map { AuthSession(uid: $0, email: nil) }) }
+        else { continuation.resume(returning: uid.map { AuthIdentity(uid: $0, email: nil) }) }
     }
 
-    private func identity(_ name: String) async throws -> AuthSession {
+    private func identity(_ name: String) async throws -> AuthIdentity {
         guard let session = try await request(name, mutates: true) else { throw AuthenticationFailure.storage }
         return session
     }
 
-    private func request(_ name: String, mutates: Bool) async throws -> AuthSession? {
+    private func request(_ name: String, mutates: Bool) async throws -> AuthIdentity? {
         calls.append(name)
         let ordinal = calls.count
         return try await withCheckedThrowingContinuation { continuation in

@@ -45,7 +45,13 @@ actor AppDataProbe {
 struct AppDataFixtureGateway: FirebaseGateway {
     let isConfigured = true
     let probe: AppDataProbe
+    var profiles: ProfileInitializationProbe? = nil
     private var unused: UnconfiguredFirebaseGateway { UnconfiguredFirebaseGateway() }
+
+    func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
+        if let profiles { return try await profiles.prepare(identity, displayName: displayName) }
+        return AuthSession(uid: identity.uid, email: identity.email, displayName: displayName, roles: [.parent])
+    }
 
     func searchTrips() async throws -> [TripSummary] {
         let ordinal = try await probe.read("trips")

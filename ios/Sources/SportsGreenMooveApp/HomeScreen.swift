@@ -45,23 +45,26 @@ struct HomeScreen: View {
 }
 
 private struct HomeHeader: View {
+    @Environment(AppState.self) private var appState
+
     var body: some View {
         VStack(spacing: 14) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 1) {
-                    HStack(spacing: 0) {
-                        Text("Bonjour, ")
-                            .font(.sgmBody(15, weight: .bold))
-                            .foregroundStyle(SGM.textPrimary)
-                        Text("Olivier")
+                    Text("Bonjour")
+                        .font(.sgmBody(15, weight: .bold))
+                        .foregroundStyle(SGM.textPrimary)
+                    if let name = appState.session?.displayName, !name.isEmpty {
+                        Text(name)
                             .font(.sgmBody(15, weight: .bold))
                             .foregroundStyle(SGM.green)
-                        Text(" 👋")
-                            .font(.sgmBody(15, weight: .bold))
+                            .fixedSize(horizontal: false, vertical: true)
                     }
-                    Text("Mardi 07 Novembre 2022")
-                        .font(.sgmBody(11, weight: .medium))
-                        .foregroundStyle(SGM.textMuted)
+                    TimelineView(.periodic(from: .now, by: 60)) { context in
+                        Text(context.date, format: .dateTime.weekday(.wide).day().month(.wide).year().locale(Locale(identifier: "fr_BE")))
+                            .font(.sgmBody(11, weight: .medium))
+                            .foregroundStyle(SGM.textMuted)
+                    }
                 }
                 Spacer()
                 SGMThemeButton()

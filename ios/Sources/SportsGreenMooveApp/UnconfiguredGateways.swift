@@ -3,23 +3,23 @@ import Foundation
 struct UnconfiguredAuthGateway: AuthGateway {
     let isConfigured = false
 
-    func currentSession() async throws -> AuthSession? { nil }
+    func currentSession() async throws -> AuthIdentity? { nil }
 
-    func signIn(email: String, password: String) async throws -> AuthSession {
+    func signIn(email: String, password: String) async throws -> AuthIdentity {
         _ = (email, password)
         throw ProviderConfigurationError(message: "Firebase iOS n'est pas configuré.")
     }
 
-    func signUp(name: String, email: String, password: String) async throws -> AuthSession {
+    func signUp(name: String, email: String, password: String) async throws -> AuthIdentity {
         _ = (name, email, password)
         throw ProviderConfigurationError(message: "Firebase iOS n'est pas configuré.")
     }
 
-    func signInWithGoogle() async throws -> AuthSession {
+    func signInWithGoogle() async throws -> AuthIdentity {
         throw ProviderConfigurationError(message: "Google Auth iOS n'est pas configuré.")
     }
 
-    func signInWithFacebook() async throws -> AuthSession {
+    func signInWithFacebook() async throws -> AuthIdentity {
         throw ProviderConfigurationError(message: "Facebook Auth iOS n'est pas configuré.")
     }
 
@@ -27,6 +27,9 @@ struct UnconfiguredAuthGateway: AuthGateway {
 }
 
 struct UnconfiguredFirebaseGateway: FirebaseGateway {
+    func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
+        throw ProviderConfigurationError(message: "Connexion indisponible.")
+    }
     func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
         try await UnconfiguredSupportGateway().supportReports(uid: uid, cursor: cursor)
     }

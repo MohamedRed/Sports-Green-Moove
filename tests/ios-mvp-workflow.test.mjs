@@ -202,7 +202,7 @@ test('iOS changes trigger verification and web smoke checks its constraints', ()
     assert(smoke.on[event].paths.includes('tests/ios-mvp-workflow.test.mjs'));
   }
   assert(Object.values(smoke.jobs).some(group => group.steps.some(step =>
-    step.run === 'node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs')));
+    step.run === 'node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs')));
   const routine = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   for (const name of ['ios-native-checks', 'ios-native-ui']) {
     assert.equal(routine.jobs[name].if, '${{ false }}');

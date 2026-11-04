@@ -2,15 +2,15 @@ import Foundation
 
 protocol AuthGateway: Sendable {
     var isConfigured: Bool { get }
-    func currentSession() async throws -> AuthSession?
-    func signIn(email: String, password: String) async throws -> AuthSession
-    func signUp(name: String, email: String, password: String) async throws -> AuthSession
-    func signInWithGoogle() async throws -> AuthSession
-    func signInWithFacebook() async throws -> AuthSession
+    func currentSession() async throws -> AuthIdentity?
+    func signIn(email: String, password: String) async throws -> AuthIdentity
+    func signUp(name: String, email: String, password: String) async throws -> AuthIdentity
+    func signInWithGoogle() async throws -> AuthIdentity
+    func signInWithFacebook() async throws -> AuthIdentity
     @MainActor func signOut() throws
 }
 
-protocol FirebaseGateway: AppDataGateway, SupportGateway, PendingReviewGateway {
+protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGateway, PendingReviewGateway {
     var isConfigured: Bool { get }
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion]
     func resolvePlace(placeId: String) async throws -> ResolvedPlace

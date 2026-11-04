@@ -2,6 +2,10 @@ import SwiftUI
 
 enum UITestIdentifier {
     static let authScreen = "auth.screen"
+    static let authEmailField = "auth.email.field"
+    static let authPasswordField = "auth.password.field"
+    static let profileScreen = "profile.screen"
+    static let profileName = "profile.name"
     static let authEmailAction = "auth.email.action"
     static let authFacebookAction = "auth.facebook.action"
     static let authGoogleAction = "auth.google.action"

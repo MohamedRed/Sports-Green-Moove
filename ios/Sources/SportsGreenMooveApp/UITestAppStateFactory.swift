@@ -80,7 +80,8 @@ enum UITestAppStateFactory {
 }
 
 private enum Fixtures {
-    static let session = AuthSession(uid: "ui-user", email: "parent@example.be")
+    static let session = AuthSession(uid: "ui-user", email: "parent@example.be", displayName: "Parent Démo",
+        roles: [.parent, .driver])
     static let origin = ResolvedPlace(placeId: "origin", label: "Wavre", formattedAddress: "Rue du Stade 1, Wavre", lat: 50.715, lng: 4.612)
     static let destination = ResolvedPlace(placeId: "dest", label: "Ottignies", formattedAddress: "Avenue du Club 8, Ottignies", lat: 50.669, lng: 4.567)
     static let child = ChildSummary(id: "child-1", label: "Nora", teamLabel: "U8 Royal Ottignies", trackingEnabled: true)
@@ -184,15 +185,17 @@ private enum Fixtures {
 private struct UITestAuthGateway: AuthGateway {
     let session: AuthSession?
     var isConfigured: Bool { true }
-    func currentSession() async throws -> AuthSession? { session }
-    func signIn(email: String, password: String) async throws -> AuthSession { Fixtures.session }
-    func signUp(name: String, email: String, password: String) async throws -> AuthSession { Fixtures.session }
-    func signInWithGoogle() async throws -> AuthSession { Fixtures.session }
-    func signInWithFacebook() async throws -> AuthSession { Fixtures.session }
+    private var identity: AuthIdentity { AuthIdentity(uid: Fixtures.session.uid, email: Fixtures.session.email) }
+    func currentSession() async throws -> AuthIdentity? { session.map { AuthIdentity(uid: $0.uid, email: $0.email) } }
+    func signIn(email: String, password: String) async throws -> AuthIdentity { identity }
+    func signUp(name: String, email: String, password: String) async throws -> AuthIdentity { identity }
+    func signInWithGoogle() async throws -> AuthIdentity { identity }
+    func signInWithFacebook() async throws -> AuthIdentity { identity }
     func signOut() throws {}
 }
 
 private struct UITestFirebaseGateway: FirebaseGateway {
+    func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession { Fixtures.session }
     func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
         try await UnconfiguredSupportGateway().supportReports(uid: uid, cursor: cursor)
     }

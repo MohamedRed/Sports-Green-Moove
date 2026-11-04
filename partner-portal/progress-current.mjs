@@ -13,6 +13,7 @@ import {iosFixtureProgress, iosFixtureLaunchProgress} from './ios-fixture-observ
 import {iosAccountRefreshProgress} from './ios-account-refresh.mjs';
 import {iosFixturePassProgress} from './ios-fixture-pass.mjs';
 import {iosAuthenticationProgress} from './ios-authentication.mjs';
+import {iosProfileInitializationProgress} from './ios-profile-initialization.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
 import {c84ChecksProgress} from './c84-checks.mjs';
@@ -104,6 +105,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosProfileInitializationProgress,
   iosAuthenticationProgress,
   iosFixturePassProgress,
   iosAccountRefreshProgress,

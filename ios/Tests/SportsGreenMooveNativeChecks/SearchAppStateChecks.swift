@@ -6,7 +6,7 @@ func checkSearchAppState() async {
         authentication: AuthenticationState(makeStore: { MemoryLogoutIntentStore() }))
     var form = SearchFormState.initial()
     check(state.prepareSearch(form: form) == nil, "Signed-out search is rejected before calling a provider")
-    state.session = AuthSession(uid: "isolated-parent-a", email: nil)
+    state.session = AuthSession(uid: "isolated-parent-a", email: nil, displayName: nil, roles: [.parent])
     state.searchOrigin = ResolvedPlace(placeId: "origin", label: "Origin", formattedAddress: "Isolated origin", lat: 50, lng: 4)
     state.searchDestination = ResolvedPlace(placeId: "destination", label: "Destination", formattedAddress: "Isolated destination", lat: 51, lng: 5)
     form.childUserId = "isolated-child-a"
@@ -34,7 +34,7 @@ func checkSearchAppState() async {
     await state.requestSearchMatch(match, form: changed)
     check(state.errorMessage == "Les options ont changé. Relancez la recherche avant de réserver." && state.noticeMessage == nil,
         "A changed form is rejected before requestBooking can call the provider")
-    state.session = AuthSession(uid: "isolated-parent-b", email: nil)
+    state.session = AuthSession(uid: "isolated-parent-b", email: nil, displayName: nil, roles: [.parent])
     check(state.searchMatches.isEmpty && state.searchRequests.completed == nil && state.searchRequests.pending == nil,
         "Account changes revoke pending and completed results")
     check(state.searchOrigin == nil && state.searchDestination == nil && state.originSuggestions.isEmpty &&

@@ -19,7 +19,15 @@ struct AuthScreen: View {
                     AuthField(title: "Nom et prénom", text: $name)
                 }
                 AuthField(title: "votre@email.be", text: $email)
+                    .keyboardType(.emailAddress)
+                    .textContentType(.username)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .sgmUITestIdentifier(UITestIdentifier.authEmailField)
                 AuthField(title: "Mot de passe", text: $password, isSecure: true)
+                    .textContentType(mode == .signUp ? .newPassword : .password)
+                    .submitLabel(.done)
+                    .sgmUITestIdentifier(UITestIdentifier.authPasswordField)
                 SGMButton(title: mode == .signIn ? "SE CONNECTER" : "CRÉER MON COMPTE", testID: UITestIdentifier.authEmailAction) {
                     let submitted = (mode: mode, name: name, email: email, password: password)
                     Task {

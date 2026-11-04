@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "local-Foundation-AppState-and-controlled-signatures-not-real-account-or-rendered-phone-proof",
+  "baseline": {
+    "sourceCommit": "a4fa494ac4fb29c41586b16d2896ae292721dcc3",
+    "evidenceType": "source review, not a new provider test",
+    "profileInitializationInIosAuthFlow": false,
+    "sampleProfileIdentityPresent": true,
+    "unrestrictedProfileRoleChoicesPresent": true
+  },
+  "candidateSources": "source-sha256.json",
+  "nativeChecks": {
+    "command": "bash scripts/check-ios-native-plan.sh",
+    "languageMode": "Swift 6",
+    "actualAppStateCompiled": true,
+    "exitCode": 0,
+    "log": "native-checks.txt",
+    "logSha256": "2788983b58898ecb58279fe0d606910f67bccfa7a354adf5befafe3d63cd77fb",
+    "checks": [
+      "strict profile UID and role flags",
+      "unknown, duplicate and mixed-child roles rejected",
+      "missing name is not invented",
+      "signup name forwarded and prevalidated",
+      "raw identity does not open app",
+      "logout during profile success or failure",
+      "cancellation during preparation",
+      "current failure and explicit login retry",
+      "restoration preparation retry",
+      "mismatched profile identity denied",
+      "child-only initial role",
+      "unauthorized role selection denied",
+      "abandoned raw completion does not start profile write"
+    ]
+  },
+  "signatureChecks": {
+    "command": "bash scripts/check-ios-support-concurrency.sh",
+    "scope": "controlled module signatures only; no real SDK linking",
+    "exitCode": 0,
+    "log": "signature-checks.txt",
+    "logSha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+  },
+  "authFixtureExtension": {
+    "testName": "SportsGreenMooveUITests.testAuthFlowIdentifiers",
+    "originalAssertionsRetained": true,
+    "addedAssertions": [
+      "credential entry and submission",
+      "authenticated home",
+      "synthetic profile name",
+      "parent and driver roles present",
+      "child and club manager roles absent"
+    ],
+    "result": "not yet executed on this source"
+  },
+  "sdkLinkedBuildAccepted": false,
+  "realSignupAccepted": false,
+  "authProfileFixtureUiAccepted": false,
+  "trackingTeardownAccepted": false,
+  "physicalDeviceEvidenceAccepted": false,
+  "productionWrites": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "remainingWork": [
+    "SDK-linked new-source build and all rendered fixtures",
+    "profile long-name layout inspection",
+    "real isolated iPhone signup and roles",
+    "profile logout action with tracking teardown",
+    "child invitation, conversation and emergency flows",
+    "physical tracking and operational/audit evidence"
+  ],
+  "portalBrowser": {
+    "command": "node tests/partner-portal.browser.mjs",
+    "scope": "progress website only; not native app UI",
+    "initial": {
+      "exitCode": 1,
+      "log": "portal-browser-initial-failure.txt",
+      "logSha256": "b14114ede66d64d3e6a2d494e059274cf4701457a25d591c5d9c7b9a05c85553",
+      "observed": "30-second wait for appearance gallery heading expired",
+      "cause": "not established"
+    },
+    "recheck": {
+      "exitCode": 0,
+      "log": "portal-browser-recheck.txt",
+      "logSha256": "da81ce3ba2e48d58d646a6fdd2bdfb61cd8955fbe5fbb0b6104cf637c411e1be",
+      "viewports": [
+        320,
+        390,
+        768,
+        1440
+      ]
+    },
+    "testsOrTimeoutsChanged": false
+  }
+}

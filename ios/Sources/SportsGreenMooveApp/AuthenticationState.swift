@@ -4,6 +4,7 @@ import Observation
 enum AuthenticationFailure: Error { case storage }
 enum AuthenticationCopy {
     static let failed = "Connexion impossible. Réessayez."
+    static let preparation = "Connexion non finalisée. Reconnectez-vous."
     static let cleanup = "Déconnexion incomplète. Réessayez."
 }
 enum AuthenticationResult: Sendable {
@@ -44,7 +45,8 @@ final class AuthenticationState {
         using gateway: AuthGateway,
         changesIdentity: Bool,
         onBegin: @MainActor () -> Void,
-        action: @MainActor () async throws -> AuthSession?,
+        action: @MainActor () async throws -> AuthIdentity?,
+        prepare: @MainActor (AuthIdentity) async throws -> AuthSession,
         apply: @MainActor (AuthSession?) -> Void
     ) async -> AuthenticationResult {
         guard !busy, !Task.isCancelled else { return .ignored }
@@ -66,8 +68,8 @@ final class AuthenticationState {
             return .failed(revision, AuthenticationCopy.cleanup)
         }
 
-        let session: AuthSession?
-        do { session = try await action() }
+        let identity: AuthIdentity?
+        do { identity = try await action() }
         catch {
             if changesIdentity {
                 return clearAbandonedIdentity(using: gateway, policy: policy, currentFailure: owns(id) && !Task.isCancelled)
@@ -78,9 +80,27 @@ final class AuthenticationState {
             if changesIdentity { return clearAbandonedIdentity(using: gateway, policy: policy, currentFailure: false) }
             return .ignored
         }
-        guard (!changesIdentity || session != nil), session?.uid.isEmpty != true else {
+        guard (!changesIdentity || identity != nil), identity?.uid.isEmpty != true else {
             return changesIdentity ? clearAbandonedIdentity(using: gateway, policy: policy, currentFailure: true) :
                 .failed(id, AuthenticationCopy.failed)
+        }
+        let session: AuthSession?
+        do {
+            if let identity {
+                let initialized = try await prepare(identity)
+                guard initialized.isValid, initialized.uid == identity.uid else { throw AuthenticationFailure.storage }
+                session = initialized
+            } else { session = nil }
+        } catch {
+            if changesIdentity {
+                return clearAbandonedIdentity(using: gateway, policy: policy, currentFailure: owns(id) && !Task.isCancelled,
+                    failureMessage: AuthenticationCopy.preparation)
+            }
+            return owns(id) && !Task.isCancelled ? .failed(id, AuthenticationCopy.failed) : .ignored
+        }
+        guard owns(id), !Task.isCancelled else {
+            if changesIdentity { return clearAbandonedIdentity(using: gateway, policy: policy, currentFailure: false) }
+            return .ignored
         }
         do {
             if changesIdentity { try policy.setRequiresSignOut(false) }
@@ -94,7 +114,8 @@ final class AuthenticationState {
     }
 
     private func clearAbandonedIdentity(
-        using gateway: AuthGateway, policy: any LogoutIntentStore, currentFailure: Bool
+        using gateway: AuthGateway, policy: any LogoutIntentStore, currentFailure: Bool,
+        failureMessage: String = AuthenticationCopy.failed
     ) -> AuthenticationResult {
         if !currentFailure { revision = UUID() }
         var persisted = false
@@ -103,7 +124,7 @@ final class AuthenticationState {
         do { try gateway.signOut(); cleared = true } catch { }
         cleanupRequired = !(persisted && cleared)
         if cleanupRequired { return .failed(revision, AuthenticationCopy.cleanup) }
-        return currentFailure ? .failed(revision, AuthenticationCopy.failed) : .signedOut(revision)
+        return currentFailure ? .failed(revision, failureMessage) : .signedOut(revision)
     }
 
     private func store() throws -> any LogoutIntentStore {

@@ -16,25 +16,25 @@ import UIKit
 struct FirebaseAuthGateway: AuthGateway {
     let isConfigured = true
 
-    func currentSession() async throws -> AuthSession? {
+    func currentSession() async throws -> AuthIdentity? {
         guard let user = Auth.auth().currentUser else { return nil }
-        return AuthSession(uid: user.uid, email: user.email)
+        return AuthIdentity(uid: user.uid, email: user.email)
     }
 
-    func signIn(email: String, password: String) async throws -> AuthSession {
+    func signIn(email: String, password: String) async throws -> AuthIdentity {
         try await authSession { completion in
             Auth.auth().signIn(withEmail: email, password: password, completion: completion)
         }
     }
 
-    func signUp(name: String, email: String, password: String) async throws -> AuthSession {
+    func signUp(name: String, email: String, password: String) async throws -> AuthIdentity {
         _ = name
         return try await authSession { completion in
             Auth.auth().createUser(withEmail: email, password: password, completion: completion)
         }
     }
 
-    func signInWithGoogle() async throws -> AuthSession {
+    func signInWithGoogle() async throws -> AuthIdentity {
         #if canImport(GoogleSignIn) && canImport(UIKit)
         return try await googleSignInSession()
         #else
@@ -42,7 +42,7 @@ struct FirebaseAuthGateway: AuthGateway {
         #endif
     }
 
-    func signInWithFacebook() async throws -> AuthSession {
+    func signInWithFacebook() async throws -> AuthIdentity {
         #if canImport(FacebookCore) && canImport(FacebookLogin) && canImport(UIKit)
         return try await facebookSignInSession()
         #else
@@ -61,13 +61,13 @@ struct FirebaseAuthGateway: AuthGateway {
     }
 
     @MainActor
-    private func authSession(_ action: (@escaping (AuthDataResult?, Error?) -> Void) -> Void) async throws -> AuthSession {
+    private func authSession(_ action: (@escaping (AuthDataResult?, Error?) -> Void) -> Void) async throws -> AuthIdentity {
         try await withCheckedThrowingContinuation { continuation in
             action { result, error in
                 if let error {
                     continuation.resume(throwing: error)
                 } else if let result {
-                    let session = AuthSession(uid: result.user.uid, email: result.user.email)
+                    let session = AuthIdentity(uid: result.user.uid, email: result.user.email)
                     continuation.resume(returning: session)
                 } else {
                     continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Firebase Auth invalide."))
@@ -78,7 +78,7 @@ struct FirebaseAuthGateway: AuthGateway {
 
     #if canImport(GoogleSignIn) && canImport(UIKit)
     @MainActor
-    private func googleSignInSession() async throws -> AuthSession {
+    private func googleSignInSession() async throws -> AuthIdentity {
         let reversedClientId = Bundle.main.object(forInfoDictionaryKey: "SGMGoogleReversedClientID") as? String
         guard let reversedClientId, !reversedClientId.isEmpty else {
             throw ProviderConfigurationError(message: "Configurez SGM_GOOGLE_REVERSED_CLIENT_ID pour Google Auth iOS.")
@@ -107,7 +107,7 @@ struct FirebaseAuthGateway: AuthGateway {
 
     #if canImport(FacebookCore) && canImport(FacebookLogin) && canImport(UIKit)
     @MainActor
-    private func facebookSignInSession() async throws -> AuthSession {
+    private func facebookSignInSession() async throws -> AuthIdentity {
         let appId = Bundle.main.object(forInfoDictionaryKey: "FacebookAppID") as? String
         guard let appId, !appId.isEmpty else {
             throw ProviderConfigurationError(message: "Configurez SGM_FACEBOOK_APP_ID pour Facebook Auth iOS.")
@@ -141,7 +141,7 @@ struct FirebaseAuthGateway: AuthGateway {
                     if let authError {
                         continuation.resume(throwing: authError)
                     } else if let user = authResult?.user {
-                        continuation.resume(returning: AuthSession(uid: user.uid, email: user.email))
+                        continuation.resume(returning: AuthIdentity(uid: user.uid, email: user.email))
                     } else {
                         continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Facebook Auth invalide."))
                     }

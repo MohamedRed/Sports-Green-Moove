@@ -6,7 +6,7 @@ func checkAppDataRefresh() async {
     func state(_ probe: AppDataProbe) -> AppState {
         let result = AppState(auth: UnconfiguredAuthGateway(), firebase: AppDataFixtureGateway(probe: probe),
             authentication: AuthenticationState(makeStore: { MemoryLogoutIntentStore() }))
-        result.session = AuthSession(uid: "isolated-parent-a", email: nil)
+        result.session = AuthSession(uid: "isolated-parent-a", email: nil, displayName: nil, roles: [.parent])
         return result
     }
     func hasNoPrivateData(_ app: AppState) -> Bool {
@@ -49,7 +49,8 @@ func checkAppDataRefresh() async {
         let request = Task { await app.refreshAppData() }
         await probe.waitForCall(1)
         app.signOut()
-        app.session = AuthSession(uid: returnToSameUid ? "isolated-parent-a" : "isolated-parent-b", email: nil)
+        app.session = AuthSession(uid: returnToSameUid ? "isolated-parent-a" : "isolated-parent-b", email: nil,
+            displayName: nil, roles: [.parent])
         app.trips = [appDataTrip("current-account")]
         app.errorMessage = "Current account notice"
         await probe.release(1)

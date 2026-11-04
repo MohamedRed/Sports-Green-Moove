@@ -20,8 +20,14 @@ extension AppState {
     }
 
     func signUp(name: String, email: String, password: String) async {
-        guard session == nil else { return }
-        await authenticate { try await self.auth.signUp(name: name, email: email, password: password) }
+        guard session == nil, !authenticating else { return }
+        let submittedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard (2...160).contains(submittedName.utf16.count) else {
+            errorMessage = "Indiquez un nom de 2 à 160 caractères."; return
+        }
+        await authenticate(displayName: submittedName) {
+            try await self.auth.signUp(name: submittedName, email: email, password: password)
+        }
     }
 
     func signInWithGoogle() async {
@@ -47,10 +53,13 @@ extension AppState {
         errorMessage = cleared ? nil : AuthenticationCopy.cleanup
     }
 
-    private func authenticate(changesIdentity: Bool = true, _ action: @MainActor () async throws -> AuthSession?) async {
+    private func authenticate(changesIdentity: Bool = true, displayName: String? = nil,
+        _ action: @MainActor () async throws -> AuthIdentity?) async {
         let result = await authentication.perform(using: auth, changesIdentity: changesIdentity,
             onBegin: { self.errorMessage = nil; self.authenticationRestoreFailed = false },
-            action: action, apply: { self.session = $0 })
+            action: action,
+            prepare: { try await self.firebase.initializeProfile(identity: $0, displayName: displayName) },
+            apply: { self.acceptInitializedSession($0) })
         switch result {
         case .applied(let id, let accepted):
             guard authentication.owns(id), accepted != nil, session == accepted else { return }
@@ -65,5 +74,10 @@ extension AppState {
         case .ignored:
             break
         }
+    }
+
+    private func acceptInitializedSession(_ value: AuthSession?) {
+        session = value
+        if let value, !value.roles.contains(selectedRole), let first = value.roles.first { selectedRole = first }
     }
 }
