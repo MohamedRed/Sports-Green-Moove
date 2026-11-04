@@ -26,6 +26,10 @@ test('the two-platform baseline keeps logic proof separate from app, phone and r
     assert.equal(report[key], false, key);
   }
   assert.equal(report.hostedBuildStarted.statusAtObservation, 'in_progress');
+  assert.equal(report.terminalBuildResult.conclusion, 'failure');
+  assert.equal(report.terminalBuildResult.exitCode, 65);
+  assert.equal(report.terminalBuildResult.compilerErrors.length, 2);
+  assert.equal(report.terminalBuildResult.simulatorDisposal, 'success');
   assert.equal(report.sourceReviewGaps.length, 4);
   assert.deepEqual(content.iosMvpBaseline, iosMvpBaseline);
   assert.deepEqual(content.updates[0], iosMvpProgress);
@@ -52,6 +56,7 @@ test('iPhone verification is bounded standard public compute, without paid stora
 test('full SDK project and unchanged fixture tests run once without signing or production configuration', () => {
   const commands = job.steps.map(step => step.run ?? '').join('\n');
   assert.match(commands, /bash scripts\/check-ios-native-plan\.sh/);
+  assert.match(commands, /bash scripts\/check-ios-support-concurrency\.sh/);
   assert.match(commands, /xcodegen generate --spec project\.yml/);
   assert.match(commands, /xcrun simctl create SGM-MVP-iPhone com\.apple\.CoreSimulator\.SimDeviceType\.iPhone-16/);
   assert.match(commands, /xcodebuild test/);
@@ -68,11 +73,25 @@ test('full SDK project and unchanged fixture tests run once without signing or p
   assert.match(fixtures, /--sgm-ui-test-fixture/);
 });
 
+test('support transports typed values across the continuation without suppressing concurrency checks', () => {
+  const gateway = read('ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift');
+  assert.match(gateway, /supportCall<Response: Sendable>/);
+  assert.match(gateway, /input: \[String: String\]/);
+  assert.match(gateway, /decode: @escaping @Sendable \(Any\) throws -> Response/);
+  assert.match(gateway, /let result: Response = try await withCheckedThrowingContinuation/);
+  assert.match(gateway, /continuation.resume\(with: Result \{ try decode\(data\) \}\)/);
+  assert.equal((gateway.match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
+  assert.match(gateway, /try Task.checkCancellation\(\)/);
+  assert.doesNotMatch(gateway, /@unchecked|@preconcurrency|resume\(returning: data\)|async throws -> Any/);
+  assert.match(read('scripts/check-ios-support-concurrency.sh'), /-swift-version 6 -strict-concurrency=complete -warnings-as-errors/);
+});
+
 test('iOS changes trigger verification and web smoke checks its constraints', () => {
   assert.deepEqual(requiredUserFlowChecks.find(check => check.workflowName === workflow.name), {
     workflowName: 'iOS MVP Verification', name: job.name, acceptableConclusions: ['SUCCESS'],
   });
-  for (const source of ['ios/**', 'scripts/check-ios-native-plan.sh', 'tests/ios-mvp-workflow.test.mjs', path]) {
+  for (const source of ['ios/**', 'scripts/check-ios-native-plan.sh', 'scripts/check-ios-support-concurrency.sh',
+    'tests/fixtures/ios-support-concurrency/**', 'tests/ios-mvp-workflow.test.mjs', path]) {
     assert(workflow.on.pull_request.paths.includes(source), source);
   }
   const smoke = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();

@@ -4,8 +4,8 @@
 
 The owner confirmed Android and iPhone for MVP on 4 November. Add one concise
 scope note and an iPhone conversation/emergency blocker. Local Foundation checks
-pass; the separate SDK-linked build is not yet accepted at the retained startup
-observation. Preserve every flow, date, media item, tour, prior update and public
+pass; the first SDK-linked build fails before UI tests. The typed support candidate
+is not yet SDK-verified. Preserve every flow, date, media item, tour, prior update and public
 access. See `docs/release/evidence/ios-mvp-baseline-2026-11-04/README.md`.
 
 The d77a049 web jobs and all eleven focused Android lanes pass. The main ordinary

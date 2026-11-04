@@ -13,6 +13,13 @@ with read-only repository access and a 35-minute deadline. It uploads no artifac
 uses no cache or provider secrets, does not sign, and does not publish an app.
 [GitHub documents free standard public-repository compute](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 Larger runners and storage have separate billing; they are not enabled here.
+The signature-only support concurrency check runs in addition to, never instead
+of, the actual SDK-linked app build and all five fixture tests.
+
+The first run at `c1c2fa4` failed in support gateway compilation before UI tests.
+The candidate uses string-only inputs and validates Sendable models before
+continuation transfer, preserving cancellation and account isolation. Full SDK
+reverification remains required. See `evidence/ios-mvp-baseline-2026-11-04/`.
 
 A passing result would prove compilation against the declared SDK dependencies
 and five fixture-screen checks, not authentication, transactions, conversation

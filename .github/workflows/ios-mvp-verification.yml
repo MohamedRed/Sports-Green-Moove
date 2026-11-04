@@ -6,6 +6,8 @@ on:
     paths:
       - "ios/**"
       - "scripts/check-ios-native-plan.sh"
+      - "scripts/check-ios-support-concurrency.sh"
+      - "tests/fixtures/ios-support-concurrency/**"
       - "tests/ios-mvp-workflow.test.mjs"
       - ".github/workflows/ios-mvp-verification.yml"
 
@@ -36,6 +38,9 @@ jobs:
 
       - name: Run native logic checks
         run: bash scripts/check-ios-native-plan.sh
+
+      - name: Check support concurrency signature regressions
+        run: bash scripts/check-ios-support-concurrency.sh
 
       - name: Install project generator
         run: brew install xcodegen

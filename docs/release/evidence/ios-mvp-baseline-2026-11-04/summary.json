@@ -21,6 +21,26 @@
     "completedSteps": ["native logic checks", "project generation", "simulator creation"],
     "result": "not yet accepted; consult the source-bound terminal run separately"
   },
+  "terminalBuildResult": {
+    "sourceCommit": "c1c2fa4deb853f7c200cb61f268dccf1f9f46d95",
+    "runId": 41830173404,
+    "jobId": 126575027249,
+    "status": "completed",
+    "conclusion": "failure",
+    "completedAt": "2026-11-04T12:46:28Z",
+    "xcode": "26.6",
+    "firebaseVersion": "12.19.3",
+    "exitCode": 65,
+    "phase": "app compilation, before UI execution",
+    "file": "ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift",
+    "compilerErrors": [
+      {"line": 11, "message": "sending value of non-Sendable type '[String : Any]' risks causing data races"},
+      {"line": 13, "message": "sending 'data' risks causing data races"}
+    ],
+    "simulatorDisposal": "success",
+    "originalPrivateFailedStepLogBytes": 6625233,
+    "originalPrivateFailedStepLogSha256": "f0389c563a66b4862d3ba7b7393c135993b1dc5d8aa1a2be70cbf9f235f0f33e"
+  },
   "sourceReviewGaps": [
     {"path": "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift", "finding": "Chat rows have no conversation-opening or sending action."},
     {"path": "ios/Sources/SportsGreenMooveApp/OptionsScreen.swift", "finding": "Saved emergency-contact editing is absent; the displayed number is static example data."},

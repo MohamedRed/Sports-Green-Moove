@@ -6,6 +6,8 @@ on:
     paths:
       - ".github/workflows/ios-mvp-verification.yml"
       - "tests/ios-mvp-workflow.test.mjs"
+      - "scripts/check-ios-support-concurrency.sh"
+      - "tests/fixtures/ios-support-concurrency/**"
       - "scripts/diagnostics/transfer-toolchain.mjs"
       - "tests/diagnostic-toolchain.test.mjs"
       - "tests/ledger-summary*.test.mjs"
@@ -625,6 +627,8 @@ on:
     paths:
       - ".github/workflows/ios-mvp-verification.yml"
       - "tests/ios-mvp-workflow.test.mjs"
+      - "scripts/check-ios-support-concurrency.sh"
+      - "tests/fixtures/ios-support-concurrency/**"
       - "scripts/diagnostics/transfer-toolchain.mjs"
       - "tests/diagnostic-toolchain.test.mjs"
       - "tests/ledger-summary*.test.mjs"
