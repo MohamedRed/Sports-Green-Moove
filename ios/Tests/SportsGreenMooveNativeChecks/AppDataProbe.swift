@@ -48,6 +48,7 @@ struct AppDataFixtureGateway: FirebaseGateway {
     var profiles: ProfileInitializationProbe? = nil
     var rides: RideLifecycleProbe? = nil
     var rideStops: RideLocalStops? = nil
+    var publications: AppDataProbe? = nil
     private var unused: UnconfiguredFirebaseGateway { UnconfiguredFirebaseGateway() }
 
     func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
@@ -80,12 +81,24 @@ struct AppDataFixtureGateway: FirebaseGateway {
     func getDriverBookingRequests() async throws -> [BookingRequestSummary] {
         _ = try await probe.read("requests"); return []
     }
-    func suggestPlaces(input: String) async throws -> [PlaceSuggestion] { try await unused.suggestPlaces(input: input) }
-    func resolvePlace(placeId: String) async throws -> ResolvedPlace { try await unused.resolvePlace(placeId: placeId) }
+    func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
+        if let publications {
+            _ = try await publications.read("suggest")
+            return [PlaceSuggestion(placeId: "isolated-origin", label: "Synthetic place", mainText: nil, secondaryText: nil)]
+        }
+        return try await unused.suggestPlaces(input: input)
+    }
+    func resolvePlace(placeId: String) async throws -> ResolvedPlace {
+        if let publications { _ = try await publications.read("resolve"); return isolatedPublishDraft().origin }
+        return try await unused.resolvePlace(placeId: placeId)
+    }
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary] {
         try await unused.searchTripMatches(criteria: criteria)
     }
-    func createTrip(draft: TripPublishDraft) async throws -> String { try await unused.createTrip(draft: draft) }
+    func createTrip(draft: TripPublishDraft) async throws -> String {
+        if let publications { _ = try await publications.read("publish"); return "isolated-trip" }
+        return try await unused.createTrip(draft: draft)
+    }
     func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String {
         try await unused.requestBooking(trip: trip, childId: childId, seats: seats)
     }

@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The original 20ca145 publication callback changes signed-out UI in the controlled
+regression; the account-bound candidate passes 42 delayed boundaries and current
+success/retry checks. Publish one short local note, not completed logout. Preserve
+all 34 flows, 532 media files, dates, tours, statuses, blockers and older updates.
+Also retain the terminal 9936e65 35-minute build cancellation: no UI case executes.
+Future public runs are now approved up to 50 minutes, with only three synthetic
+captures, at most 2 MB, one-day retention. No new native media is yet accepted.
+Site service-token rotation is recorded technically, not as visible product news;
+public audience remains unchanged. See the dated `ios-account-work`,
+`ios-build-timeout-9936e65`, `ios-approved-captures` and `site-service-token` records.
+
 The original 9936e65 ride start restores a ride and starts tracking after sign-out
 in the controlled regression. The candidate passes 72 startup and ten additional
 permission/passenger/end revocation cases, with synchronous local-stop calls and

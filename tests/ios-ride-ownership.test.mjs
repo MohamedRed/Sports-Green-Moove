@@ -19,10 +19,10 @@ test('a revoked account or role cannot own pending ride work even after an ABA t
   for (const call of ['ridePermissions.cancelPending()', 'firebase.stopAllNativeLocationFallback()', 'radar.stopLocalTracking()']) assert(state.includes(call));
   const app = read(root + 'AppState.swift');
   assert.match(app, /session\?\.uid != oldValue\?\.uid \|\| session\?\.roles != oldValue\?\.roles/);
-  assert.match(app, /selectedRole != oldValue.*invalidateRideWork\(\)/);
+  assert.match(app, /selectedRole != oldValue \{\s+appDataRefreshId = nil; invalidateRideWork\(\)/);
   const auth = read(root + 'AppState+Authentication.swift');
-  assert.match(auth, /func signOut\(\) \{\s+invalidateRideWork\(\)/);
-  assert.match(auth, /guard !rideRequests.busy else \{ return \}/);
+  assert.match(auth, /func signOut\(\) \{\s+accountWork.clear\(\)\s+invalidateRideWork\(\)/);
+  assert.match(auth, /guard !rideRequests.busy, !accountWork.busy else \{ return \}/);
   assert.doesNotMatch(state + auth, /endRide\(|completeTrip\(|cancelTrip\(/);
 });
 
@@ -92,7 +92,7 @@ test('existing bounded web and native jobs include the new regression without br
   assert(ios.on.pull_request.paths.includes(path));
   for (const event of ['push', 'pull_request']) assert(web.on[event].paths.includes(path));
   assert(Object.values(web.jobs).some(job => job.steps.some(step => step.run?.includes(path))));
-  assert.equal(ios.jobs['ios-fixture-verification']['timeout-minutes'], 35);
+  assert.equal(ios.jobs['ios-fixture-verification']['timeout-minutes'], 50);
   for (const name of ['RideLifecycleChecks', 'RideLifecycleProbe', 'RideBoundaryChecks']) {
     assert(read('scripts/check-ios-native-plan.sh').includes(name + '.swift'));
   }

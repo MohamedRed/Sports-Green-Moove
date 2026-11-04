@@ -6,7 +6,7 @@ func checkAppDataRefresh() async {
     func state(_ probe: AppDataProbe) -> AppState {
         let result = AppState(auth: UnconfiguredAuthGateway(), firebase: AppDataFixtureGateway(probe: probe),
             authentication: AuthenticationState(makeStore: { MemoryLogoutIntentStore() }))
-        result.session = AuthSession(uid: "isolated-parent-a", email: nil, displayName: nil, roles: [.parent])
+        result.session = AuthSession(uid: "isolated-parent-a", email: nil, displayName: nil, roles: [.parent, .driver])
         return result
     }
     func hasNoPrivateData(_ app: AppState) -> Bool {

@@ -4,15 +4,22 @@ extension AppState {
     var refreshingAppData: Bool { appDataRefreshId != nil }
 
     func refreshAppData() async {
-        guard let uid = session?.uid, !uid.isEmpty, !Task.isCancelled else { return }
+        guard let access = accountAccess else { return }
+        await refreshAppData(access: access)
+    }
+
+    func refreshAppData(access: AccountAccess) async {
+        guard let uid = session?.uid, !uid.isEmpty, !Task.isCancelled, let work = access.begin() else { return }
         let role = selectedRole
         let requestId = UUID()
         appDataRefreshId = requestId
         errorMessage = nil
         defer {
+            access.finish(work)
             if appDataRefreshId == requestId { appDataRefreshId = nil }
         }
         func requireCurrent() throws {
+            try access.requireCurrent(work)
             try Task.checkCancellation()
             guard appDataRefreshId == requestId, session?.uid == uid, selectedRole == role else {
                 throw CancellationError()
@@ -23,7 +30,7 @@ extension AppState {
             try requireCurrent()
             applyAppData(snapshot)
         } catch {
-            guard !Task.isCancelled, appDataRefreshId == requestId, session?.uid == uid,
+            guard access.owns(work), !Task.isCancelled, appDataRefreshId == requestId, session?.uid == uid,
                   selectedRole == role else { return }
             errorMessage = "Impossible de charger vos données. Réessayez."
         }

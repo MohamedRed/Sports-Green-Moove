@@ -4,13 +4,33 @@ import Observation
 @MainActor
 @Observable
 final class PublishController {
-    var origin: ResolvedPlace?
-    var destination: ResolvedPlace?
-    var originSuggestions: [PlaceSuggestion] = []
-    var destinationSuggestions: [PlaceSuggestion] = []
-    var loading = false
+    private(set) var origin: ResolvedPlace?
+    private(set) var destination: ResolvedPlace?
+    private(set) var originSuggestions: [PlaceSuggestion] = []
+    private(set) var destinationSuggestions: [PlaceSuggestion] = []
+    private let access: AccountAccess
+    private var active = true
+    private var revision = UUID()
+    private var pending: Action?
+    var loading: Bool { pending != nil || access.waitingForEarlierWork }
+
+    private struct Action {
+        let id = UUID()
+        let revision: UUID
+        let work: AccountWork
+    }
+
+    init(access: AccountAccess) { self.access = access }
+
+    func activate() {
+        guard access.isCurrent, !active else { return }
+        active = true; revision = UUID()
+    }
+
+    func close() { active = false; revision = UUID() }
 
     func seedPlaces(origin initialOrigin: ResolvedPlace?, destination initialDestination: ResolvedPlace?) {
+        guard active, access.isCurrent else { return }
         if let initialOrigin, origin == nil {
             origin = initialOrigin
         }
@@ -20,27 +40,30 @@ final class PublishController {
     }
 
     func suggestPlaces(input: String, target: SearchPlaceTarget, firebase: FirebaseGateway, onError: (String?) -> Void) async {
+        guard let action = begin() else { return }
+        defer { finish(action) }
         guard !input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             onError("Saisissez une adresse à chercher.")
             return
         }
 
-        loading = true
-        defer { loading = false }
         do {
             let suggestions = try await firebase.suggestPlaces(input: input)
+            try requireCurrent(action)
             setSuggestions(suggestions, target: target)
             onError(nil)
         } catch {
+            guard current(action) else { return }
             onError(error.localizedDescription)
         }
     }
 
     func select(_ suggestion: PlaceSuggestion, target: SearchPlaceTarget, firebase: FirebaseGateway, onError: (String?) -> Void) async {
-        loading = true
-        defer { loading = false }
+        guard let action = begin() else { return }
+        defer { finish(action) }
         do {
             let place = try await firebase.resolvePlace(placeId: suggestion.placeId)
+            try requireCurrent(action)
             if target == .origin {
                 origin = place
                 originSuggestions = []
@@ -50,25 +73,52 @@ final class PublishController {
             }
             onError(nil)
         } catch {
+            guard current(action) else { return }
             onError(error.localizedDescription)
         }
     }
 
-    func publish(draft: TripPublishDraft?, firebase: FirebaseGateway, onNotice: (String) -> Void, onError: (String?) -> Void, onPublished: @escaping () async -> Void) async {
+    func publish(draft: TripPublishDraft?, firebase: FirebaseGateway, onNotice: (String) -> Void, onError: (String?) -> Void,
+        onPublished: @escaping @MainActor (AccountAccess) async -> Void) async {
+        guard let action = begin() else { return }
+        defer { finish(action) }
         guard let draft else {
             onError("Choisissez un départ et une destination dans les suggestions.")
             return
         }
 
-        loading = true
-        defer { loading = false }
         do {
             let tripId = try await firebase.createTrip(draft: draft)
+            try requireCurrent(action)
             onNotice("Trajet publié: \(tripId)")
-            await onPublished()
+            try requireCurrent(action)
+            await onPublished(access)
         } catch {
+            guard current(action) else { return }
             onError(error.localizedDescription)
         }
+    }
+
+    private func begin() -> Action? {
+        guard active, pending == nil, access.context.role == .driver,
+              access.context.grantedRoles.contains(.driver), let work = access.begin() else { return nil }
+        let action = Action(revision: revision, work: work)
+        pending = action
+        return action
+    }
+
+    private func current(_ action: Action) -> Bool {
+        active && revision == action.revision && pending?.id == action.id && access.owns(action.work)
+    }
+
+    private func requireCurrent(_ action: Action) throws {
+        try Task.checkCancellation()
+        guard current(action) else { throw CancellationError() }
+    }
+
+    private func finish(_ action: Action) {
+        access.finish(action.work)
+        if pending?.id == action.id { pending = nil }
     }
 
     private func setSuggestions(_ suggestions: [PlaceSuggestion], target: SearchPlaceTarget) {

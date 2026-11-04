@@ -66,7 +66,7 @@ test('both web events and the existing bounded native job cover the new checker'
     for (const event of ['push', 'pull_request']) assert(web.on[event].paths.includes(path));
   }
   const job = ios.jobs['ios-fixture-verification'];
-  assert.equal(job['timeout-minutes'], 35);
+  assert.equal(job['timeout-minutes'], 50);
   assert(job.steps.some(step => step.run === 'node scripts/qa/check-ios-location-provider.mjs'));
   assert(Object.values(web.jobs).some(job => job.steps.some(step => step.run?.includes('tests/ios-location-stop.test.mjs'))));
 });

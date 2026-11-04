@@ -16,6 +16,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         app.scrollViews.firstMatch.swipeUp()
         app.buttons["auth.email.action"].tap()
         assertExists("home.screen", in: app)
+        captureApproved(.home, in: app)
         app.buttons["Profil"].tap()
         assertExists("profile.screen", in: app)
         XCTAssertEqual(app.staticTexts["profile.name"].label, "Parent Démo")
@@ -23,6 +24,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         XCTAssertTrue(app.buttons["profile.role.driver"].exists)
         XCTAssertFalse(app.buttons["profile.role.child"].exists)
         XCTAssertFalse(app.buttons["profile.role.clubManager"].exists)
+        captureApproved(.profile, in: app)
     }
 
     @MainActor func testPublishSearchAndBookingIdentifiers() {
@@ -68,6 +70,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         rating.tap()
         XCTAssertTrue(app.staticTexts["Avis envoyé."].waitForExistence(timeout: 6))
         XCTAssertFalse(app.descendants(matching: .any)["messages.rating-prompt.action"].exists)
+        captureApproved(.rating, in: app)
     }
 
     @MainActor func testSecondaryFlowIdentifiers() {

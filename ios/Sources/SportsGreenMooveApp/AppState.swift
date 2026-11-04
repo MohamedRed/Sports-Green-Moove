@@ -8,13 +8,17 @@ final class AppState {
     var overlay: AppOverlay?
     var selectedRole: AppRole = .parent {
         didSet {
-            if selectedRole != oldValue { appDataRefreshId = nil; invalidateRideWork() }
+            if selectedRole != oldValue {
+                appDataRefreshId = nil; invalidateRideWork(); refreshAccountScope()
+            }
         }
     }
     var darkTheme = false
     var session: AuthSession? {
         didSet {
-            if session?.uid != oldValue?.uid || session?.roles != oldValue?.roles { invalidateRideWork() }
+            if session?.uid != oldValue?.uid || session?.roles != oldValue?.roles {
+                invalidateRideWork(); refreshAccountScope()
+            }
             if session?.uid != oldValue?.uid {
                 appDataRefreshId = nil
                 invalidateSearch()
@@ -56,6 +60,7 @@ final class AppState {
     var authenticationRestoreFailed = false
     var activeRidePermissionDisclosure: ActiveRidePermissionDisclosure?
     let rideRequests = RideRequestState()
+    let accountWork = AccountWorkScope()
     let ridePermissions: any ActiveRidePermissionAuthorizing
 
     let auth: AuthGateway

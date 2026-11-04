@@ -125,6 +125,11 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: be.sportgreenmoove.app.uitests
         TEST_TARGET_NAME: SportsGreenMoove
         CODE_SIGN_STYLE: Automatic
+    info:
+      path: Generated/UITests-Info.plist
+      properties:
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        SGMApprovedCaptures: $(SGM_RETAIN_APPROVED_CAPTURES)
 
 schemes:
   SportsGreenMoove:

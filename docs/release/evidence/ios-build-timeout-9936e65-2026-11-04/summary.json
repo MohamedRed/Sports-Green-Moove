@@ -1,0 +1,139 @@
+{
+  "checkedAt": "2026-11-04",
+  "sourceCommit": "9936e6512889f3ab1cace4931513460951fef37b",
+  "runId": 41887949452,
+  "jobId": 126777365746,
+  "status": "completed",
+  "conclusion": "cancelled",
+  "jobStartedAt": "2026-11-04T18:31:39Z",
+  "jobCompletedAt": "2026-11-04T19:08:18Z",
+  "configuredMinutes": 35,
+  "terminationAnnotation": "The job has exceeded the maximum execution time of 35m0s",
+  "underlyingPreparationSlownessCause": "unknown",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:30:55Z",
+      "completedAt": "2026-11-04T18:30:57Z"
+    },
+    {
+      "name": "Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:30:57Z",
+      "completedAt": "2026-11-04T18:31:38Z"
+    },
+    {
+      "name": "Inspect installed Apple tools",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:31:38Z",
+      "completedAt": "2026-11-04T18:32:05Z"
+    },
+    {
+      "name": "Run native logic checks",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:32:05Z",
+      "completedAt": "2026-11-04T18:34:14Z"
+    },
+    {
+      "name": "Check controlled location lifecycle without a device",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:34:14Z",
+      "completedAt": "2026-11-04T18:34:30Z"
+    },
+    {
+      "name": "Check support concurrency signature regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:34:30Z",
+      "completedAt": "2026-11-04T18:34:50Z"
+    },
+    {
+      "name": "Install project generator",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:34:50Z",
+      "completedAt": "2026-11-04T18:35:01Z"
+    },
+    {
+      "name": "Generate SDK-linked app project",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:35:01Z",
+      "completedAt": "2026-11-04T18:35:01Z"
+    },
+    {
+      "name": "Create isolated iPhone simulator",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:35:01Z",
+      "completedAt": "2026-11-04T18:35:02Z"
+    },
+    {
+      "name": "Boot isolated simulator before compiling or testing",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T18:35:02Z",
+      "completedAt": "2026-11-04T18:43:03Z"
+    },
+    {
+      "name": "Compile app and all fixture test bundles",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "startedAt": "2026-11-04T18:43:03Z",
+      "completedAt": "2026-11-04T19:06:35Z"
+    },
+    {
+      "name": "Run every built fixture test without rebuilding",
+      "status": "completed",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-04T19:06:35Z",
+      "completedAt": "2026-11-04T19:06:35Z"
+    },
+    {
+      "name": "Observe fixture startup phases after a failed test step",
+      "status": "completed",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-04T19:06:35Z",
+      "completedAt": "2026-11-04T19:06:36Z"
+    },
+    {
+      "name": "Dispose isolated simulator",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T19:06:36Z",
+      "completedAt": "2026-11-04T19:07:08Z"
+    },
+    {
+      "name": "Post Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T19:07:08Z",
+      "completedAt": "2026-11-04T19:07:13Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T19:07:13Z",
+      "completedAt": "2026-11-04T19:07:16Z"
+    }
+  ],
+  "provenance": {
+    "originalArchiveBytes": 64336,
+    "originalArchiveSha256": "189ea6288d1c9a34eead6a497277045df7c3f671b3509a198b04982f2d332f1e",
+    "archiveIntegrityCheck": "unzip -t succeeded for all members",
+    "member": "iPhone build and fixture screens/11_Compile app and all fixture test bundles.txt",
+    "buildLog": "build-step.txt",
+    "buildLogSha256": "56eb1eec54508b08f0e4ca407c1a59fe61bebc63fa8d715d3e237ec7bb74332d"
+  },
+  "sdkLinkedBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false
+}

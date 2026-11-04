@@ -12,7 +12,7 @@ const base = 'ios/Sources/SportsGreenMooveApp/';
 test('account data is applied once, only after every currently owned read succeeds', () => {
   const state = read(base + 'AppState+Data.swift');
   const loader = read(base + 'AppDataGateway.swift');
-  assert.match(state, /guard let uid = session\?\.uid, !uid\.isEmpty, !Task\.isCancelled else \{ return \}/);
+  assert.match(state, /guard let uid = session\?\.uid, !uid\.isEmpty, !Task\.isCancelled, let work = access.begin\(\) else \{ return \}/);
   assert.match(state, /let role = selectedRole/);
   assert.match(state, /let requestId = UUID\(\)/);
   assert.match(state, /appDataRefreshId = requestId/);
@@ -21,7 +21,7 @@ test('account data is applied once, only after every currently owned read succee
   assert.match(state, /appDataRefreshId == requestId, session\?\.uid == uid, selectedRole == role/);
   assert.match(state, /try await loadAppData\(from: firebase, role: role, requireCurrent: requireCurrent\)/);
   assert.match(state, /try requireCurrent\(\)\s+applyAppData\(snapshot\)/);
-  assert.match(state, /guard !Task.isCancelled, appDataRefreshId == requestId, session\?\.uid == uid,/);
+  assert.match(state, /guard access.owns\(work\), !Task.isCancelled, appDataRefreshId == requestId, session\?\.uid == uid,/);
   assert.equal((state.match(/applyAppData\(snapshot\)/g) ?? []).length, 1);
   assert.equal((loader.match(/try requireCurrent\(\)/g) ?? []).length, 9);
   assert.equal((loader.match(/try await gateway\./g) ?? []).length, 8);
@@ -32,7 +32,7 @@ test('account data is applied once, only after every currently owned read succee
 
 test('session and role transitions revoke work even when the same identity returns', () => {
   const state = read(base + 'AppState.swift');
-  assert.match(state, /didSet \{\s+if selectedRole != oldValue \{ appDataRefreshId = nil; invalidateRideWork\(\) \}/);
+  assert.match(state, /didSet \{\s+if selectedRole != oldValue \{\s+appDataRefreshId = nil; invalidateRideWork\(\); refreshAccountScope\(\)/);
   assert.match(state, /if session\?\.uid != oldValue\?\.uid \{\s+appDataRefreshId = nil/);
   assert.doesNotMatch(state, /func refreshAppData\(/);
   assert.match(read(base + 'GatewayContracts.swift'), /protocol FirebaseGateway: AppDataGateway,/);

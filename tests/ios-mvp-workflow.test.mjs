@@ -44,16 +44,20 @@ test('the two-platform baseline keeps logic proof separate from app, phone and r
     iosMvpBlocker.next].join(' '), /Firebase|BrowserStack|Xcode|SDK|Foundation|Swift|CI\b/i);
 });
 
-test('iPhone verification is bounded standard public compute, without paid storage or credentials', () => {
+test('iPhone verification is bounded public compute with only the approved one-day capture storage', () => {
   assert.deepEqual(document.errors, []);
   assert.deepEqual(workflow.permissions, {contents: 'read'});
   assert.equal(job['runs-on'], 'macos-26-intel');
-  assert.equal(job['timeout-minutes'], 35);
+  assert.equal(job['timeout-minutes'], 50);
   assert.equal(job.if, "${{ github.event.repository.visibility == 'public' && github.event.repository.private == false }}");
   assert.equal(workflow.concurrency['cancel-in-progress'], false);
-  assert.deepEqual(job.steps.filter(step => step.uses).map(step => step.uses), ['actions/checkout@v6']);
+  assert.deepEqual(job.steps.filter(step => step.uses).map(step => step.uses), ['actions/checkout@v6', 'actions/upload-artifact@v4']);
   assert.equal(job.steps[0].with['persist-credentials'], false);
-  assert.doesNotMatch(text, /secrets\.|upload-artifact|actions\/cache|cache:|continue-on-error|appetize|app-store/i);
+  assert.doesNotMatch(text, /secrets\.|actions\/cache|cache:|continue-on-error|appetize|app-store/i);
+  const upload = job.steps.find(step => step.uses === 'actions/upload-artifact@v4');
+  assert.equal(upload.with['retention-days'], 1);
+  assert.equal(upload.with.name, 'iphone-fixture-captures');
+  assert.equal(upload.with['include-hidden-files'], false);
 });
 
 test('full SDK project and unchanged fixture tests run once without signing or production configuration', () => {
@@ -202,7 +206,7 @@ test('iOS changes trigger verification and web smoke checks its constraints', ()
     assert(smoke.on[event].paths.includes('tests/ios-mvp-workflow.test.mjs'));
   }
   assert(Object.values(smoke.jobs).some(group => group.steps.some(step =>
-    step.run === 'node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs tests/ios-location-stop.test.mjs tests/ios-fixture-launch.test.mjs tests/ios-ride-ownership.test.mjs')));
+    step.run === 'node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs tests/ios-location-stop.test.mjs tests/ios-fixture-launch.test.mjs tests/ios-ride-ownership.test.mjs tests/ios-account-work.test.mjs tests/ios-approved-captures.test.mjs')));
   const routine = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   for (const name of ['ios-native-checks', 'ios-native-ui']) {
     assert.equal(routine.jobs[name].if, '${{ false }}');

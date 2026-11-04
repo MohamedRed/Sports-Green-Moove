@@ -75,7 +75,7 @@ test('one cold simulator is booted before compilation, with failure-only static 
   assert.match(logs.run, /--predicate 'subsystem == "be.sportgreenmoove.fixture.boot"'/);
   assert(index('Run every built') < index('Observe fixture startup'));
   assert(index('Observe fixture startup') < index('Dispose isolated'));
-  assert.equal(job['timeout-minutes'], 35);
+  assert.equal(job['timeout-minutes'], 50);
   assert.equal(job.steps.at(-1).if, "${{ always() && steps.phone.outputs.id != '' }}");
   const commands = job.steps.map(step => step.run ?? '').join('\n');
   assert.doesNotMatch(commands, /simctl launch|only-testing|skip-testing|retry|test-iterations|execution-time-allowance|\|\| true/);

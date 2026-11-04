@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PublishScreen: View {
     @Environment(AppState.self) private var appState
-    @State private var controller = PublishController()
+    @State private var controller: PublishController
     @State private var step = 1
     @State private var from = ""
     @State private var to = ""
@@ -13,6 +13,10 @@ struct PublishScreen: View {
     @State private var frequency = "UNIQUE"
     @State private var price = ""
     @State private var departureIso = ISO8601DateFormatter().string(from: Date().addingTimeInterval(TimeInterval(30 * 86_400)))
+
+    init(access: AccountAccess) {
+        _controller = State(initialValue: PublishController(access: access))
+    }
 
     var body: some View {
         SGMScreen(spacing: 10, testID: UITestIdentifier.publishScreen) {
@@ -28,8 +32,10 @@ struct PublishScreen: View {
             .padding(.horizontal, SGMSpace.padScreen)
         }
         .task {
+            controller.activate()
             seedInitialPlaces()
         }
+        .onDisappear { controller.close() }
     }
 
     @ViewBuilder
@@ -88,7 +94,7 @@ struct PublishScreen: View {
                 firebase: appState.firebase,
                 onNotice: { appState.noticeMessage = $0 },
                 onError: setError,
-                onPublished: { await appState.refreshAppData() }
+                onPublished: { await appState.refreshAppData(access: $0) }
             )
         }
     }

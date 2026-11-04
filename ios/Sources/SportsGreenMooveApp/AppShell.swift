@@ -7,10 +7,11 @@ struct AppShell: View {
         Group {
             if !appState.isConfigured {
                 ConfigurationRequiredScreen()
-            } else if appState.session == nil {
-                AuthScreen()
+            } else if let access = appState.accountAccess {
+                authenticatedShell(access)
+                    .id(access.context.id)
             } else {
-                authenticatedShell
+                AuthScreen()
             }
         }
         .background(SGM.bgApp.ignoresSafeArea())
@@ -39,9 +40,9 @@ struct AppShell: View {
         }
     }
 
-    private var authenticatedShell: some View {
+    private func authenticatedShell(_ access: AccountAccess) -> some View {
         ZStack(alignment: .bottom) {
-            activeContent
+            activeContent(access)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             SGMTabBar(
                 selected: appState.selectedTab,
@@ -74,23 +75,23 @@ struct AppShell: View {
     }
 
     @ViewBuilder
-    private var activeContent: some View {
+    private func activeContent(_ access: AccountAccess) -> some View {
         if let overlay = appState.overlay {
             overlayContent(overlay)
         } else {
-            tabContent(appState.selectedTab)
+            tabContent(appState.selectedTab, access: access)
         }
     }
 
     @ViewBuilder
-    private func tabContent(_ tab: AppTab) -> some View {
+    private func tabContent(_ tab: AppTab, access: AccountAccess) -> some View {
         switch tab {
         case .home:
             HomeScreen()
         case .trips:
             TripsScreen()
         case .publish:
-            PublishScreen()
+            PublishScreen(access: access)
         case .messages:
             MessagesScreen()
         case .profile:

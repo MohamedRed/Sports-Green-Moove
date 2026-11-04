@@ -1,0 +1,4 @@
+Ride logout reproduction: restored=false, calls=start-ride
+Publish logout reproduction: restoredNotice=true
+SportsGreenMooveNativeChecks/main.swift:7: Fatal error: Late publication changed signed-out UI
+scripts/check-ios-native-plan.sh: line 74:  5942 Trace/BPT trap: 5       "${BUILD_DIR}/SportsGreenMooveNativeChecks"

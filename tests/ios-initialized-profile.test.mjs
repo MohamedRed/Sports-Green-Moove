@@ -112,5 +112,5 @@ test('the new checks trigger both web events and the unchanged bounded iPhone wo
   assert(ios.on.pull_request.paths.includes(path));
   for (const event of ['push', 'pull_request']) assert(web.on[event].paths.includes(path));
   assert(Object.values(web.jobs).some(job => job.steps.some(step => step.run?.includes(path))));
-  assert.equal(ios.jobs['ios-fixture-verification']['timeout-minutes'], 35);
+  assert.equal(ios.jobs['ios-fixture-verification']['timeout-minutes'], 50);
 });
