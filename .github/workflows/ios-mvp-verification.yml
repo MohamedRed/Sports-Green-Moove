@@ -27,6 +27,8 @@ on:
       - "scripts/qa/check-ios-approved-captures.sh"
       - "scripts/qa/ios-approved-captures/**"
       - "scripts/qa/check-ios-location-provider.mjs"
+      - "scripts/qa/check-ios-permission-continuation.mjs"
+      - "tests/fixtures/ios-permission-continuation/**"
       - "tests/fixtures/ios-location/**"
       - ".github/workflows/ios-mvp-verification.yml"
 
@@ -60,6 +62,9 @@ jobs:
 
       - name: Check controlled location lifecycle without a device
         run: node scripts/qa/check-ios-location-provider.mjs
+
+      - name: Check actual permission continuation before SDK compilation
+        run: node scripts/qa/check-ios-permission-continuation.mjs
 
       - name: Check support concurrency signature regressions
         run: bash scripts/check-ios-support-concurrency.sh

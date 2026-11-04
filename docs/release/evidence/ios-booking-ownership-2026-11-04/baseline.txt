@@ -1,0 +1,7 @@
+Ride logout reproduction: restored=false, calls=start-ride
+Publish logout reproduction: restoredNotice=false
+Payment logout reproduction: restoredNotice=false, followups=0
+Booking logout reproduction: action=request, restoredNotice=true, followups=0
+Booking logout reproduction: action=approve, restoredNotice=true, followups=7
+SportsGreenMooveNativeChecks/main.swift:7: Fatal error: An old booking response changed the reauthenticated account
+scripts/check-ios-native-plan.sh: line 85: 41730 Trace/BPT trap: 5       "${BUILD_DIR}/SportsGreenMooveNativeChecks"

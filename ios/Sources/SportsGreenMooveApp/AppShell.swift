@@ -87,9 +87,9 @@ struct AppShell: View {
     private func tabContent(_ tab: AppTab, access: AccountAccess) -> some View {
         switch tab {
         case .home:
-            HomeScreen()
+            HomeScreen(access: access)
         case .trips:
-            TripsScreen()
+            TripsScreen(access: access)
         case .publish:
             PublishScreen(access: access)
         case .messages:
@@ -103,7 +103,7 @@ struct AppShell: View {
     private func overlayContent(_ overlay: AppOverlay, access: AccountAccess) -> some View {
         switch overlay {
         case .search:
-            SearchScreen()
+            SearchScreen(access: access)
         case .groups:
             GroupsScreen()
         case .impact:

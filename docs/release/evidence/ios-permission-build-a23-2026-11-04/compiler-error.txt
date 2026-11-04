@@ -1,0 +1,9 @@
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.7868080Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift:144:19: error: generic parameter 'T' could not be inferred
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.7869980Z         try await withCheckedThrowingContinuation { continuation in
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.7870670Z                   ^
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.7871810Z _Concurrency.withCheckedThrowingContinuation:3:24: note: in call to function 'withCheckedThrowingContinuation(isolation:function:_:)'
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.7874470Z @inlinable public func withCheckedThrowingContinuation<T>(isolation: isolated (any Actor)? = #isolation, function: String = #function, _ body: (CheckedContinuation<T, any Error>) -> Void) async throws -> sending T
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.7876360Z                        ^
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.7876630Z 
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.7878170Z SwiftCompile normal x86_64 /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/Sources/SportsGreenMooveApp/ActiveRideStartup.swift (in target 'SportsGreenMoove' from project 'SportsGreenMoove')
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T20:38:41.8376480Z ** TEST BUILD FAILED **

@@ -5,8 +5,51 @@ import {test} from 'node:test';
 import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosRideOwnership, iosRideOwnershipProgress} from '../partner-portal/ios-ride-ownership.mjs';
+import {iosPermissionBuild, iosPermissionBuildProgress} from '../partner-portal/ios-permission-build.mjs';
 
 const read = file => readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
+
+test('the actual permission bridge is explicitly Void and checked before another SDK build', () => {
+  const source = read('ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift');
+  assert.match(source, /private func requestAlwaysAuthorization\(\) async throws \{\s+try await withCheckedThrowingContinuation \{ \(continuation: CheckedContinuation<Void, Error>\) in/);
+  const check = 'scripts/qa/check-ios-permission-continuation.mjs';
+  const script = read(check);
+  for (const text of ['source.slice(offset, limit)', '-strict-concurrency=complete', '-warnings-as-errors', 'swift-version',
+    'fixture.replace', 'finally { rmSync(directory']) assert(script.includes(text));
+  const workflow = parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON();
+  const steps = workflow.jobs['ios-fixture-verification'].steps;
+  assert(steps.findIndex(step => step.run === 'node ' + check) < steps.findIndex(step => step.name.startsWith('Compile app')));
+  assert(workflow.on.pull_request.paths.includes(check));
+  const web = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();
+  for (const event of ['push', 'pull_request']) assert(web.on[event].paths.includes(check));
+});
+
+test('the approved capture attempt remains a terminal compiler failure with zero images, not a timeout or UI pass', () => {
+  const folder = 'docs/release/evidence/ios-permission-build-a23-2026-11-04/';
+  const report = JSON.parse(read(iosPermissionBuild.source)), run = JSON.parse(read(folder + 'terminal.json'));
+  assert.equal(run.headSha, 'a23cb9d67f6163156150dbfd320aff7e7ae95835');
+  assert.equal(run.status, 'completed'); assert.equal(run.conclusion, 'failure');
+  assert.equal(report.runId, 41901262613); assert.equal(report.jobId, 126823997145);
+  assert.equal(report.configuredMinutes, 50); assert.equal(report.artifactCount, 0); assert.equal(report.capturesAccepted, 0);
+  const steps = run.jobs[0].steps;
+  assert.equal(steps.find(step => step.name.startsWith('Compile app')).conclusion, 'failure');
+  for (const prefix of ['Run every built', 'Validate and collect', 'Retain approved']) {
+    assert.equal(steps.find(step => step.name.startsWith(prefix)).conclusion, 'skipped');
+  }
+  assert.equal(steps.find(step => step.name === 'Dispose isolated simulator').conclusion, 'success');
+  const excerpt = read(folder + 'compiler-error.txt');
+  assert.match(excerpt, /generic parameter 'T' could not be inferred/);
+  assert.equal(createHash('sha256').update(excerpt).digest('hex'), report.selection.excerptSha256);
+  assert.equal(createHash('sha256').update(read(folder + 'terminal.json')).digest('hex'), report.selection.terminalSha256);
+  assert.equal(report.bridgeCheck.exitCode, 0);
+  assert.equal(createHash('sha256').update(read(folder + report.bridgeCheck.log)).digest('hex'), report.bridgeCheck.logSha256);
+  for (const key of ['fixtureUiExecuted', 'sdkLinkedBuildAccepted', 'newNativeMediaPublished', 'physicalDeviceAccepted', 'releaseComplete']) {
+    assert.equal(report[key], false);
+  }
+  assert.deepEqual(content.iosPermissionBuild, iosPermissionBuild);
+  assert.deepEqual(content.updates.filter(entry => entry.source === iosPermissionBuildProgress.source), [iosPermissionBuildProgress]);
+  assert.doesNotMatch(iosPermissionBuildProgress.title + iosPermissionBuildProgress.text, /Firebase|BrowserStack|SDK|Swift|CI\b/i);
+});
 const root = 'ios/Sources/SportsGreenMooveApp/';
 const folder = 'docs/release/evidence/ios-ride-ownership-2026-11-04/';
 

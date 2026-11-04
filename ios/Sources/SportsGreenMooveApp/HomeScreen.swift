@@ -2,17 +2,17 @@ import SwiftUI
 
 struct HomeScreen: View {
     @Environment(AppState.self) private var appState
+    let access: AccountAccess
 
     var body: some View {
         SGMScreen(spacing: 0, testID: UITestIdentifier.homeScreen) {
             HomeHeader()
-            HomeHeroCard(trip: appState.trips.first) {
-                Task {
-                    if let tripId = appState.trips.first?.id {
-                        await appState.handleTripAction(tripId: tripId)
-                    }
-                }
+            let nextTrip = appState.trips.first
+            HomeHeroCard(trip: nextTrip) {
+                guard let nextTrip else { return }
+                Task { await appState.handleTripAction(trip: nextTrip, access: access) }
             }
+            .disabled(nextTrip == nil || appState.bookingBusy)
             HomeStatsRow(summary: appState.impactSummary)
             SGMSectionLabel("SEMAINE À VENIR", action: "Tout voir") {
                 appState.selectTab(.trips)
@@ -28,8 +28,9 @@ struct HomeScreen: View {
                         seats: trip.seatsLabel,
                         passengers: trip.passengerInitials
                     ) {
-                        Task { await appState.handleTripAction(tripId: trip.id) }
+                        Task { await appState.handleTripAction(trip: trip, access: access) }
                     }
+                    .disabled(appState.bookingBusy)
                 }
                 if appState.trips.isEmpty {
                     HomeEmptyTrips()

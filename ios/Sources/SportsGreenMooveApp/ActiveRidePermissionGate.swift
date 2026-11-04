@@ -141,7 +141,7 @@ final class ActiveRidePermissionCoordinator: NSObject, CLLocationManagerDelegate
     }
 
     private func requestAlwaysAuthorization() async throws {
-        try await withCheckedThrowingContinuation { continuation in
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             guard authorizationContinuation == nil else {
                 continuation.resume(throwing: ProviderConfigurationError(message: "Demande d'autorisation localisation déjà en cours."))
                 return

@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The actual 0d50270 booking request/approval methods restore feedback after same-UID
+reauthentication; approval also starts seven reads. The candidate denies 24 local
+delayed boundaries, preserves displayed trip terms and binds action dispatch to
+the original access. The approved a23 capture run separately fails at the real
+permission bridge's missing Void continuation type, before every UI/capture step;
+the artifact inventory is empty and disposal succeeds. Retain this terminal
+failure, not a deadline or new visual success. The typed bridge passes its new
+controlled check but still requires an SDK build. Publish two concise local/failure
+notes, preserving all earlier flow/media/date/tour/status/blocker/history records.
+The iPhone evidence index is grouped to keep the content file below 300 lines.
+See the dated `ios-booking-ownership` and `ios-permission-build-a23` records.
+
 The payment screen now binds checkout, verification and onboarding actions to its
 immutable account access. Twenty-eight delayed account/link cases deny stale
 requests, handoffs and feedback; current explicit retry and secure-link checks

@@ -6,7 +6,7 @@ const files = {
   androidManifest: read("android/app/src/main/AndroidManifest.xml"),
   androidStrings: read("android/app/src/main/res/values/strings.xml"),
   iosProject: read("ios/project.yml"),
-  iosAppState: read("ios/Sources/SportsGreenMooveApp/AppState.swift"),
+  iosBookingActions: read("ios/Sources/SportsGreenMooveApp/AppState+Bookings.swift"),
   iosRidePermissionGate: read("ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift"),
   iosRideLifecycle: read("ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift"),
   iosPrivacy: read("ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy"),
@@ -93,8 +93,8 @@ includes(files.iosProject, "course active", "iOS usage strings limit tracking to
 includes(files.iosProject, "product: FacebookLogin", "iOS project links FacebookLogin");
 includes(files.iosProject, "https://github.com/googlemaps/ios-maps-sdk.git", "iOS project declares Google Maps SDK package");
 includes(files.iosProject, "product: GoogleMaps", "iOS project links GoogleMaps");
-includes(files.iosAppState, "requestActiveRideStart(tripId: tripId)", "iOS driver ride start uses permission disclosure gate");
-excludes(files.iosAppState, "await startRide(tripId:", "iOS AppState does not bypass the permission gate");
+includes(files.iosBookingActions, "case .driver: requestActiveRideStart(tripId: trip.id)", "iOS driver ride start uses permission disclosure gate");
+excludes(files.iosBookingActions, "await startRide(tripId:", "iOS AppState does not bypass the permission gate");
 includes(files.iosRideLifecycle, "startRideAfterPermissionGate", "iOS ride lifecycle exposes only post-permission start");
 excludes(files.iosRideLifecycle, "func startRide(tripId:", "iOS ride lifecycle removed the ungated start entry point");
 includes(files.iosRidePermissionGate, "ActiveRidePermissionPolicy.canStartActiveRide", "iOS active ride gate reuses native permission policy");

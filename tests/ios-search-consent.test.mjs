@@ -46,7 +46,7 @@ test('search form owns consent reset and the screen invalidates every changed se
   }
   assert.match(screen, /if let request = appState.prepareSearch\(form: form\)/);
   assert.match(screen, /Task \{ await appState.runSearch\(request\) \}/);
-  assert.match(screen, /requestSearchMatch\(match, form: submittedForm\)/);
+  assert.match(screen, /requestSearchMatch\(match, form: submittedForm, access: access\)/);
   assert.doesNotMatch(screen, /guardianConsent = true/);
 });
 

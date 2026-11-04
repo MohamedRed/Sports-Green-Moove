@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "scripts/qa/check-ios-permission-continuation.mjs"
+      - "tests/fixtures/ios-permission-continuation/**"
       - ".github/workflows/ios-mvp-verification.yml"
       - "tests/ios-mvp-workflow.test.mjs"
       - "tests/ios-search-consent.test.mjs"
@@ -639,6 +641,8 @@ on:
     branches:
       - main
     paths:
+      - "scripts/qa/check-ios-permission-continuation.mjs"
+      - "tests/fixtures/ios-permission-continuation/**"
       - ".github/workflows/ios-mvp-verification.yml"
       - "tests/ios-mvp-workflow.test.mjs"
       - "tests/ios-search-consent.test.mjs"

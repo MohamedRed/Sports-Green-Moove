@@ -73,7 +73,7 @@ const iosHome = readFile("ios/Sources/SportsGreenMooveApp/HomeScreen.swift");
 const iosImpactRewards = readFile("ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift");
 const iosLedgerGateway = readFile("ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift");
 const iosProfile = readFile("ios/Sources/SportsGreenMooveApp/ProfileScreen.swift");
-const iosAppState = readFile("ios/Sources/SportsGreenMooveApp/AppState.swift");
+const iosBookingActions = readFile("ios/Sources/SportsGreenMooveApp/AppState+Bookings.swift");
 const iosActiveRideStartup = readFile("ios/Sources/SportsGreenMooveApp/ActiveRideStartup.swift");
 const iosRideLifecycle = readFile("ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift");
 
@@ -190,7 +190,7 @@ includes(androidActiveRideStartup, "startAccessibleRideTracking", "Android can a
 includes(androidRideActions, "AppRole.Child", "Android child role has an active ride tracking branch");
 includes(androidRideActions, "providers.startAccessibleRideTracking(role)", "Android child branch starts child-device tracking");
 includes(iosActiveRideStartup, "startAccessibleRideTracking", "iOS can attach tracking to an accessible active ride");
-includes(iosAppState, "selectedRole == .child", "iOS child role has an active ride tracking branch");
+includes(iosBookingActions, "case .child: requestActiveRideTracking()", "iOS child role has an active ride tracking branch");
 includes(iosRideLifecycle, "startAccessibleRideTracking(", "iOS child branch starts child-device tracking");
 
 console.log(`Validated ${flows.length} native UI flow identifiers on Android and iOS.`);

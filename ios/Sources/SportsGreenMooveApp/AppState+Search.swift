@@ -81,13 +81,19 @@ extension AppState {
     }
 
     func requestSearchMatch(_ match: TripMatchSummary, form: SearchFormState) async {
+        guard let access = accountAccess else { return }
+        await requestSearchMatch(match, form: form, access: access)
+    }
+
+    func requestSearchMatch(_ match: TripMatchSummary, form: SearchFormState, access: AccountAccess) async {
+        guard access.isCurrent else { return }
         guard let uid = session?.uid, let origin = searchOrigin, let destination = searchDestination,
               searchRequests.permitsBooking(SearchRequestContext(uid: uid, form: form, origin: origin, destination: destination)),
               searchMatches.contains(match), match.tripId == match.summary.id else {
             errorMessage = "Les options ont changé. Relancez la recherche avant de réserver."
             return
         }
-        await requestBooking(trip: match.summary, childId: form.childUserId, seats: form.seatsNeeded)
+        await requestBooking(trip: match.summary, childId: form.childUserId, seats: form.seatsNeeded, access: access)
     }
 
     private func currentPlaceRequest(_ request: UUID, target: SearchPlaceTarget, uid: String) -> Bool {

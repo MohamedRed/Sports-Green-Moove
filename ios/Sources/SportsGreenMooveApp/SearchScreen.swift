@@ -5,6 +5,7 @@ struct SearchScreen: View {
     @State private var originInput = ""
     @State private var destinationInput = ""
     @State private var form = SearchFormState.initial()
+    let access: AccountAccess
 
     var body: some View {
         SGMScreen(spacing: 10, testID: UITestIdentifier.searchScreen) {
@@ -51,8 +52,9 @@ struct SearchScreen: View {
                 ForEach(appState.searchMatches) { match in
                     MatchCard(match: match) {
                         let submittedForm = form
-                        Task { await appState.requestSearchMatch(match, form: submittedForm) }
+                        Task { await appState.requestSearchMatch(match, form: submittedForm, access: access) }
                     }
+                    .disabled(appState.bookingBusy)
                 }
                 if !appState.searchLoading && appState.searchMatches.isEmpty {
                     Text("Choisissez un départ, une destination et lancez la recherche.")

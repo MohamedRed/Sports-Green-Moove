@@ -49,6 +49,10 @@ struct AppDataFixtureGateway: FirebaseGateway {
     var rides: RideLifecycleProbe? = nil
     var rideStops: RideLocalStops? = nil
     var publications: AppDataProbe? = nil
+    var bookings: AppDataProbe? = nil
+    var bookingStatus = "approved"
+    var expectedBookingTrip: TripSummary? = nil
+    var bookingReviewRequired = false
     private var unused: UnconfiguredFirebaseGateway { UnconfiguredFirebaseGateway() }
 
     func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
@@ -100,9 +104,20 @@ struct AppDataFixtureGateway: FirebaseGateway {
         return try await unused.createTrip(draft: draft)
     }
     func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String {
-        try await unused.requestBooking(trip: trip, childId: childId, seats: seats)
+        if let bookings {
+            if let expectedBookingTrip {
+                check(trip == expectedBookingTrip && childId == nil && seats == 1, "Trip action adopted freshly loaded terms")
+            } else { check(childId == "isolated-child" && seats == 2, "Booking lost its captured child or seats") }
+            _ = try await bookings.read("request")
+            if bookingReviewRequired { throw BookingReviewRequiredError() }
+            return "isolated-booking"
+        }
+        return try await unused.requestBooking(trip: trip, childId: childId, seats: seats)
     }
-    func approveBooking(bookingId: String) async throws -> String { try await unused.approveBooking(bookingId: bookingId) }
+    func approveBooking(bookingId: String) async throws -> String {
+        if let bookings { _ = try await bookings.read("approve"); return bookingStatus }
+        return try await unused.approveBooking(bookingId: bookingId)
+    }
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {
         if let rides { try await rides.step("start-ride"); return isolatedRide() }
         return try await unused.startRide(tripId: tripId, bookingIds: bookingIds)

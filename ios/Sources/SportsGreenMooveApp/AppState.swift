@@ -35,6 +35,7 @@ final class AppState {
     }
     var pendingRidePayment: RidePaymentTarget?
     var ridePaymentBusy = false
+    var bookingBusy = false
     var ridePaymentState: RidePaymentState = .pending
     var trips: [TripSummary] = []
     var children: [ChildSummary] = []
@@ -104,42 +105,6 @@ final class AppState {
 
     func toggleTheme() {
         darkTheme.toggle()
-    }
-
-    func handleTripAction(tripId: String) async {
-        if selectedRole == .driver {
-            requestActiveRideStart(tripId: tripId)
-        } else if selectedRole == .child {
-            requestActiveRideTracking()
-        } else {
-            guard let trip = trips.first(where: { $0.id == tripId }) else { return }
-            await requestBooking(trip: trip, childId: nil, seats: 1)
-        }
-    }
-
-    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async {
-        let uid = session?.uid
-        do {
-            let bookingId = try await firebase.requestBooking(trip: trip, childId: childId, seats: seats)
-            guard session?.uid == uid else { return }
-            noticeMessage = "Demande envoyée: \(bookingId)"
-        } catch {
-            guard session?.uid == uid else { return }
-            if error is BookingReviewRequiredError { searchMatches.removeAll { $0.summary == trip } }
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func approveBooking(_ request: BookingRequestSummary) async {
-        loading = true
-        defer { loading = false }
-        do {
-            _ = try await firebase.approveBooking(bookingId: request.bookingId)
-            noticeMessage = "Demande approuvée."
-            await refreshAppData()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
     }
 
 }

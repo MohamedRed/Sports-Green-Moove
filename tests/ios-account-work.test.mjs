@@ -6,10 +6,57 @@ import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosAccountWork, iosAccountWorkProgress} from '../partner-portal/ios-account-work.mjs';
 import {iosBuildTimeout, iosBuildTimeoutProgress} from '../partner-portal/ios-build-timeout.mjs';
+import {iosBookingOwnership, iosBookingOwnershipProgress} from '../partner-portal/ios-booking-ownership.mjs';
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const app = 'ios/Sources/SportsGreenMooveApp/';
 const folder = 'docs/release/evidence/ios-account-work-2026-11-04/';
+
+test('booking actions retain their originating account and displayed terms through every response', () => {
+  const source = read(app + 'AppState+Bookings.swift');
+  assert.equal((source.match(/let work = access.begin\(\)/g) ?? []).length, 2);
+  assert.equal((source.match(/try access.requireCurrent\(work\)/g) ?? []).length, 2);
+  assert.equal((source.match(/access.owns\(work\)/g) ?? []).length, 2);
+  assert.equal((source.match(/access.finish\(work\)/g) ?? []).length, 2);
+  assert(source.includes('access.context.role == .parent, access.context.grantedRoles.contains(.parent)'));
+  assert(source.includes('access.context.role == .driver, access.context.grantedRoles.contains(.driver)'));
+  assert(source.includes('guard status == "approved" else'));
+  assert(source.includes('await refreshAppData(access: access)'));
+  assert.match(source, /func handleTripAction\(trip: TripSummary, access: AccountAccess\)/);
+  assert(source.includes('requestBooking(trip: trip, childId: nil, seats: 1, access: access)'));
+  assert.doesNotMatch(source, /trips.first|loading =|let uid = session/);
+  for (const [screen, action] of [['HomeScreen', 'handleTripAction(trip: nextTrip, access: access)'],
+    ['TripsScreen', 'approveBooking(request, access: access)'], ['SearchScreen', 'requestSearchMatch(match, form: submittedForm, access: access)']]) {
+    assert(read(app + screen + '.swift').includes(action));
+    assert(read(app + 'AppShell.swift').includes(screen + '(access: access)'));
+  }
+  assert(read('scripts/check-ios-native-plan.sh').includes('BookingOwnershipChecks.swift'));
+  assert(read('ios/Tests/SportsGreenMooveNativeChecks/main.swift').includes('await checkBookingOwnership()'));
+});
+
+test('booking ownership retains both genuine local failures without accepting native or service completion', () => {
+  const dir = 'docs/release/evidence/ios-booking-ownership-2026-11-04/';
+  const proof = JSON.parse(read(iosBookingOwnership.source));
+  assert.equal(proof.baseline.sourceCommit, '0d502700fbbcbf66682912b0f44557c6f4feeaba');
+  assert.equal(proof.baseline.exitCode, 133);
+  assert.equal(proof.baseline.requestRestoredNotice, true);
+  assert.equal(proof.baseline.approvalRestoredNotice, true);
+  assert.equal(proof.baseline.approvalFollowupReads, 7);
+  assert.equal(proof.candidate.exitCode, 0);
+  assert.equal(proof.candidate.requestRestoredNotice, false);
+  assert.equal(proof.candidate.approvalRestoredNotice, false);
+  assert.equal(proof.candidate.approvalFollowupReads, 0);
+  assert.equal(proof.candidate.delayedBookingCases, 24);
+  for (const entry of [proof.baseline, proof.candidate]) {
+    assert.equal(createHash('sha256').update(read(dir + entry.log)).digest('hex'), entry.logSha256);
+  }
+  assert.match(read(dir + proof.candidate.log), /24 delayed request\/approval success\/error cases/);
+  for (const key of ['sdkLinkedBuildAccepted', 'renderedBookingAccepted', 'completeTransportDrainAccepted',
+    'fullSignOutAccepted', 'liveBooking', 'productionWrites', 'newNativeMediaPublished', 'releaseComplete']) assert.equal(proof[key], false);
+  assert.equal(proof.providerRequests, 0);
+  assert.deepEqual(content.iosBookingOwnership, iosBookingOwnership);
+  assert.deepEqual(content.updates.filter(entry => entry.source === iosBookingOwnershipProgress.source), [iosBookingOwnershipProgress]);
+});
 
 test('account work retains unsettled tokens across revocation and binds immutable identity generations', () => {
   const scope = read(app + 'AccountWorkScope.swift');
