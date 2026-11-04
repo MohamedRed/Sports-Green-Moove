@@ -28,6 +28,8 @@ import {iosLocationShutdownProgress} from './ios-location-shutdown.mjs';
 import {androidReadinessRecheckProgress} from './android-readiness-recheck.mjs';
 import {iosPreparationTimeoutProgress} from './ios-preparation-timeout.mjs';
 import {androidReadinessPassProgress} from './android-readiness-pass.mjs';
+import {iosEmergencyContactProgress} from './ios-emergency-contact.mjs';
+import {iosSignOutFixturePassProgress} from './ios-signout-fixture-pass.mjs';
 import {iosBuildTimeoutProgress} from './ios-build-timeout.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
@@ -120,6 +122,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosEmergencyContactProgress, iosSignOutFixturePassProgress,
   androidReadinessPassProgress, iosPreparationTimeoutProgress, iosLocationShutdownProgress, androidReadinessRecheckProgress,
   iosCurrentFixturePassProgress, androidNodeReadinessProgress,
   iosBookingOwnershipProgress,

@@ -1,0 +1,41 @@
+Native shutdown reproduction: mode=start, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=start, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=upload, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=upload, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=both, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=both, pending=true, authenticationCalls=0
+Ride logout reproduction: restored=false, calls=start-ride
+Publish logout reproduction: restoredNotice=false
+Payment logout reproduction: restoredNotice=false, followups=0
+Booking logout reproduction: action=request, restoredNotice=false, followups=0
+Booking logout reproduction: action=approve, restoredNotice=false, followups=0
+Ledger summary wire checks passed; no iOS UI or provider integration implied.
+EmergencyContactWireChecks passed: 22 malformed wire cases rejected; strict phone/name and immutable child identity checks
+EmergencyContactBoundaryChecks passed: 36 delayed read/write/dial success/error boundaries; same-UID, account/role ABA, background, close and cancellation
+EmergencyPhoneCompletionChecks passed: 6 late controlled opener callbacks; no actual URL opened or call placed
+EmergencyContactChecks passed: review/cancel/save/remove, lost reply without resend, changed contact second tap, unavailable phone and private lifecycle; controlled gateways only
+LocationShutdownChecks passed: 6 delayed start/upload states, all five login paths, repeated/cancelled cleanup, SDK failure and role-change admission
+TripDateLabelChecks passed: 30 date/time pairs across 3 device timezones
+Search consent checks passed: explicit consent, selection reset, response ordering and booking context
+Search app-state checks passed: pre-call consent, revoked work, gateway failure and account isolation; no provider configured
+App-data refresh checks passed: seven logout boundaries, atomic snapshots, account/role ABA, latest request, cancellation and retry; isolated gateways only
+Authentication ownership checks passed: serialized intents, late provider mutation cleanup, cancellation, storage failure and explicit retry; isolated gateways only
+Location ownership checks passed: exact ride, pending start/upload drain and old-generation denial; no device or network used
+Ride lifecycle checks passed: 72 delayed startup boundaries, permission revocation, passenger/end isolation, local stops, duplicate denial and explicit retry; isolated services only
+Account work checks passed: explicit identity, generation isolation, old-work drain, parallel ownership and cancelled intent; local state only
+Publication ownership checks passed: 42 delayed success/error boundaries, account/role ABA, closed view and cancellation; synthetic gateways only
+Profile initialization checks passed: strict identity/roles, child-only authority, signup name, delayed preparation cleanup and authorized role selection; isolated gateways only
+Logout intent checks passed: atomic file recreation, interrupted provider identity refusal, explicit login and corrupt-policy denial; no native process-death proof
+RidePaymentChecks passed
+Payment boundaries passed: 24 delayed preparation/status success/error cases; no SDK presentation or payment requests
+Current payment checks passed: five correlated states, duplicate exclusion, error and explicit retry
+Ride payment ownership checks passed; synthetic status gateway only
+Payment screen checks passed: 28 delayed onboarding success/error boundaries; stale view actions, secure URLs, duplicate exclusion and explicit retry; synthetic gateways, no browser opened
+Booking boundaries passed: 24 delayed request/approval success/error cases; immutable account and role generations, cancellation, duplicate denial and drain
+Current booking checks passed: explicit retry, unrelated loading preservation, stale-screen and role denial, strict approval status and captured displayed trip
+Booking ownership checks passed; synthetic gateways only
+SupportChecks passed
+SupportStateChecks passed
+SupportSubmissionChecks passed: persistence, explicit retry, immutability, account isolation, bound receipts and fail-closed storage
+PendingReviewChecks passed
+SportsGreenMooveNativeChecks passed

@@ -10,6 +10,9 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/StripePaymentsGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PaymentScreenController.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ProviderConfigurationError.swift" \
@@ -56,6 +59,10 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MapRoutePolyline.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TripDateLabels.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TripDateLabelChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactWireChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \

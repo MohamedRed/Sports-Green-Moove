@@ -7,6 +7,9 @@ struct HomeScreen: View {
     var body: some View {
         SGMScreen(spacing: 0, testID: UITestIdentifier.homeScreen) {
             HomeHeader()
+            if access.context.grantedRoles.contains(.child) {
+                EmergencyContactEntry(access: access).padding(.horizontal, SGMSpace.padScreen)
+            }
             let nextTrip = appState.trips.first
             HomeHeroCard(trip: nextTrip) {
                 guard let nextTrip else { return }

@@ -27,6 +27,8 @@ struct UnconfiguredAuthGateway: AuthGateway {
 }
 
 struct UnconfiguredFirebaseGateway: FirebaseGateway {
+    func emergencyContact(uid: String, scope: EmergencyContactScope) async throws -> EmergencyContactView? { throw EmergencyContactError.unavailable }
+    func saveEmergencyContact(uid: String, operation: EmergencyContactOperation) async throws -> Int64 { throw EmergencyContactError.unavailable }
     func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
         throw ProviderConfigurationError(message: "Connexion indisponible.")
     }

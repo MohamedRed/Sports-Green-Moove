@@ -9,8 +9,10 @@ struct OptionsScreen: View {
             SGMTopBar(title: "OPTIONS", showsBack: true)
             OptionsHero()
             SGMSectionLabel("SÉCURITÉ")
+            if let access = appState.accountAccess {
+                EmergencyContactEntry(access: access).padding(.horizontal, SGMSpace.padScreen)
+            }
             OptionsSectionCard(rows: [
-                .init(icon: .profile, label: "Contact urgence", value: "+32 470 00 00 00", detail: "Action visible pendant une course active"),
                 .init(icon: .check, label: "Journal d'audit", value: "Activé", detail: "Pickup, dropoff, consentements et paiements"),
                 .init(icon: .groups, label: "Consentement parent", value: "Obligatoire", detail: "Chaque enfant reste lié à son tuteur"),
             ])

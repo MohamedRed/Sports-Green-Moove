@@ -16,6 +16,9 @@ on:
       - "tests/fixtures/ios-support-concurrency/**"
       - "tests/ios-mvp-workflow.test.mjs"
       - "tests/ios-location-shutdown.test.mjs"
+      - "tests/ios-emergency-contact.test.mjs"
+      - "scripts/qa/check-ios-emergency-phone.mjs"
+      - "tests/fixtures/ios-emergency-phone/**"
       - "tests/ios-search-consent.test.mjs"
       - "tests/ios-app-data.test.mjs"
       - "tests/ios-authentication.test.mjs"
@@ -66,6 +69,9 @@ jobs:
 
       - name: Check actual permission continuation before SDK compilation
         run: node scripts/qa/check-ios-permission-continuation.mjs
+
+      - name: Check controlled emergency phone boundary without opening Phone
+        run: node scripts/qa/check-ios-emergency-phone.mjs
 
       - name: Check support concurrency signature regressions
         run: bash scripts/check-ios-support-concurrency.sh

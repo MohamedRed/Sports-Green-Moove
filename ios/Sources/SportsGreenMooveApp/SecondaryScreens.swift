@@ -22,7 +22,9 @@ struct RideMonitorScreen: View {
                     accent: SGM.greenLight
                 )
             }
-            OverlayCard(title: "Urgence", subtitle: "Contact parent disponible", meta: "APPELER", testID: UITestIdentifier.emergencyContact)
+            if let access = appState.accountAccess {
+                EmergencyContactEntry(access: access, rideId: appState.activeRide?.rideSessionId, testID: UITestIdentifier.emergencyContact)
+            }
         }
     }
 }

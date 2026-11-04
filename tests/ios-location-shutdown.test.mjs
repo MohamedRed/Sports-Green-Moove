@@ -60,7 +60,8 @@ test('the original admission failure and actual controlled checks stay separate 
   const report = JSON.parse(read(iosLocationShutdown.source));
   const sources = JSON.parse(read(iosLocationShutdown.checksums));
   for (const item of sources.files) {
-    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + item.path, import.meta.url))).digest('hex'), item.sha256, item.path);
+    const original = 'docs/release/evidence/source-archive/' + item.sha256 + '.txt';
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../' + original, import.meta.url))).digest('hex'), item.sha256, item.path);
   }
   assert.equal(report.baseline.sourceCommit, 'a226b3e265c78f58d56af892a666ae2778afc50b');
   assert.equal(report.baseline.signal, 'SIGTRAP'); assert.equal(report.baseline.authenticationCallsBeforeSettlement, 1);

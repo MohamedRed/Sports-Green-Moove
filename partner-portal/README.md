@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The 4582c3a iPhone SDK build, eight synthetic screen cases including sign-out, and
+simulator disposal pass. Publish one brief simulation result, without new media.
+The later emergency-contact candidate replaces the sample number/static action;
+its controlled protocol, ownership and opener checks pass, but its new ten-case
+SDK/UI gate and real handoff remain unverified. Publish one local-only contact
+note. Parent selection/editing of a child's contact still needs an iPhone UI.
+Keep both current iPhone manifest items pending and preserve all prior flows,
+statuses, dates, galleries, tours, blockers and public access. The 75440a2 Android
+gate fails dependency preparation with HTTP 429 before native tests; retain that
+internal result without another visible diagnostic update. See the dated
+`ios-emergency-contact` and `ios-fixture-pass-4582` evidence folders.
+
 The 4582c3a Android gate now succeeds: 296 ordinary passes, 55 explicit skips,
 zero failures, both readiness cases, the eight-check parent replay and all twelve
 focused lanes pass. Publish one short simulation result without new media or

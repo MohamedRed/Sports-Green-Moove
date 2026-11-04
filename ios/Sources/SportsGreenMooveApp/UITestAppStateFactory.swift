@@ -10,7 +10,8 @@ enum UITestAppStateFactory {
     static func make() -> AppState {
         let route = argumentValue(after: "--sgm-ui-route") ?? "home"
         let signedIn = route != "auth"
-        let auth = UITestAuthGateway(session: signedIn ? Fixtures.session : nil)
+        let profile = route == "child-contact" ? Fixtures.childSession : Fixtures.session
+        let auth = UITestAuthGateway(session: signedIn ? profile : nil)
         let state = AppState(
             auth: auth,
             firebase: UITestFirebaseGateway(),
@@ -18,12 +19,13 @@ enum UITestAppStateFactory {
             stripe: UITestStripeGateway(),
             authentication: AuthenticationState(makeStore: { UITestLogoutIntentStore() })
         )
-        seed(state, route: route, signedIn: signedIn)
+        seed(state, route: route, signedIn: signedIn, profile: profile)
         return state
     }
 
-    private static func seed(_ state: AppState, route: String, signedIn: Bool) {
-        state.session = signedIn ? Fixtures.session : nil
+    private static func seed(_ state: AppState, route: String, signedIn: Bool, profile: AuthSession) {
+        state.session = signedIn ? profile : nil
+        state.selectedRole = profile.roles[0]
         state.trips = [Fixtures.trip]
         state.children = [Fixtures.child, Fixtures.otherChild]
         state.clubSummaries = Fixtures.clubs
@@ -80,6 +82,7 @@ enum UITestAppStateFactory {
 }
 
 private enum Fixtures {
+    static let childSession = AuthSession(uid: "ui-child-login", email: nil, displayName: "Enfant Démo", roles: [.child])
     static let session = AuthSession(uid: "ui-user", email: "parent@example.be", displayName: "Parent Démo",
         roles: [.parent, .driver])
     static let origin = ResolvedPlace(placeId: "origin", label: "Wavre", formattedAddress: "Rue du Stade 1, Wavre", lat: 50.715, lng: 4.612)
@@ -194,8 +197,11 @@ private struct UITestAuthGateway: AuthGateway {
     func signOut() throws {}
 }
 
-private struct UITestFirebaseGateway: FirebaseGateway {
-    func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession { Fixtures.session }
+struct UITestFirebaseGateway: FirebaseGateway {
+    let emergencyFixture = UITestEmergencyContacts()
+    func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
+        identity.uid == Fixtures.childSession.uid ? Fixtures.childSession : Fixtures.session
+    }
     func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
         try await UnconfiguredSupportGateway().supportReports(uid: uid, cursor: cursor)
     }

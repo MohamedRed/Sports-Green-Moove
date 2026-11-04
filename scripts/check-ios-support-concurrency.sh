@@ -34,6 +34,9 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BU
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/SupportModels.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/SupportWire.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/EmergencyContactWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseEmergencyContactGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/NativePlanPolicies.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseLocationUpload.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseInitializedProfile.swift" \
