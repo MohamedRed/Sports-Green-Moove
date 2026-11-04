@@ -34,3 +34,24 @@ Android run, a deadline increase or release evidence. No device has been manuall
 restarted and no paid resource or infrastructure configuration has changed.
 The public progress site remains unchanged until there is a new reviewed flow
 result or blocker to report.
+
+## Interrupted Execution Observations
+
+Before this correction, a host timeout or incomplete transcript throws before
+the existing primary-capture collector runs. The failure handler collects process
+and rejected-bitmap diagnostics, not the already recorded capture timings. A
+successful matrix collects those timings; an interrupted matrix loses them.
+
+The runner now validates the host result and full transcript through
+`requireOrdinaryInstrumentation`. If either fails, it attempts the existing
+bounded, read-only capture-timing copy once when diagnostics are enabled, then
+throws the same original failure. Incomplete or missing observations cannot
+accept the run. Copy/validation errors cannot replace that original failure or
+trigger another attempt. Completed passing and failing reports retain their
+existing single collection path and complete-inventory checks.
+
+The 9fd5bf3 run confirms `ETIMEDOUT` after 720007 ms, with case 336 of 349 started
+and no final runner code. It does not prove that case itself stalled or that
+there was an app crash. Its separate connected replay fails during guardian
+screen lookup; the independently focused network case fails in preparation
+without any network cut. None is repaired or accepted by retaining diagnostics.

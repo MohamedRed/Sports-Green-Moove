@@ -24,7 +24,9 @@ test('ordinary instrumentation has no class, package, annotation or sharding fil
   assert(source.includes("'instrument', '-w', '-r'")); assert(source.includes('be.sportgreenmoove.app.test/${disposableTestRunner}'));
   for (const name of ['class', 'package', 'annotation', 'notAnnotation', 'numShards', 'shardIndex', 'log'])
     assert(!source.includes(`'-e', '${name}'`));
-  assert(source.includes('parseAndroidJUnitTranscript(transcript)'));
+  assert(source.includes('requireOrdinaryInstrumentation(result, transcript'));
+  const validation = readFileSync(new URL('../scripts/qa/ordinary-process-observation.mjs', import.meta.url), 'utf8');
+  assert(validation.includes('return parseAndroidJUnitTranscript(transcript)'));
   for (const name of ['native-ci.yml', 'web-integration-smoke.yml']) {
     const text = readFileSync(new URL('../.github/workflows/' + name, import.meta.url), 'utf8');
     assert.equal(text.split('"tests/android-matrix-preparation.test.mjs"').length - 1, 2);

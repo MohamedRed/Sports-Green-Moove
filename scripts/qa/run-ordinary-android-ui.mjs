@@ -5,9 +5,9 @@ import { resolve } from 'node:path';
 import { disposableAndroidShell } from './disposable-android-shell.mjs';
 import { preparePinnedApks, assertContinuousDevice } from './preinstalled-disposable-apks.mjs';
 import { disposableTestRunner } from './install-disposable-test-apks.mjs';
-import { parseAndroidJUnitTranscript, androidJUnitXml } from './android-junit-transcript.mjs';
+import { androidJUnitXml } from './android-junit-transcript.mjs';
 import { primaryCaptureDiagnosticArguments, collectPrimaryCaptureDiagnostics } from './collect-primary-capture-diagnostics.mjs';
-import {ordinaryProcessObservation} from './ordinary-process-observation.mjs';
+import {ordinaryProcessObservation, requireOrdinaryInstrumentation} from './ordinary-process-observation.mjs';
 
 assert.equal(process.env.SGM_FOCUSED_UI_CASE, 'full-matrix');
 const root = resolve(import.meta.dirname, '../..'), android = resolve(root, 'android');
@@ -32,8 +32,10 @@ const transcript = redact(result.stdout), stderr = redact(result.stderr);
 writeFileSync(resolve(directory, 'ordinary-instrumentation.txt'), transcript, { mode: 0o600, flag: 'wx' });
 writeFileSync(resolve(directory, 'ordinary-process.json'), JSON.stringify(
   ordinaryProcessObservation(result, {elapsedMs, stderr}), null, 2) + '\n', { mode: 0o600, flag: 'wx' });
-assert.equal(result.status, 0, 'Ordinary instrumentation command failed'); assert.equal(result.signal, null); assert(!result.error);
-const report = parseAndroidJUnitTranscript(transcript);
+const report = requireOrdinaryInstrumentation(result, transcript, () => {
+  if (process.env.SGM_PRIMARY_CAPTURE_DIAGNOSTICS === 'true')
+    collectPrimaryCaptureDiagnostics({adb, serial: device.serial, directory, ordinaryPassed: false});
+});
 assertContinuousDevice(device, binding);
 writeFileSync(resolve(directory, 'ordinary-results.json'), JSON.stringify({ ...report, preparation,
   installationsRemainedBlocked: true, productionWritesAccepted: false, physicalDeviceAccepted: false,

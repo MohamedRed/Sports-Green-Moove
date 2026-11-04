@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The 9fd5bf3 web jobs pass and ten focused Android lanes pass. The focused network
+lane fails before a cut, while the main ordinary command reaches its host
+deadline without a complete result; its connected replay fails separately.
+Add one brief dated note, preserving all flows, media, tours and partial statuses.
+The diagnostic copy correction is not a repaired or accepted phone flow. See
+`docs/release/evidence/native-cutoff-2026-11-04/README.md`.
+
 The compatible security update changes twelve lock entries within existing
 ranges, builds all workspaces and passes 623 backend units plus 18 isolated
 invitation service cases. The audit falls from nine high findings to five, not
