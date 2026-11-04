@@ -8,6 +8,7 @@ import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-check
 import {parseAndroidJUnitTranscript} from '../scripts/qa/android-junit-transcript.mjs';
 import {content} from '../partner-portal/content.mjs';
 import {androidCutoffProgress} from '../partner-portal/android-cutoff-recheck.mjs';
+import {copyTransportFollowup, nativeCopyProgress} from '../partner-portal/native-copy-recheck.mjs';
 
 const folder = new URL('../docs/release/evidence/native-cutoff-2026-11-04/', import.meta.url);
 const bytes = name => readFileSync(new URL(name, folder));
@@ -58,4 +59,56 @@ test('the dated progress note retains earlier history without stack names or acc
   assert.deepEqual(content.updates.filter(row => historical.has(hash(row))), expected);
   assert.doesNotMatch(androidCutoffProgress.title + androidCutoffProgress.text, /Firebase|BrowserStack|Android|Pixel|JUnit|SIGTERM|ETIMEDOUT|SDK|CI/);
   assert.match(androidCutoffProgress.text, /simulation/); assert.match(androidCutoffProgress.text, /avant la fin/);
+});
+
+const followup = new URL('../docs/release/evidence/native-copy-recheck-2026-11-04/', import.meta.url);
+const nextJson = name => JSON.parse(readFileSync(new URL(name, followup)));
+
+test('the later ordinary pass retains a failed primary copy despite successful independent cleanup', () => {
+  assertEvidenceBundleChecksums(resolve(followup.pathname));
+  const selection = nextJson('selection.json'), checks = nextJson('checks.json');
+  assert.equal(selection.sourceCommit, 'd77a04958baa8f5042694740a361263919973f8f');
+  assert.equal(checks.headRefOid, selection.sourceCommit);
+  for (const [file, row] of Object.entries(selection.members))
+    assert.equal(createHash('sha256').update(readFileSync(new URL(file, followup))).digest('hex'), row.sha256);
+  for (const key of ['wholeNativeGateAccepted', 'physicalDeviceAccepted', 'disconnectCauseProven', 'failedCaptureTimingBranchExecuted'])
+    assert.equal(selection[key], false);
+  assert.deepEqual(['SUCCESS', 'SKIPPED', 'FAILURE'].map(c => checks.statusCheckRollup.filter(r => r.conclusion === c).length), [23, 6, 1]);
+  assert.equal(checks.statusCheckRollup.find(r => r.name === 'Android native UI tests').conclusion, 'FAILURE');
+  assert.equal(checks.statusCheckRollup.find(r => r.name === 'Functions, admin, and website smoke').conclusion, 'SUCCESS');
+  const focused = checks.statusCheckRollup.filter(r => r.name.startsWith('Android focused safety UI tests / Isolated ') &&
+    r.name !== 'Android focused safety UI tests / Isolated safety flows');
+  assert.equal(focused.length, 11); assert(focused.every(r => r.conclusion === 'SUCCESS'));
+  const ordinary = nextJson('ordinary-results.json');
+  assert.deepEqual([ordinary.caseCount, ordinary.passed, ordinary.skipped, ordinary.failed], [349, 294, 55, 0]);
+  assert.equal(nextJson('ordinary-process.json').elapsedMs, 674642);
+  assert.equal(nextJson('capture-collection.json').ok, true);
+  assert.equal(nextJson('native-suite-status.json').localReplay, 1);
+  const copy = nextJson('primary-copy.json'), cleanup = nextJson('cleanup-copy.json');
+  assert.equal(copy.phase, 'trip-draft-restart'); assert.equal(copy.completed, false);
+  assert.deepEqual([copy.status, copy.signal, copy.errorCode], [1, null, null]);
+  assert.equal(cleanup.phase, 'failure-cleanup'); assert.equal(cleanup.completed, true);
+  assert.deepEqual(copy.hostBefore.adbProcesses, copy.hostAfter.adbProcesses);
+  const connected = host => host.socketOwnership.processes.some(p => p.connections.some(c => c.remotePort === 5555 && c.state === '01'));
+  assert.equal(connected(copy.hostBefore), true); assert.equal(connected(copy.hostAfter), false);
+  const sync = nextJson('sync-diagnostics.json');
+  assert(sync.observations.filter(row => row.id !== 'storage-service-log').every(row => !row.collected && /device offline/.test(row.stderr)));
+  assert.equal(nextJson('device-restoration.json').verified, true);
+  assert.equal(nextJson('draft-before.json').completed, true); assert.equal(nextJson('draft-after.json').completed, true);
+});
+
+test('the independently executed network pass is simulated recovery, not a repaired whole gate or physical release', () => {
+  const run = nextJson('network-results.json'), ui = nextJson('network-ui.json');
+  assert.equal(run.nativeUiExecuted, true); assert.equal(run.physicalDevice, false); assert.equal(run.productionWrites, false);
+  assert.equal(run.localPackagesRemoved, true); assert.equal(ui.completed, true);
+  assert.deepEqual([run.network.messageCount, run.network.notificationCount, run.network.duplicateMessages], [2, 2, 0]);
+  assert.equal(run.network.offlineDraftRetained, true); assert.equal(run.network.parentDraftRestored, true);
+  assert.deepEqual(ui.network.map(row => row.phase), ['before', 'cellular-ready', 'offline', 'restored']);
+  assert.equal(ui.network.find(row => row.phase === 'offline').backendReachable, false);
+  assert.equal(ui.recoveredSendConfirmed, true); assert.equal(ui.cellularRequestReleased, true); assert.equal(ui.wifiRequestReleased, true);
+  assert.deepEqual(content.copyTransportFollowup, copyTransportFollowup);
+  assert.equal(content.nativeCopyRecheck.source, 'docs/release/evidence/native-copy-recheck-e23809a-2026-10-22/summary.json');
+  assert.equal(content.updates.find(row => row.source === nativeCopyProgress.source).text, nativeCopyProgress.text);
+  assert.match(nativeCopyProgress.text, /simulation/); assert.match(nativeCopyProgress.text, /reste irrégulière/);
+  assert.doesNotMatch(nativeCopyProgress.title + nativeCopyProgress.text, /Firebase|BrowserStack|Android|ADB|SDK|JUnit/);
 });

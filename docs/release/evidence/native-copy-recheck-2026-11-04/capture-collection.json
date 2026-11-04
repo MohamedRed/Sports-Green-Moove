@@ -1,0 +1,72 @@
+{
+  "scope": "capture-observation-collection-not-flow-or-root-cause-proof",
+  "ok": true,
+  "ordinaryPassed": true,
+  "copyStatus": 0,
+  "copySignal": null,
+  "errorCode": null,
+  "traces": [
+    {
+      "captureName": "trip-change-applied-balance-due.png",
+      "primaryOutcome": "returned",
+      "errorCategory": "none",
+      "elapsedMs": 187,
+      "primaryElapsedMs": 182,
+      "primaryStartOffsetMs": 4,
+      "complete": true
+    },
+    {
+      "captureName": "trip-change-close-pinned-large-text.png",
+      "primaryOutcome": "returned",
+      "errorCategory": "none",
+      "elapsedMs": 167,
+      "primaryElapsedMs": 160,
+      "primaryStartOffsetMs": 6,
+      "complete": true
+    },
+    {
+      "captureName": "trip-change-driver-proposed.png",
+      "primaryOutcome": "returned",
+      "errorCategory": "none",
+      "elapsedMs": 79,
+      "primaryElapsedMs": 75,
+      "primaryStartOffsetMs": 4,
+      "complete": true
+    },
+    {
+      "captureName": "trip-change-parent-accepted.png",
+      "primaryOutcome": "returned",
+      "errorCategory": "none",
+      "elapsedMs": 229,
+      "primaryElapsedMs": 228,
+      "primaryStartOffsetMs": 0,
+      "complete": true
+    },
+    {
+      "captureName": "trip-change-parent-declined.png",
+      "primaryOutcome": "returned",
+      "errorCategory": "none",
+      "elapsedMs": 146,
+      "primaryElapsedMs": 143,
+      "primaryStartOffsetMs": 3,
+      "complete": true
+    },
+    {
+      "captureName": "trip-change-parent-review-large-text.png",
+      "primaryOutcome": "returned",
+      "errorCategory": "none",
+      "elapsedMs": 281,
+      "primaryElapsedMs": 260,
+      "primaryStartOffsetMs": 20,
+      "complete": true
+    }
+  ],
+  "files": {
+    "primary-capture-diagnostics/trip-change-applied-balance-due-688009578623.json": "54837ace63a9984c959a37c1be511c5082831aa0d60dfe37d018afed5c8bc56e",
+    "primary-capture-diagnostics/trip-change-close-pinned-large-text-715142921435.json": "0b13022b600f85e0079451d59fd23e7a165b383780be130e735d5639e9964181",
+    "primary-capture-diagnostics/trip-change-driver-proposed-732593060755.json": "6aa9cb7e26f361900a4d19ef33666a4469baafc9f9b7fe9b11218c51ee98e96d",
+    "primary-capture-diagnostics/trip-change-parent-accepted-708980892853.json": "986395c5d4f6faf0e10b83b2790988e0dc44ea8dcf2874ba11e441541ad4b195",
+    "primary-capture-diagnostics/trip-change-parent-declined-694245175927.json": "30f17f0891ab79de03a936d4342fc996b294e059df8758433bc52fbbb2f3c351",
+    "primary-capture-diagnostics/trip-change-parent-review-large-text-704312113629.json": "fc8cb700e31818485524aaa83ebd93665cc897041574dbc0f9801969be01307f"
+  }
+}

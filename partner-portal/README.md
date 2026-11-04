@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The d77a049 web jobs and all eleven focused Android lanes pass. The main ordinary
+command completes all 349 cases, but a later connected-replay evidence copy fails
+after a private trip-draft restart. A subsequent cleanup copy cannot accept the
+failed main gate. Add one short simulated-message recovery note, retaining all
+flows, media, phone dates and prior updates. This is not a physical release pass
+or proof of the interrupted-command collection branch. See
+`docs/release/evidence/native-copy-recheck-2026-11-04/README.md`.
+
 The 9fd5bf3 web jobs pass and ten focused Android lanes pass. The focused network
 lane fails before a cut, while the main ordinary command reaches its host
 deadline without a complete result; its connected replay fails separately.
