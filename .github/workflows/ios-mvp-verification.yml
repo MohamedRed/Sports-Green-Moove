@@ -1,0 +1,72 @@
+name: iOS MVP Verification
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "ios/**"
+      - "scripts/check-ios-native-plan.sh"
+      - "tests/ios-mvp-workflow.test.mjs"
+      - ".github/workflows/ios-mvp-verification.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-mvp-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  ios-fixture-verification:
+    name: iPhone build and fixture screens
+    # Standard public-repository compute only; do not enable paid/private runs.
+    if: ${{ github.event.repository.visibility == 'public' && github.event.repository.private == false }}
+    runs-on: macos-26-intel
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Inspect installed Apple tools
+        run: |
+          xcodebuild -version
+          xcrun simctl list runtimes
+
+      - name: Run native logic checks
+        run: bash scripts/check-ios-native-plan.sh
+
+      - name: Install project generator
+        run: brew install xcodegen
+
+      - name: Generate SDK-linked app project
+        working-directory: ios
+        run: xcodegen generate --spec project.yml
+
+      - name: Create isolated iPhone simulator
+        id: phone
+        run: |
+          phone_id=$(xcrun simctl create SGM-MVP-iPhone com.apple.CoreSimulator.SimDeviceType.iPhone-16)
+          printf 'id=%s\n' "$phone_id" >> "$GITHUB_OUTPUT"
+
+      - name: Compile app and run existing fixture screen tests
+        working-directory: ios
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: |
+          xcodebuild test \
+            -project SportsGreenMoove.xcodeproj \
+            -scheme SportsGreenMoove \
+            -configuration Debug \
+            -destination "platform=iOS Simulator,id=$PHONE_ID" \
+            -derivedDataPath "$RUNNER_TEMP/sgm-ios-derived" \
+            -resultBundlePath "$RUNNER_TEMP/sgm-ios-fixtures.xcresult" \
+            -parallel-testing-enabled NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Dispose isolated simulator
+        if: ${{ always() && steps.phone.outputs.id != '' }}
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: xcrun simctl delete "$PHONE_ID"
