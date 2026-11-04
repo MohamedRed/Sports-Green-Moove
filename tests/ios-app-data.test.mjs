@@ -70,6 +70,7 @@ test('both web events and the iPhone verifier include the new shared-data regres
 test('the before/after comparison remains local and never accepts session-exit UI or release readiness', () => {
   const report = JSON.parse(read(iosAccountRefresh.source));
   const folder = 'docs/release/evidence/ios-account-refresh-2026-11-04/';
+  assert.equal(read(folder + '.gitattributes'), 'reproduction.txt -text -whitespace\n');
   assert.equal(report.baseline.sourceCommit, '55822999ff5d31b792c71bd78b6ae0e59a743851');
   assert.equal(report.baseline.lateReadRestoredPrivateData, true);
   assert.equal(report.baseline.providerReadCount, 7);
