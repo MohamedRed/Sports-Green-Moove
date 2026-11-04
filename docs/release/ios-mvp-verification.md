@@ -2,7 +2,7 @@
 
 The owner confirmed Android **and iPhone** on 4 November 2026. No iOS release
 requirements are removed. Existing routine iOS jobs remain disabled; the separate
-`iOS MVP Verification` workflow checks the real SDK-linked Xcode project and its
+`iOS MVP Verification` workflow checks the real SDK-linked Xcode project and
 all fixture-screen tests on an isolated simulator: five original identifier checks
 and two added search-consent cases.
 The PR user-flow verifier requires this separate check to succeed: missing,
@@ -16,11 +16,26 @@ uses no cache or provider secrets, does not sign, and does not publish an app.
 Larger runners and storage have separate billing; they are not enabled here.
 The signature-only support concurrency check runs in addition to, never instead
 of, the actual SDK-linked app build and all seven fixture tests.
+The workflow builds the app and test bundles once with `build-for-testing`, then
+runs every test from that build with `test-without-building`. These are separate
+steps within the same deadline, with no reduced selection or second build.
+The release manifest separately requires `ios_sdk_build_ci` and
+`ios_fixture_ui_ci`; neither is accepted by a local signature check or a partial run.
 
 The first run at `c1c2fa4` failed in support gateway compilation before UI tests.
 The candidate uses string-only inputs and validates Sendable models before
 continuation transfer, preserving cancellation and account isolation. Full SDK
 reverification remains required. See `evidence/ios-mvp-baseline-2026-11-04/`.
+
+At source `01a2f058`, the SDK-linked app compiled, launched and executed all seven
+tests: six passed and one failed because the fifth rating star was not exposed
+under its expected identifier. Both search-consent tests passed. The combined
+step was later cancelled; the job is not green, and simulator disposal succeeded.
+The cause of the delayed test-process finalization is not established. See
+`evidence/ios-fixture-observation-2026-11-04/` for immutable case-level evidence.
+The rating controls now have explicit score labels, separate accessibility
+containment and 44-point targets. The same test additionally submits a rating and
+checks its confirmation. This candidate still needs a new successful SDK/UI run.
 
 A passing result would prove compilation against the declared SDK dependencies
 and seven fixture-screen checks, not authentication, transactions, conversation

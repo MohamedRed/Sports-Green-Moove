@@ -27,7 +27,8 @@ test('retained local proof and the failed SDK run never accept iPhone or release
     'physicalDeviceEvidenceAccepted', 'productionWrites', 'realPaymentExercised', 'releaseComplete']) assert.equal(report[key], false);
   assert.equal(report.addedUiTests.length, 2);
   assert.deepEqual(content.iosSearchSafety, iosSearchSafety);
-  assert.deepEqual(content.updates[0], iosSearchSafetyProgress);
+  const original = content.updates.filter(item => item.source === iosSearchSafetyProgress.source);
+  assert.deepEqual(original, [iosSearchSafetyProgress]);
   assert.doesNotMatch(iosSearchSafetyProgress.title + iosSearchSafetyProgress.text, /BrowserStack|Firebase|SDK|backend|Swift|Xcode|CI\b/i);
 });
 

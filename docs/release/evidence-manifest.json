@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-10-31",
+  "generatedAt": "2026-11-04",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -88,6 +88,18 @@
   },
   "automatedUserFlowEvidence": {
     "items": [
+      {
+        "id": "ios_sdk_build_ci",
+        "status": "pending",
+        "description": "An SDK-linked app launched at 01a2f05, but its combined job was cancelled after a failed UI case. Require the separate successful SDK-linked build step on the release candidate; local signature checks cannot accept this item.",
+        "evidenceRefs": ["ios-mvp-verification.md", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41843194537/job/126619888914"]
+      },
+      {
+        "id": "ios_fixture_ui_ci",
+        "status": "pending",
+        "description": "Seven fixture UI cases executed at 01a2f05: six passed, including both search-consent cases, and one rating-identifier case failed. The job was then cancelled. The complete iPhone fixture gate remains unaccepted.",
+        "evidenceRefs": ["ios-mvp-verification.md", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41843194537/job/126619888914"]
+      },
       {
         "id": "native_ui_flow_ci",
         "status": "passed",

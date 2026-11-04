@@ -29,7 +29,12 @@ assert.deepEqual(report.operationalUserFlowEvidence.missing, ["urgent_support_sp
 assert.equal(report.manifest.exists, true, "In-progress release evidence manifest should be read.");
 assert.equal(report.manifest.data.manifestStatus, "in-progress", "Release evidence manifest must not claim completion.");
 assert.equal(report.secretInventory.exists, true, "Default release gap report should read the checked-in secret inventory.");
-assert.deepEqual(report.automatedFlowEvidence.missing, [], "Automated user-flow evidence should be complete.");
+assert.deepEqual(report.automatedFlowEvidence.missing, ["ios_sdk_build_ci", "ios_fixture_ui_ci"],
+  "The two-platform MVP still needs complete iPhone build and fixture gate evidence.");
+for (const id of ["native_ui_flow_ci", "android_connected_ui_ci", "backend_live_smoke", "operations_live_smoke",
+  "firebase_rules_emulator", "stripe_webhook_emulator", "android_appetize_launch", "android_appetize_email_login"]) {
+  assert(report.automatedFlowEvidence.passed.includes(id), `Preserve original scoped automated evidence: ${id}`);
+}
 assert.ok(report.storeReviewEvidence.missing.includes("emergency_contact_action_screenshot"),
   "A static emergency-contact panel must remain missing until its action and dialer handoff are verified.");
 assert.ok(!report.storeReviewEvidence.passed.includes("emergency_contact_action_screenshot"),

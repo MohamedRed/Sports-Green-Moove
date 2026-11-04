@@ -1,7 +1,7 @@
 import XCTest
 
 final class SearchConsentFlowTests: XCTestCase {
-    func testExplicitConsentAndChildChangeInvalidateResults() {
+    @MainActor func testExplicitConsentAndChildChangeInvalidateResults() {
         let app = launchSearch()
         let consent = app.buttons["search.consent"]
         XCTAssertTrue(consent.waitForExistence(timeout: 6))
@@ -21,7 +21,7 @@ final class SearchConsentFlowTests: XCTestCase {
         XCTAssertFalse(app.buttons["booking.request.action"].exists)
     }
 
-    func testTrackingAndSeatChangesInvalidateTheAcceptedSelection() {
+    @MainActor func testTrackingAndSeatChangesInvalidateTheAcceptedSelection() {
         let app = launchSearch()
         let consent = app.buttons["search.consent"]
         XCTAssertTrue(consent.waitForExistence(timeout: 6))
@@ -39,7 +39,7 @@ final class SearchConsentFlowTests: XCTestCase {
         XCTAssertEqual(consent.value as? String, "Accordé")
     }
 
-    private func launchSearch() -> XCUIApplication {
+    @MainActor private func launchSearch() -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--sgm-ui-test-fixture", "--sgm-ui-route", "search"]
         app.launch()

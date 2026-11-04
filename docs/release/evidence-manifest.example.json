@@ -65,6 +65,18 @@
   "automatedUserFlowEvidence": {
     "items": [
       {
+        "id": "ios_sdk_build_ci",
+        "status": "pending",
+        "description": "Supply the release-candidate SDK-linked simulator build result; a local scaffold or signature-only compile is insufficient.",
+        "evidenceRefs": ["ios-mvp-verification.md"]
+      },
+      {
+        "id": "ios_fixture_ui_ci",
+        "status": "pending",
+        "description": "Supply the complete release-candidate fixture UI result, keeping physical iPhone and provider requirements separate.",
+        "evidenceRefs": ["ios-mvp-verification.md"]
+      },
+      {
         "id": "native_ui_flow_ci",
         "status": "passed",
         "description": "Native UI identifier coverage passed for auth, groups, publish, search, booking, active ride, chat, rating, CO2, rewards, options, and payments.",

@@ -20,6 +20,8 @@ export const requiredDeviceScenarios = [
 ];
 
 export const requiredAutomatedFlowEvidence = [
+  "ios_sdk_build_ci",
+  "ios_fixture_ui_ci",
   "native_ui_flow_ci",
   "android_connected_ui_ci",
   "backend_live_smoke",

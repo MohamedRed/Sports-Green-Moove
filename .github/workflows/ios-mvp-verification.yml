@@ -56,20 +56,33 @@ jobs:
           phone_id=$(xcrun simctl create SGM-MVP-iPhone com.apple.CoreSimulator.SimDeviceType.iPhone-16)
           printf 'id=%s\n' "$phone_id" >> "$GITHUB_OUTPUT"
 
-      - name: Compile app and run existing fixture screen tests
+      - name: Compile app and all fixture test bundles
         working-directory: ios
         env:
           PHONE_ID: ${{ steps.phone.outputs.id }}
         run: |
-          xcodebuild test \
+          xcodebuild build-for-testing \
             -project SportsGreenMoove.xcodeproj \
             -scheme SportsGreenMoove \
             -configuration Debug \
             -destination "platform=iOS Simulator,id=$PHONE_ID" \
             -derivedDataPath "$RUNNER_TEMP/sgm-ios-derived" \
-            -resultBundlePath "$RUNNER_TEMP/sgm-ios-fixtures.xcresult" \
-            -parallel-testing-enabled NO \
+            -resultBundlePath "$RUNNER_TEMP/sgm-ios-build.xcresult" \
             CODE_SIGNING_ALLOWED=NO
+
+      - name: Run every built fixture test without rebuilding
+        working-directory: ios
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: |
+          shopt -s nullglob
+          runs=( "$RUNNER_TEMP/sgm-ios-derived/Build/Products/"*.xctestrun )
+          test "${#runs[@]}" -eq 1
+          xcodebuild test-without-building \
+            -xctestrun "${runs[0]}" \
+            -destination "platform=iOS Simulator,id=$PHONE_ID" \
+            -resultBundlePath "$RUNNER_TEMP/sgm-ios-fixtures.xcresult" \
+            -parallel-testing-enabled NO
 
       - name: Dispose isolated simulator
         if: ${{ always() && steps.phone.outputs.id != '' }}

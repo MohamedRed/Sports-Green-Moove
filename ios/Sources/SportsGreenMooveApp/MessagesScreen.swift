@@ -213,23 +213,28 @@ struct ReviewCard: View {
             Text(review.prompt)
                 .font(.sgmBody(13))
                 .foregroundStyle(SGM.textSecondary)
-            Text(submitting ? "Envoi de l'avis..." : "Touchez une note.")
-                .font(.sgmBody(11, weight: .semibold))
-                .foregroundStyle(SGM.textMuted)
+            if submitting {
+                Text("Envoi de l'avis...")
+                    .font(.sgmBody(11, weight: .semibold))
+                    .foregroundStyle(SGM.textMuted)
+            }
             HStack(spacing: 4) {
                 ForEach(1...5, id: \.self) { score in
                     Button {
                         onRate(score)
                     } label: {
                         SGMIconView(icon: .star, size: 18, color: SGM.orange)
+                            .frame(width: 44, height: 44)
                     }
                     .buttonStyle(.plain)
-                    .sgmUITestIdentifier("\(UITestIdentifier.ratingPromptAction).\(score)")
+                    .accessibilityLabel("Noter \(score) étoile\(score == 1 ? "" : "s")")
                     .disabled(submitting)
+                    .sgmUITestIdentifier("\(UITestIdentifier.ratingPromptAction).\(score)")
                 }
             }
         }
         .messageCardStyle()
+        .accessibilityElement(children: .contain)
         .sgmUITestIdentifier(UITestIdentifier.ratingPromptAction)
     }
 }

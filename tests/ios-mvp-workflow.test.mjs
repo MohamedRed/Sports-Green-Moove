@@ -3,9 +3,10 @@ import {readFileSync} from 'node:fs';
 import {test} from 'node:test';
 import {createHash} from 'node:crypto';
 import {parseDocument} from 'yaml';
-import {requiredUserFlowChecks} from '../scripts/release-evidence-requirements.mjs';
+import {requiredUserFlowChecks, requiredAutomatedFlowEvidence} from '../scripts/release-evidence-requirements.mjs';
 import {content} from '../partner-portal/content.mjs';
 import {iosMvpBaseline, iosMvpProgress, iosMvpBlocker} from '../partner-portal/ios-mvp-baseline.mjs';
+import {iosFixtureObservation, iosFixtureProgress, iosFixtureLaunchProgress} from '../partner-portal/ios-fixture-observation.mjs';
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const path = '.github/workflows/ios-mvp-verification.yml';
@@ -61,6 +62,10 @@ test('full SDK project and unchanged fixture tests run once without signing or p
   assert.match(commands, /xcodegen generate --spec project\.yml/);
   assert.match(commands, /xcrun simctl create SGM-MVP-iPhone com\.apple\.CoreSimulator\.SimDeviceType\.iPhone-16/);
   assert.match(commands, /xcodebuild test/);
+  assert.equal((commands.match(/xcodebuild build-for-testing/g) ?? []).length, 1);
+  assert.equal((commands.match(/xcodebuild test-without-building/g) ?? []).length, 1);
+  assert.match(commands, /test "\$\{#runs\[@\]\}" -eq 1/);
+  assert.match(commands, /-xctestrun "\$\{runs\[0\]\}"/);
   assert.match(commands, /-project SportsGreenMoove\.xcodeproj/);
   assert.match(commands, /-destination "platform=iOS Simulator,id=\$PHONE_ID"/);
   assert.match(commands, /-parallel-testing-enabled NO/);
@@ -87,6 +92,61 @@ test('support transports typed values across the continuation without suppressin
   assert.equal((boundary.match(/try Task.checkCancellation\(\)/g) ?? []).length, 2);
   assert.doesNotMatch(gateway + boundary, /@unchecked|@preconcurrency|resume\(returning: data\)|async throws -> Any/);
   assert.match(read('scripts/check-ios-support-concurrency.sh'), /-swift-version 6 -strict-concurrency=complete -warnings-as-errors/);
+});
+
+test('partial terminal iPhone proof preserves all seven outcomes without accepting a failed gate', () => {
+  const report = JSON.parse(read(iosFixtureObservation.source));
+  assert.equal(report.sourceCommit, '01a2f0585183f2a6d20b004f8f1cfd2374ca070b');
+  assert.equal(report.runId, 41843194537);
+  assert.equal(report.conclusion, 'cancelled');
+  assert.equal(report.sdkLinkedAppCompiledAndLaunched, true);
+  assert.equal(report.separateBuildStepAccepted, false);
+  assert.equal(report.simulatorDisposal, 'success');
+  assert.equal(report.testProcessFinalizationCause, 'unknown');
+  const cases = report.fixtureSuite.cases;
+  assert.equal(new Set(cases.map(item => item.name)).size, 7);
+  assert.equal(cases.filter(item => item.result === 'passed').length, 6);
+  assert.equal(cases.filter(item => item.result === 'failed').length, 1);
+  for (const name of ['SportsGreenMooveUITests', 'SearchConsentFlowTests']) {
+    const source = read(`ios/UITests/SportsGreenMooveUITests/${name}.swift`);
+    assert.deepEqual(cases.filter(item => item.suite === name).map(item => item.name).sort(),
+      [...source.matchAll(/func (test\w+)\(/g)].map(match => match[1]).sort());
+  }
+  assert.equal(report.fixtureSuite.failure.message,
+    'XCTAssertTrue failed - Missing UI identifier: messages.rating-prompt.action.5');
+  for (const key of ['fullUiGateAccepted', 'iosEndToEndFlowsAccepted', 'physicalDeviceEvidenceAccepted',
+    'productionWrites', 'realPaymentExercised', 'newMediaPublished', 'releaseComplete']) assert.equal(report[key], false);
+  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) {
+    assert(requiredAutomatedFlowEvidence.includes(id));
+    for (const file of ['evidence-manifest.json', 'evidence-manifest.example.json']) {
+      const manifest = JSON.parse(read(`docs/release/${file}`));
+      assert.equal(manifest.automatedUserFlowEvidence.items.find(item => item.id === id).status, 'pending');
+    }
+  }
+  assert.deepEqual(content.iosFixtureObservation, iosFixtureObservation);
+  for (const update of [iosFixtureProgress, iosFixtureLaunchProgress]) {
+    assert.deepEqual(content.updates.filter(item => item.source === update.source && item.flow === update.flow), [update]);
+  }
+  for (const id of [iosFixtureProgress.flow, ...iosFixtureProgress.coversFlows]) {
+    assert(content.flows.some(flow => flow.id === id));
+  }
+  assert.doesNotMatch(iosFixtureProgress.title + iosFixtureProgress.text,
+    /Firebase|BrowserStack|Xcode|SDK|Foundation|Swift|CI\b/i);
+});
+
+test('rating controls expose individual scores and the original UI test also verifies submission', () => {
+  const card = read('ios/Sources/SportsGreenMooveApp/MessagesScreen.swift');
+  assert.match(card, /\.accessibilityElement\(children: \.contain\)/);
+  assert.match(card, /\.accessibilityLabel\("Noter \\\(score\)/);
+  assert.match(card, /\.frame\(width: 44, height: 44\)/);
+  const fixtures = read('ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift');
+  assert.match(fixtures, /assertExists\("messages.rating-prompt.action.5", in: app\)/);
+  assert.match(fixtures, /app.buttons\["messages.rating-prompt.action.5"\]/);
+  assert.match(fixtures, /rating.tap\(\)/);
+  assert.match(fixtures, /app.staticTexts\["Avis envoyé\."\].waitForExistence\(timeout: 6\)/);
+  assert.match(fixtures, /app.debugDescription.prefix\(32_000\)/);
+  assert.doesNotMatch(fixtures, /XCTSkip|retry|continueAfterFailure\s*=\s*false/);
+  assert.equal((fixtures.match(/@MainActor func test/g) ?? []).length, 5);
 });
 
 test('iOS changes trigger verification and web smoke checks its constraints', () => {

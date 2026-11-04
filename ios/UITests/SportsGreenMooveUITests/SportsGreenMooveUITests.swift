@@ -1,7 +1,7 @@
 import XCTest
 
 final class SportsGreenMooveUITests: XCTestCase {
-    func testAuthFlowIdentifiers() {
+    @MainActor func testAuthFlowIdentifiers() {
         let app = launch(route: "auth")
         assertExists("auth.screen", in: app)
         assertExists("auth.email.action", in: app)
@@ -9,7 +9,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         assertExists("auth.google.action", in: app)
     }
 
-    func testPublishSearchAndBookingIdentifiers() {
+    @MainActor func testPublishSearchAndBookingIdentifiers() {
         var app = launch(route: "publish")
         assertExists("publish.screen", in: app)
         assertExists("publish.next.action", in: app)
@@ -29,7 +29,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         assertExists("booking.approve.action", in: app)
     }
 
-    func testActiveRideIdentifiers() {
+    @MainActor func testActiveRideIdentifiers() {
         let app = launch(route: "ride")
         assertExists("active-ride.screen", in: app)
         assertExists("active-ride.pickup.action", in: app)
@@ -38,7 +38,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         assertExists("active-ride.emergency-contact", in: app)
     }
 
-    func testMessagesChatAndRatingIdentifiers() {
+    @MainActor func testMessagesChatAndRatingIdentifiers() {
         let app = launch(route: "messages")
         assertExists("messages.screen", in: app)
         assertExists("messages.chat.tab", in: app)
@@ -46,9 +46,15 @@ final class SportsGreenMooveUITests: XCTestCase {
         app.descendants(matching: .any)["messages.rating.tab"].tap()
         assertExists("messages.rating-prompt.action", in: app)
         assertExists("messages.rating-prompt.action.5", in: app)
+        let rating = app.buttons["messages.rating-prompt.action.5"]
+        XCTAssertEqual(rating.label, "Noter 5 étoiles")
+        XCTAssertTrue(rating.isEnabled)
+        rating.tap()
+        XCTAssertTrue(app.staticTexts["Avis envoyé."].waitForExistence(timeout: 6))
+        XCTAssertFalse(app.descendants(matching: .any)["messages.rating-prompt.action"].exists)
     }
 
-    func testSecondaryFlowIdentifiers() {
+    @MainActor func testSecondaryFlowIdentifiers() {
         var app = launch(route: "groups")
         assertExists("groups.screen", in: app)
         assertExists("groups.join.action", in: app)
@@ -69,25 +75,31 @@ final class SportsGreenMooveUITests: XCTestCase {
         assertExists("payments.payment.action", in: app)
     }
 
-    private func launch(route: String) -> XCUIApplication {
+    @MainActor private func launch(route: String) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--sgm-ui-test-fixture", "--sgm-ui-route", route]
         app.launch()
         return app
     }
 
-    private func assertExists(_ identifier: String, in app: XCUIApplication) {
+    @MainActor private func assertExists(_ identifier: String, in app: XCUIApplication) {
         let element = app.descendants(matching: .any)[identifier]
-        XCTAssertTrue(element.waitForExistence(timeout: 6), "Missing UI identifier: \(identifier)")
+        let exists = element.waitForExistence(timeout: 6)
+        if !exists {
+            print("SGM_FIXTURE_ACCESSIBILITY_BEGIN \(identifier)")
+            print(String(app.debugDescription.prefix(32_000)))
+            print("SGM_FIXTURE_ACCESSIBILITY_END")
+        }
+        XCTAssertTrue(exists, "Missing UI identifier: \(identifier)")
     }
 
-    private func tapButton(containing text: String, in app: XCUIApplication) {
+    @MainActor private func tapButton(containing text: String, in app: XCUIApplication) {
         let button = app.buttons.containing(.staticText, identifier: text).firstMatch
         XCTAssertTrue(button.waitForExistence(timeout: 6), "Missing button containing: \(text)")
         button.tap()
     }
 
-    private func tapIdentifier(_ identifier: String, in app: XCUIApplication) {
+    @MainActor private func tapIdentifier(_ identifier: String, in app: XCUIApplication) {
         let element = app.descendants(matching: .any)[identifier]
         XCTAssertTrue(element.waitForExistence(timeout: 6), "Missing tappable identifier: \(identifier)")
         element.tap()
