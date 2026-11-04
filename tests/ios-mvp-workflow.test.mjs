@@ -7,6 +7,7 @@ import {requiredUserFlowChecks, requiredAutomatedFlowEvidence} from '../scripts/
 import {content} from '../partner-portal/content.mjs';
 import {iosMvpBaseline, iosMvpProgress, iosMvpBlocker} from '../partner-portal/ios-mvp-baseline.mjs';
 import {iosFixtureObservation, iosFixtureProgress, iosFixtureLaunchProgress} from '../partner-portal/ios-fixture-observation.mjs';
+import {iosFixturePass, iosFixturePassProgress} from '../partner-portal/ios-fixture-pass.mjs';
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const path = '.github/workflows/ios-mvp-verification.yml';
@@ -147,6 +148,44 @@ test('rating controls expose individual scores and the original UI test also ver
   assert.match(fixtures, /app.debugDescription.prefix\(32_000\)/);
   assert.doesNotMatch(fixtures, /XCTSkip|retry|continueAfterFailure\s*=\s*false/);
   assert.equal((fixtures.match(/@MainActor func test/g) ?? []).length, 5);
+});
+
+test('the first full iPhone fixture pass is source-bound and never accepts the failed Android gate or later app changes', () => {
+  const report = JSON.parse(read(iosFixturePass.source));
+  const earlier = JSON.parse(read(iosFixtureObservation.source));
+  assert.equal(report.sourceCommit, '55822999ff5d31b792c71bd78b6ae0e59a743851');
+  assert.equal(report.runId, 41854694392);
+  for (const result of [report, report.build, report.fixtureExecution]) assert.equal(result.conclusion, 'success');
+  assert.equal(report.fixtureSuite.executed, 7);
+  assert.equal(report.fixtureSuite.passed, 7);
+  assert.equal(report.fixtureSuite.failed, 0);
+  assert.equal(report.fixtureSuite.unexpectedFailures, 0);
+  assert.deepEqual(report.fixtureSuite.cases.map(item => [item.suite, item.name]),
+    earlier.fixtureSuite.cases.map(item => [item.suite, item.name]));
+  assert(report.fixtureSuite.cases.every(item => item.result === 'passed'));
+  assert.equal(report.ratingFixtureSubmissionVerified, true);
+  assert.equal(report.simulatorDisposal, 'success');
+  assert.equal(report.testedSourceBuildAndFixtureGatePassed, true);
+  assert.equal(report.firstPartyCompilerWarnings.length, 6);
+  assert.equal(report.sameSourceAndroidGate.conclusion, 'failure');
+  assert.deepEqual(report.sameSourceAndroidGate.suiteExitStatuses, {ordinaryTests: 0, componentEvidence: 1, localReplay: 0});
+  assert.equal(report.sameSourceAndroidGate.localReplay.groupsPassed, 37);
+  assert.equal(report.sameSourceAndroidGate.localReplay.nativeCaseCount, 40);
+  assert.match(report.sameSourceAndroidGate.originalArtifact.sha256, /^[a-f0-9]{64}$/);
+  assert.equal(report.sameSourceAndroidGate.underlyingTransferCause, 'not established');
+  const sources = JSON.parse(read(iosFixturePass.checksums));
+  assert(Object.keys(sources).length >= 110);
+  assert.equal(sources['ios/Sources/SportsGreenMooveApp/AppState.swift'],
+    '91f4e4f49f6aa5a902bc68c59855f687f57b02284ed5119fc0308a43662c5dd7');
+  assert.equal(Object.hasOwn(sources, 'ios/Sources/SportsGreenMooveApp/AppState+Data.swift'), false);
+  for (const value of Object.values(sources)) assert.match(value, /^[a-f0-9]{64}$/);
+  for (const key of ['laterAccountRefreshSourceCovered', 'releaseCandidateBuildAccepted', 'releaseCandidateFixtureGateAccepted',
+    'iosEndToEndFlowsAccepted', 'physicalDeviceEvidenceAccepted', 'productionWrites', 'realPaymentExercised',
+    'newMediaPublished', 'releaseComplete']) assert.equal(report[key], false, key);
+  assert.deepEqual(content.iosFixturePass, iosFixturePass);
+  assert.deepEqual(content.updates.filter(item => item.source === iosFixturePassProgress.source), [iosFixturePassProgress]);
+  assert.doesNotMatch(iosFixturePassProgress.title + iosFixturePassProgress.text,
+    /Firebase|BrowserStack|Swift|SDK|backend|Xcode|CI\b/i);
 });
 
 test('iOS changes trigger verification and web smoke checks its constraints', () => {

@@ -91,14 +91,14 @@
       {
         "id": "ios_sdk_build_ci",
         "status": "pending",
-        "description": "An SDK-linked app launched at 01a2f05, but its combined job was cancelled after a failed UI case. Require the separate successful SDK-linked build step on the release candidate; local signature checks cannot accept this item.",
-        "evidenceRefs": ["ios-mvp-verification.md", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41843194537/job/126619888914"]
+        "description": "The separate SDK-linked build succeeds at 5582299. Later account-refresh source is not covered by that run; require its successful release-candidate result. Local signature checks cannot accept this item.",
+        "evidenceRefs": ["ios-mvp-verification.md", "evidence/ios-fixture-pass-5582299-2026-11-04/summary.json", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41854694392/job/126660020762"]
       },
       {
         "id": "ios_fixture_ui_ci",
         "status": "pending",
-        "description": "Seven fixture UI cases executed at 01a2f05: six passed, including both search-consent cases, and one rating-identifier case failed. The job was then cancelled. The complete iPhone fixture gate remains unaccepted.",
-        "evidenceRefs": ["ios-mvp-verification.md", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41843194537/job/126619888914"]
+        "description": "All seven fixture UI cases pass at 5582299, including rating submission and both consent cases. Later account-refresh source needs its own complete release-candidate run. This does not accept physical or end-to-end iPhone flows.",
+        "evidenceRefs": ["ios-mvp-verification.md", "evidence/ios-fixture-pass-5582299-2026-11-04/summary.json", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41854694392/job/126660020762"]
       },
       {
         "id": "native_ui_flow_ci",

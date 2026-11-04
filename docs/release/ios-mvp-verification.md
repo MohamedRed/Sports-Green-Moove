@@ -34,8 +34,12 @@ step was later cancelled; the job is not green, and simulator disposal succeeded
 The cause of the delayed test-process finalization is not established. See
 `evidence/ios-fixture-observation-2026-11-04/` for immutable case-level evidence.
 The rating controls now have explicit score labels, separate accessibility
-containment and 44-point targets. The same test additionally submits a rating and
-checks its confirmation. This candidate still needs a new successful SDK/UI run.
+containment and 44-point targets. At `5582299`, run `41854694392` passes its
+separate SDK build and all seven fixture cases, including rating submission and
+confirmation. Simulator disposal also passes. This proves the tested source, not
+the later account-refresh code, physical journeys or complete app flows. See
+`evidence/ios-fixture-pass-5582299-2026-11-04/`. Its recorded compiler warnings
+remain separate from the successful build/test result.
 
 A passing result would prove compilation against the declared SDK dependencies
 and seven fixture-screen checks, not authentication, transactions, conversation

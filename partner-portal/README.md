@@ -9,11 +9,13 @@ completed iPhone sign-out UI. Add one short local result and retain all 34 flows
 The profile action, authentication completion and tracking teardown remain open.
 See `docs/release/evidence/ios-account-refresh-2026-11-04/README.md`.
 
-The 01a2f05 SDK-linked app launches and executes all seven fixture tests: six pass,
-including both consent cases; one rating-control case fails and the job later
-cancels. Its complete log is case-level proof, not a green gate or physical test.
-The rating candidate at 5582299 still needs its own complete result. No new native
-images or video are published. See `docs/release/evidence/ios-fixture-observation-2026-11-04/README.md`.
+The SDK-linked build and all seven fixture cases now pass at 5582299, including
+rating submission and both consent cases. Add one concise simulated-iPhone note;
+retain all historical failures, media, tours, dates and partial statuses. The later
+account-refresh code needs its own full run. Android's same-source full gate fails
+in component image transfer despite successful ordinary tests and connected replay.
+No new native media, provider transaction, physical or release acceptance is added.
+See `docs/release/evidence/ios-fixture-pass-5582299-2026-11-04/README.md`.
 
 ### Earlier Checkpoints
 
