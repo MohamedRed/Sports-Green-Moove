@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "local-actual-AppState-races-with-isolated-gateways-not-SDK-or-UI-proof",
+  "baseline": {
+    "sourceCommit": "55822999ff5d31b792c71bd78b6ae0e59a743851",
+    "sourceFile": "ios/Sources/SportsGreenMooveApp/AppState.swift",
+    "sourceSha256": "91f4e4f49f6aa5a902bc68c59855f687f57b02284ed5119fc0308a43662c5dd7",
+    "comparisonBoundary": "Original AppState source; other Foundation dependencies and explicit isolated gateways match the candidate reproduction",
+    "lateReadRestoredPrivateData": true,
+    "providerReadCount": 7,
+    "authenticated": false
+  },
+  "candidate": {
+    "sources": "source-sha256.json",
+    "lateReadRestoredPrivateData": false,
+    "providerReadCount": 1,
+    "authenticated": false
+  },
+  "reproduction": {
+    "exitCode": 0,
+    "entryPoint": "reproduction.swift",
+    "log": "reproduction.txt",
+    "logSha256": "4b49ba57973fa1d814b5f55a9062b4228e00169528310d1414cc5e4e1e313a12"
+  },
+  "nativeChecks": {
+    "command": "bash scripts/check-ios-native-plan.sh",
+    "languageMode": "Swift 6",
+    "actualAppStateCompiled": true,
+    "exitCode": 0,
+    "log": "native-checks.txt",
+    "logSha256": "14768907b0d750b5e78434502181d6891a66dcf82a19edf305ec3cf6d584ccd3",
+    "logoutReadBoundariesExercised": 7,
+    "checks": ["signed-out pre-call denial", "atomic snapshot", "logout at every parent read", "account replacement", "same-UID reauthentication", "role ABA", "old success while new busy", "old failure while new busy", "old failure after new success", "cancellation", "current failure", "explicit recovery", "driver-specific reads"]
+  },
+  "remainingSessionExitWork": ["profile action", "real profile identity", "authentication completion ownership", "tracking teardown", "SDK-connected and rendered verification"],
+  "sdkLinkedBuildAccepted": false,
+  "iosSessionExitUiAccepted": false,
+  "physicalDeviceEvidenceAccepted": false,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false
+}

@@ -10,6 +10,7 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppDataGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SupportSubmission.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SupportSubmissionState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SupportModels.swift" \
@@ -21,6 +22,7 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchFormState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchRequestState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Data.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Search.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredGateways.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift" \
@@ -39,6 +41,8 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TripDateLabelChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataRefreshChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RidePaymentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SupportChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift" \

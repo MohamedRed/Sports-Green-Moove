@@ -2,6 +2,21 @@
 
 ## Current Publication Policy
 
+The actual AppState race comparison reproduces late data restoration after
+sign-out at 5582299. The candidate passes local snapshot/ownership checks, not a
+completed iPhone sign-out UI. Add one short local result and retain all 34 flows,
+532 media files, previous updates, phone dates, tours and partial statuses.
+The profile action, authentication completion and tracking teardown remain open.
+See `docs/release/evidence/ios-account-refresh-2026-11-04/README.md`.
+
+The 01a2f05 SDK-linked app launches and executes all seven fixture tests: six pass,
+including both consent cases; one rating-control case fails and the job later
+cancels. Its complete log is case-level proof, not a green gate or physical test.
+The rating candidate at 5582299 still needs its own complete result. No new native
+images or video are published. See `docs/release/evidence/ios-fixture-observation-2026-11-04/README.md`.
+
+### Earlier Checkpoints
+
 The ef9f0e6 iPhone build still fails before UI tests; its previous support errors
 do not recur, but booking/inbox/ledger errors remain. Publish one short local
 consent-reset note. The candidate protects request scope and shares typed callable

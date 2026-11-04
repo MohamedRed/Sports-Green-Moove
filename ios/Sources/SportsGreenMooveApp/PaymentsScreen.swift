@@ -21,7 +21,7 @@ struct PaymentsScreen: View {
             }
             if appState.selectedRole == .driver {
                 SGMSectionLabel("STRIPE CONNECT")
-                PaymentsConnectCard(loading: appState.loading) {
+                PaymentsConnectCard(loading: appState.loading || appState.refreshingAppData) {
                     Task { await startStripeConnect() }
                 }
                 .padding(.horizontal, SGMSpace.padScreen)
@@ -35,7 +35,7 @@ struct PaymentsScreen: View {
                     ForEach(appState.payableBookings) { booking in
                         PaymentBookingCard(
                             booking: booking,
-                            loading: appState.loading || appState.ridePaymentBusy || appState.hasPendingRidePayment,
+                            loading: appState.loading || appState.refreshingAppData || appState.ridePaymentBusy || appState.hasPendingRidePayment,
                             paymentPending: appState.hasPendingRidePayment
                         ) {
                             Task { await appState.payRide(booking) }

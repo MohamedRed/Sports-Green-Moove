@@ -10,6 +10,7 @@ import {nativeCopyProgress} from './native-copy-recheck.mjs';
 import {iosMvpProgress} from './ios-mvp-baseline.mjs';
 import {iosSearchSafetyProgress} from './ios-search-safety.mjs';
 import {iosFixtureProgress, iosFixtureLaunchProgress} from './ios-fixture-observation.mjs';
+import {iosAccountRefreshProgress} from './ios-account-refresh.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
 import {c84ChecksProgress} from './c84-checks.mjs';
@@ -101,6 +102,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosAccountRefreshProgress,
   iosFixtureProgress,
   iosFixtureLaunchProgress,
   iosSearchSafetyProgress,

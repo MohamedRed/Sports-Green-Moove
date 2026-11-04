@@ -10,26 +10,18 @@ protocol AuthGateway: Sendable {
     func signOut() throws
 }
 
-protocol FirebaseGateway: SupportGateway, PendingReviewGateway {
+protocol FirebaseGateway: AppDataGateway, SupportGateway, PendingReviewGateway {
     var isConfigured: Bool { get }
-    func searchTrips() async throws -> [TripSummary]
-    func listChildren() async throws -> [ChildSummary]
-    func listClubSummaries() async throws -> [ClubSummary]
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion]
     func resolvePlace(placeId: String) async throws -> ResolvedPlace
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary]
     func createTrip(draft: TripPublishDraft) async throws -> String
     func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String
-    func getDriverBookingRequests() async throws -> [BookingRequestSummary]
     func approveBooking(bookingId: String) async throws -> String
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot
-    func getActiveRide() async throws -> LiveRideSnapshot?
     func markPickup(rideSessionId: String, bookingId: String, childId: String) async throws -> String
     func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String
     func endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int) async throws -> RideCompletionSummary
-    func getPayableBookings() async throws -> [PayableBookingSummary]
-    func getImpactSummary() async throws -> ImpactSummary
-    func getRewardSummary() async throws -> RewardSummary
     func getInbox() async throws -> InboxSummary
     func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String
     func createReport(submission: SupportSubmission) async throws -> String

@@ -50,3 +50,9 @@ Source review also identifies incomplete iPhone conversation actions and saved
 emergency-contact management. These require implementation and behavioral proof;
 existing identifier checks cannot accept them. Keep all physical, operational,
 store and safety-audit evidence requirements open for both platforms.
+
+The account-refresh race comparison in `evidence/ios-account-refresh-2026-11-04/`
+reproduces late private data restoration after sign-out with the original AppState.
+The candidate passes local checks for atomic snapshots, revocation, account/role
+ABA transitions, response ordering and cancellation. This is not a completed
+sign-out UI: its profile action, auth completion and tracking teardown remain open.

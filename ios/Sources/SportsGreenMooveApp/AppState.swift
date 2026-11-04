@@ -6,11 +6,14 @@ import Observation
 final class AppState {
     var selectedTab: AppTab = .home
     var overlay: AppOverlay?
-    var selectedRole: AppRole = .parent
+    var selectedRole: AppRole = .parent {
+        didSet { if selectedRole != oldValue { appDataRefreshId = nil } }
+    }
     var darkTheme = false
     var session: AuthSession? {
         didSet {
             if session?.uid != oldValue?.uid {
+                appDataRefreshId = nil
                 invalidateSearch()
                 searchPlaceRequests.removeAll()
                 searchOrigin = nil
@@ -44,6 +47,7 @@ final class AppState {
     var searchPlaceRequests: [SearchPlaceTarget: UUID] = [:]
     var searchLoading: Bool { searchRequests.pending != nil || !searchPlaceRequests.isEmpty }
     var loading = false
+    var appDataRefreshId: UUID?
     var errorMessage: String?
     var noticeMessage: String?
     var activeRidePermissionDisclosure: ActiveRidePermissionDisclosure?
@@ -136,28 +140,6 @@ final class AppState {
 
     func toggleTheme() {
         darkTheme.toggle()
-    }
-
-    func refreshAppData() async {
-        loading = true
-        defer { loading = false }
-        do {
-            trips = try await firebase.searchTrips()
-            children = selectedRole == .parent ? try await firebase.listChildren() : []
-            clubSummaries = try await firebase.listClubSummaries()
-            activeRide = try await firebase.getActiveRide()
-            activeRideTrip = activeRide?.tripId.flatMap { tripId in
-                activeRideTrip?.id == tripId ? activeRideTrip : trips.first { $0.id == tripId }
-            }
-            payableBookings = try await firebase.getPayableBookings()
-            impactSummary = try await firebase.getImpactSummary()
-            rewardSummary = try await firebase.getRewardSummary()
-            driverBookingRequests = selectedRole == .driver
-                ? try await firebase.getDriverBookingRequests()
-                : []
-        } catch {
-            errorMessage = "Impossible de charger les données Firebase."
-        }
     }
 
     func handleTripAction(tripId: String) async {

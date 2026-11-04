@@ -136,6 +136,7 @@ check(MapRoutePolyline.points(for: routePreview) == [routePreview.start, routePr
 checkTripDateLabels()
 checkSearchConsent()
 await checkSearchAppState()
+await checkAppDataRefresh()
 try checkRidePaymentVerification()
 try checkSupportResponses()
 await checkSupportState()
