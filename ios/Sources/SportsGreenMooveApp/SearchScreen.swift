@@ -4,13 +4,7 @@ struct SearchScreen: View {
     @Environment(AppState.self) private var appState
     @State private var originInput = ""
     @State private var destinationInput = ""
-    @State private var departureIso = ISO8601DateFormatter().string(from: Date().addingTimeInterval(86_400))
-    @State private var seatsNeeded = 1
-    @State private var baggage = "medium"
-    @State private var returnTrip = false
-    @State private var childTracking = true
-    @State private var guardianConsent = true
-    @State private var selectedChildId: String?
+    @State private var form = SearchFormState.initial()
 
     var body: some View {
         SGMScreen(spacing: 10, testID: UITestIdentifier.searchScreen) {
@@ -32,31 +26,21 @@ struct SearchScreen: View {
                     onSuggest: { Task { await appState.suggestPlaces(input: destinationInput, target: .destination) } },
                     onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .destination) } }
                 )
-                SearchTextField(title: "Date ISO", text: $departureIso)
+                SearchTextField(title: "Date ISO", text: $form.desiredDepartureAtIso)
                 SearchChildSelector(
                     children: appState.children,
-                    selectedChildId: $selectedChildId
+                    selectedChildId: $form.childUserId
                 )
                 SearchOptions(
-                    seatsNeeded: $seatsNeeded,
-                    baggage: $baggage,
-                    returnTrip: $returnTrip,
-                    childTracking: $childTracking,
-                    guardianConsent: $guardianConsent
+                    seatsNeeded: $form.seatsNeeded,
+                    baggage: $form.baggage,
+                    returnTrip: $form.returnTrip,
+                    childTracking: $form.requireChildTracking,
+                    guardianConsent: $form.guardianConsent
                 )
                 SGMButton(title: appState.searchLoading ? "RECHERCHE EN COURS" : "TROUVER UN TRAJET", testID: UITestIdentifier.searchAction) {
-                    Task {
-                        await appState.runSearch(
-                            form: SearchFormState(
-                                desiredDepartureAtIso: departureIso,
-                                seatsNeeded: seatsNeeded,
-                                baggage: baggage,
-                                returnTrip: returnTrip,
-                                requireChildTracking: childTracking,
-                                guardianConsent: guardianConsent,
-                                childUserId: selectedChildId
-                            )
-                        )
+                    if let request = appState.prepareSearch(form: form) {
+                        Task { await appState.runSearch(request) }
                     }
                 }
             }
@@ -66,7 +50,8 @@ struct SearchScreen: View {
             VStack(spacing: 8) {
                 ForEach(appState.searchMatches) { match in
                     MatchCard(match: match) {
-                        Task { await appState.requestSearchMatch(match, childId: selectedChildId, seats: seatsNeeded) }
+                        let submittedForm = form
+                        Task { await appState.requestSearchMatch(match, form: submittedForm) }
                     }
                 }
                 if !appState.searchLoading && appState.searchMatches.isEmpty {
@@ -85,11 +70,23 @@ struct SearchScreen: View {
         .onChange(of: appState.children) { _, children in
             reconcileSelectedChild(children)
         }
+        .onChange(of: form) { _, _ in appState.invalidateSearch() }
+        .onChange(of: originInput) { _, _ in appState.invalidatePlace(.origin) }
+        .onChange(of: destinationInput) { _, _ in appState.invalidatePlace(.destination) }
+        .onChange(of: appState.searchOrigin) { _, _ in appState.invalidateSearch() }
+        .onChange(of: appState.searchDestination) { _, _ in appState.invalidateSearch() }
+        .onChange(of: appState.session?.uid) { _, _ in
+            form = .initial()
+            originInput = ""
+            destinationInput = ""
+            reconcileSelectedChild(appState.children)
+        }
+        .onDisappear { appState.invalidateSearch() }
     }
 
     private func reconcileSelectedChild(_ children: [ChildSummary]) {
-        guard !children.contains(where: { $0.id == selectedChildId }) else { return }
-        selectedChildId = children.first?.id
+        guard !children.contains(where: { $0.id == form.childUserId }) else { return }
+        form.childUserId = children.first?.id
     }
 }
 
@@ -176,7 +173,8 @@ private struct SearchOptions: View {
         VStack(spacing: 8) {
             HStack(spacing: 6) {
                 ForEach([1, 2, 3], id: \.self) { seats in
-                    SGMChip(text: "\(seats) place\(seats > 1 ? "s" : "")", selected: seatsNeeded == seats) { seatsNeeded = seats }
+                    SGMChip(text: "\(seats) place\(seats > 1 ? "s" : "")", selected: seatsNeeded == seats,
+                        testID: "search.seats.\(seats)") { seatsNeeded = seats }
                 }
             }
             HStack(spacing: 6) {
@@ -186,8 +184,10 @@ private struct SearchOptions: View {
             }
             HStack(spacing: 6) {
                 SGMChip(text: "Retour", selected: returnTrip) { returnTrip.toggle() }
-                SGMChip(text: "Suivi enfant", selected: childTracking) { childTracking.toggle() }
-                SGMChip(text: "Consentement", selected: guardianConsent) { guardianConsent.toggle() }
+                SGMChip(text: "Suivi enfant", selected: childTracking, testID: "search.child-tracking") { childTracking.toggle() }
+                    .accessibilityValue(childTracking ? "Activé" : "Désactivé")
+                SGMChip(text: "Consentement", selected: guardianConsent, testID: "search.consent") { guardianConsent.toggle() }
+                    .accessibilityValue(guardianConsent ? "Accordé" : "Non accordé")
             }
         }
     }

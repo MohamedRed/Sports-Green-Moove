@@ -32,7 +32,8 @@ test('the two-platform baseline keeps logic proof separate from app, phone and r
   assert.equal(report.terminalBuildResult.simulatorDisposal, 'success');
   assert.equal(report.sourceReviewGaps.length, 4);
   assert.deepEqual(content.iosMvpBaseline, iosMvpBaseline);
-  assert.deepEqual(content.updates[0], iosMvpProgress);
+  const baseline = content.updates.find(update => update.title === iosMvpProgress.title && update.source === iosMvpProgress.source);
+  assert.deepEqual(baseline, iosMvpProgress);
   assert(content.blockers.some(blocker => blocker.id === iosMvpBlocker.id));
   for (const id of [iosMvpProgress.flow, ...iosMvpProgress.coversFlows]) {
     assert(content.flows.some(flow => flow.id === id), id);
@@ -75,14 +76,16 @@ test('full SDK project and unchanged fixture tests run once without signing or p
 
 test('support transports typed values across the continuation without suppressing concurrency checks', () => {
   const gateway = read('ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift');
+  const boundary = read('ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift');
   assert.match(gateway, /supportCall<Response: Sendable>/);
   assert.match(gateway, /input: \[String: String\]/);
   assert.match(gateway, /decode: @escaping @Sendable \(Any\) throws -> Response/);
-  assert.match(gateway, /let result: Response = try await withCheckedThrowingContinuation/);
-  assert.match(gateway, /continuation.resume\(with: Result \{ try decode\(data\) \}\)/);
-  assert.equal((gateway.match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
-  assert.match(gateway, /try Task.checkCancellation\(\)/);
-  assert.doesNotMatch(gateway, /@unchecked|@preconcurrency|resume\(returning: data\)|async throws -> Any/);
+  assert.match(gateway, /firebaseOwnedCall\(uid: uid, name: name, input: input\)/);
+  assert.match(boundary, /let response: Response = try await withCheckedThrowingContinuation/);
+  assert.match(boundary, /continuation.resume\(with: Result \{ try decode\(result\?\.data\) \}\)/);
+  assert.equal((boundary.match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
+  assert.equal((boundary.match(/try Task.checkCancellation\(\)/g) ?? []).length, 2);
+  assert.doesNotMatch(gateway + boundary, /@unchecked|@preconcurrency|resume\(returning: data\)|async throws -> Any/);
   assert.match(read('scripts/check-ios-support-concurrency.sh'), /-swift-version 6 -strict-concurrency=complete -warnings-as-errors/);
 });
 
@@ -100,7 +103,7 @@ test('iOS changes trigger verification and web smoke checks its constraints', ()
     assert(smoke.on[event].paths.includes('tests/ios-mvp-workflow.test.mjs'));
   }
   assert(Object.values(smoke.jobs).some(group => group.steps.some(step =>
-    step.run === 'node --test tests/ios-mvp-workflow.test.mjs')));
+    step.run === 'node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs')));
   const routine = parseDocument(read('.github/workflows/native-ci.yml')).toJSON();
   for (const name of ['ios-native-checks', 'ios-native-ui']) {
     assert.equal(routine.jobs[name].if, '${{ false }}');

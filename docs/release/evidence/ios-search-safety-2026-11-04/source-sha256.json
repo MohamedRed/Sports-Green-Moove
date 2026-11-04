@@ -1,0 +1,23 @@
+{
+  "ios/Sources/SportsGreenMooveApp/AppState+Search.swift": "5a5c8219de518d60ef95fcd3cbc3c96ca2c9206d0f90bbc5024cc9d3b12efcb9",
+  "ios/Sources/SportsGreenMooveApp/AppState.swift": "91f4e4f49f6aa5a902bc68c59855f687f57b02284ed5119fc0308a43662c5dd7",
+  "ios/Sources/SportsGreenMooveApp/FirebaseBookingRequests.swift": "625fa351f9357564a241e8aca84cbe14fcdde3514ca0fb7c85459b6fabb3b20e",
+  "ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift": "47fbdaca1c4f3381e156605b18e93d5d24b07597d1f5fd8c916698d6b419cce5",
+  "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift": "4d909468620e35e9ceddadb10b8de6c2cb202541f6857ee10b1300b737d4b37a",
+  "ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift": "0795f1d9c137944808b369ee8c83fb9f86caf75c3eb7a45289618b2515f28304",
+  "ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift": "c98efb1819171ef08bcc2b62e47e5582238f9035c174835f6573f89a4539d8d3",
+  "ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift": "a27671d75466f84b2c7c1754b6ced8d930324c9b9c856db60f65c5dac012226d",
+  "ios/Sources/SportsGreenMooveApp/Models.swift": "dd0c9a86acd538cb95be0628ad6daef3daeabe6a81cf460a91ad70a2a314011e",
+  "ios/Sources/SportsGreenMooveApp/SearchChildSelector.swift": "86cffb20bc7af05e8fea8ac94e7b6ebe49a89286a62e9192934b5b1efa58e509",
+  "ios/Sources/SportsGreenMooveApp/SearchFormState.swift": "0354a3145333c6f68fe3460f30e7367a2cb44de3298878ee4be7db8265667254",
+  "ios/Sources/SportsGreenMooveApp/SearchRequestState.swift": "13f0edf81d739f032975a80f5109f437b04a3f2d74040aee6a9b3313b6a5038e",
+  "ios/Sources/SportsGreenMooveApp/SearchScreen.swift": "0bfe164183147f3c858178868e097a620ba5edd760fd6fef79e576f252e89e66",
+  "ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift": "a687f4c8a1dc79a378663292d65df834933d31e8431c587859b53d1ca6ba4039",
+  "ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift": "2df40f9820d403782a0d140cd1f92d4cd918147030334bc96865486c160edeb7",
+  "ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift": "64f68743d29aa6dbb0f33048ba67f53ae69669248d09d58e13f8dddf5d99dbf3",
+  "ios/Tests/SportsGreenMooveNativeChecks/main.swift": "5ed7c343f94148dabba36276ba89eb268174184e39196ac188429877f6830203",
+  "ios/UITests/SportsGreenMooveUITests/SearchConsentFlowTests.swift": "c34ac8474a7539d1fadeee33c5438e145458eea25837d78b90f6b1cc5be3118f",
+  "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift": "feccd6e2106ac65947ffdb696c2e194ad8a980ac5e8c8f65b22112b793d4c686",
+  "scripts/check-ios-native-plan.sh": "8c4b4a8ac32a5c23360e0e6d653612121925da4ed4f3f379568e9f402732a57b",
+  "scripts/check-ios-support-concurrency.sh": "d255ed03ba15d176444c48ddadfa0fdd10f57fd3bc7aabc4d3ee38e5f8701d54"
+}

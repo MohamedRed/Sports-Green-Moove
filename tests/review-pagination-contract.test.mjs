@@ -22,7 +22,8 @@ test('both native clients expose continuation, parse account-bound pages and rem
   for (const source of [read('android/app/src/main/java/be/sportgreenmoove/app/ui/MessagesInboxState.kt'),
     read('ios/Sources/SportsGreenMooveApp/MessagesScreen.swift')]) assert(source.includes('reviews.submitted('));
   assert(read('android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidPendingReviewGateway.kt').includes('auth.currentUser?.uid != uid'));
-  assert(read('ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift').includes('Auth.auth().currentUser?.uid == uid'));
+  assert(read('ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift').includes('firebaseOwnedCall(uid: uid, name: name, input: data)'));
+  assert.equal((read('ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift').match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
 });
 test('the authenticated service suite and retained result run without weakening existing smoke coverage', () => {
   const workflow = parse(read('.github/workflows/web-integration-smoke.yml'));

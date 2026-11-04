@@ -12,7 +12,9 @@ test('native ledger totals use authenticated server summaries without a capped c
     assert(source.includes('currentUser?.uid'));
   }
   assert.equal((android.match(/auth.currentUser\?\.uid != uid/g) ?? []).length, 2);
-  assert.equal((ios.match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
+  assert.equal((ios.match(/firebaseOwnedCall\(uid: uid,/g) ?? []).length, 2);
+  const boundary = read('ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift');
+  assert.equal((boundary.match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
 });
 test('all pages share one read-only snapshot and only history is trimmed', () => {
   const service = read('functions/src/services/ledgerSummaries.ts'), domain = read('functions/src/domain/ledgerSummaries.ts');

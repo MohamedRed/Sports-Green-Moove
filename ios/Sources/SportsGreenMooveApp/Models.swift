@@ -146,6 +146,7 @@ struct ResolvedPlace: Hashable, Sendable {
 }
 
 struct TripSearchCriteria: Hashable, Sendable {
+    let requesterUserId: String
     let origin: ResolvedPlace
     let destination: ResolvedPlace
     let desiredDepartureAtIso: String
@@ -196,19 +197,9 @@ struct BookingRequestSummary: Identifiable, Hashable, Sendable {
     var id: String { bookingId }
 }
 
-enum SearchPlaceTarget: Sendable, Equatable {
+enum SearchPlaceTarget: Sendable, Hashable {
     case origin
     case destination
-}
-
-struct SearchFormState: Hashable, Sendable {
-    let desiredDepartureAtIso: String
-    let seatsNeeded: Int
-    let baggage: String
-    let returnTrip: Bool
-    let requireChildTracking: Bool
-    let guardianConsent: Bool
-    var childUserId: String?
 }
 
 struct LiveRideSnapshot: Hashable, Sendable {

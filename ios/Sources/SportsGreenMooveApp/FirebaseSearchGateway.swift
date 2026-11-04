@@ -1,6 +1,7 @@
 import Foundation
 
-#if canImport(FirebaseFunctions)
+#if canImport(FirebaseAuth) && canImport(FirebaseFunctions)
+import FirebaseAuth
 import FirebaseFunctions
 
 extension FirebaseBackendGateway {
@@ -49,7 +50,9 @@ extension FirebaseBackendGateway {
     }
 
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary] {
-        try await withCheckedThrowingContinuation { continuation in
+        try Task.checkCancellation()
+        guard !criteria.requesterUserId.isEmpty, Auth.auth().currentUser?.uid == criteria.requesterUserId else { throw CancellationError() }
+        let matches: [TripMatchSummary] = try await withCheckedThrowingContinuation { continuation in
             Functions.functions().httpsCallable("searchTrips").call(criteria.callablePayload()) { result, error in
                 if let error {
                     continuation.resume(throwing: error)
@@ -67,6 +70,9 @@ extension FirebaseBackendGateway {
                 catch { continuation.resume(throwing: error) }
             }
         }
+        try Task.checkCancellation()
+        guard Auth.auth().currentUser?.uid == criteria.requesterUserId else { throw CancellationError() }
+        return matches
     }
 }
 

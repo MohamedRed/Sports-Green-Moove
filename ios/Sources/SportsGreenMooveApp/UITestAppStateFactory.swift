@@ -24,7 +24,7 @@ enum UITestAppStateFactory {
     private static func seed(_ state: AppState, route: String, signedIn: Bool) {
         state.session = signedIn ? Fixtures.session : nil
         state.trips = [Fixtures.trip]
-        state.children = [Fixtures.child]
+        state.children = [Fixtures.child, Fixtures.otherChild]
         state.clubSummaries = Fixtures.clubs
         state.activeRide = Fixtures.activeRide
         state.activeRideTrip = Fixtures.trip
@@ -34,7 +34,6 @@ enum UITestAppStateFactory {
         state.rewardSummary = Fixtures.rewards
         state.searchOrigin = Fixtures.origin
         state.searchDestination = Fixtures.destination
-        state.searchMatches = [Fixtures.match]
 
         switch route {
         case "auth":
@@ -78,6 +77,7 @@ private enum Fixtures {
     static let origin = ResolvedPlace(placeId: "origin", label: "Wavre", formattedAddress: "Rue du Stade 1, Wavre", lat: 50.715, lng: 4.612)
     static let destination = ResolvedPlace(placeId: "dest", label: "Ottignies", formattedAddress: "Avenue du Club 8, Ottignies", lat: 50.669, lng: 4.567)
     static let child = ChildSummary(id: "child-1", label: "Nora", teamLabel: "U8 Royal Ottignies", trackingEnabled: true)
+    static let otherChild = ChildSummary(id: "child-2", label: "Maya", teamLabel: "U10 Royal Ottignies", trackingEnabled: true)
     static let clubs = [
         ClubSummary(id: "club-royal", name: "Royal Ottignies Sports", sport: "Football", memberCount: 89, roleLabel: "PARENT", initials: "RO", memberInitials: ["NO", "CO"]),
         ClubSummary(id: "club-tennis", name: "Tennis Club Wavre", sport: "Tennis", memberCount: 56, roleLabel: nil, initials: "TC", memberInitials: []),
@@ -194,7 +194,7 @@ private struct UITestFirebaseGateway: FirebaseGateway {
     }
     var isConfigured: Bool { true }
     func searchTrips() async throws -> [TripSummary] { [Fixtures.trip] }
-    func listChildren() async throws -> [ChildSummary] { [Fixtures.child] }
+    func listChildren() async throws -> [ChildSummary] { [Fixtures.child, Fixtures.otherChild] }
     func listClubSummaries() async throws -> [ClubSummary] { Fixtures.clubs }
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion] { [PlaceSuggestion(placeId: "place-1", label: input, mainText: input, secondaryText: "Belgique")] }
     func resolvePlace(placeId: String) async throws -> ResolvedPlace { Fixtures.origin }

@@ -24,6 +24,9 @@ test('requester native gateways use only owner-scoped callables and never raw re
   for (const text of [android, swift]) {
     assert(text.includes('listMySupportReports')); assert(text.includes('getMySupportReport'));
     assert.doesNotMatch(text, /collection\(|reviewNote|reviewEvents|authorUid|reporterUserId/);
-    assert(text.includes('currentUser?.uid'));
   }
+  assert(android.includes('currentUser?.uid'));
+  assert(swift.includes('firebaseOwnedCall(uid: uid, name: name, input: input)'));
+  const boundary = readFileSync(resolve(root, 'ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift'), 'utf8');
+  assert.equal((boundary.match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
 });

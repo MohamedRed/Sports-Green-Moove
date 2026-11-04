@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-11-04",
+  "baseline": {
+    "sourceCommit": "ef9f0e6d77a624e8e68d2de4f9cadd921dbde156",
+    "runId": 41833693855,
+    "jobId": 126587076035,
+    "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41833693855/job/126587076035",
+    "conclusion": "failure",
+    "completedAt": "2026-11-04T13:07:56Z",
+    "phase": "app compilation, before UI tests",
+    "compilerErrors": [
+      {"file": "FirebaseBookingRequests.swift", "line": 13, "message": "sending value of non-Sendable type '[String : Any]' risks causing data races"},
+      {"file": "FirebaseImpactRewards.swift", "line": 22, "message": "sending 'result.data' risks causing data races"},
+      {"file": "FirebaseInboxGateway.swift", "line": 24, "message": "sending value of non-Sendable type '[String : Any]' risks causing data races"},
+      {"file": "FirebaseInboxGateway.swift", "line": 26, "message": "sending 'payload' risks causing data races"}
+    ],
+    "previousSupportDiagnosticsRecurred": false,
+    "simulatorDisposal": "success",
+    "privateFailedStepLogBytes": 6751059,
+    "privateFailedStepLogSha256": "5d273b7258cfef286ea4b8e3778c2b6458acc8452bbd20f26fa3d36e63b1bb78"
+  },
+  "candidateSources": "source-sha256.json",
+  "localLogic": {
+    "command": "bash scripts/check-ios-native-plan.sh",
+    "exitCode": 0,
+    "languageMode": "Swift 6",
+    "actualAppStateCompiled": true,
+    "log": "native-checks.txt",
+    "logSha256": "e18c0e54aff17110373717d676505192ea3db7b5ca64ce9ef378f285e397976d",
+    "checks": ["consent initially false", "child selection resets consent", "tracking selection resets consent", "old responses ignored", "old errors cannot erase new requests", "booking matches accepted account, form and route", "revoked work blocked before provider call", "gateway failure clears pending work", "account change clears search and private places"],
+    "providerConfigured": false
+  },
+  "localSignatureCompile": {
+    "command": "bash scripts/check-ios-support-concurrency.sh",
+    "exitCode": 0,
+    "strictConcurrency": "complete with warnings-as-errors",
+    "log": "signature-checks.txt",
+    "logSha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83",
+    "scope": "Explicit SDK signature interfaces, not actual SDK compilation or a reproduction of newer compiler diagnostics"
+  },
+  "addedUiTests": ["testExplicitConsentAndChildChangeInvalidateResults", "testTrackingAndSeatChangesInvalidateTheAcceptedSelection"],
+  "addedUiTestsExecuted": false,
+  "originalFiveUiTestsRetained": true,
+  "sdkLinkedBuildAccepted": false,
+  "iosEndToEndFlowsAccepted": false,
+  "physicalDeviceEvidenceAccepted": false,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "releaseComplete": false
+}

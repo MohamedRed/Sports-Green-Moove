@@ -20,6 +20,8 @@ final class SportsGreenMooveUITests: XCTestCase {
         app = launch(route: "search")
         assertExists("search.screen", in: app)
         assertExists("search.action", in: app)
+        tapIdentifier("search.consent", in: app)
+        tapIdentifier("search.action", in: app)
         assertExists("booking.request.action", in: app)
 
         app = launch(route: "booking")

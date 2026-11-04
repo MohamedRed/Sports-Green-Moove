@@ -2,6 +2,13 @@
 
 ## Current Publication Policy
 
+The ef9f0e6 iPhone build still fails before UI tests; its previous support errors
+do not recur, but booking/inbox/ledger errors remain. Publish one short local
+consent-reset note. The candidate protects request scope and shares typed callable
+reads, but the SDK build and two added UI cases remain unverified. Preserve all
+flows, statuses, dates, media, tours and old updates. See
+`docs/release/evidence/ios-search-safety-2026-11-04/README.md`.
+
 The owner confirmed Android and iPhone for MVP on 4 November. Add one concise
 scope note and an iPhone conversation/emergency blocker. Local Foundation checks
 pass; the first SDK-linked build fails before UI tests. The typed support candidate

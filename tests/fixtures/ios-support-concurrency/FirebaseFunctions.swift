@@ -1,4 +1,6 @@
 // Signature-only contract fixture, not a Firebase implementation or SDK test.
+public let FunctionsErrorDomain = "isolated-signature-domain"
+public enum FunctionsErrorCode: Int { case aborted = 10 }
 public final class HTTPSCallableResult {
     public let data: Any
     public init(data: Any) { self.data = data }

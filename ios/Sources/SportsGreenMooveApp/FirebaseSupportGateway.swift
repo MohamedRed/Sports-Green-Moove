@@ -9,19 +9,10 @@ extension FirebaseBackendGateway {
         uid: String, name: String, input: [String: String],
         decode: @escaping @Sendable (Any) throws -> Response
     ) async throws -> Response {
-        guard !uid.isEmpty, Auth.auth().currentUser?.uid == uid else { throw CancellationError() }
-        let result: Response = try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable(name).call(input) { result, error in
-                if let error { continuation.resume(throwing: error) }
-                else if let data = result?.data {
-                    continuation.resume(with: Result { try decode(data) })
-                }
-                else { continuation.resume(throwing: ProviderConfigurationError(message: "Réponse du support manquante.")) }
-            }
+        try await firebaseOwnedCall(uid: uid, name: name, input: input) { value in
+            guard let value else { throw ProviderConfigurationError(message: "Réponse du support manquante.") }
+            return try decode(value)
         }
-        try Task.checkCancellation()
-        guard Auth.auth().currentUser?.uid == uid else { throw CancellationError() }
-        return result
     }
     func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
         try SupportWire.require(SupportWire.validCursor(cursor))

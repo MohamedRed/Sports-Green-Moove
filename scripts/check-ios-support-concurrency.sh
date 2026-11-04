@@ -15,7 +15,24 @@ done
 
 swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BUILD_DIR" -typecheck \
   "$FIXTURES/GatewayContext.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/Models.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PendingBookingStore.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/BookingRequestCoordinator.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PendingReviews.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PendingReviewWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ReviewTripContextWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TripDateLabels.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/SupportModels.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/SupportWire.swift" \
-  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift"
-printf '%s\n' 'Support concurrency signature checks passed; this is not an SDK build or phone test.'
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseMapMappers.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseBookingRequests.swift"
+printf '%s\n' 'Owned callable signature checks passed; this is not an SDK build or phone test.'

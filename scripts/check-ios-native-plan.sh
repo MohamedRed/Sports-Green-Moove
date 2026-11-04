@@ -6,6 +6,7 @@ BUILD_DIR="${TMPDIR:-/tmp}/sports-green-moove-ios-native-checks"
 mkdir -p "${BUILD_DIR}"
 
 swiftc \
+  -swift-version 6 \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
@@ -17,6 +18,14 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RidePaymentVerification.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ClubSummary.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/Models.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchFormState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchRequestState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Search.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredGateways.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ActiveRideStartup.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReviewTripContextWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PendingReviews.swift" \
@@ -28,6 +37,8 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MapRoutePolyline.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TripDateLabels.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TripDateLabelChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RidePaymentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SupportChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift" \

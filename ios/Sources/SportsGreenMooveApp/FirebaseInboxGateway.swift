@@ -7,29 +7,29 @@ import FirebaseAuth
 extension FirebaseBackendGateway {
     func getInbox() async throws -> InboxSummary {
         guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }
-        let payload = try await inboxFunction("getInbox", data: [:], uid: uid)
-        guard let inbox = payload["inbox"] as? [String: Any] else { throw ProviderConfigurationError(message: "Inbox manquante.") }
-        return try mapInbox(inbox, uid: uid)
+        return try await inboxFunction("getInbox", data: [:], uid: uid) { payload in
+            guard let inbox = payload["inbox"] as? [String: Any] else { throw ProviderConfigurationError(message: "Inbox manquante.") }
+            return try mapInbox(inbox, uid: uid)
+        }
     }
     func loadPendingReviews(cursor: String) async throws -> PendingReviewPage {
         guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }
-        let page = try PendingReviewWire.parse(await inboxFunction("getPendingReviews", data: ["cursor": cursor], uid: uid), uid: uid)
-        guard page.nextCursor != cursor else { throw ProviderConfigurationError(message: "Réponse avis invalide.") }
-        return page
+        return try await inboxFunction("getPendingReviews", data: ["cursor": cursor], uid: uid) { payload in
+            let page = try PendingReviewWire.parse(payload, uid: uid)
+            guard page.nextCursor != cursor else { throw ProviderConfigurationError(message: "Réponse avis invalide.") }
+            return page
+        }
     }
 }
 
-private func inboxFunction(_ name: String, data: [String: Any], uid: String) async throws -> [String: Any] {
-    let payload: [String: Any] = try await withCheckedThrowingContinuation { continuation in
-        Functions.functions().httpsCallable(name).call(data) { result, error in
-            if let error { continuation.resume(throwing: error) }
-            else if let payload = result?.data as? [String: Any] { continuation.resume(returning: payload) }
-            else { continuation.resume(throwing: ProviderConfigurationError(message: "Réponse inbox invalide.")) }
-        }
+private func inboxFunction<Response: Sendable>(
+    _ name: String, data: [String: String], uid: String,
+    decode: @escaping @Sendable ([String: Any]) throws -> Response
+) async throws -> Response {
+    try await firebaseOwnedCall(uid: uid, name: name, input: data) { value in
+        guard let payload = value as? [String: Any] else { throw ProviderConfigurationError(message: "Réponse inbox invalide.") }
+        return try decode(payload)
     }
-    try Task.checkCancellation()
-    guard Auth.auth().currentUser?.uid == uid else { throw CancellationError() }
-    return payload
 }
 
 private func mapInbox(_ data: [String: Any], uid: String) throws -> InboxSummary {

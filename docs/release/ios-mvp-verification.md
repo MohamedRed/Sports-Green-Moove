@@ -3,7 +3,8 @@
 The owner confirmed Android **and iPhone** on 4 November 2026. No iOS release
 requirements are removed. Existing routine iOS jobs remain disabled; the separate
 `iOS MVP Verification` workflow checks the real SDK-linked Xcode project and its
-five existing fixture-screen tests on an isolated simulator.
+all fixture-screen tests on an isolated simulator: five original identifier checks
+and two added search-consent cases.
 The PR user-flow verifier requires this separate check to succeed: missing,
 skipped, cancelled and failed runs are rejected. The old skipped routine lanes
 are retained for their original cost policy, not used as iPhone proof.
@@ -14,7 +15,7 @@ uses no cache or provider secrets, does not sign, and does not publish an app.
 [GitHub documents free standard public-repository compute](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 Larger runners and storage have separate billing; they are not enabled here.
 The signature-only support concurrency check runs in addition to, never instead
-of, the actual SDK-linked app build and all five fixture tests.
+of, the actual SDK-linked app build and all seven fixture tests.
 
 The first run at `c1c2fa4` failed in support gateway compilation before UI tests.
 The candidate uses string-only inputs and validates Sendable models before
@@ -22,7 +23,7 @@ continuation transfer, preserving cancellation and account isolation. Full SDK
 reverification remains required. See `evidence/ios-mvp-baseline-2026-11-04/`.
 
 A passing result would prove compilation against the declared SDK dependencies
-and five fixture-screen checks, not authentication, transactions, conversation
+and seven fixture-screen checks, not authentication, transactions, conversation
 delivery, GPS safety scenarios, physical iPhone behavior or release readiness.
 Failures remain failures; no automatic test retry or reduced test selection is used.
 
