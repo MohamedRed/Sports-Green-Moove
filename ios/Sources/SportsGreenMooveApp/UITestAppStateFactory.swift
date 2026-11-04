@@ -15,7 +15,8 @@ enum UITestAppStateFactory {
             auth: auth,
             firebase: UITestFirebaseGateway(),
             radar: UITestRadarGateway(),
-            stripe: UITestStripeGateway()
+            stripe: UITestStripeGateway(),
+            authentication: AuthenticationState(makeStore: { UITestLogoutIntentStore() })
         )
         seed(state, route: route, signedIn: signedIn)
         return state
@@ -70,6 +71,12 @@ enum UITestAppStateFactory {
         guard let index = args.firstIndex(of: key), args.indices.contains(index + 1) else { return nil }
         return args[index + 1]
     }
+}
+
+@MainActor private final class UITestLogoutIntentStore: LogoutIntentStore {
+    private var required = false
+    func requiresSignOut() throws -> Bool { required }
+    func setRequiresSignOut(_ value: Bool) throws { required = value }
 }
 
 private enum Fixtures {

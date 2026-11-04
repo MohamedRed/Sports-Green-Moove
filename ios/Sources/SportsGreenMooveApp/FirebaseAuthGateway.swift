@@ -50,7 +50,7 @@ struct FirebaseAuthGateway: AuthGateway {
         #endif
     }
 
-    func signOut() throws {
+    @MainActor func signOut() throws {
         #if canImport(GoogleSignIn) && canImport(UIKit)
         GIDSignIn.sharedInstance.signOut()
         #endif

@@ -21,15 +21,16 @@ struct AuthScreen: View {
                 AuthField(title: "votre@email.be", text: $email)
                 AuthField(title: "Mot de passe", text: $password, isSecure: true)
                 SGMButton(title: mode == .signIn ? "SE CONNECTER" : "CRÉER MON COMPTE", testID: UITestIdentifier.authEmailAction) {
+                    let submitted = (mode: mode, name: name, email: email, password: password)
                     Task {
-                        if mode == .signIn {
-                            await appState.signIn(email: email, password: password)
+                        if submitted.mode == .signIn {
+                            await appState.signIn(email: submitted.email, password: submitted.password)
                         } else {
-                            await appState.signUp(name: name, email: email, password: password)
+                            await appState.signUp(name: submitted.name, email: submitted.email, password: submitted.password)
                         }
                     }
                 }
-                .opacity(appState.loading ? 0.62 : 1)
+                .opacity(appState.authenticating ? 0.62 : 1)
                 AuthDivider()
                 HStack(spacing: 10) {
                     SocialAuthButton(title: "Facebook", testID: UITestIdentifier.authFacebookAction) {
@@ -41,6 +42,18 @@ struct AuthScreen: View {
                 }
             }
             .padding(.horizontal, SGMSpace.padScreen)
+            .disabled(appState.authenticating)
+            if appState.authenticating && !appState.authenticationCleanupRequired {
+                ProgressView(appState.authenticationStatus)
+            }
+            if appState.authenticationCleanupRequired {
+                SGMButton(title: "Réessayer la déconnexion", variant: .ghost) { appState.signOut() }
+                    .padding(.horizontal, SGMSpace.padScreen)
+            } else if appState.authenticationRestoreFailed {
+                SGMButton(title: "Réessayer", variant: .ghost) { Task { await appState.bootstrap() } }
+                    .disabled(appState.authenticating)
+                    .padding(.horizontal, SGMSpace.padScreen)
+            }
         }
     }
 }
@@ -77,7 +90,7 @@ private struct SocialAuthButton: View {
     }
 }
 
-private enum AuthMode {
+private enum AuthMode: Sendable {
     case signIn
     case signUp
 }
@@ -135,11 +148,11 @@ struct ConfigurationRequiredScreen: View {
         SGMScreen(spacing: 12, bottomPadding: 28, testID: UITestIdentifier.configurationRequired) {
             SGMTopBar(title: "CONFIGURATION")
             VStack(alignment: .leading, spacing: 12) {
-                Text("Firebase requis")
+                Text("Connexion indisponible")
                     .font(.sgmDisplay(28))
                     .tracking(.sgmWide(for: 28))
                     .foregroundStyle(SGM.textPrimary)
-                Text("Ajoutez GoogleService-Info.plist dans les ressources iOS pour activer Auth, Firestore et Cloud Functions.")
+                Text("Le service de connexion n’est pas prêt. Réessayez plus tard.")
                     .font(.sgmBody(14, weight: .medium))
                     .foregroundStyle(SGM.textSecondary)
             }

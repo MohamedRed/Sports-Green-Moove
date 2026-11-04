@@ -22,6 +22,9 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchFormState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchRequestState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LogoutIntentStore.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AuthenticationState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Authentication.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Data.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Search.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredGateways.swift" \
@@ -42,6 +45,9 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AuthenticationProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AuthenticationChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LogoutIntentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataRefreshChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RidePaymentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SupportChecks.swift" \

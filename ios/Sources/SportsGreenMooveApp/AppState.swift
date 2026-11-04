@@ -50,12 +50,14 @@ final class AppState {
     var appDataRefreshId: UUID?
     var errorMessage: String?
     var noticeMessage: String?
+    var authenticationRestoreFailed = false
     var activeRidePermissionDisclosure: ActiveRidePermissionDisclosure?
 
     let auth: AuthGateway
     let firebase: FirebaseGateway
     let radar: RadarTrackingGateway
     let stripe: StripePaymentsGateway
+    let authentication: AuthenticationState
 
     var isConfigured: Bool {
         auth.isConfigured && firebase.isConfigured
@@ -65,64 +67,14 @@ final class AppState {
         auth: AuthGateway,
         firebase: FirebaseGateway,
         radar: RadarTrackingGateway = UnconfiguredRadarTrackingGateway(),
-        stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway()
+        stripe: StripePaymentsGateway = UnconfiguredStripePaymentsGateway(),
+        authentication: AuthenticationState? = nil
     ) {
         self.auth = auth
         self.firebase = firebase
         self.radar = radar
         self.stripe = stripe
-    }
-
-    func bootstrap() async {
-        guard isConfigured else {
-            errorMessage = "Ajoutez GoogleService-Info.plist pour activer Firebase."
-            return
-        }
-
-        do {
-            session = try await auth.currentSession()
-            if session != nil {
-                await refreshAppData()
-            }
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func signIn(email: String, password: String) async {
-        await authenticate { try await auth.signIn(email: email, password: password) }
-    }
-
-    func signUp(name: String, email: String, password: String) async {
-        await authenticate { try await auth.signUp(name: name, email: email, password: password) }
-    }
-
-    func signInWithGoogle() async {
-        await authenticate { try await auth.signInWithGoogle() }
-    }
-
-    func signInWithFacebook() async {
-        await authenticate { try await auth.signInWithFacebook() }
-    }
-
-    func signOut() {
-        do {
-            try auth.signOut()
-            session = nil
-            trips = []
-            children = []
-            clubSummaries = []
-            activeRide = nil
-            activeRideTrip = nil
-            payableBookings = []
-            driverBookingRequests = []
-            impactSummary = .empty
-            rewardSummary = .empty
-            selectedTab = .home
-            overlay = nil
-        } catch {
-            errorMessage = error.localizedDescription
-        }
+        self.authentication = authentication ?? AuthenticationState()
     }
 
     func selectTab(_ tab: AppTab) {
@@ -178,14 +130,4 @@ final class AppState {
         }
     }
 
-    private func authenticate(_ action: () async throws -> AuthSession) async {
-        loading = true
-        defer { loading = false }
-        do {
-            session = try await action()
-            await refreshAppData()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
 }

@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The new authentication comparison reproduces visible and simulated provider
+identity restoration after logout at 91f9677. The candidate denies both locally,
+serializes callbacks through cleanup and retains credential-free logout intent
+across store/controller recreation. Missing policy requires explicit sign-in once.
+Publish one short local note, without media or flow/date/status/audience changes.
+This is not real SDK authentication, rendered logout, native process-death or
+tracking teardown acceptance. See
+`docs/release/evidence/ios-authentication-ownership-2026-11-04/README.md`.
+
 The actual AppState race comparison reproduces late data restoration after
 sign-out at 5582299. The candidate passes local snapshot/ownership checks, not a
 completed iPhone sign-out UI. Add one short local result and retain all 34 flows,

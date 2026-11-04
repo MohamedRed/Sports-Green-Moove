@@ -7,7 +7,7 @@ protocol AuthGateway: Sendable {
     func signUp(name: String, email: String, password: String) async throws -> AuthSession
     func signInWithGoogle() async throws -> AuthSession
     func signInWithFacebook() async throws -> AuthSession
-    func signOut() throws
+    @MainActor func signOut() throws
 }
 
 protocol FirebaseGateway: AppDataGateway, SupportGateway, PendingReviewGateway {

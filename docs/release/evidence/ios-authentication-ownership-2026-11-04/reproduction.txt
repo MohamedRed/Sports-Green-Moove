@@ -1,0 +1,12 @@
+baseline
+visibleSessionRestoredAfterLogout=true
+simulatedProviderIdentityRemainedAfterLogout=true
+providerSignOutCallCount=1
+laterPrivateReadCount=7
+
+candidate
+visibleSessionRestoredAfterLogout=false
+simulatedProviderIdentityRemainedAfterLogout=false
+providerSignOutCallCount=2
+laterPrivateReadCount=0
+

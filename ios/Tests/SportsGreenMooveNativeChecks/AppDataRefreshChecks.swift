@@ -4,7 +4,8 @@ import Foundation
 func checkAppDataRefresh() async {
     let parentReads = ["trips", "children", "clubs", "ride", "payable", "impact", "rewards"]
     func state(_ probe: AppDataProbe) -> AppState {
-        let result = AppState(auth: UnconfiguredAuthGateway(), firebase: AppDataFixtureGateway(probe: probe))
+        let result = AppState(auth: UnconfiguredAuthGateway(), firebase: AppDataFixtureGateway(probe: probe),
+            authentication: AuthenticationState(makeStore: { MemoryLogoutIntentStore() }))
         result.session = AuthSession(uid: "isolated-parent-a", email: nil)
         return result
     }

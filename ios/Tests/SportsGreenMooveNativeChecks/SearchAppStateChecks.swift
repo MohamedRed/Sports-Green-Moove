@@ -2,7 +2,8 @@ import Foundation
 
 @MainActor
 func checkSearchAppState() async {
-    let state = AppState(auth: UnconfiguredAuthGateway(), firebase: UnconfiguredFirebaseGateway())
+    let state = AppState(auth: UnconfiguredAuthGateway(), firebase: UnconfiguredFirebaseGateway(),
+        authentication: AuthenticationState(makeStore: { MemoryLogoutIntentStore() }))
     var form = SearchFormState.initial()
     check(state.prepareSearch(form: form) == nil, "Signed-out search is rejected before calling a provider")
     state.session = AuthSession(uid: "isolated-parent-a", email: nil)
