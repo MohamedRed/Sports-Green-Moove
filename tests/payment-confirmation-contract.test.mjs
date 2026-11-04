@@ -75,7 +75,7 @@ test('native checkout completion delegates to an explicit server reconciliation 
 
 test('pending confirmation has a distinct verification action and collected responsive component evidence', () => {
   assert(read(android + 'ui/PaymentsScreen.kt').includes('testTag = "payments.verify"'));
-  assert(read(ios + 'PaymentsScreen.swift').includes('appState.verifyRidePayment()'));
+  assert(read(ios + 'PaymentsScreen.swift').includes('appState.verifyRidePayment(access: access)'));
   const component = read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt');
   for (const text of ['320.dp', 'fontScale = 1.3f', 'assertIsNotEnabled()', 'payment-pending-narrow.png', 'payment-review.png'])
     assert(component.includes(text), text);

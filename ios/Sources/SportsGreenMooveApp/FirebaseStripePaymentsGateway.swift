@@ -1,99 +1,53 @@
 import Foundation
 import CoreFoundation
 
-#if canImport(FirebaseFunctions)
+#if canImport(FirebaseAuth) && canImport(FirebaseFunctions)
+import FirebaseAuth
 import FirebaseFunctions
 
 struct FirebaseStripePaymentsGateway: StripePaymentsGateway {
     let isConfigured = true
 
     func createStripeAccount(email: String) async throws -> StripeConnectAccount {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions()
-                .httpsCallable("createStripeAccount")
-                .call(["email": email]) { result, error in
-                    if let error {
-                        continuation.resume(throwing: error)
-                        return
-                    }
-
-                    guard let payload = result?.data as? [String: Any],
-                          let accountId = payload["id"] as? String
-                    else {
-                        continuation.resume(throwing: ProviderConfigurationError(message: "Réponse compte Stripe invalide."))
-                        return
-                    }
-
-                    continuation.resume(returning: StripeConnectAccount(
-                        accountId: accountId,
-                        reused: payload["reused"] as? Bool ?? false
-                    ))
-                }
+        try await paymentCall(name: "createStripeAccount", input: ["email": email]) { payload in
+            guard let accountId = payload["id"] as? String, !accountId.isEmpty else {
+                throw ProviderConfigurationError(message: "Réponse compte Stripe invalide.")
+            }
+            return StripeConnectAccount(accountId: accountId, reused: payload["reused"] as? Bool ?? false)
         }
     }
 
     func createStripeAccountLink(returnUrl: String, refreshUrl: String) async throws -> StripeConnectAccountLink {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions()
-                .httpsCallable("createStripeAccountLink")
-                .call(["returnUrl": returnUrl, "refreshUrl": refreshUrl]) { result, error in
-                    if let error {
-                        continuation.resume(throwing: error)
-                        return
-                    }
-
-                    guard let payload = result?.data as? [String: Any],
-                          let url = payload["url"] as? String
-                    else {
-                        continuation.resume(throwing: ProviderConfigurationError(message: "Réponse onboarding Stripe invalide."))
-                        return
-                    }
-
-                    continuation.resume(returning: StripeConnectAccountLink(
-                        url: url,
-                        expiresAt: payload["expiresAt"] as? String
-                    ))
-                }
+        try await paymentCall(name: "createStripeAccountLink", input: ["returnUrl": returnUrl, "refreshUrl": refreshUrl]) { payload in
+            guard let url = payload["url"] as? String, !url.isEmpty else {
+                throw ProviderConfigurationError(message: "Réponse onboarding Stripe invalide.")
+            }
+            return StripeConnectAccountLink(url: url, expiresAt: payload["expiresAt"] as? String)
         }
     }
 
     func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions()
-                .httpsCallable("createRidePaymentIntent")
-                .call(["bookingId": bookingId]) { result, error in
-                    if let error {
-                        continuation.resume(throwing: error)
-                        return
-                    }
-
-                    guard let payload = result?.data as? [String: Any] else {
-                        continuation.resume(throwing: ProviderConfigurationError(message: "Réponse paiement invalide."))
-                        return
-                    }
-
-                    do {
-                        continuation.resume(returning: try mapPaymentSheetConfig(payload))
-                    } catch {
-                        continuation.resume(throwing: error)
-                    }
-                }
+        try await paymentCall(name: "createRidePaymentIntent", input: ["bookingId": bookingId]) { payload in
+            try mapPaymentSheetConfig(payload)
         }
     }
 }
 
 extension FirebaseStripePaymentsGateway {
     func ridePaymentStatus(bookingId: String, paymentIntentId: String) async throws -> RidePaymentState {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable("getRidePaymentStatus")
-                .call(["bookingId": bookingId, "paymentIntentId": paymentIntentId]) { result, error in
-                    if let error { continuation.resume(throwing: error); return }
-                    guard let payload = result?.data as? [String: Any] else {
-                        continuation.resume(throwing: ProviderConfigurationError(message: "Réponse paiement invalide.")); return
-                    }
-                    do { continuation.resume(returning: try mapRidePaymentState(payload, bookingId: bookingId, paymentIntentId: paymentIntentId)) }
-                    catch { continuation.resume(throwing: error) }
-                }
+        try await paymentCall(name: "getRidePaymentStatus", input: ["bookingId": bookingId, "paymentIntentId": paymentIntentId]) { payload in
+            try mapRidePaymentState(payload, bookingId: bookingId, paymentIntentId: paymentIntentId)
+        }
+    }
+
+    private func paymentCall<Response: Sendable>(name: String, input: [String: String],
+        decode: @escaping @Sendable ([String: Any]) throws -> Response) async throws -> Response {
+        guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }
+        return try await firebaseOwnedCall(uid: uid, name: name, input: input) { value in
+            guard let payload = value as? [String: Any] else {
+                throw ProviderConfigurationError(message: "Réponse paiement invalide.")
+            }
+            return try decode(payload)
         }
     }
 }

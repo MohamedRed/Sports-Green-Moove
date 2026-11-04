@@ -77,7 +77,7 @@ struct AppShell: View {
     @ViewBuilder
     private func activeContent(_ access: AccountAccess) -> some View {
         if let overlay = appState.overlay {
-            overlayContent(overlay)
+            overlayContent(overlay, access: access)
         } else {
             tabContent(appState.selectedTab, access: access)
         }
@@ -100,7 +100,7 @@ struct AppShell: View {
     }
 
     @ViewBuilder
-    private func overlayContent(_ overlay: AppOverlay) -> some View {
+    private func overlayContent(_ overlay: AppOverlay, access: AccountAccess) -> some View {
         switch overlay {
         case .search:
             SearchScreen()
@@ -113,7 +113,7 @@ struct AppShell: View {
         case .options:
             OptionsScreen()
         case .payments:
-            PaymentsScreen()
+            PaymentsScreen(access: access)
         case .ride:
             RideMonitorScreen()
         }

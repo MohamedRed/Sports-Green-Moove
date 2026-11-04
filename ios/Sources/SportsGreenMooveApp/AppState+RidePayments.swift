@@ -4,8 +4,13 @@ extension AppState {
     var hasPendingRidePayment: Bool { pendingRidePayment?.ownerUid == session?.uid && pendingRidePayment != nil }
 
     func payRide(_ booking: PayableBookingSummary) async {
+        guard let access = accountAccess else { return }
+        await payRide(booking, access: access)
+    }
+
+    func payRide(_ booking: PayableBookingSummary, access: AccountAccess) async {
         guard !ridePaymentBusy, !hasPendingRidePayment, let owner = session?.uid,
-              let access = accountAccess, let work = access.begin() else { return }
+              let work = access.begin() else { return }
         ridePaymentBusy = true
         errorMessage = nil
         noticeMessage = nil
@@ -33,8 +38,13 @@ extension AppState {
     }
 
     func verifyRidePayment() async {
+        guard let access = accountAccess else { return }
+        await verifyRidePayment(access: access)
+    }
+
+    func verifyRidePayment(access: AccountAccess) async {
         guard !ridePaymentBusy, let target = pendingRidePayment, session?.uid == target.ownerUid,
-              let access = accountAccess, let work = access.begin() else { return }
+              let work = access.begin() else { return }
         errorMessage = nil
         ridePaymentBusy = true
         defer { ridePaymentBusy = false; access.finish(work) }

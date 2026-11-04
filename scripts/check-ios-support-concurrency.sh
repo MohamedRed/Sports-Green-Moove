@@ -16,6 +16,10 @@ done
 swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BUILD_DIR" -typecheck \
   "$FIXTURES/GatewayContext.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/Models.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/StripeConnectModels.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/StripePaymentsGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RidePaymentVerification.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseStripePaymentsGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/AuthSession.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PendingBookingStore.swift" \

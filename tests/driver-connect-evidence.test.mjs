@@ -7,9 +7,65 @@ import {tmpdir} from 'node:os';
 import {validateDriverConnectEvidence} from '../scripts/qa/driver-connect-evidence.mjs';
 import {assertEvidenceBundleChecksums} from '../scripts/qa/evidence-bundle-checksums.mjs';
 import {content, captures} from '../partner-portal/content.mjs';
+import {iosPaymentScreen, iosPaymentScreenProgress} from '../partner-portal/ios-payment-screen.mjs';
 
 const root = resolve(import.meta.dirname, '..'), base = 'docs/release/evidence/driver-connect-2026-10-24/';
 const read = file => readFileSync(resolve(root, file), 'utf8'), json = file => JSON.parse(read(file));
+
+test('iPhone payment actions retain screen and account generations instead of using an ambient new session', () => {
+  const app = 'ios/Sources/SportsGreenMooveApp/';
+  const controller = read(app + 'PaymentScreenController.swift');
+  for (const text of ['init(access: AccountAccess)', 'active && access.isCurrent && !loading',
+    'access.context.role == .driver', 'access.context.grantedRoles.contains(.driver)', 'let work = access.begin()',
+    'access.finish(work)', 'revision == generation', 'access.owns(work)', 'url.scheme == "https"',
+    'url.user == nil, url.password == nil']) assert(controller.includes(text), text);
+  assert(controller.includes('try await gateway.createStripeAccount(email: email)\n            try requireCurrent()'));
+  assert(controller.includes('refreshUrl: urls.refreshUrl)\n            try requireCurrent()'));
+  assert(controller.includes('openURL(url)\n            try requireCurrent()'));
+  const view = read(app + 'PaymentsScreen.swift');
+  for (const text of ['PaymentScreenController(access: access)', '.onDisappear { controller.close() }',
+    'appState.payRide(booking, access: access)', 'appState.verifyRidePayment(access: access)',
+    'appState.refreshAppData(access: access)']) assert(view.includes(text), text);
+  assert.doesNotMatch(view, /private func startStripeConnect|appState.loading =|Configurez SGM_|Adresse email Firebase/);
+  assert(read(app + 'AppShell.swift').includes('PaymentsScreen(access: access)'));
+  assert(read('scripts/check-ios-native-plan.sh').includes('PaymentScreenChecks.swift'));
+  assert(read('ios/Tests/SportsGreenMooveNativeChecks/main.swift').includes('try await checkPaymentScreenOwnership()'));
+});
+
+test('all four native payment callables use the existing typed and UID-owned boundary', () => {
+  const base = 'ios/Sources/SportsGreenMooveApp/';
+  const gateway = read(base + 'FirebaseStripePaymentsGateway.swift');
+  for (const name of ['createStripeAccount', 'createStripeAccountLink', 'createRidePaymentIntent', 'getRidePaymentStatus']) {
+    assert(gateway.includes('paymentCall(name: "' + name + '"'));
+  }
+  assert(gateway.includes('guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }'));
+  assert(gateway.includes('firebaseOwnedCall(uid: uid, name: name, input: input)'));
+  assert.match(gateway, /decode: @escaping @Sendable \(\[String: Any\]\) throws -> Response/);
+  assert.doesNotMatch(gateway, /withCheckedThrowingContinuation|\.httpsCallable\(|@unchecked|@preconcurrency/);
+  for (const text of ['CFGetTypeID(number) != CFBooleanGetTypeID()', 'amount.isFinite', 'amount > 0',
+    'amount <= Double(Int32.max)', 'amount.rounded(.towardZero) == amount', 'mapRidePaymentState(payload, bookingId: bookingId, paymentIntentId: paymentIntentId)']) {
+    assert(gateway.includes(text), text);
+  }
+  assert(read('scripts/check-ios-support-concurrency.sh').includes('FirebaseStripePaymentsGateway.swift'));
+});
+
+test('retained onboarding checks remain synthetic and do not accept SDK, browser or release flows', () => {
+  const folder = 'docs/release/evidence/ios-payment-screen-2026-11-04/';
+  const proof = json(iosPaymentScreen.source);
+  assert.equal(proof.delayedOnboardingCases, 28);
+  for (const entry of [proof.nativeChecks, proof.callableSignatures]) {
+    assert.equal(entry.exitCode, 0);
+    assert.equal(createHash('sha256').update(read(folder + entry.log)).digest('hex'), entry.logSha256);
+  }
+  assert.match(read(folder + proof.nativeChecks.log), /28 delayed onboarding success\/error boundaries/);
+  for (const key of ['sdkLinkedBuildAccepted', 'renderedPaymentScreenAccepted', 'browserOpened', 'providerRequests',
+    'realOnboarding', 'livePayment', 'fullSignOutAccepted', 'productionWrites', 'newNativeMediaPublished', 'releaseComplete']) {
+    assert.equal(proof[key], key === 'providerRequests' ? 0 : false, key);
+  }
+  assert.deepEqual(content.iosPaymentScreen, iosPaymentScreen);
+  assert.deepEqual(content.updates.filter(entry => entry.source === iosPaymentScreenProgress.source), [iosPaymentScreenProgress]);
+  assert.doesNotMatch(iosPaymentScreenProgress.title + iosPaymentScreenProgress.text, /Stripe|Firebase|BrowserStack|SDK|Swift|CI\b/i);
+});
 test('original device cases, rejected captures and restored-source units retain their different scopes and dates', () => {
   const summary = validateDriverConnectEvidence(root, base + 'summary.json');
   assert.equal(summary.componentTestedAt.slice(0, 10), '2026-10-24'); assert.equal(summary.checkedAt, '2026-10-25');

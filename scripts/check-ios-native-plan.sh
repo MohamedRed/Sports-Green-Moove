@@ -10,6 +10,8 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/StripePaymentsGateway.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PaymentScreenController.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ProviderConfigurationError.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LocationSessionState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideRequestState.swift" \
@@ -70,6 +72,7 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataRefreshChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RidePaymentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RidePaymentOwnershipChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/PaymentScreenChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SupportChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SupportStateChecks.swift" \

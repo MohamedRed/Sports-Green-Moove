@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The payment screen now binds checkout, verification and onboarding actions to its
+immutable account access. Twenty-eight delayed account/link cases deny stale
+requests, handoffs and feedback; current explicit retry and secure-link checks
+pass. The actual payment gateway passes typed callable signature checks, not live
+provider execution. Publish one concise local note, preserving all flows, dates,
+statuses, media, tours, blockers and prior updates. No full logout, native browser,
+SDK build, real onboarding or release acceptance is added. See
+`docs/release/evidence/ios-payment-screen-2026-11-04/README.md`.
+
 The original a23cb9d payment-status response changes a same-UID reauthenticated
 account and starts seven fresh reads in the controlled reproduction. The
 candidate retains account-generation leases, denies 24 delayed preparation/status

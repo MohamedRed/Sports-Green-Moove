@@ -3,6 +3,13 @@ import SwiftUI
 struct PaymentsScreen: View {
     @Environment(AppState.self) private var appState
     @Environment(\.openURL) private var openURL
+    private let access: AccountAccess
+    @State private var controller: PaymentScreenController
+
+    init(access: AccountAccess) {
+        self.access = access
+        _controller = State(initialValue: PaymentScreenController(access: access))
+    }
 
     var body: some View {
         SGMScreen(testID: UITestIdentifier.paymentsScreen) {
@@ -14,15 +21,22 @@ struct PaymentsScreen: View {
                         .font(.sgmBody(13, weight: .medium))
                         .foregroundStyle(SGM.textPrimary)
                     SGMButton(title: appState.ridePaymentBusy ? "Vérification..." : "Vérifier le paiement") {
-                        Task { await appState.verifyRidePayment() }
+                        Task {
+                            guard controller.acceptsAction else { return }
+                            await appState.verifyRidePayment(access: access)
+                        }
                     }
-                    .disabled(appState.ridePaymentBusy)
+                    .disabled(appState.ridePaymentBusy || controller.loading)
                 }.padding(.horizontal, SGMSpace.padScreen)
             }
             if appState.selectedRole == .driver {
                 SGMSectionLabel("STRIPE CONNECT")
-                PaymentsConnectCard(loading: appState.loading || appState.refreshingAppData) {
-                    Task { await startStripeConnect() }
+                PaymentsConnectCard(loading: appState.loading || appState.refreshingAppData || controller.loading || appState.ridePaymentBusy) {
+                    Task {
+                        await controller.startConnect(email: appState.session?.email, urls: NativeStripeConnectConfiguration.urls,
+                            gateway: appState.stripe, openURL: { openURL($0) },
+                            onError: { appState.errorMessage = $0 }, onNotice: { appState.noticeMessage = $0 })
+                    }
                 }
                 .padding(.horizontal, SGMSpace.padScreen)
             }
@@ -35,10 +49,13 @@ struct PaymentsScreen: View {
                     ForEach(appState.payableBookings) { booking in
                         PaymentBookingCard(
                             booking: booking,
-                            loading: appState.loading || appState.refreshingAppData || appState.ridePaymentBusy || appState.hasPendingRidePayment,
+                            loading: appState.loading || appState.refreshingAppData || appState.ridePaymentBusy || appState.hasPendingRidePayment || controller.loading,
                             paymentPending: appState.hasPendingRidePayment
                         ) {
-                            Task { await appState.payRide(booking) }
+                            Task {
+                                guard controller.acceptsAction else { return }
+                                await appState.payRide(booking, access: access)
+                            }
                         }
                     }
                 }
@@ -46,39 +63,11 @@ struct PaymentsScreen: View {
             }
         }
         .task {
-            await appState.refreshAppData()
+            controller.activate()
+            guard controller.acceptsAction else { return }
+            await appState.refreshAppData(access: access)
         }
-    }
-
-    private func startStripeConnect() async {
-        appState.loading = true
-        appState.errorMessage = nil
-        defer { appState.loading = false }
-
-        do {
-            guard appState.stripe.isConfigured else {
-                throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
-            }
-            guard let email = appState.session?.email, !email.isEmpty else {
-                throw ProviderConfigurationError(message: "Adresse email Firebase requise pour Stripe Connect.")
-            }
-            guard let urls = NativeStripeConnectConfiguration.urls else {
-                throw ProviderConfigurationError(message: "Configurez SGM_STRIPE_CONNECT_RETURN_URL et SGM_STRIPE_CONNECT_REFRESH_URL.")
-            }
-
-            let account = try await appState.stripe.createStripeAccount(email: email)
-            let link = try await appState.stripe.createStripeAccountLink(
-                returnUrl: urls.returnUrl,
-                refreshUrl: urls.refreshUrl
-            )
-            guard let url = URL(string: link.url) else {
-                throw ProviderConfigurationError(message: "Lien onboarding Stripe invalide.")
-            }
-            openURL(url)
-            appState.noticeMessage = account.reused ? "Onboarding Stripe repris." : "Compte Stripe créé."
-        } catch {
-            appState.errorMessage = error.localizedDescription
-        }
+        .onDisappear { controller.close() }
     }
 
 }
