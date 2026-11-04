@@ -6,6 +6,7 @@ import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import test from 'node:test';
 import {content, captures} from '../partner-portal/content.mjs';
+import {searchDeparturePhoneProgress} from '../partner-portal/search-departure-phone.mjs';
 import {searchDeparturePhoneFolder, validateSearchDeparturePhone} from '../scripts/qa/search-departure-phone-evidence.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -22,7 +23,8 @@ test('physical calendar trial retains all independent checkpoints without promot
   const review = JSON.parse(readFileSync(resolve(root, flow.searchDeparturePhone.source)));
   for (const [name, path] of Object.entries(review.publishedCaptures)) assert.equal(captures[name], searchDeparturePhoneFolder + path);
   assert.equal(content.blockers.some(row => row.id === 'search-departure-phone'), false);
-  assert.equal(content.updates.find(row => row.flow === 'search').source, searchDeparturePhoneFolder + 'README.md');
+  assert.deepEqual(content.updates.filter(row => row.flow === 'search' && row.source === searchDeparturePhoneFolder + 'README.md'),
+    [searchDeparturePhoneProgress]);
 });
 function shadow() {
   const temp = mkdtempSync(resolve(tmpdir(), 'sgm-search-calendar-phone-'));
