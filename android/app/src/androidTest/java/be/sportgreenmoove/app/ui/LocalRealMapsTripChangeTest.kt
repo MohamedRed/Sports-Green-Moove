@@ -68,7 +68,7 @@ class LocalRealMapsTripChangeTest {
                 val suggestions = SemanticsMatcher("Real place suggestion") {
                     it.config.getOrNull(SemanticsProperties.TestTag)?.startsWith(prefix) == true
                 }
-                compose.waitUntil(60_000) { compose.onAllNodes(suggestions).fetchSemanticsNodes().isNotEmpty() }
+                compose.waitForComposeNode(suggestions, 60_000)
                 val selected = compose.onAllNodes(suggestions).fetchSemanticsNodes().first().config[SemanticsProperties.TestTag]
                 selectedIds.add(selected.removePrefix(prefix))
                 compose.onNodeWithTag(selected).performScrollTo().assertIsEnabled().performClick()
@@ -146,7 +146,7 @@ class LocalRealMapsTripChangeTest {
         compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
         waitFor(SgmTestTags.AuthEmailInput)
     }
-    private fun waitFor(tag: String) = compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 60_000)
     private fun idle() = compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.busy").fetchSemanticsNodes().isEmpty() }
     private fun expectStatus(text: String) = compose.waitUntil(60_000) {
         runCatching { compose.onNodeWithTag("trip.change.status").assertTextEquals(text) }.isSuccess

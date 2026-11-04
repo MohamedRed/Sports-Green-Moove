@@ -68,7 +68,7 @@ internal class LocalTeamChatUi(private val compose: ComposeTestRule) {
         waitFor(hasTestTag(tag) and isEnabled()); compose.onNodeWithTag(tag).performClick()
     }
     fun waitFor(matcher: SemanticsMatcher) {
-        compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(matcher, 60_000)
     }
     fun absent(vararg bodies: String) {
         compose.waitUntil(60_000) { bodies.all { compose.onAllNodesWithText(it).fetchSemanticsNodes().isEmpty() } }

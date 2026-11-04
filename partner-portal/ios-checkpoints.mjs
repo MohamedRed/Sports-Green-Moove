@@ -14,10 +14,11 @@ import {iosPaymentScreen} from './ios-payment-screen.mjs';
 import {iosBuildTimeout} from './ios-build-timeout.mjs';
 import {iosBookingOwnership} from './ios-booking-ownership.mjs';
 import {iosPermissionBuild} from './ios-permission-build.mjs';
+import {iosCurrentFixturePass} from './ios-current-fixture-pass.mjs';
 
 export const iosCheckpoints = {
   iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
   iosAuthentication, iosProfileInitialization, iosLocationStop, iosProfileFixtureResult,
   iosRideOwnership, iosAccountWork, iosPaymentOwnership, iosPaymentScreen, iosBuildTimeout,
-  iosBookingOwnership, iosPermissionBuild,
+  iosBookingOwnership, iosPermissionBuild, iosCurrentFixturePass,
 };

@@ -1,5 +1,7 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.hasTestTag
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
@@ -43,12 +45,12 @@ class LocalAppFlowTest {
             compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performScrollTo().performTextInput(session.getString("password"))
             compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed().performClick()
             waitFor(SgmTestTags.HomeScreen)
-            compose.waitUntil(60_000) { compose.onAllNodesWithText("U 7/8 · Green Wavre QA Club").fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasText("U 7/8 · Green Wavre QA Club"), 60_000)
             capture("local-parent-home.png")
             compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
             val trip = runBlocking { AndroidRuntime.create(context).firebase.searchTrips() }.single { it.id == "sgm-qa-trip-u8-wavre-bruxelles" }
             selectLocalTripMonth(compose, trip)
-            compose.waitUntil(60_000) { compose.onAllNodesWithText("U 7/8 · Green Wavre QA Club").fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasText("U 7/8 · Green Wavre QA Club"), 60_000)
             compose.onNodeWithText("U 7/8 · Green Wavre QA Club").assertIsDisplayed()
             compose.onNodeWithTag("trips.month.next").performClick()
             compose.onNodeWithText("Aucun trajet dans cet onglet.").assertIsDisplayed()
@@ -56,7 +58,7 @@ class LocalAppFlowTest {
             capture("local-trips-calendar.png")
             compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).performClick()
             waitFor(SgmTestTags.MessagesScreen)
-            compose.waitUntil(60_000) { compose.onAllNodesWithText("point de rendez-vous QA", substring = true).fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasText("point de rendez-vous QA", substring = true), 60_000)
             compose.onNodeWithText("point de rendez-vous QA", substring = true).assertIsDisplayed()
             capture("local-parent-messages.png")
             compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
@@ -65,7 +67,7 @@ class LocalAppFlowTest {
             compose.onNodeWithTag(SgmTestTags.SupportReportReasonInput).performScrollTo().performTextReplacement("Local app UI test")
             compose.onNodeWithTag(SgmTestTags.SupportReportDescriptionInput).performScrollTo().performTextInput("Disposable support report submitted from the Android app.")
             compose.onNodeWithTag(SgmTestTags.SupportReportAction).performScrollTo().performClick()
-            compose.waitUntil(60_000) { compose.onAllNodesWithText("Signalement envoyé:", substring = true).fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasText("Signalement envoyé:", substring = true), 60_000)
             compose.onNodeWithText("Signalement envoyé:", substring = true).performScrollTo().assertIsDisplayed()
             capture("local-support-sent.png")
             compose.onNodeWithTag(SgmTestTags.BottomNavHomeAction).performClick()
@@ -82,7 +84,7 @@ class LocalAppFlowTest {
     }
 
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
         compose.onNodeWithTag(tag).assertIsDisplayed()
     }
 

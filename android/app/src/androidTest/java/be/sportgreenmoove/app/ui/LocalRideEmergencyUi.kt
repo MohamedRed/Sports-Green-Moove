@@ -133,7 +133,7 @@ internal class LocalRideEmergencyUi(private val compose: ComposeTestRule, privat
         node.assertIsEnabled().performClick()
     }
     private fun waitFor(matcher: SemanticsMatcher) {
-        compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(matcher, 60_000)
     }
 }
 

@@ -105,5 +105,5 @@ class TripCancellationFlowTest {
         compose.onNodeWithTag("trip.cancelled.${trip.id}").performClick()
         assertEquals(0, starts)
     }
-    private fun waitFor(tag: String) = compose.waitUntil(5_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 5_000)
 }

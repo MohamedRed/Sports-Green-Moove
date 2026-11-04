@@ -37,7 +37,7 @@ test('the uncertainty and rejection cases retain the same requests, message cont
   assert(screen.includes('assertEquals(1, gateway.requests.map { it.requestId }.distinct().size)'));
   assert(screen.includes('waitForText("Envoi non confirmé. Réessayez.")'));
   assert(screen.includes('waitForText("Envoi refusé. Vérifiez le message et réessayez.")'));
-  assert.match(screen, /private fun waitForText\(text: String\) = compose.waitUntil\(5_000\)/);
+  assert.match(screen, /private fun waitForText\(text: String\) = compose.waitForComposeNode\(hasText\(text\), 5_000\)/);
   assert(screen.includes('@After fun releaseInteractions()'));
 });
 

@@ -2,6 +2,25 @@
 
 ## Current Publication Policy
 
+The 3e7cd40 iPhone run now succeeds: the actual SDK build, all seven synthetic
+fixture cases and simulator disposal pass within the approved 50 minutes. Publish
+one short simulation-only note, without new media. Accept only the two matching
+automated manifest entries; retain every physical, operational and complete-flow
+requirement. All prior content and failed-run records remain intact. See
+`docs/release/evidence/ios-fixture-pass-3e7cd40-2026-11-04/README.md`.
+
+The retained 0d50270 Android main gate fails twice independently: ordinary command
+deadline before all 349 cases finish, then missing composition in parent-login
+replay. The failed cleanup copy observes a directory not produced by that flow.
+The new bounded readiness query and 101 mechanical caller migrations preserve
+all predicates/timeouts and compile, but their two new native regressions have
+not executed. The separate unchanged 3e7cd40 baseline subsequently passes its
+ordinary and connected replay, including the parent case, plus all focused lanes.
+This does not execute the readiness candidate or establish either earlier cause.
+Publish one short simulation-pass note and retain every flow, image, date, tour, status,
+blocker and earlier update. iPhone source and its live run remain unchanged. See
+`docs/release/evidence/android-node-readiness-2026-11-04/README.md`.
+
 The actual 0d50270 booking request/approval methods restore feedback after same-UID
 reauthentication; approval also starts seven reads. The candidate denies 24 local
 delayed boundaries, preserves displayed trip terms and binds action dispatch to

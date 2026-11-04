@@ -105,5 +105,5 @@ class LocalEmergencyContactFlowTest {
         if (tag !in setOf("emergency.confirm", "emergency.keep")) node.performScrollTo()
         node.assertIsEnabled().performClick()
     }
-    private fun waitFor(matcher: SemanticsMatcher) { compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitFor(matcher: SemanticsMatcher) { compose.waitForComposeNode(matcher, 60_000) }
 }

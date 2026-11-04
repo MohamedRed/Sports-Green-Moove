@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasTestTag
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.provider.Settings
@@ -47,7 +48,7 @@ class LocalLandscapeLoginTest {
                         context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
                             device.displayWidth > device.displayHeight
                     }
-                    compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.AuthEmailAction).fetchSemanticsNodes().isNotEmpty() }
+                    compose.waitForComposeNode(hasTestTag(SgmTestTags.AuthEmailAction), 60_000)
                     compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed()
                     captureLocalUi(compose, "local-login-landscape.png", landscape = true)
                     AuthTestInteractions(compose, activity).use { input ->

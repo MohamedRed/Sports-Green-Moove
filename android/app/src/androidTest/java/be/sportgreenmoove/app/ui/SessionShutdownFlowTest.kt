@@ -46,7 +46,7 @@ class SessionShutdownFlowTest {
         compose.onNodeWithText("Compte privé").assertDoesNotExist()
         compose.onNodeWithTag(SgmTestTags.AuthEmailAction).assertDoesNotExist()
         compose.runOnIdle { assertTrue(state!!.pending); reply.complete(Unit) }
-        compose.waitUntil(5_000) { compose.onAllNodesWithTag(SgmTestTags.AuthEmailAction).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(SgmTestTags.AuthEmailAction), 5_000)
         compose.onNodeWithTag("session.exit.screen").assertDoesNotExist()
     }
     @Test fun smallLargeTextExitScreenKeepsTheStatusInsideItsFrame() = frame(false, "session-exit-narrow.png")

@@ -75,7 +75,7 @@ class LocalRemoteRideStopFlowTest {
                     assertTrue(trackedActivity.intent.filterEquals(launchIntent))
                     assertEquals(Lifecycle.State.RESUMED, activity.state)
                     waitFor(SgmTestTags.ActiveRideScreen)
-                    compose.waitUntil(60_000) { compose.onAllNodesWithText("AUCUNE COURSE ACTIVE").fetchSemanticsNodes().isNotEmpty() }
+                    compose.waitForComposeNode(hasText("AUCUNE COURSE ACTIVE"), 60_000)
                     capture("ended", SgmTestTags.ActiveRideScreen)
                 }
             }
@@ -91,7 +91,7 @@ class LocalRemoteRideStopFlowTest {
             .put("physicalDevice", false).put("providerTrackingVerified", false).put("physicalBackgroundGpsVerified", false).toString(2))
     }
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
         if (tag in setOf(SgmTestTags.ActiveRideResumeAction, SgmTestTags.ActiveRidePickupAction)) compose.onNodeWithTag(tag).performScrollTo()
         compose.onNodeWithTag(tag).assertIsDisplayed()
     }

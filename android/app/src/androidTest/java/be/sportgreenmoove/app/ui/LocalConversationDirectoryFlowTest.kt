@@ -190,7 +190,7 @@ class LocalConversationDirectoryFlowTest {
     private fun openMessages() {
         compose.onNodeWithTag(SgmTestTags.BottomNavMessagesAction).performClick()
         waitFor(SgmTestTags.ChatInboxList)
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.ChatOpenAction).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(SgmTestTags.ChatOpenAction), 60_000)
     }
     private fun logout() {
         compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
@@ -209,10 +209,10 @@ class LocalConversationDirectoryFlowTest {
         compose.waitUntil(60_000) { runCatching { compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertIsEnabled() }.isSuccess }
     }
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
         compose.onNodeWithTag(tag).assertIsDisplayed()
     }
     private fun waitForText(text: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText(text), 60_000)
     }
 }

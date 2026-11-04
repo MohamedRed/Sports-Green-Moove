@@ -208,7 +208,7 @@ class TripChangeFlowTest {
             }
         }
     }
-    private fun waitFor(tag: String) = compose.waitUntil(10_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 10_000)
     private fun capture(name: String) {
         captureLocalUi(compose, name, dialog = true)
         val instrumentation = InstrumentationRegistry.getInstrumentation()

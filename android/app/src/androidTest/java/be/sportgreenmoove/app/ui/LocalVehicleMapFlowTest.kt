@@ -97,7 +97,5 @@ class LocalVehicleMapFlowTest {
             .put("parentSignedOut", true).put("firestoreClientTerminated", true).put("physicalDevice", false)
             .put("providerTrackingVerified", false).put("childPositionsVerified", false).put("etaVerified", false).toString(2))
     }
-    private fun waitFor(tag: String) = compose.waitUntil(60_000) {
-        compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
-    }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 60_000)
 }

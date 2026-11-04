@@ -98,7 +98,7 @@ class LocalTripChangeInputsFlowTest {
             compose.onNodeWithTag("trip.review.$tripId").performScrollTo().assertIsEnabled().performClick()
             expectStatus("Tous les parents ont confirmé")
             compose.onNodeWithTag("trip.change.calculate").performScrollTo().assertIsEnabled().performClick()
-            compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.error").fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasTestTag("trip.change.error"), 60_000)
             idleReview()
             compose.onNodeWithTag("trip.change.error").performScrollTo()
                 .assertTextEquals("Itinéraire non confirmé. Actualisez avant de réessayer.")
@@ -136,5 +136,5 @@ class LocalTripChangeInputsFlowTest {
     private fun expectStatus(label: String) = compose.waitUntil(60_000) {
         runCatching { compose.onNodeWithTag("trip.change.status").assertTextEquals(label) }.isSuccess
     }
-    private fun waitFor(tag: String) = compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 60_000)
 }

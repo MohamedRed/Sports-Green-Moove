@@ -22,6 +22,8 @@ on:
         default: false
   pull_request:
     paths:
+      - "tests/compose-node-readiness.test.mjs"
+      - "docs/release/evidence/android-node-readiness-2026-11-04/**"
       - "tests/native-build-before-boot.test.mjs"
       - "tests/hosted-android-disk.test.mjs"
       - "tests/primary-capture-diagnostics.test.mjs"
@@ -183,6 +185,8 @@ on:
     branches:
       - main
     paths:
+      - "tests/compose-node-readiness.test.mjs"
+      - "docs/release/evidence/android-node-readiness-2026-11-04/**"
       - "tests/native-build-before-boot.test.mjs"
       - "tests/hosted-android-disk.test.mjs"
       - "tests/primary-capture-diagnostics.test.mjs"
@@ -366,6 +370,9 @@ jobs:
 
       - name: Validate team enrollment unit and compiled-screen scope
         run: node --test tests/team-enrollment-native-contract.test.mjs tests/team-club-identity.test.mjs
+
+      - name: Validate bounded node readiness and retained failure scope
+        run: node --test tests/compose-node-readiness.test.mjs
 
       - name: Validate recreated child contact UI proof contract
         run: node --test tests/emergency-identity-ui.test.mjs tests/emergency-identity-profile-isolation.test.mjs

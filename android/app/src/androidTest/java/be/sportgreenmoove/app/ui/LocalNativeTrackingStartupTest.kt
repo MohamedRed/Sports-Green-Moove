@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasTestTag
 import android.app.ActivityManager
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
@@ -163,7 +164,7 @@ class LocalNativeTrackingStartupTest {
             .put("physicalDevice", false).put("providerTrackingVerified", false).put("mapMovementVerified", false).toString(2))
     }
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
         if (tag in setOf(SgmTestTags.ActiveRideResumeAction, SgmTestTags.ActiveRidePickupAction)) compose.onNodeWithTag(tag).performScrollTo()
         compose.onNodeWithTag(tag).assertIsDisplayed()
     }

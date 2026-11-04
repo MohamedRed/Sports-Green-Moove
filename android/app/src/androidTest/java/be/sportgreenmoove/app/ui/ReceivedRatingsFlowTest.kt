@@ -84,6 +84,6 @@ class ReceivedRatingsFlowTest {
         captureLocalUi(compose, "received-ratings-large-text.png", landscape = canvas.width > canvas.height)
     }
     private fun waitFor(text: String) {
-        compose.waitUntil(10_000) { compose.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText(text), 10_000)
     }
 }

@@ -66,7 +66,7 @@ test('native diagnostics only observe local sockets and do not weaken original U
   assert(native.indexOf('transport.checkpoint("before-sign-in")') < native.indexOf('runtime.auth.signIn('));
   assert(native.indexOf('transport.checkpoint("failure")') < native.indexOf('finally {'));
   assert(native.includes('error.addSuppressed(diagnostic)')); assert(native.includes('failure?.let { throw it }'));
-  assert(native.includes('compose.waitUntil(60_000)')); assert(native.includes('assertEquals(4, control('));
+  assert(native.includes('compose.waitForComposeNode(hasTestTag(tag), 60_000)')); assert(native.includes('assertEquals(4, control('));
   const host = read('scripts/qa/local-session-restoration-ui.mjs');
   assert(host.includes('session.runId, { complete: true }')); assert(host.includes('verifySessionRestorationRecords(baseline,'));
   assert(host.includes('assertInstrumentationPassed(transcript, 1)')); assert(host.includes('if (failure) throw failure;'));
@@ -115,7 +115,7 @@ test('restoration failures retain the live screen before activity closure withou
   const replay = read(base + 'LocalSessionRestorationTest.kt');
   assert(replay.includes('.useWithFailureObservation({ activity ->'));
   assert(replay.includes('captureSessionFailureBeforeClose(context, device, session, compose, phase, activity.state.name)'));
-  assert(replay.includes('phase = "retry"')); assert(replay.includes('compose.waitUntil(60_000)'));
+  assert(replay.includes('phase = "retry"')); assert(replay.includes('compose.waitForComposeNode(hasTestTag(tag), 60_000)'));
   assert.equal((replay.match(/runtime\.auth\.signIn\(/g) ?? []).length, 1);
   assert(read('scripts/qa/local-session-restoration-ui.mjs').includes('assertInstrumentationPassed(transcript, 1)'));
   const cases = read(base + 'SessionFailureObservationTest.kt');

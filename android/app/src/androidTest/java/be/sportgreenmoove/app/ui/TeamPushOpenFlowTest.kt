@@ -122,7 +122,7 @@ class TeamPushOpenFlowTest {
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertDoesNotExist()
     }
     private fun waitFor(matcher: SemanticsMatcher) {
-        compose.waitUntil(15_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(matcher, 15_000)
     }
     private fun conversations() = object : TeamConversationGateway {
         override suspend fun choices(uid: String, clubId: String?, cursor: String?) = error("Direct alert does not use the directory")

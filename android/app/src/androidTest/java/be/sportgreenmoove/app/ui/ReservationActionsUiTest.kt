@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -44,7 +45,7 @@ class ReservationActionsUiTest {
             }
         }
         val cancel = decisionTag(ReservationDecision.Cancel, pending.booking.bookingId)
-        compose.waitUntil(10_000) { compose.onAllNodesWithTag(cancel).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(cancel), 10_000)
         compose.onNodeWithTag(cancel).performScrollTo().assertIsDisplayed()
         val host = compose.onNodeWithTag("narrow.host").fetchSemanticsNode().boundsInRoot
         val action = compose.onNodeWithTag(cancel).fetchSemanticsNode().boundsInRoot
@@ -88,7 +89,7 @@ class ReservationActionsUiTest {
             }
         }
         val action = decisionTag(ReservationDecision.Approve, "chosen-booking")
-        compose.waitUntil(10_000) { compose.onAllNodesWithTag(action).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(action), 10_000)
         compose.onNodeWithTag(action).performScrollTo().performClick()
         compose.onNodeWithTag("bookings.confirm").performClick()
         compose.waitUntil(10_000) {

@@ -124,7 +124,7 @@ class EmergencyContactFlowTest {
         if (tag !in setOf("emergency.confirm", "emergency.keep")) node.performScrollTo()
         node.assertIsEnabled().performClick()
     }
-    private fun waitFor(matcher: SemanticsMatcher) { compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitFor(matcher: SemanticsMatcher) { compose.waitForComposeNode(matcher, 60_000) }
     private fun capture(name: String) {
         captureLocalUi(compose, name)
         val instrumentation = InstrumentationRegistry.getInstrumentation(); val device = UiDevice.getInstance(instrumentation)

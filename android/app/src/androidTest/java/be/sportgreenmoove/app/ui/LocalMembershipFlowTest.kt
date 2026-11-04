@@ -97,6 +97,6 @@ class LocalMembershipFlowTest {
         waitFor(hasTestTag(SgmTestTags.HomeScreen))
     }
     private fun waitFor(matcher: SemanticsMatcher) {
-        compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(matcher, 60_000)
     }
 }

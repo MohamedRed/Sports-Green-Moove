@@ -52,7 +52,7 @@ internal class AuthTestInteractions(
             phase = "submit-touch"
             compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().assertIsDisplayed().assertIsEnabled().performClick()
             phase = "awaiting-home"
-            compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.HomeScreen).fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasTestTag(SgmTestTags.HomeScreen), 60_000)
         } catch (failure: Throwable) {
             runCatching { diagnostic(email, password) }
             throw failure

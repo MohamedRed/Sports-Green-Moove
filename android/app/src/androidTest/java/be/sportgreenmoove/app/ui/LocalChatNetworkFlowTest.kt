@@ -244,7 +244,7 @@ class LocalChatNetworkFlowTest {
     }
     private fun assertDraft(value: String) { assertEquals(value, draft()) }
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
     }
     private fun waitForText(value: String, timeout: Long = 60_000) {
         compose.waitUntil(timeout) { compose.onAllNodesWithText(value).fetchSemanticsNodes().isNotEmpty() }

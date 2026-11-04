@@ -149,7 +149,7 @@ test('landscape login requires real keyboard readiness and one submit touch with
   assert(helper.includes('animations.isEmpty()'));
   assert(helper.includes('awaitKeyboard(true)') && helper.includes('awaitKeyboard(false)'));
   assert.equal(helper.match(/AuthEmailAction\)\.performScrollTo\(\).*\.performClick\(\)/g).length, 1);
-  assert(helper.includes('compose.waitUntil(60_000)'));
+  assert(helper.includes('compose.waitForComposeNode(hasTestTag(SgmTestTags.HomeScreen), 60_000)'));
   assert(helper.includes('throw failure'));
   assert(!helper.includes('Thread.sleep') && !helper.includes('performSemanticsAction'));
   assert(!helper.includes('.put("password",') && !helper.includes('.put("email",'));

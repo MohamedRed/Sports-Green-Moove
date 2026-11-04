@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasTestTag
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.runtime.mutableStateOf
@@ -128,9 +129,9 @@ class SearchCriteriaFlowTest {
             compose.onNodeWithTag(tag).performScrollTo().performTextReplacement(label)
             compose.onNodeWithTag("$tag.suggest").performClick()
             val row = "$tag.option.$label"
-            compose.waitUntil(10_000) { compose.onAllNodesWithTag(row).fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasTestTag(row), 10_000)
             compose.onNodeWithTag(row).performScrollTo().performClick()
-            compose.waitUntil(10_000) { compose.onAllNodesWithText("Adresse $label").fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasText("Adresse $label"), 10_000)
         }
     }
     private fun choice(label: String) = compose.onNode(hasText(label) and hasClickAction())

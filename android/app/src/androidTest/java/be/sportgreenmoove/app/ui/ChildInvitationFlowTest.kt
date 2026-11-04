@@ -55,7 +55,7 @@ class ChildInvitationFlowTest {
     private fun waitLoaded() { compose.waitUntil(30_000) {
         compose.onAllNodes(hasTestTag("child-invitation.create") and isEnabled()).fetchSemanticsNodes().isNotEmpty()
     } }
-    private fun waitForStatus() { compose.waitUntil(30_000) { compose.onAllNodesWithTag("child-invitation.status").fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitForStatus() { compose.waitForComposeNode(hasTestTag("child-invitation.status"), 30_000) }
 }
 
 private class InvitationUiFixture : ChildInvitationGateway {

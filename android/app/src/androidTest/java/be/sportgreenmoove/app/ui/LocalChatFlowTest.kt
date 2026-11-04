@@ -257,7 +257,7 @@ class LocalChatFlowTest {
         waitFor(SgmTestTags.HomeScreen)
     }
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
         compose.onNodeWithTag(tag).assertIsDisplayed()
     }
     private fun waitForComposer() {
@@ -267,6 +267,6 @@ class LocalChatFlowTest {
         }
     }
     private fun waitForText(text: String, substring: Boolean = false) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithText(text, substring = substring).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText(text, substring = substring), 60_000)
     }
 }

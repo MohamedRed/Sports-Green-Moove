@@ -1,5 +1,6 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasTestTag
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
@@ -36,7 +37,7 @@ class LocalThemeRestartTest {
                     context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT &&
                         device.displayWidth < device.displayHeight
                 }
-                compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.HomeScreen).fetchSemanticsNodes().isNotEmpty() }
+                compose.waitForComposeNode(hasTestTag(SgmTestTags.HomeScreen), 60_000)
                 compose.onNodeWithTag("appearance.toggle").assertIsSelected()
                 captureLocalUi(compose, "local-theme-after-process-restart.png")
             }

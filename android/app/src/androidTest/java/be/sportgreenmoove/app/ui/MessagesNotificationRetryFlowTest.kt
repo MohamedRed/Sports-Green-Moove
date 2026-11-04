@@ -25,9 +25,7 @@ class MessagesNotificationRetryFlowTest {
         waitForText("Second avis QA")
         compose.onNodeWithText("NOTIFS").performClick();waitForTag("notification.teamChat_retry")
         compose.onNodeWithTag("notification.read.teamChat_retry").performClick()
-        compose.waitUntil(5_000) {
-            compose.onAllNodesWithText("1 novembre · Lue").fetchSemanticsNodes().isNotEmpty()
-        }
+        compose.waitForComposeNode(hasText("1 novembre · Lue"), 5_000)
         compose.runOnIdle { fixture.fail=true }
         waitForTag("notification.inbox.retry")
         compose.onNodeWithTag("notification.teamChat_retry").assertDoesNotExist()
@@ -47,8 +45,8 @@ class MessagesNotificationRetryFlowTest {
         compose.onNodeWithTag("messages.reviews.more").assertDoesNotExist()
         compose.onNodeWithText("Premier avis QA").assertExists()
     }
-    private fun waitForTag(tag:String)=compose.waitUntil(8_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
-    private fun waitForText(text:String)=compose.waitUntil(5_000) { compose.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitForTag(tag:String)=compose.waitForComposeNode(hasTestTag(tag), 8_000)
+    private fun waitForText(text:String)=compose.waitForComposeNode(hasText(text), 5_000)
 
     private class Fixture:FirebaseGateway by UnconfiguredFirebaseGateway() {
         val notice=InboxNotificationSummary("teamChat_retry","Message d’équipe QA","Message disponible.","1 novembre",true,"QA")

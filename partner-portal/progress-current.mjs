@@ -22,6 +22,8 @@ import {iosPaymentOwnershipProgress} from './ios-payment-ownership.mjs';
 import {iosPaymentScreenProgress} from './ios-payment-screen.mjs';
 import {iosBookingOwnershipProgress} from './ios-booking-ownership.mjs';
 import {iosPermissionBuildProgress} from './ios-permission-build.mjs';
+import {androidNodeReadinessProgress} from './android-node-readiness.mjs';
+import {iosCurrentFixturePassProgress} from './ios-current-fixture-pass.mjs';
 import {iosBuildTimeoutProgress} from './ios-build-timeout.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
@@ -114,6 +116,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosCurrentFixturePassProgress, androidNodeReadinessProgress,
   iosBookingOwnershipProgress,
   iosPermissionBuildProgress,
   iosPaymentScreenProgress,

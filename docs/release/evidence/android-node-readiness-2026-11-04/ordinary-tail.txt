@@ -1,0 +1,17 @@
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=firstAgreementWaitsForRecordedReplyEvenThoughPendingStatusDoesNotChange
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.TripChangeFlowTest
+INSTRUMENTATION_STATUS: current=335
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=349
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=firstAgreementWaitsForRecordedReplyEvenThoughPendingStatusDoesNotChange
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.TripChangeFlowTest
+INSTRUMENTATION_STATUS: current=336
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=349
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=largeTextParentSeesBothVersionsAndAcceptsWithoutApplying
+INSTRUMENTATION_STATUS_CODE: 1

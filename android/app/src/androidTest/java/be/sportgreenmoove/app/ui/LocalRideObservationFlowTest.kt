@@ -1,5 +1,7 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.hasTestTag
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
@@ -75,7 +77,7 @@ class LocalRideObservationFlowTest {
                 activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
                 compose.waitUntil(60_000) { context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT }
                 waitFor(SgmTestTags.ActiveRideVehicleUpdate)
-                compose.waitUntil(110_000) { compose.onAllNodesWithTag(SgmTestTags.ActiveRideStaleWarning).fetchSemanticsNodes().isNotEmpty() }
+                compose.waitForComposeNode(hasTestTag(SgmTestTags.ActiveRideStaleWarning), 110_000)
                 waited = SystemClock.elapsedRealtime() - start
                 assertTrue("Staleness must age in real elapsed time, not a fabricated clock", waited > 80_000)
                 capture("stale")
@@ -111,11 +113,11 @@ class LocalRideObservationFlowTest {
             .put("physicalDevice", false).put("providerTrackingVerified", false).put("mapMovementVerified", false).toString(2))
     }
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
         if (tag == SgmTestTags.ActiveRideVehicleUpdate) compose.onNodeWithTag(tag).performScrollTo()
         compose.onNodeWithTag(tag).assertIsDisplayed()
     }
     private fun waitText(text: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithText(text, substring = true).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText(text, substring = true), 60_000)
     }
 }

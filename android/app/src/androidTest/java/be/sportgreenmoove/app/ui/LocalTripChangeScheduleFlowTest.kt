@@ -141,5 +141,5 @@ class LocalTripChangeScheduleFlowTest {
     private fun expectStatus(label: String) = compose.waitUntil(60_000) {
         runCatching { compose.onNodeWithTag("trip.change.status").assertTextEquals(label) }.isSuccess
     }
-    private fun waitFor(tag: String) = compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 60_000)
 }

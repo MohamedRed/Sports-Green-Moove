@@ -69,7 +69,7 @@ class TeamConversationReadFlowTest {
     }
     private fun directory() { click("team-chat.tab"); click("team-chat.choice.club"); waitFor(hasTestTag("team-chat.choice.team")) }
     private fun click(tag: String) { waitFor(hasTestTag(tag) and isEnabled()); compose.onNodeWithTag(tag).performClick() }
-    private fun waitFor(matcher: SemanticsMatcher) { compose.waitUntil(30_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitFor(matcher: SemanticsMatcher) { compose.waitForComposeNode(matcher, 30_000) }
     private fun assertTextFits(node: SemanticsNodeInteraction) {
         val results = mutableListOf<TextLayoutResult>()
         node.performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(results) }

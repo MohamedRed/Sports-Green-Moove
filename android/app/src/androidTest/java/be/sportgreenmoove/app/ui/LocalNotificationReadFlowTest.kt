@@ -122,6 +122,6 @@ class LocalNotificationReadFlowTest {
         compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
         waitFor(SgmTestTags.AuthEmailAction)
     }
-    private fun waitFor(tag: String) = compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 60_000)
     private fun directory() = File(context.getExternalFilesDir(null), "local-ui-evidence").also { check(it.isDirectory || it.mkdirs()) }
 }

@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/compose-node-readiness.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ComposeNodeReadiness*.kt"
+      - "docs/release/evidence/android-node-readiness-2026-11-04/**"
       - "scripts/qa/check-ios-permission-continuation.mjs"
       - "tests/fixtures/ios-permission-continuation/**"
       - ".github/workflows/ios-mvp-verification.yml"
@@ -641,6 +644,9 @@ on:
     branches:
       - main
     paths:
+      - "tests/compose-node-readiness.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ComposeNodeReadiness*.kt"
+      - "docs/release/evidence/android-node-readiness-2026-11-04/**"
       - "scripts/qa/check-ios-permission-continuation.mjs"
       - "tests/fixtures/ios-permission-continuation/**"
       - ".github/workflows/ios-mvp-verification.yml"
@@ -1305,6 +1311,8 @@ jobs:
         run: node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs tests/ios-location-stop.test.mjs tests/ios-fixture-launch.test.mjs tests/ios-ride-ownership.test.mjs tests/ios-account-work.test.mjs tests/ios-approved-captures.test.mjs
       - name: Validate complete smoke partitioning
         run: node --test tests/web-smoke-sharding.test.mjs
+      - name: Validate bounded node readiness and retained failure scope
+        run: node --test tests/compose-node-readiness.test.mjs
       - name: Test isolated chat proof diagnostic
         run: node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs
       - name: Test approved invitation private alias

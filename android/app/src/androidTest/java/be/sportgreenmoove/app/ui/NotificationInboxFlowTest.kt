@@ -35,7 +35,7 @@ class NotificationInboxFlowTest {
     @Test fun theNextAuthoritativeReadRemovesARevokedAlertWithoutAnOldHistoryCard() {
         val gateway=Fixture().apply { rows=listOf(notice) };show(gateway);waitFor("notification.${notice.id}")
         compose.runOnIdle { gateway.rows=emptyList() }
-        compose.waitUntil(8_000) { compose.onAllNodesWithText("Aucune notification.").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText("Aucune notification."), 8_000)
         compose.onNodeWithTag("notification.${notice.id}").assertDoesNotExist()
         captureLocalUi(compose,"notification-inbox-revoked.png")
     }
@@ -79,7 +79,7 @@ class NotificationInboxFlowTest {
             }
         }
     }
-    private fun waitFor(tag:String)=compose.waitUntil(8_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag:String)=compose.waitForComposeNode(hasTestTag(tag), 8_000)
     private class Fixture:NotificationInboxGateway {
         var rows=emptyList<InboxNotificationSummary>();var fail=false
         override suspend fun loadNotificationInbox(uid:String):List<InboxNotificationSummary> { check(!fail);return rows }

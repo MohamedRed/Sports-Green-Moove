@@ -62,5 +62,5 @@ class SupportInboxFlowTest {
         gateway.fail = false; compose.onNodeWithTag("support.refresh").performClick(); waitFor("support.report.ticket")
         compose.onNodeWithTag("support.error").assertDoesNotExist(); assertEquals(2, gateway.reads)
     }
-    private fun waitFor(tag: String) { compose.waitUntil(30_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitFor(tag: String) { compose.waitForComposeNode(hasTestTag(tag), 30_000) }
 }

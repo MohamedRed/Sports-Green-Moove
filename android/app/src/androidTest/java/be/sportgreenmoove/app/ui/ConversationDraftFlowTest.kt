@@ -47,7 +47,7 @@ class ConversationDraftFlowTest {
         check(preferences.edit().putString(name, "not-json").commit())
         try {
             compose.setSgmUiTestContent { ConversationRoute(uid, ref, gateway, onBack = {}) }
-            compose.waitUntil(5_000) { compose.onAllNodesWithTag("chat.draft-retry").fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasTestTag("chat.draft-retry"), 5_000)
             compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertDoesNotExist()
             compose.onNodeWithTag("chat.draft-retry").assertIsDisplayed().assertIsEnabled()
             assertEquals("not-json", preferences.getString(name, null))
@@ -56,9 +56,7 @@ class ConversationDraftFlowTest {
             waitForInput(); assertDraft("Preserved"); assertTrue(gateway.requests.isEmpty())
         } finally { storage.write(uid, ref, null) }
     }
-    private fun waitForInput() = compose.waitUntil(5_000) {
-        compose.onAllNodesWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNodes().isNotEmpty()
-    }
+    private fun waitForInput() = compose.waitForComposeNode(hasTestTag(SgmTestTags.ChatMessageInput), 5_000)
     private fun assertDraft(text: String) = assertEquals(text,
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode().config[SemanticsProperties.EditableText].text)
 }

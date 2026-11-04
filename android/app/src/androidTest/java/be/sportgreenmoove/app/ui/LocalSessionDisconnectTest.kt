@@ -129,9 +129,7 @@ class LocalSessionDisconnectTest {
         compose.onNodeWithTag("session.restore.error").assertDoesNotExist()
         assertNull(FirebaseAuth.getInstance().currentUser)
     }
-    private fun waitFor(tag: String) = compose.waitUntil(60_000) {
-        compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
-    }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 60_000)
     private fun directory(context: Context) = File(context.getExternalFilesDir(null), "local-ui-evidence")
         .also { check(it.isDirectory || it.mkdirs()) }
     private fun capture(context: Context, screenshots: JSONObject, id: String) {

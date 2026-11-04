@@ -72,7 +72,7 @@ class ChildEmergencyPermissionFlowTest {
             Manifest.permission.ACCESS_BACKGROUND_LOCATION)) assertEquals("This case requires denied location: $permission",
             PackageManager.PERMISSION_DENIED, context.checkSelfPermission(permission))
     }
-    private fun waitFor(tag: String) { compose.waitUntil(30_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitFor(tag: String) { compose.waitForComposeNode(hasTestTag(tag), 30_000) }
 }
 
 private class PermissionContactFixture : EmergencyContactGateway {

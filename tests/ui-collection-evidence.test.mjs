@@ -71,7 +71,7 @@ test('the ordinary component suite preserves six conversation cases and passes w
   assert.equal(cases(after).length, 6);
   assert.deepEqual(cases(after).map((item) => item.name).sort(), cases(before).map((item) => item.name).sort());
   assert(cases(after).every((item) => !item.failure && !Object.hasOwn(item, 'skipped')));
-  assert.match(read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationFlowTest.kt'), /waitForText\(text: String\) = compose.waitUntil\(5_000\)/);
+  assert.match(read('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationFlowTest.kt'), /waitForText\(text: String\) = compose.waitForComposeNode\(hasText\(text\), 5_000\)/);
 });
 
 test('the updated portal uses only the completed replay and retains remaining group, phone and draft scope', () => {

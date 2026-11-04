@@ -43,7 +43,7 @@ class ProfileCityFlowTest {
         compose.onNodeWithTag("city.error").assertIsDisplayed()
         compose.runOnIdle { gateway.failRead = false }
         compose.onNodeWithTag("city.refresh").performClick()
-        compose.waitUntil(10_000) { compose.onAllNodesWithTag("city.input").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag("city.input"), 10_000)
         compose.onNodeWithTag("city.input").assertIsDisplayed()
     }
     @Test fun longCityFitsANarrowProfileWithLargerText() {

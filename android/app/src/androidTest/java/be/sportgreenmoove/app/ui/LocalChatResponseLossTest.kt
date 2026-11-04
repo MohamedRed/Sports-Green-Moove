@@ -123,9 +123,7 @@ class LocalChatResponseLossTest {
     }
     private fun draft() = compose.onNodeWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNode()
         .config[SemanticsProperties.EditableText].text
-    private fun waitForText(value: String) = compose.waitUntil(60_000) {
-        compose.onAllNodesWithText(value).fetchSemanticsNodes().isNotEmpty()
-    }
+    private fun waitForText(value: String) = compose.waitForComposeNode(hasText(value), 60_000)
     private fun closeKeyboard() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         instrumentation.runOnMainSync {

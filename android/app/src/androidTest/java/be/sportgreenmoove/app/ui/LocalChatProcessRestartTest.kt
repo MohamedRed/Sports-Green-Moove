@@ -173,10 +173,10 @@ class LocalChatProcessRestartTest {
         .config[SemanticsProperties.EditableText].text
     private fun assertDraftEmpty() { assertEquals("", draft()) }
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
     }
     private fun waitForText(value: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithText(value).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText(value), 60_000)
     }
     private fun directory() = File(context.getExternalFilesDir(null), "local-ui-evidence").also {
         check(it.isDirectory || it.mkdirs())

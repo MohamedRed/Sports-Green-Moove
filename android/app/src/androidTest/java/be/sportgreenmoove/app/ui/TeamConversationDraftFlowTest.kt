@@ -36,7 +36,7 @@ class TeamConversationDraftFlowTest {
         capture("team-draft-read-error")
         compose.runOnIdle { storage.failRead = false }
         compose.onNodeWithTag("team-chat.draft-retry").performClick()
-        compose.waitUntil(10_000) { compose.onAllNodesWithTag(SgmTestTags.ChatMessageInput).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(SgmTestTags.ChatMessageInput), 10_000)
         compose.onNodeWithTag(SgmTestTags.ChatMessageInput).assertTextContains("Message conservé QA")
         compose.runOnIdle { assertEquals(0, sends) }
     }

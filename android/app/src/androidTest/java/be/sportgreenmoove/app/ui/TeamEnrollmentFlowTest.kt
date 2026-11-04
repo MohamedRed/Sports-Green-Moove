@@ -81,7 +81,7 @@ class TeamEnrollmentFlowTest {
         if (tag !in setOf("team-enrollment.confirm", "team-enrollment.keep") && !tag.startsWith("team-enrollment.option.")) node.performScrollTo()
         node.assertIsEnabled().performClick()
     }
-    private fun waitFor(matcher: SemanticsMatcher) { compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitFor(matcher: SemanticsMatcher) { compose.waitForComposeNode(matcher, 60_000) }
     private fun capture(name: String) {
         captureLocalUi(compose, name)
         val instrumentation = InstrumentationRegistry.getInstrumentation(); val device = UiDevice.getInstance(instrumentation)

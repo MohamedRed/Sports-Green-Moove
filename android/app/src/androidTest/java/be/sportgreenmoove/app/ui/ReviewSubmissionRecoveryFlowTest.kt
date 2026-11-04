@@ -47,7 +47,7 @@ class ReviewSubmissionRecoveryFlowTest {
             }
         }
         compose.setSgmUiTestContent { MessagesInboxRoute("parent", gateway, UiFlowConversationGateway(), "avis", {}, {}, {}) }
-        compose.waitUntil(5_000) { compose.onAllNodesWithTag("messages.reviews.more").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag("messages.reviews.more"), 5_000)
         compose.onNodeWithTag("messages.reviews.more").performScrollTo().performClick()
         compose.waitUntil(5_000) { compose.onAllNodesWithText(later.tripContext!!.departureLabel).fetchSemanticsNodes().isNotEmpty() }
         val loadedInboxCount = inboxLoads
@@ -58,11 +58,11 @@ class ReviewSubmissionRecoveryFlowTest {
             compose.onAllNodesWithTag("${SgmTestTags.RatingPromptAction}.$score").onLast().assertIsNotEnabled()
         }
         compose.runOnIdle { releaseFirstFailure.complete(Unit) }
-        compose.waitUntil(5_000) { compose.onAllNodesWithText("Connexion réseau indisponible. Vérifiez votre connexion puis réessayez.").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText("Connexion réseau indisponible. Vérifiez votre connexion puis réessayez."), 5_000)
         compose.onNodeWithText(later.tripContext!!.departureLabel).performScrollTo().assertIsDisplayed()
         captureLocalUi(compose, "review-submission-network-failed.png")
         compose.onAllNodesWithTag("${SgmTestTags.RatingPromptAction}.5").onLast().performScrollTo().performClick()
-        compose.waitUntil(5_000) { compose.onAllNodesWithText("Avis envoyé.").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText("Avis envoyé."), 5_000)
         compose.onNodeWithText(older.tripContext!!.departureLabel).performScrollTo().assertIsDisplayed()
         compose.onNodeWithText(later.tripContext!!.departureLabel).assertDoesNotExist()
         compose.onNodeWithTag("messages.reviews.more").assertDoesNotExist()

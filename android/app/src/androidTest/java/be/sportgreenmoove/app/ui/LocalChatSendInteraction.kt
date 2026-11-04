@@ -39,7 +39,7 @@ internal class LocalChatSendInteraction(
             phase = "send-acknowledged"; onPhase(phase)
             compose.onNodeWithTag(SgmTestTags.ChatSendAction).assertIsDisplayed().assertIsEnabled().performClick()
             compose.waitUntil(60_000) { draft().isEmpty() }
-            compose.waitUntil(60_000) { compose.onAllNodesWithText(body).fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasText(body), 60_000)
             compose.waitUntil(60_000) { compose.onAllNodesWithText("Envoi en cours...").fetchSemanticsNodes().isEmpty() }
             onPhase("confirmed")
         } catch (failure: Throwable) {

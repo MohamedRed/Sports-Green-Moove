@@ -8,6 +8,7 @@ import {content} from '../partner-portal/content.mjs';
 import {iosMvpBaseline, iosMvpProgress, iosMvpBlocker} from '../partner-portal/ios-mvp-baseline.mjs';
 import {iosFixtureObservation, iosFixtureProgress, iosFixtureLaunchProgress} from '../partner-portal/ios-fixture-observation.mjs';
 import {iosFixturePass, iosFixturePassProgress} from '../partner-portal/ios-fixture-pass.mjs';
+import {iosCurrentFixturePass, iosCurrentFixturePassProgress} from '../partner-portal/ios-current-fixture-pass.mjs';
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const path = '.github/workflows/ios-mvp-verification.yml';
@@ -125,7 +126,8 @@ test('partial terminal iPhone proof preserves all seven outcomes without accepti
     assert(requiredAutomatedFlowEvidence.includes(id));
     for (const file of ['evidence-manifest.json', 'evidence-manifest.example.json']) {
       const manifest = JSON.parse(read(`docs/release/${file}`));
-      assert.equal(manifest.automatedUserFlowEvidence.items.find(item => item.id === id).status, 'pending');
+      assert.equal(manifest.automatedUserFlowEvidence.items.find(item => item.id === id).status,
+        file === 'evidence-manifest.example.json' ? 'pending' : 'passed');
     }
   }
   assert.deepEqual(content.iosFixtureObservation, iosFixtureObservation);
@@ -137,6 +139,48 @@ test('partial terminal iPhone proof preserves all seven outcomes without accepti
   }
   assert.doesNotMatch(iosFixtureProgress.title + iosFixtureProgress.text,
     /Firebase|BrowserStack|Xcode|SDK|Foundation|Swift|CI\b/i);
+});
+
+test('the current source-bound SDK and seven-case fixture pass accepts only the two automated entries', () => {
+  const folder = 'docs/release/evidence/ios-fixture-pass-3e7cd40-2026-11-04/';
+  const report = JSON.parse(read(iosCurrentFixturePass.source));
+  assert.equal(report.sourceCommit, '3e7cd40e62798ba503c383e044e25231dc3072bd');
+  assert.equal(report.runId, 41911781988); assert.equal(report.jobId, 126862422870);
+  assert.equal(report.status, 'completed'); assert.equal(report.conclusion, 'success');
+  for (const item of [report.build, report.fixtureExecution, report.simulatorDisposal]) assert.equal(item.conclusion, 'success');
+  assert.equal(report.configuredMinutes, 50);
+  assert.equal(report.fixtureSuite.executed, 7); assert.equal(report.fixtureSuite.failed, 0);
+  assert.equal(report.fixtureSuite.passed, 7); assert(report.fixtureSuite.cases.every(item => item.result === 'passed'));
+  assert.equal(new Set(report.fixtureSuite.cases.map(item => item.name)).size, 7);
+  for (const suite of ['SportsGreenMooveUITests', 'SearchConsentFlowTests']) {
+    assert.deepEqual(report.fixtureSuite.cases.filter(item => item.suite === suite).map(item => item.name).sort(),
+      [...read(`ios/UITests/SportsGreenMooveUITests/${suite}.swift`).matchAll(/func (test\w+)\(/g)].map(match => match[1]).sort());
+  }
+  const sha = value => createHash('sha256').update(value).digest('hex');
+  const sources = JSON.parse(read(iosCurrentFixturePass.checksums));
+  assert.equal(sources.sourceCommit, report.sourceCommit);
+  for (const item of sources.files) {
+    assert.equal(sha(readFileSync(new URL('../' + item.path, import.meta.url))), item.sha256, item.path);
+  }
+  assert.equal(sha(read(folder + report.provenance.selectedResult)), report.provenance.selectedResultSha256);
+  assert.equal(report.captureCollection.conclusion, 'skipped'); assert.equal(report.captureUpload.conclusion, 'skipped');
+  for (const key of ['iosEndToEndFlowsAccepted', 'physicalDeviceEvidenceAccepted', 'productionWrites',
+    'realPaymentExercised', 'newMediaPublished', 'releaseComplete']) assert.equal(report[key], false);
+  assert.deepEqual(content.iosCurrentFixturePass, iosCurrentFixturePass);
+  assert.deepEqual(content.updates.filter(item => item.source === iosCurrentFixturePassProgress.source), [iosCurrentFixturePassProgress]);
+  const manifest = JSON.parse(read('docs/release/evidence-manifest.json'));
+  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) {
+    const item = manifest.automatedUserFlowEvidence.items.find(item => item.id === id);
+    assert.equal(item.status, 'passed'); assert(item.evidenceRefs.includes(folder.replace('docs/release/', '') + 'summary.json'));
+  }
+  const previous = JSON.parse(read('docs/release/evidence/automated-user-flow-evidence-2026-06-16.json'));
+  const index = JSON.parse(read('docs/release/evidence/automated-user-flow-evidence-2026-11-04.json'));
+  const iosIds = ['ios_sdk_build_ci', 'ios_fixture_ui_ci'];
+  assert.deepEqual(index.items.filter(item => !iosIds.includes(item.id)), previous.items);
+  assert.equal(sha(read(index.inheritedEvidence.source)), index.inheritedEvidence.sha256);
+  for (const item of index.items.filter(item => iosIds.includes(item.id))) {
+    assert.equal(item.appSourceCommit, report.sourceCommit); assert.equal(item.status, 'passed');
+  }
 });
 
 test('rating controls expose individual scores and the original UI test also verifies submission', () => {

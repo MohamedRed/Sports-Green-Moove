@@ -1,5 +1,7 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.hasTestTag
 import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.ActivityInfo
@@ -133,18 +135,18 @@ class LocalRideFlowTest {
 
     private fun openActiveRide() {
         compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.ActiveRideResumeAction).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(SgmTestTags.ActiveRideResumeAction), 60_000)
         compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).performScrollTo().assertIsEnabled().performClick()
         waitFor(SgmTestTags.ActiveRideScreen)
     }
 
     private fun waitFor(tag: String) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(tag), 60_000)
         compose.onNodeWithTag(tag).assertIsDisplayed()
     }
 
     private fun waitForText(text: String, substring: Boolean = false) {
-        compose.waitUntil(60_000) { compose.onAllNodesWithText(text, substring = substring).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText(text, substring = substring), 60_000)
     }
 
     @Suppress("DEPRECATION")

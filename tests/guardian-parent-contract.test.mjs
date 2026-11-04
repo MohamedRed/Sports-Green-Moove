@@ -65,7 +65,7 @@ test('parent flow code stays modular and its device replay remains explicitly lo
   assert(replay.includes('assertNull(initial.status)')); assert(replay.includes('activity.recreate()'));
   assert(replay.includes('requireNotNull(initial.childName)).assertDoesNotExist()'));
   assert(replay.includes('waitFor(hasTestTag(tag) and isEnabled())'));
-  assert(replay.includes('compose.waitUntil(60_000)'));
+  assert(replay.includes('compose.waitForComposeNode(matcher, 60_000)'));
   assert(read(base + 'ui/SportsGreenMooveApp.kt').includes('AppScreen.Guardians -> GuardianVerificationRoute'));
 });
 

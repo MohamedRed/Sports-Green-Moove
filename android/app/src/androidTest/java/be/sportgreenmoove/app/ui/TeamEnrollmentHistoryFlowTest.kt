@@ -74,7 +74,7 @@ class TeamEnrollmentHistoryFlowTest {
         if (!tag.startsWith("team-history.") || tag.startsWith("team-history.row.") || tag == "team-history.more") node.performScrollTo()
         node.performClick()
     }
-    private fun waitFor(matcher: SemanticsMatcher) { compose.waitUntil(60_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitFor(matcher: SemanticsMatcher) { compose.waitForComposeNode(matcher, 60_000) }
     private fun capture(name: String, dialog: Boolean = false) {
         // The short dialog has its own wide Compose window; the device companion stays portrait.
         captureLocalUi(compose, name, dialog = dialog, landscape = dialog)

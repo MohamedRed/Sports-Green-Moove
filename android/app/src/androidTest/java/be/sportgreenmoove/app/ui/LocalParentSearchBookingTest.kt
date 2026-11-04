@@ -74,7 +74,7 @@ class LocalParentSearchBookingTest {
                     val suggestions = SemanticsMatcher("Provider place suggestion") {
                         it.config.getOrNull(SemanticsProperties.TestTag)?.startsWith(prefix) == true
                     }
-                    compose.waitUntil(60_000) { compose.onAllNodes(suggestions).fetchSemanticsNodes().isNotEmpty() }
+                    compose.waitForComposeNode(suggestions, 60_000)
                     val selected = compose.onAllNodes(suggestions).fetchSemanticsNodes().first().config[SemanticsProperties.TestTag]
                     places.add(selected.removePrefix(prefix))
                     compose.onNodeWithTag(selected).performScrollTo().performClick()
@@ -169,7 +169,7 @@ class LocalParentSearchBookingTest {
         compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
         compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick(); waitFor(SgmTestTags.AuthEmailInput)
     }
-    private fun waitFor(tag: String) = compose.waitUntil(60_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 60_000)
     private fun directory() = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
     private fun capture(id: String) {
         val name = "local-parent-search-booking-$id.png"; captureLocalUi(compose, name)

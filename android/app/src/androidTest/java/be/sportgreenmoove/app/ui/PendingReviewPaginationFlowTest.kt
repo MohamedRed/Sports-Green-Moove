@@ -71,5 +71,5 @@ class PendingReviewPaginationFlowTest {
         val conversations = UiFlowConversationGateway()
         compose.setSgmUiTestContent { MessagesInboxRoute("parent", firebase, conversations, "avis", {}, {}, {}) }
     }
-    private fun waitForText(text: String) = compose.waitUntil(5_000) { compose.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitForText(text: String) = compose.waitForComposeNode(hasText(text), 5_000)
 }

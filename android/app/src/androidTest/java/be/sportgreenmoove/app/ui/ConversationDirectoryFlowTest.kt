@@ -1,5 +1,7 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.semantics.SemanticsProperties
@@ -54,6 +56,6 @@ class ConversationDirectoryFlowTest {
         waitFor(SgmTestTags.ChatOpenAction)
     }
 
-    private fun waitFor(tag: String) = compose.waitUntil(5_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }
-    private fun waitForText(text: String) = compose.waitUntil(5_000) { compose.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty() }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 5_000)
+    private fun waitForText(text: String) = compose.waitForComposeNode(hasText(text), 5_000)
 }

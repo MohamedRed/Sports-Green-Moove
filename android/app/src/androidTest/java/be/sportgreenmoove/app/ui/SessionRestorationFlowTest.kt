@@ -96,7 +96,5 @@ class SessionRestorationFlowTest {
         device.executeShellCommand("cp /sdcard/Android/data/${instrumentation.targetContext.packageName}/files/local-ui-evidence/$name /sdcard/Download/sgm-session-restoration/$name")
     }
 
-    private fun waitFor(tag: String) = compose.waitUntil(5_000) {
-        compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
-    }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 5_000)
 }

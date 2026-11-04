@@ -76,7 +76,5 @@ class LocalLedgerHistoryFlowTest {
     }
     private fun back() { compose.onNodeWithTag(SgmTestTags.BackAction).performScrollTo().performClick() }
     private fun logout() { compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick() }
-    private fun waitFor(matcher: SemanticsMatcher) = compose.waitUntil(60_000) {
-        compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty()
-    }
+    private fun waitFor(matcher: SemanticsMatcher) = compose.waitForComposeNode(matcher, 60_000)
 }

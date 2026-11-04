@@ -52,7 +52,7 @@ class ChildRideEmergencyFlowTest {
             val fixture = ChildEmergencyUiFixture(); host(fixture)
             fixture.current = fixture.current.copy(contact = PersonalEmergencyContact("Autre contact QA", "+12025550122"), revision = 2)
             click("emergency.child-ride.dial")
-            compose.waitUntil(30_000) { compose.onAllNodesWithText("Le contact a changé. Vérifiez-le avant d’ouvrir le téléphone.").fetchSemanticsNodes().isNotEmpty() }
+            compose.waitForComposeNode(hasText("Le contact a changé. Vérifiez-le avant d’ouvrir le téléphone."), 30_000)
             assertEquals(0, fixture.opens); click("emergency.child-ride.dial"); waitFor("emergency.child-ride.error")
             assertEquals(1, fixture.opens)
             compose.onNodeWithTag("emergency.child-ride.phone").performScrollTo().assertTextEquals("+12025550122")
@@ -92,7 +92,7 @@ class ChildRideEmergencyFlowTest {
         waitFor(expected)
     }
     private fun click(tag: String) { waitFor(tag); compose.onNodeWithTag(tag).performScrollTo().assertIsEnabled().performClick() }
-    private fun waitFor(tag: String) { compose.waitUntil(30_000) { compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() } }
+    private fun waitFor(tag: String) { compose.waitForComposeNode(hasTestTag(tag), 30_000) }
     private fun capture(name: String, landscape: Boolean = false) {
         captureLocalUi(compose, name, landscape = landscape)
         val instrumentation = InstrumentationRegistry.getInstrumentation(); val device = UiDevice.getInstance(instrumentation)

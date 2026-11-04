@@ -10,7 +10,7 @@ skipped, cancelled and failed runs are rejected. The old skipped routine lanes
 are retained for their original cost policy, not used as iPhone proof.
 
 The job runs only for a public repository on the standard `macos-26-intel` runner,
-with read-only repository access and a 35-minute deadline. It uploads no artifacts,
+with read-only repository access and the approved 50-minute deadline. By default it uploads no artifacts,
 uses no cache or provider secrets, does not sign, and does not publish an app.
 [GitHub documents free standard public-repository compute](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 Larger runners and storage have separate billing; they are not enabled here.
@@ -21,6 +21,14 @@ runs every test from that build with `test-without-building`. These are separate
 steps within the same deadline, with no reduced selection or second build.
 The release manifest separately requires `ios_sdk_build_ci` and
 `ios_fixture_ui_ci`; neither is accepted by a local signature check or a partial run.
+
+At `3e7cd40`, run `41911781988` succeeds with the actual SDK build, all seven
+fixture tests and simulator disposal. This includes the later account-refresh,
+authentication, payment, publication, booking and permission-bridge source changes
+in the compiled app, not end-to-end behavioral acceptance of those features.
+The manifest accepts only the two source-bound automated entries. No captures
+are retained by this PR run; all physical and operational requirements remain.
+See `evidence/ios-fixture-pass-3e7cd40-2026-11-04/`.
 
 The first run at `c1c2fa4` failed in support gateway compilation before UI tests.
 The candidate uses string-only inputs and validates Sendable models before

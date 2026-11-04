@@ -76,6 +76,6 @@ test('startup navigation failures retain the original error and evidence before 
   assert.match(trial, /ActivityScenario\.launch\(MainActivity::class\.java\)\.use \{\s+retainFailure \{/);
   assert(trial.indexOf('retainFailure {') < trial.indexOf('waitFor(SgmTestTags.AuthEmailAction)'));
   assert(trial.includes('mock.withCaptureFeed(time, fixedElapsed, action)'));
-  assert(trial.includes('compose.waitUntil(60_000)'));
+  assert(trial.includes('compose.waitForComposeNode(hasTestTag(tag), 60_000)'));
   assert(!observer.includes('repeat(')); assert(!observer.includes('Thread.sleep'));
 });

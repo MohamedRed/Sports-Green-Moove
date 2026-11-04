@@ -17,7 +17,7 @@ internal class LocalTripHistoryAssertions(private val compose: ComposeTestRule) 
     private fun review(proposalId: String, kind: String, capture: Boolean) {
         ready()
         compose.onNodeWithTag("trip.history.open.$proposalId").performScrollTo().assertIsEnabled().performClick()
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.status").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag("trip.change.status"), 60_000)
         compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.change.busy").fetchSemanticsNodes().isEmpty() }
         compose.onNodeWithTag("trip.change.error").assertDoesNotExist()
         compose.onNodeWithTag("trip.change.status").assertTextEquals(if (kind == "declined")
@@ -36,7 +36,7 @@ internal class LocalTripHistoryAssertions(private val compose: ComposeTestRule) 
         compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.history.title").fetchSemanticsNodes().isEmpty() }
     }
     private fun ready() {
-        compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.history.title").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag("trip.history.title"), 60_000)
         compose.waitUntil(60_000) { compose.onAllNodesWithTag("trip.history.busy").fetchSemanticsNodes().isEmpty() }
         compose.onNodeWithTag("trip.history.error").assertDoesNotExist()
     }

@@ -78,7 +78,7 @@ class TeamConversationFlowTest {
         waitFor(hasTestTag(tag) and isEnabled()); compose.onNodeWithTag(tag).assertIsEnabled().performClick()
     }
     private fun waitFor(matcher: SemanticsMatcher) {
-        compose.waitUntil(30_000) { compose.onAllNodes(matcher).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(matcher, 30_000)
     }
     private fun capture(stem: String) = captureTeamChatComponent(compose, stem,
         "local-team-chat-component-with-fake-gateway-not-connected-or-physical", landscape = false)

@@ -1,5 +1,7 @@
 package be.sportgreenmoove.app.ui
 
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.hasTestTag
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.compose.runtime.mutableStateOf
@@ -72,7 +74,7 @@ class SearchSessionFlowTest {
         compose.onNodeWithText("Suivi enfant").performScrollTo().performClick()
         compose.onNodeWithText("Consentement").performScrollTo().performClick()
         compose.onNodeWithTag(SgmTestTags.SearchAction).performScrollTo().performClick()
-        compose.waitUntil(10_000) { compose.onAllNodesWithText(UiFlowFixtures.match.summary.title).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText(UiFlowFixtures.match.summary.title), 10_000)
         compose.onNodeWithTag(SgmTestTags.BookingRequestAction).performScrollTo().performClick()
         compose.waitUntil(10_000) { bookingStarted }
         lateinit var previous: SearchController
@@ -120,9 +122,9 @@ class SearchSessionFlowTest {
         compose.onNodeWithTag(tag).performScrollTo().performTextReplacement(label)
         compose.onNodeWithTag("$tag.suggest").performClick()
         val option = "$tag.option.$label"
-        compose.waitUntil(10_000) { compose.onAllNodesWithTag(option).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasTestTag(option), 10_000)
         compose.onNodeWithTag(option).performScrollTo().performClick()
-        compose.waitUntil(10_000) { compose.onAllNodesWithText("Adresse $label").fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText("Adresse $label"), 10_000)
     }
     private fun hideKeyboard() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()

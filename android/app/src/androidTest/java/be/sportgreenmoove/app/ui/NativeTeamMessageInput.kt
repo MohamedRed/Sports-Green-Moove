@@ -52,7 +52,7 @@ private fun sendNativeTeamMessageWithInput(compose: ComposeTestRule, body: Strin
         check(bounds.bottom + origin[1] - local[1] <= visible.bottom + 2) { "The send control must remain above the keyboard" }
         button.performClick()
         compose.waitUntil(60_000) { text().isEmpty() }
-        compose.waitUntil(60_000) { compose.onAllNodesWithText(body).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitForComposeNode(hasText(body), 60_000)
     } catch (failure: Throwable) {
         try {
             val context = InstrumentationRegistry.getInstrumentation().targetContext

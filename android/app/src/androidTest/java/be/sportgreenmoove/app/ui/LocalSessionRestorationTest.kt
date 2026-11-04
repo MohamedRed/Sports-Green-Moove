@@ -165,9 +165,7 @@ class LocalSessionRestorationTest {
         compose.onNodeWithTag(SgmTestTags.AuthEmailAction).assertDoesNotExist()
         assertEquals("sgm-qa-parent", FirebaseAuth.getInstance().currentUser?.uid)
     }
-    private fun waitFor(tag: String) = compose.waitUntil(60_000) {
-        compose.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
-    }
+    private fun waitFor(tag: String) = compose.waitForComposeNode(hasTestTag(tag), 60_000)
     private fun orientation(context: android.content.Context, device: UiDevice, expected: Int) {
         compose.waitUntil(15_000) { context.resources.configuration.orientation == expected &&
             (device.displayWidth > device.displayHeight) == (expected == Configuration.ORIENTATION_LANDSCAPE) }
