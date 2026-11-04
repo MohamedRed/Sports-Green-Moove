@@ -2,6 +2,23 @@
 
 ## Current Publication Policy
 
+The 4582c3a Android gate now succeeds: 296 ordinary passes, 55 explicit skips,
+zero failures, both readiness cases, the eight-check parent replay and all twelve
+focused lanes pass. Publish one short simulation result without new media or
+changing historical records, dates, statuses, tours, blockers or public access.
+The newer pre-close observer is absent and remains unexecuted. This does not
+establish the earlier failure's cause or physical/release acceptance. See
+`docs/release/evidence/android-readiness-pass-4582-2026-11-04/README.md`.
+
+The a226b3e iPhone run is cancelled at the approved 50-minute preparation deadline,
+before UI tests; capture steps are skipped, the artifact inventory is empty and
+disposal succeeds. Publish one concise incomplete-iPhone note, no new media. The
+parent window observer is compiled in both modes but has not executed: retain its
+internal-only metadata without another visible diagnostic update. Do not accept a
+root cause, repaired parent flow, iPhone gate or release. Preserve all historical
+records, flow statuses, galleries, dates, tours and blockers. See the dated
+`ios-preparation-timeout-a226` and `guardian-window-observation` evidence folders.
+
 The a226b3e Android recheck is terminal failure: both readiness regressions pass,
 but the ordinary command times out at case 319 of 351 and parent replay loses its
 interface at the later guardian-opening scroll. Keep this separate from the

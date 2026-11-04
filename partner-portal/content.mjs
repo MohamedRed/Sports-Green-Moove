@@ -8,6 +8,8 @@ import {copyTransportFollowup} from './native-copy-recheck.mjs';
 import {iosCheckpoints} from './ios-checkpoints.mjs';
 import {androidNodeReadiness} from './android-node-readiness.mjs';
 import {androidReadinessRecheck} from './android-readiness-recheck.mjs';
+import {guardianWindowObservation} from './guardian-window-observation.mjs';
+import {androidReadinessPass} from './android-readiness-pass.mjs';
 import {nativeGateRecheck} from './native-gate-recheck.mjs';
 import {publishedMediaReview} from './published-media-review.mjs';
 import {publishedMediaPlayback} from './published-media-playback.mjs';
@@ -85,6 +87,8 @@ export const content = {
   ...iosCheckpoints,
   androidNodeReadiness,
   androidReadinessRecheck,
+  guardianWindowObservation,
+  androidReadinessPass,
   nativeGateRecheck,
   publishedMediaReview,
   publishedMediaPlayback,

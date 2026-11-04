@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/guardian-window-observation.test.mjs"
+      - "docs/release/evidence/guardian-window-observation-2026-11-04/**"
+      - "docs/release/evidence/ios-preparation-timeout-a226-2026-11-04/**"
+      - "docs/release/evidence/android-readiness-pass-4582-2026-11-04/**"
       - "tests/ios-location-shutdown.test.mjs"
       - "docs/release/evidence/ios-location-shutdown-2026-11-04/**"
       - "tests/compose-node-readiness.test.mjs"
@@ -646,6 +650,10 @@ on:
     branches:
       - main
     paths:
+      - "tests/guardian-window-observation.test.mjs"
+      - "docs/release/evidence/guardian-window-observation-2026-11-04/**"
+      - "docs/release/evidence/ios-preparation-timeout-a226-2026-11-04/**"
+      - "docs/release/evidence/android-readiness-pass-4582-2026-11-04/**"
       - "tests/ios-location-shutdown.test.mjs"
       - "docs/release/evidence/ios-location-shutdown-2026-11-04/**"
       - "tests/compose-node-readiness.test.mjs"
@@ -1316,7 +1324,7 @@ jobs:
       - name: Validate complete smoke partitioning
         run: node --test tests/web-smoke-sharding.test.mjs
       - name: Validate bounded node readiness and retained failure scope
-        run: node --test tests/compose-node-readiness.test.mjs
+        run: node --test tests/compose-node-readiness.test.mjs tests/guardian-window-observation.test.mjs
       - name: Test isolated chat proof diagnostic
         run: node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs
       - name: Test approved invitation private alias

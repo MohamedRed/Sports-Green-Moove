@@ -26,49 +26,59 @@ class LocalGuardianVerificationFlowTest {
         check(session.getString("projectId") == "demo-sgm-local-qa")
         val providers = AndroidRuntime.create(context); providers.auth.signOut()
         context.getSharedPreferences("appearance", Context.MODE_PRIVATE).edit().putBoolean("darkTheme", false).commit()
-        UiDevice.getInstance(instrumentation).setOrientationNatural()
-        ActivityScenario.launch(MainActivity::class.java).use { activity ->
-            login(session.getString("parent"), session.getString("password")); openGuardians()
-            click("guardian.child"); click("guardian.option.sgm-qa-child-lina")
-            click("guardian.club"); click("guardian.option.sgm-qa-club-green-wavre"); click("guardian.review")
-            status("Aucune demande"); click("guardian.action.request"); click("guardian.keep")
-            val initial = runBlocking { providers.firebase.guardianView("sgm-qa-parent", "sgm-qa-club-green-wavre", "sgm-qa-child-lina") }
-            assertNull(initial.status)
-            action("request"); status("En attente"); captureLocalUi(compose, "guardian-parent-requested.png")
-            runBlocking { LocalGuardianPeer.open(context, session) }.use { peer ->
-                runBlocking { peer.decide("refuse") }
-                status("En attente"); action("withdraw")
-                waitFor(hasTestTag("guardian.error")); compose.onNodeWithTag("guardian.current").assertDoesNotExist()
-                refresh(); status("Demande refusée"); action("request"); status("En attente")
-                runBlocking { peer.decide("verify") }; refresh(); status("Parent vérifié")
-                captureLocalUi(compose, "guardian-parent-verified.png")
-                val current = runBlocking { providers.firebase.guardianView("sgm-qa-parent", "sgm-qa-club-green-wavre", "sgm-qa-child-lina") }
-                val id = current.id
-                activity.recreate(); waitFor(hasTestTag("guardian.screen")); click("guardian.history.$id"); status("Parent vérifié")
-                captureLocalUi(compose, "guardian-parent-restored.png")
-                action("withdraw"); status("Demande retirée"); action("request"); status("En attente")
-                runBlocking { peer.decide("verify"); peer.decide("revoke") }; refresh(); status("Vérification retirée")
-                captureLocalUi(compose, "guardian-parent-revoked.png")
+        val device = UiDevice.getInstance(instrumentation)
+        device.setOrientationNatural()
+        LocalGuardianWindowObservation(context, device, session).use { observation ->
+            ActivityScenario.launch(MainActivity::class.java).useWithFailureObservation({ activity ->
+                observation.retainFailure(activity.state.name)
+            }) { activity ->
+                observation.phase(GuardianWindowPhase.ParentLogin)
+                login(session.getString("parent"), session.getString("password"))
+                observation.phase(GuardianWindowPhase.ParentHomeObserved); openGuardians(observation, parent = true)
+                click("guardian.child"); click("guardian.option.sgm-qa-child-lina")
+                click("guardian.club"); click("guardian.option.sgm-qa-club-green-wavre"); click("guardian.review")
+                status("Aucune demande"); click("guardian.action.request"); click("guardian.keep")
+                val initial = runBlocking { providers.firebase.guardianView("sgm-qa-parent", "sgm-qa-club-green-wavre", "sgm-qa-child-lina") }
+                assertNull(initial.status)
+                action("request"); status("En attente"); captureLocalUi(compose, "guardian-parent-requested.png")
+                runBlocking { LocalGuardianPeer.open(context, session) }.use { peer ->
+                    runBlocking { peer.decide("refuse") }
+                    status("En attente"); action("withdraw")
+                    waitFor(hasTestTag("guardian.error")); compose.onNodeWithTag("guardian.current").assertDoesNotExist()
+                    refresh(); status("Demande refusée"); action("request"); status("En attente")
+                    runBlocking { peer.decide("verify") }; refresh(); status("Parent vérifié")
+                    captureLocalUi(compose, "guardian-parent-verified.png")
+                    val current = runBlocking { providers.firebase.guardianView("sgm-qa-parent", "sgm-qa-club-green-wavre", "sgm-qa-child-lina") }
+                    val id = current.id
+                    activity.recreate(); waitFor(hasTestTag("guardian.screen")); click("guardian.history.$id"); status("Parent vérifié")
+                    captureLocalUi(compose, "guardian-parent-restored.png")
+                    action("withdraw"); status("Demande retirée"); action("request"); status("En attente")
+                    runBlocking { peer.decide("verify"); peer.decide("revoke") }; refresh(); status("Vérification retirée")
+                    captureLocalUi(compose, "guardian-parent-revoked.png")
+                }
+                observation.phase(GuardianWindowPhase.AccountSwitch)
+                click(SgmTestTags.BackAction); click(SgmTestTags.BackAction)
+                compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
+                observation.phase(GuardianWindowPhase.DriverLogin)
+                login(session.getString("driver"), session.getString("password"))
+                observation.phase(GuardianWindowPhase.DriverHomeObserved); openGuardians(observation, parent = false)
+                waitFor(hasText("Aucune demande.")); compose.onNodeWithTag("guardian.current").assertDoesNotExist()
+                compose.onNodeWithText(requireNotNull(initial.childName)).assertDoesNotExist()
+                captureLocalUi(compose, "guardian-parent-other-account.png")
+                val directory = File(context.getExternalFilesDir(null), "local-ui-evidence")
+                val files = listOf("guardian-parent-requested.png", "guardian-parent-verified.png", "guardian-parent-restored.png",
+                    "guardian-parent-revoked.png", "guardian-parent-other-account.png")
+                val hashes = JSONObject()
+                files.forEach { name -> hashes.put(name, MessageDigest.getInstance("SHA-256").digest(File(directory, name).readBytes())
+                    .joinToString("") { "%02x".format(it.toInt() and 255) }) }
+                val checks = org.json.JSONArray()
+                for (name in listOf("parent-request-ui", "cancel-without-write", "stale-withdrawal-refused", "manager-refusal-reopen",
+                    "manager-verified-visible", "activity-recreation-fresh-read", "parent-withdraw-reopen-manager-revoke", "account-isolation"))
+                    checks.put(JSONObject().put("id", name).put("status", "passed"))
+                File(directory, "guardian-parent-device.json").writeText(JSONObject().put("projectId", "demo-sgm-local-qa")
+                    .put("runId", session.getString("runId")).put("scope", "local-native-parent-ui-with-local-sdk-manager-not-physical")
+                    .put("checks", checks).put("screenshots", hashes).toString(2))
             }
-            click(SgmTestTags.BackAction); click(SgmTestTags.BackAction)
-            compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick()
-            login(session.getString("driver"), session.getString("password")); openGuardians()
-            waitFor(hasText("Aucune demande.")); compose.onNodeWithTag("guardian.current").assertDoesNotExist()
-            compose.onNodeWithText(requireNotNull(initial.childName)).assertDoesNotExist()
-            captureLocalUi(compose, "guardian-parent-other-account.png")
-            val directory = File(context.getExternalFilesDir(null), "local-ui-evidence")
-            val files = listOf("guardian-parent-requested.png", "guardian-parent-verified.png", "guardian-parent-restored.png",
-                "guardian-parent-revoked.png", "guardian-parent-other-account.png")
-            val hashes = JSONObject()
-            files.forEach { name -> hashes.put(name, MessageDigest.getInstance("SHA-256").digest(File(directory, name).readBytes())
-                .joinToString("") { "%02x".format(it.toInt() and 255) }) }
-            val checks = org.json.JSONArray()
-            for (name in listOf("parent-request-ui", "cancel-without-write", "stale-withdrawal-refused", "manager-refusal-reopen",
-                "manager-verified-visible", "activity-recreation-fresh-read", "parent-withdraw-reopen-manager-revoke", "account-isolation"))
-                checks.put(JSONObject().put("id", name).put("status", "passed"))
-            File(directory, "guardian-parent-device.json").writeText(JSONObject().put("projectId", "demo-sgm-local-qa")
-                .put("runId", session.getString("runId")).put("scope", "local-native-parent-ui-with-local-sdk-manager-not-physical")
-                .put("checks", checks).put("screenshots", hashes).toString(2))
         }
     }
     private fun action(wire: String) { click("guardian.action.$wire"); click("guardian.confirm") }
@@ -76,9 +86,15 @@ class LocalGuardianVerificationFlowTest {
     private fun status(value: String) {
         waitFor(hasTestTag("guardian.status") and hasText(value)); compose.onNodeWithTag("guardian.status").performScrollTo().assertTextEquals(value)
     }
-    private fun openGuardians() {
+    private fun openGuardians(observation: LocalGuardianWindowObservation, parent: Boolean) {
+        observation.phase(if (parent) GuardianWindowPhase.ParentProfileAction else GuardianWindowPhase.DriverProfileAction)
         compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
-        compose.onNodeWithText("Mon club").performScrollTo().performClick(); click("groups.guardian"); waitFor(hasTestTag("guardian.screen"))
+        observation.phase(if (parent) GuardianWindowPhase.ParentProfileActionReturned else GuardianWindowPhase.DriverProfileActionReturned)
+        observation.phase(if (parent) GuardianWindowPhase.ParentClubAction else GuardianWindowPhase.DriverClubAction)
+        compose.onNodeWithText("Mon club").performScrollTo().performClick()
+        observation.phase(if (parent) GuardianWindowPhase.ParentGuardianAction else GuardianWindowPhase.DriverGuardianAction)
+        click("groups.guardian"); waitFor(hasTestTag("guardian.screen"))
+        observation.phase(if (parent) GuardianWindowPhase.ParentScenario else GuardianWindowPhase.DriverScenario)
     }
     private fun login(email: String, password: String) {
         waitFor(hasTestTag(SgmTestTags.AuthEmailAction))

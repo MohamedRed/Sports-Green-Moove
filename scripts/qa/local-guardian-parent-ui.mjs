@@ -45,6 +45,9 @@ export async function replayGuardianParentUi({ instrument, collect, directory, r
     'android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationDialogs.kt',
     'android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationRoute.kt',
     'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalGuardianVerificationFlowTest.kt',
+    'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ActivityWindowObservation.kt',
+    'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalGuardianWindowObservation.kt',
+    'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionFailureObservation.kt',
     'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalGuardianPeer.kt'];
   const result = { projectId: 'demo-sgm-local-qa', runId, testedAt: new Date().toISOString(),
     scope: 'local-ui-not-physical-device', testCount: 1, nativeCaseCount: 1,
