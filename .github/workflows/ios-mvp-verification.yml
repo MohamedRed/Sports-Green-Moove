@@ -13,6 +13,10 @@ on:
       - "tests/ios-app-data.test.mjs"
       - "tests/ios-authentication.test.mjs"
       - "tests/ios-initialized-profile.test.mjs"
+      - "tests/ios-location-stop.test.mjs"
+      - "tests/ios-fixture-launch.test.mjs"
+      - "scripts/qa/check-ios-location-provider.mjs"
+      - "tests/fixtures/ios-location/**"
       - ".github/workflows/ios-mvp-verification.yml"
 
 permissions:
@@ -43,6 +47,9 @@ jobs:
       - name: Run native logic checks
         run: bash scripts/check-ios-native-plan.sh
 
+      - name: Check controlled location lifecycle without a device
+        run: node scripts/qa/check-ios-location-provider.mjs
+
       - name: Check support concurrency signature regressions
         run: bash scripts/check-ios-support-concurrency.sh
 
@@ -58,6 +65,13 @@ jobs:
         run: |
           phone_id=$(xcrun simctl create SGM-MVP-iPhone com.apple.CoreSimulator.SimDeviceType.iPhone-16)
           printf 'id=%s\n' "$phone_id" >> "$GITHUB_OUTPUT"
+
+      - name: Boot isolated simulator before compiling or testing
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: |
+          xcrun simctl boot "$PHONE_ID"
+          xcrun simctl bootstatus "$PHONE_ID" -b
 
       - name: Compile app and all fixture test bundles
         working-directory: ios
@@ -86,6 +100,15 @@ jobs:
             -destination "platform=iOS Simulator,id=$PHONE_ID" \
             -resultBundlePath "$RUNNER_TEMP/sgm-ios-fixtures.xcresult" \
             -parallel-testing-enabled NO
+
+      - name: Observe fixture startup phases after a failed test step
+        if: ${{ failure() && steps.phone.outputs.id != '' }}
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: |
+          xcrun simctl list devices --json
+          xcrun simctl spawn "$PHONE_ID" log show --style compact --last 35m \
+            --predicate 'subsystem == "be.sportgreenmoove.fixture.boot"'
 
       - name: Dispose isolated simulator
         if: ${{ always() && steps.phone.outputs.id != '' }}

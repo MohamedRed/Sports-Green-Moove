@@ -2,10 +2,26 @@
 
 ## Current Publication Policy
 
+The terminal 84aa134 iPhone SDK-linked build succeeds, and the extended account
+profile fixture passes. The full gate fails: six cases pass, but the first launch
+times out before consent assertions. Its cause remains unknown. Publish one short
+simulation note while preserving all previous results and partial statuses. The
+later location/boot candidates need their own run; no new native media or real
+authentication/physical/release acceptance is added. See
+`docs/release/evidence/ios-profile-fixture-84aa134-2026-11-04/README.md`.
+
+The location provider now rejects a delayed start after an exact-ride stop during
+its first upload. The original provider reproduces the fault; the candidate passes
+controlled wrapper and ownership checks, not real GPS or full sign-out. Publish
+one short local result without changing any flow/media/date/tour/status/blocker
+or public access. Profile logout, provider identity and full orchestration remain
+open. See `docs/release/evidence/ios-location-stop-2026-11-04/README.md`.
+
 The initialized-profile work separates raw identity from verified session roles,
 forwards the signup name and replaces sample identity with account data. Its local
 strict parsing, delayed preparation, child authority and retry checks pass; the
-extended existing fixture test still needs native SDK/rendered verification.
+extended fixture was subsequently SDK-built and rendered at 84aa134, while that
+full gate fails on a different case (see the terminal result above).
 Publish one short local note, without new media or changed flows/statuses/dates,
 tours, blockers or audience. Profile logout/tracking teardown remain open. See
 `docs/release/evidence/ios-profile-initialization-2026-11-04/README.md`.

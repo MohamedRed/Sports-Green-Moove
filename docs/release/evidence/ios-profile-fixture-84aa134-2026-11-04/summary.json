@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-11-04",
+  "sourceCommit": "84aa1349933844f78fd9180d33583301f0c35e1f",
+  "runId": 41876307906,
+  "jobId": 126746062980,
+  "conclusion": "failure",
+  "startedAt": "2026-11-04T17:36:44Z",
+  "completedAt": "2026-11-04T18:11:22Z",
+  "sdkLinkedBuildAccepted": true,
+  "simulatorDisposal": "success",
+  "fixtureSuite": {
+    "cases": [
+      {
+        "suite": "SportsGreenMooveUITests.SearchConsentFlowTests",
+        "name": "testExplicitConsentAndChildChangeInvalidateResults",
+        "result": "failed",
+        "seconds": 79.843
+      },
+      {
+        "suite": "SportsGreenMooveUITests.SearchConsentFlowTests",
+        "name": "testTrackingAndSeatChangesInvalidateTheAcceptedSelection",
+        "result": "passed",
+        "seconds": 81.07
+      },
+      {
+        "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+        "name": "testActiveRideIdentifiers",
+        "result": "passed",
+        "seconds": 28.579
+      },
+      {
+        "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+        "name": "testAuthFlowIdentifiers",
+        "result": "passed",
+        "seconds": 82.909
+      },
+      {
+        "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+        "name": "testMessagesChatAndRatingIdentifiers",
+        "result": "passed",
+        "seconds": 98.454
+      },
+      {
+        "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+        "name": "testPublishSearchAndBookingIdentifiers",
+        "result": "passed",
+        "seconds": 152.117
+      },
+      {
+        "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+        "name": "testSecondaryFlowIdentifiers",
+        "result": "passed",
+        "seconds": 103.8
+      }
+    ],
+    "total": 7,
+    "passed": 6,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 626.772
+  },
+  "authProfileFixtureCaseAccepted": true,
+  "fullFixtureGateAccepted": false,
+  "currentCandidateSdkAccepted": false,
+  "firstLaunchFailureCause": "unknown",
+  "failure": {
+    "case": "testExplicitConsentAndChildChangeInvalidateResults",
+    "stage": "XCUIApplication.launch before consent assertions",
+    "message": "Timed out while launching application via Xcode."
+  },
+  "provenance": {
+    "originalArchiveBytes": 665807,
+    "originalArchiveSha256": "7607745a86767dc66ba6b88d796b7d180b8febc345aa5414b1c04ff8152fb894",
+    "terminalLogSha256": "ef306112384d52b05a1f0e528a2a32abbf49ec83d52d9a6e4bc2c2d7612556eb",
+    "fixtureLogSha256": "96fefcbde749e3c092c76395f1eba39bd2112f5a587f76561c39458192be8535"
+  },
+  "realProviderAuthenticationAccepted": false,
+  "physicalDeviceEvidenceAccepted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false
+}

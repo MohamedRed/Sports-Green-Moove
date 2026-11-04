@@ -10,6 +10,10 @@ on:
       - "tests/ios-app-data.test.mjs"
       - "tests/ios-authentication.test.mjs"
       - "tests/ios-initialized-profile.test.mjs"
+      - "tests/ios-location-stop.test.mjs"
+      - "tests/ios-fixture-launch.test.mjs"
+      - "scripts/qa/check-ios-location-provider.mjs"
+      - "tests/fixtures/ios-location/**"
       - "ios/**"
       - "scripts/check-ios-support-concurrency.sh"
       - "tests/fixtures/ios-support-concurrency/**"
@@ -636,6 +640,10 @@ on:
       - "tests/ios-app-data.test.mjs"
       - "tests/ios-authentication.test.mjs"
       - "tests/ios-initialized-profile.test.mjs"
+      - "tests/ios-location-stop.test.mjs"
+      - "tests/ios-fixture-launch.test.mjs"
+      - "scripts/qa/check-ios-location-provider.mjs"
+      - "tests/fixtures/ios-location/**"
       - "ios/**"
       - "scripts/check-ios-support-concurrency.sh"
       - "tests/fixtures/ios-support-concurrency/**"
@@ -1280,7 +1288,7 @@ jobs:
       - name: Validate required checks and report ordering
         run: npm run test:pr-user-flow-checks
       - name: Validate bounded public-repository iPhone verification
-        run: node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs
+        run: node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs tests/ios-location-stop.test.mjs tests/ios-fixture-launch.test.mjs
       - name: Validate complete smoke partitioning
         run: node --test tests/web-smoke-sharding.test.mjs
       - name: Test isolated chat proof diagnostic

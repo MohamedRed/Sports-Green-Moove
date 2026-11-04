@@ -42,9 +42,3 @@ protocol StripePaymentsGateway: Sendable {
     func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig
     func ridePaymentStatus(bookingId: String, paymentIntentId: String) async throws -> RidePaymentState
 }
-
-struct ProviderConfigurationError: LocalizedError, Sendable {
-    let message: String
-
-    var errorDescription: String? { message }
-}

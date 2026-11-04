@@ -12,6 +12,8 @@ import {iosAccountRefresh} from './ios-account-refresh.mjs';
 import {iosFixturePass} from './ios-fixture-pass.mjs';
 import {iosAuthentication} from './ios-authentication.mjs';
 import {iosProfileInitialization} from './ios-profile-initialization.mjs';
+import {iosLocationStop} from './ios-location-stop.mjs';
+import {iosProfileFixtureResult} from './ios-profile-fixture-result.mjs';
 import {nativeGateRecheck} from './native-gate-recheck.mjs';
 import {publishedMediaReview} from './published-media-review.mjs';
 import {publishedMediaPlayback} from './published-media-playback.mjs';
@@ -93,6 +95,8 @@ export const content = {
   iosFixturePass,
   iosAuthentication,
   iosProfileInitialization,
+  iosLocationStop,
+  iosProfileFixtureResult,
   nativeGateRecheck,
   publishedMediaReview,
   publishedMediaPlayback,

@@ -2,6 +2,7 @@ import Foundation
 
 #if os(iOS) && canImport(CoreLocation)
 import CoreLocation
+import os
 
 private struct NativeLocationReading: Sendable {
     let latitude: Double
@@ -22,31 +23,40 @@ private struct NativeLocationReading: Sendable {
 }
 
 private struct ContinuousFallbackSession: Sendable {
+    let id: UUID
     let rideSessionId: String
     let role: String
     let upload: @Sendable (NativeLocationBatchUpdate) async throws -> Void
+}
+
+private struct LocationCallbackScope: Sendable {
+    let managerId: ObjectIdentifier
+    let owner: UUID
 }
 
 @MainActor
 final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate {
     static let shared = NativeLocationFallbackProvider()
 
-    private let manager = CLLocationManager()
+    private var manager: CLLocationManager?
     private var authorizationContinuation: CheckedContinuation<Void, Error>?
     private var locationContinuation: CheckedContinuation<NativeLocationReading, Error>?
     private var continuousSession: ContinuousFallbackSession?
+    private let state = LocationSessionState()
+    nonisolated private let callbackOwner = OSAllocatedUnfairLock<LocationCallbackScope?>(initialState: nil)
+    private var uploads: [UUID: Task<Void, Never>] = [:]
 
     private override init() {
         super.init()
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.allowsBackgroundLocationUpdates = true
-        manager.pausesLocationUpdatesAutomatically = false
     }
 
-    func currentLocationUpdate(rideSessionId: String, role: String) async throws -> NativeLocationBatchUpdate {
-        try await ensureAuthorization()
-        let location = try await requestLocation()
+    private func currentLocationUpdate(rideSessionId: String, role: String, id: UUID,
+        manager: CLLocationManager) async throws -> NativeLocationBatchUpdate {
+        try state.requireCurrent(id)
+        try await ensureAuthorization(using: manager)
+        try state.requireCurrent(id)
+        let location = try await requestLocation(using: manager)
+        try state.requireCurrent(id)
         return NativeLocationBatchUpdate(
             rideSessionId: rideSessionId,
             role: role,
@@ -64,23 +74,60 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         role: String,
         upload: @escaping @Sendable (NativeLocationBatchUpdate) async throws -> Void
     ) async throws {
-        let firstUpdate = try await currentLocationUpdate(rideSessionId: rideSessionId, role: role)
-        try await upload(firstUpdate)
-        continuousSession = ContinuousFallbackSession(
-            rideSessionId: rideSessionId,
-            role: role,
-            upload: upload
-        )
-        manager.startUpdatingLocation()
+        let id = try state.begin(ride: rideSessionId)
+        let manager = CLLocationManager()
+        self.manager = manager
+        let scope = LocationCallbackScope(managerId: ObjectIdentifier(manager), owner: id)
+        callbackOwner.withLock { $0 = scope }
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.allowsBackgroundLocationUpdates = true
+        manager.pausesLocationUpdatesAutomatically = false
+        defer { state.finishStart(id) }
+        try await withTaskCancellationHandler {
+            do {
+                let firstUpdate = try await currentLocationUpdate(rideSessionId: rideSessionId, role: role, id: id, manager: manager)
+                try state.requireCurrent(id)
+                try await upload(firstUpdate)
+                try state.requireCurrent(id)
+                continuousSession = ContinuousFallbackSession(id: id, rideSessionId: rideSessionId, role: role, upload: upload)
+                manager.startUpdatingLocation()
+            } catch {
+                if state.owns(id) { stopAllUpdates() }
+                throw error
+            }
+        } onCancel: {
+            Task { @MainActor in
+                if self.state.owns(id) { self.stopAllUpdates() }
+            }
+        }
     }
 
     func stopContinuousUpdates(rideSessionId: String) {
-        guard continuousSession?.rideSessionId == rideSessionId else { return }
-        continuousSession = nil
-        manager.stopUpdatingLocation()
+        guard state.revoke(ride: rideSessionId) else { return }
+        clearUpdates()
     }
 
-    private func ensureAuthorization() async throws {
+    func stopAllUpdates() {
+        state.revoke()
+        clearUpdates()
+    }
+
+    private func clearUpdates() {
+        callbackOwner.withLock { $0 = nil }
+        continuousSession = nil
+        let stopped = manager; manager = nil
+        stopped?.delegate = nil
+        stopped?.stopUpdatingLocation()
+        let authorization = authorizationContinuation; authorizationContinuation = nil
+        let location = locationContinuation; locationContinuation = nil
+        authorization?.resume(throwing: CancellationError())
+        location?.resume(throwing: CancellationError())
+        for task in uploads.values { task.cancel() }
+        uploads.removeAll()
+    }
+
+    private func ensureAuthorization(using manager: CLLocationManager) async throws {
         switch manager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             return
@@ -96,10 +143,12 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         }
     }
 
-    private func requestLocation() async throws -> NativeLocationReading {
-        try await withCheckedThrowingContinuation { continuation in
-            if let existing = locationContinuation {
-                existing.resume(throwing: ProviderConfigurationError(message: "Capture GPS déjà en cours."))
+    private func requestLocation(using manager: CLLocationManager) async throws -> NativeLocationReading {
+        try Task.checkCancellation()
+        return try await withCheckedThrowingContinuation { continuation in
+            guard locationContinuation == nil else {
+                continuation.resume(throwing: ProviderConfigurationError(message: "Capture GPS déjà en cours."))
+                return
             }
             locationContinuation = continuation
             manager.requestLocation()
@@ -107,8 +156,10 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
     }
 
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        guard let id = owner(for: manager) else { return }
         let rawStatus = manager.authorizationStatus.rawValue
         Task { @MainActor in
+            guard self.state.owns(id) else { return }
             self.handleAuthorizationChange(rawStatus: rawStatus)
         }
     }
@@ -123,15 +174,19 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
             continuation.resume(throwing: ProviderConfigurationError(message: "Autorisation localisation refusée."))
         case .notDetermined:
             authorizationContinuation = continuation
+        case .none:
+            continuation.resume(throwing: ProviderConfigurationError(message: "Statut localisation iOS inconnu."))
         @unknown default:
             continuation.resume(throwing: ProviderConfigurationError(message: "Statut localisation iOS inconnu."))
         }
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let id = owner(for: manager) else { return }
         guard let location = locations.last else { return }
         let reading = NativeLocationReading(location: location)
         Task { @MainActor in
+            guard self.state.owns(id) else { return }
             self.handleLocationUpdate(reading)
         }
     }
@@ -152,14 +207,23 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
             speedMps: location.speedMps,
             headingDeg: location.headingDeg
         )
-        Task {
-            try? await session.upload(update)
+        let uploadId = UUID()
+        uploads[uploadId] = Task {
+            defer { uploads.removeValue(forKey: uploadId) }
+            guard !Task.isCancelled, state.owns(session.id) else { return }
+            do {
+                let work = try state.beginUpload(session.id)
+                defer { state.finishUpload(work) }
+                try await session.upload(update)
+            } catch { }
         }
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        guard let id = owner(for: manager) else { return }
         let message = error.localizedDescription
         Task { @MainActor in
+            guard self.state.owns(id) else { return }
             self.handleLocationFailure(message: message)
         }
     }
@@ -168,6 +232,13 @@ final class NativeLocationFallbackProvider: NSObject, CLLocationManagerDelegate 
         guard let continuation = locationContinuation else { return }
         locationContinuation = nil
         continuation.resume(throwing: ProviderConfigurationError(message: message))
+    }
+
+    nonisolated private func owner(for manager: CLLocationManager) -> UUID? {
+        let managerId = ObjectIdentifier(manager)
+        return callbackOwner.withLock { scope in
+            scope?.managerId == managerId ? scope?.owner : nil
+        }
     }
 }
 #endif

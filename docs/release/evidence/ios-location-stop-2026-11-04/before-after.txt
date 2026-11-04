@@ -1,0 +1,20 @@
+baseline compiler:
+/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-location-checks-uqEYn0/baseline.swift:119:9: warning: switch must be exhaustive; this is an error in the Swift 6 language mode
+117 |         guard let continuation = authorizationContinuation else { return }
+118 |         authorizationContinuation = nil
+119 |         switch CLAuthorizationStatus(rawValue: rawStatus) {
+    |         |- warning: switch must be exhaustive; this is an error in the Swift 6 language mode
+    |         `- note: add missing case: '.none'
+120 |         case .authorizedAlways, .authorizedWhenInUse:
+121 |             continuation.resume(returning: ())
+baseline
+startResult=completed
+continuousStartsAfterStop=1
+localStopCalls=0
+initialUploads=1
+candidate
+startResult=cancelled
+continuousStartsAfterStop=0
+localStopCalls=1
+initialUploads=1
+Controlled provider lifecycle passed: permission stop, capture stop, cancellation, serialized starts, exact-ride stop, old-manager isolation and upload failure; no device or network used
