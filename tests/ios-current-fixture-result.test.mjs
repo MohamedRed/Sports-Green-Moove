@@ -134,7 +134,7 @@ test('6e89 completes below the unchanged deadline with nine passes and all four 
 test('the latest simulation-only result keeps every older portal record and release requirement', () => {
   assert.deepEqual(content.ios6e89FixtureResult, ios6e89FixtureResult);
   assert.deepEqual(content.updates.filter(row => row.source === ios6e89FixtureResultProgress.source), [ios6e89FixtureResultProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === ios6e89FixtureResultProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row => row.source === ios6e89FixtureResultProgress.source));
   assert(ios6e89FixtureResultProgress.text.includes('simulation'));
   assert.doesNotMatch(ios6e89FixtureResultProgress.title + ios6e89FixtureResultProgress.text, /Firebase|BrowserStack|SDK|Swift|Xcode|CI\b/i);
   const before = json('docs/release/evidence/ios-fixture-failure-6e89-2026-11-05/portal-before.json');

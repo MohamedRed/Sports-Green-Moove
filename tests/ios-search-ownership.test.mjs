@@ -117,7 +117,7 @@ test('two concise scoped notes preserve old portal records and current release g
       assert(partition.previous.some(row => row.source === progress.source));
       assert(partition.previous.some(row => row.source === iosSearchContractProgress.source && row.flow === progress.flow));
       assert(partition.recent.some(row => row.source === verificationFollowupProgress.source && row.flow === progress.flow));
-    } else assert(partition.recent.some(row => row.source === progress.source));
+    } else assert(partition.previous.some(row => row.source === progress.source));
   }
   const previousUpdates = partitionUpdates(content.updates).previous;
   for (const source of ['ios-membership-2026-11-05/README.md', 'ios-preparation-timeout-a226-2026-11-04/README.md']) {

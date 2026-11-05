@@ -41,7 +41,7 @@ struct AppShell: View {
     }
 
     private func authenticatedShell(_ access: AccountAccess) -> some View {
-        ZStack(alignment: .bottom) {
+        VStack(spacing: 0) {
             activeContent(access)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             SGMTabBar(

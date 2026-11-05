@@ -21,6 +21,8 @@ import XCTest
     XCTAssertTrue(earlier.waitForExistence(timeout: 6)); earlier.tap()
     XCTAssertTrue(app.staticTexts["Rendez-vous au club."].waitForExistence(timeout: 6))
     let send = app.buttons["team-chat.send"]
+    let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: send)
+    XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 6), .completed)
     XCTAssertTrue(send.isEnabled); send.tap()
     XCTAssertTrue(app.staticTexts["Message de test isolé"].waitForExistence(timeout: 6))
     XCTAssertEqual(editor.value as? String, "")

@@ -2,6 +2,24 @@
 
 ## Current Publication Policy
 
+The 35f gate builds and executes all eleven cases: nine pass, including publication;
+search-booking confirmation and one team-send enabled assertion fail. Disposal
+succeeds and artifacts remain empty. Its bounded accessibility dump shows Messages
+after the booking tap, not Search or an alert; exact tap coordinates are unknown.
+The layout candidate allocates separate content/navigation regions, includes the
+raised publish action in measured navigation height and removes obsolete 96-point
+scroll padding. Native frame/non-navigation assertions are added to the existing
+booking case; team sends retain their production guard and original assertions,
+with the established six-second readiness observation. Local source/native checks
+pass; current native layout/UI acceptance remains pending. Publish one concise
+simulation/local-only note. Move old nine/eleven and eleven/eleven headlines into
+history, preserving their exact text, evidence and all prior flows/statuses/dates,
+media, tours, blockers and public access. Separate Android preparation evidence
+retains validated Wi-Fi with no data subscription, and a later image-download
+failure before any app flow. Neither is a chat or ride-stop pass. No new media,
+phone, provider call, network/notification policy or release acceptance is added.
+See `docs/release/evidence/ios-viewport-35f-2026-11-05/`.
+
 Publication price validation now retains actual negative reproductions: 0.29
 becomes 28 cents and nonfinite input traps on iPhone; Android accepts invalid text
 as a zero-price draft. Exact bounded decimal parsing replaces both floating-point

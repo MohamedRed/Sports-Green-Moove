@@ -65,6 +65,7 @@ import {verificationFollowup} from './verification-followup.mjs';
 import {ios584FixtureResult} from './ios-584-fixture-result.mjs';
 import {ios6e89FixtureResult} from './ios-6e89-fixture-result.mjs';
 import {publicationPrice} from './publication-price.mjs';
+import {iosViewportRecheck} from './ios-viewport-recheck.mjs';
 
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
@@ -80,6 +81,7 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
+  iosViewportRecheck,
   publicationPrice,
   ios6e89FixtureResult,
   ios584FixtureResult,

@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/ios-navigation-viewport.test.mjs"
       - "tests/publication-price-input.test.mjs"
       - "scripts/qa/check-publication-price.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripPriceInput.kt"
@@ -698,6 +699,7 @@ on:
     branches:
       - main
     paths:
+      - "tests/ios-navigation-viewport.test.mjs"
       - "tests/publication-price-input.test.mjs"
       - "scripts/qa/check-publication-price.mjs"
       - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripPriceInput.kt"
@@ -1722,6 +1724,9 @@ jobs:
 
       - name: Verify exact publication price input
         run: node scripts/qa/check-publication-price.mjs && node --test tests/publication-price-input.test.mjs
+
+      - name: Verify iPhone navigation viewport
+        run: node --test tests/ios-navigation-viewport.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:

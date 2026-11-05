@@ -83,6 +83,12 @@ test('UI candidates preserve the real city button and full-size club target with
 }
 `);
     }
+    if (row.path.endsWith('/TeamChatFlowChecks.swift')) {
+      expected = expected.replace('    let send = app.buttons["team-chat.send"]\n',
+        '    let send = app.buttons["team-chat.send"]\n' +
+        '    let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: send)\n' +
+        '    XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 6), .completed)\n');
+    }
     assert.equal(read(row.path), expected);
   }
 });

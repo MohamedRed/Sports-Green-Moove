@@ -10,6 +10,7 @@ on:
         default: false
   pull_request:
     paths:
+      - "tests/ios-navigation-viewport.test.mjs"
       - "ios/**"
       - "scripts/check-ios-native-plan.sh"
       - "scripts/qa/check-ios-membership-fixture.sh"

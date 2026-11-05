@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SGMScreen<Content: View>: View {
     var spacing: CGFloat = SGMSpace.s4
-    var bottomPadding: CGFloat = 96
+    var bottomPadding: CGFloat = SGMSpace.s4
     var testID: String?
     @ViewBuilder var content: () -> Content
 

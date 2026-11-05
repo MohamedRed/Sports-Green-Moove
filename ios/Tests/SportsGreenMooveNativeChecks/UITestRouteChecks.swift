@@ -27,7 +27,10 @@ import Foundation
     await app.requestSearchMatch(app.searchMatches[0], form: form, access: access)
     check(app.noticeMessage == "Demande envoyée: booking-child-2-2" && app.errorMessage == nil,
         "Actual fixture booking must retain its exact second-child/two-seat confirmation")
+    check(app.overlay == .search && app.selectedTab == .home,
+        "Actual fixture booking must keep search open instead of selecting Messages")
     check(!app.bookingBusy && !app.accountWork.busy, "Fixture booking must drain its work")
     print("UI fixture ownership checks passed: thirteen established route owners and actual second-child/two-seat booking confirmation; no native screen or provider")
+    print("Actual fixture booking retains search navigation after its exact acknowledgement; no native hit testing")
 }
 #endif

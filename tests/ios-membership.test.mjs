@@ -111,7 +111,12 @@ test('actual earlier SDK/UI failures preserve all eleven outcomes and lead to co
   assert(contact.includes('.alert("Abandonner les modifications ?"')); assert(contact.includes('presenting: discard) { action in'));
   assert(contact.includes('Button("Continuer la modification", role: .cancel)')); assert.doesNotMatch(contact, /\.confirmationDialog/);
   for (const file of ['ParentEmergencyContactFlowTests.swift', 'TeamChatFlowChecks.swift']) {
-    const path = 'ios/UITests/SportsGreenMooveUITests/' + file; assert.equal(read(path), frozen(path, report.baselineCommit));
+    const path = 'ios/UITests/SportsGreenMooveUITests/' + file, original = frozen(path, report.baselineCommit);
+    const expected = file === 'TeamChatFlowChecks.swift' ? original.replace('    let send = app.buttons["team-chat.send"]\n',
+      '    let send = app.buttons["team-chat.send"]\n' +
+      '    let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: send)\n' +
+      '    XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 6), .completed)\n') : original;
+    assert.equal(read(path), expected);
   }
 });
 
@@ -133,9 +138,9 @@ test('new request/review UI assertions preserve all eleven cases, the approved r
 test('concise local and actual fixture notes preserve release gaps and enter both web events and iPhone coverage', () => {
   assert.deepEqual(content.iosMembership, iosMembership);
   assert.deepEqual(content.updates.filter(row => row.source === iosMembershipProgress.source), [iosMembershipProgress]);
-  const {recent, previous} = partitionUpdates(content.updates);
+  const {previous} = partitionUpdates(content.updates);
   assert(previous.some(row => row.source === iosMembershipProgress.source));
-  assert(recent.some(row => row.source === iosA37FixturePassProgress.source && row.coversFlows.includes('clubs')));
+  assert(previous.some(row => row.source === iosA37FixturePassProgress.source && row.coversFlows.includes('clubs')));
   assert.deepEqual(content.updates.filter(row => row.source === iosMembershipFixtureProgress.source), [iosMembershipFixtureProgress]);
   assert(partitionUpdates(content.updates).previous.some(row => row.source === iosMembershipFixtureProgress.source));
   assert.equal(json(iosMembershipFixtureProgress.source).passed, 9);

@@ -3,7 +3,7 @@ import Foundation
 @MainActor func checkTeamChatEditing() async throws {
     let baseline = ProcessInfo.processInfo.environment["SGM_TEAM_INPUT_BASELINE"] == "true"
     let prefix = "Message de test iso", complete = prefix + "l\u{00e9}"
-    var count = 0
+    var count = 0, readyBoundaries = 0
     for operation in ["refresh", "earlier", "read"] {
         for boundary in ["success", "failure", "background", "account"] {
             let directory = FileManager.default.temporaryDirectory.appendingPathComponent("sgm-team-edit-" + UUID().uuidString)
@@ -39,6 +39,8 @@ import Foundation
             check(persisted?.body == expected && persisted?.requestId == nil, "Read completion changed a private draft")
             if boundary == "success" || (boundary == "failure" && operation == "read") {
                 check(state.composer.body == expected && state.canCompose, "Read completion failed to retain editable text")
+                check(state.canSend, "Send did not become ready after its owned read completed")
+                readyBoundaries += 1
             } else {
                 check(state.composer.body.isEmpty && !state.canSend, "A late read restored private text after access closed")
             }
@@ -47,4 +49,6 @@ import Foundation
         }
     }
     print("TeamChatEditingChecks: \(count) \(baseline ? "baseline draft truncation reproductions (not accepted)" : "exact-body read/input boundaries passed"); no phone or provider")
+    check(readyBoundaries == 4, "Expected four settled send-readiness boundaries")
+    print("TeamChat send readiness passed: four settled read boundaries with unchanged busy-send denial; no native screen")
 }

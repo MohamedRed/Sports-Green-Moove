@@ -8,7 +8,18 @@ import XCTest
     app.buttons["search.action"].tap()
     let booking = app.buttons["booking.request.action"]
     XCTAssertTrue(booking.waitForExistence(timeout: 6))
-    XCTAssertTrue(booking.isEnabled); XCTAssertTrue(booking.isHittable); booking.tap()
+    let search = app.scrollViews["search.screen"], navigation = app.otherElements["navigation.bar"]
+    XCTAssertTrue(search.waitForExistence(timeout: 6)); XCTAssertTrue(navigation.waitForExistence(timeout: 6))
+    for _ in 0..<3 {
+        if booking.isHittable && search.frame.contains(booking.frame) && booking.frame.maxY <= navigation.frame.minY { break }
+        search.swipeUp()
+    }
+    XCTAssertTrue(booking.isEnabled); XCTAssertTrue(booking.isHittable)
+    XCTAssertTrue(search.frame.contains(booking.frame))
+    XCTAssertLessThanOrEqual(booking.frame.maxY, navigation.frame.minY)
+    print("SGM_OWNED_BOOKING_FRAMES action=\(booking.frame) navigation=\(navigation.frame)")
+    booking.tap()
+    XCTAssertFalse(app.scrollViews["messages.screen"].exists)
     let alert = app.alerts.firstMatch
     let appeared = alert.waitForExistence(timeout: 6)
     if !appeared {
