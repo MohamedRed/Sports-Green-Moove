@@ -25,6 +25,7 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReceivedRatingsState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/FirebaseReceivedRatingsGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatText.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatRequest.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatPolicy.swift" \

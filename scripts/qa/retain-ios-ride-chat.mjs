@@ -56,7 +56,7 @@ const paths = readdirSync(resolve(root, app)).filter(name => /RideChat|PrivateCh
 paths.push(...readdirSync(resolve(root, checks)).filter(name => /RideChat/.test(name)).map(name => checks + name));
 for (const prefix of ['tests/fixtures/ios-ride-chat-runtime/', 'tests/fixtures/ios-support-concurrency/'])
   paths.push(...readdirSync(resolve(root, prefix)).filter(name => name.endsWith('.swift')).map(name => prefix + name));
-paths.push(...['TeamChatModels.swift', 'TeamChatWire.swift', 'TeamChatDraftStore.swift', 'MessagesScreen.swift', 'Models.swift',
+paths.push(...['TeamChatModels.swift', 'TeamChatText.swift', 'TeamChatWire.swift', 'TeamChatDraftStore.swift', 'MessagesScreen.swift', 'Models.swift',
   'GatewayContracts.swift', 'FirebaseInboxGateway.swift', 'UITestAppStateFactory.swift', 'AccountWorkScope.swift', 'SecondaryScreens.swift'].map(name => app + name));
 paths.push(checks + 'main.swift', checks + 'MessagesInboxChecks.swift',
   'ios/UITests/SportsGreenMooveUITests/RideChatFlowChecks.swift', 'ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift',

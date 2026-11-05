@@ -64,6 +64,23 @@ test('the runner executes real production sources with scripted SDK transport an
     "'FirebaseSearchGateway.swift'", "'TripSearchWire.swift'", "'EncodedRouteValidation.swift'", "'dylib' : 'so'",
     "'DYLD_LIBRARY_PATH' : 'LD_LIBRARY_PATH'", 'timeout: 120_000', 'finally { rmSync(build', "baseline ? 'baseline' : 'verify'"]) assert(runner.includes(text));
   assert.doesNotMatch(runner, /firebase emulators|curl|fetch\(|retry|continue-on-error|only-testing|upload-artifact/);
+  assert(runner.includes("'TeamChatText.swift'")); assert.doesNotMatch(runner, /TeamChatModels\.swift|TeamChatWire\.swift|CryptoKit/);
+  const oldModels = json(iosSearchContract.checksums).files.find(row => row.path.endsWith('/TeamChatModels.swift'));
+  const original = read('docs/release/evidence/source-archive/' + oldModels.sha256 + '.txt');
+  const extracted = read(app + 'TeamChatText.swift');
+  assert.equal(extracted.slice(extracted.indexOf('enum TeamChatText')).trim(), original.slice(original.indexOf('enum TeamChatText')).trim());
+  assert.doesNotMatch(read(app + 'TeamChatModels.swift'), /enum TeamChatText/);
+  const portability = 'docs/release/evidence/ios-search-contract-portability-2026-11-05/';
+  const correction = json(portability + 'summary.json'), failure = json(portability + 'linux-failure.json');
+  assert.equal(failure.runId, 42080158221); assert.equal(failure.jobId, 127430792792);
+  assert.equal(failure.conclusion, 'failure'); assert.equal(failure.compilationStoppedBeforeContractCases, true);
+  assert(failure.selectedError.includes("no such module 'CryptoKit'"));
+  for (const row of correction.records) assert.equal(sha(read(portability + row.file)), row.sha256);
+  for (const row of json(portability + 'source-sha256.json').files) assert.equal(sha(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
+  assert.equal(correction.normalizationImplementationUnchanged, true); assert.equal(correction.chatCryptoImplementationUnchanged, true);
+  assert.equal(correction.localContractPassed, true); assert.equal(correction.linuxExecutionAccepted, false);
+  for (const path of ['scripts/check-ios-native-plan.sh', 'scripts/check-ios-support-concurrency.sh',
+    'scripts/qa/check-ios-owned-places.sh', 'scripts/qa/check-ios-ride-chat-runtime.sh']) assert(read(path).includes('TeamChatText.swift'));
   const fixture = read('tests/fixtures/ios-search-contract/main.swift');
   for (const text of ['gateway.searchTripMatches(criteria: criteria)', 'bookingRequestPayload(trip: match.summary',
     '"isolated-child-2"', 'childId: criteria.childUserId, seats: criteria.seatsNeeded)', 'request["seats"] as? Int == 2',

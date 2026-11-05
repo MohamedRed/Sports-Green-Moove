@@ -14,7 +14,7 @@ done
 swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BUILD" -L "$BUILD" \
   -lFirebaseAuth -lFirebaseFirestore -lFirebaseFunctions \
   "$TEST/Context.swift" "$TEST/main.swift" \
-  "$APP/TeamChatModels.swift" "$APP/TeamChatWire.swift" \
+  "$APP/TeamChatModels.swift" "$APP/TeamChatText.swift" "$APP/TeamChatWire.swift" \
   "$APP/RideChatIdentity.swift" "$APP/RideChatModels.swift" "$APP/RideChatWire.swift" \
   "$APP/RideChatDirectoryWire.swift" "$APP/RideChatMessageWire.swift" "$APP/RideChatSourcePolicy.swift" \
   "$APP/RideChatRequest.swift" "$APP/RideChatCallbackClock.swift" \

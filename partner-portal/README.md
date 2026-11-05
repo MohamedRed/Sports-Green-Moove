@@ -6,9 +6,11 @@ Fourteen current isolated booking-transaction groups now pass after selecting th
 explicitly configured Java runtime in child-process lookup. Eleven environment/
 disposal checks pass; no global settings, installation or alternative-runtime
 fallback is added. All local endpoints close. Keep the earlier unexecuted attempt
-immutable and publish one short local reservation note. The full native source
-identity remains exactly `9ae6ea7`; do not restart or accept its live iPhone job
-from handler/database proof. Preserve all prior media, flow statuses/dates, tours,
+immutable and publish one short local reservation note. At that observation the
+native source identity is exactly `9ae6ea7`. The later portable-check correction
+moves unchanged text normalization out of chat's crypto-dependent module; this is
+not Linux or native SDK/UI acceptance. Do not restart or accept the live iPhone
+job from handler/database proof. Preserve all prior media, flow statuses/dates, tours,
 blockers, eleven cases, 50 minutes, capture bounds and public audience. No phone,
 native SDK/HTTP authentication, real map, payment or full booking acceptance is
 added. See `docs/release/evidence/booking-server-recheck-2026-11-05/README.md`.

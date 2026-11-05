@@ -33,7 +33,7 @@ for (const [name, source, marker] of [
   assert(!/error:|Fatal error/.test(bytes.toString())); record(name, bytes);
 }
 const paths = ['TripSearchWire.swift', 'EncodedRouteValidation.swift', 'FirebaseSearchGateway.swift', 'FirebaseMapMappers.swift',
-  'Models.swift', 'BookingIntentSnapshot.swift', 'TeamChatModels.swift', 'TeamChatWire.swift'].map(name => 'ios/Sources/SportsGreenMooveApp/' + name);
+  'Models.swift', 'BookingIntentSnapshot.swift', 'TeamChatModels.swift', 'TeamChatText.swift', 'TeamChatWire.swift'].map(name => 'ios/Sources/SportsGreenMooveApp/' + name);
 paths.push('functions/src/lib/clientTrips.ts', 'functions/src/domain/bookingIntent.ts', 'functions/src/callables/trips.ts',
   'scripts/qa/check-ios-search-contract.mjs', 'scripts/qa/local-trip-input.mjs', 'scripts/qa/local-egress-guard.mjs',
   'tests/fixtures/ios-search-contract/main.swift', 'tests/fixtures/ios-search-contract/Mutations.swift',

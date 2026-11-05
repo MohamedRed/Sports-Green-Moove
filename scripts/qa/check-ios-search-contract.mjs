@@ -46,7 +46,7 @@ try {
   }
   const sources = ['Models.swift', 'ClubSummary.swift', 'BookingIntentSnapshot.swift', 'PendingReviews.swift',
     'ReviewTripContext.swift', 'ProviderConfigurationError.swift', 'FirebaseMapMappers.swift', 'FirebaseSearchGateway.swift',
-    'TripSearchWire.swift', 'EncodedRouteValidation.swift', 'TeamChatModels.swift', 'TeamChatWire.swift'];
+    'TripSearchWire.swift', 'EncodedRouteValidation.swift', 'TeamChatText.swift'];
   const binary = resolve(build, 'check');
   run('swiftc', [...flags, '-I', build, '-L', build, '-lFirebaseAuth', '-lFirebaseFunctions',
     resolve(root, 'tests/fixtures/ios-search-contract/main.swift'),

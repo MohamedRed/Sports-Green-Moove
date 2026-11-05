@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatModels.swift",
+      "sha256": "76894abb976a74415ad856bb841cd2ffb24dfc660522a6adfc5436276de829f4"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatText.swift",
+      "sha256": "9db402972f62ff65d199c0178823717a25df6aded9d01caae8d207f0bbc3b805"
+    },
+    {
+      "path": "scripts/qa/check-ios-search-contract.mjs",
+      "sha256": "44d9c5933fd7d2674f933a62d307d53db78b6d29ac57d7e144190757d446a60b"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "1969594bd4c2e59d7fd3bb027fa05afd005ef62c77a15fd142c2718eb4eded00"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "91249f9fc2c8014d54b60ddfcec0f64a46044a101a68e620d985395ec9bc7d83"
+    },
+    {
+      "path": "scripts/qa/check-ios-owned-places.sh",
+      "sha256": "010892124192ca251cc83973e089b5d02b8af5fcb7b7c8d8aa774343e57c9373"
+    },
+    {
+      "path": "scripts/qa/check-ios-ride-chat-runtime.sh",
+      "sha256": "b9a695f0e6fe471f42ddf25a9148a5cf902eb5e59b4f8967debbaeddf95d239e"
+    }
+  ]
+}

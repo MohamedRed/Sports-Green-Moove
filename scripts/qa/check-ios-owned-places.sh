@@ -16,7 +16,7 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BU
   "$APP/Models.swift" "$APP/ClubSummary.swift" "$APP/BookingIntentSnapshot.swift" \
   "$APP/PendingReviews.swift" "$APP/ReviewTripContext.swift" \
   "$APP/ProviderConfigurationError.swift" \
-  "$APP/TeamChatModels.swift" "$APP/TeamChatWire.swift" \
+  "$APP/TeamChatModels.swift" "$APP/TeamChatText.swift" "$APP/TeamChatWire.swift" \
   "$APP/PendingBookingStore.swift" "$APP/BookingRequestCoordinator.swift" "$APP/FirebaseBookingRequests.swift" \
   "$APP/FirebaseOwnedBookingGateway.swift" \
   "$APP/PlaceSearchWire.swift" "$APP/FirebaseCallableBoundary.swift" "$APP/FirebasePlacesGateway.swift" -o "$BUILD/check"
