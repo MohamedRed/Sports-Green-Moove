@@ -4,6 +4,8 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { content, captures } from '../partner-portal/content.mjs';
+import {bookingServerRecheck, bookingServerRecheckProgress} from '../partner-portal/booking-server-recheck.mjs';
+import {partitionUpdates} from '../partner-portal/src/render.js';
 
 const base = 'docs/release/evidence/local-booking-consistency-2026-10-17/';
 const bytes = (path) => readFileSync(new URL(`../${path}`, import.meta.url));
@@ -148,4 +150,69 @@ test('the three executed screen cases and captures do not promote the later fail
     const modem = json(`modem-${phase}.json`);
     assert.equal(modem.runId, failed.runId); assert.equal(modem.voice, 'home'); assert.equal(modem.data, 'home');
   }
+});
+
+const currentFolder = 'docs/release/evidence/booking-server-recheck-2026-11-05/';
+const current = file => JSON.parse(read(currentFolder + file));
+const digest = value => createHash('sha256').update(value).digest('hex');
+test('the current isolated fourteen-case replay checks actual transaction reads without accepting the earlier unexecuted attempt', () => {
+  const report = current('summary.json'), run = current('services.json');
+  for (const row of report.records) assert.equal(digest(bytes(currentFolder + row.file)), row.sha256);
+  assert.equal(run.scope, 'controlled-local-booking-handler-not-phone-ui');
+  assert.equal(run.projectId, 'demo-sgm-local-qa'); assert.equal(run.testedAt.slice(0, 10), '2026-11-05');
+  assert.equal(run.passed, true); assert.equal(run.cases.length, 14);
+  assert.deepEqual(run.cases.map(row => row.id), json('after.json').cases.map(row => row.id));
+  for (const row of run.cases) {
+    assert.equal(row.status, 'passed'); assert.equal(row.mutationApplied, true);
+    if (row.expectedError) { assert.equal(row.rejected.code, row.expectedError); assert.equal(row.bookingCount, 0); }
+    else {
+      assert.equal(row.bookingCount, 1); assert.equal(row.bookings[0].seats, 2);
+      assert.equal(row.bookings[0].status, 'requested'); assert(row.reads.some(path => path.startsWith('children/')));
+    }
+  }
+  const application = run.cases.at(-1).mutationResult;
+  assert.equal(application.method, 'real-local-proposal-confirmation-application');
+  assert.equal(application.parentDecision, 'accept'); assert.equal(application.status, 'applied');
+  assert.equal(application.providerCalls, 1); assert.equal(application.syntheticRoute, true);
+  assert.equal(application.livePayment, false);
+  const earlier = JSON.parse(read('docs/release/evidence/ios-search-contract-2026-11-05/service-attempt.json'));
+  assert.equal(earlier.result, 'not-executed'); assert.equal(earlier.assertionGroupsCompleted, 0);
+});
+
+test('the configured runtime recheck retains executed regressions, endpoint disposal and the unchanged iPhone source at observation', () => {
+  const report = current('summary.json'), disposal = current('disposal.json'), native = current('native-source-identity.json');
+  assert.equal(report.environmentAndDisposalTestsPassed, 11);
+  assert(read(currentFolder + 'java-environment-tests.txt').includes('# pass 11'));
+  assert(read(currentFolder + 'java-environment-tests.txt').includes('# fail 0'));
+  assert.equal(disposal.closed, true); assert.deepEqual(disposal.ports, [9099, 8080, 9000, 5001]);
+  assert.equal(disposal.childProcessExitCode, 0); assert.equal(disposal.host, '127.0.0.1');
+  assert.equal(native.baseCommit, '9ae6ea709da5f487a51a1542864d4cf4d0e8f4b1');
+  assert.equal(native.aggregateSha256, digest(JSON.stringify(native.files, null, 2) + '\n'));
+  const priorSources = JSON.parse(read('docs/release/evidence/ios-search-contract-2026-11-05/source-sha256.json')).files;
+  const overlapping = priorSources.filter(row => native.files.some(item => item.path === row.path));
+  assert(overlapping.length >= 12);
+  for (const row of overlapping) assert.equal(native.files.find(item => item.path === row.path).sha256, row.sha256, row.path);
+  for (const row of current('source-sha256.json').files) assert.equal(digest(bytes('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
+  const helper = read('scripts/qa/local-java-environment.mjs'), runtime = read('scripts/qa/local-runtime.mjs');
+  assert(helper.includes("resolve(env.JAVA_HOME, 'bin')")); assert(helper.includes('accessSync(java, constants.X_OK)'));
+  assert(runtime.indexOf('const env = localJavaEnvironment(') < runtime.indexOf('const temp = mkdtempSync'));
+  assert.equal(report.nativeSourceUnchanged, true);
+});
+
+test('one concise reservation note preserves historical proof and pending release requirements with existing smoke coverage', () => {
+  const report = current('summary.json'), before = current('portal-before.json');
+  assert.deepEqual(content.bookingServerRecheck, bookingServerRecheck);
+  assert.deepEqual(content.updates.filter(row => row.source === bookingServerRecheckProgress.source), [bookingServerRecheckProgress]);
+  assert(partitionUpdates(content.updates).recent.some(row => row.source === bookingServerRecheckProgress.source));
+  assert.doesNotMatch(bookingServerRecheckProgress.title + bookingServerRecheckProgress.text, /Firebase|BrowserStack|Java|SDK|Swift|Xcode|CI\b/i);
+  for (const row of before.flows) assert.equal(digest(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
+  for (const hash of before.updates) assert(content.updates.some(row => digest(JSON.stringify(row)) === hash));
+  assert.equal(digest(JSON.stringify(content.blockers)), before.blockers);
+  const workflow = read('.github/workflows/web-integration-smoke.yml');
+  assert.equal(workflow.split('"tests/booking-consistency-evidence.test.mjs"').length - 1, 2);
+  assert(workflow.includes('run: node --test tests/booking-consistency-evidence.test.mjs'));
+  assert(workflow.includes('"scripts/qa/**"'));
+  for (const key of ['nativeSdkAccepted', 'nativeUiAccepted', 'realMapIntegrationAccepted', 'completeBookingFlowAccepted',
+    'physicalDeviceAccepted', 'releaseComplete']) assert.equal(report[key], false);
+  for (const key of ['productionWrites', 'externalProviderRequests', 'realPayments', 'newPhoneSessions', 'newMedia']) assert.equal(report[key], 0);
 });

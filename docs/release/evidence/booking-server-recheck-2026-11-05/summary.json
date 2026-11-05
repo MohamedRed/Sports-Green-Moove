@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-11-05",
+  "sourceBaseCommit": "9ae6ea709da5f487a51a1542864d4cf4d0e8f4b1",
+  "scope": "isolated-booking-handler-transactions-not-sdk-http-auth-phone-ui-or-real-payments",
+  "serviceCasesPassed": 14,
+  "environmentAndDisposalTestsPassed": 11,
+  "configuredJavaHomeUsedByChild": true,
+  "nativeSourceUnchanged": true,
+  "emulatorEndpointsClosed": true,
+  "earlierUnexecutedAttemptRetained": true,
+  "nativeSdkAccepted": false,
+  "nativeUiAccepted": false,
+  "realMapIntegrationAccepted": false,
+  "completeBookingFlowAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "productionWrites": 0,
+  "externalProviderRequests": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0,
+  "records": [
+    {
+      "file": "services.json",
+      "sha256": "68fe844591bd8e4607b5896fbc65cff10bf5f835b9037d3c3a365f67ebff0ffd"
+    },
+    {
+      "file": "java-environment-tests.txt",
+      "sha256": "2e6b10962ca26e303aecddefd1f7921dc79e7ba262753f62158a79ca0541985d"
+    },
+    {
+      "file": "disposal.json",
+      "sha256": "aca39e28a46df63929de6f8fbea7e6dddd84e6afc9f4e3347279ce461650890c"
+    },
+    {
+      "file": "native-source-identity.json",
+      "sha256": "d6cbec1b048e26fa67348f455bf496de6ae7049e7ab620490312c51f49b932b7"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "21d0a3198860bf6792f65089ba03bdb6b4eb766bc3c31dcf3afe01b2a67e10ad"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "7411676e16d6640050d4c7915756313c2e221157b190634c763302d1b403659c"
+    }
+  ]
+}

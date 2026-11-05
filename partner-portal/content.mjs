@@ -59,6 +59,7 @@ export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
 import { blockers } from './progress-blockers.mjs';
 import {sessionExitComponents} from './session-exit-components.mjs';
+import {bookingServerRecheck} from './booking-server-recheck.mjs';
 
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
@@ -74,6 +75,7 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
+  bookingServerRecheck,
   alertCaptureFailure,
   updatedAt: '2026-11-05',
   lastVerifiedAt: '2026-11-05',

@@ -7,14 +7,15 @@ import assert from 'node:assert/strict';
 import { projectId } from './local-emulator-config.mjs';
 import { localEntryCommand } from './local-entry-command.mjs';
 import { disposeLocalRuntime, localRuntimeJvmOptions } from './local-runtime-disposal.mjs';
+import {localJavaEnvironment} from './local-java-environment.mjs';
 
 export const root = resolve(import.meta.dirname, '../..');
 
 export function prepareLocalRuntime() {
+  const env = localJavaEnvironment(Object.fromEntries(['PATH', 'HOME', 'USER', 'LOGNAME', 'TMPDIR', 'JAVA_HOME', 'ANDROID_HOME', 'ANDROID_SDK_ROOT']
+    .filter((key) => key === 'JAVA_HOME' ? process.env[key] !== undefined : process.env[key]).map((key) => [key, process.env[key]])));
   const temp = mkdtempSync(resolve(tmpdir(), 'sgm-local-runtime-'));
   const cleanup = () => disposeLocalRuntime(temp, runtime.emulatorsPrepared);
-  const env = Object.fromEntries(['PATH', 'HOME', 'USER', 'LOGNAME', 'TMPDIR', 'JAVA_HOME', 'ANDROID_HOME', 'ANDROID_SDK_ROOT']
-    .filter((key) => process.env[key]).map((key) => [key, process.env[key]]));
   Object.assign(env, { CI: 'true', FIREBASE_CLI_DISABLE_USAGE_REPORTING: 'true',
     GCLOUD_PROJECT: projectId, FIREBASE_PROJECT_ID: projectId, JAVA_TOOL_OPTIONS: localRuntimeJvmOptions,
     XDG_CONFIG_HOME: resolve(temp, 'cli-config'),

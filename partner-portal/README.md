@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+Fourteen current isolated booking-transaction groups now pass after selecting the
+explicitly configured Java runtime in child-process lookup. Eleven environment/
+disposal checks pass; no global settings, installation or alternative-runtime
+fallback is added. All local endpoints close. Keep the earlier unexecuted attempt
+immutable and publish one short local reservation note. The full native source
+identity remains exactly `9ae6ea7`; do not restart or accept its live iPhone job
+from handler/database proof. Preserve all prior media, flow statuses/dates, tours,
+blockers, eleven cases, 50 minutes, capture bounds and public audience. No phone,
+native SDK/HTTP authentication, real map, payment or full booking acceptance is
+added. See `docs/release/evidence/booking-server-recheck-2026-11-05/README.md`.
+
 The iPhone search contract now rejects eight reproduced guessed-price/capacity/
 snapshot failures and sixty malformed response groups. Three actual server
 serializer outputs retain exact labels, endpoint data and a second-child/two-seat
