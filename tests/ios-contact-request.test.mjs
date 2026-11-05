@@ -86,7 +86,7 @@ test('the exact fixture inventory, deadline, capture policy and signature checki
 test('the concise incomplete-iPhone portal note has smoke coverage and does not accept pending release entries', () => {
   assert.deepEqual(content.iosContactRequest,iosContactRequest);
   assert.deepEqual(content.updates.filter(x=>x.source===iosContactRequestProgress.source),[iosContactRequestProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row=>row.source===iosContactRequestProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row=>row.source===iosContactRequestProgress.source));
   assert.doesNotMatch(iosContactRequestProgress.title + iosContactRequestProgress.text,/Firebase|BrowserStack|SDK|Swift|CI\b/i);
   const file = 'tests/ios-contact-request.test.mjs';
   const web = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();

@@ -106,15 +106,14 @@ struct EmergencyContactScreen: View {
         }.padding(.horizontal, SGMSpace.padScreen)
             .scrollDismissesKeyboard(.interactively)
             .interactiveDismissDisabled(state.dirty || state.busy)
-            .confirmationDialog("Abandonner les modifications ?", isPresented: Binding(get: { discard != nil }, set: { if !$0 { discard = nil } })) {
-                if let action = discard {
-                    Button("Abandonner les modifications", role: .destructive) {
-                        discard = nil
-                        switch action {
-                        case .close: dismiss()
-                        case .refresh: Task { await state.refresh() }
-                        case .chooseTarget: onChooseTarget?()
-                        }
+            .alert("Abandonner les modifications ?", isPresented: Binding(get: { discard != nil }, set: { if !$0 { discard = nil } }),
+                presenting: discard) { action in
+                Button("Abandonner les modifications", role: .destructive) {
+                    discard = nil
+                    switch action {
+                    case .close: dismiss()
+                    case .refresh: Task { await state.refresh() }
+                    case .chooseTarget: onChooseTarget?()
                     }
                 }
                 Button("Continuer la modification", role: .cancel) { discard = nil }

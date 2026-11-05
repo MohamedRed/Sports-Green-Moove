@@ -91,6 +91,9 @@ final class SportsGreenMooveUITests: XCTestCase {
         var app = launch(route: "groups")
         assertExists("groups.screen", in: app)
         assertExists("groups.join.action", in: app)
+        verifyClubRequest(in: app)
+        app = launch(route: "groups-review")
+        verifyMembershipReview(in: app)
 
         app = launch(route: "impact")
         assertExists("impact.screen", in: app)

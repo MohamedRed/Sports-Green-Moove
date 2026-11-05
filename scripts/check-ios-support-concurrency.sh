@@ -8,7 +8,7 @@ trap 'rm -rf "$BUILD_DIR"' EXIT
 
 for module in FirebaseCore FirebaseFirestore FirebaseAuth FirebaseFunctions; do
   source="$FIXTURES/$module.swift"
-  case "$module" in FirebaseCore|FirebaseFirestore) source="$FIXTURES/Empty.swift" ;; esac
+  case "$module" in FirebaseCore) source="$FIXTURES/Empty.swift" ;; esac
   swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors \
     -emit-module -module-name "$module" "$source" -emit-module-path "$BUILD_DIR/$module.swiftmodule"
 done
@@ -16,6 +16,14 @@ done
 swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -D DEBUG -I "$BUILD_DIR" -typecheck \
   "$FIXTURES/GatewayContext.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/Models.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ClubSummary.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ClubMembership.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/MembershipWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/MembershipRequest.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseMembershipDirectory.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseMembershipGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseClubSummaries.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/UITestMembershipGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ReceivedRatings.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseReceivedRatingsGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TeamChatModels.swift" \

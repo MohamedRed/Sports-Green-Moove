@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The iPhone club request/detail and versioned manager approval/refusal are now
+source-wired. Controlled native checks, 128 delayed boundaries and seven separate
+local service/client-rule checks pass. The earlier 9f7f0ee SDK build passes, but
+two of eleven UI cases fail; retain every outcome and do not accept the candidate
+alert/identifier corrections before rechecking iPhone. Publish a short local-only
+membership note and the actual nine-of-eleven result, no new media or changed historical flow status/date, gallery,
+tour, blocker or public access. All eleven cases, the 50-minute gate and capture
+bounds remain unchanged. See
+`docs/release/evidence/ios-membership-2026-11-05/README.md`.
+
 The 3954ff7 iPhone SDK build is cancelled at the approved 50-minute job limit,
 before any fixture UI. Disposal succeeds and no artifacts are retained. Do not
 infer a cause or accept the later team-chat/received-rating candidate. A source

@@ -10,6 +10,14 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ClubMembership.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MembershipPolicy.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MembershipWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MembershipRequest.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MembershipPager.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ClubMembershipState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MembershipReviewState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredMembershipGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReceivedRatings.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReceivedRatingsState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/FirebaseReceivedRatingsGateway.swift" \
@@ -90,6 +98,10 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/MembershipProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/MembershipStateChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/MembershipWireChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/MembershipBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatStateChecks.swift" \

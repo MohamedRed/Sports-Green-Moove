@@ -69,6 +69,9 @@ const androidLedgerGateway = readFile("android/app/src/main/java/be/sportgreenmo
 const androidProfile = readFile("android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileScreen.kt");
 const iosGroups = readFile("ios/Sources/SportsGreenMooveApp/GroupsScreen.swift");
 const iosGroupsGateway = readFile("ios/Sources/SportsGreenMooveApp/FirebaseClubSummaries.swift");
+const iosMembershipDirectory = readFile("ios/Sources/SportsGreenMooveApp/FirebaseMembershipDirectory.swift");
+const iosMembershipState = readFile("ios/Sources/SportsGreenMooveApp/ClubMembershipState.swift");
+const iosMembershipRequest = readFile("ios/Sources/SportsGreenMooveApp/MembershipRequest.swift");
 const iosHome = readFile("ios/Sources/SportsGreenMooveApp/HomeScreen.swift");
 const iosImpactRewards = readFile("ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift");
 const iosLedgerGateway = readFile("ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift");
@@ -150,7 +153,15 @@ includes(androidPublish, "memberClubs: List<ClubSummary>", "Android Publish scre
 includes(androidPublishFactory, "clubId = club.id", "Android Publish draft uses selected member club id");
 notIncludes(androidPublish, "Royal Ottignies", "Android Publish screen must not embed a static club identity");
 notIncludes(androidPublishFactory, "Royal Ottignies", "Android Publish draft factory must not embed a static club identity");
-includes(iosGroups, "appState.clubSummaries", "iOS Groups screen renders Firebase club summaries");
+includes(iosGroups, "ClubMembershipState(access: access, gateway: gateway)", "iOS Groups screen owns a backend-backed club catalog");
+includes(iosGroups, "ForEach(state.items)", "iOS Groups screen renders the owned catalog");
+includes(iosGroups, "state.request(club)", "iOS Groups screen requests the exact displayed club");
+includes(iosMembershipState, "gateway.membershipClubs(uid: access.context.uid, cursor: cursor)", "iOS catalog is paged and account-bound");
+includes(iosMembershipState, "gateway.requestMembership(uid: access.context.uid, clubId: row.id)", "iOS Groups state submits the selected club");
+includes(iosMembershipRequest, '"requestClubMembership"', "iOS club request uses the authenticated callable");
+includes(iosMembershipDirectory, '.collection("clubs")', "iOS catalog reads clubs");
+includes(iosMembershipDirectory, '.whereField("userId", isEqualTo: uid)', "iOS membership read is owner-scoped");
+notIncludes(iosGroups, "requestedClubIds", "iOS group requests must not change a local-only set");
 includes(iosGroupsGateway, '.collection("clubs")', "iOS Groups gateway reads clubs");
 includes(iosGroupsGateway, '.collection("memberships")', "iOS Groups gateway reads memberships");
 notIncludes(iosGroups, "Royal Ottignies", "iOS Groups screen must not embed club fixtures");

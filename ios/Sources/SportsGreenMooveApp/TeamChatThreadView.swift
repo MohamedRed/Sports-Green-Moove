@@ -37,7 +37,7 @@ struct TeamChatThreadView: View {
                 }
             } else { Spacer() }
         }.background(SGM.bgApp.ignoresSafeArea()).foregroundStyle(SGM.textPrimary)
-            .font(.sgmBody(15)).accessibilityIdentifier("team-chat.thread")
+            .font(.sgmBody(15))
             .safeAreaInset(edge: .bottom) {
                 if state.live && state.loaded && state.error == nil {
                     TeamChatComposerView(state: state)

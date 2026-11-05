@@ -10,7 +10,8 @@ enum UITestAppStateFactory {
     static func make() -> AppState {
         let route = argumentValue(after: "--sgm-ui-route") ?? "home"
         let signedIn = route != "auth"
-        let profile = route == "child-contact" ? Fixtures.childSession : Fixtures.session
+        let profile = route == "child-contact" ? Fixtures.childSession : route == "groups-review"
+            ? AuthSession(uid: "ui-user", email: "manager@example.test", displayName: "Responsable Démo", roles: [.clubManager]) : Fixtures.session
         let auth = UITestAuthGateway(session: signedIn ? profile : nil)
         let state = AppState(
             auth: auth,
@@ -51,7 +52,7 @@ enum UITestAppStateFactory {
             state.selectedTab = .messages
         case "search":
             state.overlay = .search
-        case "groups":
+        case "groups", "groups-review":
             state.overlay = .groups
         case "impact":
             state.overlay = .impact
@@ -90,7 +91,7 @@ private enum Fixtures {
     static let child = ChildSummary(id: "child-1", label: "Nora", teamLabel: "U8 Royal Ottignies", trackingEnabled: true)
     static let otherChild = ChildSummary(id: "child-2", label: "Maya", teamLabel: "U10 Royal Ottignies", trackingEnabled: true)
     static let clubs = [
-        ClubSummary(id: "club-royal", name: "Royal Ottignies Sports", sport: "Football", memberCount: 89, roleLabel: "PARENT", initials: "RO", memberInitials: ["NO", "CO"]),
+        ClubSummary(id: "club-royal", name: "Royal Ottignies Sports", sport: "Football", memberCount: 89, roleLabel: "PARENT", initials: "RO", memberInitials: ["NO", "CO"], membershipStatus: "active", membershipActive: true),
         ClubSummary(id: "club-tennis", name: "Tennis Club Wavre", sport: "Tennis", memberCount: 56, roleLabel: nil, initials: "TC", memberInitials: []),
     ]
     static let route = MapRoutePreview(start: MapPoint(lat: 50.715, lng: 4.612), end: MapPoint(lat: 50.669, lng: 4.567))

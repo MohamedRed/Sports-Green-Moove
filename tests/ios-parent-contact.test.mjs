@@ -44,7 +44,7 @@ test('target navigation confirms discarded edits and constructs a fresh editor w
   const screen = read(app + 'EmergencyContactScreen.swift');
   assert(screen.includes('emergency.subject.child')); assert(screen.includes('emergency.subject.club'));
   for (const fragment of ['if state.dirty { discard = .chooseTarget }', 'case .chooseTarget: onChooseTarget?()',
-    'if let action = discard', 'state.pending != nil { state.cancelReview() }']) assert(screen.includes(fragment));
+    'presenting: discard) { action in', 'state.pending != nil { state.cancelReview() }']) assert(screen.includes(fragment));
   const host = read(app + 'GuardianContactPicker.swift');
   assert(host.includes('showEditor(.managed($0))')); assert(host.includes('guard access.isCurrent else { return }'));
   assert(host.includes('selected = scope; editorId = UUID(); picking = false'));

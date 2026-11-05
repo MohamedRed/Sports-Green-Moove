@@ -94,7 +94,7 @@ test('the independent generated-file failure preserves the eighteenth primary fa
 test('one concise incomplete-club note preserves the original portal and pending release scope with smoke coverage', () => {
   assert.deepEqual(content.iosBuildAudit, iosBuildAudit);
   assert.deepEqual(content.updates.filter(row => row.source === iosBuildAuditProgress.source), [iosBuildAuditProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === iosBuildAuditProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row => row.source === iosBuildAuditProgress.source));
   assert.doesNotMatch(iosBuildAuditProgress.title + iosBuildAuditProgress.text, /Firebase|BrowserStack|SDK|Swift|CI\b|Stripe/i);
   assert(content.flows.some(row => row.id === 'clubs'));
   const path = 'tests/ios-build-audit.test.mjs', web = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();

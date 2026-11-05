@@ -16,6 +16,9 @@ on:
       - "tests/ios-team-chat.test.mjs"
       - "tests/ios-received-ratings.test.mjs"
       - "tests/ios-build-audit.test.mjs"
+      - "tests/ios-membership.test.mjs"
+      - "scripts/qa/*membership*.mjs"
+      - "docs/release/evidence/ios-membership-2026-11-05/**"
       - "docs/release/evidence/ios-build-audit-2026-11-05/**"
       - "scripts/qa/check-ios-emergency-phone.mjs"
       - "tests/fixtures/ios-emergency-phone/**"
@@ -672,6 +675,9 @@ on:
       - "tests/ios-team-chat.test.mjs"
       - "tests/ios-received-ratings.test.mjs"
       - "tests/ios-build-audit.test.mjs"
+      - "tests/ios-membership.test.mjs"
+      - "scripts/qa/*membership*.mjs"
+      - "docs/release/evidence/ios-membership-2026-11-05/**"
       - "docs/release/evidence/ios-build-audit-2026-11-05/**"
       - "scripts/qa/check-ios-emergency-phone.mjs"
       - "tests/fixtures/ios-emergency-phone/**"
@@ -1346,7 +1352,7 @@ jobs:
       - name: Validate bounded node readiness and retained failure scope
         run: node --test tests/compose-node-readiness.test.mjs tests/guardian-window-observation.test.mjs
       - name: Validate iPhone emergency contact ownership and evidence scope
-        run: node --test tests/ios-emergency-contact.test.mjs tests/ios-parent-contact.test.mjs tests/ios-message-ownership.test.mjs tests/ios-contact-request.test.mjs tests/ios-team-chat.test.mjs tests/ios-received-ratings.test.mjs tests/ios-build-audit.test.mjs
+        run: node --test tests/ios-emergency-contact.test.mjs tests/ios-parent-contact.test.mjs tests/ios-message-ownership.test.mjs tests/ios-contact-request.test.mjs tests/ios-team-chat.test.mjs tests/ios-received-ratings.test.mjs tests/ios-build-audit.test.mjs tests/ios-membership.test.mjs
       - name: Test isolated chat proof diagnostic
         run: node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs
       - name: Test approved invitation private alias
@@ -1478,6 +1484,11 @@ jobs:
 
       - name: Test isolated multi-person flows
         run: npm run test:local-flows
+
+      - name: Verify isolated membership discovery and review
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/membership-client.json
+        run: npm run test:membership-client
 
       - name: Test completed review history beyond the legacy limit
         env:

@@ -5,7 +5,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 func loadClubSummaries() async throws -> [ClubSummary] {
-    let roles = try await loadMembershipRoles()
+    guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }
+    let memberships = try await loadClubMemberships(uid: uid)
     let snapshot = try await queryDocuments(
         Firestore.firestore()
             .collection("clubs")
@@ -13,13 +14,14 @@ func loadClubSummaries() async throws -> [ClubSummary] {
             .limit(to: 50)
     )
 
+    try Task.checkCancellation()
+    guard Auth.auth().currentUser?.uid == uid else { throw CancellationError() }
     return snapshot.map { document in
-        mapClubSummary(id: document.documentID, data: document.data(), role: roles[document.documentID])
+        mapClubSummary(id: document.documentID, data: document.data(), member: memberships[document.documentID])
     }
 }
 
-private func loadMembershipRoles() async throws -> [String: String] {
-    guard let uid = Auth.auth().currentUser?.uid else { return [:] }
+private func loadClubMemberships(uid: String) async throws -> [String: ClubMembership] {
     let snapshot = try await queryDocuments(
         Firestore.firestore()
             .collection("memberships")
@@ -27,35 +29,38 @@ private func loadMembershipRoles() async throws -> [String: String] {
             .limit(to: 50)
     )
 
-    let rolePairs: [(String, String)] = snapshot.compactMap { (document: QueryDocumentSnapshot) -> (String, String)? in
+    try Task.checkCancellation()
+    guard Auth.auth().currentUser?.uid == uid else { throw CancellationError() }
+    var members: [String: ClubMembership] = [:]
+    for document in snapshot {
         let data = document.data()
-        guard let clubId = data["clubId"] as? String else { return nil }
-        let role = (data["role"] as? String)?.uppercased(with: Locale(identifier: "fr_BE")) ?? "MEMBRE"
-        return (clubId, role)
+        let clubId = try MembershipWire.identifier(data["clubId"])
+        try MembershipWire.require(members[clubId] == nil)
+        members[clubId] = try MembershipWire.member(data, documentId: document.documentID, uid: uid, clubId: clubId)
     }
-
-    return Dictionary(uniqueKeysWithValues: rolePairs)
+    return members
 }
 
-private func mapClubSummary(id: String, data: [String: Any], role: String?) -> ClubSummary {
+private func mapClubSummary(id: String, data: [String: Any], member: ClubMembership?) -> ClubSummary {
     let name = data["name"] as? String ?? data["displayName"] as? String ?? id
     return ClubSummary(
         id: id,
         name: name,
         sport: data["sport"] as? String ?? data["primarySport"] as? String ?? "Sport",
         memberCount: intValue(data["memberCount"]) ?? intValue(data["members"]) ?? 0,
-        roleLabel: role,
+        roleLabel: member?.isActive == true ? member?.role.uppercased(with: Locale(identifier: "fr_BE")) : nil,
         initials: initials(name),
-        memberInitials: data["memberInitials"] as? [String] ?? []
+        memberInitials: data["memberInitials"] as? [String] ?? [],
+        membershipStatus: member?.status, membershipActive: member?.active
     )
 }
 
 private func queryDocuments(_ query: Query) async throws -> [QueryDocumentSnapshot] {
     try await withCheckedThrowingContinuation { continuation in
-        query.getDocuments { snapshot, error in
+        query.getDocuments(source: .server) { snapshot, error in
             if let error {
                 continuation.resume(throwing: error)
-            } else if let snapshot {
+            } else if let snapshot, !snapshot.metadata.isFromCache && !snapshot.metadata.hasPendingWrites {
                 continuation.resume(returning: snapshot.documents)
             } else {
                 continuation.resume(throwing: ProviderConfigurationError(message: "Réponse clubs invalide."))

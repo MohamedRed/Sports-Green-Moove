@@ -1,5 +1,8 @@
 import Foundation
 
+try checkMembershipWire()
+await checkMembershipState()
+await checkMembershipBoundaries()
 try checkReceivedRatingsWire()
 await checkReceivedRatingsState()
 try ledgerSummaryChecks()
