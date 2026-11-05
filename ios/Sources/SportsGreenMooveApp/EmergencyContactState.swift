@@ -20,7 +20,7 @@ import Observation
     init(access: AccountAccess, scope: EmergencyContactScope, gateway: any EmergencyContactGateway) {
         self.access = access; self.scope = scope; self.gateway = gateway
     }
-    var canEdit: Bool { live && !scope.readOnly && !access.context.grantedRoles.contains(.child) }
+    var canEdit: Bool { live && allowedScope && !scope.readOnly && !access.context.grantedRoles.contains(.child) }
     var canDial: Bool { live && !busy && pending == nil && !dirty && view?.contact != nil }
     var dirty: Bool { canEdit && view != nil && (name != (view?.contact?.name ?? "") || phone != (view?.contact?.phone ?? "")) }
     var canSave: Bool { canEdit && !busy && pending == nil && dirty && PersonalEmergencyContact(name: name, phone: phone).isValid }
@@ -42,7 +42,7 @@ import Observation
     private var allowedScope: Bool {
         if access.context.grantedRoles.contains(.child) { return scope.readOnly }
         switch scope {
-        case .managed(.personal): return true
+        case .managed(.personal): return access.context.grantedRoles.contains { [.parent, .driver, .clubManager].contains($0) }
         case .managed(.child): return access.context.role == .parent
         case .childRide: return false
         }

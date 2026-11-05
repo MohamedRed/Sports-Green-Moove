@@ -17,6 +17,7 @@ on:
       - "tests/ios-mvp-workflow.test.mjs"
       - "tests/ios-location-shutdown.test.mjs"
       - "tests/ios-emergency-contact.test.mjs"
+      - "tests/ios-parent-contact.test.mjs"
       - "scripts/qa/check-ios-emergency-phone.mjs"
       - "tests/fixtures/ios-emergency-phone/**"
       - "tests/ios-search-consent.test.mjs"

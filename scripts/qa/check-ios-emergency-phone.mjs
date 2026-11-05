@@ -16,6 +16,7 @@ try {
   const binary = resolve(out, 'PhoneBoundaryChecks');
   execFileSync('swiftc', [...flags, '-parse-as-library', '-I', out, '-L', out, '-lUIKit',
     resolve(source, 'EmergencyContactModels.swift'), resolve(source, 'EmergencyContactWire.swift'),
+    resolve(source, 'GuardianContactModels.swift'),
     resolve(source, 'SystemEmergencyPhone.swift'), resolve(fixture, 'Checks.swift'), '-o', binary], {stdio: 'pipe'});
   const result = execFileSync(binary, [], {encoding: 'utf8', env: {...process.env, DYLD_LIBRARY_PATH: out, LD_LIBRARY_PATH: out}});
   process.stdout.write(result);

@@ -19,6 +19,7 @@ import {iosLocationShutdown} from './ios-location-shutdown.mjs';
 import {iosPreparationTimeout} from './ios-preparation-timeout.mjs';
 import {iosEmergencyContact} from './ios-emergency-contact.mjs';
 import {iosSignOutFixturePass} from './ios-signout-fixture-pass.mjs';
+import {iosParentContact} from './ios-parent-contact.mjs';
 
 export const iosCheckpoints = {
   iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
@@ -26,4 +27,5 @@ export const iosCheckpoints = {
   iosRideOwnership, iosAccountWork, iosPaymentOwnership, iosPaymentScreen, iosBuildTimeout,
   iosBookingOwnership, iosPermissionBuild, iosCurrentFixturePass, iosLocationShutdown, iosPreparationTimeout,
   iosEmergencyContact, iosSignOutFixturePass,
+  iosParentContact,
 };

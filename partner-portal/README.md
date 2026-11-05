@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The verified-parent child-contact picker is now source-wired on iPhone. Its local
+protocol/pagination/privacy checks and twenty-four delayed boundaries pass; a new
+UI case is only prepared, bringing the complete fixture inventory to eleven.
+Publish one short local-only note, no new media or changed flow status/date/tour,
+blocker, history or public access. The manager approval journey, new SDK/UI gate,
+real Phone handoff and release still need proof. Keep the earlier contact/shutdown
+records immutable. The separate 84c9b62 chat job's preparation timeout and verified
+cleanup stay internal metadata, not another diagnostic update. See
+`docs/release/evidence/ios-parent-contact-2026-11-05/README.md`.
+
 The 4582c3a iPhone SDK build, eight synthetic screen cases including sign-out, and
 simulator disposal pass. Publish one brief simulation result, without new media.
 The later emergency-contact candidate replaces the sample number/static action;

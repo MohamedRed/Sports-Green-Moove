@@ -40,6 +40,7 @@ struct EmergencyContactOperation: Equatable, Sendable {
 }
 
 protocol EmergencyContactGateway: Sendable {
+    func guardianContacts(uid: String, cursor: String?) async throws -> GuardianContactPage
     func emergencyContact(uid: String, scope: EmergencyContactScope) async throws -> EmergencyContactView?
     func saveEmergencyContact(uid: String, operation: EmergencyContactOperation) async throws -> Int64
 }

@@ -43,6 +43,7 @@ actor AppDataProbe {
 }
 
 struct AppDataFixtureGateway: FirebaseGateway {
+    func guardianContacts(uid: String, cursor: String?) async throws -> GuardianContactPage { throw EmergencyContactError.unavailable }
     func emergencyContact(uid: String, scope: EmergencyContactScope) async throws -> EmergencyContactView? { throw EmergencyContactError.unavailable }
     func saveEmergencyContact(uid: String, operation: EmergencyContactOperation) async throws -> Int64 { throw EmergencyContactError.unavailable }
     let isConfigured = true

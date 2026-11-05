@@ -1,6 +1,7 @@
 import Foundation
 
 actor EmergencyContactProbe: EmergencyContactGateway {
+    func guardianContacts(uid: String, cursor: String?) async throws -> GuardianContactPage { throw EmergencyContactError.unavailable }
     var value: EmergencyContactView?
     private var calls: [String] = []
     private var suspended: Set<Int> = []

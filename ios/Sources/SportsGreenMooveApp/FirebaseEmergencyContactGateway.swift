@@ -5,6 +5,12 @@ import FirebaseAuth
 import FirebaseFunctions
 
 extension FirebaseBackendGateway {
+    func guardianContacts(uid: String, cursor: String?) async throws -> GuardianContactPage {
+        try EmergencyContactWire.require(GuardianContactWire.validCursor(cursor))
+        return try await contactCall(uid: uid, name: "listMyGuardianVerifications", input: cursor.map { ["cursor": $0] } ?? [:]) {
+            try GuardianContactWire.page($0, uid: uid)
+        }
+    }
     func emergencyContact(uid: String, scope: EmergencyContactScope) async throws -> EmergencyContactView? {
         let name: String; let input: [String: Any]
         switch scope {

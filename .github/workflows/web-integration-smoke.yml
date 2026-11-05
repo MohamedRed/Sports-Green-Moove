@@ -10,6 +10,7 @@ on:
       - "docs/release/evidence/android-readiness-pass-4582-2026-11-04/**"
       - "tests/ios-location-shutdown.test.mjs"
       - "tests/ios-emergency-contact.test.mjs"
+      - "tests/ios-parent-contact.test.mjs"
       - "scripts/qa/check-ios-emergency-phone.mjs"
       - "tests/fixtures/ios-emergency-phone/**"
       - "docs/release/evidence/ios-location-shutdown-2026-11-04/**"
@@ -659,6 +660,7 @@ on:
       - "docs/release/evidence/android-readiness-pass-4582-2026-11-04/**"
       - "tests/ios-location-shutdown.test.mjs"
       - "tests/ios-emergency-contact.test.mjs"
+      - "tests/ios-parent-contact.test.mjs"
       - "scripts/qa/check-ios-emergency-phone.mjs"
       - "tests/fixtures/ios-emergency-phone/**"
       - "docs/release/evidence/ios-location-shutdown-2026-11-04/**"
@@ -1332,7 +1334,7 @@ jobs:
       - name: Validate bounded node readiness and retained failure scope
         run: node --test tests/compose-node-readiness.test.mjs tests/guardian-window-observation.test.mjs
       - name: Validate iPhone emergency contact ownership and evidence scope
-        run: node --test tests/ios-emergency-contact.test.mjs
+        run: node --test tests/ios-emergency-contact.test.mjs tests/ios-parent-contact.test.mjs
       - name: Test isolated chat proof diagnostic
         run: node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs
       - name: Test approved invitation private alias

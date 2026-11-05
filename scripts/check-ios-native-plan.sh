@@ -11,6 +11,8 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GuardianContactModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GuardianContactState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/StripePaymentsGateway.swift" \
@@ -63,6 +65,10 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactWireChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactBoundaryChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/GuardianContactProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/GuardianContactChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/GuardianContactBoundaryChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ParentEmergencyContactChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \

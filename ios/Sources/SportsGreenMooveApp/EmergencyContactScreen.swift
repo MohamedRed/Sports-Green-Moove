@@ -15,7 +15,7 @@ struct EmergencyContactEntry: View {
                 .contentShape(Rectangle())
         }.buttonStyle(.plain).foregroundStyle(SGM.textPrimary).accessibilityIdentifier(testID).disabled(!access.isCurrent)
             .sheet(isPresented: $presented) {
-                EmergencyContactScreen(access: access, scope: access.context.grantedRoles.contains(.child)
+                EmergencyContactHost(access: access, scope: access.context.grantedRoles.contains(.child)
                     ? .childRide(rideId) : .managed(.personal), gateway: appState.firebase)
                     .id(access.context.id)
             }
@@ -28,12 +28,13 @@ struct EmergencyContactScreen: View {
     @State private var state: EmergencyContactState
     @State private var discard: DiscardAction?
     private let opener: any EmergencyPhoneOpening
-    private enum DiscardAction: Identifiable { case close, refresh; var id: Self { self } }
+    private let onChooseTarget: (() -> Void)?
+    private enum DiscardAction { case close, refresh, chooseTarget }
 
     init(access: AccountAccess, scope: EmergencyContactScope, gateway: any EmergencyContactGateway,
-        opener: any EmergencyPhoneOpening = SystemEmergencyPhone()) {
+        opener: any EmergencyPhoneOpening = SystemEmergencyPhone(), onChooseTarget: (() -> Void)? = nil) {
         _state = State(initialValue: EmergencyContactState(access: access, scope: scope, gateway: gateway))
-        self.opener = opener
+        self.opener = opener; self.onChooseTarget = onChooseTarget
     }
     var body: some View {
         @Bindable var state = state
@@ -53,11 +54,20 @@ struct EmergencyContactScreen: View {
                 EmergencyContactReview(operation: operation, confirm: { Task { await state.confirmSave() } }, cancel: { state.cancelReview() })
             } else {
                 VStack(alignment: .leading, spacing: 20) {
+                    if let onChooseTarget {
+                        Button("Choisir un contact") { if state.dirty { discard = .chooseTarget } else { onChooseTarget() } }
+                            .disabled(state.busy).accessibilityIdentifier("emergency.choose-target")
+                    }
                     if state.busy { ProgressView().accessibilityLabel("Vérification du contact") }
                     if let error = state.error { Text(error).foregroundStyle(SGM.textPrimary).accessibilityIdentifier("emergency.error") }
                     if let notice = state.notice { Text(notice).accessibilityIdentifier("emergency.notice") }
                     if let view = state.view {
-                        if let name = view.childName { Text(name).font(.sgmBody(18, weight: .bold)) }
+                        if let name = view.childName {
+                            Text(name).font(.sgmBody(18, weight: .bold)).accessibilityIdentifier("emergency.subject.child")
+                        }
+                        if let club = view.clubName {
+                            Text(club).foregroundStyle(SGM.textSecondary).accessibilityIdentifier("emergency.subject.club")
+                        }
                         if let contact = view.contact {
                             VStack(alignment: .leading, spacing: 8) {
                                 Text(contact.name).font(.sgmBody(18, weight: .bold)).accessibilityIdentifier("emergency.contact.name")
@@ -100,7 +110,11 @@ struct EmergencyContactScreen: View {
                 if let action = discard {
                     Button("Abandonner les modifications", role: .destructive) {
                         discard = nil
-                        if action == .close { dismiss() } else { Task { await state.refresh() } }
+                        switch action {
+                        case .close: dismiss()
+                        case .refresh: Task { await state.refresh() }
+                        case .chooseTarget: onChooseTarget?()
+                        }
                     }
                 }
                 Button("Continuer la modification", role: .cancel) { discard = nil }

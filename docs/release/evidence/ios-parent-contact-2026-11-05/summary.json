@@ -1,0 +1,157 @@
+{
+  "checkedAt": "2026-11-05",
+  "baselineCommit": "84c9b627acfcebbddaad147bdd282af8483ce943",
+  "scope": "controlled-parent-child-contact-selection-not-sdk-ui-or-physical-proof",
+  "localChecks": {
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "controlledPhoneExitCode": 0,
+    "malformedPageCasesRejected": 14,
+    "invalidCursorInputsDenied": 5,
+    "failedPaginationGroups": 5,
+    "nonparentRolesDenied": 4,
+    "delayedPageBoundaries": 24,
+    "requiredFixtureCases": 11,
+    "newUiCasesPrepared": 1
+  },
+  "logs": [
+    {
+      "file": "native-result.txt",
+      "sha256": "a3b76bc0821903ad1b0779cc46435ef7911751d38965236877da644c3d0d8e8d",
+      "exitCode": 0,
+      "completedAt": "2026-11-05T00:06:47.088Z"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83",
+      "exitCode": 0,
+      "completedAt": "2026-11-05T00:06:32.921Z"
+    },
+    {
+      "file": "phone-result.txt",
+      "sha256": "9182330f32205618bc0e3080716c4746f7014cc1129b11a35e60a60bece105eb",
+      "exitCode": 0,
+      "completedAt": "2026-11-05T00:06:31.798Z"
+    }
+  ],
+  "parentChildContactEditorSourceWired": true,
+  "androidFocusedRecheck": {
+    "runId": 41935572889,
+    "jobId": 126943054501,
+    "sourceCommit": "84c9b627acfcebbddaad147bdd282af8483ce943",
+    "jobConclusion": "failure",
+    "failedPhase": "network-preparation",
+    "preparationDeadlineMs": 30000,
+    "completed": false,
+    "cellularRequestReleased": true,
+    "wifiRequestReleased": true,
+    "deviceRestored": true,
+    "deviceRestorationVerified": true,
+    "hostGone": true,
+    "wholeRunTerminalObserved": false,
+    "artifactId": 13374821051,
+    "archiveSha256": "369633fedc6a56464f377a1d2ac3087beaa933f2699000e4b766eea415e92e0d",
+    "records": [
+      {
+        "file": "chat-command-status.json",
+        "entry": "focused-safety-ui/chat-network-recovery/chat-network-recovery-suite-status.json",
+        "sha256": "7546255782463053b4a1ae6462a6c692fe853fc07504464678f84c43a49b7013",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "chat-host-disposal.json",
+        "entry": "focused-safety-ui/chat-network-recovery/host-shutdown/complete.json",
+        "sha256": "30c096c0b704433931a27e9cce1025a5f9b76cabe3db5ddfaeadcaa5a9bafb08",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "chat-preparation-failure.txt",
+        "entry": "local-ui-evidence/36cdc951bdbb5d6a4e8c568b9e4d8b62/LocalChatNetworkFlowTest-instrumentation.txt",
+        "sha256": "7e298bfb18c08a5f50994b5871b9ed0630c2425d145a3aa980bbe298d637506f",
+        "originalEntrySha256": "489ca241dd822390228761a672997023dda52bb15c9095c1a92667977ab937d5",
+        "selection": "unchanged-timeout-and-source-frame-lines"
+      },
+      {
+        "file": "chat-preparation-projection.json",
+        "entry": "local-ui-evidence/36cdc951bdbb5d6a4e8c568b9e4d8b62/local-chat-network-ui.json",
+        "sha256": "f5e967cdfc8db5541ae15dcd8a870465e831f998a5a809ad1ee54a79aa5fe000",
+        "originalEntrySha256": "58be8a8ff9aa89805e843d01b06d01afc6557f4269ff360070226bff552fe690",
+        "selection": "explicit-sanitized-projection-without-identities-or-network-details",
+        "additionalSourceEntries": [
+          {
+            "entry": "focused-safety-ui/chat-network-recovery/disposable-device-restore.json",
+            "sha256": "e0cf022be30001cf0cee177b7b5771b3b3f9286a6a211581bc33bacb3b42ca37"
+          }
+        ]
+      }
+    ],
+    "flowAccepted": false,
+    "rootCauseConfirmed": false
+  },
+  "sdkLinkedBuildAccepted": false,
+  "newFixtureUiExecuted": false,
+  "managerApprovalUiAccepted": false,
+  "realPhoneHandoffAccepted": false,
+  "physicalDeviceAccepted": false,
+  "storeActionAccepted": false,
+  "newNativeMediaPublished": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "releaseComplete": false,
+  "androidMainRecheck": {
+    "runId": 41935572889,
+    "jobId": 126943053716,
+    "sourceCommit": "84c9b627acfcebbddaad147bdd282af8483ce943",
+    "runConclusion": "failure",
+    "jobConclusion": "failure",
+    "failedJobIds": [
+      126943053716,
+      126943054501,
+      126947942509
+    ],
+    "artifactId": 13374819411,
+    "archiveSha256": "f0fd06eda57c022499022255401d2884dcdaaed0be4876034a46c89358a82656",
+    "records": [
+      {
+        "file": "android-ordinary-results.json",
+        "entry": "outputs/store-review-screenshots/ordinary-results.json",
+        "sha256": "7ee36da3d58c71d0d90ec00d3b908132ffad80e5252e4ee97fe19ee8c491a243",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "android-suite-status.json",
+        "entry": "outputs/store-review-screenshots/native-suite-status.json",
+        "sha256": "18479a658d44df5ab7972e655dae82c62c2879556330f7240e0f46d4f9ce747b",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "android-parent-results.json",
+        "entry": "outputs/local-ui-evidence/0407f735171921a8b527ca4d805871f2/guardian-parent-results.json",
+        "sha256": "5732586e94bbfedb557c87beddbd69191252641fd4e7e1ccf80d853b997b567d",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "android-host-disposal.json",
+        "entry": "outputs/focused-safety-ui/full-matrix/host-shutdown/complete.json",
+        "sha256": "004c09aab2a44c00d6a36e1e10a3401d3ca04e1bc19c4ded4faa1117009a129a",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "android-transfer-projection.json",
+        "entry": "outputs/local-ui-evidence/0407f735171921a8b527ca4d805871f2/adb-pull-trip-change-inputs.json",
+        "sha256": "75a5940fb4d9cd87231001325620aa50075ee4e4d735f4c068919ba9ed6b5cf1",
+        "originalEntrySha256": "e72e7dd92b1a4e9a888194e908973cea58106296338d4a27112a8961569bc0b8",
+        "selection": "sanitized-command-status-and-output-hashes-without-identities-or-raw-logs"
+      }
+    ],
+    "observerNativeExecutionAccepted": true,
+    "sourceBoundParentReplayAccepted": true,
+    "fullNativeGateAccepted": false,
+    "copyRootCauseConfirmed": false,
+    "rootLossCauseConfirmed": false,
+    "physicalDeviceAccepted": false,
+    "releaseComplete": false
+  }
+}
