@@ -86,6 +86,13 @@ extended existing messages UI case remain unexecuted. All eleven cases and the
 same deadline/capture policy remain required. This is not notification, complete
 conversation, physical or release acceptance. See `evidence/ios-team-chat-2026-11-05/`.
 
+The later received-rating candidate source-wires the real average/count into the
+profile with a captured account generation, explicit refresh and no zero-score
+fallback. Controlled checks and eight isolated backend checks pass, including
+104/105-review aggregates; SDK/UI and complete rating-flow acceptance remain
+unverified. Assertions are prepared inside the original profile fixture case,
+not an additional case or capture. See `evidence/ios-received-ratings-2026-11-05/`.
+
 The account-refresh race comparison in `evidence/ios-account-refresh-2026-11-04/`
 reproduces late private data restoration after sign-out with the original AppState.
 The candidate passes local checks for atomic snapshots, revocation, account/role

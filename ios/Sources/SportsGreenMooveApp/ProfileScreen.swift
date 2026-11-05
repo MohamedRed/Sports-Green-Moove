@@ -7,6 +7,9 @@ struct ProfileScreen: View {
         SGMScreen(spacing: 0, testID: UITestIdentifier.profileScreen) {
             SGMTopBar(title: "MON PROFIL")
             ProfileIdentity()
+            if let access = appState.accountAccess {
+                ProfileReceivedRatings(access: access, gateway: appState.firebase).id(access.context.id)
+            }
             ProfileRoleSelector()
             ProfileImpactCard {
                 appState.openOverlay(.impact)

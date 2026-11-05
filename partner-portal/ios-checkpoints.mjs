@@ -23,6 +23,7 @@ import {iosParentContact} from './ios-parent-contact.mjs';
 import {iosMessageOwnership} from './ios-message-ownership.mjs';
 import {iosContactRequest} from './ios-contact-request.mjs';
 import {iosTeamChat} from './ios-team-chat.mjs';
+import {iosReceivedRatings} from './ios-received-ratings.mjs';
 
 export const iosCheckpoints = {
   iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
@@ -34,4 +35,5 @@ export const iosCheckpoints = {
   iosMessageOwnership,
   iosContactRequest,
   iosTeamChat,
+  iosReceivedRatings,
 };

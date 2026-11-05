@@ -24,6 +24,14 @@ final class SportsGreenMooveUITests: XCTestCase {
         XCTAssertTrue(app.buttons["profile.role.driver"].exists)
         XCTAssertFalse(app.buttons["profile.role.child"].exists)
         XCTAssertFalse(app.buttons["profile.role.clubManager"].exists)
+        let received = app.staticTexts["profile.rating.count"]
+        XCTAssertTrue(received.waitForExistence(timeout: 6))
+        XCTAssertEqual(received.label, "2 avis reçus")
+        XCTAssertTrue(app.descendants(matching: .any)["profile.rating.average"].exists)
+        let refreshRatings = app.buttons["profile.rating.refresh"]
+        XCTAssertTrue(refreshRatings.isEnabled); refreshRatings.tap()
+        XCTAssertTrue(received.waitForExistence(timeout: 6))
+        XCTAssertEqual(received.label, "2 avis reçus")
         captureApproved(.profile, in: app)
     }
 

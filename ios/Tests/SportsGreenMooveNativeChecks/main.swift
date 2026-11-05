@@ -1,5 +1,7 @@
 import Foundation
 
+try checkReceivedRatingsWire()
+await checkReceivedRatingsState()
 try ledgerSummaryChecks()
 try checkEmergencyContactWire()
 await checkEmergencyContacts()

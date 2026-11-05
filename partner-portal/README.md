@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The iPhone profile now source-wires the authenticated received-rating average and
+count, without raw reviews, guessed scores or another account's data. Controlled
+wire/state checks, sixteen delayed success/error boundaries and eight isolated
+service checks pass. The existing profile case includes prepared assertions; all
+eleven cases, the deadline and capture policy remain unchanged. Publish one short
+local-only note with no new media. SDK/UI, physical-device and full rating-flow
+acceptance remain unverified. Preserve all prior flows, statuses, dates, tours,
+blockers, galleries, history and public access. See
+`docs/release/evidence/ios-received-ratings-2026-11-05/README.md`.
+
 The iPhone team directory, conversation, persisted draft, explicit stable-ID send
 and visible-message read handling are now source-wired. Controlled native logic,
 96 delayed boundaries and isolated service rechecks pass; the eleven-case fixture

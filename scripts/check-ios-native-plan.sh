@@ -10,6 +10,9 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReceivedRatings.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReceivedRatingsState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/FirebaseReceivedRatingsGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatModels.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatRequest.swift" \
@@ -87,6 +90,8 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatTimelineChecks.swift" \

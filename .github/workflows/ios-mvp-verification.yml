@@ -21,6 +21,7 @@ on:
       - "tests/ios-message-ownership.test.mjs"
       - "tests/ios-contact-request.test.mjs"
       - "tests/ios-team-chat.test.mjs"
+      - "tests/ios-received-ratings.test.mjs"
       - "scripts/qa/check-ios-emergency-phone.mjs"
       - "tests/fixtures/ios-emergency-phone/**"
       - "tests/ios-search-consent.test.mjs"
