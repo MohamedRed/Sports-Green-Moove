@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -157,6 +158,5 @@ test('concise local and actual fixture notes preserve release gaps and enter bot
   }]);
   assert.equal(json('package.json').scripts['test:membership-client'], 'node scripts/qa/run-local-membership-client.mjs');
   assert(parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON().on.pull_request.paths.includes(path));
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci'])
-    assert.equal(json('docs/release/evidence-manifest.json').automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });

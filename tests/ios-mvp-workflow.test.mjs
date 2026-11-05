@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync} from 'node:fs';
 import {test} from 'node:test';
@@ -144,11 +145,10 @@ test('partial terminal iPhone proof preserves all seven outcomes without accepti
     'productionWrites', 'realPaymentExercised', 'newMediaPublished', 'releaseComplete']) assert.equal(report[key], false);
   for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) {
     assert(requiredAutomatedFlowEvidence.includes(id));
-    for (const file of ['evidence-manifest.json', 'evidence-manifest.example.json']) {
-      const manifest = JSON.parse(read(`docs/release/${file}`));
-      assert.equal(manifest.automatedUserFlowEvidence.items.find(item => item.id === id).status, 'pending');
-    }
+    const example = JSON.parse(read('docs/release/evidence-manifest.example.json'));
+    assert.equal(example.automatedUserFlowEvidence.items.find(item => item.id === id).status, 'pending');
   }
+  assertCurrentIosAutomatedEvidence();
   assert.deepEqual(content.iosFixtureObservation, iosFixtureObservation);
   for (const update of [iosFixtureProgress, iosFixtureLaunchProgress]) {
     assert.deepEqual(content.updates.filter(item => item.source === update.source && item.flow === update.flow), [update]);
@@ -189,9 +189,10 @@ test('the 3e7cd40 SDK and seven-case fixture pass remains historical when later 
   assert.deepEqual(content.iosCurrentFixturePass, iosCurrentFixturePass);
   assert.deepEqual(content.updates.filter(item => item.source === iosCurrentFixturePassProgress.source), [iosCurrentFixturePassProgress]);
   const manifest = JSON.parse(read('docs/release/evidence-manifest.json'));
+  assertCurrentIosAutomatedEvidence(manifest);
   for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) {
     const item = manifest.automatedUserFlowEvidence.items.find(item => item.id === id);
-    assert.equal(item.status, 'pending'); assert(item.evidenceRefs.includes(folder.replace('docs/release/', '') + 'summary.json'));
+    assert(item.evidenceRefs.includes(folder.replace('docs/release/', '') + 'summary.json'));
   }
   const previous = JSON.parse(read('docs/release/evidence/automated-user-flow-evidence-2026-06-16.json'));
   const index = JSON.parse(read('docs/release/evidence/automated-user-flow-evidence-2026-11-04.json'));

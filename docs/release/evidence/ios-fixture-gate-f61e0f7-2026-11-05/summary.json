@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 2,
+  "checkedAt": "2026-11-05",
+  "sourceCommit": "f61e0f760a3976f0d80005033fcbfe2bff21212c",
+  "runId": 42116135548,
+  "jobId": 127556161432,
+  "conclusion": "success",
+  "sdkBuild": "success",
+  "fixtureTests": "success",
+  "plannedCases": 11,
+  "passedCases": 11,
+  "failedCases": 0,
+  "deadlineMinutes": 50,
+  "disposal": "success",
+  "artifactCount": 0,
+  "newMedia": 0,
+  "sourceFixtureGateAccepted": true,
+  "nativeServiceIntegrationAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "terminal-job.json",
+      "sha256": "ab63365506068ba48e63ae3c953b4ff9b87bbb49d9f1493f3bcb6bfb471bbea8"
+    },
+    {
+      "file": "cases.json",
+      "sha256": "1ae14d80e5e7abcd7c04d12e940eafcc28ba0949503fd1cfd2a5d4a5d315059b"
+    },
+    {
+      "file": "selected-tests.txt",
+      "sha256": "f23e68f32338c96af87c9fa2dd2dcdc072908f6c6b55406d38152bd2491f6f3c"
+    },
+    {
+      "file": "artifacts.json",
+      "sha256": "7a7cdeca2dbf2839a56f1d206cef74df40eb38973fe1536821291613f06c5197"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "cadc635d5a59fb1da7cfa6f6b025b3880e1efff0e133ae6cc3c1ff2badf6f9be"
+    },
+    {
+      "file": "build-input-sha256.json",
+      "sha256": "cc0c15a58da3dcc6be73f1fd6f465e0b43fe766aa923982908291553e117092f"
+    }
+  ]
+}

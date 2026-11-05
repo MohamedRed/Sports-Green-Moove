@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -100,6 +101,5 @@ test('one concise incomplete-club note preserves the original portal and pending
   const path = 'tests/ios-build-audit.test.mjs', web = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();
   for (const event of ['pull_request', 'push']) assert(web.on[event].paths.includes(path));
   assert(Object.values(web.jobs).some(job => job.steps.some(step => step.run?.includes(path))));
-  const manifest = json('docs/release/evidence-manifest.json');
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) assert.equal(manifest.automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });

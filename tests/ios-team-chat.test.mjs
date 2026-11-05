@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -113,6 +114,5 @@ test('the concise public note retains pending native evidence and runs in smoke 
   for (const event of ['pull_request', 'push']) assert(web.on[event].paths.includes(file));
   assert(Object.values(web.jobs).some(job => job.steps.some(step => step.run?.includes(file))));
   assert(parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON().on.pull_request.paths.includes(file));
-  const manifest = JSON.parse(read('docs/release/evidence-manifest.json'));
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) assert.equal(manifest.automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });

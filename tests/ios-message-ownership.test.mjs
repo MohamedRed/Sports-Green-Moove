@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -83,7 +84,5 @@ test('portal copy stays local-only and the new contract runs without weakening t
   assert(Object.values(web.jobs).some(job => job.steps.some(step => step.run?.includes(path))));
   const ios = parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON();
   assert(ios.on.pull_request.paths.includes(path));
-  const evidence = JSON.parse(read('docs/release/evidence-manifest.json'));
-  for (const id of ['ios_sdk_build_ci','ios_fixture_ui_ci'])
-    assert.equal(evidence.automatedUserFlowEvidence.items.find(item => item.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });

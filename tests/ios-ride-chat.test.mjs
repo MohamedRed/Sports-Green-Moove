@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import test from 'node:test';
@@ -124,6 +125,5 @@ test('one concise portal note preserves all prior flows, history, blockers and r
       assert(Object.values(workflow.jobs).some(job => job.steps.some(step => step.run?.includes('tests/ios-ride-chat.test.mjs'))));
     }
   }
-  const manifest = json('docs/release/evidence-manifest.json');
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) assert.equal(manifest.automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });

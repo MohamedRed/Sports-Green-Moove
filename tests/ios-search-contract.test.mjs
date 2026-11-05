@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import test from 'node:test';
@@ -127,8 +128,7 @@ test('the concise current note preserves historical content and never promotes t
   for (const key of ['sdkBuildAccepted', 'fixtureUiAccepted', 'liveServiceAccepted', 'linuxContractExecutionAccepted',
     'realMapIntegrationAccepted', 'completeBookingFlowAccepted', 'physicalDeviceAccepted', 'releaseComplete']) assert.equal(report[key], false);
   for (const key of ['productionWrites', 'providerRequests', 'newPhoneSessions', 'newMedia']) assert.equal(report[key], 0);
-  const manifest = json('docs/release/evidence-manifest.json');
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) assert.equal(manifest.automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });
 
 test('later failed gates retain exact sources, cleanup and unknown causes instead of accepting local candidates', () => {

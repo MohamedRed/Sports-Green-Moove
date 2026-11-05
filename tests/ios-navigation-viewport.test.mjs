@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {parseDocument} from 'yaml';
@@ -112,6 +113,5 @@ test('the latest partial result replaces stale full-pass headlines without delet
   for (const event of ['pull_request', 'push']) assert(workflow.on[event].paths.includes('tests/ios-navigation-viewport.test.mjs'));
   assert(Object.values(workflow.jobs).some(job => job.steps?.some(step => step.run === 'node --test tests/ios-navigation-viewport.test.mjs')));
   assert.equal(parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON().jobs['ios-fixture-verification']['timeout-minutes'], 50);
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci'])
-    assert.equal(json('docs/release/evidence-manifest.json').automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });

@@ -26,6 +26,40 @@ steps within the same deadline, with no reduced selection or second build.
 The release manifest separately requires `ios_sdk_build_ci` and
 `ios_fixture_ui_ci`; neither is accepted by a local signature check or a partial run.
 
+## Current Proof And Historical Results
+
+At `f61e0f7`, workflow `42116135548`, job `127556161432`, passes the SDK build,
+all eleven original screen cases and disposal. Captures are skipped and artifacts
+are empty. Exact current source/config/resource inputs match, so the two
+automated iPhone entries are accepted. This includes the bounded full-input
+observations added after d56. Physical, operational, emergency phone handoff,
+live-service and complete release requirements remain open. See
+`evidence/ios-fixture-gate-f61e0f7-2026-11-05/` and
+`evidence/ios-automated-acceptance-f61e0f7-2026-11-05/`.
+
+Current automated acceptance is checked by
+`scripts/qa/ios-fixture-release-evidence.mjs`. It requires the completed successful
+job, SDK build, every one of the eleven actual screen cases, successful disposal,
+empty artifacts, exact source/workflow archives and all current build-input
+hashes, including resources. Workflow jobs, permissions and concurrency must
+still match. A passed label or an older seven-case index is not sufficient.
+
+`retain-ios-fixture-gate.mjs` records an already completed job without starting
+another run. `accept-ios-fixture-gate.mjs` refuses mismatched current inputs before
+writing anything. On acceptance it changes only the two iPhone automated entries,
+retains all previous evidence references and writes a new cumulative index. All
+physical, operational, store and safety requirements remain unchanged. The gap
+report and final manifest validator verify this proof instead of trusting a label.
+
+Historical failure tests still enforce their original failures, source hashes
+and lack of acceptance. Their assertions about a mutable current manifest now
+check current proof rather than requiring it to remain pending forever. Historical
+indexes and reports are never rewritten. The normalized d56 report is valid for
+its own source only; the later chat input-readiness helper cannot inherit it.
+See `evidence/ios-fixture-gate-d56cec6-2026-11-05/`.
+
+## Earlier Checkpoints
+
 At `3e7cd40`, run `41911781988` succeeds with the actual SDK build, all seven
 fixture tests and simulator disposal. This includes the later account-refresh,
 authentication, payment, publication, booking and permission-bridge source changes

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -106,8 +107,7 @@ test('the eight-case source-bound iPhone pass remains separate from the two addi
   const added = read('ios/UITests/SportsGreenMooveUITests/EmergencyContactFlowTests.swift');
   assert.equal((added.match(/func test\w+\(/g) ?? []).length, 2);
   assert.doesNotMatch(added, /XCTSkip|captureApproved|\.screenshot\(|sleep\(|buttons\["emergency.phone.open"\]\.tap/);
-  const manifest = JSON.parse(read('docs/release/evidence-manifest.json'));
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) assert.equal(manifest.automatedUserFlowEvidence.items.find(item => item.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });
 
 test('the portal preserves one concise update per actual scope and both web and iPhone workflows cover the new contracts', () => {

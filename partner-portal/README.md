@@ -2,6 +2,22 @@
 
 ## Current Publication Policy
 
+The f61 SDK build, all eleven original iPhone screen cases and disposal now pass,
+with captures skipped and zero artifacts. Its complete source/config/resource
+inventory and workflow jobs match the current tree. Strict proof validation
+accepts only the two automated iPhone entries and a new cumulative index; every
+other manifest section/entry and all historical reports/references are preserved.
+Historical negative tests no longer require the current manifest to remain
+pending forever. They still validate their exact original failed observations.
+The gap report and final validator reject stale or merely labelled successes.
+Publish one short current-version simulation note, moving d56 into history while
+preserving all flow/status/date records, media, tours, blockers and public access.
+Nine physical scenarios per platform, the actual emergency phone handoff, six
+safety-audit and nine operational items remain. Native CI is not accepted from
+the iPhone pass: its separate remote-stop prerequisite fails at boot-time unlock.
+No new phone, media, provider call, deadline, policy or audience change is added.
+See `ios-fixture-gate-f61e0f7` and `ios-automated-acceptance-f61e0f7` evidence.
+
 The d56 SDK build and all eleven original iPhone simulator cases now pass with
 successful disposal and no artifacts. Publish the exact source-bound result,
 not physical or live-service acceptance. The separate 38b input observation

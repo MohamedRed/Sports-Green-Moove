@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -113,8 +114,7 @@ test('the concise portal update and required workflow coverage preserve pending 
   assert(Object.values(web.jobs).some(job => job.steps.some(step => step.run?.includes(path))));
   const ios = parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON();
   assert(ios.on.pull_request.paths.includes(path)); assert.equal(ios.jobs['ios-fixture-verification']['timeout-minutes'], 50);
-  const manifest = JSON.parse(read('docs/release/evidence-manifest.json'));
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) assert.equal(manifest.automatedUserFlowEvidence.items.find(item => item.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });
 
 test('three observer regressions and the parent replay pass without accepting the failed complete native gate', () => {

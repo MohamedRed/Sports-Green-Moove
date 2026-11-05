@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import {assertCurrentIosAutomatedEvidence, iosAutomatedEvidenceIds} from './qa/ios-fixture-release-evidence.mjs';
 import {
   requiredAuditEvidence,
   requiredAutomatedFlowEvidence,
@@ -27,7 +28,12 @@ if (json) {
 function buildReport(manifestResult, automatedResult, secretInventoryResult) {
   const manifest = manifestResult.data;
   const automated = automatedResult.data;
-  const automatedItems = automated?.items ?? manifest?.automatedUserFlowEvidence?.items ?? [];
+  const recordedItems = automated?.items ?? manifest?.automatedUserFlowEvidence?.items ?? [];
+  const currentIosItems = (manifest?.automatedUserFlowEvidence?.items ?? []).filter(row => iosAutomatedEvidenceIds.includes(row.id));
+  const claimsIosPass = currentIosItems.some(row => ['passed', 'accepted'].includes(row.status));
+  const iosFixtureGate = claimsIosPass ? assertCurrentIosAutomatedEvidence(manifest) :
+    {status: currentIosItems.length === 2 && currentIosItems.every(row => row.status === 'pending') ? 'pending' : 'missing'};
+  const automatedItems = [...recordedItems.filter(row => !iosAutomatedEvidenceIds.includes(row.id)), ...currentIosItems];
   const providerEnvironment = providerEnvironmentGaps(
     secretInventoryResult.names,
     requiredProviderEnvironmentVariables,
@@ -60,6 +66,7 @@ function buildReport(manifestResult, automatedResult, secretInventoryResult) {
     postponedSocialAuthEnvironment,
     providerReadiness,
     automatedFlowEvidence,
+    iosFixtureGate,
     realDeviceRuns,
     storeReviewEvidence,
     safetyAuditEvidence,

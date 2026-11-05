@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, isAbsolute, resolve } from "node:path";
+import {assertCurrentIosAutomatedEvidence, iosAutomatedEvidenceIds} from './qa/ios-fixture-release-evidence.mjs';
 import {
   requiredAuditEvidence,
   requiredAutomatedFlowEvidence,
@@ -42,6 +43,10 @@ function validateManifest(data) {
   validateProviders(data.providerProductionReadiness);
   validatePostponedSocialAuth(data.postponedSocialAuthReadiness);
   validateAutomatedFlowEvidence(data.automatedUserFlowEvidence);
+  if (data.automatedUserFlowEvidence?.items?.some(item => iosAutomatedEvidenceIds.includes(item.id) && item.status === 'passed')) {
+    try {assertCurrentIosAutomatedEvidence(data);}
+    catch (error) {errors.push('Current iPhone gate proof is invalid: ' + formatError(error));}
+  }
   validateDeviceRuns(data.realDeviceRuns);
   validateStoreEvidence(data.storeReviewEvidence);
   validateAuditEvidence(data.safetyAuditEvidence);

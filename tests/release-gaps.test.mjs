@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import {assertCurrentIosAutomatedEvidence, iosAutomatedEvidenceIds} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import { execFileSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -29,8 +30,10 @@ assert.deepEqual(report.operationalUserFlowEvidence.missing, ["urgent_support_sp
 assert.equal(report.manifest.exists, true, "In-progress release evidence manifest should be read.");
 assert.equal(report.manifest.data.manifestStatus, "in-progress", "Release evidence manifest must not claim completion.");
 assert.equal(report.secretInventory.exists, true, "Default release gap report should read the checked-in secret inventory.");
-assert.deepEqual(report.automatedFlowEvidence.missing, ["ios_sdk_build_ci", "ios_fixture_ui_ci"],
-  "The source-bound iPhone pass cannot accept later native shutdown and sign-out changes.");
+const currentIos = assertCurrentIosAutomatedEvidence();
+assert.deepEqual(report.automatedFlowEvidence.missing, currentIos.status === 'passed' ? [] : iosAutomatedEvidenceIds,
+  "Only the complete source-matched gate can accept current iPhone automated evidence.");
+assert.deepEqual(report.iosFixtureGate, currentIos);
 for (const id of ["native_ui_flow_ci", "android_connected_ui_ci", "backend_live_smoke", "operations_live_smoke",
   "firebase_rules_emulator", "stripe_webhook_emulator", "android_appetize_launch", "android_appetize_email_login"]) {
   assert(report.automatedFlowEvidence.passed.includes(id), `Preserve original scoped automated evidence: ${id}`);

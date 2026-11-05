@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -113,5 +114,5 @@ test('one short local note preserves earlier portal records and does not accept 
   assert.equal(sha(JSON.stringify(content.blockers)), previous.blockers);
   for (const key of ['membershipUiCauseProven', 'sdkLinkedBuildAccepted', 'nativeUiAccepted', 'physicalDeviceAccepted', 'releaseComplete']) assert.equal(report[key], false);
   for (const key of ['providerRequests', 'productionWrites', 'newPhoneSessions', 'newMedia']) assert.equal(report[key], 0);
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) assert.equal(json('docs/release/evidence-manifest.json').automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });

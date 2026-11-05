@@ -2,8 +2,10 @@ import {rejectedCaptureRecheck} from './rejected-capture-probe.mjs';
 import {completeChecks} from './complete-checks.mjs';
 import {currentChatRecovery} from './current-chat-recovery.mjs';
 import {iosD56FixturePass} from './ios-d56-fixture-pass.mjs';
+import {iosAutomatedAcceptance} from './ios-automated-acceptance.mjs';
 
 export const nativeRechecks = {
+  iosAutomatedAcceptance,
   currentChatRecovery,
   iosD56FixturePass,
   completeChecks,

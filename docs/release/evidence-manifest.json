@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-11-04",
+  "generatedAt": "2026-11-05",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -90,15 +90,51 @@
     "items": [
       {
         "id": "ios_sdk_build_ci",
-        "status": "pending",
-        "description": "SDK-linked app and all fixture bundles compile at d51c0f8, but the eleven-case job fails three cases. Preserve the scoped build success without accepting the full current automated gate; see the terminal D51 evidence. No physical or real-service acceptance.",
-        "evidenceRefs": ["ios-mvp-verification.md", "evidence/ios-fixture-pass-3e7cd40-2026-11-04/summary.json", "evidence/ios-fixture-pass-3e7cd40-2026-11-04/source-sha256.json", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41911781988/job/126862422870", "evidence/ios-fixture-failure-d51-2026-11-05/summary.json", "evidence/ios-fixture-failure-d51-2026-11-05/source-sha256.json", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42030107261/job/127268225474"]
+        "status": "passed",
+        "description": "SDK-linked app and all fixture bundles compile successfully at f61e0f7. Exact current build inputs and unchanged workflow jobs match the successful source. Simulator-only automated acceptance; no physical or real-service acceptance.",
+        "evidenceRefs": [
+          "evidence/ios-fixture-gate-f61e0f7-2026-11-05/summary.json",
+          "evidence/ios-fixture-gate-f61e0f7-2026-11-05/source-sha256.json",
+          "evidence/ios-fixture-gate-f61e0f7-2026-11-05/build-input-sha256.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42116135548/job/127556161432",
+          "ios-mvp-verification.md",
+          "evidence/ios-fixture-pass-3e7cd40-2026-11-04/summary.json",
+          "evidence/ios-fixture-pass-3e7cd40-2026-11-04/source-sha256.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41911781988/job/126862422870",
+          "evidence/ios-fixture-failure-d51-2026-11-05/summary.json",
+          "evidence/ios-fixture-failure-d51-2026-11-05/source-sha256.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42030107261/job/127268225474"
+        ],
+        "fixtureGateProof": {
+          "source": "docs/release/evidence/ios-fixture-gate-f61e0f7-2026-11-05/summary.json",
+          "sha256": "fa34f6d0c7facb12a66e6b1c9d2e81886a38f170a09727e43bc5d919a1eeca56"
+        },
+        "appSourceCommit": "f61e0f760a3976f0d80005033fcbfe2bff21212c",
+        "verifiedAt": "2026-11-05"
       },
       {
         "id": "ios_fixture_ui_ci",
-        "status": "pending",
-        "description": "D51 executes all eleven fixture cases: eight pass, three fail (city entry, exact team draft/send text and membership approval). Disposal succeeds, captures are skipped and artifacts are empty. EEF separately compiles but completes only one case before its 50-minute cancellation. Full fixture, physical and real-service flows remain unaccepted.",
-        "evidenceRefs": ["ios-mvp-verification.md", "evidence/ios-fixture-pass-3e7cd40-2026-11-04/summary.json", "evidence/ios-fixture-pass-3e7cd40-2026-11-04/source-sha256.json", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41911781988/job/126862422870", "evidence/ios-fixture-failure-d51-2026-11-05/summary.json", "evidence/ios-fixture-failure-d51-2026-11-05/source-sha256.json", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42030107261/job/127268225474"]
+        "status": "passed",
+        "description": "All eleven original fixture screen cases and disposal pass at f61e0f7, with no artifacts. Exact source, resources, case inventory and terminal transcript are retained. This does not accept physical, operational, emergency phone handoff or complete release flows.",
+        "evidenceRefs": [
+          "evidence/ios-fixture-gate-f61e0f7-2026-11-05/summary.json",
+          "evidence/ios-fixture-gate-f61e0f7-2026-11-05/source-sha256.json",
+          "evidence/ios-fixture-gate-f61e0f7-2026-11-05/build-input-sha256.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42116135548/job/127556161432",
+          "ios-mvp-verification.md",
+          "evidence/ios-fixture-pass-3e7cd40-2026-11-04/summary.json",
+          "evidence/ios-fixture-pass-3e7cd40-2026-11-04/source-sha256.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41911781988/job/126862422870",
+          "evidence/ios-fixture-failure-d51-2026-11-05/summary.json",
+          "evidence/ios-fixture-failure-d51-2026-11-05/source-sha256.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42030107261/job/127268225474"
+        ],
+        "fixtureGateProof": {
+          "source": "docs/release/evidence/ios-fixture-gate-f61e0f7-2026-11-05/summary.json",
+          "sha256": "fa34f6d0c7facb12a66e6b1c9d2e81886a38f170a09727e43bc5d919a1eeca56"
+        },
+        "appSourceCommit": "f61e0f760a3976f0d80005033fcbfe2bff21212c",
+        "verifiedAt": "2026-11-05"
       },
       {
         "id": "native_ui_flow_ci",
@@ -332,48 +368,78 @@
         "id": "urgent_support_space_alert",
         "status": "pending",
         "description": "Local support-only alert, review, closure and manager isolation pass. Production activation and an app-origin end-to-end support-space alert still require observed evidence.",
-        "evidenceRefs": ["../contracts/support-urgent.md", "evidence/support-urgent-2026-10-23/README.md"]
+        "evidenceRefs": [
+          "../contracts/support-urgent.md",
+          "evidence/support-urgent-2026-10-23/README.md"
+        ]
       },
       {
         "id": "urgent_support_email_receipt",
         "status": "pending",
         "description": "Both urgent channels are required. The isolated loopback provider proves retry safety only, not real email. Approve/configure a verified sender, activate server secrets and retain actual receipt at the privately confirmed support inbox, without publishing its address.",
-        "evidenceRefs": ["../contracts/support-urgent.md", "evidence/support-urgent-2026-10-23/README.md"]
+        "evidenceRefs": [
+          "../contracts/support-urgent.md",
+          "evidence/support-urgent-2026-10-23/README.md"
+        ]
       },
       {
-        "id": "team_push_closed_app_delivery", "status": "pending",
+        "id": "team_push_closed_app_delivery",
+        "status": "pending",
         "description": "Both release platforms require observed team-message receipt with the app closed. Local inbox, registration, SDK compilation and provider acceptance do not prove delivery.",
-        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+        "evidenceRefs": [
+          "../contracts/team-push-notifications.md"
+        ]
       },
       {
-        "id": "team_push_notification_tap", "status": "pending",
+        "id": "team_push_notification_tap",
+        "status": "pending",
         "description": "Observe authenticated tap navigation with fresh team authority, current admission-time history and no implicit read acknowledgement on both release platforms.",
-        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+        "evidenceRefs": [
+          "../contracts/team-push-notifications.md"
+        ]
       },
       {
-        "id": "team_push_current_account_isolation", "status": "pending",
+        "id": "team_push_current_account_isolation",
+        "status": "pending",
         "description": "Observe queued and late notifications across account switches, same-account re-login, child/disabled accounts and process restart. No previous-account content or registration may be reused.",
-        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+        "evidenceRefs": [
+          "../contracts/team-push-notifications.md"
+        ]
       },
       {
-        "id": "team_push_revocation_suppression", "status": "pending",
+        "id": "team_push_revocation_suppression",
+        "status": "pending",
         "description": "Observe team/guardian revocation and renewed admission before send, display and tap; stale queued notifications must not reveal prior history on either release platform.",
-        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+        "evidenceRefs": [
+          "../contracts/team-push-notifications.md"
+        ]
       },
       {
-        "id": "team_push_permission_lifecycle", "status": "pending",
+        "id": "team_push_permission_lifecycle",
+        "status": "pending",
         "description": "Observe denial, grant, channel blocking and later revocation/regrant on each release platform without fabricated permission state or duplicate registration.",
-        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+        "evidenceRefs": [
+          "../contracts/team-push-notifications.md"
+        ]
       },
       {
-        "id": "booking_ride_chat_access_revocation", "status": "pending",
+        "id": "booking_ride_chat_access_revocation",
+        "status": "pending",
         "description": "Fresh-read rules and both native source implementations pass isolated checks only. Require reviewed deployed rules matching the validated policy SHA and observed open-thread revocation, delayed paging/read callbacks, account/lifecycle cleanup and listener disposal on Android and iPhone. The iPhone conversation is source-wired and has historical synthetic screen proof; no production apply, current complete native gate or real-service revocation acceptance is established.",
-        "evidenceRefs": ["evidence/chat-source-access-2026-11-05/README.md", "evidence/ios-ride-chat-2026-11-05/README.md", "evidence/ios-fixture-pass-a37-2026-11-05/README.md", "../../infra/firestore-rules/README.md"]
+        "evidenceRefs": [
+          "evidence/chat-source-access-2026-11-05/README.md",
+          "evidence/ios-ride-chat-2026-11-05/README.md",
+          "evidence/ios-fixture-pass-a37-2026-11-05/README.md",
+          "../../infra/firestore-rules/README.md"
+        ]
       },
       {
-        "id": "team_push_signout_cleanup", "status": "pending",
+        "id": "team_push_signout_cleanup",
+        "status": "pending",
         "description": "Observe online authenticated installation removal and offline pending cleanup, actual SDK deletion and no delayed reactivation after logout or restart. Local coordinator tests alone are insufficient.",
-        "evidenceRefs": ["../contracts/team-push-notifications.md"]
+        "evidenceRefs": [
+          "../contracts/team-push-notifications.md"
+        ]
       }
     ]
   },

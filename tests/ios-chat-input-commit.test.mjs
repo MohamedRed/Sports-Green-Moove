@@ -66,9 +66,9 @@ test('d56 builds and passes the original eleven screen cases without accepting t
   const oldWorkflow = sourceBytes(json(passFolder + 'source-sha256.json').files.find(row => row.path === '.github/workflows/ios-mvp-verification.yml'));
   assert.deepEqual(workflow.jobs, parseDocument(oldWorkflow).toJSON().jobs);
 });
-test('latest full-pass simulation note replaces partial iPhone headlines while preserving them in history', () => {
-  const {recent, previous} = partitionUpdates(content.updates);
-  const news = recent.find(row => row.source === passFolder + 'README.md'); assert(news);
+test('the earlier full-pass simulation note and preceding failures remain in history', () => {
+  const {previous} = partitionUpdates(content.updates);
+  const news = previous.find(row => row.source === passFolder + 'README.md'); assert(news);
   assert.match(news.title, /11/); assert.match(news.text, /simulation/);
   assert.doesNotMatch(news.title + news.text, /Firebase|BrowserStack|Android|SDK|CI\b/);
   assert(previous.some(row => row.source === 'docs/release/evidence/ios-viewport-35f-2026-11-05/README.md'));

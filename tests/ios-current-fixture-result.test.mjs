@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {parseDocument} from 'yaml';
@@ -41,8 +42,7 @@ test('eleven cases, unchanged approved deadline, empty artifacts and unaccepted 
     for (const step of ['Validate and collect only three approved synthetic captures', 'Retain approved iPhone captures for one day'])
       assert.equal(run.jobs[0].steps.find(row => row.name === step).conclusion, 'skipped');
   }
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci'])
-    assert.equal(json('docs/release/evidence-manifest.json').automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });
 test('one short public result preserves historical notes and does not introduce provider names or media', () => {
   assert.deepEqual(content.iosCurrentFixtureFailure, iosCurrentFixtureFailure);
@@ -103,8 +103,7 @@ test('a short 584 result preserves every older flow, media reference, note and b
   for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
   for (const hash of before.updates) assert(content.updates.some(row => sha(JSON.stringify(row)) === hash));
   assert.equal(sha(JSON.stringify(content.blockers)), before.blockers);
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci'])
-    assert.equal(json('docs/release/evidence-manifest.json').automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });
 
 test('6e89 completes below the unchanged deadline with nine passes and all four actual failure records', () => {
@@ -142,6 +141,5 @@ test('the latest simulation-only result keeps every older portal record and rele
   for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
   for (const hash of before.updates) assert(content.updates.some(row => sha(JSON.stringify(row)) === hash));
   assert.equal(sha(JSON.stringify(content.blockers)), before.blockers);
-  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci'])
-    assert.equal(json('docs/release/evidence-manifest.json').automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+  assertCurrentIosAutomatedEvidence();
 });

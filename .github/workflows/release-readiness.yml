@@ -39,6 +39,9 @@ on:
       - "scripts/live-operations-flow-smoke.mjs"
       - "scripts/release-evidence-requirements.mjs"
       - "scripts/report-release-gaps.mjs"
+      - "scripts/qa/ios-fixture-release-evidence.mjs"
+      - "scripts/qa/accept-ios-fixture-gate.mjs"
+      - "tests/ios-fixture-release-evidence.test.mjs"
       - "scripts/validate-safety-audit-export.mjs"
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
@@ -95,6 +98,9 @@ on:
       - "scripts/live-operations-flow-smoke.mjs"
       - "scripts/release-evidence-requirements.mjs"
       - "scripts/report-release-gaps.mjs"
+      - "scripts/qa/ios-fixture-release-evidence.mjs"
+      - "scripts/qa/accept-ios-fixture-gate.mjs"
+      - "tests/ios-fixture-release-evidence.test.mjs"
       - "scripts/validate-safety-audit-export.mjs"
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
@@ -217,6 +223,9 @@ jobs:
 
       - name: Validate release gap report
         run: npm run test:release-gaps
+
+      - name: Verify source-bound iPhone release evidence
+        run: node --test tests/ios-fixture-release-evidence.test.mjs
 
       - name: Validate PR user-flow check verifier
         run: npm run test:pr-user-flow-checks

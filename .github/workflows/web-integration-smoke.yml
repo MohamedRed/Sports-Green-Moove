@@ -5,6 +5,11 @@ on:
   pull_request:
     paths:
       - "tests/ios-chat-input-commit.test.mjs"
+      - "tests/ios-fixture-release-evidence.test.mjs"
+      - "scripts/qa/ios-fixture-release-evidence.mjs"
+      - "scripts/qa/retain-ios-fixture-gate.mjs"
+      - "scripts/qa/accept-ios-fixture-gate.mjs"
+      - "docs/release/evidence/ios-fixture-gate-*/**"
       - "tests/chat-network-current.test.mjs"
       - "scripts/qa/chat-network-current-evidence.mjs"
       - "docs/release/evidence/chat-network-38b-2026-11-05/**"
@@ -711,6 +716,11 @@ on:
       - main
     paths:
       - "tests/ios-chat-input-commit.test.mjs"
+      - "tests/ios-fixture-release-evidence.test.mjs"
+      - "scripts/qa/ios-fixture-release-evidence.mjs"
+      - "scripts/qa/retain-ios-fixture-gate.mjs"
+      - "scripts/qa/accept-ios-fixture-gate.mjs"
+      - "docs/release/evidence/ios-fixture-gate-*/**"
       - "tests/chat-network-current.test.mjs"
       - "scripts/qa/chat-network-current-evidence.mjs"
       - "docs/release/evidence/chat-network-38b-2026-11-05/**"
@@ -1752,6 +1762,9 @@ jobs:
 
       - name: Verify current chat recovery and iPhone input commit
         run: node --test tests/chat-network-current.test.mjs tests/ios-chat-input-commit.test.mjs
+
+      - name: Verify source-bound iPhone release evidence
+        run: node --test tests/ios-fixture-release-evidence.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:
