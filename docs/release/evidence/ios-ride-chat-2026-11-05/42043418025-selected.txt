@@ -1,0 +1,19 @@
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:00:53.5185330Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' started.
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:01:41.1547950Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' passed (48.067 seconds).
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:01:41.2594410Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' started.
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:02:52.6584540Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/EmergencyContactFlowTests.swift:50: error: -[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval] : Failed to tap "emergency.back" Button: No matches found for Elements matching predicate '"emergency.back" IN identifiers' from input {(
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:02:54.0217440Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' failed (72.434 seconds).
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:02:54.3462680Z 	 Executed 2 tests, with 1 failure (0 unexpected) in 120.501 (120.509) seconds
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:02:54.5706980Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' started.
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:04:27.5091510Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' passed (93.885 seconds).
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:04:28.1081320Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' started.
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:04:56.9117180Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' passed (29.442 seconds).
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:04:57.0135320Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' started.
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:05:25.0501190Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' passed (27.986 seconds).
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:05:25.3722120Z 	 Executed 2 tests, with 0 failures (0 unexpected) in 57.428 (57.432) seconds
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:05:25.5746010Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' started.
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:06:08.5904360Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' passed (43.573 seconds).
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:06:09.1404200Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' started.
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:06:30.4775970Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' passed (21.922 seconds).
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:06:30.5774210Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' started.
+iPhone build and fixture screens	UNKNOWN STEP	2026-11-05T15:07:11.6367980Z ##[error]The operation was canceled.

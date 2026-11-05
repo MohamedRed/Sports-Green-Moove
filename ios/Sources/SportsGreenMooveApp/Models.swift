@@ -248,7 +248,6 @@ struct PaymentSheetConfig: Hashable, Sendable {
 
 struct InboxSummary: Hashable, Sendable {
     var notifications: [InboxNotificationSummary] = []
-    var chats: [InboxChatSummary] = []
     var reviews: [InboxReviewPrompt] = []
     var reviewsNextCursor: String? = nil
     var reviewsUserId: String? = nil
@@ -260,16 +259,5 @@ struct InboxNotificationSummary: Identifiable, Hashable, Sendable {
     let body: String
     let dateLabel: String
     let unread: Bool
-    let initials: String
-}
-
-struct InboxChatSummary: Identifiable, Hashable, Sendable {
-    let id: String
-    let sourceType: String
-    let sourceId: String
-    let title: String
-    let preview: String
-    let dateLabel: String
-    let unreadCount: Int
     let initials: String
 }

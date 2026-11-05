@@ -29,6 +29,7 @@ import {iosMembership} from './ios-membership.mjs';
 import {iosProfileCity} from './ios-profile-city.mjs';
 import {iosCurrentFixtureFailure} from './ios-current-fixture-failure.mjs';
 import {iosInputControls} from './ios-input-controls.mjs';
+import {iosRideChat} from './ios-ride-chat.mjs';
 
 export const iosCheckpoints = {
   iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
@@ -46,4 +47,5 @@ export const iosCheckpoints = {
   iosProfileCity,
   iosCurrentFixtureFailure,
   iosInputControls,
+  iosRideChat,
 };

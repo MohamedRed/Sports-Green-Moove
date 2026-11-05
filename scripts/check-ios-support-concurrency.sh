@@ -32,6 +32,20 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -D DEBU
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TeamChatModels.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TeamChatWire.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TeamChatRequest.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RideChatIdentity.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RideChatModels.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RideChatWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RideChatDirectoryWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RideChatMessageWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RideChatSourcePolicy.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RideChatRequest.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RideChatCallbackClock.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseRideChatSnapshots.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseRideChatThreadWatch.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseRideChatInboxWatch.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseRideChatGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/UITestRideChatWatches.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/UITestRideChat.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseTeamChatGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/UITestTeamChat.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/StripeConnectModels.swift" \

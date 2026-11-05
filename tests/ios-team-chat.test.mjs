@@ -15,7 +15,7 @@ const folder = 'docs/release/evidence/ios-team-chat-2026-11-05/';
 test('the actual messages screen opens an owned adult team directory without replacing booking or review content', () => {
   const screen = read(app + 'MessagesScreen.swift');
   for (const part of ['TeamChatPolicy.permits(access)', 'team-chat.entry', 'TeamChatHost(access: access, gateway: teamGateway)',
-    '.id(access.context.id)', 'ChatCard(chat: $0)', 'PendingReviewsContent(state: state.reviews']) assert(screen.includes(part));
+    '.id(access.context.id)', 'RideChatEntry(access: access, gateway: rideGateway', 'PendingReviewsContent(state: state.reviews']) assert(screen.includes(part));
   assert(read(app + 'GatewayContracts.swift').includes('TeamChatGateway'));
   const policy = read(app + 'TeamChatPolicy.swift');
   assert(policy.includes('!access.context.grantedRoles.contains(.child)'));
@@ -43,8 +43,10 @@ test('team callable requests retain exact account, instance, operation and admis
 
 test('persisted drafts and explicit unknown-send retry cannot replace an unsettled intent or switch to volatile storage', () => {
   const store = read(app + 'TeamChatDraftStore.swift'), composer = read(app + 'TeamChatComposer.swift');
-  for (const part of ['[uid, target.teamId, target.instanceId]', 'isExcludedFromBackup = true', '.completeFileProtection',
-    'previous == draft', 'row == expected', 'isSymbolicLink != true', '131_072', 'releaseRejected']) assert(store.includes(part));
+  const files = read(app + 'PrivateChatDraftFiles.swift');
+  for (const part of ['[uid, target.teamId, target.instanceId]', 'previous == draft', 'row == expected',
+    'PrivateChatDraftFiles.lock', 'PrivateChatDraftFiles.read', 'PrivateChatDraftFiles.write', 'releaseRejected']) assert(store.includes(part));
+  for (const part of ['isExcludedFromBackup = true', '.completeFileProtection', 'isSymbolicLink != true', '131_072']) assert(files.includes(part));
   for (const part of ['pending ??', 'try store().write(next)', 'pending == expected', 'rejected && !retrying',
     'row', 'storage']) assert(composer.includes(part));
   assert(composer.includes('$0.senderId == uid && $0.requestId == id && $0.body == TeamChatText.normalized(pending.body)'));

@@ -58,8 +58,15 @@ test('UI candidates preserve the real city button and full-size club target with
     '.disabled(!state.live || state.busy)', 'ProfileCityEditor(access: access, gateway: gateway)']) assert(city.includes(part));
   const review = read(app + 'MembershipReviewScreen.swift'); assert(review.includes('.frame(minHeight: 44).contentShape(Rectangle())'));
   assert.equal(read(app + 'MembershipReviewState.swift'), frozen(app + 'MembershipReviewState.swift', report.baselineCommit));
-  for (const row of index.files.filter(row => row.path.startsWith('ios/UITests/') && row.commit === 'candidate'))
-    assert.equal(read(row.path), frozen(row.path, report.baselineCommit));
+  for (const row of index.files.filter(row => row.path.startsWith('ios/UITests/') && row.commit === 'candidate')) {
+    const original = frozen(row.path, report.baselineCommit);
+    assert.equal(frozen(row.path, 'candidate'), original);
+    const expected = row.path.endsWith('/SportsGreenMooveUITests.swift')
+      ? original.replace('        verifyTeamChat(in: app)', '        verifyRideChat(in: app)\n        verifyTeamChat(in: app)')
+        .replace('        assertExists("active-ride.emergency-contact", in: app)',
+          '        assertExists("active-ride.emergency-contact", in: app)\n        verifyActiveRideChat(in: app)') : original;
+    assert.equal(read(row.path), expected);
+  }
 });
 test('existing eleven-case workload, concurrency, deadline and capture policy remain unchanged', () => {
   const path = '.github/workflows/ios-mvp-verification.yml', current = parseDocument(read(path)).toJSON();

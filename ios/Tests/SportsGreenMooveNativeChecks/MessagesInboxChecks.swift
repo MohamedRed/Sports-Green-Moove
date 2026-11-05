@@ -24,7 +24,6 @@ private actor MessagesProbe: MessagesGateway {
     func getInbox(uid: String) async throws -> InboxSummary {
         try await call("inbox", uid: uid)
         return .init(notifications: [.init(id: "private-note", title: "Private", body: "Isolated", dateLabel: "Today", unread: true, initials: "QA")],
-            chats: [.init(id: "private-chat", sourceType: "booking", sourceId: "booking", title: "Private", preview: "Isolated", dateLabel: "Today", unreadCount: 1, initials: "QA")],
             reviews: [messagesReview()], reviewsNextCursor: "next", reviewsUserId: owner)
     }
     func loadPendingReviews(uid: String, cursor: String) async throws -> PendingReviewPage {
@@ -104,7 +103,7 @@ private func messagesReview(id: String = "review") -> InboxReviewPrompt {
     let scope = messagesScope(), probe = MessagesProbe()
     let state = MessagesInboxState(access: scope.access!, gateway: probe)
     await state.refresh()
-    check(state.inbox.chats.count == 1 && state.reviews.items == [messagesReview()], "Current inbox did not load")
+    check(state.inbox.notifications.map(\.id) == ["private-note"] && state.reviews.items == [messagesReview()], "Current inbox did not load")
     await state.submit(messagesReview(), score: 0)
     await state.submit(messagesReview(id: "foreign"), score: 5)
     let before = await probe.names

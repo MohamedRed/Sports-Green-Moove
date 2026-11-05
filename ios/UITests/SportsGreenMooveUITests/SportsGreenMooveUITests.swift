@@ -63,6 +63,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         assertExists("active-ride.dropoff.action", in: app)
         assertExists("active-ride.end.action", in: app)
         assertExists("active-ride.emergency-contact", in: app)
+        verifyActiveRideChat(in: app)
     }
 
     @MainActor func testMessagesChatAndRatingIdentifiers() {
@@ -85,6 +86,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Aucun avis en attente."].waitForExistence(timeout: 6))
         XCTAssertFalse(app.descendants(matching: .any)["messages.rating-prompt.action"].exists)
         captureApproved(.rating, in: app)
+        verifyRideChat(in: app)
         verifyTeamChat(in: app)
     }
 

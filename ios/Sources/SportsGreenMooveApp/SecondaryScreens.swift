@@ -14,6 +14,10 @@ struct RideMonitorScreen: View {
                 )
                 OverlayCard(title: "Enfant", subtitle: ride.childLastUpdateLabel ?? "Non disponible", meta: "SUIVI")
                 RidePassengerControls(ride: ride)
+                if let access = appState.accountAccess {
+                    ActiveRideChatEntry(access: access, gateway: appState.firebase, rideId: ride.rideSessionId)
+                        .id(access.context.id)
+                }
                 RideEndControls()
             } else {
                 OverlayHeroMetric(

@@ -14,19 +14,25 @@ private struct OwnedMessagesScreen: View {
     @State private var selectedTab = "chats"
     @State private var state: MessagesInboxState
     @State private var teamPresented = false
+    @State private var chatEpoch = UUID()
+    @State private var chatUnread: Int?
     private let access: AccountAccess
     private let teamGateway: any TeamChatGateway
+    private let rideGateway: any RideChatGateway
 
     init(access: AccountAccess, gateway: any FirebaseGateway) {
         _state = State(initialValue: MessagesInboxState(access: access, gateway: gateway))
-        self.access = access; teamGateway = gateway
+        self.access = access; teamGateway = gateway; rideGateway = gateway
     }
 
     var body: some View {
         SGMScreen(spacing: 0, testID: UITestIdentifier.messagesScreen) {
             HStack {
                 SGMTopBar(title: "MESSAGES")
-                Button { Task { await state.refresh() } } label: {
+                Button {
+                    if selectedTab == "chats" { chatEpoch = UUID() }
+                    else { Task { await state.refresh() } }
+                } label: {
                     Image(systemName: "arrow.clockwise").frame(width: 44, height: 44)
                 }.accessibilityLabel("Actualiser les messages").accessibilityIdentifier("messages.refresh")
                     .disabled(state.busy || !state.live).padding(.trailing, SGMSpace.padScreen)
@@ -46,7 +52,10 @@ private struct OwnedMessagesScreen: View {
                     if let notice = state.notice {
                         MessageEmptyCard(message: notice)
                     }
-                    if !state.loading && state.inbox.reviewsUserId != nil {
+                    if selectedTab == "chats" {
+                        RideChatEntry(access: access, gateway: rideGateway, epoch: chatEpoch,
+                            onUnread: { chatUnread = $0 }, onClosed: { Task { await state.refresh() } })
+                    } else if !state.loading && state.inbox.reviewsUserId != nil {
                         switch selectedTab {
                         case "notifs":
                             notificationContent
@@ -55,8 +64,7 @@ private struct OwnedMessagesScreen: View {
                                 busy: !state.canSubmit, onMore: { Task { await state.more() } }) { review, score in
                                 Task { await state.submit(review, score: score) }
                             }
-                        default:
-                            chatContent
+                        default: EmptyView()
                         }
                     }
                 }
@@ -73,19 +81,9 @@ private struct OwnedMessagesScreen: View {
     private var tabs: [MessageTab] {
         [
             MessageTab(id: "notifs", label: "Notifs", count: state.live ? state.inbox.notifications.filter(\.unread).count : 0),
-            MessageTab(id: "chats", label: "Chats", count: state.live ? state.inbox.chats.reduce(0) { $0 + $1.unreadCount } : 0),
+            MessageTab(id: "chats", label: "Chats", count: state.live ? chatUnread : nil),
             MessageTab(id: "avis", label: "Avis", count: state.live ? state.reviews.items.count : 0),
         ]
-    }
-
-    private var chatContent: some View {
-        Group {
-            if state.inbox.chats.isEmpty {
-                MessageEmptyCard(message: "Aucune conversation.")
-            } else {
-                ForEach(state.inbox.chats) { ChatCard(chat: $0) }
-            }
-        }
     }
 
     private var notificationContent: some View {
@@ -103,7 +101,7 @@ private struct OwnedMessagesScreen: View {
 private struct MessageTab: Identifiable, Hashable {
     let id: String
     let label: String
-    let count: Int
+    let count: Int?
 }
 
 private struct MessageTabs: View {
@@ -114,47 +112,13 @@ private struct MessageTabs: View {
     var body: some View {
         HStack(spacing: 6) {
             ForEach(tabs) { tab in
-                SGMChip(text: tab.label, selected: selected == tab.id, badge: tab.count > 0 ? "\(tab.count)" : nil, testID: tab.testID) {
+                SGMChip(text: tab.label, selected: selected == tab.id, badge: tab.count.flatMap { $0 > 0 ? String($0) : nil }, testID: tab.testID) {
                     onSelect(tab.id)
                 }
             }
         }
         .padding(.horizontal, SGMSpace.padScreen)
         .padding(.top, 12)
-    }
-}
-
-private struct ChatCard: View {
-    let chat: InboxChatSummary
-
-    var body: some View {
-        HStack(spacing: 10) {
-            SGMAvatar(initials: chat.initials, size: 40)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(chat.title)
-                    .font(.sgmBody(15, weight: .semibold))
-                    .foregroundStyle(SGM.textPrimary)
-                    .lineLimit(1)
-                Text(chat.preview)
-                    .font(.sgmBody(12))
-                    .foregroundStyle(SGM.textMuted)
-                    .lineLimit(1)
-            }
-            Spacer()
-            VStack(alignment: .trailing, spacing: 4) {
-                Text(chat.dateLabel)
-                    .font(.sgmBody(10, weight: .medium))
-                    .foregroundStyle(SGM.textMuted)
-                if chat.unreadCount > 0 {
-                    Text("\(chat.unreadCount)")
-                        .font(.sgmBody(10, weight: .bold))
-                        .foregroundStyle(SGM.textOnGreen)
-                        .frame(width: 18, height: 18)
-                        .background(SGM.green, in: Circle())
-                }
-            }
-        }
-        .messageCardStyle()
     }
 }
 

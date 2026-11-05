@@ -181,7 +181,6 @@ private enum Fixtures {
 
     static let inbox = InboxSummary(
         notifications: [],
-        chats: [InboxChatSummary(id: "chat-1", sourceType: "trip", sourceId: "trip-1", title: "Coach U8", preview: "Départ confirmé.", dateLabel: "16h12", unreadCount: 1, initials: "CO")],
         reviews: [InboxReviewPrompt(id: "ride-session-1_ui-user_driver-1", rideSessionId: "ride-session-1", ratedUserId: "driver-1", title: "Avis conducteur", prompt: "Notez le trajet.", initials: "DR")],
         reviewsUserId: "ui-user"
     )

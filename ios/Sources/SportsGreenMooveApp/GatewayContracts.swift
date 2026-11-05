@@ -10,7 +10,7 @@ protocol AuthGateway: Sendable {
     @MainActor func signOut() throws
 }
 
-protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGateway, MessagesGateway, EmergencyContactGateway, TeamChatGateway, ReceivedRatingsGateway, MembershipGateway, ProfileCityGateway {
+protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGateway, MessagesGateway, EmergencyContactGateway, TeamChatGateway, RideChatGateway, ReceivedRatingsGateway, MembershipGateway, ProfileCityGateway {
     var isConfigured: Bool { get }
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion]
     func resolvePlace(placeId: String) async throws -> ResolvedPlace

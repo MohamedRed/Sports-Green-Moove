@@ -87,7 +87,7 @@ test('rules release is explicit, deletion-protected and validated without plans,
   const steps = Object.values(web.jobs).flatMap(job => job.steps);
   assert.deepEqual(steps.filter(step => step.name === 'Verify current booking and ride chat authority'), [{
     name: 'Verify current booking and ride chat authority', env: {SGM_LOCAL_FLOW_OUTPUT: '${{ runner.temp }}/chat-source-access.json'},
-    run: 'npm run test:chat-source-access && node --test tests/chat-source-access.test.mjs tests/ios-current-fixture-result.test.mjs tests/ios-input-controls.test.mjs',
+    run: 'npm run test:chat-source-access && node --test tests/chat-source-access.test.mjs tests/ios-current-fixture-result.test.mjs tests/ios-input-controls.test.mjs tests/ios-ride-chat.test.mjs',
   }]);
   const validation = steps.find(step => step.name === 'Validate rules configuration without cloud changes');
   assert(validation.run.includes('init -backend=false -input=false -lockfile=readonly'));

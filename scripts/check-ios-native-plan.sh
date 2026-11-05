@@ -31,6 +31,23 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatDirectoryState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatTimeline.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatDraftStore.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PrivateChatDraftFiles.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatIdentity.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatDirectoryWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatMessageWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatSourcePolicy.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatRequest.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatCallbackClock.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatDraftStore.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatComposer.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatTimeline.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatDirectoryTimeline.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatThreadState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatDirectoryState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/RideChatBookingState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredRideChatGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatComposer.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredTeamChatGateway.swift" \
@@ -100,6 +117,15 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/UnusedRideChatGateway.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatWireChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatDirectoryWireChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatTimelineChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatStorageChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatStateChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatDirectoryChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/MembershipProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ProfileCityProbe.swift" \
@@ -145,3 +171,4 @@ swiftc \
 
 "${BUILD_DIR}/SportsGreenMooveNativeChecks"
 bash "${ROOT_DIR}/scripts/qa/check-ios-membership-fixture.sh"
+bash "${ROOT_DIR}/scripts/qa/check-ios-ride-chat-runtime.sh"

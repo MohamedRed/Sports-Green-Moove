@@ -37,7 +37,6 @@ private func mapInbox(_ data: [String: Any], uid: String) throws -> InboxSummary
     let page = try PendingReviewWire.parse(["userId": userId, "items": items, "nextCursor": cursor], uid: uid)
     return InboxSummary(
         notifications: array(data["notifications"]).compactMap(mapInboxNotification),
-        chats: array(data["chats"]).compactMap(mapInboxChat),
         reviews: page.items, reviewsNextCursor: page.nextCursor, reviewsUserId: uid
     )
 }
@@ -51,20 +50,6 @@ private func mapInboxNotification(_ data: [String: Any]) -> InboxNotificationSum
         dateLabel: data["dateLabel"] as? String ?? "",
         unread: data["unread"] as? Bool ?? false,
         initials: data["initials"] as? String ?? "NT"
-    )
-}
-
-private func mapInboxChat(_ data: [String: Any]) -> InboxChatSummary? {
-    guard let id = data["id"] as? String, let sourceId = data["sourceId"] as? String else { return nil }
-    return InboxChatSummary(
-        id: id,
-        sourceType: data["sourceType"] as? String ?? "booking",
-        sourceId: sourceId,
-        title: data["title"] as? String ?? "Conversation",
-        preview: data["preview"] as? String ?? "",
-        dateLabel: data["dateLabel"] as? String ?? "",
-        unreadCount: (data["unreadCount"] as? NSNumber)?.intValue ?? 0,
-        initials: data["initials"] as? String ?? "CH"
     )
 }
 

@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The iPhone booking/ride conversation source is now wired end to end. Controlled
+state/storage/protocol checks, 84 delayed boundaries, eleven scripted thread
+adapter invalidations and nine separate disposable service groups pass. The
+existing eleven-case gate adds booking/active-ride journeys without removing any
+original assertion or changing 50 minutes/capture bounds. The prior 62f run builds
+but is cancelled during screens; 31a fails dependency download before app build.
+Neither accepts this candidate. Publish one concise local-only note, no new media
+or changed historical records, flow statuses/dates, tours, blockers or public
+audience. See `docs/release/evidence/ios-ride-chat-2026-11-05/README.md`.
+
 The actual team draft setter reproduces twelve truncation boundaries under the
 old read/busy gate; the candidate retains exact text while keeping sends blocked.
 Full controlled native checks and both original fixture-model decisions pass.

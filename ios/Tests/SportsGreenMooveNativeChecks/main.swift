@@ -1,5 +1,13 @@
 import Foundation
 
+try checkRideChatWire()
+try checkRideChatDirectoryWire()
+try checkRideChatTimeline()
+try checkRideChatStorage()
+try await checkRideChatState()
+try await checkRideChatDirectory()
+try await checkRideChatBoundaries()
+
 try checkProfileCityWire()
 await checkProfileCityState()
 await checkProfileCityBoundaries()
