@@ -107,7 +107,7 @@ test('prepared city save/reopen/removal keeps eleven cases and exactly the origi
 test('one concise local-only note adds smoke coverage without promoting unexecuted native or release evidence', () => {
   assert.deepEqual(content.iosProfileCity, iosProfileCity);
   assert.deepEqual(content.updates.filter(row => row.source === iosProfileCityProgress.source), [iosProfileCityProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === iosProfileCityProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row => row.source === iosProfileCityProgress.source));
   assert.doesNotMatch(iosProfileCityProgress.title + iosProfileCityProgress.text, /Firebase|BrowserStack|SDK|Swift|CI\b/i);
   assert(report.profileOnly && report.stableUnknownWriteRetry && report.fixtureAssertionsPrepared); assert.equal(report.searchDefaultsChanged, false);
   for (const key of ['sdkLinkedBuildAccepted', 'fixtureUiExecuted', 'nativeServiceIntegrationAccepted', 'physicalDeviceAccepted',

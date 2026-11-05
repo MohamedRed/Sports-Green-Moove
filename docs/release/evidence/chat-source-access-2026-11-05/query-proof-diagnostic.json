@@ -1,0 +1,149 @@
+{
+  "scope": "isolated-query-proof-diagnostic-not-production-policy",
+  "runId": "a9a11f5caa5dca3bddd72a9c0c4a9ce8",
+  "results": [
+    {
+      "name": "candidate",
+      "ruleSha256": "c61d31052f3a6bb0ea59b0f85b10bdb6df1868cd5cf596d49725faa012d17ec0",
+      "getBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryBefore": {
+        "status": "permission-denied"
+      },
+      "getAfter": {
+        "status": "permission-denied"
+      },
+      "queryAfter": {
+        "status": "permission-denied"
+      }
+    },
+    {
+      "name": "without-static-list-type",
+      "ruleSha256": "c7267b44e98be1acd2b3a45f298b4bacfa9f30dc29bde3a88dc5d232c8897e0c",
+      "getBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "getAfter": {
+        "status": "permission-denied"
+      },
+      "queryAfter": {
+        "status": "permission-denied"
+      }
+    },
+    {
+      "name": "without-source-shape",
+      "ruleSha256": "f8af97ea3e40e1ce1f4223f4330236689c03b0948cc35f45b34ab64496b2f45b",
+      "getBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryBefore": {
+        "status": "permission-denied"
+      },
+      "getAfter": {
+        "status": "permission-denied"
+      },
+      "queryAfter": {
+        "status": "permission-denied"
+      }
+    },
+    {
+      "name": "without-both-type-guards",
+      "ruleSha256": "d465c31098dd75ac00fc40b4a41c38c3bd9c2f43764464a369df3802ffb78572",
+      "getBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "getAfter": {
+        "status": "permission-denied"
+      },
+      "queryAfter": {
+        "status": "permission-denied"
+      }
+    },
+    {
+      "name": "static-list-only",
+      "ruleSha256": "051d3656e307578c8a6e6a8f49aad7a04a9e544e1f8da4753471a8aa18acf465",
+      "getBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryBefore": {
+        "status": "permission-denied"
+      },
+      "getAfter": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryAfter": {
+        "status": "permission-denied"
+      }
+    },
+    {
+      "name": "fixed-source-path",
+      "ruleSha256": "6a60388f1261e107d68c22611b1b0f0c45a4cfcf02459a0682f0257a246226c1",
+      "getBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "getAfter": {
+        "status": "permission-denied"
+      },
+      "queryAfter": {
+        "status": "permission-denied"
+      }
+    },
+    {
+      "name": "direct-query-bound-source",
+      "ruleSha256": "14311186653fe51273dbc847730ad585a03db1423d21a53102957567902f65f2",
+      "getBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "getAfter": {
+        "status": "permission-denied"
+      },
+      "queryAfter": {
+        "status": "permission-denied"
+      }
+    },
+    {
+      "name": "direct-bounded-exists-source",
+      "ruleSha256": "2f5dba4c3376d339a6ff70820446d649666832148e48d3c2840751dc748306b3",
+      "getBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "queryBefore": {
+        "status": "allowed",
+        "count": 1
+      },
+      "getAfter": {
+        "status": "permission-denied"
+      },
+      "queryAfter": {
+        "status": "permission-denied"
+      }
+    }
+  ],
+  "clientCleanupComplete": true
+}

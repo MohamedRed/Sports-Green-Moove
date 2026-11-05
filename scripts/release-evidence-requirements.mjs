@@ -64,6 +64,7 @@ export const requiredOperationalEvidence = [
   "team_push_revocation_suppression",
   "team_push_permission_lifecycle",
   "team_push_signout_cleanup",
+  "booking_ride_chat_access_revocation",
 ];
 
 export const requiredProviderEnvironmentVariables = [

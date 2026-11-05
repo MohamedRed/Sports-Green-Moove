@@ -6,6 +6,7 @@ import {uriSecurity} from './uri-security.mjs';
 import {compatibleSecurityPatch} from './compatible-security-patches.mjs';
 import {copyTransportFollowup} from './native-copy-recheck.mjs';
 import {iosCheckpoints} from './ios-checkpoints.mjs';
+import {chatSourceAccess} from './chat-source-access.mjs';
 import {androidNodeReadiness} from './android-node-readiness.mjs';
 import {androidReadinessRecheck} from './android-readiness-recheck.mjs';
 import {guardianWindowObservation} from './guardian-window-observation.mjs';
@@ -85,6 +86,7 @@ export const content = {
   compatibleSecurityPatch,
   copyTransportFollowup,
   ...iosCheckpoints,
+  chatSourceAccess,
   androidNodeReadiness,
   androidReadinessRecheck,
   guardianWindowObservation,

@@ -341,7 +341,8 @@
       { "id": "team_push_current_account_isolation", "status": "pending", "description": "Observe current-account isolation across switches, re-login, disabled/child accounts and restart.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
       { "id": "team_push_revocation_suppression", "status": "pending", "description": "Observe current team/guardian authority at send, display and tap on both release platforms.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
       { "id": "team_push_permission_lifecycle", "status": "pending", "description": "Observe permission/channel denial, grant and revocation/regrant without duplicate registration.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
-      { "id": "team_push_signout_cleanup", "status": "pending", "description": "Observe authenticated online removal and offline cleanup, actual SDK deletion and no delayed reactivation.", "evidenceRefs": ["../contracts/team-push-notifications.md"] }
+      { "id": "team_push_signout_cleanup", "status": "pending", "description": "Observe authenticated online removal and offline cleanup, actual SDK deletion and no delayed reactivation.", "evidenceRefs": ["../contracts/team-push-notifications.md"] },
+      { "id": "booking_ride_chat_access_revocation", "status": "pending", "description": "Require a reviewed deployed policy SHA and observed active-thread revocation and callback/listener cleanup on both release platforms; local rules and unit cases do not prove deployment or phone UI.", "evidenceRefs": ["evidence/chat-source-access-2026-11-05/README.md"] }
     ]
   },
   "safetyAuditEvidence": {

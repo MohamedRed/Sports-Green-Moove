@@ -1,0 +1,106 @@
+import {readFileSync} from "node:fs";
+import {assertFails, assertSucceeds, initializeTestEnvironment, type RulesTestEnvironment} from "@firebase/rules-unit-testing";
+import {afterAll, beforeAll, beforeEach, describe, expect, it} from "vitest";
+
+let env: RulesTestEnvironment;
+beforeAll(async () => {
+  env = await initializeTestEnvironment({projectId: "demo-sgm-chat-source-rules-test", firestore: {
+    host: "127.0.0.1", port: 8080, rules: readFileSync("firestore.rules", "utf8"),
+  }});
+});
+beforeEach(async () => {await env.clearFirestore();});
+afterAll(async () => {await env.clearFirestore(); await env.cleanup();});
+
+const actor = (uid: string, roleKeys: string[] = ["parent"]) => env.authenticatedContext(uid, {roleKeys}).firestore();
+const write = async (path: string, value: Record<string, unknown>) => env.withSecurityRulesDisabled(async context => {
+  await context.firestore().doc(path).set(value);
+});
+const message = async (kind = "booking", sourceId = "source", participants: unknown = ["parent", "driver"]) => write("messages/message", {
+  senderUserId: "driver", sourceType: kind, sourceId, participantUserIds: participants,
+  body: "Historique QA", createdAt: new Date(), readByUserIds: ["driver"],
+});
+const history = (uid: string, kind = "booking", sourceId = "source") => actor(uid).collection("messages")
+  .where("participantUserIds", "array-contains", uid).where("sourceType", "==", kind)
+  .where("sourceId", "==", sourceId).orderBy("createdAt", "desc").limit(51);
+
+describe("current conversation source access", () => {
+  it("allows addressed current participants to get and query history but no role-based bypass", async () => {
+    await write("bookings/source", {parentUserId: "parent", driverUserId: "driver"}); await message();
+    expect((await assertSucceeds(history("parent").get({source: "server"}))).size).toBe(1);
+    await assertSucceeds(actor("driver").doc("messages/message").get({source: "server"}));
+    await assertFails(actor("outsider", ["admin", "clubManager"]).doc("messages/message").get({source: "server"}));
+    await assertFails(env.unauthenticatedContext().firestore().doc("messages/message").get());
+  });
+
+  it("revokes a replaced parent even when requesterUserId and old message participants still include them", async () => {
+    await write("bookings/source", {parentUserId: "parent", requesterUserId: "parent", driverUserId: "driver"}); await message();
+    await write("bookings/source", {parentUserId: "next", requesterUserId: "parent", driverUserId: "driver"});
+    await assertFails(actor("parent").doc("messages/message").get({source: "server"}));
+    await assertFails(history("parent").get({source: "server"}));
+    await assertSucceeds(history("driver").get({source: "server"}));
+    await assertFails(actor("next").doc("messages/message").get({source: "server"}));
+    expect((await assertSucceeds(history("next").get({source: "server"}))).empty).toBe(true);
+  });
+
+  it.each([undefined, null])("uses the requester only when the parent is absent or null (%s)", async parent => {
+    await write("bookings/source", {requesterUserId: "parent", driverUserId: "driver", ...(parent === undefined ? {} : {parentUserId: parent})});
+    await message(); await assertSucceeds(history("parent").get({source: "server"}));
+    await write("bookings/source", {requesterUserId: "next", driverUserId: "driver", parentUserId: null});
+    await assertFails(history("parent").get({source: "server"}));
+  });
+
+  it.each(["driverUserId", "participantUserIds", "childUserIds"])("checks current ride membership through %s", async field => {
+    const old = field === "driverUserId" ? "parent" : ["parent"];
+    await write("rideSessions/source", {[field]: old}); await message("rideSession");
+    await assertSucceeds(history("parent", "rideSession").get({source: "server"}));
+    await write("rideSessions/source", {[field]: field === "driverUserId" ? "next" : []});
+    await assertFails(history("parent", "rideSession").get({source: "server"}));
+    await assertFails(actor("parent").doc("messages/message").get({source: "server"}));
+  });
+
+  it("keeps a cancelled booking's history when its participants have not changed", async () => {
+    await write("bookings/source", {parentUserId: "parent", driverUserId: "driver", status: "cancelled"}); await message();
+    expect((await assertSucceeds(history("parent").get({source: "server"}))).size).toBe(1);
+  });
+
+  it("denies missing/deleted sources and does not fall back to historical participants", async () => {
+    await message(); await assertFails(history("parent").get({source: "server"}));
+    await write("bookings/source", {parentUserId: "parent"}); await assertSucceeds(history("parent").get({source: "server"}));
+    await env.withSecurityRulesDisabled(async context => {await context.firestore().doc("bookings/source").delete();});
+    await assertFails(history("parent").get({source: "server"}));
+    await assertFails(actor("parent").doc("messages/message").get({source: "server"}));
+  });
+
+  it("denies malformed participant values, malformed ride arrays and unknown source kinds", async () => {
+    await write("bookings/source", {parentUserId: "parent"});
+    for (const participants of ["parent", null, {parent: true}]) {
+      await message("booking", "source", participants);
+      await assertFails(actor("parent").doc("messages/message").get({source: "server"}));
+    }
+    await message("trip"); await assertFails(actor("parent").doc("messages/message").get({source: "server"}));
+    await write("rideSessions/source", {driverUserId: "driver", participantUserIds: "parent", childUserIds: []});
+    await message("rideSession"); await assertFails(history("driver", "rideSession").get({source: "server"}));
+  });
+
+  it("terminates an active SDK query when the dependent source removes its participant", async () => {
+    await write("bookings/source", {parentUserId: "parent", driverUserId: "driver"}); await message();
+    let unsubscribe: (() => void) | undefined, timer: ReturnType<typeof setTimeout> | undefined;
+    let initialized = false, mutation: Promise<void> | undefined;
+    const stopped = new Promise<void>((resolve, reject) => {
+      timer = setTimeout(() => reject(new Error("Current-source listener did not terminate")), 10_000);
+      unsubscribe = history("parent").onSnapshot({includeMetadataChanges: true}, snapshot => {
+        if (!snapshot.metadata.fromCache && !initialized) {
+          initialized = true;
+          try {
+            expect(snapshot.size).toBe(1);
+            mutation = write("bookings/source", {parentUserId: "next", driverUserId: "driver"}).catch(reject);
+          } catch (error) {reject(error);}
+        }
+      }, error => {
+        if (initialized && error.code === "permission-denied") resolve(); else reject(error);
+      });
+    });
+    try {await stopped;} finally {clearTimeout(timer); unsubscribe?.(); await mutation;}
+    await assertFails(history("parent").get({source: "server"}));
+  }, 15_000);
+});

@@ -161,6 +161,7 @@ describe("Firestore rules", () => {
   });
 
   it("restricts message history queries and prevents forged read acknowledgements", async () => {
+    await seedFirestore("bookings/booking-1", { parentUserId: "parent-1", driverUserId: "driver-1" });
     await seedFirestore("messages/private-message", {
       senderUserId: "driver-1", participantUserIds: ["parent-1", "driver-1"],
       sourceType: "booking", sourceId: "booking-1", body: "Bonjour", createdAt: new Date(),
@@ -173,7 +174,7 @@ describe("Firestore rules", () => {
       .where("sourceId", "==", "booking-1").orderBy("createdAt", "desc").limit(51);
     await assertSucceeds(parent.doc("messages/private-message").get());
     await assertSucceeds(history(parent, "parent-1").get());
-    await assertSucceeds(history(stranger, "stranger").get());
+    await assertFails(history(stranger, "stranger").get());
     await assertFails(history(stranger, "parent-1").get());
     await assertFails(stranger.doc("messages/private-message").get());
     await assertFails(testEnv.unauthenticatedContext().firestore().doc("messages/private-message").get());

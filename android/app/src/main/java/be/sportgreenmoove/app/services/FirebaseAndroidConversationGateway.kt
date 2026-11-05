@@ -6,6 +6,7 @@ import be.sportgreenmoove.app.data.ConversationPage
 import be.sportgreenmoove.app.data.ConversationRef
 import be.sportgreenmoove.app.data.ConversationDirectoryPage
 import be.sportgreenmoove.app.data.ConversationBookingPage
+import be.sportgreenmoove.app.domain.ConversationSourceAccess
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
@@ -39,7 +40,9 @@ internal class FirebaseAndroidConversationGateway(
 
     override fun observeConversation(ref: ConversationRef): Flow<ConversationPage> = flow {
         val access = authorize(ref)
-        emitAll(snapshots(messageQuery(ref, access.uid).limit(51), access.uid).map { page(it.documents, access, ref) })
+        emitAll(ConversationSourceAccess.guard(observeConversationSource(firestore, auth, ref, access.uid)) {
+            snapshots(messageQuery(ref, access.uid).limit(51), access.uid).map { page(it.documents, access, ref) }
+        })
     }
 
     override suspend fun loadEarlier(ref: ConversationRef, cursorId: String): ConversationPage {

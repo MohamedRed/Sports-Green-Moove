@@ -45,7 +45,13 @@ test('catalog uses bounded server queries that can safely return no own membersh
     '!snapshot.metadata.isFromCache', '!snapshot.metadata.hasPendingWrites', 'withCheckedThrowingContinuation',
     'try requireMembershipIdentity(uid)']) assert(source.includes(text));
   assert.doesNotMatch(source, /getDocument\(|try\?|catch.*return|while |Task.sleep/);
-  assert.equal(sha(read('firestore.rules')), json(folder + 'services.json').sourceFiles['firestore.rules']);
+  const historicalRules = frozen('firestore.rules', 'candidate');
+  assert.equal(sha(historicalRules), json(folder + 'services.json').sourceFiles['firestore.rules']);
+  const membershipRule = `match /memberships/{membershipId} {
+      allow read: if isAdmin() || isSelf(resource.data.userId) || isClubManager(resource.data.clubId);
+      allow create, update, delete: if isAdmin();
+    }`;
+  assert(historicalRules.includes(membershipRule)); assert(read('firestore.rules').includes(membershipRule));
 });
 
 test('manager decisions bind real authority, exact versioned rows and fresh readback', () => {
@@ -127,7 +133,7 @@ test('concise local and actual fixture notes preserve release gaps and enter bot
   assert.deepEqual(content.updates.filter(row => row.source === iosMembershipProgress.source), [iosMembershipProgress]);
   assert(partitionUpdates(content.updates).recent.some(row => row.source === iosMembershipProgress.source));
   assert.deepEqual(content.updates.filter(row => row.source === iosMembershipFixtureProgress.source), [iosMembershipFixtureProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === iosMembershipFixtureProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row => row.source === iosMembershipFixtureProgress.source));
   assert.equal(json(iosMembershipFixtureProgress.source).passed, 9);
   assert.doesNotMatch(iosMembershipProgress.title + iosMembershipProgress.text, /Firebase|BrowserStack|SDK|Swift|CI\b/i);
   for (const key of ['candidateSdkLinkedBuildAccepted', 'candidateFixtureUiExecuted', 'nativeServiceIntegrationAccepted',

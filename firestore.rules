@@ -21,6 +21,33 @@ service cloud.firestore {
       return signedIn() && request.auth.uid == userId;
     }
 
+    function isBookingChatParticipant(booking) {
+      let parent = booking.get('parentUserId', null);
+      return booking.get('driverUserId', null) == request.auth.uid ||
+        (parent != null ? parent == request.auth.uid : booking.get('requesterUserId', null) == request.auth.uid);
+    }
+
+    function isCurrentBookingChatParticipant(sourceId) {
+      return isBookingChatParticipant(get(/databases/$(database)/documents/bookings/$(sourceId)).data);
+    }
+
+    function isCurrentRideChatParticipant(sourceId) {
+      let ride = get(/databases/$(database)/documents/rideSessions/$(sourceId)).data;
+      let participants = ride.get('participantUserIds', []);
+      let children = ride.get('childUserIds', []);
+      return participants is list && children is list &&
+        (ride.get('driverUserId', null) == request.auth.uid ||
+          participants.hasAny([request.auth.uid]) || children.hasAny([request.auth.uid]));
+    }
+
+    function isCurrentChatParticipant(message) {
+      let kind = message.sourceType;
+      let sourceId = message.sourceId;
+      return sourceId is string && sourceId.matches('[^/]+') &&
+        ((kind == 'booking' && exists(/databases/$(database)/documents/bookings/$(sourceId)) && isCurrentBookingChatParticipant(sourceId)) ||
+          (kind == 'rideSession' && exists(/databases/$(database)/documents/rideSessions/$(sourceId)) && isCurrentRideChatParticipant(sourceId)));
+    }
+
     function hasAnyKey(fields) {
       return request.resource.data.keys().hasAny(fields);
     }
@@ -145,8 +172,7 @@ service cloud.firestore {
 
     match /bookings/{bookingId} {
       allow read: if isAdmin() ||
-        resource.data.parentUserId == request.auth.uid ||
-        resource.data.driverUserId == request.auth.uid;
+        (signedIn() && isBookingChatParticipant(resource.data));
       allow create, update, delete: if false;
     }
 
@@ -179,7 +205,9 @@ service cloud.firestore {
     }
 
     match /messages/{messageId} {
-      allow read: if signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]);
+      // Keep the query-provable predicate; non-list values fail hasAny as well.
+      allow read: if signedIn() && resource.data.participantUserIds.hasAny([request.auth.uid]) &&
+        isCurrentChatParticipant(resource.data);
       allow create, update, delete: if false;
     }
 

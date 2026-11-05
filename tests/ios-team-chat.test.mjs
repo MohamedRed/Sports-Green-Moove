@@ -105,7 +105,7 @@ test('team UI is prepared inside the existing eleven cases with no new capture, 
 test('the concise public note retains pending native evidence and runs in smoke and iPhone source gates', () => {
   assert.deepEqual(content.iosTeamChat, iosTeamChat);
   assert.deepEqual(content.updates.filter(row => row.source === iosTeamChatProgress.source), [iosTeamChatProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === iosTeamChatProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row => row.source === iosTeamChatProgress.source));
   assert.doesNotMatch(iosTeamChatProgress.title + iosTeamChatProgress.text, /Firebase|BrowserStack|SDK|Swift|CI\b/i);
   const file = 'tests/ios-team-chat.test.mjs', web = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();
   for (const event of ['pull_request', 'push']) assert(web.on[event].paths.includes(file));

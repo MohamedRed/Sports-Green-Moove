@@ -2,6 +2,24 @@
 
 ## Current Publication Policy
 
+The EEF SDK build passes but only one fixture case completes before the approved
+50-minute deadline. D51 compiles and executes all eleven: eight pass and three
+fail (five assertions: city entry, complete chat draft/send text, membership
+approval). Disposal succeeds and artifact inventories are empty for both. Publish
+one concise incomplete-iPhone note, no new media or changed historical records,
+statuses, dates, tours, blockers or public access. Do not claim a diagnosed cause,
+full gate or release. See
+`docs/release/evidence/ios-fixture-failure-d51-2026-11-05/README.md`.
+
+The booking/ride chat correction passes nine isolated service groups, all 219
+rule cases and 840 Android JVM cases. Preserve the original message-only listener
+failure; Android now independently observes source authority and clears stale
+state, but phone UI, deployed rules and iPhone booking/ride chat remain pending.
+Publish one short local-only note without changing prior flows, dates, statuses,
+media, tours, blockers, history or public access. No production apply or new
+phone/capture authorization is implied. See
+`docs/release/evidence/chat-source-access-2026-11-05/README.md`.
+
 The iPhone profile city is now source-wired to the existing owned read/save
 callables, independent of trip search. Controlled validation/state checks,
 32 delayed account/lifecycle boundaries and ten separate isolated service

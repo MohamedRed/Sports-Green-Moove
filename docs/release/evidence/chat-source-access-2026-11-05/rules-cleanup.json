@@ -1,0 +1,16 @@
+{
+  "completed": true,
+  "ownedEnvironmentDestroyed": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001,
+      9199
+    ],
+    "closed": true
+  },
+  "realProvidersUsed": false
+}

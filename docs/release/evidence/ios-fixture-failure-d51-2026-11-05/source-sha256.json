@@ -1,0 +1,2249 @@
+{
+  "files": [
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "952e3003b23a09c162bf93916bad4c8ccbe397ff7b8b0b85dea3e4516ff76e9e"
+    },
+    {
+      "path": "ios/Package.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a88d006ab38a330950643b3bdee43eb1ab6651d610b90ebda96438efa054fc8e"
+    },
+    {
+      "path": "ios/README.md",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b546a248c7f105347fefa2204a925e726d0e3061bc9394488345dda5962c9341"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AccountWorkScope.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "7d9526f77596caef3459d7702242e77d69e9816cf0bf47ef74424098c6475500"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c306b2afeb5d5c50378b10435a6f75e454e4803999f1134c20e71bc7dea05c42"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ActiveRideStartup.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a0b45cfa279f343f73974a2c8df0d5412301e8b32a008b65e6d68229770516f3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppDataGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "469090a56efaa1160e60674e10fc131009c908b61746785fc7d632ef5033e8c4"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppShell.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "d6c859476e5d913ac286460b94072bd590cc3938fad866751a5fc6f0962a318a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Authentication.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "2b25bf0c65adad4a77884e6489118a6d88085c145f9749b28157b86f6e669430"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Bookings.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4f331183dc5abdc01e828f32c981b3b9df65939f27b2c0753ec702408df542ec"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Data.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b05503c0dee4463dae635fe7d7c351035520313f28be21c2669e04924d4d071e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+LocationShutdown.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "2173ebcd045a8afc3918ad14f28c50f728e7d66056423924518f4556523e6353"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Profile.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "cfc266ed61e3594e89a75b57fc49df67a763460203d0e88124dec01e33dadc26"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+RidePayments.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "e345d9b5e94f656ca6813d42c450df01dc465efa8acf4a3b1c0c404c0880196d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Search.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6c84b3b2c72d41e7f164549fdec42537cb2832c925a098b3c9ec4baec97bafba"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "56145ee514e9ebca6c2ce766e07b66bbed3206ffe0d5138f826d1d5851ab5a7d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c6fbd17e11625b314b0d7941b34cb89779120ef794a64d0aa4962b9d8dce0d71"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AuthScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6799c1e580f5f75895ef549b493aad785110d1f2b99412b1b845eb127372b25d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AuthSession.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6292cbb29c892893b82962bfda2e5a832408ff4b9827df279081c9e9382294cc"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AuthenticationState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "8aec3aefef079a86416fdcd15dc6bd6a5382a6e27f9d378047c0939807487b35"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "0e7a2ae4c355278a897ae2d905729336ef41682b7e9d5303a88db083c03e6c21"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/BookingRequestCoordinator.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "0f5469e5fbf463e9207c1d90fab94f7cd8c6071b8cc957f35125e8b2cf345b9f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ClubMembership.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4175ee9192bd114284f07f917d119e770db688f179bb61bafd4390ea77588bed"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ClubMembershipState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c90adc7f1d39e77901e059ca834f47d6f9bd08acef87f8b316445d4fff9e1fb9"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ClubSummary.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "cc2f6607b21a84e3a787db4984aaa650df3c721bbfe02e1a981b9880d7b98c4b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/DesignTokens.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "78126f8466578e657272505573bd42658f875dc6664b497eada7b3b79a6dfe95"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3c6a9044f06cfd156b14836fc93f62ef8ec8ce6bd4dba9c85db51558641ab54f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactRequest.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "524710a6ea3edc575f00bb1ddba424142385beb1036493bb2c94261ca4f8bc2c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "63807fd70a63602a7c44419f7b5d560726a6a42763f1c12d1ebc2711fde2a004"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "500e8a383be9a9dd5cf8441d46decfb38ff6f9700e6b2a0fc17180fb1ec4ca6f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactWire.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "f99f9b233439f5044ec22c36a0482e0e2ef014d2ed7db2600d13127dda2c5afb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseAuthGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "34c8a04d3eeedb38de513672494949f20a0b834a8855ca2638fd7246ff75ef47"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseBookingGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "f5945640a3cc48c0ac4f7f3a59ee35a2484356fad0dcf88b0ccc9f4333334b48"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseBookingRequests.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "625fa351f9357564a241e8aca84cbe14fcdde3514ca0fb7c85459b6fabb3b20e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "47fbdaca1c4f3381e156605b18e93d5d24b07597d1f5fd8c916698d6b419cce5"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseChildrenGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "ec36242da09cfc2786a03fcada6f2e4fe018ed261aaba94a2be61f863483af2a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseClubSummaries.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "5edc51c96e8a8f4e1c4ac5b6038f281b65999ce9268deb8ba531b4d2e1737054"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseEmergencyContactGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "97192a684f27eba844185306cfa16d032d4e153521618f6e3e5272030807abf6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseFeedbackGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c51e5789e8a0ed163dc8d0376e41f8b3ef05fa6583d80abe7d264bb3ae675b4a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4d909468620e35e9ceddadb10b8de6c2cb202541f6857ee10b1300b737d4b37a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "acc7dbbdb6ab9e6b49eadfea2f492cfaf9311efeb04f9ec025cbe9fe87df900c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseInitializedProfile.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "aaf990c1f8d53541049fd5c9f7bc2931e2cc8256413e3071545caedcfbae22cf"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseLocationUpload.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "ca738fe42a1da3f54c5e1595ee440e938edcd54ba058a4ff742387aaa01d8c5d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMapMappers.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "8bf23a0f1d195b44fb442a79004e14c9749fd0153751d28e61c9803d9526ec91"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMappers.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "7215ea8252f6905ea13a86e20d0744d68b0dd7cefc80b6ad34710ce974044fa1"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMembershipDirectory.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "bb60a93437e3037ccf0e6d5bf63fa18aded04fbce25ba466a3963fcaf7c22040"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMembershipGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "2f9891ed288cf58d09278105be55c43da9842acf43b3677874ebd364f7d190aa"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseNativeGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "940d9d0d58c40ef13b5a301ed8f9a2248e752e315f057c5418729ea84a1d08ec"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebasePublishGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "687d5484029e5d5cf58c59b07a962ceaf2ef0c0b6ee2700ac9d3b5984415dd06"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseRadarTrackingGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "243f4ec8dfea013bcdcf41989b11e1b2d724fc2c324ba85c6346c27d6cbaea7f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseReceivedRatingsGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "091ff0cea407e8e66fa6d21572d0c0810ec992990b915b250c6799f98e42cfc8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c98efb1819171ef08bcc2b62e47e5582238f9035c174835f6573f89a4539d8d3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseStripePaymentsGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "962fa77a026963e592ff8bdd4df3318f405dceb8bbf123df556e4ac9f65c4342"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a27671d75466f84b2c7c1754b6ced8d930324c9b9c856db60f65c5dac012226d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseTeamChatGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "042f5b4ef9c2a4516fab712fcd728742ddc5e8b8081703d026bb1fbf84577bad"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "518e8a59bacca94e0fd6944ca7a70487067355bff38155a2adc34975c175b982"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GoogleMapsRoutePreview.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "11ec543806db34d9febc0b6bb7c06c9537e99cd9d28b6c756ad3efad7e89d378"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GroupsScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "d0ac855c62bf1fafa6c7d017a4c13554d48950ecf3b4dfc39186895bd43fd07d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactModels.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6f43379d00e03e016773b166ad3eecb63752bd9dde2c38ca7fa91c3f793a9c2d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactPicker.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "fa5d6e4e6f88613d10735488b808e8237da5aa2a90c8f854912610d6e43e108f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "47ed1fc62549a93f57e2c361c729ac3edd39c6dae2912d63deeeb90a38362008"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/HomeScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "eb6fc0707a0ea121a47cb7622ad682c3dcca1b6f6af6b96b13caa75042d2a5d8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "35889efeacc7b94e8bc0de9b2e1975ed7b6fc4094c7d8ade0a937d054b5980af"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "27ec9cea84e2f6c9492585021d7780e6c8c6318fba39e0b2846063c15b8a0217"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3f39306595c807e986f474851a6bf264eac762d4f217af05bfc32846d749626b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/LocationSessionState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "7867a9eb36815912bd2b9994356acbcc7cf50a03d96c66fca095d1fc6f0e2ade"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/LogoutIntentStore.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "73e5db5a5740e7100b58072567c354e5e7818c6ca9368ab63431fb724c521514"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MapRoutePolyline.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b2df4d7088cb7226b7876edbcd61cd373372c8aa40ededb94adcaacf8b9b0695"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipClubViews.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c499b69962f4f835524c71b7e3339c1c104b21cbea5dccd9297e7b71af5793bc"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipHeader.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a74e4ef6f70c60c6a14403173375216ae2ff5c94af1d42924e47c23530e68bb3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipPager.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "86a0d8670c0272b98c0443aa2adb42070a27fbd14c759af87c8eefeef71ce6dd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipPolicy.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3df4e15a274180098f804131b047b91ae18859715b76dc11e03ace850776bb5c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipRequest.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "da000265ca6a11d2679390180744cc72c71b2f8b8d621526ccb56020e875645a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipReviewScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "9a1074ace0290c0d7d075b0d7e35cacdf3bd53e8a5b38a2e453d19d34885637e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipReviewState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "169ec20a9bfacfbb4c5676d0283dde217b013e5f88f4778f935f4a12f7ae08fa"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipWire.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4749c46d15f75147fbf297c2af6f4fedfdd33e7e77c4c30cb0839d48811094e8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesInboxState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6e89331e463fcb58c1cf604cd87391fa03763c5ceecc71178e105b16f0ff18dd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c47d89c9a5a3d3f5ff0aab182bd97c23d2e51424f0f9c48cf3670bb18c932563"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Models.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "440d1c816123f68621c4bb9778bc39fc08e5e5ffa7660d2e70b31ace28a66633"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeGoogleMapsLifecycle.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "9633ba1b1fa7a5c9dc40c1f651576d747a9c6d153c90a3c892da38549e7d985e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeLocationFallbackProvider.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "917415b27ad2c6346e51d12768d6d759a0dc5689c3a4f5e1f8027cde62592581"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativePaymentSheetFlow.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "fdf28f97ce5fdf5b017b78c49c47d00fda1d7499c1839b3c89086b9dadb648fd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativePlanPolicies.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "bc66e8cd53b67e4b586843d7265b8d9e1d8cfa3075626a554b68bc5675a5997c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeRadarConfiguration.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "aa32f4137ed26c9d2cbfdc8054558d478d9f9ab5029cca023fe63ed1427cb99d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeStripeConnectConfiguration.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "10ac98909503220220d745803a260fb66483c03abb0d4a5521c72ab163c69c08"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeURLHandler.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "fce46dc4c91931fa966896bacdf9df46c60c8033107c144cce2d16663f8f833a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/OptionsScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "10dfce36371ebab013302de1630f1d225a7722f905df21ac563748fc05a1ea88"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PaymentScreenController.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a89cfc6980fe993dd2bd74048efc9dba6155b905a7237afeb658b8cc6360a3ff"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PaymentsScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "e8726052a19dc4583115339bb82336b11de6e4ff1d766071e87fd1cd012fb0bf"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingBookingStore.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "0d2ffbb310ecc6a77578dfeb868a9a22f98ff702494b10a63f632597a4bd0fc2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviewWire.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "15772da2e0bd5d8d205ed608a55e1dda5fd1def53a07085c356c611f8baa755f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviews.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "e4437f43d62d61e04c139bd36c5d08a0d489fab20ed1a6637daf5938abb49df6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviewsContent.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "5fd7c9d2d3487055f8c9039614700e4db3dcd085086982b35895b06153aab92d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviewsState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "222456563a0239027b2e74b3cf920c317da6c4aaecd2393184c7921032bd5e32"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileIdentity.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3e8307f1c1a7c4543a428b7eb9b332f190d71c7f586bf9e38978ff7f2a5186a5"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileReceivedRatings.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "d2b112c901fcb47f6c62da2617ca8f779d59ef240e3638b07a10de57c48e2110"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "7489e7a6a8c94343575b014fa68528eda6e3195fb9b6ea6491b4956049376fc3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProviderConfigurationError.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "64d5261898f6a2738149ed55b4cf9a68578401f5aa100f32f247943e7c5f515f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishController.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "e08d3e506943b3bb99ac660e7e3c54965ab33e64bbcd0d454d45b5f56d808c56"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishControls.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6f3889d6f37d69b41b76ea6fb194854e3aaa56cd613ba8fd04626b161b82ccf5"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishPlaceField.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "f7f868d753d81430ea0ab38f08d409994b66cf4c8760b58b21fe103417c26c6d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a63f4a8e6168d41387545b2b2e4f4f86ef892fa2074f643e8016872d64ac795f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishSteps.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "d6a2bb864b76268b8b693fa4558cbdb5463d793d49430cb1248565635fe8c0bc"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReceivedRatings.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "2bb93f4d3ace9870301d0b9f582c661458010007890c6c4397c06d2068bd375c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReceivedRatingsState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "ebf900b530756505993fd736d8355424433c67689bd88cc2e90390b5d9a30309"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/Fonts/BebasNeue-Regular.ttf",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "08e4623805102d819f58601e46e345648846075e363b2ceb23313c2d1c83ec73"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Bold.ttf",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Medium.ttf",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Regular.ttf",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "5d60adf4784bcb19bef6a4fcf62c9bb997e088ae6364dcece62dcc344176b5e2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "9a3b6be612e2b563bd6a6cd5eada3d3bdc04d38fcba1e1ddf600bcbdbdb3cc13"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReviewTripContextWire.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "0d65d2aa06ee366d0a5918dac097ef366e9d8f5001f6b7bdfa80f74826b2357e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RidePaymentVerification.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "10b20813ca4de73c1e9d23f49a16d905aea16553757cc74a98166040fad9131c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideRequestState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "398b52e78c4e7e308dc21ced9fff186df9374cb33bf3d9ec58c17309c524aefb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMCards.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c55a1cd45c596b93115e4b99e548d2f41c87ad02e09741bea57e2aa1fc40af95"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMComponents.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "adcbcabb38418e12c18cf58ce21f25e3de5b6086822535a848a2c670874c400c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMIcons.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "7c4b8097987ac7ef74ff629c681330ff052538054ff04154bb90a8f975d04e1d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMNavigation.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "5196d7613f2f0b526ed5a34a88c84e915147a32743e3797ff633feae01a71481"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchChildSelector.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "86cffb20bc7af05e8fea8ac94e7b6ebe49a89286a62e9192934b5b1efa58e509"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchFormState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "0354a3145333c6f68fe3460f30e7367a2cb44de3298878ee4be7db8265667254"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchRequestState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "13f0edf81d739f032975a80f5109f437b04a3f2d74040aee6a9b3313b6a5038e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "0cf4940d74b0456a62ac1ce7aeb7c2b9059421cad59790b87e684d682810e35d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SecondaryScreens.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "8b41a91552117049bbbbb5d97d6e668cd07139819bdc0f18475ec391b70d022a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SportsGreenMooveApp.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "d1a5aaa4b3b4a9bd7b03ea8cb160cece4a526a10d3117f028b517b306cb98e59"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/StripeConnectModels.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3cc6b02809b561e39bd883b06c693cb399a6dc49e091ab6b4192c5d498aa63ae"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/StripePaymentSheetPresenter.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c9369475993f46749a9d0b2c63c4d8a792543eb86adc3db6d2b2d808cd641c93"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/StripePaymentsGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "eb5d9ee0c55d914e6b19f92889f6cd667b14d37dfff92d2ac3ac8cb2259d27eb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportInboxScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "9513d65295ad7bc9828c0a6302e1fac61970a29170e21828f4e15959ebe89644"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportInboxState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "94ef2cc1baee0b159de11e250d1fd87c328e51402a6e1a89fb0ab29a0cbe9f85"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportModels.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "71e4e1655c78d209f81b25c0891b9b3c261d51d6aa0c21a5573135a951672e7f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportSubmission.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "7b5c2c69d67cb9d71d90452ba50764bd9ddadb9290671c8ec1312d022d265c0e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportSubmissionCard.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c9b8ff6189e5633b8cbcedeef9ec16c4e551545dd0ccdc928ffa0a6c4f213666"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportSubmissionState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6434d3c6e38f74531bbc9adb74600e3db1e43c606afeb9b6f9b1fcf7c6534f85"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportWire.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "d40033d87a6c0de5de299505484f5321cd4d6ffc31bba88c5e18ea77b9fc577e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SystemEmergencyPhone.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "5f7441c7af9b61ed5fdd112da7d36dead8ca9cf2daacab9bd21e54588ce6d991"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatComposer.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "141b842b74e88cee76d3d20e793e4a54c8d0ca180ef9633330f77e0411bcd0c3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDirectoryState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "f06239c483400d558a02f23e067079844c6201abf709629b6f628361af373e7e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDirectoryView.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c8b760485fd0adade01c558839a54e271364a66c6e5b87b4d8a6aeae011aba71"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDraftStore.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3cb91688c1ec553a4d3d674cd87fb01a3803a9c09aeb2a65ce1975990e766740"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatMessageViews.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "0f35c5069020ad77a8f43e9c9de88d091c4e26e08949bbc5528c869452820aef"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatModels.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "f02528090ca01dd026a4dce4948ae41f9aa098378352d98253ae43572ba39016"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatPolicy.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b03b0bc45a3c10ad4861654cb9e20518666237bc2cd63a2e4740552c8623f602"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatRequest.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "d817caf8a4062d9a9d81ec0af6563218cfd58dd398e4a087457fabc7443a0fa8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatState.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "904ac629950d85ebbfd95098cae038b561787dd9bfde73d0093d6ac33ddaab81"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatThreadView.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "dac5869f3796cda92478f7c205db6e1e611ff0f1772d74d10e9e826baa2daedb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatTimeline.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "441d3d3dd303bb504926e37b2e93885b22f05ff4287b56c38ee01bc85baa87d2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatWire.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "633c75c22b076f4c15463b0e97f1b15951677f28638036587b7536e683134c69"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripDateLabels.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "525bb4caedfa000da97aeea5e15c8230cd3ee29e10b8624d1b3f079d8cba150d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripPublishDraft.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "5e1606be31da9b6484b80e17fb4ee30d20828eb0c1b1413413e468bf591b9d81"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripsScreen.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "35bbb1f585c6298313dceeeba68b7caf4dd5776e7e6226c25b77f8277b24dbbb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UIKitPresentation.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b176300973a65a62ab784198b92ec039731f4035ebb4109a51317f6493b78b5b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4c8d300cf300fd9cbc2c20f778f4d88ac75560b288c36c5ce8a92ddcaf2716b1"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestBootDiagnostics.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "5eb56dea0f68f4f47e8812bb1bd0a6efae5d2ba5574b80ff58ebbd7f300ee9fe"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestEmergencyContacts.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "0549ec5610506489e06e2493231e1c33952c3ea90d804b8dea5b247aec3e6675"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestIdentifiers.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4de5d06760547616b07bbbcc197a3cadb9b1448f6fee30ec05ae101a3454d134"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestMembershipGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c031e9e8655490e1a90c6dced29595e9d268fe55bb6edb88989b48d0fd14235b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestTeamChat.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "14c9a7379428a2e514ee0beb34b0265556633d5568e98b615f6524138d244373"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredGateways.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "dcf64c0804dcfbeb05f719e8b0392f59ee6bada3f97a594cc22f064838e97e30"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredMembershipGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "05d6ac5289c9719593387c704d6dd38ed4876bca136731b79e41c3dfe3f44f98"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredTeamChatGateway.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "660212ae3f12f8d9fa0c6fe3730b2951425570dd3ad27838311c3656bed56123"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AccountWorkChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "7bf02032aa8e25414c7da0e76dbdda5c0333950b2e7a5b3d31a4acab93917c8b"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a4b93baf255dd4df94b5c36f995c1ca399bb69af21ddb50fae826fffef5d9217"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AppDataRefreshChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "459acf5303e42c3b4d62bcfd44dfa81d83a2957015613e5d0390e7cee9bdb0a4"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AuthenticationChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4748fa44e0175faf3cf79fb22fdffa69e4c7b1b505adb46f56fe8b1f288767f5"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AuthenticationProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "76845a87904452ec9965e4b67a177c6a6c3150651d32bb507ca3556be00a6e07"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/BookingOwnershipChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "ef75997b2453286dd14cb9439d98e1240bf886c21f60543fd5316d6731b89c95"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactBoundaryChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "716289c58a5bb4f95853509e17a6319e554c3e19934ef1ec3b7b26319eb40f89"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "18d2c6a6eb579bcea66740cb8b6ea199f363456c958b20b1206689a6e9291b3d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6bb806ec633a807d53e7a6d311c4feaa4c19448b30e348af8286fbb3fc99d405"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactRequestChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "83cf62dab04d475e45c2b776746e2bcf2be4c9e730db6893bd31b1fe6fc65a3e"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactWireChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3a9f44bf001208eedad328b46f214ab4aa40d4298d5dac5d4b6684a3ecf6df85"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactBoundaryChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "ae929b7c6b22644d5821c8a7b0a83c0d2049717fc0fa70d1eb1f20e4e75cb16d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "195ea204654971cb2aaa36586e6c819139b7ae121c6f1fb89e36fed9fcad60a0"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "c2c9bffb57421a0b46313343969a43a70ff17c4dea50efc3e971ece93687d5ac"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "8630830683a6b3ebbc872c2d6cabaabc38391a9c5cfcabfb454d1dccbeee8796"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/LocationSessionChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "23ef85d96397e31e55697258220aa508e78bea92d98f2369c24fec540ec3a0bc"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/LocationShutdownChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "75a47c809935782ef468e4eee5a56f0575f0e57580e107f49b08444138dcc1a6"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/LogoutIntentChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b4a858910ca6efc866d69bc1aa010d8726f3bf2912fa46402fe71889e9ba120c"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MembershipBoundaryChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "9f2d3e697157380222c172a3ad4f5b874985001229885060ed7f2ab7642ecba3"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MembershipProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b692c7ea26b1fab299f425b6da314e4212e4e6688f83d994d6d57fdecde28a37"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MembershipStateChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "958d40260efb60792aa57d22531b0f4b7ef5f4d78411077edea58f52665064b6"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MembershipWireChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6cb3a0a5b8b1bc002a8f93e7737d5dfa4a56bf715f14820767ebdb4cd2b7d0ed"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MessagesInboxChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "acffa1dd0d126ff4139ea6f5ec835dba595b3d2c153c03e527fd45816963b671"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ParentEmergencyContactChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "9edd9aa4081b3806342067e41f92baef756a8fd73df67bd04b93f546e4a2ae94"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PaymentScreenChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a321769a4bcd3e95020eb7fefdf21f8a055e8ee837ed7f2db42d78875018be81"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PendingReviewChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "283da630f84acd417ba8a48bc2f18f97e7733faab96abe0bb51e4ea415408165"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ProfileInitializationChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "6c85ec5e5fe574fac4fd7aa2956274c38bca5d9b940a229826395ae68e79206b"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ProfileInitializationProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4be033c041cce2c903893ae9d401aa79afcd9d47b27c817305d0fad8463f289f"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PublishBoundaryChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "deb9be6fcdb50772990a2c2005709cbf25321892da31a462192373bd827b43e8"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PublishOwnershipChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "f144b80703f9c79f211dfffbc9fe666a4580db1369a430064ff5a6a7814892fe"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a607d7e49d1d1f909f0990dea85abc2322791dac54c2c75065997d0be7507315"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b530a01659380e7b892dd7fa968b455f7cf26de9ce2f6811d0e2a8479f682bc0"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "710768acbffec78eba78eb70ea35285d2243e95ebd33649537c18e4245277748"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "64affe71b6967a6552c37d6d8e4aca27c853aa3ee310580200a777d1f5adaec5"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "2bd0739ddcfbe727fae66ed7027b65092a84be309385072d0e1e985582128e91"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RidePaymentChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "da4c81907578db5c73ffce28548e9d05a2cf953c094e54ac9181983e48623388"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RidePaymentOwnershipChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "86585cdc53ca98d93c3f5fee3caeae9091de9ec68096de2becfd27491fb2d8ae"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a2fe65c6f868ba5396a5b6ed29df182298e5e411f973e9b48e909927684ecff0"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "64f68743d29aa6dbb0f33048ba67f53ae69669248d09d58e13f8dddf5d99dbf3"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SupportChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "bc4d64601e2aab3e5f3f2f92583eeb19aea6d1da932bbb24ae403d57cb21ea23"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SupportStateChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "a2f4ace946ba1ff72b28507f09231a73b1c2da62f05b8de390219bc328973e45"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SupportSubmissionChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "4215b3fe250bfb1135e5f7783907f835da4e9967ed72da0d35a4bff648c366fc"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatBoundaryChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "34a0502a476321eb3f05e4bd16a73cb6efedf21a6ac585c0c1d2e15d89d0cde2"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatProbe.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "5e8549669eec70d816451673b50bc8c125754d93ef6c6de199b00d296fc4a6f9"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatStateChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "1fff1ac2839fe929217740ddbb92e240867290c3e720dd0ccb4c978b2f5ce333"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatStorageChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3841af3224d8b718dc445cc008f7dc663f10435d45ff9c280c47d3ac54237fdc"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatTimelineChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "789b636480075b2b1ca83485318403df78c7a5c4d95edc220a9bee4db46f4196"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatWireChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "8a078b4fc929777ade8772a9c0969ec6efb5381c49b85340b34c0044629ee72e"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TripDateLabelChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "e2cc533c738306dbb46af5d20d0ce80d81a48149e6203965a43ec274e7bacb47"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "f439edc44cb1b5abe0e55fafcc2d75504e412ea2263ca4131b2bbada1fec5d51"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/ApprovedCapture.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "422a1100b6fd766146421fda9cea5821a8fa164bc22c1eca30ba5c3c02d3e358"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/EmergencyContactFlowTests.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "dd9ae3ca8bb12b0d4839dd6f5b6ec2f2e1e214892ba89f66f6d0e127a4060a8a"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/MembershipFlowChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "aed42728f26e072e03a5d342b8dd60103f6dfe4e1c93d19b42a983c7f5cea71a"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/ParentEmergencyContactFlowTests.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "ea527eea59c2dfb8b5f89fef2c4ea5081fc86bdc5d96bdc919aa7d7bba8b8f80"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SearchConsentFlowTests.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "dd8f5ba82a299377c2d47f2491d5c33160afc6733705a288812b22a05bd72122"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SignOutFlowTests.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "3ed49981b48d05e81228b6cdb000700ce9a43e6fb3240d0e3e1383350a1c81cf"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "b3bac603d97f2d9b77b176e857cb3d45bbd78cee7bb85a15e86224a51cd71107"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/TeamChatFlowChecks.swift",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "231a4d3c4f9f8cfe7a357e0da065e303790a10a6e67c1585ce0d057b71344544"
+    },
+    {
+      "path": "ios/project.yml",
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "sha256": "630188a291754a30f168d4853560a21ed65305c4db437a7e25e1d720e9982908"
+    },
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "9c40169b953b48545166c5fae39872c28a9a3fdac5643acc15761b09522d1015"
+    },
+    {
+      "path": "ios/Package.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a88d006ab38a330950643b3bdee43eb1ab6651d610b90ebda96438efa054fc8e"
+    },
+    {
+      "path": "ios/README.md",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b546a248c7f105347fefa2204a925e726d0e3061bc9394488345dda5962c9341"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AccountWorkScope.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "7d9526f77596caef3459d7702242e77d69e9816cf0bf47ef74424098c6475500"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c306b2afeb5d5c50378b10435a6f75e454e4803999f1134c20e71bc7dea05c42"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ActiveRideStartup.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a0b45cfa279f343f73974a2c8df0d5412301e8b32a008b65e6d68229770516f3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppDataGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "469090a56efaa1160e60674e10fc131009c908b61746785fc7d632ef5033e8c4"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppShell.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "d6c859476e5d913ac286460b94072bd590cc3938fad866751a5fc6f0962a318a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Authentication.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "2b25bf0c65adad4a77884e6489118a6d88085c145f9749b28157b86f6e669430"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Bookings.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4f331183dc5abdc01e828f32c981b3b9df65939f27b2c0753ec702408df542ec"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Data.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b05503c0dee4463dae635fe7d7c351035520313f28be21c2669e04924d4d071e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+LocationShutdown.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "2173ebcd045a8afc3918ad14f28c50f728e7d66056423924518f4556523e6353"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Profile.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "cfc266ed61e3594e89a75b57fc49df67a763460203d0e88124dec01e33dadc26"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+RidePayments.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "e345d9b5e94f656ca6813d42c450df01dc465efa8acf4a3b1c0c404c0880196d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Search.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6c84b3b2c72d41e7f164549fdec42537cb2832c925a098b3c9ec4baec97bafba"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "56145ee514e9ebca6c2ce766e07b66bbed3206ffe0d5138f826d1d5851ab5a7d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c6fbd17e11625b314b0d7941b34cb89779120ef794a64d0aa4962b9d8dce0d71"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AuthScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6799c1e580f5f75895ef549b493aad785110d1f2b99412b1b845eb127372b25d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AuthSession.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6292cbb29c892893b82962bfda2e5a832408ff4b9827df279081c9e9382294cc"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AuthenticationState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "8aec3aefef079a86416fdcd15dc6bd6a5382a6e27f9d378047c0939807487b35"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "0e7a2ae4c355278a897ae2d905729336ef41682b7e9d5303a88db083c03e6c21"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/BookingRequestCoordinator.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "0f5469e5fbf463e9207c1d90fab94f7cd8c6071b8cc957f35125e8b2cf345b9f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ClubMembership.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4175ee9192bd114284f07f917d119e770db688f179bb61bafd4390ea77588bed"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ClubMembershipState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c90adc7f1d39e77901e059ca834f47d6f9bd08acef87f8b316445d4fff9e1fb9"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ClubSummary.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "cc2f6607b21a84e3a787db4984aaa650df3c721bbfe02e1a981b9880d7b98c4b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/DesignTokens.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "78126f8466578e657272505573bd42658f875dc6664b497eada7b3b79a6dfe95"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3c6a9044f06cfd156b14836fc93f62ef8ec8ce6bd4dba9c85db51558641ab54f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactRequest.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "524710a6ea3edc575f00bb1ddba424142385beb1036493bb2c94261ca4f8bc2c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "63807fd70a63602a7c44419f7b5d560726a6a42763f1c12d1ebc2711fde2a004"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "500e8a383be9a9dd5cf8441d46decfb38ff6f9700e6b2a0fc17180fb1ec4ca6f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactWire.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f99f9b233439f5044ec22c36a0482e0e2ef014d2ed7db2600d13127dda2c5afb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseAuthGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "34c8a04d3eeedb38de513672494949f20a0b834a8855ca2638fd7246ff75ef47"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseBookingGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f5945640a3cc48c0ac4f7f3a59ee35a2484356fad0dcf88b0ccc9f4333334b48"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseBookingRequests.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "625fa351f9357564a241e8aca84cbe14fcdde3514ca0fb7c85459b6fabb3b20e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "47fbdaca1c4f3381e156605b18e93d5d24b07597d1f5fd8c916698d6b419cce5"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseChildrenGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "ec36242da09cfc2786a03fcada6f2e4fe018ed261aaba94a2be61f863483af2a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseClubSummaries.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5edc51c96e8a8f4e1c4ac5b6038f281b65999ce9268deb8ba531b4d2e1737054"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseEmergencyContactGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "97192a684f27eba844185306cfa16d032d4e153521618f6e3e5272030807abf6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseFeedbackGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c51e5789e8a0ed163dc8d0376e41f8b3ef05fa6583d80abe7d264bb3ae675b4a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4d909468620e35e9ceddadb10b8de6c2cb202541f6857ee10b1300b737d4b37a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "acc7dbbdb6ab9e6b49eadfea2f492cfaf9311efeb04f9ec025cbe9fe87df900c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseInitializedProfile.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "aaf990c1f8d53541049fd5c9f7bc2931e2cc8256413e3071545caedcfbae22cf"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseLocationUpload.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "ca738fe42a1da3f54c5e1595ee440e938edcd54ba058a4ff742387aaa01d8c5d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMapMappers.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "8bf23a0f1d195b44fb442a79004e14c9749fd0153751d28e61c9803d9526ec91"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMappers.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "7215ea8252f6905ea13a86e20d0744d68b0dd7cefc80b6ad34710ce974044fa1"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMembershipDirectory.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "bb60a93437e3037ccf0e6d5bf63fa18aded04fbce25ba466a3963fcaf7c22040"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMembershipGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "2f9891ed288cf58d09278105be55c43da9842acf43b3677874ebd364f7d190aa"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseNativeGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "940d9d0d58c40ef13b5a301ed8f9a2248e752e315f057c5418729ea84a1d08ec"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseProfileCityGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5c89666d97f671acab5e2b4ef1b6a05e494f4c9a33e1d650382381fac690f119"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebasePublishGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "687d5484029e5d5cf58c59b07a962ceaf2ef0c0b6ee2700ac9d3b5984415dd06"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseRadarTrackingGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "243f4ec8dfea013bcdcf41989b11e1b2d724fc2c324ba85c6346c27d6cbaea7f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseReceivedRatingsGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "091ff0cea407e8e66fa6d21572d0c0810ec992990b915b250c6799f98e42cfc8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c98efb1819171ef08bcc2b62e47e5582238f9035c174835f6573f89a4539d8d3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseStripePaymentsGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "962fa77a026963e592ff8bdd4df3318f405dceb8bbf123df556e4ac9f65c4342"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a27671d75466f84b2c7c1754b6ced8d930324c9b9c856db60f65c5dac012226d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseTeamChatGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "042f5b4ef9c2a4516fab712fcd728742ddc5e8b8081703d026bb1fbf84577bad"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "9df49a851df7fe43695c2e9e83e54d46d822a3b5e6467664f0edd721dbed8a57"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GoogleMapsRoutePreview.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "11ec543806db34d9febc0b6bb7c06c9537e99cd9d28b6c756ad3efad7e89d378"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GroupsScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "d0ac855c62bf1fafa6c7d017a4c13554d48950ecf3b4dfc39186895bd43fd07d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactModels.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6f43379d00e03e016773b166ad3eecb63752bd9dde2c38ca7fa91c3f793a9c2d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactPicker.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "fa5d6e4e6f88613d10735488b808e8237da5aa2a90c8f854912610d6e43e108f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "47ed1fc62549a93f57e2c361c729ac3edd39c6dae2912d63deeeb90a38362008"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/HomeScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "eb6fc0707a0ea121a47cb7622ad682c3dcca1b6f6af6b96b13caa75042d2a5d8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "35889efeacc7b94e8bc0de9b2e1975ed7b6fc4094c7d8ade0a937d054b5980af"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "27ec9cea84e2f6c9492585021d7780e6c8c6318fba39e0b2846063c15b8a0217"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3f39306595c807e986f474851a6bf264eac762d4f217af05bfc32846d749626b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/LocationSessionState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "7867a9eb36815912bd2b9994356acbcc7cf50a03d96c66fca095d1fc6f0e2ade"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/LogoutIntentStore.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "73e5db5a5740e7100b58072567c354e5e7818c6ca9368ab63431fb724c521514"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MapRoutePolyline.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b2df4d7088cb7226b7876edbcd61cd373372c8aa40ededb94adcaacf8b9b0695"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipClubViews.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c499b69962f4f835524c71b7e3339c1c104b21cbea5dccd9297e7b71af5793bc"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipHeader.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a74e4ef6f70c60c6a14403173375216ae2ff5c94af1d42924e47c23530e68bb3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipPager.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "86a0d8670c0272b98c0443aa2adb42070a27fbd14c759af87c8eefeef71ce6dd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipPolicy.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3df4e15a274180098f804131b047b91ae18859715b76dc11e03ace850776bb5c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipRequest.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "da000265ca6a11d2679390180744cc72c71b2f8b8d621526ccb56020e875645a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipReviewScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "9a1074ace0290c0d7d075b0d7e35cacdf3bd53e8a5b38a2e453d19d34885637e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipReviewState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "169ec20a9bfacfbb4c5676d0283dde217b013e5f88f4778f935f4a12f7ae08fa"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MembershipWire.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4749c46d15f75147fbf297c2af6f4fedfdd33e7e77c4c30cb0839d48811094e8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesInboxState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6e89331e463fcb58c1cf604cd87391fa03763c5ceecc71178e105b16f0ff18dd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c47d89c9a5a3d3f5ff0aab182bd97c23d2e51424f0f9c48cf3670bb18c932563"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Models.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "440d1c816123f68621c4bb9778bc39fc08e5e5ffa7660d2e70b31ace28a66633"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeGoogleMapsLifecycle.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "9633ba1b1fa7a5c9dc40c1f651576d747a9c6d153c90a3c892da38549e7d985e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeLocationFallbackProvider.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "917415b27ad2c6346e51d12768d6d759a0dc5689c3a4f5e1f8027cde62592581"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativePaymentSheetFlow.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "fdf28f97ce5fdf5b017b78c49c47d00fda1d7499c1839b3c89086b9dadb648fd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativePlanPolicies.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "bc66e8cd53b67e4b586843d7265b8d9e1d8cfa3075626a554b68bc5675a5997c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeRadarConfiguration.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "aa32f4137ed26c9d2cbfdc8054558d478d9f9ab5029cca023fe63ed1427cb99d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeStripeConnectConfiguration.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "10ac98909503220220d745803a260fb66483c03abb0d4a5521c72ab163c69c08"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/NativeURLHandler.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "fce46dc4c91931fa966896bacdf9df46c60c8033107c144cce2d16663f8f833a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/OptionsScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "10dfce36371ebab013302de1630f1d225a7722f905df21ac563748fc05a1ea88"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PaymentScreenController.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a89cfc6980fe993dd2bd74048efc9dba6155b905a7237afeb658b8cc6360a3ff"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PaymentsScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "e8726052a19dc4583115339bb82336b11de6e4ff1d766071e87fd1cd012fb0bf"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingBookingStore.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "0d2ffbb310ecc6a77578dfeb868a9a22f98ff702494b10a63f632597a4bd0fc2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviewWire.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "15772da2e0bd5d8d205ed608a55e1dda5fd1def53a07085c356c611f8baa755f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviews.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "e4437f43d62d61e04c139bd36c5d08a0d489fab20ed1a6637daf5938abb49df6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviewsContent.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5fd7c9d2d3487055f8c9039614700e4db3dcd085086982b35895b06153aab92d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviewsState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "222456563a0239027b2e74b3cf920c317da6c4aaecd2393184c7921032bd5e32"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileCity.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "26d2524d2fe0419b83de8d3f2daddf507835211eb4947eb42fffde428b8425b1"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileCityEditor.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b8bdefaf454b143a5d8e1424d5f30e0c44e7b1ab4e62a925a1f52f75c458acc4"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileCityEntry.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "91d6553906ae7ae09ba1e2032e35c4eae7929083ff1ced5d5aeb6e4a019781bc"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileCityState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "42ffe7a6f7d8a88347d0c3c7aa0b9b84558f8f601b992506c9f26cb857d7662e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileIdentity.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3e8307f1c1a7c4543a428b7eb9b332f190d71c7f586bf9e38978ff7f2a5186a5"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileReceivedRatings.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "d2b112c901fcb47f6c62da2617ca8f779d59ef240e3638b07a10de57c48e2110"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4d90fe96d0d1615d1304c69a692d1ac3a619ca8dca5776fe956bc293f1abcb41"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileSettingsCard.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f023284d6a666451b989a1f7a95cf7ab7c2a9db81315e81783ef0023ab56e645"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProviderConfigurationError.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "64d5261898f6a2738149ed55b4cf9a68578401f5aa100f32f247943e7c5f515f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishController.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "e08d3e506943b3bb99ac660e7e3c54965ab33e64bbcd0d454d45b5f56d808c56"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishControls.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6f3889d6f37d69b41b76ea6fb194854e3aaa56cd613ba8fd04626b161b82ccf5"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishPlaceField.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f7f868d753d81430ea0ab38f08d409994b66cf4c8760b58b21fe103417c26c6d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a63f4a8e6168d41387545b2b2e4f4f86ef892fa2074f643e8016872d64ac795f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishSteps.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "d6a2bb864b76268b8b693fa4558cbdb5463d793d49430cb1248565635fe8c0bc"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReceivedRatings.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "2bb93f4d3ace9870301d0b9f582c661458010007890c6c4397c06d2068bd375c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReceivedRatingsState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "ebf900b530756505993fd736d8355424433c67689bd88cc2e90390b5d9a30309"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/Fonts/BebasNeue-Regular.ttf",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "08e4623805102d819f58601e46e345648846075e363b2ceb23313c2d1c83ec73"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Bold.ttf",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Medium.ttf",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/Fonts/DMSans-Regular.ttf",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Resources/PrivacyInfo.xcprivacy",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5d60adf4784bcb19bef6a4fcf62c9bb997e088ae6364dcece62dcc344176b5e2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "9a3b6be612e2b563bd6a6cd5eada3d3bdc04d38fcba1e1ddf600bcbdbdb3cc13"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReviewTripContextWire.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "0d65d2aa06ee366d0a5918dac097ef366e9d8f5001f6b7bdfa80f74826b2357e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RidePaymentVerification.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "10b20813ca4de73c1e9d23f49a16d905aea16553757cc74a98166040fad9131c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideRequestState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "398b52e78c4e7e308dc21ced9fff186df9374cb33bf3d9ec58c17309c524aefb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMCards.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c55a1cd45c596b93115e4b99e548d2f41c87ad02e09741bea57e2aa1fc40af95"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMComponents.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "adcbcabb38418e12c18cf58ce21f25e3de5b6086822535a848a2c670874c400c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMIcons.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "7c4b8097987ac7ef74ff629c681330ff052538054ff04154bb90a8f975d04e1d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMNavigation.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5196d7613f2f0b526ed5a34a88c84e915147a32743e3797ff633feae01a71481"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchChildSelector.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "86cffb20bc7af05e8fea8ac94e7b6ebe49a89286a62e9192934b5b1efa58e509"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchFormState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "0354a3145333c6f68fe3460f30e7367a2cb44de3298878ee4be7db8265667254"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchRequestState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "13f0edf81d739f032975a80f5109f437b04a3f2d74040aee6a9b3313b6a5038e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "0cf4940d74b0456a62ac1ce7aeb7c2b9059421cad59790b87e684d682810e35d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SecondaryScreens.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "8b41a91552117049bbbbb5d97d6e668cd07139819bdc0f18475ec391b70d022a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SportsGreenMooveApp.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "d1a5aaa4b3b4a9bd7b03ea8cb160cece4a526a10d3117f028b517b306cb98e59"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/StripeConnectModels.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3cc6b02809b561e39bd883b06c693cb399a6dc49e091ab6b4192c5d498aa63ae"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/StripePaymentSheetPresenter.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c9369475993f46749a9d0b2c63c4d8a792543eb86adc3db6d2b2d808cd641c93"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/StripePaymentsGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "eb5d9ee0c55d914e6b19f92889f6cd667b14d37dfff92d2ac3ac8cb2259d27eb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportInboxScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "9513d65295ad7bc9828c0a6302e1fac61970a29170e21828f4e15959ebe89644"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportInboxState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "94ef2cc1baee0b159de11e250d1fd87c328e51402a6e1a89fb0ab29a0cbe9f85"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportModels.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "71e4e1655c78d209f81b25c0891b9b3c261d51d6aa0c21a5573135a951672e7f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportSubmission.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "7b5c2c69d67cb9d71d90452ba50764bd9ddadb9290671c8ec1312d022d265c0e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportSubmissionCard.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c9b8ff6189e5633b8cbcedeef9ec16c4e551545dd0ccdc928ffa0a6c4f213666"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportSubmissionState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6434d3c6e38f74531bbc9adb74600e3db1e43c606afeb9b6f9b1fcf7c6534f85"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportWire.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "d40033d87a6c0de5de299505484f5321cd4d6ffc31bba88c5e18ea77b9fc577e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SystemEmergencyPhone.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5f7441c7af9b61ed5fdd112da7d36dead8ca9cf2daacab9bd21e54588ce6d991"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatComposer.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "141b842b74e88cee76d3d20e793e4a54c8d0ca180ef9633330f77e0411bcd0c3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDirectoryState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f06239c483400d558a02f23e067079844c6201abf709629b6f628361af373e7e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDirectoryView.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c8b760485fd0adade01c558839a54e271364a66c6e5b87b4d8a6aeae011aba71"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDraftStore.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3cb91688c1ec553a4d3d674cd87fb01a3803a9c09aeb2a65ce1975990e766740"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatMessageViews.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "0f35c5069020ad77a8f43e9c9de88d091c4e26e08949bbc5528c869452820aef"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatModels.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f02528090ca01dd026a4dce4948ae41f9aa098378352d98253ae43572ba39016"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatPolicy.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b03b0bc45a3c10ad4861654cb9e20518666237bc2cd63a2e4740552c8623f602"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatRequest.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "d817caf8a4062d9a9d81ec0af6563218cfd58dd398e4a087457fabc7443a0fa8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatState.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "904ac629950d85ebbfd95098cae038b561787dd9bfde73d0093d6ac33ddaab81"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatThreadView.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "dac5869f3796cda92478f7c205db6e1e611ff0f1772d74d10e9e826baa2daedb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatTimeline.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "441d3d3dd303bb504926e37b2e93885b22f05ff4287b56c38ee01bc85baa87d2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatWire.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "633c75c22b076f4c15463b0e97f1b15951677f28638036587b7536e683134c69"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripDateLabels.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "525bb4caedfa000da97aeea5e15c8230cd3ee29e10b8624d1b3f079d8cba150d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripPublishDraft.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5e1606be31da9b6484b80e17fb4ee30d20828eb0c1b1413413e468bf591b9d81"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripsScreen.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "35bbb1f585c6298313dceeeba68b7caf4dd5776e7e6226c25b77f8277b24dbbb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UIKitPresentation.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b176300973a65a62ab784198b92ec039731f4035ebb4109a51317f6493b78b5b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4c8d300cf300fd9cbc2c20f778f4d88ac75560b288c36c5ce8a92ddcaf2716b1"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestBootDiagnostics.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5eb56dea0f68f4f47e8812bb1bd0a6efae5d2ba5574b80ff58ebbd7f300ee9fe"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestEmergencyContacts.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "0549ec5610506489e06e2493231e1c33952c3ea90d804b8dea5b247aec3e6675"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestIdentifiers.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4de5d06760547616b07bbbcc197a3cadb9b1448f6fee30ec05ae101a3454d134"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestMembershipGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c031e9e8655490e1a90c6dced29595e9d268fe55bb6edb88989b48d0fd14235b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestProfileCityGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b9441ca9cb5f66c61c64e4694240f9f393d99f8d557738c483c384e69dc16c91"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestTeamChat.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "14c9a7379428a2e514ee0beb34b0265556633d5568e98b615f6524138d244373"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredGateways.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "dcf64c0804dcfbeb05f719e8b0392f59ee6bada3f97a594cc22f064838e97e30"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredMembershipGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "05d6ac5289c9719593387c704d6dd38ed4876bca136731b79e41c3dfe3f44f98"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredTeamChatGateway.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "660212ae3f12f8d9fa0c6fe3730b2951425570dd3ad27838311c3656bed56123"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AccountWorkChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "7bf02032aa8e25414c7da0e76dbdda5c0333950b2e7a5b3d31a4acab93917c8b"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a4b93baf255dd4df94b5c36f995c1ca399bb69af21ddb50fae826fffef5d9217"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AppDataRefreshChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "459acf5303e42c3b4d62bcfd44dfa81d83a2957015613e5d0390e7cee9bdb0a4"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AuthenticationChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4748fa44e0175faf3cf79fb22fdffa69e4c7b1b505adb46f56fe8b1f288767f5"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AuthenticationProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "76845a87904452ec9965e4b67a177c6a6c3150651d32bb507ca3556be00a6e07"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/BookingOwnershipChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "ef75997b2453286dd14cb9439d98e1240bf886c21f60543fd5316d6731b89c95"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactBoundaryChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "716289c58a5bb4f95853509e17a6319e554c3e19934ef1ec3b7b26319eb40f89"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "18d2c6a6eb579bcea66740cb8b6ea199f363456c958b20b1206689a6e9291b3d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6bb806ec633a807d53e7a6d311c4feaa4c19448b30e348af8286fbb3fc99d405"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactRequestChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "83cf62dab04d475e45c2b776746e2bcf2be4c9e730db6893bd31b1fe6fc65a3e"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactWireChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3a9f44bf001208eedad328b46f214ab4aa40d4298d5dac5d4b6684a3ecf6df85"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactBoundaryChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "ae929b7c6b22644d5821c8a7b0a83c0d2049717fc0fa70d1eb1f20e4e75cb16d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "195ea204654971cb2aaa36586e6c819139b7ae121c6f1fb89e36fed9fcad60a0"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "c2c9bffb57421a0b46313343969a43a70ff17c4dea50efc3e971ece93687d5ac"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/LedgerSummaryChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "8630830683a6b3ebbc872c2d6cabaabc38391a9c5cfcabfb454d1dccbeee8796"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/LocationSessionChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "23ef85d96397e31e55697258220aa508e78bea92d98f2369c24fec540ec3a0bc"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/LocationShutdownChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "75a47c809935782ef468e4eee5a56f0575f0e57580e107f49b08444138dcc1a6"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/LogoutIntentChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b4a858910ca6efc866d69bc1aa010d8726f3bf2912fa46402fe71889e9ba120c"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MembershipBoundaryChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "9f2d3e697157380222c172a3ad4f5b874985001229885060ed7f2ab7642ecba3"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MembershipProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b692c7ea26b1fab299f425b6da314e4212e4e6688f83d994d6d57fdecde28a37"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MembershipStateChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "958d40260efb60792aa57d22531b0f4b7ef5f4d78411077edea58f52665064b6"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MembershipWireChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6cb3a0a5b8b1bc002a8f93e7737d5dfa4a56bf715f14820767ebdb4cd2b7d0ed"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MessagesInboxChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "acffa1dd0d126ff4139ea6f5ec835dba595b3d2c153c03e527fd45816963b671"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ParentEmergencyContactChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "9edd9aa4081b3806342067e41f92baef756a8fd73df67bd04b93f546e4a2ae94"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PaymentScreenChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a321769a4bcd3e95020eb7fefdf21f8a055e8ee837ed7f2db42d78875018be81"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PendingReviewChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "283da630f84acd417ba8a48bc2f18f97e7733faab96abe0bb51e4ea415408165"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ProfileCityProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f8b0d584d662954445b39a043ca8d204f9ecd54e632d26c41500c97b815a4c6a"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ProfileCityStateChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "e71f7f7870ab86d7c1443e9d277cee1d477d55799c5b4c7e25d464e9ee22b205"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ProfileCityWireChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "d39d8670f2c3012ff386a8c8dc10dd5b21eaf6a1b8f238a58a8133e1d7c7bc71"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ProfileInitializationChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "6c85ec5e5fe574fac4fd7aa2956274c38bca5d9b940a229826395ae68e79206b"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ProfileInitializationProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4be033c041cce2c903893ae9d401aa79afcd9d47b27c817305d0fad8463f289f"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PublishBoundaryChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "deb9be6fcdb50772990a2c2005709cbf25321892da31a462192373bd827b43e8"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PublishOwnershipChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f144b80703f9c79f211dfffbc9fe666a4580db1369a430064ff5a6a7814892fe"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a607d7e49d1d1f909f0990dea85abc2322791dac54c2c75065997d0be7507315"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "b530a01659380e7b892dd7fa968b455f7cf26de9ce2f6811d0e2a8479f682bc0"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "710768acbffec78eba78eb70ea35285d2243e95ebd33649537c18e4245277748"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "64affe71b6967a6552c37d6d8e4aca27c853aa3ee310580200a777d1f5adaec5"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "2bd0739ddcfbe727fae66ed7027b65092a84be309385072d0e1e985582128e91"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RidePaymentChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "da4c81907578db5c73ffce28548e9d05a2cf953c094e54ac9181983e48623388"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RidePaymentOwnershipChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "86585cdc53ca98d93c3f5fee3caeae9091de9ec68096de2becfd27491fb2d8ae"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a2fe65c6f868ba5396a5b6ed29df182298e5e411f973e9b48e909927684ecff0"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "64f68743d29aa6dbb0f33048ba67f53ae69669248d09d58e13f8dddf5d99dbf3"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SupportChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "bc4d64601e2aab3e5f3f2f92583eeb19aea6d1da932bbb24ae403d57cb21ea23"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SupportStateChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "a2f4ace946ba1ff72b28507f09231a73b1c2da62f05b8de390219bc328973e45"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SupportSubmissionChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "4215b3fe250bfb1135e5f7783907f835da4e9967ed72da0d35a4bff648c366fc"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatBoundaryChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "34a0502a476321eb3f05e4bd16a73cb6efedf21a6ac585c0c1d2e15d89d0cde2"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatProbe.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "5e8549669eec70d816451673b50bc8c125754d93ef6c6de199b00d296fc4a6f9"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatStateChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "1fff1ac2839fe929217740ddbb92e240867290c3e720dd0ccb4c978b2f5ce333"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatStorageChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3841af3224d8b718dc445cc008f7dc663f10435d45ff9c280c47d3ac54237fdc"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatTimelineChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "789b636480075b2b1ca83485318403df78c7a5c4d95edc220a9bee4db46f4196"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatWireChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "8a078b4fc929777ade8772a9c0969ec6efb5381c49b85340b34c0044629ee72e"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TripDateLabelChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "e2cc533c738306dbb46af5d20d0ce80d81a48149e6203965a43ec274e7bacb47"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "fab88b39908dc794cd0957d0cb1d0905dd1e69c2364ae2785336353f151f2f59"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/ApprovedCapture.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "422a1100b6fd766146421fda9cea5821a8fa164bc22c1eca30ba5c3c02d3e358"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/EmergencyContactFlowTests.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "dd9ae3ca8bb12b0d4839dd6f5b6ec2f2e1e214892ba89f66f6d0e127a4060a8a"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/MembershipFlowChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "aed42728f26e072e03a5d342b8dd60103f6dfe4e1c93d19b42a983c7f5cea71a"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/ParentEmergencyContactFlowTests.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "ea527eea59c2dfb8b5f89fef2c4ea5081fc86bdc5d96bdc919aa7d7bba8b8f80"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/ProfileCityFlowChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "f2a28e767d3b266499178504753b02cd2bd39710783dce14742a05a45aa9f284"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SearchConsentFlowTests.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "dd8f5ba82a299377c2d47f2491d5c33160afc6733705a288812b22a05bd72122"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SignOutFlowTests.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "3ed49981b48d05e81228b6cdb000700ce9a43e6fb3240d0e3e1383350a1c81cf"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "cc4419934ab1feae143e429265863429013fa8717728cfb9fc6359322accdd9d"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/TeamChatFlowChecks.swift",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "231a4d3c4f9f8cfe7a357e0da065e303790a10a6e67c1585ce0d057b71344544"
+    },
+    {
+      "path": "ios/project.yml",
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "sha256": "630188a291754a30f168d4853560a21ed65305c4db437a7e25e1d720e9982908"
+    }
+  ]
+}

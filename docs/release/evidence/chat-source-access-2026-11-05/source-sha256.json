@@ -1,0 +1,129 @@
+{
+  "files": [
+    {
+      "path": "firestore.rules",
+      "commit": "candidate",
+      "sha256": "456c338efa467879a2d9ea9ae3f5b84dad828cb5f2a108b3c65a9698f0eee350"
+    },
+    {
+      "path": "tests/security-rules.test.ts",
+      "commit": "candidate",
+      "sha256": "2beaf9778c4245cb922956efd9d02e07e5dc65d0ccfd41007e3c3ba05536fcbf"
+    },
+    {
+      "path": "tests/chat-source-access-rules.test.ts",
+      "commit": "candidate",
+      "sha256": "3b2b52c2cfefac3795a21b42fbe86441f50800f161a29c4df02f6427291f62f2"
+    },
+    {
+      "path": "scripts/qa/chat-source-access-suite.mjs",
+      "commit": "candidate",
+      "sha256": "0b32a3e476a80bbdf3ae28c018752f6d780f306f1eecf70bafa33e615eccaed6"
+    },
+    {
+      "path": "scripts/qa/run-chat-source-access.mjs",
+      "commit": "candidate",
+      "sha256": "733691a15afff6ec11f293e2b95a628f94453253b004f27bd741ae955ab67b43"
+    },
+    {
+      "path": "scripts/qa/chat-source-rules-entry.mjs",
+      "commit": "candidate",
+      "sha256": "2fd169f9a2c6fd0ff696de6f7637bfdd1537e80edb13f2daf1d0431c18ead9fd"
+    },
+    {
+      "path": "scripts/qa/run-chat-source-rules.mjs",
+      "commit": "candidate",
+      "sha256": "0158176dcf55e70f37d5b8b6a670bdf8d2004531eb46c1aecb1bd3f1b9bac9a4"
+    },
+    {
+      "path": "infra/firestore-rules/main.tf",
+      "commit": "candidate",
+      "sha256": "8ad46c4de15c259d939d320d121650dd70053e130e635c157aca3eafc6d0b557"
+    },
+    {
+      "path": "infra/firestore-rules/.terraform.lock.hcl",
+      "commit": "candidate",
+      "sha256": "39c4ac84c59c71a515a081184f2a52258855b4d5d562295c4581edfb1a242299"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/domain/ConversationSourceAccess.kt",
+      "commit": "candidate",
+      "sha256": "cf7df9a97e266600d9d3de8d2ead2f2d0c61d250a6d68bec285455e642d5c590"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/services/ConversationSourceObserver.kt",
+      "commit": "candidate",
+      "sha256": "46f0bd782d1343b460cfef62e43cf8cdca3d6da4120722d468b5f5e8b92bfd69"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidConversationGateway.kt",
+      "commit": "candidate",
+      "sha256": "403362a2e143cebbb85fa5767a8227b6b85706434e754ed58be46f5df2dd5780"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/ui/ConversationState.kt",
+      "commit": "candidate",
+      "sha256": "415ece5bdb537b6c8b225a07a83ccded1847d5a61b009a8dfe7a80a35200bade"
+    },
+    {
+      "path": "android/app/src/test/java/be/sportgreenmoove/app/domain/ConversationSourceAccessTest.kt",
+      "commit": "candidate",
+      "sha256": "e122654459802f5f3ff913b8e1caee04147a3d4f948ca3e0fab950ad23301012"
+    },
+    {
+      "path": "android/app/src/test/java/be/sportgreenmoove/app/ui/ConversationStateTest.kt",
+      "commit": "candidate",
+      "sha256": "e1300fccc960ae35aa34b341a9145cd02724564bd4d162a1cabb94da7c04dd9f"
+    },
+    {
+      "path": "scripts/qa/chat-source-access-suite.mjs",
+      "commit": "baseline.json",
+      "sha256": "d925bfb20d0c2b59c28e8ac1dd78c3e27d58f9f37e3fb48caf85373e35eeeff7"
+    },
+    {
+      "path": "functions/src/callables/messages.ts",
+      "commit": "baseline.json",
+      "sha256": "3645dd70ed542200705775ff6029542620002aaa7f894f470a19e782e56f46d6"
+    },
+    {
+      "path": "functions/src/callables/chatRead.ts",
+      "commit": "baseline.json",
+      "sha256": "4835439dba8fc8a8be5ccab5046727e3109edec504c331d92858dc9fe0caf7e5"
+    },
+    {
+      "path": "functions/src/lib/chatConversation.ts",
+      "commit": "baseline.json",
+      "sha256": "c2c6c544cbdd423c586da8d3ba95ea51886b5fd9789f4b325a982ee0db882499"
+    },
+    {
+      "path": "functions/src/domain/access.ts",
+      "commit": "baseline.json",
+      "sha256": "f5d8867e3df3ba9c0817e3ff58f260b56f623a3e7de138136721d31bdff75dea"
+    },
+    {
+      "path": "firestore.rules",
+      "commit": "baseline.json",
+      "sha256": "cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240"
+    },
+    {
+      "path": "firestore.rules",
+      "commit": "first-candidate-failed.json",
+      "sha256": "ce0d06aa59ab1e1108a547029acb72af2678c7ca6ad55dec69377b4a7ea23f45"
+    },
+    {
+      "path": "scripts/qa/chat-source-access-suite.mjs",
+      "commit": "query-observation-failed.json",
+      "sha256": "129dba0f63eb88cbcbe8187f35fad06c11cee70bf51324b0f6f323a2071b9fc0"
+    },
+    {
+      "path": "firestore.rules",
+      "commit": "field-binding-failed.json",
+      "sha256": "c61d31052f3a6bb0ea59b0f85b10bdb6df1868cd5cf596d49725faa012d17ec0"
+    },
+    {
+      "path": "firestore.rules",
+      "commit": "query-compatible.json",
+      "sha256": "88966c792480a25743b21685b32526df850a38d89fae89706d508ce352f2c439"
+    }
+  ]
+}
