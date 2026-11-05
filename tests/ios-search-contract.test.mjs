@@ -6,6 +6,7 @@ import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosSearchContract, iosSearchContractProgress} from '../partner-portal/ios-search-contract.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
+import {verificationBoundaries, verificationBoundariesProgress} from '../partner-portal/verification-boundaries.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path)), sha = value => createHash('sha256').update(value).digest('hex');
@@ -84,9 +85,12 @@ test('the runner executes real production sources with scripted SDK transport an
   const fixture = read('tests/fixtures/ios-search-contract/main.swift');
   for (const text of ['gateway.searchTripMatches(criteria: criteria)', 'bookingRequestPayload(trip: match.summary',
     '"isolated-child-2"', 'childId: criteria.childUserId, seats: criteria.seatsNeeded)', 'request["seats"] as? Int == 2',
-    'NSDictionary(dictionary: payload).isEqual(to: expected)', 'Auth.auth().setUser("other")', 'sdk.count == before', 'sdk.pending == 0']) {
+    'request.1 == expectedBytes', 'Auth.auth().setUser("other")', 'sdk.count == before', 'sdk.pending == 0']) {
     assert(fixture.includes(text), text);
   }
+  assert(fixture.includes('JSONSerialization.data(withJSONObject: input, options: .sortedKeys)'));
+  assert(fixture.includes('"guardianConsent": 1')); assert(fixture.includes('"extra": "rejected"'));
+  assert.doesNotMatch(fixture, /NSDictionary/);
 });
 
 test('the additional smoke executes after backend compilation while eleven iPhone cases and all approved resource bounds stay intact', () => {
@@ -124,4 +128,54 @@ test('the concise current note preserves historical content and never promotes t
   for (const key of ['productionWrites', 'providerRequests', 'newPhoneSessions', 'newMedia']) assert.equal(report[key], 0);
   const manifest = json('docs/release/evidence-manifest.json');
   for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci']) assert.equal(manifest.automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+});
+
+test('later failed gates retain exact sources, cleanup and unknown causes instead of accepting local candidates', () => {
+  const dir = 'docs/release/evidence/verification-boundaries-2026-11-05/';
+  const summary = json(verificationBoundaries.source);
+  for (const row of summary.records) assert.equal(sha(read(dir + row.file)), row.sha256, row.file);
+  for (const row of json(dir + 'source-sha256.json').files)
+    assert.equal(sha(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
+  const linux = json(dir + 'linux-job.json'), android = json(dir + 'android-job.json'), iphone = json(dir + 'iphone-job.json');
+  assert.equal(linux.runId, 42085479173); assert.equal(android.runId, 42085479235); assert.equal(iphone.runId, 42080157901);
+  assert.equal(linux.sourceCommit, '584c61b61453878e1bd2631b48ca2fef5e9de4d4');
+  assert.equal(android.sourceCommit, linux.sourceCommit);
+  assert.equal(iphone.sourceCommit, '9ae6ea709da5f487a51a1542864d4cf4d0e8f4b1');
+  assert.equal(linux.conclusion, 'failure'); assert.equal(linux.compilationCompleted, true);
+  assert.equal(linux.requestComparisonFailed, true); assert.equal(linux.responseGroupsExecuted, false);
+  assert.equal(linux.payloadEquivalenceEstablishedOnLinux, false); assert.equal(linux.rootCauseConfirmed, false);
+  assert.equal(android.conclusion, 'failure'); assert.equal(android.appFlowExecuted, false);
+  assert.equal(android.nondefaultWifiValidationKnown, false); assert.equal(android.rootCauseConfirmed, false);
+  const outcome = json(dir + 'android-outcome.json'), sample = json(dir + 'android-last-sample.json');
+  assert.equal(outcome.sampleCount, 59); assert.equal(outcome.budgetMs, 180000); assert.equal(outcome.intervalMs, 3000);
+  assert.equal(outcome.testAppsAbsent, true); assert.equal(outcome.failureKind, 'wifi-prerequisite-deadline');
+  for (const key of ['ready', 'completed', 'flowCompleted', 'settingsChanged', 'radioChanged', 'newProbesIssued'])
+    assert.equal(outcome[key], false);
+  assert.deepEqual(sample.active.transports, ['cellular']); assert.equal(sample.active.validated, true);
+  assert.equal(sample.wifiAvailable, true); assert.equal(Object.hasOwn(sample, 'availableCapabilities'), false);
+  assert.equal(iphone.conclusion, 'cancelled');
+  assert.equal(iphone.steps.find(row => row.name === 'Compile app and all fixture test bundles').conclusion, 'cancelled');
+  assert.equal(iphone.steps.find(row => row.name === 'Run every built fixture test without rebuilding').conclusion, 'skipped');
+  assert.equal(iphone.steps.find(row => row.name === 'Dispose isolated simulator').conclusion, 'success');
+  assert(json(dir + 'iphone-annotations.json').some(row => row.message.includes('50m0s')));
+  assert.equal(json(dir + 'iphone-artifacts.json').total_count, 0);
+  assert.equal(summary.candidate.runner, 'macos-26'); assert.equal(summary.candidate.fixtureCases, 11);
+  assert.equal(summary.candidate.timeoutMinutes, 50); assert.equal(summary.candidate.performanceImprovementProven, false);
+  for (const key of ['captureLimitChanged', 'readinessPredicateChanged', 'readinessBudgetChanged']) assert.equal(summary.candidate[key], false);
+  assert.equal(summary.localExactRequestAndResponseContractPassed, true);
+  for (const key of ['linuxExecutionAccepted', 'sdkBuildAccepted', 'fixtureUiAccepted', 'physicalDeviceAccepted', 'releaseComplete'])
+    assert.equal(summary[key], false);
+  assert(read(dir + 'local-contract.txt').includes('boolean/number substitution and missing/extra fields rejected'));
+});
+
+test('one concise incomplete-test note preserves every historical flow, update, blocker and media reference', () => {
+  assert.deepEqual(content.verificationBoundaries, verificationBoundaries);
+  assert.deepEqual(content.updates.filter(row => row.source === verificationBoundariesProgress.source), [verificationBoundariesProgress]);
+  assert(partitionUpdates(content.updates).recent.some(row => row.source === verificationBoundariesProgress.source));
+  assert.doesNotMatch(verificationBoundariesProgress.title + verificationBoundariesProgress.text,
+    /Firebase|BrowserStack|Android|Swift|SDK|Xcode|CI\b|macos|runner/i);
+  const before = json('docs/release/evidence/verification-boundaries-2026-11-05/portal-before.json');
+  for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
+  for (const hash of before.updates) assert(content.updates.some(row => sha(JSON.stringify(row)) === hash));
+  assert.equal(sha(JSON.stringify(content.blockers)), before.blockers);
 });

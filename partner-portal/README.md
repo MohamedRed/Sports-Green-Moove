@@ -2,6 +2,19 @@
 
 ## Current Publication Policy
 
+The latest 9ae iPhone gate reaches its approved 50-minute limit during compilation;
+screen/capture steps are skipped, disposal succeeds and no artifacts remain. The
+584 Android chat trial stops before app installation on its passive Wi-Fi
+prerequisite; its nondefault Wi-Fi validation state and root cause are unknown.
+The 584 Linux search check compiles but fails request-object comparison before
+response cases. Preserve each actual failure separately. The candidate uses
+strict sorted-key JSON byte comparison, anonymous available-network capability
+metadata and the standard public ARM runner, without changing readiness, eleven
+cases, 50 minutes, capture limits or public audience. Local wire checks pass;
+Linux/native gates and performance improvement are not accepted. Publish one
+short incomplete-test note, no new media or changed historical flows/statuses/
+dates/tours/blockers. See `docs/release/evidence/verification-boundaries-2026-11-05/`.
+
 Fourteen current isolated booking-transaction groups now pass after selecting the
 explicitly configured Java runtime in child-process lookup. Eleven environment/
 disposal checks pass; no global settings, installation or alternative-runtime

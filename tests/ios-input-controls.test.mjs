@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {parseDocument} from 'yaml';
@@ -74,7 +75,7 @@ test('UI candidates preserve the real city button and full-size club target with
 test('existing eleven-case workload, concurrency, deadline and capture policy remain unchanged', () => {
   const path = '.github/workflows/ios-mvp-verification.yml', current = parseDocument(read(path)).toJSON();
   const old = parseDocument(frozen(path, report.baselineCommit)).toJSON();
-  assert.deepEqual(current.jobs, old.jobs); assert.deepEqual(current.concurrency, old.concurrency);
+  assertUnchangedIosFixtureWorkload(current, old);
   assert.equal(current.jobs['ios-fixture-verification']['timeout-minutes'], 50);
   assert.equal(report.fixtureCases, 11); assert.equal(report.uiAssertionsChanged, false);
   assert(current.on.pull_request.paths.includes('tests/ios-input-controls.test.mjs'));

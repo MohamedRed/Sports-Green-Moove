@@ -14,6 +14,18 @@ let criteria = TripSearchCriteria(requesterUserId: "isolated-parent",
     requireChildTracking: true, guardianConsent: true, childUserId: "isolated-child-2",
     clubId: "sgm-qa-club-green-wavre", teamId: "sgm-qa-club-green-wavre-u8", category: "U 7/8")
 
+func canonicalRequest(_ input: [String: Any]) throws -> Data {
+    try JSONSerialization.data(withJSONObject: input, options: .sortedKeys)
+}
+let canonical = try canonicalRequest(["seatsNeeded": 2, "guardianConsent": true])
+let reordered = try canonicalRequest(["guardianConsent": true, "seatsNeeded": 2])
+precondition(canonical == reordered)
+for changed: [String: Any] in [["seatsNeeded": 1, "guardianConsent": true], ["seatsNeeded": 2, "guardianConsent": 1],
+    ["seatsNeeded": 2], ["seatsNeeded": 2, "guardianConsent": true, "extra": "rejected"]] {
+    let changedBytes = try canonicalRequest(changed); precondition(canonical != changedBytes)
+}
+print("Callable request bytes passed: key order normalized; changed values, boolean/number substitution and missing/extra fields rejected")
+
 @MainActor func read(_ envelope: [String: Any], revocation: String? = nil) async throws -> [TripMatchSummary] {
     Auth.auth().setUser(criteria.requesterUserId)
     let task = Task { @MainActor in try await gateway.searchTripMatches(criteria: criteria) }
@@ -21,13 +33,13 @@ let criteria = TripSearchCriteria(requesterUserId: "isolated-parent",
     while sdk.pending == 0 { precondition(ContinuousClock.now < deadline); await Task.yield() }
     let request = sdk.last!
     precondition(request.0 == "searchTrips")
-    let payload = try JSONSerialization.jsonObject(with: request.1) as! [String: Any]
     let expected: [String: Any] = ["desiredDepartureAt": criteria.desiredDepartureAtIso,
         "origin": ["lat": 50.5, "lng": 4.5], "destination": ["lat": 50.6, "lng": 4.6],
         "seatsNeeded": 2, "baggage": "medium", "returnTrip": false, "requireChildTracking": true,
         "guardianConsent": true, "childUserId": "isolated-child-2", "clubId": "sgm-qa-club-green-wavre",
         "teamId": "sgm-qa-club-green-wavre-u8", "category": "U 7/8"]
-    precondition(NSDictionary(dictionary: payload).isEqual(to: expected))
+    let expectedBytes = try canonicalRequest(expected)
+    precondition(request.1 == expectedBytes, "Search request differs from the exact expected JSON wire payload")
     if revocation == "signout" { Auth.auth().setUser(nil) }
     if revocation == "other-user" { Auth.auth().setUser("other") }
     if revocation == "cancel" { task.cancel() }

@@ -1,0 +1,35 @@
+{
+  "runId": "759e449ad1ecba7af191f3d3ab01dfff",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "read-only-default-wifi-capabilities-not-dns-or-flow-proof",
+  "testAppsAbsent": true,
+  "settingsChanged": false,
+  "radioChanged": false,
+  "loggingChanged": false,
+  "newProbesIssued": false,
+  "flowCompleted": false,
+  "physicalDevice": false,
+  "rootCauseFixed": false,
+  "budgetMs": 180000,
+  "intervalMs": 3000,
+  "index": 58,
+  "elapsedMs": 178642,
+  "recordedAt": "2026-11-05T18:42:56.258Z",
+  "schemaVersion": 1,
+  "atomicObservation": false,
+  "activeNetworkDeclared": true,
+  "active": {
+    "transports": [
+      "cellular"
+    ],
+    "internet": true,
+    "validated": true,
+    "captivePortal": false
+  },
+  "availableNetworkCount": 2,
+  "wifiAvailable": true,
+  "ready": false,
+  "identifiersRetained": false,
+  "addressesRetained": false,
+  "rawLogsRetained": false
+}

@@ -26,6 +26,7 @@ export function parseDisposableWifiReadiness(output) {
   const active = networks.get(defaults[0]) ?? null;
   return {schemaVersion: 1, scope: 'read-only-default-wifi-capabilities-not-dns-or-flow-proof', atomicObservation: false,
     activeNetworkDeclared: defaults[0] !== 'none', active, availableNetworkCount: networks.size,
+    availableCapabilities: [...networks].map(([id, row]) => ({...row, transports: [...row.transports], isActiveDefault: id === defaults[0]})),
     wifiAvailable: [...networks.values()].some(row => row.transports.includes('wifi')),
     ready: Boolean(active && active.transports.length === 1 && active.transports[0] === 'wifi' && active.internet && active.validated && !active.captivePortal),
     identifiersRetained: false, addressesRetained: false, rawLogsRetained: false, newProbesIssued: false};

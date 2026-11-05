@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -100,7 +101,7 @@ test('prepared city save/reopen/removal keeps eleven cases and exactly the origi
   assert.doesNotMatch(helper, /XCTSkip|sleep\(|captureApproved|screenshot\(/);
   const current = parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON();
   const old = parseDocument(frozen('.github/workflows/ios-mvp-verification.yml', report.baselineCommit)).toJSON();
-  assert.deepEqual(current.jobs, old.jobs); assert.deepEqual(current.concurrency, old.concurrency);
+  assertUnchangedIosFixtureWorkload(current, old);
   assert.equal(current.jobs['ios-fixture-verification']['timeout-minutes'], 50);
 });
 

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -124,7 +125,7 @@ test('new request/review UI assertions preserve all eleven cases, the approved r
   assert.doesNotMatch(helper, /XCTSkip|sleep\(|screenshot\(|captureApproved/);
   const workflow = parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON();
   const old = parseDocument(frozen('.github/workflows/ios-mvp-verification.yml', report.baselineCommit)).toJSON();
-  assert.deepEqual(workflow.jobs, old.jobs); assert.deepEqual(workflow.concurrency, old.concurrency);
+  assertUnchangedIosFixtureWorkload(workflow, old);
   assert.equal(workflow.jobs['ios-fixture-verification']['timeout-minutes'], 50);
   assert(read(app + 'UITestMembershipGateway.swift').includes('#if DEBUG'));
 });

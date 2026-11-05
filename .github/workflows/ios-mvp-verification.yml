@@ -67,7 +67,7 @@ jobs:
     name: iPhone build and fixture screens
     # Standard public-repository compute only; do not enable paid/private runs.
     if: ${{ github.event.repository.visibility == 'public' && github.event.repository.private == false }}
-    runs-on: macos-26-intel
+    runs-on: macos-26
     timeout-minutes: 50
     steps:
       - name: Checkout
@@ -77,6 +77,7 @@ jobs:
 
       - name: Inspect installed Apple tools
         run: |
+          test "$(uname -m)" = arm64
           xcodebuild -version
           xcrun simctl list runtimes
 

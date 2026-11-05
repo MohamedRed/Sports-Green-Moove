@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync} from 'node:fs';
 import {test} from 'node:test';
 import {createHash} from 'node:crypto';
@@ -48,7 +49,8 @@ test('the two-platform baseline keeps logic proof separate from app, phone and r
 test('iPhone verification is bounded public compute with only the approved one-day capture storage', () => {
   assert.deepEqual(document.errors, []);
   assert.deepEqual(workflow.permissions, {contents: 'read'});
-  assert.equal(job['runs-on'], 'macos-26-intel');
+  assert.equal(job['runs-on'], 'macos-26');
+  assert(job.steps.find(row => row.name === 'Inspect installed Apple tools').run.includes('test "$(uname -m)" = arm64'));
   assert.equal(job['timeout-minutes'], 50);
   assert.equal(job.if, "${{ github.event.repository.visibility == 'public' && github.event.repository.private == false }}");
   assert.equal(workflow.concurrency['cancel-in-progress'], false);
@@ -59,6 +61,24 @@ test('iPhone verification is bounded public compute with only the approved one-d
   assert.equal(upload.with['retention-days'], 1);
   assert.equal(upload.with.name, 'iphone-fixture-captures');
   assert.equal(upload.with['include-hidden-files'], false);
+});
+
+test('the runner-only allowance rejects changed workloads, limits, capture bounds and concurrency', () => {
+  const baseline = structuredClone(workflow), original = baseline.jobs['ios-fixture-verification'];
+  original['runs-on'] = 'macos-26-intel';
+  original.steps.find(row => row.name === 'Inspect installed Apple tools').run = 'xcodebuild -version\nxcrun simctl list runtimes\n';
+  assertUnchangedIosFixtureWorkload(workflow, baseline);
+  for (const mutate of [
+    value => { value.jobs['ios-fixture-verification']['timeout-minutes'] = 51; },
+    value => { value.jobs['ios-fixture-verification']['runs-on'] = 'macos-26-xlarge'; },
+    value => { value.jobs['ios-fixture-verification'].steps.pop(); },
+    value => { value.jobs['ios-fixture-verification'].steps.find(row => row.uses === 'actions/upload-artifact@v4').with['retention-days'] = 2; },
+    value => { value.concurrency['cancel-in-progress'] = true; },
+    value => { value.jobs['ios-fixture-verification'].steps.find(row => row.name === 'Inspect installed Apple tools').run = 'xcodebuild -version\n'; },
+  ]) {
+    const changed = structuredClone(workflow); mutate(changed);
+    assert.throws(() => assertUnchangedIosFixtureWorkload(changed, baseline));
+  }
 });
 
 test('full SDK project and unchanged fixture tests run once without signing or production configuration', () => {

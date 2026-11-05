@@ -105,6 +105,26 @@ test('private names cannot impersonate actual capabilities and unsupported or am
     'Active default network: 101\n' + agent(101, 'WIFI', 'INTERNET&VALIDATED', 'nc{[ Transports: WIFI')])
     assert.throws(() => parseDisposableWifiReadiness(raw), error => !error.message.includes('PRIVATE'));
 });
+test('available Wi-Fi validation and default selection remain distinct without changing readiness', () => {
+  for (const validated of [false, true]) {
+    const raw = 'Active default network: 100\n' + agent(101, 'WIFI', validated ? 'INTERNET&VALIDATED' : 'INTERNET') + '\n' +
+      agent(100, 'CELLULAR', 'INTERNET&VALIDATED');
+    const result = parseDisposableWifiReadiness(raw);
+    assert.equal(result.ready, false); assert.equal(result.availableNetworkCount, 2);
+    assert.deepEqual(result.availableCapabilities, [
+      {transports: ['wifi'], internet: true, validated, captivePortal: false, isActiveDefault: false},
+      {transports: ['cellular'], internet: true, validated: true, captivePortal: false, isActiveDefault: true},
+    ]);
+    assert(!/PRIVATE|\b101\b|\b100\b/.test(JSON.stringify(result)));
+  }
+});
+test('available capabilities keep the same ready default and cannot alias the active transport array', () => {
+  const result = parseDisposableWifiReadiness(wifiState()); assert.equal(result.ready, true);
+  assert.equal(result.availableCapabilities.filter(row => row.isActiveDefault).length, 1);
+  result.availableCapabilities[0].transports.push('vpn'); assert.deepEqual(result.active.transports, ['wifi']);
+  const empty = parseDisposableWifiReadiness('Active default network: none');
+  assert.deepEqual(empty.availableCapabilities, []); assert.equal(empty.ready, false);
+});
 function readinessTrial(patch = {}) {
   let clock = 0, reads = 0;
   const writes = [], commands = [], histories = [], environment = {...env, SGM_FOCUSED_UI_CASE: 'chat-network-recovery'};
