@@ -9,6 +9,10 @@ enum UITestAppStateFactory {
 
     static func make() -> AppState {
         let route = argumentValue(after: "--sgm-ui-route") ?? "home"
+        return make(route: route)
+    }
+
+    static func make(route: String) -> AppState {
         let signedIn = route != "auth"
         let profile = route == "child-contact" ? Fixtures.childSession : route == "groups-review"
             ? AuthSession(uid: "ui-user", email: "manager@example.test", displayName: "Responsable Démo", roles: [.clubManager]) : Fixtures.session
@@ -26,7 +30,7 @@ enum UITestAppStateFactory {
 
     private static func seed(_ state: AppState, route: String, signedIn: Bool, profile: AuthSession) {
         state.session = signedIn ? profile : nil
-        state.selectedRole = profile.roles[0]
+        state.selectedRole = ["booking", "publish"].contains(route) ? .driver : profile.roles[0]
         state.trips = [Fixtures.trip]
         state.children = [Fixtures.child, Fixtures.otherChild]
         state.clubSummaries = Fixtures.clubs
@@ -43,10 +47,8 @@ enum UITestAppStateFactory {
         case "auth":
             state.session = nil
         case "booking":
-            state.selectedRole = .driver
             state.selectedTab = .trips
         case "publish":
-            state.selectedRole = .driver
             state.selectedTab = .publish
         case "messages":
             state.selectedTab = .messages

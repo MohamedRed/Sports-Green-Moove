@@ -2,5 +2,6 @@ import {bookingServerRecheckProgress} from './booking-server-recheck.mjs';
 import {latestIosProgress} from './progress-ios-latest.mjs';
 import {verificationBoundariesProgress} from './verification-boundaries.mjs';
 import {verificationFollowupProgress} from './verification-followup.mjs';
+import {ios584FixtureResultProgress} from './ios-584-fixture-result.mjs';
 
-export const latestReleaseProgress = [verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];
+export const latestReleaseProgress = [ios584FixtureResultProgress, verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];

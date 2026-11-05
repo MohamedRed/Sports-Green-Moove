@@ -6,6 +6,7 @@ BUILD_DIR="${TMPDIR:-/tmp}/sports-green-moove-ios-native-checks"
 mkdir -p "${BUILD_DIR}"
 
 swiftc \
+  -D DEBUG \
   -swift-version 6 \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
@@ -82,6 +83,15 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchActivityState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PlaceSearchWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestEmergencyContacts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestTeamChat.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestRideChat.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestRideChatWatches.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestMembershipGateway.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestProfileCityGateway.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/BookingRequestCoordinator.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PendingBookingStore.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Bookings.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LogoutIntentStore.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AuthenticationState.swift" \
@@ -119,6 +129,7 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ParentEmergencyContactChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/UITestRouteChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchOwnershipChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/PlaceSearchWireChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \

@@ -62,13 +62,27 @@ test('UI candidates preserve the real city button and full-size club target with
   for (const row of index.files.filter(row => row.path.startsWith('ios/UITests/') && row.commit === 'candidate')) {
     const original = frozen(row.path, report.baselineCommit);
     assert.equal(frozen(row.path, 'candidate'), original);
-    const expected = row.path.endsWith('/SportsGreenMooveUITests.swift')
+    let expected = row.path.endsWith('/SportsGreenMooveUITests.swift')
       ? original.replace('        verifyTeamChat(in: app)', '        verifyRideChat(in: app)\n        verifyTeamChat(in: app)')
         .replace('        assertExists("active-ride.emergency-contact", in: app)',
           '        assertExists("active-ride.emergency-contact", in: app)\n        verifyActiveRideChat(in: app)')
       : row.path.endsWith('/SearchConsentFlowTests.swift')
         ? original.replace('        XCTAssertEqual(consent.value as? String, "Accordé")\n    }\n\n    @MainActor private func launchSearch',
           '        XCTAssertEqual(consent.value as? String, "Accordé")\n        verifyOwnedChildBooking(in: app)\n    }\n\n    @MainActor private func launchSearch') : original;
+    if (row.path.endsWith('/EmergencyContactFlowTests.swift')) {
+      expected = original.replaceAll('        app.scrollViews.firstMatch.swipeDown()\n        app.buttons["emergency.back"].tap(); entry.tap()',
+        '        returnToOptions(in: app); entry.tap()').replace(/\n}\n$/, `
+
+    @MainActor private func returnToOptions(in app: XCUIApplication) {
+        let back = app.buttons["emergency.back"]
+        XCTAssertTrue(back.waitForExistence(timeout: 6))
+        if !back.isHittable { app.scrollViews["emergency.screen"].swipeDown() }
+        XCTAssertTrue(back.isHittable); back.tap()
+        XCTAssertTrue(app.scrollViews["options.screen"].waitForExistence(timeout: 6))
+    }
+}
+`);
+    }
     assert.equal(read(row.path), expected);
   }
 });

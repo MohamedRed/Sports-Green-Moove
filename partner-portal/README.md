@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The 584 SDK build passes and all eleven iPhone cases execute: eight pass and three
+fail with five assertions, before a subsequent whole-job deadline cancellation.
+Disposal succeeds and no artifacts exist. Publish one concise eight-of-eleven
+note, no new media. The local DEBUG factory check reproduces the publication
+seed-order defect and now passes thirteen route owners plus actual fixture
+second-child/two-seat booking confirmation. Emergency navigation is a candidate;
+the missing native booking alert remains unexplained. Preserve all assertions,
+cases, 50 minutes, capture bounds, historical records/media/statuses/dates/tours/
+blockers and public access. No notification or DNS policy is changed. See
+`docs/release/evidence/ios-fixture-failure-584-2026-11-05/`.
+
 The actual aac Linux search contract step now passes. Publish one short automated-
 check note, not complete phone-flow acceptance. The failed Android prerequisite
 retains five unvalidated-Wi-Fi defaults, then fifty-five validated-cellular

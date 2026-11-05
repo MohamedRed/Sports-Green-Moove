@@ -167,6 +167,9 @@ check(MapRoutePolyline.points(for: routePreview) == [routePreview.start, routePr
 checkTripDateLabels()
 checkSearchConsent()
 await checkSearchAppState()
+#if DEBUG
+await checkUITestRouteOwnership()
+#endif
 await checkAppDataRefresh()
 await checkAuthenticationOwnership()
 try checkLocationSessionOwnership()
