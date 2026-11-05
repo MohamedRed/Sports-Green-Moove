@@ -1541,9 +1541,6 @@ jobs:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/chat-source-access.json
         run: npm run test:chat-source-access && node --test tests/chat-source-access.test.mjs tests/ios-current-fixture-result.test.mjs tests/ios-input-controls.test.mjs tests/ios-ride-chat.test.mjs
 
-      - name: Check rule-provider lock portability
-        run: node --test tests/firestore-rules-lock.test.mjs
-
       - name: Set up rules configuration validation
         uses: hashicorp/setup-terraform@v4
         with:
@@ -1552,6 +1549,7 @@ jobs:
 
       - name: Validate rules configuration without cloud changes
         run: |
+          node --test tests/firestore-rules-lock.test.mjs
           terraform -chdir=infra/firestore-rules init -backend=false -input=false -lockfile=readonly
           terraform -chdir=infra/firestore-rules validate
           terraform -chdir=infra/firestore-rules fmt -check

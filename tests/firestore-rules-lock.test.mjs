@@ -33,7 +33,7 @@ test('smoke retains real read-only validation, no credentials, no plans or appli
   assert(validation.run.includes('validate')); assert(validation.run.includes('fmt -check'));
   assert.doesNotMatch(validation.run, /\bplan\b|\bapply\b|\bupgrade\b|\bimport\b|secrets\.|TF_PLUGIN_CACHE_MAY_BREAK/);
   for (const event of ['push', 'pull_request']) assert(web.on[event].paths.includes('tests/firestore-rules-lock.test.mjs'));
-  assert(steps.some(step => step.run === 'node --test tests/firestore-rules-lock.test.mjs'));
+  assert(validation.run.startsWith('node --test tests/firestore-rules-lock.test.mjs\n'));
   const guide = read('infra/firestore-rules/README.md');
   assert(guide.includes('-platform=linux_amd64 -platform=darwin_arm64')); assert(guide.includes('-lockfile=readonly'));
 });
